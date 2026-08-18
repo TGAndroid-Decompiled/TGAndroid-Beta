@@ -2,6 +2,7 @@ package org.telegram.ui;
 
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
+import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -132,7 +133,7 @@ public class ProxySettingsActivity extends BaseFragment {
     }
 
     @Override
-    public View createView(final Context context) throws NoSuchFieldException, SecurityException {
+    public View createView(final Context context) {
         this.actionBar.setTitle(LocaleController.getString(R.string.ProxyDetails));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(false);
@@ -532,7 +533,99 @@ public class ProxySettingsActivity extends BaseFragment {
     }
 
     public void updatePasteCell() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProxySettingsActivity.updatePasteCell():void");
+        String string;
+        ClipData primaryClip = this.clipboardManager.getPrimaryClip();
+        String[] strArrSplit = null;
+        if (primaryClip == null || primaryClip.getItemCount() <= 0) {
+            string = null;
+        } else {
+            try {
+                string = primaryClip.getItemAt(0).coerceToText(this.fragmentView.getContext()).toString();
+            } catch (Exception unused) {
+                string = null;
+            }
+        }
+        if (TextUtils.equals(string, this.pasteString)) {
+            return;
+        }
+        this.pasteType = -1;
+        this.pasteString = string;
+        this.pasteFields = new String[this.inputFields.length];
+        if (string != null) {
+            String[] strArr = {"t.me/socks?", "tg://socks?"};
+            for (int i = 0; i < 2; i++) {
+                int iIndexOf = string.indexOf(strArr[i]);
+                if (iIndexOf >= 0) {
+                    this.pasteType = 0;
+                    strArrSplit = string.substring(iIndexOf + strArr[i].length()).split("&");
+                    break;
+                }
+            }
+            if (strArrSplit == null) {
+                String[] strArr2 = {"t.me/proxy?", "tg://proxy?"};
+                for (int i2 = 0; i2 < 2; i2++) {
+                    int iIndexOf2 = string.indexOf(strArr2[i2]);
+                    if (iIndexOf2 >= 0) {
+                        this.pasteType = 1;
+                        strArrSplit = string.substring(iIndexOf2 + strArr2[i2].length()).split("&");
+                        break;
+                    }
+                }
+            }
+            if (strArrSplit != null) {
+                for (String str : strArrSplit) {
+                    String[] strArrSplit2 = str.split("=");
+                    if (strArrSplit2.length == 2) {
+                        String lowerCase = strArrSplit2[0].toLowerCase();
+                        lowerCase.hashCode();
+                        switch (lowerCase) {
+                            case "secret":
+                                if (this.pasteType == 1) {
+                                    this.pasteFields[4] = strArrSplit2[1];
+                                    break;
+                                } else {
+                                    break;
+                                }
+                                break;
+                            case "server":
+                                this.pasteFields[0] = strArrSplit2[1];
+                                break;
+                            case "pass":
+                                if (this.pasteType == 0) {
+                                    this.pasteFields[3] = strArrSplit2[1];
+                                    break;
+                                } else {
+                                    break;
+                                }
+                                break;
+                            case "port":
+                                this.pasteFields[1] = strArrSplit2[1];
+                                break;
+                            case "user":
+                                if (this.pasteType == 0) {
+                                    this.pasteFields[2] = strArrSplit2[1];
+                                    break;
+                                } else {
+                                    break;
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        if (this.pasteType != -1) {
+            if (this.pasteCell.getVisibility() != 0) {
+                this.pasteCell.setVisibility(0);
+                this.sectionCell[2].setVisibility(0);
+                return;
+            }
+            return;
+        }
+        if (this.pasteCell.getVisibility() != 8) {
+            this.pasteCell.setVisibility(8);
+            this.sectionCell[2].setVisibility(8);
+        }
     }
 
     private void setShareDoneEnabled(boolean z, boolean z2) {

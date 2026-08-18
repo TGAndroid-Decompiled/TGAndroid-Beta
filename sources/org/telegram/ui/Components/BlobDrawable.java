@@ -55,8 +55,9 @@ public class BlobDrawable {
         this.random = new Random();
         this.cubicBezierK = 1.0f;
         this.m = new Matrix();
-        this.N = i;
-        this.L = (float) (Math.tan(3.141592653589793d / (r0 * 2.0f)) * 1.3333333333333333d);
+        float f = i;
+        this.N = f;
+        this.L = (float) (Math.tan(3.141592653589793d / ((double) (f * 2.0f))) * 1.3333333333333333d);
         this.radius = new float[i];
         this.angle = new float[i];
         this.radiusNext = new float[i];
@@ -77,7 +78,7 @@ public class BlobDrawable {
         float f3 = this.minRadius;
         fArr[i] = f3 + (Math.abs((this.random.nextInt() % 100.0f) / 100.0f) * (f2 - f3));
         fArr2[i] = ((360.0f / this.N) * i) + (((this.random.nextInt() % 100.0f) / 100.0f) * f);
-        this.speed[i] = (float) (((Math.abs(this.random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
+        this.speed[i] = (float) ((((double) (Math.abs(this.random.nextInt() % 100.0f) / 100.0f)) * 0.003d) + 0.017d);
     }
 
     public void update(float f, float f2) {

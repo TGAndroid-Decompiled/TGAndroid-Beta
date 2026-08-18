@@ -148,8 +148,118 @@ public class VoIpSwitchLayout extends FrameLayout {
         setType(type, z, false);
     }
 
-    public void setType(org.telegram.ui.Components.voip.VoIpSwitchLayout.Type r19, boolean r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.VoIpSwitchLayout.setType(org.telegram.ui.Components.voip.VoIpSwitchLayout$Type, boolean, boolean):void");
+    public void setType(Type type, boolean z, boolean z2) {
+        boolean z3;
+        boolean z4;
+        if (this.type == type && z == this.voIpButtonView.isSelectedState) {
+            if (getVisibility() != 0) {
+                setVisibility(0);
+                return;
+            }
+            return;
+        }
+        if (getVisibility() != 0) {
+            setVisibility(0);
+        }
+        final int iDp = AndroidUtilities.dp(53.5f);
+        int iOrdinal = type.ordinal();
+        if (iOrdinal == 0) {
+            if (this.type != Type.MICRO) {
+                VoIpButtonView voIpButtonView = this.voIpButtonView;
+                int i = R.raw.call_mute;
+                voIpButtonView.unSelectedIcon = new RLottieDrawable(i, "" + i, iDp, iDp, true, null);
+                this.voIpButtonView.selectedIcon = new RLottieDrawable(i, "" + i, iDp, iDp, true, null);
+                this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+                this.voIpButtonView.selectedIcon.setMasterParent(this.voIpButtonView);
+            }
+        } else {
+            if (iOrdinal == 1) {
+                Type type2 = this.type;
+                if (type2 == Type.SPEAKER || type2 == Type.BLUETOOTH) {
+                    attachNewButton(R.raw.camera_flip2, iDp, z, type);
+                    z3 = true;
+                } else if (type2 != Type.CAMERA) {
+                    VoIpButtonView voIpButtonView2 = this.voIpButtonView;
+                    int i2 = R.raw.camera_flip2;
+                    voIpButtonView2.singleIcon = new RLottieDrawable(i2, "" + i2, iDp, iDp, true, null);
+                    this.voIpButtonView.singleIcon.setMasterParent(this.voIpButtonView);
+                }
+            } else if (iOrdinal != 2) {
+                if (iOrdinal == 3) {
+                    Type type3 = this.type;
+                    if (type3 != Type.SPEAKER) {
+                        if (type3 == Type.CAMERA) {
+                            attachNewButton(R.raw.bt_to_speaker, iDp, z, type);
+                            z3 = true;
+                        } else if (type3 != Type.BLUETOOTH) {
+                            lambda$setType$2(iDp);
+                        }
+                    } else {
+                        z3 = z == this.voIpButtonView.isSelectedState;
+                        RLottieDrawable rLottieDrawable = z ? this.voIpButtonView.selectedIcon : this.voIpButtonView.unSelectedIcon;
+                        rLottieDrawable.setMasterParent(this.voIpButtonView);
+                        rLottieDrawable.setOnAnimationEndListener(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$setType$3(iDp);
+                            }
+                        });
+                        rLottieDrawable.start();
+                    }
+                } else if (iOrdinal == 4) {
+                    Type type4 = this.type;
+                    if (type4 != Type.BLUETOOTH) {
+                        if (type4 == Type.CAMERA) {
+                            attachNewButton(R.raw.speaker_to_bt, iDp, z, type);
+                            z3 = true;
+                        } else if (type4 != Type.SPEAKER) {
+                            lambda$setType$0(iDp);
+                        }
+                    } else {
+                        z3 = z == this.voIpButtonView.isSelectedState;
+                        RLottieDrawable rLottieDrawable2 = z ? this.voIpButtonView.selectedIcon : this.voIpButtonView.unSelectedIcon;
+                        rLottieDrawable2.setMasterParent(this.voIpButtonView);
+                        rLottieDrawable2.setOnAnimationEndListener(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$setType$1(iDp);
+                            }
+                        });
+                        rLottieDrawable2.start();
+                    }
+                }
+            } else if (this.type != Type.VIDEO) {
+                VoIpButtonView voIpButtonView3 = this.voIpButtonView;
+                int i3 = R.raw.video_stop;
+                voIpButtonView3.unSelectedIcon = new RLottieDrawable(i3, "" + i3, iDp, iDp, true, null);
+                this.voIpButtonView.selectedIcon = new RLottieDrawable(i3, "" + i3, iDp, iDp, true, null);
+                this.voIpButtonView.selectedIcon.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+                this.voIpButtonView.selectedIcon.setMasterParent(this.voIpButtonView);
+            }
+            if (!z3) {
+                VoIpButtonView voIpButtonView4 = this.voIpButtonView;
+                if (this.type != null || z2) {
+                    z4 = false;
+                } else {
+                    z4 = true;
+                }
+                voIpButtonView4.setSelectedState(z, z4, type);
+            }
+            setText(type, z);
+            this.type = type;
+        }
+        z3 = false;
+        if (!z3) {
+            VoIpButtonView voIpButtonView5 = this.voIpButtonView;
+            if (this.type != null) {
+                z4 = false;
+            } else {
+                z4 = false;
+            }
+            voIpButtonView5.setSelectedState(z, z4, type);
+        }
+        setText(type, z);
+        this.type = type;
     }
 
     public void lambda$setType$1(final int i) {
@@ -290,7 +400,8 @@ public class VoIpSwitchLayout extends FrameLayout {
                 this.unselectedRadius = 0;
                 this.singleIconBackgroundAlphaPercent = 100;
                 if (type == Type.VIDEO || type == Type.MICRO) {
-                    this.selectedIcon.setCurrentFrame(r7.getFramesCount() - 1, false);
+                    RLottieDrawable rLottieDrawable = this.selectedIcon;
+                    rLottieDrawable.setCurrentFrame(rLottieDrawable.getFramesCount() - 1, false);
                 }
             } else {
                 this.selectedRadius = 0;
@@ -378,8 +489,9 @@ public class VoIpSwitchLayout extends FrameLayout {
             float height = getHeight() / 2.0f;
             this.backgroundProvider.setLightTranslation(getX() + ((View) getParent()).getX(), getY() + ((View) ((View) getParent()).getParent()).getY());
             if (this.singleIcon != null) {
-                if (this.singleIconBackgroundAlphaPercent > 20) {
-                    this.darkPaint.setAlpha((int) ((r2 * 35) / 100.0f));
+                int i = this.singleIconBackgroundAlphaPercent;
+                if (i > 20) {
+                    this.darkPaint.setAlpha((int) ((i * 35) / 100.0f));
                     this.whiteCirclePaint.setAlpha((int) ((this.singleIconBackgroundAlphaPercent * 255) / 100.0f));
                     canvas.drawCircle(width, height, this.maxRadius, this.whiteCirclePaint);
                     this.singleIcon.draw(canvas, this.maskPaint);
@@ -396,16 +508,16 @@ public class VoIpSwitchLayout extends FrameLayout {
             if (this.selectedIcon == null || this.unSelectedIcon == null) {
                 return;
             }
-            int i = this.unselectedRadius;
-            int i2 = this.maxRadius;
+            int i2 = this.unselectedRadius;
+            int i3 = this.maxRadius;
             boolean z = false;
-            boolean z2 = i == i2 && this.selectedRadius == 0;
-            int i3 = this.selectedRadius;
-            if (i3 == i2 && i == 0) {
+            boolean z2 = i2 == i3 && this.selectedRadius == 0;
+            int i4 = this.selectedRadius;
+            if (i4 == i3 && i2 == 0) {
                 z = true;
             }
-            if (i3 == i2 && i > 0 && i != i2) {
-                canvas.drawCircle(width, height, i3, this.whiteCirclePaint);
+            if (i4 == i3 && i2 > 0 && i2 != i3) {
+                canvas.drawCircle(width, height, i4, this.whiteCirclePaint);
                 canvas.drawCircle(width, height, this.unselectedRadius, this.maskPaint);
                 this.selectedIcon.setAlpha(255);
                 this.selectedIcon.draw(canvas, this.maskPaint);

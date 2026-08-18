@@ -3,7 +3,7 @@ package io.noties.markwon.html;
 import java.io.IOException;
 
 abstract class AppendableUtils {
-    static void appendQuietly(Appendable appendable, char c) throws IOException {
+    static void appendQuietly(Appendable appendable, char c) {
         try {
             appendable.append(c);
         } catch (IOException e) {
@@ -11,7 +11,7 @@ abstract class AppendableUtils {
         }
     }
 
-    static void appendQuietly(Appendable appendable, CharSequence charSequence) throws IOException {
+    static void appendQuietly(Appendable appendable, CharSequence charSequence) {
         try {
             appendable.append(charSequence);
         } catch (IOException e) {

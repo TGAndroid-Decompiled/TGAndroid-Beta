@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -51,7 +52,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Business.BusinessChatbotController;
 import org.telegram.ui.Business.ChatbotSheet;
-import org.telegram.ui.CameraScanActivity;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.RadioColorCell;
@@ -72,7 +72,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
-import org.telegram.ui.SessionBottomSheet;
 
 public class SessionsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int botSessionsEndRow;
@@ -271,13 +270,20 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         TLRPC.TL_authorization tL_authorization;
         ArrayList arrayList;
         String string2;
+        int i2;
         boolean z = true;
         if (i == this.ttlRow) {
             if (getParentActivity() == null) {
                 return;
             }
-            int i2 = this.ttlDays;
-            int i3 = i2 <= 7 ? 0 : i2 <= 93 ? 1 : i2 <= 183 ? 2 : 3;
+            int i3 = this.ttlDays;
+            if (i3 <= 7) {
+                i2 = 0;
+            } else if (i3 <= 93) {
+                i2 = 1;
+            } else {
+                i2 = i3 <= 183 ? 2 : 3;
+            }
             final AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString(R.string.SessionsSelfDestruct));
             String[] strArr = {LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.formatPluralString("Months", 3, new Object[0]), LocaleController.formatPluralString("Months", 6, new Object[0]), LocaleController.formatPluralString("Years", 1, new Object[0])};
@@ -290,7 +296,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
                 radioColorCell.setTag(Integer.valueOf(i4));
                 radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
-                radioColorCell.setTextAndValue(strArr[i4], i3 == i4);
+                radioColorCell.setTextAndValue(strArr[i4], i2 == i4);
                 linearLayout.addView(radioColorCell);
                 radioColorCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
                 radioColorCell.setOnClickListener(new View.OnClickListener() {
@@ -1095,7 +1101,9 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            String pluralString;
             int itemViewType = viewHolder.getItemViewType();
+            boolean z = false;
             if (itemViewType == 0) {
                 TextCell textCell = (TextCell) viewHolder.itemView;
                 if (i != SessionsActivity.this.terminateAllSessionsRow) {
@@ -1182,7 +1190,13 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             }
             if (itemViewType != 5) {
                 if (itemViewType == 6) {
-                    ((TextSettingsCell) viewHolder.itemView).setTextAndValue(LocaleController.getString(R.string.IfInactiveFor), (SessionsActivity.this.ttlDays <= 30 || SessionsActivity.this.ttlDays > 183) ? SessionsActivity.this.ttlDays == 365 ? LocaleController.formatPluralString("Years", SessionsActivity.this.ttlDays / 365, new Object[0]) : LocaleController.formatPluralString("Weeks", SessionsActivity.this.ttlDays / 7, new Object[0]) : LocaleController.formatPluralString("Months", SessionsActivity.this.ttlDays / 30, new Object[0]), true, false);
+                    TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
+                    if (SessionsActivity.this.ttlDays <= 30 || SessionsActivity.this.ttlDays > 183) {
+                        pluralString = SessionsActivity.this.ttlDays == 365 ? LocaleController.formatPluralString("Years", SessionsActivity.this.ttlDays / 365, new Object[0]) : LocaleController.formatPluralString("Weeks", SessionsActivity.this.ttlDays / 7, new Object[0]);
+                    } else {
+                        pluralString = LocaleController.formatPluralString("Months", SessionsActivity.this.ttlDays / 30, new Object[0]);
+                    }
+                    textSettingsCell.setTextAndValue(LocaleController.getString(R.string.IfInactiveFor), pluralString, true, false);
                     return;
                 }
                 SessionCell sessionCell = (SessionCell) viewHolder.itemView;
@@ -1219,8 +1233,66 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
 
         @Override
-        public long getItemId(int r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SessionsActivity.ListAdapter.getItemId(int):long");
+        public long getItemId(int i) {
+            int iHash;
+            if (i == SessionsActivity.this.terminateAllSessionsRow) {
+                iHash = Objects.hash(0, 0);
+            } else if (i == SessionsActivity.this.terminateAllSessionsDetailRow) {
+                iHash = Objects.hash(0, 1);
+            } else if (i == SessionsActivity.this.otherSessionsTerminateDetail) {
+                iHash = Objects.hash(0, 2);
+            } else if (i == SessionsActivity.this.passwordSessionsDetailRow) {
+                iHash = Objects.hash(0, 3);
+            } else if (i == SessionsActivity.this.qrCodeDividerRow) {
+                iHash = Objects.hash(0, 4);
+            } else if (i == SessionsActivity.this.ttlDivideRow) {
+                iHash = Objects.hash(0, 5);
+            } else if (i == SessionsActivity.this.noOtherSessionsRow) {
+                iHash = Objects.hash(0, 6);
+            } else if (i == SessionsActivity.this.currentSessionSectionRow) {
+                iHash = Objects.hash(0, 7);
+            } else if (i == SessionsActivity.this.otherSessionsSectionRow) {
+                iHash = Objects.hash(0, 8);
+            } else if (i == SessionsActivity.this.passwordSessionsSectionRow) {
+                iHash = Objects.hash(0, 9);
+            } else if (i == SessionsActivity.this.ttlHeaderRow) {
+                iHash = Objects.hash(0, 10);
+            } else if (i == SessionsActivity.this.currentSessionRow) {
+                iHash = Objects.hash(0, 11);
+            } else if (i < SessionsActivity.this.otherSessionsStartRow || i >= SessionsActivity.this.otherSessionsEndRow) {
+                if (i < SessionsActivity.this.botSessionsStartRow || i >= SessionsActivity.this.botSessionsEndRow) {
+                    if (i < SessionsActivity.this.passwordSessionsStartRow || i >= SessionsActivity.this.passwordSessionsEndRow) {
+                        if (i == SessionsActivity.this.qrCodeRow) {
+                            iHash = Objects.hash(0, 12);
+                        } else if (i == SessionsActivity.this.ttlRow) {
+                            iHash = Objects.hash(0, 13);
+                        } else {
+                            iHash = Objects.hash(0, -1);
+                        }
+                    } else {
+                        TLObject tLObject = (TLObject) SessionsActivity.this.passwordSessions.get(i - SessionsActivity.this.passwordSessionsStartRow);
+                        if (tLObject instanceof TLRPC.TL_authorization) {
+                            iHash = Objects.hash(2, Long.valueOf(((TLRPC.TL_authorization) tLObject).hash));
+                        } else if (tLObject instanceof TLRPC.TL_webAuthorization) {
+                            iHash = Objects.hash(2, Long.valueOf(((TLRPC.TL_webAuthorization) tLObject).hash));
+                        } else {
+                            iHash = Objects.hash(0, -1);
+                        }
+                    }
+                } else {
+                    iHash = Objects.hash(3, Long.valueOf(((TL_account.TL_connectedBot) SessionsActivity.this.bots.get(i - SessionsActivity.this.botSessionsStartRow)).bot_id));
+                }
+            } else {
+                TLObject tLObject2 = (TLObject) SessionsActivity.this.sessions.get(i - SessionsActivity.this.otherSessionsStartRow);
+                if (tLObject2 instanceof TLRPC.TL_authorization) {
+                    iHash = Objects.hash(1, Long.valueOf(((TLRPC.TL_authorization) tLObject2).hash));
+                } else if (tLObject2 instanceof TLRPC.TL_webAuthorization) {
+                    iHash = Objects.hash(1, Long.valueOf(((TLRPC.TL_webAuthorization) tLObject2).hash));
+                } else {
+                    iHash = Objects.hash(0, -1);
+                }
+            }
+            return iHash;
         }
 
         @Override

@@ -1,6 +1,5 @@
 package kotlin;
 
-import kotlin.Result;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class ResultKt {

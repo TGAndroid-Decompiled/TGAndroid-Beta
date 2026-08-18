@@ -1,12 +1,14 @@
 package org.telegram.tgnet;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.InstallSourceInfo;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import android.util.Base64;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -17,16 +19,18 @@ import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +42,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import javax.net.ssl.SSLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.AccountInstance;
@@ -47,7 +52,10 @@ import org.telegram.messenger.BaseController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.CaptchaController;
 import org.telegram.messenger.EmuDetector;
+import org.telegram.messenger.FileLoadOperation;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FileUploadOperation;
 import org.telegram.messenger.KeepAliveJob;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -56,7 +64,6 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.StatsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.LoginActivity;
 
@@ -279,14 +286,15 @@ public class ConnectionsManager extends BaseController {
                         connectionsManager = new ConnectionsManager(i);
                         connectionsManagerArr[i] = connectionsManager;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
         return connectionsManager;
     }
 
-    public ConnectionsManager(int i) throws PackageManager.NameNotFoundException {
+    public ConnectionsManager(int i) {
         String str;
         String str2;
         String str3;
@@ -494,11 +502,36 @@ public class ConnectionsManager extends BaseController {
         return andIncrement;
     }
 
-    public void lambda$sendRequest$6(final org.telegram.tgnet.TLObject r18, final org.telegram.tgnet.RequestDelegate r19, final org.telegram.tgnet.RequestDelegateTimestamp r20, final org.telegram.tgnet.QuickAckDelegate r21, final org.telegram.tgnet.WriteToSocketDelegate r22, final int r23, final int r24, final int r25, final boolean r26, final int r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.lambda$sendRequest$6(org.telegram.tgnet.TLObject, org.telegram.tgnet.RequestDelegate, org.telegram.tgnet.RequestDelegateTimestamp, org.telegram.tgnet.QuickAckDelegate, org.telegram.tgnet.WriteToSocketDelegate, int, int, int, boolean, int):void");
+    public void lambda$sendRequest$6(final TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, final QuickAckDelegate quickAckDelegate, final WriteToSocketDelegate writeToSocketDelegate, final int i, final int i2, final int i3, final boolean z, final int i4) {
+        long jCurrentTimeMillis;
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("send request " + tLObject + " with token = " + i4);
+        }
+        try {
+            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLObject.getObjectSize());
+            tLObject.serializeToStream(nativeByteBuffer);
+            tLObject.freeResources();
+            if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
+                jCurrentTimeMillis = System.currentTimeMillis();
+            } else if ((i3 & 2) != 0) {
+                jCurrentTimeMillis = System.currentTimeMillis();
+            } else {
+                jCurrentTimeMillis = 0;
+            }
+            final long j = jCurrentTimeMillis;
+            listen(i4, new RequestDelegateInternal() {
+                @Override
+                public final void run(long j2, int i5, String str, int i6, long j3, long j4, int i7) {
+                    this.f$0.lambda$sendRequestInternal$8(tLObject, i3, j, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, z, i4, j2, i5, str, i6, j3, j4, i7);
+                }
+            }, quickAckDelegate, writeToSocketDelegate);
+            native_sendRequest(this.currentAccount, nativeByteBuffer.address, i, i2, i3, z, i4);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
-    public void lambda$sendRequestInternal$8(TLObject tLObject, int i, long j, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i2, int i3, boolean z, int i4, long j2, int i5, String str, int i6, final long j3, long j4, int i7) throws Exception {
+    public void lambda$sendRequestInternal$8(TLObject tLObject, int i, long j, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i2, int i3, boolean z, int i4, long j2, int i5, String str, int i6, final long j3, long j4, int i7) {
         TLObject tLObjectDeserializeResponse;
         TLRPC.TL_error tL_error;
         int iLimit;
@@ -536,7 +569,7 @@ public class ConnectionsManager extends BaseController {
                 iLimit = 0;
             }
             if ((i & 2) != 0 && VideoPlayer.activePlayers.isEmpty()) {
-                DefaultBandwidthMeter.getSingletonInstance(ApplicationLoader.applicationContext).onTransfer(iLimit, Math.max(0L, (System.currentTimeMillis() - j) - native_getCurrentPingTime(this.currentAccount)));
+                DefaultBandwidthMeter.getSingletonInstance(ApplicationLoader.applicationContext).onTransfer(iLimit, Math.max(0L, (System.currentTimeMillis() - j) - ((long) native_getCurrentPingTime(this.currentAccount))));
             }
             if (BuildVars.DEBUG_PRIVATE_VERSION && !getUserConfig().isClientActivated() && tL_error != null && tL_error.code == 400 && Objects.equals(tL_error.text, "CONNECTION_NOT_INITED")) {
                 if (BuildVars.LOGS_ENABLED) {
@@ -750,8 +783,71 @@ public class ConnectionsManager extends BaseController {
         native_setPushConnectionEnabled(this.currentAccount, z);
     }
 
-    public void init(int r29, int r30, int r31, java.lang.String r32, java.lang.String r33, java.lang.String r34, java.lang.String r35, java.lang.String r36, java.lang.String r37, java.lang.String r38, java.lang.String r39, java.lang.String r40, int r41, long r42, boolean r44, boolean r45) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.init(int, int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, long, boolean, boolean):void");
+    public void init(int i, int i2, int i3, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, int i4, long j, boolean z, boolean z2) {
+        String initiatingPackageName;
+        String str10;
+        String packageName;
+        String str11;
+        String installerPackageName;
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
+        String string = sharedPreferences.getString("proxy_ip", "");
+        String string2 = sharedPreferences.getString("proxy_user", "");
+        String string3 = sharedPreferences.getString("proxy_pass", "");
+        String string4 = sharedPreferences.getString("proxy_secret", "");
+        int i5 = sharedPreferences.getInt("proxy_port", 1080);
+        if (sharedPreferences.getBoolean("proxy_enabled", false) && !TextUtils.isEmpty(string)) {
+            native_setProxySettings(this.currentAccount, string, i5, string2, string3, string4);
+        }
+        try {
+            try {
+                Context context = ApplicationLoader.applicationContext;
+                if (Build.VERSION.SDK_INT >= 30) {
+                    InstallSourceInfo installSourceInfo = context.getPackageManager().getInstallSourceInfo(context.getPackageName());
+                    if (installSourceInfo != null) {
+                        initiatingPackageName = installSourceInfo.getInitiatingPackageName();
+                        if (initiatingPackageName == null) {
+                            try {
+                                installerPackageName = installSourceInfo.getInstallingPackageName();
+                            } catch (Throwable unused) {
+                            }
+                        }
+                    } else {
+                        initiatingPackageName = "";
+                    }
+                    if (initiatingPackageName == null) {
+                        str10 = "";
+                    } else {
+                        str10 = initiatingPackageName;
+                    }
+                    packageName = ApplicationLoader.applicationContext.getPackageName();
+                    if (packageName == null) {
+                        str11 = "";
+                    } else {
+                        str11 = packageName;
+                    }
+                    native_init(this.currentAccount, i, i2, i3, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, i4, j, z, z2, ApplicationLoader.isNetworkOnline(), ApplicationLoader.getCurrentNetworkType(), SharedConfig.measureDevicePerformanceClass());
+                    checkConnection();
+                }
+                installerPackageName = context.getPackageManager().getInstallerPackageName(context.getPackageName());
+                initiatingPackageName = installerPackageName;
+            } catch (Throwable unused2) {
+            }
+            packageName = ApplicationLoader.applicationContext.getPackageName();
+        } catch (Throwable unused3) {
+            packageName = "";
+        }
+        if (initiatingPackageName == null) {
+            str10 = "";
+        } else {
+            str10 = initiatingPackageName;
+        }
+        if (packageName == null) {
+            str11 = "";
+        } else {
+            str11 = packageName;
+        }
+        native_init(this.currentAccount, i, i2, i3, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, i4, j, z, z2, ApplicationLoader.isNetworkOnline(), ApplicationLoader.getCurrentNetworkType(), SharedConfig.measureDevicePerformanceClass());
+        checkConnection();
     }
 
     public static void setLangCode(String str) {
@@ -1226,7 +1322,7 @@ public class ConnectionsManager extends BaseController {
         }
 
         @Override
-        public ResolvedDomain doInBackground(Void... voidArr) throws IOException {
+        public ResolvedDomain doInBackground(Void... voidArr) {
             InputStream inputStream;
             ByteArrayOutputStream byteArrayOutputStream;
             JSONArray jSONArray;
@@ -1241,79 +1337,95 @@ public class ConnectionsManager extends BaseController {
                 inputStream = uRLConnectionOpenConnection.getInputStream();
                 try {
                     byteArrayOutputStream = new ByteArrayOutputStream();
-                } catch (Throwable th) {
-                    th = th;
-                    byteArrayOutputStream = null;
-                }
-            } catch (Throwable th2) {
-                th = th2;
-                inputStream = null;
-                byteArrayOutputStream = null;
-            }
-            try {
-                byte[] bArr = new byte[32768];
-                while (true) {
-                    int i = inputStream.read(bArr);
-                    if (i <= 0) {
-                        break;
-                    }
-                    byteArrayOutputStream.write(bArr, 0, i);
-                }
-                JSONObject jSONObject = new JSONObject(new String(byteArrayOutputStream.toByteArray()));
-                if (!jSONObject.has("Answer") || (length = (jSONArray = jSONObject.getJSONArray("Answer")).length()) <= 0) {
                     try {
-                        inputStream.close();
-                    } catch (Throwable th3) {
-                        FileLog.e(th3, false);
-                    }
-                    try {
-                        byteArrayOutputStream.close();
-                    } catch (Exception unused) {
-                    }
-                    return null;
-                }
-                ArrayList arrayList = new ArrayList(length);
-                for (int i2 = 0; i2 < length; i2++) {
-                    arrayList.add(jSONArray.getJSONObject(i2).getString("data"));
-                }
-                ResolvedDomain resolvedDomain = new ResolvedDomain(arrayList, SystemClock.elapsedRealtime());
-                try {
-                    inputStream.close();
-                } catch (Throwable th4) {
-                    FileLog.e(th4, false);
-                }
-                try {
-                    byteArrayOutputStream.close();
-                } catch (Exception unused2) {
-                }
-                return resolvedDomain;
-            } catch (Throwable th5) {
-                th = th5;
-                try {
-                    FileLog.e(th, false);
-                    if (inputStream != null) {
+                        byte[] bArr = new byte[32768];
+                        while (true) {
+                            int i = inputStream.read(bArr);
+                            if (i <= 0) {
+                                break;
+                            }
+                            byteArrayOutputStream.write(bArr, 0, i);
+                        }
+                        JSONObject jSONObject = new JSONObject(new String(byteArrayOutputStream.toByteArray()));
+                        if (jSONObject.has("Answer") && (length = (jSONArray = jSONObject.getJSONArray("Answer")).length()) > 0) {
+                            ArrayList arrayList = new ArrayList(length);
+                            for (int i2 = 0; i2 < length; i2++) {
+                                arrayList.add(jSONArray.getJSONObject(i2).getString("data"));
+                            }
+                            ResolvedDomain resolvedDomain = new ResolvedDomain(arrayList, SystemClock.elapsedRealtime());
+                            try {
+                                inputStream.close();
+                            } catch (Throwable th) {
+                                FileLog.e(th, false);
+                            }
+                            try {
+                                byteArrayOutputStream.close();
+                            } catch (Exception unused) {
+                            }
+                            return resolvedDomain;
+                        }
                         try {
                             inputStream.close();
-                        } catch (Throwable th6) {
-                            FileLog.e(th6, false);
+                        } catch (Throwable th2) {
+                            FileLog.e(th2, false);
                         }
-                    }
-                    if (byteArrayOutputStream != null) {
                         try {
                             byteArrayOutputStream.close();
-                        } catch (Exception unused3) {
+                        } catch (Exception unused2) {
+                        }
+                        return null;
+                    } catch (Throwable th3) {
+                        th = th3;
+                        try {
+                            FileLog.e(th, false);
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (Throwable th4) {
+                                    FileLog.e(th4, false);
+                                }
+                            }
+                            if (byteArrayOutputStream != null) {
+                                try {
+                                    byteArrayOutputStream.close();
+                                } catch (Exception unused3) {
+                                }
+                            }
+                            try {
+                                InetAddress byName = InetAddress.getByName(this.currentHostName);
+                                ArrayList arrayList2 = new ArrayList(1);
+                                arrayList2.add(byName.getHostAddress());
+                                return new ResolvedDomain(arrayList2, SystemClock.elapsedRealtime());
+                            } catch (Exception e) {
+                                FileLog.e((Throwable) e, false);
+                            }
+                        } catch (Throwable th5) {
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (Throwable th6) {
+                                    FileLog.e(th6, false);
+                                }
+                            }
+                            if (byteArrayOutputStream == null) {
+                                throw th5;
+                            }
+                            try {
+                                byteArrayOutputStream.close();
+                                throw th5;
+                            } catch (Exception unused4) {
+                                throw th5;
+                            }
                         }
                     }
-                    try {
-                        InetAddress byName = InetAddress.getByName(this.currentHostName);
-                        ArrayList arrayList2 = new ArrayList(1);
-                        arrayList2.add(byName.getHostAddress());
-                        return new ResolvedDomain(arrayList2, SystemClock.elapsedRealtime());
-                    } catch (Exception e) {
-                        FileLog.e((Throwable) e, false);
-                    }
-                } finally {
+                } catch (Throwable th7) {
+                    th = th7;
+                    byteArrayOutputStream = null;
                 }
+            } catch (Throwable th8) {
+                th = th8;
+                inputStream = null;
+                byteArrayOutputStream = null;
             }
         }
 
@@ -1347,8 +1459,105 @@ public class ConnectionsManager extends BaseController {
         }
 
         @Override
-        public org.telegram.tgnet.NativeByteBuffer doInBackground(java.lang.Void... r11) throws java.io.IOException {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.GoogleDnsLoadTask.doInBackground(java.lang.Void[]):org.telegram.tgnet.NativeByteBuffer");
+        public NativeByteBuffer doInBackground(Void... voidArr) {
+            InputStream inputStream;
+            Throwable th;
+            ByteArrayOutputStream byteArrayOutputStream;
+            int i;
+            boolean z = false;
+            try {
+                String str = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(this.currentAccount).getMessagesController().dcDomainName;
+                int iNextInt = Utilities.random.nextInt(116) + 13;
+                StringBuilder sb = new StringBuilder(iNextInt);
+                for (int i2 = 0; i2 < iNextInt; i2++) {
+                    sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Utilities.random.nextInt(62)));
+                }
+                URLConnection uRLConnectionOpenConnection = new URL("https://dns.google.com/resolve?name=" + str + "&type=ANY&random_padding=" + ((Object) sb)).openConnection();
+                uRLConnectionOpenConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
+                uRLConnectionOpenConnection.setConnectTimeout(5000);
+                uRLConnectionOpenConnection.setReadTimeout(5000);
+                uRLConnectionOpenConnection.connect();
+                inputStream = uRLConnectionOpenConnection.getInputStream();
+                try {
+                    this.responseDate = (int) (uRLConnectionOpenConnection.getDate() / 1000);
+                    byteArrayOutputStream = new ByteArrayOutputStream();
+                    try {
+                        byte[] bArr = new byte[32768];
+                        while (!isCancelled() && (i = inputStream.read(bArr)) > 0) {
+                            byteArrayOutputStream.write(bArr, 0, i);
+                        }
+                        JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream.toByteArray())).getJSONArray("Answer");
+                        int length = jSONArray.length();
+                        ArrayList arrayList = new ArrayList(length);
+                        for (int i3 = 0; i3 < length; i3++) {
+                            JSONObject jSONObject = jSONArray.getJSONObject(i3);
+                            if (jSONObject.getInt("type") == 16) {
+                                arrayList.add(jSONObject.getString("data"));
+                            }
+                        }
+                        Collections.sort(arrayList, new Comparator() {
+                            @Override
+                            public final int compare(Object obj, Object obj2) {
+                                return ConnectionsManager.GoogleDnsLoadTask.lambda$doInBackground$0((String) obj, (String) obj2);
+                            }
+                        });
+                        StringBuilder sb2 = new StringBuilder();
+                        for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                            sb2.append(((String) arrayList.get(i4)).replace("\"", ""));
+                        }
+                        byte[] bArrDecode = Base64.decode(sb2.toString(), 0);
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(bArrDecode.length);
+                        nativeByteBuffer.writeBytes(bArrDecode);
+                        if (inputStream != null) {
+                            try {
+                                inputStream.close();
+                            } catch (Throwable th2) {
+                                FileLog.e(th2);
+                            }
+                        }
+                        try {
+                            byteArrayOutputStream.close();
+                        } catch (Exception unused) {
+                        }
+                        return nativeByteBuffer;
+                    } catch (Throwable th3) {
+                        th = th3;
+                        try {
+                            if (!(th instanceof SocketTimeoutException) && !(th instanceof SSLException)) {
+                                z = true;
+                            }
+                            FileLog.e(th, z);
+                            return null;
+                        } finally {
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (Throwable th4) {
+                                    FileLog.e(th4);
+                                }
+                            }
+                            if (byteArrayOutputStream != null) {
+                                try {
+                                    byteArrayOutputStream.close();
+                                } catch (Exception unused2) {
+                                }
+                            }
+                        }
+                    }
+                } catch (Throwable th5) {
+                    th = th5;
+                    th = th;
+                    byteArrayOutputStream = null;
+                    if (!(th instanceof SocketTimeoutException)) {
+                        z = true;
+                    }
+                    FileLog.e(th, z);
+                    return null;
+                }
+            } catch (Throwable th6) {
+                th = th6;
+                inputStream = null;
+            }
         }
 
         public static int lambda$doInBackground$0(String str, String str2) {
@@ -1398,8 +1607,99 @@ public class ConnectionsManager extends BaseController {
         }
 
         @Override
-        public org.telegram.tgnet.NativeByteBuffer doInBackground(java.lang.Void... r11) throws java.io.IOException {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.MozillaDnsLoadTask.doInBackground(java.lang.Void[]):org.telegram.tgnet.NativeByteBuffer");
+        public NativeByteBuffer doInBackground(Void... voidArr) {
+            InputStream inputStream;
+            Throwable th;
+            ByteArrayOutputStream byteArrayOutputStream;
+            int i;
+            try {
+                String str = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(this.currentAccount).getMessagesController().dcDomainName;
+                int iNextInt = Utilities.random.nextInt(116) + 13;
+                StringBuilder sb = new StringBuilder(iNextInt);
+                for (int i2 = 0; i2 < iNextInt; i2++) {
+                    sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Utilities.random.nextInt(62)));
+                }
+                URLConnection uRLConnectionOpenConnection = new URL("https://mozilla.cloudflare-dns.com/dns-query?name=" + str + "&type=TXT&random_padding=" + ((Object) sb)).openConnection();
+                uRLConnectionOpenConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
+                uRLConnectionOpenConnection.addRequestProperty("accept", "application/dns-json");
+                uRLConnectionOpenConnection.setConnectTimeout(5000);
+                uRLConnectionOpenConnection.setReadTimeout(5000);
+                uRLConnectionOpenConnection.connect();
+                inputStream = uRLConnectionOpenConnection.getInputStream();
+                try {
+                    this.responseDate = (int) (uRLConnectionOpenConnection.getDate() / 1000);
+                    byteArrayOutputStream = new ByteArrayOutputStream();
+                    try {
+                        byte[] bArr = new byte[32768];
+                        while (!isCancelled() && (i = inputStream.read(bArr)) > 0) {
+                            byteArrayOutputStream.write(bArr, 0, i);
+                        }
+                        JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream.toByteArray())).getJSONArray("Answer");
+                        int length = jSONArray.length();
+                        ArrayList arrayList = new ArrayList(length);
+                        for (int i3 = 0; i3 < length; i3++) {
+                            JSONObject jSONObject = jSONArray.getJSONObject(i3);
+                            if (jSONObject.getInt("type") == 16) {
+                                arrayList.add(jSONObject.getString("data"));
+                            }
+                        }
+                        Collections.sort(arrayList, new Comparator() {
+                            @Override
+                            public final int compare(Object obj, Object obj2) {
+                                return ConnectionsManager.MozillaDnsLoadTask.lambda$doInBackground$0((String) obj, (String) obj2);
+                            }
+                        });
+                        StringBuilder sb2 = new StringBuilder();
+                        for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                            sb2.append(((String) arrayList.get(i4)).replace("\"", ""));
+                        }
+                        byte[] bArrDecode = Base64.decode(sb2.toString(), 0);
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(bArrDecode.length);
+                        nativeByteBuffer.writeBytes(bArrDecode);
+                        if (inputStream != null) {
+                            try {
+                                inputStream.close();
+                            } catch (Throwable th2) {
+                                FileLog.e(th2);
+                            }
+                        }
+                        try {
+                            byteArrayOutputStream.close();
+                        } catch (Exception unused) {
+                        }
+                        return nativeByteBuffer;
+                    } catch (Throwable th3) {
+                        th = th3;
+                        try {
+                            FileLog.e(th, false);
+                            return null;
+                        } finally {
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (Throwable th4) {
+                                    FileLog.e(th4);
+                                }
+                            }
+                            if (byteArrayOutputStream != null) {
+                                try {
+                                    byteArrayOutputStream.close();
+                                } catch (Exception unused2) {
+                                }
+                            }
+                        }
+                    }
+                } catch (Throwable th5) {
+                    th = th5;
+                    th = th;
+                    byteArrayOutputStream = null;
+                    FileLog.e(th, false);
+                    return null;
+                }
+            } catch (Throwable th6) {
+                th = th6;
+                inputStream = null;
+            }
         }
 
         public static int lambda$doInBackground$0(String str, String str2) {
@@ -1454,20 +1754,40 @@ public class ConnectionsManager extends BaseController {
         });
     }
 
-    public static void lambda$onPremiumFloodWait$23(boolean r2, int r3, int r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.lambda$onPremiumFloodWait$23(boolean, int, int):void");
+    public static void lambda$onPremiumFloodWait$23(boolean z, int i, int i2) {
+        boolean z2;
+        if (z) {
+            FileUploadOperation fileUploadOperationFindUploadOperationByRequestToken = FileLoader.getInstance(i).findUploadOperationByRequestToken(i2);
+            if (fileUploadOperationFindUploadOperationByRequestToken != null) {
+                z2 = !fileUploadOperationFindUploadOperationByRequestToken.caughtPremiumFloodWait;
+                fileUploadOperationFindUploadOperationByRequestToken.caughtPremiumFloodWait = true;
+            } else {
+                z2 = false;
+            }
+        } else {
+            FileLoadOperation fileLoadOperationFindLoadOperationByRequestToken = FileLoader.getInstance(i).findLoadOperationByRequestToken(i2);
+            if (fileLoadOperationFindLoadOperationByRequestToken != null) {
+                z2 = !fileLoadOperationFindLoadOperationByRequestToken.caughtPremiumFloodWait;
+                fileLoadOperationFindLoadOperationByRequestToken.caughtPremiumFloodWait = true;
+            } else {
+                z2 = false;
+            }
+        }
+        if (z2) {
+            NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumFloodWaitReceived, new Object[0]);
+        }
     }
 
     public static void onIntegrityCheckClassic(final int i, final int i2, final String str, final String str2) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 ConnectionsManager.lambda$onIntegrityCheckClassic$27(i, str, str2, i2);
             }
         });
     }
 
-    public static void lambda$onIntegrityCheckClassic$27(final int i, String str, final String str2, final int i2) throws NumberFormatException {
+    public static void lambda$onIntegrityCheckClassic$27(final int i, String str, final String str2, final int i2) {
         final long jCurrentTimeMillis = System.currentTimeMillis();
         FileLog.d("account" + i + ": server requests integrity classic check with project = " + str + " nonce = " + str2);
         try {

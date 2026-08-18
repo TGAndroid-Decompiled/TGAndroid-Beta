@@ -109,8 +109,270 @@ public class PhotoFilterBlurControl extends FrameLayout {
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoFilterBlurControl.onTouchEvent(android.view.MotionEvent):boolean");
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        PointF pointF;
+        float fSqrt;
+        float actualInnerRadius;
+        float actualOuterRadius;
+        boolean z;
+        float f;
+        float f2;
+        int i;
+        boolean z2;
+        float f3;
+        boolean z3;
+        ?? r5;
+        float fAbs;
+        float f4;
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            if (motionEvent.getPointerCount() == 1) {
+                if (this.checkForMoving && !this.isMoving) {
+                    float x = motionEvent.getX();
+                    float y = motionEvent.getY();
+                    PointF actualCenterPoint = getActualCenterPoint();
+                    pointF = new PointF(x - actualCenterPoint.x, y - actualCenterPoint.y);
+                    float f5 = pointF.x;
+                    float f6 = pointF.y;
+                    fSqrt = (float) Math.sqrt((f5 * f5) + (f6 * f6));
+                    actualInnerRadius = getActualInnerRadius();
+                    actualOuterRadius = getActualOuterRadius();
+                    if (Math.abs(actualOuterRadius - actualInnerRadius) < BlurInsetProximity) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    if (z) {
+                        f = 0.0f;
+                    } else {
+                        f = BlurViewRadiusInset;
+                    }
+                    f2 = z ? 0.0f : BlurViewRadiusInset;
+                    i = this.type;
+                    if (i == 0) {
+                        fAbs = (float) Math.abs((((double) pointF.x) * Math.cos(((double) degreesToRadians(this.angle)) + 1.5707963267948966d)) + (((double) pointF.y) * Math.sin(((double) degreesToRadians(this.angle)) + 1.5707963267948966d)));
+                        if (fSqrt < BlurViewCenterInset) {
+                            this.isMoving = true;
+                        } else {
+                            float f7 = BlurViewRadiusInset;
+                            f4 = actualInnerRadius - f7;
+                            if (fAbs <= f4 && fAbs < actualInnerRadius + f) {
+                                this.isMoving = true;
+                            } else if (fAbs <= actualOuterRadius - f2 && fAbs < actualOuterRadius + f7) {
+                                this.isMoving = true;
+                            } else {
+                                if (fAbs > f4 || fAbs >= actualOuterRadius + f7) {
+                                    z2 = true;
+                                    this.isMoving = true;
+                                }
+                                this.checkForMoving = z3;
+                                if (!this.isMoving) {
+                                    return r5;
+                                }
+                                handlePan(r5, motionEvent);
+                                return r5;
+                            }
+                        }
+                        z3 = false;
+                        r5 = 1;
+                        this.checkForMoving = z3;
+                        if (!this.isMoving) {
+                            return r5;
+                        }
+                        handlePan(r5, motionEvent);
+                        return r5;
+                    }
+                    z2 = true;
+                    z2 = true;
+                    z2 = true;
+                    z2 = true;
+                    z2 = true;
+                    z2 = true;
+                    if (i == 1) {
+                        if (fSqrt < BlurViewCenterInset) {
+                            this.isMoving = true;
+                        } else {
+                            f3 = BlurViewRadiusInset;
+                            if (fSqrt <= actualInnerRadius - f3 && fSqrt < actualInnerRadius + f) {
+                                this.isMoving = true;
+                            } else if (fSqrt > actualOuterRadius - f2 && fSqrt < actualOuterRadius + f3) {
+                                this.isMoving = true;
+                            }
+                        }
+                    }
+                    z3 = false;
+                    r5 = z2;
+                    this.checkForMoving = z3;
+                    if (!this.isMoving) {
+                        return r5;
+                    }
+                    handlePan(r5, motionEvent);
+                    return r5;
+                }
+            } else {
+                if (this.isMoving) {
+                    handlePan(3, motionEvent);
+                    this.checkForMoving = true;
+                    this.isMoving = false;
+                }
+                if (motionEvent.getPointerCount() != 2) {
+                    handlePinch(3, motionEvent);
+                    this.checkForZooming = true;
+                    this.isZooming = false;
+                    return true;
+                }
+                if (!this.checkForZooming && !this.isZooming) {
+                    handlePinch(1, motionEvent);
+                    this.isZooming = true;
+                    return true;
+                }
+            }
+        } else if (actionMasked == 1) {
+            if (this.isMoving) {
+                handlePan(3, motionEvent);
+                this.isMoving = false;
+            } else if (this.isZooming) {
+                handlePinch(3, motionEvent);
+                this.isZooming = false;
+            }
+            this.checkForMoving = true;
+            this.checkForZooming = true;
+        } else if (actionMasked != 2) {
+            if (actionMasked == 3) {
+                if (this.isMoving) {
+                    handlePan(3, motionEvent);
+                    this.isMoving = false;
+                } else if (this.isZooming) {
+                    handlePinch(3, motionEvent);
+                    this.isZooming = false;
+                }
+                this.checkForMoving = true;
+                this.checkForZooming = true;
+            } else if (actionMasked != 5) {
+                if (actionMasked == 6) {
+                    if (this.isMoving) {
+                        handlePan(3, motionEvent);
+                        this.isMoving = false;
+                    } else if (this.isZooming) {
+                        handlePinch(3, motionEvent);
+                        this.isZooming = false;
+                    }
+                    this.checkForMoving = true;
+                    this.checkForZooming = true;
+                }
+            } else if (motionEvent.getPointerCount() == 1) {
+                if (this.checkForMoving) {
+                    float x2 = motionEvent.getX();
+                    float y2 = motionEvent.getY();
+                    PointF actualCenterPoint2 = getActualCenterPoint();
+                    pointF = new PointF(x2 - actualCenterPoint2.x, y2 - actualCenterPoint2.y);
+                    float f8 = pointF.x;
+                    float f9 = pointF.y;
+                    fSqrt = (float) Math.sqrt((f8 * f8) + (f9 * f9));
+                    actualInnerRadius = getActualInnerRadius();
+                    actualOuterRadius = getActualOuterRadius();
+                    if (Math.abs(actualOuterRadius - actualInnerRadius) < BlurInsetProximity) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    if (z) {
+                        f = 0.0f;
+                    } else {
+                        f = BlurViewRadiusInset;
+                    }
+                    if (z) {
+                    }
+                    i = this.type;
+                    if (i == 0) {
+                        fAbs = (float) Math.abs((((double) pointF.x) * Math.cos(((double) degreesToRadians(this.angle)) + 1.5707963267948966d)) + (((double) pointF.y) * Math.sin(((double) degreesToRadians(this.angle)) + 1.5707963267948966d)));
+                        if (fSqrt < BlurViewCenterInset) {
+                            this.isMoving = true;
+                        } else {
+                            float f10 = BlurViewRadiusInset;
+                            f4 = actualInnerRadius - f10;
+                            if (fAbs <= f4) {
+                                if (fAbs <= actualOuterRadius - f2) {
+                                    if (fAbs > f4) {
+                                    }
+                                    z2 = true;
+                                    this.isMoving = true;
+                                } else {
+                                    if (fAbs > f4) {
+                                    }
+                                    z2 = true;
+                                    this.isMoving = true;
+                                }
+                            } else if (fAbs <= actualOuterRadius - f2) {
+                                if (fAbs > f4) {
+                                }
+                                z2 = true;
+                                this.isMoving = true;
+                            } else {
+                                if (fAbs > f4) {
+                                }
+                                z2 = true;
+                                this.isMoving = true;
+                            }
+                        }
+                        z3 = false;
+                        r5 = 1;
+                        this.checkForMoving = z3;
+                        if (!this.isMoving) {
+                            return r5;
+                        }
+                        handlePan(r5, motionEvent);
+                        return r5;
+                    }
+                    z2 = true;
+                    z2 = true;
+                    z2 = true;
+                    z2 = true;
+                    z2 = true;
+                    z2 = true;
+                    if (i == 1) {
+                        if (fSqrt < BlurViewCenterInset) {
+                            this.isMoving = true;
+                        } else {
+                            f3 = BlurViewRadiusInset;
+                            if (fSqrt <= actualInnerRadius - f3) {
+                                if (fSqrt > actualOuterRadius - f2) {
+                                    this.isMoving = true;
+                                }
+                            } else if (fSqrt > actualOuterRadius - f2) {
+                                this.isMoving = true;
+                            }
+                        }
+                    }
+                    z3 = false;
+                    r5 = z2;
+                    this.checkForMoving = z3;
+                    if (!this.isMoving) {
+                        return r5;
+                    }
+                    handlePan(r5, motionEvent);
+                    return r5;
+                }
+            } else {
+                if (this.isMoving) {
+                    handlePan(3, motionEvent);
+                    this.checkForMoving = true;
+                    this.isMoving = false;
+                }
+                if (motionEvent.getPointerCount() != 2) {
+                    return !this.checkForZooming ? true : true;
+                }
+                handlePinch(3, motionEvent);
+                this.checkForZooming = true;
+                this.isZooming = false;
+                return true;
+            }
+        } else if (this.isMoving) {
+            handlePan(2, motionEvent);
+        } else if (this.isZooming) {
+            handlePinch(2, motionEvent);
+        }
+        return true;
     }
 
     private void handlePan(int i, MotionEvent motionEvent) {
@@ -124,15 +386,16 @@ public class PhotoFilterBlurControl extends FrameLayout {
         float fMin = Math.min(size.width, size.height);
         float f3 = this.falloff * fMin;
         float f4 = this.size * fMin;
-        float fAbs = (float) Math.abs((f * Math.cos(degreesToRadians(this.angle) + 1.5707963267948966d)) + (f2 * Math.sin(degreesToRadians(this.angle) + 1.5707963267948966d)));
+        float fAbs = (float) Math.abs((((double) f) * Math.cos(((double) degreesToRadians(this.angle)) + 1.5707963267948966d)) + (((double) f2) * Math.sin(((double) degreesToRadians(this.angle)) + 1.5707963267948966d)));
+        int i2 = 0;
         if (i == 1) {
             this.pointerStartX = motionEvent.getX();
             this.pointerStartY = motionEvent.getY();
-            i = Math.abs(f4 - f3) < BlurInsetProximity ? 1 : 0;
-            float f5 = i != 0 ? 0.0f : BlurViewRadiusInset;
-            float f6 = i == 0 ? BlurViewRadiusInset : 0.0f;
-            int i2 = this.type;
-            if (i2 == 0) {
+            i2 = Math.abs(f4 - f3) < BlurInsetProximity ? 1 : 0;
+            float f5 = i2 != 0 ? 0.0f : BlurViewRadiusInset;
+            float f6 = i2 == 0 ? BlurViewRadiusInset : 0.0f;
+            int i3 = this.type;
+            if (i3 == 0) {
                 if (fSqrt < BlurViewCenterInset) {
                     this.activeControl = BlurViewActiveControl.BlurViewActiveControlCenter;
                     this.startCenterPoint = actualCenterPoint;
@@ -151,7 +414,7 @@ public class PhotoFilterBlurControl extends FrameLayout {
                         this.activeControl = BlurViewActiveControl.BlurViewActiveControlRotation;
                     }
                 }
-            } else if (i2 == 1) {
+            } else if (i3 == 1) {
                 if (fSqrt < BlurViewCenterInset) {
                     this.activeControl = BlurViewActiveControl.BlurViewActiveControlCenter;
                     this.startCenterPoint = actualCenterPoint;
@@ -179,8 +442,8 @@ public class PhotoFilterBlurControl extends FrameLayout {
             }
             return;
         }
-        int i3 = this.type;
-        if (i3 == 0) {
+        int i4 = this.type;
+        if (i4 == 0) {
             int iOrdinal = this.activeControl.ordinal();
             if (iOrdinal == 1) {
                 float f10 = x - this.pointerStartX;
@@ -210,13 +473,13 @@ public class PhotoFilterBlurControl extends FrameLayout {
                 boolean z2 = y > actualCenterPoint.y;
                 boolean z3 = Math.abs(f19) > Math.abs(f18);
                 if (z || z2 ? !(!z || z2 ? !z || !z2 ? !z3 ? f18 >= 0.0f : f19 >= 0.0f : !z3 ? f18 >= 0.0f : f19 <= 0.0f : !z3 ? f18 <= 0.0f : f19 <= 0.0f) : !(!z3 ? f18 <= 0.0f : f19 >= 0.0f)) {
-                    i = 1;
+                    i2 = 1;
                 }
-                this.angle += ((((float) Math.sqrt((f18 * f18) + (f19 * f19))) * ((i * 2) - 1)) / 3.1415927f) / 1.15f;
+                this.angle += ((((float) Math.sqrt((f18 * f18) + (f19 * f19))) * ((i2 * 2) - 1)) / 3.1415927f) / 1.15f;
                 this.pointerStartX = x;
                 this.pointerStartY = y;
             }
-        } else if (i3 == 1) {
+        } else if (i4 == 1) {
             int iOrdinal2 = this.activeControl.ordinal();
             if (iOrdinal2 == 1) {
                 float f20 = x - this.pointerStartX;
@@ -296,29 +559,32 @@ public class PhotoFilterBlurControl extends FrameLayout {
             float fDp = AndroidUtilities.dp(6.0f);
             float fDp2 = AndroidUtilities.dp(12.0f);
             float fDp3 = AndroidUtilities.dp(1.5f);
-            for (int i2 = 0; i2 < 30; i2++) {
+            int i2 = 0;
+            while (i2 < 30) {
                 float f = fDp2 + fDp;
                 float f2 = i2 * f;
                 float f3 = -actualInnerRadius;
                 float f4 = f2 + fDp2;
                 float f5 = fDp3 - actualInnerRadius;
+                int i3 = i2;
                 canvas.drawRect(f2, f3, f4, f5, this.paint);
-                float f6 = ((-r11) * f) - fDp;
+                float f6 = ((-i3) * f) - fDp;
                 float f7 = f6 - fDp2;
                 canvas.drawRect(f7, f3, f6, f5, this.paint);
                 float f8 = fDp3 + actualInnerRadius;
                 canvas.drawRect(f2, actualInnerRadius, f4, f8, this.paint);
                 canvas.drawRect(f7, actualInnerRadius, f6, f8, this.paint);
+                i2 = i3 + 1;
             }
             float fDp4 = AndroidUtilities.dp(6.0f);
-            for (int i3 = 0; i3 < 64; i3++) {
+            for (int i4 = 0; i4 < 64; i4++) {
                 float f9 = fDp4 + fDp;
-                float f10 = i3 * f9;
+                float f10 = i4 * f9;
                 float f11 = -actualOuterRadius;
                 float f12 = fDp4 + f10;
                 float f13 = fDp3 - actualOuterRadius;
                 canvas.drawRect(f10, f11, f12, f13, this.paint);
-                float f14 = ((-i3) * f9) - fDp;
+                float f14 = ((-i4) * f9) - fDp;
                 float f15 = f14 - fDp4;
                 canvas.drawRect(f15, f11, f14, f13, this.paint);
                 float f16 = fDp3 + actualOuterRadius;
@@ -328,13 +594,13 @@ public class PhotoFilterBlurControl extends FrameLayout {
         } else if (i == 1) {
             float f17 = -actualInnerRadius;
             this.arcRect.set(f17, f17, actualInnerRadius, actualInnerRadius);
-            for (int i4 = 0; i4 < 22; i4++) {
-                canvas.drawArc(this.arcRect, 16.35f * i4, 10.2f, false, this.arcPaint);
+            for (int i5 = 0; i5 < 22; i5++) {
+                canvas.drawArc(this.arcRect, 16.35f * i5, 10.2f, false, this.arcPaint);
             }
             float f18 = -actualOuterRadius;
             this.arcRect.set(f18, f18, actualOuterRadius, actualOuterRadius);
-            for (int i5 = 0; i5 < 64; i5++) {
-                canvas.drawArc(this.arcRect, 5.62f * i5, 3.6f, false, this.arcPaint);
+            for (int i6 = 0; i6 < 64; i6++) {
+                canvas.drawArc(this.arcRect, 5.62f * i6, 3.6f, false, this.arcPaint);
             }
         }
         canvas.drawCircle(0.0f, 0.0f, AndroidUtilities.dp(8.0f), this.paint);

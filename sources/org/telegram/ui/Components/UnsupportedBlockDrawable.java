@@ -13,6 +13,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import androidx.core.graphics.ColorUtils;
 import me.vkryl.android.util.ClickHelper;
 import org.telegram.messenger.AndroidUtilities;
@@ -85,7 +86,7 @@ public class UnsupportedBlockDrawable extends Drawable {
 
             @Override
             public long getLongPressDuration() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UnsupportedBlockDrawable.AnonymousClass1.getLongPressDuration():long");
+                return ViewConfiguration.getLongPressTimeout();
             }
 
             @Override
@@ -243,9 +244,13 @@ public class UnsupportedBlockDrawable extends Drawable {
         canvas.translate(0.0f, this.titleLayout.getHeight() + this.titleSubtitleGap);
         this.subtitleLayout.draw(canvas);
         canvas.restore();
+        int width = (int) (this.buttonLayout.getWidth() + (this.buttonPaddingH * 2));
         int iDp = i2 - AndroidUtilities.dp(11.0f);
-        float f = iCenterY - (this.buttonHeight / 2);
-        this.buttonRect.set(iDp - ((int) (this.buttonLayout.getWidth() + (this.buttonPaddingH * 2))), f, iDp, r5 + r4);
+        int i3 = iDp - width;
+        int i4 = this.buttonHeight;
+        int i5 = iCenterY - (i4 / 2);
+        float f = i5;
+        this.buttonRect.set(i3, f, iDp, i5 + i4);
         float scale = this.buttonBounce.getScale(0.05f);
         canvas.save();
         canvas.scale(scale, scale, this.buttonRect.centerX(), this.buttonRect.centerY());
@@ -254,7 +259,7 @@ public class UnsupportedBlockDrawable extends Drawable {
         float f2 = this.buttonRadius;
         canvas.drawRoundRect(rectF, f2, f2, this.buttonBackgroundPaint);
         canvas.save();
-        canvas.translate(r3 + this.buttonPaddingH, f + ((this.buttonHeight - this.buttonLayout.getHeight()) / 2.0f));
+        canvas.translate(i3 + this.buttonPaddingH, f + ((this.buttonHeight - this.buttonLayout.getHeight()) / 2.0f));
         this.buttonLayout.draw(canvas);
         canvas.restore();
         canvas.restore();

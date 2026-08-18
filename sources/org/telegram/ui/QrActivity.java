@@ -8,6 +8,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -28,11 +29,13 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.text.Layout;
+import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.util.SparseIntArray;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -46,22 +49,28 @@ import androidx.collection.ArrayMap;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.io.IOException;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MrzRecognizer;
@@ -71,6 +80,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.TelegramQRCodeWriter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserNameResolver;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
@@ -84,9 +94,10 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.ActionBar.theme.ThemeKey;
-import org.telegram.ui.CameraScanActivity;
+import org.telegram.ui.Cells.SettingsSearchCell;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatThemeBottomSheet;
@@ -101,7 +112,6 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.ThemeSmallPreviewView;
-import org.telegram.ui.QrActivity;
 
 public class QrActivity extends BaseFragment {
     private static List cachedThemes;
@@ -195,8 +205,284 @@ public class QrActivity extends BaseFragment {
     }
 
     @Override
-    public android.view.View createView(android.content.Context r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QrActivity.createView(android.content.Context):android.view.View");
+    public View createView(Context context) {
+        TLRPC.Chat chat;
+        String publicUsername;
+        ImageLocation forChat;
+        AvatarDrawable avatarDrawable;
+        ImageLocation imageLocation;
+        String userName;
+        boolean z;
+        String str;
+        boolean z2;
+        setHasOwnBackground(true);
+        this.isCurrentThemeDark = Theme.getActiveTheme().isDark();
+        boolean z3 = false;
+        this.actionBar.setAddToContainer(false);
+        this.actionBar.setBackground(null);
+        this.actionBar.setItemsColor(-1, false);
+        FrameLayout frameLayout = new FrameLayout(context) {
+            private boolean ignoreLayout;
+
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                super.dispatchTouchEvent(motionEvent);
+                return true;
+            }
+
+            @Override
+            protected void onMeasure(int i, int i2) {
+                int size = View.MeasureSpec.getSize(i);
+                int size2 = View.MeasureSpec.getSize(i2);
+                boolean z4 = size < size2;
+                QrActivity.this.isFragmentViewPortrait = z4;
+                QrActivity.this.avatarImageView.setVisibility(z4 ? 0 : 8);
+                super.onMeasure(i, i2);
+                if (z4) {
+                    this.ignoreLayout = true;
+                    QrActivity.this.themeLayout.setPadding(QrActivity.this.insets.left, AndroidUtilities.dp(8.0f), QrActivity.this.insets.right, QrActivity.this.insets.bottom);
+                    this.ignoreLayout = false;
+                    QrActivity.this.themeLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2 + QrActivity.this.insets.bottom, Integer.MIN_VALUE));
+                    QrActivity.this.qrView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(260.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(330.0f), 1073741824));
+                    return;
+                }
+                this.ignoreLayout = true;
+                QrActivity.this.themeLayout.setPadding(0, (QrActivity.this.insets.top * 2) / 3, QrActivity.this.insets.right, QrActivity.this.insets.bottom);
+                this.ignoreLayout = false;
+                QrActivity.this.themeLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(273.0f) + QrActivity.this.insets.right, 1073741824), i2);
+                QrActivity.this.qrView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(260.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(310.0f), 1073741824));
+            }
+
+            @Override
+            public void requestLayout() {
+                if (this.ignoreLayout) {
+                    return;
+                }
+                super.requestLayout();
+            }
+
+            @Override
+            protected void onLayout(boolean z4, int i, int i2, int i3, int i4) {
+                int measuredWidth = getMeasuredWidth();
+                int measuredHeight = getMeasuredHeight();
+                boolean z5 = measuredWidth < measuredHeight;
+                if (QrActivity.this.themeLayout.getVisibility() == 0) {
+                    if (z5) {
+                        AndroidUtilities.rectTmp2.set(0, 0, measuredWidth, (measuredHeight - QrActivity.this.themeLayout.getMeasuredHeight()) + AndroidUtilities.dp(25.0f));
+                    } else {
+                        AndroidUtilities.rectTmp2.set(0, 0, (measuredWidth - QrActivity.this.themeLayout.getWidth()) + AndroidUtilities.dp(25.0f), measuredHeight);
+                    }
+                    QrActivity.this.backgroundView.setClipBounds(AndroidUtilities.rectTmp2);
+                } else {
+                    QrActivity.this.backgroundView.setClipBounds(null);
+                }
+                QrActivity.this.backgroundView.layout(0, 0, measuredWidth, measuredHeight);
+                int measuredHeight2 = QrActivity.this.themeLayout.getVisibility() == 0 ? QrActivity.this.themeLayout.getMeasuredHeight() : 0;
+                int measuredWidth2 = z5 ? (measuredWidth - QrActivity.this.qrView.getMeasuredWidth()) / 2 : QrActivity.this.insets.left + ((((measuredWidth - QrActivity.this.themeLayout.getMeasuredWidth()) - QrActivity.this.insets.left) - QrActivity.this.qrView.getMeasuredWidth()) / 2);
+                int measuredHeight3 = z5 ? QrActivity.this.insets.top + (((((measuredHeight - measuredHeight2) - QrActivity.this.insets.top) - QrActivity.this.qrView.getMeasuredHeight()) - AndroidUtilities.dp(48.0f)) / 2) + AndroidUtilities.dp(52.0f) : (measuredHeight - QrActivity.this.qrView.getMeasuredHeight()) / 2;
+                QrActivity.this.qrView.layout(measuredWidth2, measuredHeight3, QrActivity.this.qrView.getMeasuredWidth() + measuredWidth2, QrActivity.this.qrView.getMeasuredHeight() + measuredHeight3);
+                if (z5) {
+                    int measuredWidth3 = (measuredWidth - QrActivity.this.avatarImageView.getMeasuredWidth()) / 2;
+                    int iDp = measuredHeight3 - AndroidUtilities.dp(48.0f);
+                    QrActivity.this.avatarImageView.layout(measuredWidth3, iDp, QrActivity.this.avatarImageView.getMeasuredWidth() + measuredWidth3, QrActivity.this.avatarImageView.getMeasuredHeight() + iDp);
+                }
+                if (QrActivity.this.themeLayout.getVisibility() == 0) {
+                    if (z5) {
+                        int measuredWidth4 = (measuredWidth - QrActivity.this.themeLayout.getMeasuredWidth()) / 2;
+                        QrActivity.this.themeLayout.layout(measuredWidth4, getMeasuredHeight() - measuredHeight2, QrActivity.this.themeLayout.getMeasuredWidth() + measuredWidth4, getMeasuredHeight());
+                    } else {
+                        int measuredHeight4 = (measuredHeight - QrActivity.this.themeLayout.getMeasuredHeight()) / 2;
+                        QrActivity.this.themeLayout.layout(getMeasuredWidth() - QrActivity.this.themeLayout.getMeasuredWidth(), measuredHeight4, getMeasuredWidth(), QrActivity.this.themeLayout.getMeasuredHeight() + measuredHeight4);
+                    }
+                }
+                QrActivity.this.logoImageView.layout(QrActivity.this.logoRect.left + measuredWidth2, QrActivity.this.logoRect.top + measuredHeight3, measuredWidth2 + QrActivity.this.logoRect.right, measuredHeight3 + QrActivity.this.logoRect.bottom);
+                int iDp2 = QrActivity.this.insets.left + AndroidUtilities.dp(11.0f);
+                int iDp3 = QrActivity.this.insets.top + AndroidUtilities.dp(11.0f);
+                QrActivity.this.closeImageView.layout(iDp2, iDp3, QrActivity.this.closeImageView.getMeasuredWidth() + iDp2, QrActivity.this.closeImageView.getMeasuredHeight() + iDp3);
+            }
+        };
+        View view = new View(context) {
+            @Override
+            protected void onDraw(Canvas canvas) {
+                canvas.drawColor(QrActivity.this.isCurrentThemeDark ? -15590870 : -6569073);
+                if (QrActivity.this.prevMotionDrawable != null) {
+                    QrActivity.this.prevMotionDrawable.setBounds(0, 0, getWidth(), getHeight());
+                }
+                QrActivity.this.currMotionDrawable.setBounds(0, 0, getWidth(), getHeight());
+                if (QrActivity.this.prevMotionDrawable != null) {
+                    QrActivity.this.prevMotionDrawable.draw(canvas);
+                }
+                QrActivity.this.currMotionDrawable.draw(canvas);
+                super.onDraw(canvas);
+            }
+        };
+        this.backgroundView = view;
+        frameLayout.addView(view);
+        if (this.userId != 0) {
+            TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.userId));
+            if (user != null) {
+                publicUsername = UserObject.getPublicUsername(user);
+                if (publicUsername == null) {
+                    userName = UserObject.getUserName(user);
+                    if (phoneIsPublic()) {
+                        publicUsername = user.phone;
+                        if (publicUsername != null && !publicUsername.startsWith("+")) {
+                            publicUsername = "+" + publicUsername;
+                        }
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                        z = true;
+                    }
+                    AvatarDrawable avatarDrawable2 = new AvatarDrawable(user);
+                    ImageLocation forUser = ImageLocation.getForUser(this.currentAccount, user, 1);
+                    forChat = ImageLocation.getForUser(this.currentAccount, user, 0);
+                    z3 = z2;
+                    avatarDrawable = avatarDrawable2;
+                    imageLocation = forUser;
+                } else {
+                    userName = null;
+                    z2 = false;
+                }
+                z = false;
+                AvatarDrawable avatarDrawable3 = new AvatarDrawable(user);
+                ImageLocation forUser2 = ImageLocation.getForUser(this.currentAccount, user, 1);
+                forChat = ImageLocation.getForUser(this.currentAccount, user, 0);
+                z3 = z2;
+                avatarDrawable = avatarDrawable3;
+                imageLocation = forUser2;
+            } else {
+                publicUsername = null;
+                userName = null;
+                z = false;
+                forChat = null;
+                imageLocation = null;
+                avatarDrawable = null;
+            }
+        } else if (this.chatId == 0 || (chat = getMessagesController().getChat(Long.valueOf(this.chatId))) == null) {
+            publicUsername = null;
+            userName = null;
+            z = false;
+            forChat = null;
+            imageLocation = null;
+            avatarDrawable = null;
+        } else {
+            publicUsername = ChatObject.getPublicUsername(chat);
+            AvatarDrawable avatarDrawable4 = new AvatarDrawable(chat);
+            ImageLocation forChat2 = ImageLocation.getForChat(this.currentAccount, chat, 1);
+            forChat = ImageLocation.getForChat(this.currentAccount, chat, 0);
+            avatarDrawable = avatarDrawable4;
+            imageLocation = forChat2;
+            userName = null;
+            z = false;
+        }
+        QrView qrView = new QrView(context);
+        this.qrView = qrView;
+        qrView.setColors(-9324972, -13856649, -6636738, -9915042);
+        if (publicUsername != null) {
+            str = "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + publicUsername;
+        } else {
+            str = null;
+        }
+        QrView qrView2 = this.qrView;
+        if (userName != null) {
+            publicUsername = userName;
+        }
+        qrView2.setData(str, publicUsername, z3, z);
+        this.qrView.setCenterChangedListener(new QrView.QrCenterChangedListener() {
+            @Override
+            public final void onCenterChanged(int i, int i2, int i3, int i4) {
+                this.f$0.lambda$createView$0(i, i2, i3, i4);
+            }
+        });
+        frameLayout.addView(this.qrView);
+        RLottieImageView rLottieImageView = new RLottieImageView(context);
+        this.logoImageView = rLottieImageView;
+        rLottieImageView.setAutoRepeat(true);
+        this.logoImageView.setAnimation(R.raw.plane_logo_plain, 60, 60);
+        this.logoImageView.playAnimation();
+        frameLayout.addView(this.logoImageView);
+        BackupImageView backupImageView = new BackupImageView(context);
+        this.avatarImageView = backupImageView;
+        backupImageView.setRoundRadius(AndroidUtilities.dp(42.0f));
+        this.avatarImageView.setSize(AndroidUtilities.dp(84.0f), AndroidUtilities.dp(84.0f));
+        frameLayout.addView(this.avatarImageView, LayoutHelper.createFrame(84, 84, 51));
+        this.avatarImageView.setImage(forChat, "84_84", imageLocation, "50_50", avatarDrawable, (Bitmap) null, (String) null, 0, (Object) null);
+        ImageView imageView = new ImageView(context);
+        this.closeImageView = imageView;
+        imageView.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
+        this.closeImageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(34.0f), 671088640, 687865855));
+        this.closeImageView.setImageResource(R.drawable.ic_ab_back);
+        this.closeImageView.setScaleType(ImageView.ScaleType.CENTER);
+        this.closeImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                this.f$0.lambda$createView$1(view2);
+            }
+        });
+        frameLayout.addView(this.closeImageView, LayoutHelper.createFrame(34, 34.0f));
+        this.emojiThemeIcon = Bitmap.createBitmap(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(this.emojiThemeIcon);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, this.emojiThemeIcon.getWidth(), this.emojiThemeIcon.getHeight());
+        Paint paint = new Paint(1);
+        paint.setColor(-1);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), paint);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        Bitmap bitmapDecodeResource = BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), R.drawable.msg_qr_mini);
+        canvas.drawBitmap(bitmapDecodeResource, (this.emojiThemeIcon.getWidth() - bitmapDecodeResource.getWidth()) * 0.5f, (this.emojiThemeIcon.getHeight() - bitmapDecodeResource.getHeight()) * 0.5f, paint);
+        canvas.setBitmap(null);
+        ThemeListViewController themeListViewController = new ThemeListViewController(this, getParentActivity().getWindow());
+        this.themesViewController = themeListViewController;
+        this.themeLayout = themeListViewController.rootLayout;
+        themeListViewController.onCreate();
+        this.themesViewController.setItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public final void onItemSelected(EmojiThemes emojiThemes, int i) {
+                this.f$0.lambda$createView$2(emojiThemes, i);
+            }
+        });
+        this.themesViewController.titleView.setText(LocaleController.getString(R.string.QrCode));
+        this.themesViewController.progressView.setViewType(17);
+        this.themesViewController.shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                this.f$0.lambda$createView$3(view2);
+            }
+        });
+        LinearLayout linearLayout = this.themesViewController.scanButtonWrap;
+        if (linearLayout != null) {
+            linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    this.f$0.lambda$createView$4(view2);
+                }
+            });
+        }
+        frameLayout.addView(this.themeLayout, LayoutHelper.createFrame(-1, -2, 80));
+        this.currMotionDrawable.setIndeterminateAnimation(true);
+        this.fragmentView = frameLayout;
+        Utilities.themeQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$createView$6();
+            }
+        }, 25L);
+        this.fragmentView.postDelayed(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$createView$7();
+            }
+        }, firstOpen ? 250L : 0L);
+        this.prevSystemUiVisibility = getParentActivity().getWindow().getDecorView().getSystemUiVisibility();
+        applyScreenSettings();
+        ViewCompat.setOnApplyWindowInsetsListener(this.fragmentView, new OnApplyWindowInsetsListener() {
+            @Override
+            public final WindowInsetsCompat onApplyWindowInsets(View view2, WindowInsetsCompat windowInsetsCompat) {
+                return this.f$0.onApplyWindowInsets(view2, windowInsetsCompat);
+            }
+        });
+        return this.fragmentView;
     }
 
     public void lambda$createView$0(int i, int i2, int i3, int i4) {
@@ -212,7 +498,7 @@ public class QrActivity extends BaseFragment {
         onItemSelected(emojiThemes, i, true);
     }
 
-    public void lambda$createView$3(View view) throws IOException {
+    public void lambda$createView$3(View view) {
         this.themesViewController.shareButton.setClickable(false);
         performShare();
     }
@@ -287,21 +573,25 @@ public class QrActivity extends BaseFragment {
         if (privacyRules == null) {
             return false;
         }
-        for (int i = 0; i < privacyRules.size(); i++) {
-            TLRPC.PrivacyRule privacyRule = privacyRules.get(i);
-            if (privacyRule instanceof TLRPC.TL_privacyValueAllowAll) {
-                c = 0;
-                break;
+        int i = 0;
+        while (true) {
+            if (i < privacyRules.size()) {
+                TLRPC.PrivacyRule privacyRule = privacyRules.get(i);
+                if (privacyRule instanceof TLRPC.TL_privacyValueAllowAll) {
+                    c = 0;
+                    break;
+                }
+                if (!(privacyRule instanceof TLRPC.TL_privacyValueDisallowAll)) {
+                    if (privacyRule instanceof TLRPC.TL_privacyValueAllowContacts) {
+                        c = 1;
+                        break;
+                    }
+                    i++;
+                }
             }
-            if (privacyRule instanceof TLRPC.TL_privacyValueDisallowAll) {
-                break;
-            }
-            if (privacyRule instanceof TLRPC.TL_privacyValueAllowContacts) {
-                c = 1;
-                break;
-            }
+            c = 2;
+            break;
         }
-        c = 2;
         if (c == 2) {
             ArrayList<TLRPC.PrivacyRule> privacyRules2 = ContactsController.getInstance(this.currentAccount).getPrivacyRules(7);
             if (privacyRules2 == null || privacyRules2.size() == 0) {
@@ -645,7 +935,7 @@ public class QrActivity extends BaseFragment {
         this.resourcesProvider.initColors(this.currentTheme, this.isCurrentThemeDark);
     }
 
-    public void performShare() throws IOException {
+    public void performShare() {
         Point point = AndroidUtilities.displaySize;
         int iMin = Math.min(point.x, point.y);
         Point point2 = AndroidUtilities.displaySize;
@@ -1064,32 +1354,34 @@ public class QrActivity extends BaseFragment {
             QrCenterChangedListener qrCenterChangedListener;
             if (this.loadingMatrix != null) {
                 int width = (getWidth() - AndroidUtilities.dp(60.0f)) / 33;
-                int i = (width * 33) + 32;
-                int width2 = (getWidth() - i) / 2;
+                int i = width * 33;
+                int i2 = i + 32;
+                int width2 = (getWidth() - i2) / 2;
                 int height = (int) (getHeight() * 0.15f);
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
                     height = (int) (getHeight() * 0.09f);
                 }
-                int i2 = height;
+                int i3 = height;
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                 canvas.saveLayerAlpha(rectF, 255, 31);
-                int i3 = width2 + 16;
-                int i4 = i2 + 16;
-                canvas.drawRect(i3, i4, (getWidth() - width2) - 16, (((getWidth() + i2) - width2) - width2) - 16, this.bitmapGradientPaint);
+                int i4 = width2 + 16;
+                int i5 = i3 + 16;
+                canvas.drawRect(i4, i5, (getWidth() - width2) - 16, (((getWidth() + i3) - width2) - width2) - 16, this.bitmapGradientPaint);
                 canvas.save();
-                this.loadingMatrix.setBounds(i3, i4, (getWidth() - width2) - 16, (((getWidth() + i2) - width2) - width2) - 16);
+                this.loadingMatrix.setBounds(i4, i5, (getWidth() - width2) - 16, (((getWidth() + i3) - width2) - width2) - 16);
                 this.loadingMatrix.draw(canvas);
                 canvas.restore();
                 canvas.restore();
                 float width3 = getWidth() / 2.0f;
-                float f = i2;
+                float f = i3;
                 float f2 = width2;
                 float width4 = ((getWidth() / 2.0f) + f) - f2;
-                float fRound = ((Math.round((r9 / 4.65f) / r6) * width) / 2) * 0.75f;
+                float f3 = width;
+                float fRound = ((Math.round((i / 4.65f) / f3) * width) / 2) * 0.75f;
                 canvas.drawCircle(width3, width4, fRound, this.bitmapGradientPaint);
-                TelegramQRCodeWriter.drawSideQuads(canvas, f2, f, this.bitmapGradientPaint, 7.0f, width, 16, i, 0.75f, this.radii, true);
+                TelegramQRCodeWriter.drawSideQuads(canvas, f2, f, this.bitmapGradientPaint, 7.0f, f3, 16, i2, 0.75f, this.radii, true);
                 if (this.logoCenterSet || (qrCenterChangedListener = this.centerChangedListener) == null) {
                     return;
                 }
@@ -1099,8 +1391,84 @@ public class QrActivity extends BaseFragment {
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QrActivity.QrView.onDraw(android.graphics.Canvas):void");
+        protected void onDraw(Canvas canvas) {
+            int i;
+            int i2;
+            super.onDraw(canvas);
+            Bitmap bitmap = this.backgroundBitmap;
+            if (bitmap != null) {
+                canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
+            }
+            float f = this.contentBitmapAlpha.set(1.0f);
+            boolean z = f > 0.0f && f < 1.0f;
+            if (f >= 1.0f) {
+                i = 255;
+                i2 = 31;
+            } else {
+                if (z) {
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                    canvas.saveLayerAlpha(rectF, 255, 31);
+                }
+                Bitmap bitmap2 = this.oldContentBitmap;
+                if (bitmap2 != null) {
+                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, this.bitmapGradientPaint);
+                } else {
+                    drawLoading(canvas);
+                }
+                if (z) {
+                    float fDp = AndroidUtilities.dp(120.0f);
+                    canvas.save();
+                    canvas.translate(0.0f, (-fDp) + ((getHeight() + fDp) * (1.0f - f)));
+                    i = 255;
+                    i2 = 31;
+                    canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight() + fDp, this.crossfadeToPaint);
+                    canvas.restore();
+                    canvas.restore();
+                } else {
+                    i = 255;
+                    i2 = 31;
+                }
+            }
+            if (f > 0.0f) {
+                if (z) {
+                    RectF rectF2 = AndroidUtilities.rectTmp;
+                    rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
+                    canvas.saveLayerAlpha(rectF2, i, i2);
+                }
+                Bitmap bitmap3 = this.contentBitmap;
+                if (bitmap3 != null) {
+                    canvas.drawBitmap(bitmap3, 0.0f, 0.0f, this.bitmapGradientPaint);
+                    this.gradientDrawable.updateAnimation();
+                } else {
+                    drawLoading(canvas);
+                }
+                if (z) {
+                    float fDp2 = AndroidUtilities.dp(120.0f);
+                    canvas.save();
+                    float f2 = -fDp2;
+                    canvas.translate(0.0f, ((getHeight() + fDp2) * (1.0f - f)) + f2);
+                    canvas.drawRect(0.0f, f2 - getHeight(), getWidth(), getHeight() + fDp2, this.crossfadeFromPaint);
+                    canvas.restore();
+                    canvas.restore();
+                }
+            }
+            if (this.hasTimer) {
+                float width = getWidth() + AndroidUtilities.dp(6.0f);
+                if (this.shareUsernameLayout != null) {
+                    canvas.save();
+                    canvas.translate(0.0f, width);
+                    if (this.shareUsernameLayout.getWidth() != getWidth()) {
+                        setForShare(true);
+                    }
+                    this.shareUsernameLayout.draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                int i3 = (int) width;
+                this.timerTextDrawable.setBounds(0, i3, getWidth(), AndroidUtilities.dp(40.0f) + i3);
+                this.timerTextDrawable.draw(canvas);
+            }
         }
 
         void setCenterChangedListener(QrCenterChangedListener qrCenterChangedListener) {
@@ -1169,7 +1537,7 @@ public class QrActivity extends BaseFragment {
                 }
                 int i = this.linkExpires;
                 if (i > 0 && this.link != null) {
-                    long jMax = Math.max(0L, (i - (System.currentTimeMillis() / 1000)) - 1);
+                    long jMax = Math.max(0L, (((long) i) - (System.currentTimeMillis() / 1000)) - 1);
                     int i2 = (int) (jMax % 60);
                     int iMin = Math.min(99, (int) (jMax / 60));
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.timerTextDrawable;
@@ -1227,8 +1595,167 @@ public class QrActivity extends BaseFragment {
             this.gradientDrawable.posAnimationProgress = f;
         }
 
-        public void lambda$setData$1(int r29, int r30) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QrActivity.QrView.lambda$setData$1(int, int):void");
+        public void lambda$setData$1(int i, int i2) {
+            String upperCase;
+            int i3;
+            int i4;
+            int imageSize;
+            StaticLayout staticLayoutCreateStaticLayout;
+            int i5;
+            HashMap map;
+            Drawable drawable;
+            int i6;
+            int iWidth;
+            Integer num;
+            if (i == 0 || i2 == 0) {
+                return;
+            }
+            if ((TextUtils.isEmpty(this.username) && !this.hasTimer) || TextUtils.isEmpty(this.link)) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$prepareContent$6();
+                    }
+                });
+                return;
+            }
+            if (this.hasTimer) {
+                upperCase = null;
+            } else {
+                upperCase = this.isPhone ? this.username : this.username.toUpperCase();
+            }
+            if (TextUtils.equals(upperCase, this.hadUserText) && TextUtils.equals(this.link, this.hadLink) && (num = this.hadWidth) != null && this.hadHeight != null && num.intValue() == i && this.hadHeight.intValue() == i2) {
+                return;
+            }
+            final Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
+            TextPaint textPaint = new TextPaint(65);
+            int i7 = -16777216;
+            textPaint.setColor(-16777216);
+            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
+            int width = bitmapCreateBitmap.getWidth() - (AndroidUtilities.dp(20.0f) * 2);
+            if (this.hasTimer) {
+                i3 = 3;
+                i4 = -16777216;
+                imageSize = 0;
+                staticLayoutCreateStaticLayout = null;
+            } else {
+                int i8 = 0;
+                while (true) {
+                    if (i8 <= 2) {
+                        if (i8 == 0) {
+                            drawable = ContextCompat.getDrawable(getContext(), R.drawable.qr_at_large);
+                            textPaint.setTextSize(AndroidUtilities.dp(30.0f));
+                        } else if (i8 == 1) {
+                            drawable = ContextCompat.getDrawable(getContext(), R.drawable.qr_at_medium);
+                            textPaint.setTextSize(AndroidUtilities.dp(25.0f));
+                        } else {
+                            drawable = ContextCompat.getDrawable(getContext(), R.drawable.qr_at_small);
+                            textPaint.setTextSize(AndroidUtilities.dp(19.0f));
+                        }
+                        if (drawable != null) {
+                            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+                            drawable.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
+                        }
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(" " + upperCase);
+                        if (!this.isPhone) {
+                            spannableStringBuilder.setSpan(new SettingsSearchCell.VerticalImageSpan(drawable), 0, 1, 33);
+                        }
+                        float fMeasureText = textPaint.measureText(spannableStringBuilder, 1, spannableStringBuilder.length()) + drawable.getBounds().width();
+                        if (i8 > 1 || fMeasureText <= width) {
+                            int i9 = fMeasureText > ((float) width) ? 2 : 1;
+                            int iWidth2 = i9 > 1 ? (((int) (drawable.getBounds().width() + fMeasureText)) / 2) + AndroidUtilities.dp(2.0f) : width;
+                            if (iWidth2 > width) {
+                                iWidth = (((int) (fMeasureText + drawable.getBounds().width())) / 3) + AndroidUtilities.dp(4.0f);
+                                i6 = 3;
+                            } else {
+                                i6 = i9;
+                                iWidth = iWidth2;
+                            }
+                            imageSize = 0;
+                            i3 = 3;
+                            i4 = -16777216;
+                            staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, textPaint, iWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, Math.min(AndroidUtilities.dp(10.0f) + iWidth, bitmapCreateBitmap.getWidth()), i6);
+                        } else {
+                            i8++;
+                            i7 = -16777216;
+                        }
+                    } else {
+                        i3 = 3;
+                        i4 = -16777216;
+                        imageSize = 0;
+                        staticLayoutCreateStaticLayout = null;
+                    }
+                }
+            }
+            float lineCount = (staticLayoutCreateStaticLayout == null ? 0 : staticLayoutCreateStaticLayout.getLineCount()) * (textPaint.descent() - textPaint.ascent());
+            int iDp = i - (AndroidUtilities.dp(30.0f) * 2);
+            HashMap map2 = new HashMap();
+            map2.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
+            map2.put(EncodeHintType.MARGIN, Integer.valueOf(imageSize));
+            TelegramQRCodeWriter telegramQRCodeWriter = new TelegramQRCodeWriter();
+            int i10 = 3;
+            Bitmap bitmapEncode = null;
+            while (i10 < 5) {
+                try {
+                    map2.put(EncodeHintType.QR_VERSION, Integer.valueOf(i10));
+                    i5 = i10;
+                    map = map2;
+                    try {
+                        bitmapEncode = telegramQRCodeWriter.encode(this.link, iDp, iDp, map2, null, 0.75f, 16777215, i4);
+                        imageSize = telegramQRCodeWriter.getImageSize();
+                    } catch (Exception unused) {
+                    }
+                } catch (Exception unused2) {
+                    i5 = i10;
+                    map = map2;
+                }
+                if (bitmapEncode != null) {
+                    break;
+                }
+                i10 = i5 + 1;
+                map2 = map;
+            }
+            Bitmap bitmap = bitmapEncode;
+            final int i11 = imageSize;
+            if (bitmap == null) {
+                return;
+            }
+            Canvas canvas = new Canvas(bitmapCreateBitmap);
+            canvas.drawColor(16777215);
+            float width2 = (i - bitmap.getWidth()) / 2.0f;
+            float f = i2;
+            float f2 = 0.15f * f;
+            if (staticLayoutCreateStaticLayout != null && staticLayoutCreateStaticLayout.getLineCount() == i3) {
+                f2 = 0.13f * f;
+            }
+            if (((ViewGroup) getParent()).getMeasuredWidth() >= ((ViewGroup) getParent()).getMeasuredHeight()) {
+                f2 = 0.09f * f;
+            }
+            canvas.drawBitmap(bitmap, width2, f2, new Paint(i3));
+            Paint paint = new Paint(1);
+            paint.setColor(-16777216);
+            final float width3 = width2 + (bitmap.getWidth() * 0.5f);
+            final float width4 = (bitmap.getWidth() * 0.5f) + f2;
+            canvas.drawCircle(width3, width4, i11 * 0.5f, paint);
+            if (staticLayoutCreateStaticLayout != null) {
+                float width5 = (canvas.getWidth() - staticLayoutCreateStaticLayout.getWidth()) * 0.5f;
+                float height = ((bitmap.getHeight() + f2) + (((canvas.getHeight() - (f2 + bitmap.getHeight())) - lineCount) * 0.5f)) - AndroidUtilities.dp(4.0f);
+                canvas.save();
+                canvas.translate(width5, height);
+                staticLayoutCreateStaticLayout.draw(canvas);
+                canvas.restore();
+                bitmap.recycle();
+            }
+            this.hadWidth = Integer.valueOf(i);
+            this.hadHeight = Integer.valueOf(i2);
+            this.hadUserText = upperCase;
+            this.hadLink = this.link;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$prepareContent$7(bitmapCreateBitmap, width3, i11, width4);
+                }
+            });
         }
 
         public void lambda$prepareContent$6() {

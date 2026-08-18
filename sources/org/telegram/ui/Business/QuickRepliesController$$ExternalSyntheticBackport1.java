@@ -25,7 +25,7 @@ public abstract class QuickRepliesController$$ExternalSyntheticBackport1 {
             if (j3 < j2 || j3 > jM || (j3 == jM && iDigit > ((int) MessagesController$$ExternalSyntheticBackport14.m(-1L, j)))) {
                 throw new NumberFormatException("Too large for unsigned long: ".concat(charSequence.toString()));
             }
-            j3 = (j3 * j) + iDigit;
+            j3 = (j3 * j) + ((long) iDigit);
             i5++;
             j2 = 0;
         }

@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RadialGradient;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -15,19 +16,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.Stars.StarsController;
-import org.telegram.ui.Stars.StarsReactionsSheet;
 
 public class ProfileGiftsView extends View implements NotificationCenter.NotificationCenterDelegate {
     private float actionBarProgress;
@@ -234,12 +235,281 @@ public class ProfileGiftsView extends View implements NotificationCenter.Notific
     }
 
     public void update() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.ProfileGiftsView.update():void");
+        TLRPC.EmojiStatus emojiStatus;
+        boolean z;
+        Gift gift;
+        Gift gift2;
+        if (MessagesController.getInstance(this.currentAccount).enableGiftsInProfile) {
+            this.maxCount = MessagesController.getInstance(this.currentAccount).stargiftsPinnedToTopLimit;
+            this.oldGifts.clear();
+            this.oldGifts.addAll(this.gifts);
+            this.gifts.clear();
+            this.giftIds.clear();
+            if (this.dialogId >= 0) {
+                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+                if (user == null) {
+                    emojiStatus = null;
+                } else {
+                    emojiStatus = user.emoji_status;
+                }
+            } else {
+                TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(-this.dialogId));
+                if (user2 == null) {
+                    emojiStatus = null;
+                } else {
+                    emojiStatus = user2.emoji_status;
+                }
+            }
+            if (emojiStatus instanceof TLRPC.TL_emojiStatusCollectible) {
+                this.giftIds.add(Long.valueOf(((TLRPC.TL_emojiStatusCollectible) emojiStatus).collectible_id));
+            }
+            StarsController.GiftsList profileGiftsList = StarsController.getInstance(this.currentAccount).getProfileGiftsList(this.dialogId);
+            this.list = profileGiftsList;
+            if (profileGiftsList != null) {
+                for (int i = 0; i < this.list.gifts.size(); i++) {
+                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.list.gifts.get(i);
+                    if (!savedStarGift.unsaved && savedStarGift.pinned_to_top) {
+                        TL_stars.StarGift starGift = savedStarGift.gift;
+                        if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                            Gift gift3 = new Gift((TL_stars.TL_starGiftUnique) starGift);
+                            if (!this.giftIds.contains(Long.valueOf(gift3.id))) {
+                                this.gifts.add(gift3);
+                                this.giftIds.add(Long.valueOf(gift3.id));
+                            }
+                        }
+                    }
+                }
+            }
+            if (this.gifts.size() != this.oldGifts.size()) {
+                z = true;
+                break;
+            }
+            int i2 = 0;
+            while (true) {
+                if (i2 >= this.gifts.size()) {
+                    z = false;
+                    break;
+                } else {
+                    if (!((Gift) this.gifts.get(i2)).equals((Gift) this.oldGifts.get(i2))) {
+                        z = true;
+                        break;
+                    }
+                    i2++;
+                }
+            }
+            for (int i3 = 0; i3 < this.gifts.size(); i3++) {
+                Gift gift4 = (Gift) this.gifts.get(i3);
+                int i4 = 0;
+                while (true) {
+                    if (i4 >= this.oldGifts.size()) {
+                        gift2 = null;
+                        break;
+                    } else {
+                        if (((Gift) this.oldGifts.get(i4)).id == gift4.id) {
+                            gift2 = (Gift) this.oldGifts.get(i4);
+                            break;
+                        }
+                        i4++;
+                    }
+                }
+                if (gift2 != null) {
+                    gift4.copy(gift2);
+                } else {
+                    float fDp = AndroidUtilities.dp(22.5f);
+                    int i5 = gift4.color;
+                    gift4.gradient = new RadialGradient(0.0f, 0.0f, fDp, new int[]{i5, Theme.multAlpha(i5, 0.0f)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    Paint paint = new Paint(1);
+                    gift4.gradientPaint = paint;
+                    paint.setShader(gift4.gradient);
+                    TLRPC.Document document = gift4.document;
+                    if (document != null) {
+                        gift4.emojiDrawable = AnimatedEmojiDrawable.make(this.currentAccount, 0, document);
+                    } else {
+                        gift4.emojiDrawable = AnimatedEmojiDrawable.make(this.currentAccount, 0, gift4.documentId);
+                    }
+                    AnimatedFloat animatedFloat = new AnimatedFloat(this, 0L, 320L, (TimeInterpolator) null);
+                    gift4.animatedFloat = animatedFloat;
+                    animatedFloat.force(0.0f);
+                    if (isAttachedToWindow()) {
+                        gift4.emojiDrawable.addView(this);
+                    }
+                }
+            }
+            ArrayList arrayList = new ArrayList();
+            for (int i6 = 0; i6 < this.maxCount; i6++) {
+                arrayList.add(Integer.valueOf(i6));
+            }
+            for (int i7 = 0; i7 < this.oldGifts.size(); i7++) {
+                Gift gift5 = (Gift) this.oldGifts.get(i7);
+                int i8 = 0;
+                while (true) {
+                    if (i8 >= this.gifts.size()) {
+                        gift = null;
+                        break;
+                    } else {
+                        if (((Gift) this.gifts.get(i8)).id == gift5.id) {
+                            gift = (Gift) this.gifts.get(i8);
+                            break;
+                        }
+                        i8++;
+                    }
+                }
+                if (gift == null) {
+                    gift5.emojiDrawable.removeView(this);
+                    gift5.emojiDrawable = null;
+                    gift5.gradient = null;
+                } else {
+                    arrayList.remove(Integer.valueOf(gift5.position));
+                }
+            }
+            if (!arrayList.isEmpty()) {
+                BagRandomizer bagRandomizer = new BagRandomizer(arrayList);
+                for (int i9 = 0; i9 < this.gifts.size(); i9++) {
+                    Gift gift6 = (Gift) this.gifts.get(i9);
+                    if (gift6.position == -1) {
+                        gift6.position = ((Integer) bagRandomizer.next()).intValue();
+                    }
+                }
+            }
+            if (z) {
+                invalidate();
+            }
+        }
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.ProfileGiftsView.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        float fDp;
+        float fDp2;
+        float fLerp;
+        float f;
+        float fMin;
+        float f2;
+        float fClamp01;
+        if (this.gifts.isEmpty()) {
+            return;
+        }
+        float f3 = 1.0f;
+        if (this.expandProgress >= 1.0f || this.collapseProgress <= 0.0f) {
+            return;
+        }
+        float x = this.avatarContainer.getX();
+        float y = this.avatarContainer.getY();
+        float width = this.avatarContainer.getWidth() * this.avatarContainer.getScaleX();
+        float height = this.avatarContainer.getHeight() * this.avatarContainer.getScaleY();
+        float fDpf2 = AndroidUtilities.dpf2(96.0f);
+        float fMin2 = Math.min(x, (getWidth() - fDpf2) / 2.0f);
+        float fMax = Math.max(y, (this.maxExpandY - fDpf2) / 2.0f);
+        float fMax2 = Math.max(width, fDpf2);
+        float fMax3 = Math.max(height, fDpf2);
+        canvas.save();
+        canvas.clipRect(0.0f, 0.0f, getWidth(), this.expandY);
+        float f4 = fMin2 + (fMax2 / 2.0f);
+        float f5 = (fMax3 / 2.0f) + fMax;
+        float f6 = x + (width / 2.0f);
+        float f7 = y + (height / 2.0f);
+        float f8 = this.expandY;
+        float f9 = f8 / this.maxExpandY;
+        float fClamp02 = Utilities.clamp01((f8 - (AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight())) / AndroidUtilities.dp(50.0f));
+        int i = 0;
+        while (i < this.gifts.size()) {
+            Gift gift = (Gift) this.gifts.get(i);
+            float f10 = gift.animatedFloat.set(f3);
+            float fLerp2 = AndroidUtilities.lerp(0.5f, f3, f10);
+            float f11 = (f3 - this.expandProgress) * f10 * (f3 - this.actionBarProgress) * fClamp02;
+            int i2 = gift.position;
+            if (i2 == 0) {
+                fDp = (f4 / 2.0f) - (AndroidUtilities.dp(20.0f) * f9);
+                fDp2 = f5 - AndroidUtilities.dp(13.0f);
+            } else {
+                if (i2 == 1) {
+                    fLerp = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(6.0f) * f9);
+                    fDp2 = fMax - AndroidUtilities.dp(4.0f);
+                } else {
+                    if (i2 == 2) {
+                        float fDp3 = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(12.0f) * f9);
+                        fDp2 = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
+                        fLerp = fDp3;
+                    } else if (i2 == 3) {
+                        fDp = (1.5f * f4) + (AndroidUtilities.dp(20.0f) * f9);
+                        fDp2 = f5 - AndroidUtilities.dp(13.0f);
+                    } else if (i2 == 4) {
+                        fLerp = ((f4 * 4.0f) / 3.0f) + (AndroidUtilities.dp(12.0f) * f9);
+                        fDp2 = fMax - AndroidUtilities.dp(4.0f);
+                    } else {
+                        float fDp4 = ((4.0f * f4) / 3.0f) + (AndroidUtilities.dp(12.0f) * f9);
+                        fDp2 = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
+                        fLerp = fDp4;
+                    }
+                    f = 0.9f;
+                    if (!this.isOpening || f10 >= 1.0f) {
+                        fMin = this.collapseProgress;
+                    } else {
+                        fMin = Math.min(f10, this.collapseProgress);
+                    }
+                    f2 = f * 0.2f;
+                    if (fMin >= 1.0f - f2) {
+                        fClamp01 = 1.0f;
+                    } else {
+                        fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f2) / 0.67999995f);
+                    }
+                    if (fClamp01 < 1.0f) {
+                        fLerp = AndroidUtilities.lerp(f6, fLerp, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
+                        fDp2 = AndroidUtilities.lerp(f7, fDp2, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
+                        fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
+                    }
+                    gift.draw(canvas, fLerp, fDp2, fLerp2, 0.0f, f11, 1.0f);
+                    i++;
+                    fClamp02 = fClamp02;
+                    f3 = 1.0f;
+                }
+                f = 0.0f;
+                if (!this.isOpening) {
+                    fMin = this.collapseProgress;
+                } else {
+                    fMin = this.collapseProgress;
+                }
+                f2 = f * 0.2f;
+                if (fMin >= 1.0f - f2) {
+                    fClamp01 = 1.0f;
+                } else {
+                    fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f2) / 0.67999995f);
+                }
+                if (fClamp01 < 1.0f) {
+                    fLerp = AndroidUtilities.lerp(f6, fLerp, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
+                    fDp2 = AndroidUtilities.lerp(f7, fDp2, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
+                    fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
+                }
+                gift.draw(canvas, fLerp, fDp2, fLerp2, 0.0f, f11, 1.0f);
+                i++;
+                fClamp02 = fClamp02;
+                f3 = 1.0f;
+            }
+            fClamp02 = fClamp02;
+            fLerp = fDp;
+            f = 1.6f;
+            if (!this.isOpening) {
+                fMin = this.collapseProgress;
+            } else {
+                fMin = this.collapseProgress;
+            }
+            f2 = f * 0.2f;
+            if (fMin >= 1.0f - f2) {
+                fClamp01 = 1.0f;
+            } else {
+                fClamp01 = Utilities.clamp01(((fMin - 0.32000002f) + f2) / 0.67999995f);
+            }
+            if (fClamp01 < 1.0f) {
+                fLerp = AndroidUtilities.lerp(f6, fLerp, this.giftCollapseXInterpolator.getInterpolation(fClamp01));
+                fDp2 = AndroidUtilities.lerp(f7, fDp2, this.giftCollapseYInterpolator.getInterpolation(fClamp01));
+                fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
+            }
+            gift.draw(canvas, fLerp, fDp2, fLerp2, 0.0f, f11, 1.0f);
+            i++;
+            fClamp02 = fClamp02;
+            f3 = 1.0f;
+        }
+        canvas.restore();
     }
 
     public Gift getGiftUnder(float f, float f2) {

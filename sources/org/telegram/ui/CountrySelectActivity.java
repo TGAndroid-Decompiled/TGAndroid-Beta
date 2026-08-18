@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.Collator;
@@ -51,7 +50,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda23;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda24;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.CountrySelectActivity;
 
 public class CountrySelectActivity extends BaseFragment {
     private CountrySelectActivityDelegate delegate;
@@ -262,7 +260,7 @@ public class CountrySelectActivity extends BaseFragment {
             return null;
         }
 
-        public CountryAdapter(Context context, ArrayList arrayList, boolean z) throws IOException {
+        public CountryAdapter(Context context, ArrayList arrayList, boolean z) {
             final Comparator boostRepository$$ExternalSyntheticLambda24;
             this.mContext = context;
             if (arrayList != null) {

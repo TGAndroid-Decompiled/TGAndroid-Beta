@@ -49,11 +49,11 @@ public abstract class DrawableUtils {
 
     public static void drawCommunityCardDrawable(Canvas canvas, Drawable drawable, float f, float f2, float f3) {
         float fDpf2 = f - AndroidUtilities.dpf2(36.0f);
-        float fDpf22 = f2 - AndroidUtilities.dpf2(36.0f);
-        float fDpf23 = f3 / AndroidUtilities.dpf2(72.0f);
-        setBounds(drawable, fDpf2 + AndroidUtilities.dpf2(9.66f), fDpf22 + AndroidUtilities.dpf2(4.66f), 53);
+        float fDpf3 = f2 - AndroidUtilities.dpf2(36.0f);
+        float fDpf4 = f3 / AndroidUtilities.dpf2(72.0f);
+        setBounds(drawable, fDpf2 + AndroidUtilities.dpf2(9.66f), fDpf3 + AndroidUtilities.dpf2(4.66f), 53);
         canvas.save();
-        canvas.scale(fDpf23, fDpf23, f, f2);
+        canvas.scale(fDpf4, fDpf4, f, f2);
         drawable.draw(canvas);
         canvas.restore();
     }

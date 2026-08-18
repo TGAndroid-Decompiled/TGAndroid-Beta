@@ -63,7 +63,7 @@ public class ArrayUtils {
         return true;
     }
 
-    public static <T> T[] emptyArray(Class<T> cls) throws NegativeArraySizeException {
+    public static <T> T[] emptyArray(Class<T> cls) {
         if (cls == Object.class) {
             return (T[]) EMPTY;
         }

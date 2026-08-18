@@ -56,8 +56,10 @@ public class VideoPlayerRewinder {
                     videoPlayerRewinder4.seekTo(videoPlayerRewinder4.rewindBackSeekPlayerPosition, false);
                 }
             }
+            long j2 = VideoPlayerRewinder.this.rewindBackSeekPlayerPosition - VideoPlayerRewinder.this.startRewindFrom;
+            float duration2 = VideoPlayerRewinder.this.rewindBackSeekPlayerPosition / VideoPlayerRewinder.this.getDuration();
             VideoPlayerRewinder videoPlayerRewinder5 = VideoPlayerRewinder.this;
-            videoPlayerRewinder5.updateRewindProgressUi(VideoPlayerRewinder.this.rewindBackSeekPlayerPosition - VideoPlayerRewinder.this.startRewindFrom, VideoPlayerRewinder.this.rewindBackSeekPlayerPosition / VideoPlayerRewinder.this.getDuration(), videoPlayerRewinder5.rewindByBackSeek);
+            videoPlayerRewinder5.updateRewindProgressUi(j2, duration2, videoPlayerRewinder5.rewindByBackSeek);
             if (VideoPlayerRewinder.this.rewindBackSeekPlayerPosition == 0 || VideoPlayerRewinder.this.rewindBackSeekPlayerPosition >= duration) {
                 VideoPlayerRewinder videoPlayerRewinder6 = VideoPlayerRewinder.this;
                 if (videoPlayerRewinder6.rewindByBackSeek) {
@@ -242,10 +244,10 @@ public class VideoPlayerRewinder {
                             }
                         });
                         z = true;
-                        setPlaybackSpeed(this.playSpeed);
                     } else {
                         seekTo(this.rewindBackSeekPlayerPosition, false);
                     }
+                    setPlaybackSpeed(this.playSpeed);
                 } else {
                     seekTo(getCurrentPosition(), false);
                 }
@@ -334,8 +336,9 @@ public class VideoPlayerRewinder {
     }
 
     public long getCurrentPosition() {
-        if (this.webView != null) {
-            return r0.getCurrentPosition();
+        PhotoViewerWebView photoViewerWebView = this.webView;
+        if (photoViewerWebView != null) {
+            return photoViewerWebView.getCurrentPosition();
         }
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null) {
@@ -345,8 +348,9 @@ public class VideoPlayerRewinder {
     }
 
     public long getDuration() {
-        if (this.webView != null) {
-            return r0.getVideoDuration();
+        PhotoViewerWebView photoViewerWebView = this.webView;
+        if (photoViewerWebView != null) {
+            return photoViewerWebView.getVideoDuration();
         }
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null) {

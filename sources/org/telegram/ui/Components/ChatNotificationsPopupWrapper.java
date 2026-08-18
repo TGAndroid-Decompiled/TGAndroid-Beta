@@ -22,7 +22,6 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda333;
-import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.ProfileNotificationsActivity;
 
 public class ChatNotificationsPopupWrapper {

@@ -17,6 +17,8 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.ExifInterface;
+import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Property;
@@ -34,10 +36,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DialogObject;
@@ -73,9 +78,6 @@ import org.telegram.ui.Cells.SendLocationCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.SharingLiveLocationCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.RecyclerListView;
 
 public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private LocationActivityAdapter adapter;
@@ -1027,7 +1029,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             ApplicationLoader.getMapsProvider().initializeMaps(ApplicationLoader.applicationContext);
             this.mapView.getMapAsync(new Consumer() {
                 @Override
-                public final void accept(Object obj) throws IllegalArgumentException {
+                public final void accept(Object obj) {
                     this.f$0.lambda$new$14((IMapsProvider.IMap) obj);
                 }
             });
@@ -1040,7 +1042,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public void lambda$new$14(IMapsProvider.IMap iMap) throws IllegalArgumentException {
+    public void lambda$new$14(IMapsProvider.IMap iMap) {
         this.map = iMap;
         iMap.setOnMapLoadedCallback(new Runnable() {
             @Override
@@ -1201,8 +1203,31 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void onPreMeasure(int r3, int r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertLocationLayout.onPreMeasure(int, int):void");
+    public void onPreMeasure(int i, int i2) {
+        int iDp;
+        int i3;
+        if (this.parentAlert.actionBar.isSearchFieldVisible() || this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
+            iDp = this.mapHeight - this.overScrollHeight;
+            this.parentAlert.setAllowNestedScroll(false);
+        } else {
+            if (AndroidUtilities.isTablet()) {
+                i3 = (i2 / 5) * 2;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    i3 = (int) (i2 / 3.5f);
+                } else {
+                    i3 = (i2 / 5) * 2;
+                }
+            }
+            iDp = i3 - AndroidUtilities.dp(52.0f);
+            if (iDp < 0) {
+                iDp = 0;
+            }
+            this.parentAlert.setAllowNestedScroll(true);
+        }
+        this.listView.setPaddingWithoutRequestLayout(0, iDp, 0, this.listPaddingBottom);
+        this.searchListView.setPaddingWithoutRequestLayout(0, 0, 0, this.listPaddingBottom);
     }
 
     @Override
@@ -1279,7 +1304,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         if (this.checkBackgroundPermission && Build.VERSION.SDK_INT >= 29 && (parentActivity = getParentActivity()) != null) {
             this.checkBackgroundPermission = false;
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-            if (Math.abs((System.currentTimeMillis() / 1000) - globalMainSettings.getInt("backgroundloc", 0)) > 86400 && parentActivity.checkSelfPermission("android.permission.ACCESS_BACKGROUND_LOCATION") != 0) {
+            if (Math.abs((System.currentTimeMillis() / 1000) - ((long) globalMainSettings.getInt("backgroundloc", 0))) > 86400 && parentActivity.checkSelfPermission("android.permission.ACCESS_BACKGROUND_LOCATION") != 0) {
                 globalMainSettings.edit().putInt("backgroundloc", (int) (System.currentTimeMillis() / 1000)).commit();
                 AlertsCreator.createBackgroundLocationPermissionDialog(parentActivity, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())), new Runnable() {
                     @Override
@@ -1395,7 +1420,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         return baseFragment.getParentActivity();
     }
 
-    private void onMapInit() throws IllegalArgumentException {
+    private void onMapInit() {
         PackageManager packageManager;
         if (this.map == null) {
             return;
@@ -1788,8 +1813,75 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         return lastKnownLocation;
     }
 
-    private void positionMarker() throws java.lang.IllegalArgumentException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertLocationLayout.positionMarker():void");
+    private void positionMarker() {
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        if (chatAttachAlert.isStoryLocationPicker) {
+            if (chatAttachAlert.storyLocationPickerLatLong != null) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$positionMarker$29();
+                    }
+                });
+                return;
+            }
+            if (!this.locationDenied) {
+                File file = chatAttachAlert.storyLocationPickerPhotoFile;
+                boolean z = chatAttachAlert.storyLocationPickerFileIsVideo;
+                if (file != null) {
+                    try {
+                        if (z) {
+                            MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+                            mediaMetadataRetriever.setDataSource(file.getAbsolutePath());
+                            String strExtractMetadata = mediaMetadataRetriever.extractMetadata(23);
+                            if (strExtractMetadata != null) {
+                                Matcher matcher = Pattern.compile("([+\\-][0-9.]+)([+\\-][0-9.]+)").matcher(strExtractMetadata);
+                                if (matcher.find() && matcher.groupCount() == 2) {
+                                    String strGroup = matcher.group(1);
+                                    String strGroup2 = matcher.group(2);
+                                    final double d = Double.parseDouble(strGroup);
+                                    final double d2 = Double.parseDouble(strGroup2);
+                                    AndroidUtilities.runOnUIThread(new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            this.f$0.lambda$positionMarker$30(d, d2);
+                                        }
+                                    });
+                                    return;
+                                }
+                            }
+                        } else {
+                            ExifInterface exifInterface = new ExifInterface(file.getAbsolutePath());
+                            final float[] fArr = new float[2];
+                            if (exifInterface.getLatLong(fArr)) {
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        this.f$0.lambda$positionMarker$31(fArr);
+                                    }
+                                });
+                                return;
+                            }
+                        }
+                    } catch (NumberFormatException | Exception unused) {
+                    }
+                }
+                Location lastLocation = getLastLocation();
+                this.myLocation = lastLocation;
+                positionMarker(lastLocation);
+                return;
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$positionMarker$32();
+                }
+            });
+            return;
+        }
+        Location lastLocation2 = getLastLocation();
+        this.myLocation = lastLocation2;
+        positionMarker(lastLocation2);
     }
 
     public void lambda$positionMarker$29() {
@@ -1837,7 +1929,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws IllegalArgumentException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.locationPermissionGranted) {
             this.locationDenied = false;
             this.askedForLocation = false;

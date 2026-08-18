@@ -22,15 +22,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -61,9 +58,6 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.WrappedResourceProvider;
-import org.telegram.ui.web.AddressBarList;
-import org.telegram.ui.web.BrowserHistory;
-import org.telegram.ui.web.WebMetadataCache;
 
 public class AddressBarList extends FrameLayout {
     private int backgroundColor;
@@ -107,7 +101,7 @@ public class AddressBarList extends FrameLayout {
         int i2 = UserConfig.selectedAccount;
         Utilities.Callback2 callback2 = new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws JSONException {
+            public final void run(Object obj, Object obj2) {
                 this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         };
@@ -208,7 +202,7 @@ public class AddressBarList extends FrameLayout {
         this.listView.adapter.update(true);
     }
 
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) throws JSONException {
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         if (!this.hideCurrent && this.suggestions.isEmpty()) {
             arrayList.add(UItem.asCustom(this.currentContainer));
         }
@@ -676,7 +670,7 @@ public class AddressBarList extends FrameLayout {
             this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), PorterDuff.Mode.SRC_IN));
         }
 
-        public void set(MessageObject messageObject, boolean z, String str, boolean z2, boolean z3) throws UnsupportedEncodingException {
+        public void set(MessageObject messageObject, boolean z, String str, boolean z2, boolean z3) {
             String str2;
             TLRPC.Photo photo;
             String strUrlWithoutFragment;
@@ -696,7 +690,8 @@ public class AddressBarList extends FrameLayout {
                 this.textView.setText(webMetadata.sitename);
             } else {
                 try {
-                    String str4 = Uri.parse(link).getHost().split("\\.")[r5.length - 2];
+                    String[] strArrSplit = Uri.parse(link).getHost().split("\\.");
+                    String str4 = strArrSplit[strArrSplit.length - 2];
                     this.textView.setText(str4.substring(0, 1).toUpperCase() + str4.substring(1));
                 } catch (Exception unused) {
                     this.textView.setText("");
@@ -775,7 +770,7 @@ public class AddressBarList extends FrameLayout {
             setWillNotDraw(!z3);
         }
 
-        public void set(BrowserHistory.Entry entry, String str, boolean z) throws UnsupportedEncodingException {
+        public void set(BrowserHistory.Entry entry, String str, boolean z) {
             Bitmap bitmap;
             updateColors();
             if (entry == null) {
@@ -789,7 +784,8 @@ public class AddressBarList extends FrameLayout {
                 this.textView.setText(webMetadata.sitename);
             } else {
                 try {
-                    String str2 = Uri.parse(strDecode).getHost().split("\\.")[r5.length - 2];
+                    String[] strArrSplit = Uri.parse(strDecode).getHost().split("\\.");
+                    String str2 = strArrSplit[strArrSplit.length - 2];
                     this.textView.setText(str2.substring(0, 1).toUpperCase() + str2.substring(1));
                 } catch (Exception unused) {
                     this.textView.setText("");
@@ -890,7 +886,7 @@ public class AddressBarList extends FrameLayout {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) throws UnsupportedEncodingException {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 BookmarkView bookmarkView = (BookmarkView) view;
                 Object obj = uItem.object2;
                 if (obj instanceof MessageObject) {
@@ -956,13 +952,13 @@ public class AddressBarList extends FrameLayout {
         }
     }
 
-    public static ArrayList getRecentSearches(Context context) throws JSONException {
+    public static ArrayList getRecentSearches(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("webhistory", 0);
         ArrayList arrayList = new ArrayList();
         String string = sharedPreferences.getString("queries_json", null);
         if (string != null) {
             try {
-                ArrayList arrayList2 = new ArrayList();
+                ArrayList<QueryEntry> arrayList2 = new ArrayList();
                 JSONArray jSONArray = new JSONArray(string);
                 for (int i = 0; i < jSONArray.length(); i++) {
                     JSONObject jSONObject = jSONArray.getJSONObject(i);
@@ -976,9 +972,7 @@ public class AddressBarList extends FrameLayout {
                         return AddressBarList.lambda$getRecentSearches$7((AddressBarList.QueryEntry) obj, (AddressBarList.QueryEntry) obj2);
                     }
                 });
-                Iterator it = arrayList2.iterator();
-                while (it.hasNext()) {
-                    QueryEntry queryEntry2 = (QueryEntry) it.next();
+                for (QueryEntry queryEntry2 : arrayList2) {
                     if (arrayList.size() >= 20) {
                         break;
                     }
@@ -1018,18 +1012,13 @@ public class AddressBarList extends FrameLayout {
                 FileLog.e(e);
             }
         }
-        int i2 = 0;
-        while (true) {
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
             try {
-                if (i2 >= arrayList.size()) {
-                    break;
-                }
                 QueryEntry queryEntry3 = (QueryEntry) arrayList.get(i2);
                 if (TextUtils.equals(queryEntry3.query, str)) {
                     queryEntry = queryEntry3;
                     break;
                 }
-                i2++;
             } catch (Exception e2) {
                 FileLog.e(e2);
                 return;

@@ -8,7 +8,7 @@ import java.util.Iterator;
 public abstract class CollectionToArray {
     private static final Object[] EMPTY = new Object[0];
 
-    public static final Object[] toArray(Collection collection, Object[] objArr) throws NegativeArraySizeException {
+    public static final Object[] toArray(Collection collection, Object[] objArr) {
         Object[] objArrCopyOf;
         Intrinsics.checkNotNullParameter(collection, "collection");
         objArr.getClass();

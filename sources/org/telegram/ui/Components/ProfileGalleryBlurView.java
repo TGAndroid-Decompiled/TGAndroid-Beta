@@ -24,8 +24,6 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ProfileMetaballView;
-import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.ProfileActivity;
 
 public class ProfileGalleryBlurView extends View {

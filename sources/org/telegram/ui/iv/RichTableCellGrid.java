@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.text.Layout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -173,8 +174,214 @@ public class RichTableCellGrid extends ViewGroup {
     }
 
     @Override
-    protected void onMeasure(int r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTableCellGrid.onMeasure(int, int):void");
+    protected void onMeasure(int i, int i2) {
+        int iMax;
+        int i3;
+        int i4;
+        int i5;
+        int iAnchorColOf;
+        int iDp = AndroidUtilities.dp(20.0f);
+        int iDp2 = AndroidUtilities.dp(4.0f);
+        int iDp3 = AndroidUtilities.dp(4.0f);
+        int iDp4 = AndroidUtilities.dp(10.0f);
+        TableModel tableModel = this.model;
+        if (tableModel == null || tableModel.rowCount == 0 || tableModel.colCount == 0) {
+            setMeasuredDimension(View.MeasureSpec.getSize(i), iDp2 + iDp4);
+            this.colWidths = new int[0];
+            this.rowHeights = new int[0];
+            this.colStarts = new int[0];
+            this.rowStarts = new int[0];
+            return;
+        }
+        int size = (View.MeasureSpec.getSize(i) - iDp) - iDp3;
+        TableModel tableModel2 = this.model;
+        int i6 = tableModel2.rowCount;
+        int i7 = tableModel2.colCount;
+        this.colWidths = new int[i7];
+        this.rowHeights = new int[i6];
+        int iDp5 = AndroidUtilities.dp(tableModel2.block.compact ? 20.0f : 50.0f);
+        int i8 = this.model.block.compact ? 5 : 12;
+        if (i7 == 2) {
+            iMax = Math.max(0, (size / 2) - AndroidUtilities.dp(i8 * 4));
+        } else {
+            iMax = Math.max(0, Math.round(size / 1.5f));
+        }
+        float f = i8 * 2;
+        int iMax2 = Math.max(iDp5, iMax + AndroidUtilities.dp(f));
+        for (int i9 = 0; i9 < i7; i9++) {
+            this.colWidths[i9] = iDp5;
+        }
+        int i10 = 0;
+        while (true) {
+            i3 = 1;
+            if (i10 >= getChildCount()) {
+                break;
+            }
+            View childAt = getChildAt(i10);
+            if (childAt instanceof RichTableCellHost) {
+                RichTableCellHost richTableCellHost = (RichTableCellHost) childAt;
+                if (TableModel.spanCol(richTableCellHost.cell) == 1 && (iAnchorColOf = this.model.anchorColOf(richTableCellHost.cell)) >= 0 && iAnchorColOf < i7) {
+                    int iRound = Math.round(Layout.getDesiredWidth(richTableCellHost.editText.getText(), richTableCellHost.editText.getPaint())) + AndroidUtilities.dp(f);
+                    int[] iArr = this.colWidths;
+                    iArr[iAnchorColOf] = Math.max(iArr[iAnchorColOf], Math.min(iMax2, iRound));
+                }
+            }
+            i10++;
+        }
+        int i11 = 0;
+        while (i11 < getChildCount()) {
+            View childAt2 = getChildAt(i11);
+            if (childAt2 instanceof RichTableCellHost) {
+                RichTableCellHost richTableCellHost2 = (RichTableCellHost) childAt2;
+                int iSpanCol = TableModel.spanCol(richTableCellHost2.cell);
+                if (iSpanCol <= i3) {
+                    i5 = iDp4;
+                } else {
+                    int iAnchorColOf2 = this.model.anchorColOf(richTableCellHost2.cell);
+                    int iMin = Math.min(i7, iSpanCol + iAnchorColOf2);
+                    if (iAnchorColOf2 < 0 || iAnchorColOf2 >= iMin) {
+                        i5 = iDp4;
+                    } else {
+                        int i12 = iAnchorColOf2;
+                        int i13 = 0;
+                        while (i12 < iMin) {
+                            i13 += this.colWidths[i12];
+                            i12++;
+                            iDp4 = iDp4;
+                        }
+                        i5 = iDp4;
+                        int iMin2 = Math.min((iMin - iAnchorColOf2) * iMax2, Math.round(Layout.getDesiredWidth(richTableCellHost2.editText.getText(), richTableCellHost2.editText.getPaint())) + AndroidUtilities.dp(f)) - i13;
+                        while (iAnchorColOf2 < iMin && iMin2 > 0) {
+                            int i14 = iMin - iAnchorColOf2;
+                            int i15 = ((iMin2 + i14) - 1) / i14;
+                            int[] iArr2 = this.colWidths;
+                            iArr2[iAnchorColOf2] = iArr2[iAnchorColOf2] + i15;
+                            iMin2 -= i15;
+                            iAnchorColOf2++;
+                        }
+                    }
+                }
+            } else {
+                i5 = iDp4;
+            }
+            i11++;
+            iDp4 = i5;
+            i3 = 1;
+        }
+        int i16 = iDp4;
+        int i17 = 0;
+        for (int i18 : this.colWidths) {
+            i17 += i18;
+        }
+        if (i17 < size && i7 > 0) {
+            int i19 = size - i17;
+            int i20 = 0;
+            while (i20 < i7) {
+                int iRound2 = i20 == i7 + (-1) ? i19 : Math.round((this.colWidths[i20] * i19) / i17);
+                int[] iArr3 = this.colWidths;
+                int i21 = iArr3[i20] + iRound2;
+                iArr3[i20] = i21;
+                i19 -= iRound2;
+                i17 -= i21 - iRound2;
+                i20++;
+            }
+        }
+        int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
+        for (int i22 = 0; i22 < getChildCount(); i22++) {
+            View childAt3 = getChildAt(i22);
+            if (childAt3 instanceof RichTableCellHost) {
+                RichTableCellHost richTableCellHost3 = (RichTableCellHost) childAt3;
+                int iAnchorRowOf = this.model.anchorRowOf(richTableCellHost3.cell);
+                int iAnchorColOf3 = this.model.anchorColOf(richTableCellHost3.cell);
+                int iSpanCol2 = TableModel.spanCol(richTableCellHost3.cell);
+                int i23 = 0;
+                for (int i24 = iAnchorColOf3; i24 < iAnchorColOf3 + iSpanCol2 && i24 < i7; i24++) {
+                    i23 += this.colWidths[i24];
+                }
+                richTableCellHost3.measure(View.MeasureSpec.makeMeasureSpec(i23, 1073741824), iMakeMeasureSpec);
+                if (TableModel.spanRow(richTableCellHost3.cell) == 1) {
+                    int measuredHeight = richTableCellHost3.getMeasuredHeight();
+                    int[] iArr4 = this.rowHeights;
+                    if (measuredHeight > iArr4[iAnchorRowOf]) {
+                        iArr4[iAnchorRowOf] = richTableCellHost3.getMeasuredHeight();
+                    }
+                }
+            }
+        }
+        for (int i25 = 0; i25 < getChildCount(); i25++) {
+            View childAt4 = getChildAt(i25);
+            if (childAt4 instanceof RichTableCellHost) {
+                RichTableCellHost richTableCellHost4 = (RichTableCellHost) childAt4;
+                int iAnchorRowOf2 = this.model.anchorRowOf(richTableCellHost4.cell);
+                int iSpanRow = TableModel.spanRow(richTableCellHost4.cell);
+                if (iSpanRow > 1) {
+                    int i26 = iAnchorRowOf2;
+                    int i27 = 0;
+                    while (true) {
+                        i4 = iAnchorRowOf2 + iSpanRow;
+                        if (i26 >= i4 || i26 >= i6) {
+                            break;
+                        }
+                        i27 += this.rowHeights[i26];
+                        i26++;
+                    }
+                    int measuredHeight2 = richTableCellHost4.getMeasuredHeight();
+                    if (measuredHeight2 > i27) {
+                        int i28 = measuredHeight2 - i27;
+                        int iMax3 = i28 / Math.max(iSpanRow, 1);
+                        int iMax4 = i28 % Math.max(iSpanRow, 1);
+                        while (iAnchorRowOf2 < i4 && iAnchorRowOf2 < i6) {
+                            int[] iArr5 = this.rowHeights;
+                            iArr5[iAnchorRowOf2] = iArr5[iAnchorRowOf2] + (iMax4 > 0 ? 1 : 0) + iMax3;
+                            if (iMax4 > 0) {
+                                iMax4--;
+                            }
+                            iAnchorRowOf2++;
+                        }
+                    }
+                }
+            }
+        }
+        for (int i29 = 0; i29 < getChildCount(); i29++) {
+            View childAt5 = getChildAt(i29);
+            if (childAt5 instanceof RichTableCellHost) {
+                RichTableCellHost richTableCellHost5 = (RichTableCellHost) childAt5;
+                int iAnchorRowOf3 = this.model.anchorRowOf(richTableCellHost5.cell);
+                int iAnchorColOf4 = this.model.anchorColOf(richTableCellHost5.cell);
+                int iSpanCol3 = TableModel.spanCol(richTableCellHost5.cell);
+                int iSpanRow2 = TableModel.spanRow(richTableCellHost5.cell);
+                int i30 = 0;
+                for (int i31 = iAnchorColOf4; i31 < iAnchorColOf4 + iSpanCol3 && i31 < i7; i31++) {
+                    i30 += this.colWidths[i31];
+                }
+                int i32 = 0;
+                for (int i33 = iAnchorRowOf3; i33 < iAnchorRowOf3 + iSpanRow2 && i33 < i6; i33++) {
+                    i32 += this.rowHeights[i33];
+                }
+                richTableCellHost5.measure(View.MeasureSpec.makeMeasureSpec(i30, 1073741824), View.MeasureSpec.makeMeasureSpec(i32, 1073741824));
+            }
+        }
+        int[] iArr6 = new int[i7 + 1];
+        this.colStarts = iArr6;
+        iArr6[0] = iDp;
+        int i34 = 0;
+        while (i34 < i7) {
+            int[] iArr7 = this.colStarts;
+            int i35 = i34 + 1;
+            iArr7[i35] = iArr7[i34] + this.colWidths[i34];
+            i34 = i35;
+        }
+        int[] iArr8 = new int[i6 + 1];
+        this.rowStarts = iArr8;
+        iArr8[0] = iDp2;
+        int i36 = 0;
+        while (i36 < i6) {
+            int[] iArr9 = this.rowStarts;
+            int i37 = i36 + 1;
+            iArr9[i37] = iArr9[i36] + this.rowHeights[i36];
+            i36 = i37;
+        }
+        setMeasuredDimension(Math.max(this.colStarts[i7] + iDp3, size + iDp + iDp3), this.rowStarts[i6] + i16);
     }
 
     @Override
@@ -417,9 +624,9 @@ public class RichTableCellGrid extends ViewGroup {
 
     private void drawLeftBulgeFill(Canvas canvas, int i, int i2) {
         float fDpf2 = i - AndroidUtilities.dpf2(1.0f);
-        float fDpf22 = i2 + AndroidUtilities.dpf2(1.0f);
+        float fDpf3 = i2 + AndroidUtilities.dpf2(1.0f);
         float fDp = this.colStarts[0] - AndroidUtilities.dp(16.0f);
-        float fMin = Math.min(AndroidUtilities.dpf2(10.0f), (fDpf22 - fDpf2) / 2.0f);
+        float fMin = Math.min(AndroidUtilities.dpf2(10.0f), (fDpf3 - fDpf2) / 2.0f);
         float fCornerRadiusFor = cornerRadiusFor(this.colStarts[0], i);
         float fCornerRadiusFor2 = cornerRadiusFor(this.colStarts[0], i2);
         this.bulgePath.rewind();
@@ -429,18 +636,18 @@ public class RichTableCellGrid extends ViewGroup {
         float f2 = fDp + f;
         this.arcRect.set(fDp, fDpf2, f2, fDpf2 + f);
         this.bulgePath.arcTo(this.arcRect, 270.0f, -90.0f);
-        this.bulgePath.lineTo(fDp, fDpf22 - fMin);
-        this.arcRect.set(fDp, fDpf22 - f, f2, fDpf22);
+        this.bulgePath.lineTo(fDp, fDpf3 - fMin);
+        this.arcRect.set(fDp, fDpf3 - f, f2, fDpf3);
         this.bulgePath.arcTo(this.arcRect, 180.0f, -90.0f);
-        this.bulgePath.lineTo(this.colStarts[0] + fCornerRadiusFor2, fDpf22);
+        this.bulgePath.lineTo(this.colStarts[0] + fCornerRadiusFor2, fDpf3);
         if (fCornerRadiusFor2 > 0.0f) {
             RectF rectF = this.arcRect;
             float f3 = this.colStarts[0];
             float f4 = fCornerRadiusFor2 * 2.0f;
-            rectF.set(f3, fDpf22 - f4, f4 + f3, fDpf22);
+            rectF.set(f3, fDpf3 - f4, f4 + f3, fDpf3);
             this.bulgePath.arcTo(this.arcRect, 90.0f, 90.0f);
         } else {
-            this.bulgePath.lineTo(this.colStarts[0], fDpf22);
+            this.bulgePath.lineTo(this.colStarts[0], fDpf3);
         }
         this.bulgePath.lineTo(this.colStarts[0], fDpf2 + fCornerRadiusFor);
         if (fCornerRadiusFor > 0.0f) {
@@ -458,10 +665,10 @@ public class RichTableCellGrid extends ViewGroup {
 
     private void drawBottomBulgeFill(Canvas canvas, int i, int i2) {
         float fDpf2 = i - AndroidUtilities.dpf2(1.0f);
-        float fDpf22 = i2 + AndroidUtilities.dpf2(1.0f);
+        float fDpf3 = i2 + AndroidUtilities.dpf2(1.0f);
         float f = this.rowStarts[this.model.rowCount];
         float fDp = AndroidUtilities.dp(16.0f) + f;
-        float fMin = Math.min(AndroidUtilities.dpf2(10.0f), (fDpf22 - fDpf2) / 2.0f);
+        float fMin = Math.min(AndroidUtilities.dpf2(10.0f), (fDpf3 - fDpf2) / 2.0f);
         float fCornerRadiusFor = cornerRadiusFor(i, this.rowStarts[this.model.rowCount]);
         float fCornerRadiusFor2 = cornerRadiusFor(i2, this.rowStarts[this.model.rowCount]);
         this.bulgePath.rewind();
@@ -471,16 +678,16 @@ public class RichTableCellGrid extends ViewGroup {
         float f3 = fDp - f2;
         this.arcRect.set(fDpf2, f3, fDpf2 + f2, fDp);
         this.bulgePath.arcTo(this.arcRect, 180.0f, -90.0f);
-        this.bulgePath.lineTo(fDpf22 - fMin, fDp);
-        this.arcRect.set(fDpf22 - f2, f3, fDpf22, fDp);
+        this.bulgePath.lineTo(fDpf3 - fMin, fDp);
+        this.arcRect.set(fDpf3 - f2, f3, fDpf3, fDp);
         this.bulgePath.arcTo(this.arcRect, 90.0f, -90.0f);
-        this.bulgePath.lineTo(fDpf22, f - fCornerRadiusFor2);
+        this.bulgePath.lineTo(fDpf3, f - fCornerRadiusFor2);
         if (fCornerRadiusFor2 > 0.0f) {
             float f4 = fCornerRadiusFor2 * 2.0f;
-            this.arcRect.set(fDpf22 - f4, f - f4, fDpf22, f);
+            this.arcRect.set(fDpf3 - f4, f - f4, fDpf3, f);
             this.bulgePath.arcTo(this.arcRect, 0.0f, 90.0f);
         } else {
-            this.bulgePath.lineTo(fDpf22, f);
+            this.bulgePath.lineTo(fDpf3, f);
         }
         this.bulgePath.lineTo(fDpf2 + fCornerRadiusFor, f);
         if (fCornerRadiusFor > 0.0f) {
@@ -665,10 +872,12 @@ public class RichTableCellGrid extends ViewGroup {
         boolean z = pageblocktable != null && pageblocktable.striped;
         canvas.save();
         RectF rectF = this.selRect;
-        float f = this.colStarts[0];
-        float f2 = this.rowStarts[0];
+        int[] iArr = this.colStarts;
+        float f = iArr[0];
+        int[] iArr2 = this.rowStarts;
+        float f2 = iArr2[0];
         TableModel tableModel2 = this.model;
-        rectF.set(f, f2, r3[tableModel2.colCount], r5[tableModel2.rowCount]);
+        rectF.set(f, f2, iArr[tableModel2.colCount], iArr2[tableModel2.rowCount]);
         this.bulgePath.rewind();
         this.bulgePath.addRoundRect(this.selRect, AndroidUtilities.dpf2(10.0f), AndroidUtilities.dpf2(10.0f), Path.Direction.CW);
         canvas.clipPath(this.bulgePath);
@@ -681,10 +890,10 @@ public class RichTableCellGrid extends ViewGroup {
                 if (iAnchorRowOf >= 0 && iAnchorColOf >= 0) {
                     int iSpanCol = TableModel.spanCol(richTableCellHost.cell);
                     int iSpanRow = TableModel.spanRow(richTableCellHost.cell);
-                    int[] iArr = this.colStarts;
-                    int i2 = iArr[iAnchorColOf];
+                    int[] iArr3 = this.colStarts;
+                    int i2 = iArr3[iAnchorColOf];
                     int i3 = this.rowStarts[iAnchorRowOf];
-                    int i4 = iArr[Math.min(iAnchorColOf + iSpanCol, this.model.colCount)];
+                    int i4 = iArr3[Math.min(iAnchorColOf + iSpanCol, this.model.colCount)];
                     int i5 = this.rowStarts[Math.min(iSpanRow + iAnchorRowOf, this.model.rowCount)];
                     if (richTableCellHost.cell.header) {
                         canvas.drawRect(i2, i3, i4, i5, this.headerPaint);
@@ -859,64 +1068,70 @@ public class RichTableCellGrid extends ViewGroup {
     }
 
     private void drawBorders(Canvas canvas) {
+        int i;
+        int i2;
         float strokeWidth = this.linePaint.getStrokeWidth() / 2.0f;
         float fDpf2 = AndroidUtilities.dpf2(10.0f);
         RectF rectF = this.selRect;
         int[] iArr = this.colStarts;
+        float f = iArr[0] + strokeWidth;
         int[] iArr2 = this.rowStarts;
+        float f2 = iArr2[0] + strokeWidth;
         TableModel tableModel = this.model;
-        rectF.set(iArr[0] + strokeWidth, iArr2[0] + strokeWidth, iArr[tableModel.colCount] - strokeWidth, iArr2[tableModel.rowCount] - strokeWidth);
+        rectF.set(f, f2, iArr[tableModel.colCount] - strokeWidth, iArr2[tableModel.rowCount] - strokeWidth);
         canvas.drawRoundRect(this.selRect, fDpf2, fDpf2, this.linePaint);
-        for (int i = 1; i < this.model.colCount; i++) {
-            int i2 = this.colStarts[i];
-            int i3 = 0;
-            int i4 = -1;
+        for (int i3 = 1; i3 < this.model.colCount; i3++) {
+            int i4 = this.colStarts[i3];
+            int i5 = 0;
+            int i6 = -1;
             while (true) {
                 TableModel tableModel2 = this.model;
-                if (i3 >= tableModel2.rowCount) {
+                i2 = tableModel2.rowCount;
+                if (i5 >= i2) {
                     break;
                 }
-                TL_iv.pageTableCell[] pagetablecellArr = tableModel2.grid[i3];
-                if (pagetablecellArr[i - 1] != pagetablecellArr[i]) {
-                    if (i4 < 0) {
-                        i4 = this.rowStarts[i3];
+                TL_iv.pageTableCell[] pagetablecellArr = tableModel2.grid[i5];
+                if (pagetablecellArr[i3 - 1] != pagetablecellArr[i3]) {
+                    if (i6 < 0) {
+                        i6 = this.rowStarts[i5];
                     }
-                } else if (i4 >= 0) {
-                    float f = i2;
-                    canvas.drawLine(f, i4, f, this.rowStarts[i3], this.linePaint);
-                    i4 = -1;
+                } else if (i6 >= 0) {
+                    float f3 = i4;
+                    canvas.drawLine(f3, i6, f3, this.rowStarts[i5], this.linePaint);
+                    i6 = -1;
                 }
-                i3++;
+                i5++;
             }
-            if (i4 >= 0) {
-                float f2 = i2;
-                canvas.drawLine(f2, i4, f2, this.rowStarts[r8], this.linePaint);
+            if (i6 >= 0) {
+                float f4 = i4;
+                canvas.drawLine(f4, i6, f4, this.rowStarts[i2], this.linePaint);
             }
         }
-        for (int i5 = 1; i5 < this.model.rowCount; i5++) {
-            int i6 = this.rowStarts[i5];
-            int i7 = 0;
-            int i8 = -1;
+        for (int i7 = 1; i7 < this.model.rowCount; i7++) {
+            int i8 = this.rowStarts[i7];
+            int i9 = 0;
+            int i10 = -1;
             while (true) {
                 TableModel tableModel3 = this.model;
-                if (i7 >= tableModel3.colCount) {
+                i = tableModel3.colCount;
+                if (i9 >= i) {
                     break;
                 }
                 TL_iv.pageTableCell[][] pagetablecellArr2 = tableModel3.grid;
-                if (pagetablecellArr2[i5 - 1][i7] != pagetablecellArr2[i5][i7]) {
-                    if (i8 < 0) {
-                        i8 = this.colStarts[i7];
+                if (pagetablecellArr2[i7 - 1][i9] != pagetablecellArr2[i7][i9]) {
+                    if (i10 < 0) {
+                        i10 = this.colStarts[i9];
                     }
-                } else if (i8 >= 0) {
-                    float f3 = i6;
-                    canvas.drawLine(i8, f3, this.colStarts[i7], f3, this.linePaint);
-                    i8 = -1;
+                } else if (i10 >= 0) {
+                    float f5 = i8;
+                    canvas.drawLine(i10, f5, this.colStarts[i9], f5, this.linePaint);
+                    i10 = -1;
                 }
-                i7++;
+                i9++;
             }
-            if (i8 >= 0) {
-                float f4 = i6;
-                canvas.drawLine(i8, f4, this.colStarts[r7], f4, this.linePaint);
+            if (i10 >= 0) {
+                float f6 = i8;
+                canvas.drawLine(i10, f6, this.colStarts[i], f6, this.linePaint);
             }
         }
     }

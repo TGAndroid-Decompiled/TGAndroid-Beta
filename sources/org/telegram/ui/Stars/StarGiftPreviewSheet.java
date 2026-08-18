@@ -72,7 +72,6 @@ import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.glass.GlassTabView;
 import org.telegram.ui.Components.glass.GlassTabsView;
 import org.telegram.ui.Gifts.GiftSheet;
-import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.bots.AffiliateProgramFragment;
 
 public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
@@ -600,50 +599,51 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         final boolean z2 = true;
         int childCount = this.recyclerListView.getChildCount() - 1;
         while (true) {
-            if (childCount < 0) {
+            if (childCount >= 0) {
+                View childAt = this.recyclerListView.getChildAt(childCount);
+                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
+                if (childAdapterPosition >= 0) {
+                    if (childAdapterPosition == 2) {
+                        y2 = childAt.getY();
+                        measuredHeight = this.headerView.getMeasuredHeight();
+                    } else {
+                        if (childAdapterPosition == 1) {
+                            y = childAt.getY();
+                        } else if (childAdapterPosition == 0) {
+                            y2 = childAt.getY();
+                            measuredHeight = this.headerView.getMeasuredHeight();
+                        }
+                        z = true;
+                    }
+                    y = y2 - measuredHeight;
+                    z = true;
+                }
+                childCount--;
+            } else {
                 y = 0.0f;
                 z = false;
-                break;
             }
-            View childAt = this.recyclerListView.getChildAt(childCount);
-            int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
-            if (childAdapterPosition >= 0) {
-                if (childAdapterPosition == 2) {
-                    y2 = childAt.getY();
-                    measuredHeight = this.headerView.getMeasuredHeight();
-                    break;
-                } else if (childAdapterPosition == 1) {
-                    y = childAt.getY();
-                    break;
-                } else if (childAdapterPosition == 0) {
-                    y2 = childAt.getY();
-                    measuredHeight = this.headerView.getMeasuredHeight();
-                    break;
+            float height = this.headerView.getHeight() + y;
+            if (z && height >= 0.0f) {
+                z2 = false;
+            }
+            if (this.gradientVisible != z2) {
+                this.gradientVisible = z2;
+                if (z2) {
+                    this.gradientTop.setVisibility(0);
                 }
+                this.gradientTop.animate().alpha(z2 ? 1.0f : 0.0f).setDuration(200L).withEndAction(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$updateTranslationHeader$10(z2);
+                    }
+                }).start();
             }
-            childCount--;
+            this.headerMoveTop = y <= 0.0f ? 0 : AndroidUtilities.dp(6.0f);
+            this.headerView.setVisibility(z ? 0 : 8);
+            this.headerView.setTranslationY(y);
+            return;
         }
-        y = y2 - measuredHeight;
-        z = true;
-        float height = this.headerView.getHeight() + y;
-        if (z && height >= 0.0f) {
-            z2 = false;
-        }
-        if (this.gradientVisible != z2) {
-            this.gradientVisible = z2;
-            if (z2) {
-                this.gradientTop.setVisibility(0);
-            }
-            this.gradientTop.animate().alpha(z2 ? 1.0f : 0.0f).setDuration(200L).withEndAction(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$updateTranslationHeader$10(z2);
-                }
-            }).start();
-        }
-        this.headerMoveTop = y <= 0.0f ? 0 : AndroidUtilities.dp(6.0f);
-        this.headerView.setVisibility(z ? 0 : 8);
-        this.headerView.setTranslationY(y);
     }
 
     public void lambda$updateTranslationHeader$10(boolean z) {
@@ -795,7 +795,8 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             sb.append(i);
             sb.append(z ? "_nolimit_pcache" : "");
             String string = sb.toString();
-            this.imageView.setLayoutParams(LayoutHelper.createFrame(i, i, 49, 0.0f, r3 + 17, 0.0f, (80 - i) / 2));
+            int i2 = (80 - i) / 2;
+            this.imageView.setLayoutParams(LayoutHelper.createFrame(i, i, 49, 0.0f, i2 + 17, 0.0f, i2));
             this.imageView.setImage(ImageLocation.getForDocument(document), string, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), string, svgThumb, obj);
         }
 
@@ -1133,10 +1134,16 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         }
         int selectedTab = this.tabsSelectorView.getSelectedTab();
         Attributes attributes2 = this.selectedAttributes;
-        if (attributes2 != null) {
-            return selectedTab == 1 ? attributes.backdrop == attributes2.backdrop : selectedTab == 2 ? attributes.pattern == attributes2.pattern : selectedTab == 0 && attributes.model == attributes2.model;
+        if (attributes2 == null) {
+            return false;
         }
-        return false;
+        if (selectedTab == 1) {
+            return attributes.backdrop == attributes2.backdrop;
+        }
+        if (selectedTab == 2) {
+            return attributes.pattern == attributes2.pattern;
+        }
+        return selectedTab == 0 && attributes.model == attributes2.model;
     }
 
     public Attributes newSelectedWithCurrentTab(Attributes attributes) {

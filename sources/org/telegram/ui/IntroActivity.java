@@ -3,7 +3,6 @@ package org.telegram.ui;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -31,7 +30,6 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -67,7 +65,6 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
-import org.telegram.ui.IntroActivity;
 
 public class IntroActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private BottomPagesView bottomPages;
@@ -111,7 +108,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public View createView(Context context) throws Resources.NotFoundException {
+    public View createView(Context context) {
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.telegram_logo).mutate();
         this.logoDrawable = drawableMutate;
         drawableMutate.setBounds(0, AndroidUtilities.dp(8.666f), AndroidUtilities.dp(115.0f), AndroidUtilities.dp(35.0f));
@@ -165,7 +162,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         rLottieImageView.setAnimation(this.darkThemeDrawable);
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IOException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createView$0(rLottieImageView, view);
             }
         });
@@ -299,7 +296,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(RLottieImageView rLottieImageView, View view) throws IOException {
+    public void lambda$createView$0(RLottieImageView rLottieImageView, View view) {
         Theme.ThemeInfo theme;
         if (DialogsActivity.switchingTheme) {
             return;
@@ -351,8 +348,9 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onSurfaceTextureAvailable$0() {
+            float fCurrentTimeMillis = (System.currentTimeMillis() - IntroActivity.this.currentDate) / 1000.0f;
             Intro.setPage(IntroActivity.this.currentViewPagerPage);
-            Intro.setDate((System.currentTimeMillis() - IntroActivity.this.currentDate) / 1000.0f);
+            Intro.setDate(fCurrentTimeMillis);
             Intro.onDrawFrame(0);
             if (IntroActivity.this.eglThread == null || !IntroActivity.this.eglThread.isAlive() || IntroActivity.this.eglThread.eglDisplay == null || IntroActivity.this.eglThread.eglSurface == null) {
                 return;
@@ -430,7 +428,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public void onResume() throws Resources.NotFoundException {
+    public void onResume() {
         super.onResume();
         if (this.justCreated) {
             if (LocaleController.isRTL) {
@@ -663,19 +661,20 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                         long jCurrentTimeMillis = System.currentTimeMillis();
                         if ((EGLThread.this.eglContext.equals(EGLThread.this.egl10.eglGetCurrentContext()) && EGLThread.this.eglSurface.equals(EGLThread.this.egl10.eglGetCurrentSurface(12377))) || EGLThread.this.egl10.eglMakeCurrent(EGLThread.this.eglDisplay, EGLThread.this.eglSurface, EGLThread.this.eglSurface, EGLThread.this.eglContext)) {
                             int iMin = (int) Math.min(jCurrentTimeMillis - EGLThread.this.lastDrawFrame, 16L);
+                            float f = (jCurrentTimeMillis - IntroActivity.this.currentDate) / 1000.0f;
                             Intro.setPage(IntroActivity.this.currentViewPagerPage);
-                            Intro.setDate((jCurrentTimeMillis - IntroActivity.this.currentDate) / 1000.0f);
+                            Intro.setDate(f);
                             Intro.onDrawFrame(iMin);
                             EGLThread.this.egl10.eglSwapBuffers(EGLThread.this.eglDisplay, EGLThread.this.eglSurface);
                             EGLThread.this.lastDrawFrame = jCurrentTimeMillis;
-                            float f = 0.0f;
+                            float f2 = 0.0f;
                             if (EGLThread.this.maxRefreshRate == 0.0f) {
-                                for (float f2 : ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getSupportedRefreshRates()) {
-                                    if (f2 > f) {
-                                        f = f2;
+                                for (float f3 : ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getSupportedRefreshRates()) {
+                                    if (f3 > f2) {
+                                        f2 = f3;
                                     }
                                 }
-                                EGLThread.this.maxRefreshRate = f;
+                                EGLThread.this.maxRefreshRate = f2;
                             }
                             long jCurrentTimeMillis2 = System.currentTimeMillis() - jCurrentTimeMillis;
                             EGLThread eGLThread = EGLThread.this;
@@ -691,7 +690,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             this.surfaceTexture = surfaceTexture;
         }
 
-        private boolean initGL() throws Resources.NotFoundException {
+        private boolean initGL() {
             int[] iArr;
             EGL10 egl10 = (EGL10) EGLContext.getEGL();
             this.egl10 = egl10;
@@ -869,11 +868,11 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             bitmap.recycle();
         }
 
-        private void loadTexture(int i, int i2) throws Resources.NotFoundException {
+        private void loadTexture(int i, int i2) {
             loadTexture(i, i2, 0, false);
         }
 
-        public void loadTexture(int i, int i2, int i3, boolean z) throws Resources.NotFoundException {
+        public void loadTexture(int i, int i2, int i3, boolean z) {
             Drawable drawable = IntroActivity.this.getParentActivity().getResources().getDrawable(i);
             if (drawable instanceof BitmapDrawable) {
                 if (z) {
@@ -965,7 +964,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             if (eGLThread != null) {
                 eGLThread.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException {
+                    public final void run() {
                         this.f$0.lambda$updateColors$6();
                     }
                 });
@@ -982,7 +981,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         Intro.setBackgroundColor(Theme.getColor(i2));
     }
 
-    public void lambda$updateColors$6() throws Resources.NotFoundException {
+    public void lambda$updateColors$6() {
         EGLThread eGLThread = this.eglThread;
         int i = R.drawable.intro_powerful_mask;
         int i2 = Theme.key_windowBackgroundWhite;

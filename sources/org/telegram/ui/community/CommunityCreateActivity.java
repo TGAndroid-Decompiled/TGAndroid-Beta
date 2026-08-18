@@ -8,7 +8,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
@@ -171,9 +170,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
             return;
         }
         arrayList.add(UItem.asHeader(3, LocaleController.getString(R.string.CommunityAddToExistingCommunity)));
-        Iterator it = this.joinedCommunities.iterator();
-        while (it.hasNext()) {
-            TLRPC.Chat chat = (TLRPC.Chat) it.next();
+        for (TLRPC.Chat chat : this.joinedCommunities) {
             TLRPC.ChatFull chatFull = getMessagesController().getChatFull(chat.id);
             UItem uItemAsProfileCell = UItem.asProfileCell(chat);
             uItemAsProfileCell.id = SessionDetails$$ExternalSyntheticBackport0.m(chat.id);

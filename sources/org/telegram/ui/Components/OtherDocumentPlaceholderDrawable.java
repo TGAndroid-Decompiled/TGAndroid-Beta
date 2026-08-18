@@ -10,12 +10,15 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 
 public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable implements DownloadController.FileDownloadProgressListener {
@@ -94,8 +97,9 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
                 this.fileName = "name";
             }
             int iLastIndexOf = this.fileName.lastIndexOf(46);
-            this.ext = iLastIndexOf == -1 ? "" : this.fileName.substring(iLastIndexOf + 1).toUpperCase();
-            if (((int) Math.ceil(docPaint.measureText(r0))) > AndroidUtilities.dp(40.0f)) {
+            String upperCase = iLastIndexOf == -1 ? "" : this.fileName.substring(iLastIndexOf + 1).toUpperCase();
+            this.ext = upperCase;
+            if (((int) Math.ceil(docPaint.measureText(upperCase))) > AndroidUtilities.dp(40.0f)) {
                 this.ext = TextUtils.ellipsize(this.ext, docPaint, AndroidUtilities.dp(40.0f), TextUtils.TruncateAt.END).toString();
             }
             this.thumbDrawable = context.getResources().getDrawable(AndroidUtilities.getThumbForNameOrMime(this.fileName, messageObject.getDocument().mime_type, true)).mutate();
@@ -155,8 +159,9 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
         }
         canvas.drawText(string, (iWidth - ((int) Math.ceil(textPaint.measureText(string)))) / 2, AndroidUtilities.dp(235.0f) + iDp2 + iDp, textPaint);
         if (this.progressVisible) {
-            if (this.progress != null) {
-                canvas.drawText(this.progress, (iWidth - ((int) Math.ceil(percentPaint.measureText(r3)))) / 2, AndroidUtilities.dp(210.0f) + iDp2, percentPaint);
+            String str = this.progress;
+            if (str != null) {
+                canvas.drawText(this.progress, (iWidth - ((int) Math.ceil(percentPaint.measureText(str)))) / 2, AndroidUtilities.dp(210.0f) + iDp2, percentPaint);
             }
             int iDp4 = (iWidth - AndroidUtilities.dp(240.0f)) / 2;
             int iDp5 = iDp2 + AndroidUtilities.dp(232.0f);
@@ -225,7 +230,47 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
     }
 
     public void checkFileExist() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.OtherDocumentPlaceholderDrawable.checkFileExist():void");
+        MessageObject messageObject = this.parentMessageObject;
+        if (messageObject != null) {
+            TLRPC.Message message = messageObject.messageOwner;
+            if (message.media != null) {
+                String attachFileName = ((TextUtils.isEmpty(message.attachPath) || !new File(this.parentMessageObject.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.parentMessageObject.messageOwner).exists()) ? FileLoader.getAttachFileName(this.parentMessageObject.getDocument()) : null;
+                this.loaded = false;
+                if (attachFileName == null) {
+                    this.progressVisible = false;
+                    this.loading = false;
+                    this.loaded = true;
+                    DownloadController.getInstance(this.parentMessageObject.currentAccount).removeLoadingFileObserver(this);
+                } else {
+                    DownloadController.getInstance(this.parentMessageObject.currentAccount).addLoadingFileObserver(attachFileName, this);
+                    boolean zIsLoadingFile = FileLoader.getInstance(this.parentMessageObject.currentAccount).isLoadingFile(attachFileName);
+                    this.loading = zIsLoadingFile;
+                    if (zIsLoadingFile) {
+                        this.progressVisible = true;
+                        Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
+                        if (fileProgress == null) {
+                            fileProgress = Float.valueOf(0.0f);
+                        }
+                        setProgress(fileProgress.floatValue(), false);
+                    } else {
+                        this.progressVisible = false;
+                    }
+                }
+            } else {
+                this.loading = false;
+                this.loaded = true;
+                this.progressVisible = false;
+                setProgress(0.0f, false);
+                DownloadController.getInstance(this.parentMessageObject.currentAccount).removeLoadingFileObserver(this);
+            }
+        } else {
+            this.loading = false;
+            this.loaded = true;
+            this.progressVisible = false;
+            setProgress(0.0f, false);
+            DownloadController.getInstance(this.parentMessageObject.currentAccount).removeLoadingFileObserver(this);
+        }
+        this.parentView.invalidate();
     }
 
     private void updateAnimation() {

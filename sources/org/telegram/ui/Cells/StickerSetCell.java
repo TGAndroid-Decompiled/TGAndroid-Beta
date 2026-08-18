@@ -41,7 +41,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.StickerSetCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
@@ -440,7 +439,10 @@ public class StickerSetCell extends FrameLayout {
         if (i == 1) {
             return this.checkBox.isChecked();
         }
-        return i == 3 ? this.optionsButton.getVisibility() == 0 : this.emojis && this.sideButtons.getVisibility() == 0;
+        if (i == 3) {
+            return this.optionsButton.getVisibility() == 0;
+        }
+        return this.emojis && this.sideButtons.getVisibility() == 0;
     }
 
     public void setDeleteAction(View.OnClickListener onClickListener) {

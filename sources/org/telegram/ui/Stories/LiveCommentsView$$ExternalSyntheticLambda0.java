@@ -1,7 +1,6 @@
 package org.telegram.ui.Stories;
 
 import java.util.Comparator;
-import org.telegram.ui.Stories.LiveCommentsView;
 
 public final class LiveCommentsView$$ExternalSyntheticLambda0 implements Comparator {
     public final LiveCommentsView f$0;

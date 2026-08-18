@@ -4,10 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
@@ -85,8 +84,6 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
-import org.telegram.ui.Gifts.GiftSheet;
-import org.telegram.ui.Gifts.ResaleGiftsFragment;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
@@ -1115,7 +1112,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             private boolean shownToast = false;
 
             @Override
-            public void onBecomeFullyVisible() throws Resources.NotFoundException {
+            public void onBecomeFullyVisible() {
                 super.onBecomeFullyVisible();
                 if (this.shownToast) {
                     return;
@@ -1268,9 +1265,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 if (!this.notSelectedModelAttributes.isEmpty() || !this.notSelectedBackdropAttributes.isEmpty() || !this.notSelectedPatternAttributes.isEmpty()) {
                     getresalestargifts.flags |= 8;
                     if (!this.notSelectedModelAttributes.isEmpty()) {
-                        Iterator it = this.modelAttributes.iterator();
-                        while (it.hasNext()) {
-                            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) it.next();
+                        for (TL_stars.starGiftAttributeModel stargiftattributemodel : this.modelAttributes) {
                             if (!this.notSelectedModelAttributes.contains(Long.valueOf(stargiftattributemodel.document.id))) {
                                 TL_stars.starGiftAttributeIdModel stargiftattributeidmodel = new TL_stars.starGiftAttributeIdModel();
                                 stargiftattributeidmodel.document_id = stargiftattributemodel.document.id;
@@ -1279,9 +1274,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                         }
                     }
                     if (!this.notSelectedBackdropAttributes.isEmpty()) {
-                        Iterator it2 = this.backdropAttributes.iterator();
-                        while (it2.hasNext()) {
-                            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) it2.next();
+                        for (TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop : this.backdropAttributes) {
                             if (!this.notSelectedBackdropAttributes.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id))) {
                                 TL_stars.starGiftAttributeIdBackdrop stargiftattributeidbackdrop = new TL_stars.starGiftAttributeIdBackdrop();
                                 stargiftattributeidbackdrop.backdrop_id = stargiftattributebackdrop.backdrop_id;
@@ -1290,9 +1283,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                         }
                     }
                     if (!this.notSelectedPatternAttributes.isEmpty()) {
-                        Iterator it3 = this.patternAttributes.iterator();
-                        while (it3.hasNext()) {
-                            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) it3.next();
+                        for (TL_stars.starGiftAttributePattern stargiftattributepattern : this.patternAttributes) {
                             if (!this.notSelectedPatternAttributes.contains(Long.valueOf(stargiftattributepattern.document.id))) {
                                 TL_stars.starGiftAttributeIdPattern stargiftattributeidpattern = new TL_stars.starGiftAttributeIdPattern();
                                 stargiftattributeidpattern.document_id = stargiftattributepattern.document.id;
@@ -1334,11 +1325,9 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 } else {
                     z = false;
                 }
-                Iterator<TL_stars.StarGift> it = resalestargifts.gifts.iterator();
-                while (it.hasNext()) {
-                    TL_stars.StarGift next = it.next();
-                    if (next instanceof TL_stars.TL_starGiftUnique) {
-                        this.gifts.add((TL_stars.TL_starGiftUnique) next);
+                for (TL_stars.StarGift starGift : resalestargifts.gifts) {
+                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                        this.gifts.add((TL_stars.TL_starGiftUnique) starGift);
                     }
                 }
                 if (this.gifts.size() < this.totalCount && !TextUtils.isEmpty(resalestargifts.next_offset)) {
@@ -1361,16 +1350,14 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                     this.backdropAttributesCounter.clear();
                     this.patternAttributesCounter.clear();
                     this.modelAttributesCounter.clear();
-                    Iterator<TL_stars.starGiftAttributeCounter> it2 = resalestargifts.counters.iterator();
-                    while (it2.hasNext()) {
-                        TL_stars.starGiftAttributeCounter next2 = it2.next();
-                        TL_stars.StarGiftAttributeId starGiftAttributeId = next2.attribute;
+                    for (TL_stars.starGiftAttributeCounter stargiftattributecounter : resalestargifts.counters) {
+                        TL_stars.StarGiftAttributeId starGiftAttributeId = stargiftattributecounter.attribute;
                         if (starGiftAttributeId instanceof TL_stars.starGiftAttributeIdBackdrop) {
-                            this.backdropAttributesCounter.put(Integer.valueOf(starGiftAttributeId.backdrop_id), Integer.valueOf(next2.count));
+                            this.backdropAttributesCounter.put(Integer.valueOf(starGiftAttributeId.backdrop_id), Integer.valueOf(stargiftattributecounter.count));
                         } else if (starGiftAttributeId instanceof TL_stars.starGiftAttributeIdPattern) {
-                            this.patternAttributesCounter.put(Long.valueOf(starGiftAttributeId.document_id), Integer.valueOf(next2.count));
+                            this.patternAttributesCounter.put(Long.valueOf(starGiftAttributeId.document_id), Integer.valueOf(stargiftattributecounter.count));
                         } else if (starGiftAttributeId instanceof TL_stars.starGiftAttributeIdModel) {
-                            this.modelAttributesCounter.put(Long.valueOf(starGiftAttributeId.document_id), Integer.valueOf(next2.count));
+                            this.modelAttributesCounter.put(Long.valueOf(starGiftAttributeId.document_id), Integer.valueOf(stargiftattributecounter.count));
                         }
                     }
                 }
@@ -1813,7 +1800,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
 
         public void set(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, int i, String str, boolean z) {
-            ShapeDrawable shapeDrawableCreateCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.dp(20.0f), stargiftattributebackdrop.center_color | (-16777216));
+            Drawable drawableCreateCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.dp(20.0f), stargiftattributebackdrop.center_color | (-16777216));
             CharSequence charSequenceHighlightText = stargiftattributebackdrop.name;
             if (!TextUtils.isEmpty(str)) {
                 charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, this.resourcesProvider);
@@ -1826,7 +1813,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
                 charSequenceHighlightText = spannableStringBuilder;
             }
-            setTextAndIcon(charSequenceHighlightText, 0, shapeDrawableCreateCircleDrawable);
+            setTextAndIcon(charSequenceHighlightText, 0, drawableCreateCircleDrawable);
             setChecked(z);
         }
 
@@ -2231,9 +2218,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             long j = ((TL_stars.starGiftAttributeModel) uItem.object).document.id;
             if (!state.resaleList.notSelectedModelAttributes.contains(Long.valueOf(j))) {
                 if (state.resaleList.notSelectedModelAttributes.isEmpty()) {
-                    Iterator it = state.resaleList.modelAttributes.iterator();
-                    while (it.hasNext()) {
-                        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) it.next();
+                    for (TL_stars.starGiftAttributeModel stargiftattributemodel : state.resaleList.modelAttributes) {
                         if (stargiftattributemodel.document.id != j) {
                             state.resaleList.notSelectedModelAttributes.add(Long.valueOf(stargiftattributemodel.document.id));
                         }
@@ -2391,9 +2376,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             int i = ((TL_stars.starGiftAttributeBackdrop) uItem.object).backdrop_id;
             if (!state.resaleList.notSelectedBackdropAttributes.contains(Integer.valueOf(i))) {
                 if (state.resaleList.notSelectedBackdropAttributes.isEmpty()) {
-                    Iterator it = state.resaleList.backdropAttributes.iterator();
-                    while (it.hasNext()) {
-                        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) it.next();
+                    for (TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop : state.resaleList.backdropAttributes) {
                         if (stargiftattributebackdrop.backdrop_id != i) {
                             state.resaleList.notSelectedBackdropAttributes.add(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                         }
@@ -2551,9 +2534,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             long j = ((TL_stars.starGiftAttributePattern) uItem.object).document.id;
             if (!state.resaleList.notSelectedPatternAttributes.contains(Long.valueOf(j))) {
                 if (state.resaleList.notSelectedPatternAttributes.isEmpty()) {
-                    Iterator it = state.resaleList.patternAttributes.iterator();
-                    while (it.hasNext()) {
-                        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) it.next();
+                    for (TL_stars.starGiftAttributePattern stargiftattributepattern : state.resaleList.patternAttributes) {
                         if (stargiftattributepattern.document.id != j) {
                             state.resaleList.notSelectedPatternAttributes.add(Long.valueOf(stargiftattributepattern.document.id));
                         }
@@ -2596,17 +2577,13 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 }
                 if (!z) {
                     Iterator it = state.list.gifts.iterator();
-                    while (true) {
+                    do {
                         if (!it.hasNext()) {
                             savedStarGift = null;
                             break;
-                        } else {
-                            savedStarGift = (TL_stars.SavedStarGift) it.next();
-                            if (savedStarGift.gift == starGift) {
-                                break;
-                            }
                         }
-                    }
+                        savedStarGift = (TL_stars.SavedStarGift) it.next();
+                    } while (savedStarGift.gift != starGift);
                     if (savedStarGift != null && savedStarGift.can_craft_at > 0 && savedStarGift.can_craft_at > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) {
                         new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.GiftCraftUnavailableTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCraftUnavailableTextTime, LocaleController.formatDateTime(savedStarGift.can_craft_at, true)))).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
                         return;
@@ -2777,11 +2754,9 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             }
             int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
             arrayList.add(UItem.asHeader(-1, LocaleController.getString(R.string.GiftCraftSelectYour)));
-            Iterator it = this.state.list.gifts.iterator();
             boolean z = true;
             int i = 0;
-            while (it.hasNext()) {
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
+            for (TL_stars.SavedStarGift savedStarGift : this.state.list.gifts) {
                 if (!this.without.contains(Long.valueOf(savedStarGift.gift.id))) {
                     arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true).setEnabled(savedStarGift.can_craft_at <= currentTime));
                     i++;
@@ -2804,9 +2779,9 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 if (horizontalScrollView != null) {
                     arrayList.add(UItem.asCustom(-3, horizontalScrollView));
                 }
-                Iterator it2 = this.state.resaleList.gifts.iterator();
-                while (it2.hasNext()) {
-                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it2.next(), false, true, false, true, true));
+                Iterator it = this.state.resaleList.gifts.iterator();
+                while (it.hasNext()) {
+                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it.next(), false, true, false, true, true));
                 }
                 if (this.state.resaleList.loading || !this.state.resaleList.endReached) {
                     arrayList.add(UItem.asFlicker(10, 35).setSpanCount(1));

@@ -83,7 +83,7 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
         }
         float fDp2 = AndroidUtilities.dp(11.0f) / 2.0f;
         float fDpf2 = AndroidUtilities.dpf2(2.0f);
-        float fDpf22 = (AndroidUtilities.dpf2(0.5f) * interpolation2) - (AndroidUtilities.dpf2(0.5f) * interpolation3);
+        float fDpf3 = (AndroidUtilities.dpf2(0.5f) * interpolation2) - (AndroidUtilities.dpf2(0.5f) * interpolation3);
         Paint paint = this.strokePaint;
         if (paint == null) {
             paint = Theme.chat_statusRecordPaint;
@@ -100,7 +100,7 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
             canvas.save();
             canvas.translate((paint.getStrokeWidth() / f) + interpolation + (AndroidUtilities.dp(9.0f) * i) + getBounds().left + AndroidUtilities.dpf2(0.2f), (paint.getStrokeWidth() / f) + AndroidUtilities.dpf2(f) + getBounds().top);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, fDpf22, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(11.0f) - fDpf22);
+            rectF.set(0.0f, fDpf3, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(11.0f) - fDpf3);
             canvas.drawOval(rectF, paint);
             canvas.drawCircle(fDp, fDp2, fDpf2, paint2);
             canvas.restore();

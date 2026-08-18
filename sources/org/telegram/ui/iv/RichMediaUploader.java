@@ -229,6 +229,7 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
                 try {
                     boolean zCompress = bitmapLoadBitmap.compress(Bitmap.CompressFormat.JPEG, 89, fileOutputStream);
                     fileOutputStream.close();
+                    bitmapLoadBitmap.recycle();
                     if (zCompress && file.length() > 0) {
                         if (z) {
                             long length = new File(str).length();
@@ -239,10 +240,17 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
                         return file.getAbsolutePath();
                     }
                     return str;
-                } finally {
+                } catch (Throwable th) {
+                    try {
+                        fileOutputStream.close();
+                    } catch (Throwable th2) {
+                        th.addSuppressed(th2);
+                    }
+                    throw th;
                 }
-            } finally {
+            } catch (Throwable th3) {
                 bitmapLoadBitmap.recycle();
+                throw th3;
             }
         } catch (Throwable unused) {
             return str;
@@ -368,11 +376,9 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
             TLRPC.Document document2 = this.audioDocument;
             if (document2 != null) {
                 if (z) {
-                    Iterator<TLRPC.DocumentAttribute> it = document2.attributes.iterator();
-                    while (it.hasNext()) {
-                        TLRPC.DocumentAttribute next = it.next();
-                        if (next instanceof TLRPC.TL_documentAttributeFilename) {
-                            tL_inputMediaUploadedDocument2.attributes.add(next);
+                    for (TLRPC.DocumentAttribute documentAttribute : document2.attributes) {
+                        if (documentAttribute instanceof TLRPC.TL_documentAttributeFilename) {
+                            tL_inputMediaUploadedDocument2.attributes.add(documentAttribute);
                         }
                     }
                 } else {
@@ -505,19 +511,15 @@ public class RichMediaUploader implements NotificationCenter.NotificationCenterD
                 if (bitmapCreateVideoThumbnail != null) {
                     try {
                         Iterator<TLRPC.DocumentAttribute> it = this.audioDocument.attributes.iterator();
-                        while (true) {
-                            if (it.hasNext()) {
-                                if (it.next() instanceof TLRPC.TL_documentAttributeImageSize) {
-                                    break;
-                                }
-                            } else {
+                        do {
+                            if (!it.hasNext()) {
                                 TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                                 tL_documentAttributeImageSize.w = bitmapCreateVideoThumbnail.getWidth();
                                 tL_documentAttributeImageSize.h = bitmapCreateVideoThumbnail.getHeight();
                                 this.audioDocument.attributes.add(tL_documentAttributeImageSize);
                                 break;
                             }
-                        }
+                        } while (!(it.next() instanceof TLRPC.TL_documentAttributeImageSize));
                         TLRPC.PhotoSize photoSizeScaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmapCreateVideoThumbnail, 320.0f, 320.0f, 80, false);
                         if (photoSizeScaleAndSaveImage != null) {
                             this.audioDocument.thumbs.clear();

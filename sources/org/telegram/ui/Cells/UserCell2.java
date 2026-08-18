@@ -8,11 +8,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -173,7 +177,163 @@ public class UserCell2 extends FrameLayout {
         }
     }
 
-    public void update(int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.UserCell2.update(int):void");
+    public void update(int i) {
+        TLRPC.User user;
+        TLRPC.Chat chat;
+        ?? r3;
+        String userName;
+        TLRPC.UserStatus userStatus;
+        TLRPC.FileLocation fileLocation;
+        TLObject tLObject = this.currentObject;
+        if (tLObject instanceof TLRPC.User) {
+            user = (TLRPC.User) tLObject;
+            TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
+            if (userProfilePhoto != null) {
+                r3 = userProfilePhoto.photo_small;
+                chat = null;
+            } else {
+                chat = null;
+                r3 = chat;
+            }
+        } else if (tLObject instanceof TLRPC.Chat) {
+            TLRPC.Chat chat2 = (TLRPC.Chat) tLObject;
+            TLRPC.ChatPhoto chatPhoto = chat2.photo;
+            if (chatPhoto != null) {
+                r3 = chatPhoto.photo_small;
+                chat = chat2;
+                user = null;
+            } else {
+                chat = chat2;
+                user = null;
+                r3 = 0;
+            }
+        } else {
+            user = null;
+            chat = null;
+            r3 = chat;
+        }
+        if (i != 0) {
+            boolean z = true;
+            boolean z2 = (MessagesController.UPDATE_MASK_AVATAR & i) != 0 && (((fileLocation = this.lastAvatar) != null && r3 == 0) || ((fileLocation == null && r3 != 0) || !(fileLocation == null || r3 == 0 || (fileLocation.volume_id == r3.volume_id && fileLocation.local_id == r3.local_id))));
+            if (user != null && !z2 && (MessagesController.UPDATE_MASK_STATUS & i) != 0) {
+                TLRPC.UserStatus userStatus2 = user.status;
+                if ((userStatus2 != null ? userStatus2.expires : 0) != this.lastStatus) {
+                    z2 = true;
+                }
+            }
+            if (z2 || this.currentName != null || this.lastName == null || (i & MessagesController.UPDATE_MASK_NAME) == 0) {
+                userName = null;
+            } else {
+                if (user != null) {
+                    userName = UserObject.getUserName(user);
+                } else {
+                    userName = chat.title;
+                }
+                if (userName.equals(this.lastName)) {
+                }
+                if (!z) {
+                    return;
+                }
+            }
+            z = z2;
+            if (!z) {
+                return;
+            }
+        } else {
+            userName = null;
+        }
+        this.lastAvatar = r3;
+        if (user != null) {
+            this.avatarDrawable.setInfo(this.currentAccount, user);
+            TLRPC.UserStatus userStatus3 = user.status;
+            if (userStatus3 != null) {
+                this.lastStatus = userStatus3.expires;
+            } else {
+                this.lastStatus = 0;
+            }
+        } else if (chat != null) {
+            this.avatarDrawable.setInfo(this.currentAccount, chat);
+        } else {
+            CharSequence charSequence = this.currentName;
+            if (charSequence != null) {
+                this.avatarDrawable.setInfo(this.currentId, charSequence.toString(), null);
+            } else {
+                this.avatarDrawable.setInfo(this.currentId, "#", null);
+            }
+        }
+        CharSequence charSequence2 = this.currentName;
+        if (charSequence2 != null) {
+            this.lastName = null;
+            this.nameTextView.setText(charSequence2);
+        } else {
+            if (user != null) {
+                if (userName == null) {
+                    userName = UserObject.getUserName(user);
+                }
+                this.lastName = userName;
+            } else {
+                if (userName == null) {
+                    userName = chat.title;
+                }
+                this.lastName = userName;
+            }
+            this.nameTextView.setText(this.lastName);
+        }
+        if (this.currentStatus != null) {
+            this.statusTextView.setTextColor(this.statusColor);
+            this.statusTextView.setText(this.currentStatus);
+            BackupImageView backupImageView = this.avatarImageView;
+            if (backupImageView != null) {
+                backupImageView.setForUserOrChat(user, this.avatarDrawable);
+            }
+        } else if (user != null) {
+            if (user.bot) {
+                this.statusTextView.setTextColor(this.statusColor);
+                if (user.bot_chat_history) {
+                    this.statusTextView.setText(LocaleController.getString(R.string.BotStatusRead));
+                } else {
+                    this.statusTextView.setText(LocaleController.getString(R.string.BotStatusCantRead));
+                }
+            } else if (user.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || (((userStatus = user.status) != null && userStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) || MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(user.id)))) {
+                this.statusTextView.setTextColor(this.statusOnlineColor);
+                this.statusTextView.setText(LocaleController.getString(R.string.Online));
+            } else {
+                this.statusTextView.setTextColor(this.statusColor);
+                this.statusTextView.setText(LocaleController.formatUserStatus(this.currentAccount, user));
+            }
+            this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
+        } else if (chat != null) {
+            this.statusTextView.setTextColor(this.statusColor);
+            if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                int i2 = chat.participants_count;
+                if (i2 != 0) {
+                    this.statusTextView.setText(LocaleController.formatPluralString("Subscribers", i2, new Object[0]));
+                } else if (!ChatObject.isPublic(chat)) {
+                    this.statusTextView.setText(LocaleController.getString(R.string.ChannelPrivate));
+                } else {
+                    this.statusTextView.setText(LocaleController.getString(R.string.ChannelPublic));
+                }
+            } else {
+                int i3 = chat.participants_count;
+                if (i3 != 0) {
+                    this.statusTextView.setText(LocaleController.formatPluralString("Members", i3, new Object[0]));
+                } else if (chat.has_geo) {
+                    this.statusTextView.setText(LocaleController.getString(R.string.MegaLocation));
+                } else if (!ChatObject.isPublic(chat)) {
+                    this.statusTextView.setText(LocaleController.getString(R.string.MegaPrivate));
+                } else {
+                    this.statusTextView.setText(LocaleController.getString(R.string.MegaPublic));
+                }
+            }
+            this.avatarImageView.setForUserOrChat(chat, this.avatarDrawable);
+        } else {
+            this.avatarImageView.setImageDrawable(this.avatarDrawable);
+        }
+        this.avatarImageView.setRoundRadius(AndroidUtilities.dp((chat == null || !chat.forum) ? 24.0f : 14.0f));
+        if (!(this.imageView.getVisibility() == 0 && this.currentDrawable == 0) && (this.imageView.getVisibility() != 8 || this.currentDrawable == 0)) {
+            return;
+        }
+        this.imageView.setVisibility(this.currentDrawable == 0 ? 8 : 0);
+        this.imageView.setImageResource(this.currentDrawable);
     }
 }

@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
@@ -40,9 +41,6 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
-import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.StickerCategoriesListView;
 
 public abstract class StickerCategoriesListView extends RecyclerListView {
     private static EmojiGroupFetcher fetcher;
@@ -249,12 +247,11 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                 EmojiCategory[] emojiCategoryArr = this.categories;
                 if (i >= emojiCategoryArr.length) {
                     break;
-                } else if (emojiCategoryArr[i] == emojiCategory) {
-                    break;
-                } else {
+                } else if (emojiCategoryArr[i] != emojiCategory) {
                     i++;
                 }
             }
+            i = -1;
         } else {
             i = -1;
         }
@@ -335,7 +332,9 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
                 }
             });
             this.categoriesShownAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.categoriesShownAnimator.setDuration((this.categories == null ? 5 : r6.length) * 120);
+            ValueAnimator valueAnimator2 = this.categoriesShownAnimator;
+            EmojiCategory[] emojiCategoryArr = this.categories;
+            valueAnimator2.setDuration(((long) (emojiCategoryArr == null ? 5 : emojiCategoryArr.length)) * 120);
             this.categoriesShownAnimator.start();
             return;
         }
@@ -368,8 +367,45 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
     }
 
     @Override
-    public void onScrolled(int r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickerCategoriesListView.onScrolled(int, int):void");
+    public void onScrolled(int i, int i2) {
+        boolean z;
+        boolean z2;
+        Utilities.Callback callback;
+        super.onScrolled(i, i2);
+        if (getChildCount() > 0) {
+            View childAt = getChildAt(0);
+            z2 = true;
+            if (childAt instanceof CategoryButton) {
+                z = true;
+            } else if (childAt.getRight() <= this.dontOccupyWidth) {
+                z = false;
+            } else {
+                z = false;
+                z2 = false;
+            }
+        } else {
+            z = false;
+            z2 = false;
+        }
+        boolean z3 = this.scrolledIntoOccupiedWidth;
+        if (z3 != z2) {
+            this.scrolledIntoOccupiedWidth = z2;
+            Utilities.Callback callback2 = this.onScrollIntoOccupiedWidth;
+            if (callback2 != null) {
+                callback2.run(Integer.valueOf(z2 ? Math.max(0, getScrollToStartWidth() - (this.paddingWidth - this.dontOccupyWidth)) : 0));
+            }
+            invalidate();
+        } else if (z3 && (callback = this.onScrollIntoOccupiedWidth) != null) {
+            callback.run(Integer.valueOf(Math.max(0, getScrollToStartWidth() - (this.paddingWidth - this.dontOccupyWidth))));
+        }
+        if (this.scrolledFully != z) {
+            this.scrolledFully = z;
+            Utilities.Callback callback3 = this.onScrollFully;
+            if (callback3 != null) {
+                callback3.run(Boolean.valueOf(z));
+            }
+            invalidate();
+        }
     }
 
     public void setDontOccupyWidth(int i) {
@@ -882,28 +918,28 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
 
         @Override
         public void getRemote(int i, Integer num, long j, final Utilities.Callback4 callback4) {
-            TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups;
+            TLObject tLObject;
             if (num.intValue() == 1) {
                 TLRPC.TL_messages_getEmojiStatusGroups tL_messages_getEmojiStatusGroups = new TLRPC.TL_messages_getEmojiStatusGroups();
                 tL_messages_getEmojiStatusGroups.hash = (int) j;
-                tL_messages_getEmojiGroups = tL_messages_getEmojiStatusGroups;
+                tLObject = tL_messages_getEmojiStatusGroups;
             } else if (num.intValue() == 2) {
                 TLRPC.TL_messages_getEmojiProfilePhotoGroups tL_messages_getEmojiProfilePhotoGroups = new TLRPC.TL_messages_getEmojiProfilePhotoGroups();
                 tL_messages_getEmojiProfilePhotoGroups.hash = (int) j;
-                tL_messages_getEmojiGroups = tL_messages_getEmojiProfilePhotoGroups;
+                tLObject = tL_messages_getEmojiProfilePhotoGroups;
             } else if (num.intValue() == 3) {
                 TLRPC.TL_messages_getEmojiStickerGroups tL_messages_getEmojiStickerGroups = new TLRPC.TL_messages_getEmojiStickerGroups();
                 tL_messages_getEmojiStickerGroups.hash = (int) j;
-                tL_messages_getEmojiGroups = tL_messages_getEmojiStickerGroups;
+                tLObject = tL_messages_getEmojiStickerGroups;
             } else {
-                TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups2 = new TLRPC.TL_messages_getEmojiGroups();
-                tL_messages_getEmojiGroups2.hash = (int) j;
-                tL_messages_getEmojiGroups = tL_messages_getEmojiGroups2;
+                TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups = new TLRPC.TL_messages_getEmojiGroups();
+                tL_messages_getEmojiGroups.hash = (int) j;
+                tLObject = tL_messages_getEmojiGroups;
             }
-            ConnectionsManager.getInstance(i).sendRequest(tL_messages_getEmojiGroups, new RequestDelegate() {
+            ConnectionsManager.getInstance(i).sendRequest(tLObject, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StickerCategoriesListView.EmojiGroupFetcher.lambda$getRemote$0(callback4, tLObject, tL_error);
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    StickerCategoriesListView.EmojiGroupFetcher.lambda$getRemote$0(callback4, tLObject2, tL_error);
                 }
             });
         }
@@ -915,7 +951,8 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             } else if (!(tLObject instanceof TLRPC.TL_messages_emojiGroups)) {
                 callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
             } else {
-                callback4.run(Boolean.FALSE, (TLRPC.TL_messages_emojiGroups) tLObject, Long.valueOf(r4.hash), Boolean.TRUE);
+                TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
+                callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
             }
         }
 
@@ -929,8 +966,74 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
             });
         }
 
-        public static void lambda$getLocal$1(int r7, java.lang.Integer r8, org.telegram.messenger.Utilities.Callback2 r9) throws java.lang.Throwable {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickerCategoriesListView.EmojiGroupFetcher.lambda$getLocal$1(int, java.lang.Integer, org.telegram.messenger.Utilities$Callback2):void");
+        public static void lambda$getLocal$1(int i, Integer num, Utilities.Callback2 callback2) throws Throwable {
+            SQLiteCursor sQLiteCursorQueryFinalized;
+            TLRPC.messages_EmojiGroups messages_emojigroupsTLdeserialize;
+            NativeByteBuffer nativeByteBufferByteBufferValue;
+            SQLiteCursor sQLiteCursor = 0;
+            sQLiteCursor = 0;
+            SQLiteCursor sQLiteCursor2 = null;
+            try {
+                try {
+                    SQLiteDatabase database = MessagesStorage.getInstance(i).getDatabase();
+                    if (database != null) {
+                        try {
+                            sQLiteCursorQueryFinalized = database.queryFinalized("SELECT data FROM emoji_groups WHERE type = ?", num);
+                            try {
+                                if (!sQLiteCursorQueryFinalized.next() || (nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0)) == null) {
+                                    messages_emojigroupsTLdeserialize = null;
+                                } else {
+                                    messages_emojigroupsTLdeserialize = TLRPC.messages_EmojiGroups.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), true);
+                                    nativeByteBufferByteBufferValue.reuse();
+                                }
+                                if (!(messages_emojigroupsTLdeserialize instanceof TLRPC.TL_messages_emojiGroups)) {
+                                    callback2.run(0L, null);
+                                } else {
+                                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) messages_emojigroupsTLdeserialize;
+                                    callback2.run(Long.valueOf(tL_messages_emojiGroups.hash), tL_messages_emojiGroups);
+                                }
+                                sQLiteCursor2 = sQLiteCursorQueryFinalized;
+                            } catch (Exception e) {
+                                e = e;
+                                FileLog.e(e);
+                                callback2.run(0L, null);
+                                if (sQLiteCursorQueryFinalized == null) {
+                                    return;
+                                } else {
+                                    sQLiteCursor2 = sQLiteCursorQueryFinalized;
+                                }
+                            }
+                        } catch (Exception e2) {
+                            e = e2;
+                            sQLiteCursorQueryFinalized = null;
+                            FileLog.e(e);
+                            callback2.run(0L, null);
+                            if (sQLiteCursorQueryFinalized == null) {
+                                sQLiteCursor2 = sQLiteCursorQueryFinalized;
+                                sQLiteCursor2.dispose();
+                            }
+                            return;
+                        } catch (Throwable th) {
+                            th = th;
+                            if (sQLiteCursor != 0) {
+                                sQLiteCursor.dispose();
+                            }
+                            throw th;
+                        }
+                    }
+                    if (sQLiteCursor2 == null) {
+                        return;
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    sQLiteCursor = i;
+                }
+            } catch (Exception e3) {
+                e = e3;
+            } catch (Throwable th3) {
+                th = th3;
+            }
+            sQLiteCursor2.dispose();
         }
 
         @Override

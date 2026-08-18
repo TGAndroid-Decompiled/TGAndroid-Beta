@@ -121,7 +121,7 @@ public class SerializedData extends AbstractSerializedData {
         }
     }
 
-    private void writeInt32(int i, DataOutputStream dataOutputStream) throws IOException {
+    private void writeInt32(int i, DataOutputStream dataOutputStream) {
         for (int i2 = 0; i2 < 4; i2++) {
             try {
                 dataOutputStream.write(i >> (i2 * 8));
@@ -145,7 +145,7 @@ public class SerializedData extends AbstractSerializedData {
         }
     }
 
-    private void writeInt64(long j, DataOutputStream dataOutputStream) throws IOException {
+    private void writeInt64(long j, DataOutputStream dataOutputStream) {
         for (int i = 0; i < 8; i++) {
             try {
                 dataOutputStream.write((int) (j >> (i * 8)));
@@ -172,7 +172,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void writeBytes(byte[] bArr) throws IOException {
+    public void writeBytes(byte[] bArr) {
         try {
             if (!this.justCalc) {
                 this.out.write(bArr);
@@ -188,7 +188,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void writeBytes(byte[] bArr, int i, int i2) throws IOException {
+    public void writeBytes(byte[] bArr, int i, int i2) {
         try {
             if (!this.justCalc) {
                 this.out.write(bArr, i, i2);
@@ -220,7 +220,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void writeByte(byte b) throws IOException {
+    public void writeByte(byte b) {
         try {
             if (!this.justCalc) {
                 this.out.writeByte(b);
@@ -239,29 +239,29 @@ public class SerializedData extends AbstractSerializedData {
     public void writeByteArray(byte[] bArr) {
         try {
             if (bArr.length <= 253) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.out.write(bArr.length);
+                } else {
+                    this.len++;
                 }
-            } else if (this.justCalc) {
-                this.len += 4;
-            } else {
+            } else if (!this.justCalc) {
                 this.out.write(254);
                 this.out.write(bArr.length);
                 this.out.write(bArr.length >> 8);
                 this.out.write(bArr.length >> 16);
-            }
-            if (this.justCalc) {
-                this.len += bArr.length;
             } else {
+                this.len += 4;
+            }
+            if (!this.justCalc) {
                 this.out.write(bArr);
+            } else {
+                this.len += bArr.length;
             }
             for (int i = bArr.length <= 253 ? 1 : 4; (bArr.length + i) % 4 != 0; i++) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.out.write(0);
+                } else {
+                    this.len++;
                 }
             }
         } catch (Exception e) {
@@ -285,32 +285,32 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void writeByteArray(byte[] bArr, int i, int i2) throws IOException {
+    public void writeByteArray(byte[] bArr, int i, int i2) {
         try {
             if (i2 <= 253) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.out.write(i2);
+                } else {
+                    this.len++;
                 }
-            } else if (this.justCalc) {
-                this.len += 4;
-            } else {
+            } else if (!this.justCalc) {
                 this.out.write(254);
                 this.out.write(i2);
                 this.out.write(i2 >> 8);
                 this.out.write(i2 >> 16);
-            }
-            if (this.justCalc) {
-                this.len += i2;
             } else {
+                this.len += 4;
+            }
+            if (!this.justCalc) {
                 this.out.write(bArr, i, i2);
+            } else {
+                this.len += i2;
             }
             for (int i3 = i2 <= 253 ? 1 : 4; (i2 + i3) % 4 != 0; i3++) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.out.write(0);
+                } else {
+                    this.len++;
                 }
             }
         } catch (Exception e) {
@@ -364,7 +364,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void skip(int i) throws IOException {
+    public void skip(int i) {
         if (i == 0) {
             return;
         }
@@ -408,7 +408,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public byte readByte(boolean z) throws IOException {
+    public byte readByte(boolean z) {
         try {
             byte b = this.in.readByte();
             this.len++;
@@ -427,7 +427,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public void readBytes(byte[] bArr, boolean z) throws IOException {
+    public void readBytes(byte[] bArr, boolean z) {
         try {
             this.in.read(bArr);
             this.len += bArr.length;
@@ -443,7 +443,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public byte[] readData(int i, boolean z) throws IOException {
+    public byte[] readData(int i, boolean z) {
         byte[] bArr = new byte[i];
         readBytes(bArr, z);
         return bArr;
@@ -488,7 +488,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public byte[] readByteArray(boolean z) throws IOException {
+    public byte[] readByteArray(boolean z) {
         int i;
         try {
             int i2 = this.in.read();
@@ -585,7 +585,7 @@ public class SerializedData extends AbstractSerializedData {
         long j = 0;
         for (int i = 0; i < 8; i++) {
             try {
-                j |= this.in.read() << (i * 8);
+                j |= ((long) this.in.read()) << (i * 8);
                 this.len++;
             } catch (Exception e) {
                 if (z) {

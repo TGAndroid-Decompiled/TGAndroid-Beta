@@ -128,27 +128,29 @@ public class PacmanAnimation {
     public void draw(Canvas canvas, int i) {
         int iDp = AndroidUtilities.dp(110.0f);
         int iDp2 = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
-        float measuredWidth = ((this.parentView.getMeasuredWidth() + r2) * this.translationProgress) - ((AndroidUtilities.dp(62.0f) * 3) + iDp);
+        int iDp3 = (AndroidUtilities.dp(62.0f) * 3) + iDp;
+        float measuredWidth = ((this.parentView.getMeasuredWidth() + iDp3) * this.translationProgress) - iDp3;
         int i2 = iDp / 2;
+        int i3 = i - i2;
         this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        int i3 = iDp2 / 2;
+        int i4 = iDp2 / 2;
         float f = measuredWidth + i2;
-        canvas.drawRect(0.0f, i - i3, f, i + i3 + 1, this.paint);
+        canvas.drawRect(0.0f, i - i4, f, i + i4 + 1, this.paint);
         this.paint.setColor(-69120);
         float f2 = measuredWidth + iDp;
-        this.rect.set(measuredWidth, i - i2, f2, r12 + iDp);
+        this.rect.set(measuredWidth, i3, f2, i3 + iDp);
         float f3 = this.progress;
-        int i4 = (int) (f3 < 0.5f ? (1.0f - (f3 / 0.5f)) * 35.0f : ((f3 - 0.5f) * 35.0f) / 0.5f);
-        float f4 = i4;
-        float f5 = 360 - (i4 * 2);
+        int i5 = (int) (f3 < 0.5f ? (1.0f - (f3 / 0.5f)) * 35.0f : ((f3 - 0.5f) * 35.0f) / 0.5f);
+        float f4 = i5;
+        float f5 = 360 - (i5 * 2);
         canvas.drawArc(this.rect, f4, f5, true, this.edgePaint);
         canvas.drawArc(this.rect, f4, f5, true, this.paint);
         this.paint.setColor(-16777216);
-        canvas.drawCircle(f - AndroidUtilities.dp(8.0f), r12 + (iDp / 4), AndroidUtilities.dp(8.0f), this.paint);
+        canvas.drawCircle(f - AndroidUtilities.dp(8.0f), i3 + (iDp / 4), AndroidUtilities.dp(8.0f), this.paint);
         canvas.save();
         canvas.translate(f2 + AndroidUtilities.dp(20.0f), i - AndroidUtilities.dp(25.0f));
-        for (int i5 = 0; i5 < 3; i5++) {
-            drawGhost(canvas, i5);
+        for (int i6 = 0; i6 < 3; i6++) {
+            drawGhost(canvas, i6);
             canvas.translate(AndroidUtilities.dp(62.0f), 0.0f);
         }
         canvas.restore();

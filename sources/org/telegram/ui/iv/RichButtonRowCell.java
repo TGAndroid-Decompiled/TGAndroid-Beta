@@ -19,6 +19,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -26,7 +27,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.iv.RichEditor;
 
 public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable {
     private final RichEditor.Button addButton;
@@ -119,7 +119,34 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
     }
 
     private void rebuildButtons() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichButtonRowCell.rebuildButtons():void");
+        TL_iv.pageBlockButtonRow pageblockbuttonrow;
+        ArrayList<TL_keyboard.PageButton> arrayList;
+        this.buttonsLayout.removeAllViews();
+        this.buttonViews.clear();
+        BlockRow blockRow = this.currentRow;
+        if (blockRow != null) {
+            TL_iv.PageBlock pageBlock = blockRow.block;
+            if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
+                pageblockbuttonrow = (TL_iv.pageBlockButtonRow) pageBlock;
+            } else {
+                pageblockbuttonrow = null;
+            }
+        } else {
+            pageblockbuttonrow = null;
+        }
+        int size = (pageblockbuttonrow == null || (arrayList = pageblockbuttonrow.buttons) == null) ? 0 : arrayList.size();
+        int i = 0;
+        while (i < size) {
+            ButtonView buttonView = new ButtonView(getContext(), pageblockbuttonrow.buttons.get(i), i);
+            this.buttonViews.add(buttonView);
+            this.buttonsLayout.addView(buttonView, LayoutHelper.createLinear(-2, -1, 16, i == 0 ? 0 : 7, 0, 0, 0));
+            i++;
+        }
+        boolean z = size < 8;
+        this.scrollView.setVisibility(size > 0 ? 0 : 8);
+        this.emptyAddButton.setVisibility(size == 0 ? 0 : 8);
+        this.addButton.setVisibility((size <= 0 || !z) ? 8 : 0);
+        requestLayout();
     }
 
     @Override
@@ -238,7 +265,7 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
         int i5 = 0;
         while (i3 < iArr.length) {
             int minWidth2 = iArr[i3] - ((ButtonView) this.buttonViews.get(i3)).getMinWidth();
-            int iMin2 = Math.min(i3 == iArr.length + (-1) ? iMin - i5 : (int) ((iMin * minWidth2) / minWidth), minWidth2);
+            int iMin2 = Math.min(i3 == iArr.length + (-1) ? iMin - i5 : (int) ((((long) iMin) * ((long) minWidth2)) / ((long) minWidth)), minWidth2);
             iArr[i3] = iArr[i3] - iMin2;
             i5 += iMin2;
             i3++;
@@ -246,9 +273,10 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
     }
 
     public boolean isPressOnButton(float f, float f2) {
-        getLocationOnScreen(new int[2]);
-        float f3 = r0[0] + f;
-        float f4 = r0[1] + f2;
+        int[] iArr = new int[2];
+        getLocationOnScreen(iArr);
+        float f3 = iArr[0] + f;
+        float f4 = iArr[1] + f2;
         if (isPointInside(this.addButton, f3, f4) || isPointInside(this.emptyAddButton, f3, f4)) {
             return true;
         }
@@ -267,11 +295,12 @@ public class RichButtonRowCell extends RichBlockCell implements Theme.Colorable 
         }
         int[] iArr = new int[2];
         view.getLocationOnScreen(iArr);
-        if (f < iArr[0] || f > r2 + view.getWidth()) {
+        int i = iArr[0];
+        if (f < i || f > i + view.getWidth()) {
             return false;
         }
-        int i = iArr[1];
-        return f2 >= ((float) i) && f2 <= ((float) (i + view.getHeight()));
+        int i2 = iArr[1];
+        return f2 >= ((float) i2) && f2 <= ((float) (i2 + view.getHeight()));
     }
 
     class ButtonView extends View {

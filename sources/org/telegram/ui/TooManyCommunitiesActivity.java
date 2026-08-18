@@ -469,7 +469,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
             View emptyCell;
             if (i == 1) {
                 TooManyCommunitiesActivity.this.hintCell = new TooManyCommunitiesHintCell(viewGroup.getContext());
-                View view = TooManyCommunitiesActivity.this.hintCell;
+                TooManyCommunitiesHintCell tooManyCommunitiesHintCell = TooManyCommunitiesActivity.this.hintCell;
                 int i2 = TooManyCommunitiesActivity.this.type;
                 if (i2 == 0) {
                     string = LocaleController.getString(R.string.TooManyCommunitiesHintJoin);
@@ -483,7 +483,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 ((ViewGroup.MarginLayoutParams) layoutParams).bottomMargin = AndroidUtilities.dp(16.0f);
                 ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.dp(23.0f);
                 TooManyCommunitiesActivity.this.hintCell.setLayoutParams(layoutParams);
-                emptyCell = view;
+                emptyCell = tooManyCommunitiesHintCell;
             } else if (i == 2) {
                 View shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
                 CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
@@ -634,10 +634,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 TLRPC.Chat chat = (TLRPC.Chat) TooManyCommunitiesActivity.this.inactiveChats.get(i3);
                 int i4 = 0;
                 boolean z = false;
-                while (true) {
-                    if (i4 >= 2) {
-                        break;
-                    }
+                while (i4 < 2) {
                     String publicUsername = i4 == 0 ? chat.title : ChatObject.getPublicUsername(chat);
                     if (publicUsername != null) {
                         String lowerCase2 = publicUsername.toLowerCase();

@@ -105,8 +105,9 @@ public abstract class SetupEmojiStatusSheet {
         final boolean[] zArr2 = new boolean[1];
         if (i2 > 0) {
             int i3 = i2 / 86400;
-            int i4 = (i2 - (86400 * i3)) / 3600;
-            int iRound = Math.round((r5 - (i4 * 3600)) / 60.0f);
+            int i4 = i2 - (86400 * i3);
+            int i5 = i4 / 3600;
+            int iRound = Math.round((i4 - (i5 * 3600)) / 60.0f);
             StringBuilder sb = new StringBuilder();
             if (i3 > 0) {
                 if (sb.length() > 0) {
@@ -114,11 +115,11 @@ public abstract class SetupEmojiStatusSheet {
                 }
                 sb.append(LocaleController.formatPluralString("BotEmojiStatusSetRequestForDay", i3, new Object[0]));
             }
-            if (i4 > 0) {
+            if (i5 > 0) {
                 if (sb.length() > 0) {
                     sb.append(" ");
                 }
-                sb.append(LocaleController.formatPluralString("BotEmojiStatusSetRequestForHour", i4, new Object[0]));
+                sb.append(LocaleController.formatPluralString("BotEmojiStatusSetRequestForHour", i5, new Object[0]));
             }
             if (iRound > 0) {
                 if (sb.length() > 0) {
@@ -132,8 +133,8 @@ public abstract class SetupEmojiStatusSheet {
         }
         AlertDialog alertDialogCreate = new AlertDialog.Builder(contextFindActivity, null).setTopImage(new UserEmojiStatusDrawable(currentUser, document), Theme.getColor(Theme.key_dialogTopBackground)).setMessage(spannableStringBuilderReplaceTags).setPositiveButton(LocaleController.getString(R.string.BotEmojiStatusConfirm), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i5) {
-                SetupEmojiStatusSheet.lambda$show$6(i, zArr2, document, i2, zArr, callback, alertDialog, i5);
+            public final void onClick(AlertDialog alertDialog, int i6) {
+                SetupEmojiStatusSheet.lambda$show$6(i, zArr2, document, i2, zArr, callback, alertDialog, i6);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
         alertDialogCreate.show();
@@ -431,7 +432,7 @@ public abstract class SetupEmojiStatusSheet {
                 this.waitingForStatuses = true;
                 return;
             }
-            TLRPC.Document document = stickerSet.documents.get((int) Math.floor(Math.random() * stickerSet.documents.size()));
+            TLRPC.Document document = stickerSet.documents.get((int) Math.floor(Math.random() * ((double) stickerSet.documents.size())));
             int i = 1 - this.currentStatus;
             this.currentStatus = i;
             AnimatedEmojiDrawable animatedEmojiDrawable2 = this.emojis[i];

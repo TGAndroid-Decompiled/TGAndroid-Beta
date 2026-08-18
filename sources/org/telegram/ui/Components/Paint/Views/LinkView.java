@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Paint.Views.EntityView;
-import org.telegram.ui.Components.Paint.Views.LinkPreview;
 import org.telegram.ui.Components.RectOld;
 
 public class LinkView extends EntityView {

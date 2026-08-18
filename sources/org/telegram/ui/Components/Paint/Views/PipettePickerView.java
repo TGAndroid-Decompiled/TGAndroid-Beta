@@ -163,7 +163,8 @@ public abstract class PipettePickerView extends View {
         float height = this.positionY * getHeight();
         int iRound = Math.round(this.positionX * this.bitmap.getWidth());
         int iRound2 = Math.round(this.positionY * this.bitmap.getHeight());
-        int pixel = this.bitmap.getPixel(Utilities.clamp(iRound, r5.getWidth() - 1, 0), Utilities.clamp(iRound2, this.bitmap.getHeight() - 1, 0));
+        Bitmap bitmap = this.bitmap;
+        int pixel = bitmap.getPixel(Utilities.clamp(iRound, bitmap.getWidth() - 1, 0), Utilities.clamp(iRound2, this.bitmap.getHeight() - 1, 0));
         this.mColor = pixel;
         this.colorPaint.setColor(pixel);
         float f = this.appearProgress;

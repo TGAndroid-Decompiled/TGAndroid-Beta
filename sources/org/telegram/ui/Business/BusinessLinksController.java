@@ -47,7 +47,8 @@ public class BusinessLinksController {
                         businessLinksControllerArr[i] = businessLinksController2;
                         businessLinksController = businessLinksController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -137,6 +138,12 @@ public class BusinessLinksController {
                 FileLog.e(e);
                 if (sQLiteCursorQueryFinalized != null) {
                 }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$load$0(arrayList, arrayList2, arrayList3, z);
+                    }
+                });
             }
             sQLiteCursorQueryFinalized.dispose();
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -316,34 +323,24 @@ public class BusinessLinksController {
     public static void lambda$saveToCache$10(MessagesStorage messagesStorage, ArrayList arrayList) {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
-            try {
-                SQLiteDatabase database = messagesStorage.getDatabase();
-                database.executeFast("DELETE FROM business_links").stepThis().dispose();
-                sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO business_links VALUES(?, ?)");
-                for (int i = 0; i < arrayList.size(); i++) {
-                    TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList.get(i);
-                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_businessChatLink.getObjectSize());
-                    tL_businessChatLink.serializeToStream(nativeByteBuffer);
-                    sQLitePreparedStatementExecuteFast.requery();
-                    sQLitePreparedStatementExecuteFast.bindByteBuffer(1, nativeByteBuffer);
-                    sQLitePreparedStatementExecuteFast.bindInteger(2, i);
-                    sQLitePreparedStatementExecuteFast.step();
-                }
-                if (sQLitePreparedStatementExecuteFast == null) {
-                    return;
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-                if (sQLitePreparedStatementExecuteFast == null) {
-                    return;
-                }
+            SQLiteDatabase database = messagesStorage.getDatabase();
+            database.executeFast("DELETE FROM business_links").stepThis().dispose();
+            sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO business_links VALUES(?, ?)");
+            for (int i = 0; i < arrayList.size(); i++) {
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList.get(i);
+                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_businessChatLink.getObjectSize());
+                tL_businessChatLink.serializeToStream(nativeByteBuffer);
+                sQLitePreparedStatementExecuteFast.requery();
+                sQLitePreparedStatementExecuteFast.bindByteBuffer(1, nativeByteBuffer);
+                sQLitePreparedStatementExecuteFast.bindInteger(2, i);
+                sQLitePreparedStatementExecuteFast.step();
             }
-            sQLitePreparedStatementExecuteFast.dispose();
-        } catch (Throwable th) {
+        } catch (Exception e) {
+            FileLog.e(e);
+        } finally {
             if (sQLitePreparedStatementExecuteFast != null) {
                 sQLitePreparedStatementExecuteFast.dispose();
             }
-            throw th;
         }
     }
 

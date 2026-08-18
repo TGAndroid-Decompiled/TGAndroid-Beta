@@ -89,11 +89,16 @@ public class RichMediaItem {
     }
 
     private String imageKey() {
+        String str;
         MediaUploadState mediaUploadState = this.media;
         if (mediaUploadState == null) {
             return "null";
         }
-        String str = mediaUploadState.isVideo ? "v" : mediaUploadState.isAudio ? "a" : "p";
+        if (mediaUploadState.isVideo) {
+            str = "v";
+        } else {
+            str = mediaUploadState.isAudio ? "a" : "p";
+        }
         if (mediaUploadState.localPath != null) {
             return str + ":local:" + this.media.localPath;
         }

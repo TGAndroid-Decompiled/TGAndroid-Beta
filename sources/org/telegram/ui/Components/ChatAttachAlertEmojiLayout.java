@@ -1,7 +1,9 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.view.View;
+import android.widget.FrameLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
@@ -11,9 +13,6 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.EmojiView;
-import org.telegram.ui.Components.RecyclerListView;
 
 public class ChatAttachAlertEmojiLayout extends ChatAttachAlert.AttachAlertLayout {
     public int currentItemTop;
@@ -127,8 +126,27 @@ public class ChatAttachAlertEmojiLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onPreMeasure(int r4, int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertEmojiLayout.onPreMeasure(int, int):void");
+    public void onPreMeasure(int i, int i2) {
+        int i3;
+        ((FrameLayout.LayoutParams) getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight();
+        if (AndroidUtilities.isTablet()) {
+            i3 = (i2 / 5) * 2;
+        } else {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                i3 = (int) (i2 / 3.5f);
+            } else {
+                i3 = (i2 / 5) * 2;
+            }
+        }
+        int iDp = i3 - AndroidUtilities.dp(52.0f);
+        if (iDp < 0) {
+            iDp = 0;
+        }
+        int iDp2 = iDp + AndroidUtilities.dp(36.0f);
+        if (this.gridView.getPaddingTop() != iDp2) {
+            this.gridView.setPadding(AndroidUtilities.dp(6.0f), iDp2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(48.0f));
+        }
     }
 
     public void checkTopTabPosition() {

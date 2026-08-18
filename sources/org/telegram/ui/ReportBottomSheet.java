@@ -47,7 +47,6 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
-import org.telegram.ui.ReportBottomSheet;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class ReportBottomSheet extends BottomSheet {
@@ -241,7 +240,8 @@ public class ReportBottomSheet extends BottomSheet {
             }
         }
         if (this.viewPager.getCurrentPosition() > 0) {
-            this.viewPager.scrollToPosition(r0.getCurrentPosition() - 1);
+            ViewPagerFixed viewPagerFixed = this.viewPager;
+            viewPagerFixed.scrollToPosition(viewPagerFixed.getCurrentPosition() - 1);
         } else {
             super.lambda$openCrafting$8();
         }
@@ -257,12 +257,12 @@ public class ReportBottomSheet extends BottomSheet {
     }
 
     public void submitOption(final CharSequence charSequence, final byte[] bArr, final String str) {
-        TLRPC.TL_messages_report tL_messages_report;
+        TLObject tLObject;
         if (this.sponsored) {
             TLRPC.TL_messages_reportSponsoredMessage tL_messages_reportSponsoredMessage = new TLRPC.TL_messages_reportSponsoredMessage();
             tL_messages_reportSponsoredMessage.random_id = this.sponsoredId;
             tL_messages_reportSponsoredMessage.option = bArr;
-            tL_messages_report = tL_messages_reportSponsoredMessage;
+            tLObject = tL_messages_reportSponsoredMessage;
         } else {
             if (this.stories) {
                 TL_stories.TL_stories_report tL_stories_report = new TL_stories.TL_stories_report();
@@ -273,7 +273,7 @@ public class ReportBottomSheet extends BottomSheet {
                 }
                 tL_stories_report.message = str != null ? str : "";
                 tL_stories_report.option = bArr;
-                tL_messages_report = tL_stories_report;
+                tLObject = tL_stories_report;
             } else if (this.ephemeral) {
                 TL_ephemeral.TL_reportMessage tL_reportMessage = new TL_ephemeral.TL_reportMessage();
                 tL_reportMessage.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
@@ -283,23 +283,23 @@ public class ReportBottomSheet extends BottomSheet {
                 }
                 tL_reportMessage.message = str != null ? str : "";
                 tL_reportMessage.option = bArr;
-                tL_messages_report = tL_reportMessage;
+                tLObject = tL_reportMessage;
             } else {
-                TLRPC.TL_messages_report tL_messages_report2 = new TLRPC.TL_messages_report();
-                tL_messages_report2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                TLRPC.TL_messages_report tL_messages_report = new TLRPC.TL_messages_report();
+                tL_messages_report.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
                 ArrayList arrayList3 = this.messageIds;
                 if (arrayList3 != null) {
-                    tL_messages_report2.id.addAll(arrayList3);
+                    tL_messages_report.id.addAll(arrayList3);
                 }
-                tL_messages_report2.message = str != null ? str : "";
-                tL_messages_report2.option = bArr;
-                tL_messages_report = tL_messages_report2;
+                tL_messages_report.message = str != null ? str : "";
+                tL_messages_report.option = bArr;
+                tLObject = tL_messages_report;
             }
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_report, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$submitOption$4(charSequence, bArr, str, tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$submitOption$4(charSequence, bArr, str, tLObject2, tL_error);
             }
         });
     }
@@ -537,17 +537,12 @@ public class ReportBottomSheet extends BottomSheet {
 
         public void updateTops() {
             float paddingTop = -this.headerView.getHeight();
-            int i = 0;
-            while (true) {
-                if (i >= this.listView.getChildCount()) {
-                    break;
-                }
+            for (int i = 0; i < this.listView.getChildCount(); i++) {
                 View childAt = this.listView.getChildAt(i);
                 if (this.listView.adapter.getItem(this.listView.layoutManager.getPosition(childAt)).viewType == 28) {
                     paddingTop = this.contentView.getPaddingTop() + childAt.getY();
                     break;
                 }
-                i++;
             }
             this.headerView.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, paddingTop));
         }
@@ -901,8 +896,8 @@ public class ReportBottomSheet extends BottomSheet {
     }
 
     private static void open(int i, final Context context, final long j, final boolean z, final boolean z2, final ArrayList arrayList, final BulletinFactory bulletinFactory, final Theme.ResourcesProvider resourcesProvider, byte[] bArr, String str, final Utilities.Callback callback) {
-        TLRPC.TL_messages_report tL_messages_report;
-        TLRPC.TL_messages_report tL_messages_report2;
+        TLObject tLObject;
+        TLObject tLObject2;
         if (context == null || arrayList == null) {
             return;
         }
@@ -913,7 +908,7 @@ public class ReportBottomSheet extends BottomSheet {
             tL_stories_report.id.addAll(arrayList);
             tL_stories_report.option = bArr;
             tL_stories_report.message = TextUtils.isEmpty(str) ? "" : str;
-            tL_messages_report2 = tL_stories_report;
+            tLObject2 = tL_stories_report;
         } else {
             if (z2) {
                 TL_ephemeral.TL_reportMessage tL_reportMessage = new TL_ephemeral.TL_reportMessage();
@@ -923,26 +918,27 @@ public class ReportBottomSheet extends BottomSheet {
                 }
                 tL_reportMessage.message = TextUtils.isEmpty(str) ? "" : str;
                 tL_reportMessage.option = bArr;
-                tL_messages_report = tL_reportMessage;
-                ConnectionsManager.getInstance(i).sendRequest(tL_messages_report, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        ReportBottomSheet.lambda$open$9(context, resourcesProvider, z, z2, j, arrayList, zArr, callback, bulletinFactory, tLObject, tL_error);
-                    }
-                });
+                tLObject = tL_reportMessage;
+            } else {
+                TLRPC.TL_messages_report tL_messages_report = new TLRPC.TL_messages_report();
+                tL_messages_report.peer = MessagesController.getInstance(i).getInputPeer(j);
+                tL_messages_report.id.addAll(arrayList);
+                tL_messages_report.option = bArr;
+                tL_messages_report.message = TextUtils.isEmpty(str) ? "" : str;
+                tLObject2 = tL_messages_report;
             }
-            TLRPC.TL_messages_report tL_messages_report3 = new TLRPC.TL_messages_report();
-            tL_messages_report3.peer = MessagesController.getInstance(i).getInputPeer(j);
-            tL_messages_report3.id.addAll(arrayList);
-            tL_messages_report3.option = bArr;
-            tL_messages_report3.message = TextUtils.isEmpty(str) ? "" : str;
-            tL_messages_report2 = tL_messages_report3;
+            ConnectionsManager.getInstance(i).sendRequest(tLObject, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                    ReportBottomSheet.lambda$open$9(context, resourcesProvider, z, z2, j, arrayList, zArr, callback, bulletinFactory, tLObject3, tL_error);
+                }
+            });
         }
-        tL_messages_report = tL_messages_report2;
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_report, new RequestDelegate() {
+        tLObject = tLObject2;
+        ConnectionsManager.getInstance(i).sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReportBottomSheet.lambda$open$9(context, resourcesProvider, z, z2, j, arrayList, zArr, callback, bulletinFactory, tLObject, tL_error);
+            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                ReportBottomSheet.lambda$open$9(context, resourcesProvider, z, z2, j, arrayList, zArr, callback, bulletinFactory, tLObject3, tL_error);
             }
         });
     }

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -170,38 +169,31 @@ public class ChannelBoostsController {
             if (this.boostCount > 0) {
                 this.alreadyActive = true;
             }
-            Iterator<TL_stories.TL_myBoost> it2 = tL_premium_myBoosts.my_boosts.iterator();
-            while (true) {
-                if (!it2.hasNext()) {
-                    break;
-                }
-                TL_stories.TL_myBoost next = it2.next();
-                if (next.peer == null) {
-                    this.slot = next.slot;
+            for (TL_stories.TL_myBoost tL_myBoost : tL_premium_myBoosts.my_boosts) {
+                if (tL_myBoost.peer == null) {
+                    this.slot = tL_myBoost.slot;
                     break;
                 }
             }
             if (this.slot == 0) {
                 ArrayList arrayList = new ArrayList();
-                Iterator<TL_stories.TL_myBoost> it3 = tL_premium_myBoosts.my_boosts.iterator();
-                while (it3.hasNext()) {
-                    TL_stories.TL_myBoost next2 = it3.next();
-                    TLRPC.Peer peer = next2.peer;
+                for (TL_stories.TL_myBoost tL_myBoost2 : tL_premium_myBoosts.my_boosts) {
+                    TLRPC.Peer peer = tL_myBoost2.peer;
                     if (peer != null && DialogObject.getPeerDialogId(peer) != (-this.currentChat.id)) {
-                        arrayList.add(next2);
+                        arrayList.add(tL_myBoost2);
                     }
                 }
                 if (arrayList.size() == 1 && ((TL_stories.TL_myBoost) arrayList.get(0)).cooldown_until_date == 0) {
-                    TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) arrayList.get(0);
-                    this.replaceDialogId = DialogObject.getPeerDialogId(tL_myBoost.peer);
-                    this.slot = tL_myBoost.slot;
+                    TL_stories.TL_myBoost tL_myBoost3 = (TL_stories.TL_myBoost) arrayList.get(0);
+                    this.replaceDialogId = DialogObject.getPeerDialogId(tL_myBoost3.peer);
+                    this.slot = tL_myBoost3.slot;
                     this.canApply = true;
                 } else if (arrayList.size() >= 1) {
                     this.needSelector = true;
                     if (!BoostRepository.isMultiBoostsAvailable()) {
-                        TL_stories.TL_myBoost tL_myBoost2 = (TL_stories.TL_myBoost) arrayList.get(0);
-                        this.replaceDialogId = DialogObject.getPeerDialogId(tL_myBoost2.peer);
-                        this.slot = tL_myBoost2.slot;
+                        TL_stories.TL_myBoost tL_myBoost4 = (TL_stories.TL_myBoost) arrayList.get(0);
+                        this.replaceDialogId = DialogObject.getPeerDialogId(tL_myBoost4.peer);
+                        this.slot = tL_myBoost4.slot;
                     }
                     this.canApply = true;
                 } else {

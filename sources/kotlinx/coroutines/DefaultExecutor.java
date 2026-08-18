@@ -6,7 +6,6 @@ import java.util.concurrent.locks.LockSupport;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.RangesKt;
-import kotlinx.coroutines.EventLoopImplBase;
 
 public final class DefaultExecutor extends EventLoopImplBase implements Runnable {
     public static final DefaultExecutor INSTANCE;
@@ -99,14 +98,11 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
                     }
                     long j2 = j - jNanoTime;
                     if (j2 <= 0) {
-                        _thread = null;
-                        acknowledgeShutdownIfNeeded();
-                        AbstractTimeSourceKt.access$getTimeSource$p();
-                        if (isEmpty()) {
+                        if (zIsEmpty) {
+                            return;
+                        } else {
                             return;
                         }
-                        getThread();
-                        return;
                     }
                     jProcessNextEvent = RangesKt.coerceAtMost(jProcessNextEvent, j2);
                 } else {
@@ -114,17 +110,15 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
                 }
                 if (jProcessNextEvent > 0) {
                     if (isShutdownRequested()) {
-                        _thread = null;
-                        acknowledgeShutdownIfNeeded();
-                        AbstractTimeSourceKt.access$getTimeSource$p();
-                        if (isEmpty()) {
+                        if (zIsEmpty) {
+                            return;
+                        } else {
                             return;
                         }
-                        getThread();
-                        return;
+                    } else {
+                        AbstractTimeSourceKt.access$getTimeSource$p();
+                        LockSupport.parkNanos(this, jProcessNextEvent);
                     }
-                    AbstractTimeSourceKt.access$getTimeSource$p();
-                    LockSupport.parkNanos(this, jProcessNextEvent);
                 }
             }
         } finally {

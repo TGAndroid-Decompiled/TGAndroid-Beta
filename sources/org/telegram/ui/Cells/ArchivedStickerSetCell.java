@@ -166,16 +166,10 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
                 return;
             }
             long j = stickerSetCovered.set.thumb_document_id;
-            int i = 0;
-            while (true) {
-                if (i < arrayList.size()) {
-                    TLRPC.Document document2 = arrayList.get(i);
-                    if (document2 != null && document2.id == j) {
-                        document = document2;
-                        break;
-                    }
-                    i++;
-                } else {
+            for (int i = 0; i < arrayList.size(); i++) {
+                TLRPC.Document document2 = arrayList.get(i);
+                if (document2 != null && document2.id == j) {
+                    document = document2;
                     break;
                 }
             }

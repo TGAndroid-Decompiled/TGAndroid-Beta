@@ -36,7 +36,6 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.quickforward.BlurVisibilityDrawable;
 
 public class QuickShareSelectorDrawable extends Drawable implements Animator.AnimatorListener {
     private static final Property CLOSE_FACTOR;
@@ -396,8 +395,7 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
     }
 
     public void draw(Canvas canvas, int i, boolean z) {
-        int i2;
-        int i3;
+        float f;
         float fMin;
         if (!this.isReady) {
             prepare();
@@ -405,10 +403,10 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         BlurVisibilityDrawable blurVisibilityDrawable = this.closeAnimationDrawable;
         if (blurVisibilityDrawable != null && !z) {
             RectF rectF = this.bubbleCurrent;
-            int i4 = (int) rectF.left;
+            int i2 = (int) rectF.left;
             int iDp = (int) (rectF.top - AndroidUtilities.dp(30.0f));
             RectF rectF2 = this.bubbleCurrent;
-            blurVisibilityDrawable.setBounds(i4, iDp, (int) rectF2.right, (int) rectF2.bottom);
+            blurVisibilityDrawable.setBounds(i2, iDp, (int) rectF2.right, (int) rectF2.bottom);
             this.closeAnimationDrawable.setAlpha((int) ((1.0f - Interpolators.closeAlpha.getInterpolation(this.closeProgress)) * 255.0f));
             this.closeAnimationDrawable.draw(canvas);
             if (this.selectedIndex != -1) {
@@ -416,36 +414,36 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
                 float interpolation2 = Interpolators.closeAvatarPosition.getInterpolation(this.closeProgress);
                 float fCenterX = this.bubbleCurrent.centerX() + (AndroidUtilities.dp(Sizes.AVATAR + Sizes.GAP) * (this.selectedIndex - 2));
                 float fCenterY = this.bubbleCurrent.centerY();
-                float f = this.bulletinImageCx;
-                float f2 = this.bulletinImageCy;
-                float f3 = (fCenterX + f) / 2.0f;
+                float f2 = this.bulletinImageCx;
+                float f3 = this.bulletinImageCy;
+                float f4 = (fCenterX + f2) / 2.0f;
                 Bulletin.LottieLayout lottieLayout = this.bulletinLayout;
                 if (lottieLayout != null && lottieLayout.top) {
-                    fMin = Math.max(fCenterY, f2) + AndroidUtilities.dp(Sizes.CLOSE_AVATAR_JUMP_HEIGHT);
+                    fMin = Math.max(fCenterY, f3) + AndroidUtilities.dp(Sizes.CLOSE_AVATAR_JUMP_HEIGHT);
                 } else {
-                    fMin = Math.min(fCenterY, f2) - AndroidUtilities.dp(Sizes.CLOSE_AVATAR_JUMP_HEIGHT);
+                    fMin = Math.min(fCenterY, f3) - AndroidUtilities.dp(Sizes.CLOSE_AVATAR_JUMP_HEIGHT);
                 }
-                this.avatarCells[this.selectedIndex].drawBlurredAvatar(canvas, fromTo(fCenterX, f, interpolation2), findParabola(fCenterX, fCenterY, f, f2, f3, fMin, interpolation2), fromTo((AndroidUtilities.dp(Sizes.AVATAR) / 2.0f) + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(12.0f), interpolation2), interpolation);
+                this.avatarCells[this.selectedIndex].drawBlurredAvatar(canvas, fromTo(fCenterX, f2, interpolation2), findParabola(fCenterX, fCenterY, f2, f3, f4, fMin, interpolation2), fromTo((AndroidUtilities.dp(Sizes.AVATAR) / 2.0f) + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(12.0f), interpolation2), interpolation);
                 return;
             }
             return;
         }
-        float f4 = !z ? 1.0f - this.closeProgress : i / 255.0f;
+        float f5 = !z ? 1.0f - this.closeProgress : i / 255.0f;
         float fFromTo = fromTo(0.3f, 0.075f, Interpolators.bgScale.getInterpolation(this.openProgress));
         this.shaderMatrix.reset();
         this.shaderMatrix.setScale(fFromTo, fFromTo);
         this.shaderMatrix.postTranslate(0.0f, this.bubbleCurrent.bottom);
         this.linearGradient.setLocalMatrix(this.shaderMatrix);
-        this.paintBubbleBg.setAlpha((int) (Interpolators.bgOpacity.getInterpolation(this.openProgress) * 255.0f * f4));
+        this.paintBubbleBg.setAlpha((int) (Interpolators.bgOpacity.getInterpolation(this.openProgress) * 255.0f * f5));
         RectF rectF3 = tmpRectF;
         rectF3.set(this.bubbleCurrent);
         rectF3.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f));
         Rect rect = tmpRect;
         rectF3.round(rect);
-        this.shadowDrawable.setAlpha((int) (255.0f * f4));
+        this.shadowDrawable.setAlpha((int) (255.0f * f5));
         this.shadowDrawable.setBounds(rect);
         this.shadowDrawable.draw(canvas);
-        int i5 = 1;
+        int i3 = 1;
         if (!this.openAnimationCompleted) {
             float interpolation3 = (Interpolators.buttonRotationUp.getInterpolation(this.openProgress) - Interpolators.buttonRotationDown.getInterpolation(this.openProgress)) * (-40.0f);
             canvas.save();
@@ -470,38 +468,34 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         float fDp2 = ((AndroidUtilities.dp(Sizes.AVATAR + 2) * Interpolators.avatar1.getInterpolation(this.openProgress)) / 2.0f) - fDp;
         float fDp3 = ((AndroidUtilities.dp(Sizes.AVATAR + 2) * Interpolators.avatar2.getInterpolation(this.openProgress)) / 2.0f) - fDp;
         float fDp4 = ((AndroidUtilities.dp(Sizes.AVATAR + 2) * Interpolators.avatar3.getInterpolation(this.openProgress)) / 2.0f) - fDp;
-        int i6 = 0;
-        while (i6 < 2) {
-            int i7 = 0;
+        int i4 = 0;
+        while (i4 < 2) {
+            int i5 = 0;
             while (true) {
-                if (i7 < this.avatarCells.length) {
-                    if (!(i6 == 0 && i7 == this.selectedIndex) && (i6 != i5 || i7 == this.selectedIndex)) {
-                        float length = i7 - ((r1.length / 2.0f) - 0.5f);
-                        float f5 = i7 == 2 ? fDp2 : (i7 == i5 || i7 == 3) ? fDp3 : fDp4;
+                QuickShareAvatarCell[] quickShareAvatarCellArr = this.avatarCells;
+                if (i5 < quickShareAvatarCellArr.length) {
+                    if ((i4 != 0 || i5 != this.selectedIndex) && (i4 != i3 || i5 == this.selectedIndex)) {
+                        float length = i5 - ((quickShareAvatarCellArr.length / 2.0f) - 0.5f);
+                        if (i5 == 2) {
+                            f = fDp2;
+                        } else {
+                            f = (i5 == i3 || i5 == 3) ? fDp3 : fDp4;
+                        }
                         float fCenterX2 = this.bubbleCurrent.centerX() + (AndroidUtilities.dp(Sizes.AVATAR + Sizes.GAP) * length);
                         float fCenterY2 = this.bubbleCurrent.centerY();
-                        QuickShareAvatarCell quickShareAvatarCell = this.avatarCells[i7];
+                        QuickShareAvatarCell quickShareAvatarCell = this.avatarCells[i5];
                         float fDp5 = AndroidUtilities.dp(Sizes.TEXT_PADDING_EXTERNAL);
                         float measuredWidth = this.parent.getMeasuredWidth() - AndroidUtilities.dp(Sizes.TEXT_PADDING_EXTERNAL);
                         RectF rectF5 = this.bubbleCurrent;
-                        float f6 = rectF5.left;
-                        float f7 = rectF5.right;
-                        boolean z2 = i7 == this.selectedIndex && this.closeAnimationStarted;
-                        i2 = i7;
-                        float f8 = f5;
-                        i3 = i6;
-                        quickShareAvatarCell.draw(canvas, fDp5, measuredWidth, f6, f7, fCenterX2, fCenterY2, f8, f4, z2);
-                    } else {
-                        i2 = i7;
-                        i3 = i6;
+                        quickShareAvatarCell.draw(canvas, fDp5, measuredWidth, rectF5.left, rectF5.right, fCenterX2, fCenterY2, f, f5, i5 == this.selectedIndex && this.closeAnimationStarted);
                     }
-                    i7 = i2 + 1;
-                    i6 = i3;
-                    i5 = 1;
+                    i5++;
+                    i4 = i4;
+                    i3 = 1;
                 }
             }
-            i6++;
-            i5 = 1;
+            i4++;
+            i3 = 1;
         }
     }
 
@@ -519,8 +513,10 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         this.buttonCurrent.set(this.bubbleStart);
         this.buttonCurrent.offset(0.0f, -interpolation2);
         float fFromTo = fromTo(this.buttonCurrent.height(), AndroidUtilities.dp(Sizes.BUBBLE_HEIGHT) + (AndroidUtilities.dp(2.0f) * interpolation), Interpolators.heightExpansion.getInterpolation(this.openProgress)) / 2.0f;
+        float fWidth = this.buttonCurrent.width();
+        float bubbleWidth = getBubbleWidth() + (AndroidUtilities.dp(10.0f) * interpolation);
         Interpolator interpolator = Interpolators.widthExpansion;
-        float fFromTo2 = fromTo(this.buttonCurrent.width(), getBubbleWidth() + (AndroidUtilities.dp(10.0f) * interpolation), interpolator.getInterpolation(this.openProgress));
+        float fFromTo2 = fromTo(fWidth, bubbleWidth, interpolator.getInterpolation(this.openProgress));
         float f = fFromTo * 2.0f;
         float fMax = Math.max(fFromTo2, f);
         float fCenterX = this.bubbleStart.centerX() + fFromTo + (Math.min(AndroidUtilities.dp(-12.0f) + this.bubbleOffset, (fMax - Math.max(this.buttonCurrent.width(), f)) / 2.0f) * interpolator.getInterpolation(this.openProgress));
@@ -678,26 +674,27 @@ public class QuickShareSelectorDrawable extends Drawable implements Animator.Ani
         if (fSqrt > f3 + f6 || fSqrt < Math.abs(f3 - f6)) {
             return null;
         }
-        float f9 = (((f3 * f3) - (f6 * f6)) + (fSqrt * fSqrt)) / (2.0f * fSqrt);
-        float fSqrt2 = (float) Math.sqrt(r8 - (f9 * f9));
-        float f10 = f + ((f9 * f7) / fSqrt);
-        float f11 = f2 + ((f9 * f8) / fSqrt);
-        float f12 = (f8 * fSqrt2) / fSqrt;
-        float f13 = f10 + f12;
-        float f14 = (fSqrt2 * f7) / fSqrt;
-        float f15 = f11 - f14;
-        float f16 = f10 - f12;
-        float f17 = f11 + f14;
-        if (f13 == f16 || f13 >= f16) {
-            if (f15 > f17) {
-                return new PointF(f13, f15);
+        float f9 = f3 * f3;
+        float f10 = ((f9 - (f6 * f6)) + (fSqrt * fSqrt)) / (2.0f * fSqrt);
+        float fSqrt2 = (float) Math.sqrt(f9 - (f10 * f10));
+        float f11 = f + ((f10 * f7) / fSqrt);
+        float f12 = f2 + ((f10 * f8) / fSqrt);
+        float f13 = (f8 * fSqrt2) / fSqrt;
+        float f14 = f11 + f13;
+        float f15 = (fSqrt2 * f7) / fSqrt;
+        float f16 = f12 - f15;
+        float f17 = f11 - f13;
+        float f18 = f12 + f15;
+        if (f14 == f17 || f14 >= f17) {
+            if (f16 > f18) {
+                return new PointF(f14, f16);
             }
-            return new PointF(f16, f17);
+            return new PointF(f17, f18);
         }
         if (z) {
-            return new PointF(f13, f15);
+            return new PointF(f14, f16);
         }
-        return new PointF(f16, f17);
+        return new PointF(f17, f18);
     }
 
     private static float calculateAngle(float f, float f2, float f3, float f4) {

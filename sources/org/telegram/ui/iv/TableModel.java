@@ -261,13 +261,11 @@ public class TableModel {
             arrayList.add(newEmptyCell());
             this.block.rows.add(pagetablerow);
         } else {
-            Iterator<TL_iv.pageTableRow> it = this.block.rows.iterator();
-            while (it.hasNext()) {
-                TL_iv.pageTableRow next = it.next();
-                if (next.cells == null) {
-                    next.cells = new ArrayList<>();
+            for (TL_iv.pageTableRow pagetablerow2 : this.block.rows) {
+                if (pagetablerow2.cells == null) {
+                    pagetablerow2.cells = new ArrayList<>();
                 }
-                next.cells.add(newEmptyCell());
+                pagetablerow2.cells.add(newEmptyCell());
             }
         }
         rebuildFromBlock();
@@ -287,9 +285,7 @@ public class TableModel {
         }
         IdentityHashMap identityHashMap = new IdentityHashMap();
         boolean[] zArr = new boolean[this.colCount];
-        Iterator it = this.anchorsRowMajor.iterator();
-        while (it.hasNext()) {
-            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
+        for (TL_iv.pageTableCell pagetablecell : this.anchorsRowMajor) {
             int iAnchorRowOf = anchorRowOf(pagetablecell);
             int iAnchorColOf = anchorColOf(pagetablecell);
             int iSpanRow = spanRow(pagetablecell);
@@ -328,9 +324,7 @@ public class TableModel {
         }
         IdentityHashMap identityHashMap = new IdentityHashMap();
         boolean[] zArr = new boolean[this.rowCount];
-        Iterator it = this.anchorsRowMajor.iterator();
-        while (it.hasNext()) {
-            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
+        for (TL_iv.pageTableCell pagetablecell : this.anchorsRowMajor) {
             int iAnchorRowOf = anchorRowOf(pagetablecell);
             int iAnchorColOf = anchorColOf(pagetablecell);
             int iSpanRow = spanRow(pagetablecell);
@@ -380,7 +374,7 @@ public class TableModel {
             iMax2 = Math.max(iMax2, (iAnchorRowOf2 + iSpanRow) - 1);
             iMax = Math.max(iMax, (iAnchorColOf + iSpanCol) - 1);
         }
-        HashSet hashSet = new HashSet();
+        HashSet<TL_iv.pageTableCell> hashSet = new HashSet();
         for (int i = iMin; i <= iMax2; i++) {
             for (int i2 = iMin2; i2 <= iMax; i2++) {
                 if (i < 0 || i2 < 0 || i >= this.rowCount || i2 >= this.colCount) {
@@ -422,9 +416,7 @@ public class TableModel {
         pagetablecell2.flags = i3 > 0 ? 2 | pagetablecell2.flags : pagetablecell2.flags & (-3);
         pagetablecell2.flags = i5 > 0 ? pagetablecell2.flags | 4 : pagetablecell2.flags & (-5);
         applyPlainText(pagetablecell2, sb.toString());
-        Iterator it3 = hashSet.iterator();
-        while (it3.hasNext()) {
-            TL_iv.pageTableCell pagetablecell3 = (TL_iv.pageTableCell) it3.next();
+        for (TL_iv.pageTableCell pagetablecell3 : hashSet) {
             if (pagetablecell3 != pagetablecell2 && (iAnchorRowOf = anchorRowOf(pagetablecell3)) >= 0 && iAnchorRowOf < this.block.rows.size()) {
                 this.block.rows.get(iAnchorRowOf).cells.remove(pagetablecell3);
             }
@@ -462,21 +454,19 @@ public class TableModel {
         for (int i = iAnchorRowOf; i < iAnchorRowOf + iSpanRow && i < this.rowCount; i++) {
             TL_iv.pageTableRow pagetablerow = this.block.rows.get(i);
             ArrayList arrayList = new ArrayList();
-            Iterator<TL_iv.pageTableCell> it = pagetablerow.cells.iterator();
-            while (it.hasNext()) {
-                TL_iv.pageTableCell next = it.next();
-                arrayList.add(new Object[]{next, Integer.valueOf(anchorColOf(next))});
+            for (TL_iv.pageTableCell pagetablecell2 : pagetablerow.cells) {
+                arrayList.add(new Object[]{pagetablecell2, Integer.valueOf(anchorColOf(pagetablecell2))});
             }
             for (int i2 = iAnchorColOf; i2 < iAnchorColOf + iSpanCol; i2++) {
                 if (i != iAnchorRowOf || i2 != iAnchorColOf) {
-                    TL_iv.pageTableCell pagetablecell2 = new TL_iv.pageTableCell();
-                    pagetablecell2.header = pagetablecell.header;
-                    pagetablecell2.align_center = pagetablecell.align_center;
-                    pagetablecell2.align_right = pagetablecell.align_right;
-                    pagetablecell2.valign_middle = pagetablecell.valign_middle;
-                    pagetablecell2.valign_bottom = pagetablecell.valign_bottom;
-                    applyPlainText(pagetablecell2, "");
-                    arrayList.add(new Object[]{pagetablecell2, Integer.valueOf(i2)});
+                    TL_iv.pageTableCell pagetablecell3 = new TL_iv.pageTableCell();
+                    pagetablecell3.header = pagetablecell.header;
+                    pagetablecell3.align_center = pagetablecell.align_center;
+                    pagetablecell3.align_right = pagetablecell.align_right;
+                    pagetablecell3.valign_middle = pagetablecell.valign_middle;
+                    pagetablecell3.valign_bottom = pagetablecell.valign_bottom;
+                    applyPlainText(pagetablecell3, "");
+                    arrayList.add(new Object[]{pagetablecell3, Integer.valueOf(i2)});
                 }
             }
             Collections.sort(arrayList, Comparator$CC.comparingInt(new ToIntFunction() {
@@ -486,9 +476,9 @@ public class TableModel {
                 }
             }));
             pagetablerow.cells.clear();
-            Iterator it2 = arrayList.iterator();
-            while (it2.hasNext()) {
-                pagetablerow.cells.add((TL_iv.pageTableCell) ((Object[]) it2.next())[0]);
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                pagetablerow.cells.add((TL_iv.pageTableCell) ((Object[]) it.next())[0]);
             }
         }
         rebuildFromBlock();
@@ -525,9 +515,7 @@ public class TableModel {
             return true;
         }
         IdentityHashMap identityHashMap = new IdentityHashMap();
-        Iterator it2 = this.anchorsRowMajor.iterator();
-        while (it2.hasNext()) {
-            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it2.next();
+        for (TL_iv.pageTableCell pagetablecell : this.anchorsRowMajor) {
             int iAnchorRowOf = anchorRowOf(pagetablecell);
             int iAnchorColOf = anchorColOf(pagetablecell);
             int iSpanRow = spanRow(pagetablecell);
@@ -577,9 +565,7 @@ public class TableModel {
             return true;
         }
         IdentityHashMap identityHashMap = new IdentityHashMap();
-        Iterator it2 = this.anchorsRowMajor.iterator();
-        while (it2.hasNext()) {
-            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it2.next();
+        for (TL_iv.pageTableCell pagetablecell : this.anchorsRowMajor) {
             int iAnchorRowOf = anchorRowOf(pagetablecell);
             int iAnchorColOf = anchorColOf(pagetablecell);
             int iSpanRow = spanRow(pagetablecell);
@@ -608,7 +594,7 @@ public class TableModel {
         for (int i2 = 0; i2 < i; i2++) {
             TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
             pagetablerow.cells = new ArrayList<>();
-            ArrayList arrayList = new ArrayList();
+            ArrayList<TL_iv.pageTableCell> arrayList = new ArrayList();
             for (Map.Entry entry : identityHashMap.entrySet()) {
                 if (((int[]) entry.getValue())[0] == i2) {
                     arrayList.add((TL_iv.pageTableCell) entry.getKey());
@@ -620,9 +606,7 @@ public class TableModel {
                     return TableModel.lambda$rewriteBlockRows$2(identityHashMap, (TL_iv.pageTableCell) obj);
                 }
             }));
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
+            for (TL_iv.pageTableCell pagetablecell : arrayList) {
                 int[] iArr = (int[]) identityHashMap.get(pagetablecell);
                 int i3 = iArr[2];
                 if (i3 <= 1) {

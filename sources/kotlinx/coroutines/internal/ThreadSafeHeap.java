@@ -58,8 +58,34 @@ public class ThreadSafeHeap {
         return null;
     }
 
-    public final kotlinx.coroutines.internal.ThreadSafeHeapNode removeAtImpl(int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.ThreadSafeHeap.removeAtImpl(int):kotlinx.coroutines.internal.ThreadSafeHeapNode");
+    public final ThreadSafeHeapNode removeAtImpl(int i) {
+        ThreadSafeHeapNode[] threadSafeHeapNodeArr = this.a;
+        Intrinsics.checkNotNull(threadSafeHeapNodeArr);
+        setSize(getSize() - 1);
+        if (i < getSize()) {
+            swap(i, getSize());
+            int i2 = (i - 1) / 2;
+            if (i > 0) {
+                ThreadSafeHeapNode threadSafeHeapNode = threadSafeHeapNodeArr[i];
+                Intrinsics.checkNotNull(threadSafeHeapNode);
+                ThreadSafeHeapNode threadSafeHeapNode2 = threadSafeHeapNodeArr[i2];
+                Intrinsics.checkNotNull(threadSafeHeapNode2);
+                if (((Comparable) threadSafeHeapNode).compareTo(threadSafeHeapNode2) < 0) {
+                    swap(i, i2);
+                    siftUpFrom(i2);
+                } else {
+                    siftDownFrom(i);
+                }
+            } else {
+                siftDownFrom(i);
+            }
+        }
+        ThreadSafeHeapNode threadSafeHeapNode3 = threadSafeHeapNodeArr[getSize()];
+        Intrinsics.checkNotNull(threadSafeHeapNode3);
+        threadSafeHeapNode3.setHeap(null);
+        threadSafeHeapNode3.setIndex(-1);
+        threadSafeHeapNodeArr[getSize()] = null;
+        return threadSafeHeapNode3;
     }
 
     public final void addImpl(ThreadSafeHeapNode threadSafeHeapNode) {
@@ -89,8 +115,37 @@ public class ThreadSafeHeap {
         }
     }
 
-    private final void siftDownFrom(int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.ThreadSafeHeap.siftDownFrom(int):void");
+    private final void siftDownFrom(int i) {
+        while (true) {
+            int i2 = i * 2;
+            int i3 = i2 + 1;
+            if (i3 >= getSize()) {
+                return;
+            }
+            ThreadSafeHeapNode[] threadSafeHeapNodeArr = this.a;
+            Intrinsics.checkNotNull(threadSafeHeapNodeArr);
+            int i4 = i2 + 2;
+            if (i4 < getSize()) {
+                ThreadSafeHeapNode threadSafeHeapNode = threadSafeHeapNodeArr[i4];
+                Intrinsics.checkNotNull(threadSafeHeapNode);
+                ThreadSafeHeapNode threadSafeHeapNode2 = threadSafeHeapNodeArr[i3];
+                Intrinsics.checkNotNull(threadSafeHeapNode2);
+                if (((Comparable) threadSafeHeapNode).compareTo(threadSafeHeapNode2) >= 0) {
+                    i4 = i3;
+                }
+            } else {
+                i4 = i3;
+            }
+            ThreadSafeHeapNode threadSafeHeapNode3 = threadSafeHeapNodeArr[i];
+            Intrinsics.checkNotNull(threadSafeHeapNode3);
+            ThreadSafeHeapNode threadSafeHeapNode4 = threadSafeHeapNodeArr[i4];
+            Intrinsics.checkNotNull(threadSafeHeapNode4);
+            if (((Comparable) threadSafeHeapNode3).compareTo(threadSafeHeapNode4) <= 0) {
+                return;
+            }
+            swap(i, i4);
+            i = i4;
+        }
     }
 
     private final ThreadSafeHeapNode[] realloc() {

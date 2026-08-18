@@ -125,9 +125,12 @@ public class StickerTabView extends FrameLayout {
         if (this.expanded) {
             float f2 = i == 1 ? 24.0f : 26.0f;
             float f3 = i == 1 ? 38.0f : 44.0f;
+            float fDp = AndroidUtilities.dp(33.0f - f2) / 2.0f;
+            float fDp2 = AndroidUtilities.dp(36.0f - f2) / 2.0f;
+            float fDp3 = AndroidUtilities.dp(ScrollSlidingTabStrip.EXPANDED_WIDTH - f3) / 2.0f;
             float f4 = 1.0f - f;
-            this.visibleView.setTranslationY((((AndroidUtilities.dp(36.0f - f2) / 2.0f) - (AndroidUtilities.dp(86.0f - f3) / 2.0f)) * f4) - (AndroidUtilities.dp(8.0f) * f));
-            this.visibleView.setTranslationX(((AndroidUtilities.dp(33.0f - f2) / 2.0f) - (AndroidUtilities.dp(ScrollSlidingTabStrip.EXPANDED_WIDTH - f3) / 2.0f)) * f4);
+            this.visibleView.setTranslationY(((fDp2 - (AndroidUtilities.dp(86.0f - f3) / 2.0f)) * f4) - (AndroidUtilities.dp(8.0f) * f));
+            this.visibleView.setTranslationX((fDp - fDp3) * f4);
             this.textView.setAlpha(Math.max(0.0f, (f - 0.5f) / 0.5f));
             this.textView.setTranslationY((-AndroidUtilities.dp(40.0f)) * f4);
             this.textView.setTranslationX((-AndroidUtilities.dp(12.0f)) * f4);

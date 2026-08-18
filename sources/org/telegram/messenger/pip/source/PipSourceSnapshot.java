@@ -39,12 +39,13 @@ class PipSourceSnapshot {
             }
             return;
         }
-        if (this.picture == null || f <= 0.001f) {
+        Picture picture = this.picture;
+        if (picture == null || f <= 0.001f) {
             return;
         }
         boolean z = f < 0.999f;
         if (z) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, r0.getWidth(), this.picture.getHeight(), (int) (f * 255.0f), 31);
+            canvas.saveLayerAlpha(0.0f, 0.0f, picture.getWidth(), this.picture.getHeight(), (int) (f * 255.0f), 31);
         }
         canvas.drawPicture(this.picture);
         if (z) {

@@ -110,7 +110,7 @@ public class WebRtcAudioTrack {
         }
 
         @Override
-        public void run() throws IllegalStateException, InterruptedException, SecurityException, IllegalArgumentException {
+        public void run() {
             Process.setThreadPriority(-19);
             Logging.d("WebRtcAudioTrack", "AudioTrackThread" + WebRtcAudioUtils.getThreadInfo());
             WebRtcAudioTrack.assertTrue(WebRtcAudioTrack.this.audioTrack.getPlayState() == 3);
@@ -199,7 +199,7 @@ public class WebRtcAudioTrack {
         this.emptyBytes = new byte[this.byteBuffer.capacity()];
         nativeCacheDirectBufferAddress(this.byteBuffer, this.nativeAudioTrack);
         int iChannelCountToConfiguration = channelCountToConfiguration(i2);
-        int minBufferSize = (int) (AudioTrack.getMinBufferSize(i, iChannelCountToConfiguration, 2) * d);
+        int minBufferSize = (int) (((double) AudioTrack.getMinBufferSize(i, iChannelCountToConfiguration, 2)) * d);
         Logging.d("WebRtcAudioTrack", "minBufferSizeInBytes: " + minBufferSize);
         if (minBufferSize < this.byteBuffer.capacity()) {
             reportWebRtcAudioTrackInitError("AudioTrack.getMinBufferSize returns an invalid value.");
@@ -227,7 +227,7 @@ public class WebRtcAudioTrack {
         }
     }
 
-    private boolean startPlayout() throws IllegalStateException {
+    private boolean startPlayout() {
         this.threadChecker.checkIsOnValidThread();
         Logging.d("WebRtcAudioTrack", "startPlayout");
         assertTrue(this.audioTrack != null);
@@ -264,17 +264,19 @@ public class WebRtcAudioTrack {
                 WebRtcAudioUtils.logAudioState("WebRtcAudioTrack");
             }
             Logging.d("WebRtcAudioTrack", "AudioTrackThread has now been stopped.");
-        } finally {
+        } catch (Throwable th) {
             try {
-                releaseAudioResources();
-                return true;
-            } finally {
+                FileLog.e(th);
+            } catch (Throwable th2) {
+                this.audioThread = null;
+                throw th2;
             }
         }
+        this.audioThread = null;
         try {
             releaseAudioResources();
-        } catch (Throwable th) {
-            FileLog.e(th);
+        } catch (Throwable th3) {
+            FileLog.e(th3);
         }
         return true;
     }

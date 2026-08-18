@@ -1,5 +1,7 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -26,8 +28,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.GroupCallUserCell;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.voip.GroupCallMiniTextureView;
 import org.telegram.ui.Components.voip.GroupCallRenderersContainer;
 import org.telegram.ui.Components.voip.GroupCallStatusIcon;
@@ -140,7 +140,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         boolean attached;
         AvatarDrawable avatarDrawable;
         private BackupImageView avatarImageView;
-        GroupCallUserCell.AvatarWavesDrawable avatarWavesDrawable;
+        org.telegram.ui.Cells.GroupCallUserCell.AvatarWavesDrawable avatarWavesDrawable;
         Paint backgroundPaint;
         ValueAnimator colorAnimator;
         private TLRPC.Chat currentChat;
@@ -171,7 +171,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             this.selectionPaint = new Paint(1);
             this.progress = 1.0f;
             this.textPaint = new TextPaint(1);
-            this.avatarWavesDrawable = new GroupCallUserCell.AvatarWavesDrawable(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(29.0f));
+            this.avatarWavesDrawable = new org.telegram.ui.Cells.GroupCallUserCell.AvatarWavesDrawable(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(29.0f));
             this.avatarDrawable.setTextSize((int) (AndroidUtilities.dp(18.0f) / 1.15f));
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarImageView = backupImageView;
@@ -275,9 +275,10 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 }
                 return;
             }
+            float top = (this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2.0f)) - (getMeasuredHeight() / 2.0f);
             float f2 = 1.0f - f;
             float fDp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * f2) + (1.0f * f);
-            this.avatarImageView.setTranslationY((-((this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2.0f)) - (getMeasuredHeight() / 2.0f))) * f2);
+            this.avatarImageView.setTranslationY((-top) * f2);
             this.avatarImageView.setScaleX(fDp);
             this.avatarImageView.setScaleY(fDp);
             this.backgroundPaint.setAlpha((int) (f * 255.0f));
@@ -306,15 +307,59 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             float y = this.avatarImageView.getY() + (this.avatarImageView.getMeasuredHeight() / 2);
             this.avatarWavesDrawable.update();
             this.avatarWavesDrawable.draw(canvas, x, y, this);
+            float fDp = AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f);
             float f = this.progress;
-            float fDp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * (1.0f - f)) + (f * 1.0f);
-            this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * fDp);
-            this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * fDp);
+            float f2 = (fDp * (1.0f - f)) + (f * 1.0f);
+            this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * f2);
+            this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * f2);
             super.dispatchDraw(canvas);
         }
 
-        private void drawSelection(android.graphics.Canvas r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallFullscreenAdapter.GroupCallUserCell.drawSelection(android.graphics.Canvas):void");
+        private void drawSelection(Canvas canvas) {
+            float f;
+            float f2;
+            boolean z = this.selected;
+            if (z) {
+                float f3 = this.selectionProgress;
+                if (f3 != 1.0f) {
+                    float f4 = f3 + 0.10666667f;
+                    if (f4 > 1.0f) {
+                        f4 = 1.0f;
+                    } else {
+                        invalidate();
+                    }
+                    setSelectedProgress(f4);
+                } else if (!z) {
+                    f = this.selectionProgress;
+                    if (f != 0.0f) {
+                        f2 = f - 0.10666667f;
+                        if (f2 < 0.0f) {
+                            f2 = 0.0f;
+                        } else {
+                            invalidate();
+                        }
+                        setSelectedProgress(f2);
+                    }
+                }
+            } else if (!z) {
+                f = this.selectionProgress;
+                if (f != 0.0f) {
+                    f2 = f - 0.10666667f;
+                    if (f2 < 0.0f) {
+                        f2 = 0.0f;
+                    } else {
+                        invalidate();
+                    }
+                    setSelectedProgress(f2);
+                }
+            }
+            if (this.selectionProgress > 0.0f) {
+                float measuredWidth = (getMeasuredWidth() / 2.0f) * (1.0f - this.progress);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(measuredWidth, measuredWidth, getMeasuredWidth() - measuredWidth, getMeasuredHeight() - measuredWidth);
+                rectF.inset(this.selectionPaint.getStrokeWidth() / 2.0f, this.selectionPaint.getStrokeWidth() / 2.0f);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.selectionPaint);
+            }
         }
 
         private void setSelectedProgress(float f) {
@@ -440,8 +485,112 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             this.avatarWavesDrawable.setAmplitude(d);
         }
 
-        public void updateState(boolean r10) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallFullscreenAdapter.GroupCallUserCell.updateState(boolean):void");
+        public void updateState(boolean z) {
+            final int color;
+            final int color2;
+            ValueAnimator valueAnimator;
+            GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
+            if (groupCallStatusIcon == null) {
+                return;
+            }
+            groupCallStatusIcon.updateIcon(z);
+            if (this.statusIcon.isMutedByMe()) {
+                color = Theme.getColor(Theme.key_voipgroup_mutedByAdminIcon);
+            } else {
+                if (this.statusIcon.isSpeaking()) {
+                    color = Theme.getColor(Theme.key_voipgroup_speakingText);
+                } else {
+                    color = Theme.getColor(Theme.key_voipgroup_nameText);
+                    color2 = Theme.getColor(Theme.key_voipgroup_listeningText);
+                }
+                if (!z) {
+                    valueAnimator = this.colorAnimator;
+                    if (valueAnimator != null) {
+                        valueAnimator.removeAllListeners();
+                        this.colorAnimator.cancel();
+                    }
+                    this.lastColor = color;
+                    this.lastWavesColor = color2;
+                    this.muteButton.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                    this.textPaint.setColor(this.lastColor);
+                    this.selectionPaint.setColor(color2);
+                    this.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(color2, 38));
+                    invalidate();
+                    return;
+                }
+                final int i = this.lastColor;
+                final int i2 = this.lastWavesColor;
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.colorAnimator = valueAnimatorOfFloat;
+                final int i3 = color;
+                final int i4 = color2;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        this.f$0.lambda$updateState$0(i, i3, i2, i4, valueAnimator2);
+                    }
+                });
+                this.colorAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        GroupCallUserCell groupCallUserCell = GroupCallUserCell.this;
+                        groupCallUserCell.lastColor = color;
+                        groupCallUserCell.lastWavesColor = color2;
+                        groupCallUserCell.muteButton.setColorFilter(new PorterDuffColorFilter(GroupCallUserCell.this.lastColor, PorterDuff.Mode.MULTIPLY));
+                        GroupCallUserCell groupCallUserCell2 = GroupCallUserCell.this;
+                        groupCallUserCell2.textPaint.setColor(groupCallUserCell2.lastColor);
+                        GroupCallUserCell groupCallUserCell3 = GroupCallUserCell.this;
+                        groupCallUserCell3.selectionPaint.setColor(groupCallUserCell3.lastWavesColor);
+                        GroupCallUserCell groupCallUserCell4 = GroupCallUserCell.this;
+                        groupCallUserCell4.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(groupCallUserCell4.lastWavesColor, 38));
+                    }
+                });
+                this.colorAnimator.start();
+            }
+            color2 = color;
+            if (!z) {
+                valueAnimator = this.colorAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.removeAllListeners();
+                    this.colorAnimator.cancel();
+                }
+                this.lastColor = color;
+                this.lastWavesColor = color2;
+                this.muteButton.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                this.textPaint.setColor(this.lastColor);
+                this.selectionPaint.setColor(color2);
+                this.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(color2, 38));
+                invalidate();
+                return;
+            }
+            final int i5 = this.lastColor;
+            final int i6 = this.lastWavesColor;
+            ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.colorAnimator = valueAnimatorOfFloat2;
+            final int i7 = color;
+            final int i8 = color2;
+            valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    this.f$0.lambda$updateState$0(i5, i7, i6, i8, valueAnimator2);
+                }
+            });
+            this.colorAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    GroupCallUserCell groupCallUserCell = GroupCallUserCell.this;
+                    groupCallUserCell.lastColor = color;
+                    groupCallUserCell.lastWavesColor = color2;
+                    groupCallUserCell.muteButton.setColorFilter(new PorterDuffColorFilter(GroupCallUserCell.this.lastColor, PorterDuff.Mode.MULTIPLY));
+                    GroupCallUserCell groupCallUserCell2 = GroupCallUserCell.this;
+                    groupCallUserCell2.textPaint.setColor(groupCallUserCell2.lastColor);
+                    GroupCallUserCell groupCallUserCell3 = GroupCallUserCell.this;
+                    groupCallUserCell3.selectionPaint.setColor(groupCallUserCell3.lastWavesColor);
+                    GroupCallUserCell groupCallUserCell4 = GroupCallUserCell.this;
+                    groupCallUserCell4.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(groupCallUserCell4.lastWavesColor, 38));
+                }
+            });
+            this.colorAnimator.start();
         }
 
         public void lambda$updateState$0(int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {

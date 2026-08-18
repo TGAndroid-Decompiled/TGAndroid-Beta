@@ -1,7 +1,5 @@
 package io.noties.markwon.html;
 
-import java.io.IOException;
-
 abstract class TrimmingAppender {
     abstract void append(Appendable appendable, String str);
 
@@ -17,7 +15,7 @@ abstract class TrimmingAppender {
         }
 
         @Override
-        void append(Appendable appendable, String str) throws IOException {
+        void append(Appendable appendable, String str) {
             int length;
             CharSequence charSequence = (CharSequence) appendable;
             int length2 = charSequence.length();

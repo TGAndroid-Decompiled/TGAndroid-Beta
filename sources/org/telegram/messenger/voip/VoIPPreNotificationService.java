@@ -11,15 +11,18 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import com.google.android.gms.cast.framework.media.internal.zzo$$ExternalSyntheticApiModelOutline2;
 import com.google.android.search.verification.client.SearchActionVerificationClientService$$ExternalSyntheticApiModelOutline2;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -31,7 +34,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.XiaomiUtilities;
-import org.telegram.messenger.voip.VoIPServiceState;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -243,8 +245,118 @@ public class VoIPPreNotificationService {
         return contentIntent.build();
     }
 
-    public static void startRinging(android.content.Context r11, int r12, long r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPPreNotificationService.startRinging(android.content.Context, int, long):void");
+    public static void startRinging(Context context, int i, long j) {
+        int i2;
+        long j2;
+        String string;
+        Uri defaultUri;
+        boolean z;
+        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i);
+        AudioManager audioManager = (AudioManager) context.getSystemService("audio");
+        boolean z2 = audioManager.getRingerMode() != 0;
+        boolean zIsWiredHeadsetOn = audioManager.isWiredHeadsetOn();
+        if (z2 && ringtonePlayer == null) {
+            synchronized (sync) {
+                try {
+                    if (ringtonePlayer != null) {
+                        return;
+                    }
+                    MediaPlayer mediaPlayer = new MediaPlayer();
+                    ringtonePlayer = mediaPlayer;
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public final void onPrepared(MediaPlayer mediaPlayer2) {
+                            VoIPPreNotificationService.lambda$startRinging$0(mediaPlayer2);
+                        }
+                    });
+                    ringtonePlayer.setLooping(true);
+                    if (zIsWiredHeadsetOn) {
+                        ringtonePlayer.setAudioStreamType(0);
+                    } else {
+                        ringtonePlayer.setAudioStreamType(2);
+                    }
+                    try {
+                        if (notificationsSettings.getBoolean("custom_" + j, false)) {
+                            string = notificationsSettings.getString("ringtone_path_" + j, null);
+                        } else {
+                            string = notificationsSettings.getString("CallsRingtonePath", null);
+                        }
+                        if (string == null) {
+                            defaultUri = RingtoneManager.getDefaultUri(1);
+                        } else {
+                            Uri uri = Settings.System.DEFAULT_RINGTONE_URI;
+                            if (uri != null && string.equalsIgnoreCase(uri.getPath())) {
+                                defaultUri = RingtoneManager.getDefaultUri(1);
+                            } else {
+                                defaultUri = Uri.parse(string);
+                                z = false;
+                            }
+                            FileLog.d("start ringtone with " + z + " " + defaultUri);
+                            ringtonePlayer.setDataSource(context, defaultUri);
+                            ringtonePlayer.prepareAsync();
+                            if (notificationsSettings.getBoolean("custom_" + j, false)) {
+                                i2 = notificationsSettings.getInt("calls_vibrate_" + j, 0);
+                            } else {
+                                i2 = notificationsSettings.getInt("vibrate_calls", 0);
+                            }
+                            if ((i2 == 2 && i2 != 4 && (audioManager.getRingerMode() == 1 || audioManager.getRingerMode() == 2)) || (i2 == 4 && audioManager.getRingerMode() == 1)) {
+                                Vibrator vibrator2 = (Vibrator) context.getSystemService("vibrator");
+                                vibrator = vibrator2;
+                                if (i2 == 1) {
+                                    j2 = 350;
+                                } else if (i2 == 3) {
+                                    j2 = 1400;
+                                } else {
+                                    j2 = 700;
+                                }
+                                vibrator2.vibrate(new long[]{0, j2, 500}, 0);
+                            }
+                        }
+                        z = true;
+                        FileLog.d("start ringtone with " + z + " " + defaultUri);
+                        ringtonePlayer.setDataSource(context, defaultUri);
+                        ringtonePlayer.prepareAsync();
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        MediaPlayer mediaPlayer2 = ringtonePlayer;
+                        if (mediaPlayer2 != null) {
+                            mediaPlayer2.release();
+                            ringtonePlayer = null;
+                        }
+                    }
+                    if (notificationsSettings.getBoolean("custom_" + j, false)) {
+                        i2 = notificationsSettings.getInt("calls_vibrate_" + j, 0);
+                    } else {
+                        i2 = notificationsSettings.getInt("vibrate_calls", 0);
+                    }
+                    if (i2 == 2) {
+                        Vibrator vibrator3 = (Vibrator) context.getSystemService("vibrator");
+                        vibrator = vibrator3;
+                        if (i2 == 1) {
+                            j2 = 350;
+                        } else if (i2 == 3) {
+                            j2 = 1400;
+                        } else {
+                            j2 = 700;
+                        }
+                        vibrator3.vibrate(new long[]{0, j2, 500}, 0);
+                    } else {
+                        Vibrator vibrator4 = (Vibrator) context.getSystemService("vibrator");
+                        vibrator = vibrator4;
+                        if (i2 == 1) {
+                            j2 = 350;
+                        } else if (i2 == 3) {
+                            j2 = 1400;
+                        } else {
+                            j2 = 700;
+                        }
+                        vibrator4.vibrate(new long[]{0, j2, 500}, 0);
+                    }
+                } catch (Throwable th) {
+                    throw th;
+                }
+            }
+        }
     }
 
     public static void lambda$startRinging$0(MediaPlayer mediaPlayer) {
@@ -275,7 +387,7 @@ public class VoIPPreNotificationService {
         }
     }
 
-    public static void show(final Context context, final Intent intent, final TL_phone.PhoneCall phoneCall) throws IOException {
+    public static void show(final Context context, final Intent intent, final TL_phone.PhoneCall phoneCall) {
         FileLog.d("VoIPPreNotification.show()");
         if (phoneCall == null || intent == null) {
             dismiss(context, false);
@@ -307,7 +419,7 @@ public class VoIPPreNotificationService {
         startRinging(context, i, j);
     }
 
-    private static void acknowledge(final Context context, int i, TL_phone.PhoneCall phoneCall, final Runnable runnable) throws IOException {
+    private static void acknowledge(final Context context, int i, TL_phone.PhoneCall phoneCall, final Runnable runnable) {
         if (phoneCall instanceof TL_phone.TL_phoneCallDiscarded) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.w("Call " + phoneCall.id + " was discarded before the voip pre notification started, stopping");
@@ -350,13 +462,13 @@ public class VoIPPreNotificationService {
     public static void lambda$acknowledge$3(final Context context, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 VoIPPreNotificationService.lambda$acknowledge$2(tLObject, tL_error, context, runnable);
             }
         });
     }
 
-    public static void lambda$acknowledge$2(TLObject tLObject, TLRPC.TL_error tL_error, Context context, Runnable runnable) throws IOException {
+    public static void lambda$acknowledge$2(TLObject tLObject, TLRPC.TL_error tL_error, Context context, Runnable runnable) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.w("(VoIPPreNotification) receivedCall response = " + tLObject);
         }

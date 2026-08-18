@@ -112,8 +112,95 @@ public class RadialProgressView extends View {
         updateAnimation(j);
     }
 
-    private void updateAnimation(long r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RadialProgressView.updateAnimation(long):void");
+    private void updateAnimation(long j) {
+        float f;
+        float f2;
+        float f3 = this.radOffset + ((360 * j) / 2000.0f);
+        this.radOffset = f3 - (((int) (f3 / 360.0f)) * 360);
+        boolean z = this.toCircle;
+        if (z) {
+            float f4 = this.toCircleProgress;
+            if (f4 != 1.0f) {
+                float f5 = f4 + 0.07272727f;
+                this.toCircleProgress = f5;
+                if (f5 > 1.0f) {
+                    this.toCircleProgress = 1.0f;
+                }
+            } else if (!z) {
+                f = this.toCircleProgress;
+                if (f != 0.0f) {
+                    f2 = f - 0.04f;
+                    this.toCircleProgress = f2;
+                    if (f2 < 0.0f) {
+                        this.toCircleProgress = 0.0f;
+                    }
+                }
+            }
+        } else if (!z) {
+            f = this.toCircleProgress;
+            if (f != 0.0f) {
+                f2 = f - 0.04f;
+                this.toCircleProgress = f2;
+                if (f2 < 0.0f) {
+                    this.toCircleProgress = 0.0f;
+                }
+            }
+        }
+        if (!this.noProgress) {
+            float f6 = this.currentProgress;
+            float f7 = this.progressAnimationStart;
+            float f8 = f6 - f7;
+            if (f8 > 0.0f) {
+                int i = (int) (((long) this.progressTime) + j);
+                this.progressTime = i;
+                float f9 = i;
+                if (f9 >= 200.0f) {
+                    this.progressAnimationStart = f6;
+                    this.animatedProgress = f6;
+                    this.progressTime = 0;
+                } else {
+                    this.animatedProgress = f7 + (f8 * AndroidUtilities.decelerateInterpolator.getInterpolation(f9 / 200.0f));
+                }
+            }
+            this.currentCircleLength = Math.max(4.0f, this.animatedProgress * 360.0f);
+        } else if (this.toCircleProgress == 0.0f) {
+            float f10 = this.currentProgressTime + j;
+            this.currentProgressTime = f10;
+            if (f10 >= 500.0f) {
+                this.currentProgressTime = 500.0f;
+            }
+            if (this.risingCircleLength) {
+                this.currentCircleLength = (this.accelerateInterpolator.getInterpolation(this.currentProgressTime / 500.0f) * 266.0f) + 4.0f;
+            } else {
+                this.currentCircleLength = 4.0f - ((1.0f - this.decelerateInterpolator.getInterpolation(this.currentProgressTime / 500.0f)) * 270.0f);
+            }
+            if (this.currentProgressTime == 500.0f) {
+                boolean z2 = this.risingCircleLength;
+                if (z2) {
+                    this.radOffset += 270.0f;
+                    this.currentCircleLength = -266.0f;
+                }
+                this.risingCircleLength = !z2;
+                this.currentProgressTime = 0.0f;
+            }
+        } else if (this.risingCircleLength) {
+            float f11 = this.currentCircleLength;
+            float interpolation = (this.accelerateInterpolator.getInterpolation(this.currentProgressTime / 500.0f) * 266.0f) + 4.0f + (this.toCircleProgress * 360.0f);
+            this.currentCircleLength = interpolation;
+            float f12 = f11 - interpolation;
+            if (f12 > 0.0f) {
+                this.radOffset += f12;
+            }
+        } else {
+            float f13 = this.currentCircleLength;
+            float interpolation2 = (4.0f - ((1.0f - this.decelerateInterpolator.getInterpolation(this.currentProgressTime / 500.0f)) * 270.0f)) - (this.toCircleProgress * 364.0f);
+            this.currentCircleLength = interpolation2;
+            float f14 = f13 - interpolation2;
+            if (f14 > 0.0f) {
+                this.radOffset += f14;
+            }
+        }
+        invalidate();
     }
 
     public void setSize(int i) {
@@ -140,7 +227,11 @@ public class RadialProgressView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        this.cicleRect.set((getMeasuredWidth() - this.size) / 2, (getMeasuredHeight() - this.size) / 2, r0 + r2, r1 + r2);
+        int measuredWidth = (getMeasuredWidth() - this.size) / 2;
+        int measuredHeight = getMeasuredHeight();
+        int i = this.size;
+        int i2 = (measuredHeight - i) / 2;
+        this.cicleRect.set(measuredWidth, i2, measuredWidth + i, i2 + i);
         RectF rectF = this.cicleRect;
         float f = this.radOffset;
         float f2 = this.currentCircleLength;
@@ -150,13 +241,14 @@ public class RadialProgressView extends View {
     }
 
     public void draw(Canvas canvas, float f, float f2) {
-        float f3 = this.size / 2.0f;
-        this.cicleRect.set(f - f3, f2 - f3, f + f3, f2 + f3);
         RectF rectF = this.cicleRect;
+        float f3 = this.size / 2.0f;
+        rectF.set(f - f3, f2 - f3, f + f3, f2 + f3);
+        RectF rectF2 = this.cicleRect;
         float f4 = this.radOffset;
         float f5 = this.currentCircleLength;
         this.drawingCircleLenght = f5;
-        canvas.drawArc(rectF, f4, f5, false, this.progressPaint);
+        canvas.drawArc(rectF2, f4, f5, false, this.progressPaint);
         updateAnimation();
     }
 

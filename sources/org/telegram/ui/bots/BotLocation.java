@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -391,7 +390,7 @@ public class BotLocation {
         }
     }
 
-    public JSONObject checkObject() throws JSONException {
+    public JSONObject checkObject() {
         JSONObject jSONObject = new JSONObject();
         try {
             jSONObject.put("available", deviceHasLocation());
@@ -483,43 +482,43 @@ public class BotLocation {
         }
     }
 
-    public JSONObject locationObject(Location location) throws JSONException {
+    public JSONObject locationObject(Location location) {
         JSONObject jSONObject = new JSONObject();
         try {
             jSONObject.put("available", location != null);
+            if (location == null) {
+                return jSONObject;
+            }
+            jSONObject.put("latitude", location.getLatitude());
+            jSONObject.put("longitude", location.getLongitude());
+            int i = Build.VERSION.SDK_INT;
+            if (i >= 26) {
+                jSONObject.put("horizontal_accuracy", location.getAccuracy());
+            } else {
+                jSONObject.put("horizontal_accuracy", (Object) null);
+            }
+            jSONObject.put("altitude", location.getAltitude());
+            if (i >= 26) {
+                jSONObject.put("vertical_accuracy", location.getVerticalAccuracyMeters());
+            } else {
+                jSONObject.put("vertical_accuracy", (Object) null);
+            }
+            jSONObject.put("course", location.getBearing());
+            if (i >= 26) {
+                jSONObject.put("course_accuracy", location.getBearingAccuracyDegrees());
+            } else {
+                jSONObject.put("course_accuracy", (Object) null);
+            }
+            jSONObject.put("speed", location.getSpeed());
+            if (i >= 26) {
+                jSONObject.put("speed_accuracy", location.getSpeedAccuracyMetersPerSecond());
+            } else {
+                jSONObject.put("speed_accuracy", (Object) null);
+            }
+            return jSONObject;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (location == null) {
-            return jSONObject;
-        }
-        jSONObject.put("latitude", location.getLatitude());
-        jSONObject.put("longitude", location.getLongitude());
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 26) {
-            jSONObject.put("horizontal_accuracy", location.getAccuracy());
-        } else {
-            jSONObject.put("horizontal_accuracy", (Object) null);
-        }
-        jSONObject.put("altitude", location.getAltitude());
-        if (i >= 26) {
-            jSONObject.put("vertical_accuracy", location.getVerticalAccuracyMeters());
-        } else {
-            jSONObject.put("vertical_accuracy", (Object) null);
-        }
-        jSONObject.put("course", location.getBearing());
-        if (i >= 26) {
-            jSONObject.put("course_accuracy", location.getBearingAccuracyDegrees());
-        } else {
-            jSONObject.put("course_accuracy", (Object) null);
-        }
-        jSONObject.put("speed", location.getSpeed());
-        if (i >= 26) {
-            jSONObject.put("speed_accuracy", location.getSpeedAccuracyMetersPerSecond());
-        } else {
-            jSONObject.put("speed_accuracy", (Object) null);
-        }
-        return jSONObject;
     }
 
     public static class BotUserLocationDrawable extends Drawable implements AttachableDrawable {

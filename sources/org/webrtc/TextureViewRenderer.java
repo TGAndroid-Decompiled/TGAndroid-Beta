@@ -12,10 +12,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda12;
-import org.webrtc.EglBase;
-import org.webrtc.EglRenderer;
-import org.webrtc.GlGenericDrawer;
-import org.webrtc.RendererCommon;
 
 public class TextureViewRenderer extends TextureView implements TextureView.SurfaceTextureListener, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "TextureViewRenderer";
@@ -466,8 +462,66 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     @Override
-    public void onFrameResolutionChanged(final int r8, final int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.TextureViewRenderer.onFrameResolutionChanged(int, int, int):void");
+    public void onFrameResolutionChanged(final int i, final int i2, int i3) {
+        int i4;
+        final int i5;
+        RendererCommon.RendererEvents rendererEvents = this.rendererEvents;
+        if (rendererEvents != null) {
+            rendererEvents.onFrameResolutionChanged(i, i2, i3);
+        }
+        this.textureRotation = i3;
+        if (this.rotateTextureWithScreen) {
+            if (this.isCamera) {
+                onRotationChanged();
+            }
+            if (this.useCameraRotation) {
+                int i6 = this.screenRotation;
+                i4 = i6 == 0 ? i2 : i;
+                if (i6 == 0) {
+                    i5 = i;
+                } else {
+                    i5 = i2;
+                }
+            } else {
+                int i7 = this.textureRotation;
+                i4 = (i7 == 0 || i7 == 180 || i7 == -180) ? i : i2;
+                if (i7 == 0 || i7 == 180 || i7 == -180) {
+                    i5 = i2;
+                } else {
+                    i5 = i;
+                }
+            }
+        } else {
+            if (this.isCamera) {
+                this.eglRenderer.setRotation(-OrientationHelper.cameraRotation);
+            }
+            int i8 = i3 - OrientationHelper.cameraOrientation;
+            i4 = (i8 == 0 || i8 == 180 || i8 == -180) ? i : i2;
+            if (i8 == 0 || i8 == 180 || i8 == -180) {
+                i5 = i2;
+            } else {
+                i5 = i;
+            }
+        }
+        final int i9 = i4;
+        synchronized (this.eglRenderer.layoutLock) {
+            try {
+                Runnable runnable = this.updateScreenRunnable;
+                if (runnable != null) {
+                    AndroidUtilities.cancelRunOnUIThread(runnable);
+                }
+                Runnable runnable2 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onFrameResolutionChanged$0(i, i2, i9, i5);
+                    }
+                };
+                this.updateScreenRunnable = runnable2;
+                postOrRun(runnable2);
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
     }
 
     public void lambda$onFrameResolutionChanged$0(int i, int i2, int i3, int i4) {
@@ -533,7 +587,8 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                 };
                 this.updateScreenRunnable = runnable2;
                 postOrRun(runnable2);
-            } finally {
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

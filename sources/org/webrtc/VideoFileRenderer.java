@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.concurrent.CountDownLatch;
-import org.webrtc.EglBase;
-import org.webrtc.VideoFrame;
-import org.webrtc.VideoSink;
 
 public class VideoFileRenderer implements VideoSink {
     private static final String TAG = "VideoFileRenderer";
@@ -95,13 +92,13 @@ public class VideoFileRenderer implements VideoSink {
         bufferCropAndScale.release();
         this.fileThreadHandler.post(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$renderFrameOnRenderThread$1(i420, videoFrame);
             }
         });
     }
 
-    public void lambda$renderFrameOnRenderThread$1(VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) throws IOException {
+    public void lambda$renderFrameOnRenderThread$1(VideoFrame.I420Buffer i420Buffer, VideoFrame videoFrame) {
         YuvHelper.I420Rotate(i420Buffer.getDataY(), i420Buffer.getStrideY(), i420Buffer.getDataU(), i420Buffer.getStrideU(), i420Buffer.getDataV(), i420Buffer.getStrideV(), this.outputFrameBuffer, i420Buffer.getWidth(), i420Buffer.getHeight(), videoFrame.getRotation());
         i420Buffer.release();
         try {
@@ -113,7 +110,7 @@ public class VideoFileRenderer implements VideoSink {
         }
     }
 
-    public void release() throws InterruptedException {
+    public void release() {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         this.renderThreadHandler.post(new Runnable() {
             @Override
@@ -124,7 +121,7 @@ public class VideoFileRenderer implements VideoSink {
         ThreadUtils.awaitUninterruptibly(countDownLatch);
         this.fileThreadHandler.post(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$release$3();
             }
         });
@@ -143,7 +140,7 @@ public class VideoFileRenderer implements VideoSink {
         countDownLatch.countDown();
     }
 
-    public void lambda$release$3() throws IOException {
+    public void lambda$release$3() {
         try {
             this.videoOutFile.close();
             Logging.d("VideoFileRenderer", "Video written to disk as " + this.outputFileName + ". The number of frames is " + this.frameCount + " and the dimensions of the frames are " + this.outputFileWidth + "x" + this.outputFileHeight + ".");

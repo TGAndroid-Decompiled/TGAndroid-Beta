@@ -35,13 +35,121 @@ public class CornerPath extends Path {
     }
 
     @Override
-    public void addRect(android.graphics.RectF r9, android.graphics.Path.Direction r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CornerPath.addRect(android.graphics.RectF, android.graphics.Path$Direction):void");
+    public void addRect(RectF rectF, Path.Direction direction) {
+        ArrayList arrayList;
+        RectF rectF2;
+        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
+            float f = rectF.left;
+            float f2 = this.paddingX;
+            float f3 = f - f2;
+            float f4 = rectF.top;
+            float f5 = this.paddingY;
+            super.addRect(f3, f4 - f5, rectF.right + f2, rectF.bottom + f5, direction);
+            return;
+        }
+        if (this.rects.size() > 0) {
+            ArrayList arrayList2 = this.rects;
+            if (((RectF) arrayList2.get(arrayList2.size() - 1)).contains(rectF)) {
+                return;
+            }
+        }
+        if (this.rects.size() > 0) {
+            float f6 = rectF.top;
+            ArrayList arrayList3 = this.rects;
+            if (Math.abs(f6 - ((RectF) arrayList3.get(arrayList3.size() - 1)).top) <= this.rectsUnionDiffDelta) {
+                float f7 = rectF.bottom;
+                ArrayList arrayList4 = this.rects;
+                if (Math.abs(f7 - ((RectF) arrayList4.get(arrayList4.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
+                    ArrayList arrayList5 = this.rects;
+                    ((RectF) arrayList5.get(arrayList5.size() - 1)).union(rectF);
+                } else {
+                    arrayList = recycled;
+                    if (arrayList == null && arrayList.size() > 0) {
+                        rectF2 = (RectF) recycled.remove(0);
+                    } else {
+                        rectF2 = new RectF();
+                    }
+                    rectF2.set(rectF);
+                    this.rects.add(rectF2);
+                }
+            } else {
+                arrayList = recycled;
+                if (arrayList == null) {
+                    rectF2 = new RectF();
+                } else {
+                    rectF2 = new RectF();
+                }
+                rectF2.set(rectF);
+                this.rects.add(rectF2);
+            }
+        } else {
+            arrayList = recycled;
+            if (arrayList == null) {
+                rectF2 = new RectF();
+            } else {
+                rectF2 = new RectF();
+            }
+            rectF2.set(rectF);
+            this.rects.add(rectF2);
+        }
+        this.isPathCreated = false;
     }
 
     @Override
-    public void addRect(float r8, float r9, float r10, float r11, android.graphics.Path.Direction r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CornerPath.addRect(float, float, float, float, android.graphics.Path$Direction):void");
+    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+        ArrayList arrayList;
+        RectF rectF;
+        if (Build.VERSION.SDK_INT < 34 || !this.useCornerPathImplementation) {
+            float f5 = this.paddingX;
+            float f6 = f - f5;
+            float f7 = this.paddingY;
+            super.addRect(f6, f2 - f7, f3 + f5, f4 + f7, direction);
+            return;
+        }
+        if (this.rects.size() > 0) {
+            ArrayList arrayList2 = this.rects;
+            if (((RectF) arrayList2.get(arrayList2.size() - 1)).contains(f, f2, f3, f4)) {
+                return;
+            }
+        }
+        if (this.rects.size() > 0) {
+            ArrayList arrayList3 = this.rects;
+            if (Math.abs(f2 - ((RectF) arrayList3.get(arrayList3.size() - 1)).top) <= this.rectsUnionDiffDelta) {
+                ArrayList arrayList4 = this.rects;
+                if (Math.abs(f4 - ((RectF) arrayList4.get(arrayList4.size() - 1)).bottom) <= this.rectsUnionDiffDelta) {
+                    ArrayList arrayList5 = this.rects;
+                    ((RectF) arrayList5.get(arrayList5.size() - 1)).union(f, f2, f3, f4);
+                } else {
+                    arrayList = recycled;
+                    if (arrayList == null && arrayList.size() > 0) {
+                        rectF = (RectF) recycled.remove(0);
+                    } else {
+                        rectF = new RectF();
+                    }
+                    rectF.set(f, f2, f3, f4);
+                    this.rects.add(rectF);
+                }
+            } else {
+                arrayList = recycled;
+                if (arrayList == null) {
+                    rectF = new RectF();
+                } else {
+                    rectF = new RectF();
+                }
+                rectF.set(f, f2, f3, f4);
+                this.rects.add(rectF);
+            }
+        } else {
+            arrayList = recycled;
+            if (arrayList == null) {
+                rectF = new RectF();
+            } else {
+                rectF = new RectF();
+            }
+            rectF.set(f, f2, f3, f4);
+            this.rects.add(rectF);
+        }
+        this.isPathCreated = false;
     }
 
     @Override

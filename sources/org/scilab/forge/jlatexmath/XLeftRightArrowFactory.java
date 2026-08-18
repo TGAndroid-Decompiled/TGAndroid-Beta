@@ -68,12 +68,13 @@ public class XLeftRightArrowFactory {
         float width3 = width + (boxCreateBox4.getWidth() * 2.0f);
         HorizontalBox horizontalBox2 = new HorizontalBox();
         while (true) {
-            if (f2 < (fMin - width3) - width2) {
+            float f3 = fMin - width3;
+            if (f2 < f3 - width2) {
                 horizontalBox2.add(boxCreateBox3);
                 horizontalBox2.add(boxCreateBox4);
                 f2 += width2;
             } else {
-                horizontalBox2.add(new ScaleBox(boxCreateBox3, (r6 - f2) / boxCreateBox3.getWidth(), 1.0d));
+                horizontalBox2.add(new ScaleBox(boxCreateBox3, (f3 - f2) / boxCreateBox3.getWidth(), 1.0d));
                 horizontalBox2.add(0, boxCreateBox4);
                 horizontalBox2.add(0, boxCreateBox);
                 horizontalBox2.add(boxCreateBox4);

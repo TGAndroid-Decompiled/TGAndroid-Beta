@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableSource;
-import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 
 public class BlurredBackgroundSourceColor implements BlurredBackgroundSource {
     private final Paint paint = new Paint(1);

@@ -434,9 +434,10 @@ public abstract class VideoTimelinePlayView extends View {
         }
         if (i == 0) {
             this.frameHeight = AndroidUtilities.dp(38.0f);
-            this.framesToLoad = Math.max(1, (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / (this.frameHeight * Utilities.clamp((this.videoWidth == 0 || (i2 = this.videoHeight) == 0) ? 1.0f : r2 / i2, 1.3333334f, 0.5625f))));
+            int i3 = this.videoWidth;
+            this.framesToLoad = Math.max(1, (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / (this.frameHeight * Utilities.clamp((i3 == 0 || (i2 = this.videoHeight) == 0) ? 1.0f : i3 / i2, 1.3333334f, 0.5625f))));
             this.frameWidth = (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / this.framesToLoad);
-            this.frameTimeOffset = this.videoLength / this.framesToLoad;
+            this.frameTimeOffset = this.videoLength / ((long) this.framesToLoad);
         }
         AsyncTask asyncTask = new AsyncTask() {
             private int frameNum = 0;
@@ -444,37 +445,35 @@ public abstract class VideoTimelinePlayView extends View {
 
             @Override
             public Bitmap doInBackground(Integer... numArr) {
-                Bitmap frameAtTime;
                 this.frameNum = numArr[0].intValue();
                 Bitmap bitmapCreateBitmap = null;
                 if (isCancelled()) {
                     return null;
                 }
                 try {
-                    frameAtTime = VideoTimelinePlayView.this.mediaMetadataRetriever.getFrameAtTime(VideoTimelinePlayView.this.frameTimeOffset * this.frameNum * 1000, 2);
-                } catch (Exception e) {
-                    e = e;
-                }
-                try {
+                    Bitmap frameAtTime = VideoTimelinePlayView.this.mediaMetadataRetriever.getFrameAtTime(VideoTimelinePlayView.this.frameTimeOffset * ((long) this.frameNum) * 1000, 2);
+                    try {
+                        if (isCancelled()) {
+                            return null;
+                        }
+                        if (frameAtTime == null) {
+                            return frameAtTime;
+                        }
+                        bitmapCreateBitmap = Bitmap.createBitmap(VideoTimelinePlayView.this.frameWidth, VideoTimelinePlayView.this.frameHeight, frameAtTime.getConfig());
+                        Canvas canvas = new Canvas(bitmapCreateBitmap);
+                        float fMax = Math.max(VideoTimelinePlayView.this.frameWidth / frameAtTime.getWidth(), VideoTimelinePlayView.this.frameHeight / frameAtTime.getHeight());
+                        int width = (int) (frameAtTime.getWidth() * fMax);
+                        int height = (int) (frameAtTime.getHeight() * fMax);
+                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((VideoTimelinePlayView.this.frameWidth - width) / 2, (VideoTimelinePlayView.this.frameHeight - height) / 2, (VideoTimelinePlayView.this.frameWidth + width) / 2, (VideoTimelinePlayView.this.frameHeight + height) / 2), this.paint);
+                        frameAtTime.recycle();
+                    } catch (Exception e) {
+                        e = e;
+                        bitmapCreateBitmap = frameAtTime;
+                        FileLog.e(e);
+                    }
                 } catch (Exception e2) {
                     e = e2;
-                    bitmapCreateBitmap = frameAtTime;
-                    FileLog.e(e);
-                    return bitmapCreateBitmap;
                 }
-                if (isCancelled()) {
-                    return null;
-                }
-                if (frameAtTime == null) {
-                    return frameAtTime;
-                }
-                bitmapCreateBitmap = Bitmap.createBitmap(VideoTimelinePlayView.this.frameWidth, VideoTimelinePlayView.this.frameHeight, frameAtTime.getConfig());
-                Canvas canvas = new Canvas(bitmapCreateBitmap);
-                float fMax = Math.max(VideoTimelinePlayView.this.frameWidth / frameAtTime.getWidth(), VideoTimelinePlayView.this.frameHeight / frameAtTime.getHeight());
-                int width = (int) (frameAtTime.getWidth() * fMax);
-                int height = (int) (frameAtTime.getHeight() * fMax);
-                canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((VideoTimelinePlayView.this.frameWidth - width) / 2, (VideoTimelinePlayView.this.frameHeight - height) / 2, (VideoTimelinePlayView.this.frameWidth + width) / 2, (VideoTimelinePlayView.this.frameHeight + height) / 2), this.paint);
-                frameAtTime.recycle();
                 return bitmapCreateBitmap;
             }
 
@@ -495,7 +494,47 @@ public abstract class VideoTimelinePlayView extends View {
     }
 
     public void destroy() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.VideoTimelinePlayView.destroy():void");
+        Bitmap bitmap;
+        MediaMetadataRetriever mediaMetadataRetriever;
+        synchronized (sync) {
+            try {
+                ParcelFileDescriptor parcelFileDescriptor = this.fd;
+                if (parcelFileDescriptor != null) {
+                    parcelFileDescriptor.close();
+                    this.fd = null;
+                    try {
+                        mediaMetadataRetriever = this.mediaMetadataRetriever;
+                        if (mediaMetadataRetriever != null) {
+                            mediaMetadataRetriever.release();
+                            this.mediaMetadataRetriever = null;
+                        }
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                } else {
+                    mediaMetadataRetriever = this.mediaMetadataRetriever;
+                    if (mediaMetadataRetriever != null) {
+                        mediaMetadataRetriever.release();
+                        this.mediaMetadataRetriever = null;
+                    }
+                }
+            } catch (Exception e2) {
+                FileLog.e(e2);
+            }
+            throw th;
+        }
+        for (int i = 0; i < this.frames.size(); i++) {
+            BitmapFrame bitmapFrame = (BitmapFrame) this.frames.get(i);
+            if (bitmapFrame != null && (bitmap = bitmapFrame.bitmap) != null) {
+                bitmap.recycle();
+            }
+        }
+        this.frames.clear();
+        AsyncTask asyncTask = this.currentTask;
+        if (asyncTask != null) {
+            asyncTask.cancel(true);
+            this.currentTask = null;
+        }
     }
 
     public boolean isDragging() {
@@ -544,12 +583,122 @@ public abstract class VideoTimelinePlayView extends View {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.VideoTimelinePlayView.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        float f;
+        int i;
+        float fDpf2 = AndroidUtilities.dpf2(12.0f);
+        float measuredWidth = getMeasuredWidth() - (fDpf2 * 2.0f);
+        float fDp = AndroidUtilities.dp(10.0f) + fDpf2 + ((int) ((measuredWidth - AndroidUtilities.dp(20.0f)) * this.progressLeft));
+        float fDp2 = AndroidUtilities.dp(10.0f) + fDpf2 + ((int) ((measuredWidth - AndroidUtilities.dp(20.0f)) * this.progressRight));
+        float fDp3 = AndroidUtilities.dp(6.0f);
+        float fDp4 = fDp3 + AndroidUtilities.dp(38.0f);
+        if (this.frames.isEmpty() && this.currentTask == null) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(fDpf2, fDp3, measuredWidth + fDpf2, fDp4);
+            if (customBlur()) {
+                canvas.save();
+                this.clipPath.rewind();
+                this.clipPath.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+                canvas.clipPath(this.clipPath);
+                drawBlur(canvas, rectF);
+                canvas.restore();
+            } else {
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.dimPaint);
+            }
+            reloadFrames(0);
+        } else {
+            canvas.save();
+            this.clipPath.rewind();
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            float f2 = fDpf2 + measuredWidth;
+            rectF2.set(fDpf2, fDp3, f2, fDp4);
+            this.clipPath.addRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+            canvas.clipPath(this.clipPath);
+            boolean z = this.frames.size() < this.framesToLoad;
+            this.hasBlur = z;
+            if (!z) {
+                for (int i2 = 0; i2 < this.frames.size(); i2++) {
+                    if (((BitmapFrame) this.frames.get(i2)).bitmap == null) {
+                        this.hasBlur = true;
+                        break;
+                    }
+                }
+            }
+            if (!this.hasBlur) {
+                f = 1.0f;
+                i = 0;
+            } else if (customBlur()) {
+                RectF rectF3 = AndroidUtilities.rectTmp;
+                rectF3.set(fDpf2, fDp3, AndroidUtilities.dp(4.0f) + f2, fDp4);
+                drawBlur(canvas, rectF3);
+                f = 1.0f;
+                i = 0;
+            } else {
+                i = 0;
+                f = 1.0f;
+                canvas.drawRect(fDp, fDp3, fDp2, fDp4, this.dimPaint);
+            }
+            int i3 = 0;
+            while (i3 < this.frames.size()) {
+                BitmapFrame bitmapFrame = (BitmapFrame) this.frames.get(i3);
+                if (bitmapFrame.bitmap != null) {
+                    float f3 = (this.frameWidth * i) + fDpf2;
+                    float fDp5 = AndroidUtilities.dp(6.0f);
+                    float f4 = bitmapFrame.alpha;
+                    if (f4 != f) {
+                        float f5 = f4 + 0.045714285f;
+                        bitmapFrame.alpha = f5;
+                        if (f5 > f) {
+                            bitmapFrame.alpha = f;
+                        } else {
+                            invalidate();
+                        }
+                        this.bitmapPaint.setAlpha((int) (CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(bitmapFrame.alpha) * 255.0f));
+                        canvas.drawBitmap(bitmapFrame.bitmap, f3, fDp5, this.bitmapPaint);
+                    } else {
+                        canvas.drawBitmap(bitmapFrame.bitmap, f3, fDp5, (Paint) null);
+                    }
+                }
+                i++;
+                i3++;
+                f = 1.0f;
+            }
+            canvas.drawRect(fDpf2, fDp3, fDp, AndroidUtilities.dp(46.0f), this.dimPaint);
+            canvas.drawRect(fDp2, fDp3, f2, fDp4, this.dimPaint);
+            canvas.restore();
+        }
+        if (!this.isLivePhoto) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            this.rect3.set(fDp - AndroidUtilities.dpf2(10.0f), fDp3, AndroidUtilities.dpf2(10.0f) + fDp2, fDp4);
+            this.whitePaint.setAlpha(255);
+            canvas.drawRoundRect(this.rect3, AndroidUtilities.dpf2(6.0f), AndroidUtilities.dpf2(6.0f), this.whitePaint);
+            this.rect3.set(fDp, AndroidUtilities.dpf2(2.0f) + fDp3, fDp2, fDp4 - AndroidUtilities.dpf2(2.0f));
+            canvas.drawRect(this.rect3, this.cutPaint);
+            canvas.restore();
+            float fDp6 = AndroidUtilities.dp(2.0f);
+            float fDp7 = AndroidUtilities.dp(10.0f);
+            float fDpf3 = fDp - ((AndroidUtilities.dpf2(10.0f) - fDp6) / 2.0f);
+            float f6 = fDp3 + (((fDp4 - fDp3) - fDp7) / 2.0f);
+            float f7 = fDp7 + f6;
+            this.rect3.set(fDpf3, f6, fDpf3 - fDp6, f7);
+            canvas.drawRoundRect(this.rect3, AndroidUtilities.dpf2(6.0f), AndroidUtilities.dpf2(6.0f), this.handlePaint);
+            float fDpf4 = fDp2 + ((AndroidUtilities.dpf2(10.0f) - fDp6) / 2.0f);
+            this.rect3.set(fDpf4, f6, fDp6 + fDpf4, f7);
+            canvas.drawRoundRect(this.rect3, AndroidUtilities.dpf2(6.0f), AndroidUtilities.dpf2(6.0f), this.handlePaint);
+        }
+        float f8 = this.loopProgress.set(0.0f);
+        if (f8 > 0.0f) {
+            drawProgress(canvas, this.progressRight, f8, this.whitePaint);
+        }
+        drawProgress(canvas, this.playProgress, 1.0f - f8, this.whitePaint);
+        if (this.isLivePhoto) {
+            drawProgress(canvas, this.progressPreview, 1.0f, this.yellowPaint);
+        }
     }
 
     private void drawProgress(Canvas canvas, float f, float f2, Paint paint) {
         float fDpf2 = AndroidUtilities.dpf2(12.0f);
+        float measuredWidth = (getMeasuredWidth() - (fDpf2 * 2.0f)) - AndroidUtilities.dp(20.0f);
         float fDp = AndroidUtilities.dp(2.0f);
         float fDp2 = AndroidUtilities.dp(46.0f) + fDp;
         float f3 = ((fDp2 - fDp) / 2.0f) * (1.0f - f2);
@@ -557,7 +706,7 @@ public abstract class VideoTimelinePlayView extends View {
         float f5 = fDp2 - f3;
         this.shadowPaint.setAlpha((int) (38.0f * f2));
         paint.setAlpha((int) (f2 * 255.0f));
-        float fDp3 = fDpf2 + AndroidUtilities.dp(10.0f) + (((getMeasuredWidth() - (fDpf2 * 2.0f)) - AndroidUtilities.dp(20.0f)) * f);
+        float fDp3 = fDpf2 + AndroidUtilities.dp(10.0f) + (measuredWidth * f);
         this.rect3.set(fDp3 - AndroidUtilities.dpf2(1.5f), f4, AndroidUtilities.dpf2(1.5f) + fDp3, f5);
         this.rect3.inset(-AndroidUtilities.dpf2(0.66f), -AndroidUtilities.dpf2(0.66f));
         canvas.drawRoundRect(this.rect3, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.shadowPaint);

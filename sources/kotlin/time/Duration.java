@@ -132,21 +132,21 @@ public final class Duration implements Comparable {
         if (m314isInfiniteimpl(j)) {
             return 0;
         }
-        return (int) (m301getInWholeHoursimpl(j) % 24);
+        return (int) (m301getInWholeHoursimpl(j) % ((long) 24));
     }
 
     public static final int m305getMinutesComponentimpl(long j) {
         if (m314isInfiniteimpl(j)) {
             return 0;
         }
-        return (int) (m303getInWholeMinutesimpl(j) % 60);
+        return (int) (m303getInWholeMinutesimpl(j) % ((long) 60));
     }
 
     public static final int m307getSecondsComponentimpl(long j) {
         if (m314isInfiniteimpl(j)) {
             return 0;
         }
-        return (int) (m304getInWholeSecondsimpl(j) % 60);
+        return (int) (m304getInWholeSecondsimpl(j) % ((long) 60));
     }
 
     public static final int m306getNanosecondsComponentimpl(long j) {
@@ -155,9 +155,9 @@ public final class Duration implements Comparable {
             return 0;
         }
         if (m312isInMillisimpl(j)) {
-            jM309getValueimpl = DurationKt.millisToNanos(m309getValueimpl(j) % 1000);
+            jM309getValueimpl = DurationKt.millisToNanos(m309getValueimpl(j) % ((long) 1000));
         } else {
-            jM309getValueimpl = m309getValueimpl(j) % 1000000000;
+            jM309getValueimpl = m309getValueimpl(j) % ((long) 1000000000);
         }
         return (int) jM309getValueimpl;
     }

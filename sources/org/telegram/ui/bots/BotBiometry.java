@@ -13,7 +13,6 @@ import com.microsoft.appcenter.utils.crypto.CryptoAesHandler$$ExternalSyntheticA
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -110,13 +109,10 @@ public class BotBiometry {
     public static String getAvailableType(Context context) {
         try {
             BiometricManager biometricManagerFrom = BiometricManager.from(context);
-            if (biometricManagerFrom == null) {
-                return null;
+            if (biometricManagerFrom != null && biometricManagerFrom.canAuthenticate(15) == 0) {
+                return "unknown";
             }
-            if (biometricManagerFrom.canAuthenticate(15) != 0) {
-                return null;
-            }
-            return "unknown";
+            return null;
         } catch (Exception e) {
             FileLog.e(e);
             return null;
@@ -236,7 +232,7 @@ public class BotBiometry {
         });
     }
 
-    private BiometricPrompt.CryptoObject makeCryptoObject(boolean z) throws InvalidKeyException, InvalidAlgorithmParameterException {
+    private BiometricPrompt.CryptoObject makeCryptoObject(boolean z) {
         try {
             if (Build.VERSION.SDK_INT < 23) {
                 return null;
@@ -255,7 +251,7 @@ public class BotBiometry {
         }
     }
 
-    private void prompt(String str, boolean z, String str2, final Utilities.Callback3 callback3) throws InvalidKeyException, InvalidAlgorithmParameterException {
+    private void prompt(String str, boolean z, String str2, final Utilities.Callback3 callback3) {
         int i;
         final BiometricPrompt.CryptoObject cryptoObject = null;
         this.callback = null;
@@ -412,7 +408,7 @@ public class BotBiometry {
             return;
         }
         SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + i, 0);
-        final ArrayList arrayList = new ArrayList();
+        final ArrayList<Long> arrayList = new ArrayList();
         Iterator<Map.Entry<String, ?>> it = sharedPreferences.getAll().entrySet().iterator();
         while (it.hasNext()) {
             String key = it.next().getKey();
@@ -425,9 +421,7 @@ public class BotBiometry {
             }
         }
         final HashMap map = new HashMap();
-        Iterator it2 = arrayList.iterator();
-        while (it2.hasNext()) {
-            Long l = (Long) it2.next();
+        for (Long l : arrayList) {
             BotBiometry botBiometry = get(context, i, l.longValue());
             if (botBiometry.access_granted && botBiometry.access_requested) {
                 map.put(l, Boolean.valueOf(!botBiometry.disabled));

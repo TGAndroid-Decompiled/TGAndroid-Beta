@@ -40,7 +40,7 @@ public class DurationCell extends BaseCell {
             this.titleTextView.setText(LocaleController.formatPluralString("Months", i, new Object[0]));
         }
         StringBuilder sb = new StringBuilder();
-        sb.append(BillingController.getInstance().formatCurrency(i2 > 0 ? j / i2 : j, charSequence.toString()));
+        sb.append(BillingController.getInstance().formatCurrency(i2 > 0 ? j / ((long) i2) : j, charSequence.toString()));
         sb.append(" x ");
         sb.append(i2);
         setSubtitle(sb.toString());

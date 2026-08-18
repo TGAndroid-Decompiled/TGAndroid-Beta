@@ -2,11 +2,14 @@ package org.telegram.ui.Components.Reactions;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.LayoutTransition;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Editable;
@@ -39,12 +42,16 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Cells.TextCheckCell;
+import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BulletinFactory;
@@ -137,8 +144,321 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
     }
 
     @Override
-    public android.view.View createView(android.content.Context r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatCustomReactionsEditActivity.createView(android.content.Context):android.view.View");
+    public View createView(Context context) {
+        this.actionBar.setTitle(LocaleController.getString(R.string.Reactions));
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        boolean z = true;
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i) {
+                if (i != -1 || ChatCustomReactionsEditActivity.this.checkChangesBeforeExit(true)) {
+                    return;
+                }
+                ChatCustomReactionsEditActivity.this.finishFragment();
+            }
+        });
+        this.contentLayout = new SectionsScrollView.SectionsLinearLayout(context);
+        SectionsScrollView sectionsScrollView = new SectionsScrollView(context, this.contentLayout, this.resourceProvider);
+        this.scrollView = sectionsScrollView;
+        sectionsScrollView.setFillViewport(true);
+        this.actionBar.setAdaptiveBackground(this.scrollView);
+        FrameLayout frameLayout = new FrameLayout(context) {
+            final AdjustPanLayoutHelper adjustPanLayoutHelper = new AnonymousClass1(this);
+
+            class AnonymousClass1 extends AdjustPanLayoutHelper {
+                @Override
+                protected boolean applyTranslation() {
+                    return false;
+                }
+
+                @Override
+                protected void onTransitionEnd() {
+                }
+
+                AnonymousClass1(View view) {
+                    super(view);
+                }
+
+                @Override
+                protected void onTransitionStart(final boolean z, int i) {
+                    ChatCustomReactionsEditActivity.this.actionButtonContainer.setVisibility(0);
+                    ChatCustomReactionsEditActivity.this.actionButtonContainer.animate().alpha(!z ? 1.0f : 0.0f).withEndAction(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$onTransitionStart$0(z);
+                        }
+                    }).start();
+                }
+
+                public void lambda$onTransitionStart$0(boolean z) {
+                    if (z) {
+                        ChatCustomReactionsEditActivity.this.actionButtonContainer.setVisibility(4);
+                    }
+                }
+
+                @Override
+                protected void onPanTranslationUpdate(float f, float f2, boolean z) {
+                    if (ChatCustomReactionsEditActivity.this.getParentLayout() != null) {
+                        ChatCustomReactionsEditActivity.this.getParentLayout().isPreviewOpenAnimationInProgress();
+                    }
+                }
+
+                @Override
+                protected boolean heightAnimationEnabled() {
+                    return (((BaseFragment) ChatCustomReactionsEditActivity.this).inPreviewMode || AndroidUtilities.isTablet() || ((BaseFragment) ChatCustomReactionsEditActivity.this).inBubbleMode || AndroidUtilities.isInMultiwindow || ChatCustomReactionsEditActivity.this.getParentLayout() == null) ? false : true;
+                }
+            }
+
+            @Override
+            protected void onAttachedToWindow() {
+                super.onAttachedToWindow();
+                this.adjustPanLayoutHelper.onAttach();
+            }
+
+            @Override
+            protected void onDetachedFromWindow() {
+                super.onDetachedFromWindow();
+                this.adjustPanLayoutHelper.onDetach();
+            }
+        };
+        this.contentLayout.setOrientation(1);
+        this.scrollView.addView(this.contentLayout);
+        TextCheckCell textCheckCell = new TextCheckCell(context);
+        this.enableReactionsCell = textCheckCell;
+        textCheckCell.setHeight(56);
+        TextCheckCell textCheckCell2 = this.enableReactionsCell;
+        textCheckCell2.setBackgroundColor(Theme.getColor(textCheckCell2.isChecked() ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
+        this.enableReactionsCell.setTypeface(AndroidUtilities.bold());
+        this.enableReactionsCell.setColors(Theme.key_windowBackgroundCheckText, Theme.key_switchTrackBlue, Theme.key_switchTrackBlueChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
+        this.enableReactionsCell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$2(view);
+            }
+        });
+        this.contentLayout.addView(this.enableReactionsCell, LayoutHelper.createLinear(-1, -2));
+        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
+        int i = Theme.key_windowBackgroundWhiteGrayText4;
+        textInfoPrivacyCell.setTextColor(Theme.getColor(i));
+        textInfoPrivacyCell.setTopPadding(12);
+        textInfoPrivacyCell.setBottomPadding(16);
+        textInfoPrivacyCell.setText(LocaleController.getString(R.string.ReactionAddEmojiFromAnyPack));
+        this.contentLayout.addView(textInfoPrivacyCell, LayoutHelper.createLinear(-1, -2));
+        HeaderCell headerCell = new HeaderCell(context);
+        headerCell.setText(LocaleController.getString(R.string.AvailableReactions));
+        headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        headerCell.setTextSize(15.0f);
+        headerCell.setTopMargin(14);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.switchLayout = linearLayout;
+        linearLayout.setOrientation(1);
+        this.contentLayout.addView(this.switchLayout, LayoutHelper.createFrame(-1, -2.0f));
+        this.switchLayout.addView(headerCell, LayoutHelper.createLinear(-1, -2));
+        CustomReactionEditText customReactionEditText = new CustomReactionEditText(context, getResourceProvider(), this.maxReactionsCount) {
+            @Override
+            protected void onLineCountChanged(int i2, int i3) {
+                if (i3 > i2) {
+                    ChatCustomReactionsEditActivity.this.scrollView.smoothScrollBy(0, AndroidUtilities.dp(30.0f));
+                }
+            }
+
+            @Override
+            public boolean onTextContextMenuItem(int i2) {
+                if (i2 == R.id.menu_delete || i2 == 16908320) {
+                    return ChatCustomReactionsEditActivity.this.deleteSelectedEmojis();
+                }
+                if (i2 == 16908322 || i2 == 16908321) {
+                    return false;
+                }
+                return super.onTextContextMenuItem(i2);
+            }
+        };
+        this.editText = customReactionEditText;
+        customReactionEditText.setOnFocused(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.showKeyboard();
+            }
+        });
+        this.switchLayout.addView(this.editText, LayoutHelper.createLinear(-1, -2));
+        LayoutTransition layoutTransition = new LayoutTransition();
+        layoutTransition.setDuration(200L);
+        layoutTransition.enableTransitionType(4);
+        this.switchLayout.setLayoutTransition(layoutTransition);
+        TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
+        textInfoPrivacyCell2.setTextColor(Theme.getColor(i));
+        textInfoPrivacyCell2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ReactionCreateOwnPack), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$createView$3();
+            }
+        }, getResourceProvider()));
+        this.switchLayout.addView(textInfoPrivacyCell2, LayoutHelper.createLinear(-1, -2));
+        HeaderCell headerCell2 = new HeaderCell(context, this.resourceProvider);
+        headerCell2.setText(LocaleController.getString(R.string.MaximumReactionsHeader));
+        this.switchLayout.addView(headerCell2, LayoutHelper.createLinear(-1, -2));
+        this.slideView = new SlideIntChooseView(context, this.resourceProvider);
+        TLRPC.ChatFull chatFull = this.info;
+        if (!(chatFull instanceof TLRPC.TL_chatFull) ? (chatFull.flags2 & 8192) != 0 : (chatFull.flags & 1048576) != 0) {
+            int i2 = chatFull.reactions_limit;
+            this.reactionsCount = i2;
+            this.currentReactionsCount = i2;
+        } else {
+            int i3 = getMessagesController().reactionsUniqMax;
+            this.reactionsCount = i3;
+            this.currentReactionsCount = i3;
+        }
+        this.slideView.set(this.reactionsCount, SlideIntChooseView.Options.make(0, "MaximumReactionsValue", 1, getMessagesController().reactionsUniqMax), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                this.f$0.lambda$createView$4((Integer) obj);
+            }
+        });
+        this.switchLayout.addView(this.slideView, LayoutHelper.createLinear(-1, -2));
+        TextInfoPrivacyCell textInfoPrivacyCell3 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
+        textInfoPrivacyCell3.setTopPadding(12);
+        textInfoPrivacyCell3.setBottomPadding(16);
+        textInfoPrivacyCell3.setText(LocaleController.getString(R.string.MaximumReactionsInfo));
+        this.switchLayout.addView(textInfoPrivacyCell3, LayoutHelper.createLinear(-1, -2));
+        if (this.info.paid_media_allowed) {
+            TextCheckCell textCheckCell3 = new TextCheckCell(context);
+            this.paidCheckCell = textCheckCell3;
+            textCheckCell3.setTextAndCheck(LocaleController.getString(R.string.ChannelEnablePaidReactions), false, false);
+            this.switchLayout.addView(this.paidCheckCell, LayoutHelper.createLinear(-1, -2));
+            this.paidCheckCell.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$createView$5(view);
+                }
+            });
+            TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
+            textInfoPrivacyCell4.setTextColor(Theme.getColor(i));
+            textInfoPrivacyCell4.setTopPadding(12);
+            textInfoPrivacyCell4.setBottomPadding(70);
+            textInfoPrivacyCell4.setText(AndroidUtilities.withLearnMore(LocaleController.getString(R.string.ChannelEnablePaidReactionsInfo), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$createView$6();
+                }
+            }));
+            this.switchLayout.addView(textInfoPrivacyCell4, LayoutHelper.createLinear(-1, -2));
+        } else {
+            textInfoPrivacyCell3.setBottomPadding(70);
+        }
+        this.actionButtonContainer = new FrameLayout(context);
+        ImageView imageView = new ImageView(context);
+        this.actionButtonContainerGradient = imageView;
+        imageView.setImageResource(R.drawable.gradient_bottom);
+        this.actionButtonContainerGradient.setScaleType(ImageView.ScaleType.FIT_XY);
+        ImageView imageView2 = this.actionButtonContainerGradient;
+        int i4 = Theme.key_windowBackgroundGray;
+        imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, this.resourceProvider), PorterDuff.Mode.SRC_ATOP));
+        this.actionButtonContainer.addView(this.actionButtonContainerGradient, LayoutHelper.createFrame(-1, -1, 119));
+        UpdateReactionsButton updateReactionsButton = new UpdateReactionsButton(context, getResourceProvider());
+        this.actionButton = updateReactionsButton;
+        updateReactionsButton.setRound();
+        this.actionButton.setDefaultState();
+        this.actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$9(view);
+            }
+        });
+        frameLayout.addView(this.scrollView);
+        frameLayout.addView(this.actionButtonContainer, LayoutHelper.createFrame(-1, 74.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        this.actionButtonContainer.addView(this.actionButton, LayoutHelper.createFrame(-1, 48.0f, 80, 13.0f, 13.0f, 13.0f, 13.0f));
+        frameLayout.setBackgroundColor(Theme.getColor(i4));
+        FrameLayout frameLayout2 = new FrameLayout(context) {
+            @Override
+            protected void onLayout(boolean z2, int i5, int i6, int i7, int i8) {
+                super.onLayout(z2, i5, i6, i7, i8);
+                if (ChatCustomReactionsEditActivity.this.emojiKeyboardVisible && z2) {
+                    ChatCustomReactionsEditActivity.this.actionButtonContainer.setTranslationY(-ChatCustomReactionsEditActivity.this.bottomDialogLayout.getMeasuredHeight());
+                    ChatCustomReactionsEditActivity chatCustomReactionsEditActivity = ChatCustomReactionsEditActivity.this;
+                    chatCustomReactionsEditActivity.updateScrollViewMarginBottom(chatCustomReactionsEditActivity.bottomDialogLayout.getMeasuredHeight());
+                }
+            }
+        };
+        this.bottomDialogLayout = frameLayout2;
+        frameLayout2.setVisibility(4);
+        frameLayout.addView(this.bottomDialogLayout, LayoutHelper.createFrame(-1, -2, 80));
+        TLRPC.ChatFull chatFull2 = this.info;
+        TLRPC.ChatReactions chatReactions = chatFull2.available_reactions;
+        if (chatReactions instanceof TLRPC.TL_chatReactionsAll) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            Iterator it = this.allAvailableReactions.iterator();
+            int i5 = 0;
+            while (it.hasNext()) {
+                ReactionsUtils.addReactionToEditText((TLRPC.TL_availableReaction) it.next(), this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
+                i5++;
+                if (i5 >= this.maxReactionsCount) {
+                    break;
+                }
+            }
+            this.editText.append(spannableStringBuilder);
+            setCheckedEnableReactionCell(0, this.paid, false);
+        } else if (chatReactions instanceof TLRPC.TL_chatReactionsSome) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            int i6 = 0;
+            for (TLRPC.Reaction reaction : ((TLRPC.TL_chatReactionsSome) chatReactions).reactions) {
+                if (reaction instanceof TLRPC.TL_reactionEmoji) {
+                    TLRPC.TL_availableReaction tL_availableReaction = getMediaDataController().getReactionsMap().get(((TLRPC.TL_reactionEmoji) reaction).emoticon);
+                    if (tL_availableReaction == null) {
+                        continue;
+                    } else {
+                        ReactionsUtils.addReactionToEditText(tL_availableReaction, this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder2, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
+                    }
+                } else {
+                    if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
+                        ReactionsUtils.addReactionToEditText((TLRPC.TL_reactionCustomEmoji) reaction, this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder2, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
+                    }
+                    if (i6 >= this.maxReactionsCount) {
+                        break;
+                    }
+                }
+                i6++;
+                if (i6 >= this.maxReactionsCount) {
+                    break;
+                    break;
+                }
+            }
+            this.editText.append(spannableStringBuilder2);
+            setCheckedEnableReactionCell(1, this.paid, false);
+        } else {
+            boolean z2 = chatReactions instanceof TLRPC.TL_chatReactionsNone;
+            if (z2 && chatFull2.paid_media_allowed && chatFull2.paid_reactions_available) {
+                setCheckedEnableReactionCell(2, this.paid, false);
+            } else if (z2) {
+                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
+                Iterator it2 = this.allAvailableReactions.iterator();
+                int i7 = 0;
+                while (it2.hasNext()) {
+                    ReactionsUtils.addReactionToEditText((TLRPC.TL_availableReaction) it2.next(), this.selectedEmojisMap, this.selectedEmojisIds, spannableStringBuilder3, this.selectAnimatedEmojiDialog, this.editText.getFontMetricsInt());
+                    i7++;
+                    if (i7 >= this.maxReactionsCount) {
+                        break;
+                    }
+                }
+                this.editText.append(spannableStringBuilder3);
+                setCheckedEnableReactionCell(2, this.paid, false);
+            }
+        }
+        TextCheckCell textCheckCell4 = this.enableReactionsCell;
+        String string = LocaleController.getString(R.string.EnableReactions);
+        if (this.selectedType == 2 && !this.paid) {
+            z = false;
+        }
+        textCheckCell4.setTextAndCheck(string, z, false);
+        this.editText.addReactionsSpan();
+        TLRPC.ChatFull chatFull3 = this.info;
+        if (chatFull3.paid_media_allowed && chatFull3.paid_reactions_available) {
+            toggleStarsEnabled();
+        }
+        this.initialSelectedEmojis.putAll(this.selectedEmojisMap);
+        this.initialPaid = this.paid;
+        this.fragmentView = frameLayout;
+        return frameLayout;
     }
 
     public void lambda$createView$2(View view) {
@@ -661,7 +981,8 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         updateScrollViewMarginBottom(this.bottomDialogLayout.getMeasuredHeight());
         this.bottomDialogLayout.setVisibility(0);
-        this.bottomDialogLayout.setTranslationY(r0.getMeasuredHeight());
+        FrameLayout frameLayout = this.bottomDialogLayout;
+        frameLayout.setTranslationY(frameLayout.getMeasuredHeight());
         this.bottomDialogLayout.animate().setListener(null).cancel();
         this.bottomDialogLayout.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(CubicBezierInterpolator.DEFAULT).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override

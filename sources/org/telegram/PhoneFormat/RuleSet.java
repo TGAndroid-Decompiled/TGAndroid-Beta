@@ -1,7 +1,6 @@
 package org.telegram.PhoneFormat;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,9 +17,7 @@ public class RuleSet {
         if (length >= i) {
             Matcher matcher = pattern.matcher(str.substring(0, i));
             int i2 = matcher.find() ? Integer.parseInt(matcher.group(0)) : 0;
-            Iterator it = this.rules.iterator();
-            while (it.hasNext()) {
-                PhoneRule phoneRule = (PhoneRule) it.next();
+            for (PhoneRule phoneRule : this.rules) {
                 if (i2 >= phoneRule.minVal && i2 <= phoneRule.maxVal && str.length() <= phoneRule.maxLen) {
                     if (z) {
                         int i3 = phoneRule.flag12;
@@ -34,17 +31,13 @@ public class RuleSet {
             }
             if (!z) {
                 if (str2 != null) {
-                    Iterator it2 = this.rules.iterator();
-                    while (it2.hasNext()) {
-                        PhoneRule phoneRule2 = (PhoneRule) it2.next();
+                    for (PhoneRule phoneRule2 : this.rules) {
                         if (i2 >= phoneRule2.minVal && i2 <= phoneRule2.maxVal && str.length() <= phoneRule2.maxLen && (str3 == null || (phoneRule2.flag12 & 1) != 0)) {
                             return phoneRule2.format(str, str2, str3);
                         }
                     }
                 } else if (str3 != null) {
-                    Iterator it3 = this.rules.iterator();
-                    while (it3.hasNext()) {
-                        PhoneRule phoneRule3 = (PhoneRule) it3.next();
+                    for (PhoneRule phoneRule3 : this.rules) {
                         if (i2 >= phoneRule3.minVal && i2 <= phoneRule3.maxVal && str.length() <= phoneRule3.maxLen && (str2 == null || (phoneRule3.flag12 & 2) != 0)) {
                             return phoneRule3.format(str, str2, str3);
                         }

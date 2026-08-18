@@ -24,8 +24,6 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.BlurringShader;
-import org.telegram.ui.Components.FilterShaders;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
 public class FilterGLThread extends DispatchQueue {
@@ -608,7 +606,7 @@ public class FilterGLThread extends DispatchQueue {
         blurringShader.setBlurManager(blurManager);
     }
 
-    public Bitmap getTexture() throws InterruptedException {
+    public Bitmap getTexture() {
         if (!this.initied || !isAlive()) {
             return null;
         }

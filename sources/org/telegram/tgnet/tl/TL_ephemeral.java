@@ -9,7 +9,6 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_iv;
 
 public class TL_ephemeral {
 

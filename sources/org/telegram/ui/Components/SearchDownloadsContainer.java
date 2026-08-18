@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
@@ -35,10 +33,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.SharedAudioCell;
 import org.telegram.ui.Cells.SharedDocumentCell;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
@@ -121,7 +119,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         recyclerListView.setItemAnimator(defaultItemAnimator);
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i2) throws Resources.NotFoundException, IOException {
+            public final void onItemClick(View view, int i2) {
                 this.f$0.lambda$new$0(i, view, i2);
             }
         });
@@ -145,7 +143,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         FileLoader.getInstance(i).getCurrentLoadingFiles(this.currentLoadingFiles);
     }
 
-    public void lambda$new$0(int i, View view, int i2) throws Resources.NotFoundException, IOException {
+    public void lambda$new$0(int i, View view, int i2) {
         MessageObject message = this.adapter.getMessage(i2);
         if (message == null) {
             return;
@@ -512,7 +510,6 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
                 this.recentLoadingFiles.add(messageObject2);
             }
         }
-        int i = 0;
         this.rowCount = 0;
         this.downloadingFilesHeader = -1;
         this.downloadingFilesStartRow = -1;
@@ -522,23 +519,19 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         this.recentFilesEndRow = -1;
         this.hasCurrentDownload = false;
         if (!this.currentLoadingFiles.isEmpty()) {
-            int i2 = this.rowCount;
-            int i3 = i2 + 1;
-            this.rowCount = i3;
-            this.downloadingFilesHeader = i2;
-            this.downloadingFilesStartRow = i3;
-            int size = i3 + this.currentLoadingFiles.size();
+            int i = this.rowCount;
+            int i2 = i + 1;
+            this.rowCount = i2;
+            this.downloadingFilesHeader = i;
+            this.downloadingFilesStartRow = i2;
+            int size = i2 + this.currentLoadingFiles.size();
             this.rowCount = size;
             this.downloadingFilesEndRow = size;
-            while (true) {
-                if (i >= this.currentLoadingFiles.size()) {
-                    break;
-                }
-                if (FileLoader.getInstance(this.currentAccount).isLoadingFile(((MessageObject) this.currentLoadingFiles.get(i)).getFileName())) {
+            for (int i3 = 0; i3 < this.currentLoadingFiles.size(); i3++) {
+                if (FileLoader.getInstance(this.currentAccount).isLoadingFile(((MessageObject) this.currentLoadingFiles.get(i3)).getFileName())) {
                     this.hasCurrentDownload = true;
                     break;
                 }
-                i++;
             }
         }
         if (this.recentLoadingFiles.isEmpty()) {
@@ -583,8 +576,81 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r9, int r10) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SearchDownloadsContainer.DownloadsAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            boolean z;
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 0) {
+                GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
+                SearchDownloadsContainer searchDownloadsContainer = SearchDownloadsContainer.this;
+                if (i == searchDownloadsContainer.downloadingFilesHeader) {
+                    String string = LocaleController.getString(R.string.Downloading);
+                    if (graySectionCell.getText().equals(string)) {
+                        graySectionCell.setRightText(LocaleController.getString(SearchDownloadsContainer.this.hasCurrentDownload ? R.string.PauseAll : R.string.ResumeAll), SearchDownloadsContainer.this.hasCurrentDownload);
+                        return;
+                    } else {
+                        graySectionCell.setText(string, LocaleController.getString(SearchDownloadsContainer.this.hasCurrentDownload ? R.string.PauseAll : R.string.ResumeAll), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                for (int i2 = 0; i2 < SearchDownloadsContainer.this.currentLoadingFiles.size(); i2++) {
+                                    MessageObject messageObject = (MessageObject) SearchDownloadsContainer.this.currentLoadingFiles.get(i2);
+                                    if (SearchDownloadsContainer.this.hasCurrentDownload) {
+                                        AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
+                                    } else {
+                                        AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(messageObject.getDocument(), messageObject, 0, 0);
+                                        DownloadController.getInstance(SearchDownloadsContainer.this.currentAccount).updateFilesLoadingPriority();
+                                    }
+                                }
+                                SearchDownloadsContainer.this.update(true);
+                            }
+                        });
+                        return;
+                    }
+                }
+                if (i == searchDownloadsContainer.recentFilesHeader) {
+                    graySectionCell.setText(LocaleController.getString(R.string.RecentlyDownloaded), LocaleController.getString(R.string.Settings), new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onBindViewHolder$0(view);
+                        }
+                    });
+                    return;
+                }
+                return;
+            }
+            MessageObject message = getMessage(i);
+            if (message != null) {
+                if (SearchDownloadsContainer.this.uiCallback.actionModeShowing()) {
+                    SearchDownloadsContainer searchDownloadsContainer2 = SearchDownloadsContainer.this;
+                    if (i < searchDownloadsContainer2.downloadingFilesStartRow || i >= searchDownloadsContainer2.downloadingFilesEndRow) {
+                        z = false;
+                    } else {
+                        z = true;
+                    }
+                } else {
+                    z = false;
+                }
+                if (itemViewType == 1) {
+                    Cell cell = (Cell) viewHolder.itemView;
+                    cell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    int id = cell.sharedDocumentCell.getMessage() == null ? 0 : cell.sharedDocumentCell.getMessage().getId();
+                    cell.sharedDocumentCell.setDocument(message, true);
+                    SearchDownloadsContainer.this.messageHashIdTmp.set(cell.sharedDocumentCell.getMessage().getId(), cell.sharedDocumentCell.getMessage().getDialogId());
+                    SharedDocumentCell sharedDocumentCell = cell.sharedDocumentCell;
+                    SearchDownloadsContainer searchDownloadsContainer3 = SearchDownloadsContainer.this;
+                    sharedDocumentCell.setChecked(searchDownloadsContainer3.uiCallback.isSelected(searchDownloadsContainer3.messageHashIdTmp), id == message.getId());
+                    cell.sharedDocumentCell.showReorderIcon(z, id == message.getId());
+                    return;
+                }
+                if (itemViewType == 2) {
+                    SharedAudioCell sharedAudioCell = (SharedAudioCell) viewHolder.itemView;
+                    int id2 = sharedAudioCell.getMessage() == null ? 0 : sharedAudioCell.getMessage().getId();
+                    sharedAudioCell.setMessageObject(message, true);
+                    SearchDownloadsContainer.this.messageHashIdTmp.set(sharedAudioCell.getMessage().getId(), sharedAudioCell.getMessage().getDialogId());
+                    SearchDownloadsContainer searchDownloadsContainer4 = SearchDownloadsContainer.this;
+                    sharedAudioCell.setChecked(searchDownloadsContainer4.uiCallback.isSelected(searchDownloadsContainer4.messageHashIdTmp), id2 == message.getId());
+                    sharedAudioCell.showReorderIcon(z, id2 == message.getId());
+                }
+            }
         }
 
         public void lambda$onBindViewHolder$0(View view) {
@@ -776,7 +842,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             return;
         }
         long jCurrentTimeMillis = System.currentTimeMillis();
-        if (jCurrentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown < MessagesController.getInstance(this.currentAccount).uploadPremiumSpeedupNotifyPeriod * 1000) {
+        if (jCurrentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown < ((long) MessagesController.getInstance(this.currentAccount).uploadPremiumSpeedupNotifyPeriod) * 1000) {
             return;
         }
         ConnectionsManager.lastPremiumFloodWaitShown = jCurrentTimeMillis;
@@ -788,7 +854,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         } else {
             f = MessagesController.getInstance(this.currentAccount).uploadPremiumSpeedupDownload;
         }
-        SpannableString spannableString = new SpannableString(Double.toString(Math.round(f * 10.0f) / 10.0d).replaceAll("\\.0$", ""));
+        SpannableString spannableString = new SpannableString(Double.toString(((double) Math.round(f * 10.0f)) / 10.0d).replaceAll("\\.0$", ""));
         spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
         if (this.parentFragment.hasStoryViewer()) {
             return;

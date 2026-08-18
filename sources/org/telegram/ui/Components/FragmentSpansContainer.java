@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Property;
 import android.view.MotionEvent;
@@ -14,6 +15,7 @@ import android.widget.ScrollView;
 import androidx.collection.LongSparseArray;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
 
 public class FragmentSpansContainer extends ScrollView {
     public final ArrayList allSpans;
@@ -105,8 +107,104 @@ public class FragmentSpansContainer extends ScrollView {
         }
 
         @Override
-        protected void onMeasure(int r17, int r18) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FragmentSpansContainer.SpansContainer.onMeasure(int, int):void");
+        protected void onMeasure(int i, int i2) {
+            int iMin;
+            int childCount = getChildCount();
+            int size = View.MeasureSpec.getSize(i);
+            int iDp = size - AndroidUtilities.dp(26.0f);
+            int iDp2 = AndroidUtilities.dp(10.0f);
+            int iDp3 = AndroidUtilities.dp(10.0f);
+            if (!this.animationStarted) {
+                this.maxTy = 0;
+            }
+            int i3 = 0;
+            int measuredWidth = 0;
+            int measuredWidth2 = 0;
+            while (i3 < childCount) {
+                View childAt = getChildAt(i3);
+                if (childAt instanceof GroupCreateSpan) {
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+                    boolean zContains = this.removingSpans.contains(childAt);
+                    if (!zContains && childAt.getMeasuredWidth() + measuredWidth > iDp) {
+                        iDp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                        measuredWidth = 0;
+                    }
+                    if (childAt.getMeasuredWidth() + measuredWidth2 > iDp) {
+                        iDp3 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                        measuredWidth2 = 0;
+                    }
+                    int iDp4 = AndroidUtilities.dp(13.0f) + measuredWidth;
+                    if (this.animationStarted) {
+                        childCount = childCount;
+                    } else if (zContains) {
+                        childAt.setTranslationX(AndroidUtilities.dp(13.0f) + measuredWidth2);
+                        childAt.setTranslationY(iDp3);
+                        childCount = childCount;
+                    } else if (!this.removingSpans.isEmpty()) {
+                        float f = iDp4;
+                        if (childAt.getTranslationX() != f) {
+                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_X, f));
+                        }
+                        float f2 = iDp2;
+                        if (childAt.getTranslationY() != f2) {
+                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_Y, f2));
+                        }
+                        this.maxTy = Math.max(this.maxTy, iDp2);
+                    } else {
+                        childCount = childCount;
+                        childAt.setTranslationX(iDp4);
+                        childAt.setTranslationY(iDp2);
+                        this.maxTy = Math.max(this.maxTy, iDp2);
+                    }
+                    if (!zContains) {
+                        measuredWidth += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+                    }
+                    measuredWidth2 += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+                } else {
+                    childCount = childCount;
+                }
+                i3++;
+                childCount = childCount;
+            }
+            if (AndroidUtilities.isTablet()) {
+                iMin = AndroidUtilities.dp(372.0f) / 3;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                iMin = (Math.min(point.x, point.y) - AndroidUtilities.dp(158.0f)) / 3;
+            }
+            if (iDp - measuredWidth < iMin) {
+                iDp2 += AndroidUtilities.dp(40.0f);
+            }
+            if (iDp - measuredWidth2 < iMin) {
+                iDp3 += AndroidUtilities.dp(40.0f);
+            }
+            if (!this.animationStarted) {
+                int iDp5 = iDp3 + AndroidUtilities.dp(42.0f);
+                FragmentSpansContainer.this.fieldY = iDp2;
+                if (this.currentAnimation != null) {
+                    this.containerHeight = iDp2 + AndroidUtilities.dp(42.0f);
+                    this.currentAnimation.playTogether(this.animators);
+                    this.currentAnimation.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            NotificationCenter.getInstance(FragmentSpansContainer.this.currentAccount).onAnimationFinish(SpansContainer.this.animationIndex);
+                            SpansContainer.this.requestLayout();
+                        }
+                    });
+                    this.animationIndex = NotificationCenter.getInstance(FragmentSpansContainer.this.currentAccount).setAnimationInProgress(this.animationIndex, null);
+                    this.currentAnimation.start();
+                    this.animationStarted = true;
+                } else {
+                    this.containerHeight = iDp5;
+                }
+            }
+            FragmentSpansContainer fragmentSpansContainer = FragmentSpansContainer.this;
+            int i4 = this.maxTy;
+            fragmentSpansContainer.visualHeight = i4 > 0 ? i4 + AndroidUtilities.dp(40.0f) : 0;
+            setMeasuredDimension(size, this.containerHeight);
+            if (FragmentSpansContainer.this.delegate != null) {
+                FragmentSpansContainer.this.delegate.onAfterMeasure(FragmentSpansContainer.this.visualHeight);
+            }
         }
 
         @Override

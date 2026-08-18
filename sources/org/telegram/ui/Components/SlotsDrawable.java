@@ -335,8 +335,169 @@ public final class SlotsDrawable extends RLottieDiceDrawable {
         return true;
     }
 
-    public void lambda$setDiceNumber$9(final org.telegram.tgnet.TLRPC.TL_messages_stickerSet r17, final int r18, final org.telegram.messenger.MessageObject r19, final org.telegram.ui.Cells.ChatMessageCell r20, final boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SlotsDrawable.lambda$setDiceNumber$9(org.telegram.tgnet.TLRPC$TL_messages_stickerSet, int, org.telegram.messenger.MessageObject, org.telegram.ui.Cells.ChatMessageCell, boolean):void");
+    public void lambda$setDiceNumber$9(final TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final int i, final MessageObject messageObject, final ChatMessageCell chatMessageCell, final boolean z) {
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet2;
+        int i2;
+        final TLRPC.Document document;
+        String res;
+        RLottieNative rLottieNativeCreateFromRawJson;
+        char c;
+        if (this.destroyAfterLoading) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$setDiceNumber$5();
+                }
+            });
+            return;
+        }
+        int i3 = 0;
+        boolean z2 = false;
+        while (true) {
+            RLottieNative[] rLottieNativeArr = this.secondLottieNatives;
+            if (i3 >= rLottieNativeArr.length + 2) {
+                break;
+            }
+            if (i3 <= 2) {
+                if (rLottieNativeArr[i3] == null) {
+                    if (i3 == 0) {
+                        ReelValue reelValue = this.left;
+                        if (reelValue == ReelValue.bar) {
+                            i2 = 5;
+                        } else if (reelValue == ReelValue.berries) {
+                            i2 = 6;
+                        } else {
+                            if (reelValue == ReelValue.lemon) {
+                                i2 = 7;
+                            } else {
+                                tL_messages_stickerSet2 = tL_messages_stickerSet;
+                                i2 = reelValue == ReelValue.seven ? 4 : 3;
+                            }
+                            document = tL_messages_stickerSet2.documents.get(i2);
+                            res = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true), 0);
+                            if (TextUtils.isEmpty(res)) {
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        SlotsDrawable.lambda$setDiceNumber$6(document, i, messageObject, chatMessageCell, tL_messages_stickerSet);
+                                    }
+                                });
+                                z2 = true;
+                            } else {
+                                rLottieNativeCreateFromRawJson = RLottieNative.createFromRawJson(res, "dice", this.metaData, null);
+                                if (i3 <= 2) {
+                                    this.secondLottieNatives[i3] = rLottieNativeCreateFromRawJson;
+                                    this.secondFrameCounts[i3] = this.metaData[0];
+                                } else {
+                                    RLottieNative[] rLottieNativeArr2 = this.lottieNatives;
+                                    if (i3 == 3) {
+                                        c = 0;
+                                    } else {
+                                        c = 4;
+                                    }
+                                    rLottieNativeArr2[c] = rLottieNativeCreateFromRawJson;
+                                    this.frameCounts[i3 == 3 ? (char) 0 : (char) 4] = this.metaData[0];
+                                }
+                            }
+                        }
+                    } else if (i3 == 1) {
+                        ReelValue reelValue2 = this.center;
+                        if (reelValue2 == ReelValue.bar) {
+                            i2 = 11;
+                        } else if (reelValue2 == ReelValue.berries) {
+                            i2 = 12;
+                        } else if (reelValue2 == ReelValue.lemon) {
+                            i2 = 13;
+                        } else {
+                            i2 = reelValue2 == ReelValue.seven ? 10 : 9;
+                        }
+                    } else {
+                        ReelValue reelValue3 = this.right;
+                        if (reelValue3 == ReelValue.bar) {
+                            i2 = 17;
+                        } else if (reelValue3 == ReelValue.berries) {
+                            i2 = 18;
+                        } else if (reelValue3 == ReelValue.lemon) {
+                            i2 = 19;
+                        } else {
+                            i2 = reelValue3 == ReelValue.seven ? 16 : 15;
+                        }
+                    }
+                    tL_messages_stickerSet2 = tL_messages_stickerSet;
+                    document = tL_messages_stickerSet2.documents.get(i2);
+                    res = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true), 0);
+                    if (TextUtils.isEmpty(res)) {
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                SlotsDrawable.lambda$setDiceNumber$6(document, i, messageObject, chatMessageCell, tL_messages_stickerSet);
+                            }
+                        });
+                        z2 = true;
+                    } else {
+                        rLottieNativeCreateFromRawJson = RLottieNative.createFromRawJson(res, "dice", this.metaData, null);
+                        if (i3 <= 2) {
+                            this.secondLottieNatives[i3] = rLottieNativeCreateFromRawJson;
+                            this.secondFrameCounts[i3] = this.metaData[0];
+                        } else {
+                            RLottieNative[] rLottieNativeArr3 = this.lottieNatives;
+                            if (i3 == 3) {
+                                c = 0;
+                            } else {
+                                c = 4;
+                            }
+                            rLottieNativeArr3[c] = rLottieNativeCreateFromRawJson;
+                            this.frameCounts[i3 == 3 ? (char) 0 : (char) 4] = this.metaData[0];
+                        }
+                    }
+                }
+            } else if (this.lottieNatives[i3] == null) {
+                tL_messages_stickerSet2 = tL_messages_stickerSet;
+                i2 = i3 == 3 ? 1 : 2;
+                document = tL_messages_stickerSet2.documents.get(i2);
+                res = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true), 0);
+                if (TextUtils.isEmpty(res)) {
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            SlotsDrawable.lambda$setDiceNumber$6(document, i, messageObject, chatMessageCell, tL_messages_stickerSet);
+                        }
+                    });
+                    z2 = true;
+                } else {
+                    rLottieNativeCreateFromRawJson = RLottieNative.createFromRawJson(res, "dice", this.metaData, null);
+                    if (i3 <= 2) {
+                        this.secondLottieNatives[i3] = rLottieNativeCreateFromRawJson;
+                        this.secondFrameCounts[i3] = this.metaData[0];
+                    } else {
+                        RLottieNative[] rLottieNativeArr4 = this.lottieNatives;
+                        if (i3 == 3) {
+                            c = 0;
+                        } else {
+                            c = 4;
+                        }
+                        rLottieNativeArr4[c] = rLottieNativeCreateFromRawJson;
+                        this.frameCounts[i3 == 3 ? (char) 0 : (char) 4] = this.metaData[0];
+                    }
+                }
+            }
+            i3++;
+        }
+        if (z2) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$setDiceNumber$7();
+                }
+            });
+        } else {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$setDiceNumber$8(z, i, chatMessageCell);
+                }
+            });
+        }
     }
 
     public void lambda$setDiceNumber$5() {

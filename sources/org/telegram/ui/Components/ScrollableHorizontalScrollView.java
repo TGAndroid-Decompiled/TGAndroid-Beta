@@ -10,7 +10,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EmojiTabsStrip;
 
 public abstract class ScrollableHorizontalScrollView extends HorizontalScrollView {
     public LinearLayout contentView;

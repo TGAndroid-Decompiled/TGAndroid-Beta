@@ -1,7 +1,6 @@
 package kotlinx.coroutines.android;
 
 import android.os.Build;
-import java.lang.Thread;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import kotlin.coroutines.AbstractCoroutineContextElement;
@@ -24,10 +23,8 @@ public final class AndroidExceptionPreHandler extends AbstractCoroutineContextEl
         Method method = null;
         try {
             Method declaredMethod = Thread.class.getDeclaredMethod("getUncaughtExceptionPreHandler", null);
-            if (Modifier.isPublic(declaredMethod.getModifiers())) {
-                if (Modifier.isStatic(declaredMethod.getModifiers())) {
-                    method = declaredMethod;
-                }
+            if (Modifier.isPublic(declaredMethod.getModifiers()) && Modifier.isStatic(declaredMethod.getModifiers())) {
+                method = declaredMethod;
             }
         } catch (Throwable unused) {
         }

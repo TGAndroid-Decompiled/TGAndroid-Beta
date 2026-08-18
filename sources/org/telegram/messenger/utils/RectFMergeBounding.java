@@ -67,6 +67,7 @@ public abstract class RectFMergeBounding {
                         }
                         i--;
                         z = true;
+                        break;
                     }
                 }
             }

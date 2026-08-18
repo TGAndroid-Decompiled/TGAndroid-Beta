@@ -14,6 +14,7 @@ public abstract class FoundEmojiPacksRecyclerView extends UniversalRecyclerView 
     }
 
     public void scrollOnSelect(final View view) {
+        final int i;
         if (view == null) {
             return;
         }
@@ -21,7 +22,11 @@ public abstract class FoundEmojiPacksRecyclerView extends UniversalRecyclerView 
         float width = getWidth() - fDp;
         float x = view.getX();
         float width2 = view.getWidth() + x;
-        final int i = x < fDp ? (int) (x - fDp) : width2 > width ? (int) (width2 - width) : 0;
+        if (x < fDp) {
+            i = (int) (x - fDp);
+        } else {
+            i = width2 > width ? (int) (width2 - width) : 0;
+        }
         if (i != 0) {
             AndroidUtilities.doOnLayout(this, new Runnable() {
                 @Override

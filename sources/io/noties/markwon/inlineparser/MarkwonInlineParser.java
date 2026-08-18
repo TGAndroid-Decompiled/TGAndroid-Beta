@@ -422,7 +422,12 @@ public class MarkwonInlineParser implements InlineParser, MarkwonInlineParserCon
                 Delimiter delimiter4 = delimiter2.previous;
                 int delimiterUse = 0;
                 boolean z2 = false;
-                while (delimiter4 != null && delimiter4 != delimiter && delimiter4 != map.get(Character.valueOf(c))) {
+                while (true) {
+                    if (delimiter4 == null || delimiter4 == delimiter || delimiter4 == map.get(Character.valueOf(c))) {
+                        z = z2;
+                        z2 = false;
+                        break;
+                    }
                     if (delimiter4.canOpen && delimiter4.delimiterChar == openingCharacter) {
                         delimiterUse = delimiterProcessor.getDelimiterUse(delimiter4, delimiter2);
                         z2 = true;
@@ -433,8 +438,6 @@ public class MarkwonInlineParser implements InlineParser, MarkwonInlineParserCon
                     }
                     delimiter4 = delimiter4.previous;
                 }
-                z = z2;
-                z2 = false;
                 if (!z2) {
                     if (!z) {
                         map.put(Character.valueOf(c), delimiter2.previous);

@@ -14,12 +14,15 @@ import com.google.android.exoplayer2.util.Log;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.ChatActionCell;
+import org.telegram.ui.Cells.ChatMessageCell;
 
 public class ChatActivityMessageMetricsView extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
     private static final RectF tmpRect = new RectF();
@@ -119,7 +122,191 @@ public class ChatActivityMessageMetricsView extends View implements ViewTreeObse
     }
 
     private void processCurrentFrame() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.chat.ChatActivityMessageMetricsView.processCurrentFrame():void");
+        boolean z;
+        long j;
+        int i;
+        boolean z2;
+        RectF rectF;
+        RectF rectF2;
+        MessageObject messageObject;
+        int i2;
+        if (this.root == null || this.list == null) {
+            return;
+        }
+        long jUptimeMillis = SystemClock.uptimeMillis();
+        long j2 = this.lastTime;
+        long j3 = 0;
+        long j4 = j2 == 0 ? 0L : jUptimeMillis - j2;
+        this.lastTime = jUptimeMillis;
+        int size = this.groupedPositions.size();
+        for (int i3 = 0; i3 < size; i3++) {
+            ((RectF) this.groupedPositions.valueAt(i3)).set(0.0f, 0.0f, 0.0f, 0.0f);
+        }
+        int childCount = this.list.getChildCount();
+        int i4 = 0;
+        while (i4 < childCount) {
+            View childAt = this.list.getChildAt(i4);
+            ViewGroup viewGroup = this.root;
+            RectF rectF3 = tmpRect;
+            if (ViewPositionWatcher.computeRectInParent(childAt, viewGroup, rectF3)) {
+                if (childAt instanceof ChatMessageCell) {
+                    messageObject = ((ChatMessageCell) childAt).getMessageObject();
+                } else if (childAt instanceof ChatActionCell) {
+                    messageObject = ((ChatActionCell) childAt).getMessageObject();
+                } else {
+                    i2 = childCount;
+                }
+                if (messageObject == null) {
+                    i2 = childCount;
+                } else {
+                    long dialogId = messageObject.getDialogId();
+                    if (dialogId != this.dialogId) {
+                        i2 = childCount;
+                    } else {
+                        int id = messageObject.getId();
+                        long groupId = messageObject.getGroupId();
+                        if (dialogId == j3 || id <= 0) {
+                            i2 = childCount;
+                        } else {
+                            long j5 = id;
+                            MessageWatcher messageWatcher = (MessageWatcher) this.watchers.get(j5);
+                            if (messageWatcher == null) {
+                                i2 = childCount;
+                                messageWatcher = new MessageWatcher(id, groupId);
+                                this.watchers.put(j5, messageWatcher);
+                                if (BuildVars.LOGS_ENABLED) {
+                                    Log.d("ViewMetrics", id + " " + groupId + " in screen");
+                                }
+                            } else {
+                                i2 = childCount;
+                            }
+                            messageWatcher.position.set(rectF3);
+                            if (groupId != 0) {
+                                RectF rectF4 = (RectF) this.groupedPositions.get(groupId);
+                                if (rectF4 == null) {
+                                    rectF4 = new RectF();
+                                    this.groupedPositions.put(groupId, rectF4);
+                                }
+                                rectF4.union(messageWatcher.position);
+                            }
+                            messageWatcher.lastUpdateMillis = jUptimeMillis;
+                        }
+                    }
+                }
+            } else {
+                i2 = childCount;
+            }
+            i4++;
+            childCount = i2;
+            j3 = 0;
+        }
+        RectF rectF5 = null;
+        for (int size2 = this.groupedPositions.size() - 1; size2 >= 0; size2--) {
+            if (((RectF) this.groupedPositions.valueAt(size2)).isEmpty()) {
+                this.groupedPositions.removeAt(size2);
+            }
+        }
+        int size3 = this.watchers.size();
+        for (int i5 = 0; i5 < size3; i5++) {
+            MessageWatcher messageWatcher2 = (MessageWatcher) this.watchers.valueAt(i5);
+            long j6 = messageWatcher2.groupId;
+            if (j6 != 0 && (rectF2 = (RectF) this.groupedPositions.get(j6)) != null) {
+                messageWatcher2.position.set(rectF2);
+            }
+        }
+        int size4 = this.watchers.size() - 1;
+        while (size4 >= 0) {
+            MessageWatcher messageWatcher3 = (MessageWatcher) this.watchers.valueAt(size4);
+            long j7 = messageWatcher3.messageId;
+            long j8 = messageWatcher3.groupId;
+            RectF rectF6 = j8 != 0 ? (RectF) this.groupedPositions.get(j8) : rectF5;
+            if (messageWatcher3.lastUpdateMillis != jUptimeMillis && rectF6 == null) {
+                z = false;
+            } else if (RectF.intersects(this.viewPort, rectF6 != null ? rectF6 : messageWatcher3.position)) {
+                z = true;
+            } else {
+                z = false;
+            }
+            if (z) {
+                if (messageWatcher3.lastViewMillis != 0) {
+                    MessageWatcher.access$514(messageWatcher3, j4);
+                    i = size4;
+                    z2 = z;
+                    if (jUptimeMillis - this.lastUserActivityTime < 15000) {
+                        MessageWatcher.access$614(messageWatcher3, j4);
+                    }
+                } else {
+                    i = size4;
+                    z2 = z;
+                }
+                messageWatcher3.lastViewMillis = jUptimeMillis;
+                float fHeight = messageWatcher3.position.height();
+                j = j4;
+                float f = this.viewPort.top - messageWatcher3.position.top;
+                float f2 = fHeight - (messageWatcher3.position.bottom - this.viewPort.bottom);
+                rectF = rectF6;
+                messageWatcher3.seenTopPx = Math.min(messageWatcher3.seenTopPx, MathUtils.clamp(f, 0.0f, fHeight));
+                messageWatcher3.seenBottomPx = Math.max(messageWatcher3.seenBottomPx, MathUtils.clamp(f2, 0.0f, fHeight));
+                messageWatcher3.maxViewPortHeight = Math.max(messageWatcher3.maxViewPortHeight, this.viewPort.height());
+                messageWatcher3.maxPostTotalHeight = Math.max(messageWatcher3.maxPostTotalHeight, fHeight);
+                if (!messageWatcher3.visible && messageWatcher3.visibleTime > 300) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        Log.d("ViewMetrics", j7 + " " + j8 + " in viewport");
+                    }
+                    messageWatcher3.visible = true;
+                }
+            } else {
+                j = j4;
+                i = size4;
+                z2 = z;
+                rectF = rectF6;
+            }
+            if (z2 || messageWatcher3.visibleTime <= 0 || jUptimeMillis - 300 <= messageWatcher3.lastViewMillis) {
+                if (messageWatcher3.visible && messageWatcher3.visibleTime > 300000) {
+                    this.pendingMetrics.add(messageWatcher3.buildMetrics());
+                    this.watchers.removeAt(i);
+                    if (BuildVars.LOGS_ENABLED) {
+                        Log.d("ViewMetrics", j7 + " " + j8 + " out of time");
+                    }
+                } else {
+                    if (!messageWatcher3.visible && messageWatcher3.lastUpdateMillis != jUptimeMillis) {
+                        if (messageWatcher3.groupId == 0 || rectF == null) {
+                            this.watchers.removeAt(i);
+                            if (BuildVars.LOGS_ENABLED) {
+                                Log.d("ViewMetrics", j7 + " " + j8 + " out of screen");
+                            }
+                        }
+                    }
+                    size4 = i - 1;
+                    j4 = j;
+                    rectF5 = null;
+                }
+            } else {
+                if (messageWatcher3.visible) {
+                    this.pendingMetrics.add(messageWatcher3.buildMetrics());
+                }
+                this.watchers.removeAt(i);
+                if (BuildVars.LOGS_ENABLED) {
+                    Log.d("ViewMetrics", j7 + " " + j8 + " out of viewport: " + messageWatcher3.visibleTime);
+                }
+            }
+            size4 = i - 1;
+            j4 = j;
+            rectF5 = null;
+        }
+        if (!this.pendingMetrics.isEmpty() && this.pendingFlush == null) {
+            Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.flushImpl();
+                }
+            };
+            this.pendingFlush = runnable;
+            AndroidUtilities.runOnUIThread(runnable, 5000L);
+        }
+        if (this.DRAW_DEBUG) {
+            invalidate();
+        }
     }
 
     private static class MessageWatcher {

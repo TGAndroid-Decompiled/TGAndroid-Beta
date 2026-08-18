@@ -3,7 +3,6 @@ package org.telegram.tgnet.tl;
 import android.graphics.Bitmap;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -14,8 +13,6 @@ import org.telegram.tgnet.TLRPC$TL_inputMediaUploadedDocument$$ExternalSynthetic
 import org.telegram.tgnet.TLRPC$TL_inputPrivacyValueAllowUsers$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.TLRPC$TL_photos_photos$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
 
 public class TL_iv {
 
@@ -1377,9 +1374,7 @@ public class TL_iv {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.ordered = inputSerializedData.readBool(z);
-            Iterator it = Vector.deserialize(inputSerializedData, new TL_iv$pageBlockList_layer82$$ExternalSyntheticLambda0(), z).iterator();
-            while (it.hasNext()) {
-                RichText richText = (RichText) it.next();
+            for (RichText richText : Vector.deserialize(inputSerializedData, new TL_iv$pageBlockList_layer82$$ExternalSyntheticLambda0(), z)) {
                 TL_pageListItemText tL_pageListItemText = new TL_pageListItemText();
                 tL_pageListItemText.text = richText;
                 this.items.add(tL_pageListItemText);
@@ -1391,11 +1386,9 @@ public class TL_iv {
             outputSerializedData.writeInt32(978896884);
             outputSerializedData.writeBool(this.ordered);
             ArrayList arrayList = new ArrayList(this.items.size());
-            Iterator<PageListItem> it = this.items.iterator();
-            while (it.hasNext()) {
-                PageListItem next = it.next();
-                if (next instanceof TL_pageListItemText) {
-                    arrayList.add(((TL_pageListItemText) next).text);
+            for (PageListItem pageListItem : this.items) {
+                if (pageListItem instanceof TL_pageListItemText) {
+                    arrayList.add(((TL_pageListItemText) pageListItem).text);
                 }
             }
             Vector.serialize(outputSerializedData, arrayList);

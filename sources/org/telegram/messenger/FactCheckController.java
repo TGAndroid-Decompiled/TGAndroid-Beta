@@ -24,7 +24,6 @@ import java.util.Iterator;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
@@ -79,7 +78,8 @@ public class FactCheckController {
                         factCheckControllerArr[i] = factCheckController2;
                         factCheckController = factCheckController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -295,10 +295,7 @@ public class FactCheckController {
                     arrayList2.add(null);
                 }
                 sQLiteCursorQueryFinalized = database.queryFinalized("SELECT data FROM fact_checks WHERE hash IN (" + TextUtils.join(", ", arrayList3) + ")", new Object[0]);
-                while (true) {
-                    if (!sQLiteCursorQueryFinalized.next()) {
-                        break;
-                    }
+                while (sQLiteCursorQueryFinalized.next()) {
                     NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0);
                     TLRPC.TL_factCheck tL_factCheckTLdeserialize = TLRPC.TL_factCheck.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
                     if (tL_factCheckTLdeserialize != null) {
@@ -310,6 +307,10 @@ public class FactCheckController {
                         }
                         if (i >= 0 && i < arrayList2.size()) {
                             arrayList2.set(i, tL_factCheckTLdeserialize);
+                            break;
+                        } else {
+                            break;
+                            break;
                         }
                     }
                 }
@@ -660,21 +661,21 @@ public class FactCheckController {
     }
 
     public void applyFactCheck(MessageObject messageObject, final TLRPC.TL_textWithEntities tL_textWithEntities, final boolean z) {
-        TLRPC.TL_deleteFactCheck tL_deleteFactCheck;
+        TLObject tLObject;
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             TLRPC.TL_editFactCheck tL_editFactCheck = new TLRPC.TL_editFactCheck();
             tL_editFactCheck.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
             tL_editFactCheck.msg_id = messageObject.getId();
             tL_editFactCheck.text = tL_textWithEntities;
-            tL_deleteFactCheck = tL_editFactCheck;
+            tLObject = tL_editFactCheck;
         } else {
             if (z) {
                 return;
             }
-            TLRPC.TL_deleteFactCheck tL_deleteFactCheck2 = new TLRPC.TL_deleteFactCheck();
-            tL_deleteFactCheck2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
-            tL_deleteFactCheck2.msg_id = messageObject.getId();
-            tL_deleteFactCheck = tL_deleteFactCheck2;
+            TLRPC.TL_deleteFactCheck tL_deleteFactCheck = new TLRPC.TL_deleteFactCheck();
+            tL_deleteFactCheck.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
+            tL_deleteFactCheck.msg_id = messageObject.getId();
+            tLObject = tL_deleteFactCheck;
         }
         Context context = LaunchActivity.instance;
         if (context == null) {
@@ -682,10 +683,10 @@ public class FactCheckController {
         }
         final AlertDialog alertDialog = new AlertDialog(context, 3);
         alertDialog.showDelayed(320L);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_deleteFactCheck, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$applyFactCheck$16(tL_textWithEntities, z, alertDialog, tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$applyFactCheck$16(tL_textWithEntities, z, alertDialog, tLObject2, tL_error);
             }
         });
     }

@@ -21,7 +21,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SharingLiveLocationCell;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.ContentPreviewViewer;
 
 public class SharingLocationsAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
@@ -55,7 +54,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0 && SharingLocationsAlert.this.scrollOffsetY != 0 && motionEvent.getY() < SharingLocationsAlert.this.scrollOffsetY) {
-                    SharingLocationsAlert.this.lambda$new$0();
+                    SharingLocationsAlert.this.dismiss();
                     return true;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -185,18 +184,18 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
             return;
         }
         this.delegate.didSelectLocation(getLocation(i2));
-        lambda$new$0();
+        dismiss();
     }
 
     public void lambda$new$1(View view) {
         for (int i = 0; i < 4; i++) {
             LocationController.getInstance(i).removeAllLocationSharings();
         }
-        lambda$new$0();
+        dismiss();
     }
 
     public void lambda$new$2(View view) {
-        lambda$new$0();
+        dismiss();
     }
 
     public void updateLayout() {
@@ -227,7 +226,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.liveLocationsChanged) {
             if (LocationController.getLocationsCount() == 0) {
-                lambda$new$0();
+                dismiss();
             } else {
                 this.adapter.notifyDataSetChanged();
             }
@@ -247,8 +246,8 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
     }
 
     @Override
-    public void lambda$new$0() {
-        super.lambda$new$0();
+    public void dismiss() {
+        super.dismiss();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.liveLocationsChanged);
     }
 

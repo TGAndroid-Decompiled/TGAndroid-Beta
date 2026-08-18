@@ -37,7 +37,6 @@ import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.Stories.recorder.ScannedLinkPreview;
 
 public class ScannedLinkPreview extends View {
     private final AnimatedFloat animatedAlpha;
@@ -205,9 +204,10 @@ public class ScannedLinkPreview extends View {
             this.blurView.getLocationOnScreen(this.blurLocation);
             canvas.saveLayerAlpha(this.clipBounds, (int) (255.0f * f), 31);
             canvas.clipPath(this.clipPath);
-            int i = this.blurLocation[0];
-            int[] iArr = this.thisLocation;
-            canvas.translate(i - iArr[0], r3[1] - iArr[1]);
+            int[] iArr = this.blurLocation;
+            int i = iArr[0];
+            int[] iArr2 = this.thisLocation;
+            canvas.translate(i - iArr2[0], iArr[1] - iArr2[1]);
             float fMax3 = Math.max(this.blurView.getWidth() / renderNodeM.getWidth(), this.blurView.getHeight() / renderNodeM.getHeight());
             canvas.scale(fMax3, fMax3);
             canvas.drawRenderNode(renderNodeM);

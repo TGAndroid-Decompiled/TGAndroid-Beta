@@ -63,18 +63,18 @@ public class SelectorUserCell extends BaseCell {
             addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : 40.0f, 33.0f, z4 ? 39.0f : 0.0f, 0.0f));
             updateLayouts();
         } else if (z) {
-            CheckBox2 checkBox22 = new CheckBox2(context, 21, resourcesProvider);
-            this.checkBox = checkBox22;
+            CheckBox2 checkBox3 = new CheckBox2(context, 21, resourcesProvider);
+            this.checkBox = checkBox3;
             if (z3) {
-                checkBox22.setColor(Theme.key_checkbox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
+                checkBox3.setColor(Theme.key_checkbox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
             } else {
-                checkBox22.setColor(Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
+                checkBox3.setColor(Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
             }
-            checkBox22.setDrawUnchecked(true);
-            checkBox22.setDrawBackgroundAsArc(10);
-            addView(checkBox22);
-            checkBox22.setChecked(false, false);
-            checkBox22.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
+            checkBox3.setDrawUnchecked(true);
+            checkBox3.setDrawBackgroundAsArc(10);
+            addView(checkBox3);
+            checkBox3.setChecked(false, false);
+            checkBox3.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
             updateLayouts();
         } else {
             this.checkBox = null;
@@ -297,10 +297,10 @@ public class SelectorUserCell extends BaseCell {
         this.imageView.setForUserOrChat(this.chat, this.avatarDrawable);
         this.titleTextView.setText(this.chat.title);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
-        setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_myBoost.expires * 1000))));
+        setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(((long) tL_myBoost.expires) * 1000))));
         int i = tL_myBoost.cooldown_until_date;
         if (i > 0) {
-            setSubtitle(LocaleController.formatString(R.string.BoostingAvailableIn, buildCountDownTime((i * 1000) - System.currentTimeMillis())));
+            setSubtitle(LocaleController.formatString(R.string.BoostingAvailableIn, buildCountDownTime((((long) i) * 1000) - System.currentTimeMillis())));
             this.titleTextView.setAlpha(0.65f);
             this.subtitleTextView.setAlpha(0.65f);
             setCheckboxAlpha(0.3f, false);
@@ -314,13 +314,13 @@ public class SelectorUserCell extends BaseCell {
     public void updateTimer() {
         int i = this.boost.cooldown_until_date;
         if (i > 0) {
-            setSubtitle(LocaleController.formatString(R.string.BoostingAvailableIn, buildCountDownTime((i * 1000) - System.currentTimeMillis())));
+            setSubtitle(LocaleController.formatString(R.string.BoostingAvailableIn, buildCountDownTime((((long) i) * 1000) - System.currentTimeMillis())));
             this.titleTextView.setAlpha(0.65f);
             this.subtitleTextView.setAlpha(0.65f);
             setCheckboxAlpha(0.3f, false);
             return;
         }
-        setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(this.boost.expires * 1000))));
+        setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(((long) this.boost.expires) * 1000))));
         if (this.titleTextView.getAlpha() < 1.0f) {
             this.titleTextView.animate().alpha(1.0f).start();
             this.subtitleTextView.animate().alpha(1.0f).start();

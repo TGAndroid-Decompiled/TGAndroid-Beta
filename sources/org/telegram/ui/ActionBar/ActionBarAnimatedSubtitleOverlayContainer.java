@@ -5,12 +5,10 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.Iterator;
 import me.vkryl.android.animator.ListAnimator;
 import me.vkryl.android.animator.ReplaceAnimator;
 import me.vkryl.core.lambda.Destroyable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EllipsizeSpanAnimator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -84,9 +82,7 @@ public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLay
     }
 
     private void checkUi_titleOverlayTextAnimation() {
-        Iterator it = this.titleOverlayAnimator.iterator();
-        while (it.hasNext()) {
-            ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
+        for (ListAnimator.Entry entry : this.titleOverlayAnimator) {
             float visibility = entry.getVisibility();
             float fLerp = AndroidUtilities.lerp(0.85f, 1.0f, visibility);
             ((SimpleTextViewReplaceable) entry.item).setAlpha(visibility);
@@ -97,9 +93,7 @@ public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLay
     }
 
     public void updateColors() {
-        Iterator it = this.titleOverlayAnimator.iterator();
-        while (it.hasNext()) {
-            ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
+        for (ListAnimator.Entry entry : this.titleOverlayAnimator) {
             SimpleTextViewReplaceable simpleTextViewReplaceable = (SimpleTextViewReplaceable) entry.item;
             int i = Theme.key_telegram_color_dialogsLogo;
             simpleTextViewReplaceable.setTextColor(Theme.getColor(i, this.resourcesProvider));

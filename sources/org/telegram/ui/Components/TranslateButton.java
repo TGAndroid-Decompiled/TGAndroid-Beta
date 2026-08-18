@@ -35,7 +35,6 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChannelMonetizationLayout;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;

@@ -42,7 +42,8 @@ public class PipDuration {
             return 0L;
         }
         long jUptimeMillis = SystemClock.uptimeMillis() - this.start;
-        this.estimated = ((this.estimated * MathUtils.clamp(this.count, 0, 9)) / 10) + (((10 - r4) * jUptimeMillis) / 10);
+        int iClamp = MathUtils.clamp(this.count, 0, 9);
+        this.estimated = ((this.estimated * ((long) iClamp)) / 10) + ((((long) (10 - iClamp)) * jUptimeMillis) / 10);
         this.start = 0L;
         this.count++;
         this.mPrefs.edit().putLong("estimated", this.estimated).putInt("count", this.count).apply();

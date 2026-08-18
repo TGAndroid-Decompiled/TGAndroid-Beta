@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import j$.util.Base64;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;

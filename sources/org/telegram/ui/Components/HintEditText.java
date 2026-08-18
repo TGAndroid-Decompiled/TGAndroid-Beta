@@ -54,7 +54,7 @@ public class HintEditText extends EditTextBoldCursor {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) throws IllegalAccessException, IllegalArgumentException {
+    protected void onDraw(Canvas canvas) {
         float fMeasureText;
         if (this.hintText != null && length() < this.hintText.length()) {
             float f = 0.0f;

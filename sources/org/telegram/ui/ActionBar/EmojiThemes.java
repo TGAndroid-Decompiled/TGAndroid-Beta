@@ -12,8 +12,8 @@ import android.util.SparseArray;
 import android.util.SparseIntArray;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatThemeController;
@@ -26,10 +26,10 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.tlutils.TlUtils;
 import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
+import org.telegram.messenger.wallpaper.WallpaperGiftBitmapDrawable;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.theme.ITheme;
 import org.telegram.ui.ActionBar.theme.ThemeKey;
 
@@ -295,11 +295,95 @@ public class EmojiThemes {
         return ((ThemeItem) this.items.get(i)).settingsIndex;
     }
 
-    public android.util.SparseIntArray getPreviewColors(int r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.EmojiThemes.getPreviewColors(int, int):android.util.SparseIntArray");
+    public SparseIntArray getPreviewColors(int i, int i2) {
+        Theme.ThemeAccent themeAccentCreateNewAccent;
+        SparseIntArray sparseIntArray;
+        int iIndexOfKey;
+        Theme.ThemeInfo themeInfo;
+        Theme.ThemeInfo theme;
+        SparseIntArray sparseIntArray2 = ((ThemeItem) this.items.get(i2)).currentPreviewColors;
+        if (sparseIntArray2 != null) {
+            return sparseIntArray2;
+        }
+        Theme.ThemeInfo themeInfo2 = getThemeInfo(i2);
+        if (themeInfo2 == null) {
+            int settingsIndex = getSettingsIndex(i2);
+            ITheme iTheme = getITheme(i2);
+            TLRPC.TL_theme tlTheme = getTlTheme(i2);
+            if (iTheme != null) {
+                theme = Theme.getTheme(Theme.getBaseThemeKey(iTheme.getThemeSettings(settingsIndex)));
+            } else {
+                theme = Theme.getTheme("Blue");
+            }
+            if (theme != null) {
+                themeInfo2 = new Theme.ThemeInfo(theme);
+                themeAccentCreateNewAccent = iTheme != null ? themeInfo2.createNewAccent(iTheme.getThemeId(), iTheme.getThemeSettings(settingsIndex), tlTheme, i, true) : null;
+                if (themeAccentCreateNewAccent != null) {
+                    themeInfo2.setCurrentAccentId(themeAccentCreateNewAccent.id);
+                }
+            } else {
+                themeAccentCreateNewAccent = null;
+            }
+        } else {
+            SparseArray sparseArray = themeInfo2.themeAccentsMap;
+            if (sparseArray != null) {
+                themeAccentCreateNewAccent = (Theme.ThemeAccent) sparseArray.get(((ThemeItem) this.items.get(i2)).accentId);
+            } else {
+                themeAccentCreateNewAccent = null;
+            }
+        }
+        if (themeInfo2 == null) {
+            return sparseIntArray2;
+        }
+        String[] strArr = new String[1];
+        if (themeInfo2.pathToFile != null) {
+            sparseIntArray = Theme.getThemeFileValues(new File(themeInfo2.pathToFile), null, strArr);
+        } else {
+            String str = themeInfo2.assetName;
+            if (str != null) {
+                sparseIntArray = Theme.getThemeFileValues(null, str, strArr);
+            } else {
+                sparseIntArray = new SparseIntArray();
+            }
+        }
+        int i3 = 0;
+        ((ThemeItem) this.items.get(i2)).wallpaperLink = strArr[0];
+        if (themeAccentCreateNewAccent != null) {
+            SparseIntArray sparseIntArrayClone = sparseIntArray.clone();
+            themeAccentCreateNewAccent.fillAccentColors(sparseIntArray, sparseIntArrayClone);
+            if (isGiftTheme() && (themeInfo = themeAccentCreateNewAccent.parentTheme) != null && themeInfo.isLight()) {
+                themeAccentCreateNewAccent.resetAccentColorsForMyMessagesGiftThemeLight(sparseIntArrayClone);
+            }
+            sparseIntArray = sparseIntArrayClone;
+        }
+        SparseIntArray fallbackKeys = Theme.getFallbackKeys();
+        SparseIntArray sparseIntArray3 = new SparseIntArray();
+        ((ThemeItem) this.items.get(i2)).currentPreviewColors = sparseIntArray3;
+        while (true) {
+            try {
+                int[] iArr = previewColorKeys;
+                if (i3 >= iArr.length) {
+                    break;
+                }
+                int i4 = iArr[i3];
+                int iIndexOfKey2 = sparseIntArray.indexOfKey(i4);
+                if (iIndexOfKey2 >= 0) {
+                    sparseIntArray3.put(i4, sparseIntArray.valueAt(iIndexOfKey2));
+                } else {
+                    int i5 = fallbackKeys.get(i4, -1);
+                    if (i5 >= 0 && (iIndexOfKey = sparseIntArray.indexOfKey(i5)) >= 0) {
+                        sparseIntArray3.put(i4, sparseIntArray.valueAt(iIndexOfKey));
+                    }
+                }
+                i3++;
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        return sparseIntArray3;
     }
 
-    public SparseIntArray createColors(int i, int i2) throws IOException {
+    public SparseIntArray createColors(int i, int i2) {
         Theme.ThemeAccent themeAccentCreateNewAccent;
         SparseIntArray sparseIntArray;
         int iIndexOfKey;
@@ -423,8 +507,35 @@ public class EmojiThemes {
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 
-    public static void lambda$loadWallpaperImage$1(int r0, org.telegram.messenger.Utilities.Callback r1, int r2, long r3, org.telegram.messenger.ImageReceiver r5, boolean r6, boolean r7, boolean r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.EmojiThemes.lambda$loadWallpaperImage$1(int, org.telegram.messenger.Utilities$Callback, int, long, org.telegram.messenger.ImageReceiver, boolean, boolean, boolean):void");
+    public static void lambda$loadWallpaperImage$1(int i, Utilities.Callback callback, int i2, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        List list;
+        ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
+        ImageReceiver.BitmapHolder drawableSafe = imageReceiver.getDrawableSafe();
+        if (!z || bitmapSafe == null) {
+            return;
+        }
+        if (drawableSafe != null) {
+            Drawable drawable = drawableSafe.drawable;
+            if (drawable instanceof WallpaperGiftBitmapDrawable) {
+                list = ((WallpaperGiftBitmapDrawable) drawable).patternPositions;
+            } else {
+                list = null;
+            }
+        } else {
+            list = null;
+        }
+        Bitmap bitmap = bitmapSafe.bitmap;
+        if (bitmap == null) {
+            Drawable drawable2 = bitmapSafe.drawable;
+            if (drawable2 instanceof BitmapDrawable) {
+                bitmap = ((BitmapDrawable) drawable2).getBitmap();
+            }
+        }
+        WallpaperBitmapHolder wallpaperBitmapHolder = new WallpaperBitmapHolder(bitmap, i, list);
+        if (callback != null) {
+            callback.run(wallpaperBitmapHolder);
+        }
+        ChatThemeController.getInstance(i2).saveWallpaperBitmap(wallpaperBitmapHolder, j);
     }
 
     public void loadWallpaperThumb(int i, final ResultCallback resultCallback) {
@@ -508,7 +619,7 @@ public class EmojiThemes {
             }
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     EmojiThemes.lambda$loadWallpaperThumb$3(file, bitmap);
                 }
             });
@@ -517,13 +628,19 @@ public class EmojiThemes {
         }
     }
 
-    public static void lambda$loadWallpaperThumb$3(File file, Bitmap bitmap) throws IOException {
+    public static void lambda$loadWallpaperThumb$3(File file, Bitmap bitmap) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             try {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
                 fileOutputStream.close();
-            } finally {
+            } catch (Throwable th) {
+                try {
+                    fileOutputStream.close();
+                } catch (Throwable th2) {
+                    th.addSuppressed(th2);
+                }
+                throw th;
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -606,7 +723,7 @@ public class EmojiThemes {
         return (ThemeItem) this.items.get(i);
     }
 
-    public static void saveCustomTheme(Theme.ThemeInfo themeInfo, int i) throws IOException {
+    public static void saveCustomTheme(Theme.ThemeInfo themeInfo, int i) {
         SparseArray sparseArray;
         Theme.ThemeAccent themeAccent;
         if (themeInfo == null) {

@@ -10,12 +10,12 @@ import android.graphics.Shader;
 import android.os.SystemClock;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.SeekBar;
 
 public class SeekBarWaveform {
     private static Paint paintInner;
@@ -271,22 +271,23 @@ public class SeekBarWaveform {
                 int i8 = i3 * 5;
                 int i9 = i8 / 8;
                 int i10 = i8 - (i9 * 8);
-                int i11 = 5 - (8 - i10);
-                byte bMin = (byte) ((this.waveformBytes[i9] >> i10) & ((2 << (Math.min(i2, r15) - 1)) - 1));
-                if (i11 > 0) {
-                    int i12 = i9 + 1;
+                int i11 = 8 - i10;
+                int i12 = 5 - i11;
+                byte bMin = (byte) ((this.waveformBytes[i9] >> i10) & ((2 << (Math.min(i2, i11) - 1)) - 1));
+                if (i12 > 0) {
+                    int i13 = i9 + 1;
                     byte[] bArr2 = this.waveformBytes;
-                    if (i12 < bArr2.length) {
-                        bMin = (byte) (((byte) (bMin << i11)) | (bArr2[i12] & ((2 << (4 - r15)) - 1)));
+                    if (i13 < bArr2.length) {
+                        bMin = (byte) (((byte) (bMin << i12)) | (bArr2[i13] & ((2 << (4 - i11)) - 1)));
                     }
                 }
-                int i13 = 0;
-                while (i13 < i7) {
+                int i14 = 0;
+                while (i14 < i7) {
                     if (i5 >= i) {
                         return fArr;
                     }
                     fArr[i5] = Math.max(0.0f, (bMin * 7) / 31.0f);
-                    i13++;
+                    i14++;
                     i5++;
                 }
                 i4 = i6;
@@ -308,24 +309,187 @@ public class SeekBarWaveform {
         invalidate();
     }
 
-    public void draw(android.graphics.Canvas r18, android.view.View r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SeekBarWaveform.draw(android.graphics.Canvas, android.view.View):void");
+    public void draw(Canvas canvas, View view) {
+        int i;
+        float f;
+        float f2;
+        RectF rectF;
+        float[] fArr;
+        float[] fArr2;
+        int i2;
+        int i3;
+        int length;
+        if (this.waveformBytes == null || (i = this.width) == 0 || this.alpha <= 0.0f) {
+            return;
+        }
+        float fDpf2 = i / AndroidUtilities.dpf2(3.0f);
+        if (fDpf2 <= 0.1f) {
+            return;
+        }
+        float f3 = this.clearProgress;
+        if (f3 != 1.0f) {
+            float f4 = f3 + 0.10666667f;
+            this.clearProgress = f4;
+            if (f4 > 1.0f) {
+                this.clearProgress = 1.0f;
+            } else {
+                view.invalidate();
+            }
+        }
+        float f5 = this.appearFloat.set(1.0f);
+        Path path = this.path;
+        if (path == null) {
+            this.path = new Path();
+        } else {
+            path.reset();
+        }
+        Path path2 = this.alphaPath;
+        if (path2 == null) {
+            this.alphaPath = new Path();
+        } else {
+            path2.reset();
+        }
+        SeekBar.SeekBarDelegate seekBarDelegate = this.delegate;
+        boolean z = seekBarDelegate != null && seekBarDelegate.reverseWaveform();
+        float[] fArr3 = this.fromHeights;
+        if (fArr3 != null && (fArr2 = this.toHeights) != null) {
+            int i4 = this.width;
+            int i5 = this.fromWidth;
+            float f6 = (i4 - i5) / (this.toWidth - i5);
+            int iMax = Math.max(fArr3.length, fArr2.length);
+            int iMin = Math.min(this.fromHeights.length, this.toHeights.length);
+            float[] fArr4 = this.fromHeights;
+            int length2 = fArr4.length;
+            float[] fArr5 = this.toHeights;
+            float[] fArr6 = length2 < fArr5.length ? fArr4 : fArr5;
+            float[] fArr7 = fArr4.length < fArr5.length ? fArr5 : fArr4;
+            if (fArr4.length >= fArr5.length) {
+                f6 = 1.0f - f6;
+            }
+            int i6 = -1;
+            f = 0.0f;
+            int i7 = 0;
+            while (i7 < iMax) {
+                float f7 = i7;
+                int i8 = iMax;
+                int iClamp = MathUtils.clamp((int) Math.floor((f7 / iMax) * iMin), 0, iMin - 1);
+                if (i6 < iClamp) {
+                    float fLerp = AndroidUtilities.lerp(iClamp, f7, f6) * AndroidUtilities.dpf2(3.0f);
+                    if (z) {
+                        i3 = 1;
+                        length = (fArr6.length - 1) - iClamp;
+                    } else {
+                        i3 = 1;
+                        length = iClamp;
+                    }
+                    addBar(this.path, fLerp, AndroidUtilities.dpf2(AndroidUtilities.lerp(fArr6[length], fArr7[z ? (fArr7.length - i3) - i7 : i7], f6)));
+                    i6 = iClamp;
+                } else {
+                    float fLerp2 = AndroidUtilities.lerp(iClamp, f7, f6) * AndroidUtilities.dpf2(3.0f);
+                    if (z) {
+                        i2 = 1;
+                        iClamp = (fArr6.length - 1) - iClamp;
+                    } else {
+                        i2 = 1;
+                    }
+                    addBar(this.alphaPath, fLerp2, AndroidUtilities.dpf2(AndroidUtilities.lerp(fArr6[iClamp], fArr7[z ? (fArr7.length - i2) - i7 : i7], f6)));
+                    f = f6;
+                }
+                i7++;
+                iMax = i8;
+            }
+        } else {
+            if (this.heights != null) {
+                int i9 = 0;
+                while (true) {
+                    float f8 = i9;
+                    if (f8 >= fDpf2 || i9 >= this.heights.length) {
+                        break;
+                    }
+                    float fDpf3 = AndroidUtilities.dpf2(3.0f) * f8;
+                    float fClamp = MathUtils.clamp((f5 * fDpf2) - f8, 0.0f, 1.0f);
+                    float[] fArr8 = this.heights;
+                    addBar(this.path, fDpf3, (AndroidUtilities.dpf2(fArr8[z ? (fArr8.length - 1) - i9 : i9]) * fClamp) - (AndroidUtilities.dpf2(1.0f) * (1.0f - fClamp)));
+                    i9++;
+                }
+            }
+            f = 0.0f;
+        }
+        if (this.exploding || this.explosionRate > 0.0f) {
+            canvas.save();
+            f2 = 0.0f;
+            canvas.clipRect(0.0f, 0.0f, AndroidUtilities.dpf2(3.0f) * fDpf2 * (1.0f - (this.explodeProgress * this.explosionRate)), this.height);
+        } else {
+            f2 = 0.0f;
+        }
+        if (f > f2) {
+            canvas.save();
+            canvas.clipPath(this.alphaPath);
+            drawFill(canvas, f * this.alpha);
+            canvas.restore();
+        }
+        canvas.save();
+        canvas.clipPath(this.path);
+        drawFill(canvas, this.alpha);
+        canvas.restore();
+        if (this.exploding || this.explosionRate > 0.0f) {
+            canvas.restore();
+            if (this.particles == null) {
+                this.particles = new Particles(250, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.invalidate();
+                    }
+                });
+            }
+            float f9 = this.explodeProgress;
+            if (f9 >= 0.99f || (fArr = this.heights) == null) {
+                rectF = null;
+            } else {
+                int i10 = (int) ((1.0f - f9) * fDpf2);
+                if (z) {
+                    i10 = (int) ((fDpf2 - 1.0f) - i10);
+                }
+                if (i10 < 0 || i10 >= fArr.length) {
+                    rectF = null;
+                } else {
+                    float fDpf4 = AndroidUtilities.dpf2(this.heights[i10]) * MathUtils.clamp((f5 * fDpf2) - i10, 0.0f, 1.0f);
+                    rectF = AndroidUtilities.rectTmp;
+                    float fDpf5 = fDpf2 * (1.0f - this.explodeProgress) * AndroidUtilities.dpf2(3.0f);
+                    float fDpf6 = AndroidUtilities.dpf2(2.0f);
+                    int iDp = (this.height - AndroidUtilities.dp(14.0f)) / 2;
+                    float f10 = fDpf4 * this.waveScaling;
+                    float f11 = fDpf6 / 2.0f;
+                    rectF.set((AndroidUtilities.dpf2(1.0f) + fDpf5) - f11, AndroidUtilities.dp(7.0f) + iDp + ((-f10) - f11), fDpf5 + AndroidUtilities.dpf2(1.0f) + f11, iDp + AndroidUtilities.dp(7.0f) + f10 + f11);
+                }
+            }
+            this.particles.setColor(this.outerColor).setEmitArea(rectF).draw(canvas, this.explosionRate);
+        }
     }
 
     private void drawFill(Canvas canvas, float f) {
+        int i;
         float fDpf2 = AndroidUtilities.dpf2(2.0f);
         MessageObject messageObject = this.messageObject;
         boolean z = messageObject != null && messageObject.isContentUnread() && !this.messageObject.isOut() && this.progress <= 0.0f;
         this.isUnread = z;
-        paintInner.setColor(z ? this.outerColor : this.selected ? this.selectedColor : this.innerColor);
+        Paint paint = paintInner;
+        if (z) {
+            i = this.outerColor;
+        } else {
+            i = this.selected ? this.selectedColor : this.innerColor;
+        }
+        paint.setColor(i);
         paintOuter.setColor(this.outerColor);
         this.loadingFloat.setParent(this.parentView);
         float f2 = this.loadingFloat.set((!this.loading || MediaController.getInstance().isPlayingMessage(this.messageObject)) ? 0.0f : 1.0f);
-        Paint paint = paintInner;
-        paint.setColor(ColorUtils.blendARGB(paint.getColor(), this.innerColor, f2));
+        Paint paint2 = paintInner;
+        paint2.setColor(ColorUtils.blendARGB(paint2.getColor(), this.innerColor, f2));
+        Paint paint3 = paintOuter;
         float f3 = 1.0f - f2;
-        paintOuter.setAlpha((int) (r5.getAlpha() * f3 * f));
-        paintInner.setAlpha((int) (r5.getAlpha() * f));
+        paint3.setAlpha((int) (paint3.getAlpha() * f3 * f));
+        Paint paint4 = paintInner;
+        paint4.setAlpha((int) (paint4.getAlpha() * f));
         canvas.drawRect(0.0f, 0.0f, this.width + fDpf2, this.height, paintInner);
         if (f2 < 1.0f) {
             canvas.drawRect(0.0f, 0.0f, this.progress * (this.width + fDpf2) * f3, this.height, paintOuter);
@@ -337,11 +501,11 @@ public class SeekBarWaveform {
                 }
                 this.loadingPaintColor1 = this.innerColor;
                 this.loadingPaintColor2 = this.outerColor;
-                Paint paint2 = this.loadingPaint;
+                Paint paint5 = this.loadingPaint;
                 float f4 = this.width;
                 this.loadingPaintWidth = f4;
-                int i = this.loadingPaintColor1;
-                paint2.setShader(new LinearGradient(0.0f, 0.0f, f4, 0.0f, new int[]{i, this.loadingPaintColor2, i}, new float[]{0.0f, 0.2f, 0.4f}, Shader.TileMode.CLAMP));
+                int i2 = this.loadingPaintColor1;
+                paint5.setShader(new LinearGradient(0.0f, 0.0f, f4, 0.0f, new int[]{i2, this.loadingPaintColor2, i2}, new float[]{0.0f, 0.2f, 0.4f}, Shader.TileMode.CLAMP));
             }
             this.loadingPaint.setAlpha((int) (f2 * 255.0f * f));
             canvas.save();
@@ -439,7 +603,7 @@ public class SeekBarWaveform {
                     float f7 = particle.y;
                     float f8 = particle.vy;
                     particle.y = f7 + (((f6 * f8) * f2) / 500.0f);
-                    particle.vy = f8 - ((AndroidUtilities.dp(0.33f) * jMin) / 500.0f);
+                    particle.vy = f8 - ((((long) AndroidUtilities.dp(0.33f)) * jMin) / 500.0f);
                 }
                 i++;
             }
@@ -451,7 +615,7 @@ public class SeekBarWaveform {
                     particle2.x = rectF.left + (rectF.width() * Utilities.random.nextFloat());
                     RectF rectF2 = this.emitArea;
                     particle2.y = rectF2.top + (rectF2.height() * Utilities.random.nextFloat());
-                    double dNextInt = (Utilities.random.nextInt(200) - 125) * 0.017453292519943295d;
+                    double dNextInt = ((double) (Utilities.random.nextInt(200) - 125)) * 0.017453292519943295d;
                     particle2.vx = ((float) (Math.cos(dNextInt) - Math.sin(dNextInt))) * 0.8f;
                     particle2.vy = ((float) (Math.sin(dNextInt) + Math.cos(dNextInt))) - 0.2f;
                     particle2.t = 1.0f;

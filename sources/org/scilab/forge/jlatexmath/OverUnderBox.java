@@ -37,7 +37,7 @@ public class OverUnderBox extends Box {
         if (this.over) {
             Box box2 = this.del;
             AffineTransform transform = graphics2D.getTransform();
-            graphics2D.translate(f + ((box2.height + box2.depth) * 0.75d), width);
+            graphics2D.translate(((double) f) + (((double) (box2.height + box2.depth)) * 0.75d), width);
             graphics2D.rotate(1.5707963267948966d);
             this.del.draw(graphics2D, 0.0f, 0.0f);
             graphics2D.setTransform(transform);
@@ -51,7 +51,7 @@ public class OverUnderBox extends Box {
             return;
         }
         AffineTransform transform2 = graphics2D.getTransform();
-        graphics2D.translate(f + ((this.del.getHeight() + this.del.depth) * 0.75d), f3);
+        graphics2D.translate(((double) f) + (((double) (this.del.getHeight() + this.del.depth)) * 0.75d), f3);
         graphics2D.rotate(1.5707963267948966d);
         this.del.draw(graphics2D, 0.0f, 0.0f);
         graphics2D.setTransform(transform2);

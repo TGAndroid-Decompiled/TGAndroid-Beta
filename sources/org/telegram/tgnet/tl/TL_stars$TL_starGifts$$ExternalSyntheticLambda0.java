@@ -3,7 +3,6 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_stars;
 
 public final class TL_stars$TL_starGifts$$ExternalSyntheticLambda0 implements Vector.TLDeserializer {
     @Override

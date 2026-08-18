@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -43,8 +42,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedColor;
@@ -145,7 +142,7 @@ public class BottomSheetTabs extends FrameLayout {
         }
         new Utilities.Callback() {
             @Override
-            public final void run(Object obj) throws Resources.NotFoundException {
+            public final void run(Object obj) {
                 this.f$0.lambda$openTab$0(webTabData, (BaseFragment) obj);
             }
         }.run(lastFragment);
@@ -164,7 +161,7 @@ public class BottomSheetTabs extends FrameLayout {
         }
     }
 
-    public void lambda$openTab$0(WebTabData webTabData, BaseFragment baseFragment) throws Resources.NotFoundException {
+    public void lambda$openTab$0(WebTabData webTabData, BaseFragment baseFragment) {
         if (baseFragment == null) {
             return;
         }
@@ -232,7 +229,8 @@ public class BottomSheetTabs extends FrameLayout {
             WebTabData webTabData = tabs2.get(i);
             ArticleViewer articleViewer = webTabData.articleViewer;
             if (articleViewer != null && !articleViewer.pagesStack.isEmpty()) {
-                Object obj = webTabData.articleViewer.pagesStack.get(r5.size() - 1);
+                ArrayList arrayList = webTabData.articleViewer.pagesStack;
+                Object obj = arrayList.get(arrayList.size() - 1);
                 if (obj instanceof ArticleViewer.CachedWeb) {
                     BotWebViewContainer.MyWebView webView = ((ArticleViewer.CachedWeb) obj).webView;
                     if (webView == null && (pageLayoutArr = webTabData.articleViewer.pages) != null && (pageLayout = pageLayoutArr[0]) != null) {
@@ -264,7 +262,8 @@ public class BottomSheetTabs extends FrameLayout {
             WebTabData webTabData = tabs2.get(i);
             ArticleViewer articleViewer = webTabData.articleViewer;
             if (articleViewer != null && !articleViewer.pagesStack.isEmpty()) {
-                Object obj = webTabData.articleViewer.pagesStack.get(r4.size() - 1);
+                ArrayList arrayList = webTabData.articleViewer.pagesStack;
+                Object obj = arrayList.get(arrayList.size() - 1);
                 if ((obj instanceof TLRPC.WebPage) && (webPage2 = (TLRPC.WebPage) obj) != null && webPage2.id == webPage.id) {
                     openTab(webTabData);
                     return webTabData;
@@ -466,11 +465,9 @@ public class BottomSheetTabs extends FrameLayout {
             if (i >= map.size()) {
                 return false;
             }
-            ArrayList arrayList = (ArrayList) map.get(Integer.valueOf(i));
+            ArrayList<WebTabData> arrayList = (ArrayList) map.get(Integer.valueOf(i));
             if (arrayList != null) {
-                Iterator it = arrayList.iterator();
-                while (it.hasNext()) {
-                    WebTabData webTabData = (WebTabData) it.next();
+                for (WebTabData webTabData : arrayList) {
                     if (webTabData.articleViewer == articleViewer) {
                         return removeTab(i, webTabData, true);
                     }
@@ -1018,9 +1015,11 @@ public class BottomSheetTabs extends FrameLayout {
             }
             Text text = this.overrideTitle;
             if (text != null) {
-                text.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - r3)).draw(canvas, iDp + rectF.left + AndroidUtilities.dp(60.0f), rectF.centerY(), iBlendARGB2, (1.0f - this.expandProgress) * f2 * f3);
+                float f10 = iDp;
+                text.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f10)).draw(canvas, f10 + rectF.left + AndroidUtilities.dp(60.0f), rectF.centerY(), iBlendARGB2, (1.0f - this.expandProgress) * f2 * f3);
             }
-            this.title.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - r3)).draw(canvas, iDp + rectF.left + AndroidUtilities.dp(60.0f), rectF.centerY(), iBlendARGB2, (this.overrideTitle != null ? this.expandProgress : 1.0f) * f2 * f3);
+            float f11 = iDp;
+            this.title.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f11)).draw(canvas, f11 + rectF.left + AndroidUtilities.dp(60.0f), rectF.centerY(), iBlendARGB2, (this.overrideTitle != null ? this.expandProgress : 1.0f) * f2 * f3);
         }
     }
 

@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import android.text.SpannableString;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -127,6 +128,7 @@ public class PreviewHighlightView extends FrameLayout {
     }
 
     public void show(boolean z, boolean z2, View view) {
+        float f;
         if (z) {
             if (this.shownTop == z2) {
                 return;
@@ -140,7 +142,13 @@ public class PreviewHighlightView extends FrameLayout {
         }
         FrameLayout frameLayout = z ? this.top : this.bottom;
         frameLayout.clearAnimation();
-        frameLayout.animate().alpha(z2 ? z ? 0.5f : 0.2f : 0.0f).start();
+        ViewPropertyAnimator viewPropertyAnimatorAnimate = frameLayout.animate();
+        if (z2) {
+            f = z ? 0.5f : 0.2f;
+        } else {
+            f = 0.0f;
+        }
+        viewPropertyAnimatorAnimate.alpha(f).start();
         if (view != null) {
             view.clearAnimation();
             view.animate().alpha(z2 ? 0.0f : 1.0f).start();

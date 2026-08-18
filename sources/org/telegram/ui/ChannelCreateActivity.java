@@ -9,7 +9,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -33,7 +32,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -79,7 +77,6 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.TypefaceSpan;
-import org.telegram.ui.PhotoViewer;
 
 public class ChannelCreateActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
     private ArrayList adminedChannelCells;
@@ -436,8 +433,118 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 }
 
                 @Override
-                protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelCreateActivity.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
+                protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                    int i7;
+                    int i8;
+                    int i9;
+                    int i10;
+                    int i11;
+                    int paddingTop;
+                    int measuredHeight;
+                    int measuredHeight2;
+                    int childCount = getChildCount();
+                    int iMeasureKeyboardHeight = measureKeyboardHeight();
+                    int emojiPadding = (iMeasureKeyboardHeight > AndroidUtilities.dp(20.0f) || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) ? 0 : ChannelCreateActivity.this.nameTextView.getEmojiPadding();
+                    setBottomClip(emojiPadding);
+                    for (int i12 = 0; i12 < childCount; i12++) {
+                        View childAt = getChildAt(i12);
+                        if (childAt.getVisibility() != 8) {
+                            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                            int measuredWidth = childAt.getMeasuredWidth();
+                            int measuredHeight3 = childAt.getMeasuredHeight();
+                            int i13 = layoutParams.gravity;
+                            if (i13 == -1) {
+                                i13 = 51;
+                            }
+                            int i14 = i13 & 112;
+                            int i15 = i13 & 7;
+                            if (i15 != 1) {
+                                if (i15 == 5) {
+                                    i7 = i5 - measuredWidth;
+                                    i8 = layoutParams.rightMargin;
+                                } else {
+                                    i9 = layoutParams.leftMargin;
+                                }
+                                if (i14 != 16) {
+                                    if (i14 != 48) {
+                                        paddingTop = layoutParams.topMargin + getPaddingTop();
+                                    } else if (i14 != 80) {
+                                        i10 = ((i6 - emojiPadding) - i4) - measuredHeight3;
+                                        i11 = layoutParams.bottomMargin;
+                                    } else {
+                                        paddingTop = layoutParams.topMargin;
+                                    }
+                                    if (ChannelCreateActivity.this.nameTextView != null && ChannelCreateActivity.this.nameTextView.isPopupView(childAt)) {
+                                        if (AndroidUtilities.isTablet()) {
+                                            measuredHeight = getMeasuredHeight();
+                                            measuredHeight2 = childAt.getMeasuredHeight();
+                                        } else {
+                                            measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                            measuredHeight2 = childAt.getMeasuredHeight();
+                                        }
+                                        paddingTop = measuredHeight - measuredHeight2;
+                                    }
+                                    childAt.layout(i9, paddingTop, measuredWidth + i9, measuredHeight3 + paddingTop);
+                                } else {
+                                    i10 = ((((i6 - emojiPadding) - i4) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                    i11 = layoutParams.bottomMargin;
+                                }
+                                paddingTop = i10 - i11;
+                                if (ChannelCreateActivity.this.nameTextView != null) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    } else {
+                                        measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    }
+                                    paddingTop = measuredHeight - measuredHeight2;
+                                }
+                                childAt.layout(i9, paddingTop, measuredWidth + i9, measuredHeight3 + paddingTop);
+                            } else {
+                                i7 = (((i5 - i3) - measuredWidth) / 2) + layoutParams.leftMargin;
+                                i8 = layoutParams.rightMargin;
+                            }
+                            i9 = i7 - i8;
+                            if (i14 != 16) {
+                                if (i14 != 48) {
+                                    paddingTop = layoutParams.topMargin + getPaddingTop();
+                                } else if (i14 != 80) {
+                                    i10 = ((i6 - emojiPadding) - i4) - measuredHeight3;
+                                    i11 = layoutParams.bottomMargin;
+                                } else {
+                                    paddingTop = layoutParams.topMargin;
+                                }
+                                if (ChannelCreateActivity.this.nameTextView != null) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    } else {
+                                        measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    }
+                                    paddingTop = measuredHeight - measuredHeight2;
+                                }
+                                childAt.layout(i9, paddingTop, measuredWidth + i9, measuredHeight3 + paddingTop);
+                            } else {
+                                i10 = ((((i6 - emojiPadding) - i4) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                i11 = layoutParams.bottomMargin;
+                            }
+                            paddingTop = i10 - i11;
+                            if (ChannelCreateActivity.this.nameTextView != null) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(i9, paddingTop, measuredWidth + i9, measuredHeight3 + paddingTop);
+                        }
+                    }
+                    notifyHeightChanged();
                 }
 
                 @Override
@@ -507,7 +614,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             frameLayout.addView(view2, LayoutHelper.createFrame(64, 64.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 16.0f, 12.0f, z2 ? 16.0f : 0.0f, 12.0f));
             this.avatarOverlay.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view3) throws IOException {
+                public final void onClick(View view3) {
                     this.f$0.lambda$createView$8(view3);
                 }
             });
@@ -939,7 +1046,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         }
     }
 
-    public void lambda$createView$8(View view) throws IOException {
+    public void lambda$createView$8(View view) {
         this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
             @Override
             public final void run() {
@@ -1249,7 +1356,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         ImageUpdater imageUpdater = this.imageUpdater;
         if (imageUpdater != null) {
             imageUpdater.onActivityResult(i, i2, intent);

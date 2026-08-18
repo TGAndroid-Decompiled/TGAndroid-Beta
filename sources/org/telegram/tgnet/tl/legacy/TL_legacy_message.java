@@ -31,9 +31,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -291,9 +291,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -543,9 +543,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -787,9 +787,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -1025,9 +1025,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -1257,9 +1257,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.id = inputSerializedData.readInt32(z);
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1475,9 +1475,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.id = inputSerializedData.readInt32(z);
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1687,9 +1687,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.id = inputSerializedData.readInt32(z);
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1893,9 +1893,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.id = inputSerializedData.readInt32(z);
             if (TLObject.hasFlag(this.flags, 256)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2090,9 +2090,9 @@ public class TL_legacy_message {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.id = inputSerializedData.readInt32(z);
             if (TLObject.hasFlag(this.flags, 256)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);

@@ -27,8 +27,59 @@ public class LinkReferenceDefinitionParser {
         PARAGRAPH
     }
 
-    public void parse(java.lang.CharSequence r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.commonmark.internal.LinkReferenceDefinitionParser.parse(java.lang.CharSequence):void");
+    public void parse(CharSequence charSequence) {
+        if (this.paragraph.length() != 0) {
+            this.paragraph.append('\n');
+        }
+        this.paragraph.append(charSequence);
+        int iStartDefinition = 0;
+        while (iStartDefinition < charSequence.length()) {
+            switch (AnonymousClass1.$SwitchMap$org$commonmark$internal$LinkReferenceDefinitionParser$State[this.state.ordinal()]) {
+                case 1:
+                    return;
+                case 2:
+                    iStartDefinition = startDefinition(charSequence, iStartDefinition);
+                    if (iStartDefinition == -1) {
+                        this.state = State.PARAGRAPH;
+                        return;
+                    }
+                    break;
+                case 3:
+                    iStartDefinition = label(charSequence, iStartDefinition);
+                    if (iStartDefinition == -1) {
+                        this.state = State.PARAGRAPH;
+                        return;
+                    }
+                    break;
+                case 4:
+                    iStartDefinition = destination(charSequence, iStartDefinition);
+                    if (iStartDefinition == -1) {
+                        this.state = State.PARAGRAPH;
+                        return;
+                    }
+                    break;
+                case 5:
+                    iStartDefinition = startTitle(charSequence, iStartDefinition);
+                    if (iStartDefinition == -1) {
+                        this.state = State.PARAGRAPH;
+                        return;
+                    }
+                    break;
+                case 6:
+                    iStartDefinition = title(charSequence, iStartDefinition);
+                    if (iStartDefinition == -1) {
+                        this.state = State.PARAGRAPH;
+                        return;
+                    }
+                    break;
+                default:
+                    if (iStartDefinition == -1) {
+                        this.state = State.PARAGRAPH;
+                        return;
+                    }
+                    break;
+            }
+        }
     }
 
     static class AnonymousClass1 {

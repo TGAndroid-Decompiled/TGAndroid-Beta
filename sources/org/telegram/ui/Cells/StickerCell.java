@@ -1,6 +1,7 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -140,17 +141,52 @@ public class StickerCell extends FrameLayout {
             return null;
         }
         MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
-        this.imageView.getLocationInWindow(new int[2]);
-        sendAnimationData.x = imageReceiver.getCenterX() + r2[0];
-        sendAnimationData.y = imageReceiver.getCenterY() + r2[1];
+        int[] iArr = new int[2];
+        this.imageView.getLocationInWindow(iArr);
+        sendAnimationData.x = imageReceiver.getCenterX() + iArr[0];
+        sendAnimationData.y = imageReceiver.getCenterY() + iArr[1];
         sendAnimationData.width = imageReceiver.getImageWidth();
         sendAnimationData.height = imageReceiver.getImageHeight();
         return sendAnimationData;
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r5, android.view.View r6, long r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.StickerCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        boolean z;
+        float f;
+        boolean zDrawChild = super.drawChild(canvas, view, j);
+        if (view == this.imageView && (((z = this.scaled) && this.scale != 0.8f) || (!z && this.scale != 1.0f))) {
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long j2 = jCurrentTimeMillis - this.lastUpdateTime;
+            this.lastUpdateTime = jCurrentTimeMillis;
+            if (this.scaled) {
+                float f2 = this.scale;
+                if (f2 != 0.8f) {
+                    float f3 = f2 - (j2 / 400.0f);
+                    this.scale = f3;
+                    if (f3 < 0.8f) {
+                        this.scale = 0.8f;
+                    }
+                } else {
+                    f = this.scale + (j2 / 400.0f);
+                    this.scale = f;
+                    if (f > 1.0f) {
+                        this.scale = 1.0f;
+                    }
+                }
+            } else {
+                f = this.scale + (j2 / 400.0f);
+                this.scale = f;
+                if (f > 1.0f) {
+                    this.scale = 1.0f;
+                }
+            }
+            this.imageView.setScaleX(this.scale);
+            this.imageView.setScaleY(this.scale);
+            this.imageView.invalidate();
+            invalidate();
+        }
+        return zDrawChild;
     }
 
     @Override

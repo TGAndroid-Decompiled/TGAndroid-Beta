@@ -11,9 +11,13 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,9 +36,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BackupImageView;
@@ -49,6 +56,7 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.DarkBlueThemeResourcesProvider;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ReportBottomSheet;
+import org.telegram.ui.RevenueSharingAdsInfoBottomSheet;
 
 public class VideoAds {
     private static HashMap<VideoAdsLocation, VideoAds> cached = new HashMap<>();
@@ -219,7 +227,7 @@ public class VideoAds {
         if (!this.loaded || this.ads.isEmpty()) {
             return;
         }
-        AndroidUtilities.runOnUIThread(this.showRunnable, Math.max(0L, ((this.first ? this.start_delay : this.between_delay) * 1000) - (System.currentTimeMillis() - this.lastTime)));
+        AndroidUtilities.runOnUIThread(this.showRunnable, Math.max(0L, (((long) (this.first ? this.start_delay : this.between_delay)) * 1000) - (System.currentTimeMillis() - this.lastTime)));
     }
 
     public void setWaitingPaused(boolean z) {
@@ -316,7 +324,7 @@ public class VideoAds {
                 this.f$0.lambda$show$4(bulletinCreate, zArr, closeDrawable, jArr2, runnable, jArr, jCurrentTimeMillis, tL_sponsoredMessage, (Boolean) obj);
             }
         };
-        AndroidUtilities.runOnUIThread(runnable, tL_sponsoredMessage.min_display_duration * 1000);
+        AndroidUtilities.runOnUIThread(runnable, ((long) tL_sponsoredMessage.min_display_duration) * 1000);
         final boolean[] zArr2 = new boolean[1];
         Bulletin bulletin2 = this.bulletin;
         bulletin2.hideAfterBottomSheet = false;
@@ -390,8 +398,8 @@ public class VideoAds {
         AndroidUtilities.cancelRunOnUIThread(runnable);
         jArr2[0] = jArr2[0] + (System.currentTimeMillis() - jArr[0]);
         long jCurrentTimeMillis = (System.currentTimeMillis() - j) - jArr2[0];
-        long j2 = (tL_sponsoredMessage.min_display_duration * 1000) - jCurrentTimeMillis;
-        long j3 = (tL_sponsoredMessage.max_display_duration * 1000) - jCurrentTimeMillis;
+        long j2 = (((long) tL_sponsoredMessage.min_display_duration) * 1000) - jCurrentTimeMillis;
+        long j3 = (((long) tL_sponsoredMessage.max_display_duration) * 1000) - jCurrentTimeMillis;
         if (j3 <= 0) {
             Bulletin bulletin3 = this.bulletin;
             if (bulletin3 != null) {
@@ -433,8 +441,314 @@ public class VideoAds {
         schedule();
     }
 
-    public void lambda$show$17(org.telegram.ui.Components.Bulletin r19, final org.telegram.tgnet.TLRPC.TL_sponsoredMessage r20, final android.content.Context r21, org.telegram.ui.ActionBar.Theme.ResourcesProvider r22, org.telegram.messenger.video.VideoAds.AdLayout r23, final org.telegram.messenger.Utilities.Callback r24, android.view.View r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.VideoAds.lambda$show$17(org.telegram.ui.Components.Bulletin, org.telegram.tgnet.TLRPC$TL_sponsoredMessage, android.content.Context, org.telegram.ui.ActionBar.Theme$ResourcesProvider, org.telegram.messenger.video.VideoAds$AdLayout, org.telegram.messenger.Utilities$Callback, android.view.View):void");
+    public void lambda$show$17(Bulletin bulletin, final TLRPC.TL_sponsoredMessage tL_sponsoredMessage, final Context context, Theme.ResourcesProvider resourcesProvider, AdLayout adLayout, final Utilities.Callback callback, View view) {
+        ViewGroup viewGroup;
+        final ItemOptions itemOptionsMakeSwipeback;
+        int iDp;
+        int iDp2;
+        ArrayList arrayList;
+        String str;
+        int i;
+        int i2;
+        int i3;
+        Bulletin bulletin2 = this.bulletin;
+        if (bulletin2 == null || bulletin2 != bulletin) {
+            return;
+        }
+        try {
+            viewGroup = (ViewGroup) bulletin2.getLayout().getParent().getParent();
+        } catch (Exception unused) {
+            viewGroup = null;
+        }
+        if (viewGroup == null) {
+            return;
+        }
+        final DarkBlueThemeResourcesProvider darkBlueThemeResourcesProvider = new DarkBlueThemeResourcesProvider();
+        final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(viewGroup, darkBlueThemeResourcesProvider, this.bulletin.getLayout(), true, false);
+        itemOptionsMakeOptions.setSwipebackGravity(true, true);
+        itemOptionsMakeOptions.setScaleOut(true);
+        itemOptionsMakeOptions.setDimAlpha(0);
+        itemOptionsMakeOptions.setDrawScrim(false);
+        itemOptionsMakeOptions.setDismissWithButtons(false);
+        if (tL_sponsoredMessage.sponsor_info == null && tL_sponsoredMessage.additional_info == null) {
+            String str2 = tL_sponsoredMessage.url;
+            if (str2 != null) {
+                if (!str2.startsWith("https://" + MessagesController.getInstance(this.currentAccount).linkPrefix)) {
+                    itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
+                    ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(context, true, false, (Theme.ResourcesProvider) darkBlueThemeResourcesProvider);
+                    actionBarMenuSubItem.setItemHeight(44);
+                    actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back);
+                    AnimatedEmojiSpan.TextViewEmojis textView = actionBarMenuSubItem.getTextView();
+                    if (LocaleController.isRTL) {
+                        iDp = 0;
+                    } else {
+                        iDp = AndroidUtilities.dp(40.0f);
+                    }
+                    if (LocaleController.isRTL) {
+                        iDp2 = AndroidUtilities.dp(40.0f);
+                    } else {
+                        iDp2 = 0;
+                    }
+                    textView.setPadding(iDp, 0, iDp2, 0);
+                    actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            itemOptionsMakeOptions.closeSwipeback();
+                        }
+                    });
+                    itemOptionsMakeSwipeback.addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, -2));
+                    itemOptionsMakeSwipeback.addView(new ActionBarPopupWindow.GapView(context, darkBlueThemeResourcesProvider), LayoutHelper.createLinear(-1, 8));
+                    arrayList = new ArrayList();
+                    str = tL_sponsoredMessage.url;
+                    if (str != null) {
+                        TextView textView2 = new TextView(context);
+                        textView2.setTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, darkBlueThemeResourcesProvider));
+                        textView2.setTextSize(1, 14.0f);
+                        textView2.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                        textView2.setMaxWidth(AndroidUtilities.dp(300.0f));
+                        Uri uri = Uri.parse(tL_sponsoredMessage.url);
+                        textView2.setText(Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null));
+                        int color = Theme.getColor(Theme.key_dialogButtonSelector, darkBlueThemeResourcesProvider);
+                        if (tL_sponsoredMessage.additional_info == null) {
+                            i3 = 6;
+                        } else {
+                            i3 = 0;
+                        }
+                        textView2.setBackground(Theme.createRadSelectorDrawable(color, 0, i3));
+                        textView2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                this.f$0.lambda$show$7(itemOptionsMakeOptions, tL_sponsoredMessage, context, view2);
+                            }
+                        });
+                        textView2.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public final boolean onLongClick(View view2) {
+                                return VideoAds.lambda$show$8(tL_sponsoredMessage, view2);
+                            }
+                        });
+                        arrayList.add(textView2);
+                    }
+                    if (tL_sponsoredMessage.sponsor_info != null) {
+                        TextView textView3 = new TextView(context);
+                        textView3.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, darkBlueThemeResourcesProvider));
+                        textView3.setTextSize(1, 14.0f);
+                        textView3.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                        textView3.setMaxWidth(AndroidUtilities.dp(300.0f));
+                        textView3.setText(tL_sponsoredMessage.sponsor_info);
+                        int color2 = Theme.getColor(Theme.key_dialogButtonSelector, darkBlueThemeResourcesProvider);
+                        if (tL_sponsoredMessage.additional_info == null) {
+                            i2 = 6;
+                        } else {
+                            i2 = 0;
+                        }
+                        textView3.setBackground(Theme.createRadSelectorDrawable(color2, 0, i2));
+                        textView3.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                VideoAds.lambda$show$9(tL_sponsoredMessage, view2);
+                            }
+                        });
+                        arrayList.add(textView3);
+                    }
+                    if (tL_sponsoredMessage.additional_info != null) {
+                        TextView textView4 = new TextView(context);
+                        textView4.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, darkBlueThemeResourcesProvider));
+                        textView4.setTextSize(1, 14.0f);
+                        textView4.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                        textView4.setMaxWidth(AndroidUtilities.dp(300.0f));
+                        textView4.setText(tL_sponsoredMessage.additional_info);
+                        textView4.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider), 0, 6));
+                        textView4.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                VideoAds.lambda$show$10(tL_sponsoredMessage, view2);
+                            }
+                        });
+                        arrayList.add(textView4);
+                    }
+                    for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                        View view2 = (View) arrayList.get(i4);
+                        if (i4 > 0) {
+                            FrameLayout frameLayout = new FrameLayout(context);
+                            frameLayout.setBackgroundColor(Theme.getColor(Theme.key_divider, darkBlueThemeResourcesProvider));
+                            i = -1;
+                            LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(-1, 1);
+                            layoutParamsCreateLinear.height = 1;
+                            itemOptionsMakeSwipeback.addView(frameLayout, layoutParamsCreateLinear);
+                        } else {
+                            i = -1;
+                        }
+                        itemOptionsMakeSwipeback.addView(view2, LayoutHelper.createLinear(i, -2));
+                    }
+                    itemOptionsMakeOptions.add(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new Runnable() {
+                        @Override
+                        public final void run() {
+                            itemOptionsMakeOptions.openSwipeback(itemOptionsMakeSwipeback);
+                        }
+                    });
+                }
+            }
+        } else {
+            itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
+            ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(context, true, false, (Theme.ResourcesProvider) darkBlueThemeResourcesProvider);
+            actionBarMenuSubItem2.setItemHeight(44);
+            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back);
+            AnimatedEmojiSpan.TextViewEmojis textView5 = actionBarMenuSubItem2.getTextView();
+            if (LocaleController.isRTL) {
+                iDp = 0;
+            } else {
+                iDp = AndroidUtilities.dp(40.0f);
+            }
+            if (LocaleController.isRTL) {
+                iDp2 = AndroidUtilities.dp(40.0f);
+            } else {
+                iDp2 = 0;
+            }
+            textView5.setPadding(iDp, 0, iDp2, 0);
+            actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view3) {
+                    itemOptionsMakeOptions.closeSwipeback();
+                }
+            });
+            itemOptionsMakeSwipeback.addView(actionBarMenuSubItem2, LayoutHelper.createLinear(-1, -2));
+            itemOptionsMakeSwipeback.addView(new ActionBarPopupWindow.GapView(context, darkBlueThemeResourcesProvider), LayoutHelper.createLinear(-1, 8));
+            arrayList = new ArrayList();
+            str = tL_sponsoredMessage.url;
+            if (str != null && !TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(this.currentAccount).linkPrefix)) {
+                TextView textView6 = new TextView(context);
+                textView6.setTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, darkBlueThemeResourcesProvider));
+                textView6.setTextSize(1, 14.0f);
+                textView6.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                textView6.setMaxWidth(AndroidUtilities.dp(300.0f));
+                Uri uri2 = Uri.parse(tL_sponsoredMessage.url);
+                textView6.setText(Browser.replaceHostname(uri2, Browser.IDN_toUnicode(uri2.getHost()), null));
+                int color3 = Theme.getColor(Theme.key_dialogButtonSelector, darkBlueThemeResourcesProvider);
+                if (tL_sponsoredMessage.additional_info == null) {
+                    i3 = 6;
+                } else {
+                    i3 = 0;
+                }
+                textView6.setBackground(Theme.createRadSelectorDrawable(color3, 0, i3));
+                textView6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        this.f$0.lambda$show$7(itemOptionsMakeOptions, tL_sponsoredMessage, context, view3);
+                    }
+                });
+                textView6.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public final boolean onLongClick(View view3) {
+                        return VideoAds.lambda$show$8(tL_sponsoredMessage, view3);
+                    }
+                });
+                arrayList.add(textView6);
+            }
+            if (tL_sponsoredMessage.sponsor_info != null) {
+                TextView textView7 = new TextView(context);
+                textView7.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, darkBlueThemeResourcesProvider));
+                textView7.setTextSize(1, 14.0f);
+                textView7.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                textView7.setMaxWidth(AndroidUtilities.dp(300.0f));
+                textView7.setText(tL_sponsoredMessage.sponsor_info);
+                int color4 = Theme.getColor(Theme.key_dialogButtonSelector, darkBlueThemeResourcesProvider);
+                if (tL_sponsoredMessage.additional_info == null) {
+                    i2 = 6;
+                } else {
+                    i2 = 0;
+                }
+                textView7.setBackground(Theme.createRadSelectorDrawable(color4, 0, i2));
+                textView7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        VideoAds.lambda$show$9(tL_sponsoredMessage, view3);
+                    }
+                });
+                arrayList.add(textView7);
+            }
+            if (tL_sponsoredMessage.additional_info != null) {
+                TextView textView8 = new TextView(context);
+                textView8.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, darkBlueThemeResourcesProvider));
+                textView8.setTextSize(1, 14.0f);
+                textView8.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f));
+                textView8.setMaxWidth(AndroidUtilities.dp(300.0f));
+                textView8.setText(tL_sponsoredMessage.additional_info);
+                textView8.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider), 0, 6));
+                textView8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        VideoAds.lambda$show$10(tL_sponsoredMessage, view3);
+                    }
+                });
+                arrayList.add(textView8);
+            }
+            while (i4 < arrayList.size()) {
+                View view3 = (View) arrayList.get(i4);
+                if (i4 > 0) {
+                    FrameLayout frameLayout2 = new FrameLayout(context);
+                    frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_divider, darkBlueThemeResourcesProvider));
+                    i = -1;
+                    LinearLayout.LayoutParams layoutParamsCreateLinear2 = LayoutHelper.createLinear(-1, 1);
+                    layoutParamsCreateLinear2.height = 1;
+                    itemOptionsMakeSwipeback.addView(frameLayout2, layoutParamsCreateLinear2);
+                } else {
+                    i = -1;
+                }
+                itemOptionsMakeSwipeback.addView(view3, LayoutHelper.createLinear(i, -2));
+            }
+            itemOptionsMakeOptions.add(R.drawable.msg_channel, LocaleController.getString(R.string.SponsoredMessageSponsorReportable), new Runnable() {
+                @Override
+                public final void run() {
+                    itemOptionsMakeOptions.openSwipeback(itemOptionsMakeSwipeback);
+                }
+            });
+        }
+        if (!UserConfig.getInstance(this.currentAccount).isPremium() && !MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() && !tL_sponsoredMessage.can_report) {
+            itemOptionsMakeOptions.add(R.drawable.msg_block2, LocaleController.getString(R.string.HideAd), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$show$12(itemOptionsMakeOptions);
+                }
+            });
+        }
+        if (tL_sponsoredMessage.can_report) {
+            itemOptionsMakeOptions.add(R.drawable.msg_info, LocaleController.getString(R.string.AboutRevenueSharingAds), new Runnable() {
+                @Override
+                public final void run() {
+                    RevenueSharingAdsInfoBottomSheet.showAlert(context, null, false, darkBlueThemeResourcesProvider);
+                }
+            });
+            itemOptionsMakeOptions.add(R.drawable.msg_block2, LocaleController.getString(R.string.ReportAd), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$show$14(context, tL_sponsoredMessage, itemOptionsMakeOptions);
+                }
+            });
+            if (!MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
+                itemOptionsMakeOptions.addGap();
+                itemOptionsMakeOptions.add(R.drawable.msg_cancel, LocaleController.getString(R.string.RemoveAds), new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$show$15(itemOptionsMakeOptions);
+                    }
+                });
+            }
+        }
+        if (itemOptionsMakeOptions.getItemsCount() <= 0) {
+            return;
+        }
+        this.currentMenu = itemOptionsMakeOptions;
+        this.currentMenuTranslationY = adLayout.getTranslationY();
+        callback.run(Boolean.TRUE);
+        itemOptionsMakeOptions.setOnDismiss(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$show$16(callback);
+            }
+        });
+        itemOptionsMakeOptions.show();
+        checkPopupShownCallback();
     }
 
     public void lambda$show$7(ItemOptions itemOptions, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
@@ -521,7 +835,7 @@ public class VideoAds {
         if (this.bulletin != null) {
             this.currentBulletinPassedTime = System.currentTimeMillis() - this.bulletinShowTime;
             if (!this.ads.isEmpty()) {
-                if (this.currentBulletinPassedTime > this.ads.get(0).min_display_duration * 1000) {
+                if (this.currentBulletinPassedTime > ((long) this.ads.get(0).min_display_duration) * 1000) {
                     this.currentBulletinPassedTime = 0L;
                     this.ads.remove(0);
                     this.first = false;
@@ -628,8 +942,8 @@ public class VideoAds {
             this.alpha = 255;
             this.parentView = view;
             this.startTime = System.currentTimeMillis() - j;
-            this.min_display_duration = i * 1000;
-            this.max_display_duration = i2 * 1000;
+            this.min_display_duration = ((long) i) * 1000;
+            this.max_display_duration = ((long) i2) * 1000;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeJoin(Paint.Join.ROUND);
@@ -652,39 +966,46 @@ public class VideoAds {
 
         @Override
         public void draw(Canvas canvas) {
+            float f;
             float fCenterX = getBounds().centerX();
             float fCenterY = getBounds().centerY();
             long jCurrentTimeMillis = ((this.paused ? this.pausedTime : System.currentTimeMillis()) - this.minusTime) - this.startTime;
             long jMax = Math.max(0L, this.min_display_duration - jCurrentTimeMillis);
             long j = this.min_display_duration;
-            float f = jMax / j;
-            float f2 = this.showTimerAnimated.set(jCurrentTimeMillis < j);
+            float f2 = jMax / j;
+            float f3 = this.showTimerAnimated.set(jCurrentTimeMillis < j);
             String str = "" + ((int) Math.ceil(jMax / 1000.0d));
-            float f3 = this.timerScaleAnimated.set(str.length() >= 3 ? 0.825f : str.length() >= 2 ? 0.875f : 1.0f);
+            AnimatedFloat animatedFloat = this.timerScaleAnimated;
+            if (str.length() >= 3) {
+                f = 0.825f;
+            } else {
+                f = str.length() >= 2 ? 0.875f : 1.0f;
+            }
+            float f4 = animatedFloat.set(f);
             canvas.save();
-            canvas.scale(f3, f3, fCenterX, fCenterY);
+            canvas.scale(f4, f4, fCenterX, fCenterY);
             this.timer.setText(str);
             this.timer.setBounds(fCenterX - 1.0f, fCenterY - 1.0f, fCenterX + 1.0f, fCenterY + 1.0f);
-            this.timer.setAlpha((int) (this.alpha * f2));
+            this.timer.setAlpha((int) (this.alpha * f3));
             this.timer.draw(canvas);
             canvas.restore();
-            this.paint.setAlpha((int) (this.alpha * f2));
+            this.paint.setAlpha((int) (this.alpha * f3));
             this.paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(fCenterX - AndroidUtilities.dp(9.0f), fCenterY - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + fCenterX, AndroidUtilities.dp(9.0f) + fCenterY);
-            canvas.drawArc(rectF, -90.0f, f * (-360.0f), false, this.paint);
-            float f4 = this.showCrossAnimated.set((1.0f - f) * 360.0f > 75.0f);
-            float fLerp = AndroidUtilities.lerp(fCenterX, AndroidUtilities.dp(8.0f) + fCenterX, f2);
-            float fLerp2 = AndroidUtilities.lerp(fCenterY, fCenterY - AndroidUtilities.dp(8.0f), f2);
-            float fLerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), f2) * AndroidUtilities.lerp(0.35f, 1.0f, f4);
-            this.paint.setAlpha((int) (this.alpha * f4));
-            float f5 = fLerp - fLerp3;
-            float f6 = fLerp2 - fLerp3;
-            float f7 = fLerp + fLerp3;
-            float f8 = fLerp2 + fLerp3;
-            canvas.drawLine(f5, f6, f7, f8, this.paint);
-            canvas.drawLine(f5, f8, f7, f6, this.paint);
-            if (f2 > 0.0f) {
+            canvas.drawArc(rectF, -90.0f, f2 * (-360.0f), false, this.paint);
+            float f5 = this.showCrossAnimated.set((1.0f - f2) * 360.0f > 75.0f);
+            float fLerp = AndroidUtilities.lerp(fCenterX, AndroidUtilities.dp(8.0f) + fCenterX, f3);
+            float fLerp2 = AndroidUtilities.lerp(fCenterY, fCenterY - AndroidUtilities.dp(8.0f), f3);
+            float fLerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f), f3) * AndroidUtilities.lerp(0.35f, 1.0f, f5);
+            this.paint.setAlpha((int) (this.alpha * f5));
+            float f6 = fLerp - fLerp3;
+            float f7 = fLerp2 - fLerp3;
+            float f8 = fLerp + fLerp3;
+            float f9 = fLerp2 + fLerp3;
+            canvas.drawLine(f6, f7, f8, f9, this.paint);
+            canvas.drawLine(f6, f9, f8, f7, this.paint);
+            if (f3 > 0.0f) {
                 this.parentView.invalidate();
             }
         }

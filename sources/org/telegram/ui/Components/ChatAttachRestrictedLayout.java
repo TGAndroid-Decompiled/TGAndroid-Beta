@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,9 +11,8 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.RecyclerListView;
 
 public class ChatAttachRestrictedLayout extends ChatAttachAlert.AttachAlertLayout {
     private final RecyclerView.Adapter adapter;
@@ -117,7 +117,28 @@ public class ChatAttachRestrictedLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onPreMeasure(int r4, int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachRestrictedLayout.onPreMeasure(int, int):void");
+    public void onPreMeasure(int i, int i2) {
+        int i3;
+        super.onPreMeasure(i, i2);
+        int iMax = Math.max(0, i2 - ActionBar.getCurrentActionBarHeight());
+        if (this.gridExtraSpace != iMax) {
+            this.gridExtraSpace = iMax;
+            this.adapter.notifyDataSetChanged();
+        }
+        if (AndroidUtilities.isTablet()) {
+            i3 = (i2 / 5) * 2;
+        } else {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                i3 = (int) (i2 / 3.5f);
+            } else {
+                i3 = (i2 / 5) * 2;
+            }
+        }
+        int iDp = i3 - AndroidUtilities.dp(52.0f);
+        int i4 = iDp >= 0 ? iDp : 0;
+        if (this.listView.getPaddingTop() != i4) {
+            this.listView.setPadding(AndroidUtilities.dp(6.0f), i4, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(48.0f));
+        }
     }
 }

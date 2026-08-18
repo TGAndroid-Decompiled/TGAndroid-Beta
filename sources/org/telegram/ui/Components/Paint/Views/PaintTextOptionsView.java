@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -271,14 +270,9 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         this.currentAlign = i;
         if (i2 == i) {
             RLottieDrawable animatedDrawable = this.alignView.getAnimatedDrawable();
-            List list = ALIGN_PAIRS;
+            List<AlignFramePair> list = ALIGN_PAIRS;
             AlignFramePair alignFramePair = (AlignFramePair) list.get(0);
-            Iterator it = list.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
-                AlignFramePair alignFramePair2 = (AlignFramePair) it.next();
+            for (AlignFramePair alignFramePair2 : list) {
                 if (this.currentAlign == alignFramePair2.toAlign) {
                     alignFramePair = alignFramePair2;
                     break;
@@ -292,14 +286,9 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
             }
             return;
         }
-        List list2 = ALIGN_PAIRS;
+        List<AlignFramePair> list2 = ALIGN_PAIRS;
         AlignFramePair alignFramePair3 = (AlignFramePair) list2.get(0);
-        Iterator it2 = list2.iterator();
-        while (true) {
-            if (!it2.hasNext()) {
-                break;
-            }
-            AlignFramePair alignFramePair4 = (AlignFramePair) it2.next();
+        for (AlignFramePair alignFramePair4 : list2) {
             if (i2 == alignFramePair4.fromAlign && this.currentAlign == alignFramePair4.toAlign) {
                 alignFramePair3 = alignFramePair4;
                 break;

@@ -16,7 +16,7 @@ public class UpsampleAudioResampler implements AudioResampler {
             throw new IllegalArgumentException("Illegal use of UpsampleAudioResampler. Channels:" + i3);
         }
         int iRemaining = shortBuffer.remaining() / i3;
-        int iCeil = ((int) Math.ceil(iRemaining * (i2 / i))) - iRemaining;
+        int iCeil = ((int) Math.ceil(((double) iRemaining) * (((double) i2) / ((double) i)))) - iRemaining;
         float fRatio = ratio(iRemaining, iRemaining);
         float fRatio2 = ratio(iCeil, iCeil);
         int i4 = iCeil;

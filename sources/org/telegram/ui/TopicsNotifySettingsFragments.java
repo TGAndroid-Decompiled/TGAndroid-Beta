@@ -29,9 +29,6 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TopicExceptionCell;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.NotificationsSettingsActivity;
-import org.telegram.ui.ProfileNotificationsActivity;
-import org.telegram.ui.TopicsFragment;
 
 public class TopicsNotifySettingsFragments extends BaseFragment {
     private final int VIEW_TYPE_ADD_EXCEPTION;
@@ -288,19 +285,21 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 shadowSectionCell = textCell;
             } else if (i == 2) {
-                View topicExceptionCell = new TopicExceptionCell(viewGroup.getContext());
+                TopicExceptionCell topicExceptionCell = new TopicExceptionCell(viewGroup.getContext());
                 topicExceptionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 shadowSectionCell = topicExceptionCell;
             } else if (i == 3) {
                 shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
-            } else if (i == 4) {
-                TextCell textCell2 = new TextCell(viewGroup.getContext());
-                textCell2.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
-                textCell2.setColors(-1, Theme.key_text_RedRegular);
-                textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                shadowSectionCell = textCell2;
             } else {
-                view = null;
+                if (i != 4) {
+                    view = null;
+                } else {
+                    TextCell textCell2 = new TextCell(viewGroup.getContext());
+                    textCell2.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
+                    textCell2.setColors(-1, Theme.key_text_RedRegular);
+                    textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    shadowSectionCell = textCell2;
+                }
                 view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                 return new RecyclerListView.Holder(view);
             }

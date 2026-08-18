@@ -10,6 +10,9 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
@@ -18,6 +21,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -62,14 +67,15 @@ public class FileLog {
                         fileLog = new FileLog();
                         Instance = fileLog;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
         return fileLog;
     }
 
-    public FileLog() throws IOException {
+    public FileLog() {
         if (BuildVars.LOGS_ENABLED) {
             init();
         }
@@ -94,7 +100,7 @@ public class FileLog {
                 final long jCurrentTimeMillis = System.currentTimeMillis();
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws IOException {
+                    public final void run() {
                         FileLog.lambda$dumpResponseAndRequest$0(j, j2, i2, i, jCurrentTimeMillis, str, str3, tL_error);
                     }
                 });
@@ -104,7 +110,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$dumpResponseAndRequest$0(long j, long j2, int i, int i2, long j3, String str, String str2, TLRPC.TL_error tL_error) throws IOException {
+    public static void lambda$dumpResponseAndRequest$0(long j, long j2, int i, int i2, long j3, String str, String str2, TLRPC.TL_error tL_error) {
         try {
             String str3 = "requestMsgId=" + j + " requestingTime=" + (System.currentTimeMillis() - j2) + " request_token=" + i + " account=" + i2;
             getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j3) + " " + str3);
@@ -144,7 +150,7 @@ public class FileLog {
                 final long jCurrentTimeMillis = System.currentTimeMillis();
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws IOException {
+                    public final void run() {
                         FileLog.lambda$dumpUnparsedMessage$1(jCurrentTimeMillis, j, i, string);
                     }
                 });
@@ -153,7 +159,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$dumpUnparsedMessage$1(long j, long j2, int i, String str) throws IOException {
+    public static void lambda$dumpUnparsedMessage$1(long j, long j2, int i, String str) {
         try {
             getInstance().tlStreamWriter.write(getInstance().dateFormat.format(j) + " msgId=" + j2 + " account=" + i);
             getInstance().tlStreamWriter.write("\n");
@@ -249,13 +255,40 @@ public class FileLog {
         }
 
         @Override
-        public com.google.gson.JsonElement serialize(org.telegram.tgnet.TLObject r8, java.lang.reflect.Type r9, com.google.gson.JsonSerializationContext r10) throws java.lang.IllegalAccessException, java.lang.SecurityException, java.lang.IllegalArgumentException {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLog.TLObjectDeserializer.serialize(org.telegram.tgnet.TLObject, java.lang.reflect.Type, com.google.gson.JsonSerializationContext):com.google.gson.JsonElement");
+        public JsonElement serialize(TLObject tLObject, Type type, JsonSerializationContext jsonSerializationContext) {
+            JsonObject jsonObject = new JsonObject();
+            String name = tLObject.getClass().getName();
+            if (name.startsWith("org.telegram.tgnet.")) {
+                name = name.substring(19);
+            }
+            jsonObject.addProperty("_", name);
+            try {
+                for (Field field : tLObject.getClass().getFields()) {
+                    if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
+                        field.setAccessible(true);
+                        try {
+                            Object obj = field.get(tLObject);
+                            if (obj != null) {
+                                Class<?> cls = obj.getClass();
+                                if (!cls.isInstance(DispatchQueue.class) && !cls.isInstance(AnimatedFileDrawable.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
+                                    jsonObject.add(field.getName(), jsonSerializationContext.serialize(obj));
+                                }
+                            } else {
+                                jsonObject.add(field.getName(), jsonSerializationContext.serialize(obj));
+                            }
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+            return jsonObject;
         }
     }
 
-    public void init() throws IOException {
-        File logsDir;
+    public void init() {
         if (this.initied) {
             return;
         }
@@ -265,15 +298,15 @@ public class FileLog {
         this.fileDateFormat = fastDateFormat;
         String str = fastDateFormat.format(System.currentTimeMillis());
         try {
-            logsDir = AndroidUtilities.getLogsDir();
+            File logsDir = AndroidUtilities.getLogsDir();
+            if (logsDir == null) {
+                return;
+            }
+            this.currentFile = new File(logsDir, str + ".txt");
+            this.tlRequestsFile = new File(logsDir, str + "_mtproto.txt");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (logsDir == null) {
-            return;
-        }
-        this.currentFile = new File(logsDir, str + ".txt");
-        this.tlRequestsFile = new File(logsDir, str + "_mtproto.txt");
         try {
             this.logQueue = new DispatchQueue("logQueue");
             this.currentFile.createNewFile();
@@ -299,7 +332,7 @@ public class FileLog {
         this.initied = true;
     }
 
-    public static void ensureInitied() throws IOException {
+    public static void ensureInitied() {
         getInstance().init();
     }
 
@@ -344,7 +377,7 @@ public class FileLog {
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws IOException {
+                    public final void run() {
                         FileLog.lambda$e$2(str, th);
                     }
                 });
@@ -352,7 +385,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$e$2(String str, Throwable th) throws IOException {
+    public static void lambda$e$2(String str, Throwable th) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
             getInstance().streamWriter.write(th.toString());
@@ -373,7 +406,7 @@ public class FileLog {
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws IOException {
+                    public final void run() {
                         FileLog.lambda$e$3(str);
                     }
                 });
@@ -381,7 +414,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$e$3(String str) throws IOException {
+    public static void lambda$e$3(String str) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
@@ -418,7 +451,7 @@ public class FileLog {
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws IOException {
+                    public final void run() {
                         FileLog.lambda$e$4(th);
                     }
                 });
@@ -428,7 +461,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$e$4(Throwable th) throws IOException {
+    public static void lambda$e$4(Throwable th) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " E/tmessages: " + th + "\n");
             for (StackTraceElement stackTraceElement : th.getStackTrace()) {
@@ -447,7 +480,7 @@ public class FileLog {
         }
     }
 
-    public static void fatal(Throwable th) throws IOException {
+    public static void fatal(Throwable th) {
         fatal(th, true);
     }
 
@@ -487,7 +520,7 @@ public class FileLog {
         }
     }
 
-    public static void fatal(final Throwable th, boolean z) throws IOException {
+    public static void fatal(final Throwable th, boolean z) {
         if (BuildVars.LOGS_ENABLED) {
             if (th instanceof OutOfMemoryError) {
                 getInstance().dumpMemory(false);
@@ -500,7 +533,7 @@ public class FileLog {
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws IOException {
+                    public final void run() {
                         FileLog.lambda$fatal$5(th);
                     }
                 });
@@ -513,7 +546,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$fatal$5(Throwable th) throws IOException {
+    public static void lambda$fatal$5(Throwable th) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " FATAL/tmessages: " + th + "\n");
             for (StackTraceElement stackTraceElement : th.getStackTrace()) {
@@ -546,7 +579,7 @@ public class FileLog {
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws IOException {
+                    public final void run() {
                         FileLog.lambda$d$6(str);
                     }
                 });
@@ -554,7 +587,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$d$6(String str) throws IOException {
+    public static void lambda$d$6(String str) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " D/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
@@ -566,14 +599,14 @@ public class FileLog {
         }
     }
 
-    public static void w(final String str) throws IOException {
+    public static void w(final String str) {
         if (BuildVars.LOGS_ENABLED) {
             ensureInitied();
             Log.w("tmessages", str);
             if (getInstance().streamWriter != null) {
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws IOException {
+                    public final void run() {
                         FileLog.lambda$w$7(str);
                     }
                 });
@@ -581,7 +614,7 @@ public class FileLog {
         }
     }
 
-    public static void lambda$w$7(String str) throws IOException {
+    public static void lambda$w$7(String str) {
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " W/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
@@ -618,13 +651,13 @@ public class FileLog {
         public ANRDetector(final Runnable runnable) {
             new Thread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$new$1(runnable);
                 }
             }).start();
         }
 
-        public void lambda$new$1(Runnable runnable) throws InterruptedException {
+        public void lambda$new$1(Runnable runnable) {
             while (true) {
                 this.isUIThreadResponsive = false;
                 this.mainHandler.post(new Runnable() {

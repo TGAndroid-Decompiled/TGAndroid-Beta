@@ -16,7 +16,7 @@ public class DownsampleAudioResampler implements AudioResampler {
             throw new IllegalArgumentException("Illegal use of DownsampleAudioResampler. Channels:" + i3);
         }
         int iRemaining = shortBuffer.remaining() / i3;
-        int iCeil = (int) Math.ceil(iRemaining * (i2 / i));
+        int iCeil = (int) Math.ceil(((double) iRemaining) * (((double) i2) / ((double) i)));
         int i4 = iRemaining - iCeil;
         float fRatio = ratio(iCeil, iCeil);
         float fRatio2 = ratio(i4, i4);

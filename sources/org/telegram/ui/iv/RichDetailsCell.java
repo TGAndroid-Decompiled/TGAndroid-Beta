@@ -24,7 +24,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.iv.RichEditText;
 
 public class RichDetailsCell extends FrameLayout implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
     private final AnimatedArrowDrawable arrow;
@@ -392,7 +391,8 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
                 return;
             }
         }
-        canvas.drawRect(0.0f, r0 - 1, getMeasuredWidth(), getMeasuredHeight(), this.dividerPaint);
+        int measuredHeight = getMeasuredHeight();
+        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.dividerPaint);
     }
 
     @Override

@@ -14,7 +14,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.iv.RichEditor;
 
 public class UniversalRecyclerView extends RecyclerListView {
@@ -300,33 +299,27 @@ public class UniversalRecyclerView extends RecyclerListView {
 
     public View findViewByItemId(int i) {
         int i2 = 0;
-        while (true) {
-            if (i2 >= this.adapter.getItemCount()) {
-                i2 = -1;
-                break;
-            }
+        while (i2 < this.adapter.getItemCount()) {
             UItem item = this.adapter.getItem(i2);
             if (item != null && item.id == i) {
-                break;
+                return findViewByPosition(i2);
             }
             i2++;
         }
+        i2 = -1;
         return findViewByPosition(i2);
     }
 
     public View findViewByItemObject(Object obj) {
         int i = 0;
-        while (true) {
-            if (i >= this.adapter.getItemCount()) {
-                i = -1;
-                break;
-            }
+        while (i < this.adapter.getItemCount()) {
             UItem item = this.adapter.getItem(i);
             if (item != null && item.object == obj) {
-                break;
+                return findViewByPosition(i);
             }
             i++;
         }
+        i = -1;
         return findViewByPosition(i);
     }
 
@@ -358,8 +351,23 @@ public class UniversalRecyclerView extends RecyclerListView {
         }
 
         @Override
-        public int getMovementFlags(androidx.recyclerview.widget.RecyclerView r2, androidx.recyclerview.widget.RecyclerView.ViewHolder r3) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UniversalRecyclerView.TouchHelperCallback.getMovementFlags(androidx.recyclerview.widget.RecyclerView, androidx.recyclerview.widget.RecyclerView$ViewHolder):int");
+        public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+            int i;
+            if (UniversalRecyclerView.this.reorderingAllowed && UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition())) {
+                if (UniversalRecyclerView.this.layoutManager.getOrientation() == 0) {
+                    if (UniversalRecyclerView.this.reorderingOnOtherAxis) {
+                        i = 15;
+                    } else {
+                        i = 12;
+                    }
+                } else if (UniversalRecyclerView.this.reorderingOnOtherAxis) {
+                    i = 15;
+                } else {
+                    i = 3;
+                }
+                return ItemTouchHelper.Callback.makeMovementFlags(i, 0);
+            }
+            return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
         }
 
         @Override

@@ -109,13 +109,14 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         int measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(8.0f);
         float fDp = AndroidUtilities.dp(1.0f);
         float fDp2 = AndroidUtilities.dp(16.0f);
+        float measuredWidth = getMeasuredWidth() - (2.0f * fDp2);
         RectF rectF = AndroidUtilities.rectTmp;
         float f5 = measuredHeight;
         float f6 = f5 - fDp;
         float f7 = f5 + fDp;
         rectF.set(fDp2, f6, getMeasuredWidth() - fDp2, f7);
         canvas.drawRoundRect(rectF, fDp, fDp, this.paint2);
-        rectF.set(fDp2, f6, ((getMeasuredWidth() - (2.0f * fDp2)) * this.currentProgress) + fDp2, f7);
+        rectF.set(fDp2, f6, (measuredWidth * this.currentProgress) + fDp2, f7);
         canvas.drawRoundRect(rectF, fDp, fDp, this.paint);
         canvas.save();
         canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f6);

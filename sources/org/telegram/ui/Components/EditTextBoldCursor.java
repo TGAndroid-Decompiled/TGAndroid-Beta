@@ -11,6 +11,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -19,6 +20,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -42,6 +44,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -52,8 +55,6 @@ import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper$$ExternalSyntheticApiModelOutline6;
-import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 
 public class EditTextBoldCursor extends EditTextEffects {
@@ -934,8 +935,217 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r15) throws java.lang.IllegalAccessException, java.lang.IllegalArgumentException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EditTextBoldCursor.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        boolean z;
+        int totalPaddingTop;
+        Object obj;
+        boolean z2;
+        int totalPaddingTop2;
+        int i;
+        drawHint(canvas);
+        if (this.ellipsizeByGradient) {
+            canvas.saveLayerAlpha((getScrollX() + getPaddingLeft()) - this.ellipsizeWidth, 0.0f, ((getScrollX() + getWidth()) - getPaddingRight()) + this.ellipsizeWidth, getHeight(), 255, 31);
+        }
+        int extendedPaddingTop = getExtendedPaddingTop();
+        this.scrollY = Integer.MAX_VALUE;
+        try {
+            Field field = mScrollYField;
+            if (field != null) {
+                this.scrollY = field.getInt(this);
+                mScrollYField.set(this, 0);
+            } else {
+                this.scrollY = getScrollX();
+            }
+        } catch (Exception e) {
+            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                throw new RuntimeException(e);
+            }
+        }
+        this.ignoreTopCount = 1;
+        this.ignoreBottomCount = 1;
+        canvas.save();
+        canvas.translate(0.0f, extendedPaddingTop);
+        try {
+            this.drawInMaim = true;
+            super.onDraw(canvas);
+            this.drawInMaim = false;
+        } catch (Exception e2) {
+            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                throw new RuntimeException(e2);
+            }
+        }
+        Field field2 = mScrollYField;
+        if (field2 != null && (i = this.scrollY) != Integer.MAX_VALUE) {
+            try {
+                field2.set(this, Integer.valueOf(i));
+            } catch (Exception e3) {
+                if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                    throw new RuntimeException(e3);
+                }
+            }
+        }
+        canvas.restore();
+        if (this.cursorDrawable == null) {
+            try {
+                Field field3 = mShowCursorField;
+                if (field3 == null || (obj = this.editor) == null) {
+                    z = this.cursorDrawn;
+                    this.cursorDrawn = false;
+                } else {
+                    z = (SystemClock.uptimeMillis() - field3.getLong(obj)) % 1000 < 500 && isFocused();
+                }
+                if (this.allowDrawCursor && z) {
+                    canvas.save();
+                    if (getVerticalOffsetMethod != null) {
+                        if ((getGravity() & 112) != 48) {
+                            totalPaddingTop = ((Integer) getVerticalOffsetMethod.invoke(this, Boolean.TRUE)).intValue();
+                        } else {
+                            totalPaddingTop = 0;
+                        }
+                    } else if ((getGravity() & 112) != 48) {
+                        totalPaddingTop = getTotalPaddingTop() - getExtendedPaddingTop();
+                    } else {
+                        totalPaddingTop = 0;
+                    }
+                    canvas.translate(getPaddingLeft(), getExtendedPaddingTop() + totalPaddingTop);
+                    Layout layout = getLayout();
+                    int lineForOffset = layout.getLineForOffset(getSelectionStart());
+                    int lineCount = layout.getLineCount();
+                    updateCursorPosition();
+                    Rect bounds = this.gradientDrawable.getBounds();
+                    Rect rect = this.rect;
+                    rect.left = bounds.left;
+                    rect.right = bounds.left + AndroidUtilities.dp(this.cursorWidth);
+                    Rect rect2 = this.rect;
+                    int i2 = bounds.bottom;
+                    rect2.bottom = i2;
+                    rect2.top = bounds.top;
+                    float f = this.lineSpacingExtra;
+                    if (f != 0.0f && lineForOffset < lineCount - 1) {
+                        rect2.bottom = (int) (i2 - f);
+                    }
+                    int iCenterY = rect2.centerY();
+                    int i3 = this.cursorSize;
+                    rect2.top = iCenterY - (i3 / 2);
+                    Rect rect3 = this.rect;
+                    rect3.bottom = rect3.top + i3;
+                    this.gradientDrawable.setBounds(rect3);
+                    this.gradientDrawable.draw(canvas);
+                    canvas.restore();
+                }
+            } catch (Throwable th) {
+                if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                    throw new RuntimeException(th);
+                }
+            }
+        } else if (this.cursorDrawn && this.allowDrawCursor) {
+            try {
+                canvas.save();
+                if (getVerticalOffsetMethod != null) {
+                    if ((getGravity() & 112) != 48) {
+                        totalPaddingTop2 = ((Integer) getVerticalOffsetMethod.invoke(this, Boolean.TRUE)).intValue();
+                    } else {
+                        totalPaddingTop2 = 0;
+                    }
+                } else if ((getGravity() & 112) != 48) {
+                    totalPaddingTop2 = getTotalPaddingTop() - getExtendedPaddingTop();
+                } else {
+                    totalPaddingTop2 = 0;
+                }
+                canvas.translate(getPaddingLeft(), getExtendedPaddingTop() + totalPaddingTop2);
+                Layout layout2 = getLayout();
+                int lineForOffset2 = layout2.getLineForOffset(getSelectionStart());
+                int lineCount2 = layout2.getLineCount();
+                updateCursorPosition();
+                Rect bounds2 = this.gradientDrawable.getBounds();
+                Rect rect4 = this.rect;
+                rect4.left = bounds2.left;
+                rect4.right = bounds2.left + AndroidUtilities.dp(this.cursorWidth);
+                Rect rect5 = this.rect;
+                int i4 = bounds2.bottom;
+                rect5.bottom = i4;
+                rect5.top = bounds2.top;
+                float f2 = this.lineSpacingExtra;
+                if (f2 != 0.0f && lineForOffset2 < lineCount2 - 1) {
+                    rect5.bottom = (int) (i4 - f2);
+                }
+                int iCenterY2 = rect5.centerY();
+                int i5 = this.cursorSize;
+                rect5.top = iCenterY2 - (i5 / 2);
+                Rect rect6 = this.rect;
+                rect6.bottom = rect6.top + i5;
+                this.gradientDrawable.setBounds(rect6);
+                this.gradientDrawable.draw(canvas);
+                canvas.restore();
+                this.cursorDrawn = false;
+            } catch (Throwable th2) {
+                if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                    throw new RuntimeException(th2);
+                }
+            }
+        }
+        if (this.lineVisible && this.lineColor != 0) {
+            int iDp = AndroidUtilities.dp(1.0f);
+            boolean z3 = this.lineActive;
+            if (!TextUtils.isEmpty(this.errorText)) {
+                this.linePaint.setColor(this.errorLineColor);
+                iDp = AndroidUtilities.dp(2.0f);
+                this.lineActive = false;
+            } else if (isFocused()) {
+                this.lineActive = true;
+            } else {
+                this.linePaint.setColor(this.lineColor);
+                this.lineActive = false;
+            }
+            if (this.lineActive != z3) {
+                this.lineLastUpdateTime = SystemClock.elapsedRealtime();
+                this.lastLineActiveness = this.lineActiveness;
+            }
+            float fElapsedRealtime = (SystemClock.elapsedRealtime() - this.lineLastUpdateTime) / 150.0f;
+            if (fElapsedRealtime < 1.0f || (((z2 = this.lineActive) && this.lineActiveness != 1.0f) || (!z2 && this.lineActiveness != 0.0f))) {
+                this.lineActiveness = AndroidUtilities.lerp(this.lastLineActiveness, this.lineActive ? 1.0f : 0.0f, Math.max(0.0f, Math.min(1.0f, fElapsedRealtime)));
+                if (fElapsedRealtime < 1.0f) {
+                    invalidate();
+                }
+            }
+            int measuredHeight = this.lineYFix ? getMeasuredHeight() - AndroidUtilities.dp(2.0f) : Math.min(Math.max(0, ((((getLayout() == null ? 0 : getLayout().getHeight()) - getMeasuredHeight()) + getPaddingBottom()) + getPaddingTop()) - getScrollY()), AndroidUtilities.dp(2.0f)) + ((int) this.lineY) + getScrollY();
+            int measuredWidth = this.lastTouchX;
+            if (measuredWidth < 0) {
+                measuredWidth = getMeasuredWidth() / 2;
+            }
+            int iMax = Math.max(measuredWidth, getMeasuredWidth() - measuredWidth) * 2;
+            if (this.lineActiveness < 1.0f) {
+                canvas.drawRect(getScrollX(), measuredHeight - iDp, getScrollX() + getMeasuredWidth(), measuredHeight, this.linePaint);
+            }
+            float f3 = this.lineActiveness;
+            if (f3 > 0.0f) {
+                float interpolation = CubicBezierInterpolator.EASE_BOTH.getInterpolation(f3);
+                boolean z4 = this.lineActive;
+                if (z4) {
+                    this.activeLineWidth = iMax * interpolation;
+                }
+                if (z4) {
+                    interpolation = 1.0f;
+                }
+                float f4 = measuredWidth;
+                canvas.drawRect(getScrollX() + Math.max(0.0f, f4 - (this.activeLineWidth / 2.0f)), measuredHeight - ((int) (interpolation * AndroidUtilities.dp(2.0f))), getScrollX() + Math.min(f4 + (this.activeLineWidth / 2.0f), getMeasuredWidth()), measuredHeight, this.activeLinePaint);
+            }
+        }
+        if (this.ellipsizeByGradient) {
+            canvas.save();
+            canvas.translate(getScrollX(), 0.0f);
+            this.ellipsizePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+            this.ellipsizeMatrix.reset();
+            this.ellipsizeGradient.setLocalMatrix(this.ellipsizeMatrix);
+            canvas.drawRect(getPaddingLeft() - this.ellipsizeWidth, 0.0f, getPaddingLeft(), getHeight(), this.ellipsizePaint);
+            this.ellipsizeMatrix.reset();
+            this.ellipsizeMatrix.postScale(-1.0f, 1.0f, this.ellipsizeWidth / 2.0f, 0.0f);
+            this.ellipsizeMatrix.postTranslate(getWidth() - getPaddingRight(), 0.0f);
+            this.ellipsizeGradient.setLocalMatrix(this.ellipsizeMatrix);
+            canvas.drawRect(getWidth() - getPaddingRight(), 0.0f, (getWidth() - getPaddingRight()) + this.ellipsizeWidth, getHeight(), this.ellipsizePaint);
+            canvas.restore();
+            canvas.restore();
+        }
     }
 
     public void setWindowView(View view) {

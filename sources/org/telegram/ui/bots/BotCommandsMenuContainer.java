@@ -195,7 +195,8 @@ public abstract class BotCommandsMenuContainer extends FrameLayout {
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         if (this.entering && !this.dismissed) {
-            this.listView.setTranslationY((r2.getMeasuredHeight() - this.listView.getPaddingTop()) + AndroidUtilities.dp(16.0f));
+            RecyclerListView recyclerListView = this.listView;
+            recyclerListView.setTranslationY((recyclerListView.getMeasuredHeight() - this.listView.getPaddingTop()) + AndroidUtilities.dp(16.0f));
             playEnterAnim(true);
             this.entering = false;
         }

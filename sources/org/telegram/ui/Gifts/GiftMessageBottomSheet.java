@@ -3,7 +3,6 @@ package org.telegram.ui.Gifts;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -85,7 +84,7 @@ public class GiftMessageBottomSheet extends BottomSheet {
         return false;
     }
 
-    public GiftMessageBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, final TL_stars.TL_starGiftUnique tL_starGiftUnique, long j) throws Resources.NotFoundException {
+    public GiftMessageBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, final TL_stars.TL_starGiftUnique tL_starGiftUnique, long j) {
         super(context, true, true, null);
         this.wallpaperBitmapProvider = new WallpaperBitmapProvider();
         WindowInsetsStateHolder windowInsetsStateHolder = new WindowInsetsStateHolder(new Runnable() {
@@ -633,7 +632,7 @@ public class GiftMessageBottomSheet extends BottomSheet {
     }
 
     @Override
-    public void lambda$openCrafting$8() throws Resources.NotFoundException {
+    public void lambda$openCrafting$8() {
         ChatActivityEnterView chatActivityEnterView = this.commentView;
         if (chatActivityEnterView != null && chatActivityEnterView.isPopupShowing()) {
             this.commentView.hidePopup(true);

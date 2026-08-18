@@ -6,9 +6,6 @@ import android.os.Build;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.webrtc.EglBase;
-import org.webrtc.EglBase14;
-import org.webrtc.VideoEncoderFactory;
 
 public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     private static final List<String> H264_HW_EXCEPTION_MODELS = Arrays.asList("SAMSUNG-SGH-I337", "Nexus 7", "Nexus 4");

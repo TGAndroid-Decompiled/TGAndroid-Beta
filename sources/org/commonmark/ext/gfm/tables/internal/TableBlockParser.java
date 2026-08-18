@@ -131,59 +131,63 @@ public class TableBlockParser extends AbstractBlockParser {
     }
 
     public static List parseSeparator(CharSequence charSequence) {
+        char cCharAt;
         boolean z;
+        boolean z2;
         ArrayList arrayList = new ArrayList();
         int i = 0;
-        boolean z2 = false;
+        boolean z3 = false;
         while (true) {
             int i2 = 0;
-            while (i < charSequence.length()) {
-                char cCharAt = charSequence.charAt(i);
+            while (true) {
+                if (i >= charSequence.length()) {
+                    if (z3) {
+                        return arrayList;
+                    }
+                    return null;
+                }
+                cCharAt = charSequence.charAt(i);
                 if (cCharAt == '\t' || cCharAt == ' ') {
                     i++;
                 } else {
-                    boolean z3 = true;
+                    z = true;
                     if (cCharAt == '-' || cCharAt == ':') {
-                        if (i2 == 0 && !arrayList.isEmpty()) {
-                            return null;
-                        }
-                        if (cCharAt == ':') {
-                            i++;
-                            z = true;
-                        } else {
-                            z = false;
-                        }
-                        boolean z4 = false;
-                        while (i < charSequence.length() && charSequence.charAt(i) == '-') {
-                            i++;
-                            z4 = true;
-                        }
-                        if (!z4) {
-                            return null;
-                        }
-                        if (i >= charSequence.length() || charSequence.charAt(i) != ':') {
-                            z3 = false;
-                        } else {
-                            i++;
-                        }
-                        arrayList.add(getAlignment(z, z3));
-                    } else {
-                        if (cCharAt != '|') {
-                            return null;
-                        }
-                        i++;
-                        i2++;
-                        if (i2 > 1) {
-                            return null;
-                        }
-                        z2 = true;
+                        break;
                     }
+                    if (cCharAt != '|') {
+                        return null;
+                    }
+                    i++;
+                    i2++;
+                    if (i2 > 1) {
+                        return null;
+                    }
+                    z3 = true;
                 }
             }
-            if (z2) {
-                return arrayList;
+            if (i2 == 0 && !arrayList.isEmpty()) {
+                return null;
             }
-            return null;
+            if (cCharAt == ':') {
+                i++;
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            boolean z4 = false;
+            while (i < charSequence.length() && charSequence.charAt(i) == '-') {
+                i++;
+                z4 = true;
+            }
+            if (!z4) {
+                return null;
+            }
+            if (i >= charSequence.length() || charSequence.charAt(i) != ':') {
+                z = false;
+            } else {
+                i++;
+            }
+            arrayList.add(getAlignment(z2, z));
         }
     }
 

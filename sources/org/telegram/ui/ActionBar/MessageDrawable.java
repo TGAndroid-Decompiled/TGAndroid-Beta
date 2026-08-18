@@ -23,7 +23,6 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.blur3.utils.NinePatchBuilder;
 
@@ -117,6 +116,7 @@ public class MessageDrawable extends Drawable {
     public void applyMatrixScale() {
         Bitmap bitmap;
         if (this.gradientShader instanceof BitmapShader) {
+            char c = 0;
             if (this.isCrossfadeBackground && (bitmap = this.crosfadeFromBitmap) != null) {
                 c = this.currentType == 2 ? (char) 1 : (char) 0;
                 float fMin = 1.0f / Math.min(bitmap.getWidth() / motionBackground[c].getBounds().width(), this.crosfadeFromBitmap.getHeight() / motionBackground[c].getBounds().height());
@@ -169,8 +169,187 @@ public class MessageDrawable extends Drawable {
         setTop(i, i2, i3, i3, 0, 0, z, z2);
     }
 
-    public void setTop(int r34, int r35, int r36, int r37, int r38, int r39, boolean r40, boolean r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.MessageDrawable.setTop(int, int, int, int, int, int, boolean, boolean):void");
+    public void setTop(int i, int i2, int i3, int i4, int i5, int i6, boolean z, boolean z2) {
+        int color;
+        int currentColor;
+        int currentColor2;
+        int currentColor3;
+        char c;
+        int i7;
+        int i8;
+        MotionBackgroundDrawable motionBackgroundDrawable;
+        MessageDrawable messageDrawable = this.crossfadeFromDrawable;
+        if (messageDrawable != null) {
+            messageDrawable.setTop(i, i2, i3, i4, i5, i6, z, z2);
+        }
+        if (this.isOut) {
+            color = getColor(this.isSelected ? Theme.key_chat_outBubbleSelected : Theme.key_chat_outBubble);
+            currentColor = getCurrentColor(Theme.key_chat_outBubbleGradient1);
+            currentColor2 = getCurrentColor(Theme.key_chat_outBubbleGradient2);
+            currentColor3 = getCurrentColor(Theme.key_chat_outBubbleGradient3);
+            boolean z3 = getCurrentColor(Theme.key_chat_outBubbleGradientAnimated) != 0;
+            if (currentColor != 0) {
+                color = getColor(Theme.key_chat_outBubble);
+            }
+            if (this.themePreview) {
+                c = 2;
+            } else if (this.currentType == 2) {
+                c = 1;
+            } else {
+                c = 0;
+            }
+            if (!this.isCrossfadeBackground && currentColor2 != 0 && z3 && (motionBackgroundDrawable = motionBackground[c]) != null) {
+                int[] colors = motionBackgroundDrawable.getColors();
+                this.currentColor = colors[0];
+                this.currentGradientColor1 = colors[1];
+                this.currentGradientColor2 = colors[2];
+                this.currentGradientColor3 = colors[3];
+            }
+            if (this.isCrossfadeBackground && currentColor2 != 0 && z3) {
+                if (i3 == this.currentBackgroundHeight && this.crosfadeFromBitmapShader != null && this.currentColor == color && this.currentGradientColor1 == currentColor && this.currentGradientColor2 == currentColor2 && this.currentGradientColor3 == currentColor3 && this.currentAnimateGradient == z3) {
+                    i8 = -1;
+                } else {
+                    if (this.crosfadeFromBitmap == null) {
+                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
+                        this.crosfadeFromBitmap = bitmapCreateBitmap;
+                        bitmapCreateBitmap.setHasAlpha(false);
+                        Bitmap bitmap = this.crosfadeFromBitmap;
+                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                        this.crosfadeFromBitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                    }
+                    MotionBackgroundDrawable[] motionBackgroundDrawableArr = motionBackground;
+                    if (motionBackgroundDrawableArr[c] == null) {
+                        motionBackgroundDrawableArr[c] = new MotionBackgroundDrawable();
+                        if (this.currentType != 2) {
+                            motionBackground[c].setPostInvalidateParent(true);
+                        }
+                        motionBackground[c].setRoundRadius(dp(1.0f));
+                    }
+                    i8 = -1;
+                    motionBackground[c].setColors(color, currentColor, currentColor2, currentColor3, this.crosfadeFromBitmap);
+                    this.crosfadeFromBitmapShader.setLocalMatrix(this.matrix);
+                }
+                Shader shader = this.crosfadeFromBitmapShader;
+                this.gradientShader = shader;
+                this.paint.setShader(shader);
+                this.paint.setColor(i8);
+                this.currentColor = color;
+                this.currentAnimateGradient = z3;
+                this.currentGradientColor1 = currentColor;
+                this.currentGradientColor2 = currentColor2;
+                this.currentGradientColor3 = currentColor3;
+            } else if (currentColor == 0 && (this.gradientShader == null || i3 != this.currentBackgroundHeight || this.currentColor != color || this.currentGradientColor1 != currentColor || this.currentGradientColor2 != currentColor2 || this.currentGradientColor3 != currentColor3 || this.currentAnimateGradient != z3)) {
+                if (currentColor2 != 0 && z3) {
+                    MotionBackgroundDrawable[] motionBackgroundDrawableArr2 = motionBackground;
+                    if (motionBackgroundDrawableArr2[c] == null) {
+                        motionBackgroundDrawableArr2[c] = new MotionBackgroundDrawable();
+                        if (this.currentType != 2) {
+                            motionBackground[c].setPostInvalidateParent(true);
+                        }
+                        motionBackground[c].setRoundRadius(dp(1.0f));
+                    }
+                    motionBackground[c].setColors(color, currentColor, currentColor2, currentColor3);
+                    this.gradientShader = motionBackground[c].getBitmapShader();
+                } else if (currentColor2 == 0) {
+                    this.gradientShader = new LinearGradient(0.0f, i5, 0.0f, i3, new int[]{currentColor, color}, (float[]) null, Shader.TileMode.CLAMP);
+                } else if (currentColor3 != 0) {
+                    this.gradientShader = new LinearGradient(0.0f, i5, 0.0f, i3, new int[]{currentColor3, currentColor2, currentColor, color}, (float[]) null, Shader.TileMode.CLAMP);
+                } else {
+                    this.gradientShader = new LinearGradient(0.0f, i5, 0.0f, i3, new int[]{currentColor2, currentColor, color}, (float[]) null, Shader.TileMode.CLAMP);
+                }
+                this.paint.setShader(this.gradientShader);
+                this.currentColor = color;
+                this.currentAnimateGradient = z3;
+                this.currentGradientColor1 = currentColor;
+                this.currentGradientColor2 = currentColor2;
+                this.currentGradientColor3 = currentColor3;
+                this.paint.setColor(-1);
+            } else if (currentColor == 0) {
+                if (this.gradientShader != null) {
+                    this.gradientShader = null;
+                    this.paint.setShader(null);
+                }
+                this.paint.setColor(color);
+            }
+            if (this.gradientShader instanceof BitmapShader) {
+                i7 = 0;
+                motionBackground[c].setBounds(0, i5, i2, i3 - i4);
+            } else {
+                i7 = 0;
+            }
+            this.currentBackgroundHeight = i3;
+            if (this.gradientShader instanceof BitmapShader) {
+                i7 = i4;
+            }
+            this.topY = i - i7;
+            this.isTopNear = z;
+            this.isBottomNear = z2;
+        }
+        color = getColor(this.isSelected ? Theme.key_chat_inBubbleSelected : Theme.key_chat_inBubble);
+        currentColor = 0;
+        currentColor2 = 0;
+        currentColor3 = 0;
+        if (currentColor != 0) {
+            color = getColor(Theme.key_chat_outBubble);
+        }
+        if (this.themePreview) {
+            c = 2;
+        } else if (this.currentType == 2) {
+            c = 1;
+        } else {
+            c = 0;
+        }
+        if (!this.isCrossfadeBackground) {
+            int[] colors2 = motionBackgroundDrawable.getColors();
+            this.currentColor = colors2[0];
+            this.currentGradientColor1 = colors2[1];
+            this.currentGradientColor2 = colors2[2];
+            this.currentGradientColor3 = colors2[3];
+        }
+        if (this.isCrossfadeBackground) {
+            if (currentColor == 0) {
+                if (currentColor == 0) {
+                    if (this.gradientShader != null) {
+                        this.gradientShader = null;
+                        this.paint.setShader(null);
+                    }
+                    this.paint.setColor(color);
+                }
+            } else if (currentColor == 0) {
+                if (this.gradientShader != null) {
+                    this.gradientShader = null;
+                    this.paint.setShader(null);
+                }
+                this.paint.setColor(color);
+            }
+        } else if (currentColor == 0) {
+            if (currentColor == 0) {
+                if (this.gradientShader != null) {
+                    this.gradientShader = null;
+                    this.paint.setShader(null);
+                }
+                this.paint.setColor(color);
+            }
+        } else if (currentColor == 0) {
+            if (this.gradientShader != null) {
+                this.gradientShader = null;
+                this.paint.setShader(null);
+            }
+            this.paint.setColor(color);
+        }
+        if (this.gradientShader instanceof BitmapShader) {
+            i7 = 0;
+            motionBackground[c].setBounds(0, i5, i2, i3 - i4);
+        } else {
+            i7 = 0;
+        }
+        this.currentBackgroundHeight = i3;
+        if (this.gradientShader instanceof BitmapShader) {
+            i7 = i4;
+        }
+        this.topY = i - i7;
+        this.isTopNear = z;
+        this.isBottomNear = z2;
     }
 
     public int getTopY() {
@@ -460,7 +639,8 @@ public class MessageDrawable extends Drawable {
         }
         canvas.drawPath(path, paint2);
         if (this.gradientShader != null && this.isSelected && paint == null) {
-            this.selectedPaint.setColor(ColorUtils.setAlphaComponent(getColor(Theme.key_chat_outBubbleGradientSelectedOverlay), (int) ((Color.alpha(r0) * this.alpha) / 255.0f)));
+            int color = getColor(Theme.key_chat_outBubbleGradientSelectedOverlay);
+            this.selectedPaint.setColor(ColorUtils.setAlphaComponent(color, (int) ((Color.alpha(color) * this.alpha) / 255.0f)));
             canvas.drawPath(path, this.selectedPaint);
         }
     }
@@ -469,8 +649,69 @@ public class MessageDrawable extends Drawable {
         return makePath(this.pathDrawCacheParams);
     }
 
-    public android.graphics.Path makePath(org.telegram.ui.ActionBar.MessageDrawable.PathDrawParams r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.MessageDrawable.makePath(org.telegram.ui.ActionBar.MessageDrawable$PathDrawParams):android.graphics.Path");
+    public Path makePath(PathDrawParams pathDrawParams) {
+        int iDp;
+        int iDp2;
+        int i;
+        int i2;
+        boolean z;
+        boolean z2;
+        Path path;
+        Rect bounds = getBounds();
+        int iDp3 = dp(2.0f);
+        int i3 = this.overrideRoundRadius;
+        if (i3 != 0) {
+            i2 = i3;
+            i = i2;
+        } else {
+            if (this.overrideRounding > 0.0f) {
+                iDp = AndroidUtilities.lerp(dp(SharedConfig.bubbleRadius), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+                iDp2 = AndroidUtilities.lerp(dp(Math.min(6, SharedConfig.bubbleRadius)), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+            } else if (this.currentType == 2) {
+                iDp = dp(6.0f);
+                iDp2 = dp(6.0f);
+            } else {
+                iDp = dp(SharedConfig.bubbleRadius);
+                iDp2 = dp(Math.min(6, SharedConfig.bubbleRadius));
+            }
+            i = iDp2;
+            i2 = iDp;
+        }
+        int iDp4 = dp(6.0f);
+        int iMax = Math.max(bounds.top, 0);
+        boolean zInvalidatePath = true;
+        if (pathDrawParams == null || bounds.height() >= this.currentBackgroundHeight) {
+            z = this.currentType != 1 ? (this.topY + bounds.bottom) - i2 < this.currentBackgroundHeight : (this.topY + bounds.bottom) - (iDp4 * 2) < this.currentBackgroundHeight;
+            if (this.topY + (i2 * 2) < 0) {
+                z2 = false;
+            }
+            if (pathDrawParams != null) {
+                Path path2 = pathDrawParams.path;
+                zInvalidatePath = pathDrawParams.invalidatePath(bounds, z, z2);
+                path = path2;
+            } else {
+                path = this.path;
+            }
+            if (!zInvalidatePath || this.overrideRoundRadius != 0) {
+                generatePath(path, bounds, iDp3, i2, iDp4, i, iMax, z, z2, true);
+            }
+            return path;
+        }
+        z = true;
+        z2 = true;
+        if (pathDrawParams != null) {
+            Path path3 = pathDrawParams.path;
+            zInvalidatePath = pathDrawParams.invalidatePath(bounds, z, z2);
+            path = path3;
+        } else {
+            path = this.path;
+        }
+        if (!zInvalidatePath) {
+            generatePath(path, bounds, iDp3, i2, iDp4, i, iMax, z, z2, true);
+        } else {
+            generatePath(path, bounds, iDp3, i2, iDp4, i, iMax, z, z2, true);
+        }
+        return path;
     }
 
     private void generatePath(Path path, Rect rect, int i, int i2, int i3, int i4, int i5, boolean z, boolean z2, boolean z3) {
@@ -489,8 +730,11 @@ public class MessageDrawable extends Drawable {
                     path.moveTo(rect.right - dp(2.6f), rect.bottom - i);
                 }
                 path.lineTo(rect.left + i + i7, rect.bottom - i);
-                int i8 = i7 * 2;
-                this.rect.set(rect.left + i, r10 - i8, r11 + i8, rect.bottom - i);
+                RectF rectF = this.rect;
+                int i8 = rect.left + i;
+                int i9 = rect.bottom - i;
+                int i10 = i7 * 2;
+                rectF.set(i8, i9 - i10, i8 + i10, i9);
                 path.arcTo(this.rect, 90.0f, 90.0f, false);
             } else {
                 path.moveTo(rect.right - dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
@@ -498,20 +742,24 @@ public class MessageDrawable extends Drawable {
             }
             if (this.drawFullBubble || this.currentType == 2 || z3 || z2) {
                 path.lineTo(rect.left + i, rect.top + i + i6);
-                int i9 = i6 * 2;
-                this.rect.set(rect.left + i, rect.top + i, r9 + i9, r11 + i9);
+                RectF rectF2 = this.rect;
+                int i11 = rect.left + i;
+                int i12 = rect.top + i;
+                int i13 = i6 * 2;
+                rectF2.set(i11, i12, i11 + i13, i12 + i13);
                 path.arcTo(this.rect, 180.0f, 90.0f, false);
-                int i10 = this.isTopNear ? i4 : i6;
+                int i14 = this.isTopNear ? i4 : i6;
                 if (this.currentType == 1) {
-                    path.lineTo((rect.right - i) - i10, rect.top + i);
-                    RectF rectF = this.rect;
-                    int i11 = rect.right - i;
-                    int i12 = i10 * 2;
-                    rectF.set(i11 - i12, rect.top + i, i11, r12 + i12);
+                    path.lineTo((rect.right - i) - i14, rect.top + i);
+                    RectF rectF3 = this.rect;
+                    int i15 = rect.right - i;
+                    int i16 = i14 * 2;
+                    int i17 = rect.top + i;
+                    rectF3.set(i15 - i16, i17, i15, i17 + i16);
                 } else {
-                    path.lineTo((rect.right - dp(8.0f)) - i10, rect.top + i);
-                    int i13 = i10 * 2;
-                    this.rect.set((rect.right - dp(8.0f)) - i13, rect.top + i, rect.right - dp(8.0f), rect.top + i + i13);
+                    path.lineTo((rect.right - dp(8.0f)) - i14, rect.top + i);
+                    int i18 = i14 * 2;
+                    this.rect.set((rect.right - dp(8.0f)) - i18, rect.top + i, rect.right - dp(8.0f), rect.top + i + i18);
                 }
                 path.arcTo(this.rect, 270.0f, 90.0f, false);
             } else {
@@ -522,38 +770,44 @@ public class MessageDrawable extends Drawable {
                     path.lineTo(rect.right - dp(8.0f), (i5 - this.topY) - dp(2.0f));
                 }
             }
-            int i14 = this.currentType;
-            if (i14 == 1) {
+            int i19 = this.currentType;
+            if (i19 == 1) {
                 if (z3 || z) {
                     if (this.isBottomNear) {
                         i6 = i4;
                     }
                     path.lineTo(rect.right - i, (rect.bottom - i) - i6);
-                    int i15 = i6 * 2;
-                    this.rect.set(r4 - i15, r2 - i15, rect.right - i, rect.bottom - i);
+                    RectF rectF4 = this.rect;
+                    int i20 = rect.right - i;
+                    int i21 = i6 * 2;
+                    int i22 = rect.bottom - i;
+                    rectF4.set(i20 - i21, i22 - i21, i20, i22);
                     path.arcTo(this.rect, 0.0f, 90.0f, false);
                 } else {
                     path.lineTo(rect.right - i, (i5 - this.topY) + this.currentBackgroundHeight);
                 }
-            } else if (this.drawFullBubble || i14 == 2 || z3 || z) {
+            } else if (this.drawFullBubble || i19 == 2 || z3 || z) {
                 path.lineTo(rect.right - dp(8.0f), ((rect.bottom - i) - i3) - dp(3.0f));
-                int i16 = i3 * 2;
-                this.rect.set(rect.right - dp(8.0f), ((rect.bottom - i) - i16) - dp(9.0f), (rect.right - dp(7.0f)) + i16, (rect.bottom - i) - dp(1.0f));
+                int i23 = i3 * 2;
+                this.rect.set(rect.right - dp(8.0f), ((rect.bottom - i) - i23) - dp(9.0f), (rect.right - dp(7.0f)) + i23, (rect.bottom - i) - dp(1.0f));
                 path.arcTo(this.rect, 180.0f, -83.0f, false);
             } else {
                 path.lineTo(rect.right - dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
             }
         } else {
             if (this.drawFullBubble || this.currentType == 2 || z3 || z) {
-                int i17 = this.botButtonsBottom ? i4 : i6;
+                int i24 = this.botButtonsBottom ? i4 : i6;
                 if (this.currentType == 1) {
-                    path.moveTo(rect.left + dp(8.0f) + i17, rect.bottom - i);
+                    path.moveTo(rect.left + dp(8.0f) + i24, rect.bottom - i);
                 } else {
                     path.moveTo(rect.left + dp(2.6f), rect.bottom - i);
                 }
-                path.lineTo((rect.right - i) - i17, rect.bottom - i);
-                int i18 = i17 * 2;
-                this.rect.set(r11 - i18, r13 - i18, rect.right - i, rect.bottom - i);
+                path.lineTo((rect.right - i) - i24, rect.bottom - i);
+                RectF rectF5 = this.rect;
+                int i25 = rect.right - i;
+                int i26 = i24 * 2;
+                int i27 = rect.bottom - i;
+                rectF5.set(i25 - i26, i27 - i26, i25, i27);
                 path.arcTo(this.rect, 90.0f, -90.0f, false);
             } else {
                 path.moveTo(rect.left + dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
@@ -561,20 +815,24 @@ public class MessageDrawable extends Drawable {
             }
             if (this.drawFullBubble || this.currentType == 2 || z3 || z2) {
                 path.lineTo(rect.right - i, rect.top + i + i6);
-                RectF rectF2 = this.rect;
-                int i19 = rect.right - i;
-                int i20 = i6 * 2;
-                rectF2.set(i19 - i20, rect.top + i, i19, r13 + i20);
+                RectF rectF6 = this.rect;
+                int i28 = rect.right - i;
+                int i29 = i6 * 2;
+                int i30 = rect.top + i;
+                rectF6.set(i28 - i29, i30, i28, i30 + i29);
                 path.arcTo(this.rect, 0.0f, -90.0f, false);
-                int i21 = this.isTopNear ? i4 : i6;
+                int i31 = this.isTopNear ? i4 : i6;
                 if (this.currentType == 1) {
-                    path.lineTo(rect.left + i + i21, rect.top + i);
-                    int i22 = i21 * 2;
-                    this.rect.set(rect.left + i, rect.top + i, r11 + i22, r13 + i22);
+                    path.lineTo(rect.left + i + i31, rect.top + i);
+                    RectF rectF7 = this.rect;
+                    int i32 = rect.left + i;
+                    int i33 = rect.top + i;
+                    int i34 = i31 * 2;
+                    rectF7.set(i32, i33, i32 + i34, i33 + i34);
                 } else {
-                    path.lineTo(rect.left + dp(8.0f) + i21, rect.top + i);
-                    int i23 = i21 * 2;
-                    this.rect.set(rect.left + dp(8.0f), rect.top + i, rect.left + dp(8.0f) + i23, rect.top + i + i23);
+                    path.lineTo(rect.left + dp(8.0f) + i31, rect.top + i);
+                    int i35 = i31 * 2;
+                    this.rect.set(rect.left + dp(8.0f), rect.top + i, rect.left + dp(8.0f) + i35, rect.top + i + i35);
                 }
                 path.arcTo(this.rect, 270.0f, -90.0f, false);
             } else {
@@ -585,23 +843,26 @@ public class MessageDrawable extends Drawable {
                     path.lineTo(rect.left + dp(8.0f), (i5 - this.topY) - dp(2.0f));
                 }
             }
-            int i24 = this.currentType;
-            if (i24 == 1) {
+            int i36 = this.currentType;
+            if (i36 == 1) {
                 if (z3 || z) {
                     if (this.isBottomNear || this.botButtonsBottom) {
                         i6 = i4;
                     }
                     path.lineTo(rect.left + i, (rect.bottom - i) - i6);
-                    int i25 = i6 * 2;
-                    this.rect.set(rect.left + i, r2 - i25, r4 + i25, rect.bottom - i);
+                    RectF rectF8 = this.rect;
+                    int i37 = rect.left + i;
+                    int i38 = rect.bottom - i;
+                    int i39 = i6 * 2;
+                    rectF8.set(i37, i38 - i39, i37 + i39, i38);
                     path.arcTo(this.rect, 180.0f, -90.0f, false);
                 } else {
                     path.lineTo(rect.left + i, (i5 - this.topY) + this.currentBackgroundHeight);
                 }
-            } else if (this.drawFullBubble || i24 == 2 || z3 || z) {
+            } else if (this.drawFullBubble || i36 == 2 || z3 || z) {
                 path.lineTo(rect.left + dp(8.0f), ((rect.bottom - i) - i3) - dp(3.0f));
-                int i26 = i3 * 2;
-                this.rect.set((rect.left + dp(7.0f)) - i26, ((rect.bottom - i) - i26) - dp(9.0f), rect.left + dp(8.0f), (rect.bottom - i) - dp(1.0f));
+                int i40 = i3 * 2;
+                this.rect.set((rect.left + dp(7.0f)) - i40, ((rect.bottom - i) - i40) - dp(9.0f), rect.left + dp(8.0f), (rect.bottom - i) - dp(1.0f));
                 path.arcTo(this.rect, 0.0f, 83.0f, false);
             } else {
                 path.lineTo(rect.left + dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
@@ -658,8 +919,22 @@ public class MessageDrawable extends Drawable {
         Path path = new Path();
         Rect lastRect = new Rect();
 
-        public boolean invalidatePath(android.graphics.Rect r4, boolean r5, boolean r6) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.MessageDrawable.PathDrawParams.invalidatePath(android.graphics.Rect, boolean, boolean):boolean");
+        public boolean invalidatePath(Rect rect, boolean z, boolean z2) {
+            boolean z3;
+            if (this.lastRect.isEmpty()) {
+                z3 = true;
+            } else {
+                Rect rect2 = this.lastRect;
+                if (rect2.top == rect.top && rect2.bottom == rect.bottom && rect2.right == rect.right && rect2.left == rect.left && this.lastDrawFullTop == z2 && this.lastDrawFullBottom == z && z2 && z) {
+                    z3 = false;
+                } else {
+                    z3 = true;
+                }
+            }
+            this.lastDrawFullTop = z2;
+            this.lastDrawFullBottom = z;
+            this.lastRect.set(rect);
+            return z3;
         }
 
         public Path getPath() {

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
@@ -25,7 +24,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AccountInstance;
@@ -72,10 +70,6 @@ import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.TrendingStickersLayout;
 import org.telegram.ui.MessageSendPreview;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.iv.RichCommandSuggestions;
-import org.telegram.ui.iv.RichEditor;
-import org.telegram.ui.iv.RichEditorListView;
-import org.telegram.ui.iv.RichEditorToolbar;
 
 public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final int[] STYLE_FLAGS = {1, 2, 16, 8, 256, 4, 16384, 32768};
@@ -194,12 +188,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onOpenAttachRequest(int i, int i2) throws IOException {
+        public void onOpenAttachRequest(int i, int i2) {
             ChatAttachAlertRichLayout.this.openAttach(i, i2);
         }
 
         @Override
-        public void onOpenLocationRequest(BlockRow blockRow) throws IOException {
+        public void onOpenLocationRequest(BlockRow blockRow) {
             ChatAttachAlertRichLayout.this.openLocationPicker(blockRow);
         }
 
@@ -325,13 +319,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onAttach() throws IOException {
+        public void onAttach() {
             ChatAttachAlertRichLayout.this.listView.pendingMediaRow = null;
             ChatAttachAlertRichLayout.this.openAttach(90, 0);
         }
 
         @Override
-        public void onSend() throws Resources.NotFoundException {
+        public void onSend() {
             ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
         }
 
@@ -427,7 +421,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             }
         }).setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+            public final void onClick(AlertDialog alertDialog, int i) {
                 this.f$0.lambda$checkDiscard$2(alertDialog, i);
             }
         }).makeRed(-2).show();
@@ -438,12 +432,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         this.parentAlert.lambda$new$0();
     }
 
-    public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+    public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) {
         persistDraft();
         this.parentAlert.lambda$new$0();
     }
 
-    private boolean persistDraft() throws Resources.NotFoundException {
+    private boolean persistDraft() {
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (!(baseFragment instanceof ChatActivity)) {
             return false;
@@ -478,8 +472,56 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         return super.onDismiss();
     }
 
-    public void onBlockButtonClicked(int r3, android.view.View r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.onBlockButtonClicked(int, android.view.View):void");
+    public void onBlockButtonClicked(int i, View view) {
+        RichTableCell richTableCellFindFocusedTableCell;
+        TL_iv.pageTableCell pagetablecellFocusedCellOf;
+        final TL_iv.pageBlockMath pageblockmath;
+        BlockRow blockRowFindFocusedRow = this.listView.findFocusedRow();
+        if (i == 1) {
+            showTextTypeMenu(blockRowFindFocusedRow, view);
+            return;
+        }
+        if (i == 2) {
+            showListMenu(blockRowFindFocusedRow, view);
+            return;
+        }
+        if (i != 4) {
+            if (i != 7) {
+                if (i != 9) {
+                    return;
+                }
+                this.listView.insertDetails();
+                return;
+            }
+            if (blockRowFindFocusedRow != null) {
+                TL_iv.PageBlock pageBlock = blockRowFindFocusedRow.block;
+                if (pageBlock instanceof TL_iv.pageBlockMath) {
+                    pageblockmath = (TL_iv.pageBlockMath) pageBlock;
+                } else {
+                    pageblockmath = null;
+                }
+            } else {
+                pageblockmath = null;
+            }
+            showEditLatexSheet(getContext(), (pageblockmath == null || TextUtils.isEmpty(pageblockmath.source)) ? "" : pageblockmath.source, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    this.f$0.lambda$onBlockButtonClicked$3(pageblockmath, (String) obj);
+                }
+            }, this.resourcesProvider);
+            return;
+        }
+        RichEditorListView richEditorListView = this.listView;
+        RichTableCell richTableCell = richEditorListView.activeCellSelectionTable;
+        if (richTableCell == null && (richTableCellFindFocusedTableCell = richEditorListView.findFocusedTableCell()) != null && richTableCellFindFocusedTableCell.getModel() != null && (pagetablecellFocusedCellOf = this.listView.focusedCellOf(richTableCellFindFocusedTableCell)) != null) {
+            this.listView.enterCellSelectionMode(richTableCellFindFocusedTableCell, pagetablecellFocusedCellOf);
+            richTableCell = richTableCellFindFocusedTableCell;
+        }
+        if (richTableCell != null && richTableCell.getModel() != null && richTableCell.hasCellSelection()) {
+            this.listView.showTableCellMenu(richTableCell);
+        } else {
+            this.listView.addBlock(RichTextCell.newEmptyTable(2, 2));
+        }
     }
 
     public void lambda$onBlockButtonClicked$3(TL_iv.pageBlockMath pageblockmath, String str) {
@@ -777,7 +819,76 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public void updateToolbarBlockType() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.updateToolbarBlockType():void");
+        BlockRow blockRowFindFocusedRow;
+        int i;
+        if (this.toolbar == null) {
+            return;
+        }
+        TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper = this.listView.getTextSelectionHelper();
+        if (textSelectionHelper != null && textSelectionHelper.isInSelectionMode()) {
+            int startCell = textSelectionHelper.getStartCell();
+            blockRowFindFocusedRow = startCell == textSelectionHelper.getEndCell() ? this.listView.rowForCell(startCell) : null;
+        } else {
+            blockRowFindFocusedRow = this.listView.findFocusedRow();
+        }
+        int i2 = 0;
+        if (this.listView.findFocusedTableCell() != null) {
+            i = 4;
+        } else if (blockRowFindFocusedRow == null) {
+            i = 0;
+        } else if (blockRowFindFocusedRow.isChecklist() || blockRowFindFocusedRow.isInList() || blockRowFindFocusedRow.isOrdered()) {
+            i = 2;
+        } else {
+            TL_iv.PageBlock pageBlock = blockRowFindFocusedRow.block;
+            if (pageBlock instanceof TL_iv.pageBlockDetails) {
+                i = 2;
+            } else if (pageBlock instanceof TL_iv.pageBlockTable) {
+                i = 4;
+            } else if (pageBlock instanceof TL_iv.pageBlockMath) {
+                i = 7;
+            } else {
+                if (!RichEditorListView.isHeading(pageBlock)) {
+                    TL_iv.PageBlock pageBlock2 = blockRowFindFocusedRow.block;
+                    if (!(pageBlock2 instanceof TL_iv.pageBlockParagraph) && !(pageBlock2 instanceof TL_iv.pageBlockPreformatted) && !(pageBlock2 instanceof TL_iv.pageBlockBlockquote) && !(pageBlock2 instanceof TL_iv.pageBlockPullquote)) {
+                        i = 0;
+                    }
+                }
+                i = 1;
+            }
+        }
+        if (blockRowFindFocusedRow != null) {
+            if (i == 1) {
+                TL_iv.PageBlock pageBlock3 = blockRowFindFocusedRow.block;
+                if (pageBlock3 instanceof TL_iv.pageBlockHeading1) {
+                    i2 = R.drawable.iv_h1;
+                } else if (pageBlock3 instanceof TL_iv.pageBlockHeading2) {
+                    i2 = R.drawable.iv_h2;
+                } else if (pageBlock3 instanceof TL_iv.pageBlockHeading3) {
+                    i2 = R.drawable.iv_h3;
+                } else if (pageBlock3 instanceof TL_iv.pageBlockHeading4) {
+                    i2 = R.drawable.iv_h4;
+                } else if (pageBlock3 instanceof TL_iv.pageBlockHeading5) {
+                    i2 = R.drawable.iv_h5;
+                } else if (pageBlock3 instanceof TL_iv.pageBlockHeading6) {
+                    i2 = R.drawable.iv_h6;
+                } else if (pageBlock3 instanceof TL_iv.pageBlockPreformatted) {
+                    i2 = R.drawable.iv_code;
+                } else if (pageBlock3 instanceof TL_iv.pageBlockBlockquote) {
+                    i2 = R.drawable.iv_quote;
+                } else if (pageBlock3 instanceof TL_iv.pageBlockPullquote) {
+                    i2 = R.drawable.iv_pullquote;
+                } else if (pageBlock3 instanceof TL_iv.pageBlockFooter) {
+                    i2 = R.drawable.iv_footer;
+                }
+            } else if (i == 2) {
+                if (blockRowFindFocusedRow.isChecklist()) {
+                    i2 = R.drawable.iv_todo;
+                } else if (blockRowFindFocusedRow.isOrdered()) {
+                    i2 = R.drawable.iv_ordered_list;
+                }
+            }
+        }
+        this.toolbar.setSelectedBlockType(i, i2);
     }
 
     public TextSelectionHelper.ArticleTextSelectionHelper getTextSelectionHelper() {
@@ -855,8 +966,9 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             this.toolbar.setBottomGradientTranslationY(-f2);
             if (this.lastAttachRise != this.attachRaise) {
                 ViewPropertyAnimator viewPropertyAnimatorAnimate = this.toolbar.getBottomInnerContainer().animate();
-                this.lastAttachRise = this.attachRaise;
-                viewPropertyAnimatorAnimate.translationY(-r1).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+                int i = this.attachRaise;
+                this.lastAttachRise = i;
+                viewPropertyAnimatorAnimate.translationY(-i).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
             }
         }
     }
@@ -938,8 +1050,45 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    public void onPreMeasure(int r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.onPreMeasure(int, int):void");
+    public void onPreMeasure(int i, int i2) {
+        int iDp;
+        int i3;
+        ItemOptions itemOptions;
+        boolean z = this.keyboardVisible;
+        boolean z2 = this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f);
+        this.keyboardVisible = z2;
+        if (!z2 && z && (itemOptions = this.menu) != null) {
+            itemOptions.dismiss();
+            this.menu = null;
+        }
+        if (this.keyboardVisible || this.emojiPadding > AndroidUtilities.dp(20.0f)) {
+            iDp = AndroidUtilities.dp(52.0f);
+            this.parentAlert.setAllowNestedScroll(false);
+        } else {
+            if (AndroidUtilities.isTablet()) {
+                i3 = (i2 / 5) * 2;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    i3 = (int) (i2 / 3.5f);
+                } else {
+                    i3 = (i2 / 5) * 2;
+                }
+            }
+            iDp = i3 - AndroidUtilities.dp(52.0f);
+            if (iDp < 0) {
+                iDp = 0;
+            }
+            this.parentAlert.setAllowNestedScroll(true);
+        }
+        int currentActionBarHeight = iDp + AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight();
+        int iBottomNavInset = bottomNavInset() + AndroidUtilities.dp(110.0f) + ((this.listView.hasAnyText() || this.emojiViewVisible) ? 0 : this.parentAlert.getTypeButtonsHeight()) + this.emojiPadding;
+        if (this.listView.getPaddingTop() != currentActionBarHeight || this.listView.getPaddingBottom() != iBottomNavInset) {
+            this.ignoreLayout = true;
+            this.listView.setPaddingWithoutRequestLayout(0, currentActionBarHeight, 0, iBottomNavInset);
+            this.ignoreLayout = false;
+        }
+        updateToolbarTopOffset();
     }
 
     @Override
@@ -1045,7 +1194,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) throws Resources.NotFoundException {
+    public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
         MessageObject messageObject;
         long sendMonoForumPeerId;
         MessageObject messageObject2;
@@ -1165,7 +1314,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         sendButton.setScaleY(1.0f);
         ChatActivityEnterView.SendButton sendButton2 = this.messageSendPreview.setSendButton(sendButton, true, new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws Resources.NotFoundException {
+            public final void onClick(View view2) {
                 this.f$0.lambda$showSendPreview$19(view2);
             }
         });
@@ -1187,7 +1336,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             if (!z && dialogId > 0) {
                 itemOptionsMakeOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException {
+                    public final void run() {
                         this.f$0.lambda$showSendPreview$21();
                     }
                 });
@@ -1196,7 +1345,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         if (!z) {
             itemOptionsMakeOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() {
                     this.f$0.lambda$showSendPreview$22();
                 }
             });
@@ -1215,7 +1364,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         this.messageSendPreview = null;
     }
 
-    public void lambda$showSendPreview$19(View view) throws Resources.NotFoundException {
+    public void lambda$showSendPreview$19(View view) {
         sendSelectedItems(true, 0, 0, 0L, false);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -1227,7 +1376,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     public void lambda$showSendPreview$20(long j) {
         AlertsCreator.createScheduleDatePickerDialog(this.parentAlert.baseFragment.getParentActivity(), j, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
-            public void didSelectDate(boolean z, int i, int i2) throws Resources.NotFoundException {
+            public void didSelectDate(boolean z, int i, int i2) {
                 ChatAttachAlertRichLayout.this.sendSelectedItems(z, i, i2, 0L, false);
                 if (ChatAttachAlertRichLayout.this.messageSendPreview != null) {
                     ChatAttachAlertRichLayout.this.messageSendPreview.dismissInstant();
@@ -1237,7 +1386,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }, this.resourcesProvider);
     }
 
-    public void lambda$showSendPreview$21() throws Resources.NotFoundException {
+    public void lambda$showSendPreview$21() {
         sendSelectedItems(true, 2147483646, 0, 0L, false);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -1246,7 +1395,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$showSendPreview$22() throws Resources.NotFoundException {
+    public void lambda$showSendPreview$22() {
         sendSelectedItems(false, 0, 0, 0L, false);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -1255,7 +1404,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void openLocationPicker(final BlockRow blockRow) throws IOException {
+    public void openLocationPicker(final BlockRow blockRow) {
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment != null && blockRow != null && (blockRow.block instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(baseFragment)) {
             final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this.parentAlert.baseFragment, false, false, false, null);
@@ -1354,7 +1503,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void openAttach(int i, int i2) throws IOException {
+    public void openAttach(int i, int i2) {
         if (this.parentAlert.baseFragment == null) {
             return;
         }
@@ -1400,18 +1549,16 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                     ArrayList<Object> selectedPhotosOrder = chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
                     BlockRow blockRow = ChatAttachAlertRichLayout.this.listView.pendingMediaRow;
                     ChatAttachAlertRichLayout.this.listView.pendingMediaRow = null;
-                    int i6 = 0;
-                    while (true) {
-                        if (i6 >= selectedPhotosOrder.size()) {
-                            break;
-                        }
+                    for (int i6 = 0; i6 < selectedPhotosOrder.size(); i6++) {
                         Object obj = selectedPhotos.get(selectedPhotosOrder.get(i6));
-                        if (!(obj instanceof MediaController.PhotoEntry)) {
-                            i6++;
-                        } else if (blockRow != null) {
-                            ChatAttachAlertRichLayout.this.listView.addMediaToRow(blockRow, (MediaController.PhotoEntry) obj);
-                        } else {
-                            ChatAttachAlertRichLayout.this.listView.attachMedia((MediaController.PhotoEntry) obj);
+                        if (obj instanceof MediaController.PhotoEntry) {
+                            if (blockRow != null) {
+                                ChatAttachAlertRichLayout.this.listView.addMediaToRow(blockRow, (MediaController.PhotoEntry) obj);
+                                break;
+                            } else {
+                                ChatAttachAlertRichLayout.this.listView.attachMedia((MediaController.PhotoEntry) obj);
+                                break;
+                            }
                         }
                     }
                 }

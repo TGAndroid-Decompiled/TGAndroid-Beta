@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.Layout;
@@ -23,7 +24,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Storage.CacheModel;
 
 public abstract class StorageDiagramView extends View implements NotificationCenter.NotificationCenterDelegate {
@@ -148,8 +150,136 @@ public abstract class StorageDiagramView extends View implements NotificationCen
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StorageDiagramView.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        double d;
+        int i;
+        if (this.data == null) {
+            return;
+        }
+        if (this.avatarImageReceiver != null) {
+            canvas.save();
+            if (isPressed()) {
+                float f = this.pressedProgress;
+                if (f != 1.0f) {
+                    float fMin = f + (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f);
+                    this.pressedProgress = fMin;
+                    this.pressedProgress = Utilities.clamp(fMin, 1.0f, 0.0f);
+                    invalidate();
+                }
+            }
+            float f2 = ((1.0f - this.pressedProgress) * 0.15f) + 0.85f;
+            canvas.scale(f2, f2, this.avatarImageReceiver.getCenterX(), this.avatarImageReceiver.getCenterY());
+        }
+        if (this.enabledCount > 1) {
+            float f3 = this.singleProgress;
+            if (f3 > 0.0f) {
+                float f4 = (float) (((double) f3) - 0.04d);
+                this.singleProgress = f4;
+                if (f4 < 0.0f) {
+                    this.singleProgress = 0.0f;
+                }
+            }
+        } else {
+            float f5 = this.singleProgress;
+            if (f5 < 1.0f) {
+                float f6 = (float) (((double) f5) + 0.04d);
+                this.singleProgress = f6;
+                if (f6 > 1.0f) {
+                    this.singleProgress = 1.0f;
+                }
+            }
+        }
+        int i2 = 0;
+        float f7 = 0.0f;
+        while (true) {
+            ClearViewData[] clearViewDataArr = this.data;
+            d = 180.0d;
+            i = 255;
+            if (i2 >= clearViewDataArr.length) {
+                break;
+            }
+            ClearViewData clearViewData = clearViewDataArr[i2];
+            if (clearViewData != null) {
+                float f8 = this.drawingPercentage[i2];
+                if (f8 != 0.0f) {
+                    if (clearViewData.firstDraw) {
+                        float f9 = ((-360.0f) * f8) + ((1.0f - this.singleProgress) * 10.0f);
+                        float f10 = f9 > 0.0f ? 0.0f : f9;
+                        clearViewData.paint.setColor(Theme.getColor(clearViewData.colorKey));
+                        this.data[i2].paint.setAlpha(255);
+                        double dWidth = this.rectF.width() / 2.0f;
+                        if (Math.abs((float) (((double) f10) * ((3.141592653589793d * dWidth) / 180.0d))) <= 1.0f) {
+                            double d2 = (-90.0f) - (360.0f * f7);
+                            canvas.drawPoint(this.rectF.centerX() + ((float) (Math.cos(Math.toRadians(d2)) * dWidth)), this.rectF.centerY() + ((float) (dWidth * Math.sin(Math.toRadians(d2)))), this.data[i2].paint);
+                        } else {
+                            this.data[i2].paint.setStyle(Paint.Style.STROKE);
+                            canvas.drawArc(this.rectF, (-90.0f) - (360.0f * f7), f10, false, this.data[i2].paint);
+                        }
+                    }
+                    f7 += f8;
+                }
+            }
+            i2++;
+        }
+        int i3 = 0;
+        float f11 = 0.0f;
+        while (true) {
+            ClearViewData[] clearViewDataArr2 = this.data;
+            if (i3 >= clearViewDataArr2.length) {
+                break;
+            }
+            ClearViewData clearViewData2 = clearViewDataArr2[i3];
+            if (clearViewData2 != null) {
+                float f12 = this.drawingPercentage[i3];
+                if (f12 != 0.0f) {
+                    if (!clearViewData2.firstDraw) {
+                        float f13 = (f12 * (-360.0f)) + ((1.0f - this.singleProgress) * 10.0f);
+                        float f14 = f13 > 0.0f ? 0.0f : f13;
+                        clearViewData2.paint.setColor(Theme.getColor(clearViewData2.colorKey));
+                        this.data[i3].paint.setAlpha(i);
+                        double dWidth2 = this.rectF.width() / 2.0f;
+                        if (Math.abs((float) (((double) f14) * ((dWidth2 * 3.141592653589793d) / d))) <= 1.0f) {
+                            double d3 = (-90.0f) - (f11 * 360.0f);
+                            canvas.drawPoint(this.rectF.centerX() + ((float) (Math.cos(Math.toRadians(d3)) * dWidth2)), this.rectF.centerY() + ((float) (dWidth2 * Math.sin(Math.toRadians(d3)))), this.data[i3].paint);
+                        } else {
+                            this.data[i3].paint.setStyle(Paint.Style.STROKE);
+                            canvas.drawArc(this.rectF, (-90.0f) - (f11 * 360.0f), f14, false, this.data[i3].paint);
+                        }
+                    }
+                    f11 += f12;
+                }
+            }
+            i3++;
+            i = 255;
+            d = 180.0d;
+        }
+        ImageReceiver imageReceiver = this.avatarImageReceiver;
+        if (imageReceiver != null) {
+            imageReceiver.draw(canvas);
+            canvas.restore();
+        }
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text1;
+        if (animatedTextDrawable != null) {
+            int i4 = Theme.key_dialogTextBlack;
+            animatedTextDrawable.setTextColor(Theme.getColor(i4));
+            this.text2.setTextColor(Theme.getColor(i4));
+            if (this.dialogId != null) {
+                float currentWidth = this.text1.getCurrentWidth() + AndroidUtilities.dp(4.0f) + this.text2.getCurrentWidth();
+                float width = (getWidth() - currentWidth) / 2.0f;
+                this.text1.setBounds(0, AndroidUtilities.dp(115.0f), (int) (this.text1.getCurrentWidth() + width), AndroidUtilities.dp(145.0f));
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.text2;
+                animatedTextDrawable2.setBounds((int) ((width + currentWidth) - animatedTextDrawable2.getCurrentWidth()), AndroidUtilities.dp(118.0f), getWidth(), AndroidUtilities.dp(148.0f));
+            }
+            this.text1.draw(canvas);
+            this.text2.draw(canvas);
+        }
+        if (this.dialogTextLayout != null) {
+            canvas.save();
+            canvas.translate(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(148.0f) - ((this.dialogTextLayout.getHeight() - AndroidUtilities.dp(13.0f)) / 2.0f));
+            this.dialogTextPaint.setColor(Theme.getColor(Theme.key_dialogTextBlack));
+            this.dialogTextLayout.draw(canvas);
+            canvas.restore();
+        }
     }
 
     public static class ClearViewData {

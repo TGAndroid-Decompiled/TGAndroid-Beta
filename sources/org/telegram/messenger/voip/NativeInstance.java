@@ -8,8 +8,6 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.voip.Instance;
-import org.telegram.messenger.voip.VoIPService;
 import org.webrtc.ContextUtils;
 import org.webrtc.VideoSink;
 
@@ -302,7 +300,7 @@ public class NativeInstance {
         }
     }
 
-    public Instance.FinalState stop() throws InterruptedException {
+    public Instance.FinalState stop() {
         this.stopBarrier = new CountDownLatch(1);
         stopNative();
         try {

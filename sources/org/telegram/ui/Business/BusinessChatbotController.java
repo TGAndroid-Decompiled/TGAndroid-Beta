@@ -39,7 +39,8 @@ public class BusinessChatbotController {
                         businessChatbotControllerArr[i] = businessChatbotController2;
                         businessChatbotController = businessChatbotController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }

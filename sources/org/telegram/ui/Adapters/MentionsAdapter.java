@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Build;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import j$.util.List;
 import j$.util.Map;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -32,15 +37,16 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Business.QuickRepliesActivity;
 import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Cells.BotSwitchCell;
@@ -48,6 +54,7 @@ import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.MentionCell;
 import org.telegram.ui.Cells.StickerCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -296,17 +303,12 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             HashMap map = this.stickersMap;
             if ((map == null || !map.containsKey(str)) && (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(document))) {
                 int size2 = document.attributes.size();
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= size2) {
-                        break;
-                    }
+                for (int i2 = 0; i2 < size2; i2++) {
                     TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i2);
                     if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                         obj = documentAttribute.stickerset;
                         break;
                     }
-                    i2++;
                 }
                 if (this.stickers == null) {
                     this.stickers = new ArrayList();
@@ -337,11 +339,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     private boolean isValidSticker(TLRPC.Document document, String str) {
         int size = document.attributes.size();
-        int i = 0;
-        while (true) {
-            if (i >= size) {
-                break;
-            }
+        for (int i = 0; i < size; i++) {
             TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
             if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                 String str2 = documentAttribute.alt;
@@ -350,7 +348,6 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 }
                 return true;
             }
-            i++;
         }
         return false;
     }
@@ -400,7 +397,52 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     @Override
     public void notifyDataSetChanged() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.notifyDataSetChanged():void");
+        MentionsAdapterDelegate mentionsAdapterDelegate;
+        int i = this.lastItemCount;
+        int i2 = 0;
+        if (i == -1 || this.lastData == null) {
+            MentionsAdapterDelegate mentionsAdapterDelegate2 = this.delegate;
+            if (mentionsAdapterDelegate2 != null) {
+                mentionsAdapterDelegate2.onItemCountUpdate(0, getItemCount());
+            }
+            super.notifyDataSetChanged();
+            this.lastData = new Object[getItemCount()];
+            while (true) {
+                Object[] objArr = this.lastData;
+                if (i2 >= objArr.length) {
+                    return;
+                }
+                objArr[i2] = getItem(i2);
+                i2++;
+            }
+        } else {
+            int itemCount = getItemCount();
+            boolean z = i != itemCount;
+            int iMin = Math.min(i, itemCount);
+            Object[] objArr2 = new Object[itemCount];
+            for (int i3 = 0; i3 < itemCount; i3++) {
+                objArr2[i3] = getItem(i3);
+            }
+            while (i2 < iMin) {
+                if (i2 >= 0) {
+                    Object[] objArr3 = this.lastData;
+                    if (i2 >= objArr3.length || i2 >= itemCount || !itemsEqual(objArr3[i2], objArr2[i2])) {
+                        notifyItemChanged(i2);
+                        z = true;
+                    }
+                } else {
+                    notifyItemChanged(i2);
+                    z = true;
+                }
+                i2++;
+            }
+            notifyItemRangeRemoved(iMin, i - iMin);
+            notifyItemRangeInserted(iMin, itemCount - iMin);
+            if (z && (mentionsAdapterDelegate = this.delegate) != null) {
+                mentionsAdapterDelegate.onItemCountUpdate(i, itemCount);
+            }
+            this.lastData = objArr2;
+        }
     }
 
     private boolean itemsEqual(Object obj, Object obj2) {
@@ -1022,8 +1064,1342 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         return new ArrayList(linkedHashMap.values());
     }
 
-    public void lambda$searchUsernameOrHashtag$8(final java.lang.CharSequence r31, final int r32, final java.util.ArrayList r33, final boolean r34, final boolean r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.lambda$searchUsernameOrHashtag$8(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
+    public void lambda$searchUsernameOrHashtag$8(final CharSequence charSequence, final int i, final ArrayList arrayList, final boolean z, final boolean z2) {
+        String str;
+        StringBuilder sb;
+        String str2;
+        String str3;
+        StringBuilder sb2;
+        ?? r15;
+        String str4;
+        char c;
+        TLRPC.Chat chat;
+        String str5;
+        ChatActivity chatActivity;
+        String str6;
+        byte b;
+        String str7;
+        String strSubstring;
+        String strSubstring2;
+        ?? r0;
+        StringBuilder sb3;
+        ?? r14;
+        int i2;
+        int i3;
+        boolean z3;
+        int i4;
+        ?? r3;
+        HashtagHint hashtagHint;
+        String[] currentKeyboardLanguage;
+        boolean z4;
+        ArrayList arrayList2;
+        int i5;
+        ?? r4;
+        boolean z5;
+        ArrayList arrayList3;
+        TL_bots.BotInfo botInfo;
+        int i6;
+        TLRPC.BotCommand botCommand;
+        String str8;
+        ArrayList hashtags;
+        int i7;
+        boolean z6;
+        SearchAdapterHelper.HashtagObject hashtagObject;
+        String str9;
+        ArrayList arrayList4;
+        String lowerCase;
+        boolean z7;
+        final ArrayList arrayList5;
+        final LongSparseArray longSparseArray;
+        ArrayList arrayList6;
+        ChatActivity chatActivity2;
+        TLRPC.ChatFull chatFull;
+        TLRPC.Chat chat2;
+        long threadId;
+        TLRPC.User currentUser;
+        ArrayList<TLRPC.Dialog> allDialogs;
+        int i8;
+        ArrayList arrayList7;
+        TLRPC.Chat chat3;
+        String str10;
+        long j;
+        TLRPC.User user;
+        TLRPC.ChatFull chatFull2;
+        int i9;
+        long j2;
+        ArrayList arrayList8;
+        TLRPC.ChatParticipant chatParticipant;
+        TLRPC.User user2;
+        String str11;
+        String publicUsername;
+        long j3;
+        Object obj;
+        String str12;
+        TLRPC.User user3;
+        int i10;
+        int i11;
+        long fromChatId;
+        boolean z8;
+        TLRPC.Chat chat4;
+        String str13;
+        int i12;
+        boolean z9;
+        boolean z10;
+        int i13;
+        boolean z11 = z;
+        boolean z12 = z2;
+        String str14 = "";
+        String string = charSequence == null ? "" : charSequence.toString();
+        TLRPC.Chat currentChat = this.chat;
+        ChatActivity chatActivity3 = this.parentFragment;
+        if (chatActivity3 != null) {
+            currentChat = chatActivity3.getCurrentChat();
+            this.parentFragment.getCurrentUser();
+        }
+        TLRPC.Chat chat5 = currentChat;
+        Runnable runnable = this.cancelDelayRunnable;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.cancelDelayRunnable = null;
+        }
+        if (this.channelReqId != 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.channelReqId, true);
+            this.channelReqId = 0;
+        }
+        Runnable runnable2 = this.searchGlobalRunnable;
+        if (runnable2 != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable2);
+            this.searchGlobalRunnable = null;
+        }
+        Runnable runnable3 = this.checkAgainRunnable;
+        if (runnable3 != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable3);
+            this.checkAgainRunnable = null;
+        }
+        if (TextUtils.isEmpty(string) || string.length() > MessagesController.getInstance(this.currentAccount).getMaxMessageLength()) {
+            searchForContextBot(null, null);
+            this.delegate.needChangePanelVisibility(false);
+            this.lastText = null;
+            clearStickers();
+            return;
+        }
+        int i14 = string.length() > 0 ? i - 1 : i;
+        this.lastText = null;
+        this.lastUsernameOnly = z11;
+        this.lastForSearch = z12;
+        StringBuilder sb4 = new StringBuilder();
+        boolean z13 = !z11 && string.length() > 0 && string.length() <= 14;
+        if (z13) {
+            int length = string.length();
+            CharSequence charSequenceConcat = string;
+            int i15 = 0;
+            while (i15 < length) {
+                String str15 = str14;
+                char cCharAt = charSequenceConcat.charAt(i15);
+                StringBuilder sb5 = sb4;
+                int i16 = length - 1;
+                char cCharAt2 = i15 < i16 ? charSequenceConcat.charAt(i15 + 1) : (char) 0;
+                if (i15 >= i16 || cCharAt != 55356 || cCharAt2 < 57339 || cCharAt2 > 57343) {
+                    if (cCharAt == 65039) {
+                        i13 = 1;
+                        charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i15), charSequenceConcat.subSequence(i15 + 1, charSequenceConcat.length()));
+                        length--;
+                        i15--;
+                    }
+                    i15 += i13;
+                    str14 = str15;
+                    sb4 = sb5;
+                    string = string;
+                } else {
+                    charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i15), charSequenceConcat.subSequence(i15 + 2, charSequenceConcat.length()));
+                    length -= 2;
+                    i15--;
+                }
+                i13 = 1;
+                i15 += i13;
+                str14 = str15;
+                sb4 = sb5;
+                string = string;
+            }
+            str = str14;
+            sb = sb4;
+            str2 = string;
+            this.lastSticker = charSequenceConcat.toString().trim();
+            str3 = str2;
+        } else {
+            str = "";
+            sb = sb4;
+            str2 = string;
+            str3 = str;
+        }
+        boolean z14 = z13 && (Emoji.isValidEmoji(str3) || Emoji.isValidEmoji(this.lastSticker));
+        if (z14 && (charSequence instanceof Spanned)) {
+            AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), AnimatedEmojiSpan.class);
+            z14 = animatedEmojiSpanArr == null || animatedEmojiSpanArr.length == 0;
+        }
+        if (this.allowStickers && z14 && (chat5 == null || ChatObject.canSendStickers(chat5))) {
+            this.stickersToLoad.clear();
+            int i17 = SharedConfig.suggestStickers;
+            if (i17 == 2 || !z14) {
+                if (this.visibleByStickersSearch && i17 == 2) {
+                    this.visibleByStickersSearch = false;
+                    this.delegate.needChangePanelVisibility(false);
+                    notifyDataSetChanged();
+                    return;
+                }
+                return;
+            }
+            this.stickers = null;
+            this.stickersMap = null;
+            if (this.lastReqId != 0) {
+                ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.lastReqId, true);
+                z8 = false;
+                this.lastReqId = 0;
+            } else {
+                z8 = false;
+            }
+            boolean z15 = MessagesController.getInstance(this.currentAccount).suggestStickersApiOnly;
+            this.delayLocalResults = z8;
+            if (z15) {
+                chat4 = chat5;
+                sb2 = sb;
+                str13 = str2;
+                i12 = 5;
+                z9 = true;
+                z10 = z15;
+            } else {
+                sb2 = sb;
+                z10 = z15;
+                i12 = 5;
+                chat4 = chat5;
+                str13 = str2;
+                z9 = true;
+                z9 = true;
+                this.checkAgainRunnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$searchUsernameOrHashtag$8(charSequence, i, arrayList, z, z2);
+                    }
+                };
+                MediaDataController.getInstance(this.currentAccount).loadRecents(0, false, true, false);
+                MediaDataController.getInstance(this.currentAccount).loadRecents(2, false, true, false);
+                final ArrayList<TLRPC.Document> recentStickersNoCopy = MediaDataController.getInstance(this.currentAccount).getRecentStickersNoCopy(0);
+                final ArrayList<TLRPC.Document> recentStickersNoCopy2 = MediaDataController.getInstance(this.currentAccount).getRecentStickersNoCopy(2);
+                int iMin = Math.min(20, recentStickersNoCopy.size());
+                int i18 = 0;
+                for (int i19 = 0; i19 < iMin; i19++) {
+                    TLRPC.Document document = recentStickersNoCopy.get(i19);
+                    if (isValidSticker(document, this.lastSticker)) {
+                        addStickerToResult(document, "recent");
+                        i18++;
+                        if (i18 >= 5) {
+                            break;
+                        }
+                    }
+                }
+                int size = recentStickersNoCopy2.size();
+                for (int i20 = 0; i20 < size; i20++) {
+                    TLRPC.Document document2 = recentStickersNoCopy2.get(i20);
+                    if (isValidSticker(document2, this.lastSticker)) {
+                        addStickerToResult(document2, "fav");
+                    }
+                }
+                MediaDataController.getInstance(this.currentAccount).checkStickers(0);
+                HashMap<String, ArrayList<TLRPC.Document>> allStickers = MediaDataController.getInstance(this.currentAccount).getAllStickers();
+                ArrayList<TLRPC.Document> arrayList9 = allStickers != null ? allStickers.get(this.lastSticker) : null;
+                if (arrayList9 != null && !arrayList9.isEmpty()) {
+                    addStickersToResult(arrayList9, null);
+                }
+                ArrayList arrayList10 = this.stickers;
+                if (arrayList10 != null) {
+                    Collections.sort(arrayList10, new Comparator() {
+                        private int getIndex(StickerResult stickerResult) {
+                            for (int i21 = 0; i21 < recentStickersNoCopy2.size(); i21++) {
+                                if (((TLRPC.Document) recentStickersNoCopy2.get(i21)).id == stickerResult.sticker.id) {
+                                    return i21 + 2000000;
+                                }
+                            }
+                            for (int i22 = 0; i22 < Math.min(20, recentStickersNoCopy.size()); i22++) {
+                                if (((TLRPC.Document) recentStickersNoCopy.get(i22)).id == stickerResult.sticker.id) {
+                                    return (recentStickersNoCopy.size() - i22) + 1000000;
+                                }
+                            }
+                            return -1;
+                        }
+
+                        @Override
+                        public int compare(StickerResult stickerResult, StickerResult stickerResult2) {
+                            boolean zIsAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(stickerResult.sticker, true);
+                            if (zIsAnimatedStickerDocument != MessageObject.isAnimatedStickerDocument(stickerResult2.sticker, true)) {
+                                return zIsAnimatedStickerDocument ? -1 : 1;
+                            }
+                            int index = getIndex(stickerResult);
+                            int index2 = getIndex(stickerResult2);
+                            if (index > index2) {
+                                return -1;
+                            }
+                            return index < index2 ? 1 : 0;
+                        }
+                    });
+                }
+            }
+            if (SharedConfig.suggestStickers == 0 || z10) {
+                searchServerStickers(this.lastSticker, str3);
+            }
+            ArrayList arrayList11 = this.stickers;
+            if (arrayList11 != null && !arrayList11.isEmpty()) {
+                if (SharedConfig.suggestStickers == 0 && this.stickers.size() < i12) {
+                    this.delayLocalResults = z9;
+                    this.delegate.needChangePanelVisibility(false);
+                    this.visibleByStickersSearch = false;
+                } else {
+                    checkStickerFilesExistAndDownload();
+                    this.delegate.needChangePanelVisibility(this.stickersToLoad.isEmpty());
+                    this.visibleByStickersSearch = z9;
+                }
+                notifyDataSetChanged();
+            } else {
+                if (this.visibleByStickersSearch) {
+                    this.delegate.needChangePanelVisibility(false);
+                    this.visibleByStickersSearch = false;
+                }
+                chat = chat4;
+                r0 = str13;
+                c = ' ';
+                str5 = null;
+                b = 4;
+                r15 = z9;
+            }
+            chat = chat4;
+            r0 = str13;
+            c = ' ';
+            str5 = null;
+            b = 4;
+            r15 = z9;
+        } else {
+            sb2 = sb;
+            String str16 = str2;
+            r15 = 1;
+            if (z11 || !this.needBotContext) {
+                str4 = str16;
+            } else {
+                str7 = str16;
+                if (str7.charAt(0) == '@') {
+                    c = ' ';
+                    int iIndexOf = str7.indexOf(32);
+                    int length2 = str7.length();
+                    if (iIndexOf > 0) {
+                        strSubstring2 = str7.substring(1, iIndexOf);
+                        strSubstring = str7.substring(iIndexOf + 1);
+                    } else if (str7.charAt(length2 - 1) == 't' && str7.charAt(length2 - 2) == 'o' && str7.charAt(length2 - 3) == 'b') {
+                        strSubstring2 = str7.substring(1);
+                        strSubstring = str;
+                    } else {
+                        str4 = str7;
+                        str4 = str7;
+                        str4 = str7;
+                        searchForContextBot(null, null);
+                        strSubstring = null;
+                        strSubstring2 = null;
+                    }
+                    if (strSubstring2 == null) {
+                        str4 = str7;
+                        str4 = str7;
+                        str4 = str7;
+                        strSubstring2 = str;
+                        break;
+                    }
+                    str4 = str7;
+                    if (strSubstring2.length() < 1) {
+                        str4 = str7;
+                        str4 = str7;
+                        str4 = str7;
+                        strSubstring2 = str;
+                        break;
+                    }
+                    str4 = str7;
+                    for (int i21 = 1; i21 < strSubstring2.length(); i21++) {
+                        char cCharAt3 = strSubstring2.charAt(i21);
+                        if ((cCharAt3 < '0' || cCharAt3 > '9') && ((cCharAt3 < 'a' || cCharAt3 > 'z') && ((cCharAt3 < 'A' || cCharAt3 > 'Z') && cCharAt3 != '_'))) {
+                            str4 = str7;
+                            str4 = str7;
+                            str4 = str7;
+                            strSubstring2 = str;
+                            break;
+                        }
+                    }
+                    searchForContextBot(strSubstring2, strSubstring);
+                    chat = chat5;
+                    str5 = null;
+                    str6 = str7;
+                }
+                b = -1;
+                r0 = str6;
+            }
+            str4 = str7;
+            c = ' ';
+            if (this.allowStickers && (chatActivity = this.parentFragment) != null && chatActivity.getCurrentEncryptedChat() == null) {
+                chat = chat5;
+                if ((chat == null || ChatObject.canSendStickers(chat)) && str4.trim().length() >= 2 && str4.trim().indexOf(32) < 0) {
+                    str5 = null;
+                    searchForContextBot(null, null);
+                    str6 = str4;
+                }
+                b = -1;
+                r0 = str6;
+            } else {
+                chat = chat5;
+            }
+            str5 = null;
+            searchForContextBot(null, null);
+            str6 = str4;
+            b = -1;
+            r0 = str6;
+        }
+        if (this.foundContextBot != null) {
+            return;
+        }
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        String str17 = this.hintHashtag;
+        this.hintHashtag = str5;
+        this.hintHashtagDivider = false;
+        if (!z11) {
+            sb3 = sb2;
+            while (true) {
+                if (i14 >= 0) {
+                    if (i14 >= r0.length()) {
+                        i4 = -1;
+                    } else {
+                        char cCharAt4 = r0.charAt(i14);
+                        if (i14 != 0) {
+                            int i22 = i14 - 1;
+                            if (r0.charAt(i22) == c || r0.charAt(i22) == '\n' || cCharAt4 == ':') {
+                                if (cCharAt4 == '@') {
+                                    z3 = this.searchInDialogs;
+                                    if (!z3 || this.needUsernames || (this.needBotContext && i14 == 0)) {
+                                        if (z3 && this.info == null && i14 != 0) {
+                                            this.lastText = r0;
+                                            this.lastPosition = i;
+                                            this.messages = arrayList;
+                                            this.delegate.needChangePanelVisibility(false);
+                                            return;
+                                        }
+                                        this.resultStartPosition = i14;
+                                        this.resultLength = sb3.length() + 1;
+                                        i2 = i14;
+                                    }
+                                } else {
+                                    if (cCharAt4 == '#') {
+                                        if (!ChatObject.isChannelAndNotMegaGroup(chat) && !TextUtils.isEmpty(ChatObject.getPublicUsername(chat))) {
+                                            String strSubstring3 = r0.substring(i14);
+                                            this.hintHashtag = strSubstring3;
+                                            if (strSubstring3.length() < 4 || !this.hintHashtag.matches("^[#$][\\p{L}_-]+$")) {
+                                                this.hintHashtag = null;
+                                            }
+                                        }
+                                        if (this.searchAdapterHelper.loadRecentHashtags()) {
+                                            this.resultStartPosition = i14;
+                                            this.resultLength = sb3.length() + 1;
+                                            sb3.insert(0, cCharAt4);
+                                            i2 = -1;
+                                            b = 1;
+                                        } else {
+                                            this.lastText = r0;
+                                            this.lastPosition = i;
+                                            this.messages = arrayList;
+                                            return;
+                                        }
+                                    } else if (i14 != 0 && this.botInfo != null && cCharAt4 == '/') {
+                                        this.resultStartPosition = i14;
+                                        this.resultLength = sb3.length() + 1;
+                                        i2 = -1;
+                                        b = 2;
+                                    } else if (cCharAt4 == ':' && sb3.length() > 0) {
+                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb3.charAt(0)) >= 0) {
+                                            i3 = 1;
+                                            if (sb3.length() > 1) {
+                                            }
+                                        } else {
+                                            i3 = 1;
+                                        }
+                                        this.resultStartPosition = i14;
+                                        this.resultLength = sb3.length() + i3;
+                                        i2 = -1;
+                                        b = 3;
+                                    }
+                                    r14 = 0;
+                                }
+                            }
+                            sb3.insert(0, cCharAt4);
+                            i4 = -1;
+                        } else {
+                            if (cCharAt4 == '@') {
+                                z3 = this.searchInDialogs;
+                                if (!z3) {
+                                }
+                                if (z3) {
+                                }
+                                this.resultStartPosition = i14;
+                                this.resultLength = sb3.length() + 1;
+                                i2 = i14;
+                            } else {
+                                if (cCharAt4 == '#') {
+                                    if (!ChatObject.isChannelAndNotMegaGroup(chat)) {
+                                    }
+                                    if (this.searchAdapterHelper.loadRecentHashtags()) {
+                                        this.resultStartPosition = i14;
+                                        this.resultLength = sb3.length() + 1;
+                                        sb3.insert(0, cCharAt4);
+                                        i2 = -1;
+                                        b = 1;
+                                    } else {
+                                        this.lastText = r0;
+                                        this.lastPosition = i;
+                                        this.messages = arrayList;
+                                        return;
+                                    }
+                                } else {
+                                    if (i14 != 0) {
+                                    }
+                                    if (cCharAt4 == ':') {
+                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb3.charAt(0)) >= 0) {
+                                            i3 = 1;
+                                            if (sb3.length() > 1) {
+                                            }
+                                        } else {
+                                            i3 = 1;
+                                        }
+                                        this.resultStartPosition = i14;
+                                        this.resultLength = sb3.length() + i3;
+                                        i2 = -1;
+                                        b = 3;
+                                    }
+                                }
+                                r14 = 0;
+                            }
+                            sb3.insert(0, cCharAt4);
+                            i4 = -1;
+                        }
+                    }
+                    i14 += i4;
+                } else {
+                    r14 = 0;
+                    i2 = -1;
+                }
+                if (str17 != null && this.hintHashtag != null) {
+                    notifyItemRangeInserted(r14, 2);
+                } else if (str17 == null && this.hintHashtag == null) {
+                    notifyItemRangeRemoved(r14, 2);
+                } else {
+                    r3 = this.topHint;
+                    if (r3 != 0) {
+                        r3.set(r14, this.hintHashtag, chat);
+                    }
+                    hashtagHint = this.bottomHint;
+                    if (hashtagHint != null) {
+                        hashtagHint.set(1, this.hintHashtag, chat);
+                    }
+                }
+                if (b == -1) {
+                    this.contextMedia = r14;
+                    this.searchResultBotContext = null;
+                    this.delegate.needChangePanelVisibility(r14);
+                    return;
+                }
+                if (b == 0) {
+                    if (b == 1) {
+                        ArrayList arrayList12 = new ArrayList();
+                        String lowerCase2 = sb3.toString().toLowerCase();
+                        hashtags = this.searchAdapterHelper.getHashtags();
+                        for (i7 = 0; i7 < hashtags.size(); i7++) {
+                            hashtagObject = (SearchAdapterHelper.HashtagObject) hashtags.get(i7);
+                            if (hashtagObject == null && (str9 = hashtagObject.hashtag) != null && str9.startsWith(lowerCase2)) {
+                                arrayList12.add(hashtagObject.hashtag);
+                            }
+                        }
+                        this.searchResultHashtags = arrayList12;
+                        this.stickers = null;
+                        this.searchResultUsernames = null;
+                        this.searchResultUsernamesMap = null;
+                        this.quickReplies = null;
+                        this.searchResultCommands = null;
+                        this.searchResultCommandsEphemeral = null;
+                        this.searchResultCommandsHelp = null;
+                        this.searchResultCommandsUsers = null;
+                        this.searchResultSuggestions = null;
+                        this.contextMedia = false;
+                        this.searchResultBotContext = null;
+                        notifyDataSetChanged();
+                        MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
+                        if (this.searchResultHashtags.isEmpty() || this.hintHashtag != null) {
+                            z6 = true;
+                        } else {
+                            z6 = false;
+                        }
+                        mentionsAdapterDelegate.needChangePanelVisibility(z6);
+                        return;
+                    }
+                    if (b == 2) {
+                        if (b == 3) {
+                            if (b == 4) {
+                                this.searchResultHashtags = null;
+                                this.searchResultUsernames = null;
+                                this.searchResultUsernamesMap = null;
+                                this.searchResultSuggestions = null;
+                                this.searchResultCommands = null;
+                                this.searchResultCommandsEphemeral = null;
+                                this.quickReplies = null;
+                                this.searchResultCommandsHelp = null;
+                                this.searchResultCommandsUsers = null;
+                                return;
+                            }
+                            return;
+                        }
+                        currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
+                        if (!Arrays.equals(currentKeyboardLanguage, this.lastSearchKeyboardLanguage)) {
+                            MediaDataController.getInstance(this.currentAccount).fetchNewEmojiKeywords(currentKeyboardLanguage);
+                        }
+                        this.lastSearchKeyboardLanguage = currentKeyboardLanguage;
+                        MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
+                        String[] strArr = this.lastSearchKeyboardLanguage;
+                        String string2 = sb3.toString();
+                        MediaDataController.KeywordResultCallback keywordResultCallback = new MediaDataController.KeywordResultCallback() {
+                            @Override
+                            public final void run(ArrayList arrayList13, String str18) {
+                                this.f$0.lambda$searchUsernameOrHashtag$10(arrayList13, str18);
+                            }
+                        };
+                        if (SharedConfig.suggestAnimatedEmoji || !UserConfig.getInstance(this.currentAccount).isPremium()) {
+                            z4 = false;
+                        } else {
+                            z4 = true;
+                        }
+                        mediaDataController.getEmojiSuggestions(strArr, string2, false, keywordResultCallback, z4);
+                        return;
+                    }
+                    arrayList2 = new ArrayList();
+                    ArrayList arrayList13 = new ArrayList();
+                    ArrayList arrayList14 = new ArrayList();
+                    ArrayList arrayList15 = new ArrayList();
+                    String lowerCase3 = sb3.toString().toLowerCase();
+                    for (i5 = 0; i5 < this.botInfo.size(); i5++) {
+                        botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i5);
+                        for (i6 = 0; i6 < botInfo.commands.size(); i6++) {
+                            botCommand = botInfo.commands.get(i6);
+                            if (botCommand == null && (str8 = botCommand.command) != null && str8.startsWith(lowerCase3)) {
+                                arrayList2.add("/" + botCommand.command);
+                                arrayList13.add(botCommand.description);
+                                arrayList14.add(messagesController.getUser(Long.valueOf(botInfo.user_id)));
+                                arrayList15.add(Boolean.valueOf(botCommand.ephemeral));
+                            }
+                        }
+                    }
+                    if (this.parentFragment == null && !DialogObject.isEncryptedDialog(this.dialog_id) && this.parentFragment.getChatMode() == 0 && this.parentFragment.getCurrentUser() != null && !this.parentFragment.getCurrentUser().bot && !UserObject.isReplyUser(this.parentFragment.getCurrentUser()) && !UserObject.isService(this.parentFragment.getCurrentUser().id)) {
+                        QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(this.currentAccount);
+                        quickRepliesController.load();
+                        this.quickRepliesQuery = lowerCase3;
+                        this.quickReplies = new ArrayList();
+                        for (int i23 = 0; i23 < quickRepliesController.replies.size(); i23++) {
+                            QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) quickRepliesController.replies.get(i23);
+                            if (!quickReply.isSpecial()) {
+                                String lowerCase4 = quickReply.name.toLowerCase();
+                                if (lowerCase4.startsWith(lowerCase3) || AndroidUtilities.translitSafe(lowerCase4).startsWith(lowerCase3)) {
+                                    this.quickReplies.add(quickReply);
+                                }
+                            }
+                        }
+                        r4 = 0;
+                    } else {
+                        r4 = 0;
+                        this.quickRepliesQuery = null;
+                        this.quickReplies = null;
+                    }
+                    this.searchResultHashtags = r4;
+                    this.stickers = r4;
+                    this.searchResultUsernames = r4;
+                    this.searchResultUsernamesMap = r4;
+                    this.searchResultSuggestions = r4;
+                    this.searchResultCommands = arrayList2;
+                    this.searchResultCommandsHelp = arrayList13;
+                    this.searchResultCommandsUsers = arrayList14;
+                    this.searchResultCommandsEphemeral = arrayList15;
+                    this.contextMedia = false;
+                    this.searchResultBotContext = r4;
+                    notifyDataSetChanged();
+                    MentionsAdapterDelegate mentionsAdapterDelegate2 = this.delegate;
+                    if (arrayList2.isEmpty() || !((arrayList3 = this.quickReplies) == null || arrayList3.isEmpty())) {
+                        z5 = true;
+                    } else {
+                        z5 = false;
+                    }
+                    mentionsAdapterDelegate2.needChangePanelVisibility(z5);
+                    return;
+                }
+                this.contextMedia = r14;
+                this.searchResultBotContext = null;
+                arrayList4 = new ArrayList();
+                if (arrayList != null) {
+                    for (i11 = 0; i11 < Math.min(100, arrayList.size()); i11++) {
+                        fromChatId = ((MessageObject) arrayList.get(i11)).getFromChatId();
+                        if (fromChatId <= 0 && !arrayList4.contains(Long.valueOf(fromChatId))) {
+                            arrayList4.add(Long.valueOf(fromChatId));
+                        }
+                    }
+                }
+                lowerCase = sb3.toString().toLowerCase();
+                if (lowerCase.indexOf(c) >= 0) {
+                    z7 = true;
+                } else {
+                    z7 = false;
+                }
+                arrayList5 = new ArrayList();
+                LongSparseArray longSparseArray2 = new LongSparseArray();
+                longSparseArray = new LongSparseArray();
+                arrayList6 = new ArrayList();
+                arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
+                if (chat != null || (!ChatObject.isMonoForum(chat) && !ChatObject.isChannelAndNotMegaGroup(chat))) {
+                    arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+                }
+                ArrayList arrayListSortAndDeduplicateTopPeers = sortAndDeduplicateTopPeers(arrayList6);
+                if (!z11 || !this.needBotContext || i2 != 0 || arrayListSortAndDeduplicateTopPeers.isEmpty()) {
+                    chat = chat;
+                    arrayList4 = arrayList4;
+                    break;
+                }
+                int i24 = 0;
+                int i25 = 0;
+                while (true) {
+                    if (i24 >= arrayListSortAndDeduplicateTopPeers.size()) {
+                        chat = chat;
+                        arrayList4 = arrayList4;
+                        break;
+                    }
+                    TLRPC.User user4 = messagesController.getUser(Long.valueOf(((TLRPC.TL_topPeer) arrayListSortAndDeduplicateTopPeers.get(i24)).peer.user_id));
+                    if (user4 != null) {
+                        String publicUsername2 = UserObject.getPublicUsername(user4);
+                        if (TextUtils.isEmpty(publicUsername2) || !(lowerCase.length() == 0 || publicUsername2.toLowerCase().startsWith(lowerCase))) {
+                            i10 = 1;
+                        } else {
+                            arrayList5.add(user4);
+                            longSparseArray2.put(user4.id, user4);
+                            longSparseArray.put(user4.id, user4);
+                            i10 = 1;
+                            i25++;
+                        }
+                        if (i25 == 5) {
+                            break;
+                        }
+                    } else {
+                        chat = chat;
+                        arrayList4 = arrayList4;
+                        i10 = 1;
+                    }
+                    i24 += i10;
+                    arrayList4 = arrayList4;
+                    chat = chat;
+                }
+                chatActivity2 = this.parentFragment;
+                if (chatActivity2 != null) {
+                    TLRPC.Chat currentChat2 = chatActivity2.getCurrentChat();
+                    threadId = this.parentFragment.getThreadId();
+                    chat2 = currentChat2;
+                } else {
+                    chatFull = this.info;
+                    if (chatFull != null) {
+                        chat2 = messagesController.getChat(Long.valueOf(chatFull.id));
+                    } else {
+                        chat2 = chat;
+                    }
+                    threadId = 0;
+                }
+                currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+                if (chat2 != null && (chatFull2 = this.info) != null && chatFull2.participants != null && (!ChatObject.isChannel(chat2) || chat2.megagroup)) {
+                    i9 = -2;
+                    while (i9 < this.info.participants.participants.size()) {
+                        if (i9 == -2) {
+                            j2 = threadId;
+                            if (i9 == -1) {
+                                if (z12) {
+                                    if (lowerCase.length() == 0) {
+                                        arrayList5.add(chat2);
+                                    } else {
+                                        String str18 = chat2.title;
+                                        publicUsername = ChatObject.getPublicUsername(chat2);
+                                        obj = chat2;
+                                        str11 = null;
+                                        str12 = str18;
+                                        arrayList4 = arrayList4;
+                                        j3 = -chat2.id;
+                                        user3 = currentUser;
+                                        if (TextUtils.isEmpty(publicUsername)) {
+                                            arrayList5.add(obj);
+                                            longSparseArray.put(j3, obj);
+                                        } else {
+                                            arrayList5.add(obj);
+                                            longSparseArray.put(j3, obj);
+                                        }
+                                    }
+                                }
+                                user3 = currentUser;
+                            } else {
+                                arrayList8 = arrayList4;
+                                chatParticipant = this.info.participants.participants.get(i9);
+                                if (currentUser != null) {
+                                    arrayList4 = arrayList8;
+                                    if (chatParticipant.user_id != currentUser.id) {
+                                    }
+                                    user3 = currentUser;
+                                } else {
+                                    arrayList4 = arrayList8;
+                                }
+                                user2 = messagesController.getUser(Long.valueOf(chatParticipant.user_id));
+                                if (user2 != null && !UserObject.isUserSelf(user2) && longSparseArray2.indexOfKey(user2.id) < 0) {
+                                    if (lowerCase.length() != 0 && !user2.deleted) {
+                                        arrayList5.add(user2);
+                                    } else {
+                                        String str19 = user2.first_name;
+                                        str11 = user2.last_name;
+                                        publicUsername = UserObject.getPublicUsername(user2);
+                                        j3 = user2.id;
+                                        obj = user2;
+                                        str12 = str19;
+                                        user3 = currentUser;
+                                        if (TextUtils.isEmpty(publicUsername)) {
+                                            arrayList5.add(obj);
+                                            longSparseArray.put(j3, obj);
+                                        } else {
+                                            arrayList5.add(obj);
+                                            longSparseArray.put(j3, obj);
+                                        }
+                                    }
+                                }
+                                user3 = currentUser;
+                            }
+                        } else if (currentUser != null) {
+                            j2 = threadId;
+                            user3 = currentUser;
+                        } else if (z11) {
+                            String str20 = currentUser.first_name;
+                            String str21 = currentUser.last_name;
+                            publicUsername = UserObject.getPublicUsername(currentUser);
+                            j2 = threadId;
+                            j3 = currentUser.id;
+                            obj = currentUser;
+                            str11 = str21;
+                            str12 = str20;
+                            user3 = currentUser;
+                            if ((TextUtils.isEmpty(publicUsername) && publicUsername.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str12) && str12.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str11) && str11.toLowerCase().startsWith(lowerCase)) || (z7 && ContactsController.formatName(str12, str11).toLowerCase().startsWith(lowerCase))))) {
+                                arrayList5.add(obj);
+                                longSparseArray.put(j3, obj);
+                            }
+                        } else {
+                            user3 = currentUser;
+                            j2 = threadId;
+                        }
+                        i9++;
+                        currentUser = user3;
+                        z11 = z;
+                        z12 = z2;
+                        threadId = j2;
+                    }
+                }
+                long j4 = threadId;
+                if (this.searchInDialogs) {
+                    allDialogs = MessagesController.getInstance(this.currentAccount).getAllDialogs();
+                    i8 = 0;
+                    while (i8 < allDialogs.size()) {
+                        if (allDialogs.get(i8).id > 0) {
+                            user = messagesController.getUser(Long.valueOf(allDialogs.get(i8).id));
+                            if (user != null || UserObject.isUserSelf(user) || longSparseArray2.indexOfKey(user.id) >= 0) {
+                                arrayList7 = arrayList4;
+                            } else if (lowerCase.length() == 0 && !user.deleted) {
+                                arrayList5.add(user);
+                                arrayList7 = arrayList4;
+                            } else {
+                                String str22 = user.first_name;
+                                String str23 = user.last_name;
+                                String publicUsername3 = UserObject.getPublicUsername(user);
+                                long j5 = user.id;
+                                arrayList7 = arrayList4;
+                                if ((!TextUtils.isEmpty(publicUsername3) && publicUsername3.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str22) && str22.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str23) && str23.toLowerCase().startsWith(lowerCase)) || (z7 && ContactsController.formatName(str22, str23).toLowerCase().startsWith(lowerCase))))) {
+                                    arrayList5.add(user);
+                                    longSparseArray.put(j5, user);
+                                }
+                            }
+                        } else {
+                            arrayList7 = arrayList4;
+                            if (!TextUtils.isEmpty(lowerCase) && (chat3 = messagesController.getChat(Long.valueOf(-allDialogs.get(i8).id))) != null && chat3.username != null && longSparseArray2.indexOfKey(chat3.id) < 0) {
+                                if (lowerCase.length() == 0) {
+                                    arrayList5.add(chat3);
+                                } else {
+                                    String str24 = chat3.title;
+                                    str10 = chat3.username;
+                                    j = chat3.id;
+                                    if ((TextUtils.isEmpty(str10) && str10.toLowerCase().startsWith(lowerCase)) || (!TextUtils.isEmpty(str24) && str24.toLowerCase().startsWith(lowerCase))) {
+                                        arrayList5.add(chat3);
+                                        longSparseArray.put(j, chat3);
+                                    }
+                                }
+                            }
+                        }
+                        i8++;
+                        arrayList4 = arrayList7;
+                    }
+                }
+                final ArrayList arrayList16 = arrayList4;
+                Collections.sort(arrayList5, new Comparator() {
+                    private long getId(TLObject tLObject) {
+                        if (tLObject instanceof TLRPC.User) {
+                            return ((TLRPC.User) tLObject).id;
+                        }
+                        return -((TLRPC.Chat) tLObject).id;
+                    }
+
+                    @Override
+                    public int compare(TLObject tLObject, TLObject tLObject2) {
+                        long id = getId(tLObject);
+                        long id2 = getId(tLObject2);
+                        if (longSparseArray.indexOfKey(id) >= 0 && longSparseArray.indexOfKey(id2) >= 0) {
+                            return 0;
+                        }
+                        if (longSparseArray.indexOfKey(id) >= 0) {
+                            return -1;
+                        }
+                        if (longSparseArray.indexOfKey(id2) >= 0) {
+                            return 1;
+                        }
+                        int iIndexOf2 = arrayList16.indexOf(Long.valueOf(id));
+                        int iIndexOf3 = arrayList16.indexOf(Long.valueOf(id2));
+                        if (iIndexOf2 != -1 && iIndexOf3 != -1) {
+                            if (iIndexOf2 < iIndexOf3) {
+                                return -1;
+                            }
+                            return iIndexOf2 == iIndexOf3 ? 0 : 1;
+                        }
+                        if (iIndexOf2 == -1 || iIndexOf3 != -1) {
+                            return (iIndexOf2 != -1 || iIndexOf3 == -1) ? 0 : 1;
+                        }
+                        return -1;
+                    }
+                });
+                this.searchResultHashtags = null;
+                this.stickers = null;
+                this.quickReplies = null;
+                this.searchResultCommands = null;
+                this.searchResultCommandsEphemeral = null;
+                this.searchResultCommandsHelp = null;
+                this.searchResultCommandsUsers = null;
+                this.searchResultSuggestions = null;
+                if (((chat2 == null && chat2.megagroup) || this.searchInDialogs) && lowerCase.length() > 0) {
+                    if (arrayList5.size() < 5) {
+                        Runnable runnable4 = new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$searchUsernameOrHashtag$9(arrayList5, longSparseArray);
+                            }
+                        };
+                        this.cancelDelayRunnable = runnable4;
+                        AndroidUtilities.runOnUIThread(runnable4, 1000L);
+                    } else {
+                        showUsersResult(arrayList5, longSparseArray, true);
+                    }
+                    AnonymousClass7 anonymousClass7 = new AnonymousClass7(chat2, lowerCase, j4, arrayList5, longSparseArray, messagesController);
+                    this.searchGlobalRunnable = anonymousClass7;
+                    AndroidUtilities.runOnUIThread(anonymousClass7, 200L);
+                    return;
+                }
+                showUsersResult(arrayList5, longSparseArray, true);
+            }
+        }
+        sb3 = sb2;
+        sb3.append(r0.substring(r15));
+        this.resultStartPosition = 0;
+        this.resultLength = sb3.length();
+        i2 = -1;
+        b = 0;
+        r14 = 0;
+        if (str17 != null) {
+            if (str17 == null) {
+                r3 = this.topHint;
+                if (r3 != 0) {
+                    r3.set(r14, this.hintHashtag, chat);
+                }
+                hashtagHint = this.bottomHint;
+                if (hashtagHint != null) {
+                    hashtagHint.set(1, this.hintHashtag, chat);
+                }
+            } else {
+                r3 = this.topHint;
+                if (r3 != 0) {
+                    r3.set(r14, this.hintHashtag, chat);
+                }
+                hashtagHint = this.bottomHint;
+                if (hashtagHint != null) {
+                    hashtagHint.set(1, this.hintHashtag, chat);
+                }
+            }
+        } else if (str17 == null) {
+            r3 = this.topHint;
+            if (r3 != 0) {
+                r3.set(r14, this.hintHashtag, chat);
+            }
+            hashtagHint = this.bottomHint;
+            if (hashtagHint != null) {
+                hashtagHint.set(1, this.hintHashtag, chat);
+            }
+        } else {
+            r3 = this.topHint;
+            if (r3 != 0) {
+                r3.set(r14, this.hintHashtag, chat);
+            }
+            hashtagHint = this.bottomHint;
+            if (hashtagHint != null) {
+                hashtagHint.set(1, this.hintHashtag, chat);
+            }
+        }
+        if (b == -1) {
+            this.contextMedia = r14;
+            this.searchResultBotContext = null;
+            this.delegate.needChangePanelVisibility(r14);
+            return;
+        }
+        if (b == 0) {
+            if (b == 1) {
+                ArrayList arrayList17 = new ArrayList();
+                String lowerCase5 = sb3.toString().toLowerCase();
+                hashtags = this.searchAdapterHelper.getHashtags();
+                while (i7 < hashtags.size()) {
+                    hashtagObject = (SearchAdapterHelper.HashtagObject) hashtags.get(i7);
+                    if (hashtagObject == null) {
+                    }
+                }
+                this.searchResultHashtags = arrayList17;
+                this.stickers = null;
+                this.searchResultUsernames = null;
+                this.searchResultUsernamesMap = null;
+                this.quickReplies = null;
+                this.searchResultCommands = null;
+                this.searchResultCommandsEphemeral = null;
+                this.searchResultCommandsHelp = null;
+                this.searchResultCommandsUsers = null;
+                this.searchResultSuggestions = null;
+                this.contextMedia = false;
+                this.searchResultBotContext = null;
+                notifyDataSetChanged();
+                MentionsAdapterDelegate mentionsAdapterDelegate3 = this.delegate;
+                if (this.searchResultHashtags.isEmpty()) {
+                    z6 = true;
+                } else {
+                    z6 = true;
+                }
+                mentionsAdapterDelegate3.needChangePanelVisibility(z6);
+                return;
+            }
+            if (b == 2) {
+                if (b == 3) {
+                    if (b == 4) {
+                        this.searchResultHashtags = null;
+                        this.searchResultUsernames = null;
+                        this.searchResultUsernamesMap = null;
+                        this.searchResultSuggestions = null;
+                        this.searchResultCommands = null;
+                        this.searchResultCommandsEphemeral = null;
+                        this.quickReplies = null;
+                        this.searchResultCommandsHelp = null;
+                        this.searchResultCommandsUsers = null;
+                        return;
+                    }
+                    return;
+                }
+                currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
+                if (!Arrays.equals(currentKeyboardLanguage, this.lastSearchKeyboardLanguage)) {
+                    MediaDataController.getInstance(this.currentAccount).fetchNewEmojiKeywords(currentKeyboardLanguage);
+                }
+                this.lastSearchKeyboardLanguage = currentKeyboardLanguage;
+                MediaDataController mediaDataController2 = MediaDataController.getInstance(this.currentAccount);
+                String[] strArr2 = this.lastSearchKeyboardLanguage;
+                String string3 = sb3.toString();
+                MediaDataController.KeywordResultCallback keywordResultCallback2 = new MediaDataController.KeywordResultCallback() {
+                    @Override
+                    public final void run(ArrayList arrayList18, String str110) {
+                        this.f$0.lambda$searchUsernameOrHashtag$10(arrayList18, str110);
+                    }
+                };
+                if (SharedConfig.suggestAnimatedEmoji) {
+                    z4 = false;
+                } else {
+                    z4 = false;
+                }
+                mediaDataController2.getEmojiSuggestions(strArr2, string3, false, keywordResultCallback2, z4);
+                return;
+            }
+            arrayList2 = new ArrayList();
+            ArrayList arrayList18 = new ArrayList();
+            ArrayList arrayList19 = new ArrayList();
+            ArrayList arrayList110 = new ArrayList();
+            String lowerCase6 = sb3.toString().toLowerCase();
+            while (i5 < this.botInfo.size()) {
+                botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i5);
+                while (i6 < botInfo.commands.size()) {
+                    botCommand = botInfo.commands.get(i6);
+                    if (botCommand == null) {
+                    }
+                }
+            }
+            if (this.parentFragment == null) {
+                r4 = 0;
+                this.quickRepliesQuery = null;
+                this.quickReplies = null;
+            } else {
+                r4 = 0;
+                this.quickRepliesQuery = null;
+                this.quickReplies = null;
+            }
+            this.searchResultHashtags = r4;
+            this.stickers = r4;
+            this.searchResultUsernames = r4;
+            this.searchResultUsernamesMap = r4;
+            this.searchResultSuggestions = r4;
+            this.searchResultCommands = arrayList2;
+            this.searchResultCommandsHelp = arrayList18;
+            this.searchResultCommandsUsers = arrayList19;
+            this.searchResultCommandsEphemeral = arrayList110;
+            this.contextMedia = false;
+            this.searchResultBotContext = r4;
+            notifyDataSetChanged();
+            MentionsAdapterDelegate mentionsAdapterDelegate4 = this.delegate;
+            if (arrayList2.isEmpty()) {
+                z5 = true;
+            } else {
+                z5 = true;
+            }
+            mentionsAdapterDelegate4.needChangePanelVisibility(z5);
+            return;
+        }
+        this.contextMedia = r14;
+        this.searchResultBotContext = null;
+        arrayList4 = new ArrayList();
+        if (arrayList != null) {
+            while (i11 < Math.min(100, arrayList.size())) {
+                fromChatId = ((MessageObject) arrayList.get(i11)).getFromChatId();
+                if (fromChatId <= 0) {
+                }
+            }
+        }
+        lowerCase = sb3.toString().toLowerCase();
+        if (lowerCase.indexOf(c) >= 0) {
+            z7 = true;
+        } else {
+            z7 = false;
+        }
+        arrayList5 = new ArrayList();
+        LongSparseArray longSparseArray3 = new LongSparseArray();
+        longSparseArray = new LongSparseArray();
+        arrayList6 = new ArrayList();
+        arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
+        if (chat != null) {
+            arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+        } else {
+            arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+        }
+        ArrayList arrayListSortAndDeduplicateTopPeers2 = sortAndDeduplicateTopPeers(arrayList6);
+        if (!z11) {
+            chat = chat;
+            arrayList4 = arrayList4;
+            break;
+        } else {
+            chat = chat;
+            arrayList4 = arrayList4;
+            break;
+        }
+        chatActivity2 = this.parentFragment;
+        if (chatActivity2 != null) {
+            TLRPC.Chat currentChat3 = chatActivity2.getCurrentChat();
+            threadId = this.parentFragment.getThreadId();
+            chat2 = currentChat3;
+        } else {
+            chatFull = this.info;
+            if (chatFull != null) {
+                chat2 = messagesController.getChat(Long.valueOf(chatFull.id));
+            } else {
+                chat2 = chat;
+            }
+            threadId = 0;
+        }
+        currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+        if (chat2 != null) {
+            i9 = -2;
+            while (i9 < this.info.participants.participants.size()) {
+                if (i9 == -2) {
+                    j2 = threadId;
+                    if (i9 == -1) {
+                        if (z12) {
+                            if (lowerCase.length() == 0) {
+                                arrayList5.add(chat2);
+                            } else {
+                                String str110 = chat2.title;
+                                publicUsername = ChatObject.getPublicUsername(chat2);
+                                obj = chat2;
+                                str11 = null;
+                                str12 = str110;
+                                arrayList4 = arrayList4;
+                                j3 = -chat2.id;
+                                user3 = currentUser;
+                                if (TextUtils.isEmpty(publicUsername)) {
+                                    arrayList5.add(obj);
+                                    longSparseArray.put(j3, obj);
+                                } else {
+                                    arrayList5.add(obj);
+                                    longSparseArray.put(j3, obj);
+                                }
+                            }
+                        }
+                        user3 = currentUser;
+                    } else {
+                        arrayList8 = arrayList4;
+                        chatParticipant = this.info.participants.participants.get(i9);
+                        if (currentUser != null) {
+                            arrayList4 = arrayList8;
+                            if (chatParticipant.user_id != currentUser.id) {
+                            }
+                            user3 = currentUser;
+                        } else {
+                            arrayList4 = arrayList8;
+                        }
+                        user2 = messagesController.getUser(Long.valueOf(chatParticipant.user_id));
+                        if (user2 != null) {
+                            if (lowerCase.length() != 0) {
+                            }
+                            String str111 = user2.first_name;
+                            str11 = user2.last_name;
+                            publicUsername = UserObject.getPublicUsername(user2);
+                            j3 = user2.id;
+                            obj = user2;
+                            str12 = str111;
+                            user3 = currentUser;
+                            if (TextUtils.isEmpty(publicUsername)) {
+                                arrayList5.add(obj);
+                                longSparseArray.put(j3, obj);
+                            } else {
+                                arrayList5.add(obj);
+                                longSparseArray.put(j3, obj);
+                            }
+                        }
+                        user3 = currentUser;
+                    }
+                } else if (currentUser != null) {
+                    j2 = threadId;
+                    user3 = currentUser;
+                } else if (z11) {
+                    user3 = currentUser;
+                    j2 = threadId;
+                } else {
+                    String str25 = currentUser.first_name;
+                    String str26 = currentUser.last_name;
+                    publicUsername = UserObject.getPublicUsername(currentUser);
+                    j2 = threadId;
+                    j3 = currentUser.id;
+                    obj = currentUser;
+                    str11 = str26;
+                    str12 = str25;
+                    user3 = currentUser;
+                    if (TextUtils.isEmpty(publicUsername)) {
+                        arrayList5.add(obj);
+                        longSparseArray.put(j3, obj);
+                    } else {
+                        arrayList5.add(obj);
+                        longSparseArray.put(j3, obj);
+                    }
+                }
+                i9++;
+                currentUser = user3;
+                z11 = z;
+                z12 = z2;
+                threadId = j2;
+            }
+        }
+        long j6 = threadId;
+        if (this.searchInDialogs) {
+            allDialogs = MessagesController.getInstance(this.currentAccount).getAllDialogs();
+            i8 = 0;
+            while (i8 < allDialogs.size()) {
+                if (allDialogs.get(i8).id > 0) {
+                    user = messagesController.getUser(Long.valueOf(allDialogs.get(i8).id));
+                    if (user != null) {
+                        arrayList7 = arrayList4;
+                    } else {
+                        arrayList7 = arrayList4;
+                    }
+                } else {
+                    arrayList7 = arrayList4;
+                    if (!TextUtils.isEmpty(lowerCase)) {
+                        if (lowerCase.length() == 0) {
+                            arrayList5.add(chat3);
+                        } else {
+                            String str27 = chat3.title;
+                            str10 = chat3.username;
+                            j = chat3.id;
+                            if (TextUtils.isEmpty(str10)) {
+                                arrayList5.add(chat3);
+                                longSparseArray.put(j, chat3);
+                            } else {
+                                arrayList5.add(chat3);
+                                longSparseArray.put(j, chat3);
+                            }
+                        }
+                    }
+                }
+                i8++;
+                arrayList4 = arrayList7;
+            }
+        }
+        final ArrayList arrayList111 = arrayList4;
+        Collections.sort(arrayList5, new Comparator() {
+            private long getId(TLObject tLObject) {
+                if (tLObject instanceof TLRPC.User) {
+                    return ((TLRPC.User) tLObject).id;
+                }
+                return -((TLRPC.Chat) tLObject).id;
+            }
+
+            @Override
+            public int compare(TLObject tLObject, TLObject tLObject2) {
+                long id = getId(tLObject);
+                long id2 = getId(tLObject2);
+                if (longSparseArray.indexOfKey(id) >= 0 && longSparseArray.indexOfKey(id2) >= 0) {
+                    return 0;
+                }
+                if (longSparseArray.indexOfKey(id) >= 0) {
+                    return -1;
+                }
+                if (longSparseArray.indexOfKey(id2) >= 0) {
+                    return 1;
+                }
+                int iIndexOf2 = arrayList111.indexOf(Long.valueOf(id));
+                int iIndexOf3 = arrayList111.indexOf(Long.valueOf(id2));
+                if (iIndexOf2 != -1 && iIndexOf3 != -1) {
+                    if (iIndexOf2 < iIndexOf3) {
+                        return -1;
+                    }
+                    return iIndexOf2 == iIndexOf3 ? 0 : 1;
+                }
+                if (iIndexOf2 == -1 || iIndexOf3 != -1) {
+                    return (iIndexOf2 != -1 || iIndexOf3 == -1) ? 0 : 1;
+                }
+                return -1;
+            }
+        });
+        this.searchResultHashtags = null;
+        this.stickers = null;
+        this.quickReplies = null;
+        this.searchResultCommands = null;
+        this.searchResultCommandsEphemeral = null;
+        this.searchResultCommandsHelp = null;
+        this.searchResultCommandsUsers = null;
+        this.searchResultSuggestions = null;
+        if (chat2 == null) {
+        }
+        showUsersResult(arrayList5, longSparseArray, true);
     }
 
     public void lambda$searchUsernameOrHashtag$9(ArrayList arrayList, LongSparseArray longSparseArray) {
@@ -1213,7 +2589,52 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     }
 
     public int getItemCountInternal() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.getItemCountInternal():int");
+        int size;
+        int size2;
+        int size3 = 1;
+        if (this.foundContextBot != null && !this.inlineMediaEnabled) {
+            return 1;
+        }
+        int i = this.hintHashtag != null ? 2 : 0;
+        ArrayList arrayList = this.stickers;
+        if (arrayList != null) {
+            size2 = arrayList.size();
+        } else {
+            ArrayList arrayList2 = this.searchResultBotContext;
+            if (arrayList2 != null) {
+                size = arrayList2.size();
+                if (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) {
+                    size3 = 0;
+                }
+            } else {
+                ArrayList arrayList3 = this.searchResultUsernames;
+                if (arrayList3 != null) {
+                    size2 = arrayList3.size();
+                } else {
+                    ArrayList arrayList4 = this.searchResultHashtags;
+                    if (arrayList4 != null) {
+                        size2 = arrayList4.size();
+                    } else if (this.searchResultCommands != null || this.quickReplies != null) {
+                        ArrayList arrayList5 = this.quickReplies;
+                        size = arrayList5 == null ? 0 : arrayList5.size();
+                        ArrayList arrayList6 = this.searchResultCommands;
+                        if (arrayList6 == null) {
+                            size3 = 0;
+                        } else {
+                            size3 = arrayList6.size();
+                        }
+                    } else {
+                        ArrayList arrayList7 = this.searchResultSuggestions;
+                        if (arrayList7 == null) {
+                            return i;
+                        }
+                        size2 = arrayList7.size();
+                    }
+                }
+            }
+            return i + size + size3;
+        }
+        return i + size2;
     }
 
     public void clear(boolean z) {
@@ -1289,7 +2710,10 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
             i -= 2;
         }
-        return this.searchResultBotContext != null ? (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? i : i - 1 : i;
+        if (this.searchResultBotContext != null) {
+            return (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? i : i - 1;
+        }
+        return i;
     }
 
     public Object getItemParent(int i) {

@@ -22,7 +22,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -69,11 +68,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AnimationProperties;
-import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.quickforward.BlurVisibilityDrawable;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
@@ -674,10 +669,11 @@ public class Bulletin {
     public void lambda$hide$4(Float f) {
         Delegate delegate = this.currentDelegate;
         if (delegate != null) {
-            if (this.layout.top) {
+            Layout layout = this.layout;
+            if (layout.top) {
                 return;
             }
-            delegate.onBottomOffsetChange(r1.getHeight() - f.floatValue());
+            delegate.onBottomOffsetChange(layout.getHeight() - f.floatValue());
         }
     }
 
@@ -869,8 +865,59 @@ public class Bulletin {
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r9) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Bulletin.ParentLayout.onTouchEvent(android.view.MotionEvent):boolean");
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            Layout layout;
+            View.OnClickListener onClickListener;
+            if (!this.pressed && !inLayoutHitRect(motionEvent.getX(), motionEvent.getY())) {
+                return false;
+            }
+            this.gestureDetector.onTouchEvent(motionEvent);
+            int actionMasked = motionEvent.getActionMasked();
+            if (actionMasked == 0) {
+                if (!this.pressed && !this.hideAnimationRunning) {
+                    this.layout.animate().cancel();
+                    this.ty = 0.0f;
+                    this.tx = 0.0f;
+                    this.scrolling = false;
+                    this.translationX = this.layout.getTranslationX();
+                    this.pressedTime = System.currentTimeMillis();
+                    Bulletin bulletin = this.layout.bulletin;
+                    this.wasCanHide = bulletin == null || bulletin.canHide;
+                    this.pressed = true;
+                    onPressedStateChanged(true);
+                    Layout layout2 = this.layout;
+                    if (layout2.onClickListener != null) {
+                        layout2.setPressed(true);
+                    }
+                }
+            } else if ((actionMasked == 1 || actionMasked == 3) && this.pressed) {
+                if (this.hideAnimationRunning) {
+                    if (actionMasked == 1 && this.layout.isPressed() && (onClickListener = (layout = this.layout).onClickListener) != null && !this.scrolling) {
+                        onClickListener.onClick(layout);
+                    }
+                } else if (Math.abs(this.translationX) > this.layout.getWidth() / 3.0f) {
+                    final float fSignum = Math.signum(this.translationX) * this.layout.getWidth();
+                    float f = this.translationX;
+                    this.layout.animate().translationX(fSignum).alpha(((f > 0.0f ? 1 : (f == 0.0f ? 0 : -1)) < 0 && this.needLeftAlphaAnimation) || ((f > 0.0f ? 1 : (f == 0.0f ? 0 : -1)) > 0 && this.needRightAlphaAnimation) ? 0.0f : 1.0f).setDuration(200L).setInterpolator(AndroidUtilities.accelerateInterpolator).withEndAction(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$onTouchEvent$0(fSignum);
+                        }
+                    }).start();
+                } else {
+                    this.layout.animate().translationX(0.0f).alpha(1.0f).setDuration(200L).start();
+                    if (actionMasked == 1) {
+                        onClickListener.onClick(layout);
+                    }
+                }
+                this.pressed = false;
+                onPressedStateChanged(false);
+                Layout layout3 = this.layout;
+                if (layout3.onClickListener != null) {
+                    layout3.setPressed(false);
+                }
+            }
+            return true;
         }
 
         public void lambda$onTouchEvent$0(float f) {
@@ -1080,12 +1127,13 @@ public class Bulletin {
         private void updateSize() {
             boolean zIsWideScreen = isWideScreen();
             int i = zIsWideScreen ? this.wideScreenWidth : -1;
+            int i2 = 80;
             if (zIsWideScreen) {
-                i = (this.top ? 48 : 80) | this.wideScreenGravity;
+                i2 = (this.top ? 48 : 80) | this.wideScreenGravity;
             } else if (this.top) {
-                i = 48;
+                i2 = 48;
             }
-            setLayoutParams(LayoutHelper.createFrame(i, -2, i));
+            setLayoutParams(LayoutHelper.createFrame(i, -2, i2));
         }
 
         private boolean isWideScreen() {
@@ -1125,7 +1173,10 @@ public class Bulletin {
             if (i == 1) {
                 return true;
             }
-            return z ? i == 5 : i != 5;
+            if (z) {
+                return i == 5;
+            }
+            return i != 5;
         }
 
         public Bulletin getBulletin() {
@@ -1207,10 +1258,12 @@ public class Bulletin {
         }
 
         public void updatePosition() {
+            Delegate delegate = this.delegate;
             float bottomOffset = 0.0f;
-            if (this.delegate != null) {
+            if (delegate != null) {
                 if (this.top) {
-                    bottomOffset = 0.0f - r0.getTopOffset(this.bulletin != null ? r2.tag : 0);
+                    Bulletin bulletin = this.bulletin;
+                    bottomOffset = 0.0f - delegate.getTopOffset(bulletin != null ? bulletin.tag : 0);
                 } else {
                     bottomOffset = 0.0f + getBottomOffset();
                 }
@@ -1219,10 +1272,12 @@ public class Bulletin {
         }
 
         public float getTopOffset() {
-            if (this.delegate == null) {
+            Delegate delegate = this.delegate;
+            if (delegate == null) {
                 return 0.0f;
             }
-            return r0.getTopOffset(this.bulletin != null ? r1.tag : 0);
+            Bulletin bulletin = this.bulletin;
+            return delegate.getTopOffset(bulletin != null ? bulletin.tag : 0);
         }
 
         public float getBottomOffset() {
@@ -2096,8 +2151,9 @@ public class Bulletin {
                     float fMax = Math.max(0.0f, ((1520.0f * fCurrentTimeMillis) / 5400.0f) - 20.0f);
                     for (int i = 0; i < 4; i++) {
                         FastOutSlowInInterpolator fastOutSlowInInterpolator = CircularProgressDrawable.interpolator;
-                        fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (i * 1350)) / 667.0f);
-                        fMax += fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (r7 + 667)) / 667.0f) * 250.0f;
+                        int i2 = i * 1350;
+                        fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - i2) / 667.0f);
+                        fMax += fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (i2 + 667)) / 667.0f) * 250.0f;
                     }
                     this.strokePaint.setColor(Theme.multAlpha(-1, (1.0f - f2) * 1.0f));
                     canvas.drawArc(this.rect, (-90.0f) - fMax, Math.max(0.02f, f) * (-360.0f), false, this.strokePaint);
@@ -2541,19 +2597,21 @@ public class Bulletin {
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            int iCeil = this.timeLeft > 0 ? (int) Math.ceil(r0 / 1000.0f) : 0;
+            long j = this.timeLeft;
+            int iCeil = j > 0 ? (int) Math.ceil(j / 1000.0f) : 0;
             this.rect.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
             if (this.prevSeconds != iCeil) {
                 this.prevSeconds = iCeil;
-                this.timeLeftString = String.valueOf(Math.max(0, iCeil));
+                String strValueOf = String.valueOf(Math.max(0, iCeil));
+                this.timeLeftString = strValueOf;
                 StaticLayout staticLayout = this.timeLayout;
                 if (staticLayout != null) {
                     this.timeLayoutOut = staticLayout;
                     this.timeReplaceProgress = 0.0f;
                     this.textWidthOut = this.textWidth;
                 }
-                this.textWidth = (int) Math.ceil(this.textPaint.measureText(r0));
-                this.timeLayout = new StaticLayout(this.timeLeftString, this.textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.textWidth = (int) Math.ceil(this.textPaint.measureText(strValueOf));
+                this.timeLayout = new StaticLayout(this.timeLeftString, this.textPaint, Integer.MAX_VALUE, android.text.Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             float f = this.timeReplaceProgress;
             if (f < 1.0f) {

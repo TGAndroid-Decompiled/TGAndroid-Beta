@@ -25,7 +25,6 @@ public abstract class BaseContinuationImpl implements Continuation, CoroutineSta
 
     @Override
     public final void resumeWith(Object obj) {
-        Object objInvokeSuspend;
         Continuation continuation = this;
         while (true) {
             DebugProbesKt.probeCoroutineResumed(continuation);
@@ -33,15 +32,16 @@ public abstract class BaseContinuationImpl implements Continuation, CoroutineSta
             Continuation continuation2 = baseContinuationImpl.completion;
             Intrinsics.checkNotNull(continuation2);
             try {
-                objInvokeSuspend = baseContinuationImpl.invokeSuspend(obj);
+                Object objInvokeSuspend = baseContinuationImpl.invokeSuspend(obj);
+                if (objInvokeSuspend == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
+                    return;
+                } else {
+                    obj = Result.m283constructorimpl(objInvokeSuspend);
+                }
             } catch (Throwable th) {
                 Result.Companion companion = Result.Companion;
                 obj = Result.m283constructorimpl(ResultKt.createFailure(th));
             }
-            if (objInvokeSuspend == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
-                return;
-            }
-            obj = Result.m283constructorimpl(objInvokeSuspend);
             baseContinuationImpl.releaseIntercepted();
             if (!(continuation2 instanceof BaseContinuationImpl)) {
                 continuation2.resumeWith(obj);

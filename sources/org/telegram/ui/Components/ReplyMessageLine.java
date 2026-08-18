@@ -8,22 +8,24 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.text.TextUtils;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.RadiiUtils;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
 
 public class ReplyMessageLine {
     public int backgroundColor;
@@ -140,7 +142,7 @@ public class ReplyMessageLine {
         this.emojiColor = i;
     }
 
-    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) throws IOException {
+    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) {
         if (resourcesProvider != null) {
             resourcesProvider.isDark();
         } else {
@@ -250,8 +252,285 @@ public class ReplyMessageLine {
         return this.nameColorAnimated.set(this.nameColor);
     }
 
-    public int check(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.User r18, org.telegram.tgnet.TLRPC.Chat r19, org.telegram.ui.ActionBar.Theme.ResourcesProvider r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ReplyMessageLine.check(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, org.telegram.ui.ActionBar.Theme$ResourcesProvider, int):int");
+    public int check(MessageObject messageObject, TLRPC.User user, TLRPC.Chat chat, Theme.ResourcesProvider resourcesProvider, int i) {
+        TLRPC.Message message;
+        TLRPC.MessageReplyHeader messageReplyHeader;
+        TLRPC.MessageFwdHeader messageFwdHeader;
+        MessageObject messageObject2;
+        TLRPC.Message message2;
+        int colorId;
+        TLRPC.MessageFwdHeader messageFwdHeader2;
+        TLRPC.Peer peer;
+        TLRPC.PeerColor peerColor;
+        int i2;
+        TLRPC.Message message3;
+        TLRPC.PeerColor peerColor2;
+        TLRPC.MessageFwdHeader messageFwdHeader3;
+        int i3;
+        TLRPC.Message message4;
+        int colorId2;
+        TLRPC.TL_peerColorCollectible tL_peerColorCollectible;
+        TLRPC.User currentUser = user;
+        boolean zIsDark = resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark();
+        if (messageObject != null && !messageObject.isOutOwner() && i != 2 && (tL_peerColorCollectible = messageObject.overrideLinkPeerColor) != null) {
+            return resolveCollectionColor(messageObject, tL_peerColorCollectible, resourcesProvider);
+        }
+        this.reversedOut = false;
+        this.emojiDocumentId = 0L;
+        this.stickerDocumentId = 0L;
+        this.sponsored = messageObject != null && messageObject.isSponsored();
+        if (messageObject == null) {
+            this.hasColor3 = false;
+            this.hasColor2 = false;
+            int color = Theme.getColor(Theme.key_chat_inReplyLine, resourcesProvider);
+            this.color3 = color;
+            this.color2 = color;
+            this.color1 = color;
+            this.backgroundColor = Theme.multAlpha(color, zIsDark ? 0.12f : 0.1f);
+            this.emojiColor = getColor();
+            AnimatedColor animatedColor = this.nameColorAnimated;
+            int color2 = Theme.getColor(Theme.key_chat_inReplyNameText, resourcesProvider);
+            this.nameColor = color2;
+            return animatedColor.set(color2);
+        }
+        if (i == 4 && (message4 = messageObject.messageOwner) != null && MessageObject.getMedia(message4) != null && (MessageObject.getMedia(messageObject.messageOwner) instanceof TLRPC.TL_messageMediaContact)) {
+            long j = MessageObject.getMedia(messageObject.messageOwner).user_id;
+            TLRPC.User user2 = j != 0 ? MessagesController.getInstance(messageObject.currentAccount).getUser(Long.valueOf(j)) : null;
+            if (!messageObject.isOutOwner() && i != 2 && user2 != null) {
+                TLRPC.PeerColor peerColor3 = user2.color;
+                if (peerColor3 instanceof TLRPC.TL_peerColorCollectible) {
+                    return resolveCollectionColor(messageObject, (TLRPC.TL_peerColorCollectible) peerColor3, resourcesProvider);
+                }
+            }
+            if (user2 != null) {
+                colorId2 = UserObject.getColorId(user2);
+                this.emojiDocumentId = UserObject.getEmojiId(user2);
+            } else {
+                colorId2 = 0;
+            }
+            resolveColor(messageObject, colorId2, resourcesProvider);
+            this.backgroundColor = Theme.multAlpha(this.color1, 0.1f);
+            this.nameColor = this.color1;
+        } else if (i != 0 && (messageObject.overrideLinkColor >= 0 || (messageObject.messageOwner != null && (((messageObject.isFromUser() || DialogObject.isEncryptedDialog(messageObject.getDialogId())) && currentUser != null) || ((messageObject.isFromChannel() && chat != null) || (((message3 = messageObject.messageOwner) != null && (messageFwdHeader3 = message3.fwd_from) != null && messageFwdHeader3.from_id != null) || (messageObject.isSponsored() && (peerColor2 = messageObject.sponsoredColor) != null && peerColor2.color != -1))))))) {
+            int colorId3 = messageObject.overrideLinkColor;
+            if (colorId3 >= 0) {
+                colorId = colorId3;
+            } else if (!messageObject.isSponsored() || (peerColor = messageObject.sponsoredColor) == null || (i2 = peerColor.color) == -1) {
+                TLRPC.Message message5 = messageObject.messageOwner;
+                if (message5 != null && (messageFwdHeader2 = message5.fwd_from) != null && (peer = messageFwdHeader2.from_id) != null) {
+                    long peerDialogId = DialogObject.getPeerDialogId(peer);
+                    if (peerDialogId < 0) {
+                        TLRPC.Chat chat2 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-peerDialogId));
+                        if (!messageObject.isOutOwner() && i != 2 && chat2 != null) {
+                            TLRPC.PeerColor peerColor4 = chat2.color;
+                            if (peerColor4 instanceof TLRPC.TL_peerColorCollectible) {
+                                return resolveCollectionColor(messageObject, (TLRPC.TL_peerColorCollectible) peerColor4, resourcesProvider);
+                            }
+                        }
+                        colorId3 = chat2 != null ? ChatObject.getColorId(chat2) : 5;
+                        if (i == 3) {
+                            this.emojiDocumentId = ChatObject.getEmojiId(chat2);
+                        }
+                    } else {
+                        TLRPC.User user3 = MessagesController.getInstance(messageObject.currentAccount).getUser(Long.valueOf(peerDialogId));
+                        if (!messageObject.isOutOwner() && i != 2 && user3 != null) {
+                            TLRPC.PeerColor peerColor5 = user3.color;
+                            if (peerColor5 instanceof TLRPC.TL_peerColorCollectible) {
+                                return resolveCollectionColor(messageObject, (TLRPC.TL_peerColorCollectible) peerColor5, resourcesProvider);
+                            }
+                        }
+                        colorId3 = user3 != null ? UserObject.getColorId(user3) : 5;
+                        if (i == 3) {
+                            this.emojiDocumentId = UserObject.getEmojiId(user3);
+                        }
+                    }
+                    colorId = colorId3;
+                } else if (DialogObject.isEncryptedDialog(messageObject.getDialogId()) && currentUser != null) {
+                    TLRPC.User currentUser2 = messageObject.isOutOwner() ? UserConfig.getInstance(messageObject.currentAccount).getCurrentUser() : currentUser;
+                    if (currentUser2 != null) {
+                        currentUser = currentUser2;
+                    }
+                    if (!messageObject.isOutOwner() && i != 2) {
+                        TLRPC.PeerColor peerColor6 = currentUser.color;
+                        if (peerColor6 instanceof TLRPC.TL_peerColorCollectible) {
+                            return resolveCollectionColor(messageObject, (TLRPC.TL_peerColorCollectible) peerColor6, resourcesProvider);
+                        }
+                    }
+                    colorId = UserObject.getColorId(currentUser);
+                    if (i == 3) {
+                        this.emojiDocumentId = UserObject.getEmojiId(currentUser);
+                    }
+                } else if (messageObject.isFromUser() && currentUser != null) {
+                    if (!messageObject.isOutOwner() && i != 2) {
+                        TLRPC.PeerColor peerColor7 = currentUser.color;
+                        if (peerColor7 instanceof TLRPC.TL_peerColorCollectible) {
+                            return resolveCollectionColor(messageObject, (TLRPC.TL_peerColorCollectible) peerColor7, resourcesProvider);
+                        }
+                    }
+                    colorId = UserObject.getColorId(user);
+                    if (i == 3) {
+                        this.emojiDocumentId = UserObject.getEmojiId(user);
+                    }
+                } else if (!messageObject.isFromChannel() || chat == null) {
+                    colorId = 0;
+                } else {
+                    if (!messageObject.isOutOwner() && i != 2) {
+                        TLRPC.PeerColor peerColor8 = chat.color;
+                        if (peerColor8 instanceof TLRPC.TL_peerColorCollectible) {
+                            return resolveCollectionColor(messageObject, (TLRPC.TL_peerColorCollectible) peerColor8, resourcesProvider);
+                        }
+                    }
+                    if (chat.signature_profiles) {
+                        long fromChatId = messageObject.getFromChatId();
+                        if (fromChatId >= 0) {
+                            TLRPC.User user4 = MessagesController.getInstance(messageObject.currentAccount).getUser(Long.valueOf(fromChatId));
+                            colorId = UserObject.getColorId(user4);
+                            if (i == 3) {
+                                this.emojiDocumentId = UserObject.getEmojiId(user4);
+                            }
+                        } else {
+                            TLRPC.Chat chat3 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(-fromChatId));
+                            colorId = ChatObject.getColorId(chat3);
+                            if (i == 3) {
+                                this.emojiDocumentId = ChatObject.getEmojiId(chat3);
+                            }
+                        }
+                    } else {
+                        int colorId4 = ChatObject.getColorId(chat);
+                        if (i == 3) {
+                            this.emojiDocumentId = ChatObject.getEmojiId(chat);
+                        }
+                        colorId = colorId4;
+                    }
+                }
+            } else {
+                if (i == 3) {
+                    this.emojiDocumentId = peerColor.background_emoji_id;
+                }
+                colorId = i2;
+            }
+            resolveColor(messageObject, colorId, resourcesProvider);
+            this.backgroundColor = Theme.multAlpha(this.color1, 0.1f);
+            this.nameColor = this.color1;
+        } else if (i == 0 && (messageObject.overrideLinkColor >= 0 || ((message = messageObject.messageOwner) != null && messageObject.replyMessageObject != null && (messageReplyHeader = message.reply_to) != null && (((messageFwdHeader = messageReplyHeader.reply_from) == null || TextUtils.isEmpty(messageFwdHeader.from_name)) && (message2 = (messageObject2 = messageObject.replyMessageObject).messageOwner) != null && message2.from_id != null && (messageObject2.isFromUser() || DialogObject.isEncryptedDialog(messageObject.getDialogId()) || messageObject.replyMessageObject.isFromChannel()))))) {
+            int colorId5 = messageObject.overrideLinkColor;
+            if (colorId5 < 0) {
+                if (DialogObject.isEncryptedDialog(messageObject.replyMessageObject.getDialogId())) {
+                    if (messageObject.replyMessageObject.isOutOwner()) {
+                        currentUser = UserConfig.getInstance(messageObject.replyMessageObject.currentAccount).getCurrentUser();
+                    }
+                    if (currentUser != null) {
+                        colorId5 = UserObject.getColorId(currentUser);
+                        this.emojiDocumentId = UserObject.getEmojiId(currentUser);
+                    } else {
+                        colorId5 = 0;
+                    }
+                } else if (messageObject.replyMessageObject.isFromUser()) {
+                    TLRPC.User user5 = MessagesController.getInstance(messageObject.currentAccount).getUser(Long.valueOf(messageObject.replyMessageObject.messageOwner.from_id.user_id));
+                    if (!messageObject.isOutOwner() && i != 2 && user5 != null) {
+                        TLRPC.PeerColor peerColor9 = user5.color;
+                        if (peerColor9 instanceof TLRPC.TL_peerColorCollectible) {
+                            return resolveCollectionColor(messageObject, (TLRPC.TL_peerColorCollectible) peerColor9, resourcesProvider);
+                        }
+                    }
+                    if (user5 != null) {
+                        colorId5 = UserObject.getColorId(user5);
+                        this.emojiDocumentId = UserObject.getEmojiId(user5);
+                    } else {
+                        colorId5 = 0;
+                    }
+                } else if (messageObject.replyMessageObject.isFromChannel()) {
+                    TLRPC.Chat chat4 = MessagesController.getInstance(messageObject.currentAccount).getChat(Long.valueOf(messageObject.replyMessageObject.messageOwner.from_id.channel_id));
+                    if (!messageObject.isOutOwner() && i != 2 && chat4 != null) {
+                        TLRPC.PeerColor peerColor10 = chat4.color;
+                        if (peerColor10 instanceof TLRPC.TL_peerColorCollectible) {
+                            return resolveCollectionColor(messageObject, (TLRPC.TL_peerColorCollectible) peerColor10, resourcesProvider);
+                        }
+                    }
+                    if (chat4 != null) {
+                        colorId5 = ChatObject.getColorId(chat4);
+                        this.emojiDocumentId = ChatObject.getEmojiId(chat4);
+                    } else {
+                        colorId5 = 0;
+                    }
+                } else {
+                    colorId5 = 0;
+                }
+            }
+            resolveColor(messageObject.replyMessageObject, colorId5, resourcesProvider);
+            this.backgroundColor = Theme.multAlpha(this.color1, 0.1f);
+            this.nameColor = this.color1;
+        } else {
+            this.hasColor2 = false;
+            this.hasColor3 = false;
+            int color3 = Theme.getColor(Theme.key_chat_inReplyLine, resourcesProvider);
+            this.color3 = color3;
+            this.color2 = color3;
+            this.color1 = color3;
+            this.backgroundColor = Theme.multAlpha(color3, 0.1f);
+            this.nameColor = Theme.getColor(Theme.key_chat_inReplyNameText, resourcesProvider);
+        }
+        if (messageObject.shouldDrawWithoutBackground()) {
+            this.hasColor2 = false;
+            this.hasColor3 = false;
+            this.color3 = -1;
+            this.color2 = -1;
+            this.color1 = -1;
+            this.backgroundColor = 0;
+            this.nameColor = Theme.getColor(Theme.key_chat_stickerReplyNameText, resourcesProvider);
+        } else {
+            if (messageObject.isOutOwner()) {
+                i3 = 2;
+            } else {
+                i3 = 2;
+                if (i == 2) {
+                }
+            }
+            if (i == i3 && !messageObject.isOutOwner()) {
+                int color4 = Theme.getColor(Theme.key_chat_inCodeBackground, resourcesProvider);
+                this.color3 = color4;
+                this.color2 = color4;
+                this.color1 = color4;
+            } else {
+                int color5 = Theme.getColor((this.hasColor2 || this.hasColor3) ? Theme.key_chat_outReplyLine2 : Theme.key_chat_outReplyLine, resourcesProvider);
+                this.color3 = color5;
+                this.color2 = color5;
+                this.color1 = color5;
+            }
+            if (this.hasColor3) {
+                this.reversedOut = true;
+                this.color1 = Theme.multAlpha(this.color1, 0.2f);
+                this.color2 = Theme.multAlpha(this.color2, 0.5f);
+            } else if (this.hasColor2) {
+                this.reversedOut = true;
+                this.color1 = Theme.multAlpha(this.color1, 0.35f);
+            }
+            this.backgroundColor = Theme.multAlpha(this.color3, zIsDark ? 0.12f : 0.1f);
+            this.nameColor = Theme.getColor(Theme.key_chat_outReplyNameText, resourcesProvider);
+        }
+        if (i == 0 || i == 3 || i == 4) {
+            long j2 = messageObject.overrideLinkEmoji;
+            if (j2 != -1) {
+                this.emojiDocumentId = j2;
+            }
+        }
+        if (this.emojiDocumentId != 0 && this.emoji == null && this.parentView != null) {
+            this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
+            View view = this.parentView;
+            if (!(view instanceof ChatMessageCell) ? view.isAttachedToWindow() : ((ChatMessageCell) view).isCellAttachedToWindow()) {
+                this.emoji.attach();
+            }
+        }
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
+        if (swapAnimatedEmojiDrawable != null && swapAnimatedEmojiDrawable.set(this.emojiDocumentId, true)) {
+            this.emojiLoaded = false;
+        }
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.sticker;
+        if (swapAnimatedEmojiDrawable2 != null) {
+            swapAnimatedEmojiDrawable2.set(this.stickerDocumentId, true);
+        }
+        this.emojiColor = getColor();
+        return this.nameColorAnimated.set(this.nameColor);
     }
 
     public boolean hasSticker() {

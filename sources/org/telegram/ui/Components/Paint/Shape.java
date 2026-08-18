@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Paint;
 
 import android.graphics.RectF;
-import org.telegram.ui.Components.Paint.Brush;
 
 public class Shape {
     public float arrowTriangleLength;

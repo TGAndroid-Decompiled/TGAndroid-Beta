@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -79,7 +78,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.SuggestEmojiView;
 import org.telegram.ui.Components.TrendingStickersLayout;
-import org.telegram.ui.PollCreateActivity;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
 public class PollCreateActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate {
@@ -437,8 +435,118 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             }
 
             @Override
-            protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PollCreateActivity.AnonymousClass3.onLayout(boolean, int, int, int, int):void");
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                int i6;
+                int i7;
+                int i8;
+                int i9;
+                int i10;
+                int paddingTop;
+                int measuredHeight;
+                int measuredHeight2;
+                int childCount = getChildCount();
+                int iMeasureKeyboardHeight = measureKeyboardHeight();
+                int emojiPadding = (iMeasureKeyboardHeight > AndroidUtilities.dp(20.0f) || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) ? 0 : PollCreateActivity.this.getEmojiPadding();
+                setBottomClip(emojiPadding);
+                for (int i11 = 0; i11 < childCount; i11++) {
+                    View childAt = getChildAt(i11);
+                    if (childAt.getVisibility() != 8) {
+                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                        int measuredWidth = childAt.getMeasuredWidth();
+                        int measuredHeight3 = childAt.getMeasuredHeight();
+                        int i12 = layoutParams.gravity;
+                        if (i12 == -1) {
+                            i12 = 51;
+                        }
+                        int i13 = i12 & 112;
+                        int i14 = i12 & 7;
+                        if (i14 != 1) {
+                            if (i14 == 5) {
+                                i6 = i4 - measuredWidth;
+                                i7 = layoutParams.rightMargin;
+                            } else {
+                                i8 = layoutParams.leftMargin;
+                            }
+                            if (i13 != 16) {
+                                if (i13 != 48) {
+                                    paddingTop = layoutParams.topMargin + getPaddingTop();
+                                } else if (i13 != 80) {
+                                    i9 = ((i5 - emojiPadding) - i3) - measuredHeight3;
+                                    i10 = layoutParams.bottomMargin;
+                                } else {
+                                    paddingTop = layoutParams.topMargin;
+                                }
+                                if (PollCreateActivity.this.emojiView != null && PollCreateActivity.this.emojiView == childAt) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    } else {
+                                        measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    }
+                                    paddingTop = measuredHeight - measuredHeight2;
+                                }
+                                childAt.layout(i8, paddingTop, measuredWidth + i8, measuredHeight3 + paddingTop);
+                            } else {
+                                i9 = ((((i5 - emojiPadding) - i3) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                i10 = layoutParams.bottomMargin;
+                            }
+                            paddingTop = i9 - i10;
+                            if (PollCreateActivity.this.emojiView != null) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(i8, paddingTop, measuredWidth + i8, measuredHeight3 + paddingTop);
+                        } else {
+                            i6 = (((i4 - i2) - measuredWidth) / 2) + layoutParams.leftMargin;
+                            i7 = layoutParams.rightMargin;
+                        }
+                        i8 = i6 - i7;
+                        if (i13 != 16) {
+                            if (i13 != 48) {
+                                paddingTop = layoutParams.topMargin + getPaddingTop();
+                            } else if (i13 != 80) {
+                                i9 = ((i5 - emojiPadding) - i3) - measuredHeight3;
+                                i10 = layoutParams.bottomMargin;
+                            } else {
+                                paddingTop = layoutParams.topMargin;
+                            }
+                            if (PollCreateActivity.this.emojiView != null) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(i8, paddingTop, measuredWidth + i8, measuredHeight3 + paddingTop);
+                        } else {
+                            i9 = ((((i5 - emojiPadding) - i3) - measuredHeight3) / 2) + layoutParams.topMargin;
+                            i10 = layoutParams.bottomMargin;
+                        }
+                        paddingTop = i9 - i10;
+                        if (PollCreateActivity.this.emojiView != null) {
+                            if (AndroidUtilities.isTablet()) {
+                                measuredHeight = getMeasuredHeight();
+                                measuredHeight2 = childAt.getMeasuredHeight();
+                            } else {
+                                measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                measuredHeight2 = childAt.getMeasuredHeight();
+                            }
+                            paddingTop = measuredHeight - measuredHeight2;
+                        }
+                        childAt.layout(i8, paddingTop, measuredWidth + i8, measuredHeight3 + paddingTop);
+                    }
+                }
+                notifyHeightChanged();
             }
 
             @Override
@@ -916,7 +1024,47 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     public void checkDoneButton() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PollCreateActivity.checkDoneButton():void");
+        int i;
+        boolean z;
+        if (this.quizPoll) {
+            i = 0;
+            for (int i2 = 0; i2 < this.answersChecks.length; i2++) {
+                if (!TextUtils.isEmpty(ChatAttachAlertPollLayout.getFixedString(this.answers[i2])) && this.answersChecks[i2]) {
+                    i++;
+                }
+            }
+        } else {
+            i = 0;
+        }
+        int i3 = this.todo ? getMessagesController().todoTitleLengthMax : 255;
+        int i4 = this.todo ? getMessagesController().todoItemLengthMax : 100;
+        if ((TextUtils.isEmpty(ChatAttachAlertPollLayout.getFixedString(this.solutionString)) || this.solutionString.length() <= 200) && !TextUtils.isEmpty(ChatAttachAlertPollLayout.getFixedString(this.questionString)) && this.questionString.length() <= i3) {
+            int i5 = 0;
+            int i6 = 0;
+            while (true) {
+                CharSequence[] charSequenceArr = this.answers;
+                if (i5 >= charSequenceArr.length) {
+                    break;
+                }
+                if (!TextUtils.isEmpty(ChatAttachAlertPollLayout.getFixedString(charSequenceArr[i5]))) {
+                    if (this.answers[i5].length() > i4) {
+                        i6 = 0;
+                        break;
+                    }
+                    i6++;
+                }
+                i5++;
+            }
+            if (i6 < (this.todo ? 1 : 2) || (this.quizPoll && i < 1)) {
+                z = false;
+            } else {
+                z = true;
+            }
+        } else {
+            z = false;
+        }
+        this.doneItem.setEnabled((this.quizPoll && i == 0) || z);
+        this.doneItem.setAlpha(z ? 1.0f : 0.5f);
     }
 
     public void updateRows() {
@@ -1028,15 +1176,20 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 }
             }
             boolean z3 = (this.onlyAdding || TextUtils.equals(todoList.title.text, ChatAttachAlertPollLayout.getFixedString(this.questionString))) && i == todoList.list.size();
-            if (z3) {
-                for (int i3 = 0; i3 < i; i3++) {
-                    if (!TextUtils.equals(this.answers[i3].toString(), todoList.list.get(i3).title.text)) {
-                        break;
-                    }
+            if (!z3) {
+                z2 = z3;
+                break;
+            }
+            int i3 = 0;
+            while (true) {
+                if (i3 >= i) {
+                    z2 = z3;
+                    break;
                 }
-                z2 = z3;
-            } else {
-                z2 = z3;
+                if (!TextUtils.equals(this.answers[i3].toString(), todoList.list.get(i3).title.text)) {
+                    break;
+                }
+                i3++;
             }
         } else {
             boolean zIsEmpty = TextUtils.isEmpty(ChatAttachAlertPollLayout.getFixedString(this.questionString));
@@ -1696,7 +1849,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             int i2;
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
@@ -1883,7 +2036,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View shadowSectionCell;
             if (i == 0) {
-                View headerCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, false);
+                HeaderCell headerCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, false);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 shadowSectionCell = headerCell;
             } else if (i == 1) {
@@ -1891,7 +2044,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             } else if (i == 2) {
                 shadowSectionCell = new TextInfoPrivacyCell(this.mContext);
             } else if (i == 3) {
-                View textCell = new TextCell(this.mContext);
+                TextCell textCell = new TextCell(this.mContext);
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 shadowSectionCell = textCell;
             } else if (i == 4) {
@@ -1969,7 +2122,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 });
                 shadowSectionCell = pollEditTextCell;
             } else if (i == 6) {
-                View textCheckCell = new TextCheckCell(this.mContext);
+                TextCheckCell textCheckCell = new TextCheckCell(this.mContext);
                 textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 shadowSectionCell = textCheckCell;
             } else if (i != 7) {
@@ -2321,7 +2474,77 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         return this.requestFieldFocusAtPosition < 0;
     }
 
-    public void deleteItem(android.view.View r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PollCreateActivity.deleteItem(android.view.View):void");
+    public void deleteItem(View view) {
+        int adapterPosition;
+        if (view.getTag() != null) {
+            return;
+        }
+        view.setTag(1);
+        PollEditTextCell pollEditTextCell = (PollEditTextCell) view.getParent();
+        RecyclerView.ViewHolder viewHolderFindContainingViewHolder = this.listView.findContainingViewHolder(pollEditTextCell);
+        if (viewHolderFindContainingViewHolder == null || (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition()) == -1) {
+            return;
+        }
+        int i = adapterPosition - this.answerStartRow;
+        if (this.onlyAdding && i < this.oldAnswersCount) {
+            int i2 = -this.shiftDp;
+            this.shiftDp = i2;
+            AndroidUtilities.shakeViewSpring(pollEditTextCell, i2);
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
+            return;
+        }
+        this.listAdapter.notifyItemRemoved(adapterPosition);
+        CharSequence[] charSequenceArr = this.answers;
+        int i3 = i + 1;
+        System.arraycopy(charSequenceArr, i3, charSequenceArr, i, (charSequenceArr.length - 1) - i);
+        boolean[] zArr = this.answersChecks;
+        System.arraycopy(zArr, i3, zArr, i, (zArr.length - 1) - i);
+        CharSequence[] charSequenceArr2 = this.answers;
+        charSequenceArr2[charSequenceArr2.length - 1] = null;
+        boolean[] zArr2 = this.answersChecks;
+        int i4 = 0;
+        zArr2[zArr2.length - 1] = false;
+        int i5 = this.answersCount - 1;
+        this.answersCount = i5;
+        if (this.answerIds != null) {
+            int[] iArr = new int[i5];
+            while (i4 < i5) {
+                iArr[i4] = this.answerIds[i4 >= i ? i4 + 1 : i4];
+                i4++;
+            }
+            this.answerIds = iArr;
+        }
+        int i6 = this.answersCount;
+        CharSequence[] charSequenceArr3 = this.answers;
+        if (i6 == charSequenceArr3.length - 1) {
+            this.listAdapter.notifyItemInserted((this.answerStartRow + charSequenceArr3.length) - 1);
+        }
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(adapterPosition - 1);
+        EditTextBoldCursor textView = pollEditTextCell.getTextView();
+        if (viewHolderFindViewHolderForAdapterPosition != null) {
+            View view2 = viewHolderFindViewHolderForAdapterPosition.itemView;
+            if (view2 instanceof PollEditTextCell) {
+                ((PollEditTextCell) view2).getTextView().requestFocus();
+            } else if (textView.isFocused()) {
+                AndroidUtilities.hideKeyboard(textView);
+                hideEmojiPopup(true);
+            } else if (this.isEmojiSearchOpened) {
+                hideEmojiPopup(true);
+            }
+        } else if (textView.isFocused()) {
+            AndroidUtilities.hideKeyboard(textView);
+            hideEmojiPopup(true);
+        } else if (this.isEmojiSearchOpened) {
+            hideEmojiPopup(true);
+        }
+        textView.clearFocus();
+        checkDoneButton();
+        updateRows();
+        SuggestEmojiView suggestEmojiView = this.suggestEmojiPanel;
+        if (suggestEmojiView != null) {
+            suggestEmojiView.forceClose();
+            this.suggestEmojiPanel.setDelegate(null);
+        }
+        this.listAdapter.notifyItemChanged(this.answerSectionRow);
     }
 }

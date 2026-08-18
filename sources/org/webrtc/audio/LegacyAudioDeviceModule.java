@@ -1,7 +1,5 @@
 package org.webrtc.audio;
 
-import org.webrtc.audio.AudioDeviceModule;
-
 @Deprecated
 public class LegacyAudioDeviceModule implements AudioDeviceModule {
     @Override

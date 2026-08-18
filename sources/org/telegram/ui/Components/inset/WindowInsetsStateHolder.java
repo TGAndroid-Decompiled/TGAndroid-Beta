@@ -10,9 +10,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
-import org.telegram.ui.Components.inset.KeyboardState;
-import org.telegram.ui.Components.inset.WindowAnimatedInsetsProvider;
-import org.telegram.ui.Components.inset.WindowInsetsInAppController;
 
 public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInsetsInAppController, WindowAnimatedInsetsProvider.Listener {
     private int activeAnimations;

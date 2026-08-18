@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.RandomAccessFile;
 import org.telegram.messenger.audioinfo.m4a.M4AInfo;
 import org.telegram.messenger.audioinfo.mp3.MP3Info;
@@ -117,7 +116,7 @@ public abstract class AudioInfo {
         return this.smallCover;
     }
 
-    public static AudioInfo getAudioInfo(File file) throws IOException {
+    public static AudioInfo getAudioInfo(File file) {
         byte b;
         try {
             byte[] bArr = new byte[12];

@@ -4,9 +4,6 @@ import android.graphics.Matrix;
 import android.graphics.Point;
 import android.opengl.GLES20;
 import java.nio.ByteBuffer;
-import org.webrtc.GlGenericDrawer;
-import org.webrtc.RendererCommon;
-import org.webrtc.VideoFrame;
 
 public class VideoFrameDrawer {
     public static final String TAG = "VideoFrameDrawer";

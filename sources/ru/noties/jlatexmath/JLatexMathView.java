@@ -175,10 +175,8 @@ public class JLatexMathView extends View {
                 canvas.scale(f4, f4);
             }
             this.drawable.draw(canvas);
+        } finally {
             canvas.restoreToCount(iSave);
-        } catch (Throwable th) {
-            canvas.restoreToCount(iSave);
-            throw th;
         }
     }
 }

@@ -41,30 +41,34 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     }
 
     @Override
-    public long open(DataSpec dataSpec) {
+    public long open(DataSpec dataSpec) throws DataSourceException {
         this.uri = dataSpec.uri;
         File file = new File(dataSpec.uri.getPath());
         String name = file.getName();
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), name + ".key"));
-        this.fileInputStream = encryptedFileInputStream;
-        encryptedFileInputStream.skip(dataSpec.position);
-        int length = (int) file.length();
-        transferInitializing(dataSpec);
-        long j = dataSpec.position;
-        long j2 = length;
-        if (j > j2) {
+        try {
+            EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), name + ".key"));
+            this.fileInputStream = encryptedFileInputStream;
+            encryptedFileInputStream.skip(dataSpec.position);
+            int length = (int) file.length();
+            transferInitializing(dataSpec);
+            long j = dataSpec.position;
+            long j2 = length;
+            if (j > j2) {
+                throw new DataSourceException(2008);
+            }
+            int i = (int) (j2 - j);
+            this.bytesRemaining = i;
+            long j3 = dataSpec.length;
+            if (j3 != -1) {
+                this.bytesRemaining = (int) Math.min(i, j3);
+            }
+            this.opened = true;
+            transferStarted(dataSpec);
+            long j4 = dataSpec.length;
+            return j4 != -1 ? j4 : this.bytesRemaining;
+        } catch (Throwable unused) {
             throw new DataSourceException(2008);
         }
-        int i = (int) (j2 - j);
-        this.bytesRemaining = i;
-        long j3 = dataSpec.length;
-        if (j3 != -1) {
-            this.bytesRemaining = (int) Math.min(i, j3);
-        }
-        this.opened = true;
-        transferStarted(dataSpec);
-        long j4 = dataSpec.length;
-        return j4 != -1 ? j4 : this.bytesRemaining;
     }
 
     @Override
@@ -93,7 +97,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         try {
             this.fileInputStream.close();
         } catch (IOException e) {

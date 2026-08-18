@@ -149,11 +149,13 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                 if (this.width != -1 && this.height != -1) {
                     float width = (getWidth() - this.width) / 2;
                     int height = getHeight();
-                    imageReceiver.setImageCoords(width, (height - r5) / 2, this.width, this.height);
+                    int i = this.height;
+                    imageReceiver.setImageCoords(width, (height - i) / 2, this.width, i);
                     ImageReceiver imageReceiver2 = this.blurImageReceiver;
                     float width2 = (getWidth() - this.width) / 2;
                     int height2 = getHeight();
-                    imageReceiver2.setImageCoords(width2, (height2 - r6) / 2, this.width, this.height);
+                    int i2 = this.height;
+                    imageReceiver2.setImageCoords(width2, (height2 - i2) / 2, this.width, i2);
                 } else {
                     imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
                     this.blurImageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
@@ -688,8 +690,40 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.PhotoAttachPhotoCell.onTouchEvent(android.view.MotionEvent):boolean");
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        this.checkFrame.getHitRect(rect);
+        boolean z = true;
+        if (motionEvent.getAction() == 0) {
+            if (rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                this.pressed = true;
+                invalidate();
+            }
+            if (z) {
+                return z;
+            }
+            return super.onTouchEvent(motionEvent);
+        }
+        if (this.pressed) {
+            if (motionEvent.getAction() == 1) {
+                getParent().requestDisallowInterceptTouchEvent(true);
+                this.pressed = false;
+                playSoundEffect(0);
+                sendAccessibilityEvent(1);
+                this.delegate.onCheckClick(this);
+                invalidate();
+            } else if (motionEvent.getAction() == 3) {
+                this.pressed = false;
+                invalidate();
+            } else if (motionEvent.getAction() == 2 && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                this.pressed = false;
+                invalidate();
+            }
+        }
+        z = false;
+        if (z) {
+            return super.onTouchEvent(motionEvent);
+        }
+        return z;
     }
 
     @Override

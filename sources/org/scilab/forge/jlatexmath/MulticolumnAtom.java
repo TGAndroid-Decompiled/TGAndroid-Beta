@@ -50,10 +50,10 @@ public class MulticolumnAtom extends Atom {
             char cCharAt = str.charAt(i);
             if (cCharAt == 'c') {
                 i2 = 2;
-            } else if (cCharAt == 'l') {
-                i2 = 0;
-            } else if (cCharAt != 'r') {
-                if (cCharAt == '|') {
+            } else if (cCharAt != 'l') {
+                if (cCharAt == 'r') {
+                    i2 = 1;
+                } else if (cCharAt == '|') {
                     if (z) {
                         this.beforeVlines = 1;
                     } else {
@@ -78,7 +78,7 @@ public class MulticolumnAtom extends Atom {
                 }
                 i++;
             } else {
-                i2 = 1;
+                i2 = 0;
             }
             z = false;
             i++;

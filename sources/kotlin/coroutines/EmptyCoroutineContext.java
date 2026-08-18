@@ -1,7 +1,6 @@
 package kotlin.coroutines;
 
 import java.io.Serializable;
-import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
 

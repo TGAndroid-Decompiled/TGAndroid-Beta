@@ -356,11 +356,13 @@ public class CustomPhoneKeyboardView extends ViewGroup {
             TextPaint textPaint = this.numberTextPaint;
             String str = this.mNumber;
             textPaint.getTextBounds(str, 0, str.length(), this.rect);
+            float fHeight = this.rect.height() / 2.0f;
             TextPaint textPaint2 = this.symbolsTextPaint;
             String str2 = this.mSymbols;
             textPaint2.getTextBounds(str2, 0, str2.length(), this.rect);
-            canvas.drawText(this.mNumber, (getWidth() * 0.25f) - (fMeasureText2 / 2.0f), (getHeight() / 2.0f) + (this.rect.height() / 2.0f), this.numberTextPaint);
-            canvas.drawText(this.mSymbols, (getWidth() * 0.7f) - (fMeasureText / 2.0f), (getHeight() / 2.0f) + (this.rect.height() / 2.0f), this.symbolsTextPaint);
+            float fHeight2 = this.rect.height() / 2.0f;
+            canvas.drawText(this.mNumber, (getWidth() * 0.25f) - (fMeasureText2 / 2.0f), (getHeight() / 2.0f) + fHeight, this.numberTextPaint);
+            canvas.drawText(this.mSymbols, (getWidth() * 0.7f) - (fMeasureText / 2.0f), (getHeight() / 2.0f) + fHeight2, this.symbolsTextPaint);
         }
     }
 }

@@ -322,7 +322,7 @@ public class PaidReactionButton extends View {
                 canvas.rotate(((this.randomRotation * 2.0f) - 1.0f) * 1.5f);
                 canvas.translate(0.0f, (-AndroidUtilities.dp(200.0f)) * ((float) Math.pow(d, 0.800000011920929d)));
                 canvas.translate(AndroidUtilities.dp(5.0f) * fSin * ((float) Math.pow(d, 0.5d)), 0.0f);
-                canvas.rotate(((float) (Math.sin((Math.pow(d, 0.44999998807907104d) - 0.15000000596046448d) * 3.141592653589793d * 3.0d) * Utilities.clamp01((float) Math.pow(d, 0.20000000298023224d)))) * (-6.0f));
+                canvas.rotate(((float) (Math.sin((Math.pow(d, 0.44999998807907104d) - 0.15000000596046448d) * 3.141592653589793d * 3.0d) * ((double) Utilities.clamp01((float) Math.pow(d, 0.20000000298023224d))))) * (-6.0f));
                 float fLerp2 = AndroidUtilities.lerp(0.4f, 1.0f, fLerp);
                 canvas.scale(fLerp2, fLerp2);
                 canvas.translate((-fDp) / 2.0f, (-fDp2) / 2.0f);
@@ -497,11 +497,12 @@ public class PaidReactionButton extends View {
     private void ripple() {
         getLocationInWindow(this.pos);
         long jCurrentTimeMillis = System.currentTimeMillis();
-        if (jCurrentTimeMillis - this.lastRippleTime < 100) {
+        long j = jCurrentTimeMillis - this.lastRippleTime;
+        if (j < 100) {
             this.accumulatedRippleIntensity += 0.5f;
             return;
         }
-        this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - ((r2 - 100) / 200.0f), 1.0f, 0.0f);
+        this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - ((j - 100) / 200.0f), 1.0f, 0.0f);
         LaunchActivity.makeRipple(this.pos[0] + (getWidth() / 2.0f), this.pos[1] + (getHeight() / 2.0f), Utilities.clamp(this.accumulatedRippleIntensity, 0.9f, 0.3f));
         this.accumulatedRippleIntensity = 0.0f;
         this.lastRippleTime = jCurrentTimeMillis;

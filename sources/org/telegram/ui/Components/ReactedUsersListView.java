@@ -30,9 +30,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ReactedUserHolderView;
-import org.telegram.ui.Components.ReactedHeaderView;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-import org.telegram.ui.Components.RecyclerListView;
 
 public class ReactedUsersListView extends FrameLayout {
     private RecyclerView.Adapter adapter;
@@ -229,17 +227,11 @@ public class ReactedUsersListView extends FrameLayout {
             while (it.hasNext()) {
                 ReactedHeaderView.UserSeen userSeen = (ReactedHeaderView.UserSeen) it.next();
                 if (userSeen.user != null && userSeen.date > 0) {
-                    int i = 0;
-                    while (true) {
-                        if (i < this.userReactions.size()) {
-                            TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) this.userReactions.get(i);
-                            if (messagePeerReaction != null && messagePeerReaction.date <= 0 && MessageObject.getPeerId(messagePeerReaction.peer_id) == userSeen.dialogId) {
-                                messagePeerReaction.date = userSeen.date;
-                                messagePeerReaction.dateIsSeen = true;
-                                break;
-                            }
-                            i++;
-                        } else {
+                    for (int i = 0; i < this.userReactions.size(); i++) {
+                        TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) this.userReactions.get(i);
+                        if (messagePeerReaction != null && messagePeerReaction.date <= 0 && MessageObject.getPeerId(messagePeerReaction.peer_id) == userSeen.dialogId) {
+                            messagePeerReaction.date = userSeen.date;
+                            messagePeerReaction.dateIsSeen = true;
                             break;
                         }
                     }

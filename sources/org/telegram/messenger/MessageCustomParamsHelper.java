@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.TranslateController;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.OutputSerializedData;

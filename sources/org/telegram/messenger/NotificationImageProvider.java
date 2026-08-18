@@ -9,11 +9,9 @@ import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import org.telegram.messenger.NotificationCenter;
 
 public class NotificationImageProvider extends ContentProvider implements NotificationCenter.NotificationCenterDelegate {
     private static String authority;
@@ -87,7 +85,7 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
     }
 
     @Override
-    public ParcelFileDescriptor openFile(Uri uri, String str) throws NumberFormatException, IOException {
+    public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
         if (!"r".equals(str)) {
             throw new SecurityException("Can only open files for read");
         }
@@ -149,7 +147,8 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
                         this.fileStartTimes.remove(str);
                         this.sync.notifyAll();
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }

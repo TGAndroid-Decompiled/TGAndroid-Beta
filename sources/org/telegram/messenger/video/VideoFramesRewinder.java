@@ -16,7 +16,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.video.VideoFramesRewinder;
 import org.telegram.ui.Components.AnimatedFileNative;
 
 public class VideoFramesRewinder {
@@ -103,7 +102,111 @@ public class VideoFramesRewinder {
     }
 
     public void lambda$new$2() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.VideoFramesRewinder.lambda$new$2():void");
+        Frame frame;
+        int i;
+        int i2;
+        int i3;
+        final ArrayList arrayList = new ArrayList();
+        final long jCurrentTimeMillis = System.currentTimeMillis();
+        int[] iArr = this.meta;
+        int i4 = iArr[4];
+        int i5 = 0;
+        int iMin = Math.min(this.w / 4, iArr[0]);
+        int iMin2 = Math.min(this.h / 4, this.meta[1]);
+        int i6 = this.maxFrameSide;
+        if (iMin > i6 || iMin2 > i6) {
+            float fMax = i6 / Math.max(iMin, iMin2);
+            iMin = (int) (iMin * fMax);
+            iMin2 = (int) (iMin2 * fMax);
+        }
+        this.mDecoder.seekToMs(this.prepareToMs - ((long) (this.prepareWithSpeed * 350.0f)), false);
+        long j = this.meta[3];
+        int i7 = 0;
+        int i8 = 0;
+        for (char c = 3; this.meta[c] <= this.until.get() && i7 < this.maxFramesCount && !this.stop.get(); c = 3) {
+            float f = 1000.0f / i4;
+            long j2 = j;
+            long j3 = (long) (j + (this.prepareWithSpeed * f));
+            if (!this.freeFrames.isEmpty()) {
+                frame = this.freeFrames.remove(i5);
+            } else {
+                frame = new Frame();
+            }
+            Bitmap bitmap = frame.bitmap;
+            if (bitmap == null || bitmap.getWidth() != iMin || frame.bitmap.getHeight() != iMin2) {
+                AndroidUtilities.recycleBitmap(frame.bitmap);
+                try {
+                    frame.bitmap = Bitmap.createBitmap(iMin, iMin2, Bitmap.Config.ARGB_8888);
+                    while (true) {
+                        i = i7;
+                        i2 = i4;
+                        i3 = iMin2;
+                        if (((long) this.meta[3]) + ((long) Math.ceil(f)) < j3) {
+                            break;
+                        }
+                        this.mDecoder.getVideoFrame(null, true, 0.0f, this.meta[4], false);
+                        i4 = i2;
+                        i7 = i;
+                        iMin2 = i3;
+                    }
+                    if (this.mDecoder.getVideoFrame(frame.bitmap, true, 0.0f, this.meta[4], false) == 0) {
+                        i8++;
+                        if (i8 > 6) {
+                            break;
+                        }
+                    } else {
+                        long j4 = this.meta[3];
+                        frame.position = j4;
+                        arrayList.add(frame);
+                        j2 = j4;
+                    }
+                    i7 = i + 1;
+                    i4 = i2;
+                    j = j2;
+                    iMin2 = i3;
+                    i5 = 0;
+                } catch (OutOfMemoryError unused) {
+                    FileLog.d("[VideoFramesRewinder] failed to create bitmap: out of memory");
+                }
+            } else {
+                while (true) {
+                    i = i7;
+                    i2 = i4;
+                    i3 = iMin2;
+                    if (((long) this.meta[3]) + ((long) Math.ceil(f)) < j3) {
+                        break;
+                        break;
+                    }
+                    this.mDecoder.getVideoFrame(null, true, 0.0f, this.meta[4], false);
+                    i4 = i2;
+                    i7 = i;
+                    iMin2 = i3;
+                }
+                if (this.mDecoder.getVideoFrame(frame.bitmap, true, 0.0f, this.meta[4], false) == 0) {
+                    i8++;
+                    if (i8 > 6) {
+                        break;
+                        break;
+                    }
+                } else {
+                    long j5 = this.meta[3];
+                    frame.position = j5;
+                    arrayList.add(frame);
+                    j2 = j5;
+                }
+                i7 = i + 1;
+                i4 = i2;
+                j = j2;
+                iMin2 = i3;
+                i5 = 0;
+            }
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$new$1(arrayList, jCurrentTimeMillis);
+            }
+        });
     }
 
     public void lambda$new$1(ArrayList arrayList, long j) {

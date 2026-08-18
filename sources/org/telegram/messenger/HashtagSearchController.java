@@ -41,7 +41,8 @@ public class HashtagSearchController {
                         hashtagSearchControllerArr[i] = hashtagSearchController2;
                         hashtagSearchController = hashtagSearchController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -141,7 +142,9 @@ public class HashtagSearchController {
         String str2;
         String strSubstring;
         TLRPC.TL_channels_searchPosts tL_channels_searchPosts;
-        TLRPC.TL_channels_searchPosts tL_channels_searchPosts2;
+        TLObject tLObject;
+        TLObject tLObject2;
+        TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal;
         String str3 = str;
         final SearchResult searchResult = getSearchResult(i2);
         if (searchResult.lastHashtag == null && str3 == null) {
@@ -182,17 +185,17 @@ public class HashtagSearchController {
             }
             final int i4 = 21;
             if (i2 == 1) {
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
+                tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
                 tL_messages_searchGlobal.limit = 21;
                 tL_messages_searchGlobal.q = str4;
                 tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                 tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                tL_channels_searchPosts2 = tL_messages_searchGlobal;
                 if (searchResult.lastOffsetPeer != null) {
+                    tLObject2 = tL_messages_searchGlobal;
                     tL_messages_searchGlobal.offset_rate = searchResult.lastOffsetRate;
                     tL_messages_searchGlobal.offset_id = searchResult.lastOffsetId;
                     tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(searchResult.lastOffsetPeer);
-                    tL_channels_searchPosts2 = tL_messages_searchGlobal;
+                    tLObject2 = tL_messages_searchGlobal;
                 }
             } else {
                 if (userOrChat != null) {
@@ -205,34 +208,37 @@ public class HashtagSearchController {
                     if (i5 != 0) {
                         tL_messages_search.offset_id = i5;
                     }
-                    tL_channels_searchPosts = tL_messages_search;
-                    int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$searchHashtag$2(i2, str4, iArr, searchResult, i4, i, i3, tLObject, tL_error);
-                        }
-                    });
-                    searchResult.reqId = iSendRequest;
-                    final int[] iArr = {iSendRequest};
+                    tLObject = tL_messages_search;
+                } else {
+                    tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
+                    tL_channels_searchPosts.flags |= 1;
+                    tL_channels_searchPosts.hashtag = str4;
+                    tL_channels_searchPosts.limit = 21;
+                    tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
+                    if (searchResult.lastOffsetPeer != null) {
+                        tLObject2 = tL_channels_searchPosts;
+                        tL_channels_searchPosts.offset_rate = searchResult.lastOffsetRate;
+                        tL_channels_searchPosts.offset_id = searchResult.lastOffsetId;
+                        tL_channels_searchPosts.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(searchResult.lastOffsetPeer);
+                        tLObject2 = tL_channels_searchPosts;
+                    }
                 }
-                TLRPC.TL_channels_searchPosts tL_channels_searchPosts3 = new TLRPC.TL_channels_searchPosts();
-                tL_channels_searchPosts3.flags |= 1;
-                tL_channels_searchPosts3.hashtag = str4;
-                tL_channels_searchPosts3.limit = 21;
-                tL_channels_searchPosts3.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                tL_channels_searchPosts2 = tL_channels_searchPosts3;
-                if (searchResult.lastOffsetPeer != null) {
-                    tL_channels_searchPosts3.offset_rate = searchResult.lastOffsetRate;
-                    tL_channels_searchPosts3.offset_id = searchResult.lastOffsetId;
-                    tL_channels_searchPosts3.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(searchResult.lastOffsetPeer);
-                    tL_channels_searchPosts2 = tL_channels_searchPosts3;
-                }
+                int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                        this.f$0.lambda$searchHashtag$2(i2, str4, iArr, searchResult, i4, i, i3, tLObject3, tL_error);
+                    }
+                });
+                searchResult.reqId = iSendRequest;
+                final int[] iArr = {iSendRequest};
             }
-            tL_channels_searchPosts = tL_channels_searchPosts2;
-            int iSendRequest2 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
+            tLObject2 = tL_channels_searchPosts;
+            tLObject2 = tL_messages_searchGlobal;
+            tLObject = tLObject2;
+            int iSendRequest2 = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$searchHashtag$2(i2, str4, iArr, searchResult, i4, i, i3, tLObject, tL_error);
+                public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$searchHashtag$2(i2, str4, iArr, searchResult, i4, i, i3, tLObject3, tL_error);
                 }
             });
             searchResult.reqId = iSendRequest2;

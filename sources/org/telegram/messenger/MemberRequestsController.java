@@ -22,7 +22,8 @@ public class MemberRequestsController extends BaseController {
                         memberRequestsController = new MemberRequestsController(i);
                         memberRequestsControllerArr[i] = memberRequestsController;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }

@@ -4,8 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import com.android.billingclient.api.ProductDetails;
 import j$.util.Objects;
-import java.io.IOException;
-import java.lang.Thread;
 import java.util.Iterator;
 
 public class BuildVars {
@@ -51,7 +49,7 @@ public class BuildVars {
                 final Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
                 Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                     @Override
-                    public final void uncaughtException(Thread thread, Throwable th) throws IOException {
+                    public final void uncaughtException(Thread thread, Throwable th) {
                         BuildVars.lambda$static$0(defaultUncaughtExceptionHandler, thread, th);
                     }
                 });
@@ -59,7 +57,7 @@ public class BuildVars {
         }
     }
 
-    public static void lambda$static$0(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) throws IOException {
+    public static void lambda$static$0(Thread.UncaughtExceptionHandler uncaughtExceptionHandler, Thread thread, Throwable th) {
         FileLog.fatal(th, false);
         if (uncaughtExceptionHandler != null) {
             uncaughtExceptionHandler.uncaughtException(thread, th);
@@ -106,6 +104,9 @@ public class BuildVars {
     }
 
     public static String getSmsHash() {
-        return ApplicationLoader.isStandaloneBuild() ? "w0lkcmTZkKh" : DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
+        if (ApplicationLoader.isStandaloneBuild()) {
+            return "w0lkcmTZkKh";
+        }
+        return DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
     }
 }

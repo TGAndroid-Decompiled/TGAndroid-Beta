@@ -15,7 +15,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public abstract class StoryPrivacySelector extends View {
     private static StoryPrivacyBottomSheet.StoryPrivacy read(AbstractSerializedData abstractSerializedData) {
@@ -23,32 +22,32 @@ public abstract class StoryPrivacySelector extends View {
         if (abstractSerializedData.readInt32(true) != 481674261) {
             throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy");
         }
-        int int322 = abstractSerializedData.readInt32(true);
-        ArrayList arrayList = new ArrayList(int322);
-        for (int i = 0; i < int322; i++) {
+        int int33 = abstractSerializedData.readInt32(true);
+        ArrayList arrayList = new ArrayList(int33);
+        for (int i = 0; i < int33; i++) {
             arrayList.add(TLRPC.InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(true), true));
         }
         if (abstractSerializedData.readInt32(true) != 481674261) {
             throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (2)");
         }
-        int int323 = abstractSerializedData.readInt32(true);
-        ArrayList arrayList2 = new ArrayList(int323);
-        for (int i2 = 0; i2 < int323; i2++) {
+        int int34 = abstractSerializedData.readInt32(true);
+        ArrayList arrayList2 = new ArrayList(int34);
+        for (int i2 = 0; i2 < int34; i2++) {
             arrayList2.add(Long.valueOf(abstractSerializedData.readInt64(true)));
         }
         if (abstractSerializedData.readInt32(true) != 481674261) {
             throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (3)");
         }
-        int int324 = abstractSerializedData.readInt32(true);
+        int int35 = abstractSerializedData.readInt32(true);
         HashMap map = new HashMap();
-        for (int i3 = 0; i3 < int324; i3++) {
+        for (int i3 = 0; i3 < int35; i3++) {
             long int64 = abstractSerializedData.readInt64(true);
             if (abstractSerializedData.readInt32(true) != 481674261) {
                 throw new RuntimeException("wrong Vector magic in TL_StoryPrivacy (4)");
             }
-            int int325 = abstractSerializedData.readInt32(true);
-            ArrayList arrayList3 = new ArrayList(int325);
-            for (int i4 = 0; i4 < int325; i4++) {
+            int int36 = abstractSerializedData.readInt32(true);
+            ArrayList arrayList3 = new ArrayList(int36);
+            for (int i4 = 0; i4 < int36; i4++) {
                 arrayList3.add(Long.valueOf(abstractSerializedData.readInt64(true)));
             }
             map.put(Long.valueOf(int64), arrayList3);

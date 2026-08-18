@@ -2,7 +2,6 @@ package org.telegram.ui.web;
 
 import android.os.AsyncTask;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -20,7 +19,7 @@ public class HttpGetTask extends AsyncTask {
     }
 
     @Override
-    public String doInBackground(String... strArr) throws IOException {
+    public String doInBackground(String... strArr) {
         BufferedReader bufferedReader;
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(strArr[0]).openConnection();

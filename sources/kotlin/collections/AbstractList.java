@@ -188,7 +188,10 @@ public abstract class AbstractList extends AbstractCollection implements List {
             if (i3 - i2 < 0) {
                 i3 = i2;
             }
-            return i3 - 2147483639 > 0 ? i2 > 2147483639 ? Integer.MAX_VALUE : 2147483639 : i3;
+            if (i3 - 2147483639 > 0) {
+                return i2 > 2147483639 ? Integer.MAX_VALUE : 2147483639;
+            }
+            return i3;
         }
 
         private Companion() {

@@ -142,8 +142,55 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
         return this;
     }
 
-    public void fillItems(java.util.ArrayList r13, org.telegram.ui.Components.UniversalAdapter r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.TimezoneSelector.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        boolean z;
+        boolean z2 = this.searching && !TextUtils.isEmpty(this.query);
+        TimezonesController timezonesController = TimezonesController.getInstance(this.currentAccount);
+        if (!z2) {
+            universalAdapter.whiteSectionStart();
+            arrayList.add(UItem.asRippleCheck(-1, LocaleController.getString(R.string.TimezoneDetectAutomatically)).setChecked(this.useSystem));
+            universalAdapter.whiteSectionEnd();
+            arrayList.add(UItem.asShadow(LocaleController.formatString(R.string.TimezoneDetectAutomaticallyInfo, timezonesController.getTimezoneName(this.currentTimezone, true))));
+        }
+        universalAdapter.whiteSectionStart();
+        if (!z2) {
+            arrayList.add(UItem.asHeader(LocaleController.getString(R.string.TimezoneHeader)));
+        }
+        boolean z3 = true;
+        for (int i = 0; i < timezonesController.getTimezones().size(); i++) {
+            TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) timezonesController.getTimezones().get(i);
+            CharSequence timezoneName = timezonesController.getTimezoneName(tL_timezone, false);
+            if (z2) {
+                String strReplace = AndroidUtilities.translitSafe(tL_timezone.name).toLowerCase().replace("/", " ");
+                String lowerCase = AndroidUtilities.translitSafe(this.query).toLowerCase();
+                if (strReplace.contains(" " + lowerCase) || strReplace.startsWith(lowerCase)) {
+                    timezoneName = AndroidUtilities.highlightText(timezoneName, this.query, this.resourceProvider);
+                    UItem checked = UItem.asRadio(i, timezoneName, timezonesController.getTimezoneOffsetName(tL_timezone)).setChecked(TextUtils.equals(tL_timezone.id, this.currentTimezone));
+                    if (this.useSystem || z2) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    arrayList.add(checked.setEnabled(z));
+                    z3 = false;
+                }
+            } else {
+                UItem checked2 = UItem.asRadio(i, timezoneName, timezonesController.getTimezoneOffsetName(tL_timezone)).setChecked(TextUtils.equals(tL_timezone.id, this.currentTimezone));
+                if (this.useSystem) {
+                    z = true;
+                } else {
+                    z = true;
+                }
+                arrayList.add(checked2.setEnabled(z));
+                z3 = false;
+            }
+        }
+        universalAdapter.whiteSectionEnd();
+        if (z3) {
+            arrayList.add(UItem.asCustomShadow(this.emptyView));
+        } else {
+            arrayList.add(UItem.asShadow(null));
+        }
     }
 
     public void onClick(UItem uItem, View view, int i, float f, float f2) {

@@ -176,7 +176,8 @@ public class ChatInputViewsContainer extends FrameLayout {
 
     public void checkViewsPositions() {
         this.inputIslandBubbleContainer.setTranslationY((-this.maxBottomInset) - AndroidUtilities.dp(9.0f));
-        this.inAppKeyboardBubbleContainer.setTranslationY(r0.getMeasuredHeight() - this.imeBottomInset);
+        FrameLayout frameLayout = this.inAppKeyboardBubbleContainer;
+        frameLayout.setTranslationY(frameLayout.getMeasuredHeight() - this.imeBottomInset);
     }
 
     private void checkInAppKeyboardChild() {

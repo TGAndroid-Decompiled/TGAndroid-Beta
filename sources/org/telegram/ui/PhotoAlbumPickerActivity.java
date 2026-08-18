@@ -56,7 +56,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-import org.telegram.ui.PhotoPickerActivity;
 
 public class PhotoAlbumPickerActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public static int SELECT_TYPE_ALL = 0;
@@ -222,8 +221,124 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             }
 
             @Override
-            protected void onLayout(boolean r9, int r10, int r11, int r12, int r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoAlbumPickerActivity.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
+            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                int i7;
+                int paddingRight;
+                int paddingLeft;
+                int i8;
+                int i9;
+                int paddingTop;
+                int measuredHeight;
+                int measuredHeight2;
+                int i10 = i5 - i3;
+                if (this.lastNotifyWidth != i10) {
+                    this.lastNotifyWidth = i10;
+                    if (PhotoAlbumPickerActivity.this.sendPopupWindow != null && PhotoAlbumPickerActivity.this.sendPopupWindow.isShowing()) {
+                        PhotoAlbumPickerActivity.this.sendPopupWindow.dismiss();
+                    }
+                }
+                int childCount = getChildCount();
+                int emojiPadding = (AndroidUtilities.dp(20.0f) < 0 || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) ? 0 : PhotoAlbumPickerActivity.this.commentTextView.getEmojiPadding();
+                setBottomClip(emojiPadding);
+                for (int i11 = 0; i11 < childCount; i11++) {
+                    View childAt = getChildAt(i11);
+                    if (childAt.getVisibility() != 8) {
+                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                        int measuredWidth = childAt.getMeasuredWidth();
+                        int measuredHeight3 = childAt.getMeasuredHeight();
+                        int i12 = layoutParams.gravity;
+                        if (i12 == -1) {
+                            i12 = 51;
+                        }
+                        int i13 = i12 & 112;
+                        int i14 = i12 & 7;
+                        if (i14 != 1) {
+                            if (i14 == 5) {
+                                i7 = (i10 - measuredWidth) - layoutParams.rightMargin;
+                                paddingRight = getPaddingRight();
+                            } else {
+                                paddingLeft = layoutParams.leftMargin + getPaddingLeft();
+                            }
+                            if (i13 != 16) {
+                                if (i13 != 48) {
+                                    paddingTop = layoutParams.topMargin + getPaddingTop();
+                                } else if (i13 != 80) {
+                                    i8 = ((i6 - emojiPadding) - i4) - measuredHeight3;
+                                    i9 = layoutParams.bottomMargin;
+                                } else {
+                                    paddingTop = layoutParams.topMargin;
+                                }
+                                if (PhotoAlbumPickerActivity.this.commentTextView != null && PhotoAlbumPickerActivity.this.commentTextView.isPopupView(childAt)) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    } else {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    }
+                                    paddingTop = measuredHeight - measuredHeight2;
+                                }
+                                childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                            } else {
+                                i8 = ((((i6 - emojiPadding) - i4) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                i9 = layoutParams.bottomMargin;
+                            }
+                            paddingTop = i8 - i9;
+                            if (PhotoAlbumPickerActivity.this.commentTextView != null) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                        } else {
+                            i7 = ((i10 - measuredWidth) / 2) + layoutParams.leftMargin;
+                            paddingRight = layoutParams.rightMargin;
+                        }
+                        paddingLeft = i7 - paddingRight;
+                        if (i13 != 16) {
+                            if (i13 != 48) {
+                                paddingTop = layoutParams.topMargin + getPaddingTop();
+                            } else if (i13 != 80) {
+                                i8 = ((i6 - emojiPadding) - i4) - measuredHeight3;
+                                i9 = layoutParams.bottomMargin;
+                            } else {
+                                paddingTop = layoutParams.topMargin;
+                            }
+                            if (PhotoAlbumPickerActivity.this.commentTextView != null) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                        } else {
+                            i8 = ((((i6 - emojiPadding) - i4) - measuredHeight3) / 2) + layoutParams.topMargin;
+                            i9 = layoutParams.bottomMargin;
+                        }
+                        paddingTop = i8 - i9;
+                        if (PhotoAlbumPickerActivity.this.commentTextView != null) {
+                            if (AndroidUtilities.isTablet()) {
+                                measuredHeight = getMeasuredHeight();
+                                measuredHeight2 = childAt.getMeasuredHeight();
+                            } else {
+                                measuredHeight = getMeasuredHeight();
+                                measuredHeight2 = childAt.getMeasuredHeight();
+                            }
+                            paddingTop = measuredHeight - measuredHeight2;
+                        }
+                        childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                    }
+                }
+                notifyHeightChanged();
             }
 
             @Override
@@ -356,18 +471,21 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             @Override
             protected void onDraw(Canvas canvas) {
                 String str = String.format("%d", Integer.valueOf(Math.max(1, PhotoAlbumPickerActivity.this.selectedPhotosOrder.size())));
-                int iMax = Math.max(AndroidUtilities.dp(16.0f) + ((int) Math.ceil(PhotoAlbumPickerActivity.this.textPaint.measureText(str))), AndroidUtilities.dp(24.0f));
+                int iCeil = (int) Math.ceil(PhotoAlbumPickerActivity.this.textPaint.measureText(str));
+                int iMax = Math.max(AndroidUtilities.dp(16.0f) + iCeil, AndroidUtilities.dp(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
                 getMeasuredHeight();
                 PhotoAlbumPickerActivity.this.textPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBoxCheck));
                 PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor(Theme.key_dialogBackground));
                 int i3 = iMax / 2;
-                PhotoAlbumPickerActivity.this.rect.set(measuredWidth - i3, 0.0f, i3 + measuredWidth, getMeasuredHeight());
+                int i4 = measuredWidth - i3;
+                int i5 = i3 + measuredWidth;
+                PhotoAlbumPickerActivity.this.rect.set(i4, 0.0f, i5, getMeasuredHeight());
                 canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), PhotoAlbumPickerActivity.this.paint);
                 PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox));
-                PhotoAlbumPickerActivity.this.rect.set(r5 + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), r2 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
+                PhotoAlbumPickerActivity.this.rect.set(i4 + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), i5 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
                 canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), PhotoAlbumPickerActivity.this.paint);
-                canvas.drawText(str, measuredWidth - (r1 / 2), AndroidUtilities.dp(16.2f), PhotoAlbumPickerActivity.this.textPaint);
+                canvas.drawText(str, measuredWidth - (iCeil / 2), AndroidUtilities.dp(16.2f), PhotoAlbumPickerActivity.this.textPaint);
             }
         };
         this.selectedCountView = view2;

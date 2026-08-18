@@ -86,7 +86,7 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         return row;
     }
 
-    public static String displayDate(String str) throws NumberFormatException {
+    public static String displayDate(String str) {
         String[] strArrSplit = str.split("\\.");
         if (strArrSplit.length != 2) {
             return str;
@@ -282,17 +282,18 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
         canvas.translate(0.0f, (getHeight() - this.height) / 2.0f);
         float height = ((getHeight() - this.height) / 2.0f) + 0.0f;
         canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
+        float fDp = height + AndroidUtilities.dp(14.0f);
         this.title.ellipsize(this.width - AndroidUtilities.dp(32.0f)).draw(canvas, width - (this.title.getWidth() / 2.0f), this.title.getHeight() / 2.0f, -1, 1.0f);
         canvas.translate(0.0f, this.title.getHeight() + AndroidUtilities.dp(3.0f));
-        float fDp = height + AndroidUtilities.dp(14.0f) + this.title.getHeight() + AndroidUtilities.dp(3.0f);
+        float height2 = fDp + this.title.getHeight() + AndroidUtilities.dp(3.0f);
         this.subtitle.ellipsize(this.width - AndroidUtilities.dp(32.0f)).draw(canvas, width - (this.subtitle.getWidth() / 2.0f), this.subtitle.getHeight() / 2.0f, -1, 0.7f);
         canvas.translate(0.0f, this.subtitle.getHeight() + AndroidUtilities.dp(11.0f));
-        float height2 = fDp + this.subtitle.getHeight() + AndroidUtilities.dp(11.0f);
+        float height3 = height2 + this.subtitle.getHeight() + AndroidUtilities.dp(11.0f);
         int i = 0;
         while (i < this.rows.size()) {
             if (i > 0) {
                 canvas.translate(f, AndroidUtilities.dp(7.0f));
-                height2 += AndroidUtilities.dp(7.0f);
+                height3 += AndroidUtilities.dp(7.0f);
             }
             canvas.save();
             Row row = (Row) this.rows.get(i);
@@ -300,7 +301,7 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
             float fDp3 = (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f);
             int i2 = i;
             row.key.ellipsize((fDp3 - fDp2) - AndroidUtilities.dp(7.66f)).draw(canvas, fDp2, row.key.getHeight() / 2.0f, -1, 0.7f);
-            row.bounds.set((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f), height2, (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + (row.avatars ? AndroidUtilities.dp(5.0f) + (this.groupsArrow.getIntrinsicWidth() * 0.8f) + this.groupsAvatars.getMaxX() : 0.0f), row.value.getHeight() + height2);
+            row.bounds.set((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f), height3, (width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + (row.avatars ? AndroidUtilities.dp(5.0f) + (this.groupsArrow.getIntrinsicWidth() * 0.8f) + this.groupsAvatars.getMaxX() : 0.0f), row.value.getHeight() + height3);
             if (this.groupsRow == row) {
                 this.groupsBounds.set(row.bounds);
                 this.groupsBounds.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(2.0f));
@@ -309,7 +310,7 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
                 Drawable drawable = this.groupsRipple;
                 if (drawable != null) {
                     RectF rectF = this.groupsBounds;
-                    drawable.setBounds((int) rectF.left, (int) (rectF.top - height2), (int) rectF.right, (int) (rectF.bottom - height2));
+                    drawable.setBounds((int) rectF.left, (int) (rectF.top - height3), (int) rectF.right, (int) (rectF.bottom - height3));
                     this.groupsRipple.draw(canvas);
                 }
             }
@@ -319,13 +320,14 @@ public class UserInfoCell extends View implements NotificationCenter.Notificatio
                 canvas.translate((width - (this.width / 2.0f)) + AndroidUtilities.dp(16.0f) + this.rowsKeysWidth + AndroidUtilities.dp(7.66f) + row.value.getCurrentWidth() + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f));
                 this.groupsAvatars.onDraw(canvas);
                 canvas.translate(this.groupsAvatars.getMaxX() + AndroidUtilities.dp(1.0f), AndroidUtilities.dp(13.0f) / 2.0f);
-                this.groupsArrow.setBounds(0, (int) (((-r1.getIntrinsicHeight()) * 0.8f) / 2.0f), (int) (this.groupsArrow.getIntrinsicWidth() * 0.8f), (int) ((this.groupsArrow.getIntrinsicHeight() * 0.8f) / 2.0f));
+                Drawable drawable2 = this.groupsArrow;
+                drawable2.setBounds(0, (int) (((-drawable2.getIntrinsicHeight()) * 0.8f) / 2.0f), (int) (this.groupsArrow.getIntrinsicWidth() * 0.8f), (int) ((this.groupsArrow.getIntrinsicHeight() * 0.8f) / 2.0f));
                 this.groupsArrow.draw(canvas);
                 canvas.restore();
             }
             canvas.restore();
             canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
-            height2 += AndroidUtilities.dp(14.0f);
+            height3 += AndroidUtilities.dp(14.0f);
             i = i2 + 1;
             f = 0.0f;
         }

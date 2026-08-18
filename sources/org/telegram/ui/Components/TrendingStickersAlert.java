@@ -20,7 +20,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
 public class TrendingStickersAlert extends BottomSheet {
     private final AlertContainerView alertContainerView;
@@ -272,7 +271,8 @@ public class TrendingStickersAlert extends BottomSheet {
             updateLightStatusBar(this.statusBarAlpha > 0.5f);
             if (this.statusBarAlpha > 0.0f) {
                 this.paint.setColor(TrendingStickersAlert.this.getThemedColor(Theme.key_dialogBackground));
-                canvas.drawRect(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, AndroidUtilities.lerp(r1, -AndroidUtilities.statusBarHeight, this.statusBarAlpha), getMeasuredWidth() - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, (int) Math.max(0.0f, TrendingStickersAlert.this.scrollOffsetY + (TrendingStickersAlert.this.topOffset * (1.0f - getFraction())) + AndroidUtilities.dp(24.0f) + TrendingStickersAlert.this.layout.getTranslationY() + (AndroidUtilities.statusBarHeight - TrendingStickersAlert.this.topOffset)), this.paint);
+                int iMax = (int) Math.max(0.0f, TrendingStickersAlert.this.scrollOffsetY + (TrendingStickersAlert.this.topOffset * (1.0f - getFraction())) + AndroidUtilities.dp(24.0f) + TrendingStickersAlert.this.layout.getTranslationY() + (AndroidUtilities.statusBarHeight - TrendingStickersAlert.this.topOffset));
+                canvas.drawRect(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, AndroidUtilities.lerp(iMax, -AndroidUtilities.statusBarHeight, this.statusBarAlpha), getMeasuredWidth() - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, iMax, this.paint);
             }
             super.dispatchDraw(canvas);
             canvas.save();
@@ -281,7 +281,8 @@ public class TrendingStickersAlert extends BottomSheet {
             int iDp2 = AndroidUtilities.dp(4.0f);
             int i = (int) (iDp2 * 2.0f * (1.0f - fraction));
             TrendingStickersAlert.this.shapeDrawable.setCornerRadius(AndroidUtilities.dp(2.0f));
-            TrendingStickersAlert.this.shapeDrawable.setColor(ColorUtils.setAlphaComponent(TrendingStickersAlert.this.getThemedColor(Theme.key_sheet_scrollUp), (int) (Color.alpha(r4) * fraction)));
+            int themedColor = TrendingStickersAlert.this.getThemedColor(Theme.key_sheet_scrollUp);
+            TrendingStickersAlert.this.shapeDrawable.setColor(ColorUtils.setAlphaComponent(themedColor, (int) (Color.alpha(themedColor) * fraction)));
             TrendingStickersAlert.this.shapeDrawable.setBounds((getWidth() - iDp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i, (getWidth() + iDp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i + iDp2);
             TrendingStickersAlert.this.shapeDrawable.draw(canvas);
             canvas.restore();

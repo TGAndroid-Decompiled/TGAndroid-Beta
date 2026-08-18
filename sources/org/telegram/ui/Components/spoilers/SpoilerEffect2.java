@@ -75,9 +75,9 @@ public class SpoilerEffect2 {
             }
             HashMap map = instance;
             Integer numValueOf = Integer.valueOf(i);
-            SpoilerEffect2 spoilerEffect22 = new SpoilerEffect2(i, makeTextureViewContainer(viewGroup), size, size);
-            map.put(numValueOf, spoilerEffect22);
-            spoilerEffect2 = spoilerEffect22;
+            SpoilerEffect2 spoilerEffect3 = new SpoilerEffect2(i, makeTextureViewContainer(viewGroup), size, size);
+            map.put(numValueOf, spoilerEffect3);
+            spoilerEffect2 = spoilerEffect3;
         }
         spoilerEffect2.attach(view);
         return spoilerEffect2;
@@ -256,7 +256,7 @@ public class SpoilerEffect2 {
     private SpoilerEffect2(int i, ViewGroup viewGroup, int i2, int i3) {
         int i4 = (int) AndroidUtilities.screenRefreshRate;
         this.MAX_FPS = i4;
-        double d = 1.0d / i4;
+        double d = 1.0d / ((double) i4);
         this.MIN_DELTA = d;
         this.MAX_DELTA = d * 4.0d;
         this.type = i;
@@ -279,11 +279,11 @@ public class SpoilerEffect2 {
             public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i5, int i6) {
                 if (SpoilerEffect2.this.thread == null) {
                     SpoilerEffect2 spoilerEffect2 = SpoilerEffect2.this;
-                    final SpoilerEffect2 spoilerEffect22 = SpoilerEffect2.this;
-                    spoilerEffect2.thread = spoilerEffect22.new SpoilerThread(surfaceTexture, i5, i6, new Runnable() {
+                    final SpoilerEffect2 spoilerEffect3 = SpoilerEffect2.this;
+                    spoilerEffect2.thread = spoilerEffect3.new SpoilerThread(surfaceTexture, i5, i6, new Runnable() {
                         @Override
                         public final void run() {
-                            spoilerEffect22.invalidate();
+                            spoilerEffect3.invalidate();
                         }
                     });
                     SpoilerEffect2.this.thread.start();
@@ -368,7 +368,7 @@ public class SpoilerEffect2 {
         }
 
         @Override
-        public void run() throws InterruptedException {
+        public void run() {
             init();
             long jNanoTime = System.nanoTime();
             while (this.running) {

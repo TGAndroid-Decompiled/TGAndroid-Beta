@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -42,8 +43,6 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.SharedAudioCell;
-import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
@@ -284,7 +283,24 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     private void checkUi_listViewPadding() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.checkUi_listViewPadding():void");
+        int iDp;
+        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
+            iDp = AndroidUtilities.dp(8.0f);
+            this.parentAlert.setAllowNestedScroll(false);
+        } else {
+            if (AndroidUtilities.isTablet()) {
+                iDp = (this.preMeasuredAvailableHeight / 5) * 2;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    iDp = (int) (this.preMeasuredAvailableHeight / 3.5f);
+                } else {
+                    iDp = (this.preMeasuredAvailableHeight / 5) * 2;
+                }
+            }
+            this.parentAlert.setAllowNestedScroll(true);
+        }
+        this.listView.setPadding(0, (int) (iDp + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f) + this.topPanelLayout.getAnimatedHeightWithPadding(0.0f)), 0, this.listPaddingBottom);
     }
 
     private void convertProfileMusicToEntries() {
@@ -323,8 +339,205 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         return MediaController.getInstance().setPlaylist(arrayList, messageObject, 0L);
     }
 
-    public void fillItems(java.util.ArrayList r18, org.telegram.ui.Components.UniversalAdapter r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        boolean z;
+        ArrayList arrayList2;
+        arrayList.add(UItem.asSpace(-100, AndroidUtilities.dp(1.0f)));
+        int size = arrayList.size();
+        if (TextUtils.isEmpty(this.query)) {
+            universalAdapter.whiteSectionStart();
+            for (int i = 0; i < this.audioEntries.size(); i++) {
+                MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) this.audioEntries.get(i);
+                audioEntry.messageObject.setQuery(null);
+                arrayList.add(SharedAudioCell.Factory.as(audioEntry, new Utilities.CallbackReturn() {
+                    @Override
+                    public final Object run(Object obj) {
+                        return Boolean.valueOf(this.f$0.needPlayMessage((MessageObject) obj));
+                    }
+                }).setChecked(this.selectedAudios.contains(audioEntry)).setId(-1));
+            }
+            if (this.loadingAudio) {
+                arrayList.add(UItem.asFlicker(11, 4));
+                arrayList.add(UItem.asFlicker(12, 4));
+                arrayList.add(UItem.asFlicker(13, 4));
+            }
+            universalAdapter.whiteSectionEnd();
+            convertProfileMusicToEntries();
+            if (this.savedMusicList != null && (arrayList2 = this.profileEntries) != null && !arrayList2.isEmpty()) {
+                if (arrayList.size() > size) {
+                    arrayList.add(UItem.asShadow(-98, null));
+                }
+                universalAdapter.whiteSectionStart();
+                arrayList.add(UItem.asHeader(45, LocaleController.getString(R.string.AudioSearchProfile)));
+                for (int i2 = 0; i2 < this.profileEntries.size(); i2++) {
+                    MediaController.AudioEntry audioEntry2 = (MediaController.AudioEntry) this.profileEntries.get(i2);
+                    arrayList.add(SharedAudioCell.Factory.as(audioEntry2, new Utilities.CallbackReturn() {
+                        @Override
+                        public final Object run(Object obj) {
+                            return Boolean.valueOf(this.f$0.needPlayMessage((MessageObject) obj));
+                        }
+                    }).setChecked(this.selectedAudios.contains(audioEntry2)));
+                }
+                if (this.savedMusicList.loading) {
+                    arrayList.add(UItem.asFlicker(41, 4));
+                    arrayList.add(UItem.asFlicker(42, 4));
+                    arrayList.add(UItem.asFlicker(43, 4));
+                }
+                MessagesController.SavedMusicList savedMusicList = this.savedMusicList;
+                if (!savedMusicList.loading && !savedMusicList.endReached) {
+                    arrayList.add(UItem.asButton(this.LOAD_MORE_SEARCH_PROFILE, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
+                }
+                universalAdapter.whiteSectionEnd();
+            }
+            ArrayList arrayList3 = this.foundInChats;
+            if (arrayList3 != null && (!arrayList3.isEmpty() || this.searchChatsRequestId >= 0 || this.loadingSearchChats)) {
+                if (arrayList.size() > size) {
+                    arrayList.add(UItem.asShadow(-98, null));
+                }
+                universalAdapter.whiteSectionStart();
+                arrayList.add(UItem.asHeader(((this.searchChatsRequestId >= 0 || this.loadingSearchChats) && this.foundInChats.isEmpty()) ? 25 : 20, LocaleController.getString(R.string.AudioSearchChats)));
+                for (int i3 = 0; i3 < this.foundInChats.size(); i3++) {
+                    MediaController.AudioEntry audioEntry3 = (MediaController.AudioEntry) this.foundInChats.get(i3);
+                    audioEntry3.messageObject.setQuery(this.query);
+                    arrayList.add(SharedAudioCell.Factory.as(audioEntry3, new Utilities.CallbackReturn() {
+                        @Override
+                        public final Object run(Object obj) {
+                            return Boolean.valueOf(this.f$0.needPlayMessage((MessageObject) obj));
+                        }
+                    }).setChecked(this.selectedAudios.contains(audioEntry3)));
+                }
+                if (this.searchChatsRequestId >= 0 || this.loadingSearchChats) {
+                    arrayList.add(UItem.asFlicker(21, 4));
+                    arrayList.add(UItem.asFlicker(22, 4));
+                    arrayList.add(UItem.asFlicker(23, 4));
+                }
+                if (this.searchChatsHasMore) {
+                    arrayList.add(UItem.asButton(this.LOAD_MORE_SEARCH_CHATS, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
+                }
+                universalAdapter.whiteSectionEnd();
+            }
+        } else {
+            String lowerCase = this.query.toLowerCase();
+            String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+            boolean z2 = false;
+            for (int i4 = 0; i4 < this.audioEntries.size(); i4++) {
+                MediaController.AudioEntry audioEntry4 = (MediaController.AudioEntry) this.audioEntries.get(i4);
+                String str = audioEntry4.author;
+                if (str != null) {
+                    String lowerCase2 = str.toLowerCase();
+                    String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                    if (!lowerCase2.startsWith(lowerCase)) {
+                        if (!lowerCase2.contains(" " + lowerCase) && !strTranslitSafe2.startsWith(strTranslitSafe)) {
+                            if (!strTranslitSafe2.contains(" " + strTranslitSafe)) {
+                                z = false;
+                            }
+                        }
+                    }
+                    z = true;
+                } else {
+                    z = false;
+                }
+                String str2 = audioEntry4.title;
+                if (str2 != null) {
+                    String lowerCase3 = str2.toLowerCase();
+                    String strTranslitSafe3 = AndroidUtilities.translitSafe(lowerCase3);
+                    if (z || lowerCase3.startsWith(lowerCase)) {
+                        z = true;
+                    } else {
+                        if (lowerCase3.contains(" " + lowerCase) || strTranslitSafe3.startsWith(strTranslitSafe)) {
+                            z = true;
+                        } else {
+                            if (strTranslitSafe3.contains(" " + strTranslitSafe)) {
+                                z = true;
+                            } else {
+                                z = false;
+                            }
+                        }
+                    }
+                }
+                if (z) {
+                    if (!z2) {
+                        if (arrayList.size() > size) {
+                            arrayList.add(UItem.asShadow(-97, null));
+                        }
+                        universalAdapter.whiteSectionStart();
+                        arrayList.add(UItem.asHeader(10, LocaleController.getString(R.string.AudioSearchLocal)));
+                        z2 = true;
+                    }
+                    audioEntry4.messageObject.setQuery(this.query);
+                    arrayList.add(SharedAudioCell.Factory.as(audioEntry4, new Utilities.CallbackReturn() {
+                        @Override
+                        public final Object run(Object obj) {
+                            return Boolean.valueOf(this.f$0.needPlayMessage((MessageObject) obj));
+                        }
+                    }).setChecked(this.selectedAudios.contains(audioEntry4)).setId(10));
+                }
+            }
+            universalAdapter.whiteSectionEnd();
+            ArrayList arrayList4 = this.foundInChats;
+            if (arrayList4 != null && (!arrayList4.isEmpty() || this.searchChatsRequestId >= 0 || this.loadingSearchChats)) {
+                if (arrayList.size() > size) {
+                    arrayList.add(UItem.asShadow(-98, null));
+                }
+                universalAdapter.whiteSectionStart();
+                arrayList.add(UItem.asHeader(((this.searchChatsRequestId >= 0 || this.loadingSearchChats) && this.foundInChats.isEmpty()) ? 25 : 20, LocaleController.getString(R.string.AudioSearchChats)));
+                for (int i5 = 0; i5 < this.foundInChats.size(); i5++) {
+                    MediaController.AudioEntry audioEntry5 = (MediaController.AudioEntry) this.foundInChats.get(i5);
+                    audioEntry5.messageObject.setQuery(this.query);
+                    arrayList.add(SharedAudioCell.Factory.as(audioEntry5, new Utilities.CallbackReturn() {
+                        @Override
+                        public final Object run(Object obj) {
+                            return Boolean.valueOf(this.f$0.needPlayMessage((MessageObject) obj));
+                        }
+                    }).setChecked(this.selectedAudios.contains(audioEntry5)));
+                }
+                if (this.searchChatsRequestId >= 0 || this.loadingSearchChats) {
+                    arrayList.add(UItem.asFlicker(21, 4));
+                    arrayList.add(UItem.asFlicker(22, 4));
+                    arrayList.add(UItem.asFlicker(23, 4));
+                }
+                if (this.searchChatsHasMore) {
+                    arrayList.add(UItem.asButton(this.LOAD_MORE_SEARCH_CHATS, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
+                }
+                universalAdapter.whiteSectionEnd();
+            }
+            ArrayList arrayList5 = this.foundGlobal;
+            if (arrayList5 != null && (!arrayList5.isEmpty() || this.searchGlobalRequestId >= 0 || this.loadingSearchGlobal)) {
+                if (arrayList.size() > size) {
+                    arrayList.add(UItem.asShadow(-96, null));
+                }
+                universalAdapter.whiteSectionStart();
+                arrayList.add(UItem.asHeader(((this.searchGlobalRequestId >= 0 || this.loadingSearchGlobal) && this.foundGlobal.isEmpty()) ? 35 : 30, LocaleController.getString(R.string.AudioSearchGlobal)));
+                int size2 = this.foundGlobal.size();
+                for (int i6 = 0; i6 < size2; i6++) {
+                    MediaController.AudioEntry audioEntry6 = (MediaController.AudioEntry) this.foundGlobal.get(i6);
+                    audioEntry6.messageObject.setQuery(this.query);
+                    arrayList.add(SharedAudioCell.Factory.as(audioEntry6, new Utilities.CallbackReturn() {
+                        @Override
+                        public final Object run(Object obj) {
+                            return Boolean.valueOf(this.f$0.needPlayMessage((MessageObject) obj));
+                        }
+                    }).setChecked(this.selectedAudios.contains(audioEntry6)));
+                }
+                if (this.searchGlobalRequestId >= 0 || this.loadingSearchGlobal) {
+                    arrayList.add(UItem.asFlicker(31, 4));
+                    arrayList.add(UItem.asFlicker(32, 4));
+                    arrayList.add(UItem.asFlicker(33, 4));
+                }
+                if (this.searchGlobalHasMore) {
+                    arrayList.add(UItem.asButton(this.LOAD_MORE_SEARCH_GLOBAL, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
+                }
+                universalAdapter.whiteSectionEnd();
+            }
+        }
+        if (arrayList.size() <= size && !this.loadingAudio) {
+            if (isSearching()) {
+                arrayList.add(EmptyView.Factory.as(LocaleController.getString(R.string.NoAudioFound), AndroidUtilities.replaceTags(LocaleController.formatString(this.query.length() >= 3 ? R.string.NoAudioFoundInfo2 : R.string.NoAudioFoundInfo, this.query))));
+            } else {
+                arrayList.add(EmptyView.Factory.as(LocaleController.getString(R.string.NoAudioFiles), LocaleController.getString(R.string.NoAudioFilesInfo)));
+            }
+        }
+        arrayList.add(UItem.asShadow(-99, null));
     }
 
     public void updateWithSavingScroll() {
@@ -337,10 +550,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         boolean zCanScrollVertically = this.listView.canScrollVertically(-1);
         int i2 = -1;
         int i3 = 0;
-        while (true) {
-            if (i3 >= this.listView.getChildCount()) {
-                break;
-            }
+        while (i3 < this.listView.getChildCount()) {
             View childAt = this.listView.getChildAt(i3);
             int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
             int top = childAt.getTop();
@@ -363,8 +573,52 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public void onItemClick(org.telegram.ui.Components.UItem r18, android.view.View r19, int r20, float r21, float r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onItemClick(org.telegram.ui.Components.UItem, android.view.View, int, float, float):void");
+    public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
+        boolean z = false;
+        if (uItem != null && uItem.id == this.LOAD_MORE_SEARCH_PROFILE) {
+            this.savedMusicList.load();
+            return;
+        }
+        if (uItem != null && uItem.id == this.LOAD_MORE_SEARCH_CHATS) {
+            searchChats();
+            return;
+        }
+        if (uItem != null && uItem.id == this.LOAD_MORE_SEARCH_GLOBAL) {
+            searchGlobal();
+            return;
+        }
+        if (view instanceof SharedAudioCell) {
+            SharedAudioCell sharedAudioCell = (SharedAudioCell) view;
+            MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) sharedAudioCell.getTag();
+            ChatAttachAlert chatAttachAlert = this.parentAlert;
+            if (chatAttachAlert.isStoryAudioPicker || chatAttachAlert.isPollAttach) {
+                this.sendPressed = true;
+                ArrayList arrayList = new ArrayList();
+                arrayList.add(audioEntry.messageObject);
+                this.delegate.didSelectAudio(arrayList, this.parentAlert.getCommentView().getText(), false, 0, 0, 0L, false, 0L);
+            } else {
+                if (this.selectedAudios.contains(audioEntry)) {
+                    this.selectedAudios.remove(audioEntry);
+                    uItem.checked = false;
+                    sharedAudioCell.setChecked(false, true);
+                } else {
+                    if (this.maxSelectedFiles >= 0) {
+                        int size = this.selectedAudios.size();
+                        int i2 = this.maxSelectedFiles;
+                        if (size >= i2) {
+                            showErrorBox(LocaleController.formatString(R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", i2, new Object[0])));
+                            return;
+                        }
+                    }
+                    uItem.checked = true;
+                    this.selectedAudios.add(audioEntry);
+                    sharedAudioCell.setChecked(true, true);
+                }
+                this.parentAlert.updateCountButton(z ? 1 : 2);
+            }
+            z = true;
+            this.parentAlert.updateCountButton(z ? 1 : 2);
+        }
     }
 
     public boolean onItemLongClick(UItem uItem, View view, int i, float f, float f2) {
@@ -659,7 +913,15 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                     arrayList.add(audioEntry);
                     i--;
-                } finally {
+                } catch (Throwable th) {
+                    if (cursorQuery != null) {
+                        try {
+                            cursorQuery.close();
+                        } catch (Throwable th2) {
+                            th.addSuppressed(th2);
+                        }
+                    }
+                    throw th;
                 }
             }
             cursorQuery.close();
@@ -749,11 +1011,9 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         if (messages_messages != null) {
             messagesController.putUsers(messages_messages.users, false);
             messagesController.putChats(messages_messages.chats, false);
-            Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
-            while (it.hasNext()) {
-                TLRPC.Message next = it.next();
+            for (TLRPC.Message message : messages_messages.messages) {
                 MediaController.AudioEntry audioEntry = new MediaController.AudioEntry();
-                MessageObject messageObject = new MessageObject(i, next, false, true);
+                MessageObject messageObject = new MessageObject(i, message, false, true);
                 audioEntry.messageObject = messageObject;
                 TLRPC.Document document = messageObject.getDocument();
                 if (document != null) {
@@ -868,11 +1128,9 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         this.loadingSearchGlobal = false;
         if (messages_botresults != null) {
             messagesController.putUsers(messages_botresults.users, false);
-            Iterator<TLRPC.BotInlineResult> it = messages_botresults.results.iterator();
-            while (it.hasNext()) {
-                TLRPC.BotInlineResult next = it.next();
-                if (next instanceof TLRPC.TL_botInlineMediaResult) {
-                    TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) next;
+            for (TLRPC.BotInlineResult botInlineResult : messages_botresults.results) {
+                if (botInlineResult instanceof TLRPC.TL_botInlineMediaResult) {
+                    TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) botInlineResult;
                     if (tL_botInlineMediaResult.document != null) {
                         TLRPC.TL_message tL_message = new TLRPC.TL_message();
                         tL_message.out = true;
@@ -921,8 +1179,9 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                 }
             }
-            this.globalAudioOffset = messages_botresults.next_offset;
-            this.searchGlobalHasMore = !TextUtils.isEmpty(r8);
+            String str = messages_botresults.next_offset;
+            this.globalAudioOffset = str;
+            this.searchGlobalHasMore = !TextUtils.isEmpty(str);
             updateWithSavingScroll();
         }
     }

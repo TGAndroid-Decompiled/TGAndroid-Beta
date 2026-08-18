@@ -35,10 +35,7 @@ public abstract class AccountFrozenAlert {
         }
         try {
             Matcher matcher = Pattern.compile("t\\.me/([a-zA-Z0-9]+)/?").matcher(MessagesController.getInstance(i).freezeAppealUrl);
-            if (matcher.find()) {
-                return publicUsername.equalsIgnoreCase(matcher.group(1));
-            }
-            return false;
+            return matcher.find() && publicUsername.equalsIgnoreCase(matcher.group(1));
         } catch (Exception e) {
             FileLog.e(e);
             return false;

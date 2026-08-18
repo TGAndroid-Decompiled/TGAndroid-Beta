@@ -3,9 +3,6 @@ package org.webrtc;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.webrtc.MediaStreamTrack;
-import org.webrtc.RtpCapabilities;
-import org.webrtc.RtpParameters;
 
 public class RtpTransceiver {
     private RtpReceiver cachedReceiver;

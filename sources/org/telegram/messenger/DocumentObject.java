@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.ArrayList;
-import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 
@@ -131,29 +130,32 @@ public class DocumentObject {
             return null;
         }
         int size = document.thumbs.size();
-        int i4 = 0;
-        while (true) {
-            if (i4 >= size) {
-                break;
-            }
+        for (int i4 = 0; i4 < size; i4++) {
             TLRPC.PhotoSize photoSize = document.thumbs.get(i4);
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 int size2 = document.attributes.size();
-                for (int i5 = 0; i5 < size2; i5++) {
+                int i5 = 0;
+                while (true) {
+                    if (i5 >= size2) {
+                        i2 = 512;
+                        i3 = 512;
+                        break;
+                    }
                     TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i5);
                     if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
                         i2 = documentAttribute.w;
                         i3 = documentAttribute.h;
                         break;
                     }
+                    i5++;
                 }
-                i2 = 512;
-                i3 = 512;
                 if (i2 != 0 && i3 != 0 && (drawableByPath = SvgHelper.getDrawableByPath(((TLRPC.TL_photoPathSize) photoSize).svgPath, (int) (i2 * f2), (int) (i3 * f2))) != null) {
                     drawableByPath.setupGradient(i, resourcesProvider, f, false);
+                    break;
                 }
-            } else {
-                i4++;
+                break;
+                break;
+                break;
             }
         }
         return drawableByPath;

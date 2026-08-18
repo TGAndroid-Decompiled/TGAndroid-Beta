@@ -5,7 +5,7 @@ import kotlin.ranges.RangesKt;
 
 public abstract class DurationKt {
     public static final long millisToNanos(long j) {
-        return j * 1000000;
+        return j * ((long) 1000000);
     }
 
     public static final long toDuration(int i, DurationUnit unit) {
@@ -35,6 +35,6 @@ public abstract class DurationKt {
     }
 
     public static final long durationOf(long j, int i) {
-        return Duration.m296constructorimpl((j << 1) + i);
+        return Duration.m296constructorimpl((j << 1) + ((long) i));
     }
 }

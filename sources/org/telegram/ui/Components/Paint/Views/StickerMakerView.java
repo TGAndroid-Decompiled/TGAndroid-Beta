@@ -18,6 +18,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
@@ -68,7 +69,6 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.ObjectDetectionEmojis;
-import org.telegram.ui.Components.Paint.Views.PaintWeightChooserView;
 import org.telegram.ui.Components.ThanosEffect;
 import org.telegram.ui.Stories.recorder.DownloadButton;
 import org.telegram.ui.Stories.recorder.StoryEntry;
@@ -652,8 +652,33 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
     }
 
     @Override
-    public boolean dispatchTouchEvent(android.view.MotionEvent r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.StickerMakerView.dispatchTouchEvent(android.view.MotionEvent):boolean");
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        boolean z;
+        this.tx = motionEvent.getX();
+        float y = motionEvent.getY();
+        this.ty = y;
+        if (this.objects != null && this.bordersAnimator != null) {
+            SegmentedObject segmentedObjectObjectBehind = objectBehind(this.tx, y);
+            int i = 0;
+            while (true) {
+                SegmentedObject[] segmentedObjectArr = this.objects;
+                if (i >= segmentedObjectArr.length) {
+                    break;
+                }
+                if (segmentedObjectArr[i] == segmentedObjectObjectBehind && motionEvent.getAction() != 3) {
+                    z = motionEvent.getAction() != 1;
+                }
+                if (z && !this.objects[i].hover) {
+                    AndroidUtilities.vibrateCursor(this);
+                }
+                this.objects[i].hover = z;
+                i++;
+            }
+            if (getParent() instanceof View) {
+                ((View) getParent()).invalidate();
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     public SegmentedObject objectBehind(float f, float f2) {
@@ -955,7 +980,10 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         for (int i2 = 0; i2 < list.size(); i2++) {
             SubjectMock subjectMock = (SubjectMock) list.get(i2);
             SegmentedObject segmentedObject2 = new SegmentedObject();
-            segmentedObject2.bounds.set(subjectMock.startX, subjectMock.startY, r6 + subjectMock.width, r8 + subjectMock.height);
+            RectF rectF = segmentedObject2.bounds;
+            int i3 = subjectMock.startX;
+            int i4 = subjectMock.startY;
+            rectF.set(i3, i4, i3 + subjectMock.width, i4 + subjectMock.height);
             segmentedObject2.rotatedBounds.set(segmentedObject2.bounds);
             matrix.mapRect(segmentedObject2.rotatedBounds);
             segmentedObject2.orientation = i;
@@ -1110,7 +1138,6 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
 
     private void createSegmentImagePath(SegmentedObject segmentedObject, int i, int i2) {
         float f;
-        int i3;
         Point point;
         int width = segmentedObject.getImage().getWidth();
         int height = segmentedObject.getImage().getHeight();
@@ -1147,23 +1174,23 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         float fMin = Math.min(f4 / bitmapCreateBitmap.getWidth(), f5 / bitmapCreateBitmap.getHeight());
         Point point2 = null;
         Point point3 = null;
-        int i4 = 0;
+        int i3 = 0;
         while (true) {
-            if (i4 >= width2) {
+            if (i3 >= width2) {
                 break;
             }
-            int width3 = i4 / bitmapCreateBitmap.getWidth();
-            int width4 = i4 - (bitmapCreateBitmap.getWidth() * width3);
-            int i5 = iArr[i4];
-            boolean z = i5 != 0;
-            if (i5 == 0) {
-                int i6 = i4 - 1;
-                boolean z2 = i6 >= 0;
+            int width3 = i3 / bitmapCreateBitmap.getWidth();
+            int width4 = i3 - (bitmapCreateBitmap.getWidth() * width3);
+            int i4 = iArr[i3];
+            boolean z = i4 != 0;
+            if (i4 == 0) {
+                int i5 = i3 - 1;
+                boolean z2 = i5 >= 0;
                 Point point4 = point2;
-                int i7 = i4 + 1;
-                boolean z3 = i7 < width2;
-                Point point5 = (!z2 || iArr[i6] == 0) ? point4 : new Point(width4, width3, fMin);
-                if (point3 == null && z3 && iArr[i7] != 0) {
+                int i6 = i3 + 1;
+                boolean z3 = i6 < width2;
+                Point point5 = (!z2 || iArr[i5] == 0) ? point4 : new Point(width4, width3, fMin);
+                if (point3 == null && z3 && iArr[i6] != 0) {
                     point3 = new Point(width4, width3, fMin);
                 }
                 point2 = point5;
@@ -1186,21 +1213,21 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             if (z5 && z) {
                 point3 = new Point(width4, width3, fMin);
             }
-            i4++;
+            i3++;
         }
         ArrayList arrayList3 = new ArrayList();
         ArrayList arrayList4 = new ArrayList();
         Point point6 = null;
         Point point7 = null;
-        int i8 = 0;
-        while (i8 < width2) {
-            int height3 = i8 / bitmapCreateBitmap.getHeight();
+        int i7 = 0;
+        while (i7 < width2) {
+            int height3 = i7 / bitmapCreateBitmap.getHeight();
             Point point8 = point6;
-            int height4 = i8 - (bitmapCreateBitmap.getHeight() * height3);
+            int height4 = i7 - (bitmapCreateBitmap.getHeight() * height3);
             boolean z6 = iArr[height3 + (bitmapCreateBitmap.getWidth() * height4)] != 0;
             if (z6) {
                 f = f3;
-                i3 = width2;
+                width2 = width2;
                 point = point8;
             } else {
                 int width5 = height3 + ((height4 - 1) * bitmapCreateBitmap.getWidth());
@@ -1208,13 +1235,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
                 int width6 = height3 + ((height4 + 1) * bitmapCreateBitmap.getWidth());
                 boolean z7 = width5 >= 0;
                 boolean z8 = width6 < width2;
-                if (!z7 || iArr[width5] == 0) {
-                    i3 = width2;
-                    point = point8;
-                } else {
-                    i3 = width2;
-                    point = new Point(height3, height4, fMin);
-                }
+                point = (!z7 || iArr[width5] == 0) ? point8 : new Point(height3, height4, fMin);
                 if (point7 == null && z8 && iArr[width6] != 0) {
                     point7 = new Point(height3, height4, fMin);
                 }
@@ -1237,9 +1258,9 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             if (z10 && z6) {
                 point7 = new Point(height3, height4, fMin);
             }
-            i8++;
+            i7++;
             point6 = point;
-            width2 = i3;
+            width2 = width2;
             f3 = f;
         }
         float f6 = f3;
@@ -1254,8 +1275,8 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
         List listRemoveUnnecessaryPoints = removeUnnecessaryPoints(new ArrayList(linkedHashSet));
         List listRemoveUnnecessaryPoints2 = removeUnnecessaryPoints(new ArrayList(linkedHashSet2));
         Path path = new Path();
-        for (int i9 = 0; i9 < listRemoveUnnecessaryPoints2.size(); i9 += 2) {
-            Point point9 = (Point) listRemoveUnnecessaryPoints2.get(i9);
+        for (int i8 = 0; i8 < listRemoveUnnecessaryPoints2.size(); i8 += 2) {
+            Point point9 = (Point) listRemoveUnnecessaryPoints2.get(i8);
             if (path.isEmpty()) {
                 path.moveTo(((android.graphics.Point) point9).x, ((android.graphics.Point) point9).y);
             } else {
@@ -1263,8 +1284,8 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             }
         }
         Path path2 = new Path();
-        for (int i10 = 0; i10 < listRemoveUnnecessaryPoints.size(); i10 += 2) {
-            Point point10 = (Point) listRemoveUnnecessaryPoints.get(i10);
+        for (int i9 = 0; i9 < listRemoveUnnecessaryPoints.size(); i9 += 2) {
+            Point point10 = (Point) listRemoveUnnecessaryPoints.get(i9);
             if (path2.isEmpty()) {
                 path2.moveTo(((android.graphics.Point) point10).x, ((android.graphics.Point) point10).y);
             } else {
@@ -1332,8 +1353,9 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             Matrix matrix = new Matrix();
             SegmentedObject segmentedObject3 = this.selectedObject;
             matrix.postRotate(segmentedObject3.orientation, segmentedObject3.getDarkMaskImage().getWidth() / 2.0f, this.selectedObject.getDarkMaskImage().getHeight() / 2.0f);
-            if ((this.selectedObject.orientation / 90) % 2 != 0) {
-                float height = (r3.getImage().getHeight() - this.selectedObject.getImage().getWidth()) / 2.0f;
+            SegmentedObject segmentedObject4 = this.selectedObject;
+            if ((segmentedObject4.orientation / 90) % 2 != 0) {
+                float height = (segmentedObject4.getImage().getHeight() - this.selectedObject.getImage().getWidth()) / 2.0f;
                 matrix.postTranslate(height, -height);
             }
             matrix.postScale(bitmap.getWidth() / this.selectedObject.getDarkMaskImage().getHeight(), bitmap.getHeight() / this.selectedObject.getDarkMaskImage().getWidth());

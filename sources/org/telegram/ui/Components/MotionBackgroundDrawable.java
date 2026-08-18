@@ -702,6 +702,7 @@ public class MotionBackgroundDrawable extends Drawable {
 
     public void updateAnimation() {
         float interpolation;
+        char c;
         float interpolation2;
         long jElapsedRealtime = SystemClock.elapsedRealtime();
         long j = jElapsedRealtime - this.lastUpdateTime;
@@ -732,7 +733,13 @@ public class MotionBackgroundDrawable extends Drawable {
                 interpolation = 1.0f - ((f3 - (i * 0.125f)) / 0.125f);
             } else if (this.rotatingPreview) {
                 float interpolation3 = this.interpolator.getInterpolation(f);
-                char c = interpolation3 <= 0.25f ? (char) 0 : interpolation3 <= 0.5f ? (char) 1 : interpolation3 <= 0.75f ? (char) 2 : (char) 3;
+                if (interpolation3 <= 0.25f) {
+                    c = 0;
+                } else if (interpolation3 <= 0.5f) {
+                    c = 1;
+                } else {
+                    c = interpolation3 <= 0.75f ? (char) 2 : (char) 3;
+                }
                 GenericProvider genericProvider = this.animationProgressProvider;
                 if (genericProvider != null) {
                     this.posAnimationProgress = ((Float) genericProvider.provide(this)).floatValue();
@@ -766,7 +773,11 @@ public class MotionBackgroundDrawable extends Drawable {
                     }
                 }
                 if (interpolation2 > 0.25f) {
-                    interpolation2 = interpolation2 <= 0.5f ? interpolation2 - 0.25f : interpolation2 <= 0.75f ? interpolation2 - 0.5f : interpolation2 - 0.75f;
+                    if (interpolation2 <= 0.5f) {
+                        interpolation2 -= 0.25f;
+                    } else {
+                        interpolation2 = interpolation2 <= 0.75f ? interpolation2 - 0.5f : interpolation2 - 0.75f;
+                    }
                 }
                 interpolation = interpolation2 / 0.25f;
                 if (this.rotationBack) {
@@ -855,7 +866,8 @@ public class MotionBackgroundDrawable extends Drawable {
 
     public void setIndeterminateAnimation(boolean z) {
         if (!z && this.isIndeterminateAnimation) {
-            this.posAnimationProgress = 1.0f - ((this.posAnimationProgress - (((int) (r0 / 0.125f)) * 0.125f)) / 0.125f);
+            float f = this.posAnimationProgress;
+            this.posAnimationProgress = 1.0f - ((f - (((int) (f / 0.125f)) * 0.125f)) / 0.125f);
             this.ignoreInterpolator = true;
         }
         this.isIndeterminateAnimation = z;

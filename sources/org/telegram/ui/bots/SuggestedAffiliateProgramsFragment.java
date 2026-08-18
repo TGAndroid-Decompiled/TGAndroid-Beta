@@ -19,7 +19,6 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Stars.BotStarsController;
-import org.telegram.ui.bots.ChannelAffiliateProgramsFragment;
 
 public class SuggestedAffiliateProgramsFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private BackDrawable backDrawable;

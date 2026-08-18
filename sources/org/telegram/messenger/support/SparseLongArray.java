@@ -147,6 +147,9 @@ public class SparseLongArray implements Cloneable {
                 i5 = i6;
             }
         }
-        return i5 == i3 ? ~i3 : ((long) iArr[i5]) == j ? i5 : ~i5;
+        if (i5 == i3) {
+            return ~i3;
+        }
+        return ((long) iArr[i5]) == j ? i5 : ~i5;
     }
 }

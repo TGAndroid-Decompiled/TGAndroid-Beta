@@ -61,8 +61,9 @@ public abstract class StatisticPostInfoCell extends FrameLayout {
             @Override
             protected void onDraw(Canvas canvas) {
                 if (StatisticPostInfoCell.this.postInfo != null && StatisticPostInfoCell.this.postInfo.isStory()) {
-                    float fDp = AndroidUtilities.dp(1.0f);
-                    StatisticPostInfoCell.this.storyAvatarParams.originalAvatarRect.set(fDp, fDp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
+                    int iDp = AndroidUtilities.dp(1.0f);
+                    float f = iDp;
+                    StatisticPostInfoCell.this.storyAvatarParams.originalAvatarRect.set(f, f, getMeasuredWidth() - iDp, getMeasuredHeight() - iDp);
                     StatisticPostInfoCell.this.storyAvatarParams.drawSegments = false;
                     StatisticPostInfoCell.this.storyAvatarParams.animate = false;
                     StatisticPostInfoCell.this.storyAvatarParams.drawInside = true;

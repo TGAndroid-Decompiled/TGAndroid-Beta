@@ -35,12 +35,7 @@ public abstract class StaticLayoutEx {
 
     public static StaticLayout createStaticLayout(CharSequence charSequence, TextPaint textPaint, int i, Layout.Alignment alignment, float f, float f2, boolean z, TextUtils.TruncateAt truncateAt, int i2, int i3, boolean z2) {
         StaticLayout staticLayout;
-        Object obj;
-        CharSequence charSequenceEllipsize;
-        CharSequence charSequence2;
-        int i4;
         StaticLayout staticLayout2;
-        TextUtils.TruncateAt truncateAt2;
         int offsetForHorizontal;
         CharSequence charSequenceAppend = charSequence;
         try {
@@ -50,72 +45,60 @@ public abstract class StaticLayoutEx {
                     if (iIndexOf > 0) {
                         charSequenceAppend = SpannableStringBuilder.valueOf(charSequenceAppend.subSequence(0, iIndexOf)).append((CharSequence) "…");
                     }
-                    charSequenceEllipsize = TextUtils.ellipsize(charSequenceAppend, textPaint, i2, TextUtils.TruncateAt.END);
-                    obj = null;
-                } catch (Exception e) {
-                    e = e;
-                    obj = null;
-                }
-                try {
-                    return new StaticLayout(charSequenceEllipsize, 0, charSequenceEllipsize.length(), textPaint, i, alignment, f, f2, z);
+                    CharSequence charSequenceEllipsize = TextUtils.ellipsize(charSequenceAppend, textPaint, i2, TextUtils.TruncateAt.END);
+                    try {
+                        return new StaticLayout(charSequenceEllipsize, 0, charSequenceEllipsize.length(), textPaint, i, alignment, f, f2, z);
+                    } catch (Exception e) {
+                        e = e;
+                        staticLayout = null;
+                        FileLog.e(e);
+                        return staticLayout;
+                    }
                 } catch (Exception e2) {
                     e = e2;
-                    staticLayout = obj;
-                    FileLog.e(e);
-                    return staticLayout;
                 }
-            }
-            if (Build.VERSION.SDK_INT >= 23) {
-                staticLayout2 = StaticLayout.Builder.obtain(charSequenceAppend, 0, charSequence.length(), textPaint, i).setAlignment(alignment).setLineSpacing(f2, f).setIncludePad(z).setEllipsize(null).setEllipsizedWidth(i2).setMaxLines(i3).setBreakStrategy(1).setHyphenationFrequency(0).build();
-                int i5 = 0;
-                while (true) {
-                    if (i5 >= staticLayout2.getLineCount()) {
-                        break;
-                    }
-                    if (staticLayout2.getLineRight(i5) > i) {
-                        staticLayout2 = StaticLayout.Builder.obtain(charSequenceAppend, 0, charSequence.length(), textPaint, i).setAlignment(alignment).setLineSpacing(f2, f).setIncludePad(z).setEllipsize(null).setEllipsizedWidth(i2).setMaxLines(i3).setBreakStrategy(0).setHyphenationFrequency(0).build();
-                        break;
-                    }
-                    i5++;
-                }
-                truncateAt2 = null;
-                charSequence2 = "…";
-                i4 = i3;
             } else {
-                TextUtils.TruncateAt truncateAt3 = null;
-                charSequence2 = "…";
-                i4 = i3;
-                try {
-                    staticLayout2 = new StaticLayout(charSequence, textPaint, i, alignment, f, f2, z);
-                    truncateAt2 = truncateAt3;
-                } catch (Exception e3) {
-                    e = e3;
-                    staticLayout = truncateAt3;
+                if (Build.VERSION.SDK_INT >= 23) {
+                    staticLayout2 = StaticLayout.Builder.obtain(charSequenceAppend, 0, charSequence.length(), textPaint, i).setAlignment(alignment).setLineSpacing(f2, f).setIncludePad(z).setEllipsize(null).setEllipsizedWidth(i2).setMaxLines(i3).setBreakStrategy(1).setHyphenationFrequency(0).build();
+                    for (int i4 = 0; i4 < staticLayout2.getLineCount(); i4++) {
+                        if (staticLayout2.getLineRight(i4) > i) {
+                            staticLayout2 = StaticLayout.Builder.obtain(charSequenceAppend, 0, charSequence.length(), textPaint, i).setAlignment(alignment).setLineSpacing(f2, f).setIncludePad(z).setEllipsize(null).setEllipsizedWidth(i2).setMaxLines(i3).setBreakStrategy(0).setHyphenationFrequency(0).build();
+                            break;
+                        }
+                    }
+                    staticLayout = null;
+                } else {
+                    staticLayout = null;
+                    try {
+                        staticLayout2 = new StaticLayout(charSequence, textPaint, i, alignment, f, f2, z);
+                    } catch (Exception e3) {
+                        e = e3;
+                    }
                 }
+                if (staticLayout2.getLineCount() <= r8) {
+                    return staticLayout2;
+                }
+                int i5 = r8 - 1;
+                float lineLeft = staticLayout2.getLineLeft(i5);
+                float lineWidth = staticLayout2.getLineWidth(i5);
+                if (lineLeft != 0.0f) {
+                    offsetForHorizontal = staticLayout2.getOffsetForHorizontal(i5, lineLeft);
+                } else {
+                    offsetForHorizontal = staticLayout2.getOffsetForHorizontal(i5, lineWidth);
+                }
+                if (lineWidth < i2 - AndroidUtilities.dp(10.0f)) {
+                    offsetForHorizontal += 3;
+                }
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceAppend.subSequence(0, Math.max(0, offsetForHorizontal - 3)));
+                spannableStringBuilder.append((CharSequence) "…");
+                if (Build.VERSION.SDK_INT >= 23) {
+                    return StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), textPaint, i).setAlignment(alignment).setLineSpacing(f2, f).setIncludePad(z).setEllipsize(((AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)).length > 0 ? staticLayout : truncateAt).setEllipsizedWidth(i2).setMaxLines(i3).setBreakStrategy(z2 ? 1 : 0).setHyphenationFrequency(0).build();
+                }
+                return new StaticLayout(spannableStringBuilder, textPaint, i, alignment, f, f2, z);
             }
-            if (staticLayout2.getLineCount() <= i4) {
-                return staticLayout2;
-            }
-            int i6 = i4 - 1;
-            float lineLeft = staticLayout2.getLineLeft(i6);
-            float lineWidth = staticLayout2.getLineWidth(i6);
-            if (lineLeft != 0.0f) {
-                offsetForHorizontal = staticLayout2.getOffsetForHorizontal(i6, lineLeft);
-            } else {
-                offsetForHorizontal = staticLayout2.getOffsetForHorizontal(i6, lineWidth);
-            }
-            if (lineWidth < i2 - AndroidUtilities.dp(10.0f)) {
-                offsetForHorizontal += 3;
-            }
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceAppend.subSequence(0, Math.max(0, offsetForHorizontal - 3)));
-            spannableStringBuilder.append(charSequence2);
-            if (Build.VERSION.SDK_INT >= 23) {
-                return StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), textPaint, i).setAlignment(alignment).setLineSpacing(f2, f).setIncludePad(z).setEllipsize(((AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)).length > 0 ? truncateAt2 : truncateAt).setEllipsizedWidth(i2).setMaxLines(i4).setBreakStrategy(z2 ? 1 : 0).setHyphenationFrequency(0).build();
-            }
-            return new StaticLayout(spannableStringBuilder, textPaint, i, alignment, f, f2, z);
         } catch (Exception e4) {
             e = e4;
-            staticLayout = 0;
+            staticLayout = null;
         }
         FileLog.e(e);
         return staticLayout;

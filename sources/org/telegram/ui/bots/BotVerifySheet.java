@@ -93,7 +93,7 @@ public abstract class BotVerifySheet {
 
     public static void lambda$openVerify$0(TopicsFragment topicsFragment, DialogsActivity dialogsActivity, long j, int i, Boolean bool) {
         String forcedFirstName;
-        TLRPC.Chat chat;
+        TLObject tLObject;
         if (topicsFragment != null) {
             topicsFragment.finishFragment();
             dialogsActivity.removeSelfFromStack();
@@ -107,24 +107,24 @@ public abstract class BotVerifySheet {
         if (j >= 0) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
             forcedFirstName = UserObject.getForcedFirstName(user);
-            chat = user;
+            tLObject = user;
         } else {
-            TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
-            if (chat2 == null) {
+            TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+            if (chat == null) {
                 forcedFirstName = "";
-                chat = chat2;
+                tLObject = chat;
             } else {
-                forcedFirstName = chat2.title;
-                chat = chat2;
+                forcedFirstName = chat.title;
+                tLObject = chat;
             }
         }
-        BulletinFactory.of(safeLastFragment).createUsersBulletin(chat, AndroidUtilities.replaceTags(LocaleController.formatString(bool.booleanValue() ? R.string.BotSentRevokeVerifyRequest : R.string.BotSentVerifyRequest, forcedFirstName))).show(false);
+        BulletinFactory.of(safeLastFragment).createUsersBulletin(tLObject, AndroidUtilities.replaceTags(LocaleController.formatString(bool.booleanValue() ? R.string.BotSentRevokeVerifyRequest : R.string.BotSentVerifyRequest, forcedFirstName))).show(false);
     }
 
     public static void openSheet(Context context, final int i, final long j, final long j2, final TL_bots.botVerifierSettings botverifiersettings, final Utilities.Callback callback) {
         TLRPC.Chat chat;
         String str;
-        TLRPC.Chat chat2;
+        TLObject tLObject;
         TLRPC.User user;
         int i2;
         if (context == null) {
@@ -132,26 +132,26 @@ public abstract class BotVerifySheet {
         }
         MessagesController.getInstance(i).getUser(Long.valueOf(j));
         if (j2 >= 0) {
-            TLRPC.User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(j2));
-            String forcedFirstName = UserObject.getForcedFirstName(user2);
-            if (user2.bot_verification_icon == botverifiersettings.icon) {
+            user = MessagesController.getInstance(i).getUser(Long.valueOf(j2));
+            String forcedFirstName = UserObject.getForcedFirstName(user);
+            if (user.bot_verification_icon == botverifiersettings.icon) {
                 openRemoveVerify(context, i, j, j2, botverifiersettings, callback);
                 return;
+            } else {
+                str = forcedFirstName;
+                chat = null;
+                tLObject = user;
             }
-            str = forcedFirstName;
-            chat = null;
-            chat2 = user2;
-            user = user2;
         } else {
-            TLRPC.Chat chat3 = MessagesController.getInstance(i).getChat(Long.valueOf(-j2));
-            String str2 = chat3 == null ? "" : chat3.title;
-            if (chat3.bot_verification_icon == botverifiersettings.icon) {
+            TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-j2));
+            String str2 = chat2 == null ? "" : chat2.title;
+            if (chat2.bot_verification_icon == botverifiersettings.icon) {
                 openRemoveVerify(context, i, j, j2, botverifiersettings, callback);
                 return;
             }
-            chat = chat3;
+            chat = chat2;
             str = str2;
-            chat2 = chat;
+            tLObject = chat;
             user = null;
         }
         BottomSheet.Builder builder = new BottomSheet.Builder(context, true);
@@ -165,8 +165,8 @@ public abstract class BotVerifySheet {
         BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
         AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setInfo((TLObject) chat2);
-        backupImageView.setForUserOrChat(chat2, avatarDrawable);
+        avatarDrawable.setInfo(tLObject);
+        backupImageView.setForUserOrChat(tLObject, avatarDrawable);
         frameLayout.addView(backupImageView, LayoutHelper.createFrame(28, 28, 51));
         BackupImageView backupImageView2 = new BackupImageView(context);
         backupImageView2.setEmojiColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_verifiedBackground), PorterDuff.Mode.SRC_IN));
@@ -353,22 +353,22 @@ public abstract class BotVerifySheet {
 
     public static void openRemoveVerify(Context context, final int i, final long j, final long j2, TL_bots.botVerifierSettings botverifiersettings, final Utilities.Callback callback) {
         String forcedFirstName;
-        TLRPC.Chat chat;
+        TLObject tLObject;
         if (context == null) {
             return;
         }
         if (j2 >= 0) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j2));
             forcedFirstName = UserObject.getForcedFirstName(user);
-            chat = user;
+            tLObject = user;
         } else {
-            TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-j2));
-            if (chat2 == null) {
+            TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j2));
+            if (chat == null) {
                 forcedFirstName = "";
-                chat = chat2;
+                tLObject = chat;
             } else {
-                forcedFirstName = chat2.title;
-                chat = chat2;
+                forcedFirstName = chat.title;
+                tLObject = chat;
             }
         }
         FrameLayout frameLayout = new FrameLayout(context);
@@ -377,8 +377,8 @@ public abstract class BotVerifySheet {
         BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
         AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setInfo((TLObject) chat);
-        backupImageView.setForUserOrChat(chat, avatarDrawable);
+        avatarDrawable.setInfo(tLObject);
+        backupImageView.setForUserOrChat(tLObject, avatarDrawable);
         frameLayout2.addView(backupImageView, LayoutHelper.createFrame(28, 28, 51));
         BackupImageView backupImageView2 = new BackupImageView(context);
         backupImageView2.setEmojiColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_verifiedBackground), PorterDuff.Mode.SRC_IN));

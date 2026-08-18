@@ -9,7 +9,6 @@ import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.Paint.Brush;
 import org.telegram.ui.Components.Size;
 
 public class ShapeInput {
@@ -73,8 +72,8 @@ public class ShapeInput {
                 fArr[0] = f2;
                 fArr[1] = fArr[1] - shape.centerY;
                 double d = f * (z ? -1 : 1);
-                float fCos = (float) ((f2 * Math.cos(d)) - (this.tempPoint[1] * Math.sin(d)));
-                float fSin = (float) ((this.tempPoint[0] * Math.sin(d)) + (this.tempPoint[1] * Math.cos(d)));
+                float fCos = (float) ((((double) f2) * Math.cos(d)) - (((double) this.tempPoint[1]) * Math.sin(d)));
+                float fSin = (float) ((((double) this.tempPoint[0]) * Math.sin(d)) + (((double) this.tempPoint[1]) * Math.cos(d)));
                 float[] fArr2 = this.tempPoint;
                 Shape shape2 = this.shape;
                 fArr2[0] = fCos + shape2.centerX;
@@ -93,7 +92,7 @@ public class ShapeInput {
     }
 
     public float distToLine(float f, float f2, float f3, float f4, double d) {
-        return (float) ((Math.cos(d) * (f4 - f2)) - (Math.sin(d) * (f3 - f)));
+        return (float) ((Math.cos(d) * ((double) (f4 - f2))) - (Math.sin(d) * ((double) (f3 - f))));
     }
 
     private boolean isInsideShape(float f, float f2) {
@@ -128,20 +127,18 @@ public class ShapeInput {
                     fSqrt = (float) Math.sqrt(Math.min(Math.min(Math.pow(d, 2.0d) + Math.pow(d2, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d2, 2.0d)), Math.min(Math.pow(d, 2.0d) + Math.pow(d4, 2.0d), Math.pow(d3, 2.0d) + Math.pow(d4, 2.0d))));
                 } else if (f2 < f9) {
                     fSqrt = f9 - f2;
+                } else if (f2 > f11) {
+                    fSqrt = f2 - f11;
                 } else {
-                    if (f2 > f11) {
-                        fSqrt = f2 - f11;
-                    }
                     fMin = 0.0f;
                 }
                 fMin = fSqrt;
             } else {
                 if (f < f6) {
                     fSqrt = f6 - f;
+                } else if (f > f10) {
+                    fSqrt = f - f10;
                 } else {
-                    if (f > f10) {
-                        fSqrt = f - f10;
-                    }
                     fMin = 0.0f;
                 }
                 fMin = fSqrt;
@@ -419,7 +416,8 @@ public class ShapeInput {
                     float fDistance = MathUtils.distance(ShapeInput.this.shape.centerX, ShapeInput.this.shape.centerY, f8, f9);
                     shape4.radiusY = fDistance;
                     shape3.radiusX = fDistance;
-                    ShapeInput.this.shape.rotation = (float) (r0.rotation + (((float) Math.atan2(ShapeInput.this.shape.centerY - f9, f8 - ShapeInput.this.shape.centerX)) - 0.3141592653589793d));
+                    Shape shape5 = ShapeInput.this.shape;
+                    shape5.rotation = (float) (((double) shape5.rotation) + (((double) ((float) Math.atan2(ShapeInput.this.shape.centerY - f9, f8 - ShapeInput.this.shape.centerX))) - 0.3141592653589793d));
                     set();
                 }
             });
@@ -438,7 +436,8 @@ public class ShapeInput {
 
                 @Override
                 protected void update(float f8, float f9) {
-                    ShapeInput.this.shape.rotation = (float) (r0.rotation + (((float) Math.atan2(ShapeInput.this.shape.centerY - f9, f8 - ShapeInput.this.shape.centerX)) - 1.5707963267948966d));
+                    Shape shape3 = ShapeInput.this.shape;
+                    shape3.rotation = (float) (((double) shape3.rotation) + (((double) ((float) Math.atan2(ShapeInput.this.shape.centerY - f9, f8 - ShapeInput.this.shape.centerX))) - 1.5707963267948966d));
                     for (int i2 = 0; i2 < ShapeInput.this.allPoints.size(); i2++) {
                         Point point4 = (Point) ShapeInput.this.allPoints.get(i2);
                         if (point4 instanceof CornerPoint) {
@@ -569,10 +568,11 @@ public class ShapeInput {
         Shape shape = this.shape;
         if (shape != null && shape.rotation != 0.0f) {
             canvas.save();
-            canvas.rotate((float) (((-r2.rotation) / 3.141592653589793d) * 180.0d), (this.shape.centerX / size.width) * canvas.getWidth(), (this.shape.centerY / size.height) * canvas.getHeight());
+            Shape shape2 = this.shape;
+            canvas.rotate((float) ((((double) (-shape2.rotation)) / 3.141592653589793d) * 180.0d), (shape2.centerX / size.width) * canvas.getWidth(), (this.shape.centerY / size.height) * canvas.getHeight());
         }
-        Shape shape2 = this.shape;
-        if (shape2 != null && shape2.getType() == 4) {
+        Shape shape3 = this.shape;
+        if (shape3 != null && shape3.getType() == 4) {
             canvas.drawLine((this.shape.centerX / size.width) * canvas.getWidth(), (this.shape.centerY / size.height) * canvas.getHeight(), (this.shape.middleX / size.width) * canvas.getWidth(), (this.shape.middleY / size.height) * canvas.getHeight(), this.linePaint);
             canvas.drawLine((this.shape.radiusX / size.width) * canvas.getWidth(), (this.shape.radiusY / size.height) * canvas.getHeight(), (this.shape.middleX / size.width) * canvas.getWidth(), (this.shape.middleY / size.height) * canvas.getHeight(), this.linePaint);
         }
@@ -582,8 +582,8 @@ public class ShapeInput {
                 drawPoint(canvas, size, point2);
             }
         }
-        Shape shape3 = this.shape;
-        if (shape3 == null || shape3.rotation == 0.0f) {
+        Shape shape4 = this.shape;
+        if (shape4 == null || shape4.rotation == 0.0f) {
             return;
         }
         canvas.restore();
@@ -627,9 +627,9 @@ public class ShapeInput {
             ShapeInput.this.rotate(f3, f4, true);
             float f5 = ShapeInput.this.tempPoint[0];
             float f6 = ShapeInput.this.tempPoint[1];
-            double dAtan2 = (3.141592653589793d - Math.atan2(f2 - f6, f - f5)) - this.shape.rotation;
-            double dCos = Math.cos(dAtan2) * MathUtils.distance(f, f2, f5, f6);
-            double dSin = Math.sin(dAtan2) * MathUtils.distance(f, f2, f5, f6);
+            double dAtan2 = (3.141592653589793d - Math.atan2(f2 - f6, f - f5)) - ((double) this.shape.rotation);
+            double dCos = Math.cos(dAtan2) * ((double) MathUtils.distance(f, f2, f5, f6));
+            double dSin = Math.sin(dAtan2) * ((double) MathUtils.distance(f, f2, f5, f6));
             this.shape.radiusX = ((float) Math.abs(dCos)) / 2.0f;
             this.shape.radiusY = ((float) Math.abs(dSin)) / 2.0f;
             Shape shape2 = this.shape;

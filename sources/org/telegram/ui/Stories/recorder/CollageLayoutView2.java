@@ -46,8 +46,6 @@ import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Stories.recorder.CollageLayout;
-import org.telegram.ui.Stories.recorder.QRScanner;
 
 public abstract class CollageLayoutView2 extends FrameLayout implements ItemOptions.ScrimView {
     private final AnimatedFloat[] animatedColumns;
@@ -224,9 +222,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     }
 
     public void highlight(int i) {
-        Iterator it = this.parts.iterator();
-        while (it.hasNext()) {
-            Part part = (Part) it.next();
+        for (Part part : this.parts) {
             if (part.index == i) {
                 part.highlightAnimated.set(1.0f, true);
                 invalidate();
@@ -294,11 +290,13 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             measuredHeight = point.y;
             measuredWidth = i;
         }
-        int[] iArr = part.layout.columns;
+        CollageLayout collageLayout = part.layout;
+        int[] iArr = collageLayout.columns;
         int i2 = part.y;
         float f = measuredWidth / iArr[i2];
-        float f2 = measuredHeight / r2.h;
-        rectF.set(part.x * f, i2 * f2, f * (r8 + 1), f2 * (i2 + 1));
+        int i3 = part.x;
+        float f2 = measuredHeight / collageLayout.h;
+        rectF.set(i3 * f, i2 * f2, f * (i3 + 1), f2 * (i2 + 1));
     }
 
     @Override
@@ -367,8 +365,11 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         Part part = this.longPressedPart;
         if (part != null) {
             CollageLayout.Part part2 = part.part;
-            float f2 = part2.layout.h;
-            float f3 = this.animatedColumns[part2.y].set(r0.columns[r3]);
+            CollageLayout collageLayout = part2.layout;
+            float f2 = collageLayout.h;
+            AnimatedFloat[] animatedFloatArr = this.animatedColumns;
+            int i = part2.y;
+            float f3 = animatedFloatArr[i].set(collageLayout.columns[i]);
             this.rect.set((getMeasuredWidth() / f3) * part2.x, (getMeasuredHeight() / f2) * part2.y, (getMeasuredWidth() / f3) * (part2.x + 1), (getMeasuredHeight() / f2) * (part2.y + 1));
             drawPart(canvas, this.rect, this.longPressedPart);
         }
@@ -379,8 +380,11 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         Part part = this.longPressedPart;
         if (part != null) {
             CollageLayout.Part part2 = part.part;
-            float f = part2.layout.h;
-            float f2 = this.animatedColumns[part2.y].set(r1.columns[r4]);
+            CollageLayout collageLayout = part2.layout;
+            float f = collageLayout.h;
+            AnimatedFloat[] animatedFloatArr = this.animatedColumns;
+            int i = part2.y;
+            float f2 = animatedFloatArr[i].set(collageLayout.columns[i]);
             rectF.set((getMeasuredWidth() / f2) * part2.x, (getMeasuredHeight() / f) * part2.y, (getMeasuredWidth() / f2) * (part2.x + 1), (getMeasuredHeight() / f) * (part2.y + 1));
             return;
         }
@@ -415,8 +419,190 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CollageLayoutView2.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        Canvas canvasBeginRecording;
+        double d;
+        float f;
+        BlurringShader.BlurManager blurManager;
+        Part part;
+        if (this.renderNode == null || Build.VERSION.SDK_INT < 29 || !canvas.isHardwareAccelerated()) {
+            canvasBeginRecording = canvas;
+        } else {
+            RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(this.renderNode);
+            renderNodeM.setPosition(0, 0, getWidth(), getHeight());
+            canvasBeginRecording = renderNodeM.beginRecording();
+        }
+        super.dispatchDraw(canvasBeginRecording);
+        if (!hasLayout() && !this.reordering && !this.reorderingTouch && this.animatedRows.get() == this.currentLayout.h && this.animatedColumns[0].get() == this.currentLayout.columns[0] && this.qrDrawer.hasNoDraw()) {
+            setCameraNeedsBlur(false);
+            finishNode(canvas);
+            return;
+        }
+        if (this.preview) {
+            setCameraNeedsBlur(false);
+        }
+        canvasBeginRecording.drawColor(-14737633);
+        float f2 = this.animatedReordering.set(this.reorderingTouch);
+        float f3 = this.animatedRows.set(this.currentLayout.h);
+        int i = 0;
+        while (true) {
+            d = f3;
+            if (i >= Math.ceil(d)) {
+                break;
+            }
+            this.lefts[i] = getMeasuredWidth();
+            this.rights[i] = 0.0f;
+            i++;
+        }
+        int i2 = this.currentLayout.h;
+        while (true) {
+            AnimatedFloat[] animatedFloatArr = this.animatedColumns;
+            if (i2 >= animatedFloatArr.length) {
+                break;
+            }
+            animatedFloatArr[i2].set(1.0f);
+            i2++;
+        }
+        float fMax = 0.0f;
+        boolean z = false;
+        for (int i3 = 0; i3 < this.parts.size(); i3++) {
+            Part part2 = (Part) this.parts.get(i3);
+            CollageLayout.Part part3 = part2.part;
+            AnimatedFloat[] animatedFloatArr2 = this.animatedColumns;
+            int i4 = part3.y;
+            float f4 = animatedFloatArr2[i4].set(part3.layout.columns[i4]);
+            if (this.reordering || this.reorderingTouch) {
+                AndroidUtilities.lerp(part2.fromBounds, part2.bounds, part2.boundsTransition, this.rect);
+            } else {
+                this.rect.set((getMeasuredWidth() / f4) * part3.x, (getMeasuredHeight() / f3) * part3.y, (getMeasuredWidth() / f4) * (part3.x + 1), (getMeasuredHeight() / f3) * (part3.y + 1));
+            }
+            float[] fArr = this.lefts;
+            int i5 = part3.y;
+            fArr[i5] = Math.min(fArr[i5], this.rect.left);
+            float[] fArr2 = this.rights;
+            int i6 = part3.y;
+            fArr2[i6] = Math.max(fArr2[i6], this.rect.right);
+            fMax = Math.max(fMax, this.rect.bottom);
+            if (f2 <= 0.0f || part2 != this.reorderingPart) {
+                z = (!this.preview || part2.videoPlayer == null) ? z : true;
+                drawPart(canvasBeginRecording, this.rect, part2);
+            } else {
+                z = z;
+            }
+        }
+        for (int i7 = 0; i7 < this.removingParts.size(); i7++) {
+            Part part4 = (Part) this.removingParts.get(i7);
+            CollageLayout.Part part5 = part4.part;
+            AnimatedFloat[] animatedFloatArr3 = this.animatedColumns;
+            int i8 = part5.y;
+            AnimatedFloat animatedFloat = animatedFloatArr3[i8];
+            int[] iArr = this.currentLayout.columns;
+            float f5 = animatedFloat.set(i8 >= iArr.length ? 1.0f : iArr[i8]);
+            boolean z2 = z;
+            this.rect.set((getMeasuredWidth() / f5) * part5.x, (getMeasuredHeight() / f3) * part5.y, (getMeasuredWidth() / f5) * (part5.x + 1), (getMeasuredHeight() / f3) * (part5.y + 1));
+            float[] fArr3 = this.lefts;
+            int i9 = part5.y;
+            fArr3[i9] = Math.min(fArr3[i9], this.rect.left);
+            float[] fArr4 = this.rights;
+            int i10 = part5.y;
+            fArr4[i10] = Math.max(fArr4[i10], this.rect.right);
+            fMax = Math.max(fMax, this.rect.bottom);
+            z = (!this.preview || part4.videoPlayer == null) ? z2 : true;
+            drawPart(canvasBeginRecording, this.rect, part4);
+        }
+        boolean z3 = z;
+        if (this.reorderingTouch) {
+            f = 0.0f;
+        } else {
+            for (int i11 = 0; i11 < Math.ceil(d); i11++) {
+                if (this.lefts[i11] >= 0.0f) {
+                    this.rect.set(0.0f, (getMeasuredHeight() / f3) * i11, this.lefts[i11], (getMeasuredHeight() / f3) * (i11 + 1));
+                    drawPart(canvasBeginRecording, this.rect, null);
+                }
+                if (this.rights[i11] < getMeasuredWidth()) {
+                    this.rect.set(this.rights[i11], (getMeasuredHeight() / f3) * i11, getMeasuredWidth(), (getMeasuredHeight() / f3) * (i11 + 1));
+                    drawPart(canvasBeginRecording, this.rect, null);
+                }
+            }
+            if (fMax < getMeasuredHeight()) {
+                f = 0.0f;
+                this.rect.set(0.0f, fMax, getMeasuredWidth(), getMeasuredHeight());
+                drawPart(canvasBeginRecording, this.rect, null);
+            } else {
+                f = 0.0f;
+            }
+        }
+        if (f2 > f && (part = this.reorderingPart) != null) {
+            CollageLayout.Part part6 = part.part;
+            AnimatedFloat[] animatedFloatArr4 = this.animatedColumns;
+            int i12 = part6.y;
+            float f6 = animatedFloatArr4[i12].set(this.currentLayout.columns[i12]);
+            if (this.reorderingTouch) {
+                AndroidUtilities.lerp(part.fromBounds, part.bounds, part.boundsTransition, this.rect);
+            } else {
+                this.rect.set((getMeasuredWidth() / f6) * part6.x, (getMeasuredHeight() / f3) * part6.y, (getMeasuredWidth() / f6) * (part6.x + 1), (getMeasuredHeight() / f3) * (part6.y + 1));
+            }
+            canvasBeginRecording.save();
+            canvasBeginRecording.translate(AndroidUtilities.lerp(this.ldx, this.dx, part.boundsTransition) * f2, AndroidUtilities.lerp(this.ldy, this.dy, part.boundsTransition) * f2);
+            drawPart(canvasBeginRecording, this.rect, part);
+            canvasBeginRecording.restore();
+        }
+        for (int i13 = 0; i13 < this.parts.size(); i13++) {
+            Part part7 = (Part) this.parts.get(i13);
+            CollageLayout.Part part8 = part7.part;
+            float f7 = part7.highlightAnimated.set(0.0f);
+            if (f7 > 0.0f) {
+                AnimatedFloat[] animatedFloatArr5 = this.animatedColumns;
+                int i14 = part8.y;
+                float f8 = animatedFloatArr5[i14].set(part8.layout.columns[i14]);
+                if (this.reordering || this.reorderingTouch) {
+                    AndroidUtilities.lerp(part7.fromBounds, part7.bounds, part7.boundsTransition, this.rect);
+                } else {
+                    this.rect.set((getMeasuredWidth() / f8) * part8.x, (getMeasuredHeight() / f3) * part8.y, (getMeasuredWidth() / f8) * (part8.x + 1), (getMeasuredHeight() / f3) * (part8.y + 1));
+                }
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(this.rect);
+                rectF.inset(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+                this.gradientMatrix.reset();
+                Matrix matrix = this.gradientMatrix;
+                float f9 = this.rect.left;
+                int i15 = this.gradientWidth;
+                int i16 = i15 * i15;
+                matrix.postTranslate(f9 + AndroidUtilities.lerp(((float) Math.sqrt(i16 + i16)) * (-1.4f), (float) Math.sqrt((this.rect.width() * this.rect.width()) + (this.rect.height() * this.rect.height())), 1.0f - f7), 0.0f);
+                this.gradientMatrix.postRotate(-25.0f);
+                this.gradient.setLocalMatrix(this.gradientMatrix);
+                this.highlightPaint.setAlpha(255);
+                this.highlightPath.rewind();
+                float[] fArr5 = this.radii;
+                CollageLayout.Part part9 = part7.part;
+                float fDp = (part9.x == 0 && part9.y == 0) ? AndroidUtilities.dp(8.0f) : 0.0f;
+                fArr5[1] = fDp;
+                fArr5[0] = fDp;
+                float[] fArr6 = this.radii;
+                CollageLayout.Part part10 = part7.part;
+                float fDp2 = (part10.x == part10.layout.w - 1 && part10.y == 0) ? AndroidUtilities.dp(8.0f) : 0.0f;
+                fArr6[2] = fDp2;
+                fArr6[1] = fDp2;
+                float[] fArr7 = this.radii;
+                CollageLayout.Part part11 = part7.part;
+                int i17 = part11.x;
+                CollageLayout collageLayout = part11.layout;
+                float fDp3 = (i17 == collageLayout.w - 1 && part11.y == collageLayout.h - 1) ? AndroidUtilities.dp(8.0f) : 0.0f;
+                fArr7[4] = fDp3;
+                fArr7[3] = fDp3;
+                float[] fArr8 = this.radii;
+                CollageLayout.Part part12 = part7.part;
+                float fDp4 = (part12.x == 0 && part12.y == part12.layout.h - 1) ? AndroidUtilities.dp(8.0f) : 0.0f;
+                fArr8[6] = fDp4;
+                fArr8[5] = fDp4;
+                this.highlightPath.addRoundRect(rectF, this.radii, Path.Direction.CW);
+                canvasBeginRecording.drawPath(this.highlightPath, this.highlightPaint);
+            }
+        }
+        if (z3 && (blurManager = this.blurManager) != null) {
+            blurManager.invalidate();
+        }
+        finishNode(canvas);
     }
 
     public int getTotalCount() {
@@ -562,11 +748,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     public void updatePartsState() {
         this.currentPart = null;
         this.nextPart = null;
-        int i = 0;
-        while (true) {
-            if (i >= this.parts.size()) {
-                break;
-            }
+        for (int i = 0; i < this.parts.size(); i++) {
             Part part = (Part) this.parts.get(i);
             if (!part.hasContent()) {
                 if (this.currentPart == null) {
@@ -576,7 +758,6 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                     break;
                 }
             }
-            i++;
         }
         for (int i2 = 0; i2 < this.parts.size(); i2++) {
             Part part2 = (Part) this.parts.get(i2);
@@ -586,12 +767,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
 
     public boolean push(StoryEntry storyEntry) {
         if (storyEntry != null && storyEntry.isVideo) {
-            Iterator it = this.parts.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
-                Part part = (Part) it.next();
+            for (Part part : this.parts) {
                 if (part.content != null && part.content.isVideo && part.content.videoVolume > 0.0f) {
                     storyEntry.videoVolume = 0.0f;
                     break;
@@ -609,9 +785,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
 
     public ArrayList<StoryEntry> getContent() {
         ArrayList<StoryEntry> arrayList = new ArrayList<>();
-        Iterator it = this.parts.iterator();
-        while (it.hasNext()) {
-            Part part = (Part) it.next();
+        for (Part part : this.parts) {
             if (part.hasContent()) {
                 arrayList.add(part.content);
             }
@@ -708,8 +882,9 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         float f3 = this.animatedRows.get();
         for (int i = 0; i < this.parts.size(); i++) {
             Part part = (Part) this.parts.get(i);
-            float f4 = this.animatedColumns[part.part.y].get();
-            this.rect.set((getMeasuredWidth() / f4) * r3.x, (getMeasuredHeight() / f3) * r3.y, (getMeasuredWidth() / f4) * (r3.x + 1), (getMeasuredHeight() / f3) * (r3.y + 1));
+            CollageLayout.Part part2 = part.part;
+            float f4 = this.animatedColumns[part2.y].get();
+            this.rect.set((getMeasuredWidth() / f4) * part2.x, (getMeasuredHeight() / f3) * part2.y, (getMeasuredWidth() / f4) * (part2.x + 1), (getMeasuredHeight() / f3) * (part2.y + 1));
             if (this.rect.contains(f, f2)) {
                 return part;
             }
@@ -720,8 +895,9 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     public int getPartIndexAt(float f, float f2) {
         float f3 = this.animatedRows.get();
         for (int i = 0; i < this.parts.size(); i++) {
-            float f4 = this.animatedColumns[((Part) this.parts.get(i)).part.y].get();
-            this.rect.set((getMeasuredWidth() / f4) * r2.x, (getMeasuredHeight() / f3) * r2.y, (getMeasuredWidth() / f4) * (r2.x + 1), (getMeasuredHeight() / f3) * (r2.y + 1));
+            CollageLayout.Part part = ((Part) this.parts.get(i)).part;
+            float f4 = this.animatedColumns[part.y].get();
+            this.rect.set((getMeasuredWidth() / f4) * part.x, (getMeasuredHeight() / f3) * part.y, (getMeasuredWidth() / f4) * (part.x + 1), (getMeasuredHeight() / f3) * (part.y + 1));
             if (this.rect.contains(f, f2)) {
                 return i;
             }
@@ -915,8 +1091,9 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                 if (partIndexAt >= 0 && iIndexOf >= 0 && partIndexAt != iIndexOf) {
                     swap(iIndexOf, partIndexAt);
                     float f = this.currentLayout.h;
-                    float f2 = this.animatedColumns[this.reorderingPart.part.y].get();
-                    this.rect.set((getMeasuredWidth() / f2) * r3.x, (getMeasuredHeight() / f) * r3.y, (getMeasuredWidth() / f2) * (r3.x + 1), (getMeasuredHeight() / f) * (r3.y + 1));
+                    CollageLayout.Part part = this.reorderingPart.part;
+                    float f2 = this.animatedColumns[part.y].get();
+                    this.rect.set((getMeasuredWidth() / f2) * part.x, (getMeasuredHeight() / f) * part.y, (getMeasuredWidth() / f2) * (part.x + 1), (getMeasuredHeight() / f) * (part.y + 1));
                     this.ldx = this.dx;
                     this.ldy = this.dy;
                     this.tx = this.rect.centerX();
@@ -1220,9 +1397,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         }
         this.fastSeek = false;
         this.lastPausedPosition = 0L;
-        Iterator it = this.parts.iterator();
-        while (it.hasNext()) {
-            Part part = (Part) it.next();
+        for (Part part : this.parts) {
             VideoPlayerHolderBase videoPlayerHolderBase = part.videoPlayer;
             if (videoPlayerHolderBase != null) {
                 videoPlayerHolderBase.setAudioEnabled(z, true);
@@ -1245,10 +1420,8 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         if (!this.preview) {
             return null;
         }
-        Iterator it = this.parts.iterator();
         long j = 0;
-        while (it.hasNext()) {
-            Part part2 = (Part) it.next();
+        for (Part part2 : this.parts) {
             if (part2.content != null && part2.content.isVideo) {
                 long duration = part2.content.duration;
                 VideoPlayerHolderBase videoPlayerHolderBase = part2.videoPlayer;
@@ -1328,9 +1501,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     }
 
     public boolean hasVideo() {
-        Iterator it = this.parts.iterator();
-        while (it.hasNext()) {
-            Part part = (Part) it.next();
+        for (Part part : this.parts) {
             if (part.content != null && part.content.isVideo) {
                 return true;
             }
@@ -1362,6 +1533,59 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
     }
 
     public void lambda$new$7() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CollageLayoutView2.lambda$new$7():void");
+        VideoPlayerHolderBase videoPlayerHolderBase;
+        boolean z;
+        long position = getPosition();
+        Part mainPart = getMainPart();
+        long j = mainPart == null ? 0L : mainPart.content.videoOffset + ((long) (mainPart.content.videoLeft * mainPart.content.duration));
+        int i = 0;
+        while (true) {
+            if (i >= this.parts.size()) {
+                break;
+            }
+            final Part part = (Part) this.parts.get(i);
+            if (part.content != null && (videoPlayerHolderBase = part.videoPlayer) != null) {
+                long duration = videoPlayerHolderBase.getDuration();
+                long jClamp = Utilities.clamp((position + j) - part.content.videoOffset, duration, 0L);
+                if (!this.preview || this.playing) {
+                    float f = jClamp;
+                    float f2 = duration;
+                    z = f > part.content.videoLeft * f2 && f < part.content.videoRight * f2;
+                }
+                float f3 = duration;
+                long jClamp2 = Utilities.clamp(jClamp, (long) (part.content.videoRight * f3), (long) (part.content.videoLeft * f3));
+                if (part.videoPlayer.isPlaying() != z) {
+                    if (z) {
+                        part.videoPlayer.play();
+                    } else {
+                        part.videoPlayer.pause();
+                    }
+                }
+                part.videoPlayer.setVolume((this.isMuted || part.content.muted || !this.preview) ? 0.0f : part.content.videoVolume);
+                if (Math.abs((part.pendingSeek >= 0 ? part.pendingSeek : part.videoPlayer.getCurrentPosition()) - jClamp2) > 450) {
+                    if (part.pendingSeek < 0) {
+                        part.videoPlayer.seekTo(part.pendingSeek = jClamp2, this.fastSeek, new Runnable() {
+                            @Override
+                            public final void run() {
+                                CollageLayoutView2.Part.access$802(part, -1L);
+                            }
+                        });
+                    }
+                }
+            }
+            i++;
+        }
+        TimelineView timelineView = this.timelineView;
+        if (timelineView != null) {
+            timelineView.setProgress(position);
+        }
+        PreviewView previewView = this.previewView;
+        if (previewView != null) {
+            previewView.updateAudioPlayer(true);
+            this.previewView.updateRoundPlayer(true);
+        }
+        if (this.preview && this.playing) {
+            AndroidUtilities.runOnUIThread(this.syncRunnable, (long) (1000.0f / AndroidUtilities.screenRefreshRate));
+        }
     }
 }

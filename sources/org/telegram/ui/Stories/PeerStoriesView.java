@@ -10,7 +10,6 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -21,6 +20,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RecordingCanvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -29,12 +29,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Layout;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
+import android.text.style.ReplacementSpan;
 import android.text.style.URLSpan;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -50,14 +52,15 @@ import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.math.MathUtils;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
 import com.google.android.exoplayer2.util.Consumer;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -79,6 +82,7 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -118,6 +122,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.AvatarSpan;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChooseSpeedLayout;
@@ -140,6 +145,7 @@ import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.CustomPopupMenu;
+import org.telegram.ui.Components.DotDividerSpan;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.EmojiPacksAlert;
 import org.telegram.ui.Components.HashtagActivity;
@@ -163,9 +169,11 @@ import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Components.SenderSelectView;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.SpeedIconDrawable;
+import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TranslateAlert2;
 import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanNoUnderline;
@@ -185,23 +193,18 @@ import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.EmojiAnimationsOverlay;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.MessageStatisticActivity;
+import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.PinchToZoomHelper;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ReportBottomSheet;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
-import org.telegram.ui.Stories.DialogStoriesCell;
-import org.telegram.ui.Stories.PaidReactionButton;
-import org.telegram.ui.Stories.PeerStoriesView;
-import org.telegram.ui.Stories.SelfStoriesPreviewView;
-import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.Stories.StoryCaptionView;
-import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.DraftsController;
 import org.telegram.ui.Stories.recorder.HintView2;
+import org.telegram.ui.Stories.recorder.LivePlayerView;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
@@ -503,7 +506,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.muteIconViewAlpha = 1.0f;
         this.updateStealthModeTimer = new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() {
                 this.f$0.lambda$new$43();
             }
         };
@@ -1032,8 +1035,227 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        protected void dispatchDraw(android.graphics.Canvas r17) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.AnonymousClass4.dispatchDraw(android.graphics.Canvas):void");
+        protected void dispatchDraw(Canvas canvas) {
+            float f;
+            boolean z;
+            boolean zHasNotThumb;
+            StoryViewer.VideoPlayerHolder videoPlayerHolder;
+            StoryViewer.VideoPlayerHolder videoPlayerHolder2;
+            PeerStoriesView peerStoriesView = PeerStoriesView.this;
+            if (!peerStoriesView.isActive) {
+                peerStoriesView.headerView.backupImageView.getImageReceiver().setVisible(true, true);
+            }
+            PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
+            if (!peerStoriesView2.unsupported) {
+                if (peerStoriesView2.playerSharedScope.renderView != null || (peerStoriesView2.storyAreasView != null && (PeerStoriesView.this.storyAreasView.hasSelectedForScale() || PeerStoriesView.this.storyAreasView.parentHighlightScaleAlpha.isInProgress()))) {
+                    invalidate();
+                }
+                canvas.save();
+                PeerStoriesView.this.pinchToZoomHelper.applyTransform(canvas);
+                PeerStoriesView peerStoriesView3 = PeerStoriesView.this;
+                VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView3.playerSharedScope;
+                View view = videoPlayerSharedScope.renderView;
+                if (view != null && (videoPlayerSharedScope.firstFrameRendered || videoPlayerSharedScope.livePlayer != null)) {
+                    if (!peerStoriesView3.imageReceiver.hasBitmapImage()) {
+                        this.val$sharedResources.imageBackgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight() + 1);
+                        this.val$sharedResources.imageBackgroundDrawable.draw(canvas);
+                    }
+                    PeerStoriesView.this.imageReceiver.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() + 1);
+                    PeerStoriesView.this.imageReceiver.draw(canvas);
+                    PeerStoriesView peerStoriesView4 = PeerStoriesView.this;
+                    if (peerStoriesView4.isActive) {
+                        if (this.val$storyViewer.USE_SURFACE_VIEW && (videoPlayerHolder2 = peerStoriesView4.playerSharedScope.player) != null && videoPlayerHolder2.paused && videoPlayerHolder2.playerStubBitmap != null && videoPlayerHolder2.stubAvailable) {
+                            float measuredWidth = getMeasuredWidth() / PeerStoriesView.this.playerSharedScope.player.playerStubBitmap.getWidth();
+                            float measuredHeight = getMeasuredHeight() / PeerStoriesView.this.playerSharedScope.player.playerStubBitmap.getHeight();
+                            canvas.save();
+                            canvas.scale(measuredWidth, measuredHeight);
+                            StoryViewer.VideoPlayerHolder videoPlayerHolder3 = PeerStoriesView.this.playerSharedScope.player;
+                            canvas.drawBitmap(videoPlayerHolder3.playerStubBitmap, 0.0f, 0.0f, videoPlayerHolder3.playerStubPaint);
+                            canvas.restore();
+                        } else {
+                            boolean z2 = Build.VERSION.SDK_INT >= 29 && peerStoriesView4.blurredBackgroundSourceRenderNodeWithSaturation != null && PeerStoriesView.this.blurredBackgroundSourceRenderNodeWithSaturation.isRecordingCanvas(canvas);
+                            if (!this.val$storyViewer.USE_SURFACE_VIEW || (PeerStoriesView.this.allowDrawSurface && this.val$storyViewer.isShown() && !z2)) {
+                                PeerStoriesView.this.playerSharedScope.renderView.draw(canvas);
+                            }
+                        }
+                    }
+                } else {
+                    if (view != null) {
+                        invalidate();
+                    }
+                    PeerStoriesView peerStoriesView5 = PeerStoriesView.this;
+                    if (!peerStoriesView5.currentStory.skipped) {
+                        if (!peerStoriesView5.imageReceiver.hasBitmapImage()) {
+                            this.val$sharedResources.imageBackgroundDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight() + 1);
+                            this.val$sharedResources.imageBackgroundDrawable.draw(canvas);
+                        }
+                        PeerStoriesView.this.imageReceiver.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() + 1);
+                        PeerStoriesView.this.imageReceiver.draw(canvas);
+                    } else {
+                        canvas.drawColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
+                    }
+                }
+                canvas.restore();
+                if (PeerStoriesView.this.imageChanged) {
+                    this.loadingDrawableAlpha2.set(0.0f, true);
+                    this.loadingDrawableAlpha.set(0.0f, true);
+                }
+                if (PeerStoriesView.this.currentStory.isLive) {
+                    VideoPlayerSharedScope videoPlayerSharedScope2 = PeerStoriesView.this.playerSharedScope;
+                    LivePlayer livePlayer = videoPlayerSharedScope2.livePlayer;
+                    if (livePlayer == null || !(videoPlayerSharedScope2.firstFrameRendered || livePlayer.isEmptyStream())) {
+                        zHasNotThumb = false;
+                    } else {
+                        zHasNotThumb = true;
+                    }
+                } else if (!PeerStoriesView.this.currentStory.isVideo) {
+                    zHasNotThumb = PeerStoriesView.this.imageReceiver.hasNotThumb();
+                } else {
+                    VideoPlayerSharedScope videoPlayerSharedScope3 = PeerStoriesView.this.playerSharedScope;
+                    if (videoPlayerSharedScope3.renderView == null || (videoPlayerHolder = videoPlayerSharedScope3.player) == null || !videoPlayerSharedScope3.firstFrameRendered || (videoPlayerHolder.progress == 0.0f && videoPlayerSharedScope3.isBuffering() && !PeerStoriesView.this.playerSharedScope.player.paused)) {
+                        zHasNotThumb = false;
+                    } else {
+                        zHasNotThumb = true;
+                    }
+                }
+                AnimatedFloat animatedFloat = this.loadingDrawableAlpha2;
+                PeerStoriesView peerStoriesView6 = PeerStoriesView.this;
+                animatedFloat.set((peerStoriesView6.isActive && !zHasNotThumb && peerStoriesView6.currentStory.uploadingStory == null) ? 1.0f : 0.0f);
+                this.loadingDrawableAlpha.set(this.loadingDrawableAlpha2.get() == 1.0f ? 1.0f : 0.0f);
+                if (this.loadingDrawableAlpha.get() > 0.0f) {
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    this.loadingDrawable.setAlpha((int) (this.loadingDrawableAlpha.get() * 255.0f));
+                    this.loadingDrawable.setParentWidth(getMeasuredWidth() * 2);
+                    CellFlickerDrawable cellFlickerDrawable = this.loadingDrawable;
+                    cellFlickerDrawable.animationSpeedScale = 1.3f;
+                    cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(10.0f), this);
+                }
+                PeerStoriesView.this.imageChanged = false;
+            } else {
+                canvas.drawColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
+            }
+            if (PeerStoriesView.this.storyCaptionView.getAlpha() > 0.0f) {
+                if (PeerStoriesView.this.storyCaptionView.getAlpha() != 1.0f) {
+                    canvas.saveLayerAlpha(0.0f, 0.0f, PeerStoriesView.this.storyCaptionView.getMeasuredWidth(), PeerStoriesView.this.storyCaptionView.getMeasuredHeight(), (int) (PeerStoriesView.this.storyCaptionView.getAlpha() * 255.0f), 31);
+                } else {
+                    canvas.save();
+                }
+                PeerStoriesView.this.storyAreasView.draw(canvas);
+                canvas.restore();
+            }
+            if (!PeerStoriesView.this.lastNoThumb && PeerStoriesView.this.imageReceiver.hasNotThumb()) {
+                PeerStoriesView.this.lastNoThumb = true;
+                PeerStoriesView.this.invalidate();
+            }
+            float hideInterfaceAlpha = PeerStoriesView.this.getHideInterfaceAlpha();
+            this.val$sharedResources.topOverlayGradient.setAlpha(255);
+            this.val$sharedResources.topOverlayGradient.draw(canvas);
+            PeerStoriesView peerStoriesView7 = PeerStoriesView.this;
+            if (!peerStoriesView7.isSelf && peerStoriesView7.BIG_SCREEN && PeerStoriesView.this.storyCaptionView.getVisibility() != 0) {
+                f = 0.0f;
+            } else if (PeerStoriesView.this.storyCaptionView.getVisibility() == 0) {
+                int iDp = AndroidUtilities.dp(72.0f);
+                int textTop = ((int) (PeerStoriesView.this.storyCaptionView.getTextTop() - AndroidUtilities.dp(24.0f))) + PeerStoriesView.this.storyCaptionView.getTop();
+                int i = iDp + textTop;
+                float measuredHeight2 = getMeasuredHeight() * 0.65f;
+                boolean zHideCaptionWithInterface = PeerStoriesView.this.hideCaptionWithInterface();
+                if ((measuredHeight2 - textTop) / AndroidUtilities.dp(60.0f) <= 0.0f || !PeerStoriesView.this.storyCaptionView.isTouched() || !PeerStoriesView.this.storyCaptionView.hasScroll()) {
+                    PeerStoriesView peerStoriesView8 = PeerStoriesView.this;
+                    if (peerStoriesView8.checkBlackoutMode) {
+                        peerStoriesView8.checkBlackoutMode = false;
+                        if ((measuredHeight2 - (((int) (peerStoriesView8.storyCaptionView.getMaxTop() - AndroidUtilities.dp(24.0f))) + PeerStoriesView.this.storyCaptionView.getTop())) / AndroidUtilities.dp(60.0f) > 0.0f) {
+                            PeerStoriesView.this.inBlackoutMode = true;
+                        }
+                    } else if (peerStoriesView8.storyCaptionView.getProgressToBlackout() == 0.0f) {
+                        PeerStoriesView.this.inBlackoutMode = false;
+                    }
+                } else if ((measuredHeight2 - (((int) (PeerStoriesView.this.storyCaptionView.getMaxTop() - AndroidUtilities.dp(24.0f))) + PeerStoriesView.this.storyCaptionView.getTop())) / AndroidUtilities.dp(60.0f) > 0.0f) {
+                    PeerStoriesView.this.inBlackoutMode = true;
+                }
+                if (!zHideCaptionWithInterface) {
+                    hideInterfaceAlpha = 1.0f;
+                }
+                f = this.progressToFullBlackoutA.set(PeerStoriesView.this.inBlackoutMode ? 1.0f : 0.0f);
+                if (f > 0.0f) {
+                    this.splitDrawing = true;
+                    this.drawOverlayed = false;
+                    super.dispatchDraw(canvas);
+                    this.splitDrawing = false;
+                    drawLines(canvas);
+                    this.val$sharedResources.gradientBackgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (153.0f * f * hideInterfaceAlpha)));
+                    canvas.drawPaint(this.val$sharedResources.gradientBackgroundPaint);
+                }
+                if (f < 1.0f && !PeerStoriesView.this.currentStory.isLive) {
+                    canvas.save();
+                    float f2 = 1.0f - f;
+                    this.val$sharedResources.gradientBackgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (129.03f * f2 * hideInterfaceAlpha)));
+                    this.val$sharedResources.bottomOverlayGradient.setAlpha((int) (f2 * 255.0f * hideInterfaceAlpha));
+                    this.val$sharedResources.bottomOverlayGradient.setBounds(0, textTop, getMeasuredWidth(), i);
+                    this.val$sharedResources.bottomOverlayGradient.draw(canvas);
+                    canvas.drawRect(0.0f, i, getMeasuredWidth(), getMeasuredHeight(), this.val$sharedResources.gradientBackgroundPaint);
+                    canvas.restore();
+                }
+                if (f > 0.0f && PeerStoriesView.this.storyCaptionView.getAlpha() > 0.0f) {
+                    PeerStoriesView.this.storyCaptionView.disableDraw(false);
+                    if (PeerStoriesView.this.storyCaptionView.getAlpha() != 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (PeerStoriesView.this.storyCaptionView.getAlpha() * 255.0f), 31);
+                    } else {
+                        canvas.save();
+                    }
+                    canvas.translate(PeerStoriesView.this.storyCaptionView.getX(), PeerStoriesView.this.storyCaptionView.getY() - PeerStoriesView.this.storyCaptionView.getScrollY());
+                    PeerStoriesView.this.storyCaptionView.draw(canvas);
+                    canvas.restore();
+                }
+                PeerStoriesView.this.storyCaptionView.disableDraw(f > 0.0f);
+                if (f > 0.0f) {
+                    this.splitDrawing = true;
+                    this.drawOverlayed = true;
+                    super.dispatchDraw(canvas);
+                    this.splitDrawing = false;
+                }
+            } else {
+                if (!PeerStoriesView.this.currentStory.isLive) {
+                    int iDp2 = AndroidUtilities.dp(PeerStoriesView.this.BIG_SCREEN ? 56.0f : 110.0f);
+                    PeerStoriesView peerStoriesView9 = PeerStoriesView.this;
+                    if ((peerStoriesView9.isSelf || !peerStoriesView9.BIG_SCREEN) && PeerStoriesView.this.storyCaptionView.getVisibility() == 0) {
+                        iDp2 = (int) (iDp2 * 2.5f);
+                    }
+                    this.val$sharedResources.bottomOverlayGradient.setBounds(0, PeerStoriesView.this.storyContainer.getMeasuredHeight() - iDp2, getMeasuredWidth(), PeerStoriesView.this.storyContainer.getMeasuredHeight());
+                    this.val$sharedResources.bottomOverlayGradient.setAlpha((int) (hideInterfaceAlpha * 255.0f));
+                    this.val$sharedResources.bottomOverlayGradient.draw(canvas);
+                }
+                f = 0.0f;
+            }
+            if (PeerStoriesView.this.viewsThumbAlpha != 0.0f && PeerStoriesView.this.viewsThumbImageReceiver != null) {
+                PeerStoriesView.this.viewsThumbImageReceiver.draw(canvas, PeerStoriesView.this.viewsThumbAlpha, PeerStoriesView.this.viewsThumbScale, 0, 0, getMeasuredWidth(), getMeasuredHeight() + 1);
+            }
+            this.progressToAudio.set(PeerStoriesView.this.isRecording ? 1.0f : 0.0f);
+            PeerStoriesView peerStoriesView10 = PeerStoriesView.this;
+            if (peerStoriesView10.isActive) {
+                if (peerStoriesView10.storyCaptionView.getVisibility() == 0) {
+                    PeerStoriesView peerStoriesView11 = PeerStoriesView.this;
+                    if (peerStoriesView11.inBlackoutMode || peerStoriesView11.storyCaptionView.isTouched()) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                } else {
+                    z = false;
+                }
+                PeerStoriesView peerStoriesView12 = PeerStoriesView.this;
+                peerStoriesView12.isCaptionPartVisible = peerStoriesView12.storyCaptionView.getVisibility() == 0 && PeerStoriesView.this.storyCaptionView.getProgressToBlackout() > 0.0f;
+                PeerStoriesView.this.delegate.setIsCaption(z);
+                PeerStoriesView peerStoriesView13 = PeerStoriesView.this;
+                peerStoriesView13.delegate.setIsCaptionPartVisible(peerStoriesView13.isCaptionPartVisible);
+            }
+            if (f <= 0.0f) {
+                super.dispatchDraw(canvas);
+                drawLines(canvas);
+            }
+            if (PeerStoriesView.this.emojiAnimationsOverlay != null) {
+                PeerStoriesView.this.emojiAnimationsOverlay.draw(canvas);
+            }
         }
 
         @Override
@@ -1053,8 +1275,91 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             return super.drawChild(canvas, view, j);
         }
 
-        private void drawLines(android.graphics.Canvas r22) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.AnonymousClass4.drawLines(android.graphics.Canvas):void");
+        private void drawLines(Canvas canvas) {
+            float fClamp;
+            float f;
+            StoryItemHolder storyItemHolder;
+            StoryViewer storyViewer;
+            StoryViewer.VideoPlayerHolder videoPlayerHolder;
+            if (PeerStoriesView.this.imageReceiver.hasNotThumb() || ((PeerStoriesView.this.currentStory.isVideo && PeerStoriesView.this.playerSharedScope.firstFrameRendered) || (PeerStoriesView.this.currentStory.isLive && PeerStoriesView.this.playerSharedScope.firstFrameRendered))) {
+                PeerStoriesView.this.currentStory.checkSendView();
+            }
+            float hideInterfaceAlpha = PeerStoriesView.this.getHideInterfaceAlpha();
+            if (!PeerStoriesView.this.currentStory.isVideo()) {
+                if (!PeerStoriesView.this.paused) {
+                    PeerStoriesView peerStoriesView = PeerStoriesView.this;
+                    if (!peerStoriesView.isActive || peerStoriesView.isUploading || PeerStoriesView.this.isEditing || PeerStoriesView.this.isFailed || !PeerStoriesView.this.imageReceiver.hasNotThumb()) {
+                        fClamp = Utilities.clamp(PeerStoriesView.this.currentImageTime / 10000.0f, 1.0f, 0.0f);
+                    } else {
+                        long jCurrentTimeMillis = System.currentTimeMillis();
+                        if (PeerStoriesView.this.lastDrawTime != 0 && !PeerStoriesView.this.isCaptionPartVisible) {
+                            if (PeerStoriesView.this.currentImageTime <= 0 && jCurrentTimeMillis - PeerStoriesView.this.lastDrawTime > 0 && PeerStoriesView.this.storyAreasView != null) {
+                                PeerStoriesView.this.storyAreasView.shine();
+                            }
+                            PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
+                            PeerStoriesView.access$2914(peerStoriesView2, jCurrentTimeMillis - peerStoriesView2.lastDrawTime);
+                        }
+                        PeerStoriesView.this.lastDrawTime = jCurrentTimeMillis;
+                        fClamp = Utilities.clamp(PeerStoriesView.this.currentImageTime / 10000.0f, 1.0f, 0.0f);
+                        invalidate();
+                    }
+                } else {
+                    fClamp = Utilities.clamp(PeerStoriesView.this.currentImageTime / 10000.0f, 1.0f, 0.0f);
+                }
+            } else {
+                PeerStoriesView peerStoriesView3 = PeerStoriesView.this;
+                StoryViewer.VideoPlayerHolder videoPlayerHolder2 = peerStoriesView3.playerSharedScope.player;
+                if (videoPlayerHolder2 != null) {
+                    fClamp = Utilities.clamp(videoPlayerHolder2.getPlaybackProgress(peerStoriesView3.videoDuration), 1.0f, 0.0f);
+                    PeerStoriesView peerStoriesView4 = PeerStoriesView.this;
+                    if (peerStoriesView4.playerSharedScope.firstFrameRendered && peerStoriesView4.storyAreasView != null) {
+                        PeerStoriesView.this.storyAreasView.shine();
+                    }
+                } else {
+                    fClamp = 0.0f;
+                }
+                invalidate();
+            }
+            float f2 = fClamp;
+            PeerStoriesView peerStoriesView5 = PeerStoriesView.this;
+            VideoPlayerSharedScope videoPlayerSharedScope = peerStoriesView5.playerSharedScope;
+            if (videoPlayerSharedScope == null || (videoPlayerHolder = videoPlayerSharedScope.player) == null) {
+                f = f2;
+            } else {
+                float f3 = videoPlayerHolder.currentSeek;
+                if (f3 >= 0.0f) {
+                    f = f3;
+                } else {
+                    f = f2;
+                }
+            }
+            boolean z = true;
+            if (!peerStoriesView5.switchEventSent && f2 == 1.0f && ((!PeerStoriesView.this.currentStory.isVideo || !PeerStoriesView.this.isCaptionPartVisible) && !PeerStoriesView.this.isLongPressed)) {
+                PeerStoriesView.this.switchEventSent = true;
+                post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$drawLines$0();
+                    }
+                });
+            }
+            StoriesController.StoriesList storiesList = this.val$storyViewer.storiesList;
+            if (storiesList != null && storiesList.type != 3) {
+                if (PeerStoriesView.this.storyPositionView == null) {
+                    PeerStoriesView.this.storyPositionView = new StoryPositionView();
+                }
+                PeerStoriesView.this.storyPositionView.draw(canvas, (1.0f - PeerStoriesView.this.outT) * hideInterfaceAlpha * PeerStoriesView.this.alpha, PeerStoriesView.this.listPosition, this.val$storyViewer.storiesList.getCount(), this, PeerStoriesView.this.headerView);
+            }
+            canvas.save();
+            canvas.translate(0.0f, AndroidUtilities.dp(8.0f) - (AndroidUtilities.dp(8.0f) * PeerStoriesView.this.outT));
+            boolean z2 = PeerStoriesView.this.currentStory.isVideo() && PeerStoriesView.this.playerSharedScope.isBuffering();
+            boolean z3 = PeerStoriesView.this.isLongPressed && (storyItemHolder = PeerStoriesView.this.currentStory) != null && storyItemHolder.isVideo && (storyViewer = this.val$storyViewer) != null && storyViewer.inSeekingMode;
+            AnimatedFloat animatedFloat = PeerStoriesView.this.linesAlpha;
+            if (PeerStoriesView.this.isLongPressed && !z3) {
+                z = false;
+            }
+            PeerStoriesView.this.storyLines.draw(canvas, getMeasuredWidth(), PeerStoriesView.this.linesPosition, f2, PeerStoriesView.this.linesCount, animatedFloat.set(z), PeerStoriesView.this.alpha * (1.0f - PeerStoriesView.this.outT), z2, z3, f);
+            canvas.restore();
         }
 
         public void lambda$drawLines$0() {
@@ -1246,12 +1551,45 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        private void processExternalUrl(int r12, java.lang.String r13, android.text.style.CharacterStyle r14, boolean r15) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.AnonymousClass5.processExternalUrl(int, java.lang.String, android.text.style.CharacterStyle, boolean):void");
+        private void processExternalUrl(int i, String str, CharacterStyle characterStyle, boolean z) {
+            boolean z2;
+            if (!z && !AndroidUtilities.shouldShowUrlInAlert(str)) {
+                if (i == 0) {
+                    Browser.openUrl(getContext(), Uri.parse(str), true, true, null);
+                    return;
+                } else if (i == 1) {
+                    Browser.openUrl(getContext(), Uri.parse(str), false, false, null);
+                    return;
+                } else {
+                    if (i == 2) {
+                        Browser.openUrl(getContext(), Uri.parse(str), false, true, null);
+                        return;
+                    }
+                    return;
+                }
+            }
+            if (i != 0 && i != 2) {
+                if (i == 1) {
+                    AlertsCreator.showOpenUrlAlert(this.val$storyViewer.fragment, str, true, true, false, null, this.val$resourcesProvider);
+                    return;
+                }
+                return;
+            }
+            if (characterStyle instanceof URLSpanReplacement) {
+                URLSpanReplacement uRLSpanReplacement = (URLSpanReplacement) characterStyle;
+                if (uRLSpanReplacement.getTextStyleRun() == null || (uRLSpanReplacement.getTextStyleRun().flags & 1024) == 0) {
+                    z2 = false;
+                } else {
+                    z2 = true;
+                }
+            } else {
+                z2 = false;
+            }
+            AlertsCreator.showOpenUrlAlert(this.val$storyViewer.fragment, str, true, true, true, z2, null, this.val$resourcesProvider);
         }
 
         @Override
-        public void onLinkLongPress(final URLSpan uRLSpan, final View view, final Runnable runnable) throws UnsupportedEncodingException {
+        public void onLinkLongPress(final URLSpan uRLSpan, final View view, final Runnable runnable) {
             final String url = uRLSpan.getURL();
             String url2 = uRLSpan.getURL();
             try {
@@ -1798,8 +2136,427 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        protected void onCreate(org.telegram.ui.ActionBar.ActionBarPopupWindow.ActionBarPopupWindowLayout r29) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.AnonymousClass8.onCreate(org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout):void");
+        protected void onCreate(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
+            String string;
+            LivePlayer livePlayer;
+            LivePlayer livePlayer2;
+            final StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy;
+            TL_stories.StoryItem storyItem;
+            TLRPC.MessageMedia messageMedia;
+            TLRPC.Photo photo;
+            TLRPC.User user;
+            TLRPC.Chat chat;
+            TLObject tLObject;
+            String strTrim;
+            boolean z;
+            boolean z2;
+            if (this.val$canEditStory || PeerStoriesView.this.currentStory.uploadingStory != null) {
+                StoryItemHolder storyItemHolder = PeerStoriesView.this.currentStory;
+                final TL_stories.StoryItem storyItem2 = storyItemHolder.storyItem;
+                if (storyItemHolder.uploadingStory != null) {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_cancel, LocaleController.getString(R.string.Cancel), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$10(view);
+                        }
+                    });
+                }
+                if (storyItem2 == null) {
+                    return;
+                }
+                PeerStoriesView peerStoriesView = PeerStoriesView.this;
+                if ((peerStoriesView.isSelf || peerStoriesView.storiesController.canEditStories(peerStoriesView.dialogId)) && !PeerStoriesView.this.currentStory.isLive) {
+                    addAlbumsLayout(actionBarPopupWindowLayout, true);
+                }
+                if (PeerStoriesView.this.isSelf) {
+                    if (storyItem2.privacy.isEmpty()) {
+                        storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(3, PeerStoriesView.this.currentAccount, new ArrayList());
+                    } else {
+                        storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(PeerStoriesView.this.currentAccount, storyItem2.privacy);
+                    }
+                    ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.WhoCanSee), false, this.val$resourcesProvider);
+                    actionBarMenuSubItemAddItem.setSubtext(storyPrivacy.toString());
+                    actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$11(storyPrivacy, storyItem2, view);
+                        }
+                    });
+                    actionBarMenuSubItemAddItem.setItemHeight(56);
+                }
+                addSpeedLayout(actionBarPopupWindowLayout, false);
+                if (PeerStoriesView.this.isSelf || this.val$speedControl) {
+                    View gapView = new ActionBarPopupWindow.GapView(PeerStoriesView.this.getContext(), this.val$resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                    gapView.setTag(R.id.fit_width_tag, 1);
+                    actionBarPopupWindowLayout.addView(gapView, LayoutHelper.createLinear(-1, 8));
+                }
+                PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
+                if (!peerStoriesView2.unsupported && !peerStoriesView2.currentStory.isLive && ((PeerStoriesView.this.isBotsPreview() || MessagesController.getInstance(PeerStoriesView.this.currentAccount).storiesEnabled()) && this.val$userCanEditStory)) {
+                    PeerStoriesView peerStoriesView3 = PeerStoriesView.this;
+                    peerStoriesView3.editStoryItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_edit, LocaleController.getString(peerStoriesView3.isBotsPreview() ? R.string.EditBotPreview : R.string.EditStory), false, this.val$resourcesProvider);
+                    ActionBarMenuSubItem actionBarMenuSubItem = PeerStoriesView.this.editStoryItem;
+                    final Theme.ResourcesProvider resourcesProvider = this.val$resourcesProvider;
+                    final Context context = this.val$context;
+                    final StoryViewer storyViewer = this.val$storyViewer;
+                    final SharedResources sharedResources = this.val$sharedResources;
+                    actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$17(resourcesProvider, context, storyViewer, sharedResources, view);
+                        }
+                    });
+                    PeerStoriesView peerStoriesView4 = PeerStoriesView.this;
+                    if (peerStoriesView4.storiesController.hasUploadingStories(peerStoriesView4.dialogId) && PeerStoriesView.this.currentStory.isVideo && !SharedConfig.allowPreparingHevcPlayers()) {
+                        PeerStoriesView.this.editStoryItem.setAlpha(0.5f);
+                    }
+                }
+                StoryItemHolder storyItemHolder2 = PeerStoriesView.this.currentStory;
+                if (storyItemHolder2.storyItem != null && storyItemHolder2.isVideo && !PeerStoriesView.this.currentStory.isLive) {
+                    PeerStoriesView peerStoriesView5 = PeerStoriesView.this;
+                    if (peerStoriesView5.currentStory.storyItem.pinned || peerStoriesView5.isEditBotsPreview()) {
+                        ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.menu_cover_stories, LocaleController.getString(R.string.StoryEditCoverMenu), false, this.val$resourcesProvider);
+                        final Context context2 = this.val$context;
+                        final StoryViewer storyViewer2 = this.val$storyViewer;
+                        final SharedResources sharedResources2 = this.val$sharedResources;
+                        actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$onCreate$27(context2, storyItem2, storyViewer2, sharedResources2, view);
+                            }
+                        });
+                    }
+                }
+                PeerStoriesView peerStoriesView6 = PeerStoriesView.this;
+                if ((peerStoriesView6.isSelf || (peerStoriesView6.isChannel && MessagesController.getInstance(peerStoriesView6.currentAccount).getStoriesController().canEditStories(storyItem2.dialogId))) && !PeerStoriesView.this.currentStory.isLive) {
+                    boolean z3 = storyItem2.pinned;
+                    final boolean z4 = !z3;
+                    if (PeerStoriesView.this.isSelf) {
+                        string = LocaleController.getString(!z3 ? R.string.SaveToProfile : R.string.ArchiveStory);
+                    } else {
+                        string = LocaleController.getString(!z3 ? R.string.SaveToPosts : R.string.RemoveFromPosts);
+                    }
+                    ActionBarMenuSubItem actionBarMenuSubItemAddItem3 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, !z3 ? R.drawable.msg_save_story : R.drawable.menu_unsave_story, string, false, this.val$resourcesProvider);
+                    final Theme.ResourcesProvider resourcesProvider2 = this.val$resourcesProvider;
+                    actionBarMenuSubItemAddItem3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$29(storyItem2, z4, resourcesProvider2, view);
+                        }
+                    });
+                }
+                addViewStatistics(actionBarPopupWindowLayout, storyItem2);
+                PeerStoriesView peerStoriesView7 = PeerStoriesView.this;
+                if (!peerStoriesView7.unsupported && !peerStoriesView7.currentStory.isLive) {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_gallery, LocaleController.getString(PeerStoriesView.this.currentStory.isVideo() ? R.string.SaveVideo : R.string.SaveImage), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$30(view);
+                        }
+                    });
+                }
+                if (!MessagesController.getInstance(PeerStoriesView.this.currentAccount).premiumFeaturesBlocked() && !PeerStoriesView.this.currentStory.isLive) {
+                    PeerStoriesView peerStoriesView8 = PeerStoriesView.this;
+                    if (!peerStoriesView8.isChannel) {
+                        peerStoriesView8.createStealthModeItem(actionBarPopupWindowLayout);
+                    }
+                }
+                PeerStoriesView peerStoriesView9 = PeerStoriesView.this;
+                if (peerStoriesView9.isChannel && peerStoriesView9.allowShareLink) {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_link, LocaleController.getString(R.string.CopyLink), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$31(view);
+                        }
+                    });
+                }
+                if (PeerStoriesView.this.allowShareLink) {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_shareout, LocaleController.getString(R.string.BotShare), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$32(view);
+                        }
+                    });
+                }
+                TL_stories.StoryItem storyItem3 = PeerStoriesView.this.currentStory.storyItem;
+                if (storyItem3 != null) {
+                    TLRPC.MessageMedia messageMedia2 = storyItem3.media;
+                    if ((messageMedia2 instanceof TLRPC.TL_messageMediaVideoStream) && (livePlayer2 = LivePlayer.recording) != null && livePlayer2.equals(((TLRPC.TL_messageMediaVideoStream) messageMedia2).call)) {
+                        LivePlayer livePlayer3 = LivePlayer.recording;
+                        final boolean z5 = livePlayer3 != null && livePlayer3.isMuted();
+                        ActionBarMenuItem.addItem(actionBarPopupWindowLayout, z5 ? R.drawable.msg_voice_unmuted : R.drawable.msg_voice_muted, LocaleController.getString(z5 ? R.string.Unmute : R.string.Mute), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$onCreate$33(z5, view);
+                            }
+                        });
+                        ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.menu_camera_retake, LocaleController.getString(R.string.AccDescrSwitchCamera), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$onCreate$34(view);
+                            }
+                        });
+                    }
+                }
+                if (PeerStoriesView.this.currentStory.isLive) {
+                    ActionBarMenuSubItem actionBarMenuSubItemAddItem4 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.menu_video_pip, LocaleController.getString(R.string.PipMinimize), false, this.val$resourcesProvider);
+                    final StoryViewer storyViewer3 = this.val$storyViewer;
+                    actionBarMenuSubItemAddItem4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$35(storyViewer3, view);
+                        }
+                    });
+                }
+                if (PeerStoriesView.this.currentStory.isLive && (PeerStoriesView.this.dialogId == UserConfig.getInstance(PeerStoriesView.this.currentAccount).getClientUserId() || ChatObject.canManageCalls(MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChat(Long.valueOf(-PeerStoriesView.this.dialogId))) || ((livePlayer = this.val$storyViewer.livePlayer) != null && PeerStoriesView.this.currentStory.isThisCall(livePlayer.getCallId()) && this.val$storyViewer.livePlayer.isCreator()))) {
+                    ActionBarMenuSubItem actionBarMenuSubItemAddItem5 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_settings_old, LocaleController.getString(R.string.LiveStorySettings), false, this.val$resourcesProvider);
+                    final Theme.ResourcesProvider resourcesProvider3 = this.val$resourcesProvider;
+                    final StoryViewer storyViewer4 = this.val$storyViewer;
+                    actionBarMenuSubItemAddItem5.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$39(resourcesProvider3, storyViewer4, view);
+                        }
+                    });
+                }
+                if (PeerStoriesView.this.currentStory.isLive) {
+                    ActionBarMenuSubItem actionBarMenuSubItemAddItem6 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_remove, LocaleController.getString(R.string.LiveStoryEnd), false, this.val$resourcesProvider);
+                    int i = Theme.key_text_RedBold;
+                    actionBarMenuSubItemAddItem6.setSelectorColor(Theme.multAlpha(Theme.getColor(i, this.val$resourcesProvider), 0.12f));
+                    actionBarMenuSubItemAddItem6.setColors(this.val$resourcesProvider.getColor(i), this.val$resourcesProvider.getColor(i));
+                    final Theme.ResourcesProvider resourcesProvider4 = this.val$resourcesProvider;
+                    final StoryViewer storyViewer5 = this.val$storyViewer;
+                    actionBarMenuSubItemAddItem6.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$41(resourcesProvider4, storyViewer5, view);
+                        }
+                    });
+                }
+                if (!PeerStoriesView.this.currentStory.isLive) {
+                    PeerStoriesView peerStoriesView10 = PeerStoriesView.this;
+                    if (peerStoriesView10.isSelf || MessagesController.getInstance(peerStoriesView10.currentAccount).getStoriesController().canDeleteStory(PeerStoriesView.this.currentStory.storyItem)) {
+                        ActionBarMenuSubItem actionBarMenuSubItemAddItem7 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_delete, LocaleController.getString(R.string.Delete), false, this.val$resourcesProvider);
+                        int i2 = Theme.key_text_RedBold;
+                        actionBarMenuSubItemAddItem7.setSelectorColor(Theme.multAlpha(Theme.getColor(i2, this.val$resourcesProvider), 0.12f));
+                        actionBarMenuSubItemAddItem7.setColors(this.val$resourcesProvider.getColor(i2), this.val$resourcesProvider.getColor(i2));
+                        actionBarMenuSubItemAddItem7.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$onCreate$42(view);
+                            }
+                        });
+                    }
+                }
+            } else {
+                addSpeedLayout(actionBarPopupWindowLayout, true);
+                final String sharedPrefKey = NotificationsController.getSharedPrefKey(PeerStoriesView.this.dialogId, 0L);
+                boolean zAreStoriesNotMuted = NotificationsCustomSettingsActivity.areStoriesNotMuted(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId);
+                if (PeerStoriesView.this.dialogId > 0) {
+                    chat = null;
+                    user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId));
+                    tLObject = user;
+                } else {
+                    user = null;
+                    chat = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChat(Long.valueOf(-PeerStoriesView.this.dialogId));
+                    tLObject = chat;
+                }
+                if (user == null) {
+                    strTrim = chat == null ? "" : chat.title;
+                } else {
+                    strTrim = UserObject.getFirstName(user).trim();
+                }
+                int iIndexOf = strTrim.indexOf(" ");
+                if (iIndexOf > 0) {
+                    strTrim = strTrim.substring(0, iIndexOf);
+                }
+                final String str = strTrim;
+                if (!UserObject.isService(PeerStoriesView.this.dialogId) && !PeerStoriesView.this.isBotsPreview()) {
+                    if (zAreStoriesNotMuted) {
+                        ActionBarMenuSubItem actionBarMenuSubItemAddItem8 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_mute, LocaleController.getString(R.string.NotificationsStoryMute2), false, this.val$resourcesProvider);
+                        final Theme.ResourcesProvider resourcesProvider5 = this.val$resourcesProvider;
+                        final TLObject tLObject2 = tLObject;
+                        actionBarMenuSubItemAddItem8.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$onCreate$43(sharedPrefKey, resourcesProvider5, tLObject2, str, view);
+                            }
+                        });
+                        actionBarMenuSubItemAddItem8.setMultiline(false);
+                    } else {
+                        ActionBarMenuSubItem actionBarMenuSubItemAddItem9 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_unmute, LocaleController.getString(R.string.NotificationsStoryUnmute2), false, this.val$resourcesProvider);
+                        final Theme.ResourcesProvider resourcesProvider6 = this.val$resourcesProvider;
+                        final TLObject tLObject3 = tLObject;
+                        actionBarMenuSubItemAddItem9.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$onCreate$44(sharedPrefKey, resourcesProvider6, tLObject3, str, view);
+                            }
+                        });
+                        actionBarMenuSubItemAddItem9.setMultiline(false);
+                    }
+                    MediaDataController.getInstance(PeerStoriesView.this.currentAccount).loadHints(true);
+                    boolean z6 = (user == 0 || user.contact || !MediaDataController.getInstance(PeerStoriesView.this.currentAccount).containsTopPeer(PeerStoriesView.this.dialogId)) ? false : true;
+                    if (PeerStoriesView.this.dialogId > 0) {
+                        z = user != 0 && user.contact;
+                        if (user == 0 || !user.stories_hidden) {
+                            z2 = false;
+                        } else {
+                            z2 = true;
+                        }
+                    } else {
+                        z = (chat == 0 || ChatObject.isNotInChat(chat)) ? false : true;
+                        if (chat == 0 || !chat.stories_hidden) {
+                            z2 = false;
+                        } else {
+                            z2 = true;
+                        }
+                    }
+                    if (z6) {
+                        ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_delete, LocaleController.getString(R.string.StoriesRemoveFromRecent), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$onCreate$45(view);
+                            }
+                        });
+                    } else if (z) {
+                        if (!z2) {
+                            ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_archive, LocaleController.getString(R.string.ArchivePeerStories), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    this.f$0.lambda$onCreate$46(view);
+                                }
+                            });
+                        } else {
+                            ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_unarchive, LocaleController.getString(R.string.UnarchiveStories), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    this.f$0.lambda$onCreate$47(view);
+                                }
+                            });
+                        }
+                    }
+                }
+                if (PeerStoriesView.this.currentStory.isLive) {
+                    ActionBarMenuSubItem actionBarMenuSubItemAddItem10 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.menu_video_pip, LocaleController.getString(R.string.PipMinimize), false, this.val$resourcesProvider);
+                    final StoryViewer storyViewer6 = this.val$storyViewer;
+                    actionBarMenuSubItemAddItem10.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$48(storyViewer6, view);
+                        }
+                    });
+                }
+                if (!MessagesController.getInstance(PeerStoriesView.this.currentAccount).premiumFeaturesBlocked() && PeerStoriesView.this.currentStory.isVideo) {
+                    PeerStoriesView.this.createQualityItem(actionBarPopupWindowLayout);
+                }
+                PeerStoriesView peerStoriesView11 = PeerStoriesView.this;
+                if (!peerStoriesView11.unsupported && peerStoriesView11.allowShare && !PeerStoriesView.this.currentStory.isLive) {
+                    if (!UserConfig.getInstance(PeerStoriesView.this.currentAccount).isPremium()) {
+                        if (!MessagesController.getInstance(PeerStoriesView.this.currentAccount).premiumFeaturesBlocked()) {
+                            Drawable drawable = ContextCompat.getDrawable(this.val$context, R.drawable.msg_gallery_locked2);
+                            drawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, 0.5f), PorterDuff.Mode.MULTIPLY));
+                            CombinedDrawable combinedDrawable = new CombinedDrawable(ContextCompat.getDrawable(this.val$context, R.drawable.msg_gallery_locked1), drawable) {
+                                @Override
+                                public void setColorFilter(ColorFilter colorFilter) {
+                                }
+                            };
+                            final ActionBarMenuSubItem actionBarMenuSubItemAddItem11 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_gallery, LocaleController.getString(R.string.SaveToGallery), false, this.val$resourcesProvider);
+                            actionBarMenuSubItemAddItem11.setIcon(combinedDrawable);
+                            final StoryViewer storyViewer7 = this.val$storyViewer;
+                            actionBarMenuSubItemAddItem11.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    this.f$0.lambda$onCreate$51(actionBarMenuSubItemAddItem11, storyViewer7, view);
+                                }
+                            });
+                        }
+                    } else {
+                        ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_gallery, LocaleController.getString(R.string.SaveToGallery), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$onCreate$49(view);
+                            }
+                        });
+                    }
+                }
+                if (!MessagesController.getInstance(PeerStoriesView.this.currentAccount).premiumFeaturesBlocked()) {
+                    PeerStoriesView peerStoriesView12 = PeerStoriesView.this;
+                    if (!peerStoriesView12.isChannel) {
+                        peerStoriesView12.createStealthModeItem(actionBarPopupWindowLayout);
+                    }
+                }
+                if (PeerStoriesView.this.allowShareLink) {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$52(view);
+                        }
+                    });
+                }
+                if (PeerStoriesView.this.allowShareLink) {
+                    ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_shareout, LocaleController.getString(R.string.BotShare), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$53(view);
+                        }
+                    });
+                }
+                TL_stories.StoryItem storyItem4 = PeerStoriesView.this.currentStory.storyItem;
+                if (storyItem4 != null) {
+                    if (!storyItem4.translated || !TextUtils.equals(storyItem4.translatedLng, TranslateAlert2.getToLanguage())) {
+                        if (MessagesController.getInstance(PeerStoriesView.this.currentAccount).getTranslateController().canTranslateStory(PeerStoriesView.this.currentStory.storyItem)) {
+                            ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_translate, LocaleController.getString(R.string.TranslateMessage), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    this.f$0.lambda$onCreate$57(view);
+                                }
+                            });
+                        }
+                    } else {
+                        ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_translate, LocaleController.getString(R.string.HideTranslation), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$onCreate$54(view);
+                            }
+                        });
+                    }
+                }
+                addViewStatistics(actionBarPopupWindowLayout, PeerStoriesView.this.currentStory.storyItem);
+                PeerStoriesView peerStoriesView13 = PeerStoriesView.this;
+                if (!peerStoriesView13.unsupported && !UserObject.isService(peerStoriesView13.dialogId) && !PeerStoriesView.this.isBotsPreview()) {
+                    ActionBarMenuSubItem actionBarMenuSubItemAddItem12 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_report, LocaleController.getString(R.string.ReportChat), false, this.val$resourcesProvider);
+                    final StoryViewer storyViewer8 = this.val$storyViewer;
+                    final Theme.ResourcesProvider resourcesProvider7 = this.val$resourcesProvider;
+                    actionBarMenuSubItemAddItem12.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$onCreate$59(storyViewer8, resourcesProvider7, view);
+                        }
+                    });
+                }
+            }
+            StoryItemHolder storyItemHolder3 = PeerStoriesView.this.currentStory;
+            boolean z7 = (storyItemHolder3 == null || (storyItem = storyItemHolder3.storyItem) == null || (messageMedia = storyItem.media) == null || (!MessageObject.isDocumentHasAttachedStickers(messageMedia.document) && ((photo = PeerStoriesView.this.currentStory.storyItem.media.photo) == null || !photo.has_stickers))) ? false : true;
+            PeerStoriesView peerStoriesView14 = PeerStoriesView.this;
+            ArrayList animatedEmojiSets = peerStoriesView14.getAnimatedEmojiSets(peerStoriesView14.currentStory);
+            boolean z8 = (animatedEmojiSets == null || animatedEmojiSets.isEmpty()) ? false : true;
+            if (z7 || z8) {
+                View gapView2 = new ActionBarPopupWindow.GapView(this.val$context, this.val$resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                int i3 = R.id.fit_width_tag;
+                gapView2.setTag(i3, 1);
+                actionBarPopupWindowLayout.addView(gapView2, LayoutHelper.createLinear(-1, 8));
+                TLRPC.MessageMedia messageMedia3 = PeerStoriesView.this.currentStory.storyItem.media;
+                TLRPC.Document document = messageMedia3.document;
+                final StoryContainsEmojiButton storyContainsEmojiButton = new StoryContainsEmojiButton(this.val$context, PeerStoriesView.this.currentAccount, document != null ? document : messageMedia3.photo, PeerStoriesView.this.currentStory.storyItem, z7, animatedEmojiSets, this.val$resourcesProvider);
+                storyContainsEmojiButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$onCreate$60(storyContainsEmojiButton, view);
+                    }
+                });
+                storyContainsEmojiButton.setTag(i3, 1);
+                actionBarPopupWindowLayout.addView((View) storyContainsEmojiButton, LayoutHelper.createLinear(-1, -2));
+            }
         }
 
         public void lambda$onCreate$10(View view) {
@@ -1840,7 +2597,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() {
                     this.f$0.lambda$onCreate$16(activityFindActivity, storyViewer, sharedResources);
                 }
             };
@@ -1850,7 +2607,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -1962,7 +2719,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() {
                     this.f$0.lambda$onCreate$26(activityFindActivity, storyItem, storyViewer, sharedResources);
                 }
             };
@@ -1972,7 +2729,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -2529,8 +3286,93 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$new$10(android.view.View r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.lambda$new$10(android.view.View):void");
+    public void lambda$new$10(View view) {
+        SpannableStringBuilder spannableStringBuilderReplaceTags;
+        boolean z;
+        CharSequence charSequenceReplaceEmoji;
+        HintView2 hintView2;
+        int measuredWidth;
+        StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy;
+        TL_stories.StoryItem storyItem = this.currentStory.storyItem;
+        if (storyItem == null) {
+            return;
+        }
+        if (this.isSelf) {
+            if (storyItem.privacy.isEmpty()) {
+                storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(3, this.currentAccount, new ArrayList());
+            } else {
+                storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(this.currentAccount, storyItem.privacy);
+            }
+            editPrivacy(storyPrivacy, storyItem);
+            return;
+        }
+        if (this.privacyHint == null) {
+            HintView2 onHiddenListener = new HintView2(getContext(), 1).setMultilineText(true).setTextAlign(Layout.Alignment.ALIGN_CENTER).setOnHiddenListener(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$new$9();
+                }
+            });
+            this.privacyHint = onHiddenListener;
+            onHiddenListener.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+            this.storyContainer.addView(this.privacyHint, LayoutHelper.createFrame(-1, 60.0f, 55, 0.0f, 52.0f, 0.0f, 0.0f));
+        }
+        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+        if (user == null) {
+            return;
+        }
+        String strSubstring = user.first_name;
+        int iIndexOf = strSubstring.indexOf(32);
+        if (iIndexOf > 0) {
+            strSubstring = strSubstring.substring(0, iIndexOf);
+        }
+        if (storyItem.close_friends) {
+            this.privacyHint.setInnerPadding(15.0f, 8.0f, 15.0f, 8.0f);
+            spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoryCloseFriendsHint", R.string.StoryCloseFriendsHint, strSubstring));
+        } else {
+            if (storyItem.contacts) {
+                this.privacyHint.setInnerPadding(11.0f, 6.0f, 11.0f, 7.0f);
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoryContactsHint", R.string.StoryContactsHint, strSubstring));
+                z = false;
+            } else {
+                if (!storyItem.selected_contacts) {
+                    return;
+                }
+                this.privacyHint.setInnerPadding(15.0f, 8.0f, 15.0f, 8.0f);
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StorySelectedContactsHint", R.string.StorySelectedContactsHint, strSubstring));
+            }
+            charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableStringBuilderReplaceTags, this.privacyHint.getTextPaint().getFontMetricsInt(), false);
+            hintView2 = this.privacyHint;
+            if (z) {
+                measuredWidth = HintView2.cutInFancyHalf(charSequenceReplaceEmoji, hintView2.getTextPaint());
+            } else {
+                measuredWidth = this.storyContainer.getMeasuredWidth();
+            }
+            hintView2.setMaxWidthPx(measuredWidth);
+            this.privacyHint.setText(charSequenceReplaceEmoji);
+            this.privacyHint.setJoint(1.0f, (-(this.storyContainer.getWidth() - this.privacyButton.getCenterX())) / AndroidUtilities.density);
+            this.delegate.setIsHintVisible(true);
+            if (this.privacyHint.shown()) {
+                BotWebViewVibrationEffect.IMPACT_LIGHT.vibrate();
+            }
+            this.privacyHint.show();
+        }
+        z = true;
+        charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableStringBuilderReplaceTags, this.privacyHint.getTextPaint().getFontMetricsInt(), false);
+        hintView2 = this.privacyHint;
+        if (z) {
+            measuredWidth = HintView2.cutInFancyHalf(charSequenceReplaceEmoji, hintView2.getTextPaint());
+        } else {
+            measuredWidth = this.storyContainer.getMeasuredWidth();
+        }
+        hintView2.setMaxWidthPx(measuredWidth);
+        this.privacyHint.setText(charSequenceReplaceEmoji);
+        this.privacyHint.setJoint(1.0f, (-(this.storyContainer.getWidth() - this.privacyButton.getCenterX())) / AndroidUtilities.density);
+        this.delegate.setIsHintVisible(true);
+        if (this.privacyHint.shown()) {
+            BotWebViewVibrationEffect.IMPACT_LIGHT.vibrate();
+        }
+        this.privacyHint.show();
     }
 
     public void lambda$new$9() {
@@ -2915,26 +3757,26 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     public void toggleArchiveForStory(final long j) {
         String str;
         boolean z;
-        TLRPC.Chat chat;
+        TLObject tLObject;
         if (j > 0) {
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
             str = user.first_name;
             z = user.stories_hidden;
-            chat = user;
+            tLObject = user;
         } else {
-            TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
-            str = chat2.title;
-            z = chat2.stories_hidden;
-            chat = chat2;
+            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+            str = chat.title;
+            z = chat.stories_hidden;
+            tLObject = chat;
         }
-        final TLRPC.Chat chat3 = chat;
+        final TLObject tLObject2 = tLObject;
         final String str2 = str;
         final boolean z2 = !z;
         final MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$toggleArchiveForStory$20(messagesController, j, z2, str2, chat3);
+                this.f$0.lambda$toggleArchiveForStory$20(messagesController, j, z2, str2, tLObject2);
             }
         }, 200L);
     }
@@ -2992,7 +3834,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updatePosition();
     }
 
-    private void createPremiumBlockedText() throws Resources.NotFoundException {
+    private void createPremiumBlockedText() {
         if (this.premiumBlockedText != null) {
             return;
         }
@@ -3224,7 +4066,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     public void lambda$createCommentButton$25(View view) {
-        this.liveCommentsView.setCollapsed(!r3.isCollapsed(), true);
+        LiveCommentsView liveCommentsView = this.liveCommentsView;
+        liveCommentsView.setCollapsed(!liveCommentsView.isCollapsed(), true);
     }
 
     private void createPaidReactionsButton() {
@@ -3331,15 +4174,15 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         if (!disabledPaidFeatures(true) && MessagesController.getGlobalMainSettings().getInt("taptostoryhighlighthint", 0) < 3) {
             MessagesController.getGlobalMainSettings().edit().putInt("taptostoryhighlighthint", MessagesController.getGlobalMainSettings().getInt("taptostoryhighlighthint", 0) + 1).apply();
-            final HintView2 hintView22 = new HintView2(getContext(), 3);
-            this.highlightMessageHintView = hintView22;
-            hintView22.setText(LocaleController.getString(R.string.LiveStoryHighlightHint));
+            final HintView2 hintView3 = new HintView2(getContext(), 3);
+            this.highlightMessageHintView = hintView3;
+            hintView3.setText(LocaleController.getString(R.string.LiveStoryHighlightHint));
             this.highlightMessageHintView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
             this.highlightMessageHintView.setTextAlign(Layout.Alignment.ALIGN_OPPOSITE);
             this.highlightMessageHintView.setOnHiddenListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showPaidMessageHint$29(hintView22);
+                    this.f$0.lambda$showPaidMessageHint$29(hintView3);
                 }
             });
             addView(this.highlightMessageHintView, LayoutHelper.createFrame(-1, 100, 87));
@@ -3355,7 +4198,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    private void createEnterView() throws Resources.NotFoundException {
+    private void createEnterView() {
         AnonymousClass19 anonymousClass19 = new AnonymousClass19(AndroidUtilities.findActivity(getContext()), this, null, true, new WrappedResourceProvider(this.resourcesProvider) {
             @Override
             public void appendColors() {
@@ -3398,7 +4241,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.sideControlsButtonsLayout = chatActivitySideControlsButtonsLayout;
         chatActivitySideControlsButtonsLayout.setOnClickListener(new ButtonOnClickListener() {
             @Override
-            public final void onClick(int i, View view) throws IOException {
+            public final void onClick(int i, View view) {
                 this.f$0.onSideControlButtonOnClick(i, view);
             }
         });
@@ -3426,7 +4269,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public boolean sendMessage() throws Resources.NotFoundException {
+        public boolean sendMessage() {
             int length;
             if (this.sendButtonContainer.getAlpha() < 0.5f) {
                 openKeyboard();
@@ -3824,7 +4667,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public boolean setDefaultSendAs(long j, long j2) throws Resources.NotFoundException {
+        public boolean setDefaultSendAs(long j, long j2) {
             TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
             if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
                 TL_phone.saveDefaultSendAs savedefaultsendas = new TL_phone.saveDefaultSendAs();
@@ -3884,7 +4727,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public void didPressAttachButton() throws IOException {
+        public void didPressAttachButton() {
             PeerStoriesView.this.openAttachMenu();
         }
 
@@ -3969,7 +4812,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void onSideControlButtonOnClick(int i, View view) throws IOException {
+    public void onSideControlButtonOnClick(int i, View view) {
         if (i == 0) {
             openAttachMenu();
         }
@@ -4132,7 +4975,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return this.storyViewer.livePlayer.getSendPaidMessagesStars();
     }
 
-    public void openAttachMenu() throws IOException {
+    public void openAttachMenu() {
         if (this.chatActivityEnterView == null) {
             return;
         }
@@ -4149,7 +4992,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.delegate.showDialog(this.chatAttachAlert);
     }
 
-    private void createChatAttachView() throws IOException {
+    private void createChatAttachView() {
         if (this.chatAttachAlert == null) {
             BaseFragment baseFragment = null;
             boolean z = false;
@@ -4431,7 +5274,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, IOException {
+            public final void run() {
                 this.f$0.lambda$openRepostStory$38(activityFindActivity);
             }
         };
@@ -4441,7 +5284,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }
 
-    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException, IOException {
+    public void lambda$openRepostStory$38(Activity activity) {
         StoryViewer.VideoPlayerHolder videoPlayerHolder;
         final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
         VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
@@ -4470,27 +5313,33 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         INavigationLayout parentLayout;
         if (bool.booleanValue()) {
             BaseFragment baseFragment = this.storyViewer.fragment;
+            DialogStoriesCell.StoryCell storyCellFindStoryCell = null;
             if (baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
                 dialogStoriesCell = null;
-            } else {
-                List fragmentStack = parentLayout.getFragmentStack();
-                ArrayList arrayList = new ArrayList();
-                for (int size = fragmentStack.size() - 1; size >= 0; size--) {
-                    BaseFragment baseFragment2 = (BaseFragment) fragmentStack.get(size);
-                    if (baseFragment2 instanceof DialogsActivity) {
-                        DialogsActivity dialogsActivity = (DialogsActivity) baseFragment2;
-                        dialogsActivity.closeSearching();
-                        DialogStoriesCell dialogStoriesCell2 = dialogsActivity.dialogStoriesCell;
-                        storyCellFindStoryCell = dialogStoriesCell2 != null ? dialogStoriesCell2.findStoryCell(l2.longValue()) : null;
-                        for (int i = 0; i < arrayList.size(); i++) {
-                            parentLayout.removeFragmentFromStack((BaseFragment) arrayList.get(i));
-                        }
-                        dialogStoriesCell = dialogStoriesCell2;
-                    } else {
-                        arrayList.add(baseFragment2);
-                    }
+                break;
+            }
+            List fragmentStack = parentLayout.getFragmentStack();
+            ArrayList arrayList = new ArrayList();
+            int size = fragmentStack.size() - 1;
+            while (true) {
+                if (size < 0) {
+                    dialogStoriesCell = null;
+                    break;
                 }
-                dialogStoriesCell = null;
+                BaseFragment baseFragment2 = (BaseFragment) fragmentStack.get(size);
+                if (baseFragment2 instanceof DialogsActivity) {
+                    DialogsActivity dialogsActivity = (DialogsActivity) baseFragment2;
+                    dialogsActivity.closeSearching();
+                    DialogStoriesCell dialogStoriesCell2 = dialogsActivity.dialogStoriesCell;
+                    storyCellFindStoryCell = dialogStoriesCell2 != null ? dialogStoriesCell2.findStoryCell(l2.longValue()) : null;
+                    for (int i = 0; i < arrayList.size(); i++) {
+                        parentLayout.removeFragmentFromStack((BaseFragment) arrayList.get(i));
+                    }
+                    dialogStoriesCell = dialogStoriesCell2;
+                    break;
+                }
+                arrayList.add(baseFragment2);
+                size--;
             }
             BaseFragment baseFragment3 = this.storyViewer.fragment;
             if (baseFragment3 != null) {
@@ -4586,13 +5435,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         });
     }
 
-    public void setDay(long j, ArrayList arrayList, int i) throws Resources.NotFoundException {
+    public void setDay(long j, ArrayList arrayList, int i) {
         this.dialogId = j;
         this.day = arrayList;
         bindInternal(i);
     }
 
-    public void setDialogId(long j, int i) throws Resources.NotFoundException {
+    public void setDialogId(long j, int i) {
         if (this.dialogId != j) {
             this.currentStory.clear();
         }
@@ -4652,7 +5501,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.headerView.titleView.setRightDrawable((Drawable) null);
     }
 
-    private void bindInternal(int i) throws Resources.NotFoundException {
+    private void bindInternal(int i) {
         this.deletedPeer = false;
         this.forceUpdateOffsets = true;
         this.userCanSeeViews = false;
@@ -4888,7 +5737,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void preloadMainImage(long j) throws Resources.NotFoundException {
+    public void preloadMainImage(long j) {
         if (this.dialogId == j && this.day == null) {
             return;
         }
@@ -4925,26 +5774,23 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 if (this.storyViewer.dayStoryId > ((Integer) this.day.get(0)).intValue()) {
                     iIndexOf = 0;
                 } else {
-                    if (this.storyViewer.dayStoryId < ((Integer) this.day.get(r5.size() - 1)).intValue()) {
+                    int i2 = this.storyViewer.dayStoryId;
+                    ArrayList arrayList2 = this.day;
+                    if (i2 < ((Integer) arrayList2.get(arrayList2.size() - 1)).intValue()) {
                         iIndexOf = this.day.size() - 1;
                     }
                 }
             }
             this.selectedPosition = size + iIndexOf;
         } else {
-            int i2 = this.storyViewer.savedPositions.get(this.dialogId, -1);
-            this.selectedPosition = i2;
-            if (i2 == -1 && !this.storyViewer.isSingleStory && (peerStories = this.userStories) != null && peerStories.max_read_id > 0) {
-                int i3 = 0;
-                while (true) {
-                    if (i3 >= this.storyItems.size()) {
+            int i3 = this.storyViewer.savedPositions.get(this.dialogId, -1);
+            this.selectedPosition = i3;
+            if (i3 == -1 && !this.storyViewer.isSingleStory && (peerStories = this.userStories) != null && peerStories.max_read_id > 0) {
+                for (int i4 = 0; i4 < this.storyItems.size(); i4++) {
+                    if (((TL_stories.StoryItem) this.storyItems.get(i4)).id > this.userStories.max_read_id) {
+                        this.selectedPosition = i4;
                         break;
                     }
-                    if (((TL_stories.StoryItem) this.storyItems.get(i3)).id > this.userStories.max_read_id) {
-                        this.selectedPosition = i3;
-                        break;
-                    }
-                    i3++;
                 }
             }
         }
@@ -5292,7 +6138,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         LivePlayer livePlayer;
         if (i != NotificationCenter.storiesUpdated) {
             boolean z = false;
@@ -5419,11 +6265,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$new$43() throws Resources.NotFoundException {
+    public void lambda$new$43() {
         checkStealthMode(true);
     }
 
-    public void checkStealthMode(boolean z) throws Resources.NotFoundException {
+    public void checkStealthMode(boolean z) {
         if (this.chatActivityEnterView != null && this.isVisible && this.attachedToWindow) {
             AndroidUtilities.cancelRunOnUIThread(this.updateStealthModeTimer);
             TL_stories.TL_storiesStealthMode stealthMode = this.storiesController.getStealthMode();
@@ -5464,8 +6310,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             this.stealthModeIsActive = false;
             this.chatActivityEnterView.setEnabled(true);
             if (this.currentStory.isLive) {
-                if (this.chatActivityEnterView.getStarsPrice() > 0) {
-                    this.chatActivityEnterView.setOverrideHint(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.CommentFor, LocaleController.formatNumber((int) r3, ',')), this.chatActivityEnterView.spans), z);
+                long starsPrice = this.chatActivityEnterView.getStarsPrice();
+                if (starsPrice > 0) {
+                    this.chatActivityEnterView.setOverrideHint(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.CommentFor, LocaleController.formatNumber((int) starsPrice, ',')), this.chatActivityEnterView.spans), z);
                     ColoredImageSpan coloredImageSpan = this.chatActivityEnterView.spans[0];
                     if (coloredImageSpan != null) {
                         coloredImageSpan.spaceScaleX = 0.9f;
@@ -5484,8 +6331,2232 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updatePosition(false);
     }
 
-    private void updatePosition(boolean r45) throws android.content.res.Resources.NotFoundException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.updatePosition(boolean):void");
+    private void updatePosition(boolean z) {
+        TL_stories.StoryItem storyItem;
+        TL_stories.StoryItem storyItem2;
+        StoriesController.UploadingStory uploadingStory;
+        StoriesController.UploadingStory uploadingStory2;
+        StoryViewer.TransitionViewHolder transitionViewHolder;
+        ImageReceiver imageReceiver;
+        boolean z2;
+        ArrayList<TLRPC.PhotoSize> arrayList;
+        TL_stories.StoryItem storyItem3;
+        StoriesController.UploadingStory uploadingStory3;
+        TL_stories.StoryItem storyItem4;
+        StoryItemHolder storyItemHolder;
+        boolean z3;
+        boolean z4;
+        StoryViewer storyViewer;
+        boolean z5;
+        ChatActivityEnterView chatActivityEnterView;
+        boolean z6;
+        StoriesController.UploadingStory uploadingStory4;
+        RadialProgress radialProgress;
+        TL_stories.StoryItem storyItem5;
+        StoriesController.UploadingStory uploadingStory5;
+        StoryItemHolder storyItemHolder2;
+        TL_stories.StoryItem storyItem6;
+        CharSequence string;
+        String storyDate;
+        SpannableStringBuilder spannableStringBuilderValueOf;
+        TL_stories.StoryItem storyItem7;
+        SpannableStringBuilder spannableStringBuilder;
+        final StoryCaptionView.Panel reply;
+        SpannableStringBuilder spannableStringBuilder2;
+        String str;
+        AvatarSpan avatarSpan;
+        TLRPC.Chat chat;
+        StoryViewer storyViewer2;
+        LivePlayer livePlayer;
+        TL_stories.StoryItem storyItem8;
+        TLRPC.MessageMedia messageMedia;
+        TLRPC.Document document;
+        TLRPC.Photo photo;
+        HintView2 hintView2;
+        HintView2 hintView3;
+        StoryViewer storyViewer3;
+        CharSequence charSequence;
+        StoriesController.StoriesList storiesList;
+        TL_stories.StoryItem storyItem9;
+        CharSequence spannableStringBuilder3;
+        CharSequence storyDate2;
+        TL_stories.StoryItem storyItem10;
+        StoryItemHolder storyItemHolder3;
+        Delegate delegate;
+        boolean z7;
+        LinearLayout linearLayout;
+        TLRPC.Chat chat2;
+        ChatActivityEnterView chatActivityEnterView2;
+        ChatActivityEnterView chatActivityEnterView3;
+        ChatActivityEnterView chatActivityEnterView4;
+        ChatActivityEnterView chatActivityEnterView5;
+        FrameLayout frameLayout;
+        FrameLayout frameLayout2;
+        TextView textView;
+        LinearLayout linearLayout2;
+        int i;
+        int i2;
+        View.OnLongClickListener onLongClickListener;
+        boolean z8;
+        ChatActivitySideControlsButtonsLayout chatActivitySideControlsButtonsLayout;
+        CommentButton commentButton;
+        MuteButton muteButton;
+        TL_stories.StoryItem storyItem11;
+        int i3;
+        FrameLayout frameLayout3;
+        int i4;
+        int i5;
+        int i6;
+        StoryItemHolder storyItemHolder4;
+        StoriesController.UploadingStory uploadingStory6;
+        TL_stories.StoryItem storyItem12;
+        boolean z9;
+        boolean z10;
+        float f;
+        StoriesController.UploadingStory uploadingStory7;
+        ViewPropertyAnimator viewPropertyAnimator;
+        StoriesController.StoriesList storiesList2;
+        int i7;
+        int iDp;
+        HintView2 hintView4;
+        ImageView imageView;
+        ImageView imageView2;
+        int i8;
+        int i9;
+        StoryItemHolder storyItemHolder5;
+        TL_stories.StoryItem storyItem13;
+        TLRPC.Reaction reaction;
+        boolean z11;
+        float f2;
+        int i10;
+        TL_stories.StoryItem storyItem14;
+        int i11;
+        MessageObject messageObject;
+        int i12;
+        FrameLayout frameLayout4;
+        int i13;
+        int i14;
+        TLRPC.MessageMedia messageMedia2;
+        ChatActivityEnterView chatActivityEnterView6;
+        StoryItemHolder storyItemHolder6;
+        boolean z12;
+        boolean z13;
+        StoryItemHolder storyItemHolder7;
+        TL_stories.StoryItem storyItem15;
+        int i15;
+        int i16;
+        FrameLayout.LayoutParams layoutParams;
+        MuteButton muteButton2;
+        float f3;
+        int iDp2;
+        int i17;
+        LivePlayer livePlayer2;
+        boolean z14;
+        LivePlayer livePlayer3;
+        boolean z15;
+        LivePlayer livePlayer4;
+        int i18;
+        ChatActivityEnterView chatActivityEnterView7;
+        int i19;
+        ChatActivityEnterView chatActivityEnterView8;
+        FrameLayout frameLayout5;
+        LinearLayout linearLayout3;
+        ChatActivityEnterView chatActivityEnterView9;
+        StoryViewer storyViewer4;
+        LivePlayer livePlayer5;
+        String str2;
+        LivePlayer livePlayer6;
+        TL_stories.StoryItem storyItem16;
+        BitmapDrawable bitmapDrawable;
+        StoriesController.UploadingStory uploadingStory8;
+        StoriesController.StoriesList storiesList3;
+        if (this.storyItems.isEmpty() && this.uploadingStories.isEmpty()) {
+            return;
+        }
+        this.forceUpdateOffsets = true;
+        StoryItemHolder storyItemHolder8 = this.currentStory;
+        TL_stories.StoryItem storyItem17 = storyItemHolder8.storyItem;
+        StoriesController.UploadingStory uploadingStory9 = storyItemHolder8.uploadingStory;
+        String storyImageFilter = StoriesUtilities.getStoryImageFilter();
+        this.lastNoThumb = false;
+        this.unsupported = false;
+        int i20 = this.selectedPosition;
+        boolean z16 = this.isUploading;
+        boolean z17 = this.isEditing;
+        boolean z18 = this.isFailed;
+        StoryViewer storyViewer5 = this.storyViewer;
+        if (storyViewer5 != null && (storiesList3 = storyViewer5.storiesList) != null && storiesList3.type == 4) {
+            uploadingStory2 = (i20 < 0 || i20 >= this.uploadingStories.size()) ? null : (StoriesController.UploadingStory) this.uploadingStories.get(i20);
+            int size = i20 - this.uploadingStories.size();
+            if (size < 0 || size >= this.storyItems.size()) {
+                uploadingStory = uploadingStory2;
+                storyItem2 = null;
+            } else {
+                storyItem = (TL_stories.StoryItem) this.storyItems.get(size);
+                uploadingStory = uploadingStory2;
+                storyItem2 = storyItem;
+            }
+        } else {
+            storyItem = (i20 < 0 || i20 >= this.storyItems.size()) ? null : (TL_stories.StoryItem) this.storyItems.get(i20);
+            int size2 = i20 - this.storyItems.size();
+            if (size2 < 0 || size2 >= this.uploadingStories.size()) {
+                storyItem2 = storyItem;
+                uploadingStory = null;
+            } else {
+                uploadingStory2 = (StoriesController.UploadingStory) this.uploadingStories.get(size2);
+                uploadingStory = uploadingStory2;
+                storyItem2 = storyItem;
+            }
+        }
+        this.currentStory.editingSourceItem = null;
+        if (uploadingStory != null) {
+            this.isEditing = false;
+            boolean z19 = uploadingStory.failed;
+            this.isFailed = z19;
+            this.isUploading = !z19;
+            this.imageReceiver.setCrossfadeWithOldImage(false);
+            this.imageReceiver.setCrossfadeDuration(150);
+            Bitmap bitmap = uploadingStory.entry.thumbBitmap;
+            if (bitmap != null) {
+                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap);
+                Utilities.blurBitmap(bitmapCreateBitmap, 3);
+                bitmapDrawable = new BitmapDrawable(bitmapCreateBitmap);
+            } else {
+                bitmapDrawable = null;
+            }
+            if (uploadingStory.isVideo || uploadingStory.hadFailed) {
+                uploadingStory8 = uploadingStory;
+                this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory8.firstFramePath), storyImageFilter, null, null, bitmapDrawable, 0L, null, null, 0);
+            } else {
+                uploadingStory8 = uploadingStory;
+                this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory.path), storyImageFilter, null, null, bitmapDrawable, 0L, null, null, 0);
+            }
+            this.currentStory.set(uploadingStory8);
+            this.storyAreasView.set(null, StoryMediaAreasView.getMediaAreasFor(uploadingStory8.entry), this.emojiAnimationsOverlay);
+            this.allowShareLink = false;
+            this.allowRepost = false;
+            this.allowShare = false;
+        } else {
+            z18 = z18;
+            z16 = z16;
+            z17 = z17;
+            i20 = i20;
+            this.isUploading = false;
+            this.isEditing = false;
+            this.isFailed = false;
+            if (storyItem2 == null) {
+                StoryViewer storyViewer6 = this.storyViewer;
+                if (storyViewer6 != null) {
+                    storyViewer6.close(true);
+                    return;
+                }
+                return;
+            }
+            StoriesController.UploadingStory uploadingStoryFindEditingStory = this.storiesController.findEditingStory(this.dialogId, storyItem2);
+            if (uploadingStoryFindEditingStory != null) {
+                this.isEditing = true;
+                this.imageReceiver.setCrossfadeWithOldImage(false);
+                this.imageReceiver.setCrossfadeDuration(this.onImageReceiverThumbLoaded != null ? 0 : 150);
+                if (uploadingStoryFindEditingStory.isVideo) {
+                    uploadingStory3 = uploadingStoryFindEditingStory;
+                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStoryFindEditingStory.firstFramePath), storyImageFilter, null, 0L, null, null, 0);
+                } else {
+                    uploadingStory3 = uploadingStoryFindEditingStory;
+                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(uploadingStory3.firstFramePath), storyImageFilter, null, 0L, null, null, 0);
+                }
+                this.currentStory.set(uploadingStory3);
+                this.storyAreasView.set(null, StoryMediaAreasView.getMediaAreasFor(uploadingStory3.entry), this.emojiAnimationsOverlay);
+                this.currentStory.editingSourceItem = storyItem2;
+                this.allowShareLink = false;
+                this.allowRepost = false;
+                this.allowShare = false;
+            } else {
+                TL_stories.StoryItem storyItem18 = storyItem2;
+                TLRPC.MessageMedia messageMedia3 = storyItem18.media;
+                boolean zEndsWith = messageMedia3 != null && MessageObject.isVideoDocument(messageMedia3.getDocument());
+                storyItem18.dialogId = this.dialogId;
+                this.imageReceiver.setCrossfadeWithOldImage(z17);
+                this.imageReceiver.setCrossfadeDuration(150);
+                TLRPC.MessageMedia messageMedia4 = storyItem18.media;
+                if (messageMedia4 instanceof TLRPC.TL_messageMediaUnsupported) {
+                    this.unsupported = true;
+                    MessagesController.getInstance(this.currentAccount).getStoriesController().checkUnsupportedStory(this.dialogId, storyItem18.id);
+                    z2 = z17;
+                } else {
+                    String str3 = storyItem18.attachPath;
+                    if (str3 != null) {
+                        if (messageMedia4 == null) {
+                            zEndsWith = str3.toLowerCase().endsWith(".mp4");
+                        }
+                        if (zEndsWith) {
+                            TLRPC.MessageMedia messageMedia5 = storyItem18.media;
+                            Drawable drawableCreateStripedBitmap = messageMedia5 != null ? ImageLoader.createStripedBitmap(messageMedia5.getDocument().thumbs) : null;
+                            if (storyItem18.firstFramePath != null) {
+                                if (ImageLoader.getInstance().isInMemCache(ImageLocation.getForPath(storyItem18.firstFramePath).getKey(null, null, false) + "@" + storyImageFilter, false)) {
+                                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem18.firstFramePath), storyImageFilter, null, null, drawableCreateStripedBitmap, 0L, null, null, 0);
+                                } else {
+                                    this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem18.attachPath), storyImageFilter + "_pframe", null, null, drawableCreateStripedBitmap, 0L, null, null, 0);
+                                }
+                            } else {
+                                this.imageReceiver.setImage(null, null, ImageLocation.getForPath(storyItem18.attachPath), storyImageFilter + "_pframe", null, null, drawableCreateStripedBitmap, 0L, null, null, 0);
+                            }
+                            z2 = z17;
+                        } else {
+                            TLRPC.MessageMedia messageMedia6 = storyItem18.media;
+                            TLRPC.Photo photo2 = messageMedia6 != null ? messageMedia6.photo : null;
+                            Drawable drawableCreateStripedBitmap2 = photo2 != null ? ImageLoader.createStripedBitmap(photo2.sizes) : null;
+                            if (r42 != 0) {
+                                this.imageReceiver.setImage(ImageLocation.getForPath(storyItem18.attachPath), storyImageFilter, ImageLocation.getForPath(storyItem18.firstFramePath), storyImageFilter, drawableCreateStripedBitmap2, 0L, null, null, 0);
+                            } else {
+                                this.imageReceiver.setImage(ImageLocation.getForPath(storyItem18.attachPath), storyImageFilter, null, null, drawableCreateStripedBitmap2, 0L, null, null, 0);
+                            }
+                            z2 = z17;
+                        }
+                    } else {
+                        StoryViewer storyViewer7 = this.storyViewer;
+                        Drawable drawable = ((storyViewer7.storiesList != null || storyViewer7.isSingleStory) && (transitionViewHolder = storyViewer7.transitionViewHolder) != null && (imageReceiver = transitionViewHolder.storyImage) != null && transitionViewHolder.storyId == storyItem18.id) ? imageReceiver.getDrawable() : null;
+                        storyItem18.dialogId = this.dialogId;
+                        if (zEndsWith) {
+                            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(storyItem18.media.getDocument().thumbs, 1000);
+                            Drawable drawableCreateStripedBitmap3 = drawable == null ? ImageLoader.createStripedBitmap(storyItem18.media.getDocument().thumbs) : drawable;
+                            z2 = z17;
+                            this.imageReceiver.setImage(null, null, ImageLocation.getForDocument(storyItem18.media.getDocument()), storyImageFilter + "_pframe", ImageLocation.getForDocument(closestPhotoSizeWithSize, storyItem18.media.getDocument()), storyImageFilter, drawableCreateStripedBitmap3, 0L, null, storyItem18, 0);
+                        } else {
+                            z2 = z17;
+                            TLRPC.MessageMedia messageMedia7 = storyItem18.media;
+                            TLRPC.Photo photo3 = messageMedia7 != null ? messageMedia7.photo : null;
+                            if (photo3 != null && (arrayList = photo3.sizes) != null) {
+                                Drawable drawableCreateStripedBitmap4 = drawable == null ? ImageLoader.createStripedBitmap(arrayList) : drawable;
+                                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo3.sizes, Integer.MAX_VALUE);
+                                FileLoader.getClosestPhotoSizeWithSize(photo3.sizes, 800);
+                                this.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo3), storyImageFilter, null, null, drawableCreateStripedBitmap4, 0L, null, storyItem18, 0);
+                            } else {
+                                this.imageReceiver.clearImage();
+                            }
+                        }
+                    }
+                }
+                storyItem18.dialogId = this.dialogId;
+                this.storyAreasView.set(z ? null : storyItem18, this.emojiAnimationsOverlay);
+                this.currentStory.set(storyItem18);
+                boolean z20 = (this.unsupported || (storyItem3 = this.currentStory.storyItem) == null || (storyItem3 instanceof TL_stories.TL_storyItemDeleted) || (storyItem3 instanceof TL_stories.TL_storyItemSkipped)) ? false : true;
+                this.allowShareLink = z20;
+                this.allowShare = z20;
+                if (z20) {
+                    this.allowShare = this.currentStory.allowScreenshots() && this.currentStory.storyItem.isPublic;
+                }
+                if (this.allowShare) {
+                    TL_stories.StoryItem storyItem19 = this.currentStory.storyItem;
+                    this.allowShare = storyItem19.pinned || !StoriesUtilities.isExpired(this.currentAccount, storyItem19);
+                }
+                boolean z21 = this.allowShare;
+                this.allowRepost = z21;
+                if (z21 && this.isChannel) {
+                    TLRPC.Chat chat3 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                    this.allowRepost = chat3 != null && ChatObject.isPublic(chat3);
+                }
+                if (this.allowShareLink) {
+                    if (this.isChannel) {
+                        TLRPC.Chat chat4 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                        this.allowShareLink = (chat4 == null || ChatObject.getPublicUsername(chat4) == null) ? false : true;
+                    } else {
+                        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+                        this.allowShareLink = (user == null || UserObject.getPublicUsername(user) == null || !this.currentStory.storyItem.isPublic) ? false : true;
+                    }
+                }
+                NotificationsController.getInstance(this.currentAccount).processReadStories(this.dialogId, storyItem18.id);
+            }
+            storyItem4 = this.currentStory.storyItem;
+            if (storyItem4 != null && !z) {
+                this.storyViewer.dayStoryId = storyItem4.id;
+            }
+            this.storyViewer.storiesViewPager.checkAllowScreenshots();
+            this.imageChanged = true;
+            if (!this.isSelf || this.isChannel) {
+                updateUserViews(false);
+            }
+            storyItemHolder = this.currentStory;
+            if (getStoryId(storyItemHolder.storyItem, storyItemHolder.uploadingStory) == getStoryId(storyItem17, uploadingStory9) && (uploadingStory9 == null || (storyItem16 = this.currentStory.storyItem) == null || !TextUtils.equals(uploadingStory9.path, storyItem16.attachPath))) {
+                z3 = false;
+            } else {
+                z3 = true;
+            }
+            if (z3 || (this.isEditing == z2 && this.isUploading == z16 && this.isFailed == z18)) {
+                z4 = false;
+            } else {
+                z4 = true;
+            }
+            storyViewer = this.storyViewer;
+            if (storyViewer != null || (livePlayer6 = storyViewer.livePlayer) == null || this.watchersCount == livePlayer6.getWatchersCount()) {
+                z5 = false;
+            } else {
+                z5 = true;
+            }
+            if ((uploadingStory9 != null || (str2 = uploadingStory9.path) == null || !str2.equals(this.currentStory.getLocalPath())) && (storyItem17 == null || (storyItem5 = this.currentStory.storyItem) == null || storyItem17.id != storyItem5.id)) {
+                chatActivityEnterView = this.chatActivityEnterView;
+                if (chatActivityEnterView != null) {
+                    if (storyItem17 != null && !TextUtils.isEmpty(chatActivityEnterView.getEditField().getText())) {
+                        this.storyViewer.saveDraft(storyItem17.dialogId, storyItem17, this.chatActivityEnterView.getEditField().getText());
+                    }
+                    this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
+                    if (this.currentStory.isLive) {
+                        z6 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
+                    } else {
+                        z6 = true;
+                        this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+                    }
+                } else {
+                    z6 = true;
+                }
+                if (this.currentStory.isLive) {
+                    loadSendAsPeers(z6);
+                }
+                this.emojiAnimationsOverlay.clear();
+                this.currentImageTime = 0L;
+                this.switchEventSent = false;
+                uploadingStory4 = this.currentStory.uploadingStory;
+                if (uploadingStory4 != null) {
+                    radialProgress = this.headerView.radialProgress;
+                    if (radialProgress != null) {
+                        radialProgress.setProgress(uploadingStory4.progress, false);
+                    }
+                    this.headerView.backupImageView.invalidate();
+                } else if (!z4) {
+                    this.headerView.progressToUploading = 0.0f;
+                }
+                Bulletin.hideVisible(this.storyContainer);
+                this.storyCaptionView.reset();
+                cancelWaiting();
+                z5 = true;
+            }
+            if (!z5 || (uploadingStory9 != null && this.currentStory.uploadingStory == null)) {
+                this.headerView.setOnSubtitleClick(null);
+                this.watchersCount = 0;
+                setTitle(false, this.dialogId, this.currentStory.isLive);
+                uploadingStory5 = this.currentStory.uploadingStory;
+                if (uploadingStory5 != null) {
+                    if (uploadingStory5.failed) {
+                        storyDate2 = LocaleController.getString(R.string.FailedToUploadStory);
+                    } else {
+                        storyDate2 = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                    }
+                } else {
+                    if (isBotsPreview()) {
+                        storyItem8 = this.currentStory.storyItem;
+                        if (storyItem8 != null && (messageMedia = storyItem8.media) != null) {
+                            document = messageMedia.document;
+                            if (document != null) {
+                                storyDate2 = LocaleController.formatStoryDate(document.date);
+                            } else {
+                                photo = messageMedia.photo;
+                                if (photo != null) {
+                                    storyDate2 = LocaleController.formatStoryDate(photo.date);
+                                }
+                            }
+                        }
+                        string = "";
+                    } else {
+                        storyItemHolder2 = this.currentStory;
+                        storyItem6 = storyItemHolder2.storyItem;
+                        if (storyItem6 == null) {
+                            string = null;
+                        } else if (storyItem6.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                            SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
+                            spannableStringBuilder4.setSpan(new ReplacementSpan() {
+                                private final RectF rect = new RectF();
+                                private final Paint bg = new Paint(1);
+                                private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
+
+                                @Override
+                                public int getSize(Paint paint, CharSequence charSequence2, int i21, int i22, Paint.FontMetricsInt fontMetricsInt) {
+                                    return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
+                                }
+
+                                @Override
+                                public void draw(Canvas canvas, CharSequence charSequence2, int i21, int i22, float f4, int i23, int i24, int i25, Paint paint) {
+                                    float fDp = ((i23 + i25) / 2.0f) + AndroidUtilities.dp(1.33f);
+                                    this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
+                                    this.bg.setColor(-572850);
+                                    RectF rectF = this.rect;
+                                    canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                                    this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
+                                }
+                            }, 0, spannableStringBuilder4.length(), 33);
+                            spannableStringBuilder4.append((CharSequence) "  ");
+                            storyViewer2 = this.storyViewer;
+                            if (storyViewer2 != null && (livePlayer = storyViewer2.livePlayer) != null) {
+                                this.watchersCount = livePlayer.getWatchersCount();
+                            }
+                            spannableStringBuilder4.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
+                            storyDate2 = spannableStringBuilder4;
+                        } else if (storyItem6.date == -1) {
+                            string = LocaleController.getString(R.string.CachedStory);
+                        } else {
+                            if (storyItemHolder2.getReply() != null) {
+                                reply = this.currentStory.getReply();
+                                spannableStringBuilder2 = new SpannableStringBuilder();
+                                SpannableString spannableString = new SpannableString("r");
+                                spannableString.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString.length(), 33);
+                                spannableStringBuilder2.append((CharSequence) spannableString).append((CharSequence) " ");
+                                if (reply.peerId != null) {
+                                    avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                                    SpannableString spannableString2 = new SpannableString("a");
+                                    spannableString2.setSpan(avatarSpan, 0, 1, 33);
+                                    spannableStringBuilder2.append((CharSequence) spannableString2).append((CharSequence) " ");
+                                    if (reply.peerId.longValue() > 0) {
+                                        TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
+                                        avatarSpan.setUser(user2);
+                                        spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user2));
+                                    } else {
+                                        chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                        avatarSpan.setChat(chat);
+                                        if (chat != null) {
+                                            spannableStringBuilder2.append((CharSequence) chat.title);
+                                        }
+                                    }
+                                } else {
+                                    str = this.currentStory.storyItem.fwd_from.from_name;
+                                    if (str != null) {
+                                        spannableStringBuilder2.append((CharSequence) str);
+                                    }
+                                }
+                                this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                                    @Override
+                                    public final void onClick(View view) {
+                                        this.f$0.lambda$updatePosition$44(reply, view);
+                                    }
+                                });
+                                SpannableString spannableString3 = new SpannableString(".");
+                                DotDividerSpan dotDividerSpan = new DotDividerSpan();
+                                dotDividerSpan.setTopPadding(AndroidUtilities.dp(1.5f));
+                                dotDividerSpan.setSize(5.0f);
+                                spannableString3.setSpan(dotDividerSpan, 0, spannableString3.length(), 33);
+                                spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString3).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                                spannableStringBuilder = spannableStringBuilder2;
+                            } else if (!this.isGroup && (storyItem7 = this.currentStory.storyItem) != null && storyItem7.from_id != null) {
+                                SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder();
+                                AvatarSpan avatarSpan2 = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                                SpannableString spannableString4 = new SpannableString("a");
+                                spannableString4.setSpan(avatarSpan2, 0, 1, 33);
+                                spannableStringBuilder5.append((CharSequence) spannableString4).append((CharSequence) " ");
+                                final long peerDialogId = DialogObject.getPeerDialogId(this.currentStory.storyItem.from_id);
+                                if (peerDialogId > 0) {
+                                    TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
+                                    avatarSpan2.setUser(user3);
+                                    spannableStringBuilder5.append((CharSequence) UserObject.getUserName(user3));
+                                } else {
+                                    TLRPC.Chat chat5 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerDialogId));
+                                    avatarSpan2.setChat(chat5);
+                                    if (chat5 != null) {
+                                        spannableStringBuilder5.append((CharSequence) chat5.title);
+                                    }
+                                }
+                                this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                                    @Override
+                                    public final void onClick(View view) {
+                                        this.f$0.lambda$updatePosition$45(peerDialogId, view);
+                                    }
+                                });
+                                SpannableString spannableString5 = new SpannableString(".");
+                                DotDividerSpan dotDividerSpan2 = new DotDividerSpan();
+                                dotDividerSpan2.setTopPadding(AndroidUtilities.dp(1.5f));
+                                dotDividerSpan2.setSize(5.0f);
+                                spannableString5.setSpan(dotDividerSpan2, 0, spannableString5.length(), 33);
+                                spannableStringBuilder5.append((CharSequence) " ").append((CharSequence) spannableString5).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                                spannableStringBuilder = spannableStringBuilder5;
+                            } else {
+                                storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                                string = storyDate;
+                                if (this.currentStory.storyItem.edited) {
+                                    spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(storyDate);
+                                    DotDividerSpan dotDividerSpan3 = new DotDividerSpan();
+                                    dotDividerSpan3.setTopPadding(AndroidUtilities.dp(1.5f));
+                                    dotDividerSpan3.setSize(5.0f);
+                                    spannableStringBuilderValueOf.append((CharSequence) " . ").setSpan(dotDividerSpan3, spannableStringBuilderValueOf.length() - 2, spannableStringBuilderValueOf.length() - 1, 0);
+                                    spannableStringBuilderValueOf.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                                }
+                            }
+                            z4 = false;
+                            string = spannableStringBuilder;
+                        }
+                    }
+                    if (string != null) {
+                        string = spannableStringBuilderValueOf;
+                        storyViewer3 = this.storyViewer;
+                        if (storyViewer3 != null && (storiesList = storyViewer3.storiesList) != null && (storyItem9 = this.currentStory.storyItem) != null && storiesList.isPinned(storyItem9.id)) {
+                            if (!(string instanceof SpannableStringBuilder)) {
+                                charSequence = string;
+                                charSequence = string;
+                                charSequence = string;
+                                charSequence = string;
+                                spannableStringBuilder3 = string;
+                                spannableStringBuilder3 = new SpannableStringBuilder(string);
+                            }
+                            charSequence = string;
+                            charSequence = string;
+                            charSequence = string;
+                            charSequence = string;
+                            spannableStringBuilder3 = string;
+                            SpannableString spannableString6 = new SpannableString("p ");
+                            spannableString6.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                            ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString6);
+                            charSequence = spannableStringBuilder3;
+                        }
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        this.headerView.setSubtitle(charSequence, z4);
+                    }
+                    string = spannableStringBuilderValueOf;
+                    hintView2 = this.privacyHint;
+                    if (hintView2 != null) {
+                        hintView2.hide(false);
+                    }
+                    hintView3 = this.soundTooltip;
+                    if (hintView3 != null) {
+                        hintView3.hide(false);
+                    }
+                }
+                string = storyDate2;
+                if (string != null) {
+                    string = spannableStringBuilderValueOf;
+                    storyViewer3 = this.storyViewer;
+                    if (storyViewer3 != null) {
+                        if (!(string instanceof SpannableStringBuilder)) {
+                            charSequence = string;
+                            charSequence = string;
+                            charSequence = string;
+                            charSequence = string;
+                            spannableStringBuilder3 = string;
+                            spannableStringBuilder3 = new SpannableStringBuilder(string);
+                        }
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        spannableStringBuilder3 = string;
+                        SpannableString spannableString7 = new SpannableString("p ");
+                        spannableString7.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString7);
+                        charSequence = spannableStringBuilder3;
+                    }
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    this.headerView.setSubtitle(charSequence, z4);
+                }
+                string = spannableStringBuilderValueOf;
+                hintView2 = this.privacyHint;
+                if (hintView2 != null) {
+                    hintView2.hide(false);
+                }
+                hintView3 = this.soundTooltip;
+                if (hintView3 != null) {
+                    hintView3.hide(false);
+                }
+            }
+            StoryItemHolder storyItemHolder9 = this.currentStory;
+            storyItem10 = storyItemHolder9.storyItem;
+            if (storyItem17 != storyItem10 && uploadingStory9 == storyItemHolder9.uploadingStory) {
+                if (storyItemHolder9.captionTranslated != (storyItem10 != null && storyItem10.translated && storyItem10.translatedText != null && TextUtils.equals(storyItem10.translatedLng, TranslateAlert2.getToLanguage()))) {
+                    this.currentStory.updateCaption();
+                }
+            } else {
+                this.currentStory.updateCaption();
+            }
+            storyItemHolder3 = this.currentStory;
+            if ((!storyItemHolder3.captionTranslated || storyItem17 != storyItemHolder3.storyItem) && (delegate = this.delegate) != null) {
+                delegate.setTranslating(false);
+            }
+            if (this.currentStory.isLive || (storyViewer4 = this.storyViewer) == null || (livePlayer5 = storyViewer4.livePlayer) == null || !this.currentStory.isThisCall(livePlayer5.getCallId()) || !this.storyViewer.livePlayer.commentsDisabled()) {
+                z7 = false;
+            } else {
+                z7 = true;
+            }
+            if (z7 != this.areLiveCommentsDisabled) {
+                this.areLiveCommentsDisabled = z7;
+                if (z7) {
+                    createPremiumBlockedText();
+                }
+                if (this.premiumBlockedText != null && (this.isPremiumBlocked || this.areLiveCommentsDisabled)) {
+                    updatePremiumBlockedText();
+                }
+                chatActivityEnterView9 = this.chatActivityEnterView;
+                if (chatActivityEnterView9 != null) {
+                    chatActivityEnterView9.setEnabled((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled);
+                    this.chatActivityEnterView.updateSendAsButton();
+                }
+                checkStealthMode(true);
+            }
+            linearLayout = this.premiumBlockedText;
+            if (linearLayout != null) {
+                linearLayout.setVisibility(((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled) ? 8 : 0);
+            }
+            if (this.unsupported) {
+                createUnsupportedContainer();
+                createReplyDisabledView();
+                this.unsupportedContainer.setVisibility(0);
+                this.replyDisabledTextView.setVisibility(0);
+                this.allowShareLink = false;
+                this.allowRepost = false;
+                this.allowShare = false;
+                chatActivityEnterView8 = this.chatActivityEnterView;
+                if (chatActivityEnterView8 != null) {
+                    chatActivityEnterView8.setVisibility(8);
+                }
+                frameLayout5 = this.selfView;
+                if (frameLayout5 != null) {
+                    frameLayout5.setVisibility(8);
+                }
+                linearLayout3 = this.bottomActionsLinearLayout;
+                if (linearLayout3 != null) {
+                    linearLayout3.setVisibility(0);
+                }
+            } else {
+                if (this.dialogId < 0) {
+                    chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                } else {
+                    chat2 = null;
+                }
+                if (this.currentStory.isLive) {
+                    if (this.chatActivityEnterView == null) {
+                        createEnterView();
+                    }
+                    createCommentButton();
+                    createPaidReactionsButton();
+                    createMuteButton();
+                    this.chatActivityEnterView.setVisibility(0);
+                } else if ((!UserObject.isService(this.dialogId) || isBotsPreview()) && (chatActivityEnterView2 = this.chatActivityEnterView) != null) {
+                    chatActivityEnterView2.setVisibility(8);
+                } else if (!this.isSelf && ((!this.isChannel || (this.isGroup && (ChatObject.canSendPlain(chat2) || ChatObject.isPossibleRemoveChatRestrictionsByBoosts(chat2)))) && (chatActivityEnterView3 = this.chatActivityEnterView) != null)) {
+                    chatActivityEnterView3.setVisibility(0);
+                }
+                chatActivityEnterView4 = this.chatActivityEnterView;
+                if (chatActivityEnterView4 != null) {
+                    if (this.currentStory.isLive) {
+                        onLongClickListener = new View.OnLongClickListener() {
+                            @Override
+                            public final boolean onLongClick(View view) {
+                                return this.f$0.lambda$updatePosition$48(view);
+                            }
+                        };
+                    } else {
+                        onLongClickListener = null;
+                    }
+                    chatActivityEnterView4.setOnSendButtonLongClick(onLongClickListener);
+                    this.chatActivityEnterView.setLiveComment(this.currentStory.isLive, disabledPaidFeatures(true));
+                    ChatActivityEnterView chatActivityEnterView10 = this.chatActivityEnterView;
+                    if (this.currentStory.isLive || disabledPaidFeatures(true) || !(this.keyboardVisible || this.chatActivityEnterView.emojiViewVisible)) {
+                        z8 = false;
+                    } else {
+                        z8 = true;
+                    }
+                    chatActivityEnterView10.setSuggestionButtonVisible(z8, true);
+                }
+                if (this.isPremiumBlocked && this.premiumBlockedText == null) {
+                    createPremiumBlockedText();
+                }
+                if (this.premiumBlockedText != null) {
+                    if (!this.isPremiumBlocked || this.areLiveCommentsDisabled) {
+                        updatePremiumBlockedText();
+                    }
+                    this.premiumBlockedText.setVisibility(((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled) ? 8 : 0);
+                }
+                chatActivityEnterView5 = this.chatActivityEnterView;
+                if (chatActivityEnterView5 != null) {
+                    chatActivityEnterView5.setEnabled((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled);
+                }
+                frameLayout = this.selfView;
+                if (frameLayout != null) {
+                    if (this.isSelf || this.currentStory.isLive) {
+                        i2 = 8;
+                    } else {
+                        i2 = 0;
+                    }
+                    frameLayout.setVisibility(i2);
+                }
+                frameLayout2 = this.unsupportedContainer;
+                if (frameLayout2 != null) {
+                    frameLayout2.setVisibility(8);
+                }
+                if (UserObject.isService(this.dialogId)) {
+                    createReplyDisabledView();
+                    this.replyDisabledTextView.setVisibility(0);
+                } else {
+                    textView = this.replyDisabledTextView;
+                    if (textView != null) {
+                        textView.setVisibility(8);
+                    }
+                }
+                linearLayout2 = this.bottomActionsLinearLayout;
+                if (linearLayout2 != null) {
+                    if (isBotsPreview()) {
+                        i = 8;
+                    } else {
+                        i = 0;
+                    }
+                    linearLayout2.setVisibility(i);
+                }
+            }
+            chatActivitySideControlsButtonsLayout = this.sideControlsButtonsLayout;
+            if (chatActivitySideControlsButtonsLayout != null) {
+                chatActivityEnterView7 = this.chatActivityEnterView;
+                if (chatActivityEnterView7 == null && chatActivityEnterView7.getVisibility() == 0 && !this.currentStory.isLive) {
+                    i19 = 0;
+                } else {
+                    i19 = 8;
+                }
+                chatActivitySideControlsButtonsLayout.setVisibility(i19);
+            }
+            commentButton = this.commentButton;
+            if (commentButton != null) {
+                if (this.unsupported && this.currentStory.isLive) {
+                    i18 = 0;
+                } else {
+                    i18 = 8;
+                }
+                commentButton.setVisibility(i18);
+                this.commentButton.setCollapsed(this.liveCommentsView.isCollapsed(), false);
+                this.commentButton.setCount(this.liveCommentsView.getUnreadMessagesCount());
+            }
+            muteButton = this.muteButton;
+            if (muteButton != null) {
+                if (this.unsupported && this.currentStory.isLive && (livePlayer4 = LivePlayer.recording) != null && this.currentStory.isThisCall(livePlayer4.getCallId())) {
+                    i17 = 0;
+                } else {
+                    i17 = 8;
+                }
+                muteButton.setVisibility(i17);
+                MuteButton muteButton3 = this.muteButton;
+                livePlayer2 = LivePlayer.recording;
+                if (livePlayer2 == null && livePlayer2.isMuted()) {
+                    z14 = true;
+                } else {
+                    z14 = false;
+                }
+                muteButton3.setMuted(z14, true);
+                MuteButton muteButton4 = this.muteButton;
+                livePlayer3 = LivePlayer.recording;
+                if (livePlayer3 != null || livePlayer3.isConnected()) {
+                    z15 = true;
+                } else {
+                    z15 = false;
+                }
+                muteButton4.setConnected(z15, true);
+            }
+            if (this.starsButton != null) {
+                PaidReactionButton.PaidReactionButtonEffectsView paidReactionButtonEffectsView = this.starsButtonEffectsView;
+                if (this.unsupported && this.currentStory.isLive) {
+                    i15 = 0;
+                } else {
+                    i15 = 8;
+                }
+                paidReactionButtonEffectsView.setVisibility(i15);
+                PaidReactionButton paidReactionButton = this.starsButton;
+                if (this.unsupported && this.currentStory.isLive) {
+                    i16 = 0;
+                } else {
+                    i16 = 8;
+                }
+                paidReactionButton.setVisibility(i16);
+                layoutParams = (FrameLayout.LayoutParams) this.starsButton.getLayoutParams();
+                muteButton2 = this.muteButton;
+                if (muteButton2 == null && muteButton2.getVisibility() == 0) {
+                    f3 = 54.0f;
+                } else {
+                    f3 = 7.0f;
+                }
+                iDp2 = AndroidUtilities.dp(f3);
+                if (layoutParams.rightMargin != iDp2) {
+                    layoutParams.rightMargin = iDp2;
+                    this.starsButton.setLayoutParams(layoutParams);
+                }
+            }
+            if (this.currentStory.isLive) {
+                if (this.isActive) {
+                    this.delegate.setIsCaption(false);
+                    Delegate delegate2 = this.delegate;
+                    this.isCaptionPartVisible = false;
+                    delegate2.setIsCaptionPartVisible(false);
+                }
+                this.storyCaptionView.setVisibility(8);
+            } else {
+                storyItemHolder6 = this.currentStory;
+                if ((storyItemHolder6.caption == null || storyItemHolder6.getReply() != null || this.currentStory.getMusic() != null) && !this.unsupported) {
+                    StoryCaptionView.StoryCaptionTextView storyCaptionTextView = this.storyCaptionView.captionTextview;
+                    StoryItemHolder storyItemHolder10 = this.currentStory;
+                    CharSequence charSequence2 = storyItemHolder10.caption;
+                    StoryCaptionView.Panel reply2 = storyItemHolder10.getReply();
+                    StoryCaptionView.Panel music = this.currentStory.getMusic();
+                    if (this.storyViewer.isTranslating) {
+                        storyItemHolder7 = this.currentStory;
+                        if (storyItemHolder7.captionTranslated && (storyItem15 = storyItemHolder7.storyItem) != null && storyItem15.translated) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                    } else {
+                        z12 = false;
+                    }
+                    if (storyItem17 == this.currentStory.storyItem) {
+                        z13 = true;
+                    } else {
+                        z13 = false;
+                    }
+                    storyCaptionTextView.setText(charSequence2, reply2, music, z12, z13);
+                    this.storyCaptionView.setVisibility(0);
+                } else {
+                    if (this.isActive) {
+                        this.delegate.setIsCaption(false);
+                        Delegate delegate3 = this.delegate;
+                        this.isCaptionPartVisible = false;
+                        delegate3.setIsCaptionPartVisible(false);
+                    }
+                    this.storyCaptionView.setVisibility(8);
+                }
+            }
+            storyItem11 = this.currentStory.storyItem;
+            if (storyItem11 != null) {
+                messageMedia2 = storyItem11.media;
+                if (messageMedia2 instanceof TLRPC.TL_messageMediaVideoStream) {
+                    if (this.liveCommentsView.setup(this.dialogId, ((TLRPC.TL_messageMediaVideoStream) messageMedia2).call)) {
+                        this.liveCommentsView.setCollapsed(false, false);
+                        this.messageStars = 0L;
+                        chatActivityEnterView6 = this.chatActivityEnterView;
+                        if (chatActivityEnterView6 != null) {
+                            chatActivityEnterView6.checkSendButton(true);
+                            this.chatActivityEnterView.updateSendButtonPaid();
+                            checkStealthMode(true);
+                        }
+                    }
+                    this.liveCommentsView.setVisibility(0);
+                } else {
+                    this.liveCommentsView.setup(this.dialogId, null);
+                    this.liveCommentsView.setVisibility(8);
+                }
+            } else {
+                this.liveCommentsView.setup(this.dialogId, null);
+                this.liveCommentsView.setVisibility(8);
+            }
+            this.storyContainer.invalidate();
+            if (this.delegate != null && isSelectedPeer()) {
+                this.delegate.onPeerSelected(this.dialogId, this.selectedPosition);
+            }
+            if (this.isChannel) {
+                ImageView imageView3 = this.shareButton;
+                if (this.allowShare || this.currentStory.isLive) {
+                    i12 = 4;
+                } else {
+                    i12 = 0;
+                }
+                imageView3.setVisibility(i12);
+                frameLayout4 = this.repostButtonContainer;
+                if (frameLayout4 != null) {
+                    if (this.allowRepost || this.currentStory.isLive) {
+                        i14 = 8;
+                    } else {
+                        i14 = 0;
+                    }
+                    frameLayout4.setVisibility(i14);
+                }
+                FrameLayout frameLayout6 = this.likeButtonContainer;
+                if (!this.isFailed || this.currentStory.isLive) {
+                    i13 = 8;
+                } else {
+                    i13 = 0;
+                }
+                frameLayout6.setVisibility(i13);
+            } else {
+                ImageView imageView4 = this.shareButton;
+                if (this.allowShare || this.currentStory.isLive) {
+                    i3 = 4;
+                } else {
+                    i3 = 0;
+                }
+                imageView4.setVisibility(i3);
+                frameLayout3 = this.repostButtonContainer;
+                if (frameLayout3 != null) {
+                    frameLayout3.setVisibility(8);
+                }
+                FrameLayout frameLayout7 = this.likeButtonContainer;
+                if (!this.isSelf || this.currentStory.isLive) {
+                    i4 = 8;
+                } else {
+                    i4 = 0;
+                }
+                frameLayout7.setVisibility(i4);
+                this.likeButtonContainer.getLayoutParams().width = AndroidUtilities.dp(40.0f);
+            }
+            this.likeButtonContainer.requestLayout();
+            this.storyViewer.savedPositions.append(this.dialogId, i20);
+            if (this.isActive) {
+                requestVideoPlayer(0L);
+                updatePreloadImages();
+                this.imageReceiver.bumpPriority();
+            }
+            this.liveCommentsView.setLivePlayer(this.storyViewer.livePlayer);
+            this.listPosition = 0;
+            if (this.storyViewer.storiesList != null && (storyItem14 = this.currentStory.storyItem) != null) {
+                int i21 = storyItem14.id;
+                for (i11 = 0; i11 < this.storyViewer.storiesList.messageObjects.size(); i11++) {
+                    messageObject = (MessageObject) this.storyViewer.storiesList.messageObjects.get(i11);
+                    if (messageObject == null && messageObject.getId() == i21) {
+                        this.listPosition = i11;
+                        break;
+                    }
+                }
+            }
+            i5 = this.selectedPosition;
+            this.linesPosition = i5;
+            i6 = this.count;
+            this.linesCount = i6;
+            if (this.storyViewer.reversed) {
+                this.linesPosition = (i6 - 1) - i5;
+            }
+            if (this.currentStory.isVideo()) {
+                this.muteIconContainer.setVisibility(0);
+                if (this.currentStory.hasSound()) {
+                    f2 = 1.0f;
+                } else {
+                    f2 = 0.5f;
+                }
+                this.muteIconViewAlpha = f2;
+                if (this.currentStory.hasSound()) {
+                    this.muteIconView.setVisibility(0);
+                    this.noSoundIconView.setVisibility(8);
+                    FrameLayout frameLayout8 = this.muteIconContainer;
+                    if (this.storyViewer.soundEnabled()) {
+                        i10 = R.string.Mute;
+                    } else {
+                        i10 = R.string.Unmute;
+                    }
+                    frameLayout8.setContentDescription(LocaleController.getString(i10));
+                } else {
+                    this.muteIconView.setVisibility(8);
+                    this.noSoundIconView.setVisibility(0);
+                    this.muteIconContainer.setContentDescription(LocaleController.getString(R.string.NoSound));
+                }
+                this.muteIconContainer.setAlpha(this.muteIconViewAlpha * (1.0f - this.outT));
+            } else {
+                this.muteIconContainer.setVisibility(8);
+            }
+            storyItemHolder4 = this.currentStory;
+            uploadingStory6 = storyItemHolder4.uploadingStory;
+            if (uploadingStory6 != null) {
+                StoryPrivacyButton storyPrivacyButton = this.privacyButton;
+                boolean z22 = this.isSelf;
+                if (z3 || !this.editedPrivacy) {
+                    z11 = false;
+                } else {
+                    z11 = true;
+                }
+                storyPrivacyButton.set(z22, uploadingStory6, z11);
+            } else {
+                storyItem12 = storyItemHolder4.storyItem;
+                if (storyItem12 != null) {
+                    StoryPrivacyButton storyPrivacyButton2 = this.privacyButton;
+                    boolean z23 = this.isSelf;
+                    if (z3 || !this.editedPrivacy) {
+                        z10 = false;
+                    } else {
+                        z10 = true;
+                    }
+                    storyPrivacyButton2.set(z23, storyItem12, z10);
+                } else {
+                    StoryPrivacyButton storyPrivacyButton3 = this.privacyButton;
+                    boolean z24 = this.isSelf;
+                    if (z3 || !this.editedPrivacy) {
+                        z9 = false;
+                    } else {
+                        z9 = true;
+                    }
+                    storyPrivacyButton3.set(z24, (TL_stories.StoryItem) null, z9);
+                }
+            }
+            this.editedPrivacy = false;
+            StoryPrivacyButton storyPrivacyButton4 = this.privacyButton;
+            if (this.muteIconContainer.getVisibility() == 0) {
+                f = -AndroidUtilities.dp(44.0f);
+            } else {
+                f = 0.0f;
+            }
+            storyPrivacyButton4.setTranslationX(f);
+            if (z5) {
+                this.drawReactionEffect = false;
+                storyItem13 = this.currentStory.storyItem;
+                if (storyItem13 != null || (reaction = storyItem13.sent_reaction) == null) {
+                    this.storiesLikeButton.setReaction(null);
+                } else {
+                    this.storiesLikeButton.setReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction));
+                }
+            }
+            uploadingStory7 = this.currentStory.uploadingStory;
+            if (uploadingStory7 == null && uploadingStory7.failed) {
+                createFailView();
+                this.failView.set(this.currentStory.uploadingStory.entry.error);
+                this.failView.setVisibility(0);
+                ViewPropertyAnimator viewPropertyAnimator2 = this.failViewAnimator;
+                if (viewPropertyAnimator2 != null) {
+                    viewPropertyAnimator2.cancel();
+                    this.failViewAnimator = null;
+                }
+                if (z3) {
+                    ViewPropertyAnimator interpolator = this.failView.animate().alpha(1.0f).setDuration(180L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                    this.failViewAnimator = interpolator;
+                    interpolator.start();
+                } else {
+                    this.failView.setAlpha(1.0f);
+                }
+            } else if (this.failView != null) {
+                viewPropertyAnimator = this.failViewAnimator;
+                if (viewPropertyAnimator != null) {
+                    viewPropertyAnimator.cancel();
+                    this.failViewAnimator = null;
+                }
+                if (!z3 && this.failView.getVisibility() == 0) {
+                    ViewPropertyAnimator viewPropertyAnimatorWithEndAction = this.failView.animate().alpha(0.0f).setDuration(180L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$updatePosition$49();
+                        }
+                    });
+                    this.failViewAnimator = viewPropertyAnimatorWithEndAction;
+                    viewPropertyAnimatorWithEndAction.start();
+                } else {
+                    this.failView.setAlpha(0.0f);
+                    this.failView.setVisibility(8);
+                }
+            }
+            this.sharedResources.setIconMuted(!this.storyViewer.soundEnabled(), false);
+            if (this.isActive && this.currentStory.storyItem != null) {
+                FileLog.d("StoryViewer displayed story dialogId=" + this.dialogId + " storyId=" + this.currentStory.storyItem.id + " " + this.currentStory.getMediaDebugString());
+            }
+            if (this.isSelf) {
+                SelfStoryViewsPage.preload(this.currentAccount, this.dialogId, this.currentStory.storyItem);
+            }
+            SimpleTextView simpleTextView = this.headerView.titleView;
+            storiesList2 = this.storyViewer.storiesList;
+            if (storiesList2 != null || storiesList2.getCount() == this.linesCount) {
+                i7 = 0;
+                iDp = 0;
+            } else {
+                iDp = AndroidUtilities.dp(56.0f);
+                i7 = 0;
+            }
+            simpleTextView.setPadding(i7, i7, iDp, i7);
+            MessagesController.getInstance(this.currentAccount).getTranslateController().detectStoryLanguage(this.currentStory.storyItem);
+            if (!z && !this.isSelf && this.reactionsTooltipRunnable == null && !SharedConfig.storyReactionsLongPressHint && SharedConfig.storiesIntroShown) {
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$updatePosition$50();
+                    }
+                };
+                this.reactionsTooltipRunnable = runnable;
+                AndroidUtilities.runOnUIThread(runnable, 500L);
+            }
+            hintView4 = this.soundTooltip;
+            if ((hintView4 != null || !hintView4.shown()) && this.currentStory.hasSound() && !this.storyViewer.soundEnabled()) {
+                if (MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) < 2) {
+                    AndroidUtilities.cancelRunOnUIThread(this.showTapToSoundHint);
+                    AndroidUtilities.runOnUIThread(this.showTapToSoundHint, 250L);
+                }
+            }
+            imageView = this.optionsIconView;
+            if (imageView != null) {
+                if (isBotsPreview() || isEditBotsPreview() || ((storyItemHolder5 = this.currentStory) != null && storyItemHolder5.isVideo)) {
+                    i9 = 0;
+                } else {
+                    i9 = 8;
+                }
+                imageView.setVisibility(i9);
+            }
+            imageView2 = this.pipIconView;
+            if (imageView2 != null) {
+                if (this.currentStory.isLive || this.privacyButton.draw) {
+                    i8 = 8;
+                } else {
+                    i8 = 0;
+                }
+                imageView2.setVisibility(i8);
+            }
+        }
+        z2 = z17;
+        storyItem4 = this.currentStory.storyItem;
+        if (storyItem4 != null) {
+            this.storyViewer.dayStoryId = storyItem4.id;
+        }
+        this.storyViewer.storiesViewPager.checkAllowScreenshots();
+        this.imageChanged = true;
+        if (!this.isSelf) {
+            updateUserViews(false);
+        } else {
+            updateUserViews(false);
+        }
+        storyItemHolder = this.currentStory;
+        if (getStoryId(storyItemHolder.storyItem, storyItemHolder.uploadingStory) == getStoryId(storyItem17, uploadingStory9)) {
+            z3 = true;
+        } else {
+            z3 = true;
+        }
+        if (z3) {
+            z4 = false;
+        } else {
+            z4 = false;
+        }
+        storyViewer = this.storyViewer;
+        if (storyViewer != null) {
+            z5 = false;
+        } else {
+            z5 = false;
+        }
+        if (uploadingStory9 != null) {
+            chatActivityEnterView = this.chatActivityEnterView;
+            if (chatActivityEnterView != null) {
+                if (storyItem17 != null) {
+                    this.storyViewer.saveDraft(storyItem17.dialogId, storyItem17, this.chatActivityEnterView.getEditField().getText());
+                }
+                this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
+                if (this.currentStory.isLive) {
+                    z6 = true;
+                    this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
+                } else {
+                    z6 = true;
+                    this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+                }
+            } else {
+                z6 = true;
+            }
+            if (this.currentStory.isLive) {
+                loadSendAsPeers(z6);
+            }
+            this.emojiAnimationsOverlay.clear();
+            this.currentImageTime = 0L;
+            this.switchEventSent = false;
+            uploadingStory4 = this.currentStory.uploadingStory;
+            if (uploadingStory4 != null) {
+                radialProgress = this.headerView.radialProgress;
+                if (radialProgress != null) {
+                    radialProgress.setProgress(uploadingStory4.progress, false);
+                }
+                this.headerView.backupImageView.invalidate();
+            } else if (!z4) {
+                this.headerView.progressToUploading = 0.0f;
+            }
+            Bulletin.hideVisible(this.storyContainer);
+            this.storyCaptionView.reset();
+            cancelWaiting();
+            z5 = true;
+        } else {
+            chatActivityEnterView = this.chatActivityEnterView;
+            if (chatActivityEnterView != null) {
+                if (storyItem17 != null) {
+                    this.storyViewer.saveDraft(storyItem17.dialogId, storyItem17, this.chatActivityEnterView.getEditField().getText());
+                }
+                this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
+                if (this.currentStory.isLive) {
+                    z6 = true;
+                    this.chatActivityEnterView.setAllowStickersAndGifs(true, false, false);
+                } else {
+                    z6 = true;
+                    this.chatActivityEnterView.setAllowStickersAndGifs(true, true, true);
+                }
+            } else {
+                z6 = true;
+            }
+            if (this.currentStory.isLive) {
+                loadSendAsPeers(z6);
+            }
+            this.emojiAnimationsOverlay.clear();
+            this.currentImageTime = 0L;
+            this.switchEventSent = false;
+            uploadingStory4 = this.currentStory.uploadingStory;
+            if (uploadingStory4 != null) {
+                radialProgress = this.headerView.radialProgress;
+                if (radialProgress != null) {
+                    radialProgress.setProgress(uploadingStory4.progress, false);
+                }
+                this.headerView.backupImageView.invalidate();
+            } else if (!z4) {
+                this.headerView.progressToUploading = 0.0f;
+            }
+            Bulletin.hideVisible(this.storyContainer);
+            this.storyCaptionView.reset();
+            cancelWaiting();
+            z5 = true;
+        }
+        if (!z5) {
+            this.headerView.setOnSubtitleClick(null);
+            this.watchersCount = 0;
+            setTitle(false, this.dialogId, this.currentStory.isLive);
+            uploadingStory5 = this.currentStory.uploadingStory;
+            if (uploadingStory5 != null) {
+                if (uploadingStory5.failed) {
+                    storyDate2 = LocaleController.getString(R.string.FailedToUploadStory);
+                } else {
+                    storyDate2 = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                }
+            } else {
+                if (isBotsPreview()) {
+                    storyItem8 = this.currentStory.storyItem;
+                    if (storyItem8 != null) {
+                        document = messageMedia.document;
+                        if (document != null) {
+                            storyDate2 = LocaleController.formatStoryDate(document.date);
+                        } else {
+                            photo = messageMedia.photo;
+                            if (photo != null) {
+                                storyDate2 = LocaleController.formatStoryDate(photo.date);
+                            }
+                        }
+                    }
+                    string = "";
+                } else {
+                    storyItemHolder2 = this.currentStory;
+                    storyItem6 = storyItemHolder2.storyItem;
+                    if (storyItem6 == null) {
+                        string = null;
+                    } else if (storyItem6.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                        SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
+                        spannableStringBuilder6.setSpan(new ReplacementSpan() {
+                            private final RectF rect = new RectF();
+                            private final Paint bg = new Paint(1);
+                            private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
+
+                            @Override
+                            public int getSize(Paint paint, CharSequence charSequence3, int i22, int i23, Paint.FontMetricsInt fontMetricsInt) {
+                                return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
+                            }
+
+                            @Override
+                            public void draw(Canvas canvas, CharSequence charSequence3, int i22, int i23, float f4, int i24, int i25, int i26, Paint paint) {
+                                float fDp = ((i24 + i26) / 2.0f) + AndroidUtilities.dp(1.33f);
+                                this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
+                                this.bg.setColor(-572850);
+                                RectF rectF = this.rect;
+                                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                                this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
+                            }
+                        }, 0, spannableStringBuilder6.length(), 33);
+                        spannableStringBuilder6.append((CharSequence) "  ");
+                        storyViewer2 = this.storyViewer;
+                        if (storyViewer2 != null) {
+                            this.watchersCount = livePlayer.getWatchersCount();
+                        }
+                        spannableStringBuilder6.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
+                        storyDate2 = spannableStringBuilder6;
+                    } else if (storyItem6.date == -1) {
+                        string = LocaleController.getString(R.string.CachedStory);
+                    } else {
+                        if (storyItemHolder2.getReply() != null) {
+                            reply = this.currentStory.getReply();
+                            spannableStringBuilder2 = new SpannableStringBuilder();
+                            SpannableString spannableString8 = new SpannableString("r");
+                            spannableString8.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString8.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) spannableString8).append((CharSequence) " ");
+                            if (reply.peerId != null) {
+                                avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                                SpannableString spannableString9 = new SpannableString("a");
+                                spannableString9.setSpan(avatarSpan, 0, 1, 33);
+                                spannableStringBuilder2.append((CharSequence) spannableString9).append((CharSequence) " ");
+                                if (reply.peerId.longValue() > 0) {
+                                    TLRPC.User user4 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
+                                    avatarSpan.setUser(user4);
+                                    spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user4));
+                                } else {
+                                    chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                    avatarSpan.setChat(chat);
+                                    if (chat != null) {
+                                        spannableStringBuilder2.append((CharSequence) chat.title);
+                                    }
+                                }
+                            } else {
+                                str = this.currentStory.storyItem.fwd_from.from_name;
+                                if (str != null) {
+                                    spannableStringBuilder2.append((CharSequence) str);
+                                }
+                            }
+                            this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    this.f$0.lambda$updatePosition$44(reply, view);
+                                }
+                            });
+                            SpannableString spannableString10 = new SpannableString(".");
+                            DotDividerSpan dotDividerSpan4 = new DotDividerSpan();
+                            dotDividerSpan4.setTopPadding(AndroidUtilities.dp(1.5f));
+                            dotDividerSpan4.setSize(5.0f);
+                            spannableString10.setSpan(dotDividerSpan4, 0, spannableString10.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString10).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                            spannableStringBuilder = spannableStringBuilder2;
+                        } else {
+                            if (!this.isGroup) {
+                            }
+                            storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                            string = storyDate;
+                            if (this.currentStory.storyItem.edited) {
+                                spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(storyDate);
+                                DotDividerSpan dotDividerSpan5 = new DotDividerSpan();
+                                dotDividerSpan5.setTopPadding(AndroidUtilities.dp(1.5f));
+                                dotDividerSpan5.setSize(5.0f);
+                                spannableStringBuilderValueOf.append((CharSequence) " . ").setSpan(dotDividerSpan5, spannableStringBuilderValueOf.length() - 2, spannableStringBuilderValueOf.length() - 1, 0);
+                                spannableStringBuilderValueOf.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                            }
+                        }
+                        z4 = false;
+                        string = spannableStringBuilder;
+                    }
+                }
+                if (string != null) {
+                    string = spannableStringBuilderValueOf;
+                    storyViewer3 = this.storyViewer;
+                    if (storyViewer3 != null) {
+                        if (!(string instanceof SpannableStringBuilder)) {
+                            charSequence = string;
+                            charSequence = string;
+                            charSequence = string;
+                            charSequence = string;
+                            spannableStringBuilder3 = string;
+                            spannableStringBuilder3 = new SpannableStringBuilder(string);
+                        }
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        spannableStringBuilder3 = string;
+                        SpannableString spannableString11 = new SpannableString("p ");
+                        spannableString11.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString11);
+                        charSequence = spannableStringBuilder3;
+                    }
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    this.headerView.setSubtitle(charSequence, z4);
+                }
+                string = spannableStringBuilderValueOf;
+                hintView2 = this.privacyHint;
+                if (hintView2 != null) {
+                    hintView2.hide(false);
+                }
+                hintView3 = this.soundTooltip;
+                if (hintView3 != null) {
+                    hintView3.hide(false);
+                }
+            }
+            string = storyDate2;
+            if (string != null) {
+                string = spannableStringBuilderValueOf;
+                storyViewer3 = this.storyViewer;
+                if (storyViewer3 != null) {
+                    if (!(string instanceof SpannableStringBuilder)) {
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        spannableStringBuilder3 = string;
+                        spannableStringBuilder3 = new SpannableStringBuilder(string);
+                    }
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    spannableStringBuilder3 = string;
+                    SpannableString spannableString12 = new SpannableString("p ");
+                    spannableString12.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString12);
+                    charSequence = spannableStringBuilder3;
+                }
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                this.headerView.setSubtitle(charSequence, z4);
+            }
+            string = spannableStringBuilderValueOf;
+            hintView2 = this.privacyHint;
+            if (hintView2 != null) {
+                hintView2.hide(false);
+            }
+            hintView3 = this.soundTooltip;
+            if (hintView3 != null) {
+                hintView3.hide(false);
+            }
+        } else {
+            this.headerView.setOnSubtitleClick(null);
+            this.watchersCount = 0;
+            setTitle(false, this.dialogId, this.currentStory.isLive);
+            uploadingStory5 = this.currentStory.uploadingStory;
+            if (uploadingStory5 != null) {
+                if (uploadingStory5.failed) {
+                    storyDate2 = LocaleController.getString(R.string.FailedToUploadStory);
+                } else {
+                    storyDate2 = StoriesUtilities.getUploadingStr(this.headerView.subtitleView[0], false, this.isEditing);
+                }
+            } else {
+                if (isBotsPreview()) {
+                    storyItem8 = this.currentStory.storyItem;
+                    if (storyItem8 != null) {
+                        document = messageMedia.document;
+                        if (document != null) {
+                            storyDate2 = LocaleController.formatStoryDate(document.date);
+                        } else {
+                            photo = messageMedia.photo;
+                            if (photo != null) {
+                                storyDate2 = LocaleController.formatStoryDate(photo.date);
+                            }
+                        }
+                    }
+                    string = "";
+                } else {
+                    storyItemHolder2 = this.currentStory;
+                    storyItem6 = storyItemHolder2.storyItem;
+                    if (storyItem6 == null) {
+                        string = null;
+                    } else if (storyItem6.media instanceof TLRPC.TL_messageMediaVideoStream) {
+                        SpannableStringBuilder spannableStringBuilder7 = new SpannableStringBuilder(LocaleController.getString(R.string.LiveStoryBadge));
+                        spannableStringBuilder7.setSpan(new ReplacementSpan() {
+                            private final RectF rect = new RectF();
+                            private final Paint bg = new Paint(1);
+                            private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
+
+                            @Override
+                            public int getSize(Paint paint, CharSequence charSequence3, int i22, int i23, Paint.FontMetricsInt fontMetricsInt) {
+                                return (int) (this.text.getWidth() + AndroidUtilities.dp(12.0f));
+                            }
+
+                            @Override
+                            public void draw(Canvas canvas, CharSequence charSequence3, int i22, int i23, float f4, int i24, int i25, int i26, Paint paint) {
+                                float fDp = ((i24 + i26) / 2.0f) + AndroidUtilities.dp(1.33f);
+                                this.rect.set(f4, fDp - AndroidUtilities.dp(7.0f), this.text.getWidth() + f4 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + fDp);
+                                this.bg.setColor(-572850);
+                                RectF rectF = this.rect;
+                                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                                this.text.draw(canvas, AndroidUtilities.dp(6.0f) + f4, fDp, -1, 1.0f);
+                            }
+                        }, 0, spannableStringBuilder7.length(), 33);
+                        spannableStringBuilder7.append((CharSequence) "  ");
+                        storyViewer2 = this.storyViewer;
+                        if (storyViewer2 != null) {
+                            this.watchersCount = livePlayer.getWatchersCount();
+                        }
+                        spannableStringBuilder7.append((CharSequence) LocaleController.formatPluralStringComma("LiveStoryWatching", Math.max(1, this.watchersCount)));
+                        storyDate2 = spannableStringBuilder7;
+                    } else if (storyItem6.date == -1) {
+                        string = LocaleController.getString(R.string.CachedStory);
+                    } else {
+                        if (storyItemHolder2.getReply() != null) {
+                            reply = this.currentStory.getReply();
+                            spannableStringBuilder2 = new SpannableStringBuilder();
+                            SpannableString spannableString13 = new SpannableString("r");
+                            spannableString13.setSpan(new ColoredImageSpan(R.drawable.mini_repost_story), 0, spannableString13.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) spannableString13).append((CharSequence) " ");
+                            if (reply.peerId != null) {
+                                avatarSpan = new AvatarSpan(this.headerView.subtitleView[0], this.currentAccount, 15.0f);
+                                SpannableString spannableString14 = new SpannableString("a");
+                                spannableString14.setSpan(avatarSpan, 0, 1, 33);
+                                spannableStringBuilder2.append((CharSequence) spannableString14).append((CharSequence) " ");
+                                if (reply.peerId.longValue() > 0) {
+                                    TLRPC.User user5 = MessagesController.getInstance(this.currentAccount).getUser(reply.peerId);
+                                    avatarSpan.setUser(user5);
+                                    spannableStringBuilder2.append((CharSequence) UserObject.getUserName(user5));
+                                } else {
+                                    chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-reply.peerId.longValue()));
+                                    avatarSpan.setChat(chat);
+                                    if (chat != null) {
+                                        spannableStringBuilder2.append((CharSequence) chat.title);
+                                    }
+                                }
+                            } else {
+                                str = this.currentStory.storyItem.fwd_from.from_name;
+                                if (str != null) {
+                                    spannableStringBuilder2.append((CharSequence) str);
+                                }
+                            }
+                            this.headerView.setOnSubtitleClick(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    this.f$0.lambda$updatePosition$44(reply, view);
+                                }
+                            });
+                            SpannableString spannableString15 = new SpannableString(".");
+                            DotDividerSpan dotDividerSpan6 = new DotDividerSpan();
+                            dotDividerSpan6.setTopPadding(AndroidUtilities.dp(1.5f));
+                            dotDividerSpan6.setSize(5.0f);
+                            spannableString15.setSpan(dotDividerSpan6, 0, spannableString15.length(), 33);
+                            spannableStringBuilder2.append((CharSequence) " ").append((CharSequence) spannableString15).append((CharSequence) " ").append((CharSequence) LocaleController.formatShortDate(this.currentStory.storyItem.date));
+                            spannableStringBuilder = spannableStringBuilder2;
+                        } else {
+                            if (!this.isGroup) {
+                            }
+                            storyDate = LocaleController.formatStoryDate(this.currentStory.storyItem.date);
+                            string = storyDate;
+                            if (this.currentStory.storyItem.edited) {
+                                spannableStringBuilderValueOf = SpannableStringBuilder.valueOf(storyDate);
+                                DotDividerSpan dotDividerSpan7 = new DotDividerSpan();
+                                dotDividerSpan7.setTopPadding(AndroidUtilities.dp(1.5f));
+                                dotDividerSpan7.setSize(5.0f);
+                                spannableStringBuilderValueOf.append((CharSequence) " . ").setSpan(dotDividerSpan7, spannableStringBuilderValueOf.length() - 2, spannableStringBuilderValueOf.length() - 1, 0);
+                                spannableStringBuilderValueOf.append((CharSequence) LocaleController.getString(R.string.EditedMessage));
+                            }
+                        }
+                        z4 = false;
+                        string = spannableStringBuilder;
+                    }
+                }
+                if (string != null) {
+                    string = spannableStringBuilderValueOf;
+                    storyViewer3 = this.storyViewer;
+                    if (storyViewer3 != null) {
+                        if (!(string instanceof SpannableStringBuilder)) {
+                            charSequence = string;
+                            charSequence = string;
+                            charSequence = string;
+                            charSequence = string;
+                            spannableStringBuilder3 = string;
+                            spannableStringBuilder3 = new SpannableStringBuilder(string);
+                        }
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        spannableStringBuilder3 = string;
+                        SpannableString spannableString16 = new SpannableString("p ");
+                        spannableString16.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                        ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString16);
+                        charSequence = spannableStringBuilder3;
+                    }
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    this.headerView.setSubtitle(charSequence, z4);
+                }
+                string = spannableStringBuilderValueOf;
+                hintView2 = this.privacyHint;
+                if (hintView2 != null) {
+                    hintView2.hide(false);
+                }
+                hintView3 = this.soundTooltip;
+                if (hintView3 != null) {
+                    hintView3.hide(false);
+                }
+            }
+            string = storyDate2;
+            if (string != null) {
+                string = spannableStringBuilderValueOf;
+                storyViewer3 = this.storyViewer;
+                if (storyViewer3 != null) {
+                    if (!(string instanceof SpannableStringBuilder)) {
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        charSequence = string;
+                        spannableStringBuilder3 = string;
+                        spannableStringBuilder3 = new SpannableStringBuilder(string);
+                    }
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    charSequence = string;
+                    spannableStringBuilder3 = string;
+                    SpannableString spannableString17 = new SpannableString("p ");
+                    spannableString17.setSpan(new ColoredImageSpan(R.drawable.msg_pin_mini), 0, 1, 33);
+                    ((SpannableStringBuilder) spannableStringBuilder3).insert(0, (CharSequence) spannableString17);
+                    charSequence = spannableStringBuilder3;
+                }
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                charSequence = string;
+                this.headerView.setSubtitle(charSequence, z4);
+            }
+            string = spannableStringBuilderValueOf;
+            hintView2 = this.privacyHint;
+            if (hintView2 != null) {
+                hintView2.hide(false);
+            }
+            hintView3 = this.soundTooltip;
+            if (hintView3 != null) {
+                hintView3.hide(false);
+            }
+        }
+        StoryItemHolder storyItemHolder11 = this.currentStory;
+        storyItem10 = storyItemHolder11.storyItem;
+        if (storyItem17 != storyItem10) {
+            this.currentStory.updateCaption();
+        } else {
+            this.currentStory.updateCaption();
+        }
+        storyItemHolder3 = this.currentStory;
+        if (!storyItemHolder3.captionTranslated) {
+            delegate.setTranslating(false);
+        } else {
+            delegate.setTranslating(false);
+        }
+        if (this.currentStory.isLive) {
+            z7 = false;
+        } else {
+            z7 = false;
+        }
+        if (z7 != this.areLiveCommentsDisabled) {
+            this.areLiveCommentsDisabled = z7;
+            if (z7) {
+                createPremiumBlockedText();
+            }
+            if (this.premiumBlockedText != null) {
+                updatePremiumBlockedText();
+            }
+            chatActivityEnterView9 = this.chatActivityEnterView;
+            if (chatActivityEnterView9 != null) {
+                chatActivityEnterView9.setEnabled((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled);
+                this.chatActivityEnterView.updateSendAsButton();
+            }
+            checkStealthMode(true);
+        }
+        linearLayout = this.premiumBlockedText;
+        if (linearLayout != null) {
+            linearLayout.setVisibility(((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled) ? 8 : 0);
+        }
+        if (this.unsupported) {
+            createUnsupportedContainer();
+            createReplyDisabledView();
+            this.unsupportedContainer.setVisibility(0);
+            this.replyDisabledTextView.setVisibility(0);
+            this.allowShareLink = false;
+            this.allowRepost = false;
+            this.allowShare = false;
+            chatActivityEnterView8 = this.chatActivityEnterView;
+            if (chatActivityEnterView8 != null) {
+                chatActivityEnterView8.setVisibility(8);
+            }
+            frameLayout5 = this.selfView;
+            if (frameLayout5 != null) {
+                frameLayout5.setVisibility(8);
+            }
+            linearLayout3 = this.bottomActionsLinearLayout;
+            if (linearLayout3 != null) {
+                linearLayout3.setVisibility(0);
+            }
+        } else {
+            if (this.dialogId < 0) {
+                chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+            } else {
+                chat2 = null;
+            }
+            if (this.currentStory.isLive) {
+                if (this.chatActivityEnterView == null) {
+                    createEnterView();
+                }
+                createCommentButton();
+                createPaidReactionsButton();
+                createMuteButton();
+                this.chatActivityEnterView.setVisibility(0);
+            } else if (!UserObject.isService(this.dialogId)) {
+                chatActivityEnterView2.setVisibility(8);
+            } else {
+                chatActivityEnterView2.setVisibility(8);
+            }
+            chatActivityEnterView4 = this.chatActivityEnterView;
+            if (chatActivityEnterView4 != null) {
+                if (this.currentStory.isLive) {
+                    onLongClickListener = new View.OnLongClickListener() {
+                        @Override
+                        public final boolean onLongClick(View view) {
+                            return this.f$0.lambda$updatePosition$48(view);
+                        }
+                    };
+                } else {
+                    onLongClickListener = null;
+                }
+                chatActivityEnterView4.setOnSendButtonLongClick(onLongClickListener);
+                this.chatActivityEnterView.setLiveComment(this.currentStory.isLive, disabledPaidFeatures(true));
+                ChatActivityEnterView chatActivityEnterView11 = this.chatActivityEnterView;
+                if (this.currentStory.isLive) {
+                    z8 = false;
+                } else {
+                    z8 = false;
+                }
+                chatActivityEnterView11.setSuggestionButtonVisible(z8, true);
+            }
+            if (this.isPremiumBlocked) {
+                createPremiumBlockedText();
+            }
+            if (this.premiumBlockedText != null) {
+                if (!this.isPremiumBlocked) {
+                    updatePremiumBlockedText();
+                } else {
+                    updatePremiumBlockedText();
+                }
+                this.premiumBlockedText.setVisibility(((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled) ? 8 : 0);
+            }
+            chatActivityEnterView5 = this.chatActivityEnterView;
+            if (chatActivityEnterView5 != null) {
+                chatActivityEnterView5.setEnabled((this.isPremiumBlocked || this.currentStory.isLive) && !this.areLiveCommentsDisabled);
+            }
+            frameLayout = this.selfView;
+            if (frameLayout != null) {
+                if (this.isSelf) {
+                    i2 = 8;
+                } else {
+                    i2 = 8;
+                }
+                frameLayout.setVisibility(i2);
+            }
+            frameLayout2 = this.unsupportedContainer;
+            if (frameLayout2 != null) {
+                frameLayout2.setVisibility(8);
+            }
+            if (UserObject.isService(this.dialogId)) {
+                createReplyDisabledView();
+                this.replyDisabledTextView.setVisibility(0);
+            } else {
+                textView = this.replyDisabledTextView;
+                if (textView != null) {
+                    textView.setVisibility(8);
+                }
+            }
+            linearLayout2 = this.bottomActionsLinearLayout;
+            if (linearLayout2 != null) {
+                if (isBotsPreview()) {
+                    i = 8;
+                } else {
+                    i = 0;
+                }
+                linearLayout2.setVisibility(i);
+            }
+        }
+        chatActivitySideControlsButtonsLayout = this.sideControlsButtonsLayout;
+        if (chatActivitySideControlsButtonsLayout != null) {
+            chatActivityEnterView7 = this.chatActivityEnterView;
+            if (chatActivityEnterView7 == null) {
+                i19 = 8;
+            } else {
+                i19 = 8;
+            }
+            chatActivitySideControlsButtonsLayout.setVisibility(i19);
+        }
+        commentButton = this.commentButton;
+        if (commentButton != null) {
+            if (this.unsupported) {
+                i18 = 8;
+            } else {
+                i18 = 8;
+            }
+            commentButton.setVisibility(i18);
+            this.commentButton.setCollapsed(this.liveCommentsView.isCollapsed(), false);
+            this.commentButton.setCount(this.liveCommentsView.getUnreadMessagesCount());
+        }
+        muteButton = this.muteButton;
+        if (muteButton != null) {
+            if (this.unsupported) {
+                i17 = 8;
+            } else {
+                i17 = 8;
+            }
+            muteButton.setVisibility(i17);
+            MuteButton muteButton5 = this.muteButton;
+            livePlayer2 = LivePlayer.recording;
+            if (livePlayer2 == null) {
+                z14 = false;
+            } else {
+                z14 = false;
+            }
+            muteButton5.setMuted(z14, true);
+            MuteButton muteButton6 = this.muteButton;
+            livePlayer3 = LivePlayer.recording;
+            if (livePlayer3 != null) {
+                z15 = true;
+            } else {
+                z15 = true;
+            }
+            muteButton6.setConnected(z15, true);
+        }
+        if (this.starsButton != null) {
+            PaidReactionButton.PaidReactionButtonEffectsView paidReactionButtonEffectsView2 = this.starsButtonEffectsView;
+            if (this.unsupported) {
+                i15 = 8;
+            } else {
+                i15 = 8;
+            }
+            paidReactionButtonEffectsView2.setVisibility(i15);
+            PaidReactionButton paidReactionButton2 = this.starsButton;
+            if (this.unsupported) {
+                i16 = 8;
+            } else {
+                i16 = 8;
+            }
+            paidReactionButton2.setVisibility(i16);
+            layoutParams = (FrameLayout.LayoutParams) this.starsButton.getLayoutParams();
+            muteButton2 = this.muteButton;
+            if (muteButton2 == null) {
+                f3 = 7.0f;
+            } else {
+                f3 = 7.0f;
+            }
+            iDp2 = AndroidUtilities.dp(f3);
+            if (layoutParams.rightMargin != iDp2) {
+                layoutParams.rightMargin = iDp2;
+                this.starsButton.setLayoutParams(layoutParams);
+            }
+        }
+        if (this.currentStory.isLive) {
+            storyItemHolder6 = this.currentStory;
+            if (storyItemHolder6.caption == null) {
+                StoryCaptionView.StoryCaptionTextView storyCaptionTextView2 = this.storyCaptionView.captionTextview;
+                StoryItemHolder storyItemHolder12 = this.currentStory;
+                CharSequence charSequence3 = storyItemHolder12.caption;
+                StoryCaptionView.Panel reply3 = storyItemHolder12.getReply();
+                StoryCaptionView.Panel music2 = this.currentStory.getMusic();
+                if (this.storyViewer.isTranslating) {
+                    storyItemHolder7 = this.currentStory;
+                    if (storyItemHolder7.captionTranslated) {
+                        z12 = false;
+                    } else {
+                        z12 = false;
+                    }
+                } else {
+                    z12 = false;
+                }
+                if (storyItem17 == this.currentStory.storyItem) {
+                    z13 = true;
+                } else {
+                    z13 = false;
+                }
+                storyCaptionTextView2.setText(charSequence3, reply3, music2, z12, z13);
+                this.storyCaptionView.setVisibility(0);
+            } else {
+                StoryCaptionView.StoryCaptionTextView storyCaptionTextView3 = this.storyCaptionView.captionTextview;
+                StoryItemHolder storyItemHolder13 = this.currentStory;
+                CharSequence charSequence4 = storyItemHolder13.caption;
+                StoryCaptionView.Panel reply4 = storyItemHolder13.getReply();
+                StoryCaptionView.Panel music3 = this.currentStory.getMusic();
+                if (this.storyViewer.isTranslating) {
+                    storyItemHolder7 = this.currentStory;
+                    if (storyItemHolder7.captionTranslated) {
+                        z12 = false;
+                    } else {
+                        z12 = false;
+                    }
+                } else {
+                    z12 = false;
+                }
+                if (storyItem17 == this.currentStory.storyItem) {
+                    z13 = true;
+                } else {
+                    z13 = false;
+                }
+                storyCaptionTextView3.setText(charSequence4, reply4, music3, z12, z13);
+                this.storyCaptionView.setVisibility(0);
+            }
+        } else {
+            if (this.isActive) {
+                this.delegate.setIsCaption(false);
+                Delegate delegate4 = this.delegate;
+                this.isCaptionPartVisible = false;
+                delegate4.setIsCaptionPartVisible(false);
+            }
+            this.storyCaptionView.setVisibility(8);
+        }
+        storyItem11 = this.currentStory.storyItem;
+        if (storyItem11 != null) {
+            messageMedia2 = storyItem11.media;
+            if (messageMedia2 instanceof TLRPC.TL_messageMediaVideoStream) {
+                if (this.liveCommentsView.setup(this.dialogId, ((TLRPC.TL_messageMediaVideoStream) messageMedia2).call)) {
+                    this.liveCommentsView.setCollapsed(false, false);
+                    this.messageStars = 0L;
+                    chatActivityEnterView6 = this.chatActivityEnterView;
+                    if (chatActivityEnterView6 != null) {
+                        chatActivityEnterView6.checkSendButton(true);
+                        this.chatActivityEnterView.updateSendButtonPaid();
+                        checkStealthMode(true);
+                    }
+                }
+                this.liveCommentsView.setVisibility(0);
+            } else {
+                this.liveCommentsView.setup(this.dialogId, null);
+                this.liveCommentsView.setVisibility(8);
+            }
+        } else {
+            this.liveCommentsView.setup(this.dialogId, null);
+            this.liveCommentsView.setVisibility(8);
+        }
+        this.storyContainer.invalidate();
+        if (this.delegate != null) {
+            this.delegate.onPeerSelected(this.dialogId, this.selectedPosition);
+        }
+        if (this.isChannel) {
+            ImageView imageView5 = this.shareButton;
+            if (this.allowShare) {
+                i12 = 4;
+            } else {
+                i12 = 4;
+            }
+            imageView5.setVisibility(i12);
+            frameLayout4 = this.repostButtonContainer;
+            if (frameLayout4 != null) {
+                if (this.allowRepost) {
+                    i14 = 8;
+                } else {
+                    i14 = 8;
+                }
+                frameLayout4.setVisibility(i14);
+            }
+            FrameLayout frameLayout9 = this.likeButtonContainer;
+            if (this.isFailed) {
+                i13 = 8;
+            } else {
+                i13 = 8;
+            }
+            frameLayout9.setVisibility(i13);
+        } else {
+            ImageView imageView6 = this.shareButton;
+            if (this.allowShare) {
+                i3 = 4;
+            } else {
+                i3 = 4;
+            }
+            imageView6.setVisibility(i3);
+            frameLayout3 = this.repostButtonContainer;
+            if (frameLayout3 != null) {
+                frameLayout3.setVisibility(8);
+            }
+            FrameLayout frameLayout10 = this.likeButtonContainer;
+            if (this.isSelf) {
+                i4 = 8;
+            } else {
+                i4 = 8;
+            }
+            frameLayout10.setVisibility(i4);
+            this.likeButtonContainer.getLayoutParams().width = AndroidUtilities.dp(40.0f);
+        }
+        this.likeButtonContainer.requestLayout();
+        this.storyViewer.savedPositions.append(this.dialogId, i20);
+        if (this.isActive) {
+            requestVideoPlayer(0L);
+            updatePreloadImages();
+            this.imageReceiver.bumpPriority();
+        }
+        this.liveCommentsView.setLivePlayer(this.storyViewer.livePlayer);
+        this.listPosition = 0;
+        if (this.storyViewer.storiesList != null) {
+            int i22 = storyItem14.id;
+            while (i11 < this.storyViewer.storiesList.messageObjects.size()) {
+                messageObject = (MessageObject) this.storyViewer.storiesList.messageObjects.get(i11);
+                if (messageObject == null) {
+                }
+            }
+        }
+        i5 = this.selectedPosition;
+        this.linesPosition = i5;
+        i6 = this.count;
+        this.linesCount = i6;
+        if (this.storyViewer.reversed) {
+            this.linesPosition = (i6 - 1) - i5;
+        }
+        if (this.currentStory.isVideo()) {
+            this.muteIconContainer.setVisibility(0);
+            if (this.currentStory.hasSound()) {
+                f2 = 1.0f;
+            } else {
+                f2 = 0.5f;
+            }
+            this.muteIconViewAlpha = f2;
+            if (this.currentStory.hasSound()) {
+                this.muteIconView.setVisibility(0);
+                this.noSoundIconView.setVisibility(8);
+                FrameLayout frameLayout11 = this.muteIconContainer;
+                if (this.storyViewer.soundEnabled()) {
+                    i10 = R.string.Mute;
+                } else {
+                    i10 = R.string.Unmute;
+                }
+                frameLayout11.setContentDescription(LocaleController.getString(i10));
+            } else {
+                this.muteIconView.setVisibility(8);
+                this.noSoundIconView.setVisibility(0);
+                this.muteIconContainer.setContentDescription(LocaleController.getString(R.string.NoSound));
+            }
+            this.muteIconContainer.setAlpha(this.muteIconViewAlpha * (1.0f - this.outT));
+        } else {
+            this.muteIconContainer.setVisibility(8);
+        }
+        storyItemHolder4 = this.currentStory;
+        uploadingStory6 = storyItemHolder4.uploadingStory;
+        if (uploadingStory6 != null) {
+            StoryPrivacyButton storyPrivacyButton5 = this.privacyButton;
+            boolean z25 = this.isSelf;
+            if (z3) {
+                z11 = false;
+            } else {
+                z11 = false;
+            }
+            storyPrivacyButton5.set(z25, uploadingStory6, z11);
+        } else {
+            storyItem12 = storyItemHolder4.storyItem;
+            if (storyItem12 != null) {
+                StoryPrivacyButton storyPrivacyButton6 = this.privacyButton;
+                boolean z26 = this.isSelf;
+                if (z3) {
+                    z10 = false;
+                } else {
+                    z10 = false;
+                }
+                storyPrivacyButton6.set(z26, storyItem12, z10);
+            } else {
+                StoryPrivacyButton storyPrivacyButton7 = this.privacyButton;
+                boolean z27 = this.isSelf;
+                if (z3) {
+                    z9 = false;
+                } else {
+                    z9 = false;
+                }
+                storyPrivacyButton7.set(z27, (TL_stories.StoryItem) null, z9);
+            }
+        }
+        this.editedPrivacy = false;
+        StoryPrivacyButton storyPrivacyButton8 = this.privacyButton;
+        if (this.muteIconContainer.getVisibility() == 0) {
+            f = -AndroidUtilities.dp(44.0f);
+        } else {
+            f = 0.0f;
+        }
+        storyPrivacyButton8.setTranslationX(f);
+        if (z5) {
+            this.drawReactionEffect = false;
+            storyItem13 = this.currentStory.storyItem;
+            if (storyItem13 != null) {
+                this.storiesLikeButton.setReaction(null);
+            } else {
+                this.storiesLikeButton.setReaction(null);
+            }
+        }
+        uploadingStory7 = this.currentStory.uploadingStory;
+        if (uploadingStory7 == null) {
+            if (this.failView != null) {
+                viewPropertyAnimator = this.failViewAnimator;
+                if (viewPropertyAnimator != null) {
+                    viewPropertyAnimator.cancel();
+                    this.failViewAnimator = null;
+                }
+                if (!z3) {
+                    this.failView.setAlpha(0.0f);
+                    this.failView.setVisibility(8);
+                } else {
+                    this.failView.setAlpha(0.0f);
+                    this.failView.setVisibility(8);
+                }
+            }
+        } else if (this.failView != null) {
+            viewPropertyAnimator = this.failViewAnimator;
+            if (viewPropertyAnimator != null) {
+                viewPropertyAnimator.cancel();
+                this.failViewAnimator = null;
+            }
+            if (!z3) {
+                this.failView.setAlpha(0.0f);
+                this.failView.setVisibility(8);
+            } else {
+                this.failView.setAlpha(0.0f);
+                this.failView.setVisibility(8);
+            }
+        }
+        this.sharedResources.setIconMuted(!this.storyViewer.soundEnabled(), false);
+        if (this.isActive) {
+            FileLog.d("StoryViewer displayed story dialogId=" + this.dialogId + " storyId=" + this.currentStory.storyItem.id + " " + this.currentStory.getMediaDebugString());
+        }
+        if (this.isSelf) {
+            SelfStoryViewsPage.preload(this.currentAccount, this.dialogId, this.currentStory.storyItem);
+        }
+        SimpleTextView simpleTextView2 = this.headerView.titleView;
+        storiesList2 = this.storyViewer.storiesList;
+        if (storiesList2 != null) {
+            i7 = 0;
+            iDp = 0;
+        } else {
+            i7 = 0;
+            iDp = 0;
+        }
+        simpleTextView2.setPadding(i7, i7, iDp, i7);
+        MessagesController.getInstance(this.currentAccount).getTranslateController().detectStoryLanguage(this.currentStory.storyItem);
+        if (!z) {
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$updatePosition$50();
+                }
+            };
+            this.reactionsTooltipRunnable = runnable2;
+            AndroidUtilities.runOnUIThread(runnable2, 500L);
+        }
+        hintView4 = this.soundTooltip;
+        if (hintView4 != null) {
+            if (MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) < 2) {
+                AndroidUtilities.cancelRunOnUIThread(this.showTapToSoundHint);
+                AndroidUtilities.runOnUIThread(this.showTapToSoundHint, 250L);
+            }
+        } else if (MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) < 2) {
+            AndroidUtilities.cancelRunOnUIThread(this.showTapToSoundHint);
+            AndroidUtilities.runOnUIThread(this.showTapToSoundHint, 250L);
+        }
+        imageView = this.optionsIconView;
+        if (imageView != null) {
+            if (isBotsPreview()) {
+                i9 = 0;
+            } else {
+                i9 = 0;
+            }
+            imageView.setVisibility(i9);
+        }
+        imageView2 = this.pipIconView;
+        if (imageView2 != null) {
+            if (this.currentStory.isLive) {
+                i8 = 8;
+            } else {
+                i8 = 8;
+            }
+            imageView2.setVisibility(i8);
+        }
     }
 
     public void lambda$updatePosition$44(StoryCaptionView.Panel panel, View view) {
@@ -5530,14 +8601,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }).addIf(this.messageStars > 0, R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() {
                 this.f$0.lambda$updatePosition$47();
             }
         }).setGravity(5).forceTop(true).show();
         return true;
     }
 
-    public void lambda$updatePosition$47() throws Resources.NotFoundException {
+    public void lambda$updatePosition$47() {
         this.messageStars = 0L;
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
@@ -5596,13 +8667,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         int i = this.currentAccount;
         HighlightMessageSheet.open(context, i, clientUserId, DialogObject.getShortName(i, this.dialogId), textWithEntities, getMessageMinPrice(), this.messageStars, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) throws Resources.NotFoundException {
+            public final void run(Object obj) {
                 this.f$0.lambda$onHighlightLiveMessage$52((Long) obj);
             }
         }, new DarkThemeResourceProvider());
     }
 
-    public void lambda$onHighlightLiveMessage$52(Long l) throws Resources.NotFoundException {
+    public void lambda$onHighlightLiveMessage$52(Long l) {
         this.messageStars = l.longValue();
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
@@ -5631,7 +8702,219 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     private void updatePreloadImages() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.updatePreloadImages():void");
+        int size;
+        ImageReceiver imageReceiver;
+        TL_stories.StoryItem storyItem;
+        TLRPC.MessageMedia messageMedia;
+        int i;
+        byte[] bArr;
+        int iMax = (int) (Math.max(AndroidUtilities.getRealScreenSize().x, AndroidUtilities.getRealScreenSize().y) / AndroidUtilities.density);
+        String str = iMax + "_" + iMax;
+        this.uriesToPrepare.clear();
+        this.documentsToPrepare.clear();
+        for (int i2 = 0; i2 < this.preloadReactionHolders.size(); i2++) {
+            ((ReactionImageHolder) this.preloadReactionHolders.get(i2)).onAttachedToWindow(false);
+        }
+        this.preloadReactionHolders.clear();
+        for (int i3 = 0; i3 < 2; i3++) {
+            int i4 = this.selectedPosition;
+            if (i3 == 0) {
+                size = i4 - 1;
+                imageReceiver = this.leftPreloadImageReceiver;
+                if (size < 0) {
+                    imageReceiver.clearImage();
+                } else if (this.uploadingStories.isEmpty() && size >= this.storyItems.size()) {
+                    setStoryImage((StoriesController.UploadingStory) this.uploadingStories.get(size - this.storyItems.size()), imageReceiver, str);
+                } else if (!this.storyItems.isEmpty()) {
+                    if (size < 0) {
+                        size = 0;
+                    }
+                    if (size >= this.storyItems.size()) {
+                        size = this.storyItems.size() - 1;
+                    }
+                    storyItem = (TL_stories.StoryItem) this.storyItems.get(size);
+                    storyItem.dialogId = this.dialogId;
+                    setStoryImage(storyItem, imageReceiver, str);
+                    messageMedia = storyItem.media;
+                    if (messageMedia != null && MessageObject.isVideoDocument(messageMedia.getDocument())) {
+                        TLRPC.Document document = storyItem.media.getDocument();
+                        if (storyItem.fileReference == 0) {
+                            storyItem.fileReference = FileLoader.getInstance(this.currentAccount).getFileReference(storyItem);
+                        }
+                        try {
+                            StringBuilder sb = new StringBuilder();
+                            sb.append("?account=");
+                            sb.append(this.currentAccount);
+                            sb.append("&id=");
+                            sb.append(document.id);
+                            sb.append("&hash=");
+                            sb.append(document.access_hash);
+                            sb.append("&dc=");
+                            sb.append(document.dc_id);
+                            sb.append("&size=");
+                            sb.append(document.size);
+                            sb.append("&mime=");
+                            sb.append(URLEncoder.encode(document.mime_type, "UTF-8"));
+                            sb.append("&rid=");
+                            sb.append(storyItem.fileReference);
+                            sb.append("&name=");
+                            sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(document), "UTF-8"));
+                            sb.append("&reference=");
+                            bArr = document.file_reference;
+                            if (bArr == null) {
+                                bArr = new byte[0];
+                            }
+                            sb.append(Utilities.bytesToHex(bArr));
+                            sb.append("&sid=");
+                            sb.append(storyItem.id);
+                            sb.append("&did=");
+                            sb.append(storyItem.dialogId);
+                            String string = sb.toString();
+                            this.uriesToPrepare.add(Uri.parse("tg://" + FileLoader.getAttachFileName(document) + string));
+                            this.documentsToPrepare.add(document);
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (storyItem.media_areas != null) {
+                        for (i = 0; i < storyItem.media_areas.size(); i++) {
+                            if (storyItem.media_areas.get(i) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
+                                TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = (TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i);
+                                ReactionImageHolder reactionImageHolder = new ReactionImageHolder(this);
+                                reactionImageHolder.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_mediaAreaSuggestedReaction.reaction));
+                                reactionImageHolder.onAttachedToWindow(this.attachedToWindow);
+                                this.preloadReactionHolders.add(reactionImageHolder);
+                            }
+                        }
+                    }
+                }
+            } else {
+                size = i4 + 1;
+                imageReceiver = this.rightPreloadImageReceiver;
+                if (size >= getStoriesCount()) {
+                    imageReceiver.clearImage();
+                } else if (this.uploadingStories.isEmpty()) {
+                    if (!this.storyItems.isEmpty()) {
+                        if (size < 0) {
+                            size = 0;
+                        }
+                        if (size >= this.storyItems.size()) {
+                            size = this.storyItems.size() - 1;
+                        }
+                        storyItem = (TL_stories.StoryItem) this.storyItems.get(size);
+                        storyItem.dialogId = this.dialogId;
+                        setStoryImage(storyItem, imageReceiver, str);
+                        messageMedia = storyItem.media;
+                        if (messageMedia != null) {
+                            TLRPC.Document document2 = storyItem.media.getDocument();
+                            if (storyItem.fileReference == 0) {
+                                storyItem.fileReference = FileLoader.getInstance(this.currentAccount).getFileReference(storyItem);
+                            }
+                            StringBuilder sb2 = new StringBuilder();
+                            sb2.append("?account=");
+                            sb2.append(this.currentAccount);
+                            sb2.append("&id=");
+                            sb2.append(document2.id);
+                            sb2.append("&hash=");
+                            sb2.append(document2.access_hash);
+                            sb2.append("&dc=");
+                            sb2.append(document2.dc_id);
+                            sb2.append("&size=");
+                            sb2.append(document2.size);
+                            sb2.append("&mime=");
+                            sb2.append(URLEncoder.encode(document2.mime_type, "UTF-8"));
+                            sb2.append("&rid=");
+                            sb2.append(storyItem.fileReference);
+                            sb2.append("&name=");
+                            sb2.append(URLEncoder.encode(FileLoader.getDocumentFileName(document2), "UTF-8"));
+                            sb2.append("&reference=");
+                            bArr = document2.file_reference;
+                            if (bArr == null) {
+                                bArr = new byte[0];
+                            }
+                            sb2.append(Utilities.bytesToHex(bArr));
+                            sb2.append("&sid=");
+                            sb2.append(storyItem.id);
+                            sb2.append("&did=");
+                            sb2.append(storyItem.dialogId);
+                            String string2 = sb2.toString();
+                            this.uriesToPrepare.add(Uri.parse("tg://" + FileLoader.getAttachFileName(document2) + string2));
+                            this.documentsToPrepare.add(document2);
+                        }
+                        if (storyItem.media_areas != null) {
+                            while (i < storyItem.media_areas.size()) {
+                                if (storyItem.media_areas.get(i) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
+                                    TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction2 = (TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i);
+                                    ReactionImageHolder reactionImageHolder2 = new ReactionImageHolder(this);
+                                    reactionImageHolder2.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_mediaAreaSuggestedReaction2.reaction));
+                                    reactionImageHolder2.onAttachedToWindow(this.attachedToWindow);
+                                    this.preloadReactionHolders.add(reactionImageHolder2);
+                                }
+                            }
+                        }
+                    }
+                } else if (!this.storyItems.isEmpty()) {
+                    if (size < 0) {
+                        size = 0;
+                    }
+                    if (size >= this.storyItems.size()) {
+                        size = this.storyItems.size() - 1;
+                    }
+                    storyItem = (TL_stories.StoryItem) this.storyItems.get(size);
+                    storyItem.dialogId = this.dialogId;
+                    setStoryImage(storyItem, imageReceiver, str);
+                    messageMedia = storyItem.media;
+                    if (messageMedia != null) {
+                        TLRPC.Document document3 = storyItem.media.getDocument();
+                        if (storyItem.fileReference == 0) {
+                            storyItem.fileReference = FileLoader.getInstance(this.currentAccount).getFileReference(storyItem);
+                        }
+                        StringBuilder sb3 = new StringBuilder();
+                        sb3.append("?account=");
+                        sb3.append(this.currentAccount);
+                        sb3.append("&id=");
+                        sb3.append(document3.id);
+                        sb3.append("&hash=");
+                        sb3.append(document3.access_hash);
+                        sb3.append("&dc=");
+                        sb3.append(document3.dc_id);
+                        sb3.append("&size=");
+                        sb3.append(document3.size);
+                        sb3.append("&mime=");
+                        sb3.append(URLEncoder.encode(document3.mime_type, "UTF-8"));
+                        sb3.append("&rid=");
+                        sb3.append(storyItem.fileReference);
+                        sb3.append("&name=");
+                        sb3.append(URLEncoder.encode(FileLoader.getDocumentFileName(document3), "UTF-8"));
+                        sb3.append("&reference=");
+                        bArr = document3.file_reference;
+                        if (bArr == null) {
+                            bArr = new byte[0];
+                        }
+                        sb3.append(Utilities.bytesToHex(bArr));
+                        sb3.append("&sid=");
+                        sb3.append(storyItem.id);
+                        sb3.append("&did=");
+                        sb3.append(storyItem.dialogId);
+                        String string3 = sb3.toString();
+                        this.uriesToPrepare.add(Uri.parse("tg://" + FileLoader.getAttachFileName(document3) + string3));
+                        this.documentsToPrepare.add(document3);
+                    }
+                    if (storyItem.media_areas != null) {
+                        while (i < storyItem.media_areas.size()) {
+                            if (storyItem.media_areas.get(i) instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
+                                TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction3 = (TL_stories.TL_mediaAreaSuggestedReaction) storyItem.media_areas.get(i);
+                                ReactionImageHolder reactionImageHolder3 = new ReactionImageHolder(this);
+                                reactionImageHolder3.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_mediaAreaSuggestedReaction3.reaction));
+                                reactionImageHolder3.onAttachedToWindow(this.attachedToWindow);
+                                this.preloadReactionHolders.add(reactionImageHolder3);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        this.delegate.preparePlayer(this.documentsToPrepare, this.uriesToPrepare);
     }
 
     private void setStoryImage(TL_stories.StoryItem storyItem, ImageReceiver imageReceiver, String str) {
@@ -5816,8 +9099,98 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    private void requestVideoPlayer(long r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.requestVideoPlayer(long):void");
+    private void requestVideoPlayer(long j) {
+        TLRPC.Document document;
+        Uri uri;
+        TLRPC.Document document2;
+        if (this.isActive) {
+            if (this.currentStory.isLive()) {
+                Delegate delegate = this.delegate;
+                TL_stories.StoryItem storyItem = this.currentStory.storyItem;
+                long j2 = this.dialogId;
+                int i = storyItem.id;
+                TLRPC.TL_messageMediaVideoStream tL_messageMediaVideoStream = (TLRPC.TL_messageMediaVideoStream) storyItem.media;
+                delegate.requestPlayer(storyItem, j2, i, tL_messageMediaVideoStream.rtmp_stream, tL_messageMediaVideoStream.call, this.playerSharedScope);
+                this.storyContainer.invalidate();
+                return;
+            }
+            if (this.currentStory.isVideo()) {
+                if (this.currentStory.getLocalPath() != null && new File(this.currentStory.getLocalPath()).exists()) {
+                    Uri uriFromFile = Uri.fromFile(new File(this.currentStory.getLocalPath()));
+                    FileLog.d("StoryViewer requestVideoPlayer(" + j + "): playing from attachPath " + uriFromFile);
+                    this.videoDuration = 0L;
+                    uri = uriFromFile;
+                    document = null;
+                } else {
+                    TL_stories.StoryItem storyItem2 = this.currentStory.storyItem;
+                    if (storyItem2 != null) {
+                        storyItem2.dialogId = this.dialogId;
+                        try {
+                            document2 = storyItem2.media.getDocument();
+                            try {
+                                TL_stories.StoryItem storyItem3 = this.currentStory.storyItem;
+                                if (storyItem3.fileReference == 0) {
+                                    storyItem3.fileReference = FileLoader.getInstance(this.currentAccount).getFileReference(this.currentStory.storyItem);
+                                }
+                                StringBuilder sb = new StringBuilder();
+                                sb.append("?account=");
+                                sb.append(this.currentAccount);
+                                sb.append("&id=");
+                                sb.append(document2.id);
+                                sb.append("&hash=");
+                                sb.append(document2.access_hash);
+                                sb.append("&dc=");
+                                sb.append(document2.dc_id);
+                                sb.append("&size=");
+                                sb.append(document2.size);
+                                sb.append("&mime=");
+                                sb.append(URLEncoder.encode(document2.mime_type, "UTF-8"));
+                                sb.append("&rid=");
+                                sb.append(this.currentStory.storyItem.fileReference);
+                                sb.append("&name=");
+                                sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(document2), "UTF-8"));
+                                sb.append("&reference=");
+                                byte[] bArr = document2.file_reference;
+                                if (bArr == null) {
+                                    bArr = new byte[0];
+                                }
+                                sb.append(Utilities.bytesToHex(bArr));
+                                sb.append("&sid=");
+                                sb.append(this.currentStory.storyItem.id);
+                                sb.append("&did=");
+                                sb.append(this.currentStory.storyItem.dialogId);
+                                Uri uri2 = Uri.parse("tg://" + FileLoader.getAttachFileName(document2) + sb.toString());
+                                FileLog.d("StoryViewer requestVideoPlayer(" + j + "): playing from " + uri2);
+                                this.videoDuration = (long) (MessageObject.getDocumentDuration(document2) * 1000.0d);
+                                uri = uri2;
+                                document = document2;
+                            } catch (Exception unused) {
+                                document = document2;
+                                uri = null;
+                            }
+                        } catch (Exception unused2) {
+                            document2 = null;
+                        }
+                    } else {
+                        document = null;
+                        uri = null;
+                    }
+                }
+                if (uri == null) {
+                    FileLog.d("PeerStoriesView.requestVideoPlayer(" + j + "): playing from null?");
+                }
+                this.delegate.requestPlayer(document, uri, j, this.playerSharedScope);
+                this.storyContainer.invalidate();
+                return;
+            }
+            FileLog.d("PeerStoriesView.requestVideoPlayer(" + j + "): null, not a video");
+            this.delegate.requestPlayer(null, null, 0L, this.playerSharedScope);
+            VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
+            videoPlayerSharedScope.renderView = null;
+            videoPlayerSharedScope.firstFrameRendered = false;
+            return;
+        }
+        this.playerSharedScope.renderView = null;
     }
 
     public boolean switchToNext(boolean z) {
@@ -5920,7 +9293,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return this.selectedPosition;
     }
 
-    public boolean closeKeyboardOrEmoji() throws Resources.NotFoundException {
+    public boolean closeKeyboardOrEmoji() {
         if (this.likesReactionShowing) {
             if (this.likesReactionLayout.getReactionsWindow() != null) {
                 if (this.realKeyboardHeight > 0) {
@@ -5945,9 +9318,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (hintView2 != null) {
             hintView2.hide();
         }
-        HintView2 hintView22 = this.soundTooltip;
-        if (hintView22 != null) {
-            hintView22.hide();
+        HintView2 hintView3 = this.soundTooltip;
+        if (hintView3 != null) {
+            hintView3.hide();
         }
         HintView hintView = this.mediaBanTooltip;
         if (hintView != null) {
@@ -6006,8 +9379,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (hintView2 != null && hintView2.shown()) {
             return true;
         }
-        HintView2 hintView22 = this.soundTooltip;
-        if (hintView22 != null && hintView22.shown()) {
+        HintView2 hintView3 = this.soundTooltip;
+        if (hintView3 != null && hintView3.shown()) {
             return true;
         }
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
@@ -6132,7 +9505,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void reset() throws Resources.NotFoundException {
+    public void reset() {
         this.headerView.backupImageView.getImageReceiver().setVisible(true, true);
         if (this.changeBoundAnimator != null) {
             this.chatActivityEnterView.reset();
@@ -6161,7 +9534,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         cancelTextSelection();
     }
 
-    public void onActivityResult(int i, int i2, Intent intent) throws IOException {
+    public void onActivityResult(int i, int i2, Intent intent) {
         if (i2 == -1) {
             if (i == 0 || i == 2) {
                 createChatAttachView();
@@ -6196,8 +9569,52 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    private void sendUriAsDocument(android.net.Uri r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.sendUriAsDocument(android.net.Uri):void");
+    private void sendUriAsDocument(Uri uri) {
+        TL_stories.StoryItem storyItem;
+        Uri uri2;
+        String str;
+        if (uri == null || (storyItem = this.currentStory.storyItem) == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            return;
+        }
+        String string = uri.toString();
+        boolean z = false;
+        if (string.contains("com.google.android.apps.photos.contentprovider")) {
+            try {
+                String str2 = string.split("/1/")[1];
+                int iIndexOf = str2.indexOf("/ACTUAL");
+                if (iIndexOf != -1) {
+                    uri2 = Uri.parse(URLDecoder.decode(str2.substring(0, iIndexOf), "UTF-8"));
+                } else {
+                    uri2 = uri;
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        } else {
+            uri2 = uri;
+        }
+        String path = AndroidUtilities.getPath(uri2);
+        if (!BuildVars.NO_SCOPED_STORAGE) {
+            str = path;
+            z = true;
+        } else if (path == null) {
+            String string2 = uri2.toString();
+            String strCopyFileToCache = MediaController.copyFileToCache(uri2, "file");
+            if (strCopyFileToCache == null) {
+                showAttachmentError();
+                return;
+            } else {
+                str = string2;
+                path = strCopyFileToCache;
+            }
+        } else {
+            str = path;
+        }
+        if (z) {
+            SendMessagesHelper.prepareSendingDocument(getAccountInstance(), null, null, uri2, null, null, this.dialogId, null, null, storyItem, null, null, true, 0, null, null, false);
+        } else {
+            SendMessagesHelper.prepareSendingDocument(getAccountInstance(), path, str, null, null, null, this.dialogId, null, null, storyItem, null, null, true, 0, null, null, false);
+        }
     }
 
     private void showAttachmentError() {
@@ -6226,7 +9643,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.pinchToZoomHelper.checkPinchToZoom(motionEvent, this.storyContainer, null, null, null, null);
     }
 
-    public void setIsVisible(boolean z) throws Resources.NotFoundException {
+    public void setIsVisible(boolean z) {
         if (this.isVisible == z) {
             return;
         }
@@ -6257,8 +9674,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (hintView2 != null && hintView2.shown() && this.privacyButton != null && !this.privacyHint.containsTouch(motionEvent, getX() + this.storyContainer.getX() + this.privacyHint.getX(), getY() + this.storyContainer.getY() + this.privacyHint.getY()) && !hitButton(this.privacyButton, motionEvent)) {
             this.privacyHint.hide();
         }
-        HintView2 hintView22 = this.soundTooltip;
-        if (hintView22 == null || !hintView22.shown() || this.muteIconContainer == null || this.soundTooltip.containsTouch(motionEvent, getX() + this.storyContainer.getX() + this.soundTooltip.getX(), getY() + this.storyContainer.getY() + this.soundTooltip.getY()) || hitButton(this.muteIconContainer, motionEvent)) {
+        HintView2 hintView3 = this.soundTooltip;
+        if (hintView3 == null || !hintView3.shown() || this.muteIconContainer == null || this.soundTooltip.containsTouch(motionEvent, getX() + this.storyContainer.getX() + this.soundTooltip.getX(), getY() + this.storyContainer.getY() + this.soundTooltip.getY()) || hitButton(this.muteIconContainer, motionEvent)) {
             return;
         }
         this.soundTooltip.hide();
@@ -6785,8 +10202,9 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
                 return true;
             }
-            if (this.uploadingStory != null) {
-                return !r0.entry.muted;
+            StoriesController.UploadingStory uploadingStory = this.uploadingStory;
+            if (uploadingStory != null) {
+                return !uploadingStory.entry.muted;
             }
             return true;
         }
@@ -6864,7 +10282,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     @Override
-    protected void onMeasure(int i, int i2) throws Resources.NotFoundException {
+    protected void onMeasure(int i, int i2) {
         int size;
         ReactionsContainerLayout reactionsContainerLayout;
         MentionsContainerView mentionsContainerView;
@@ -6958,22 +10376,23 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 public void onAnimationEnd(Animator animator) {
                     super.onAnimationEnd(animator);
                     PeerStoriesView.this.notificationsLocker.unlock();
-                    PeerStoriesView.this.animatingKeyboardHeight = r2.lastKeyboardHeight;
+                    PeerStoriesView peerStoriesView = PeerStoriesView.this;
+                    peerStoriesView.animatingKeyboardHeight = peerStoriesView.lastKeyboardHeight;
                     ChatActivityEnterView chatActivityEnterView5 = PeerStoriesView.this.chatActivityEnterView;
                     if (chatActivityEnterView5 != null) {
                         chatActivityEnterView5.onOverrideAnimationEnd();
                     }
-                    PeerStoriesView peerStoriesView = PeerStoriesView.this;
-                    if (peerStoriesView.isActive && !peerStoriesView.keyboardVisible) {
-                        peerStoriesView.delegate.setKeyboardVisible(false);
-                    }
                     PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
-                    if (!peerStoriesView2.keyboardVisible && peerStoriesView2.mentionContainer != null) {
-                        PeerStoriesView.this.mentionContainer.setVisibility(8);
+                    if (peerStoriesView2.isActive && !peerStoriesView2.keyboardVisible) {
+                        peerStoriesView2.delegate.setKeyboardVisible(false);
                     }
                     PeerStoriesView peerStoriesView3 = PeerStoriesView.this;
-                    peerStoriesView3.forceUpdateOffsets = true;
-                    peerStoriesView3.invalidate();
+                    if (!peerStoriesView3.keyboardVisible && peerStoriesView3.mentionContainer != null) {
+                        PeerStoriesView.this.mentionContainer.setVisibility(8);
+                    }
+                    PeerStoriesView peerStoriesView4 = PeerStoriesView.this;
+                    peerStoriesView4.forceUpdateOffsets = true;
+                    peerStoriesView4.invalidate();
                 }
             });
             if (this.keyboardVisible) {
@@ -7106,7 +10525,220 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     public void updateViewOffsets() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.updateViewOffsets():void");
+        float fClamp;
+        int iDp;
+        StoryItemHolder storyItemHolder;
+        ReactionsContainerLayout reactionsContainerLayout;
+        StoryItemHolder storyItemHolder2;
+        LivePlayerView livePlayerView;
+        float progressToDismiss = this.delegate.getProgressToDismiss();
+        float fDp = 0.0f;
+        this.progressToHideInterface.set(this.isLongPressed ? 1.0f : 0.0f);
+        int i = this.lastOpenedKeyboardHeight;
+        if (i != 0 && this.animateKeyboardOpening) {
+            fClamp = MathUtils.clamp(this.animatingKeyboardHeight / i, 0.0f, 1.0f);
+        } else {
+            fClamp = this.keyboardVisible ? 1.0f : 0.0f;
+        }
+        float f = this.progressToRecording.get();
+        float f2 = this.progressToTextA.get();
+        float f3 = this.progressToStickerExpanded.get();
+        this.progressToRecording.set(this.isRecording ? 1.0f : 0.0f);
+        if (!this.messageSent) {
+            AnimatedFloat animatedFloat = this.progressToTextA;
+            ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
+            animatedFloat.set((chatActivityEnterView == null || TextUtils.isEmpty(chatActivityEnterView.getFieldText())) ? 0.0f : 1.0f);
+        }
+        AnimatedFloat animatedFloat2 = this.progressToStickerExpanded;
+        ChatActivityEnterView chatActivityEnterView2 = this.chatActivityEnterView;
+        animatedFloat2.set((chatActivityEnterView2 == null || !chatActivityEnterView2.isStickersExpanded()) ? 0.0f : 1.0f);
+        ChatActivityEnterView chatActivityEnterView3 = this.chatActivityEnterView;
+        if (chatActivityEnterView3 != null) {
+            chatActivityEnterView3.checkAnimation();
+        }
+        ChatActivityEnterView chatActivityEnterView4 = this.chatActivityEnterView;
+        boolean z = true;
+        boolean z2 = chatActivityEnterView4 != null && chatActivityEnterView4.isPopupShowing();
+        float hideInterfaceAlpha = getHideInterfaceAlpha();
+        if (this.BIG_SCREEN) {
+            this.inputBackgroundPaint.setColor(ColorUtils.blendARGB(-14933463, Theme.multAlpha(-16777216, 0.44f), this.progressToKeyboard));
+            Paint paint = this.inputBackgroundPaint;
+            paint.setAlpha((int) (paint.getAlpha() * (1.0f - this.progressToDismiss) * hideInterfaceAlpha * (1.0f - this.outT)));
+        } else {
+            this.inputBackgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (137.70001f * hideInterfaceAlpha * (1.0f - this.outT))));
+        }
+        if (!this.forceUpdateOffsets && this.progressToReply == this.storyViewer.swipeToReplyProgress && this.progressToHideInterface.get() == this.prevToHideProgress && this.lastAnimatingKeyboardHeight == this.animatingKeyboardHeight && fClamp == this.progressToKeyboard && progressToDismiss == this.progressToDismiss && f == this.progressToRecording.get() && !z2 && f3 == this.progressToStickerExpanded.get() && f2 == this.progressToTextA.get()) {
+            return;
+        }
+        this.forceUpdateOffsets = false;
+        this.lastAnimatingKeyboardHeight = this.animatingKeyboardHeight;
+        if (this.progressToHideInterface.get() != this.prevToHideProgress) {
+            this.storyContainer.invalidate();
+        }
+        if (progressToDismiss != 0.0f) {
+            this.storyContainer.setLayerType(2, null);
+        } else {
+            this.storyContainer.setLayerType(0, null);
+        }
+        this.prevToHideProgress = this.progressToHideInterface.get();
+        this.progressToDismiss = progressToDismiss;
+        this.progressToKeyboard = fClamp;
+        this.progressToReply = this.storyViewer.swipeToReplyProgress;
+        float height = this.animatingKeyboardHeight - (getHeight() - this.storyContainer.getBottom());
+        ChatActivityEnterView chatActivityEnterView5 = this.chatActivityEnterView;
+        float fMax = Math.max(0.0f, height + (chatActivityEnterView5 == null ? 0.0f : chatActivityEnterView5.getHeightWithTopView() * fClamp));
+        float height2 = this.lastKeyboardHeight - (getHeight() - this.storyContainer.getBottom());
+        ChatActivityEnterView chatActivityEnterView6 = this.chatActivityEnterView;
+        float fMax2 = Math.max(0.0f, height2 + (chatActivityEnterView6 == null ? 0.0f : chatActivityEnterView6.getHeightWithTopView() * (this.keyboardVisible ? 1.0f : 0.0f)));
+        ChatActivityEnterView chatActivityEnterView7 = this.chatActivityEnterView;
+        if (chatActivityEnterView7 != null) {
+            if (this.highlightMessageHintView != null) {
+                ImageView suggestButton = chatActivityEnterView7.getSuggestButton();
+                if (suggestButton != null) {
+                    this.highlightMessageHintView.setJointPx(1.0f, -(AndroidUtilities.dp(74.0f) - suggestButton.getTranslationX()));
+                }
+                this.highlightMessageHintView.setTranslationY(-((getHeight() - this.chatActivityEnterView.getY()) + AndroidUtilities.dp(6.0f)));
+            }
+            EditTextCaption editField = this.chatActivityEnterView.getEditField();
+            SenderSelectView senderSelectView = this.chatActivityEnterView.getSenderSelectView();
+            if (editField != null) {
+                float fLerp = AndroidUtilities.lerp(0.88f, 1.0f, fClamp);
+                editField.setScaleX(fLerp);
+                editField.setScaleY(fLerp);
+            }
+            if (senderSelectView != null) {
+                float fLerp2 = AndroidUtilities.lerp(0.8f, 1.0f, fClamp);
+                senderSelectView.setScaleX(fLerp2);
+                senderSelectView.setScaleY(fLerp2);
+                senderSelectView.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(2.0f), 0, fClamp));
+            }
+        }
+        this.liveCommentsView.setKeyboardOffset(fClamp, Math.max(0.0f, (this.BIG_SCREEN ? 0.0f : AndroidUtilities.dp(58.0f) * (1.0f - fClamp)) + fMax) + (AndroidUtilities.dp(6.0f) * fClamp), Math.max(0.0f, fMax2 + ((this.BIG_SCREEN || this.keyboardVisible) ? 0 : AndroidUtilities.dp(58.0f))));
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer != null && (livePlayerView = storyViewer.liveView) != null) {
+            livePlayerView.setKeyboardOffset(fMax);
+        }
+        ReactionsContainerLayout reactionsContainerLayout2 = this.reactionsContainerLayout;
+        if (reactionsContainerLayout2 != null) {
+            reactionsContainerLayout2.setVisibility((this.progressToKeyboard <= 0.0f || ((storyItemHolder2 = this.currentStory) != null && storyItemHolder2.isLive)) ? 8 : 0);
+        }
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            View childAt = getChildAt(i2);
+            if (childAt.getVisibility() != 0 || childAt == this.selfView || childAt.getTag(R.id.parent_tag) != null || childAt == this.storyCaptionView.textSelectionHelper.getOverlayView(getContext())) {
+                if (childAt == this.selfView) {
+                    if (this.BIG_SCREEN) {
+                        childAt.setAlpha((1.0f - this.progressToDismiss) * hideInterfaceAlpha * (1.0f - this.outT));
+                    } else {
+                        childAt.setAlpha((1.0f - this.outT) * hideInterfaceAlpha);
+                    }
+                }
+            } else {
+                ChatActivityEnterView chatActivityEnterView8 = this.chatActivityEnterView;
+                if (chatActivityEnterView8 != null && childAt == chatActivityEnterView8.getEmojiView()) {
+                    childAt.setTranslationY(this.chatActivityEnterView.getEmojiView().getMeasuredHeight() - this.animatingKeyboardHeight);
+                } else if (childAt instanceof HintView) {
+                    ((HintView) childAt).updatePosition();
+                } else if (childAt != this.instantCameraView && childAt != this.storyContainer && childAt != this.shareButton && childAt != this.bottomActionsLinearLayout && childAt != this.repostButtonContainer && childAt != this.mediaBanTooltip && childAt != this.highlightMessageHintView && childAt != this.likeButtonContainer && ((reactionsContainerLayout = this.likesReactionLayout) == null || reactionsContainerLayout.getReactionsWindow() == null || childAt != this.likesReactionLayout.getReactionsWindow().windowView)) {
+                    float f4 = this.progressToKeyboard;
+                    if (childAt == this.commentButton || childAt == this.starsButton || childAt == this.muteButton || childAt == this.starsButtonEffectsView) {
+                        f4 = 0.0f;
+                    }
+                    float f5 = 1.0f - f4;
+                    float fDp2 = (((((-this.enterViewBottomOffset) * f5) - (AndroidUtilities.dp(7.0f) * f4)) - this.animatingKeyboardHeight) - (AndroidUtilities.dp(8.0f) * f5)) - (AndroidUtilities.dp(20.0f) * this.storyViewer.swipeToReplyProgress);
+                    if (childAt == this.commentButton || childAt == this.starsButton || childAt == this.muteButton || childAt == this.starsButtonEffectsView) {
+                        fDp2 += this.animatingKeyboardHeight;
+                    }
+                    float f6 = this.BIG_SCREEN ? (1.0f - this.progressToDismiss) * hideInterfaceAlpha : hideInterfaceAlpha * 1.0f;
+                    if (childAt == this.replyDisabledTextView) {
+                        fDp2 = this.storyViewer.swipeToReplyProgress * (-AndroidUtilities.dp(20.0f));
+                    }
+                    if (childAt == this.mentionContainer) {
+                        fDp2 -= this.chatActivityEnterView.getMeasuredHeight() - this.chatActivityEnterView.getAnimatedTop();
+                        f6 = this.progressToKeyboard;
+                        childAt.invalidate();
+                    }
+                    if (childAt == this.sideControlsButtonsLayout) {
+                        fDp2 -= this.chatActivityEnterView.getMeasuredHeight() - this.chatActivityEnterView.getAnimatedTop();
+                        f6 *= this.progressToKeyboard;
+                    }
+                    if (childAt == this.reactionsContainerLayout) {
+                        float f7 = this.progressToKeyboard * (1.0f - this.progressToRecording.get()) * (1.0f - f3) * (1.0f - this.progressToTextA.get());
+                        float f8 = f6 * f7 * 1.0f;
+                        if (childAt.getAlpha() != 0.0f && f8 == 0.0f) {
+                            this.reactionsContainerLayout.reset();
+                        }
+                        childAt.setAlpha(f8);
+                        float f9 = (f7 * 0.2f) + 0.8f;
+                        childAt.setScaleX(f9);
+                        childAt.setScaleY(f9);
+                    } else {
+                        childAt.setTranslationY(fDp2);
+                        ChatActivityEnterView chatActivityEnterView9 = this.chatActivityEnterView;
+                        if (chatActivityEnterView9 == null || childAt != chatActivityEnterView9.controlsView) {
+                            childAt.setAlpha(f6);
+                        }
+                    }
+                }
+            }
+        }
+        float f10 = (1.0f - progressToDismiss) * hideInterfaceAlpha;
+        this.shareButton.setAlpha((1.0f - this.outT) * f10);
+        this.likeButtonContainer.setAlpha((1.0f - this.outT) * f10);
+        FrameLayout frameLayout = this.repostButtonContainer;
+        if (frameLayout != null) {
+            frameLayout.setAlpha(f10 * (1.0f - this.outT));
+        }
+        for (int i3 = 0; i3 < this.storyContainer.getChildCount(); i3++) {
+            View childAt2 = this.storyContainer.getChildAt(i3);
+            if (childAt2 != null && childAt2 != this.liveCommentsShadowView) {
+                if (childAt2 == this.headerView || childAt2 == this.optionsIconView || childAt2 == this.pipIconView || childAt2 == this.muteIconContainer || childAt2 == this.selfView || childAt2 == this.storyCaptionView || childAt2 == this.privacyButton) {
+                    float f11 = childAt2 == this.muteIconContainer ? this.muteIconViewAlpha : 1.0f;
+                    if (childAt2 == this.storyCaptionView) {
+                        childAt2.setAlpha(f11 * (hideCaptionWithInterface() ? hideInterfaceAlpha : 1.0f) * (1.0f - this.outT));
+                    } else {
+                        childAt2.setAlpha(f11 * hideInterfaceAlpha * (1.0f - this.outT));
+                    }
+                } else {
+                    childAt2.setAlpha(hideInterfaceAlpha);
+                }
+            }
+        }
+        if (this.chatActivityEnterView != null) {
+            float fDp3 = AndroidUtilities.dp(40.0f);
+            if (!this.currentStory.isLive) {
+                if (this.allowShare) {
+                    fDp3 += AndroidUtilities.dp(46.0f);
+                }
+                if (this.allowRepost && this.isChannel) {
+                    fDp3 += AndroidUtilities.dp(46.0f);
+                }
+                FrameLayout frameLayout2 = this.likeButtonContainer;
+                if (frameLayout2 != null && frameLayout2.getVisibility() == 0) {
+                    fDp3 -= AndroidUtilities.dp(40.0f);
+                    iDp = this.likeButtonContainer.getLayoutParams().width;
+                    fDp3 += iDp;
+                }
+            } else {
+                fDp = AndroidUtilities.dp(46.0f);
+                fDp3 = AndroidUtilities.dp(46.0f);
+                MuteButton muteButton = this.muteButton;
+                if (muteButton != null && muteButton.getVisibility() == 0) {
+                    iDp = AndroidUtilities.dp(46.0f);
+                    fDp3 += iDp;
+                }
+            }
+            ChatActivityEnterView chatActivityEnterView10 = this.chatActivityEnterView;
+            float f12 = -AndroidUtilities.dp(10.0f);
+            float f13 = -(AndroidUtilities.dp(10.0f) + fDp3 + fDp);
+            float f14 = this.progressToKeyboard;
+            if ((!this.allowShare && !this.isGroup) || ((storyItemHolder = this.currentStory) != null && storyItemHolder.isLive)) {
+                z = false;
+            }
+            chatActivityEnterView10.setHorizontalPadding(f12, f13, f14, z);
+            if (this.chatActivityEnterView.getEmojiView() != null) {
+                this.chatActivityEnterView.getEmojiView().setAlpha(this.progressToKeyboard);
+            }
+        }
     }
 
     public float getHideInterfaceAlpha() {
@@ -7194,11 +10826,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 canvas.restore();
                 return zDrawChild3;
             }
-            if (view == this.reactionsContainerLayout && this.chatActivityEnterView != null) {
-                view.setTranslationY(((-r0.getMeasuredHeight()) + (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getAnimatedTop())) - AndroidUtilities.dp(18.0f));
+            ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
+            if (view == reactionsContainerLayout && this.chatActivityEnterView != null) {
+                view.setTranslationY(((-reactionsContainerLayout.getMeasuredHeight()) + (this.chatActivityEnterView.getY() + this.chatActivityEnterView.getAnimatedTop())) - AndroidUtilities.dp(18.0f));
             } else {
-                if (view == this.likesReactionLayout) {
-                    view.setTranslationY((((-(r0.getMeasuredHeight() - this.likesReactionLayout.getPaddingBottom())) + this.likeButtonContainer.getY()) + this.bottomActionsLinearLayout.getY()) - AndroidUtilities.dp(18.0f));
+                ReactionsContainerLayout reactionsContainerLayout2 = this.likesReactionLayout;
+                if (view == reactionsContainerLayout2) {
+                    view.setTranslationY((((-(reactionsContainerLayout2.getMeasuredHeight() - this.likesReactionLayout.getPaddingBottom())) + this.likeButtonContainer.getY()) + this.bottomActionsLinearLayout.getY()) - AndroidUtilities.dp(18.0f));
                 } else if (view == this.storyContainer && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && (blurredBackgroundSourceRenderNode = this.blurredBackgroundSourceRenderNodeWithSaturation) != null && !blurredBackgroundSourceRenderNode.inRecording()) {
                     RecordingCanvas recordingCanvasBeginRecording = this.blurredBackgroundSourceRenderNodeWithSaturation.beginRecording(getMeasuredWidth(), getMeasuredHeight());
                     recordingCanvasBeginRecording.drawColor(ColorUtils.blendARGB(-16777216, -1, 0.2f));
@@ -7384,7 +11018,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             AlertsCreator.ensurePaidMessageConfirmation(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId, 1, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws Resources.NotFoundException {
+                public final void run(Object obj) {
                     this.f$0.lambda$onReactionClickedInternal$2(z, visibleReaction, view, (Long) obj);
                 }
             });
@@ -7394,7 +11028,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             onReactionClickedInternal(view, visibleReaction, z, z2, false);
         }
 
-        public void lambda$onReactionClickedInternal$2(boolean z, ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view, Long l) throws Resources.NotFoundException {
+        public void lambda$onReactionClickedInternal$2(boolean z, ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view, Long l) {
             ReactionsEffectOverlay reactionsEffectOverlay;
             TLRPC.Document documentFindDocument;
             if (z && visibleReaction.emojicon != null) {
@@ -7402,9 +11036,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     PeerStoriesView.this.performHapticFeedback(0);
                 } catch (Exception unused) {
                 }
-                reactionsEffectOverlay = new ReactionsEffectOverlay(view.getContext(), null, PeerStoriesView.this.reactionsContainerLayout, null, view, r3.getMeasuredWidth() / 2.0f, PeerStoriesView.this.getMeasuredHeight() / 2.0f, visibleReaction, PeerStoriesView.this.currentAccount, 0, true);
+                Context context = view.getContext();
+                PeerStoriesView peerStoriesView = PeerStoriesView.this;
+                reactionsEffectOverlay = new ReactionsEffectOverlay(context, null, peerStoriesView.reactionsContainerLayout, null, view, peerStoriesView.getMeasuredWidth() / 2.0f, PeerStoriesView.this.getMeasuredHeight() / 2.0f, visibleReaction, PeerStoriesView.this.currentAccount, 0, true);
             } else {
-                reactionsEffectOverlay = new ReactionsEffectOverlay(view.getContext(), null, PeerStoriesView.this.reactionsContainerLayout, null, view, r3.getMeasuredWidth() / 2.0f, PeerStoriesView.this.getMeasuredHeight() / 2.0f, visibleReaction, PeerStoriesView.this.currentAccount, 2, true);
+                Context context2 = view.getContext();
+                PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
+                reactionsEffectOverlay = new ReactionsEffectOverlay(context2, null, peerStoriesView2.reactionsContainerLayout, null, view, peerStoriesView2.getMeasuredWidth() / 2.0f, PeerStoriesView.this.getMeasuredHeight() / 2.0f, visibleReaction, PeerStoriesView.this.currentAccount, 2, true);
             }
             ReactionsEffectOverlay.currentOverlay = reactionsEffectOverlay;
             reactionsEffectOverlay.windowView.setTag(R.id.parent_tag, 1);
@@ -7440,8 +11078,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
             }
             if (l.longValue() <= 0) {
-                PeerStoriesView peerStoriesView = PeerStoriesView.this;
-                BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider).createEmojiBulletin(documentFindDocument, LocaleController.getString(R.string.ReactionSent), LocaleController.getString(R.string.ViewInChat), new Runnable() {
+                PeerStoriesView peerStoriesView3 = PeerStoriesView.this;
+                BulletinFactory.of(peerStoriesView3.storyContainer, peerStoriesView3.resourcesProvider).createEmojiBulletin(documentFindDocument, LocaleController.getString(R.string.ReactionSent), LocaleController.getString(R.string.ViewInChat), new Runnable() {
                     @Override
                     public final void run() {
                         this.f$0.lambda$onReactionClickedInternal$1();
@@ -7669,7 +11307,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public boolean needEnterText() throws Resources.NotFoundException {
+    public boolean needEnterText() {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView == null) {
             return false;

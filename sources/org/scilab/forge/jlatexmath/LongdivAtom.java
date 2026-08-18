@@ -42,9 +42,10 @@ public class LongdivAtom extends VRowAtom {
         long j3 = j2 / j;
         arrayList.add(Long.toString(j3));
         arrayList.add(Long.toString(j2));
-        int length = Long.toString(j3).length();
+        String string = Long.toString(j3);
+        int length = string.length();
         for (int i = 0; i < length; i++) {
-            long jCharAt = (r1.charAt(i) - '0') * ((long) Math.pow(10.0d, (length - i) - 1)) * j;
+            long jCharAt = ((long) (string.charAt(i) - '0')) * ((long) Math.pow(10.0d, (length - i) - 1)) * j;
             j2 -= jCharAt;
             arrayList.add(Long.toString(jCharAt));
             arrayList.add(Long.toString(j2));

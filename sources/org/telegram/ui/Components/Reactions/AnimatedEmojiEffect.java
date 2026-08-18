@@ -15,6 +15,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.EmojiAnimationsOverlay;
 
@@ -230,9 +231,10 @@ public class AnimatedEmojiEffect {
                     f = f2;
                 }
             }
-            float f6 = AnimatedEmojiEffect.this.longAnimation ? 0.8f : 0.5f;
+            AnimatedEmojiEffect animatedEmojiEffect = AnimatedEmojiEffect.this;
+            float f6 = animatedEmojiEffect.longAnimation ? 0.8f : 0.5f;
             this.toX = fRandX;
-            if (fRandX > r0.bounds.width() * f6) {
+            if (fRandX > animatedEmojiEffect.bounds.width() * f6) {
                 this.fromX = AnimatedEmojiEffect.this.bounds.width() * f6;
             } else {
                 float fWidth = AnimatedEmojiEffect.this.bounds.width() * f6;
@@ -242,15 +244,16 @@ public class AnimatedEmojiEffect {
                 }
             }
             this.fromY = (AnimatedEmojiEffect.this.bounds.height() * 0.45f) + (AnimatedEmojiEffect.this.bounds.height() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
-            if (AnimatedEmojiEffect.this.longAnimation) {
-                float fWidth2 = (r0.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
+            AnimatedEmojiEffect animatedEmojiEffect2 = AnimatedEmojiEffect.this;
+            if (animatedEmojiEffect2.longAnimation) {
+                float fWidth2 = (animatedEmojiEffect2.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
                 this.fromSize = fWidth2;
                 this.toSize = fWidth2 * (((Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f) * 1.5f) + 1.5f);
                 this.toY1 = (this.fromSize / 2.0f) + (AnimatedEmojiEffect.this.bounds.height() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
                 this.toY2 = AnimatedEmojiEffect.this.bounds.height() + this.fromSize;
                 this.duration = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
             } else {
-                float fWidth3 = (r0.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
+                float fWidth3 = (animatedEmojiEffect2.bounds.width() * 0.05f) + (AnimatedEmojiEffect.this.bounds.width() * 0.1f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
                 this.fromSize = fWidth3;
                 this.toSize = fWidth3 * (((Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f) * 0.5f) + 1.5f);
                 this.toY1 = fRandY;
@@ -267,14 +270,53 @@ public class AnimatedEmojiEffect {
         }
 
         private float randX() {
-            if (AnimatedEmojiEffect.this.longAnimation) {
-                return (r0.bounds.width() * (-0.25f)) + (AnimatedEmojiEffect.this.bounds.width() * 1.5f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
+            AnimatedEmojiEffect animatedEmojiEffect = AnimatedEmojiEffect.this;
+            if (animatedEmojiEffect.longAnimation) {
+                return (animatedEmojiEffect.bounds.width() * (-0.25f)) + (AnimatedEmojiEffect.this.bounds.width() * 1.5f * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f));
             }
-            return r0.bounds.width() * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f);
+            return animatedEmojiEffect.bounds.width() * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f);
         }
 
-        public void draw(android.graphics.Canvas r10) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.AnimatedEmojiEffect.Particle.draw(android.graphics.Canvas):void");
+        public void draw(Canvas canvas) {
+            float fLerp;
+            float fClamp;
+            float fMin = this.progress + (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / this.duration);
+            this.progress = fMin;
+            float fClamp2 = Utilities.clamp(fMin, 1.0f, 0.0f);
+            this.progress = fClamp2;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
+            float interpolation = cubicBezierInterpolator.getInterpolation(fClamp2);
+            float fLerp2 = AndroidUtilities.lerp(this.fromX, this.toX, interpolation);
+            boolean z = AnimatedEmojiEffect.this.longAnimation;
+            float f = this.progress;
+            if (f < 0.3f) {
+                fLerp = AndroidUtilities.lerp(this.fromY, this.toY1, cubicBezierInterpolator.getInterpolation(f / 0.3f));
+            } else {
+                fLerp = AndroidUtilities.lerp(this.toY1, this.toY2, CubicBezierInterpolator.EASE_IN.getInterpolation((f - 0.3f) / 0.7f));
+            }
+            float fLerp3 = AndroidUtilities.lerp(this.fromSize, this.toSize, interpolation);
+            AnimatedEmojiEffect animatedEmojiEffect = AnimatedEmojiEffect.this;
+            if (animatedEmojiEffect.longAnimation) {
+                fClamp = 1.0f;
+            } else {
+                float fHeight = animatedEmojiEffect.bounds.height() * 0.8f;
+                if (fLerp > fHeight) {
+                    fClamp = 1.0f - Utilities.clamp((fLerp - fHeight) / AndroidUtilities.dp(16.0f), 1.0f, 0.0f);
+                } else {
+                    fClamp = 1.0f;
+                }
+            }
+            float f2 = (fLerp3 / 2.0f) * fClamp;
+            canvas.save();
+            if (this.mirror) {
+                canvas.scale(-1.0f, 1.0f, fLerp2, fLerp);
+            }
+            canvas.rotate(this.randomRotation, fLerp2, fLerp);
+            AnimatedEmojiEffect.this.animatedEmojiDrawable.setAlpha((int) (fClamp * 255.0f * Utilities.clamp(this.progress / 0.2f, 1.0f, 0.0f)));
+            AnimatedEmojiEffect.this.animatedEmojiDrawable.setBounds((int) (fLerp2 - f2), (int) (fLerp - f2), (int) (fLerp2 + f2), (int) (fLerp + f2));
+            AnimatedEmojiEffect.this.animatedEmojiDrawable.draw(canvas);
+            AnimatedEmojiEffect.this.animatedEmojiDrawable.setAlpha(255);
+            canvas.restore();
         }
     }
 }

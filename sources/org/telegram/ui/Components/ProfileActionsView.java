@@ -119,10 +119,10 @@ public class ProfileActionsView extends View {
         this.xpadding = AndroidUtilities.dpf2(14.0f);
         float fDpf2 = AndroidUtilities.dpf2(12.0f);
         this.ypadding = fDpf2;
-        float fDpf22 = AndroidUtilities.dpf2(8.0f);
-        this.top = fDpf22;
+        float fDpf3 = AndroidUtilities.dpf2(8.0f);
+        this.top = fDpf3;
         this.textPadding = AndroidUtilities.dpf2(4.0f);
-        this.targetHeight = (int) ((i - fDpf2) - fDpf22);
+        this.targetHeight = (int) ((i - fDpf2) - fDpf3);
         setBackgroundColor(0);
         setImportantForAccessibility(1);
     }
@@ -205,7 +205,8 @@ public class ProfileActionsView extends View {
     private float getItemWidth() {
         int measuredWidth = getMeasuredWidth();
         float f = this.xpadding;
-        return ((measuredWidth - ((f / 2.0f) * (r4 - 1))) - (f * 2.0f)) / this.activeCount;
+        int i = this.activeCount;
+        return ((measuredWidth - ((f / 2.0f) * (i - 1))) - (f * 2.0f)) / i;
     }
 
     @Override
@@ -259,8 +260,8 @@ public class ProfileActionsView extends View {
         this.firstAction = action;
         this.lastAction = action2;
         float fClamp01 = Utilities.clamp01(fMax / this.targetHeight);
-        float fClamp012 = Utilities.clamp01((fClamp01 - 0.2f) / 0.8f);
-        if (fClamp012 <= 0.0f) {
+        float fClamp02 = Utilities.clamp01((fClamp01 - 0.2f) / 0.8f);
+        if (fClamp02 <= 0.0f) {
             return;
         }
         if (!this.ignoreRect) {
@@ -271,7 +272,7 @@ public class ProfileActionsView extends View {
                     rectF3.set(action4.rect);
                     rectF3.inset((action4.rect.width() / 2.0f) * (1.0f - action4.getScale()), (action4.rect.height() / 2.0f) * (1.0f - action4.getScale()));
                     int alpha = this.paint.getAlpha();
-                    float alpha2 = (int) (action4.getAlpha() * fClamp012 * alpha);
+                    float alpha2 = (int) (action4.getAlpha() * fClamp02 * alpha);
                     this.paint.setAlpha((int) ((this.radialGradient != null ? 0.1f : 1.0f) * alpha2));
                     if (SharedConfig.shadowsInSections && isButtonColorLight() && this.parentExpanded < 0.5f) {
                         this.paint.setShadowLayer(AndroidUtilities.dpf2(1.5f), 0.0f, 0.0f, Theme.multAlpha(536870912, (alpha2 / 255.0f) * (this.radialGradient == null ? 1.0f : 0.1f)));
@@ -281,7 +282,7 @@ public class ProfileActionsView extends View {
                     canvas.drawRoundRect(rectF3, roundRadius, roundRadius, this.paint);
                     if (this.radialGradient != null) {
                         int alpha3 = this.shaderPaint.getAlpha();
-                        this.shaderPaint.setAlpha((int) (action4.getAlpha() * fClamp012 * alpha3));
+                        this.shaderPaint.setAlpha((int) (action4.getAlpha() * fClamp02 * alpha3));
                         this.matrix.setTranslate(rectF3.left, rectF3.top);
                         this.radialGradient.setLocalMatrix(this.matrix);
                         canvas.drawRoundRect(rectF3, roundRadius, roundRadius, this.shaderPaint);
@@ -292,10 +293,10 @@ public class ProfileActionsView extends View {
             }
         }
         drawRenderNode(canvas);
-        float fClamp013 = Utilities.clamp01((fClamp01 - 0.4f) / 0.6f);
-        if (fClamp013 > 0.0f) {
+        float fClamp03 = Utilities.clamp01((fClamp01 - 0.4f) / 0.6f);
+        if (fClamp03 > 0.0f) {
             for (int i3 = 0; i3 < size; i3++) {
-                drawAction(canvas, (Action) this.actions.get(i3), fClamp01, fClamp013);
+                drawAction(canvas, (Action) this.actions.get(i3), fClamp01, fClamp03);
             }
         }
     }
@@ -418,7 +419,7 @@ public class ProfileActionsView extends View {
     }
 
     private void drawLoading(Canvas canvas, Action action, float f) {
-        if (action.stopDelay > 0 && System.currentTimeMillis() > action.stopDelay + action.startTime) {
+        if (action.stopDelay > 0 && System.currentTimeMillis() > ((long) action.stopDelay) + action.startTime) {
             action.isLoading = false;
         }
         if (action.isLoading) {
@@ -465,11 +466,7 @@ public class ProfileActionsView extends View {
         if (action2 == 0) {
             this.hit = null;
             int size = this.actions.size();
-            int i = 0;
-            while (true) {
-                if (i >= size) {
-                    break;
-                }
+            for (int i = 0; i < size; i++) {
                 Action action3 = (Action) this.actions.get(i);
                 if (!action3.isDeleting && action3.rect.contains(x, y)) {
                     this.hit = action3;
@@ -479,7 +476,6 @@ public class ProfileActionsView extends View {
                     this.hit.bounce.setPressed(true);
                     break;
                 }
-                i++;
             }
         } else if (action2 == 2) {
             if (this.hit != null && (Math.abs(x - this.downX) > 20.0f || Math.abs(y - this.downY) > 20.0f)) {
@@ -984,7 +980,68 @@ public class ProfileActionsView extends View {
         }
 
         public void updatePosition() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ProfileActionsView.Action.updatePosition():void");
+            if (this.isDeleting) {
+                animatePosition();
+                return;
+            }
+            boolean z = false;
+            if (ProfileActionsView.this.isOpeningLayout) {
+                this.isOpening = false;
+                this.prevRect.set(this.rect);
+                this.from.set(this.rect);
+                this.to.set(this.rect);
+                this.positionFraction.set(1.0f, true);
+                return;
+            }
+            if (this.to.isEmpty()) {
+                this.isOpening = true;
+                this.to.set(this.rect);
+                this.from.set(this.rect);
+                RectF rectF = this.rect;
+                float f = rectF.left - 1.0f;
+                ProfileActionsView profileActionsView = ProfileActionsView.this;
+                boolean z2 = f <= profileActionsView.xpadding;
+                float f2 = rectF.right + 1.0f;
+                float measuredWidth = profileActionsView.getMeasuredWidth();
+                ProfileActionsView profileActionsView2 = ProfileActionsView.this;
+                boolean z3 = f2 >= measuredWidth - profileActionsView2.xpadding;
+                if ((z2 && z3) || ((profileActionsView2.firstAction != null && ProfileActionsView.this.firstAction.key == this.key) || (ProfileActionsView.this.lastAction != null && ProfileActionsView.this.lastAction.key == this.key))) {
+                    z3 = false;
+                    z2 = false;
+                }
+                int i = this.key;
+                if (((i == 5 || i == 6) && ProfileActionsView.this.mode == 0) || ((i == 3 || i == 2) && ProfileActionsView.this.mode == 1)) {
+                    z3 = false;
+                    z = true;
+                } else if (z2 && ProfileActionsView.this.firstAction != null && !ProfileActionsView.this.firstAction.isDeleting) {
+                    z3 = true;
+                } else if (!z3 || ProfileActionsView.this.lastAction == null || ProfileActionsView.this.lastAction.isDeleting) {
+                    z = z2;
+                } else {
+                    z3 = false;
+                    z = true;
+                }
+                if (z) {
+                    RectF rectF2 = this.from;
+                    rectF2.left = rectF2.right;
+                } else if (z3) {
+                    RectF rectF3 = this.from;
+                    rectF3.right = rectF3.left;
+                } else {
+                    RectF rectF4 = this.from;
+                    float fCenterX = this.to.centerX();
+                    rectF4.right = fCenterX;
+                    rectF4.left = fCenterX;
+                }
+                this.positionFraction.set(0.0f, true);
+            }
+            if (!this.rect.equals(this.to)) {
+                this.from.set(this.prevRect);
+                this.to.set(this.rect);
+                this.positionFraction.set(0.0f, true);
+            }
+            animatePosition();
+            this.prevRect.set(this.rect);
         }
 
         private void animatePosition() {
@@ -1095,6 +1152,7 @@ public class ProfileActionsView extends View {
         }
 
         private ActionButton(String str, int i, int i2, int i3, int i4) {
+            super(str, i);
             this.title = i2;
             this.filledIcon = i3;
             this.outlineIcon = i4;

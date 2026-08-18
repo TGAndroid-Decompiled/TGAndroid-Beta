@@ -99,8 +99,8 @@ public class MP4Builder {
             this.writeNewMdat = false;
         }
         InterleaveChunkMdat interleaveChunkMdat = this.mdat;
-        interleaveChunkMdat.setContentSize(interleaveChunkMdat.getContentSize() + bufferInfo.size);
-        long j = this.wroteSinceLastMdat + bufferInfo.size;
+        interleaveChunkMdat.setContentSize(interleaveChunkMdat.getContentSize() + ((long) bufferInfo.size));
+        long j = this.wroteSinceLastMdat + ((long) bufferInfo.size);
         this.wroteSinceLastMdat = j;
         if (j >= 32768) {
             z2 = true;
@@ -124,7 +124,7 @@ public class MP4Builder {
         }
         byteBuffer.limit(bufferInfo.offset + bufferInfo.size);
         this.fc.write(byteBuffer);
-        this.dataOffset += bufferInfo.size;
+        this.dataOffset += (long) bufferInfo.size;
         if (!z2) {
             return 0L;
         }
@@ -147,16 +147,14 @@ public class MP4Builder {
         if (this.mdat.getContentSize() != 0) {
             flushCurrentMdat();
         }
-        Iterator<Track> it = this.currentMp4Movie.getTracks().iterator();
-        while (it.hasNext()) {
-            Track next = it.next();
-            ArrayList<Sample> samples = next.getSamples();
+        for (Track track : this.currentMp4Movie.getTracks()) {
+            ArrayList<Sample> samples = track.getSamples();
             int size = samples.size();
             long[] jArr = new long[size];
             for (int i = 0; i < size; i++) {
                 jArr[i] = samples.get(i).getSize();
             }
-            this.track2SampleSizes.put(next, jArr);
+            this.track2SampleSizes.put(track, jArr);
         }
         createMovieBox(this.currentMp4Movie).getBox(this.fc);
         this.fos.flush();
@@ -189,29 +187,35 @@ public class MP4Builder {
                     channel.position(jPosition);
                 }
                 this.track2SampleSizes.clear();
-                Iterator<Track> it = this.currentMp4Movie.getTracks().iterator();
-                while (it.hasNext()) {
-                    Track next = it.next();
-                    ArrayList<Sample> samples = next.getSamples();
+                for (Track track : this.currentMp4Movie.getTracks()) {
+                    ArrayList<Sample> samples = track.getSamples();
                     int size = samples.size();
                     long[] jArr = new long[size];
                     for (int i = 0; i < size; i++) {
                         jArr[i] = samples.get(i).getSize();
                     }
-                    this.track2SampleSizes.put(next, jArr);
+                    this.track2SampleSizes.put(track, jArr);
                 }
                 createMovieBox(this.currentMp4Movie).getBox(channel);
                 channel.close();
                 randomAccessFile.close();
-            } finally {
+            } catch (Throwable th) {
+                if (channel != null) {
+                    try {
+                        channel.close();
+                    } catch (Throwable th2) {
+                        th.addSuppressed(th2);
+                    }
+                }
+                throw th;
             }
-        } catch (Throwable th) {
+        } catch (Throwable th3) {
             try {
                 randomAccessFile.close();
-            } catch (Throwable th2) {
-                th.addSuppressed(th2);
+            } catch (Throwable th4) {
+                th3.addSuppressed(th4);
             }
-            throw th;
+            throw th3;
         }
     }
 
@@ -321,12 +325,10 @@ public class MP4Builder {
         movieHeaderBox.setModificationTime(new Date());
         movieHeaderBox.setMatrix(Matrix.ROTATE_0);
         long timescale = getTimescale(mp4Movie);
-        Iterator<Track> it = mp4Movie.getTracks().iterator();
         long j = 0;
-        while (it.hasNext()) {
-            Track next = it.next();
-            next.prepare();
-            long duration = (next.getDuration() * timescale) / next.getTimeScale();
+        for (Track track : mp4Movie.getTracks()) {
+            track.prepare();
+            long duration = (track.getDuration() * timescale) / ((long) track.getTimeScale());
             if (duration > j) {
                 j = duration;
             }
@@ -335,9 +337,9 @@ public class MP4Builder {
         movieHeaderBox.setTimescale(timescale);
         movieHeaderBox.setNextTrackId(mp4Movie.getTracks().size() + 1);
         movieBox.addBox(movieHeaderBox);
-        Iterator<Track> it2 = mp4Movie.getTracks().iterator();
-        while (it2.hasNext()) {
-            movieBox.addBox(createTrackBox(it2.next(), mp4Movie));
+        Iterator<Track> it = mp4Movie.getTracks().iterator();
+        while (it.hasNext()) {
+            movieBox.addBox(createTrackBox(it.next(), mp4Movie));
         }
         return movieBox;
     }
@@ -355,7 +357,7 @@ public class MP4Builder {
         }
         trackHeaderBox.setAlternateGroup(0);
         trackHeaderBox.setCreationTime(track.getCreationTime());
-        trackHeaderBox.setDuration((track.getDuration() * getTimescale(mp4Movie)) / track.getTimeScale());
+        trackHeaderBox.setDuration((track.getDuration() * getTimescale(mp4Movie)) / ((long) track.getTimeScale()));
         trackHeaderBox.setHeight(track.getHeight());
         trackHeaderBox.setWidth(track.getWidth());
         trackHeaderBox.setLayer(0);
@@ -482,18 +484,16 @@ public class MP4Builder {
 
     protected void createStco(Track track, SampleTableBox sampleTableBox) {
         ArrayList arrayList = new ArrayList();
-        Iterator<Sample> it = track.getSamples().iterator();
         long size = -1;
-        while (it.hasNext()) {
-            Sample next = it.next();
-            long offset = next.getOffset();
+        for (Sample sample : track.getSamples()) {
+            long offset = sample.getOffset();
             if (size != -1 && size != offset) {
                 size = -1;
             }
             if (size == -1) {
                 arrayList.add(Long.valueOf(offset));
             }
-            size = next.getSize() + offset;
+            size = sample.getSize() + offset;
         }
         long[] jArr = new long[arrayList.size()];
         for (int i = 0; i < arrayList.size(); i++) {

@@ -25,8 +25,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GroupCreateUserCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
-import org.telegram.ui.Components.JoinCallAlert;
-import org.telegram.ui.Components.RecyclerListView;
 
 public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView {
     private final boolean canRtmpStream;

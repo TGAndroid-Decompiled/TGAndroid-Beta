@@ -1,6 +1,5 @@
 package org.scilab.forge.jlatexmath;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import org.w3c.dom.Element;
@@ -37,7 +36,7 @@ public class TeXFormulaParser {
         }
 
         @Override
-        public void parse(Element element) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        public void parse(Element element) {
             String attrValueAndCheckIfNotNull = TeXFormulaParser.getAttrValueAndCheckIfNotNull("name", element);
             String attrValueAndCheckIfNotNull2 = TeXFormulaParser.getAttrValueAndCheckIfNotNull("formula", element);
             Object obj = TeXFormulaParser.this.tempFormulas.get(attrValueAndCheckIfNotNull2);

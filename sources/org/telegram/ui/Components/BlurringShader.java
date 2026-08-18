@@ -17,7 +17,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.opengl.GLES20;
 import android.os.Build;
@@ -146,9 +145,13 @@ public class BlurringShader {
         this.posBuffer.position(0);
         for (int i2 = 0; i2 < 4; i2++) {
             int i3 = i2 * 2;
-            fArr[i3] = fArr[i3] * ((r13 - i) / this.width);
-            int i4 = i3 + 1;
-            fArr[i4] = fArr[i4] * ((r13 - i) / this.height);
+            float f2 = fArr[i3];
+            int i4 = this.width;
+            fArr[i3] = f2 * ((i4 - i) / i4);
+            int i5 = i3 + 1;
+            float f3 = fArr[i5];
+            int i6 = this.height;
+            fArr[i5] = f3 * ((i6 - i) / i6);
         }
         ByteBuffer byteBufferAllocateDirect2 = ByteBuffer.allocateDirect(32);
         byteBufferAllocateDirect2.order(ByteOrder.nativeOrder());
@@ -167,8 +170,8 @@ public class BlurringShader {
         if (res == null || res2 == null) {
             return false;
         }
-        for (int i5 = 0; i5 < 2; i5++) {
-            if (i5 == 1) {
+        for (int i7 = 0; i7 < 2; i7++) {
+            if (i7 == 1) {
                 res2 = "#extension GL_OES_EGL_image_external : require\n" + res2.replace("sampler2D tex", "samplerExternalOES tex");
             }
             int iLoadShader = FilterShaders.loadShader(35633, res);
@@ -188,30 +191,30 @@ public class BlurringShader {
                 GLES20.glDeleteProgram(iGlCreateProgram);
                 return false;
             }
-            this.program[i5] = new Program(iGlCreateProgram);
+            this.program[i7] = new Program(iGlCreateProgram);
         }
         GLES20.glGenFramebuffers(3, this.framebuffer, 0);
         GLES20.glGenTextures(3, this.texture, 0);
-        int i6 = 0;
-        while (i6 < 3) {
-            GLES20.glBindTexture(3553, this.texture[i6]);
-            GLES20.glTexImage2D(3553, 0, 6408, this.width + (i6 == 2 ? i * 2 : 0), this.height + (i6 == 2 ? i * 2 : 0), 0, 6408, 5121, null);
+        int i8 = 0;
+        while (i8 < 3) {
+            GLES20.glBindTexture(3553, this.texture[i8]);
+            GLES20.glTexImage2D(3553, 0, 6408, this.width + (i8 == 2 ? i * 2 : 0), this.height + (i8 == 2 ? i * 2 : 0), 0, 6408, 5121, null);
             GLES20.glTexParameteri(3553, 10242, 33071);
             GLES20.glTexParameteri(3553, 10243, 33071);
             GLES20.glTexParameteri(3553, 10241, 9729);
             GLES20.glTexParameteri(3553, 10240, 9729);
-            GLES20.glBindFramebuffer(36160, this.framebuffer[i6]);
-            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.texture[i6], 0);
+            GLES20.glBindFramebuffer(36160, this.framebuffer[i8]);
+            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.texture[i8], 0);
             if (GLES20.glCheckFramebufferStatus(36160) != 36053) {
                 return false;
             }
-            i6++;
+            i8++;
         }
         GLES20.glBindFramebuffer(36160, 0);
         if (z) {
-            int i7 = i * 2;
-            this.bitmap = Bitmap.createBitmap(this.width + i7, this.height + i7, Bitmap.Config.ARGB_8888);
-            this.buffer = ByteBuffer.allocateDirect((this.width + i7) * (i7 + this.height) * 4);
+            int i9 = i * 2;
+            this.bitmap = Bitmap.createBitmap(this.width + i9, this.height + i9, Bitmap.Config.ARGB_8888);
+            this.buffer = ByteBuffer.allocateDirect((this.width + i9) * (i9 + this.height) * 4);
         }
         return true;
     }
@@ -425,7 +428,7 @@ public class BlurringShader {
             if (obj != null && Build.VERSION.SDK_INT >= 31) {
                 RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline2.m(obj);
                 RenderNode renderNodeM2 = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("blurRenderNode");
-                renderNodeM2.setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), Shader.TileMode.CLAMP));
+                renderNodeM2.setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), android.graphics.Shader.TileMode.CLAMP));
                 renderNodeM2.setPosition(0, 0, renderNodeM.getWidth(), renderNodeM.getHeight());
                 RecordingCanvas recordingCanvasBeginRecording = renderNodeM2.beginRecording();
                 recordingCanvasBeginRecording.drawColor(i);
@@ -695,11 +698,15 @@ public class BlurringShader {
             int i7 = this.padding;
             if (i7 > 0) {
                 canvas.drawRect(0.0f, 0.0f, iRound + i7, i7, this.clearPaint);
-                float f3 = this.padding;
-                canvas.drawRect(0.0f, f3, f3, r0 + iRound2, this.clearPaint);
                 int i8 = this.padding;
-                canvas.drawRect(i8 + iRound, i8, r2 + i8, i8 + iRound2, this.clearPaint);
-                canvas.drawRect(0.0f, iRound2 + this.padding, iRound + r0 + r0, r3 + r0, this.clearPaint);
+                float f3 = i8;
+                canvas.drawRect(0.0f, f3, f3, i8 + iRound2, this.clearPaint);
+                int i9 = this.padding;
+                int i10 = i9 + iRound;
+                canvas.drawRect(i10, i9, i10 + i9, i9 + iRound2, this.clearPaint);
+                int i11 = this.padding;
+                int i12 = iRound2 + i11;
+                canvas.drawRect(0.0f, i12, iRound + i11 + i11, i12 + i11, this.clearPaint);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -936,7 +943,7 @@ public class BlurringShader {
             }
             if (this.bitmapShader == null || this.lastBitmap != bitmap) {
                 this.lastBitmap = bitmap;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                android.graphics.Shader.TileMode tileMode = android.graphics.Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
                 this.bitmapShader = bitmapShader;
                 this.paint.setShader(bitmapShader);
@@ -1002,7 +1009,7 @@ public class BlurringShader {
                     animateOldPaint();
                 }
                 this.lastBitmap = bitmap;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                android.graphics.Shader.TileMode tileMode = android.graphics.Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader(bitmap, tileMode, tileMode);
                 this.bitmapShader = bitmapShader2;
                 this.paint.setShader(bitmapShader2);
@@ -1093,9 +1100,10 @@ public class BlurringShader {
                         view3.getLocationOnScreen(this.loc1);
                         view2.getLocationOnScreen(this.loc2);
                         Matrix matrix = this.matrix;
-                        int i3 = this.loc2[0];
-                        int[] iArr = this.loc1;
-                        matrix.preTranslate(i3 - iArr[0], r3[1] - iArr[1]);
+                        int[] iArr = this.loc2;
+                        int i3 = iArr[0];
+                        int[] iArr2 = this.loc1;
+                        matrix.preTranslate(i3 - iArr2[0], iArr[1] - iArr2[1]);
                     }
                     while (iIndexOf >= 0 && iIndexOf < this.manager.parents.size()) {
                         View view4 = (View) this.manager.parents.get(iIndexOf);
@@ -1138,7 +1146,7 @@ public class BlurringShader {
                     if (StoryBlurDrawer.this.bitmapShader == null || StoryBlurDrawer.this.lastBitmap != bitmap) {
                         StoryBlurDrawer storyBlurDrawer = StoryBlurDrawer.this;
                         Bitmap bitmap2 = StoryBlurDrawer.this.lastBitmap = bitmap;
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                        android.graphics.Shader.TileMode tileMode = android.graphics.Shader.TileMode.CLAMP;
                         storyBlurDrawer.bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
                         StoryBlurDrawer storyBlurDrawer2 = StoryBlurDrawer.this;
                         storyBlurDrawer2.paint.setShader(storyBlurDrawer2.bitmapShader);

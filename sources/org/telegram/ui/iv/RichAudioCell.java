@@ -32,8 +32,6 @@ import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.iv.RichCaptionController;
-import org.telegram.ui.iv.RichEditor;
 
 public class RichAudioCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
     private boolean attached;
@@ -534,10 +532,16 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
     }
 
     public void updatePlayingMessageProgress() {
+        int iAudioDuration;
         if (!isUploading() && this.messageObject != null && !this.seekBar.isDragging()) {
             this.seekBar.setProgress(this.messageObject.audioProgress);
         }
-        String shortDuration = AndroidUtilities.formatShortDuration(isUploading() ? attribute() != null ? (int) attribute().duration : 0 : audioDuration());
+        if (isUploading()) {
+            iAudioDuration = attribute() != null ? (int) attribute().duration : 0;
+        } else {
+            iAudioDuration = audioDuration();
+        }
+        String shortDuration = AndroidUtilities.formatShortDuration(iAudioDuration);
         String str = this.lastTimeString;
         if (str == null || !str.equals(shortDuration)) {
             this.lastTimeString = shortDuration;
@@ -674,10 +678,12 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
             return true;
         }
         if (actionMasked == 0) {
-            if (x >= this.buttonX) {
-                int i = this.size;
-                if (x <= r0 + i) {
-                    if (y >= this.buttonY && y <= r0 + i) {
+            int i = this.buttonX;
+            if (x >= i) {
+                int i2 = this.size;
+                if (x <= i + i2) {
+                    int i3 = this.buttonY;
+                    if (y >= i3 && y <= i3 + i2) {
                         this.buttonPressed = true;
                         invalidate();
                         return true;

@@ -135,17 +135,15 @@ public class ReactedHeaderView extends FrameLayout {
         if (tLObject instanceof Vector) {
             final ArrayList arrayList = new ArrayList();
             final ArrayList arrayList2 = new ArrayList();
-            Iterator it = ((Vector) tLObject).objects.iterator();
-            while (it.hasNext()) {
-                Object next = it.next();
-                if (next instanceof Long) {
-                    Long l = (Long) next;
+            for (Object obj : ((Vector) tLObject).objects) {
+                if (obj instanceof Long) {
+                    Long l = (Long) obj;
                     if (j != l.longValue()) {
                         arrayList.add(l);
                         arrayList2.add(0);
                     }
-                } else if (next instanceof TLRPC.TL_readParticipantDate) {
-                    TLRPC.TL_readParticipantDate tL_readParticipantDate = (TLRPC.TL_readParticipantDate) next;
+                } else if (obj instanceof TLRPC.TL_readParticipantDate) {
+                    TLRPC.TL_readParticipantDate tL_readParticipantDate = (TLRPC.TL_readParticipantDate) obj;
                     long j2 = tL_readParticipantDate.user_id;
                     int i = tL_readParticipantDate.date;
                     if (j != j2) {
@@ -198,10 +196,15 @@ public class ReactedHeaderView extends FrameLayout {
                 if (i >= this.users.size()) {
                     this.users.add(userSeen);
                     break;
-                } else if (MessageObject.getObjectPeerId(((UserSeen) this.users.get(i)).user) != MessageObject.getObjectPeerId(userSeen.user)) {
+                } else {
+                    if (MessageObject.getObjectPeerId(((UserSeen) this.users.get(i)).user) == MessageObject.getObjectPeerId(userSeen.user)) {
+                        if (userSeen.date <= 0) {
+                            break;
+                        }
+                        ((UserSeen) this.users.get(i)).date = userSeen.date;
+                        break;
+                    }
                     i++;
-                } else if (userSeen.date > 0) {
-                    ((UserSeen) this.users.get(i)).date = userSeen.date;
                 }
             }
         }
@@ -303,35 +306,40 @@ public class ReactedHeaderView extends FrameLayout {
         this.titleView.setText(pluralString);
         TLRPC.TL_messageReactions tL_messageReactions = this.message.messageOwner.reactions;
         if (tL_messageReactions != null && tL_messageReactions.results.size() == 1 && !tL_messages_messageReactionsList.reactions.isEmpty()) {
-            for (TLRPC.TL_availableReaction tL_availableReaction : MediaDataController.getInstance(this.currentAccount).getReactionsList()) {
-                if (tL_availableReaction.reaction.equals(tL_messages_messageReactionsList.reactions.get(0).reaction)) {
-                    this.reactView.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", "webp", (Drawable) null, tL_availableReaction);
-                    this.reactView.setVisibility(0);
-                    this.reactView.setAlpha(0.0f);
-                    this.reactView.animate().alpha(1.0f).start();
-                    this.iconView.setVisibility(8);
+            Iterator<TLRPC.TL_availableReaction> it = MediaDataController.getInstance(this.currentAccount).getReactionsList().iterator();
+            while (true) {
+                if (it.hasNext()) {
+                    TLRPC.TL_availableReaction next = it.next();
+                    if (next.reaction.equals(tL_messages_messageReactionsList.reactions.get(0).reaction)) {
+                        this.reactView.setImage(ImageLocation.getForDocument(next.center_icon), "40_40_lastreactframe", "webp", (Drawable) null, next);
+                        this.reactView.setVisibility(0);
+                        this.reactView.setAlpha(0.0f);
+                        this.reactView.animate().alpha(1.0f).start();
+                        this.iconView.setVisibility(8);
+                        break;
+                    }
+                } else {
+                    this.iconView.setVisibility(0);
+                    this.iconView.setAlpha(0.0f);
+                    this.iconView.animate().alpha(1.0f).start();
                     break;
                 }
             }
-            this.iconView.setVisibility(0);
-            this.iconView.setAlpha(0.0f);
-            this.iconView.animate().alpha(1.0f).start();
         } else {
             this.iconView.setVisibility(0);
             this.iconView.setAlpha(0.0f);
             this.iconView.animate().alpha(1.0f).start();
+            break;
         }
-        Iterator<TLRPC.User> it = tL_messages_messageReactionsList.users.iterator();
-        while (it.hasNext()) {
-            TLRPC.User next = it.next();
+        for (TLRPC.User user : tL_messages_messageReactionsList.users) {
             TLRPC.Peer peer = this.message.messageOwner.from_id;
-            if (peer != null && next.id != peer.user_id) {
+            if (peer != null && user.id != peer.user_id) {
                 int i2 = 0;
                 while (true) {
                     if (i2 >= this.users.size()) {
-                        this.users.add(new UserSeen(next, 0));
+                        this.users.add(new UserSeen(user, 0));
                         break;
-                    } else if (((UserSeen) this.users.get(i2)).dialogId == next.id) {
+                    } else if (((UserSeen) this.users.get(i2)).dialogId == user.id) {
                         break;
                     } else {
                         i2++;
@@ -339,17 +347,15 @@ public class ReactedHeaderView extends FrameLayout {
                 }
             }
         }
-        Iterator<TLRPC.Chat> it2 = tL_messages_messageReactionsList.chats.iterator();
-        while (it2.hasNext()) {
-            TLRPC.Chat next2 = it2.next();
+        for (TLRPC.Chat chat : tL_messages_messageReactionsList.chats) {
             TLRPC.Peer peer2 = this.message.messageOwner.from_id;
-            if (peer2 != null && next2.id != peer2.user_id) {
+            if (peer2 != null && chat.id != peer2.user_id) {
                 int i3 = 0;
                 while (true) {
                     if (i3 >= this.users.size()) {
-                        this.users.add(new UserSeen(next2, 0));
+                        this.users.add(new UserSeen(chat, 0));
                         break;
-                    } else if (((UserSeen) this.users.get(i3)).dialogId == (-next2.id)) {
+                    } else if (((UserSeen) this.users.get(i3)).dialogId == (-chat.id)) {
                         break;
                     } else {
                         i3++;
@@ -365,7 +371,45 @@ public class ReactedHeaderView extends FrameLayout {
     }
 
     private void updateView() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ReactedHeaderView.updateView():void");
+        int iDp;
+        float fDp;
+        setEnabled(this.users.size() > 0);
+        for (int i = 0; i < 3; i++) {
+            if (i < this.users.size()) {
+                this.avatarsImageView.setObject(i, this.currentAccount, ((UserSeen) this.users.get(i)).user);
+            } else {
+                this.avatarsImageView.setObject(i, this.currentAccount, null);
+            }
+        }
+        int size = this.users.size();
+        if (size == 1) {
+            iDp = AndroidUtilities.dp(24.0f);
+        } else {
+            if (size != 2) {
+                fDp = 0.0f;
+            } else {
+                iDp = AndroidUtilities.dp(12.0f);
+            }
+            AvatarsImageView avatarsImageView = this.avatarsImageView;
+            if (LocaleController.isRTL) {
+                fDp = AndroidUtilities.dp(12.0f);
+            }
+            avatarsImageView.setTranslationX(fDp);
+            this.avatarsImageView.commitTransition(false);
+            this.titleView.animate().alpha(1.0f).setDuration(220L).start();
+            this.avatarsImageView.animate().alpha(1.0f).setDuration(220L).start();
+            this.flickerLoadingView.animate().alpha(0.0f).setDuration(220L).setListener(new HideViewAfterAnimation(this.flickerLoadingView)).start();
+        }
+        fDp = iDp;
+        AvatarsImageView avatarsImageView2 = this.avatarsImageView;
+        if (LocaleController.isRTL) {
+            fDp = AndroidUtilities.dp(12.0f);
+        }
+        avatarsImageView2.setTranslationX(fDp);
+        this.avatarsImageView.commitTransition(false);
+        this.titleView.animate().alpha(1.0f).setDuration(220L).start();
+        this.avatarsImageView.animate().alpha(1.0f).setDuration(220L).start();
+        this.flickerLoadingView.animate().alpha(0.0f).setDuration(220L).setListener(new HideViewAfterAnimation(this.flickerLoadingView)).start();
     }
 
     @Override

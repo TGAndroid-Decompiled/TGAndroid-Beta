@@ -46,12 +46,12 @@ public class PhotoEditorSeekBar extends View {
         float x = motionEvent.getX();
         float y = motionEvent.getY();
         float measuredWidth = (int) ((getMeasuredWidth() - this.thumbSize) * this.progress);
-        float f = 0.0f;
+        float measuredWidth2 = 0.0f;
         if (motionEvent.getAction() == 0) {
             int measuredHeight = getMeasuredHeight();
             int i = this.thumbSize;
-            float f2 = (measuredHeight - i) / 2;
-            if (measuredWidth - f2 <= x && x <= i + measuredWidth + f2 && y >= 0.0f && y <= getMeasuredHeight()) {
+            float f = (measuredHeight - i) / 2;
+            if (measuredWidth - f <= x && x <= i + measuredWidth + f && y >= 0.0f && y <= getMeasuredHeight()) {
                 this.pressed = true;
                 this.thumbDX = (int) (x - measuredWidth);
                 getParent().requestDisallowInterceptTouchEvent(true);
@@ -65,11 +65,11 @@ public class PhotoEditorSeekBar extends View {
                 return true;
             }
         } else if (motionEvent.getAction() == 2 && this.pressed) {
-            float f3 = (int) (x - this.thumbDX);
-            if (f3 >= 0.0f) {
-                f = f3 > ((float) (getMeasuredWidth() - this.thumbSize)) ? getMeasuredWidth() - this.thumbSize : f3;
+            float f2 = (int) (x - this.thumbDX);
+            if (f2 >= 0.0f) {
+                measuredWidth2 = f2 > ((float) (getMeasuredWidth() - this.thumbSize)) ? getMeasuredWidth() - this.thumbSize : f2;
             }
-            this.progress = f / (getMeasuredWidth() - this.thumbSize);
+            this.progress = measuredWidth2 / (getMeasuredWidth() - this.thumbSize);
             PhotoEditorSeekBarDelegate photoEditorSeekBarDelegate = this.delegate;
             if (photoEditorSeekBarDelegate != null) {
                 photoEditorSeekBarDelegate.onProgressChanged(((Integer) getTag()).intValue(), getProgress());
@@ -104,7 +104,8 @@ public class PhotoEditorSeekBar extends View {
     }
 
     public int getProgress() {
-        return (int) (this.minValue + (this.progress * (this.maxValue - r0)));
+        int i = this.minValue;
+        return (int) (i + (this.progress * (this.maxValue - i)));
     }
 
     public void setMinMax(int i, int i2) {
@@ -128,6 +129,7 @@ public class PhotoEditorSeekBar extends View {
             canvas.drawRect(getMeasuredWidth() / 2, (getMeasuredHeight() - this.thumbSize) / 2, (getMeasuredWidth() / 2) + AndroidUtilities.dp(1.0f), (getMeasuredHeight() + this.thumbSize) / 2, this.outerPaint);
             canvas.drawRect(i2, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), getMeasuredWidth() / 2, (getMeasuredHeight() / 2) + AndroidUtilities.dp(1.0f), this.outerPaint);
         }
-        canvas.drawCircle(i2 + r3, measuredHeight + r3, this.thumbSize / 2, this.outerPaint);
+        int i3 = this.thumbSize / 2;
+        canvas.drawCircle(i2 + i3, measuredHeight + i3, i3, this.outerPaint);
     }
 }

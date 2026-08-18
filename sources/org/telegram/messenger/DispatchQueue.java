@@ -70,7 +70,7 @@ public class DispatchQueue extends Thread {
         }
     }
 
-    public void cancelRunnables(Runnable[] runnableArr) throws InterruptedException {
+    public void cancelRunnables(Runnable[] runnableArr) {
         try {
             this.syncLatch.await();
             for (Runnable runnable : runnableArr) {
@@ -86,7 +86,7 @@ public class DispatchQueue extends Thread {
         return postRunnable(runnable, 0L);
     }
 
-    public boolean postToFrontRunnable(Runnable runnable) throws InterruptedException {
+    public boolean postToFrontRunnable(Runnable runnable) {
         try {
             this.syncLatch.await();
         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class DispatchQueue extends Thread {
         return this.handler.postDelayed(runnable, j);
     }
 
-    public void cleanupQueue() throws InterruptedException {
+    public void cleanupQueue() {
         try {
             this.syncLatch.await();
             this.handler.removeCallbacksAndMessages(null);

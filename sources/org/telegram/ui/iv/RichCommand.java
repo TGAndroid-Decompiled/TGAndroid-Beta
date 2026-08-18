@@ -3,7 +3,6 @@ package org.telegram.ui.iv;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Space;
@@ -65,9 +64,7 @@ public class RichCommand {
         }
         String lowerCase = strTrim.toLowerCase();
         ArrayList arrayList = new ArrayList();
-        Iterator it = get().iterator();
-        while (it.hasNext()) {
-            RichCommand richCommand = (RichCommand) it.next();
+        for (RichCommand richCommand : get()) {
             if (lowerCase.isEmpty() || richCommand.matches(lowerCase)) {
                 arrayList.add(richCommand);
             }
@@ -147,7 +144,7 @@ public class RichCommand {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+            super.onMeasure(i, android.view.View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
         }
     }
 }

@@ -1,6 +1,5 @@
 package ru.noties.jlatexmath.awt;
 
-import ru.noties.jlatexmath.awt.RenderingHints;
 import ru.noties.jlatexmath.awt.font.FontRenderContext;
 import ru.noties.jlatexmath.awt.geom.AffineTransform;
 import ru.noties.jlatexmath.awt.geom.Line2D;

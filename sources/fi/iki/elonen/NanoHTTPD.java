@@ -94,25 +94,23 @@ public abstract class NanoHTTPD {
             this.acceptSocket = socket;
         }
 
-        public void close() throws IOException {
+        public void close() {
             NanoHTTPD.safeClose(this.inputStream);
             NanoHTTPD.safeClose(this.acceptSocket);
         }
 
         @Override
-        public void run() throws IOException {
+        public void run() {
             OutputStream outputStream = null;
             try {
-                try {
-                    outputStream = this.acceptSocket.getOutputStream();
-                    HTTPSession hTTPSession = NanoHTTPD.this.new HTTPSession(NanoHTTPD.this.tempFileManagerFactory.create(), this.inputStream, outputStream, this.acceptSocket.getInetAddress());
-                    while (!this.acceptSocket.isClosed()) {
-                        hTTPSession.execute();
-                    }
-                } catch (Exception e) {
-                    if ((!(e instanceof SocketException) || !"NanoHttpd Shutdown".equals(e.getMessage())) && !(e instanceof SocketTimeoutException)) {
-                        NanoHTTPD.LOG.log(Level.SEVERE, "Communication with the client broken, or an bug in the handler code", (Throwable) e);
-                    }
+                outputStream = this.acceptSocket.getOutputStream();
+                HTTPSession hTTPSession = NanoHTTPD.this.new HTTPSession(NanoHTTPD.this.tempFileManagerFactory.create(), this.inputStream, outputStream, this.acceptSocket.getInetAddress());
+                while (!this.acceptSocket.isClosed()) {
+                    hTTPSession.execute();
+                }
+            } catch (Exception e) {
+                if ((!(e instanceof SocketException) || !"NanoHttpd Shutdown".equals(e.getMessage())) && !(e instanceof SocketTimeoutException)) {
+                    NanoHTTPD.LOG.log(Level.SEVERE, "Communication with the client broken, or an bug in the handler code", (Throwable) e);
                 }
             } finally {
                 NanoHTTPD.safeClose(outputStream);
@@ -158,7 +156,7 @@ public abstract class NanoHTTPD {
         private final List running = DesugarCollections.synchronizedList(new ArrayList());
 
         @Override
-        public void closeAll() throws IOException {
+        public void closeAll() {
             Iterator it = new ArrayList(this.running).iterator();
             while (it.hasNext()) {
                 ((ClientHandler) it.next()).close();
@@ -298,7 +296,7 @@ public abstract class NanoHTTPD {
             this.headers = new HashMap();
         }
 
-        private void decodeHeader(BufferedReader bufferedReader, Map map, Map map2, Map map3) throws ResponseException, IOException {
+        private void decodeHeader(BufferedReader bufferedReader, Map map, Map map2, Map map3) throws ResponseException {
             String strDecodePercent;
             try {
                 String line = bufferedReader.readLine();
@@ -369,106 +367,104 @@ public abstract class NanoHTTPD {
             }
         }
 
-        public void execute() throws IOException {
-            byte[] bArr;
-            boolean z;
+        public void execute() {
             Response responseServe = null;
             try {
                 try {
                     try {
                         try {
-                            bArr = new byte[8192];
-                            z = false;
+                            byte[] bArr = new byte[8192];
+                            boolean z = false;
                             this.splitbyte = 0;
                             this.rlen = 0;
                             this.inputStream.mark(8192);
-                        } catch (ResponseException e) {
-                            NanoHTTPD.newFixedLengthResponse(e.getStatus(), "text/plain", e.getMessage()).send(this.outputStream);
+                            try {
+                                int i = this.inputStream.read(bArr, 0, 8192);
+                                if (i == -1) {
+                                    NanoHTTPD.safeClose(this.inputStream);
+                                    NanoHTTPD.safeClose(this.outputStream);
+                                    throw new SocketException("NanoHttpd Shutdown");
+                                }
+                                while (i > 0) {
+                                    int i2 = this.rlen + i;
+                                    this.rlen = i2;
+                                    int iFindHeaderEnd = findHeaderEnd(bArr, i2);
+                                    this.splitbyte = iFindHeaderEnd;
+                                    if (iFindHeaderEnd > 0) {
+                                        break;
+                                    }
+                                    BufferedInputStream bufferedInputStream = this.inputStream;
+                                    int i3 = this.rlen;
+                                    i = bufferedInputStream.read(bArr, i3, 8192 - i3);
+                                }
+                                if (this.splitbyte < this.rlen) {
+                                    this.inputStream.reset();
+                                    this.inputStream.skip(this.splitbyte);
+                                }
+                                this.parms = new HashMap();
+                                Map map = this.headers;
+                                if (map == null) {
+                                    this.headers = new HashMap();
+                                } else {
+                                    map.clear();
+                                }
+                                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(bArr, 0, this.rlen)));
+                                HashMap map2 = new HashMap();
+                                decodeHeader(bufferedReader, map2, this.parms, this.headers);
+                                String str = this.remoteIp;
+                                if (str != null) {
+                                    this.headers.put("remote-addr", str);
+                                    this.headers.put("http-client-ip", this.remoteIp);
+                                }
+                                Method methodLookup = Method.lookup((String) map2.get("method"));
+                                this.method = methodLookup;
+                                if (methodLookup == null) {
+                                    throw new ResponseException(Response.Status.BAD_REQUEST, "BAD REQUEST: Syntax error. HTTP verb " + ((String) map2.get("method")) + " unhandled.");
+                                }
+                                this.uri = (String) map2.get("uri");
+                                this.cookies = NanoHTTPD.this.new CookieHandler(this.headers);
+                                String str2 = (String) this.headers.get("connection");
+                                boolean z2 = "HTTP/1.1".equals(this.protocolVersion) && (str2 == null || !str2.matches("(?i).*close.*"));
+                                responseServe = NanoHTTPD.this.serve(this);
+                                if (responseServe == null) {
+                                    throw new ResponseException(Response.Status.INTERNAL_ERROR, "SERVER INTERNAL ERROR: Serve() returned a null response.");
+                                }
+                                String str3 = (String) this.headers.get("accept-encoding");
+                                this.cookies.unloadQueue(responseServe);
+                                responseServe.setRequestMethod(this.method);
+                                if (NanoHTTPD.this.useGzipWhenAccepted(responseServe) && str3 != null && str3.contains("gzip")) {
+                                    z = true;
+                                }
+                                responseServe.setGzipEncoding(z);
+                                responseServe.setKeepAlive(z2);
+                                responseServe.send(this.outputStream);
+                                if (!z2 || responseServe.isCloseConnection()) {
+                                    throw new SocketException("NanoHttpd Shutdown");
+                                }
+                                NanoHTTPD.safeClose(responseServe);
+                                this.tempFileManager.clear();
+                            } catch (SSLException e) {
+                                throw e;
+                            } catch (IOException unused) {
+                                NanoHTTPD.safeClose(this.inputStream);
+                                NanoHTTPD.safeClose(this.outputStream);
+                                throw new SocketException("NanoHttpd Shutdown");
+                            }
+                        } catch (ResponseException e2) {
+                            NanoHTTPD.newFixedLengthResponse(e2.getStatus(), "text/plain", e2.getMessage()).send(this.outputStream);
                             NanoHTTPD.safeClose(this.outputStream);
                         }
-                    } catch (SocketException e2) {
-                        throw e2;
-                    } catch (SSLException e3) {
-                        NanoHTTPD.newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", "SSL PROTOCOL FAILURE: " + e3.getMessage()).send(this.outputStream);
+                    } catch (SocketException e3) {
+                        throw e3;
+                    } catch (SSLException e4) {
+                        NanoHTTPD.newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", "SSL PROTOCOL FAILURE: " + e4.getMessage()).send(this.outputStream);
                         NanoHTTPD.safeClose(this.outputStream);
                     }
-                } catch (SocketTimeoutException e4) {
-                    throw e4;
-                } catch (IOException e5) {
-                    NanoHTTPD.newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", "SERVER INTERNAL ERROR: IOException: " + e5.getMessage()).send(this.outputStream);
+                } catch (SocketTimeoutException e5) {
+                    throw e5;
+                } catch (IOException e6) {
+                    NanoHTTPD.newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", "SERVER INTERNAL ERROR: IOException: " + e6.getMessage()).send(this.outputStream);
                     NanoHTTPD.safeClose(this.outputStream);
-                }
-                try {
-                    int i = this.inputStream.read(bArr, 0, 8192);
-                    if (i == -1) {
-                        NanoHTTPD.safeClose(this.inputStream);
-                        NanoHTTPD.safeClose(this.outputStream);
-                        throw new SocketException("NanoHttpd Shutdown");
-                    }
-                    while (i > 0) {
-                        int i2 = this.rlen + i;
-                        this.rlen = i2;
-                        int iFindHeaderEnd = findHeaderEnd(bArr, i2);
-                        this.splitbyte = iFindHeaderEnd;
-                        if (iFindHeaderEnd > 0) {
-                            break;
-                        }
-                        BufferedInputStream bufferedInputStream = this.inputStream;
-                        int i3 = this.rlen;
-                        i = bufferedInputStream.read(bArr, i3, 8192 - i3);
-                    }
-                    if (this.splitbyte < this.rlen) {
-                        this.inputStream.reset();
-                        this.inputStream.skip(this.splitbyte);
-                    }
-                    this.parms = new HashMap();
-                    Map map = this.headers;
-                    if (map == null) {
-                        this.headers = new HashMap();
-                    } else {
-                        map.clear();
-                    }
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(bArr, 0, this.rlen)));
-                    HashMap map2 = new HashMap();
-                    decodeHeader(bufferedReader, map2, this.parms, this.headers);
-                    String str = this.remoteIp;
-                    if (str != null) {
-                        this.headers.put("remote-addr", str);
-                        this.headers.put("http-client-ip", this.remoteIp);
-                    }
-                    Method methodLookup = Method.lookup((String) map2.get("method"));
-                    this.method = methodLookup;
-                    if (methodLookup == null) {
-                        throw new ResponseException(Response.Status.BAD_REQUEST, "BAD REQUEST: Syntax error. HTTP verb " + ((String) map2.get("method")) + " unhandled.");
-                    }
-                    this.uri = (String) map2.get("uri");
-                    this.cookies = NanoHTTPD.this.new CookieHandler(this.headers);
-                    String str2 = (String) this.headers.get("connection");
-                    boolean z2 = "HTTP/1.1".equals(this.protocolVersion) && (str2 == null || !str2.matches("(?i).*close.*"));
-                    responseServe = NanoHTTPD.this.serve(this);
-                    if (responseServe == null) {
-                        throw new ResponseException(Response.Status.INTERNAL_ERROR, "SERVER INTERNAL ERROR: Serve() returned a null response.");
-                    }
-                    String str3 = (String) this.headers.get("accept-encoding");
-                    this.cookies.unloadQueue(responseServe);
-                    responseServe.setRequestMethod(this.method);
-                    if (NanoHTTPD.this.useGzipWhenAccepted(responseServe) && str3 != null && str3.contains("gzip")) {
-                        z = true;
-                    }
-                    responseServe.setGzipEncoding(z);
-                    responseServe.setKeepAlive(z2);
-                    responseServe.send(this.outputStream);
-                    if (!z2 || responseServe.isCloseConnection()) {
-                        throw new SocketException("NanoHttpd Shutdown");
-                    }
-                    NanoHTTPD.safeClose(responseServe);
-                    this.tempFileManager.clear();
-                } catch (SSLException e6) {
-                    throw e6;
-                } catch (IOException unused) {
-                    NanoHTTPD.safeClose(this.inputStream);
-                    NanoHTTPD.safeClose(this.outputStream);
-                    throw new SocketException("NanoHttpd Shutdown");
                 }
             } catch (Throwable th) {
                 NanoHTTPD.safeClose(null);
@@ -555,7 +551,7 @@ public abstract class NanoHTTPD {
             @Override
             public String put(String str, String str2) {
                 Response.this.lowerCaseHeader.put(str == null ? str : str.toLowerCase(), str2);
-                return (String) super.put((AnonymousClass1) str, str2);
+                return (String) super.put(str, str2);
             }
         };
         private final Map lowerCaseHeader = new HashMap();
@@ -688,7 +684,7 @@ public abstract class NanoHTTPD {
             this.keepAlive = z;
         }
 
-        protected void send(OutputStream outputStream) throws IOException, NumberFormatException {
+        protected void send(OutputStream outputStream) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss 'GMT'", Locale.US);
             simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("GMT"));
             try {
@@ -737,7 +733,7 @@ public abstract class NanoHTTPD {
             printWriter.append((CharSequence) str).append(": ").append((CharSequence) str2).append("\r\n");
         }
 
-        protected long sendContentLengthHeaderIfNotAlreadyPresent(PrintWriter printWriter, long j) throws NumberFormatException {
+        protected long sendContentLengthHeaderIfNotAlreadyPresent(PrintWriter printWriter, long j) {
             String header = getHeader("content-length");
             if (header != null) {
                 try {
@@ -783,7 +779,7 @@ public abstract class NanoHTTPD {
                 }
                 outputStream.write(bArr, 0, i);
                 if (!z) {
-                    j -= i;
+                    j -= (long) i;
                 }
             }
         }
@@ -825,7 +821,7 @@ public abstract class NanoHTTPD {
         }
 
         @Override
-        public void run() throws IOException {
+        public void run() {
             try {
                 NanoHTTPD.this.myServerSocket.bind(NanoHTTPD.this.hostname != null ? new InetSocketAddress(NanoHTTPD.this.hostname, NanoHTTPD.this.myPort) : new InetSocketAddress(NanoHTTPD.this.myPort));
                 this.hasBinded = true;
@@ -849,7 +845,7 @@ public abstract class NanoHTTPD {
         }
     }
 
-    public static final void safeClose(Object obj) throws IOException {
+    public static final void safeClose(Object obj) {
         if (obj != null) {
             try {
                 if (obj instanceof Closeable) {

@@ -21,6 +21,7 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
@@ -440,8 +441,53 @@ public class ShareTopView extends FrameLayout implements NotificationCenter.Noti
         });
     }
 
-    public void lambda$requestLinkPreview$1(int r4, org.telegram.tgnet.TLObject r5, java.lang.String r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShareTopView.lambda$requestLinkPreview$1(int, org.telegram.tgnet.TLObject, java.lang.String):void");
+    public void lambda$requestLinkPreview$1(int i, TLObject tLObject, String str) {
+        TLRPC.WebPage webPage;
+        if (i != this.linkRequestSerial) {
+            return;
+        }
+        this.linkRequestId = 0;
+        if (tLObject instanceof TL_account.webPagePreview) {
+            TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(webpagepreview.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(webpagepreview.chats, false);
+            TLRPC.MessageMedia messageMedia = webpagepreview.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+                webPage = ((TLRPC.TL_messageMediaWebPage) messageMedia).webpage;
+            } else {
+                webPage = null;
+            }
+        } else {
+            webPage = null;
+        }
+        if (webPage instanceof TLRPC.TL_webPage) {
+            if (this.linkPreviewCache.size() > 5) {
+                Iterator it = this.linkPreviewCache.keySet().iterator();
+                while (it.hasNext() && this.linkPreviewCache.size() > 5) {
+                    it.next();
+                    it.remove();
+                }
+            }
+            this.linkPreviewCache.put(str, webPage);
+            this.loadedWebPage = webPage;
+            bindLinkLoaded(current(), webPage, str);
+            return;
+        }
+        if (webPage instanceof TLRPC.TL_webPagePending) {
+            this.loadedWebPage = webPage;
+            return;
+        }
+        if (webPage instanceof TLRPC.TL_webPageEmpty) {
+            this.loadedWebPage = null;
+            int i2 = this.currentMode;
+            if (i2 != 0) {
+                this.currentMode = 0;
+                OnModeChangeListener onModeChangeListener = this.modeChangeListener;
+                if (onModeChangeListener != null) {
+                    onModeChangeListener.onModeChanged(i2, 0);
+                }
+            }
+        }
     }
 
     private void bindMedia(Layout layout) {

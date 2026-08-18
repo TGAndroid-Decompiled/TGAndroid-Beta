@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import java.io.File;
-import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.lang.reflect.Array;
 import org.telegram.messenger.utils.ImmutableByteArrayOutputStream;
@@ -68,7 +67,7 @@ public class StatsController extends BaseController {
     }
 
     private long bytesToLong(byte[] bArr) {
-        return ((bArr[0] & 255) << 56) | ((bArr[1] & 255) << 48) | ((bArr[2] & 255) << 40) | ((bArr[3] & 255) << 32) | ((bArr[4] & 255) << 24) | ((bArr[5] & 255) << 16) | ((bArr[6] & 255) << 8) | (255 & bArr[7]);
+        return ((((long) bArr[0]) & 255) << 56) | ((((long) bArr[1]) & 255) << 48) | ((((long) bArr[2]) & 255) << 40) | ((((long) bArr[3]) & 255) << 32) | ((((long) bArr[4]) & 255) << 24) | ((((long) bArr[5]) & 255) << 16) | ((((long) bArr[6]) & 255) << 8) | (255 & ((long) bArr[7]));
     }
 
     public static StatsController getInstance(int i) {
@@ -83,14 +82,15 @@ public class StatsController extends BaseController {
                         statsControllerArr[i] = statsController2;
                         statsController = statsController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
         return statsController;
     }
 
-    private StatsController(int i) throws IOException {
+    private StatsController(int i) {
         SharedPreferences sharedPreferences;
         super(i);
         this.buffer = new byte[8];
@@ -105,7 +105,7 @@ public class StatsController extends BaseController {
         this.byteArrayOutputStream = new ImmutableByteArrayOutputStream();
         this.saveRunnable = new Runnable() {
             @Override
-            public void run() throws IOException {
+            public void run() {
                 long jCurrentTimeMillis = System.currentTimeMillis();
                 if (Math.abs(jCurrentTimeMillis - StatsController.this.lastInternalStatsSaveTime) < 2000) {
                     return;

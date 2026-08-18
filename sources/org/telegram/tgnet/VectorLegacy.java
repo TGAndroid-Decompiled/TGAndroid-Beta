@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.telegram.tgnet.TLRPC;
 
 public class VectorLegacy {
     private VectorLegacy() {

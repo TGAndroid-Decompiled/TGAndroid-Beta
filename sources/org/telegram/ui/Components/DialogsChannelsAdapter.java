@@ -113,11 +113,9 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
             MessagesController.ChannelRecommendations cachedChannelRecommendations = MessagesController.getInstance(this.currentAccount).getCachedChannelRecommendations(0L);
             if (cachedChannelRecommendations != null) {
                 ArrayList arrayList3 = new ArrayList();
-                Iterator<TLObject> it = cachedChannelRecommendations.chats.iterator();
-                while (it.hasNext()) {
-                    TLObject next = it.next();
-                    if (next instanceof TLRPC.Chat) {
-                        TLRPC.Chat chat = (TLRPC.Chat) next;
+                for (TLObject tLObject : cachedChannelRecommendations.chats) {
+                    if (tLObject instanceof TLRPC.Chat) {
+                        TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                         TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(chat.id));
                         if (ChatObject.isNotInChat(chat) && (chat2 == null || ChatObject.isNotInChat(chat2))) {
                             arrayList3.add(chat);
@@ -127,9 +125,9 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
                 if (!arrayList3.isEmpty()) {
                     arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.SearchRecommendedChannels)));
                 }
-                Iterator it2 = arrayList3.iterator();
-                while (it2.hasNext()) {
-                    arrayList.add(UItem.asProfileCell((TLRPC.Chat) it2.next()));
+                Iterator it = arrayList3.iterator();
+                while (it.hasNext()) {
+                    arrayList.add(UItem.asProfileCell((TLRPC.Chat) it.next()));
                 }
                 return;
             }
@@ -141,25 +139,19 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
             return;
         }
         ArrayList arrayList4 = new ArrayList();
-        Iterator it3 = this.searchMyChannels.iterator();
-        while (it3.hasNext()) {
-            TLRPC.Chat chat3 = (TLRPC.Chat) it3.next();
+        for (TLRPC.Chat chat3 : this.searchMyChannels) {
             TLRPC.Chat chat4 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(chat3.id));
             if (ChatObject.isNotInChat(chat3) && (chat4 == null || ChatObject.isNotInChat(chat4))) {
                 arrayList4.add(chat3);
             }
         }
-        Iterator it4 = this.searchRecommendedChannels.iterator();
-        while (it4.hasNext()) {
-            TLRPC.Chat chat5 = (TLRPC.Chat) it4.next();
+        for (TLRPC.Chat chat5 : this.searchRecommendedChannels) {
             TLRPC.Chat chat6 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(chat5.id));
             if (ChatObject.isNotInChat(chat5) && (chat6 == null || ChatObject.isNotInChat(chat6))) {
                 arrayList4.add(chat5);
             }
         }
-        Iterator it5 = this.searchChannels.iterator();
-        while (it5.hasNext()) {
-            TLRPC.Chat chat7 = (TLRPC.Chat) it5.next();
+        for (TLRPC.Chat chat7 : this.searchChannels) {
             TLRPC.Chat chat8 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(chat7.id));
             if (ChatObject.isNotInChat(chat7) && (chat8 == null || ChatObject.isNotInChat(chat8))) {
                 arrayList4.add(chat7);
@@ -189,9 +181,9 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
             return;
         }
         arrayList.add(UItem.asGraySection(LocaleController.getString(R.string.SearchMessages)));
-        Iterator it6 = this.messages.iterator();
-        while (it6.hasNext()) {
-            arrayList.add(UItem.asSearchMessage((MessageObject) it6.next()));
+        Iterator it2 = this.messages.iterator();
+        while (it2.hasNext()) {
+            arrayList.add(UItem.asSearchMessage((MessageObject) it2.next()));
         }
         if (this.hasMore) {
             arrayList.add(UItem.asFlicker(1));
@@ -346,10 +338,8 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
         HashSet hashSet = new HashSet();
         this.searchMyChannels.clear();
         if (tL_contacts_found != null) {
-            Iterator<TLRPC.Peer> it = tL_contacts_found.my_results.iterator();
-            while (it.hasNext()) {
-                TLRPC.Peer next = it.next();
-                if ((next instanceof TLRPC.TL_peerChannel) && (chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(next.channel_id))) != null && ChatObject.isChannelAndNotMegaGroup(chat2) && !hashSet.contains(Long.valueOf(chat2.id))) {
+            for (TLRPC.Peer peer : tL_contacts_found.my_results) {
+                if ((peer instanceof TLRPC.TL_peerChannel) && (chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(peer.channel_id))) != null && ChatObject.isChannelAndNotMegaGroup(chat2) && !hashSet.contains(Long.valueOf(chat2.id))) {
                     hashSet.add(Long.valueOf(chat2.id));
                     this.searchMyChannels.add(chat2);
                 }
@@ -360,11 +350,9 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
         String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
         MessagesController.ChannelRecommendations cachedChannelRecommendations = MessagesController.getInstance(this.currentAccount).getCachedChannelRecommendations(0L);
         if (cachedChannelRecommendations != null && !cachedChannelRecommendations.chats.isEmpty()) {
-            Iterator<TLObject> it2 = cachedChannelRecommendations.chats.iterator();
-            while (it2.hasNext()) {
-                TLObject next2 = it2.next();
-                if (next2 instanceof TLRPC.Chat) {
-                    TLRPC.Chat chat3 = (TLRPC.Chat) next2;
+            for (TLObject tLObject : cachedChannelRecommendations.chats) {
+                if (tLObject instanceof TLRPC.Chat) {
+                    TLRPC.Chat chat3 = (TLRPC.Chat) tLObject;
                     if (ChatObject.isChannelAndNotMegaGroup(chat3)) {
                         TLRPC.Chat chat4 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(chat3.id));
                         if (ChatObject.isNotInChat(chat3) && (chat4 == null || ChatObject.isNotInChat(chat4))) {
@@ -387,10 +375,8 @@ public abstract class DialogsChannelsAdapter extends UniversalAdapter {
         }
         this.searchChannels.clear();
         if (tL_contacts_found != null) {
-            Iterator<TLRPC.Peer> it3 = tL_contacts_found.results.iterator();
-            while (it3.hasNext()) {
-                TLRPC.Peer next3 = it3.next();
-                if ((next3 instanceof TLRPC.TL_peerChannel) && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(next3.channel_id))) != null && ChatObject.isChannelAndNotMegaGroup(chat) && !hashSet.contains(Long.valueOf(chat.id))) {
+            for (TLRPC.Peer peer2 : tL_contacts_found.results) {
+                if ((peer2 instanceof TLRPC.TL_peerChannel) && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(peer2.channel_id))) != null && ChatObject.isChannelAndNotMegaGroup(chat) && !hashSet.contains(Long.valueOf(chat.id))) {
                     hashSet.add(Long.valueOf(chat.id));
                     this.searchChannels.add(chat);
                 }

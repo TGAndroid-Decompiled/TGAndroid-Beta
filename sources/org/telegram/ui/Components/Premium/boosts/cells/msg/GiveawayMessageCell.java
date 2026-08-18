@@ -178,7 +178,10 @@ public class GiveawayMessageCell {
                             return true;
                         }
                         i++;
-                    } else if (this.containerRect.contains(x, y)) {
+                    } else {
+                        if (!this.containerRect.contains(x, y)) {
+                            break;
+                        }
                         this.isContainerPressed = true;
                         return true;
                     }
@@ -297,7 +300,7 @@ public class GiveawayMessageCell {
             SpannableStringBuilder spannableStringBuilderReplaceTags3 = AndroidUtilities.replaceTags(LocaleController.getString("BoostingWinnersDate", R.string.BoostingWinnersDate));
             SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(spannableStringBuilderReplaceTags3);
             spannableStringBuilder4.setSpan(new RelativeSizeSpan(1.05f), 0, spannableStringBuilderReplaceTags3.length(), 33);
-            Date date = new Date(tL_messageMediaGiveaway.until_date * 1000);
+            Date date = new Date(((long) tL_messageMediaGiveaway.until_date) * 1000);
             String str = LocaleController.getInstance().getFormatterGiveawayCard().format(date);
             String str2 = LocaleController.getInstance().getFormatterDay().format(date);
             spannableStringBuilder4.append((CharSequence) "\n");
@@ -335,11 +338,9 @@ public class GiveawayMessageCell {
             }
             if (tL_messageMediaGiveaway.countries_iso2.size() > 0) {
                 ArrayList arrayList = new ArrayList();
-                Iterator<String> it = tL_messageMediaGiveaway.countries_iso2.iterator();
-                while (it.hasNext()) {
-                    String next = it.next();
-                    String displayCountry = new Locale("", next).getDisplayCountry(Locale.getDefault());
-                    String languageFlag = LocaleController.getLanguageFlag(next);
+                for (String str4 : tL_messageMediaGiveaway.countries_iso2) {
+                    String displayCountry = new Locale("", str4).getDisplayCountry(Locale.getDefault());
+                    String languageFlag = LocaleController.getLanguageFlag(str4);
                     SpannableStringBuilder spannableStringBuilder5 = new SpannableStringBuilder();
                     if (languageFlag != null) {
                         spannableStringBuilder5.append((CharSequence) languageFlag).append((CharSequence) " ");
@@ -382,26 +383,24 @@ public class GiveawayMessageCell {
                 this.counterStr = "x" + tL_messageMediaGiveaway.quantity;
             }
             TextPaint textPaint2 = this.counterTextPaint;
-            String str4 = this.counterStr;
-            textPaint2.getTextBounds(str4, 0, str4.length(), this.counterTextBounds);
+            String str5 = this.counterStr;
+            textPaint2.getTextBounds(str5, 0, str5.length(), this.counterTextBounds);
             if (tL_messageMediaGiveaway.stars != 0) {
                 this.counterTextBounds.right += AndroidUtilities.dp(20.0f);
             }
             Arrays.fill(this.avatarVisible, false);
             this.measuredHeight += AndroidUtilities.dp(30.0f);
             ArrayList arrayList2 = new ArrayList(tL_messageMediaGiveaway.channels.size());
-            Iterator<Long> it2 = tL_messageMediaGiveaway.channels.iterator();
-            while (it2.hasNext()) {
-                Long next2 = it2.next();
-                if (MessagesController.getInstance(UserConfig.selectedAccount).getChat(next2) != null) {
-                    arrayList2.add(next2);
+            for (Long l : tL_messageMediaGiveaway.channels) {
+                if (MessagesController.getInstance(UserConfig.selectedAccount).getChat(l) != null) {
+                    arrayList2.add(l);
                 }
             }
             float f4 = 0.0f;
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                Long l = (Long) arrayList2.get(i10);
-                long jLongValue = l.longValue();
-                TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(l);
+                Long l2 = (Long) arrayList2.get(i10);
+                long jLongValue = l2.longValue();
+                TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(l2);
                 if (chat != null) {
                     this.avatarVisible[i10] = true;
                     this.chats[i10] = chat;
@@ -719,21 +718,14 @@ public class GiveawayMessageCell {
         TLRPC.Document document = null;
         if (tL_messages_stickerSet != null) {
             String str2 = (String) monthsToEmoticon.get(Integer.valueOf(tL_messageMediaGiveaway.months));
-            Iterator<TLRPC.TL_stickerPack> it = tL_messages_stickerSet.packs.iterator();
-            while (it.hasNext()) {
-                TLRPC.TL_stickerPack next = it.next();
-                if (Objects.equals(next.emoticon, str2)) {
-                    Iterator<Long> it2 = next.documents.iterator();
-                    while (it2.hasNext()) {
-                        long jLongValue = it2.next().longValue();
-                        Iterator<TLRPC.Document> it3 = tL_messages_stickerSet.documents.iterator();
-                        while (true) {
-                            if (!it3.hasNext()) {
-                                break;
-                            }
-                            TLRPC.Document next2 = it3.next();
-                            if (next2.id == jLongValue) {
-                                document = next2;
+            for (TLRPC.TL_stickerPack tL_stickerPack : tL_messages_stickerSet.packs) {
+                if (Objects.equals(tL_stickerPack.emoticon, str2)) {
+                    Iterator<Long> it = tL_stickerPack.documents.iterator();
+                    while (it.hasNext()) {
+                        long jLongValue = it.next().longValue();
+                        for (TLRPC.Document document2 : tL_messages_stickerSet.documents) {
+                            if (document2.id == jLongValue) {
+                                document = document2;
                                 break;
                             }
                         }

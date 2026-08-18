@@ -23,7 +23,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
-import org.webrtc.audio.JavaAudioDeviceModule;
 
 public class WebRtcAudioRecord {
     private static final int AUDIO_RECORD_START = 0;
@@ -75,7 +74,7 @@ public class WebRtcAudioRecord {
         }
 
         @Override
-        public void run() throws IllegalStateException, SecurityException, IllegalArgumentException {
+        public void run() {
             Process.setThreadPriority(-19);
             Logging.d("WebRtcAudioRecordExternal", "AudioRecordThread" + WebRtcAudioUtils.getThreadInfo());
             WebRtcAudioRecord.assertTrue(WebRtcAudioRecord.this.audioRecord.getRecordingState() == 3);
@@ -183,7 +182,7 @@ public class WebRtcAudioRecord {
         return this.effects.setNS(z);
     }
 
-    private int initRecording(int i, int i2) throws IllegalStateException {
+    private int initRecording(int i, int i2) {
         Logging.d("WebRtcAudioRecordExternal", "initRecording(sampleRate=" + i + ", channels=" + i2 + ")");
         if (this.audioRecord != null) {
             reportWebRtcAudioRecordInitError("InitRecording called twice without StopRecording.");
@@ -260,7 +259,7 @@ public class WebRtcAudioRecord {
         Logging.e("WebRtcAudioRecordExternal", "setPreferredDevice failed");
     }
 
-    private boolean startRecording() throws IllegalStateException {
+    private boolean startRecording() {
         Logging.d("WebRtcAudioRecordExternal", "startRecording");
         assertTrue(this.audioRecord != null);
         assertTrue(this.audioThread == null);

@@ -396,10 +396,8 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         HashSet hashSet = new HashSet();
         this.searchMine.clear();
         if (tL_contacts_found != null) {
-            Iterator<TLRPC.Peer> it = tL_contacts_found.my_results.iterator();
-            while (it.hasNext()) {
-                TLRPC.Peer next = it.next();
-                if ((next instanceof TLRPC.TL_peerUser) && (user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(next.user_id))) != null && user2.bot && !hashSet.contains(Long.valueOf(user2.id))) {
+            for (TLRPC.Peer peer : tL_contacts_found.my_results) {
+                if ((peer instanceof TLRPC.TL_peerUser) && (user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peer.user_id))) != null && user2.bot && !hashSet.contains(Long.valueOf(user2.id))) {
                     hashSet.add(Long.valueOf(user2.id));
                     this.searchMine.add(user2);
                 }
@@ -407,10 +405,8 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         }
         this.searchGlobal.clear();
         if (tL_contacts_found != null) {
-            Iterator<TLRPC.Peer> it2 = tL_contacts_found.results.iterator();
-            while (it2.hasNext()) {
-                TLRPC.Peer next2 = it2.next();
-                if ((next2 instanceof TLRPC.TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(next2.user_id))) != null && user.bot && !hashSet.contains(Long.valueOf(user.id))) {
+            for (TLRPC.Peer peer2 : tL_contacts_found.results) {
+                if ((peer2 instanceof TLRPC.TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peer2.user_id))) != null && user.bot && !hashSet.contains(Long.valueOf(user.id))) {
                     hashSet.add(Long.valueOf(user.id));
                     this.searchGlobal.add(user);
                 }
@@ -539,7 +535,6 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                             FileLog.e(e);
                             if (sQLiteCursor2 != null) {
                                 sQLiteCursorQueryFinalized = sQLiteCursor2;
-                                sQLiteCursorQueryFinalized.dispose();
                             }
                             sQLiteCursor = this;
                             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -645,13 +640,14 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                         sQLitePreparedStatementExecuteFast.bindInteger(4, i);
                         sQLitePreparedStatementExecuteFast.step();
                     }
+                    if (sQLitePreparedStatementExecuteFast != null) {
+                        sQLitePreparedStatementExecuteFast.dispose();
+                    }
                 } catch (Exception e) {
                     FileLog.e(e);
                     if (sQLitePreparedStatementExecuteFast != null) {
+                        sQLitePreparedStatementExecuteFast.dispose();
                     }
-                }
-                if (sQLitePreparedStatementExecuteFast != null) {
-                    sQLitePreparedStatementExecuteFast.dispose();
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override

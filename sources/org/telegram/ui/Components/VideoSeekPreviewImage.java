@@ -17,17 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import j$.util.Comparator$CC;
 import java.io.File;
-import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.function.ToDoubleFunction;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
@@ -35,8 +34,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.VideoPlayer;
-import org.telegram.ui.Components.VideoSeekPreviewImage;
 
 public abstract class VideoSeekPreviewImage extends View implements NotificationCenter.NotificationCenterDelegate {
     private Paint bitmapPaint;
@@ -147,8 +144,9 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             PhotoViewerWebView photoViewerWebView = this.webView;
             if (photoViewerWebView != null) {
                 int youtubeStoryboardImageCount = photoViewerWebView.getYoutubeStoryboardImageCount((int) this.lastPosition);
+                int iCeil = (int) Math.ceil(youtubeStoryboardImageCount / 5.0f);
                 float bitmapWidth = this.storyBoardsReceiver.getBitmapWidth() / Math.min(youtubeStoryboardImageCount, 5);
-                float bitmapHeight = this.storyBoardsReceiver.getBitmapHeight() / ((int) Math.ceil(youtubeStoryboardImageCount / 5.0f));
+                float bitmapHeight = this.storyBoardsReceiver.getBitmapHeight() / iCeil;
                 int iMin = Math.min(this.webView.getYoutubeStoryboardImageIndex((int) this.lastPosition), youtubeStoryboardImageCount - 1);
                 this.ytImageX = (int) ((iMin % 5) * bitmapWidth);
                 this.ytImageY = (int) ((iMin / 5) * bitmapHeight);
@@ -230,13 +228,14 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
                 this.currentPixel = i2;
             }
         }
-        this.frameTime = AndroidUtilities.formatShortDuration((int) (((long) (photoViewerWebView.getVideoDuration() * f)) / 1000));
-        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r10));
+        String shortDuration = AndroidUtilities.formatShortDuration((int) (((long) (photoViewerWebView.getVideoDuration() * f)) / 1000));
+        this.frameTime = shortDuration;
+        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(shortDuration));
         invalidate();
         if (this.progressRunnable != null) {
             Utilities.globalQueue.cancelRunnable(this.progressRunnable);
         }
-        double videoDuration = (f * photoViewerWebView.getVideoDuration()) / 1000.0d;
+        double videoDuration = ((double) (f * photoViewerWebView.getVideoDuration())) / 1000.0d;
         this.lastPosition = videoDuration;
         String youtubeStoryboard = photoViewerWebView.getYoutubeStoryboard((int) videoDuration);
         if (youtubeStoryboard != null) {
@@ -244,8 +243,53 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         }
     }
 
-    public void setProgress(org.telegram.messenger.MessageObject r13, final float r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.VideoSeekPreviewImage.setProgress(org.telegram.messenger.MessageObject, float, int):void");
+    public void setProgress(MessageObject messageObject, final float f, int i) {
+        boolean z;
+        TLRPC.Document documentFindDocumentById;
+        this.webView = null;
+        this.isYoutube = false;
+        if (this.storyBoardMap != null && (documentFindDocumentById = findDocumentById(messageObject, this.storyBoardPictureDocId)) != null) {
+            this.lastPosition = ((double) (this.duration * f)) / 1000.0d;
+            this.storyBoardsReceiver.setImage(ImageLocation.getForDocument(documentFindDocumentById), null, null, null, messageObject, 0);
+            z = true;
+        } else {
+            this.storyBoardsReceiver.setImageBitmap((Drawable) null);
+            z = false;
+        }
+        this.drawStoryBoard = z;
+        if (i != 0) {
+            this.pixelWidth = i;
+            int i2 = ((int) (i * f)) / 5;
+            if (this.currentPixel == i2) {
+                return;
+            } else {
+                this.currentPixel = i2;
+            }
+        }
+        final long j = (long) (this.duration * f);
+        String shortDuration = AndroidUtilities.formatShortDuration((int) (j / 1000));
+        this.frameTime = shortDuration;
+        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(shortDuration));
+        invalidate();
+        if (this.progressRunnable != null) {
+            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
+        }
+        if (z) {
+            return;
+        }
+        AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
+        if (animatedFileDrawable != null) {
+            animatedFileDrawable.resetStream(false);
+        }
+        DispatchQueue dispatchQueue = Utilities.globalQueue;
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$setProgress$2(f, j);
+            }
+        };
+        this.progressRunnable = runnable;
+        dispatchQueue.postRunnable(runnable);
     }
 
     public void lambda$setProgress$2(float f, long j) {
@@ -330,9 +374,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         if (videoPlayer.getQualitiesCount() > 0) {
             VideoPlayer.VideoUri downloadUri = null;
             for (int i = 0; i < videoPlayer.getQualitiesCount(); i++) {
-                Iterator it = videoPlayer.getQuality(i).uris.iterator();
-                while (it.hasNext()) {
-                    VideoPlayer.VideoUri videoUri = (VideoPlayer.VideoUri) it.next();
+                for (VideoPlayer.VideoUri videoUri : videoPlayer.getQuality(i).uris) {
                     if (downloadUri == null || ((!downloadUri.isCached() && videoUri.isCached()) || (downloadUri.isCached() == videoUri.isCached() && videoUri.width * videoUri.height < downloadUri.width * downloadUri.height))) {
                         downloadUri = videoUri;
                     }
@@ -400,7 +442,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws IOException, NumberFormatException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.fileLoaded) {
             if (((String) objArr[0]).equals(this.downloadingStoryBoardMapFilename)) {
                 File pathToAttach = FileLoader.getInstance(i2).getPathToAttach(this.downloadingStoryboardMapDocument);
@@ -421,7 +463,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         }
     }
 
-    public void parseStoryBoardMap(File file) throws IOException, NumberFormatException {
+    public void parseStoryBoardMap(File file) {
         if (file == null) {
             this.storyBoardMap = null;
             return;
@@ -615,11 +657,9 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         if (document != null && str.equalsIgnoreCase(document.mime_type)) {
             return media.document;
         }
-        Iterator<TLRPC.Document> it = media.alt_documents.iterator();
-        while (it.hasNext()) {
-            TLRPC.Document next = it.next();
-            if (str.equalsIgnoreCase(next.mime_type)) {
-                return next;
+        for (TLRPC.Document document2 : media.alt_documents) {
+            if (str.equalsIgnoreCase(document2.mime_type)) {
+                return document2;
             }
         }
         return null;
@@ -634,11 +674,9 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
         if (document != null && document.id == j) {
             return document;
         }
-        Iterator<TLRPC.Document> it = media.alt_documents.iterator();
-        while (it.hasNext()) {
-            TLRPC.Document next = it.next();
-            if (next.id == j) {
-                return next;
+        for (TLRPC.Document document2 : media.alt_documents) {
+            if (document2.id == j) {
+                return document2;
             }
         }
         return null;
@@ -670,7 +708,8 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
             canvas.clipPath(this.ytPath);
             canvas.scale(getWidth() / this.ytImageWidth, getHeight() / this.ytImageHeight);
             canvas.translate(-this.ytImageX, -this.ytImageY);
-            this.storyBoardsReceiver.setImageCoords(0.0f, 0.0f, r0.getBitmapWidth(), this.storyBoardsReceiver.getBitmapHeight());
+            ImageReceiver imageReceiver = this.storyBoardsReceiver;
+            imageReceiver.setImageCoords(0.0f, 0.0f, imageReceiver.getBitmapWidth(), this.storyBoardsReceiver.getBitmapHeight());
             this.storyBoardsReceiver.draw(canvas);
             canvas.restore();
             this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());

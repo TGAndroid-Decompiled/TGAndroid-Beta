@@ -22,8 +22,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AvatarDrawable;
-import org.telegram.ui.Components.quickforward.BlurVisibilityDrawable;
-import org.telegram.ui.Components.quickforward.QuickShareSelectorDrawable;
 
 class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateListener {
     private ValueAnimator alphaAnimator;
@@ -60,7 +58,10 @@ class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateListener {
         float f7 = f + f5;
         float f8 = f4 - f3;
         if (f2 <= f8) {
-            return f6 < f3 ? f3 + f5 : f7 > f4 ? f4 - f5 : f;
+            if (f6 < f3) {
+                return f3 + f5;
+            }
+            return f7 > f4 ? f4 - f5 : f;
         }
         float f9 = (f3 + f4) / 2.0f;
         float f10 = f2 - f8;
@@ -263,24 +264,25 @@ class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateListener {
                 this.avatarDrawable.setAvatarType(1);
                 this.avatarDrawable.setScaleSize(0.75f);
                 this.imageReceiver.setImage(null, null, null, null, this.avatarDrawable, 0L, null, user, 0);
-                this.imageReceiver.setRoundRadius(AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.AVATAR / 2.0f));
-                this.imageReceiver.setImageCoords(0.0f, 0.0f, AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.AVATAR), AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.AVATAR));
-                Paint themedPaint = chatMessageCell.getThemedPaint("paintChatActionText");
-                if (string != null || themedPaint == null) {
-                }
-                int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp((QuickShareSelectorDrawable.Sizes.TEXT_PADDING_INTERNAL * 2) + (QuickShareSelectorDrawable.Sizes.TEXT_PADDING_EXTERNAL * 2));
-                TextPaint textPaint = new TextPaint(themedPaint);
-                this.textLayout = new StaticLayout(TextUtils.ellipsize(string, textPaint, iDp, TextUtils.TruncateAt.END), textPaint, (int) Math.ceil(textPaint.measureText(r6, 0, r6.length())), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                return;
+            } else {
+                name = user != null ? ContactsController.formatName(user.first_name, user.last_name) : "";
+                this.imageReceiver.setForUserOrChat(user, this.avatarDrawable);
             }
-            name = user != null ? ContactsController.formatName(user.first_name, user.last_name) : "";
-            this.imageReceiver.setForUserOrChat(user, this.avatarDrawable);
-        } else {
-            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
-            name = chat != null ? chat.title : "";
-            this.avatarDrawable.setInfo(this.currentAccount, chat);
-            this.imageReceiver.setForUserOrChat(chat, this.avatarDrawable);
+            this.imageReceiver.setRoundRadius(AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.AVATAR / 2.0f));
+            this.imageReceiver.setImageCoords(0.0f, 0.0f, AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.AVATAR), AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.AVATAR));
+            Paint themedPaint = chatMessageCell.getThemedPaint("paintChatActionText");
+            if (string != null || themedPaint == null) {
+            }
+            int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp((QuickShareSelectorDrawable.Sizes.TEXT_PADDING_INTERNAL * 2) + (QuickShareSelectorDrawable.Sizes.TEXT_PADDING_EXTERNAL * 2));
+            TextPaint textPaint = new TextPaint(themedPaint);
+            CharSequence charSequenceEllipsize = TextUtils.ellipsize(string, textPaint, iDp, TextUtils.TruncateAt.END);
+            this.textLayout = new StaticLayout(charSequenceEllipsize, textPaint, (int) Math.ceil(textPaint.measureText(charSequenceEllipsize, 0, charSequenceEllipsize.length())), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            return;
         }
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+        name = chat != null ? chat.title : "";
+        this.avatarDrawable.setInfo(this.currentAccount, chat);
+        this.imageReceiver.setForUserOrChat(chat, this.avatarDrawable);
         string = name;
         this.imageReceiver.setRoundRadius(AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.AVATAR / 2.0f));
         this.imageReceiver.setImageCoords(0.0f, 0.0f, AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.AVATAR), AndroidUtilities.dp(QuickShareSelectorDrawable.Sizes.AVATAR));

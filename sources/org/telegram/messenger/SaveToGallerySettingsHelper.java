@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import android.util.LongSparseArray;
-import org.telegram.messenger.FilePathDatabase;
 
 public class SaveToGallerySettingsHelper {
     public static String CHANNELS_PREF_NAME = "channels_save_gallery_exceptions";

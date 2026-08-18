@@ -10,12 +10,6 @@ import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.FileLog;
-import org.webrtc.EglBase;
-import org.webrtc.EncodedImage;
-import org.webrtc.ThreadUtils;
-import org.webrtc.VideoDecoder;
-import org.webrtc.VideoFrame;
-import org.webrtc.VideoSink;
 
 class AndroidVideoDecoder implements VideoDecoder, VideoSink {
     private static final int DEQUEUE_INPUT_TIMEOUT_US = 500000;
@@ -255,14 +249,13 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                 Logging.e("AndroidVideoDecoder", "Media decoder release timeout", new RuntimeException());
                 return VideoCodecStatus.TIMEOUT;
             }
-            if (this.shutdownException != null) {
-                Logging.e("AndroidVideoDecoder", "Media decoder release error", new RuntimeException(this.shutdownException));
-                this.shutdownException = null;
-                return VideoCodecStatus.ERROR;
+            if (this.shutdownException == null) {
+                Object[] objArr = objArr == true ? 1 : 0;
+                return VideoCodecStatus.OK;
             }
-            this.codec = null;
-            this.outputThread = null;
-            return VideoCodecStatus.OK;
+            Logging.e("AndroidVideoDecoder", "Media decoder release error", new RuntimeException(this.shutdownException));
+            this.shutdownException = null;
+            return VideoCodecStatus.ERROR;
         } finally {
             this.codec = null;
             this.outputThread = null;
@@ -485,10 +478,12 @@ class AndroidVideoDecoder implements VideoDecoder, VideoSink {
                         Logging.d("AndroidVideoDecoder", "Frame stride and slice height: " + this.stride + " x " + this.sliceHeight);
                         this.stride = Math.max(this.width, this.stride);
                         this.sliceHeight = Math.max(this.height, this.sliceHeight);
-                    } finally {
+                    } catch (Throwable th) {
+                        throw th;
                     }
                 }
-            } finally {
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }

@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -342,9 +341,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         if (i == 1) {
             if (z) {
                 this.chatReactions.clear();
-                Iterator it = this.availableReactions.iterator();
-                while (it.hasNext()) {
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) it.next();
+                for (TLRPC.TL_availableReaction tL_availableReaction : this.availableReactions) {
                     if (tL_availableReaction.reaction.equals("👍") || tL_availableReaction.reaction.equals("👎")) {
                         this.chatReactions.add(tL_availableReaction.reaction);
                     }

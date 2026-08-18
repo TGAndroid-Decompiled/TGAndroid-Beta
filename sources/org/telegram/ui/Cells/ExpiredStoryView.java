@@ -31,14 +31,14 @@ public class ExpiredStoryView {
     public void measure(ChatMessageCell chatMessageCell) {
         TLRPC.Message message;
         int parentWidth;
-        String str;
+        CharSequence charSequence;
         CharSequence charSequenceCreateExpiredStoryString = StoriesUtilities.createExpiredStoryString();
         MessageObject messageObject = chatMessageCell.getMessageObject();
         if (messageObject != null && (message = messageObject.messageOwner) != null) {
             TLRPC.MessageMedia messageMedia = message.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaStory) {
                 TLRPC.User user = MessagesController.getInstance(chatMessageCell.currentAccount).getUser(Long.valueOf(((TLRPC.TL_messageMediaStory) messageMedia).user_id));
-                String str2 = user == null ? "DELETED" : user.first_name;
+                String str = user == null ? "DELETED" : user.first_name;
                 if (AndroidUtilities.isTablet()) {
                     parentWidth = AndroidUtilities.getMinTabletSide();
                 } else {
@@ -46,27 +46,26 @@ public class ExpiredStoryView {
                 }
                 int i = (int) (parentWidth * 0.4f);
                 String string = LocaleController.getString(R.string.From);
-                TextPaint textPaint = Theme.chat_forwardNamePaint;
-                int iCeil = (int) Math.ceil(textPaint.measureText(string + " "));
-                if (str2 == null) {
-                    str2 = "";
+                int iCeil = (int) Math.ceil(Theme.chat_forwardNamePaint.measureText(string + " "));
+                if (str == null) {
+                    str = "";
                 }
-                String str3 = (String) TextUtils.ellipsize(str2.replace('\n', ' '), Theme.chat_replyNamePaint, i - iCeil, TextUtils.TruncateAt.END);
+                String str2 = (String) TextUtils.ellipsize(str.replace('\n', ' '), Theme.chat_replyNamePaint, i - iCeil, TextUtils.TruncateAt.END);
                 String string2 = LocaleController.getString(R.string.FromFormatted);
                 int iIndexOf = string2.indexOf("%1$s");
-                String str4 = String.format(string2, str3);
+                String str3 = String.format(string2, str2);
                 if (iIndexOf >= 0) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str4);
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), iIndexOf, str3.length() + iIndexOf, 33);
-                    str = spannableStringBuilder;
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str3);
+                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), iIndexOf, str2.length() + iIndexOf, 33);
+                    charSequence = spannableStringBuilder;
                 } else {
-                    str = str4;
+                    charSequence = str3;
                 }
-                TextPaint textPaint2 = Theme.chat_replyTextPaint;
-                int iMeasureText = ((int) (textPaint2.measureText(charSequenceCreateExpiredStoryString, 0, charSequenceCreateExpiredStoryString.length()) + 1.0f)) + AndroidUtilities.dp(10.0f);
+                TextPaint textPaint = Theme.chat_replyTextPaint;
+                int iMeasureText = ((int) (textPaint.measureText(charSequenceCreateExpiredStoryString, 0, charSequenceCreateExpiredStoryString.length()) + 1.0f)) + AndroidUtilities.dp(10.0f);
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                this.titleLayout = new StaticLayout(charSequenceCreateExpiredStoryString, textPaint2, iMeasureText, alignment, 1.0f, 0.0f, false);
-                this.subtitleLayout = new StaticLayout(str, textPaint2, ((int) (textPaint2.measureText((CharSequence) str, 0, str.length()) + 1.0f)) + AndroidUtilities.dp(10.0f), alignment, 1.0f, 0.0f, false);
+                this.titleLayout = new StaticLayout(charSequenceCreateExpiredStoryString, textPaint, iMeasureText, alignment, 1.0f, 0.0f, false);
+                this.subtitleLayout = new StaticLayout(charSequence, textPaint, ((int) (textPaint.measureText(charSequence, 0, charSequence.length()) + 1.0f)) + AndroidUtilities.dp(10.0f), alignment, 1.0f, 0.0f, false);
                 this.height = 0;
                 this.verticalPadding = AndroidUtilities.dp(4.0f);
                 this.horizontalPadding = AndroidUtilities.dp(12.0f);

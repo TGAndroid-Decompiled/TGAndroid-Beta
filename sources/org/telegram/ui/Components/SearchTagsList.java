@@ -45,11 +45,9 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.FloatingDebug.FloatingDebugView$$ExternalSyntheticLambda10;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider;
@@ -757,7 +755,8 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
 
     public void setShown(float f) {
         this.shownT = f;
-        this.listView.setPivotX(r0.getWidth() / 2.0f);
+        RecyclerListView recyclerListView = this.listView;
+        recyclerListView.setPivotX(recyclerListView.getWidth() / 2.0f);
         this.listView.setPivotY(0.0f);
         this.listView.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f));
         this.listView.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f));
@@ -946,8 +945,9 @@ public abstract class SearchTagsList extends FrameLayout implements Notification
             this.reactionButton.countText = Integer.toString(item.count);
             this.reactionButton.counterDrawable.setCount(item.count, !z);
             ReactionsLayoutInBubble.ReactionButton reactionButton5 = this.reactionButton;
-            if (reactionButton5.counterDrawable != null && (reactionButton5.count > 0 || reactionButton5.hasName)) {
-                reactionButton5.width = (int) (reactionButton5.width + r1.getCurrentWidth() + AndroidUtilities.dp(this.reactionButton.hasName ? 4.0f : 0.0f) + this.reactionButton.textDrawable.getAnimateToWidth());
+            CounterView.CounterDrawable counterDrawable = reactionButton5.counterDrawable;
+            if (counterDrawable != null && (reactionButton5.count > 0 || reactionButton5.hasName)) {
+                reactionButton5.width = (int) (reactionButton5.width + counterDrawable.getCurrentWidth() + AndroidUtilities.dp(this.reactionButton.hasName ? 4.0f : 0.0f) + this.reactionButton.textDrawable.getAnimateToWidth());
             }
             if (z) {
                 ReactionsLayoutInBubble.ReactionButton reactionButton6 = this.reactionButton;

@@ -101,10 +101,8 @@ public class JLatexMathDrawable extends Drawable {
             }
             this.graphics2D.setCanvas(canvas);
             this.icon.paintIcon(null, this.graphics2D, 0, 0);
+        } finally {
             canvas.restoreToCount(iSave);
-        } catch (Throwable th) {
-            canvas.restoreToCount(iSave);
-            throw th;
         }
     }
 

@@ -2,7 +2,6 @@ package org.telegram.ui.community;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -200,8 +198,9 @@ public abstract class CommunityUtils {
             }
             int size = arrayList.size();
             for (int i = 0; i < size; i++) {
-                if (!this.hiddenJoinRequests.containsKey(DialogObject.getPeerDialogId(((TL_communities.CommunityPeerRequest) this.pendingRequests.get(i)).peer))) {
-                    if (r2.date <= this.lastViewTime) {
+                TL_communities.CommunityPeerRequest communityPeerRequest = (TL_communities.CommunityPeerRequest) this.pendingRequests.get(i);
+                if (!this.hiddenJoinRequests.containsKey(DialogObject.getPeerDialogId(communityPeerRequest.peer))) {
+                    if (communityPeerRequest.date <= this.lastViewTime) {
                         return;
                     } else {
                         this.unreadPendingRequests++;
@@ -562,6 +561,8 @@ public abstract class CommunityUtils {
         INavigationLayout parentLayout;
         final ChatActivity chatActivity;
         int size;
+        final boolean zIsChannelAndNotMegaGroup;
+        int size2;
         List list = null;
         if (AndroidUtilities.isTablet()) {
             parentLayout = null;
@@ -571,33 +572,53 @@ public abstract class CommunityUtils {
             if (parentLayout != null) {
                 List fragmentStack = parentLayout.getFragmentStack();
                 size = fragmentStack.size() - 2;
-                while (size >= 0) {
-                    BaseFragment baseFragment2 = (BaseFragment) fragmentStack.get(size);
-                    if (baseFragment2 instanceof ChatActivity) {
-                        chatActivity = (ChatActivity) baseFragment2;
-                        if (chatActivity.getDialogId() == j) {
-                            list = fragmentStack;
-                            break;
+                while (true) {
+                    if (size >= 0) {
+                        BaseFragment baseFragment2 = (BaseFragment) fragmentStack.get(size);
+                        if (baseFragment2 instanceof ChatActivity) {
+                            chatActivity = (ChatActivity) baseFragment2;
+                            if (chatActivity.getDialogId() == j) {
+                                list = fragmentStack;
+                                break;
+                            }
                         }
+                        size--;
+                    } else {
+                        chatActivity = null;
+                        list = fragmentStack;
                     }
-                    size--;
                 }
-                chatActivity = null;
-                list = fragmentStack;
-            } else {
-                chatActivity = null;
+                zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(j, baseFragment.getCurrentAccount());
+                if (size != -1) {
+                    for (size2 = list.size() - 2; size2 > size; size2--) {
+                        parentLayout.removeFragmentFromStack((BaseFragment) list.get(size2));
+                    }
+                    baseFragment.finishFragment();
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity, zIsChannelAndNotMegaGroup);
+                        }
+                    }, 250L);
+                    return;
+                }
+                if (!(baseFragment instanceof DialogsActivity)) {
+                    baseFragment.finishFragment();
+                }
+                showCommunityLinkSuccessToast(BulletinFactory.global(), i, zIsChannelAndNotMegaGroup);
             }
+            chatActivity = null;
         }
         size = -1;
-        final boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(j, baseFragment.getCurrentAccount());
+        zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(j, baseFragment.getCurrentAccount());
         if (size != -1) {
-            for (int size2 = list.size() - 2; size2 > size; size2--) {
+            while (size2 > size) {
                 parentLayout.removeFragmentFromStack((BaseFragment) list.get(size2));
             }
             baseFragment.finishFragment();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
+                public final void run() {
                     CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity, zIsChannelAndNotMegaGroup);
                 }
             }, 250L);
@@ -609,7 +630,7 @@ public abstract class CommunityUtils {
         showCommunityLinkSuccessToast(BulletinFactory.global(), i, zIsChannelAndNotMegaGroup);
     }
 
-    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) {
         if (i != 2) {
             chatActivity.onPageDownClicked();
             chatActivity.startFireworks();
@@ -660,11 +681,9 @@ public abstract class CommunityUtils {
             user = null;
         }
         if (j2 != 0 && (chatFull = MessagesController.getInstance(i).getChatFull(j2)) != null && (arrayList = chatFull.linked_peers) != null) {
-            Iterator<TL_communities.CommunityPeer> it = arrayList.iterator();
-            while (it.hasNext()) {
-                TL_communities.CommunityPeer next = it.next();
-                if (DialogObject.getPeerDialogId(next.peer) == j) {
-                    return getCommunityChatType(chat, user, user != null ? MessagesController.getInstance(i).getDialog(user.id) : null, next);
+            for (TL_communities.CommunityPeer communityPeer : arrayList) {
+                if (DialogObject.getPeerDialogId(communityPeer.peer) == j) {
+                    return getCommunityChatType(chat, user, user != null ? MessagesController.getInstance(i).getDialog(user.id) : null, communityPeer);
                 }
             }
         }

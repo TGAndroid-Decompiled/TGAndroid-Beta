@@ -149,12 +149,7 @@ public abstract class CastSync {
             if (sharedInstance == null || (currentCastSession = sharedInstance.getSessionManager().getCurrentCastSession()) == null) {
                 return false;
             }
-            if (!currentCastSession.isConnecting()) {
-                if (!currentCastSession.isConnected()) {
-                    return false;
-                }
-            }
-            return true;
+            return currentCastSession.isConnecting() || currentCastSession.isConnected();
         } catch (Exception e) {
             FileLog.e(e);
             return false;

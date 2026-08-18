@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.Paint.PaintTypeface;
-import org.telegram.ui.Components.Paint.Views.PaintTextOptionsView;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class PaintTypefaceListView extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate {

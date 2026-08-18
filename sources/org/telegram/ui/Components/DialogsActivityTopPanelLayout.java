@@ -10,7 +10,6 @@ import android.view.View;
 import me.vkryl.android.animator.ListAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedLinearLayout;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 
 public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {

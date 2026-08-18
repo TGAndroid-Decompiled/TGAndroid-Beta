@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
@@ -45,8 +44,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.ContentPreviewViewer;
 
 public class SuggestEmojiView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -315,7 +312,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) throws Resources.NotFoundException {
+        public void sendEmoji(TLRPC.Document document) {
             if (SuggestEmojiView.this.enterView == null) {
                 return;
             }
@@ -911,7 +908,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
     }
 
-    private CharSequence makeEmoji(String str) throws NumberFormatException {
+    private CharSequence makeEmoji(String str) {
         AnimatedEmojiSpan animatedEmojiSpan;
         Paint.FontMetricsInt fontMetricsInt = this.enterView.getEditField() != null ? this.enterView.getEditField().getPaint().getFontMetricsInt() : null;
         if (fontMetricsInt == null) {
@@ -1225,7 +1222,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
         }
 
-        public void setEmoji(String str, int i) throws NumberFormatException {
+        public void setEmoji(String str, int i) {
             this.emoji = str;
             if (str != null && str.startsWith("animated_")) {
                 try {
@@ -1339,7 +1336,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             ((EmojiImageView) viewHolder.itemView).setEmoji(this.suggestEmojiView.keywordResults == null ? null : ((MediaDataController.KeywordResult) this.suggestEmojiView.keywordResults.get(i)).emoji, this.suggestEmojiView.getDirection());
         }
 

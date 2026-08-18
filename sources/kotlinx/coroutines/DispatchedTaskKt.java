@@ -85,9 +85,11 @@ public abstract class DispatchedTaskKt {
             resume(dispatchedTask, dispatchedTask.getDelegate$kotlinx_coroutines_core(), true);
             do {
             } while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent());
-        } finally {
+        } catch (Throwable th) {
             try {
+                dispatchedTask.handleFatalException$kotlinx_coroutines_core(th, null);
             } finally {
+                eventLoop$kotlinx_coroutines_core.decrementUseCount(true);
             }
         }
     }

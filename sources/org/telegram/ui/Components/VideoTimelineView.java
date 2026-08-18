@@ -300,7 +300,7 @@ public class VideoTimelineView extends View {
                 this.framesToLoad = Math.max(1, (getMeasuredWidth() - AndroidUtilities.dp(16.0f)) / this.frameHeight);
                 this.frameWidth = (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(16.0f)) / this.framesToLoad);
             }
-            this.frameTimeOffset = this.videoLength / this.framesToLoad;
+            this.frameTimeOffset = this.videoLength / ((long) this.framesToLoad);
             if (!this.keyframes.isEmpty()) {
                 float size = this.keyframes.size() / this.framesToLoad;
                 float f = 0.0f;
@@ -317,37 +317,36 @@ public class VideoTimelineView extends View {
 
             @Override
             public Bitmap doInBackground(Integer... numArr) {
-                Bitmap frameAtTime;
                 this.frameNum = numArr[0].intValue();
                 Bitmap bitmap = null;
                 if (isCancelled()) {
                     return null;
                 }
                 try {
-                    frameAtTime = VideoTimelineView.this.mediaMetadataRetriever.getFrameAtTime(VideoTimelineView.this.frameTimeOffset * this.frameNum * 1000, 2);
-                } catch (Exception e) {
-                    e = e;
-                }
-                try {
-                    if (isCancelled()) {
-                        return null;
+                    Bitmap frameAtTime = VideoTimelineView.this.mediaMetadataRetriever.getFrameAtTime(VideoTimelineView.this.frameTimeOffset * ((long) this.frameNum) * 1000, 2);
+                    try {
+                        if (isCancelled()) {
+                            return null;
+                        }
+                        if (frameAtTime == null) {
+                            return frameAtTime;
+                        }
+                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(VideoTimelineView.this.frameWidth, VideoTimelineView.this.frameHeight, frameAtTime.getConfig());
+                        Canvas canvas = new Canvas(bitmapCreateBitmap);
+                        float fMax = Math.max(VideoTimelineView.this.frameWidth / frameAtTime.getWidth(), VideoTimelineView.this.frameHeight / frameAtTime.getHeight());
+                        int width = (int) (frameAtTime.getWidth() * fMax);
+                        int height = (int) (frameAtTime.getHeight() * fMax);
+                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((VideoTimelineView.this.frameWidth - width) / 2, (VideoTimelineView.this.frameHeight - height) / 2, width, height), (Paint) null);
+                        frameAtTime.recycle();
+                        return bitmapCreateBitmap;
+                    } catch (Exception e) {
+                        e = e;
+                        bitmap = frameAtTime;
+                        FileLog.e(e);
+                        return bitmap;
                     }
-                    if (frameAtTime == null) {
-                        return frameAtTime;
-                    }
-                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(VideoTimelineView.this.frameWidth, VideoTimelineView.this.frameHeight, frameAtTime.getConfig());
-                    Canvas canvas = new Canvas(bitmapCreateBitmap);
-                    float fMax = Math.max(VideoTimelineView.this.frameWidth / frameAtTime.getWidth(), VideoTimelineView.this.frameHeight / frameAtTime.getHeight());
-                    int width = (int) (frameAtTime.getWidth() * fMax);
-                    int height = (int) (frameAtTime.getHeight() * fMax);
-                    canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((VideoTimelineView.this.frameWidth - width) / 2, (VideoTimelineView.this.frameHeight - height) / 2, width, height), (Paint) null);
-                    frameAtTime.recycle();
-                    return bitmapCreateBitmap;
                 } catch (Exception e2) {
                     e = e2;
-                    bitmap = frameAtTime;
-                    FileLog.e(e);
-                    return bitmap;
                 }
             }
 
@@ -374,16 +373,15 @@ public class VideoTimelineView extends View {
     }
 
     public void destroy(boolean z) {
-        MediaMetadataRetriever mediaMetadataRetriever;
         synchronized (sync) {
             try {
-                mediaMetadataRetriever = this.mediaMetadataRetriever;
+                MediaMetadataRetriever mediaMetadataRetriever = this.mediaMetadataRetriever;
+                if (mediaMetadataRetriever != null) {
+                    mediaMetadataRetriever.release();
+                    this.mediaMetadataRetriever = null;
+                }
             } catch (Exception e) {
                 FileLog.e(e);
-            }
-            if (mediaMetadataRetriever != null) {
-                mediaMetadataRetriever.release();
-                this.mediaMetadataRetriever = null;
             }
         }
         if (z) {
@@ -522,20 +520,22 @@ public class VideoTimelineView extends View {
         float f2 = i3;
         float f3 = i4;
         canvas.drawBitmap(this.roundCornerBitmap, f2, f3, (Paint) null);
-        float f4 = (i + i4) - i5;
+        int i6 = i + i4;
+        float f4 = i6 - i5;
         canvas.rotate(-90.0f, i3 + i5, f4);
-        canvas.drawBitmap(this.roundCornerBitmap, f2, r9 - this.roundCornersSize, (Paint) null);
+        canvas.drawBitmap(this.roundCornerBitmap, f2, i6 - this.roundCornersSize, (Paint) null);
         canvas.restore();
         canvas.save();
-        float f5 = (i3 + i2) - i5;
+        int i7 = i3 + i2;
+        float f5 = i7 - i5;
         canvas.rotate(180.0f, f5, f4);
         Bitmap bitmap = this.roundCornerBitmap;
-        int i6 = this.roundCornersSize;
-        canvas.drawBitmap(bitmap, r11 - i6, r9 - i6, (Paint) null);
+        int i8 = this.roundCornersSize;
+        canvas.drawBitmap(bitmap, i7 - i8, i6 - i8, (Paint) null);
         canvas.restore();
         canvas.save();
         canvas.rotate(90.0f, f5, i4 + i5);
-        canvas.drawBitmap(this.roundCornerBitmap, r11 - this.roundCornersSize, f3, (Paint) null);
+        canvas.drawBitmap(this.roundCornerBitmap, i7 - this.roundCornersSize, f3, (Paint) null);
         canvas.restore();
     }
 

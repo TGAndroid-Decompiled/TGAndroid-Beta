@@ -97,7 +97,7 @@ public class SQLiteCursor {
         return columnType(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public boolean next() throws InterruptedException, SQLiteException {
+    public boolean next() throws SQLiteException {
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
         int iStep = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
         if (iStep == -1) {
@@ -113,13 +113,13 @@ public class SQLiteCursor {
                     }
                     Thread.sleep(500L);
                     iStep = this.preparedStatement.step();
+                    if (iStep == 0) {
+                        break;
+                    }
+                    i = i2;
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                if (iStep == 0) {
-                    break;
-                }
-                i = i2;
             }
             if (iStep == -1) {
                 throw new SQLiteException("sqlite busy");

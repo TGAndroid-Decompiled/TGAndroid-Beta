@@ -21,7 +21,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
@@ -75,8 +74,6 @@ import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TopicsFragment;
-import org.telegram.ui.community.CommunitySheet;
-import org.telegram.ui.community.CommunityUtils;
 import org.telegram.ui.community.cells.CommunityPendingRequestCell;
 import org.telegram.ui.community.cells.CommunityRequestsCell;
 import org.telegram.ui.community.sheet.CommunityAddOptionsSheet;
@@ -514,9 +511,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         }
         if (this.chatsToAddToCommunity != null) {
             String lowerCase = (!z || (str = this.lastSearchChatsString) == null) ? null : str.toLowerCase();
-            Iterator it = this.chatsToAddToCommunity.iterator();
-            while (it.hasNext()) {
-                TLRPC.Chat chat = (TLRPC.Chat) it.next();
+            for (TLRPC.Chat chat : this.chatsToAddToCommunity) {
                 if (z && !TextUtils.isEmpty(lowerCase)) {
                     String str2 = chat.title;
                     if (str2 != null && str2.toLowerCase().contains(lowerCase)) {

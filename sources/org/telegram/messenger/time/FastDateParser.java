@@ -38,7 +38,7 @@ public class FastDateParser implements DateParser, Serializable {
     private static final ConcurrentMap<Locale, Strategy>[] caches = new ConcurrentMap[17];
     private static final Strategy ABBREVIATED_YEAR_STRATEGY = new NumberStrategy(1) {
         @Override
-        void setCalendar(FastDateParser fastDateParser, Calendar calendar, String str) throws NumberFormatException {
+        void setCalendar(FastDateParser fastDateParser, Calendar calendar, String str) {
             int iAdjustYear = Integer.parseInt(str);
             if (iAdjustYear < 100) {
                 iAdjustYear = fastDateParser.adjustYear(iAdjustYear);

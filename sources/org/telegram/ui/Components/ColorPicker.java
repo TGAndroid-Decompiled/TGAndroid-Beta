@@ -18,6 +18,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -219,7 +220,8 @@ public class ColorPicker extends FrameLayout {
             @Override
             protected void onDraw(Canvas canvas) {
                 this.paint.setColor(ColorPicker.this.getThemedColor(Theme.key_dialogBackgroundGray));
-                this.rect.set(ColorPicker.this.colorEditText[0].getLeft() - AndroidUtilities.dp(13.0f), AndroidUtilities.dp(5.0f), r0 + ((int) (AndroidUtilities.dp(91.0f) + (ColorPicker.this.clearButton.getVisibility() == 0 ? AndroidUtilities.dp(25.0f) * ColorPicker.this.clearButton.getAlpha() : 0.0f))), AndroidUtilities.dp(37.0f));
+                int left = ColorPicker.this.colorEditText[0].getLeft() - AndroidUtilities.dp(13.0f);
+                this.rect.set(left, AndroidUtilities.dp(5.0f), left + ((int) (AndroidUtilities.dp(91.0f) + (ColorPicker.this.clearButton.getVisibility() == 0 ? AndroidUtilities.dp(25.0f) * ColorPicker.this.clearButton.getAlpha() : 0.0f))), AndroidUtilities.dp(37.0f));
                 canvas.drawRoundRect(this.rect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.paint);
             }
         };
@@ -686,14 +688,16 @@ public class ColorPicker extends FrameLayout {
 
     private void updateColorsPosition(ArrayList arrayList, int i, boolean z, int i2) {
         int i3 = this.colorsCount;
-        float f = this.radioContainer.getLeft() + ((AndroidUtilities.dp(30.0f) * i3) + ((i3 - 1) * AndroidUtilities.dp(13.0f))) > i2 - AndroidUtilities.dp(this.currentResetType == 1 ? 50.0f : 0.0f) ? r0 - r14 : 0.0f;
+        int left = this.radioContainer.getLeft() + (AndroidUtilities.dp(30.0f) * i3) + ((i3 - 1) * AndroidUtilities.dp(13.0f));
+        int iDp = i2 - AndroidUtilities.dp(this.currentResetType == 1 ? 50.0f : 0.0f);
+        float f = left > iDp ? left - iDp : 0.0f;
         if (arrayList != null) {
             arrayList.add(ObjectAnimator.ofFloat(this.radioContainer, (Property<FrameLayout, Float>) View.TRANSLATION_X, -f));
         } else {
             this.radioContainer.setTranslationX(-f);
         }
         int i4 = 0;
-        int iDp = 0;
+        int iDp2 = 0;
         while (true) {
             RadioButton[] radioButtonArr = this.radioButton;
             if (i4 >= radioButtonArr.length) {
@@ -711,9 +715,9 @@ public class ColorPicker extends FrameLayout {
                         arrayList.add(ObjectAnimator.ofFloat(this.radioButton[i4], (Property<RadioButton, Float>) View.SCALE_Y, 1.0f));
                     }
                     if (z || !(z || i4 == this.colorsCount - 1)) {
-                        arrayList.add(ObjectAnimator.ofFloat(this.radioButton[i4], (Property<RadioButton, Float>) View.TRANSLATION_X, iDp));
+                        arrayList.add(ObjectAnimator.ofFloat(this.radioButton[i4], (Property<RadioButton, Float>) View.TRANSLATION_X, iDp2));
                     } else {
-                        this.radioButton[i4].setTranslationX(iDp);
+                        this.radioButton[i4].setTranslationX(iDp2);
                     }
                 } else {
                     this.radioButton[i4].setVisibility(0);
@@ -722,7 +726,7 @@ public class ColorPicker extends FrameLayout {
                         this.radioButton[i4].setScaleX(1.0f);
                         this.radioButton[i4].setScaleY(1.0f);
                     }
-                    this.radioButton[i4].setTranslationX(iDp);
+                    this.radioButton[i4].setTranslationX(iDp2);
                 }
                 this.radioButton[i4].setTag(i5, 1);
             } else {
@@ -739,11 +743,11 @@ public class ColorPicker extends FrameLayout {
                     arrayList.add(ObjectAnimator.ofFloat(this.radioButton[i4], (Property<RadioButton, Float>) View.SCALE_Y, 0.0f));
                 }
                 if (!z) {
-                    this.radioButton[i4].setTranslationX(iDp);
+                    this.radioButton[i4].setTranslationX(iDp2);
                 }
                 this.radioButton[i4].setTag(i5, null);
             }
-            iDp += AndroidUtilities.dp(30.0f) + AndroidUtilities.dp(13.0f);
+            iDp2 += AndroidUtilities.dp(30.0f) + AndroidUtilities.dp(13.0f);
             i4++;
         }
     }
@@ -753,8 +757,84 @@ public class ColorPicker extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ColorPicker.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        float f;
+        float measuredWidth;
+        int i;
+        int iDp = AndroidUtilities.dp(45.0f);
+        float f2 = iDp;
+        canvas.drawBitmap(this.colorWheelBitmap, 0.0f, f2, (Paint) null);
+        int height = iDp + this.colorWheelBitmap.getHeight();
+        canvas.drawRect(0.0f, f2, getMeasuredWidth(), iDp + 1, this.linePaint);
+        canvas.drawRect(0.0f, height - 1, getMeasuredWidth(), height, this.linePaint);
+        float[] fArr = this.hsvTemp;
+        float[] fArr2 = this.colorHSV;
+        fArr[0] = fArr2[0];
+        fArr[1] = fArr2[1];
+        fArr[2] = 1.0f;
+        int measuredWidth2 = (int) ((fArr2[0] * getMeasuredWidth()) / 360.0f);
+        int height2 = (int) (f2 + (this.colorWheelBitmap.getHeight() * (1.0f - this.colorHSV[1])));
+        if (!this.circlePressed) {
+            int iDp2 = AndroidUtilities.dp(16.0f);
+            float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(this.pressedMoveProgress);
+            if (measuredWidth2 < iDp2) {
+                measuredWidth = measuredWidth2 + ((iDp2 - measuredWidth2) * interpolation);
+            } else if (measuredWidth2 > getMeasuredWidth() - iDp2) {
+                measuredWidth = measuredWidth2 - ((measuredWidth2 - (getMeasuredWidth() - iDp2)) * interpolation);
+            } else {
+                i = iDp + iDp2;
+                if (height2 < i) {
+                    height2 = (int) (height2 + (interpolation * (i - height2)));
+                } else if (height2 > (this.colorWheelBitmap.getHeight() + iDp) - iDp2) {
+                    height2 = (int) (height2 - (interpolation * (height2 - ((iDp + this.colorWheelBitmap.getHeight()) - iDp2))));
+                }
+            }
+            measuredWidth2 = (int) measuredWidth;
+            i = iDp + iDp2;
+            if (height2 < i) {
+                height2 = (int) (height2 + (interpolation * (i - height2)));
+            } else if (height2 > (this.colorWheelBitmap.getHeight() + iDp) - iDp2) {
+                height2 = (int) (height2 - (interpolation * (height2 - ((iDp + this.colorWheelBitmap.getHeight()) - iDp2))));
+            }
+        }
+        drawPointerArrow(canvas, measuredWidth2, height2, Color.HSVToColor(this.hsvTemp), false);
+        this.sliderRect.set(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(26.0f) + height, getMeasuredWidth() - AndroidUtilities.dp(22.0f), height + AndroidUtilities.dp(34.0f));
+        if (this.colorGradient == null) {
+            float[] fArr3 = this.hsvTemp;
+            fArr3[2] = this.minHsvBrightness;
+            int iHSVToColor = Color.HSVToColor(fArr3);
+            float[] fArr4 = this.hsvTemp;
+            fArr4[2] = this.maxHsvBrightness;
+            int iHSVToColor2 = Color.HSVToColor(fArr4);
+            RectF rectF = this.sliderRect;
+            float f3 = rectF.left;
+            float f4 = rectF.top;
+            LinearGradient linearGradient = new LinearGradient(f3, f4, rectF.right, f4, new int[]{iHSVToColor2, iHSVToColor}, (float[]) null, Shader.TileMode.CLAMP);
+            this.colorGradient = linearGradient;
+            this.valueSliderPaint.setShader(linearGradient);
+        }
+        canvas.drawRoundRect(this.sliderRect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.valueSliderPaint);
+        if (this.minHsvBrightness == this.maxHsvBrightness) {
+            f = 0.5f;
+        } else {
+            float brightness = getBrightness();
+            float f5 = this.minHsvBrightness;
+            f = (brightness - f5) / (this.maxHsvBrightness - f5);
+        }
+        RectF rectF2 = this.sliderRect;
+        drawPointerArrow(canvas, (int) (rectF2.left + ((1.0f - f) * rectF2.width())), (int) this.sliderRect.centerY(), getColor(), true);
+        if (this.circlePressed || this.pressedMoveProgress >= 1.0f) {
+            return;
+        }
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        long j = jElapsedRealtime - this.lastUpdateTime;
+        this.lastUpdateTime = jElapsedRealtime;
+        float f6 = this.pressedMoveProgress + (j / 180.0f);
+        this.pressedMoveProgress = f6;
+        if (f6 > 1.0f) {
+            this.pressedMoveProgress = 1.0f;
+        }
+        invalidate();
     }
 
     public int getFieldColor(int i, int i2) {

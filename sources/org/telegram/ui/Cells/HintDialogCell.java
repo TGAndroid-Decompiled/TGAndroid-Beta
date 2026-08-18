@@ -2,6 +2,8 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -13,9 +15,11 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.Theme;
@@ -232,8 +236,87 @@ public class HintDialogCell extends FrameLayout {
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r24, android.view.View r25, long r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.HintDialogCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        float f;
+        float f2;
+        TLRPC.User user;
+        TLRPC.UserStatus userStatus;
+        boolean zDrawChild = super.drawChild(canvas, view, j);
+        if (view == this.imageView) {
+            boolean z = (this.premiumBlocked || (user = this.currentUser) == null || user.bot || (((userStatus = user.status) == null || userStatus.expires <= ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) && !MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.currentUser.id)))) ? false : true;
+            if (!this.wasDraw) {
+                this.showOnlineProgress = z ? 1.0f : 0.0f;
+            }
+            if (z) {
+                float f3 = this.showOnlineProgress;
+                if (f3 != 1.0f) {
+                    float f4 = f3 + 0.10666667f;
+                    this.showOnlineProgress = f4;
+                    if (f4 > 1.0f) {
+                        this.showOnlineProgress = 1.0f;
+                    }
+                    invalidate();
+                } else if (!z) {
+                    f = this.showOnlineProgress;
+                    if (f != 0.0f) {
+                        f2 = f - 0.10666667f;
+                        this.showOnlineProgress = f2;
+                        if (f2 < 0.0f) {
+                            this.showOnlineProgress = 0.0f;
+                        }
+                        invalidate();
+                    }
+                }
+            } else if (!z) {
+                f = this.showOnlineProgress;
+                if (f != 0.0f) {
+                    f2 = f - 0.10666667f;
+                    this.showOnlineProgress = f2;
+                    if (f2 < 0.0f) {
+                        this.showOnlineProgress = 0.0f;
+                    }
+                    invalidate();
+                }
+            }
+            float f5 = this.premiumBlockedT.set(this.premiumBlocked);
+            if (f5 > 0.0f) {
+                float y = view.getY() + (view.getHeight() / 2.0f) + AndroidUtilities.dp(18.0f);
+                float x = view.getX() + (view.getWidth() / 2.0f) + AndroidUtilities.dp(18.0f);
+                canvas.save();
+                Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(this.backgroundColorKey, this.resourcesProvider));
+                canvas.drawCircle(x, y, AndroidUtilities.dp(11.33f) * f5, Theme.dialogs_onlineCirclePaint);
+                if (this.premiumGradient == null) {
+                    this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, -1, this.resourcesProvider);
+                }
+                this.premiumGradient.gradientMatrix((int) (x - AndroidUtilities.dp(10.0f)), (int) (y - AndroidUtilities.dp(10.0f)), (int) (AndroidUtilities.dp(10.0f) + x), (int) (AndroidUtilities.dp(10.0f) + y), 0.0f, 0.0f);
+                canvas.drawCircle(x, y, AndroidUtilities.dp(10.0f) * f5, this.premiumGradient.paint);
+                if (this.lockDrawable == null) {
+                    Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
+                    this.lockDrawable = drawableMutate;
+                    drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                }
+                Drawable drawable = this.lockDrawable;
+                drawable.setBounds((int) (x - (((drawable.getIntrinsicWidth() / 2.0f) * 0.875f) * f5)), (int) (y - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f5)), (int) (x + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f5)), (int) (y + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f5)));
+                this.lockDrawable.setAlpha((int) (f5 * 255.0f));
+                this.lockDrawable.draw(canvas);
+                canvas.restore();
+            } else if (this.showOnlineProgress != 0.0f) {
+                int iDp = AndroidUtilities.dp(53.0f);
+                int iDp2 = AndroidUtilities.dp(59.0f);
+                canvas.save();
+                float f6 = this.showOnlineProgress;
+                float f7 = iDp2;
+                float f8 = iDp;
+                canvas.scale(f6, f6, f7, f8);
+                Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(this.backgroundColorKey));
+                canvas.drawCircle(f7, f8, AndroidUtilities.dp(7.0f), Theme.dialogs_onlineCirclePaint);
+                Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_chats_onlineCircle));
+                canvas.drawCircle(f7, f8, AndroidUtilities.dp(5.0f), Theme.dialogs_onlineCirclePaint);
+                canvas.restore();
+            }
+            this.wasDraw = true;
+        }
+        return zDrawChild;
     }
 
     @Override

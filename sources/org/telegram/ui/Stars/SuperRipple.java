@@ -5,7 +5,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.RenderEffect;
 import android.graphics.RuntimeShader;
+import android.view.RoundedCorner;
 import android.view.View;
+import android.view.WindowInsets;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -56,8 +58,49 @@ public class SuperRipple extends ISuperRipple {
         this.effect = RenderEffect.createRuntimeShaderEffect(runtimeShaderM, "img");
     }
 
-    private void setupSizeUniforms(boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.SuperRipple.setupSizeUniforms(boolean):void");
+    private void setupSizeUniforms(boolean z) {
+        float radius;
+        float radius2;
+        if (z || this.width != this.view.getWidth() || this.height != this.view.getHeight() || Math.abs(this.density - AndroidUtilities.density) > 0.01f) {
+            RuntimeShader runtimeShader = this.shader;
+            int width = this.view.getWidth();
+            this.width = width;
+            int height = this.view.getHeight();
+            this.height = height;
+            runtimeShader.setFloatUniform("size", width, height);
+            RuntimeShader runtimeShader2 = this.shader;
+            float f = AndroidUtilities.density;
+            this.density = f;
+            runtimeShader2.setFloatUniform("density", f);
+            WindowInsets rootWindowInsets = this.view.getRootWindowInsets();
+            RoundedCorner roundedCorner = rootWindowInsets == null ? null : rootWindowInsets.getRoundedCorner(0);
+            RoundedCorner roundedCorner2 = rootWindowInsets == null ? null : rootWindowInsets.getRoundedCorner(1);
+            RoundedCorner roundedCorner3 = rootWindowInsets == null ? null : rootWindowInsets.getRoundedCorner(3);
+            RoundedCorner roundedCorner4 = rootWindowInsets != null ? rootWindowInsets.getRoundedCorner(2) : null;
+            RuntimeShader runtimeShader3 = this.shader;
+            if (roundedCorner4 != null) {
+                View view = this.view;
+                if (view == view.getRootView() || AndroidUtilities.navigationBarHeight <= 0) {
+                    radius = roundedCorner4.getRadius();
+                } else {
+                    radius = 0.0f;
+                }
+            } else {
+                radius = 0.0f;
+            }
+            float radius3 = roundedCorner2 == null ? 0.0f : roundedCorner2.getRadius();
+            if (roundedCorner3 != null) {
+                View view2 = this.view;
+                if (view2 == view2.getRootView() || AndroidUtilities.navigationBarHeight <= 0) {
+                    radius2 = roundedCorner3.getRadius();
+                } else {
+                    radius2 = 0.0f;
+                }
+            } else {
+                radius2 = 0.0f;
+            }
+            runtimeShader3.setFloatUniform("radius", radius, radius3, radius2, roundedCorner == null ? 0.0f : roundedCorner.getRadius());
+        }
     }
 
     @Override

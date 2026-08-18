@@ -65,8 +65,22 @@ public class SectionsScrollView extends ScrollView {
         this.contentView.invalidate();
     }
 
-    private void gatherChildren(android.view.ViewGroup r7, float r8, float r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SectionsScrollView.gatherChildren(android.view.ViewGroup, float, float):void");
+    private void gatherChildren(ViewGroup viewGroup, float f, float f2) {
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            View childAt = viewGroup.getChildAt(i);
+            if (childAt.getVisibility() == 0) {
+                if (childAt instanceof LinearLayout) {
+                    LinearLayout linearLayout = (LinearLayout) childAt;
+                    if (linearLayout.getOrientation() == 1 && childAt.getX() + f <= this.contentView.getPaddingLeft() && childAt.getX() + f + childAt.getWidth() >= this.contentView.getWidth() - this.contentView.getPaddingRight()) {
+                        gatherChildren(linearLayout, childAt.getX() + f, childAt.getY() + f2);
+                    } else {
+                        this.children.add(childAt);
+                    }
+                } else {
+                    this.children.add(childAt);
+                }
+            }
+        }
     }
 
     private float getChildX(View view) {
@@ -90,22 +104,25 @@ public class SectionsScrollView extends ScrollView {
         while (true) {
             View view = null;
             View view2 = null;
-            while (it.hasNext()) {
-                View view3 = (View) it.next();
-                if (!isSectionView(view3)) {
-                    break;
-                }
-                if (view != null && Math.abs(view2.getAlpha() - view3.getAlpha()) > 0.1f) {
+            while (true) {
+                if (it.hasNext()) {
+                    View view3 = (View) it.next();
+                    if (!isSectionView(view3)) {
+                        break;
+                    }
+                    if (view != null && Math.abs(view2.getAlpha() - view3.getAlpha()) > 0.1f) {
+                        drawSectionBackground(canvas, view, view2);
+                        view = null;
+                    }
+                    if (view == null) {
+                        view = view3;
+                    }
+                    view2 = view3;
+                } else {
                     drawSectionBackground(canvas, view, view2);
-                    view = null;
+                    return;
                 }
-                if (view == null) {
-                    view = view3;
-                }
-                view2 = view3;
             }
-            drawSectionBackground(canvas, view, view2);
-            return;
             drawSectionBackground(canvas, view, view2);
         }
     }

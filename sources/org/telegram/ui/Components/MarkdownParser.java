@@ -68,7 +68,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.MarkdownParser;
 import org.telegram.ui.iv.Latex;
 
 public abstract class MarkdownParser {
@@ -140,7 +139,13 @@ public abstract class MarkdownParser {
                 tL_webPage.flags |= 1024;
                 tL_webPage.cached_page = tL_page;
                 return tL_webPage;
-            } finally {
+            } catch (Throwable th) {
+                try {
+                    fileInputStream.close();
+                } catch (Throwable th2) {
+                    th.addSuppressed(th2);
+                }
+                throw th;
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -219,11 +224,45 @@ public abstract class MarkdownParser {
         return textmath;
     }
 
-    private static java.util.ArrayDeque scanOrderedListMarkers(java.lang.String r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MarkdownParser.scanOrderedListMarkers(java.lang.String):java.util.ArrayDeque");
+    private static ArrayDeque scanOrderedListMarkers(String str) {
+        ArrayDeque arrayDeque = new ArrayDeque();
+        String str2 = null;
+        boolean z = false;
+        for (String str3 : str.split("\n", -1)) {
+            int i = 0;
+            while (i < str3.length() && i < 3 && str3.charAt(i) == ' ') {
+                i++;
+            }
+            String strSubstring = str3.substring(i);
+            if (z) {
+                if (strSubstring.startsWith(str2)) {
+                    str2 = null;
+                    z = false;
+                }
+            } else {
+                String str4 = "```";
+                if (strSubstring.startsWith("```")) {
+                    str2 = str4;
+                    z = true;
+                } else {
+                    str4 = "~~~";
+                    if (strSubstring.startsWith("~~~")) {
+                        str2 = str4;
+                        z = true;
+                    } else {
+                        Matcher matcher = ORDERED_MARKER.matcher(str3);
+                        if (matcher.find()) {
+                            arrayDeque.add(matcher.group(1));
+                        }
+                    }
+                }
+            }
+        }
+        return arrayDeque;
     }
 
     private static String extractFootnoteDefs(String str, LinkedHashMap linkedHashMap) {
+        String str2;
         String[] strArrSplit = str.split("\n", -1);
         StringBuilder sb = new StringBuilder();
         int i = 0;
@@ -234,12 +273,12 @@ public abstract class MarkdownParser {
                 StringBuilder sb2 = new StringBuilder(matcher.group(2));
                 while (true) {
                     i++;
-                    while (i < strArrSplit.length) {
-                        String str2 = strArrSplit[i];
-                        if (str2.startsWith("    ") || str2.startsWith("\t")) {
-                            sb2.append('\n');
-                            sb2.append(str2.startsWith("\t") ? str2.substring(1) : str2.substring(4));
-                        } else {
+                    while (true) {
+                        if (i >= strArrSplit.length) {
+                            break;
+                        }
+                        str2 = strArrSplit[i];
+                        if (!str2.startsWith("    ") && !str2.startsWith("\t")) {
                             if (!str2.trim().isEmpty()) {
                                 break;
                             }
@@ -253,9 +292,12 @@ public abstract class MarkdownParser {
                             }
                             sb2.append('\n');
                             i = i2;
+                        } else {
+                            break;
                         }
                     }
-                    break;
+                    sb2.append('\n');
+                    sb2.append(str2.startsWith("\t") ? str2.substring(1) : str2.substring(4));
                 }
                 linkedHashMap.put(strGroup, sb2.toString().trim());
             } else {
@@ -326,7 +368,10 @@ public abstract class MarkdownParser {
                 textconcat.texts.add(richText);
             }
         }
-        return textconcat.texts.isEmpty() ? new TL_iv.textEmpty() : textconcat.texts.size() == 1 ? textconcat.texts.get(0) : textconcat;
+        if (textconcat.texts.isEmpty()) {
+            return new TL_iv.textEmpty();
+        }
+        return textconcat.texts.size() == 1 ? textconcat.texts.get(0) : textconcat;
     }
 
     public static TL_iv.RichText richTextOf(Node node, TL_iv.PageBlock pageBlock) {
@@ -368,15 +413,13 @@ public abstract class MarkdownParser {
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         MarkwonHtmlParserImpl markwonHtmlParserImplCreate = MarkwonHtmlParserImpl.create();
-        Iterator<TL_iv.RichText> it = textconcat.texts.iterator();
-        while (it.hasNext()) {
-            TL_iv.RichText next = it.next();
-            if (next instanceof TL_iv.textPlain) {
-                TL_iv.textPlain textplain = (TL_iv.textPlain) next;
+        for (TL_iv.RichText richText : textconcat.texts) {
+            if (richText instanceof TL_iv.textPlain) {
+                TL_iv.textPlain textplain = (TL_iv.textPlain) richText;
                 if (looksLikeHtmlTag(textplain.text)) {
                     int length = sb.length();
                     try {
-                        markwonHtmlParserImplCreate.processFragment(sb, ((TL_iv.textPlain) next).text);
+                        markwonHtmlParserImplCreate.processFragment(sb, ((TL_iv.textPlain) richText).text);
                     } catch (Throwable th) {
                         FileLog.e(th);
                         sb.append(textplain.text);
@@ -388,11 +431,11 @@ public abstract class MarkdownParser {
                     }
                 }
             }
-            String strRichTextToString = richTextToString(next);
+            String strRichTextToString = richTextToString(richText);
             int length3 = sb.length();
             sb.append(strRichTextToString);
             int length4 = sb.length();
-            arrayList.add(next);
+            arrayList.add(richText);
             arrayList2.add(new int[]{length3, length4});
         }
         final ArrayList<HtmlTag> arrayList3 = new ArrayList();
@@ -462,9 +505,9 @@ public abstract class MarkdownParser {
             return new TL_iv.textEmpty();
         }
         if (arrayList.size() == 1) {
-            TL_iv.RichText richText = (TL_iv.RichText) arrayList.get(0);
-            if ((richText instanceof TL_iv.textPlain) || (richText instanceof TL_iv.textEmpty)) {
-                return richText;
+            TL_iv.RichText richText2 = (TL_iv.RichText) arrayList.get(0);
+            if ((richText2 instanceof TL_iv.textPlain) || (richText2 instanceof TL_iv.textEmpty)) {
+                return richText2;
             }
         }
         TL_iv.textConcat textconcat3 = new TL_iv.textConcat();
@@ -503,8 +546,31 @@ public abstract class MarkdownParser {
         String lowerCase = str.toLowerCase();
         lowerCase.hashCode();
         switch (lowerCase) {
+            case "strike":
+            case "s":
+            case "del":
+                return 32;
+            case "strong":
+            case "b":
+                return 1;
+            case "i":
+            case "em":
+                return 2;
+            case "u":
+            case "ins":
+                return 16;
+            case "tt":
+            case "code":
+                return 4;
+            case "sub":
+                return 128;
+            case "sup":
+                return 256;
+            case "mark":
+                return 64;
+            default:
+                return 0;
         }
-        return 0;
     }
 
     private static TL_iv.RichText wrapByTag(String str, TL_iv.RichText richText) {
@@ -641,10 +707,7 @@ public abstract class MarkdownParser {
         String strRichTextToString = richTextToString(richText);
         ArrayList arrayList = new ArrayList();
         int i2 = 0;
-        while (true) {
-            if (i2 >= strRichTextToString.length()) {
-                break;
-            }
+        while (i2 < strRichTextToString.length()) {
             if (strRichTextToString.length() - i2 <= 8192) {
                 arrayList.add(plain(strRichTextToString.substring(i2)));
                 break;
@@ -741,7 +804,7 @@ public abstract class MarkdownParser {
             for (Item item : this.items) {
                 map.put(Integer.valueOf(item.start), item);
             }
-            TreeSet treeSet = new TreeSet();
+            TreeSet<Integer> treeSet = new TreeSet();
             int i = 0;
             treeSet.add(0);
             treeSet.add(Integer.valueOf(this.synth.length()));
@@ -754,10 +817,8 @@ public abstract class MarkdownParser {
                 treeSet.add(Integer.valueOf(block.end()));
             }
             ArrayList<Item> arrayList3 = new ArrayList();
-            Iterator it = treeSet.iterator();
             Integer num2 = null;
-            while (it.hasNext()) {
-                Integer num3 = (Integer) it.next();
+            for (Integer num3 : treeSet) {
                 if (num2 != null && num3.intValue() > num2.intValue()) {
                     int iIntValue = num2.intValue();
                     int iIntValue2 = num3.intValue();
@@ -851,8 +912,85 @@ public abstract class MarkdownParser {
             }
         }
 
-        private void wrapScope(org.telegram.ui.Components.MarkdownParser.BlockVisitor.Scope r9, java.util.List r10, int r11) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MarkdownParser.BlockVisitor.wrapScope(org.telegram.ui.Components.MarkdownParser$BlockVisitor$Scope, java.util.List, int):void");
+        private void wrapScope(Scope scope, List list, int i) {
+            byte b;
+            String lowerCase = scope.tag.name() == null ? "" : scope.tag.name().toLowerCase();
+            if (i >= 64) {
+                materialize(scope.children, list, i + 1);
+                return;
+            }
+            boolean z = false;
+            switch (lowerCase) {
+                case "summary":
+                    b = 1;
+                    break;
+                case "footer":
+                    b = 8;
+                    break;
+                case "header":
+                    b = 7;
+                    break;
+                case "article":
+                    b = 5;
+                    break;
+                case "p":
+                    b = 2;
+                    break;
+                case "div":
+                    b = 3;
+                    break;
+                case "nav":
+                    b = 10;
+                    break;
+                case "main":
+                    b = 6;
+                    break;
+                case "aside":
+                    b = 9;
+                    break;
+                case "details":
+                    b = 0;
+                    break;
+                case "section":
+                    b = 4;
+                    break;
+                default:
+                    b = -1;
+                    break;
+            }
+            if (b != 0) {
+                if (b != 1) {
+                    materialize(scope.children, list, i + 1);
+                    return;
+                }
+                return;
+            }
+            TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
+            if (scope.tag.attributes() != null && scope.tag.attributes().containsKey("open")) {
+                z = true;
+            }
+            pageblockdetails.open = z;
+            pageblockdetails.title = new TL_iv.textEmpty();
+            ArrayList arrayList = new ArrayList();
+            for (Object obj : scope.children) {
+                boolean z2 = obj instanceof Scope;
+                if (z2) {
+                    Scope scope2 = (Scope) obj;
+                    if ("summary".equalsIgnoreCase(scope2.tag.name())) {
+                        pageblockdetails.title = scopeToRichText(scope2);
+                    }
+                }
+                if (obj instanceof Item) {
+                    TL_iv.PageBlock pageBlock = ((Item) obj).block;
+                    if (pageBlock != null) {
+                        arrayList.add(pageBlock);
+                    }
+                } else if (z2) {
+                    wrapScope((Scope) obj, arrayList, i + 1);
+                }
+            }
+            pageblockdetails.blocks.addAll(arrayList);
+            list.add(pageblockdetails);
         }
 
         private TL_iv.RichText scopeToRichText(Scope scope) {
@@ -1191,7 +1329,10 @@ public abstract class MarkdownParser {
         }
 
         private static TL_iv.RichText collapse(TL_iv.textConcat textconcat) {
-            return textconcat.texts.isEmpty() ? new TL_iv.textEmpty() : textconcat.texts.size() == 1 ? textconcat.texts.get(0) : textconcat;
+            if (textconcat.texts.isEmpty()) {
+                return new TL_iv.textEmpty();
+            }
+            return textconcat.texts.size() == 1 ? textconcat.texts.get(0) : textconcat;
         }
 
         private void append(TL_iv.RichText richText) {

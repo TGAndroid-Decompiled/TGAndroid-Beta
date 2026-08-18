@@ -83,12 +83,12 @@ public class TimerParticles {
             canvas.drawPoint(particle2.x, particle2.y, paint);
         }
         double d = 0.017453292519943295d;
-        double d2 = (f - 90.0f) * 0.017453292519943295d;
+        double d2 = ((double) (f - 90.0f)) * 0.017453292519943295d;
         double dSin = Math.sin(d2);
         double d3 = -Math.cos(d2);
         double dWidth = rectF.width() / 2.0f;
-        float fCenterX = (float) (((-d3) * dWidth) + rectF.centerX());
-        float fCenterY = (float) ((dWidth * dSin) + rectF.centerY());
+        float fCenterX = (float) (((-d3) * dWidth) + ((double) rectF.centerX()));
+        float fCenterY = (float) ((dWidth * dSin) + ((double) rectF.centerY()));
         int iClamp = Utilities.clamp(this.freeParticles.size() / 12, 3, 1);
         int i3 = 0;
         while (i3 < iClamp) {
@@ -106,7 +106,7 @@ public class TimerParticles {
                 particle.x = fCenterX;
                 particle.y = fCenterY;
             }
-            double dNextInt = (Utilities.random.nextInt(140) - 70) * d;
+            double dNextInt = ((double) (Utilities.random.nextInt(140) - 70)) * d;
             if (dNextInt < 0.0d) {
                 dNextInt += 6.283185307179586d;
             }

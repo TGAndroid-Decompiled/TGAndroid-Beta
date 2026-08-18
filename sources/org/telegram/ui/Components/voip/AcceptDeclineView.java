@@ -33,7 +33,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.Components.voip.ImageWithWavesView;
 
 public class AcceptDeclineView extends View {
     private final ButtonBounce acceptBounce;
@@ -156,8 +155,118 @@ public class AcceptDeclineView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.AcceptDeclineView.onTouchEvent(android.view.MotionEvent):boolean");
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return false;
+        }
+        int action = motionEvent.getAction();
+        if (action == 0) {
+            this.startX = motionEvent.getX();
+            this.startY = motionEvent.getY();
+            if (this.leftAnimator == null && this.declineRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                this.rippleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(52.0f), 0, this.retryMod ? Theme.getColor(Theme.key_listSelector) : -51130);
+                this.captured = true;
+                this.leftDrag = true;
+                this.declineBounce.setPressed(true);
+                this.acceptBounce.setPressed(false);
+                setPressed(true);
+                invalidate();
+                return true;
+            }
+            if (this.rightAnimator == null && this.acceptRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                this.rippleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(52.0f), 0, -11677354);
+                this.captured = true;
+                this.leftDrag = false;
+                this.declineBounce.setPressed(false);
+                this.acceptBounce.setPressed(true);
+                setPressed(true);
+                Animator animator = this.rightAnimator;
+                if (animator != null) {
+                    animator.cancel();
+                }
+                invalidate();
+                return true;
+            }
+        } else if (action == 1) {
+            float y = motionEvent.getY() - this.startY;
+            if (this.captured) {
+                if (this.leftDrag) {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.leftOffsetX, 0.0f);
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            this.f$0.lambda$onTouchEvent$0(valueAnimator);
+                        }
+                    });
+                    valueAnimatorOfFloat.start();
+                    this.leftAnimator = valueAnimatorOfFloat;
+                    if (this.listener != null && ((!this.startDrag && Math.abs(y) < this.touchSlop) || this.leftOffsetX > this.maxOffset * 0.8f)) {
+                        this.listener.onDecline();
+                    }
+                } else {
+                    ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.rigthOffsetX, 0.0f);
+                    valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            this.f$0.lambda$onTouchEvent$1(valueAnimator);
+                        }
+                    });
+                    valueAnimatorOfFloat2.start();
+                    this.rightAnimator = valueAnimatorOfFloat2;
+                    if (this.listener != null && ((!this.startDrag && Math.abs(y) < this.touchSlop) || (-this.rigthOffsetX) > this.maxOffset * 0.8f)) {
+                        this.listener.onAccept();
+                    }
+                }
+            }
+            getParent().requestDisallowInterceptTouchEvent(false);
+            this.captured = false;
+            this.startDrag = false;
+            this.declineBounce.setPressed(false);
+            this.acceptBounce.setPressed(false);
+            setPressed(false);
+        } else if (action != 2) {
+            if (action == 3) {
+                float y2 = motionEvent.getY() - this.startY;
+                if (this.captured) {
+                    if (this.leftDrag) {
+                        ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(this.leftOffsetX, 0.0f);
+                        valueAnimatorOfFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                this.f$0.lambda$onTouchEvent$0(valueAnimator);
+                            }
+                        });
+                        valueAnimatorOfFloat3.start();
+                        this.leftAnimator = valueAnimatorOfFloat3;
+                        if (this.listener != null) {
+                            this.listener.onDecline();
+                        }
+                    } else {
+                        ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(this.rigthOffsetX, 0.0f);
+                        valueAnimatorOfFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                this.f$0.lambda$onTouchEvent$1(valueAnimator);
+                            }
+                        });
+                        valueAnimatorOfFloat4.start();
+                        this.rightAnimator = valueAnimatorOfFloat4;
+                        if (this.listener != null) {
+                            this.listener.onAccept();
+                        }
+                    }
+                }
+                getParent().requestDisallowInterceptTouchEvent(false);
+                this.captured = false;
+                this.startDrag = false;
+                this.declineBounce.setPressed(false);
+                this.acceptBounce.setPressed(false);
+                setPressed(false);
+            }
+        } else if (this.captured) {
+            return true;
+        }
+        return false;
     }
 
     public void lambda$onTouchEvent$0(ValueAnimator valueAnimator) {

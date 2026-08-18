@@ -173,13 +173,17 @@ public abstract class BottomPagerTabs extends View {
         float f3 = 2.0f;
         float f4 = 0.0f;
         if (f > 0.0f) {
-            this.selectPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), (int) (((Math.abs((Math.floor(this.progress) + 0.5d) - this.progress) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * f)));
+            this.selectPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), (int) (((Math.abs((Math.floor(this.progress) + 0.5d) - ((double) this.progress)) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * ((double) f))));
+            float paddingLeft = getPaddingLeft();
             float f5 = width;
             float f6 = f5 / 2.0f;
-            float paddingLeft = getPaddingLeft() + AndroidUtilities.lerp((((float) Math.floor(this.progress)) * f5) + f6, (f5 * ((float) Math.ceil(this.progress))) + f6, this.progress - ((int) r13));
+            float fFloor = (((float) Math.floor(this.progress)) * f5) + f6;
+            float fCeil = (f5 * ((float) Math.ceil(this.progress))) + f6;
+            float f7 = this.progress;
+            float fLerp = paddingLeft + AndroidUtilities.lerp(fFloor, fCeil, f7 - ((int) f7));
             RectF rectF = AndroidUtilities.rectTmp;
-            float f7 = iMin / 2.0f;
-            rectF.set(paddingLeft - f7, AndroidUtilities.dp(9.0f), paddingLeft + f7, AndroidUtilities.dp(41.0f));
+            float f8 = iMin / 2.0f;
+            rectF.set(fLerp - f8, AndroidUtilities.dp(9.0f), fLerp + f8, AndroidUtilities.dp(41.0f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.selectPaint);
         }
         int i = 0;
@@ -189,17 +193,18 @@ public abstract class BottomPagerTabs extends View {
                 return;
             }
             Tab tab = tabArr[i];
-            tab.clickRect.set(getPaddingLeft() + (i * width), f4, r13 + width, getHeight());
+            int paddingLeft2 = getPaddingLeft() + (i * width);
+            tab.clickRect.set(paddingLeft2, f4, paddingLeft2 + width, getHeight());
             float fMin = 1.0f - Math.min(1.0f, Math.abs(this.progress - i));
             int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6, this.resourcesProvider);
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
             tab.setColor(ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), fMin));
             Rect rect = AndroidUtilities.rectTmp2;
-            float f8 = iMin / f3;
-            rect.set((int) (tab.clickRect.centerX() - f8), AndroidUtilities.dp(f2), (int) (tab.clickRect.centerX() + f8), AndroidUtilities.dp(41.0f));
-            float f9 = tab.nonscrollingT.set(fMin > 0.6f);
+            float f9 = iMin / f3;
+            rect.set((int) (tab.clickRect.centerX() - f9), AndroidUtilities.dp(f2), (int) (tab.clickRect.centerX() + f9), AndroidUtilities.dp(41.0f));
+            float f10 = tab.nonscrollingT.set(fMin > 0.6f);
             if (f < 1.0f) {
-                this.selectPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(i2, this.resourcesProvider), (int) (f9 * 18.0f * (1.0f - f))));
+                this.selectPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(i2, this.resourcesProvider), (int) (f10 * 18.0f * (1.0f - f))));
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(rect);
                 canvas.drawRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.selectPaint);
@@ -238,14 +243,17 @@ public abstract class BottomPagerTabs extends View {
                     break;
                 }
                 RectF rectF = tabArr[i].clickRect;
-                if (rectF.left >= x || rectF.right <= x) {
-                    i++;
-                } else if (motionEvent.getAction() != 1) {
+                if (rectF.left < x && rectF.right > x) {
+                    if (motionEvent.getAction() == 1) {
+                        break;
+                    }
                     if (this.touchDown) {
                         this.tabs[i].ripple.setState(new int[0]);
                     }
                     this.tabs[i].ripple.setState(new int[]{16842919, 16842910});
+                    break;
                 }
+                i++;
             }
             for (int i2 = 0; i2 < this.tabs.length; i2++) {
                 if (i2 != i || motionEvent.getAction() == 1) {

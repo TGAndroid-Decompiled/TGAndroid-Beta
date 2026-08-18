@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Premium.boosts.cells.statistics;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -68,7 +67,7 @@ public class GiftedUserCell extends UserCell {
         }
     }
 
-    public void setStatus(TL_stories.Boost boost) throws Resources.NotFoundException {
+    public void setStatus(TL_stories.Boost boost) {
         this.boost = boost;
         if (boost.gift || boost.giveaway) {
             this.badgeLayout.setVisibility(0);
@@ -92,7 +91,7 @@ public class GiftedUserCell extends UserCell {
                 this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
                 this.nameTextView.setRightDrawable((Drawable) null);
             }
-            String str = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
+            String str = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(((long) boost.expires) * 1000));
             if (boost.stars > 0) {
                 this.statusTextView.setText(LocaleController.formatString(R.string.BoostingStarsExpires, str));
             } else {

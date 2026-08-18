@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
@@ -36,7 +37,45 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
     private final Runnable bitmapCreateTask = new Runnable() {
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DrawingInBackgroundThreadDrawable.AnonymousClass1.run():void");
+            Bitmap bitmap;
+            try {
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = DrawingInBackgroundThreadDrawable.this;
+                int i = drawingInBackgroundThreadDrawable.height + drawingInBackgroundThreadDrawable.padding;
+                Bitmap bitmap2 = drawingInBackgroundThreadDrawable.backgroundBitmap;
+                if (bitmap2 != null) {
+                    int width = bitmap2.getWidth();
+                    DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable2 = DrawingInBackgroundThreadDrawable.this;
+                    if (width != drawingInBackgroundThreadDrawable2.width || drawingInBackgroundThreadDrawable2.backgroundBitmap.getHeight() != i) {
+                        bitmap = DrawingInBackgroundThreadDrawable.this.backgroundBitmap;
+                        if (bitmap != null) {
+                            bitmap.recycle();
+                        }
+                        DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable3 = DrawingInBackgroundThreadDrawable.this;
+                        drawingInBackgroundThreadDrawable3.backgroundBitmap = Bitmap.createBitmap(drawingInBackgroundThreadDrawable3.width, i, Bitmap.Config.ARGB_8888);
+                        DrawingInBackgroundThreadDrawable.this.backgroundCanvas = new Canvas(DrawingInBackgroundThreadDrawable.this.backgroundBitmap);
+                    }
+                } else {
+                    bitmap = DrawingInBackgroundThreadDrawable.this.backgroundBitmap;
+                    if (bitmap != null) {
+                        bitmap.recycle();
+                    }
+                    DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable4 = DrawingInBackgroundThreadDrawable.this;
+                    drawingInBackgroundThreadDrawable4.backgroundBitmap = Bitmap.createBitmap(drawingInBackgroundThreadDrawable4.width, i, Bitmap.Config.ARGB_8888);
+                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas = new Canvas(DrawingInBackgroundThreadDrawable.this.backgroundBitmap);
+                }
+                DrawingInBackgroundThreadDrawable.this.backgroundBitmap.eraseColor(0);
+                DrawingInBackgroundThreadDrawable.this.backgroundCanvas.save();
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable5 = DrawingInBackgroundThreadDrawable.this;
+                drawingInBackgroundThreadDrawable5.backgroundCanvas.translate(0.0f, drawingInBackgroundThreadDrawable5.padding);
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable6 = DrawingInBackgroundThreadDrawable.this;
+                drawingInBackgroundThreadDrawable6.drawInBackground(drawingInBackgroundThreadDrawable6.backgroundCanvas);
+                DrawingInBackgroundThreadDrawable.this.backgroundCanvas.restore();
+                DrawingInBackgroundThreadDrawable.this.backgroundBitmap.prepareToDraw();
+            } catch (Exception e) {
+                FileLog.e(e);
+                DrawingInBackgroundThreadDrawable.this.error = true;
+            }
+            AndroidUtilities.runOnUIThread(DrawingInBackgroundThreadDrawable.this.uiFrameRunnable);
         }
     };
     Runnable uiFrameRunnable = new Runnable() {

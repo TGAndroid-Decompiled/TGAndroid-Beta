@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import org.telegram.messenger.Utilities;
 
 public class ShortcutResultReceiver extends BroadcastReceiver {
     @Override

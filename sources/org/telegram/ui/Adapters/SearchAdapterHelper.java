@@ -25,8 +25,6 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Adapters.DialogsSearchAdapter;
-import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Components.ShareAlert;
 
 public class SearchAdapterHelper {
@@ -612,6 +610,7 @@ public class SearchAdapterHelper {
             int i2 = 0;
             while (true) {
                 if (i2 >= arrayList.size() || i2 == 100) {
+                    break;
                     break;
                 }
                 HashtagObject hashtagObject = (HashtagObject) arrayList.get(i2);

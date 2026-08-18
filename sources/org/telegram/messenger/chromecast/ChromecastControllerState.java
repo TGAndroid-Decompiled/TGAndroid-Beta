@@ -3,7 +3,6 @@ package org.telegram.messenger.chromecast;
 import android.text.TextUtils;
 import java.io.File;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.chromecast.ChromecastController;
 
 class ChromecastControllerState {
     private ChromecastController.RemoteMediaClientHandler client;

@@ -39,9 +39,7 @@ public class CollageLayout {
     }
 
     public static CollageLayout of(int i) {
-        Iterator it = getLayouts().iterator();
-        while (it.hasNext()) {
-            CollageLayout collageLayout = (CollageLayout) it.next();
+        for (CollageLayout collageLayout : getLayouts()) {
             if (collageLayout.parts.size() >= i) {
                 return collageLayout;
             }

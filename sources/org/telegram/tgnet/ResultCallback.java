@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 
-import org.telegram.tgnet.TLRPC;
-
 public interface ResultCallback<T> {
 
     public abstract class CC {

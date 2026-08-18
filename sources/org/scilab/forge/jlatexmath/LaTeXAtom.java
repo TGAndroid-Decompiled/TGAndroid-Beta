@@ -1,8 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import java.lang.Character;
 import java.util.Map;
-import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class LaTeXAtom extends Atom {
     @Override

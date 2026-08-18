@@ -119,10 +119,11 @@ public class DialogCellTags {
             if (dialogFilter2 == null) {
                 this.tags.remove(i4);
                 i4--;
-            } else if (dialogFilter2.color == tag2.colorId && ((str = dialogFilter2.name) == null || tag2.text == null || str.length() == tag2.text.getText().length())) {
-                i4++;
             } else {
-                this.tags.set(i4, Tag.fromFilter(this.parentView, i, dialogFilter2));
+                if (dialogFilter2.color != tag2.colorId || ((str = dialogFilter2.name) != null && tag2.text != null && str.length() != tag2.text.getText().length())) {
+                    this.tags.set(i4, Tag.fromFilter(this.parentView, i, dialogFilter2));
+                }
+                i4++;
             }
             z = true;
             i4++;

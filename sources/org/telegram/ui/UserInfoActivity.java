@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -56,7 +57,6 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.SettingsActivity;
 
 public class UserInfoActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     public int addAccountRow;
@@ -137,7 +137,110 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
     }
 
     public void updateBioInfo() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.UserInfoActivity.updateBioInfo():void");
+        UniversalRecyclerView universalRecyclerView;
+        int i = this.bioInfoHash;
+        EditTextCell editTextCell = this.bioEdit;
+        if (editTextCell == null || TextUtils.isEmpty(editTextCell.getText())) {
+            this.bioInfo = LocaleController.getString(R.string.EditProfileBioInfo2);
+            this.bioInfoHash = Objects.hash(0);
+        } else {
+            ArrayList<TLRPC.PrivacyRule> privacyRules = getContactsController().getPrivacyRules(9);
+            if (privacyRules == null) {
+                this.bioInfo = LocaleController.getString(R.string.Loading);
+                this.bioInfoHash = Objects.hash(1);
+            } else {
+                int i2 = -1;
+                byte b = -1;
+                int size = 0;
+                int size2 = 0;
+                boolean z = false;
+                for (int i3 = 0; i3 < privacyRules.size(); i3++) {
+                    TLRPC.PrivacyRule privacyRule = privacyRules.get(i3);
+                    if (privacyRule instanceof TLRPC.TL_privacyValueAllowChatParticipants) {
+                        TLRPC.TL_privacyValueAllowChatParticipants tL_privacyValueAllowChatParticipants = (TLRPC.TL_privacyValueAllowChatParticipants) privacyRule;
+                        int size3 = tL_privacyValueAllowChatParticipants.chats.size();
+                        for (int i4 = 0; i4 < size3; i4++) {
+                            TLRPC.Chat chat = getMessagesController().getChat(tL_privacyValueAllowChatParticipants.chats.get(i4));
+                            if (chat != null) {
+                                size2 += Math.max(0, chat.participants_count - 1);
+                            }
+                        }
+                    } else if (privacyRule instanceof TLRPC.TL_privacyValueDisallowChatParticipants) {
+                        TLRPC.TL_privacyValueDisallowChatParticipants tL_privacyValueDisallowChatParticipants = (TLRPC.TL_privacyValueDisallowChatParticipants) privacyRule;
+                        int size4 = tL_privacyValueDisallowChatParticipants.chats.size();
+                        for (int i5 = 0; i5 < size4; i5++) {
+                            TLRPC.Chat chat2 = getMessagesController().getChat(tL_privacyValueDisallowChatParticipants.chats.get(i5));
+                            if (chat2 != null) {
+                                size += Math.max(0, chat2.participants_count - 1);
+                            }
+                        }
+                    } else if (privacyRule instanceof TLRPC.TL_privacyValueAllowUsers) {
+                        size2 += ((TLRPC.TL_privacyValueAllowUsers) privacyRule).users.size();
+                    } else if (privacyRule instanceof TLRPC.TL_privacyValueDisallowUsers) {
+                        size += ((TLRPC.TL_privacyValueDisallowUsers) privacyRule).users.size();
+                    } else {
+                        boolean z2 = privacyRule instanceof TLRPC.TL_privacyValueAllowAll;
+                        if (z2) {
+                            b = 0;
+                        } else {
+                            boolean z3 = privacyRule instanceof TLRPC.TL_privacyValueDisallowAll;
+                            if (z3 && !z) {
+                                b = 1;
+                            } else if (privacyRule instanceof TLRPC.TL_privacyValueAllowContacts) {
+                                b = 2;
+                                z = true;
+                            } else if (b == -1) {
+                                if (z2) {
+                                    b = 0;
+                                } else if (!z3 || z) {
+                                    b = 2;
+                                } else {
+                                    b = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (b == 0 || (b == -1 && size > 0)) {
+                    i2 = 0;
+                } else if (b == 2 || (b == -1 && size > 0 && size2 > 0)) {
+                    i2 = 2;
+                } else if (b == 1 || (b == -1 && size2 > 0)) {
+                    i2 = 1;
+                }
+                if (i2 == 0) {
+                    if (size <= 0) {
+                        this.bioInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.EditProfileBioInfoEveryone), new UserInfoActivity$$ExternalSyntheticLambda0(this)), true);
+                    } else {
+                        this.bioInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.EditProfileBioInfoEveryoneExcept, Integer.valueOf(size)), new UserInfoActivity$$ExternalSyntheticLambda0(this)), true);
+                    }
+                } else if (i2 == 2) {
+                    if (size <= 0 && size2 <= 0) {
+                        this.bioInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.EditProfileBioInfoContacts), new UserInfoActivity$$ExternalSyntheticLambda0(this)), true);
+                    } else {
+                        String str = size2 > 0 ? "+" + size2 : "";
+                        if (size > 0) {
+                            if (str.length() > 0) {
+                                str = str + ", ";
+                            }
+                            str = str + "-" + size;
+                        }
+                        this.bioInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.EditProfileBioInfoContactsExtra, str), new UserInfoActivity$$ExternalSyntheticLambda0(this)), true);
+                    }
+                } else if (i2 != 0) {
+                    this.bioInfo = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.EditProfileBioInfoUnknown), new UserInfoActivity$$ExternalSyntheticLambda0(this));
+                } else if (size2 <= 0) {
+                    this.bioInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.EditProfileBioInfoNobody), new UserInfoActivity$$ExternalSyntheticLambda0(this)), true);
+                } else {
+                    this.bioInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.EditProfileBioInfoNobodyExcept, Integer.valueOf(size2)), new UserInfoActivity$$ExternalSyntheticLambda0(this)), true);
+                }
+                this.bioInfoHash = Objects.hash(Integer.valueOf(i2 + 10), Integer.valueOf(size2), Integer.valueOf(size));
+            }
+        }
+        if (i == this.bioInfoHash || (universalRecyclerView = this.listView) == null) {
+            return;
+        }
+        universalRecyclerView.adapter.update(true);
     }
 
     @Override
@@ -274,11 +377,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         if (!getContactsController().getLoadingPrivacyInfo(11) && (privacyRules = getContactsController().getPrivacyRules(11)) != null && this.birthdayInfo == null) {
             String string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
             if (!privacyRules.isEmpty()) {
-                int i = 0;
-                while (true) {
-                    if (i >= privacyRules.size()) {
-                        break;
-                    }
+                for (int i = 0; i < privacyRules.size(); i++) {
                     if (privacyRules.get(i) instanceof TLRPC.TL_privacyValueAllowContacts) {
                         string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
                         break;
@@ -286,7 +385,6 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
                     if ((privacyRules.get(i) instanceof TLRPC.TL_privacyValueAllowAll) || (privacyRules.get(i) instanceof TLRPC.TL_privacyValueDisallowAll)) {
                         string = LocaleController.getString(R.string.EditProfileBirthdayInfo);
                     }
-                    i++;
                 }
             }
             this.birthdayInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new Runnable() {
@@ -904,13 +1002,40 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         }
 
         private void updateColors() {
+            int i;
+            int i2;
+            int i3;
+            int i4;
             ImageView imageView = this.iconView;
-            int color = Theme.getColor(this.red ? Theme.key_text_RedBold : this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider);
+            if (this.red) {
+                i = Theme.key_text_RedBold;
+            } else {
+                i = this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText;
+            }
+            int color = Theme.getColor(i, this.resourcesProvider);
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
             imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
-            this.icon2View.setColorFilter(new PorterDuffColorFilter(Theme.getColor(this.red ? Theme.key_text_RedBold : this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), mode));
-            this.titleView.setTextColor(Theme.getColor(this.red ? Theme.key_text_RedRegular : this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-            this.subtitleView.setTextColor(Theme.getColor(this.red ? Theme.key_text_RedRegular : this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider));
+            ImageView imageView2 = this.icon2View;
+            if (this.red) {
+                i2 = Theme.key_text_RedBold;
+            } else {
+                i2 = this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText;
+            }
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourcesProvider), mode));
+            TextView textView = this.titleView;
+            if (this.red) {
+                i3 = Theme.key_text_RedRegular;
+            } else {
+                i3 = this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText;
+            }
+            textView.setTextColor(Theme.getColor(i3, this.resourcesProvider));
+            TextView textView2 = this.subtitleView;
+            if (this.red) {
+                i4 = Theme.key_text_RedRegular;
+            } else {
+                i4 = this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteGrayText;
+            }
+            textView2.setTextColor(Theme.getColor(i4, this.resourcesProvider));
         }
 
         public void set(int i, CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2, int i2) {
@@ -1040,10 +1165,8 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             if (TextUtils.isEmpty(this.query)) {
                 arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileChannelSelect)));
             }
-            Iterator it = this.channels.chats.iterator();
             int i = 0;
-            while (it.hasNext()) {
-                TLRPC.Chat chat = (TLRPC.Chat) it.next();
+            for (TLRPC.Chat chat : this.channels.chats) {
                 if (chat != null && !ChatObject.isMegagroup(chat)) {
                     i++;
                     if (!TextUtils.isEmpty(this.query)) {

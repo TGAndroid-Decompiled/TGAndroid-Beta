@@ -372,20 +372,22 @@ public class HintView2 extends View {
         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) spanned.getSpans(0, charSequence.length(), TypefaceSpan.class);
         int iMax = 0;
         for (ReplacementSpan replacementSpan : (ReplacementSpan[]) spanned.getSpans(0, charSequence.length(), ReplacementSpan.class)) {
-            iMax = (int) (iMax + Math.max(0.0f, replacementSpan.getSize(paint, charSequence, r14, r15, paint.getFontMetricsInt()) - paint.measureText(spanned, spanned.getSpanStart(replacementSpan), spanned.getSpanEnd(replacementSpan))));
+            int spanStart = spanned.getSpanStart(replacementSpan);
+            int spanEnd = spanned.getSpanEnd(replacementSpan);
+            iMax = (int) (iMax + Math.max(0.0f, replacementSpan.getSize(paint, charSequence, spanStart, spanEnd, paint.getFontMetricsInt()) - paint.measureText(spanned, spanStart, spanEnd)));
         }
         if (typefaceSpanArr == null || typefaceSpanArr.length == 0) {
             return paint.measureText(charSequence.toString()) + iMax;
         }
         int iMax2 = 0;
         for (int i = 0; i < typefaceSpanArr.length; i++) {
-            int spanStart = spanned.getSpanStart(typefaceSpanArr[i]);
-            int spanEnd = spanned.getSpanEnd(typefaceSpanArr[i]);
-            int iMax3 = Math.max(iMax2, spanStart);
+            int spanStart2 = spanned.getSpanStart(typefaceSpanArr[i]);
+            int spanEnd2 = spanned.getSpanEnd(typefaceSpanArr[i]);
+            int iMax3 = Math.max(iMax2, spanStart2);
             if (iMax3 - iMax2 > 0) {
                 fMeasureText += paint.measureText(spanned, iMax2, iMax3);
             }
-            iMax2 = Math.max(iMax3, spanEnd);
+            iMax2 = Math.max(iMax3, spanEnd2);
             if (iMax2 - iMax3 > 0) {
                 Typeface typeface = paint.getTypeface();
                 paint.setTypeface(typefaceSpanArr[i].getTypeface());
@@ -888,9 +890,10 @@ public class HintView2 extends View {
                 f3 = 0.0f + this.iconWidth + this.iconMargin;
             } else {
                 float f14 = (this.iconTx + rectF3.right) - (rectF4.right / 2.0f);
+                int i3 = (int) (f14 - this.iconWidth);
                 float f15 = this.iconTy + f10;
                 float f16 = this.iconHeight / 2.0f;
-                drawable2.setBounds((int) (f14 - this.iconWidth), (int) (f15 - f16), (int) f14, (int) (f15 + f16));
+                drawable2.setBounds(i3, (int) (f15 - f16), (int) f14, (int) (f15 + f16));
             }
             this.icon.setAlpha((int) (f7 * 255.0f));
             this.icon.draw(canvas);

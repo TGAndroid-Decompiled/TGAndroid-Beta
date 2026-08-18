@@ -53,7 +53,10 @@ public class Attribute implements Map.Entry, Cloneable {
         }
         String str2 = this.val;
         String str3 = attribute.val;
-        return str2 != null ? str2.equals(str3) : str3 == null;
+        if (str2 != null) {
+            return str2.equals(str3);
+        }
+        return str3 == null;
     }
 
     @Override

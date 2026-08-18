@@ -29,7 +29,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.voip.EndCloseLayout;
 
 public class EndCloseLayout extends FrameLayout {
     private final EndCloseView endCloseView;
@@ -289,7 +288,8 @@ public class EndCloseLayout extends FrameLayout {
             RectF rectF = this.backgroundRect;
             float f = this.round;
             canvas.drawRoundRect(rectF, f, f, this.backgroundPaint);
-            this.callDeclineDrawable.setBounds((int) (width - (r3.getIntrinsicWidth() / 2.0f)), (int) (height - (this.callDeclineDrawable.getIntrinsicHeight() / 2)), (int) ((this.callDeclineDrawable.getIntrinsicWidth() / 2) + width), (int) ((this.callDeclineDrawable.getIntrinsicHeight() / 2) + height));
+            Drawable drawable = this.callDeclineDrawable;
+            drawable.setBounds((int) (width - (drawable.getIntrinsicWidth() / 2.0f)), (int) (height - (this.callDeclineDrawable.getIntrinsicHeight() / 2)), (int) ((this.callDeclineDrawable.getIntrinsicWidth() / 2) + width), (int) ((this.callDeclineDrawable.getIntrinsicHeight() / 2) + height));
             this.callDeclineDrawable.setAlpha(this.callDeclineAlpha);
             this.callDeclineDrawable.draw(canvas);
             this.textPaintMask.setAlpha(this.closeTextAlpha);

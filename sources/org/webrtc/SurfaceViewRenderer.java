@@ -7,10 +7,6 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import org.webrtc.EglBase;
-import org.webrtc.EglRenderer;
-import org.webrtc.RendererCommon;
-import org.webrtc.VideoSink;
 
 public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Callback, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "SurfaceViewRenderer";

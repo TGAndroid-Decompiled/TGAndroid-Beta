@@ -1,6 +1,5 @@
 package org.scilab.forge.jlatexmath;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import ru.noties.jlatexmath.awt.Graphics2D;
@@ -82,12 +81,10 @@ class VerticalBox extends Box {
     @Override
     public void draw(Graphics2D graphics2D, float f, float f2) {
         float depth = f2 - this.height;
-        Iterator<Box> it = this.children.iterator();
-        while (it.hasNext()) {
-            Box next = it.next();
-            float height = depth + next.getHeight();
-            next.draw(graphics2D, (next.getShift() + f) - this.leftMostPos, height);
-            depth = height + next.getDepth();
+        for (Box box : this.children) {
+            float height = depth + box.getHeight();
+            box.draw(graphics2D, (box.getShift() + f) - this.leftMostPos, height);
+            depth = height + box.getDepth();
         }
     }
 

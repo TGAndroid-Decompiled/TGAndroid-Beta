@@ -29,10 +29,6 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.web.AddressBarList;
-import org.telegram.ui.web.BrowserHistory;
-import org.telegram.ui.web.HistoryFragment;
-import org.telegram.ui.web.WebMetadataCache;
 
 public class HistoryFragment extends UniversalFragment {
     private final Runnable closeToTabs;

@@ -346,7 +346,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             this.reactionsDoubleTapRow = arrayList.size();
             arrayList.add(UItem.asSettingsCell(4, R.drawable.msg2_reactions2, LocaleController.getString(R.string.DoubleTapSetting)).onBind(new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws NumberFormatException {
+                public final void run(Object obj) {
                     this.f$0.setQuickReactionImage((View) obj);
                 }
             }));
@@ -370,9 +370,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                 arrayList.add(UItem.asHeader(LocaleController.getString(this.currentType == 5 ? R.string.ChooseStickerMyEmojiPacks : R.string.ChooseStickerMyStickerSets)));
             }
             universalAdapter.reorderSectionStart();
-            Iterator it = this.sets.iterator();
-            while (it.hasNext()) {
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) it.next();
+            for (TLRPC.TL_messages_stickerSet tL_messages_stickerSet : this.sets) {
                 arrayList.add(StickerSetCell.Factory.of(tL_messages_stickerSet).setClickCallback(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -403,9 +401,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                 arrayList.add(UItem.asShadow(null));
             }
             arrayList.add(UItem.asHeader(LocaleController.getString(this.currentType == 5 ? R.string.FeaturedEmojiPacks : R.string.FeaturedStickers)));
-            Iterator it2 = this.featured.iterator();
-            while (it2.hasNext()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) it2.next();
+            for (TLRPC.StickerSetCovered stickerSetCovered : this.featured) {
                 arrayList.add(FeaturedStickerSetCell2.Factory.of(stickerSetCovered).setClickCallback(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -482,7 +478,6 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     }
                     MediaDataController.getInstance(this.currentAccount).markFeaturedStickersAsRead(true, true);
                     showDialog(new EmojiPacksAlert(this, getParentActivity(), getResourceProvider(), arrayList4));
-                    break;
                 } else {
                     TrendingStickersAlert trendingStickersAlert = new TrendingStickersAlert(getContext(), this, new TrendingStickersLayout(getContext(), new TrendingStickersLayout.Delegate() {
                         @Override
@@ -497,7 +492,6 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     }), null);
                     this.trendingStickersAlert = trendingStickersAlert;
                     trendingStickersAlert.show();
-                    break;
                 }
                 break;
             case 2:
@@ -700,7 +694,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
     public void onStickerSetButtonClick(View view) {
         StickerSetCell stickerSetCell;
         TLRPC.TL_messages_stickerSet stickersSet;
-        ?? r12;
+        TLRPC.StickerSetCovered stickerSetCovered;
         if (view == null || !(view.getParent() instanceof ViewGroup)) {
             return;
         }
@@ -713,24 +707,24 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = getMediaDataController().getFeaturedEmojiSets();
             while (true) {
                 if (i >= featuredEmojiSets.size()) {
-                    r12 = 0;
+                    stickerSetCovered = null;
                     break;
                 } else {
                     if (stickersSet.set.id == featuredEmojiSets.get(i).set.id) {
-                        r12 = featuredEmojiSets.get(i);
+                        stickerSetCovered = featuredEmojiSets.get(i);
                         break;
                     }
                     i++;
                 }
             }
-            if (r12 != 0) {
-                if (this.loadingFeaturedStickerSets.contains(Long.valueOf(r12.set.id))) {
+            if (stickerSetCovered != null) {
+                if (this.loadingFeaturedStickerSets.contains(Long.valueOf(stickerSetCovered.set.id))) {
                     return;
                 } else {
-                    this.loadingFeaturedStickerSets.add(Long.valueOf(r12.set.id));
+                    this.loadingFeaturedStickerSets.add(Long.valueOf(stickerSetCovered.set.id));
                 }
             }
-            MediaDataController.getInstance(this.currentAccount).toggleStickerSet(getParentActivity(), r12 == 0 ? stickersSet : r12, 2, this, false, false);
+            MediaDataController.getInstance(this.currentAccount).toggleStickerSet(getParentActivity(), stickerSetCovered == null ? stickersSet : stickerSetCovered, 2, this, false, false);
             return;
         }
         if (stickerSetCell.removeButtonView == view) {
@@ -784,7 +778,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         checkActionMode();
     }
 
-    public void setQuickReactionImage(View view) throws NumberFormatException {
+    public void setQuickReactionImage(View view) {
         if (view instanceof TextSettingsCell) {
             TextSettingsCell textSettingsCell = (TextSettingsCell) view;
             String doubleTapReaction = MediaDataController.getInstance(this.currentAccount).getDoubleTapReaction();
@@ -958,10 +952,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             if (size3 != 0) {
                 if (size3 == 1) {
                     int size4 = this.sets.size();
-                    while (true) {
-                        if (i2 >= size4) {
-                            break;
-                        }
+                    while (i2 < size4) {
                         TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) this.sets.get(i2);
                         if (this.selectedSets.contains(Long.valueOf(tL_messages_stickerSet3.set.id))) {
                             processSelectionOption(i, tL_messages_stickerSet3);

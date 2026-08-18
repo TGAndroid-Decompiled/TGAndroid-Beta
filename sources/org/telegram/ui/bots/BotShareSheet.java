@@ -2,6 +2,7 @@ package org.telegram.ui.bots;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -922,18 +924,16 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             bundle.putBoolean("allowUsers", false);
             bundle.putBoolean("allowChannels", false);
             bundle.putBoolean("allowBots", false);
-            Iterator<TLRPC.InlineQueryPeerType> it = tL_messages_preparedInlineMessage.peer_types.iterator();
-            while (it.hasNext()) {
-                TLRPC.InlineQueryPeerType next = it.next();
-                if (next instanceof TLRPC.TL_inlineQueryPeerTypePM) {
+            for (TLRPC.InlineQueryPeerType inlineQueryPeerType : tL_messages_preparedInlineMessage.peer_types) {
+                if (inlineQueryPeerType instanceof TLRPC.TL_inlineQueryPeerTypePM) {
                     bundle.putBoolean("allowUsers", true);
-                } else if (next instanceof TLRPC.TL_inlineQueryPeerTypeBotPM) {
+                } else if (inlineQueryPeerType instanceof TLRPC.TL_inlineQueryPeerTypeBotPM) {
                     bundle.putBoolean("allowBots", true);
-                } else if (next instanceof TLRPC.TL_inlineQueryPeerTypeBroadcast) {
+                } else if (inlineQueryPeerType instanceof TLRPC.TL_inlineQueryPeerTypeBroadcast) {
                     bundle.putBoolean("allowChannels", true);
-                } else if (next instanceof TLRPC.TL_inlineQueryPeerTypeChat) {
+                } else if (inlineQueryPeerType instanceof TLRPC.TL_inlineQueryPeerTypeChat) {
                     bundle.putBoolean("allowLegacyGroups", true);
-                } else if (next instanceof TLRPC.TL_inlineQueryPeerTypeMegagroup) {
+                } else if (inlineQueryPeerType instanceof TLRPC.TL_inlineQueryPeerTypeMegagroup) {
                     bundle.putBoolean("allowMegagroups", true);
                 }
             }
@@ -951,9 +951,9 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
                     return;
                 }
                 BotShareSheet.this.sent = true;
-                Utilities.Callback2 callback22 = callback2;
-                if (callback22 != null) {
-                    callback22.run("USER_DECLINED", null);
+                Utilities.Callback2 callback3 = callback2;
+                if (callback3 != null) {
+                    callback3.run("USER_DECLINED", null);
                 }
             }
         };
@@ -1064,8 +1064,186 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         arrayList.add(UItem.asShadow(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotShareMessageInfo, this.botName))));
     }
 
-    public static org.telegram.messenger.MessageObject convert(int r19, long r20, org.telegram.tgnet.TLRPC.BotInlineResult r22, java.io.File r23, org.telegram.tgnet.TLRPC.WebPage r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotShareSheet.convert(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, java.io.File, org.telegram.tgnet.TLRPC$WebPage):org.telegram.messenger.MessageObject");
+    public static MessageObject convert(int i, long j, TLRPC.BotInlineResult botInlineResult, File file, TLRPC.WebPage webPage) {
+        TLRPC.TL_photo tL_photo;
+        TLRPC.TL_document tL_document;
+        if (file == null || !file.exists() || webPage != null) {
+            return convert(i, j, botInlineResult, null, null, webPage);
+        }
+        String str = botInlineResult.type;
+        String absolutePath = file.getAbsolutePath();
+        str.hashCode();
+        TLRPC.TL_photo tL_photo2 = null;
+        switch (str) {
+            case "sticker":
+            case "gif":
+            case "file":
+            case "audio":
+            case "video":
+            case "voice":
+                TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
+                tL_document2.id = 0L;
+                tL_document2.size = 0L;
+                tL_document2.dc_id = 0;
+                tL_document2.mime_type = botInlineResult.content.mime_type;
+                tL_document2.file_reference = new byte[0];
+                tL_document2.date = ConnectionsManager.getInstance(i).getCurrentTime();
+                TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+                tL_document2.attributes.add(tL_documentAttributeFilename);
+                switch (str) {
+                    case "sticker":
+                        TLRPC.TL_documentAttributeSticker tL_documentAttributeSticker = new TLRPC.TL_documentAttributeSticker();
+                        tL_documentAttributeSticker.alt = "";
+                        tL_documentAttributeSticker.stickerset = new TLRPC.TL_inputStickerSetEmpty();
+                        tL_document2.attributes.add(tL_documentAttributeSticker);
+                        TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
+                        int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
+                        tL_documentAttributeImageSize.w = inlineResultWidthAndHeight[0];
+                        tL_documentAttributeImageSize.h = inlineResultWidthAndHeight[1];
+                        tL_document2.attributes.add(tL_documentAttributeImageSize);
+                        tL_documentAttributeFilename.file_name = "sticker.webp";
+                        try {
+                            if (botInlineResult.thumb == null) {
+                                tL_photo = null;
+                            } else {
+                                tL_photo = null;
+                                try {
+                                    Bitmap bitmapLoadBitmap = ImageLoader.loadBitmap(new File(FileLoader.getDirectory(4), Utilities.MD5(botInlineResult.thumb.url) + "." + ImageLoader.getHttpUrlExtension(botInlineResult.thumb.url, "webp")).getAbsolutePath(), null, 90.0f, 90.0f, true);
+                                    if (bitmapLoadBitmap != null) {
+                                        TLRPC.PhotoSize photoSizeScaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmapLoadBitmap, 90.0f, 90.0f, 55, false);
+                                        if (photoSizeScaleAndSaveImage != null) {
+                                            tL_document2.thumbs.add(photoSizeScaleAndSaveImage);
+                                            tL_document2.flags |= 1;
+                                        }
+                                        bitmapLoadBitmap.recycle();
+                                    }
+                                } catch (Throwable th) {
+                                    th = th;
+                                    FileLog.e(th);
+                                }
+                            }
+                            break;
+                        } catch (Throwable th2) {
+                            th = th2;
+                            tL_photo = null;
+                        }
+                        break;
+                    case "gif":
+                        tL_documentAttributeFilename.file_name = "animation.gif";
+                        if (absolutePath.endsWith("mp4")) {
+                            tL_document2.mime_type = "video/mp4";
+                            tL_document2.attributes.add(new TLRPC.TL_documentAttributeAnimated());
+                        } else {
+                            tL_document2.mime_type = "image/gif";
+                        }
+                        tL_photo = null;
+                        break;
+                    case "file":
+                        int iLastIndexOf = botInlineResult.content.mime_type.lastIndexOf(47);
+                        if (iLastIndexOf != -1) {
+                            tL_documentAttributeFilename.file_name = "file." + botInlineResult.content.mime_type.substring(iLastIndexOf + 1);
+                        } else {
+                            tL_documentAttributeFilename.file_name = "file";
+                        }
+                        tL_photo = null;
+                        break;
+                    case "audio":
+                        TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
+                        tL_documentAttributeAudio.duration = MessageObject.getInlineResultDuration(botInlineResult);
+                        tL_documentAttributeAudio.title = botInlineResult.title;
+                        int i2 = tL_documentAttributeAudio.flags;
+                        tL_documentAttributeAudio.flags = i2 | 1;
+                        String str2 = botInlineResult.description;
+                        if (str2 != null) {
+                            tL_documentAttributeAudio.performer = str2;
+                            tL_documentAttributeAudio.flags = i2 | 3;
+                        }
+                        tL_documentAttributeFilename.file_name = "audio.mp3";
+                        tL_document2.attributes.add(tL_documentAttributeAudio);
+                        tL_photo = null;
+                        break;
+                    case "video":
+                        tL_documentAttributeFilename.file_name = "video.mp4";
+                        TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
+                        int[] inlineResultWidthAndHeight2 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
+                        tL_documentAttributeVideo.w = inlineResultWidthAndHeight2[0];
+                        tL_documentAttributeVideo.h = inlineResultWidthAndHeight2[1];
+                        tL_documentAttributeVideo.duration = MessageObject.getInlineResultDuration(botInlineResult);
+                        tL_documentAttributeVideo.supports_streaming = true;
+                        tL_document2.attributes.add(tL_documentAttributeVideo);
+                        try {
+                            if (botInlineResult.thumb != null) {
+                                Bitmap bitmapLoadBitmap2 = ImageLoader.loadBitmap(new File(FileLoader.getDirectory(4), Utilities.MD5(botInlineResult.thumb.url) + "." + ImageLoader.getHttpUrlExtension(botInlineResult.thumb.url, "jpg")).getAbsolutePath(), null, 90.0f, 90.0f, true);
+                                if (bitmapLoadBitmap2 != null) {
+                                    TLRPC.PhotoSize photoSizeScaleAndSaveImage2 = ImageLoader.scaleAndSaveImage(bitmapLoadBitmap2, 90.0f, 90.0f, 55, false);
+                                    if (photoSizeScaleAndSaveImage2 != null) {
+                                        tL_document2.thumbs.add(photoSizeScaleAndSaveImage2);
+                                        tL_document2.flags |= 1;
+                                    }
+                                    bitmapLoadBitmap2.recycle();
+                                }
+                            }
+                            break;
+                        } catch (Throwable th3) {
+                            FileLog.e(th3);
+                        }
+                        tL_photo = null;
+                        break;
+                    case "voice":
+                        TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2 = new TLRPC.TL_documentAttributeAudio();
+                        tL_documentAttributeAudio2.duration = MessageObject.getInlineResultDuration(botInlineResult);
+                        tL_documentAttributeAudio2.voice = true;
+                        tL_documentAttributeFilename.file_name = "audio.ogg";
+                        tL_document2.attributes.add(tL_documentAttributeAudio2);
+                        tL_photo = null;
+                        break;
+                    default:
+                        tL_photo = null;
+                        break;
+                }
+                if (tL_documentAttributeFilename.file_name == null) {
+                    tL_documentAttributeFilename.file_name = "file";
+                }
+                if (tL_document2.mime_type == null) {
+                    tL_document2.mime_type = "application/octet-stream";
+                }
+                if (tL_document2.thumbs.isEmpty()) {
+                    TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
+                    int[] inlineResultWidthAndHeight3 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
+                    tL_photoSize.w = inlineResultWidthAndHeight3[0];
+                    tL_photoSize.h = inlineResultWidthAndHeight3[1];
+                    tL_photoSize.size = 0;
+                    tL_photoSize.location = new TLRPC.TL_fileLocationUnavailable();
+                    tL_photoSize.type = "x";
+                    tL_document2.thumbs.add(tL_photoSize);
+                    tL_document2.flags |= 1;
+                }
+                tL_photo2 = tL_photo;
+                tL_document = tL_document2;
+                break;
+            case "photo":
+                TLRPC.TL_photo tL_photoGeneratePhotoSizes = file.exists() ? SendMessagesHelper.getInstance(i).generatePhotoSizes(absolutePath, null) : null;
+                if (tL_photoGeneratePhotoSizes == null) {
+                    tL_photoGeneratePhotoSizes = new TLRPC.TL_photo();
+                    tL_photoGeneratePhotoSizes.date = ConnectionsManager.getInstance(i).getCurrentTime();
+                    tL_photoGeneratePhotoSizes.file_reference = new byte[0];
+                    TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
+                    int[] inlineResultWidthAndHeight4 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
+                    tL_photoSize2.w = inlineResultWidthAndHeight4[0];
+                    tL_photoSize2.h = inlineResultWidthAndHeight4[1];
+                    tL_photoSize2.size = 1;
+                    tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
+                    tL_photoSize2.type = "x";
+                    tL_photoGeneratePhotoSizes.sizes.add(tL_photoSize2);
+                }
+                tL_document = null;
+                tL_photo2 = tL_photoGeneratePhotoSizes;
+                break;
+            default:
+                tL_document = null;
+                break;
+        }
+        return convert(i, j, botInlineResult, tL_photo2, tL_document, null);
     }
 
     public static MessageObject convert(int i, long j, TLRPC.BotInlineResult botInlineResult, TLRPC.Photo photo, TLRPC.Document document, TLRPC.WebPage webPage) {

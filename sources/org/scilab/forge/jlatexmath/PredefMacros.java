@@ -1,9 +1,7 @@
 package org.scilab.forge.jlatexmath;
 
-import java.lang.Character;
 import java.util.Map;
 import java.util.StringTokenizer;
-import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.dynamic.DynamicAtom;
 import ru.noties.jlatexmath.awt.Color;
 
@@ -70,7 +68,7 @@ public class PredefMacros {
         NewCommandMacro.addNewCommand("Join", "\\mathop{\\rlap{\\ltimes}\\rtimes}", 0);
     }
 
-    public static final Atom fcscore_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
+    public static final Atom fcscore_macro(TeXParser teXParser, String[] strArr) {
         int i = Integer.parseInt(strArr[1]);
         if (i > 4096) {
             i = 4096;
@@ -128,7 +126,7 @@ public class PredefMacros {
         return new SmashedAtom(vRowAtom, null);
     }
 
-    public static final Atom hvspace_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
+    public static final Atom hvspace_macro(TeXParser teXParser, String[] strArr) {
         int i = 0;
         while (i < strArr[1].length() && !Character.isLetter(strArr[1].charAt(i))) {
             i++;
@@ -210,20 +208,20 @@ public class PredefMacros {
         float f2;
         double d2;
         float f3;
-        SymbolAtom symbolAtom;
+        Atom atom;
         TeXFormula teXFormula = new TeXFormula(teXParser, strArr[1], false);
         TeXFormula teXFormula2 = new TeXFormula(teXParser, strArr[2], false);
         if (teXFormula.root == null || teXFormula2.root == null) {
             throw new ParseException("Both numerator and denominator of a fraction can't be empty!");
         }
-        SymbolAtom symbolAtom2 = SymbolAtom.get("slash");
+        SymbolAtom symbolAtom = SymbolAtom.get("slash");
         if (teXParser.isMathMode()) {
             d = 0.75d;
             f = -0.13f;
             f2 = -0.065f;
             d2 = 0.75d;
             f3 = 0.45f;
-            symbolAtom = symbolAtom2;
+            atom = symbolAtom;
         } else {
             VRowAtom vRowAtom = new VRowAtom(new ScaleAtom(SymbolAtom.get("textfractionsolidus"), 1.25d, 0.65d));
             vRowAtom.setRaise(1, 0.4f);
@@ -232,7 +230,7 @@ public class PredefMacros {
             d2 = 0.5d;
             f2 = -0.24f;
             f3 = 0.75f;
-            symbolAtom = vRowAtom;
+            atom = vRowAtom;
         }
         double d3 = d;
         double d4 = d2;
@@ -240,7 +238,7 @@ public class PredefMacros {
         vRowAtom2.setRaise(1, f3);
         RowAtom rowAtom = new RowAtom(vRowAtom2);
         rowAtom.add(new SpaceAtom(0, f, 0.0f, 0.0f));
-        rowAtom.add(symbolAtom);
+        rowAtom.add(atom);
         rowAtom.add(new SpaceAtom(0, f2, 0.0f, 0.0f));
         rowAtom.add(new ScaleAtom(teXFormula2.root, d3, d4));
         return rowAtom;
@@ -774,7 +772,7 @@ public class PredefMacros {
         return new MatrixAtom(teXParser.getIsPartial(), arrayOfAtoms, 1);
     }
 
-    public static final Atom multicolumn_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
+    public static final Atom multicolumn_macro(TeXParser teXParser, String[] strArr) {
         int i = Integer.parseInt(strArr[1]);
         if (i > 4096) {
             i = 4096;
@@ -784,7 +782,7 @@ public class PredefMacros {
         return null;
     }
 
-    public static final Atom hdotsfor_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
+    public static final Atom hdotsfor_macro(TeXParser teXParser, String[] strArr) {
         int i = 1;
         int i2 = Integer.parseInt(strArr[1]);
         if (i2 >= 1) {
@@ -820,7 +818,7 @@ public class PredefMacros {
         return new MatrixAtom(teXParser.getIsPartial(), arrayOfAtoms, 4);
     }
 
-    public static final Atom alignatATATenv_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
+    public static final Atom alignatATATenv_macro(TeXParser teXParser, String[] strArr) {
         ArrayOfAtoms arrayOfAtoms = new ArrayOfAtoms();
         new TeXParser(teXParser.getIsPartial(), strArr[2], arrayOfAtoms, false).parse();
         arrayOfAtoms.checkDimensions();
@@ -837,7 +835,7 @@ public class PredefMacros {
         return new MatrixAtom(teXParser.getIsPartial(), arrayOfAtoms, 6);
     }
 
-    public static final Atom alignedatATATenv_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
+    public static final Atom alignedatATATenv_macro(TeXParser teXParser, String[] strArr) {
         ArrayOfAtoms arrayOfAtoms = new ArrayOfAtoms();
         new TeXParser(teXParser.getIsPartial(), strArr[2], arrayOfAtoms, false).parse();
         arrayOfAtoms.checkDimensions();
@@ -1189,7 +1187,7 @@ public class PredefMacros {
         return new ReflectAtom(new TeXFormula(teXParser, strArr[1]).root);
     }
 
-    public static final Atom scalebox_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
+    public static final Atom scalebox_macro(TeXParser teXParser, String[] strArr) {
         Atom atom = new TeXFormula(teXParser, strArr[2]).root;
         double d = Double.parseDouble(strArr[1]);
         String str = strArr[3];
@@ -1235,7 +1233,7 @@ public class PredefMacros {
         return new DoubleFramedAtom(new TeXFormula(teXParser, strArr[1]).root);
     }
 
-    public static final Atom definecolor_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
+    public static final Atom definecolor_macro(TeXParser teXParser, String[] strArr) {
         Color color;
         if ("gray".equals(strArr[2])) {
             float f = Float.parseFloat(strArr[3]);
@@ -1350,8 +1348,32 @@ public class PredefMacros {
         return new HlineAtom();
     }
 
-    public static final org.scilab.forge.jlatexmath.Atom size_macros(org.scilab.forge.jlatexmath.TeXParser r8, java.lang.String[] r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.PredefMacros.size_macros(org.scilab.forge.jlatexmath.TeXParser, java.lang.String[]):org.scilab.forge.jlatexmath.Atom");
+    public static final Atom size_macros(TeXParser teXParser, String[] strArr) {
+        float f;
+        if ("tiny".equals(strArr[0])) {
+            f = 0.5f;
+        } else if ("scriptsize".equals(strArr[0])) {
+            f = 0.7f;
+        } else if ("footnotesize".equals(strArr[0])) {
+            f = 0.8f;
+        } else if ("small".equals(strArr[0])) {
+            f = 0.9f;
+        } else if ("normalsize".equals(strArr[0])) {
+            f = 1.0f;
+        } else if ("large".equals(strArr[0])) {
+            f = 1.2f;
+        } else if ("Large".equals(strArr[0])) {
+            f = 1.4f;
+        } else if ("LARGE".equals(strArr[0])) {
+            f = 1.8f;
+        } else if ("huge".equals(strArr[0])) {
+            f = 2.0f;
+        } else if ("Huge".equals(strArr[0])) {
+            f = 2.5f;
+        } else {
+            f = 1.0f;
+        }
+        return new MonoScaleAtom(new TeXFormula(teXParser, teXParser.getOverArgument(), null, false, teXParser.isIgnoreWhiteSpace()).root, f);
     }
 
     public static final Atom jlatexmathcumsup_macro(TeXParser teXParser, String[] strArr) {
@@ -1584,7 +1606,7 @@ public class PredefMacros {
         return new RotateAtom(new TeXFormula(teXParser, strArr[1]).root, 180.0d, "origin=cc");
     }
 
-    public static final Atom romannumeral_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
+    public static final Atom romannumeral_macro(TeXParser teXParser, String[] strArr) {
         int[] iArr = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         String[] strArr2 = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         int i = Integer.parseInt(strArr[1].trim());
@@ -1624,8 +1646,28 @@ public class PredefMacros {
         return new SpaceAtom(0, 2.0f, 0.0f, 0.0f);
     }
 
-    public static final org.scilab.forge.jlatexmath.Atom muskip_macros(org.scilab.forge.jlatexmath.TeXParser r5, java.lang.String[] r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.PredefMacros.muskip_macros(org.scilab.forge.jlatexmath.TeXParser, java.lang.String[]):org.scilab.forge.jlatexmath.Atom");
+    public static final Atom muskip_macros(TeXParser teXParser, String[] strArr) {
+        int i = 0;
+        if (strArr[0].equals(",")) {
+            i = 1;
+        } else if (strArr[0].equals(":")) {
+            i = 2;
+        } else if (strArr[0].equals(";")) {
+            i = 3;
+        } else if (strArr[0].equals("thinspace")) {
+            i = 1;
+        } else if (strArr[0].equals("medspace")) {
+            i = 2;
+        } else if (strArr[0].equals("thickspace")) {
+            i = 3;
+        } else if (strArr[0].equals("!") || strArr[0].equals("negthinspace")) {
+            i = -1;
+        } else if (strArr[0].equals("negmedspace")) {
+            i = -2;
+        } else if (strArr[0].equals("negthickspace")) {
+            i = -3;
+        }
+        return new SpaceAtom(i);
     }
 
     public static final Atom surd_macro(TeXParser teXParser, String[] strArr) {

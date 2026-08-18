@@ -41,11 +41,12 @@ public class PhotoFace {
             }
             this.eyesCenterPoint = new PointF((pointFTransposePoint2.x * 0.5f) + (pointFTransposePoint.x * 0.5f), (pointFTransposePoint2.y * 0.5f) + (pointFTransposePoint.y * 0.5f));
             this.eyesDistance = (float) Math.hypot(pointFTransposePoint.x - pointFTransposePoint2.x, pointFTransposePoint.y - pointFTransposePoint2.y);
-            this.angle = (float) Math.toDegrees(Math.atan2(pointFTransposePoint.y - pointFTransposePoint2.y, pointFTransposePoint.x - pointFTransposePoint2.x) + 3.141592653589793d);
+            float degrees = (float) Math.toDegrees(Math.atan2(pointFTransposePoint.y - pointFTransposePoint2.y, pointFTransposePoint.x - pointFTransposePoint2.x) + 3.141592653589793d);
+            this.angle = degrees;
             float f = this.eyesDistance;
             this.width = 2.35f * f;
             float f2 = f * 0.8f;
-            double radians = (float) Math.toRadians(r12 - 90.0f);
+            double radians = (float) Math.toRadians(degrees - 90.0f);
             this.foreheadPoint = new PointF(this.eyesCenterPoint.x + (((float) Math.cos(radians)) * f2), this.eyesCenterPoint.y + (f2 * ((float) Math.sin(radians))));
         }
         if (pointFTransposePoint3 == null || pointFTransposePoint4 == null) {

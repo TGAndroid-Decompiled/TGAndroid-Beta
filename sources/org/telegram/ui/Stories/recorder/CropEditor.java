@@ -425,8 +425,64 @@ public abstract class CropEditor extends FrameLayout {
             return ((getHeight() - (!(getContext() instanceof BubbleActivity) ? AndroidUtilities.statusBarHeight : 0.0f)) - CropEditor.this.cropView.bottomPadding) - AndroidUtilities.dp(32.0f);
         }
 
-        private void applyCrop(android.graphics.Matrix r12, boolean r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CropEditor.ContentView.applyCrop(android.graphics.Matrix, boolean):void");
+        private void applyCrop(Matrix matrix, boolean z) {
+            int currentWidth = CropEditor.this.getCurrentWidth();
+            int currentHeight = CropEditor.this.getCurrentHeight();
+            int orientation = CropEditor.this.cropTransform.getOrientation();
+            if (orientation == 90 || orientation == 270) {
+                currentHeight = currentWidth;
+                currentWidth = currentHeight;
+            }
+            float f = 1.0f;
+            float f2 = 0.0f;
+            float trueCropScale = ((CropEditor.this.cropTransform.getTrueCropScale() - 1.0f) * (z ? 1.0f : 0.0f)) + 1.0f;
+            float f3 = currentWidth;
+            float containerWidth = getContainerWidth() / f3;
+            float f4 = currentHeight;
+            if (containerWidth * f4 > getContainerHeight()) {
+                containerWidth = getContainerHeight() / f4;
+            }
+            boolean z2 = (CropEditor.this.entry.orientation / 90) % 2 == 1;
+            matrix.preTranslate(CropEditor.this.cropTransform.getCropAreaX(), CropEditor.this.cropTransform.getCropAreaY());
+            float scale = (CropEditor.this.cropTransform.getScale() / trueCropScale) * containerWidth;
+            if (CropEditor.this.entry == null || CropEditor.this.entry.crop == null) {
+                if (!z) {
+                    f = scale;
+                }
+            } else if (z) {
+                f = CropEditor.this.entry.crop.cropScale;
+            } else {
+                f = scale;
+            }
+            matrix.preScale(f, f);
+            float cropPx = CropEditor.this.cropTransform.getCropPx();
+            float cropPy = CropEditor.this.cropTransform.getCropPy();
+            CropEditor cropEditor = CropEditor.this;
+            if (cropEditor.closing && z) {
+                if (cropEditor.entry.crop == null) {
+                    cropPx = 0.0f;
+                } else {
+                    MediaController.CropState cropState = CropEditor.this.entry.crop;
+                    cropPx = !z2 ? cropState.cropPx : cropState.cropPy;
+                }
+                if (CropEditor.this.entry.crop == null) {
+                    cropPy = 0.0f;
+                } else {
+                    cropPy = !z2 ? CropEditor.this.entry.crop.cropPy : CropEditor.this.entry.crop.cropPx;
+                }
+            }
+            matrix.preTranslate(cropPx * f3, cropPy * f4);
+            float rotation = CropEditor.this.entry.orientation + CropEditor.this.cropTransform.getRotation() + orientation;
+            if (CropEditor.this.entry.crop == null) {
+                if (!z) {
+                    f2 = rotation;
+                }
+            } else if (z) {
+                f2 = CropEditor.this.entry.crop.cropRotate + CropEditor.this.entry.crop.transformRotation;
+            } else {
+                f2 = rotation;
+            }
+            matrix.preRotate(f2);
         }
     }
 }

@@ -5,22 +5,30 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.view.View;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.GLIconSettingsView;
 
 public class StarParticlesView extends View {
     private LinearGradient clipGradient;
@@ -155,10 +163,15 @@ public class StarParticlesView extends View {
     }
 
     public void flingParticles(float f) {
+        float f2;
         if (this.doNotFling) {
             return;
         }
-        float f2 = f < 60.0f ? 5.0f : f < 180.0f ? 9.0f : 15.0f;
+        if (f < 60.0f) {
+            f2 = 5.0f;
+        } else {
+            f2 = f < 180.0f ? 9.0f : 15.0f;
+        }
         AnimatorSet animatorSet = new AnimatorSet();
         ValueAnimator.AnimatorUpdateListener animatorUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -273,7 +286,335 @@ public class StarParticlesView extends View {
         }
 
         private void generateBitmaps() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.StarParticlesView.Drawable.generateBitmaps():void");
+            int i;
+            int iDp;
+            int i2;
+            Bitmap bitmapCreateBitmap;
+            Canvas canvas;
+            Path path;
+            Paint paint;
+            int i3;
+            int i4;
+            Paint mainGradientPaint;
+            int i5;
+            int i6;
+            int i7;
+            int i8;
+            int i9;
+            int i10;
+            int i11;
+            int i12 = 6;
+            int i13 = 3;
+            int i14 = 43;
+            if (this.type == 43) {
+                if (this.stars.length != 6) {
+                    this.stars = new Bitmap[6];
+                }
+                if (this.svg.length != 6) {
+                    this.svg = new boolean[6];
+                }
+                if (this.flip.length != 6) {
+                    this.flip = new boolean[6];
+                }
+                i = 6;
+            } else {
+                i = 3;
+            }
+            int i15 = 0;
+            int i16 = 0;
+            while (i16 < i) {
+                float f = this.k1;
+                if (i16 == 0) {
+                    iDp = AndroidUtilities.dp(this.size1);
+                } else if (i16 == 1) {
+                    f = this.k2;
+                    iDp = AndroidUtilities.dp(this.size2);
+                } else {
+                    f = this.k3;
+                    iDp = AndroidUtilities.dp(this.size3);
+                }
+                int i17 = iDp;
+                int i18 = this.type;
+                if (i18 == 9) {
+                    if (i16 == 0) {
+                        i11 = R.raw.premium_object_folder;
+                    } else if (i16 == 1) {
+                        i11 = R.raw.premium_object_bubble;
+                    } else {
+                        i11 = R.raw.premium_object_settings;
+                    }
+                    this.stars[i16] = SvgHelper.getBitmap(i11, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == 27) {
+                    if (i16 == 0) {
+                        i10 = R.raw.filled_messages_paid;
+                    } else if (i16 == 1) {
+                        i10 = R.raw.filled_crown_on;
+                    } else {
+                        i10 = R.raw.premium_object_star2;
+                    }
+                    this.stars[i16] = SvgHelper.getBitmap(i10, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == 11 || i18 == 4) {
+                    if (i16 == 0) {
+                        i2 = R.raw.premium_object_smile1;
+                    } else if (i16 == 1) {
+                        i2 = R.raw.premium_object_smile2;
+                    } else {
+                        i2 = R.raw.premium_object_like;
+                    }
+                    this.stars[i16] = SvgHelper.getBitmap(i2, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == 22) {
+                    if (i16 == 0) {
+                        i9 = R.raw.premium_object_user;
+                    } else if (i16 == 1) {
+                        i9 = R.raw.cache_photos;
+                    } else {
+                        i9 = R.raw.cache_profile_photos;
+                    }
+                    this.stars[i16] = SvgHelper.getBitmap(i9, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == i13) {
+                    if (i16 == 0) {
+                        i8 = R.raw.premium_object_adsbubble;
+                    } else if (i16 == 1) {
+                        i8 = R.raw.premium_object_like;
+                    } else {
+                        i8 = R.raw.premium_object_noads;
+                    }
+                    this.stars[i16] = SvgHelper.getBitmap(i8, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == 7) {
+                    if (i16 == 0) {
+                        i7 = R.raw.premium_object_video2;
+                    } else if (i16 == 1) {
+                        i7 = R.raw.premium_object_video;
+                    } else {
+                        i7 = R.raw.premium_object_user;
+                    }
+                    this.stars[i16] = SvgHelper.getBitmap(i7, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == i14) {
+                    if (i16 == 0) {
+                        i6 = R.raw.premium_object_list;
+                    } else if (i16 == 1) {
+                        i6 = R.raw.premium_object_math;
+                    } else if (i16 == 2) {
+                        i6 = R.raw.premium_object_table;
+                    } else if (i16 == i13) {
+                        i6 = R.raw.premium_object_superscript;
+                    } else if (i16 == 4) {
+                        i6 = R.raw.premium_object_bold;
+                    } else {
+                        i6 = R.raw.premium_object_code;
+                    }
+                    this.stars[i16] = SvgHelper.getBitmap(i6, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == 1001) {
+                    this.stars[i16] = SvgHelper.getBitmap(R.raw.premium_object_fire, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == 1002) {
+                    this.stars[i16] = SvgHelper.getBitmap(R.raw.premium_object_star2, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == 24) {
+                    if (i16 == 0) {
+                        i5 = R.raw.premium_object_tag;
+                    } else if (i16 == 1) {
+                        i5 = R.raw.premium_object_check;
+                    } else {
+                        i5 = R.raw.premium_object_star;
+                    }
+                    this.stars[i16] = SvgHelper.getBitmap(i5, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 30));
+                    this.svg[i16] = true;
+                } else if (i18 == 28) {
+                    if (i16 == 0) {
+                        this.stars[i16] = SvgHelper.getBitmap(R.raw.filled_premium_dollar, i17, i17, ColorUtils.setAlphaComponent(Theme.getColor(this.colorKey, this.resourcesProvider), 255));
+                        this.flip[i16] = true;
+                    } else {
+                        bitmapCreateBitmap = Bitmap.createBitmap(i17, i17, Bitmap.Config.ARGB_8888);
+                        this.stars[i16] = bitmapCreateBitmap;
+                        canvas = new Canvas(bitmapCreateBitmap);
+                        if (this.type != i12 && (i16 == 1 || i16 == 2)) {
+                            android.graphics.drawable.Drawable drawable = ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.msg_premium_liststar);
+                            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(this.colorKey, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+                            drawable.setBounds(i15, i15, i17, i17);
+                            drawable.draw(canvas);
+                        } else {
+                            path = new Path();
+                            float f2 = i17 >> 1;
+                            int i19 = (int) (f * f2);
+                            path.moveTo(0.0f, f2);
+                            float f3 = i19;
+                            path.lineTo(f3, f3);
+                            path.lineTo(f2, 0.0f);
+                            float f4 = i17 - i19;
+                            path.lineTo(f4, f3);
+                            float f5 = i17;
+                            path.lineTo(f5, f2);
+                            path.lineTo(f4, f4);
+                            path.lineTo(f2, f5);
+                            path.lineTo(f3, f4);
+                            path.lineTo(0.0f, f2);
+                            path.close();
+                            paint = new Paint();
+                            if (this.useGradient) {
+                                if (i17 >= AndroidUtilities.dp(10.0f)) {
+                                    i4 = 255;
+                                    PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, i17, i17, i17 * (-2), 0.0f);
+                                } else {
+                                    i4 = 255;
+                                    PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, i17, i17, i17 * (-4), 0.0f);
+                                }
+                                mainGradientPaint = PremiumGradient.getInstance().getMainGradientPaint();
+                                if (this.roundEffect) {
+                                    mainGradientPaint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(this.size1 / 5.0f)));
+                                }
+                                if (this.forceMaxAlpha) {
+                                    mainGradientPaint.setAlpha(i4);
+                                } else if (this.useBlur) {
+                                    mainGradientPaint.setAlpha(60);
+                                } else {
+                                    mainGradientPaint.setAlpha(120);
+                                }
+                                canvas.drawPath(path, mainGradientPaint);
+                                mainGradientPaint.setPathEffect(null);
+                                mainGradientPaint.setAlpha(i4);
+                                i3 = 2;
+                            } else {
+                                bitmapCreateBitmap = bitmapCreateBitmap;
+                                i3 = 2;
+                                paint.setColor(getPathColor(i16));
+                                if (this.roundEffect) {
+                                    paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(this.size1 / 5.0f)));
+                                }
+                                canvas.drawPath(path, paint);
+                            }
+                            if (this.useBlur) {
+                                Utilities.stackBlurBitmap(bitmapCreateBitmap, i3);
+                            }
+                        }
+                    }
+                } else if (i18 == 105 && i16 == 0) {
+                    this.stars[i16] = SvgHelper.getBitmap(R.raw.premium_object_star2, i17, i17, getPathColor(i16));
+                } else {
+                    bitmapCreateBitmap = Bitmap.createBitmap(i17, i17, Bitmap.Config.ARGB_8888);
+                    this.stars[i16] = bitmapCreateBitmap;
+                    canvas = new Canvas(bitmapCreateBitmap);
+                    if (this.type != i12) {
+                        path = new Path();
+                        float f6 = i17 >> 1;
+                        int i110 = (int) (f * f6);
+                        path.moveTo(0.0f, f6);
+                        float f7 = i110;
+                        path.lineTo(f7, f7);
+                        path.lineTo(f6, 0.0f);
+                        float f8 = i17 - i110;
+                        path.lineTo(f8, f7);
+                        float f9 = i17;
+                        path.lineTo(f9, f6);
+                        path.lineTo(f8, f8);
+                        path.lineTo(f6, f9);
+                        path.lineTo(f7, f8);
+                        path.lineTo(0.0f, f6);
+                        path.close();
+                        paint = new Paint();
+                        if (this.useGradient) {
+                            if (i17 >= AndroidUtilities.dp(10.0f)) {
+                                i4 = 255;
+                                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, i17, i17, i17 * (-2), 0.0f);
+                            } else {
+                                i4 = 255;
+                                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, i17, i17, i17 * (-4), 0.0f);
+                            }
+                            mainGradientPaint = PremiumGradient.getInstance().getMainGradientPaint();
+                            if (this.roundEffect) {
+                                mainGradientPaint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(this.size1 / 5.0f)));
+                            }
+                            if (this.forceMaxAlpha) {
+                                mainGradientPaint.setAlpha(i4);
+                            } else if (this.useBlur) {
+                                mainGradientPaint.setAlpha(60);
+                            } else {
+                                mainGradientPaint.setAlpha(120);
+                            }
+                            canvas.drawPath(path, mainGradientPaint);
+                            mainGradientPaint.setPathEffect(null);
+                            mainGradientPaint.setAlpha(i4);
+                            i3 = 2;
+                        } else {
+                            bitmapCreateBitmap = bitmapCreateBitmap;
+                            i3 = 2;
+                            paint.setColor(getPathColor(i16));
+                            if (this.roundEffect) {
+                                paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(this.size1 / 5.0f)));
+                            }
+                            canvas.drawPath(path, paint);
+                        }
+                        if (this.useBlur) {
+                            Utilities.stackBlurBitmap(bitmapCreateBitmap, i3);
+                        }
+                    } else {
+                        path = new Path();
+                        float f10 = i17 >> 1;
+                        int i111 = (int) (f * f10);
+                        path.moveTo(0.0f, f10);
+                        float f11 = i111;
+                        path.lineTo(f11, f11);
+                        path.lineTo(f10, 0.0f);
+                        float f12 = i17 - i111;
+                        path.lineTo(f12, f11);
+                        float f13 = i17;
+                        path.lineTo(f13, f10);
+                        path.lineTo(f12, f12);
+                        path.lineTo(f10, f13);
+                        path.lineTo(f11, f12);
+                        path.lineTo(0.0f, f10);
+                        path.close();
+                        paint = new Paint();
+                        if (this.useGradient) {
+                            if (i17 >= AndroidUtilities.dp(10.0f)) {
+                                i4 = 255;
+                                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, i17, i17, i17 * (-2), 0.0f);
+                            } else {
+                                i4 = 255;
+                                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, i17, i17, i17 * (-4), 0.0f);
+                            }
+                            mainGradientPaint = PremiumGradient.getInstance().getMainGradientPaint();
+                            if (this.roundEffect) {
+                                mainGradientPaint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(this.size1 / 5.0f)));
+                            }
+                            if (this.forceMaxAlpha) {
+                                mainGradientPaint.setAlpha(i4);
+                            } else if (this.useBlur) {
+                                mainGradientPaint.setAlpha(60);
+                            } else {
+                                mainGradientPaint.setAlpha(120);
+                            }
+                            canvas.drawPath(path, mainGradientPaint);
+                            mainGradientPaint.setPathEffect(null);
+                            mainGradientPaint.setAlpha(i4);
+                            i3 = 2;
+                        } else {
+                            bitmapCreateBitmap = bitmapCreateBitmap;
+                            i3 = 2;
+                            paint.setColor(getPathColor(i16));
+                            if (this.roundEffect) {
+                                paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(this.size1 / 5.0f)));
+                            }
+                            canvas.drawPath(path, paint);
+                        }
+                        if (this.useBlur) {
+                            Utilities.stackBlurBitmap(bitmapCreateBitmap, i3);
+                        }
+                    }
+                }
+                i16++;
+                i12 = 6;
+                i13 = 3;
+                i14 = 43;
+                i15 = 0;
+            }
         }
 
         protected int getPathColor(int i) {
@@ -381,8 +722,91 @@ public class StarParticlesView extends View {
                 iArr[i] = i2 + 1;
             }
 
-            public void draw(android.graphics.Canvas r9, long r10, float r12) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.StarParticlesView.Drawable.Particle.draw(android.graphics.Canvas, long, float):void");
+            public void draw(Canvas canvas, long j, float f) {
+                float fClamp;
+                float fMin;
+                Drawable drawable = Drawable.this;
+                if (drawable.useRotate) {
+                    int[] iArr = drawable.pointsCount;
+                    int i = this.starIndex;
+                    int i2 = iArr[i];
+                    float[] fArr = drawable.points[i];
+                    int i3 = i2 * 2;
+                    this.drawingX = fArr[i3];
+                    this.drawingY = fArr[i3 + 1];
+                    iArr[i] = i2 + 1;
+                } else {
+                    this.drawingX = this.x;
+                    this.drawingY = this.y;
+                }
+                if (drawable.excludeRect.isEmpty() || !Drawable.this.excludeRect.contains(this.drawingX, this.drawingY)) {
+                    canvas.save();
+                    canvas.translate(this.drawingX, this.drawingY);
+                    float f2 = this.randomRotate;
+                    if (f2 != 0.0f) {
+                        canvas.rotate(f2, Drawable.this.stars[this.starIndex].getWidth() / 2.0f, Drawable.this.stars[this.starIndex].getHeight() / 2.0f);
+                    }
+                    if (Drawable.this.checkTime) {
+                        long j2 = this.lifeTime - j;
+                        if (j2 < 200) {
+                            fClamp = Utilities.clamp(1.0f - (j2 / 150.0f), 1.0f, 0.0f);
+                        } else {
+                            fClamp = 0.0f;
+                        }
+                    } else {
+                        fClamp = 0.0f;
+                    }
+                    float f3 = this.inProgress;
+                    if (f3 < 1.0f || GLIconSettingsView.smallStarsSize != 1.0f) {
+                        float interpolation = AndroidUtilities.overshootInterpolator.getInterpolation(f3) * GLIconSettingsView.smallStarsSize;
+                        canvas.scale(interpolation, interpolation, 0.0f, 0.0f);
+                    }
+                    Drawable drawable2 = Drawable.this;
+                    if (drawable2.flip[this.starIndex]) {
+                        float fMin2 = this.flipProgress + ((drawable2.dt / 1000.0f) * Math.min(Drawable.this.speedScale, 3.5f));
+                        this.flipProgress = fMin2;
+                        canvas.scale((float) Math.cos(((double) fMin2) * 3.141592653589793d), 1.0f, 0.0f, 0.0f);
+                    }
+                    Drawable drawable3 = Drawable.this;
+                    Paint paint = drawable3.overridePaint;
+                    if (paint == null) {
+                        Utilities.CallbackReturn callbackReturn = drawable3.getPaint;
+                        if (callbackReturn != null) {
+                            paint = (Paint) callbackReturn.run(Integer.valueOf(this.i));
+                        } else {
+                            paint = drawable3.paint;
+                        }
+                    }
+                    float f4 = 1.0f - fClamp;
+                    paint.setAlpha((int) (this.alpha * f4 * f));
+                    Bitmap bitmap = Drawable.this.stars[this.starIndex];
+                    if (Drawable.this.useScale) {
+                        float f5 = this.scale * f4 * f * this.inProgress;
+                        canvas.scale(f5, f5);
+                    }
+                    canvas.drawBitmap(bitmap, -(bitmap.getWidth() >> 1), -(bitmap.getHeight() >> 1), paint);
+                    canvas.restore();
+                }
+                if (Drawable.this.paused) {
+                    return;
+                }
+                float fDp = AndroidUtilities.dp(4.0f) * (Drawable.this.dt / 660.0f);
+                Drawable drawable4 = Drawable.this;
+                if (drawable4.flip[this.starIndex]) {
+                    fMin = fDp * Math.min(drawable4.speedScale, 3.5f) * 4.0f;
+                } else {
+                    fMin = fDp * drawable4.speedScale;
+                }
+                this.x += this.vecX * fMin;
+                this.y += this.vecY * fMin;
+                float f6 = this.inProgress;
+                if (f6 != 1.0f) {
+                    float f7 = f6 + (Drawable.this.dt / 200.0f);
+                    this.inProgress = f7;
+                    if (f7 > 1.0f) {
+                        this.inProgress = 1.0f;
+                    }
+                }
             }
 
             public void genPosition(long j) {
@@ -394,14 +818,15 @@ public class StarParticlesView extends View {
                 if (Drawable.this.type != 28) {
                     this.starIndex = Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.stars.length);
                 } else {
-                    if (Utilities.fastRandom.nextFloat() >= 0.13f) {
-                        this.starIndex = (int) Math.floor((r1 * (Drawable.this.stars.length - 2)) + 1.0f);
+                    float fNextFloat = Utilities.fastRandom.nextFloat();
+                    if (fNextFloat >= 0.13f) {
+                        this.starIndex = (int) Math.floor((fNextFloat * (Drawable.this.stars.length - 2)) + 1.0f);
                     } else {
                         this.starIndex = 0;
                     }
                 }
                 Drawable drawable = Drawable.this;
-                this.lifeTime = j + drawable.minLifeTime + Utilities.fastRandom.nextInt(drawable.randLifeTime * (drawable.flip[this.starIndex] ? 3 : 1));
+                this.lifeTime = j + drawable.minLifeTime + ((long) Utilities.fastRandom.nextInt(drawable.randLifeTime * (drawable.flip[this.starIndex] ? 3 : 1)));
                 this.randomRotate = 0.0f;
                 if (Drawable.this.useScale) {
                     this.scale = (Utilities.fastRandom.nextFloat() * 0.6f) + 0.4f;
@@ -439,17 +864,18 @@ public class StarParticlesView extends View {
                     this.x = fAbs;
                     this.y = fAbs2;
                 } else if (drawable2.isCircle) {
+                    float fAbs5 = Math.abs(Utilities.fastRandom.nextInt() % 1000) / 1000.0f;
                     float fWidth = Drawable.this.rect.width();
                     float f7 = Drawable.this.excludeRadius;
-                    float fAbs5 = ((Math.abs(Utilities.fastRandom.nextInt() % 1000) / 1000.0f) * (fWidth - f7)) + f7;
+                    float fMin = (fAbs5 * (fWidth - f7)) + f7;
                     float fAbs6 = Math.abs(Utilities.fastRandom.nextInt() % 360);
                     if (!Drawable.this.flip[this.starIndex] || this.first) {
                         fDp = 0.0f;
                     } else {
-                        fAbs5 = Math.min(fAbs5, AndroidUtilities.dp(10.0f));
+                        fMin = Math.min(fMin, AndroidUtilities.dp(10.0f));
                         fDp = AndroidUtilities.dp(30.0f) + 0.0f;
                     }
-                    double d = fAbs5;
+                    double d = fMin;
                     double d2 = fAbs6;
                     this.x = Drawable.this.rect.centerX() + Drawable.this.centerOffsetX + ((float) (Math.sin(Math.toRadians(d2)) * d));
                     this.y = Drawable.this.rect.centerY() + fDp + Drawable.this.centerOffsetY + ((float) (d * Math.cos(Math.toRadians(d2))));
@@ -487,11 +913,11 @@ public class StarParticlesView extends View {
                     this.inProgress = 0.0f;
                 }
                 if (drawable6.startFromCenter) {
-                    float fNextFloat = (((Utilities.fastRandom.nextFloat() * 1.2f) + 0.6f) * Math.min(Drawable.this.rect.width(), Drawable.this.rect.height())) / 2.0f;
-                    float fCenterX = Drawable.this.rect.centerX() + Drawable.this.centerOffsetX + (((float) Math.cos(dAtan2)) * fNextFloat);
+                    float fNextFloat2 = (((Utilities.fastRandom.nextFloat() * 1.2f) + 0.6f) * Math.min(Drawable.this.rect.width(), Drawable.this.rect.height())) / 2.0f;
+                    float fCenterX = Drawable.this.rect.centerX() + Drawable.this.centerOffsetX + (((float) Math.cos(dAtan2)) * fNextFloat2);
                     this.x = fCenterX;
                     this.x2 = fCenterX;
-                    float fCenterY2 = Drawable.this.rect.centerY() + Drawable.this.centerOffsetY + (((float) Math.sin(dAtan2)) * fNextFloat);
+                    float fCenterY2 = Drawable.this.rect.centerY() + Drawable.this.centerOffsetY + (((float) Math.sin(dAtan2)) * fNextFloat2);
                     this.y = fCenterY2;
                     this.y2 = fCenterY2;
                 }

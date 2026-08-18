@@ -13,7 +13,7 @@ public abstract class HandlerDispatcherKt {
     public static final HandlerDispatcher Main;
     private static volatile Choreographer choreographer;
 
-    public static final Handler asHandler(Looper looper, boolean z) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public static final Handler asHandler(Looper looper, boolean z) throws IllegalAccessException, InvocationTargetException {
         if (z) {
             if (Build.VERSION.SDK_INT >= 28) {
                 Object objInvoke = Handler.class.getDeclaredMethod("createAsync", Looper.class).invoke(null, looper);

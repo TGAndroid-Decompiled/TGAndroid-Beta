@@ -3,7 +3,6 @@ package org.telegram.ui.Adapters;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.text.TextUtils;
@@ -22,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -450,8 +450,39 @@ public class FiltersView extends RecyclerListView {
         arrayList.add(new DateData(LocaleController.getInstance().getFormatterMonthYear().format(timeInMillis2), timeInMillis2, calendar.getTimeInMillis() - 1));
     }
 
-    private static void createForDayMonth(java.util.ArrayList r26, int r27, int r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.FiltersView.createForDayMonth(java.util.ArrayList, int, int):void");
+    private static void createForDayMonth(ArrayList arrayList, int i, int i2) {
+        long j;
+        if (validDateForMont(i, i2)) {
+            int i3 = 1;
+            int i4 = Calendar.getInstance().get(1);
+            long timeInMillis = Calendar.getInstance().getTimeInMillis();
+            GregorianCalendar gregorianCalendar = (GregorianCalendar) Calendar.getInstance();
+            int i5 = i4;
+            while (i5 >= 2013) {
+                if (i2 == i3 && i == 28 && !gregorianCalendar.isLeapYear(i5)) {
+                    j = timeInMillis;
+                } else {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(i5, i2, i + 1, 0, 0, 0);
+                    long timeInMillis2 = calendar.getTimeInMillis();
+                    if (timeInMillis2 > timeInMillis) {
+                        j = timeInMillis;
+                    } else {
+                        j = timeInMillis;
+                        calendar.set(i5, i2, i + 2, 0, 0, 0);
+                        long timeInMillis3 = calendar.getTimeInMillis() - 1;
+                        if (i5 == i4) {
+                            arrayList.add(new DateData(LocaleController.getInstance().getFormatterDayMonth().format(timeInMillis2), timeInMillis2, timeInMillis3));
+                        } else {
+                            arrayList.add(new DateData(LocaleController.getInstance().getFormatterYearMax().format(timeInMillis2), timeInMillis2, timeInMillis3));
+                        }
+                    }
+                }
+                i5--;
+                timeInMillis = j;
+                i3 = 1;
+            }
+        }
     }
 
     private static boolean validDateForMont(int i, int i2) {
@@ -540,7 +571,7 @@ public class FiltersView extends RecyclerListView {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             ((ViewHolder) viewHolder).filterView.setData((MediaFilterData) FiltersView.this.usersFilters.get(i));
         }
 
@@ -585,7 +616,7 @@ public class FiltersView extends RecyclerListView {
             }
         }
 
-        public void setData(MediaFilterData mediaFilterData) throws Resources.NotFoundException {
+        public void setData(MediaFilterData mediaFilterData) {
             this.data = mediaFilterData;
             this.avatarImageView.getImageReceiver().clearImage();
             if (mediaFilterData.filterType == 7) {

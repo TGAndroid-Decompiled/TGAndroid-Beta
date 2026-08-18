@@ -429,12 +429,8 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         }
         int[] iArr = {50, 100, 500, 1000, 2000, 5000, 7500, 10000, 25000, 50000, 100000, 500000, 1000000, 5000000, 10000000};
         ArrayList arrayList = new ArrayList();
-        int i2 = 0;
         boolean z = false;
-        while (true) {
-            if (i2 >= 15) {
-                break;
-            }
+        for (int i2 = 0; i2 < 15; i2++) {
             int i3 = iArr[i2];
             if (i3 >= 50) {
                 if (i3 == 50) {
@@ -452,7 +448,6 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
             } else {
                 z = true;
             }
-            i2++;
         }
         if (z) {
             arrayList.add(0, 50);
@@ -489,7 +484,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
                 if (runnable != null) {
                     runnable.run();
                 }
-                lambda$new$0();
+                dismiss();
             }
         }
         if (peerDialogId != 0) {
@@ -594,7 +589,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
         if (runnable != null) {
             runnable.run();
         }
-        lambda$new$0();
+        dismiss();
     }
 
     public void onColorFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
@@ -701,7 +696,7 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     public void lambda$updateButtonText$8(View view) {
-        lambda$new$0();
+        dismiss();
     }
 
     public void lambda$updateButtonText$9(View view) {
@@ -770,10 +765,10 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
     }
 
     @Override
-    public void lambda$new$0() {
+    public void dismiss() {
         GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromGiftAuction(this.giftId, this);
         this.timer.stop();
-        super.lambda$new$0();
+        super.dismiss();
     }
 
     @Override
@@ -879,10 +874,11 @@ public class AuctionBidSheet extends BottomSheetWithRecyclerListView implements 
 
     private void updateBulletinContainerPosition() {
         FrameLayout frameLayout;
-        if (this.shadowDrawable == null || this.containerView == null || (frameLayout = this.bulletinContainer) == null) {
+        Drawable drawable = this.shadowDrawable;
+        if (drawable == null || this.containerView == null || (frameLayout = this.bulletinContainer) == null) {
             return;
         }
-        frameLayout.setTranslationY(Math.max(0.0f, ((r0.getBounds().top + this.containerView.getY()) - this.bulletinContainer.getMeasuredHeight()) + AndroidUtilities.dp(10.0f)));
+        frameLayout.setTranslationY(Math.max(0.0f, ((drawable.getBounds().top + this.containerView.getY()) - this.bulletinContainer.getMeasuredHeight()) + AndroidUtilities.dp(10.0f)));
     }
 
     public void showCustomPlaceABid() {

@@ -49,7 +49,6 @@ import org.telegram.ui.Components.JoinToSendSettingsView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingStickerDrawable;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.GroupCreateFinalActivity;
 
 public class ChatLinkActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int chatEndRow;
@@ -897,8 +896,100 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             });
         }
 
-        public void lambda$processSearch$1(java.lang.String r19, java.util.ArrayList r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatLinkActivity.SearchAdapter.lambda$processSearch$1(java.lang.String, java.util.ArrayList):void");
+        public void lambda$processSearch$1(String str, ArrayList arrayList) {
+            int i;
+            String lowerCase = str.trim().toLowerCase();
+            if (lowerCase.length() == 0) {
+                updateSearchResults(new ArrayList(), new ArrayList());
+                return;
+            }
+            String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
+            if (lowerCase.equals(translitString) || translitString.length() == 0) {
+                translitString = null;
+            }
+            int i2 = (translitString != null ? 1 : 0) + 1;
+            String[] strArr = new String[i2];
+            strArr[0] = lowerCase;
+            if (translitString != null) {
+                strArr[1] = translitString;
+            }
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList3 = new ArrayList();
+            int i3 = 0;
+            while (i3 < arrayList.size()) {
+                TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i3);
+                String lowerCase2 = chat.title.toLowerCase();
+                String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
+                if (lowerCase2.equals(translitString2)) {
+                    translitString2 = null;
+                }
+                int i4 = 0;
+                String str2 = null;
+                char c = 0;
+                while (true) {
+                    if (i4 >= i2) {
+                        i = i2;
+                        break;
+                    }
+                    String str3 = strArr[i4];
+                    if (lowerCase2.startsWith(str3)) {
+                        i = i2;
+                        c = 1;
+                    } else {
+                        if (lowerCase2.contains(" " + str3)) {
+                            i = i2;
+                            c = 1;
+                        } else {
+                            if (translitString2 != null) {
+                                if (!translitString2.startsWith(str3)) {
+                                    if (translitString2.contains(" " + str3)) {
+                                    }
+                                }
+                                i = i2;
+                                c = 1;
+                            }
+                            String str4 = chat.username;
+                            if (str4 != null && str4.startsWith(str3)) {
+                                str2 = chat.username;
+                                i = i2;
+                            } else {
+                                ArrayList<TLRPC.TL_username> arrayList4 = chat.usernames;
+                                if (arrayList4 != null && !arrayList4.isEmpty()) {
+                                    int i5 = 0;
+                                    while (true) {
+                                        if (i5 < chat.usernames.size()) {
+                                            TLRPC.TL_username tL_username = chat.usernames.get(i5);
+                                            i = i2;
+                                            if (tL_username.active && tL_username.username.startsWith(str3)) {
+                                                str2 = tL_username.username;
+                                            } else {
+                                                i5++;
+                                                i2 = i;
+                                            }
+                                        }
+                                    }
+                                }
+                                i = i2;
+                            }
+                            c = 2;
+                        }
+                    }
+                    if (c != 0) {
+                        if (c == 1) {
+                            arrayList3.add(AndroidUtilities.generateSearchName(chat.title, null, str3));
+                        } else {
+                            arrayList3.add(AndroidUtilities.generateSearchName("@" + str2, null, "@" + str3));
+                        }
+                        arrayList2.add(chat);
+                        break;
+                    }
+                    i4++;
+                    i2 = i;
+                }
+                i3++;
+                i2 = i;
+            }
+            updateSearchResults(arrayList2, arrayList3);
         }
 
         private void updateSearchResults(final ArrayList arrayList, final ArrayList arrayList2) {

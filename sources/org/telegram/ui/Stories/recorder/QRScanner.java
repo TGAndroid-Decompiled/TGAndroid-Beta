@@ -230,11 +230,10 @@ public class QRScanner {
                     return true;
                 }
                 if (Math.abs(pointFArr3[i].x - detected.points[i].x) > 0.001f || Math.abs(this.points[i].y - detected.points[i].y) > 0.001f) {
-                    break;
+                    return false;
                 }
                 i++;
             }
-            return false;
         }
     }
 

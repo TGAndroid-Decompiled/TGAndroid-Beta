@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.DocumentObject;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
@@ -155,8 +155,95 @@ public class ImageLocation {
         return getForUser(UserConfig.selectedAccount, user, i);
     }
 
-    public static org.telegram.messenger.ImageLocation getForUser(int r11, org.telegram.tgnet.TLRPC.User r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLocation.getForUser(int, org.telegram.tgnet.TLRPC$User, int):org.telegram.messenger.ImageLocation");
+    public static ImageLocation getForUser(int i, TLRPC.User user, int i2) {
+        TLRPC.UserProfilePhoto userProfilePhoto;
+        TLRPC.Photo photo;
+        ArrayList<TLRPC.VideoSize> arrayList;
+        ArrayList<TLRPC.VideoSize> arrayList2;
+        ArrayList<TLRPC.VideoSize> arrayList3;
+        TLRPC.Photo photo2;
+        ArrayList<TLRPC.VideoSize> arrayList4;
+        TLRPC.InputPeer inputPeer;
+        if (user != null && (userProfilePhoto = user.photo) != null) {
+            if (i2 != 4 && i2 != 3) {
+                if (i2 == 2) {
+                    if (userProfilePhoto.stripped_thumb == null) {
+                        return null;
+                    }
+                    ImageLocation imageLocation = new ImageLocation();
+                    TLRPC.TL_photoStrippedSize tL_photoStrippedSize = new TLRPC.TL_photoStrippedSize();
+                    imageLocation.photoSize = tL_photoStrippedSize;
+                    tL_photoStrippedSize.type = "s";
+                    tL_photoStrippedSize.bytes = user.photo.stripped_thumb;
+                    return imageLocation;
+                }
+                TLRPC.FileLocation fileLocation = i2 == 0 ? userProfilePhoto.photo_big : userProfilePhoto.photo_small;
+                if (fileLocation == null) {
+                    return null;
+                }
+                if (user.access_hash == 0) {
+                    if (user.fromMessageDialogId == 0 || user.fromMessageId == 0) {
+                        return null;
+                    }
+                    TLRPC.TL_inputPeerUserFromMessage tL_inputPeerUserFromMessage = new TLRPC.TL_inputPeerUserFromMessage();
+                    tL_inputPeerUserFromMessage.user_id = user.id;
+                    tL_inputPeerUserFromMessage.peer = MessagesController.getInstance(i).getInputPeer(user.fromMessageDialogId);
+                    tL_inputPeerUserFromMessage.msg_id = user.fromMessageId;
+                    inputPeer = tL_inputPeerUserFromMessage;
+                } else {
+                    TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
+                    tL_inputPeerUser.user_id = user.id;
+                    tL_inputPeerUser.access_hash = user.access_hash;
+                    inputPeer = tL_inputPeerUser;
+                }
+                int i3 = user.photo.dc_id;
+                if (i3 == 0) {
+                    i3 = fileLocation.dc_id;
+                }
+                ImageLocation forPhoto = getForPhoto(fileLocation, 0, null, null, inputPeer, i2, i3, null, null);
+                forPhoto.photoId = user.photo.photo_id;
+                return forPhoto;
+            }
+            if (MessagesController.getInstance(i).isPremiumUser(user) && user.photo.has_video) {
+                TLRPC.UserFull userFull = MessagesController.getInstance(i).getUserFull(user.id);
+                if (userFull == null) {
+                    photo = null;
+                } else if (user.photo.personal && (photo2 = userFull.personal_photo) != null && (arrayList4 = photo2.video_sizes) != null && !arrayList4.isEmpty()) {
+                    photo = userFull.personal_photo;
+                } else {
+                    TLRPC.Photo photo3 = userFull.profile_photo;
+                    if (photo3 != null && photo3.id == user.photo.photo_id && (arrayList3 = photo3.video_sizes) != null && !arrayList3.isEmpty()) {
+                        photo = userFull.profile_photo;
+                    } else {
+                        TLRPC.Photo photo4 = userFull.fallback_photo;
+                        if (photo4 != null && photo4.id == user.photo.photo_id && (arrayList2 = photo4.video_sizes) != null && !arrayList2.isEmpty()) {
+                            photo = userFull.fallback_photo;
+                        } else {
+                            TLRPC.Photo photo5 = userFull.profile_photo;
+                            if (photo5 == null || (arrayList = photo5.video_sizes) == null || arrayList.isEmpty()) {
+                                photo = null;
+                            } else {
+                                photo = userFull.profile_photo;
+                            }
+                        }
+                    }
+                }
+                if (photo != null) {
+                    if (i2 == 4) {
+                        return getForPhoto(FileLoader.getClosestVideoSizeWithSize(photo.video_sizes, 1000), photo);
+                    }
+                    TLRPC.VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(photo.video_sizes, 100);
+                    for (int i4 = 0; i4 < photo.video_sizes.size(); i4++) {
+                        if ("p".equals(photo.video_sizes.get(i4).type)) {
+                            closestVideoSizeWithSize = photo.video_sizes.get(i4);
+                            break;
+                        }
+                    }
+                    return getForPhoto(closestVideoSizeWithSize, photo);
+                }
+            }
+        }
+        return null;
     }
 
     public static ImageLocation getForChat(TLRPC.Chat chat, int i) {
@@ -353,8 +440,83 @@ public class ImageLocation {
         return strippedKeyInternal;
     }
 
-    private static java.lang.String getStrippedKeyInternal(java.lang.Object r4, java.lang.Object r5, java.lang.Object r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLocation.getStrippedKeyInternal(java.lang.Object, java.lang.Object, java.lang.Object):java.lang.String");
+    private static String getStrippedKeyInternal(Object obj, Object obj2, Object obj3) {
+        TLRPC.PhotoSize photoSize;
+        ImageLocation imageLocation;
+        Object obj4;
+        TLRPC.Photo photo;
+        TLRPC.Message message;
+        if (obj instanceof TLRPC.WebPage) {
+            if (obj2 instanceof ImageLocation) {
+                imageLocation = (ImageLocation) obj2;
+                obj4 = imageLocation.document;
+                if (obj4 != null && (obj4 = imageLocation.photoSize) == null) {
+                    photo = imageLocation.photo;
+                    if (photo != null) {
+                        obj2 = photo;
+                    }
+                } else {
+                    obj2 = obj4;
+                }
+            }
+            if (obj2 == null) {
+                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + obj3;
+            }
+            if (obj2 instanceof TLRPC.Document) {
+                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC.Document) obj2).id;
+            }
+            if (obj2 instanceof TLRPC.Photo) {
+                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC.Photo) obj2).id;
+            }
+            if (obj2 instanceof TLRPC.PhotoSize) {
+                photoSize = (TLRPC.PhotoSize) obj2;
+                if (photoSize.location != null) {
+                    return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + photoSize.location.local_id + "_" + photoSize.location.volume_id;
+                }
+                return "stripped" + FileRefController.getKeyForParentObject(obj);
+            }
+            if (obj2 instanceof TLRPC.FileLocation) {
+                TLRPC.FileLocation fileLocation = (TLRPC.FileLocation) obj2;
+                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + fileLocation.local_id + "_" + fileLocation.volume_id;
+            }
+        } else if (obj instanceof MessageObject) {
+            MessageObject messageObject = (MessageObject) obj;
+            if (messageObject.type == 29 || ((message = messageObject.messageOwner) != null && message.rich_message != null)) {
+                if (obj2 instanceof ImageLocation) {
+                    imageLocation = (ImageLocation) obj2;
+                    obj4 = imageLocation.document;
+                    if (obj4 != null) {
+                        obj2 = obj4;
+                    } else {
+                        photo = imageLocation.photo;
+                        if (photo != null) {
+                            obj2 = photo;
+                        }
+                    }
+                }
+                if (obj2 == null) {
+                    return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + obj3;
+                }
+                if (obj2 instanceof TLRPC.Document) {
+                    return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC.Document) obj2).id;
+                }
+                if (obj2 instanceof TLRPC.Photo) {
+                    return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC.Photo) obj2).id;
+                }
+                if (obj2 instanceof TLRPC.PhotoSize) {
+                    photoSize = (TLRPC.PhotoSize) obj2;
+                    if (photoSize.location != null) {
+                        return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + photoSize.location.local_id + "_" + photoSize.location.volume_id;
+                    }
+                    return "stripped" + FileRefController.getKeyForParentObject(obj);
+                }
+                if (obj2 instanceof TLRPC.FileLocation) {
+                    TLRPC.FileLocation fileLocation2 = (TLRPC.FileLocation) obj2;
+                    return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + fileLocation2.local_id + "_" + fileLocation2.volume_id;
+                }
+            }
+        }
+        return "stripped" + FileRefController.getKeyForParentObject(obj);
     }
 
     public String getKey(Object obj, Object obj2, boolean z) {

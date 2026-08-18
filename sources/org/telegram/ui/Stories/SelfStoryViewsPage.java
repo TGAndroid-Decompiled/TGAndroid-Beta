@@ -32,6 +32,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.function.ToIntFunction;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -80,10 +81,6 @@ import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.RecyclerListViewScroller;
-import org.telegram.ui.Stories.SelfStoryViewsPage;
-import org.telegram.ui.Stories.SelfStoryViewsView;
-import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
@@ -351,6 +348,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         public boolean onItemClick(View view, int i) {
             final MessagesController messagesController;
             final TLRPC.User user;
+            String strSubstring;
             final AnonymousClass4 anonymousClass4;
             boolean z;
             if (!(view instanceof ReactedUserHolderView)) {
@@ -370,7 +368,11 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             boolean zIsStoryShownToUser = SelfStoryViewsPage.this.isStoryShownToUser(storyView);
             boolean zIsBlocked = messagesController.getStoriesController().isBlocked(storyView);
             boolean zIsUserSelf = UserObject.isUserSelf(user);
-            String strSubstring = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? "" : user.last_name : user.first_name;
+            if (TextUtils.isEmpty(user.first_name)) {
+                strSubstring = TextUtils.isEmpty(user.last_name) ? "" : user.last_name;
+            } else {
+                strSubstring = user.first_name;
+            }
             int iIndexOf = strSubstring.indexOf(" ");
             if (iIndexOf > 2) {
                 strSubstring = strSubstring.substring(0, iIndexOf);
@@ -641,7 +643,196 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
     }
 
     private void updateViewsVisibility() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.SelfStoryViewsPage.updateViewsVisibility():void");
+        int i;
+        boolean z;
+        boolean z2;
+        int i2;
+        int i3;
+        boolean z3;
+        boolean z4;
+        int i4;
+        this.showSearch = false;
+        this.showContactsFilter = false;
+        this.showReactionsSort = false;
+        TL_stories.StoryItem storyItem = this.storyItem.storyItem;
+        if (storyItem != null) {
+            TL_stories.StoryViews storyViews = storyItem.views;
+            if (storyViews != null) {
+                int i5 = storyViews.views_count;
+                this.showSearch = i5 >= 15;
+                this.showReactionsSort = storyViews.reactions_count >= (BuildVars.DEBUG_PRIVATE_VERSION ? 5 : 10);
+                this.showContactsFilter = (storyItem.dialogId < 0 || i5 < 20 || storyItem.contacts || storyItem.close_friends || storyItem.selected_contacts) ? false : true;
+            }
+            SparseArray sparseArray = (SparseArray) MessagesController.getInstance(this.currentAccount).storiesController.selfViewsModel.get(storyItem.dialogId);
+            ViewsModel viewsModel = sparseArray != null ? (ViewsModel) sparseArray.get(storyItem.id) : null;
+            this.defaultModel = viewsModel;
+            TL_stories.StoryViews storyViews2 = storyItem.views;
+            int i6 = storyViews2 == null ? 0 : storyViews2.views_count;
+            if (viewsModel == null || (!viewsModel.isChannel && viewsModel.totalCount != i6)) {
+                if (viewsModel != null) {
+                    viewsModel.release();
+                }
+                i = 20;
+                z = true;
+                ViewsModel viewsModel2 = new ViewsModel(this.currentAccount, this.dialogId, storyItem, true);
+                this.defaultModel = viewsModel2;
+                viewsModel2.reloadIfNeed(this.state, this.showContactsFilter, this.showReactionsSort);
+                this.defaultModel.loadNext();
+                if (sparseArray != null) {
+                    sparseArray.put(storyItem.id, this.defaultModel);
+                } else {
+                    SparseArray sparseArray2 = new SparseArray();
+                    sparseArray2.put(storyItem.id, this.defaultModel);
+                    MessagesController.getInstance(this.currentAccount).storiesController.selfViewsModel.put(storyItem.dialogId, sparseArray2);
+                }
+            } else {
+                viewsModel.reloadIfNeed(this.state, this.showContactsFilter, this.showReactionsSort);
+                i = 20;
+                z = true;
+            }
+            ViewsModel viewsModel3 = this.currentModel;
+            if (viewsModel3 != null) {
+                viewsModel3.removeListener(this);
+            }
+            ViewsModel viewsModel4 = this.defaultModel;
+            this.currentModel = viewsModel4;
+            if (viewsModel4 != null && this.isAttachedToWindow) {
+                viewsModel4.addListener(this);
+            }
+            ViewsModel viewsModel5 = this.currentModel;
+            if (viewsModel5 == null || !viewsModel5.isExpiredViews || UserConfig.getInstance(this.currentAccount).isPremium()) {
+                ViewsModel viewsModel6 = this.currentModel;
+                if (!viewsModel6.loading && !viewsModel6.hasNext && viewsModel6.views.isEmpty() && this.currentModel.reactions.isEmpty() && TextUtils.isEmpty(this.currentModel.state.searchQuery)) {
+                    this.showSearch = false;
+                    this.showReactionsSort = false;
+                    this.showContactsFilter = false;
+                    TextView textView = this.titleView;
+                    if (this.currentModel.isChannel) {
+                        i4 = R.string.Reactions;
+                    } else {
+                        i4 = R.string.Viewers;
+                    }
+                    textView.setText(LocaleController.getString(i4));
+                    this.searchField.setVisibility(8);
+                    this.headerView.setVisibility(8);
+                    this.TOP_PADDING = 46;
+                } else {
+                    TL_stories.StoryViews storyViews3 = storyItem.views;
+                    if (storyViews3 == null || storyViews3.views_count == 0) {
+                        this.showSearch = false;
+                        this.showReactionsSort = false;
+                        this.showContactsFilter = false;
+                        this.titleView.setText(LocaleController.getString(this.currentModel.isChannel ? R.string.Reactions : R.string.Viewers));
+                        this.searchField.setVisibility(8);
+                        this.headerView.setVisibility(8);
+                        this.TOP_PADDING = 46;
+                    } else {
+                        this.headerView.setVisibility(0);
+                        ViewsModel viewsModel7 = this.currentModel;
+                        if (viewsModel7.showReactionOnly) {
+                            this.titleView.setText(LocaleController.getString(viewsModel7.isChannel ? R.string.Reactions : R.string.Viewers));
+                            this.showSearch = false;
+                            this.showReactionsSort = false;
+                            this.showContactsFilter = false;
+                        } else {
+                            if (viewsModel7.getCount() >= i || this.currentModel.getCount() >= storyItem.views.views_count) {
+                                if (!this.currentModel.isChannel || storyItem.views.views_count < 15) {
+                                    z2 = false;
+                                } else {
+                                    z2 = true;
+                                }
+                                this.showSearch = z2;
+                                TL_stories.StoryViews storyViews4 = storyItem.views;
+                                i2 = storyViews4.reactions_count;
+                                if (BuildVars.DEBUG_VERSION) {
+                                    i3 = 5;
+                                } else {
+                                    i3 = 10;
+                                }
+                                if (i2 >= i3) {
+                                    z3 = true;
+                                } else {
+                                    z3 = false;
+                                }
+                                this.showReactionsSort = z3;
+                                if (storyItem.dialogId >= 0 || storyViews4.views_count < i || storyItem.contacts || storyItem.close_friends || storyItem.selected_contacts) {
+                                    z4 = false;
+                                } else {
+                                    z4 = true;
+                                }
+                                this.showContactsFilter = z4;
+                            } else {
+                                ViewsModel viewsModel8 = this.currentModel;
+                                if (!viewsModel8.loading && !viewsModel8.hasNext) {
+                                    this.showSearch = false;
+                                    this.showReactionsSort = false;
+                                    this.showContactsFilter = false;
+                                    this.showServerErrorText = z;
+                                } else {
+                                    if (this.currentModel.isChannel) {
+                                        z2 = false;
+                                    } else {
+                                        z2 = false;
+                                    }
+                                    this.showSearch = z2;
+                                    TL_stories.StoryViews storyViews5 = storyItem.views;
+                                    i2 = storyViews5.reactions_count;
+                                    if (BuildVars.DEBUG_VERSION) {
+                                        i3 = 5;
+                                    } else {
+                                        i3 = 10;
+                                    }
+                                    if (i2 >= i3) {
+                                        z3 = true;
+                                    } else {
+                                        z3 = false;
+                                    }
+                                    this.showReactionsSort = z3;
+                                    if (storyItem.dialogId >= 0) {
+                                        z4 = false;
+                                    } else {
+                                        z4 = false;
+                                    }
+                                    this.showContactsFilter = z4;
+                                }
+                            }
+                            this.titleView.setText(LocaleController.getString(this.currentModel.isChannel ? R.string.Reactions : R.string.Viewers));
+                        }
+                        this.searchField.setVisibility(this.showSearch ? 0 : 8);
+                        this.TOP_PADDING = this.showSearch ? 96 : 46;
+                    }
+                }
+            } else {
+                this.showSearch = false;
+                this.showReactionsSort = false;
+                this.showContactsFilter = false;
+                TextView textView2 = this.titleView;
+                if (this.currentModel.isChannel) {
+                    i4 = R.string.Reactions;
+                } else {
+                    i4 = R.string.Viewers;
+                }
+                textView2.setText(LocaleController.getString(i4));
+                this.searchField.setVisibility(8);
+                this.headerView.setVisibility(8);
+                this.TOP_PADDING = 46;
+            }
+        } else {
+            this.TOP_PADDING = 46;
+            this.titleView.setText(LocaleController.getString(R.string.UploadingStory));
+            this.searchField.setVisibility(8);
+            this.headerView.setVisibility(8);
+        }
+        this.headerView.buttonContainer.setVisibility(this.showReactionsSort ? 0 : 8);
+        this.headerView.allViewersView.setVisibility(this.showContactsFilter ? 0 : 8);
+        this.headerView.contactsViewersView.setVisibility(this.showContactsFilter ? 0 : 8);
+        if (!this.showContactsFilter) {
+            this.titleView.setVisibility(0);
+        } else {
+            this.titleView.setVisibility(8);
+        }
+        ((ViewGroup.MarginLayoutParams) this.shadowView.getLayoutParams()).topMargin = AndroidUtilities.dp(this.TOP_PADDING - 8);
+        ((ViewGroup.MarginLayoutParams) this.shadowView2.getLayoutParams()).topMargin = AndroidUtilities.dp(this.TOP_PADDING - 17);
     }
 
     public static void preload(int i, long j, TL_stories.StoryItem storyItem) {
@@ -890,20 +1081,21 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             FlickerLoadingView flickerLoadingView;
+            int i2;
             View fixedHeightEmptyCell;
             switch (i) {
                 case 0:
                     fixedHeightEmptyCell = new View(SelfStoryViewsPage.this.getContext()) {
                         @Override
-                        protected void onMeasure(int i2, int i3) {
-                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(SelfStoryViewsPage.this.TOP_PADDING), 1073741824));
+                        protected void onMeasure(int i3, int i4) {
+                            super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(SelfStoryViewsPage.this.TOP_PADDING), 1073741824));
                         }
                     };
                     break;
                 case 1:
-                    int i2 = ReactedUserHolderView.STYLE_STORY;
+                    int i3 = ReactedUserHolderView.STYLE_STORY;
                     SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
-                    fixedHeightEmptyCell = new ReactedUserHolderView(i2, selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider, false, true) {
+                    fixedHeightEmptyCell = new ReactedUserHolderView(i3, selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider, false, true) {
                         @Override
                         public void openStory(long j, Runnable runnable) {
                             BaseFragment lastFragment = LaunchActivity.getLastFragment();
@@ -921,12 +1113,12 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 default:
                     fixedHeightEmptyCell = new View(SelfStoryViewsPage.this.getContext()) {
                         @Override
-                        protected void onMeasure(int i3, int i4) {
+                        protected void onMeasure(int i4, int i5) {
                             int lastItemHeight = SelfStoryViewsPage.this.layoutManager.getLastItemHeight();
                             if (lastItemHeight >= SelfStoryViewsPage.this.recyclerListView.getPaddingTop() && !SelfStoryViewsPage.this.showSearch) {
                                 lastItemHeight = 0;
                             }
-                            super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(lastItemHeight, 1073741824));
+                            super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(lastItemHeight, 1073741824));
                         }
                     };
                     break;
@@ -944,10 +1136,15 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 case 7:
                 case 8:
                 case 10:
-                    StickerEmptyView stickerEmptyView = new StickerEmptyView(SelfStoryViewsPage.this.getContext(), null, SelfStoryViewsPage.this.defaultModel.isExpiredViews ? 12 : (i == 10 || i == 7 || i == 8 || i == 5) ? 1 : 0, SelfStoryViewsPage.this.resourcesProvider) {
+                    if (SelfStoryViewsPage.this.defaultModel.isExpiredViews) {
+                        i2 = 12;
+                    } else {
+                        i2 = (i == 10 || i == 7 || i == 8 || i == 5) ? 1 : 0;
+                    }
+                    StickerEmptyView stickerEmptyView = new StickerEmptyView(SelfStoryViewsPage.this.getContext(), null, i2, SelfStoryViewsPage.this.resourcesProvider) {
                         @Override
-                        protected void onMeasure(int i3, int i4) {
-                            super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec((SelfStoryViewsPage.this.measuerdHeight - SelfStoryViewsPage.this.recyclerListView.getPaddingTop()) - AndroidUtilities.dp(SelfStoryViewsPage.this.TOP_PADDING), 1073741824));
+                        protected void onMeasure(int i4, int i5) {
+                            super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec((SelfStoryViewsPage.this.measuerdHeight - SelfStoryViewsPage.this.recyclerListView.getPaddingTop()) - AndroidUtilities.dp(SelfStoryViewsPage.this.TOP_PADDING), 1073741824));
                         }
                     };
                     if (i == 7) {
@@ -1092,7 +1289,8 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 } else {
                     i2 = 11;
                     if (storyView3 instanceof TL_stories.TL_storyViewPublicForward) {
-                        long j = storyView3.message != null ? r5.date : 0L;
+                        TLRPC.Message message3 = storyView3.message;
+                        long j = message3 != null ? message3.date : 0L;
                         SelfStoryViewsView.StoryItemInternal storyItemInternal = SelfStoryViewsPage.this.storyItem;
                         reactedUserHolderView.setUserReaction(user, null, null, z2, j, storyItemInternal == null ? null : storyItemInternal.storyItem, true, true, zRemove);
                     } else {
@@ -1121,7 +1319,8 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 } else if (storyReaction2 instanceof TL_stories.TL_storyReactionPublicRepost) {
                     reactedUserHolderView.setUserReaction(user, chat, null, false, 0L, ((TL_stories.TL_storyReactionPublicRepost) storyReaction2).story, false, true, zRemove);
                 } else if (storyReaction2 instanceof TL_stories.TL_storyReactionPublicForward) {
-                    long j2 = storyReaction2.message != null ? r2.date : 0L;
+                    TLRPC.Message message4 = storyReaction2.message;
+                    long j2 = message4 != null ? message4.date : 0L;
                     SelfStoryViewsView.StoryItemInternal storyItemInternal2 = SelfStoryViewsPage.this.storyItem;
                     reactedUserHolderView.setUserReaction(user, chat, null, false, j2, storyItemInternal2 == null ? null : storyItemInternal2.storyItem, true, true, zRemove);
                 }

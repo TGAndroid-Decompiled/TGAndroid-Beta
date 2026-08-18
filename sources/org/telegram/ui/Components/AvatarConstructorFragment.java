@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.NestedScrollingParentHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,9 +50,6 @@ import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.ColorPicker;
-import org.telegram.ui.Components.ImageUpdater;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -209,11 +207,12 @@ public class AvatarConstructorFragment extends BaseFragment {
                 }
                 AvatarConstructorFragment avatarConstructorFragment3 = AvatarConstructorFragment.this;
                 if (avatarConstructorFragment3.isLandscapeMode) {
-                    int size = (int) (View.MeasureSpec.getSize(i2) * 0.55f);
+                    int size = (int) (View.MeasureSpec.getSize(i2) * 0.45f);
+                    int size2 = (int) (View.MeasureSpec.getSize(i2) * 0.55f);
                     ((ViewGroup.MarginLayoutParams) AvatarConstructorFragment.this.linearLayout.getLayoutParams()).bottomMargin = 0;
-                    ((ViewGroup.MarginLayoutParams) AvatarConstructorFragment.this.linearLayout.getLayoutParams()).leftMargin = (int) (View.MeasureSpec.getSize(i2) * 0.45f);
-                    ((ViewGroup.MarginLayoutParams) AvatarConstructorFragment.this.previewView.getLayoutParams()).rightMargin = size;
-                    ((ViewGroup.MarginLayoutParams) AvatarConstructorFragment.this.button.getLayoutParams()).rightMargin = size + AndroidUtilities.dp(16.0f);
+                    ((ViewGroup.MarginLayoutParams) AvatarConstructorFragment.this.linearLayout.getLayoutParams()).leftMargin = size;
+                    ((ViewGroup.MarginLayoutParams) AvatarConstructorFragment.this.previewView.getLayoutParams()).rightMargin = size2;
+                    ((ViewGroup.MarginLayoutParams) AvatarConstructorFragment.this.button.getLayoutParams()).rightMargin = size2 + AndroidUtilities.dp(16.0f);
                     ((ViewGroup.MarginLayoutParams) AvatarConstructorFragment.this.chooseBackgroundHint.getLayoutParams()).topMargin = 0;
                     ((ViewGroup.MarginLayoutParams) AvatarConstructorFragment.this.chooseEmojiHint.getLayoutParams()).topMargin = AndroidUtilities.dp(10.0f);
                 } else {
@@ -277,15 +276,18 @@ public class AvatarConstructorFragment extends BaseFragment {
                         int i2 = avatarConstructorFragment2.expandedHeight - avatarConstructorFragment2.collapsedHeight;
                         int i3 = AndroidUtilities.statusBarHeight;
                         int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
-                        float fLerp = AndroidUtilities.lerp(y, i3 + ((currentActionBarHeight - r6.collapsedHeight) >> 1), AvatarConstructorFragment.this.keyboardVisibleProgress);
+                        AvatarConstructorFragment avatarConstructorFragment3 = AvatarConstructorFragment.this;
+                        float fLerp = AndroidUtilities.lerp(y, i3 + ((currentActionBarHeight - avatarConstructorFragment3.collapsedHeight) >> 1), avatarConstructorFragment3.keyboardVisibleProgress);
                         canvas.translate(x, fLerp);
                         AvatarConstructorFragment.this.previewView.draw(canvas);
+                        RectF rectF = AndroidUtilities.rectTmp;
                         float f = i2 / 2.0f;
-                        AndroidUtilities.rectTmp.set(x, fLerp - (AvatarConstructorFragment.this.progressToExpand * f), r5.previewView.getMeasuredWidth() + x, AvatarConstructorFragment.this.previewView.getMeasuredHeight() + fLerp + (f * AvatarConstructorFragment.this.progressToExpand));
+                        AvatarConstructorFragment avatarConstructorFragment4 = AvatarConstructorFragment.this;
+                        rectF.set(x, fLerp - (avatarConstructorFragment4.progressToExpand * f), avatarConstructorFragment4.previewView.getMeasuredWidth() + x, AvatarConstructorFragment.this.previewView.getMeasuredHeight() + fLerp + (f * AvatarConstructorFragment.this.progressToExpand));
                         float f2 = x + AvatarConstructorFragment.this.previewView.cx;
                         float f3 = fLerp + AvatarConstructorFragment.this.previewView.cy;
-                        AvatarConstructorFragment avatarConstructorFragment3 = AvatarConstructorFragment.this;
-                        avatarConstructorFragment3.avatarClickableArea.setRect((int) (f2 - avatarConstructorFragment3.previewView.size), (int) (f3 - AvatarConstructorFragment.this.previewView.size), (int) (f2 + AvatarConstructorFragment.this.previewView.size), (int) (f3 + AvatarConstructorFragment.this.previewView.size));
+                        AvatarConstructorFragment avatarConstructorFragment5 = AvatarConstructorFragment.this;
+                        avatarConstructorFragment5.avatarClickableArea.setRect((int) (f2 - avatarConstructorFragment5.previewView.size), (int) (f3 - AvatarConstructorFragment.this.previewView.size), (int) (f2 + AvatarConstructorFragment.this.previewView.size), (int) (f3 + AvatarConstructorFragment.this.previewView.size));
                         canvas.restore();
                     }
                     canvas.restoreToCount(iSave);
@@ -884,7 +886,8 @@ public class AvatarConstructorFragment extends BaseFragment {
             this.cx = AndroidUtilities.lerp(this.cx, (getMeasuredWidth() - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(21.0f), AvatarConstructorFragment.this.keyboardVisibleProgress);
             canvas.save();
             AvatarConstructorFragment avatarConstructorFragment = AvatarConstructorFragment.this;
-            canvas.clipRect(0.0f, (-r3) / 2.0f, getMeasuredWidth(), getMeasuredHeight() + (((avatarConstructorFragment.expandedHeight - avatarConstructorFragment.collapsedHeight) / 2.0f) * AvatarConstructorFragment.this.progressToExpand));
+            int i = avatarConstructorFragment.expandedHeight - avatarConstructorFragment.collapsedHeight;
+            canvas.clipRect(0.0f, (-i) / 2.0f, getMeasuredWidth(), getMeasuredHeight() + ((i / 2.0f) * AvatarConstructorFragment.this.progressToExpand));
             BackgroundGradient backgroundGradient = this.backgroundGradient;
             if (backgroundGradient != null) {
                 this.gradientTools.setColors(backgroundGradient.color1, backgroundGradient.color2, backgroundGradient.color3, backgroundGradient.color4);
@@ -1153,20 +1156,14 @@ public class AvatarConstructorFragment extends BaseFragment {
         }
 
         public void selectGradient(BackgroundGradient backgroundGradient) {
-            int i = 0;
-            while (true) {
-                if (i < this.gradients.size()) {
-                    if (((BackgroundGradient) this.gradients.get(i)).equals(backgroundGradient)) {
-                        this.selectedItemId = ((BackgroundGradient) this.gradients.get(i)).stableId;
-                        break;
-                    }
-                    i++;
-                } else {
-                    this.customSelectedGradient = backgroundGradient;
-                    this.selectedItemId = 1;
-                    break;
+            for (int i = 0; i < this.gradients.size(); i++) {
+                if (((BackgroundGradient) this.gradients.get(i)).equals(backgroundGradient)) {
+                    this.selectedItemId = ((BackgroundGradient) this.gradients.get(i)).stableId;
+                    this.adapter.notifyDataSetChanged();
                 }
             }
+            this.customSelectedGradient = backgroundGradient;
+            this.selectedItemId = 1;
             this.adapter.notifyDataSetChanged();
         }
     }
@@ -1440,8 +1437,84 @@ public class AvatarConstructorFragment extends BaseFragment {
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarConstructorFragment.GradientSelectorView.onDraw(android.graphics.Canvas):void");
+        protected void onDraw(Canvas canvas) {
+            Paint paint;
+            super.onDraw(canvas);
+            boolean z = false;
+            this.progressToSelect.set(this.selected ? 1.0f : 0.0f, false);
+            float measuredWidth = getMeasuredWidth() / 2.0f;
+            float measuredHeight = getMeasuredHeight() / 2.0f;
+            BackgroundGradient backgroundGradient = this.backgroundGradient;
+            if (backgroundGradient != null) {
+                this.gradientTools.setColors(backgroundGradient.color1, backgroundGradient.color2, backgroundGradient.color3, backgroundGradient.color4);
+                this.gradientTools.setBounds(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                paint = this.gradientTools.paint;
+            } else {
+                if (this.defaultPaint == null) {
+                    Paint paint2 = new Paint(1);
+                    this.defaultPaint = paint2;
+                    paint2.setColor(Theme.getColor(Theme.key_chat_emojiPanelBackground));
+                }
+                paint = this.defaultPaint;
+            }
+            if (this.progressToSelect.get() == 0.0f) {
+                canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(15.0f), paint);
+            } else {
+                paint.setStyle(Paint.Style.STROKE);
+                paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+                canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dpf2(13.5f), paint);
+                paint.setStyle(Paint.Style.FILL);
+                canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(10.0f) + (AndroidUtilities.dp(5.0f) * (1.0f - this.progressToSelect.get())), paint);
+            }
+            if (this.isLocked) {
+                if (this.lockIcon != null) {
+                    if (this.lockIconIsEmptyCustom != (this.isCustom && this.backgroundGradient == null)) {
+                        this.lockIcon = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
+                        if (this.isCustom && this.backgroundGradient == null) {
+                            z = true;
+                        }
+                        this.lockIconIsEmptyCustom = z;
+                        this.lockIcon.setColorFilter(new PorterDuffColorFilter(z ? Theme.getColor(Theme.key_chat_emojiSearchIcon) : -1, PorterDuff.Mode.SRC_IN));
+                    }
+                } else {
+                    this.lockIcon = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
+                    if (this.isCustom) {
+                        z = true;
+                    }
+                    this.lockIconIsEmptyCustom = z;
+                    this.lockIcon.setColorFilter(new PorterDuffColorFilter(z ? Theme.getColor(Theme.key_chat_emojiSearchIcon) : -1, PorterDuff.Mode.SRC_IN));
+                }
+                Drawable drawable = this.lockIcon;
+                drawable.setBounds((int) (measuredWidth - (drawable.getIntrinsicWidth() / 2.0f)), (int) (measuredHeight - (this.lockIcon.getIntrinsicHeight() / 2.0f)), (int) ((this.lockIcon.getIntrinsicWidth() / 2.0f) + measuredWidth), (int) ((this.lockIcon.getIntrinsicHeight() / 2.0f) + measuredHeight));
+                float fLerp = AndroidUtilities.lerp(1.05f, 0.92f, this.progressToSelect.get());
+                canvas.save();
+                canvas.scale(fLerp, fLerp, measuredWidth, measuredHeight);
+                this.lockIcon.draw(canvas);
+                canvas.restore();
+                return;
+            }
+            if (this.isCustom) {
+                if (this.backgroundGradient == null) {
+                    if (this.addIcon == null) {
+                        Drawable drawable2 = ContextCompat.getDrawable(getContext(), R.drawable.msg_filled_plus);
+                        this.addIcon = drawable2;
+                        drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_emojiSearchIcon), PorterDuff.Mode.MULTIPLY));
+                    }
+                    Drawable drawable3 = this.addIcon;
+                    drawable3.setBounds((int) (measuredWidth - (drawable3.getIntrinsicWidth() / 2.0f)), (int) (measuredHeight - (this.addIcon.getIntrinsicHeight() / 2.0f)), (int) (measuredWidth + (this.addIcon.getIntrinsicWidth() / 2.0f)), (int) (measuredHeight + (this.addIcon.getIntrinsicHeight() / 2.0f)));
+                    this.addIcon.draw(canvas);
+                    return;
+                }
+                if (this.optionsPaint == null) {
+                    Paint paint3 = new Paint(1);
+                    this.optionsPaint = paint3;
+                    paint3.setColor(-1);
+                }
+                this.optionsPaint.setAlpha(Math.round(Utilities.clamp(this.progressToSelect.get(), 1.0f, 0.0f) * 255.0f));
+                canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(1.5f), this.optionsPaint);
+                canvas.drawCircle(measuredWidth - (AndroidUtilities.dp(5.0f) * this.progressToSelect.get()), measuredHeight, AndroidUtilities.dp(1.5f), this.optionsPaint);
+                canvas.drawCircle(measuredWidth + (AndroidUtilities.dp(5.0f) * this.progressToSelect.get()), measuredHeight, AndroidUtilities.dp(1.5f), this.optionsPaint);
+            }
         }
 
         void setLocked(boolean z) {
@@ -1581,7 +1654,8 @@ public class AvatarConstructorFragment extends BaseFragment {
                 return;
             }
             avatarConstructorFragment.cancelExpandAnimator();
-            AvatarConstructorFragment.this.setProgressToExpand(Utilities.clamp(AvatarConstructorFragment.this.progressToExpand - (i4 / r1.expandedHeight), 1.0f, 0.0f), true);
+            AvatarConstructorFragment avatarConstructorFragment2 = AvatarConstructorFragment.this;
+            AvatarConstructorFragment.this.setProgressToExpand(Utilities.clamp(avatarConstructorFragment2.progressToExpand - (i4 / avatarConstructorFragment2.expandedHeight), 1.0f, 0.0f), true);
         }
 
         @Override
@@ -1591,7 +1665,8 @@ public class AvatarConstructorFragment extends BaseFragment {
                 return;
             }
             avatarConstructorFragment.cancelExpandAnimator();
-            AvatarConstructorFragment.this.setProgressToExpand(Utilities.clamp(AvatarConstructorFragment.this.progressToExpand - (i2 / r3.expandedHeight), 1.0f, 0.0f), true);
+            AvatarConstructorFragment avatarConstructorFragment2 = AvatarConstructorFragment.this;
+            AvatarConstructorFragment.this.setProgressToExpand(Utilities.clamp(avatarConstructorFragment2.progressToExpand - (i2 / avatarConstructorFragment2.expandedHeight), 1.0f, 0.0f), true);
             iArr[1] = i2;
         }
 

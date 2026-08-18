@@ -8,7 +8,6 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.TextStyleSpan;
 
 public class FormattedDateSpan extends URLSpan {
     public final boolean applied;

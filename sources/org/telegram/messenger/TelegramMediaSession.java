@@ -27,11 +27,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
@@ -75,7 +73,8 @@ public class TelegramMediaSession {
                     if (instance == null) {
                         instance = new TelegramMediaSession(context.getApplicationContext());
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -321,19 +320,15 @@ public class TelegramMediaSession {
                 if (!arrayList.isEmpty()) {
                     ArrayList<TLRPC.User> arrayList5 = new ArrayList<>();
                     messagesStorage.getUsersInternal(arrayList, arrayList5);
-                    Iterator<TLRPC.User> it = arrayList5.iterator();
-                    while (it.hasNext()) {
-                        TLRPC.User next = it.next();
-                        this.users.put(next.id, next);
+                    for (TLRPC.User user : arrayList5) {
+                        this.users.put(user.id, user);
                     }
                 }
                 if (!arrayList2.isEmpty()) {
                     ArrayList<TLRPC.Chat> arrayList6 = new ArrayList<>();
                     messagesStorage.getChatsInternal(TextUtils.join(",", arrayList2), arrayList6);
-                    Iterator<TLRPC.Chat> it2 = arrayList6.iterator();
-                    while (it2.hasNext()) {
-                        TLRPC.Chat next2 = it2.next();
-                        this.chats.put(next2.id, next2);
+                    for (TLRPC.Chat chat : arrayList6) {
+                        this.chats.put(chat.id, chat);
                     }
                 }
             }
@@ -358,7 +353,7 @@ public class TelegramMediaSession {
         browseChildrenCallback.onResult(loadChildrenSync(str));
     }
 
-    private List<MediaBrowser.MediaItem> loadChildrenSync(String str) throws NumberFormatException {
+    private List<MediaBrowser.MediaItem> loadChildrenSync(String str) {
         long j;
         TLRPC.FileLocation fileLocation;
         ArrayList arrayList = new ArrayList();
@@ -482,7 +477,11 @@ public class TelegramMediaSession {
 
     public void updateRepeatMode() {
         int i = SharedConfig.repeatMode;
-        this.session.setRepeatMode(i != 1 ? i != 2 ? 0 : 1 : 2);
+        int i2 = 2;
+        if (i != 1) {
+            i2 = i != 2 ? 0 : 1;
+        }
+        this.session.setRepeatMode(i2);
     }
 
     public void updateShuffleMode() {
@@ -529,7 +528,7 @@ public class TelegramMediaSession {
         }
 
         @Override
-        public void onPlay() throws NumberFormatException {
+        public void onPlay() {
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
             if (playingMessageObject != null) {
                 MediaController.getInstance().playMessage(playingMessageObject);
@@ -578,7 +577,11 @@ public class TelegramMediaSession {
 
         @Override
         public void onSetRepeatMode(int i) {
-            SharedConfig.setRepeatMode(i != 1 ? (i == 2 || i == 3) ? 1 : 0 : 2);
+            int i2 = 2;
+            if (i != 1) {
+                i2 = (i == 2 || i == 3) ? 1 : 0;
+            }
+            SharedConfig.setRepeatMode(i2);
             TelegramMediaSession.this.updateRepeatMode();
             notifyPlayStateForNotificationRefresh();
         }
@@ -610,17 +613,17 @@ public class TelegramMediaSession {
         }
 
         @Override
-        public void onPrepareFromMediaId(String str, Bundle bundle) throws NumberFormatException {
+        public void onPrepareFromMediaId(String str, Bundle bundle) {
             onPlayFromMediaId(str, bundle);
         }
 
         @Override
-        public void onPrepareFromSearch(String str, Bundle bundle) throws NumberFormatException {
+        public void onPrepareFromSearch(String str, Bundle bundle) {
             onPlayFromSearch(str, bundle);
         }
 
         @Override
-        public void onPlayFromMediaId(String str, Bundle bundle) throws NumberFormatException {
+        public void onPlayFromMediaId(String str, Bundle bundle) {
             String name;
             if (TextUtils.isEmpty(str)) {
                 return;
@@ -659,7 +662,7 @@ public class TelegramMediaSession {
         }
 
         @Override
-        public void onPlayFromSearch(String str, Bundle bundle) throws NumberFormatException {
+        public void onPlayFromSearch(String str, Bundle bundle) {
             String str2;
             if (str == null || str.length() == 0) {
                 return;

@@ -8,7 +8,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.conference.message.GroupCallMessageCell;
 
 public abstract class GroupCallMessagesAdapter extends RecyclerView.Adapter implements GroupCallMessagesController.CallMessageListener {
     private int currentAccount = -1;

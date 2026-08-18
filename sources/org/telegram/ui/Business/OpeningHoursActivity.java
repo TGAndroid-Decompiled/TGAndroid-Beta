@@ -11,6 +11,8 @@ import j$.time.DayOfWeek;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -107,7 +109,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
                 return true;
             }
             int i = 0;
-            loop0: while (true) {
+            while (true) {
                 ArrayList[] arrayListArr = this.currentValue;
                 if (i >= arrayListArr.length) {
                     break;
@@ -119,12 +121,11 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
                     Period period = (Period) this.currentValue[i].get(i2);
                     Period period2 = (Period) this.value[i].get(i2);
                     if (period.start != period2.start || period.end != period2.end) {
-                        break loop0;
+                        return true;
                     }
                 }
                 i++;
             }
-            return true;
         }
         return false;
     }
@@ -224,8 +225,98 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         this.valueSet = true;
     }
 
-    public static java.util.ArrayList adaptWeeklyOpen(java.util.ArrayList r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.OpeningHoursActivity.adaptWeeklyOpen(java.util.ArrayList, int):java.util.ArrayList");
+    public static ArrayList adaptWeeklyOpen(ArrayList arrayList, int i) {
+        int i2;
+        int i3;
+        int i4;
+        ArrayList arrayList2 = new ArrayList(arrayList);
+        ArrayList arrayList3 = new ArrayList(arrayList2.size());
+        for (int i5 = 0; i5 < arrayList2.size(); i5++) {
+            TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen = (TL_account.TL_businessWeeklyOpen) arrayList2.get(i5);
+            TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2 = new TL_account.TL_businessWeeklyOpen();
+            if (i != 0) {
+                int i6 = tL_businessWeeklyOpen.start_minute;
+                int i7 = i6 % 1440;
+                int i8 = tL_businessWeeklyOpen.end_minute;
+                int i9 = (i8 - i6) + i7;
+                if (i7 == 0 && (i9 == 1440 || i9 == 1439)) {
+                    tL_businessWeeklyOpen2.start_minute = i6;
+                    tL_businessWeeklyOpen2.end_minute = i8;
+                    arrayList3.add(tL_businessWeeklyOpen2);
+                } else {
+                    tL_businessWeeklyOpen2.start_minute = tL_businessWeeklyOpen.start_minute + i;
+                    tL_businessWeeklyOpen2.end_minute = tL_businessWeeklyOpen.end_minute + i;
+                    arrayList3.add(tL_businessWeeklyOpen2);
+                    i2 = tL_businessWeeklyOpen2.start_minute;
+                    if (i2 < 0) {
+                        i4 = tL_businessWeeklyOpen2.end_minute;
+                        if (i4 < 0) {
+                            tL_businessWeeklyOpen2.start_minute = i2 + 10080;
+                            tL_businessWeeklyOpen2.end_minute = i4 + 10080;
+                        } else {
+                            tL_businessWeeklyOpen2.start_minute = 0;
+                            TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen3 = new TL_account.TL_businessWeeklyOpen();
+                            tL_businessWeeklyOpen3.start_minute = tL_businessWeeklyOpen.start_minute + 10080 + i;
+                            tL_businessWeeklyOpen3.end_minute = 10079;
+                            arrayList3.add(tL_businessWeeklyOpen3);
+                        }
+                    } else {
+                        i3 = tL_businessWeeklyOpen2.end_minute;
+                        if (i3 <= 10080) {
+                            if (i2 > 10080) {
+                                tL_businessWeeklyOpen2.start_minute = i2 - 10080;
+                                tL_businessWeeklyOpen2.end_minute = i3 - 10080;
+                            } else {
+                                tL_businessWeeklyOpen2.end_minute = 10079;
+                                TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen4 = new TL_account.TL_businessWeeklyOpen();
+                                tL_businessWeeklyOpen4.start_minute = 0;
+                                tL_businessWeeklyOpen4.end_minute = (tL_businessWeeklyOpen.end_minute + i) - 10079;
+                                arrayList3.add(tL_businessWeeklyOpen4);
+                            }
+                        }
+                    }
+                }
+            } else {
+                tL_businessWeeklyOpen2.start_minute = tL_businessWeeklyOpen.start_minute + i;
+                tL_businessWeeklyOpen2.end_minute = tL_businessWeeklyOpen.end_minute + i;
+                arrayList3.add(tL_businessWeeklyOpen2);
+                i2 = tL_businessWeeklyOpen2.start_minute;
+                if (i2 < 0) {
+                    i4 = tL_businessWeeklyOpen2.end_minute;
+                    if (i4 < 0) {
+                        tL_businessWeeklyOpen2.start_minute = i2 + 10080;
+                        tL_businessWeeklyOpen2.end_minute = i4 + 10080;
+                    } else {
+                        tL_businessWeeklyOpen2.start_minute = 0;
+                        TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen5 = new TL_account.TL_businessWeeklyOpen();
+                        tL_businessWeeklyOpen5.start_minute = tL_businessWeeklyOpen.start_minute + 10080 + i;
+                        tL_businessWeeklyOpen5.end_minute = 10079;
+                        arrayList3.add(tL_businessWeeklyOpen5);
+                    }
+                } else {
+                    i3 = tL_businessWeeklyOpen2.end_minute;
+                    if (i3 <= 10080) {
+                        if (i2 > 10080) {
+                            tL_businessWeeklyOpen2.start_minute = i2 - 10080;
+                            tL_businessWeeklyOpen2.end_minute = i3 - 10080;
+                        } else {
+                            tL_businessWeeklyOpen2.end_minute = 10079;
+                            TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen6 = new TL_account.TL_businessWeeklyOpen();
+                            tL_businessWeeklyOpen6.start_minute = 0;
+                            tL_businessWeeklyOpen6.end_minute = (tL_businessWeeklyOpen.end_minute + i) - 10079;
+                            arrayList3.add(tL_businessWeeklyOpen6);
+                        }
+                    }
+                }
+            }
+        }
+        Collections.sort(arrayList3, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                return OpeningHoursActivity.lambda$adaptWeeklyOpen$0((TL_account.TL_businessWeeklyOpen) obj, (TL_account.TL_businessWeeklyOpen) obj2);
+            }
+        });
+        return arrayList3;
     }
 
     public static int lambda$adaptWeeklyOpen$0(TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen, TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2) {
@@ -246,42 +337,46 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         }
         int i6 = 0;
         while (i6 < 7) {
-            int i7 = i6 + 1;
-            int i8 = i7 * 1440;
-            int i9 = i6 * 1440;
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2 = (TL_account.TL_businessWeeklyOpen) arrayList.get(i10);
-                if (tL_businessWeeklyOpen2.start_minute <= i9 && (i = tL_businessWeeklyOpen2.end_minute) >= i9) {
-                    i9 = i + 1;
+            int i7 = i6 * 1440;
+            int i8 = i6 + 1;
+            int i9 = i8 * 1440;
+            int i10 = i7;
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                TL_account.TL_businessWeeklyOpen tL_businessWeeklyOpen2 = (TL_account.TL_businessWeeklyOpen) arrayList.get(i11);
+                if (tL_businessWeeklyOpen2.start_minute <= i10 && (i = tL_businessWeeklyOpen2.end_minute) >= i10) {
+                    i10 = i + 1;
                 }
             }
-            if (i9 >= i8) {
-                int i11 = (i6 + 6) % 7;
-                if (!arrayListArr[i11].isEmpty()) {
-                    if (((Period) arrayListArr[i11].get(r10.size() - 1)).end >= 1440) {
-                        ((Period) arrayListArr[i11].get(r6.size() - 1)).end = 1439;
+            if (i10 >= i9) {
+                int i12 = (i6 + 6) % 7;
+                if (!arrayListArr[i12].isEmpty()) {
+                    ArrayList arrayList2 = arrayListArr[i12];
+                    if (((Period) arrayList2.get(arrayList2.size() - 1)).end >= 1440) {
+                        ArrayList arrayList3 = arrayListArr[i12];
+                        ((Period) arrayList3.get(arrayList3.size() - 1)).end = 1439;
                     }
                 }
-                int iMin = Math.min((i9 - r4) - 1, 2879);
-                ArrayList arrayList2 = arrayListArr[(i6 + 8) % 7];
-                if (iMin >= 1440 && !arrayList2.isEmpty() && ((Period) arrayList2.get(0)).start < iMin - 1440) {
-                    iMin = ((Period) arrayList2.get(0)).start + 1439;
+                int iMin = Math.min((i10 - i7) - 1, 2879);
+                ArrayList arrayList4 = arrayListArr[(i6 + 8) % 7];
+                if (iMin >= 1440 && !arrayList4.isEmpty() && ((Period) arrayList4.get(0)).start < iMin - 1440) {
+                    iMin = ((Period) arrayList4.get(0)).start + 1439;
                 }
                 arrayListArr[i6].clear();
                 arrayListArr[i6].add(new Period(0, iMin));
             } else {
-                int i12 = i7 % 7;
-                if (!arrayListArr[i6].isEmpty() && !arrayListArr[i12].isEmpty()) {
-                    Period period = (Period) arrayListArr[i6].get(r3.size() - 1);
-                    Period period2 = (Period) arrayListArr[i12].get(0);
-                    int i13 = period.end;
-                    if (i13 > 1440 && i13 - 1439 == period2.start) {
+                int i13 = i8 % 7;
+                if (!arrayListArr[i6].isEmpty() && !arrayListArr[i13].isEmpty()) {
+                    ArrayList arrayList5 = arrayListArr[i6];
+                    Period period = (Period) arrayList5.get(arrayList5.size() - 1);
+                    Period period2 = (Period) arrayListArr[i13].get(0);
+                    int i14 = period.end;
+                    if (i14 > 1440 && i14 - 1439 == period2.start) {
                         period.end = 1439;
                         period2.start = 0;
                     }
                 }
             }
-            i6 = i7;
+            i6 = i8;
         }
         return arrayListArr;
     }

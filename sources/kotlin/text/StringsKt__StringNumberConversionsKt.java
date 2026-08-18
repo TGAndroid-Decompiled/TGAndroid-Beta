@@ -47,13 +47,13 @@ public abstract class StringsKt__StringNumberConversionsKt extends StringsKt__St
             }
             if (j3 < j4) {
                 if (j4 == j2) {
-                    j4 = j / i;
+                    j4 = j / ((long) i);
                     if (j3 < j4) {
                     }
                 }
                 return null;
             }
-            long j5 = j3 * i;
+            long j5 = j3 * ((long) i);
             long j6 = iDigitOf;
             if (j5 < j + j6) {
                 return null;

@@ -17,12 +17,12 @@ public abstract class BluredView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) throws InterruptedException {
+    protected void onDraw(Canvas canvas) {
         this.drawable.draw(canvas);
     }
 
     @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) throws InterruptedException {
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         this.drawable.checkSizes();
     }

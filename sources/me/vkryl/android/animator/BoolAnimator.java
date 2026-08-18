@@ -2,7 +2,6 @@ package me.vkryl.android.animator;
 
 import android.view.View;
 import android.view.animation.Interpolator;
-import me.vkryl.android.animator.FactorAnimator;
 
 public class BoolAnimator implements FactorAnimator.Target {
     private FactorAnimator animator;

@@ -6,11 +6,11 @@ public class AudioConversions {
     private static final long MICROSECONDS_PER_SECOND = 1000000;
 
     public static long bytesToUs(int i, int i2, int i3) {
-        return (i * 1000000) / ((i2 * 2) * i3);
+        return (((long) i) * 1000000) / ((long) ((i2 * 2) * i3));
     }
 
     public static int usToBytes(long j, int i, int i2) {
-        return (int) Math.ceil((j * ((i * 2) * i2)) / 1000000.0d);
+        return (int) Math.ceil((j * ((double) ((i * 2) * i2))) / 1000000.0d);
     }
 
     public static long shortsToUs(int i, int i2, int i3) {

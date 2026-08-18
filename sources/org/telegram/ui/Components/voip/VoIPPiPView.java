@@ -15,9 +15,11 @@ import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewOutlineProvider;
+import android.view.ViewParent;
 import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -37,7 +39,6 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.voip.VoIPPiPView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.VoIPFragment;
 import org.webrtc.EglBase;
@@ -348,7 +349,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             this.floatingView.addView(this.enlargeIcon, LayoutHelper.createFrame(40, 40.0f, 51, 4.0f, 4.0f, 4.0f, 0.0f));
             this.closeIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) throws InterruptedException {
+                public final void onClick(View view2) {
                     VoIPPiPView.lambda$new$1(view2);
                 }
             });
@@ -366,7 +367,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         updateViewState();
     }
 
-    public static void lambda$new$1(View view) throws InterruptedException {
+    public static void lambda$new$1(View view) {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             sharedInstance.hangUp();
@@ -636,23 +637,196 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
-            VoIPPiPView.this.currentUserTextureView.setPivotX(r0.callingUserTextureView.getMeasuredWidth());
-            VoIPPiPView.this.currentUserTextureView.setPivotY(r0.callingUserTextureView.getMeasuredHeight());
+            VoIPPiPView voIPPiPView = VoIPPiPView.this;
+            voIPPiPView.currentUserTextureView.setPivotX(voIPPiPView.callingUserTextureView.getMeasuredWidth());
+            VoIPPiPView voIPPiPView2 = VoIPPiPView.this;
+            voIPPiPView2.currentUserTextureView.setPivotY(voIPPiPView2.callingUserTextureView.getMeasuredHeight());
             VoIPPiPView.this.currentUserTextureView.setTranslationX((-AndroidUtilities.dp(4.0f)) * (1.0f / getScaleX()) * VoIPPiPView.this.progressToCameraMini);
             VoIPPiPView.this.currentUserTextureView.setTranslationY((-AndroidUtilities.dp(4.0f)) * (1.0f / getScaleY()) * VoIPPiPView.this.progressToCameraMini);
             VoIPPiPView.this.currentUserTextureView.setRoundCorners(AndroidUtilities.dp(8.0f) * (1.0f / getScaleY()) * VoIPPiPView.this.progressToCameraMini);
-            VoIPPiPView voIPPiPView = VoIPPiPView.this;
-            voIPPiPView.currentUserTextureView.setScaleX(((1.0f - voIPPiPView.progressToCameraMini) * 0.6f) + 0.4f);
-            VoIPPiPView voIPPiPView2 = VoIPPiPView.this;
-            voIPPiPView2.currentUserTextureView.setScaleY(((1.0f - voIPPiPView2.progressToCameraMini) * 0.6f) + 0.4f);
             VoIPPiPView voIPPiPView3 = VoIPPiPView.this;
-            voIPPiPView3.currentUserTextureView.setAlpha(Math.min(1.0f, 1.0f - voIPPiPView3.progressToCameraMini));
+            voIPPiPView3.currentUserTextureView.setScaleX(((1.0f - voIPPiPView3.progressToCameraMini) * 0.6f) + 0.4f);
+            VoIPPiPView voIPPiPView4 = VoIPPiPView.this;
+            voIPPiPView4.currentUserTextureView.setScaleY(((1.0f - voIPPiPView4.progressToCameraMini) * 0.6f) + 0.4f);
+            VoIPPiPView voIPPiPView5 = VoIPPiPView.this;
+            voIPPiPView5.currentUserTextureView.setAlpha(Math.min(1.0f, 1.0f - voIPPiPView5.progressToCameraMini));
             super.dispatchDraw(canvas);
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r15) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.VoIPPiPView.FloatingView.onTouchEvent(android.view.MotionEvent):boolean");
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            AnimatorSet animatorSet;
+            int i;
+            int i2;
+            float f;
+            float f2;
+            float left;
+            float measuredWidth;
+            float top;
+            float measuredHeight;
+            float f3;
+            if (VoIPPiPView.this.expandedAnimationInProgress || VoIPPiPView.switchingToPip || VoIPPiPView.instance == null) {
+                return false;
+            }
+            AndroidUtilities.cancelRunOnUIThread(VoIPPiPView.this.collapseRunnable);
+            float rawX = motionEvent.getRawX();
+            float rawY = motionEvent.getRawY();
+            ViewParent parent = getParent();
+            int action = motionEvent.getAction();
+            if (action == 0) {
+                VoIPPiPView voIPPiPView = VoIPPiPView.this;
+                voIPPiPView.startX = rawX;
+                voIPPiPView.startY = rawY;
+                voIPPiPView.startTime = System.currentTimeMillis();
+                AnimatorSet animatorSet2 = VoIPPiPView.this.moveToBoundsAnimator;
+                if (animatorSet2 != null) {
+                    animatorSet2.cancel();
+                }
+            } else if (action == 1) {
+                animatorSet = VoIPPiPView.this.moveToBoundsAnimator;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                }
+                if (motionEvent.getAction() != 1 && !VoIPPiPView.this.moving && System.currentTimeMillis() - VoIPPiPView.this.startTime < 150) {
+                    Context context = getContext();
+                    boolean z = context instanceof LaunchActivity;
+                    if (z && !ApplicationLoader.mainInterfacePaused) {
+                        VoIPFragment.show((Activity) context, VoIPPiPView.this.currentAccount);
+                    } else if (z) {
+                        Intent intent = new Intent(context, (Class<?>) LaunchActivity.class);
+                        intent.setAction("voip");
+                        context.startActivity(intent);
+                    }
+                    VoIPPiPView.this.moving = false;
+                    return false;
+                }
+                if (parent != null) {
+                    parent.requestDisallowInterceptTouchEvent(false);
+                    Point point = AndroidUtilities.displaySize;
+                    i = point.x;
+                    i2 = point.y + VoIPPiPView.topInset;
+                    f = this.topPadding;
+                    f2 = this.bottomPadding;
+                    VoIPPiPView voIPPiPView2 = VoIPPiPView.this;
+                    left = voIPPiPView2.windowLayoutParams.x + voIPPiPView2.floatingView.getLeft();
+                    measuredWidth = VoIPPiPView.this.floatingView.getMeasuredWidth() + left;
+                    VoIPPiPView voIPPiPView3 = VoIPPiPView.this;
+                    top = voIPPiPView3.windowLayoutParams.y + voIPPiPView3.floatingView.getTop();
+                    measuredHeight = VoIPPiPView.this.floatingView.getMeasuredHeight() + top;
+                    VoIPPiPView.this.moveToBoundsAnimator = new AnimatorSet();
+                    f3 = this.leftPadding;
+                    if (left < f3) {
+                        VoIPPiPView voIPPiPView4 = VoIPPiPView.this;
+                        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(voIPPiPView4.windowLayoutParams.x, f3 - voIPPiPView4.floatingView.getLeft());
+                        valueAnimatorOfFloat.addUpdateListener(VoIPPiPView.this.updateXlistener);
+                        VoIPPiPView.this.moveToBoundsAnimator.playTogether(valueAnimatorOfFloat);
+                    } else if (measuredWidth > i - this.rightPadding) {
+                        VoIPPiPView voIPPiPView5 = VoIPPiPView.this;
+                        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(voIPPiPView5.windowLayoutParams.x, (i - voIPPiPView5.floatingView.getRight()) - this.rightPadding);
+                        valueAnimatorOfFloat2.addUpdateListener(VoIPPiPView.this.updateXlistener);
+                        VoIPPiPView.this.moveToBoundsAnimator.playTogether(valueAnimatorOfFloat2);
+                    }
+                    if (top < f) {
+                        VoIPPiPView voIPPiPView6 = VoIPPiPView.this;
+                        ValueAnimator valueAnimatorOfFloat3 = ValueAnimator.ofFloat(voIPPiPView6.windowLayoutParams.y, f - voIPPiPView6.floatingView.getTop());
+                        valueAnimatorOfFloat3.addUpdateListener(VoIPPiPView.this.updateYlistener);
+                        VoIPPiPView.this.moveToBoundsAnimator.playTogether(valueAnimatorOfFloat3);
+                    } else if (measuredHeight > i2 - f2) {
+                        VoIPPiPView voIPPiPView7 = VoIPPiPView.this;
+                        ValueAnimator valueAnimatorOfFloat4 = ValueAnimator.ofFloat(voIPPiPView7.windowLayoutParams.y, (i2 - voIPPiPView7.floatingView.getMeasuredHeight()) - f2);
+                        valueAnimatorOfFloat4.addUpdateListener(VoIPPiPView.this.updateYlistener);
+                        VoIPPiPView.this.moveToBoundsAnimator.playTogether(valueAnimatorOfFloat4);
+                    }
+                    VoIPPiPView.this.moveToBoundsAnimator.setDuration(150L).setInterpolator(CubicBezierInterpolator.DEFAULT);
+                    VoIPPiPView.this.moveToBoundsAnimator.start();
+                }
+                VoIPPiPView.this.moving = false;
+                if (VoIPPiPView.instance.expanded) {
+                    AndroidUtilities.runOnUIThread(VoIPPiPView.this.collapseRunnable, 3000L);
+                }
+            } else if (action == 2) {
+                VoIPPiPView voIPPiPView8 = VoIPPiPView.this;
+                float f4 = rawX - voIPPiPView8.startX;
+                float f5 = rawY - voIPPiPView8.startY;
+                if (!voIPPiPView8.moving) {
+                    float f6 = (f4 * f4) + (f5 * f5);
+                    float f7 = this.touchSlop;
+                    if (f6 > f7 * f7) {
+                        if (parent != null) {
+                            parent.requestDisallowInterceptTouchEvent(true);
+                        }
+                        VoIPPiPView voIPPiPView9 = VoIPPiPView.this;
+                        voIPPiPView9.moving = true;
+                        voIPPiPView9.startX = rawX;
+                        voIPPiPView9.startY = rawY;
+                        f4 = 0.0f;
+                        f5 = 0.0f;
+                    }
+                }
+                VoIPPiPView voIPPiPView10 = VoIPPiPView.this;
+                if (voIPPiPView10.moving) {
+                    WindowManager.LayoutParams layoutParams = voIPPiPView10.windowLayoutParams;
+                    layoutParams.x = (int) (layoutParams.x + f4);
+                    layoutParams.y = (int) (layoutParams.y + f5);
+                    voIPPiPView10.startX = rawX;
+                    voIPPiPView10.startY = rawY;
+                    WindowManager windowManager = voIPPiPView10.windowManager;
+                    VoIPPiPView voIPPiPView11 = VoIPPiPView.this;
+                    AndroidUtilities.updateViewLayout(windowManager, voIPPiPView11.windowView, voIPPiPView11.windowLayoutParams);
+                }
+            } else if (action == 3) {
+                animatorSet = VoIPPiPView.this.moveToBoundsAnimator;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                }
+                if (motionEvent.getAction() != 1) {
+                }
+                if (parent != null) {
+                    parent.requestDisallowInterceptTouchEvent(false);
+                    Point point2 = AndroidUtilities.displaySize;
+                    i = point2.x;
+                    i2 = point2.y + VoIPPiPView.topInset;
+                    f = this.topPadding;
+                    f2 = this.bottomPadding;
+                    VoIPPiPView voIPPiPView12 = VoIPPiPView.this;
+                    left = voIPPiPView12.windowLayoutParams.x + voIPPiPView12.floatingView.getLeft();
+                    measuredWidth = VoIPPiPView.this.floatingView.getMeasuredWidth() + left;
+                    VoIPPiPView voIPPiPView13 = VoIPPiPView.this;
+                    top = voIPPiPView13.windowLayoutParams.y + voIPPiPView13.floatingView.getTop();
+                    measuredHeight = VoIPPiPView.this.floatingView.getMeasuredHeight() + top;
+                    VoIPPiPView.this.moveToBoundsAnimator = new AnimatorSet();
+                    f3 = this.leftPadding;
+                    if (left < f3) {
+                        VoIPPiPView voIPPiPView14 = VoIPPiPView.this;
+                        ValueAnimator valueAnimatorOfFloat5 = ValueAnimator.ofFloat(voIPPiPView14.windowLayoutParams.x, f3 - voIPPiPView14.floatingView.getLeft());
+                        valueAnimatorOfFloat5.addUpdateListener(VoIPPiPView.this.updateXlistener);
+                        VoIPPiPView.this.moveToBoundsAnimator.playTogether(valueAnimatorOfFloat5);
+                    } else if (measuredWidth > i - this.rightPadding) {
+                        VoIPPiPView voIPPiPView15 = VoIPPiPView.this;
+                        ValueAnimator valueAnimatorOfFloat6 = ValueAnimator.ofFloat(voIPPiPView15.windowLayoutParams.x, (i - voIPPiPView15.floatingView.getRight()) - this.rightPadding);
+                        valueAnimatorOfFloat6.addUpdateListener(VoIPPiPView.this.updateXlistener);
+                        VoIPPiPView.this.moveToBoundsAnimator.playTogether(valueAnimatorOfFloat6);
+                    }
+                    if (top < f) {
+                        VoIPPiPView voIPPiPView16 = VoIPPiPView.this;
+                        ValueAnimator valueAnimatorOfFloat7 = ValueAnimator.ofFloat(voIPPiPView16.windowLayoutParams.y, f - voIPPiPView16.floatingView.getTop());
+                        valueAnimatorOfFloat7.addUpdateListener(VoIPPiPView.this.updateYlistener);
+                        VoIPPiPView.this.moveToBoundsAnimator.playTogether(valueAnimatorOfFloat7);
+                    } else if (measuredHeight > i2 - f2) {
+                        VoIPPiPView voIPPiPView17 = VoIPPiPView.this;
+                        ValueAnimator valueAnimatorOfFloat8 = ValueAnimator.ofFloat(voIPPiPView17.windowLayoutParams.y, (i2 - voIPPiPView17.floatingView.getMeasuredHeight()) - f2);
+                        valueAnimatorOfFloat8.addUpdateListener(VoIPPiPView.this.updateYlistener);
+                        VoIPPiPView.this.moveToBoundsAnimator.playTogether(valueAnimatorOfFloat8);
+                    }
+                    VoIPPiPView.this.moveToBoundsAnimator.setDuration(150L).setInterpolator(CubicBezierInterpolator.DEFAULT);
+                    VoIPPiPView.this.moveToBoundsAnimator.start();
+                }
+                VoIPPiPView.this.moving = false;
+                if (VoIPPiPView.instance.expanded) {
+                    AndroidUtilities.runOnUIThread(VoIPPiPView.this.collapseRunnable, 3000L);
+                }
+            }
+            return true;
         }
 
         public void getRelativePosition(float[] fArr) {

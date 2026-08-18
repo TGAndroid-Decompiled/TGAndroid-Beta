@@ -1,9 +1,5 @@
 package org.webrtc;
 
-import org.webrtc.VideoFrame;
-import org.webrtc.VideoProcessor;
-import org.webrtc.VideoSource;
-
 class NativeAndroidVideoTrackSource {
     private final long nativeAndroidVideoTrackSource;
 

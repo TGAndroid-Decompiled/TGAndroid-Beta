@@ -25,7 +25,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.iv.RichCaptionController;
 
 public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost {
     private final Paint backgroundPaint;
@@ -296,7 +295,7 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
         int iMax = Math.max(0, (size - paddingLeft) - paddingRight);
         TL_iv.pageBlockMap map = getMap();
         if (map != null && map.w > 0 && map.h > 0) {
-            this.mapImageH = Math.max(Math.min((int) (((iMax - AndroidUtilities.dp(32.0f)) * map.h) / map.w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
+            this.mapImageH = Math.max(Math.min((int) ((((long) (iMax - AndroidUtilities.dp(32.0f))) * ((long) map.h)) / ((long) map.w)), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
         } else {
             this.mapImageH = (AndroidUtilities.dp(200.0f) - getPaddingTop()) - getPaddingBottom();
         }

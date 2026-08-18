@@ -10,9 +10,7 @@ import android.view.View;
 import java.io.File;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Locale;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.video.MediaCodecPlayer;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.tgnet.AbstractSerializedData;
@@ -227,11 +225,11 @@ public class VideoEditedInfo {
             this.textViewX = abstractSerializedData.readFloat(z2);
             this.textViewY = abstractSerializedData.readFloat(z2);
             if (z) {
-                int int322 = abstractSerializedData.readInt32(z2);
-                if (int322 == 1450380236) {
+                int int33 = abstractSerializedData.readInt32(z2);
+                if (int33 == 1450380236) {
                     this.document = null;
                 } else {
-                    this.document = TLRPC.Document.TLdeserialize(abstractSerializedData, int322, z2);
+                    this.document = TLRPC.Document.TLdeserialize(abstractSerializedData, int33, z2);
                 }
             }
             byte b = this.type;
@@ -650,9 +648,9 @@ public class VideoEditedInfo {
                             this.paintPath = new String(serializedData.readByteArray(false));
                         }
                         if (serializedData.readByte(false) != 0) {
-                            int int322 = serializedData.readInt32(false);
-                            this.mediaEntities = new ArrayList<>(int322);
-                            for (int i3 = 0; i3 < int322; i3++) {
+                            int int33 = serializedData.readInt32(false);
+                            this.mediaEntities = new ArrayList<>(int33);
+                            for (int i3 = 0; i3 < int33; i3++) {
                                 this.mediaEntities.add(new MediaEntity(serializedData, false));
                             }
                             this.isPhoto = serializedData.readByte(false) == 1;
@@ -807,21 +805,19 @@ public class VideoEditedInfo {
                 return null;
             }
             ArrayList<StoryEntry> arrayList2 = new ArrayList<>();
-            Iterator<Part> it = arrayList.iterator();
-            while (it.hasNext()) {
-                Part next = it.next();
+            for (Part part : arrayList) {
                 StoryEntry storyEntry = new StoryEntry();
-                storyEntry.isVideo = next.isVideo;
-                storyEntry.muted = next.muted;
-                storyEntry.file = new File(next.path);
-                storyEntry.videoVolume = next.volume;
-                storyEntry.videoLoop = next.loop;
-                storyEntry.videoOffset = next.offset;
-                storyEntry.videoLeft = next.left;
-                storyEntry.videoRight = next.right;
-                storyEntry.width = next.width;
-                storyEntry.height = next.height;
-                storyEntry.duration = next.duration;
+                storyEntry.isVideo = part.isVideo;
+                storyEntry.muted = part.muted;
+                storyEntry.file = new File(part.path);
+                storyEntry.videoVolume = part.volume;
+                storyEntry.videoLoop = part.loop;
+                storyEntry.videoOffset = part.offset;
+                storyEntry.videoLeft = part.left;
+                storyEntry.videoRight = part.right;
+                storyEntry.width = part.width;
+                storyEntry.height = part.height;
+                storyEntry.duration = part.duration;
                 arrayList2.add(storyEntry);
             }
             return arrayList2;

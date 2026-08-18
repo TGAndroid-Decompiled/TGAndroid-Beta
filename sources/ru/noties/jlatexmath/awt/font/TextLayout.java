@@ -17,8 +17,9 @@ public class TextLayout {
         Paint paint = new Paint(1);
         paint.setTypeface(font.typeface());
         paint.setTextSize(font.size());
-        paint.getTextBounds(str, 0, str.length(), new Rect());
-        this.bounds = new Rectangle2D.Float(r4.left, r4.top, r4.width(), r4.height());
+        Rect rect = new Rect();
+        paint.getTextBounds(str, 0, str.length(), rect);
+        this.bounds = new Rectangle2D.Float(rect.left, rect.top, rect.width(), rect.height());
     }
 
     public Rectangle2D getBounds() {

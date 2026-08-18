@@ -7,7 +7,6 @@ import kotlin.Unit;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.RangesKt;
-import kotlinx.coroutines.Delay;
 import kotlinx.coroutines.internal.LockFreeTaskQueueCore;
 import kotlinx.coroutines.internal.ThreadSafeHeap;
 import kotlinx.coroutines.internal.ThreadSafeHeapNode;
@@ -234,6 +233,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                 synchronized (delayedTaskQueue) {
                     try {
                         ThreadSafeHeapNode threadSafeHeapNodeFirstImpl = delayedTaskQueue.firstImpl();
+                        threadSafeHeapNodeRemoveAtImpl = null;
                         if (threadSafeHeapNodeFirstImpl != null) {
                             DelayedTask delayedTask = (DelayedTask) threadSafeHeapNodeFirstImpl;
                             threadSafeHeapNodeRemoveAtImpl = delayedTask.timeToExecute(jNanoTime) ? enqueueImpl(delayedTask) : false ? delayedTaskQueue.removeAtImpl(0) : null;

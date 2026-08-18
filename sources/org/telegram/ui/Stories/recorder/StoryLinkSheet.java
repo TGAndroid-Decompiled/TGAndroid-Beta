@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -426,8 +427,40 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
         });
     }
 
-    public void lambda$new$5(org.telegram.tgnet.TLObject r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryLinkSheet.lambda$new$5(org.telegram.tgnet.TLObject):void");
+    public void lambda$new$5(TLObject tLObject) {
+        TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage;
+        if (tLObject instanceof TL_account.webPagePreview) {
+            TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(webpagepreview.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(webpagepreview.chats, false);
+            TLRPC.MessageMedia messageMedia = webpagepreview.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+                tL_messageMediaWebPage = (TLRPC.TL_messageMediaWebPage) messageMedia;
+            } else {
+                tL_messageMediaWebPage = null;
+            }
+        } else {
+            tL_messageMediaWebPage = null;
+        }
+        if (tL_messageMediaWebPage != null) {
+            TLRPC.WebPage webPage = tL_messageMediaWebPage.webpage;
+            this.webpage = webPage;
+            if (isPreviewEmpty(webPage)) {
+                TLRPC.WebPage webPage2 = this.webpage;
+                this.webpageId = webPage2 == null ? 0L : webPage2.id;
+                this.webpage = null;
+            } else {
+                this.webpageId = 0L;
+            }
+        } else {
+            this.webpage = null;
+            this.webpageId = 0L;
+        }
+        this.loading = this.webpageId != 0;
+        UniversalAdapter universalAdapter = this.adapter;
+        if (universalAdapter != null) {
+            universalAdapter.update(true);
+        }
     }
 
     public void closePreview(View view) {

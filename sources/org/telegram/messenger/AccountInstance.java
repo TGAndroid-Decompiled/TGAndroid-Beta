@@ -20,7 +20,8 @@ public class AccountInstance {
                         accountInstanceArr[i] = accountInstance2;
                         accountInstance = accountInstance2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }

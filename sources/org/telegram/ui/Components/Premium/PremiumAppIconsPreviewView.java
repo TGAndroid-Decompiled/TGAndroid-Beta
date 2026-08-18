@@ -15,7 +15,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.AppIconsSelectorCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.LauncherIconController;
 
 public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHeaderView {

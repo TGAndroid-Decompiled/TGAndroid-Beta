@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FloatPropertyCompat;
@@ -181,7 +182,7 @@ public class MainTabsLayout extends AnimatedLinearLayout {
 
             @Override
             public long getLongPressDuration() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MainTabsLayout.AnonymousClass3.getLongPressDuration():long");
+                return (ViewConfiguration.getLongPressTimeout() * 750) / 1000;
             }
 
             @Override
@@ -260,12 +261,11 @@ public class MainTabsLayout extends AnimatedLinearLayout {
                 }
             }
             if (f3 <= paddingLeft || i4 == PASS_TEXT_SIZES_DP.length - 1) {
+                length = i4;
                 break;
-            } else {
-                i4++;
             }
+            i4++;
         }
-        length = i4;
         applyPassTextSize(length);
         int iDp2 = AndroidUtilities.dp(PASS_PADDINGS_DP[length]) * 2;
         int iMax = (paddingLeft / Math.max(1, this.visibleChildCount)) - iDp2;

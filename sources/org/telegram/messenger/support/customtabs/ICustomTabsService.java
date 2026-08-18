@@ -56,14 +56,10 @@ public interface ICustomTabsService extends IInterface {
                     parcelObtain.writeStrongBinder(iCustomTabsCallback != null ? iCustomTabsCallback.asBinder() : null);
                     this.mRemote.transact(3, parcelObtain, parcelObtain2, 0);
                     parcelObtain2.readException();
-                    boolean z = parcelObtain2.readInt() != 0;
+                    return parcelObtain2.readInt() != 0;
+                } finally {
                     parcelObtain2.recycle();
                     parcelObtain.recycle();
-                    return z;
-                } catch (Throwable th) {
-                    parcelObtain2.recycle();
-                    parcelObtain.recycle();
-                    throw th;
                 }
             }
         }

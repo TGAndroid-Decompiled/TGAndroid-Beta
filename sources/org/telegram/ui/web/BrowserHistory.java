@@ -3,7 +3,6 @@ package org.telegram.ui.web;
 import android.util.LongSparseArray;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -14,7 +13,6 @@ import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.web.WebMetadataCache;
 
 public abstract class BrowserHistory {
     private static ArrayList callbacks;
@@ -30,7 +28,7 @@ public abstract class BrowserHistory {
         public String url;
 
         @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) throws IOException {
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt64(this.id);
             outputSerializedData.writeInt64(this.time);
             String str = this.url;
@@ -169,13 +167,13 @@ public abstract class BrowserHistory {
     public static void saveHistory() {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 BrowserHistory.lambda$saveHistory$2();
             }
         });
     }
 
-    public static void lambda$saveHistory$2() throws IOException {
+    public static void lambda$saveHistory$2() {
         try {
             File historyFile = getHistoryFile();
             if (!historyFile.exists()) {

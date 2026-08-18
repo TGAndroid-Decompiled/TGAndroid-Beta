@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.core.ArrayUtils;
 import me.vkryl.core.lambda.Destroyable;
 
@@ -161,7 +160,10 @@ public final class ListAnimator implements Iterable {
         public boolean applyAnimation(float f) {
             boolean z = this.measuredSpacingStart.applyAnimation(f) || (this.measuredPositionRect.applyAnimation(f) || (this.visibility.applyAnimation(f) || this.position.applyAnimation(f)));
             Object obj = this.item;
-            return obj instanceof Animatable ? ((Animatable) obj).applyAnimation(f) || z : z;
+            if (obj instanceof Animatable) {
+                return ((Animatable) obj).applyAnimation(f) || z;
+            }
+            return z;
         }
     }
 
@@ -347,9 +349,7 @@ public final class ListAnimator implements Iterable {
             return;
         }
         if (this.animator == null) {
-            Iterator it = this.entries.iterator();
-            while (it.hasNext()) {
-                Entry entry = (Entry) it.next();
+            for (Entry entry : this.entries) {
                 entry.visibility.setFrom(entry.visibility.get());
                 entry.position.setFrom(entry.position.get());
             }
@@ -357,13 +357,11 @@ public final class ListAnimator implements Iterable {
     }
 
     public void measureImpl(boolean z) {
-        Iterator it = this.actualList.iterator();
         int i = 0;
         int i2 = 0;
         int iMax = 0;
         int iMax2 = 0;
-        while (it.hasNext()) {
-            Entry entry = (Entry) it.next();
+        for (Entry entry : this.actualList) {
             Object obj = entry.item;
             if (obj instanceof Measurable) {
                 Measurable measurable = (Measurable) obj;
@@ -400,21 +398,18 @@ public final class ListAnimator implements Iterable {
             }
         }
         if (z) {
-            Iterator it2 = this.entries.iterator();
-            while (true) {
-                if (!it2.hasNext()) {
-                    break;
-                }
-                Object obj2 = ((Entry) it2.next()).item;
+            Iterator it = this.entries.iterator();
+            while (it.hasNext()) {
+                Object obj2 = ((Entry) it.next()).item;
                 if ((obj2 instanceof Animatable) && ((Animatable) obj2).hasChanges()) {
                     onBeforeListChanged();
                     break;
                 }
             }
         }
-        Iterator it3 = this.entries.iterator();
-        while (it3.hasNext()) {
-            Object obj3 = ((Entry) it3.next()).item;
+        Iterator it2 = this.entries.iterator();
+        while (it2.hasNext()) {
+            Object obj3 = ((Entry) it2.next()).item;
             if (obj3 instanceof Animatable) {
                 Animatable animatable = (Animatable) obj3;
                 if (z) {
@@ -584,21 +579,15 @@ public final class ListAnimator implements Iterable {
         } else {
             if (!this.foundListChanges) {
                 Iterator it2 = this.entries.iterator();
-                while (true) {
-                    if (it2.hasNext()) {
-                        if (((Entry) it2.next()).visibility.differs(0.0f)) {
-                            onBeforeListChanged();
-                            break;
-                        }
-                    } else {
+                while (it2.hasNext()) {
+                    if (((Entry) it2.next()).visibility.differs(0.0f)) {
+                        onBeforeListChanged();
                         break;
                     }
                 }
             }
             if (this.foundListChanges) {
-                Iterator it3 = this.entries.iterator();
-                while (it3.hasNext()) {
-                    Entry entry4 = (Entry) it3.next();
+                for (Entry entry4 : this.entries) {
                     if (entry4.visibility.differs(0.0f)) {
                         onBeforeListChanged();
                         entry4.onPrepareRemove();

@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import androidx.collection.LongSparseArray;
 import j$.util.function.Consumer$CC;
 import java.util.ArrayList;
@@ -13,10 +14,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Consumer;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -62,7 +65,7 @@ public class TopicsController extends BaseController {
     }
 
     private long messageHash(int i, long j) {
-        return j + (i << 12);
+        return j + (((long) i) << 12);
     }
 
     public TopicsController(int i) {
@@ -187,7 +190,7 @@ public class TopicsController extends BaseController {
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() {
                     this.f$0.lambda$loadTopics$2(tL_messages_savedDialogs, j, longSparseArray, i);
                 }
             });
@@ -201,7 +204,7 @@ public class TopicsController extends BaseController {
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() {
                     this.f$0.lambda$loadTopics$3(tL_messages_savedDialogsSlice, j, longSparseArray, i);
                 }
             });
@@ -224,7 +227,7 @@ public class TopicsController extends BaseController {
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws Throwable {
+                    public final void run() {
                         this.f$0.lambda$loadTopics$5(tLObject, j, tL_messages_forumTopics, longSparseArray, i);
                     }
                 });
@@ -239,7 +242,7 @@ public class TopicsController extends BaseController {
         }
     }
 
-    public void lambda$loadTopics$2(TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j, LongSparseArray longSparseArray, int i) throws Throwable {
+    public void lambda$loadTopics$2(TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j, LongSparseArray longSparseArray, int i) {
         getMessagesStorage().putUsersAndChats(tL_messages_savedDialogs.users, tL_messages_savedDialogs.chats, true, true);
         getMessagesController().putUsers(tL_messages_savedDialogs.users, false);
         getMessagesController().putChats(tL_messages_savedDialogs.chats, false);
@@ -261,7 +264,7 @@ public class TopicsController extends BaseController {
         }
     }
 
-    public void lambda$loadTopics$3(TLRPC.TL_messages_savedDialogsSlice tL_messages_savedDialogsSlice, long j, LongSparseArray longSparseArray, int i) throws Throwable {
+    public void lambda$loadTopics$3(TLRPC.TL_messages_savedDialogsSlice tL_messages_savedDialogsSlice, long j, LongSparseArray longSparseArray, int i) {
         getMessagesStorage().putUsersAndChats(tL_messages_savedDialogsSlice.users, tL_messages_savedDialogsSlice.chats, true, true);
         getMessagesController().putUsers(tL_messages_savedDialogsSlice.users, false);
         getMessagesController().putChats(tL_messages_savedDialogsSlice.chats, false);
@@ -285,14 +288,15 @@ public class TopicsController extends BaseController {
 
     public void lambda$loadTopics$4(long j, TLRPC.TL_messages_savedDialogsNotModified tL_messages_savedDialogsNotModified) {
         this.topicsIsLoading.put(j, 0);
-        if ((getTopics(j) != null ? r1.size() : 0L) >= tL_messages_savedDialogsNotModified.count) {
+        ArrayList<TLRPC.TL_forumTopic> topics = getTopics(j);
+        if ((topics != null ? topics.size() : 0L) >= tL_messages_savedDialogsNotModified.count) {
             this.endIsReached.put(j, 1);
             getUserConfig().getPreferences().edit().putBoolean("topics_end_reached_" + j, true).apply();
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.topicsDidLoaded, Long.valueOf(j), Boolean.FALSE);
     }
 
-    public void lambda$loadTopics$5(TLObject tLObject, long j, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, LongSparseArray longSparseArray, int i) throws Throwable {
+    public void lambda$loadTopics$5(TLObject tLObject, long j, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, LongSparseArray longSparseArray, int i) {
         TLRPC.TL_messages_forumTopics tL_messages_forumTopics2 = (TLRPC.TL_messages_forumTopics) tLObject;
         getMessagesStorage().putUsersAndChats(tL_messages_forumTopics2.users, tL_messages_forumTopics2.chats, true, true);
         getMessagesController().putUsers(tL_messages_forumTopics2.users, false);
@@ -320,8 +324,256 @@ public class TopicsController extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.topicsDidLoaded, Long.valueOf(j), Boolean.FALSE);
     }
 
-    public void processTopics(final long r22, java.util.ArrayList<org.telegram.tgnet.TLRPC.TL_forumTopic> r24, androidx.collection.LongSparseArray r25, boolean r26, int r27, int r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TopicsController.processTopics(long, java.util.ArrayList, androidx.collection.LongSparseArray, boolean, int, int):void");
+    public void processTopics(final long j, ArrayList<TLRPC.TL_forumTopic> arrayList, LongSparseArray longSparseArray, boolean z, int i, int i2) {
+        String str;
+        ArrayList<Long> arrayList2;
+        ArrayList<TLRPC.TL_forumTopic> arrayList3;
+        boolean z2;
+        ?? r3;
+        boolean z3;
+        HashSet hashSet;
+        int i3;
+        Iterator it;
+        int i4;
+        int i5;
+        TLRPC.TL_forumTopic tL_forumTopic;
+        String str2 = "topics_end_reached_";
+        if (i == 3 && getMessagesController().isMonoForum(-j)) {
+            getUserConfig().getPreferences().edit().remove("topics_end_reached_" + j).apply();
+            this.topicsByChatId.remove(j);
+            this.topicsMapByChatId.remove(j);
+            this.endIsReached.delete(j);
+            clearLoadingOffset(j);
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("processTopics=new_topics_size=");
+            sb.append(arrayList == null ? 0 : arrayList.size());
+            sb.append(" fromCache=");
+            sb.append(z);
+            sb.append(" load_type=");
+            sb.append(i);
+            sb.append(" totalCount=");
+            sb.append(i2);
+            FileLog.d(sb.toString());
+        }
+        ArrayList<TLRPC.TL_forumTopic> arrayList4 = (ArrayList) this.topicsByChatId.get(j);
+        LongSparseArray longSparseArray2 = (LongSparseArray) this.topicsMapByChatId.get(j);
+        if (arrayList4 == null) {
+            arrayList4 = new ArrayList();
+            this.topicsByChatId.put(j, arrayList4);
+        }
+        if (longSparseArray2 == null) {
+            longSparseArray2 = new LongSparseArray();
+            this.topicsMapByChatId.put(j, longSparseArray2);
+        }
+        if (arrayList != null) {
+            int i6 = 0;
+            ArrayList<Long> arrayList5 = null;
+            ArrayList<TLRPC.TL_forumTopic> arrayList6 = null;
+            z2 = false;
+            while (i6 < arrayList.size()) {
+                TLRPC.TL_forumTopic tL_forumTopic2 = arrayList.get(i6);
+                if (tL_forumTopic2 instanceof TLRPC.TL_forumTopicDeleted) {
+                    if (arrayList5 == null) {
+                        arrayList5 = new ArrayList<>();
+                    }
+                    ArrayList<Long> arrayList7 = arrayList5;
+                    i5 = i6;
+                    arrayList7.add(Long.valueOf(tL_forumTopic2.id));
+                    str2 = str2;
+                    arrayList5 = arrayList7;
+                } else {
+                    i5 = i6;
+                    if (!longSparseArray2.containsKey(tL_forumTopic2.id)) {
+                        if (longSparseArray != null) {
+                            tL_forumTopic2.topMessage = (TLRPC.Message) longSparseArray.get(tL_forumTopic2.top_message);
+                            tL_forumTopic2.topicStartMessage = (TLRPC.Message) longSparseArray.get(tL_forumTopic2.id);
+                        }
+                        if (tL_forumTopic2.topMessage == null && !tL_forumTopic2.isShort) {
+                            if (arrayList6 == null) {
+                                arrayList6 = new ArrayList<>();
+                            }
+                            ArrayList<TLRPC.TL_forumTopic> arrayList8 = arrayList6;
+                            arrayList8.add(tL_forumTopic2);
+                            arrayList6 = arrayList8;
+                        }
+                        if (tL_forumTopic2.topicStartMessage == null) {
+                            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                            tL_forumTopic2.topicStartMessage = tL_message;
+                            tL_message.message = "";
+                            tL_message.id = tL_forumTopic2.id;
+                            tL_message.peer_id = getMessagesController().getPeer(-j);
+                            tL_forumTopic2.topicStartMessage.action = new TLRPC.TL_messageActionTopicCreate();
+                            tL_forumTopic2.topicStartMessage.action.title = tL_forumTopic2.title;
+                        }
+                        arrayList4.add(tL_forumTopic2);
+                        longSparseArray2.put(tL_forumTopic2.id, tL_forumTopic2);
+                        this.topicsByTopMsgId.put(messageHash(tL_forumTopic2.top_message, j), tL_forumTopic2);
+                    } else {
+                        str2 = str2;
+                        if (!tL_forumTopic2.isShort && (tL_forumTopic = (TLRPC.TL_forumTopic) longSparseArray2.get(tL_forumTopic2.id)) != null) {
+                            boolean z4 = tL_forumTopic.closed;
+                            boolean z5 = tL_forumTopic2.closed;
+                            if (z4 != z5) {
+                                tL_forumTopic.closed = z5;
+                                getMessagesStorage().updateTopicData(-j, tL_forumTopic2, 8);
+                            }
+                            i6 = i5 + 1;
+                            str2 = str2;
+                        }
+                    }
+                    z2 = true;
+                    i6 = i5 + 1;
+                    str2 = str2;
+                }
+                i6 = i5 + 1;
+                str2 = str2;
+            }
+            str = str2;
+            arrayList2 = arrayList5;
+            arrayList3 = arrayList6;
+        } else {
+            str = "topics_end_reached_";
+            arrayList2 = null;
+            arrayList3 = null;
+            z2 = false;
+        }
+        int i7 = 0;
+        int i8 = 0;
+        while (i7 < arrayList4.size()) {
+            TLRPC.TL_forumTopic tL_forumTopic3 = (TLRPC.TL_forumTopic) arrayList4.get(i7);
+            if (tL_forumTopic3 == null || !tL_forumTopic3.pinned) {
+                i4 = 1;
+            } else {
+                i4 = 1;
+                int i9 = i8 + 1;
+                if (tL_forumTopic3.pinnedOrder != i8) {
+                    tL_forumTopic3.pinnedOrder = i8;
+                    i8 = i9;
+                    z2 = true;
+                } else {
+                    i8 = i9;
+                }
+            }
+            i7 += i4;
+        }
+        if (arrayList2 != null && i == 2) {
+            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                for (int i11 = 0; i11 < arrayList4.size(); i11++) {
+                    if (((TLRPC.TL_forumTopic) arrayList4.get(i11)).id == arrayList2.get(i10).longValue()) {
+                        arrayList4.remove(i11);
+                        break;
+                    }
+                }
+            }
+            getMessagesStorage().removeTopics(j, arrayList2);
+        }
+        if (arrayList3 != null && i != 2) {
+            reloadTopics(j, arrayList3, null);
+        } else {
+            if (i != 0 || z) {
+                r3 = 1;
+                r3 = 1;
+                if (i == 1 || i == 3) {
+                }
+                if (longSparseArray2.size() > arrayList4.size()) {
+                    FileLog.e("[TopicsController]: cache desynchronization");
+                    hashSet = new HashSet(longSparseArray2.size());
+                    for (i3 = 0; i3 < longSparseArray2.size(); i3++) {
+                        hashSet.add(Long.valueOf(longSparseArray2.keyAt(i3)));
+                    }
+                    for (TLRPC.TL_forumTopic tL_forumTopic4 : arrayList4) {
+                        if (tL_forumTopic4 != null) {
+                            hashSet.remove(Long.valueOf(tL_forumTopic4.id));
+                        }
+                    }
+                    it = hashSet.iterator();
+                    while (it.hasNext()) {
+                        longSparseArray2.remove(((Long) it.next()).longValue());
+                    }
+                    z3 = true;
+                }
+                if (z3) {
+                    sortTopics(j, false);
+                }
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.topicsDidLoaded, Long.valueOf(j), Boolean.TRUE);
+                if ((i != 0 || (i == 0 && !z)) && z && ((ArrayList) this.topicsByChatId.get(j)).isEmpty()) {
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$processTopics$8(j);
+                        }
+                    });
+                }
+                return;
+            }
+            r3 = 1;
+            if (arrayList4.size() >= i2 && i2 >= 0 && !endIsReached(j)) {
+                this.endIsReached.put(j, r3);
+                getUserConfig().getPreferences().edit().putBoolean(str + j, r3).apply();
+                z3 = true;
+            }
+            if (longSparseArray2.size() > arrayList4.size()) {
+                FileLog.e("[TopicsController]: cache desynchronization");
+                hashSet = new HashSet(longSparseArray2.size());
+                while (i3 < longSparseArray2.size()) {
+                    hashSet.add(Long.valueOf(longSparseArray2.keyAt(i3)));
+                }
+                while (r4.hasNext()) {
+                    if (tL_forumTopic4 != null) {
+                        hashSet.remove(Long.valueOf(tL_forumTopic4.id));
+                    }
+                }
+                it = hashSet.iterator();
+                while (it.hasNext()) {
+                    longSparseArray2.remove(((Long) it.next()).longValue());
+                }
+                z3 = true;
+            }
+            if (z3) {
+                sortTopics(j, false);
+            }
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.topicsDidLoaded, Long.valueOf(j), Boolean.TRUE);
+            if (i != 0) {
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processTopics$8(j);
+                }
+            });
+        }
+        z3 = z2;
+        if (longSparseArray2.size() > arrayList4.size()) {
+            FileLog.e("[TopicsController]: cache desynchronization");
+            hashSet = new HashSet(longSparseArray2.size());
+            while (i3 < longSparseArray2.size()) {
+                hashSet.add(Long.valueOf(longSparseArray2.keyAt(i3)));
+            }
+            while (r4.hasNext()) {
+                if (tL_forumTopic4 != null) {
+                    hashSet.remove(Long.valueOf(tL_forumTopic4.id));
+                }
+            }
+            it = hashSet.iterator();
+            while (it.hasNext()) {
+                longSparseArray2.remove(((Long) it.next()).longValue());
+            }
+            z3 = true;
+        }
+        if (z3) {
+            sortTopics(j, false);
+        }
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.topicsDidLoaded, Long.valueOf(j), Boolean.TRUE);
+        if (i != 0) {
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$processTopics$8(j);
+            }
+        });
     }
 
     public void lambda$processTopics$8(long j) {
@@ -395,8 +647,69 @@ public class TopicsController extends BaseController {
         });
     }
 
-    public void lambda$updateTopicsWithDeletedMessages$11(long r17, java.util.ArrayList r19, boolean r20, final long r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TopicsController.lambda$updateTopicsWithDeletedMessages$11(long, java.util.ArrayList, boolean, long):void");
+    public void lambda$updateTopicsWithDeletedMessages$11(long j, ArrayList arrayList, boolean z, final long j2) {
+        final ArrayList<TLRPC.TL_forumTopic> arrayList2;
+        NativeByteBuffer nativeByteBufferByteBufferValue;
+        ArrayList<TLRPC.TL_forumTopic> arrayList3 = null;
+        try {
+            SQLiteCursor sQLiteCursorQueryFinalized = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT topic_id, top_message FROM topics WHERE did = %d AND top_message IN (%s)", Long.valueOf(j), TextUtils.join(",", arrayList)), new Object[0]);
+            arrayList2 = null;
+            while (sQLiteCursorQueryFinalized.next()) {
+                try {
+                    if (arrayList2 == null) {
+                        arrayList2 = new ArrayList<>();
+                    }
+                    TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
+                    tL_forumTopic.id = sQLiteCursorQueryFinalized.intValue(0);
+                    tL_forumTopic.top_message = sQLiteCursorQueryFinalized.intValue(1);
+                    if (z) {
+                        tL_forumTopic.from_id = getMessagesController().getPeer(tL_forumTopic.id);
+                    } else {
+                        tL_forumTopic.from_id = getMessagesController().getPeer(getUserConfig().getClientUserId());
+                    }
+                    tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
+                    arrayList2.add(tL_forumTopic);
+                } catch (Exception e) {
+                    e = e;
+                    arrayList3 = arrayList2;
+                    e.printStackTrace();
+                    arrayList2 = arrayList3;
+                }
+            }
+            sQLiteCursorQueryFinalized.dispose();
+            if (arrayList2 != null) {
+                for (int i = 0; i < arrayList2.size(); i++) {
+                    TLRPC.TL_forumTopic tL_forumTopic2 = arrayList2.get(i);
+                    SQLiteCursor sQLiteCursorQueryFinalized2 = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT mid, data FROM messages_topics WHERE uid = %d AND topic_id = %d ORDER BY mid DESC LIMIT 1", Long.valueOf(j), Integer.valueOf(tL_forumTopic2.id)), new Object[0]);
+                    if (sQLiteCursorQueryFinalized2.next() && (nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized2.byteBufferValue(1)) != null) {
+                        TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
+                        messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue, getUserConfig().clientUserId);
+                        nativeByteBufferByteBufferValue.reuse();
+                        this.topicsByTopMsgId.remove(messageHash(tL_forumTopic2.top_message, j2));
+                        int i2 = messageTLdeserialize.id;
+                        tL_forumTopic2.top_message = i2;
+                        tL_forumTopic2.topMessage = messageTLdeserialize;
+                        tL_forumTopic2.groupedMessages = null;
+                        this.topicsByTopMsgId.put(messageHash(i2, j2), tL_forumTopic2);
+                    }
+                    sQLiteCursorQueryFinalized2.dispose();
+                }
+                for (int i3 = 0; i3 < arrayList2.size(); i3++) {
+                    getMessagesStorage().getDatabase().executeFast(String.format(Locale.US, "UPDATE topics SET top_message = %d WHERE did = %d AND topic_id = %d", Integer.valueOf(arrayList2.get(i3).top_message), Long.valueOf(j), Integer.valueOf(arrayList2.get(i3).id))).stepThis().dispose();
+                }
+            }
+        } catch (Exception e2) {
+            e = e2;
+        }
+        getMessagesStorage().loadGroupedMessagesForTopics(j, arrayList2);
+        if (arrayList2 != null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$updateTopicsWithDeletedMessages$10(arrayList2, j2);
+                }
+            });
+        }
     }
 
     public void lambda$updateTopicsWithDeletedMessages$10(ArrayList arrayList, long j) {
@@ -433,7 +746,7 @@ public class TopicsController extends BaseController {
     }
 
     public void reloadTopics(final long j, ArrayList<TLRPC.TL_forumTopic> arrayList, final Runnable runnable) {
-        TL_forum.TL_messages_getForumTopicsByID tL_messages_getForumTopicsByID;
+        TLObject tLObject;
         long j2 = -j;
         final boolean zIsMonoForum = getMessagesController().isMonoForum(j2);
         final HashSet hashSet = new HashSet();
@@ -447,20 +760,20 @@ public class TopicsController extends BaseController {
                 i++;
             }
             tL_messages_getSavedDialogsByID.parent_peer = getMessagesController().getInputPeer(j2);
-            tL_messages_getForumTopicsByID = tL_messages_getSavedDialogsByID;
+            tLObject = tL_messages_getSavedDialogsByID;
         } else {
-            TL_forum.TL_messages_getForumTopicsByID tL_messages_getForumTopicsByID2 = new TL_forum.TL_messages_getForumTopicsByID();
+            TL_forum.TL_messages_getForumTopicsByID tL_messages_getForumTopicsByID = new TL_forum.TL_messages_getForumTopicsByID();
             while (i < arrayList.size()) {
-                tL_messages_getForumTopicsByID2.topics.add(Integer.valueOf(arrayList.get(i).id));
+                tL_messages_getForumTopicsByID.topics.add(Integer.valueOf(arrayList.get(i).id));
                 i++;
             }
-            tL_messages_getForumTopicsByID2.peer = getMessagesController().getInputPeer(j2);
-            tL_messages_getForumTopicsByID = tL_messages_getForumTopicsByID2;
+            tL_messages_getForumTopicsByID.peer = getMessagesController().getInputPeer(j2);
+            tLObject = tL_messages_getForumTopicsByID;
         }
-        getConnectionsManager().sendRequest(tL_messages_getForumTopicsByID, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$reloadTopics$16(zIsMonoForum, j, hashSet, runnable, tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$reloadTopics$16(zIsMonoForum, j, hashSet, runnable, tLObject2, tL_error);
             }
         });
     }
@@ -486,7 +799,7 @@ public class TopicsController extends BaseController {
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() {
                     this.f$0.lambda$reloadTopics$13(tL_messages_savedDialogs, j, arrayListMonoForumTopicToTopic, longSparseArray, hashSet, runnable);
                 }
             });
@@ -501,14 +814,14 @@ public class TopicsController extends BaseController {
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() {
                     this.f$0.lambda$reloadTopics$14(tLObject, j, tL_messages_forumTopics, longSparseArray2, runnable);
                 }
             });
         }
     }
 
-    public void lambda$reloadTopics$13(TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j, ArrayList arrayList, LongSparseArray longSparseArray, HashSet hashSet, Runnable runnable) throws Throwable {
+    public void lambda$reloadTopics$13(TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j, ArrayList arrayList, LongSparseArray longSparseArray, HashSet hashSet, Runnable runnable) {
         getMessagesController().putUsers(tL_messages_savedDialogs.users, false);
         getMessagesController().putChats(tL_messages_savedDialogs.chats, false);
         processTopics(j, arrayList, longSparseArray, false, 2, -1);
@@ -530,7 +843,7 @@ public class TopicsController extends BaseController {
         }
     }
 
-    public void lambda$reloadTopics$14(TLObject tLObject, long j, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, LongSparseArray longSparseArray, Runnable runnable) throws Throwable {
+    public void lambda$reloadTopics$14(TLObject tLObject, long j, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, LongSparseArray longSparseArray, Runnable runnable) {
         TLRPC.TL_messages_forumTopics tL_messages_forumTopics2 = (TLRPC.TL_messages_forumTopics) tLObject;
         getMessagesController().putUsers(tL_messages_forumTopics2.users, false);
         getMessagesController().putChats(tL_messages_forumTopics2.chats, false);
@@ -641,7 +954,7 @@ public class TopicsController extends BaseController {
         sortTopics(j2, true);
     }
 
-    public void saveTopics(long j) throws Throwable {
+    public void saveTopics(long j) {
         if (((ArrayList) this.topicsByChatId.get(j)) != null) {
             getMessagesStorage().saveTopics(-j, (List) this.topicsByChatId.get(j), true, true, getConnectionsManager().getCurrentTime());
         }
@@ -1097,18 +1410,13 @@ public class TopicsController extends BaseController {
             }
             ArrayList arrayList2 = (ArrayList) this.topicsByChatId.get(j);
             if (arrayList2 != null) {
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= arrayList2.size()) {
-                        break;
-                    }
+                for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                     if ((getMessagesController().isMonoForum(topicKey.dialogId) ? DialogObject.getPeerDialogId(((TLRPC.TL_forumTopic) arrayList2.get(i2)).from_id) : ((TLRPC.TL_forumTopic) arrayList2.get(i2)).id) == topicKey.topicId) {
                         arrayList2.remove(i2);
                         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogDeleted, Long.valueOf(-j), Long.valueOf(topicKey.topicId));
                         hashSet.add(Long.valueOf(j));
                         break;
                     }
-                    i2++;
                 }
             }
         }
@@ -1315,7 +1623,7 @@ public class TopicsController extends BaseController {
     }
 
     public void getTopicRepliesCount(final long j, final long j2) {
-        TLRPC.TL_messages_getReplies tL_messages_getReplies;
+        TLObject tLObject;
         final TLRPC.TL_forumTopic tL_forumTopicFindTopic = findTopic(-j, j2);
         if (tL_forumTopicFindTopic == null || tL_forumTopicFindTopic.totalMessagesCount != 0) {
             return;
@@ -1325,18 +1633,18 @@ public class TopicsController extends BaseController {
             tL_messages_getSavedHistory.peer = getMessagesController().getInputPeer(j2);
             tL_messages_getSavedHistory.parent_peer = getMessagesController().getInputPeer(j);
             tL_messages_getSavedHistory.limit = 1;
-            tL_messages_getReplies = tL_messages_getSavedHistory;
+            tLObject = tL_messages_getSavedHistory;
         } else {
-            TLRPC.TL_messages_getReplies tL_messages_getReplies2 = new TLRPC.TL_messages_getReplies();
-            tL_messages_getReplies2.peer = getMessagesController().getInputPeer(j);
-            tL_messages_getReplies2.msg_id = (int) j2;
-            tL_messages_getReplies2.limit = 1;
-            tL_messages_getReplies = tL_messages_getReplies2;
+            TLRPC.TL_messages_getReplies tL_messages_getReplies = new TLRPC.TL_messages_getReplies();
+            tL_messages_getReplies.peer = getMessagesController().getInputPeer(j);
+            tL_messages_getReplies.msg_id = (int) j2;
+            tL_messages_getReplies.limit = 1;
+            tLObject = tL_messages_getReplies;
         }
-        getConnectionsManager().sendRequest(tL_messages_getReplies, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$getTopicRepliesCount$30(tL_forumTopicFindTopic, j, j2, tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$getTopicRepliesCount$30(tL_forumTopicFindTopic, j, j2, tLObject2, tL_error);
             }
         });
     }

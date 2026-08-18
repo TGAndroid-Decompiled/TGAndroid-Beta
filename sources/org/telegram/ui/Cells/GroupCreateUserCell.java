@@ -17,6 +17,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -84,8 +85,29 @@ public class GroupCreateUserCell extends FrameLayout {
         return this.premiumBlocked;
     }
 
-    private void updatePremiumBlocked(boolean r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCreateUserCell.updatePremiumBlocked(boolean):void");
+    private void updatePremiumBlocked(boolean z) {
+        TL_account.RequirementToContact requirementToContactIsUserContactBlocked;
+        if (this.showPremiumBlocked) {
+            requirementToContactIsUserContactBlocked = this.blockedOverridden;
+            if (requirementToContactIsUserContactBlocked == null) {
+                if (this.currentObject instanceof TLRPC.User) {
+                    requirementToContactIsUserContactBlocked = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(((TLRPC.User) this.currentObject).id);
+                } else {
+                    requirementToContactIsUserContactBlocked = null;
+                }
+            }
+        } else {
+            requirementToContactIsUserContactBlocked = null;
+        }
+        if (this.premiumBlocked == DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked) && this.starsPriceBlocked == DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked)) {
+            return;
+        }
+        this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked);
+        this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked);
+        if (!z) {
+            this.premiumBlockedT.set(this.premiumBlocked, true);
+        }
+        invalidate();
     }
 
     public void overridePremiumBlocked(TL_account.RequirementToContact requirementToContact, boolean z) {
@@ -151,9 +173,9 @@ public class GroupCreateUserCell extends FrameLayout {
             checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             this.checkBox.setDrawUnchecked(false);
             this.checkBox.setDrawBackgroundAsArc(3);
-            CheckBox2 checkBox22 = this.checkBox;
+            CheckBox2 checkBox3 = this.checkBox;
             boolean z6 = LocaleController.isRTL;
-            addView(checkBox22, LayoutHelper.createFrame(24, 24.0f, (z6 ? 5 : 3) | 48, z6 ? 0.0f : this.padding + 40, 33.0f, z6 ? this.padding + 39 : 0.0f, 0.0f));
+            addView(checkBox3, LayoutHelper.createFrame(24, 24.0f, (z6 ? 5 : 3) | 48, z6 ? 0.0f : this.padding + 40, 33.0f, z6 ? this.padding + 39 : 0.0f, 0.0f));
         } else if (i == 2) {
             Paint paint = new Paint(1);
             this.paint = paint;
@@ -424,9 +446,9 @@ public class GroupCreateUserCell extends FrameLayout {
             int iDp2 = AndroidUtilities.dp(46.0f);
             layoutParams4.height = iDp2;
             layoutParams3.width = iDp2;
-            CheckBox2 checkBox22 = this.checkBox;
-            if (checkBox22 != null) {
-                ((FrameLayout.LayoutParams) checkBox22.getLayoutParams()).topMargin = AndroidUtilities.dp(29.0f) + this.padding;
+            CheckBox2 checkBox3 = this.checkBox;
+            if (checkBox3 != null) {
+                ((FrameLayout.LayoutParams) checkBox3.getLayoutParams()).topMargin = AndroidUtilities.dp(29.0f) + this.padding;
                 if (LocaleController.isRTL) {
                     ((FrameLayout.LayoutParams) this.checkBox.getLayoutParams()).rightMargin = AndroidUtilities.dp(40.0f) + this.padding;
                 } else {
@@ -652,7 +674,8 @@ public class GroupCreateUserCell extends FrameLayout {
                 this.lockDrawable = drawableMutate;
                 drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             }
-            this.lockDrawable.setBounds((int) (x - (((r4.getIntrinsicWidth() / 2.0f) * 0.875f) * f)), (int) (y - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f)), (int) (x + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f)), (int) (y + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f)));
+            Drawable drawable = this.lockDrawable;
+            drawable.setBounds((int) (x - (((drawable.getIntrinsicWidth() / 2.0f) * 0.875f) * f)), (int) (y - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f)), (int) (x + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f)), (int) (y + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f)));
             this.lockDrawable.setAlpha((int) (f * 255.0f));
             this.lockDrawable.draw(canvas);
             canvas.restore();

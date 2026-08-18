@@ -511,6 +511,9 @@ public class CounterView extends View {
         int i;
         CounterDrawable counterDrawable = this.counterDrawable;
         float f = counterDrawable.countChangeProgress;
-        return (f == 1.0f || !((i = counterDrawable.animationType) == 0 || i == 1)) ? counterDrawable.currentCount == 0 ? 0.0f : 1.0f : i == 0 ? f : 1.0f - f;
+        if (f == 1.0f || !((i = counterDrawable.animationType) == 0 || i == 1)) {
+            return counterDrawable.currentCount == 0 ? 0.0f : 1.0f;
+        }
+        return i == 0 ? f : 1.0f - f;
     }
 }

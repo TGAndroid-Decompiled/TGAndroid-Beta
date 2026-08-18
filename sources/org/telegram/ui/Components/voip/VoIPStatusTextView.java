@@ -86,12 +86,13 @@ public class VoIPStatusTextView extends FrameLayout {
     }
 
     public void setText(String str, boolean z, boolean z2) {
+        CharSequence charSequence = str;
         if (z) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             SpannableString spannableString = new SpannableString(".");
             spannableString.setSpan(new VoIPEllipsizeSpan(this.textView), 0, 1, 33);
             spannableStringBuilder.append((CharSequence) spannableString);
-            str = spannableStringBuilder;
+            charSequence = spannableStringBuilder;
         }
         if (TextUtils.isEmpty(this.textView[0].getText())) {
             z2 = false;
@@ -102,24 +103,24 @@ public class VoIPStatusTextView extends FrameLayout {
                 valueAnimator.cancel();
             }
             this.animationInProgress = false;
-            this.textView[0].setText(str);
+            this.textView[0].setText(charSequence);
             this.textView[0].setVisibility(0);
             this.textView[1].setVisibility(8);
             this.timerView.setVisibility(8);
             return;
         }
         if (this.animationInProgress) {
-            this.nextTextToSet = str;
+            this.nextTextToSet = charSequence;
             return;
         }
         if (this.timerShowing) {
-            this.textView[0].setText(str);
+            this.textView[0].setText(charSequence);
             replaceViews(this.timerView, this.textView[0], null);
         } else {
-            if (this.textView[0].getText().equals(str)) {
+            if (this.textView[0].getText().equals(charSequence)) {
                 return;
             }
-            this.textView[1].setText(str);
+            this.textView[1].setText(charSequence);
             TextView[] textViewArr = this.textView;
             replaceViews(textViewArr[0], textViewArr[1], new Runnable() {
                 @Override

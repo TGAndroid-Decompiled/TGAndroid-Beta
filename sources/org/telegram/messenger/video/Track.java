@@ -1,5 +1,6 @@
 package org.telegram.messenger.video;
 
+import android.media.MediaCodec;
 import android.media.MediaFormat;
 import com.coremedia.iso.boxes.AbstractMediaHeaderBox;
 import com.coremedia.iso.boxes.SampleDescriptionBox;
@@ -23,7 +24,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import org.telegram.messenger.video.Track;
 
 public class Track {
     private static Map<Integer, Integer> samplingFrequencyIndexMap;
@@ -298,8 +298,18 @@ public class Track {
         return this.trackId;
     }
 
-    public void addSample(long r6, android.media.MediaCodec.BufferInfo r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.Track.addSample(long, android.media.MediaCodec$BufferInfo):void");
+    public void addSample(long j, MediaCodec.BufferInfo bufferInfo) {
+        boolean z;
+        if (!this.isAudio) {
+            z = (bufferInfo.flags & 1) != 0;
+        }
+        this.samples.add(new Sample(j, bufferInfo.size));
+        LinkedList<Integer> linkedList = this.syncSamples;
+        if (linkedList != null && z) {
+            linkedList.add(Integer.valueOf(this.samples.size()));
+        }
+        ArrayList<SamplePresentationTime> arrayList = this.samplePresentationTimes;
+        arrayList.add(new SamplePresentationTime(arrayList.size(), ((bufferInfo.presentationTimeUs * ((long) this.timeScale)) + 500000) / 1000000));
     }
 
     public void prepare() {
@@ -366,7 +376,9 @@ public class Track {
     }
 
     public long getLastFrameTimestamp() {
-        return (((this.duration - this.sampleDurations[r2.length - 1]) * 1000000) - 500000) / this.timeScale;
+        long j = this.duration;
+        long[] jArr = this.sampleDurations;
+        return (((j - jArr[jArr.length - 1]) * 1000000) - 500000) / ((long) this.timeScale);
     }
 
     public long getDuration() {

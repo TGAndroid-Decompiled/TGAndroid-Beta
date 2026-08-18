@@ -96,7 +96,7 @@ public class TransformableLoginButtonView extends View {
                 float height = getHeight() / 2.0f;
                 canvas.drawLine(AndroidUtilities.dp(21.0f), height, fDp2, height, this.outlinePaint);
                 double dDp = AndroidUtilities.dp(9.0f) * fMax;
-                float fCos = (float) (fDp2 - (Math.cos(0.7853981633974483d) * dDp));
+                float fCos = (float) (((double) fDp2) - (Math.cos(0.7853981633974483d) * dDp));
                 float fSin = (float) (Math.sin(0.7853981633974483d) * dDp);
                 canvas.drawLine(fDp2, height, fCos, height - fSin, this.outlinePaint);
                 canvas.drawLine(fDp2, height, fCos, height + fSin, this.outlinePaint);

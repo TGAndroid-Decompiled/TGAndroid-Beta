@@ -1,5 +1,7 @@
 package org.telegram.ui.iv;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -44,8 +46,6 @@ import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorPro
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
-import org.telegram.ui.iv.RichCaptionController;
-import org.telegram.ui.iv.RichEditor;
 
 public class RichMediaCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost {
     private static Paint slideDotPaint;
@@ -418,7 +418,8 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
             this.items.add(richMediaItem);
         }
         while (this.items.size() > listMedias.size()) {
-            ((RichMediaItem) this.items.remove(r1.size() - 1)).detach();
+            ArrayList arrayList = this.items;
+            ((RichMediaItem) arrayList.remove(arrayList.size() - 1)).detach();
         }
         for (int i = 0; i < listMedias.size(); i++) {
             ((RichMediaItem) this.items.get(i)).setMedia((MediaUploadState) listMedias.get(i));
@@ -438,7 +439,8 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         this.addButton.bringToFront();
         this.switchModeButton.bringToFront();
         while (this.menuButtons.size() > listMedias.size()) {
-            ImageView imageView = (ImageView) this.menuButtons.remove(r1.size() - 1);
+            ArrayList arrayList2 = this.menuButtons;
+            ImageView imageView = (ImageView) arrayList2.remove(arrayList2.size() - 1);
             removeView(imageView);
             this.circleButtons.remove(imageView);
             this.circleButtonBg.remove(imageView);
@@ -647,7 +649,8 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
                     iMax = (int) ((iMax2 / Math.max(1, height)) * width);
                     iDp = iMax2;
                 }
-                this.collageRects.add(new RectF((i - iMax) / 2, paddingTop, r1 + iMax, paddingTop + iDp));
+                int i3 = (i - iMax) / 2;
+                this.collageRects.add(new RectF(i3, paddingTop, i3 + iMax, paddingTop + iDp));
                 this.collageH = iDp;
                 this.slideW = iMax;
                 this.slideH = iDp;
@@ -655,23 +658,24 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
             }
             iDp = (AndroidUtilities.dp(200.0f) - getPaddingTop()) - getPaddingBottom();
             iMax = i;
-            this.collageRects.add(new RectF((i - iMax) / 2, paddingTop, r1 + iMax, paddingTop + iDp));
+            int i4 = (i - iMax) / 2;
+            this.collageRects.add(new RectF(i4, paddingTop, i4 + iMax, paddingTop + iDp));
             this.collageH = iDp;
             this.slideW = iMax;
             this.slideH = iDp;
             return;
         }
         float[] fArr = new float[size];
-        for (int i3 = 0; i3 < size; i3++) {
-            fArr[i3] = aspectRatio((RichMediaItem) this.items.get(i3));
+        for (int i5 = 0; i5 < size; i5++) {
+            fArr[i5] = aspectRatio((RichMediaItem) this.items.get(i5));
         }
         MessageObject.GroupedMessagePosition[] groupedMessagePositionArrComputeGrouped = RichMessageLayout.computeGrouped(fArr);
         int iMax3 = 0;
         for (MessageObject.GroupedMessagePosition groupedMessagePosition : groupedMessagePositionArrComputeGrouped) {
             iMax3 = Math.max(iMax3, (int) groupedMessagePosition.maxY);
         }
-        int i4 = iMax3 + 1;
-        float[] fArr2 = new float[i4];
+        int i6 = iMax3 + 1;
+        float[] fArr2 = new float[i6];
         for (MessageObject.GroupedMessagePosition groupedMessagePosition2 : groupedMessagePositionArrComputeGrouped) {
             byte b = groupedMessagePosition2.minY;
             if (b == groupedMessagePosition2.maxY) {
@@ -679,75 +683,77 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
             }
         }
         int length = groupedMessagePositionArrComputeGrouped.length;
-        int i5 = 0;
-        while (i5 < length) {
-            MessageObject.GroupedMessagePosition groupedMessagePosition3 = groupedMessagePositionArrComputeGrouped[i5];
-            int i6 = groupedMessagePosition3.minY;
+        int i7 = 0;
+        while (i7 < length) {
+            MessageObject.GroupedMessagePosition groupedMessagePosition3 = groupedMessagePositionArrComputeGrouped[i7];
+            int i8 = groupedMessagePosition3.minY;
             byte b2 = groupedMessagePosition3.maxY;
-            if (i6 != b2) {
-                int i7 = (b2 - i6) + i2;
+            if (i8 != b2) {
+                int i9 = (b2 - i8) + i2;
                 float[] fArr3 = groupedMessagePosition3.siblingHeights;
-                if (fArr3 == null || fArr3.length != i7) {
-                    float f = groupedMessagePosition3.ph / i7;
-                    while (i6 <= groupedMessagePosition3.maxY) {
-                        fArr2[i6] = Math.max(fArr2[i6], f);
-                        i6++;
+                if (fArr3 == null || fArr3.length != i9) {
+                    float f = groupedMessagePosition3.ph / i9;
+                    while (i8 <= groupedMessagePosition3.maxY) {
+                        fArr2[i8] = Math.max(fArr2[i8], f);
+                        i8++;
                     }
                 } else {
-                    for (int i8 = 0; i8 < i7; i8++) {
-                        int i9 = groupedMessagePosition3.minY + i8;
-                        fArr2[i9] = Math.max(fArr2[i9], groupedMessagePosition3.siblingHeights[i8]);
+                    for (int i10 = 0; i10 < i9; i10++) {
+                        int i11 = groupedMessagePosition3.minY + i10;
+                        fArr2[i11] = Math.max(fArr2[i11], groupedMessagePosition3.siblingHeights[i10]);
                     }
                 }
             }
-            i5++;
+            i7++;
             i2 = 1;
         }
         Point point2 = AndroidUtilities.displaySize;
         float fMax = Math.max(point2.x, point2.y) * 0.5f;
         int[] iArr = new int[iMax3 + 2];
         float f2 = 0.0f;
-        for (int i10 = 0; i10 <= iMax3; i10++) {
-            iArr[i10] = Math.round(f2 * fMax);
-            f2 += fArr2[i10];
+        for (int i12 = 0; i12 <= iMax3; i12++) {
+            iArr[i12] = Math.round(f2 * fMax);
+            f2 += fArr2[i12];
         }
-        iArr[i4] = Math.round(f2 * fMax);
+        iArr[i6] = Math.round(f2 * fMax);
         int iDp3 = AndroidUtilities.dp(2.0f);
-        int i11 = 0;
-        while (i11 < groupedMessagePositionArrComputeGrouped.length) {
-            MessageObject.GroupedMessagePosition groupedMessagePosition4 = groupedMessagePositionArrComputeGrouped[i11];
-            int i12 = iArr[groupedMessagePosition4.minY];
-            int i13 = iArr[groupedMessagePosition4.maxY + 1] - i12;
-            if (groupedMessagePosition4.leftSpanOffset > 0) {
-                iRound = Math.round((r15 * i) / 1000.0f);
+        int i13 = 0;
+        while (i13 < groupedMessagePositionArrComputeGrouped.length) {
+            MessageObject.GroupedMessagePosition groupedMessagePosition4 = groupedMessagePositionArrComputeGrouped[i13];
+            int i14 = iArr[groupedMessagePosition4.minY];
+            int i15 = iArr[groupedMessagePosition4.maxY + 1] - i14;
+            int i16 = groupedMessagePosition4.leftSpanOffset;
+            if (i16 > 0) {
+                iRound = Math.round((i16 * i) / 1000.0f);
             } else {
-                int i14 = 0;
-                for (int i15 = 0; i15 < groupedMessagePositionArrComputeGrouped.length; i15++) {
-                    if (i15 != i11) {
-                        MessageObject.GroupedMessagePosition groupedMessagePosition5 = groupedMessagePositionArrComputeGrouped[i15];
+                int i17 = 0;
+                for (int i18 = 0; i18 < groupedMessagePositionArrComputeGrouped.length; i18++) {
+                    if (i18 != i13) {
+                        MessageObject.GroupedMessagePosition groupedMessagePosition5 = groupedMessagePositionArrComputeGrouped[i18];
                         byte b3 = groupedMessagePosition5.minY;
                         byte b4 = groupedMessagePosition4.minY;
                         if (b3 <= b4 && groupedMessagePosition5.maxY >= b4 && groupedMessagePosition5.minX < groupedMessagePosition4.minX) {
-                            i14 += groupedMessagePosition5.pw;
+                            i17 += groupedMessagePosition5.pw;
                         }
                     }
                 }
-                iRound = Math.round((i14 * i) / 1000.0f);
+                iRound = Math.round((i17 * i) / 1000.0f);
             }
             int iRound2 = (groupedMessagePosition4.flags & 2) != 0 ? i - iRound : Math.round((groupedMessagePosition4.pw * i) / 1000.0f) - iDp3;
             if ((groupedMessagePosition4.flags & 8) == 0) {
-                i13 -= iDp3;
+                i15 -= iDp3;
             }
-            this.collageRects.add(new RectF(iRound, i12 + paddingTop, iRound + Math.max(0, iRound2), r12 + Math.max(0, i13)));
-            i11++;
+            int i19 = i14 + paddingTop;
+            this.collageRects.add(new RectF(iRound, i19, iRound + Math.max(0, iRound2), i19 + Math.max(0, i15)));
+            i13++;
             paddingTop = paddingTop;
             groupedMessagePositionArrComputeGrouped = groupedMessagePositionArrComputeGrouped;
         }
-        this.collageH = iArr[i4];
+        this.collageH = iArr[i6];
         this.slideW = i;
         float fAspectRatio = 0.0f;
-        for (int i16 = 0; i16 < size; i16++) {
-            fAspectRatio += aspectRatio((RichMediaItem) this.items.get(i16));
+        for (int i20 = 0; i20 < size; i20++) {
+            fAspectRatio += aspectRatio((RichMediaItem) this.items.get(i20));
         }
         int iMax4 = (int) (this.slideW / Math.max(0.5f, fAspectRatio / size));
         Point point3 = AndroidUtilities.displaySize;
@@ -817,8 +823,9 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
                     float fMax = 1.0f;
                     if (this.glass) {
                         int left = (this.switchModeButton.getVisibility() == 0 ? this.switchModeButton : this.addButton).getLeft() - AndroidUtilities.dp(4.0f);
-                        if (i10 + imageView2.getMeasuredWidth() > left) {
-                            fMax = Math.max(0.0f, 1.0f - ((r4 - left) / imageView2.getMeasuredWidth()));
+                        int measuredWidth = i10 + imageView2.getMeasuredWidth();
+                        if (measuredWidth > left) {
+                            fMax = Math.max(0.0f, 1.0f - ((measuredWidth - left) / imageView2.getMeasuredWidth()));
                         }
                     }
                     imageView2.setAlpha(fMax);
@@ -927,8 +934,10 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         if (canvas.isHardwareAccelerated() && !this.blurSource.inRecording()) {
             try {
                 drawMedia(this.blurSource.beginRecording(width, height));
-            } finally {
                 this.blurSource.endRecording();
+            } catch (Throwable th) {
+                this.blurSource.endRecording();
+                throw th;
             }
         }
         for (int i = 0; i < this.circleButtons.size(); i++) {
@@ -970,14 +979,16 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         } else {
             float fDp = AndroidUtilities.dp(4.0f) + paddingLeft;
             int iDp2 = AndroidUtilities.dp(13.0f);
-            fClamp = fDp - (Utilities.clamp(f2 - (((iMax - AndroidUtilities.dp(8.0f)) / 2) / iDp2), Math.max(0, (size - (r14 * 2)) - 1), 0.0f) * iDp2);
+            int iDp3 = ((iMax - AndroidUtilities.dp(8.0f)) / 2) / iDp2;
+            fClamp = fDp - (Utilities.clamp(f2 - iDp3, Math.max(0, (size - (iDp3 * 2)) - 1), 0.0f) * iDp2);
         }
         canvas.save();
         canvas.clipRect(paddingLeft, (getPaddingTop() + this.imageH) - AndroidUtilities.dp(23.0f), iMax + paddingLeft, getPaddingTop() + this.imageH);
         for (int i = 0; i < size; i++) {
             float fMax = Math.max(0.0f, 1.0f - Math.abs(i - f2));
+            float fDp2 = AndroidUtilities.dp(2.0f) + (AndroidUtilities.dp(1.0f) * fMax);
             slideDotPaint.setAlpha((int) (((fMax * 95.0f) + 160.0f) * f));
-            canvas.drawCircle(AndroidUtilities.dp(4.0f) + fClamp + (AndroidUtilities.dp(13.0f) * i), paddingTop, AndroidUtilities.dp(2.0f) + (AndroidUtilities.dp(1.0f) * fMax), slideDotPaint);
+            canvas.drawCircle(AndroidUtilities.dp(4.0f) + fClamp + (AndroidUtilities.dp(13.0f) * i), paddingTop, fDp2, slideDotPaint);
         }
         canvas.restore();
     }
@@ -1106,8 +1117,45 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         return true;
     }
 
-    private void settle(float r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichMediaCell.settle(float):void");
+    private void settle(float f) {
+        int i;
+        int size = this.items.size();
+        if (f < 0.0f && this.currentPage < size - 1) {
+            i = 1;
+        } else if (f <= 0.0f || this.currentPage <= 0) {
+            float f2 = this.pageOffset;
+            if (f2 > 0.5f && this.currentPage < size - 1) {
+                i = 1;
+            } else if (f2 >= -0.5f || this.currentPage <= 0) {
+                i = 0;
+            } else {
+                i = -1;
+            }
+        } else {
+            i = -1;
+        }
+        int i2 = this.currentPage;
+        final int i3 = i + i2;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.pageOffset, i3 - i2);
+        this.settleAnimator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.setDuration(220L);
+        this.settleAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.settleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                this.f$0.lambda$settle$5(valueAnimator);
+            }
+        });
+        this.settleAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                RichMediaCell.this.currentPage = i3;
+                RichMediaCell.this.pageOffset = 0.0f;
+                RichMediaCell.this.requestLayout();
+                RichMediaCell.this.invalidate();
+            }
+        });
+        this.settleAnimator.start();
     }
 
     public void lambda$settle$5(ValueAnimator valueAnimator) {

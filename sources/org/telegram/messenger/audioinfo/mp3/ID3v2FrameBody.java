@@ -67,20 +67,16 @@ public class ID3v2FrameBody {
     private String extractString(byte[] bArr, int i, int i2, ID3v2Encoding iD3v2Encoding, boolean z) {
         if (z) {
             int i3 = 0;
-            int i4 = 0;
-            while (true) {
-                if (i3 < i2) {
-                    int i5 = i + i3;
-                    if (bArr[i5] != 0 || (iD3v2Encoding == ID3v2Encoding.UTF_16 && i4 == 0 && i5 % 2 != 0)) {
-                        i4 = 0;
-                    } else {
-                        i4++;
-                        if (i4 == iD3v2Encoding.getZeroBytes()) {
-                            i2 = (i3 + 1) - iD3v2Encoding.getZeroBytes();
-                            break;
-                        }
-                    }
+            for (int i4 = 0; i4 < i2; i4++) {
+                int i5 = i + i4;
+                if (bArr[i5] == 0 && (iD3v2Encoding != ID3v2Encoding.UTF_16 || i3 != 0 || i5 % 2 == 0)) {
                     i3++;
+                    if (i3 == iD3v2Encoding.getZeroBytes()) {
+                        i2 = (i4 + 1) - iD3v2Encoding.getZeroBytes();
+                        break;
+                    }
+                } else {
+                    i3 = 0;
                 }
             }
         }

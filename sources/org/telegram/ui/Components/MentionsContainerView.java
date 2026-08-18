@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -20,12 +19,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
@@ -38,9 +37,9 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.MentionsAdapter;
 import org.telegram.ui.Adapters.PaddedListAdapter;
 import org.telegram.ui.Business.QuickRepliesActivity;
+import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.MentionCell;
 import org.telegram.ui.Cells.StickerCell;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.PhotoViewer;
@@ -151,8 +150,38 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         this.switchLayoutManagerOnEnd = false;
         this.botContextProvider = new PhotoViewer.EmptyPhotoViewerProvider() {
             @Override
-            public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r4, org.telegram.tgnet.TLRPC.FileLocation r5, int r6, boolean r7, boolean r8) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MentionsContainerView.AnonymousClass5.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
+            public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
+                ImageReceiver photoImage;
+                if (i >= 0 && i < MentionsContainerView.this.botContextResults.size()) {
+                    int childCount = MentionsContainerView.this.getListView().getChildCount();
+                    Object obj = MentionsContainerView.this.botContextResults.get(i);
+                    for (int i2 = 0; i2 < childCount; i2++) {
+                        View childAt = MentionsContainerView.this.getListView().getChildAt(i2);
+                        if (childAt instanceof ContextLinkCell) {
+                            ContextLinkCell contextLinkCell = (ContextLinkCell) childAt;
+                            if (contextLinkCell.getResult() == obj) {
+                                photoImage = contextLinkCell.getPhotoImage();
+                            } else {
+                                photoImage = null;
+                            }
+                        } else {
+                            photoImage = null;
+                        }
+                        if (photoImage != null) {
+                            int[] iArr = new int[2];
+                            childAt.getLocationInWindow(iArr);
+                            PhotoViewer.PlaceProviderObject placeProviderObject = new PhotoViewer.PlaceProviderObject();
+                            placeProviderObject.viewX = iArr[0];
+                            placeProviderObject.viewY = iArr[1];
+                            placeProviderObject.parentView = MentionsContainerView.this.getListView();
+                            placeProviderObject.imageReceiver = photoImage;
+                            placeProviderObject.thumb = photoImage.getBitmapSafe();
+                            placeProviderObject.radius = photoImage.getRoundRadius(true);
+                            return placeProviderObject;
+                        }
+                    }
+                }
+                return null;
             }
 
             @Override
@@ -410,7 +439,8 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         float fDp = AndroidUtilities.dp(6.0f);
         float f = this.containerTop;
         if (zIsReversed) {
-            float fMin2 = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
+            PaddedListAdapter paddedListAdapter = this.paddedAdapter;
+            float fMin2 = Math.min(Math.max(0.0f, (paddedListAdapter.paddingViewAttached ? paddedListAdapter.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
             Rect rect = this.rect;
             this.containerTop = 0.0f;
             int measuredWidth = getMeasuredWidth();
@@ -426,7 +456,8 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                 this.containerPadding += AndroidUtilities.dp(2.0f);
                 fDp += AndroidUtilities.dp(2.0f);
             }
-            float fMax = Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding;
+            PaddedListAdapter paddedListAdapter2 = this.paddedAdapter;
+            float fMax = Math.max(0.0f, (paddedListAdapter2.paddingViewAttached ? paddedListAdapter2.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding;
             this.containerTop = fMax;
             float fMax2 = Math.max(fMax, this.hideT * getHeight());
             Rect rect2 = this.rect;
@@ -497,7 +528,8 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                 }
                 if (getVisibility() == 8) {
                     this.hideT = 1.0f;
-                    this.listView.setTranslationY(zIsReversed ? -(this.listViewPadding + AndroidUtilities.dp(12.0f)) : r2.computeVerticalScrollOffset() + this.listViewPadding);
+                    MentionsListView mentionsListView = this.listView;
+                    mentionsListView.setTranslationY(zIsReversed ? -(this.listViewPadding + AndroidUtilities.dp(12.0f)) : mentionsListView.computeVerticalScrollOffset() + this.listViewPadding);
                 }
             }
             setVisibility(0);
@@ -653,7 +685,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         MentionsListView listView = getListView();
         RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) throws Resources.NotFoundException, IOException, NumberFormatException {
+            public final void onItemClick(View view, int i) {
                 this.f$0.lambda$withDelegate$4(delegate, view, i);
             }
         };
@@ -667,7 +699,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         });
     }
 
-    public void lambda$withDelegate$4(Delegate delegate, View view, int i) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$withDelegate$4(Delegate delegate, View view, int i) {
         Paint.FontMetricsInt fontMetrics;
         AnimatedEmojiSpan animatedEmojiSpan;
         if (i == 0 || getAdapter().isBannedInline()) {
@@ -786,7 +818,8 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
                     if ((iFindLastVisibleItemPosition == -1 ? 0 : iFindLastVisibleItemPosition) > 0 && iFindLastVisibleItemPosition > MentionsContainerView.this.adapter.getLastItemCount() - 5) {
                         MentionsContainerView.this.adapter.searchForContextBotForNextOffset();
                     }
-                    MentionsContainerView.this.onScrolled(!r2.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
+                    MentionsListView mentionsListView = MentionsListView.this;
+                    MentionsContainerView.this.onScrolled(!mentionsListView.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
                     MentionsContainerView.this.checkBackgroundBounds();
                 }
             });
@@ -967,11 +1000,13 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         boolean zIsReversed = isReversed();
         this.containerPadding = 0.0f;
         if (zIsReversed) {
-            float fMin = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
+            PaddedListAdapter paddedListAdapter = this.paddedAdapter;
+            float fMin = Math.min(Math.max(0.0f, (paddedListAdapter.paddingViewAttached ? paddedListAdapter.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
             this.containerTop = 0.0f;
             this.containerBottom = fMin;
         } else {
-            this.containerTop = Math.max(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding, this.hideT * getHeight());
+            PaddedListAdapter paddedListAdapter2 = this.paddedAdapter;
+            this.containerTop = Math.max(Math.max(0.0f, (paddedListAdapter2.paddingViewAttached ? paddedListAdapter2.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding, this.hideT * getHeight());
             this.containerBottom = getMeasuredHeight();
         }
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.backgroundDrawable;

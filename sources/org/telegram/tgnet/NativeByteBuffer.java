@@ -254,29 +254,29 @@ public class NativeByteBuffer extends AbstractSerializedData {
     public void writeByteArray(byte[] bArr, int i, int i2) {
         try {
             if (i2 <= 253) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.buffer.put((byte) i2);
+                } else {
+                    this.len++;
                 }
-            } else if (this.justCalc) {
-                this.len += 4;
-            } else {
+            } else if (!this.justCalc) {
                 this.buffer.put((byte) -2);
                 this.buffer.put((byte) i2);
                 this.buffer.put((byte) (i2 >> 8));
                 this.buffer.put((byte) (i2 >> 16));
-            }
-            if (this.justCalc) {
-                this.len += i2;
             } else {
+                this.len += 4;
+            }
+            if (!this.justCalc) {
                 this.buffer.put(bArr, i, i2);
+            } else {
+                this.len += i2;
             }
             for (int i3 = i2 <= 253 ? 1 : 4; (i2 + i3) % 4 != 0; i3++) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.buffer.put((byte) 0);
+                } else {
+                    this.len++;
                 }
             }
         } catch (Exception e) {
@@ -291,29 +291,29 @@ public class NativeByteBuffer extends AbstractSerializedData {
     public void writeByteArray(byte[] bArr) {
         try {
             if (bArr.length <= 253) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.buffer.put((byte) bArr.length);
+                } else {
+                    this.len++;
                 }
-            } else if (this.justCalc) {
-                this.len += 4;
-            } else {
+            } else if (!this.justCalc) {
                 this.buffer.put((byte) -2);
                 this.buffer.put((byte) bArr.length);
                 this.buffer.put((byte) (bArr.length >> 8));
                 this.buffer.put((byte) (bArr.length >> 16));
-            }
-            if (this.justCalc) {
-                this.len += bArr.length;
             } else {
+                this.len += 4;
+            }
+            if (!this.justCalc) {
                 this.buffer.put(bArr);
+            } else {
+                this.len += bArr.length;
             }
             for (int i = bArr.length <= 253 ? 1 : 4; (bArr.length + i) % 4 != 0; i++) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.buffer.put((byte) 0);
+                } else {
+                    this.len++;
                 }
             }
         } catch (Exception e) {
@@ -341,30 +341,30 @@ public class NativeByteBuffer extends AbstractSerializedData {
         try {
             int iLimit = nativeByteBuffer.limit();
             if (iLimit <= 253) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.buffer.put((byte) iLimit);
+                } else {
+                    this.len++;
                 }
-            } else if (this.justCalc) {
-                this.len += 4;
-            } else {
+            } else if (!this.justCalc) {
                 this.buffer.put((byte) -2);
                 this.buffer.put((byte) iLimit);
                 this.buffer.put((byte) (iLimit >> 8));
                 this.buffer.put((byte) (iLimit >> 16));
-            }
-            if (this.justCalc) {
-                this.len += iLimit;
             } else {
+                this.len += 4;
+            }
+            if (!this.justCalc) {
                 nativeByteBuffer.rewind();
                 this.buffer.put(nativeByteBuffer.buffer);
+            } else {
+                this.len += iLimit;
             }
             for (int i = iLimit <= 253 ? 1 : 4; (iLimit + i) % 4 != 0; i++) {
-                if (this.justCalc) {
-                    this.len++;
-                } else {
+                if (!this.justCalc) {
                     this.buffer.put((byte) 0);
+                } else {
+                    this.len++;
                 }
             }
         } catch (Exception e) {

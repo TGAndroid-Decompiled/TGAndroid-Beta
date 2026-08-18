@@ -6,7 +6,6 @@ import android.text.style.URLSpan;
 import android.view.View;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.TextStyleSpan;
 
 public class URLSpanNoUnderline extends URLSpan {
     private boolean forceNoUnderline;

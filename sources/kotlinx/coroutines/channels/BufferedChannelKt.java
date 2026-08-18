@@ -34,7 +34,7 @@ public abstract class BufferedChannelKt {
     }
 
     public static final long constructSendersAndCloseStatus(long j, int i) {
-        return (i << 60) + j;
+        return (((long) i) << 60) + j;
     }
 
     public static final long initialBufferEnd(int i) {

@@ -3,7 +3,6 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.ImageView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.Bulletin;
 
 public class ReorderingBulletinLayout extends Bulletin.SimpleLayout {
     private final ReorderingHintDrawable hintDrawable;

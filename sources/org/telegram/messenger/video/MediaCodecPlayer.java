@@ -77,7 +77,7 @@ public class MediaCodecPlayer {
         return this.o;
     }
 
-    public boolean ensure(long j) throws MediaCodec.CryptoException {
+    public boolean ensure(long j) {
         ByteBuffer inputBuffer;
         if (this.done) {
             return false;

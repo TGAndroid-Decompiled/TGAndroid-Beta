@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import me.vkryl.core.BitwiseUtils;
-import org.telegram.tgnet.Vector;
 
 public class TLObject {
     public static final int FLAG_0 = 1;

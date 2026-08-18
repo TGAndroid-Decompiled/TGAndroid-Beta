@@ -212,10 +212,11 @@ public class PremiumGradient {
                 return;
             }
             int i5 = i4 - i2;
+            int i6 = i5 + i5;
             chekColors();
             this.matrix.reset();
-            this.matrix.postScale((i3 - i) / 100.0f, (i5 + i5) / 100.0f, 75.0f, 50.0f);
-            this.matrix.postTranslate(f, (-r6) + f2);
+            this.matrix.postScale((i3 - i) / 100.0f, i6 / 100.0f, 75.0f, 50.0f);
+            this.matrix.postTranslate(f, (-i6) + f2);
             this.shader.setLocalMatrix(this.matrix);
         }
 

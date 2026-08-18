@@ -1,6 +1,5 @@
 package org.scilab.forge.jlatexmath.cyrillic;
 
-import java.lang.Character;
 import org.scilab.forge.jlatexmath.AlphabetRegistration;
 
 public class CyrillicRegistration implements AlphabetRegistration {

@@ -19,7 +19,6 @@ import android.util.StateSet;
 import android.view.MotionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
@@ -195,7 +194,10 @@ public class GiveawayResultsMessageCell {
                             return true;
                         }
                         i2++;
-                    } else if (this.containerRect.contains(x, y)) {
+                    } else {
+                        if (!this.containerRect.contains(x, y)) {
+                            break;
+                        }
                         this.isContainerPressed = true;
                         return true;
                     }
@@ -319,12 +321,15 @@ public class GiveawayResultsMessageCell {
             float f2 = iDp;
             float f3 = f2 / 2.0f;
             this.giftReceiver.setImageCoords((f / 2.0f) - f3, AndroidUtilities.dp(70.0f) - f3, f2, f2);
-            int lineBottom = this.titleLayout.getLineBottom(r5.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
+            StaticLayout staticLayout = this.titleLayout;
+            int lineBottom = staticLayout.getLineBottom(staticLayout.getLineCount() - 1) + AndroidUtilities.dp(5.0f);
             this.titleHeight = lineBottom;
-            this.topHeight = lineBottom + this.topLayout.getLineBottom(r6.getLineCount() - 1);
-            this.bottomHeight = this.bottomLayout.getLineBottom(r5.getLineCount() - 1);
-            StaticLayout staticLayout = this.countriesLayout;
-            int lineBottom2 = staticLayout != null ? staticLayout.getLineBottom(staticLayout.getLineCount() - 1) + AndroidUtilities.dp(12.0f) : 0;
+            StaticLayout staticLayout2 = this.topLayout;
+            this.topHeight = lineBottom + staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
+            StaticLayout staticLayout3 = this.bottomLayout;
+            this.bottomHeight = staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1);
+            StaticLayout staticLayout4 = this.countriesLayout;
+            int lineBottom2 = staticLayout4 != null ? staticLayout4.getLineBottom(staticLayout4.getLineCount() - 1) + AndroidUtilities.dp(12.0f) : 0;
             this.countriesHeight = lineBottom2;
             int i3 = this.measuredHeight + this.topHeight + lineBottom2 + this.bottomHeight;
             this.measuredHeight = i3;
@@ -348,18 +353,16 @@ public class GiveawayResultsMessageCell {
             Arrays.fill(this.avatarVisible, false);
             this.measuredHeight += AndroidUtilities.dp(30.0f);
             ArrayList arrayList = new ArrayList(tL_messageMediaGiveawayResults.winners.size());
-            Iterator<Long> it = tL_messageMediaGiveawayResults.winners.iterator();
-            while (it.hasNext()) {
-                Long next = it.next();
-                if (MessagesController.getInstance(UserConfig.selectedAccount).getUser(next) != null) {
-                    arrayList.add(next);
+            for (Long l : tL_messageMediaGiveawayResults.winners) {
+                if (MessagesController.getInstance(UserConfig.selectedAccount).getUser(l) != null) {
+                    arrayList.add(l);
                 }
             }
             float f4 = 0.0f;
             for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                Long l = (Long) arrayList.get(i4);
-                long jLongValue = l.longValue();
-                TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(l);
+                Long l2 = (Long) arrayList.get(i4);
+                long jLongValue = l2.longValue();
+                TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(l2);
                 if (user != null) {
                     this.avatarVisible[i4] = true;
                     this.users[i4] = user;

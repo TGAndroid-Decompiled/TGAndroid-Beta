@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -18,16 +19,23 @@ import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Property;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -64,7 +72,7 @@ public abstract class SelectorSearchCell extends ScrollView {
         return this.editText;
     }
 
-    public SelectorSearchCell(Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) throws NoSuchFieldException, SecurityException {
+    public SelectorSearchCell(Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
         super(context);
         this.allSpans = new ArrayList();
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -158,8 +166,86 @@ public abstract class SelectorSearchCell extends ScrollView {
         this.editText.setHintText(str, z);
     }
 
-    public void updateSpans(boolean r23, final java.util.HashSet r24, final java.lang.Runnable r25, java.util.List r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell.updateSpans(boolean, java.util.HashSet, java.lang.Runnable, java.util.List):void");
+    public void updateSpans(boolean z, final HashSet hashSet, final Runnable runnable, List list) {
+        Object chat;
+        Object obj;
+        MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        for (int i = 0; i < this.allSpans.size(); i++) {
+            GroupCreateSpan groupCreateSpan = (GroupCreateSpan) this.allSpans.get(i);
+            if (!hashSet.contains(Long.valueOf(groupCreateSpan.getUid()))) {
+                arrayList.add(groupCreateSpan);
+            }
+        }
+        Iterator it = hashSet.iterator();
+        while (it.hasNext()) {
+            Long l = (Long) it.next();
+            long jLongValue = l.longValue();
+            int i2 = 0;
+            while (true) {
+                if (i2 >= this.allSpans.size()) {
+                    if (jLongValue >= 0) {
+                        chat = messagesController.getUser(l);
+                    } else {
+                        chat = messagesController.getChat(Long.valueOf(-jLongValue));
+                    }
+                    if (list == null) {
+                        obj = chat;
+                        break;
+                    }
+                    Iterator it2 = list.iterator();
+                    while (true) {
+                        if (!it2.hasNext()) {
+                            obj = chat;
+                            break;
+                        }
+                        TLRPC.TL_help_country tL_help_country = (TLRPC.TL_help_country) it2.next();
+                        if (tL_help_country.default_name.hashCode() == jLongValue) {
+                            obj = tL_help_country;
+                            break;
+                        }
+                    }
+                    if (obj != null) {
+                        GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(getContext(), obj, null, true, this.resourcesProvider);
+                        groupCreateSpan2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$updateSpans$0(hashSet, runnable, view);
+                            }
+                        });
+                        arrayList2.add(groupCreateSpan2);
+                        break;
+                    }
+                    break;
+                }
+                if (((GroupCreateSpan) this.allSpans.get(i2)).getUid() == jLongValue) {
+                    break;
+                } else {
+                    i2++;
+                }
+            }
+        }
+        if (!arrayList.isEmpty() || !arrayList2.isEmpty()) {
+            this.spansContainer.updateSpans(arrayList, arrayList2, z);
+        }
+        this.editText.setOnKeyListener(new View.OnKeyListener() {
+            private boolean wasEmpty;
+
+            @Override
+            public boolean onKey(View view, int i3, KeyEvent keyEvent) {
+                if (i3 == 67) {
+                    if (keyEvent.getAction() == 0) {
+                        this.wasEmpty = SelectorSearchCell.this.editText.length() == 0;
+                    } else if (keyEvent.getAction() == 1 && this.wasEmpty && !SelectorSearchCell.this.allSpans.isEmpty()) {
+                        ArrayList arrayList3 = SelectorSearchCell.this.allSpans;
+                        SelectorSearchCell.this.lambda$updateSpans$0((GroupCreateSpan) arrayList3.get(arrayList3.size() - 1), hashSet, runnable);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     public void lambda$updateSpans$0(View view, HashSet hashSet, Runnable runnable) {
@@ -184,22 +270,23 @@ public abstract class SelectorSearchCell extends ScrollView {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        float scrollY = getScrollY();
-        canvas.saveLayerAlpha(0.0f, scrollY, getWidth(), getHeight() + r0, 255, 31);
+        int scrollY = getScrollY();
+        float f = scrollY;
+        canvas.saveLayerAlpha(0.0f, f, getWidth(), getHeight() + scrollY, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
-        float f = this.topGradientAlpha.set(canScrollVertically(-1));
+        float f2 = this.topGradientAlpha.set(canScrollVertically(-1));
         this.topGradientMatrix.reset();
-        this.topGradientMatrix.postTranslate(0.0f, scrollY);
+        this.topGradientMatrix.postTranslate(0.0f, f);
         this.topGradient.setLocalMatrix(this.topGradientMatrix);
-        this.topGradientPaint.setAlpha((int) (f * 255.0f));
-        canvas.drawRect(0.0f, scrollY, getWidth(), AndroidUtilities.dp(8.0f) + r0, this.topGradientPaint);
-        float f2 = this.bottomGradientAlpha.set(canScrollVertically(1));
+        this.topGradientPaint.setAlpha((int) (f2 * 255.0f));
+        canvas.drawRect(0.0f, f, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, this.topGradientPaint);
+        float f3 = this.bottomGradientAlpha.set(canScrollVertically(1));
         this.bottomGradientMatrix.reset();
-        this.bottomGradientMatrix.postTranslate(0.0f, (getHeight() + r0) - AndroidUtilities.dp(8.0f));
+        this.bottomGradientMatrix.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
         this.bottomGradient.setLocalMatrix(this.bottomGradientMatrix);
-        this.bottomGradientPaint.setAlpha((int) (f2 * 255.0f));
-        canvas.drawRect(0.0f, (getHeight() + r0) - AndroidUtilities.dp(8.0f), getWidth(), r0 + getHeight(), this.bottomGradientPaint);
+        this.bottomGradientPaint.setAlpha((int) (f3 * 255.0f));
+        canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), scrollY + getHeight(), this.bottomGradientPaint);
         canvas.restore();
         canvas.restore();
     }
@@ -285,8 +372,136 @@ public abstract class SelectorSearchCell extends ScrollView {
         }
 
         @Override
-        protected void onMeasure(int r17, int r18) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell.SpansContainer.onMeasure(int, int):void");
+        protected void onMeasure(int i, int i2) {
+            int iMin;
+            int childCount = getChildCount();
+            int size = View.MeasureSpec.getSize(i);
+            float f = 28.0f;
+            int iDp = size - AndroidUtilities.dp(28.0f);
+            int iDp2 = AndroidUtilities.dp(10.0f);
+            int iDp3 = AndroidUtilities.dp(10.0f);
+            int i3 = 0;
+            int measuredWidth = 0;
+            int measuredWidth2 = 0;
+            while (i3 < childCount) {
+                View childAt = getChildAt(i3);
+                if (childAt instanceof GroupCreateSpan) {
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f), 1073741824));
+                    boolean zContains = this.removingSpans.contains(childAt);
+                    if (!zContains && childAt.getMeasuredWidth() + measuredWidth > iDp) {
+                        iDp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(4.0f);
+                        measuredWidth = 0;
+                    }
+                    if (childAt.getMeasuredWidth() + measuredWidth2 > iDp) {
+                        iDp3 += childAt.getMeasuredHeight() + AndroidUtilities.dp(4.0f);
+                        measuredWidth2 = 0;
+                    }
+                    int iDp4 = AndroidUtilities.dp(14.0f) + measuredWidth;
+                    if (this.animationStarted) {
+                        childCount = childCount;
+                    } else if (zContains) {
+                        childAt.setTranslationX(AndroidUtilities.dp(14.0f) + measuredWidth2);
+                        childAt.setTranslationY(iDp3);
+                        childCount = childCount;
+                    } else if (this.removingSpans.isEmpty()) {
+                        childCount = childCount;
+                        childAt.setTranslationX(iDp4);
+                        childAt.setTranslationY(iDp2);
+                    } else {
+                        float f2 = iDp4;
+                        if (childAt.getTranslationX() != f2) {
+                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_X, f2));
+                        }
+                        float f3 = iDp2;
+                        if (childAt.getTranslationY() != f3) {
+                            this.animators.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.TRANSLATION_Y, f3));
+                        }
+                    }
+                    if (!zContains) {
+                        measuredWidth += childAt.getMeasuredWidth() + AndroidUtilities.dp(6.0f);
+                    }
+                    measuredWidth2 += childAt.getMeasuredWidth() + AndroidUtilities.dp(6.0f);
+                } else {
+                    childCount = childCount;
+                }
+                i3++;
+                childCount = childCount;
+                f = 28.0f;
+            }
+            if (AndroidUtilities.isTablet()) {
+                iMin = AndroidUtilities.dp(376.0f) / 3;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                iMin = (Math.min(point.x, point.y) - AndroidUtilities.dp(154.0f)) / 3;
+            }
+            if (iDp - measuredWidth < iMin) {
+                iDp2 += AndroidUtilities.dp(36.0f);
+                measuredWidth = 0;
+            }
+            if (iDp - measuredWidth2 < iMin) {
+                iDp3 += AndroidUtilities.dp(36.0f);
+            }
+            SelectorSearchCell.this.editText.measure(View.MeasureSpec.makeMeasureSpec(iDp - measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
+            SelectorSearchCell.this.editText.setHintVisible(SelectorSearchCell.this.editText.getMeasuredWidth() > SelectorSearchCell.this.hintTextWidth, true);
+            if (!this.animationStarted) {
+                int iDp5 = iDp3 + AndroidUtilities.dp(38.0f);
+                int iDp6 = measuredWidth + AndroidUtilities.dp(16.0f);
+                SelectorSearchCell.this.fieldY = iDp2;
+                if (this.currentAnimation != null) {
+                    int iDp7 = iDp2 + AndroidUtilities.dp(38.0f);
+                    SelectorSearchCell selectorSearchCell = SelectorSearchCell.this;
+                    selectorSearchCell.resultContainerHeight = iDp7;
+                    float f4 = iDp7;
+                    if (selectorSearchCell.containerHeight != f4) {
+                        this.animators.add(selectorSearchCell.getContainerHeightAnimator(f4));
+                    }
+                    float f5 = iDp6;
+                    if (SelectorSearchCell.this.editText.getTranslationX() != f5) {
+                        this.animators.add(ObjectAnimator.ofFloat(SelectorSearchCell.this.editText, (Property<EditTextBoldCursor, Float>) View.TRANSLATION_X, f5));
+                    }
+                    if (SelectorSearchCell.this.editText.getTranslationY() != SelectorSearchCell.this.fieldY) {
+                        this.animators.add(ObjectAnimator.ofFloat(SelectorSearchCell.this.editText, (Property<EditTextBoldCursor, Float>) View.TRANSLATION_Y, SelectorSearchCell.this.fieldY));
+                    }
+                    SelectorSearchCell.this.editText.setAllowDrawCursor(false);
+                    this.currentAnimation.playTogether(this.animators);
+                    this.currentAnimation.setDuration(180L);
+                    this.currentAnimation.setInterpolator(new LinearInterpolator());
+                    this.currentAnimation.start();
+                    this.animationStarted = true;
+                    if (SelectorSearchCell.this.updateHeight != null) {
+                        SelectorSearchCell.this.updateHeight.run();
+                    }
+                } else {
+                    SelectorSearchCell selectorSearchCell2 = SelectorSearchCell.this;
+                    selectorSearchCell2.resultContainerHeight = iDp5;
+                    selectorSearchCell2.containerHeight = iDp5;
+                    selectorSearchCell2.editText.setTranslationX(iDp6);
+                    SelectorSearchCell.this.editText.setTranslationY(SelectorSearchCell.this.fieldY);
+                    if (SelectorSearchCell.this.updateHeight != null) {
+                        SelectorSearchCell.this.updateHeight.run();
+                    }
+                    if (SelectorSearchCell.this.scroll) {
+                        post(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$onMeasure$0();
+                            }
+                        });
+                        SelectorSearchCell.this.scroll = false;
+                    }
+                }
+                SelectorSearchCell selectorSearchCell3 = SelectorSearchCell.this;
+                selectorSearchCell3.prevResultContainerHeight = selectorSearchCell3.resultContainerHeight;
+            } else if (this.currentAnimation != null) {
+                if (!SelectorSearchCell.this.ignoreScrollEvent && this.removingSpans.isEmpty()) {
+                    SelectorSearchCell.this.editText.bringPointIntoView(SelectorSearchCell.this.editText.getSelectionStart());
+                }
+                if (SelectorSearchCell.this.scroll) {
+                    SelectorSearchCell.this.fullScroll(130);
+                    SelectorSearchCell.this.scroll = false;
+                }
+            }
+            setMeasuredDimension(size, (int) SelectorSearchCell.this.containerHeight);
         }
 
         public void lambda$onMeasure$0() {

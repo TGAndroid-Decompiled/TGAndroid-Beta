@@ -180,7 +180,7 @@ public class ChartData {
                 if (this.timeStep == 1) {
                     strArr[i3] = String.format(Locale.ENGLISH, "%02d:00", Integer.valueOf(i3));
                 } else {
-                    strArr[i3] = simpleDateFormat.format(new Date((i3 * this.timeStep) + j));
+                    strArr[i3] = simpleDateFormat.format(new Date((((long) i3) * this.timeStep) + j));
                 }
                 i3++;
             }

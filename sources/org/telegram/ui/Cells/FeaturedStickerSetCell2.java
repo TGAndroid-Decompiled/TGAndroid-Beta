@@ -227,16 +227,11 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
             TLRPC.TL_messages_stickerSet stickerSet3 = MediaDataController.getInstance(this.currentAccount).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), false);
             if (stickerSet3 != null && (arrayList = stickerSet3.documents) != null && !arrayList.isEmpty()) {
                 document = stickerSet3.documents.get(0);
-                int i = 0;
-                while (true) {
-                    if (i >= stickerSet3.documents.size()) {
-                        break;
-                    }
+                for (int i = 0; i < stickerSet3.documents.size(); i++) {
                     if (stickerSet3.documents.get(i).id == stickerSetCovered.set.thumb_document_id) {
                         document = stickerSet3.documents.get(i);
                         break;
                     }
-                    i++;
                 }
             }
         } else {
@@ -246,16 +241,11 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
             } else if (!stickerSetCovered.covers.isEmpty()) {
                 document = stickerSetCovered.covers.get(0);
                 if (stickerSetCovered.set != null) {
-                    int i2 = 0;
-                    while (true) {
-                        if (i2 >= stickerSetCovered.covers.size()) {
-                            break;
-                        }
+                    for (int i2 = 0; i2 < stickerSetCovered.covers.size(); i2++) {
                         if (stickerSetCovered.covers.get(i2).id == stickerSetCovered.set.thumb_document_id) {
                             document = stickerSetCovered.covers.get(i2);
                             break;
                         }
-                        i2++;
                     }
                 }
             } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
@@ -263,16 +253,11 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
                 if (!tL_stickerSetFullCovered.documents.isEmpty()) {
                     ArrayList<TLRPC.Document> arrayList2 = tL_stickerSetFullCovered.documents;
                     document = arrayList2.get(0);
-                    int i3 = 0;
-                    while (true) {
-                        if (i3 >= arrayList2.size()) {
-                            break;
-                        }
+                    for (int i3 = 0; i3 < arrayList2.size(); i3++) {
                         if (arrayList2.get(i3).id == stickerSetCovered.set.thumb_document_id) {
                             document = arrayList2.get(i3);
                             break;
                         }
-                        i3++;
                     }
                 }
             }

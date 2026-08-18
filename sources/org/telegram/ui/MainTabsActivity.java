@@ -32,6 +32,7 @@ import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.LiteMode;
@@ -72,7 +73,6 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.glass.GlassTabView;
 import org.telegram.ui.Stories.recorder.HintView2;
-import org.telegram.ui.ViewPagerActivity;
 
 public class MainTabsActivity extends ViewPagerActivity implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
     private HintView2 accountSwitchHint;
@@ -586,8 +586,30 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         openFolder(dialogFilter.id);
     }
 
-    private boolean hasUnmutedUnreadDialogs(org.telegram.messenger.MessagesController.DialogFilter r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MainTabsActivity.hasUnmutedUnreadDialogs(org.telegram.messenger.MessagesController$DialogFilter):boolean");
+    private boolean hasUnmutedUnreadDialogs(MessagesController.DialogFilter dialogFilter) {
+        ArrayList<TLRPC.Dialog> allDialogs;
+        TLRPC.EncryptedChat encryptedChat;
+        MessagesController messagesController = getMessagesController();
+        if (dialogFilter.isDefault()) {
+            allDialogs = messagesController.getDialogs(0);
+        } else {
+            allDialogs = messagesController.getAllDialogs();
+        }
+        for (int i = 0; i < allDialogs.size(); i++) {
+            TLRPC.Dialog dialog = allDialogs.get(i);
+            if (dialogFilter.isDefault()) {
+                return messagesController.getDialogUnreadCount(dialog) <= 0 ? true : true;
+            }
+            long j = dialog.id;
+            if (DialogObject.isEncryptedDialog(j) && (encryptedChat = messagesController.getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(j)))) != null) {
+                j = encryptedChat.user_id;
+            }
+            if (!dialogFilter.includesDialog(getAccountInstance(), j, dialog)) {
+                continue;
+            } else if ((messagesController.getDialogUnreadCount(dialog) <= 0 || dialog.unread_mark) && !messagesController.isDialogMuted(dialog.id, 0L)) {
+            }
+        }
+        return false;
     }
 
     private class FolderCounterSpan extends ReplacementSpan {
@@ -976,6 +998,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         LaunchActivity launchActivity;
         IUpdateLayout iUpdateLayout;
         IUpdateLayout iUpdateLayout2;
+        boolean z = false;
         if (i == NotificationCenter.notificationsCountUpdated || i == NotificationCenter.updateInterfaces) {
             View view = this.fragmentView;
             if (view != null && view.isAttachedToWindow()) {
@@ -1102,10 +1125,11 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     }
 
     public void checkUi_tabsPosition() {
-        int iDp = AndroidUtilities.dp(40.0f) + (-(this.updateLayoutWrapper.isUpdateLayoutVisible() ? AndroidUtilities.dp(44.0f) : 0));
+        int i = -(this.updateLayoutWrapper.isUpdateLayoutVisible() ? AndroidUtilities.dp(44.0f) : 0);
+        int iDp = AndroidUtilities.dp(40.0f) + i;
         float floatValue = this.animatorTabsVisible.getFloatValue();
         AndroidUtilities.lerp(0.85f, 1.0f, floatValue);
-        this.tabsViewWrapper.setTranslationY(AndroidUtilities.lerp(iDp, r0, floatValue));
+        this.tabsViewWrapper.setTranslationY(AndroidUtilities.lerp(iDp, i, floatValue));
         this.tabsView.setClickable(floatValue > 1.0f);
         this.tabsView.setEnabled(floatValue > 1.0f);
         this.tabsView.setAlpha(floatValue);
@@ -1209,7 +1233,8 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         if (getContext() == null || (glassTabViewArr = this.tabs) == null) {
             return;
         }
-        float width = ((this.contentView.getWidth() - ((this.tabsView.getX() + glassTabViewArr[4].getX()) + r0.getWidth())) + (r0.getWidth() / 2.0f)) / AndroidUtilities.density;
+        GlassTabView glassTabView = glassTabViewArr[4];
+        float width = ((this.contentView.getWidth() - ((this.tabsView.getX() + glassTabView.getX()) + glassTabView.getWidth())) + (glassTabView.getWidth() / 2.0f)) / AndroidUtilities.density;
         HintView2 hintView2 = new HintView2(getContext(), 3);
         this.accountSwitchHint = hintView2;
         hintView2.setTranslationY((-this.navigationBarHeight) + AndroidUtilities.dp(4.0f));

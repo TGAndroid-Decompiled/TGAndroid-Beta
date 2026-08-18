@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -20,7 +19,7 @@ public class AddChannelCell extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;
     private final SimpleTextView textView;
 
-    public AddChannelCell(Context context, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
+    public AddChannelCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
         SimpleTextView simpleTextView = new SimpleTextView(context);

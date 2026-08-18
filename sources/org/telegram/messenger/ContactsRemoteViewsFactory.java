@@ -220,7 +220,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
     }
 
     @Override
-    public void onDataSetChanged() throws InterruptedException {
+    public void onDataSetChanged() {
         this.dids.clear();
         AccountInstance accountInstance = this.accountInstance;
         if (accountInstance == null || !accountInstance.getUserConfig().isClientActivated()) {

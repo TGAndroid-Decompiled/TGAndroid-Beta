@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 public abstract class MessagesController$PeerColors$$ExternalSyntheticBackport0 {
-    public static int m(String str, int i) throws NumberFormatException {
+    public static int m(String str, int i) {
         if (str.length() > 1 && str.charAt(0) == '+') {
             str = str.substring(1);
         }

@@ -117,10 +117,10 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
                 public final void run() {
                     springAnimation.start();
                 }
-            }, i2 * 5);
+            }, ((long) i2) * 5);
         }
         this.hintAnimationCallback = runnable;
-        postDelayed(runnable, (i * 5) + 150);
+        postDelayed(runnable, (((long) i) * 5) + 150);
     }
 
     @Override
@@ -141,7 +141,7 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) throws IllegalAccessException, IllegalArgumentException {
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
     }
 
@@ -171,7 +171,8 @@ public abstract class AnimatedPhoneNumberEditText extends HintEditText {
                 if (z && strSubstring2 == null) {
                     this.oldLetters.add(new StaticLayout("", this.textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                 }
-                this.letters.add(new StaticLayout(strSubstring, this.textPaint, (int) Math.ceil(r9.measureText(strSubstring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                TextPaint textPaint = this.textPaint;
+                this.letters.add(new StaticLayout(strSubstring, textPaint, (int) Math.ceil(textPaint.measureText(strSubstring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
             }
             i = i2;
         }

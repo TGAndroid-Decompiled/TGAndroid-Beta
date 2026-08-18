@@ -565,21 +565,17 @@ public abstract class DialogsItemAnimator extends SimpleItemAnimator {
         }
         for (int size3 = this.mMovesList.size() - 1; size3 >= 0; size3--) {
             ArrayList arrayList2 = (ArrayList) this.mMovesList.get(size3);
-            int size4 = arrayList2.size() - 1;
-            while (true) {
-                if (size4 < 0) {
-                    break;
-                }
+            for (int size4 = arrayList2.size() - 1; size4 >= 0; size4--) {
                 if (((MoveInfo) arrayList2.get(size4)).holder == viewHolder) {
                     view.setTranslationY(0.0f);
                     view.setTranslationX(0.0f);
                     dispatchMoveFinished(viewHolder);
                     arrayList2.remove(size4);
-                    if (arrayList2.isEmpty()) {
-                        this.mMovesList.remove(size3);
+                    if (!arrayList2.isEmpty()) {
+                        break;
                     }
-                } else {
-                    size4--;
+                    this.mMovesList.remove(size3);
+                    break;
                 }
             }
         }

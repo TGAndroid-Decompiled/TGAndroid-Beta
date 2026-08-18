@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Components.RLottieDrawable;
 
@@ -264,22 +261,27 @@ public class ActionBarMenu extends LinearLayout {
                 return;
             }
             int childCount = this.parent.getChildCount();
-            if (this.parent.ids != null) {
-                int iIndexOf = this.parent.ids.indexOf(Integer.valueOf(this.id));
-                for (int i2 = 0; i2 < this.parent.getChildCount(); i2++) {
-                    Object tag = this.parent.getChildAt(i2).getTag();
-                    if (tag instanceof Integer) {
-                        Integer num = (Integer) tag;
-                        num.intValue();
-                        if (this.parent.ids.indexOf(num) > iIndexOf) {
-                            i = i2;
-                            break;
-                        }
+            if (this.parent.ids == null) {
+                i = childCount;
+                break;
+            }
+            int iIndexOf = this.parent.ids.indexOf(Integer.valueOf(this.id));
+            int i2 = 0;
+            while (true) {
+                if (i2 >= this.parent.getChildCount()) {
+                    i = childCount;
+                    break;
+                }
+                Object tag = this.parent.getChildAt(i2).getTag();
+                if (tag instanceof Integer) {
+                    Integer num = (Integer) tag;
+                    num.intValue();
+                    if (this.parent.ids.indexOf(num) > iIndexOf) {
+                        i = i2;
+                        break;
                     }
                 }
-                i = childCount;
-            } else {
-                i = childCount;
+                i2++;
             }
             ActionBarMenuItem actionBarMenuItemAddItemAt = this.parent.addItemAt(i, this.id, this.icon, this.text, this.backgroundColor, this.drawable, this.width, this.title, this.resourcesProvider);
             this.cell = actionBarMenuItemAddItemAt;
@@ -637,8 +639,9 @@ public class ActionBarMenu extends LinearLayout {
             View childAt = getChildAt(i);
             if ((childAt instanceof ActionBarMenuItem) && childAt.getVisibility() == 0) {
                 float x = childAt.getX();
+                float width = childAt.getWidth() + x;
                 fMin = Math.min(fMin, x);
-                fMax = Math.max(fMax, childAt.getWidth() + x);
+                fMax = Math.max(fMax, width);
                 z = true;
             }
         }

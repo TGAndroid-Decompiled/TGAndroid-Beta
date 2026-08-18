@@ -48,7 +48,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.PremiumGradient;
-import org.telegram.ui.Components.Premium.boosts.ReassignBoostBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
@@ -77,12 +76,10 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         this.topPadding = 0.3f;
         this.myBoosts = tL_premium_myBoosts;
         this.currentChat = chat;
-        Iterator<TL_stories.TL_myBoost> it = tL_premium_myBoosts.my_boosts.iterator();
-        while (it.hasNext()) {
-            TL_stories.TL_myBoost next = it.next();
-            TLRPC.Peer peer = next.peer;
+        for (TL_stories.TL_myBoost tL_myBoost : tL_premium_myBoosts.my_boosts) {
+            TLRPC.Peer peer = tL_myBoost.peer;
             if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.id)) {
-                this.allUsedBoosts.add(next);
+                this.allUsedBoosts.add(tL_myBoost);
             }
         }
         SelectorBtnCell selectorBtnCell = new SelectorBtnCell(getContext(), this.resourcesProvider, this.recyclerListView);
@@ -242,7 +239,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                     if (tL_myBoost.cooldown_until_date > 0) {
                         arrayList.add(tL_myBoost);
                     }
-                    if (tL_myBoost.cooldown_until_date * 1000 < System.currentTimeMillis()) {
+                    if (((long) tL_myBoost.cooldown_until_date) * 1000 < System.currentTimeMillis()) {
                         tL_myBoost.cooldown_until_date = 0;
                     }
                 }
@@ -510,17 +507,13 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             }
             for (TLRPC.Chat chat5 : arrayList) {
                 Iterator it3 = arrayList3.iterator();
-                while (true) {
-                    if (it3.hasNext()) {
-                        avatarHolderView = (AvatarHolderView) it3.next();
-                        if (avatarHolderView.chat == chat5) {
-                            break;
-                        }
-                    } else {
+                do {
+                    if (!it3.hasNext()) {
                         avatarHolderView = null;
                         break;
                     }
-                }
+                    avatarHolderView = (AvatarHolderView) it3.next();
+                } while (avatarHolderView.chat != chat5);
                 if (avatarHolderView != null) {
                     avatarHolderView.setTag("REMOVED");
                     ViewPropertyAnimator interpolator = avatarHolderView.animate().alpha(f).translationXBy(AndroidUtilities.dp(23.0f)).scaleX(f2).scaleY(f2).setInterpolator(cubicBezierInterpolator);

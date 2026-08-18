@@ -15,7 +15,6 @@ import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
@@ -53,7 +52,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.LocationActivity;
 
 public class LocationActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private String address;
@@ -631,7 +629,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             tL_channelLocation.geo_point = this.geo;
             locationActivity.setInitialLocation(tL_channelLocation);
         }
-        locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
+        locationActivity.setDelegate(new org.telegram.ui.LocationActivity.LocationActivityDelegate() {
             @Override
             public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
                 this.f$0.lambda$showLocationAlert$7(locationActivity, messageMedia, i, z, i2, j);
@@ -643,7 +641,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             alertDialog.showDelayed(200L);
             Utilities.searchQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.lambda$showLocationAlert$9(locationActivity, alertDialog);
                 }
             });
@@ -675,7 +673,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         checkDone(true);
     }
 
-    public void lambda$showLocationAlert$9(final org.telegram.ui.LocationActivity locationActivity, final AlertDialog alertDialog) throws IOException {
+    public void lambda$showLocationAlert$9(final org.telegram.ui.LocationActivity locationActivity, final AlertDialog alertDialog) {
         try {
             List<Address> fromLocationName = new Geocoder(getContext(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(this.address, 1);
             if (!fromLocationName.isEmpty()) {

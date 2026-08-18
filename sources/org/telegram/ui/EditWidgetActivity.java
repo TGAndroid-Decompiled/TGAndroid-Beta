@@ -4,7 +4,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -125,7 +124,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
             if (i != 0) {
                 EditWidgetActivity.this.listView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);
@@ -174,7 +173,7 @@ public class EditWidgetActivity extends BaseFragment {
             return false;
         }
 
-        public WidgetPreviewCell(Context context) throws Resources.NotFoundException {
+        public WidgetPreviewCell(Context context) {
             super(context);
             this.roundPaint = new Paint(1);
             this.bitmapRect = new RectF();
@@ -214,7 +213,7 @@ public class EditWidgetActivity extends BaseFragment {
             this.shadowDrawable = Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow);
         }
 
-        public void updateDialogs() throws android.content.res.Resources.NotFoundException {
+        public void updateDialogs() {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.EditWidgetActivity.WidgetPreviewCell.updateDialogs():void");
         }
 
@@ -308,7 +307,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
     }
 
-    public EditWidgetActivity(int i, int i2) throws InterruptedException {
+    public EditWidgetActivity(int i, int i2) {
         this.widgetType = i;
         this.currentWidgetId = i2;
         ArrayList<TLRPC.User> arrayList = new ArrayList<>();
@@ -433,7 +432,7 @@ public class EditWidgetActivity extends BaseFragment {
             InviteMembersBottomSheet inviteMembersBottomSheet = new InviteMembersBottomSheet(context, this.currentAccount, null, 0L, this, null);
             inviteMembersBottomSheet.setDelegate(new InviteMembersBottomSheet.InviteMembersBottomSheetDelegate() {
                 @Override
-                public final void didSelectDialogs(ArrayList arrayList) throws Resources.NotFoundException {
+                public final void didSelectDialogs(ArrayList arrayList) {
                     this.f$0.lambda$createView$0(arrayList);
                 }
             }, this.selectedDialogs);
@@ -442,7 +441,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
     }
 
-    public void lambda$createView$0(ArrayList arrayList) throws Resources.NotFoundException {
+    public void lambda$createView$0(ArrayList arrayList) {
         this.selectedDialogs.clear();
         this.selectedDialogs.addAll(arrayList);
         updateRows();
@@ -474,7 +473,7 @@ public class EditWidgetActivity extends BaseFragment {
                     AlertDialog.Builder builder = new AlertDialog.Builder(EditWidgetActivity.this.getParentActivity());
                     builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new DialogInterface.OnClickListener() {
                         @Override
-                        public final void onClick(DialogInterface dialogInterface, int i2) throws Resources.NotFoundException {
+                        public final void onClick(DialogInterface dialogInterface, int i2) {
                             this.f$0.lambda$onItemClick$0(i, dialogInterface, i2);
                         }
                     });
@@ -485,7 +484,7 @@ public class EditWidgetActivity extends BaseFragment {
             return false;
         }
 
-        public void lambda$onItemClick$0(int i, DialogInterface dialogInterface, int i2) throws Resources.NotFoundException {
+        public void lambda$onItemClick$0(int i, DialogInterface dialogInterface, int i2) {
             if (i2 == 0) {
                 EditWidgetActivity.this.selectedDialogs.remove(i - EditWidgetActivity.this.chatsStartRow);
                 EditWidgetActivity.this.updateRows();
@@ -529,17 +528,17 @@ public class EditWidgetActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
+            View view;
             if (i == 0) {
-                FrameLayout textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
+                TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
                 textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                frameLayout = textInfoPrivacyCell;
+                view = textInfoPrivacyCell;
             } else if (i == 1) {
-                FrameLayout textCell = new TextCell(this.mContext);
+                TextCell textCell = new TextCell(this.mContext);
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                frameLayout = textCell;
+                view = textCell;
             } else if (i == 2) {
-                frameLayout = EditWidgetActivity.this.widgetPreviewCell = EditWidgetActivity.this.new WidgetPreviewCell(this.mContext);
+                view = EditWidgetActivity.this.widgetPreviewCell = EditWidgetActivity.this.new WidgetPreviewCell(this.mContext);
             } else {
                 final GroupCreateUserCell groupCreateUserCell = new GroupCreateUserCell(this.mContext, 0, 0, false);
                 ImageView imageView = new ImageView(this.mContext);
@@ -549,14 +548,14 @@ public class EditWidgetActivity extends BaseFragment {
                 groupCreateUserCell.addView(imageView, LayoutHelper.createFrame(40, -1.0f, (LocaleController.isRTL ? 3 : 5) | 16, 10.0f, 0.0f, 10.0f, 0.0f));
                 imageView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
-                    public final boolean onTouch(View view, MotionEvent motionEvent) {
-                        return this.f$0.lambda$onCreateViewHolder$0(groupCreateUserCell, view, motionEvent);
+                    public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                        return this.f$0.lambda$onCreateViewHolder$0(groupCreateUserCell, view2, motionEvent);
                     }
                 });
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_pinnedIcon), PorterDuff.Mode.MULTIPLY));
-                frameLayout = groupCreateUserCell;
+                view = groupCreateUserCell;
             }
-            return new RecyclerListView.Holder(frameLayout);
+            return new RecyclerListView.Holder(view);
         }
 
         public boolean lambda$onCreateViewHolder$0(GroupCreateUserCell groupCreateUserCell, View view, MotionEvent motionEvent) {
@@ -568,7 +567,7 @@ public class EditWidgetActivity extends BaseFragment {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;

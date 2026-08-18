@@ -108,11 +108,10 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                         case 'Z':
                             if (length2 == 1) {
                                 timeZoneNameRule2 = TimeZoneNumberRule.INSTANCE_NO_COLON;
-                                break;
                             } else {
                                 timeZoneNameRule2 = TimeZoneNumberRule.INSTANCE_COLON;
-                                break;
                             }
+                            break;
                         case 'a':
                             timeZoneNameRule2 = new TextField(9, amPmStrings);
                             break;
@@ -158,45 +157,33 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                             timeZoneNameRule2 = selectNumberRule(10, length2);
                                             break;
                                         case 'L':
-                                            if (length2 < 4) {
-                                                if (length2 != 3) {
-                                                    if (length2 == 2) {
-                                                        timeZoneNameRule2 = TwoDigitMonthField.INSTANCE;
-                                                        break;
-                                                    } else {
-                                                        timeZoneNameRule2 = UnpaddedMonthField.INSTANCE;
-                                                        break;
-                                                    }
-                                                } else {
-                                                    timeZoneNameRule2 = new TextField(2, shortMonths);
-                                                    break;
-                                                }
-                                            } else {
+                                            if (length2 >= 4) {
                                                 timeZoneNameRule2 = new TextField(2, months);
-                                                break;
+                                            } else if (length2 == 3) {
+                                                timeZoneNameRule2 = new TextField(2, shortMonths);
+                                            } else if (length2 == 2) {
+                                                timeZoneNameRule2 = TwoDigitMonthField.INSTANCE;
+                                            } else {
+                                                timeZoneNameRule2 = UnpaddedMonthField.INSTANCE;
                                             }
+                                            break;
                                         case 'M':
-                                            if (length2 < 4) {
-                                                if (length2 != 3) {
-                                                    if (length2 == 2) {
-                                                        timeZoneNameRule2 = TwoDigitMonthField.INSTANCE;
-                                                        break;
-                                                    } else {
-                                                        timeZoneNameRule2 = UnpaddedMonthField.INSTANCE;
-                                                        break;
-                                                    }
-                                                } else {
-                                                    timeZoneNameRule2 = new TextField(2, shortMonths);
-                                                    break;
-                                                }
-                                            } else {
+                                            if (length2 >= 4) {
                                                 timeZoneNameRule2 = new TextField(2, months);
-                                                break;
+                                            } else if (length2 == 3) {
+                                                timeZoneNameRule2 = new TextField(2, shortMonths);
+                                            } else if (length2 == 2) {
+                                                timeZoneNameRule2 = TwoDigitMonthField.INSTANCE;
+                                            } else {
+                                                timeZoneNameRule2 = UnpaddedMonthField.INSTANCE;
                                             }
+                                            break;
                                         default:
                                             throw new IllegalArgumentException("Illegal pattern component: " + token);
                                     }
+                                    break;
                             }
+                            break;
                     }
                 } else if (length2 >= 4) {
                     timeZoneNameRule2 = new TimeZoneNameRule(this.mTimeZone, this.mLocale, 1);

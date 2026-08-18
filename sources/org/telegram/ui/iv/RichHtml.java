@@ -2,8 +2,11 @@ package org.telegram.ui.iv;
 
 import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.CharacterStyle;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +17,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.TextStyleSpan;
+import org.telegram.ui.Components.URLSpanReplacement;
 
 public abstract class RichHtml {
     private static boolean isWs(char c) {
@@ -348,19 +352,15 @@ public abstract class RichHtml {
         }
         ArrayList<TL_iv.pageTableRow> arrayList2 = pageblocktable.rows;
         if (arrayList2 != null) {
-            Iterator<TL_iv.pageTableRow> it = arrayList2.iterator();
-            while (it.hasNext()) {
-                TL_iv.pageTableRow next = it.next();
+            for (TL_iv.pageTableRow pagetablerow : arrayList2) {
                 sb.append("<tr>");
-                if (next != null && (arrayList = next.cells) != null) {
-                    Iterator<TL_iv.pageTableCell> it2 = arrayList.iterator();
-                    while (it2.hasNext()) {
-                        TL_iv.pageTableCell next2 = it2.next();
-                        if (next2 != null) {
-                            String str = next2.header ? "th" : "td";
+                if (pagetablerow != null && (arrayList = pagetablerow.cells) != null) {
+                    for (TL_iv.pageTableCell pagetablecell : arrayList) {
+                        if (pagetablecell != null) {
+                            String str = pagetablecell.header ? "th" : "td";
                             sb.append('<');
                             sb.append(str);
-                            int i = next2.colspan;
+                            int i = pagetablecell.colspan;
                             if (i <= 1) {
                                 i = 0;
                             }
@@ -369,27 +369,27 @@ public abstract class RichHtml {
                                 sb.append(i);
                                 sb.append('\"');
                             }
-                            int i2 = next2.rowspan;
+                            int i2 = pagetablecell.rowspan;
                             int i3 = i2 > 1 ? i2 : 0;
                             if (i3 > 0) {
                                 sb.append(" rowspan=\"");
                                 sb.append(i3);
                                 sb.append('\"');
                             }
-                            String str2 = next2.align_right ? "right" : next2.align_center ? "center" : null;
+                            String str2 = pagetablecell.align_right ? "right" : pagetablecell.align_center ? "center" : null;
                             if (str2 != null) {
                                 sb.append(" align=\"");
                                 sb.append(str2);
                                 sb.append('\"');
                             }
-                            String str3 = next2.valign_bottom ? "bottom" : next2.valign_middle ? "middle" : null;
+                            String str3 = pagetablecell.valign_bottom ? "bottom" : pagetablecell.valign_middle ? "middle" : null;
                             if (str3 != null) {
                                 sb.append(" valign=\"");
                                 sb.append(str3);
                                 sb.append('\"');
                             }
                             sb.append('>');
-                            appendInline(sb, TableModel.readStyledText(next2));
+                            appendInline(sb, TableModel.readStyledText(pagetablecell));
                             sb.append("</");
                             sb.append(str);
                             sb.append('>');
@@ -557,8 +557,70 @@ public abstract class RichHtml {
         return sb.toString();
     }
 
-    private static void appendInline(java.lang.StringBuilder r11, java.lang.CharSequence r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichHtml.appendInline(java.lang.StringBuilder, java.lang.CharSequence):void");
+    private static void appendInline(StringBuilder sb, CharSequence charSequence) {
+        int spanEnd;
+        RichInlineButtonSpan richInlineButtonSpan;
+        long documentId;
+        if (charSequence == null || charSequence.length() == 0) {
+            return;
+        }
+        if (!(charSequence instanceof Spanned)) {
+            escape(sb, charSequence, 0, charSequence.length());
+            return;
+        }
+        Spanned spanned = (Spanned) charSequence;
+        int length = charSequence.length();
+        int iMin = 0;
+        while (iMin < length) {
+            RichInlineButtonSpan[] richInlineButtonSpanArr = (RichInlineButtonSpan[]) spanned.getSpans(iMin, Math.min(length, iMin + 1), RichInlineButtonSpan.class);
+            int length2 = richInlineButtonSpanArr.length;
+            int i = 0;
+            while (true) {
+                if (i >= length2) {
+                    spanEnd = -1;
+                    richInlineButtonSpan = null;
+                    break;
+                }
+                richInlineButtonSpan = richInlineButtonSpanArr[i];
+                int spanStart = spanned.getSpanStart(richInlineButtonSpan);
+                spanEnd = spanned.getSpanEnd(richInlineButtonSpan);
+                if (spanStart <= iMin && spanEnd > iMin) {
+                    break;
+                } else {
+                    i++;
+                }
+            }
+            if (richInlineButtonSpan != null) {
+                appendInlineButton(sb, richInlineButtonSpan.getButton());
+                iMin = Math.min(length, spanEnd);
+            } else {
+                int iNextSpanTransition = spanned.nextSpanTransition(iMin, length, CharacterStyle.class);
+                int i2 = 0;
+                for (TextStyleSpan textStyleSpan : (TextStyleSpan[]) spanned.getSpans(iMin, iNextSpanTransition, TextStyleSpan.class)) {
+                    TextStyleSpan.TextStyleRun textStyleRun = textStyleSpan.getTextStyleRun();
+                    if (textStyleRun != null) {
+                        i2 |= textStyleRun.flags;
+                    }
+                }
+                URLSpanReplacement[] uRLSpanReplacementArr = (URLSpanReplacement[]) spanned.getSpans(iMin, iNextSpanTransition, URLSpanReplacement.class);
+                String url = uRLSpanReplacementArr.length > 0 ? uRLSpanReplacementArr[0].getURL() : null;
+                AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spanned.getSpans(iMin, iNextSpanTransition, AnimatedEmojiSpan.class);
+                if (animatedEmojiSpanArr.length > 0) {
+                    AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[0];
+                    if (animatedEmojiSpan.standard) {
+                        documentId = 0;
+                    } else {
+                        documentId = animatedEmojiSpan.getDocumentId();
+                    }
+                } else {
+                    documentId = 0;
+                }
+                openInline(sb, i2, url, documentId);
+                escape(sb, charSequence, iMin, iNextSpanTransition);
+                closeInline(sb, i2, url, documentId);
+                iMin = iNextSpanTransition;
+            }
+        }
     }
 
     private static void appendInlineButton(StringBuilder sb, TL_iv.textButton textbutton) {
@@ -617,11 +679,9 @@ public abstract class RichHtml {
         sb.append(">");
         ArrayList<TL_keyboard.PageButton> arrayList = pageblockbuttonrow.buttons;
         if (arrayList != null) {
-            Iterator<TL_keyboard.PageButton> it = arrayList.iterator();
-            while (it.hasNext()) {
-                TL_keyboard.PageButton next = it.next();
-                if (next != null) {
-                    appendButton(sb, next.text, next.type, next.style);
+            for (TL_keyboard.PageButton pageButton : arrayList) {
+                if (pageButton != null) {
+                    appendButton(sb, pageButton.text, pageButton.type, pageButton.style);
                 }
             }
         }
@@ -729,7 +789,7 @@ public abstract class RichHtml {
         return str.replace("&", "&amp;").replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;");
     }
 
-    public static List parse(String str, Map map) throws NumberFormatException {
+    public static List parse(String str, Map map) {
         ArrayList arrayList = new ArrayList();
         if (str == null) {
             return arrayList;
@@ -741,7 +801,7 @@ public abstract class RichHtml {
         return arrayList;
     }
 
-    private static void parseBlocks(List list, ArrayList arrayList, int i, Map map) throws NumberFormatException {
+    private static void parseBlocks(List list, ArrayList arrayList, int i, Map map) {
         Iterator it = list.iterator();
         SpannableStringBuilder spannableStringBuilder = null;
         while (it.hasNext()) {
@@ -814,16 +874,17 @@ public abstract class RichHtml {
                             if (lowerCase.contains("button-row")) {
                                 arrayList.add(parseButtonRow(node));
                                 break;
-                            } else if (lowerCase.contains("collage")) {
-                                addRow(arrayList, parseGallery(node, false));
-                                break;
-                            } else if (lowerCase.contains("slideshow")) {
-                                addRow(arrayList, parseGallery(node, true));
-                                break;
                             } else {
-                                addText(arrayList, new TL_iv.pageBlockParagraph(), node, i);
+                                if (lowerCase.contains("collage")) {
+                                    addRow(arrayList, parseGallery(node, false));
+                                } else if (lowerCase.contains("slideshow")) {
+                                    addRow(arrayList, parseGallery(node, true));
+                                } else {
+                                    addText(arrayList, new TL_iv.pageBlockParagraph(), node, i);
+                                }
                                 break;
                             }
+                            break;
                         case "img":
                             addRow(arrayList, buildMediaRow(node));
                             break;
@@ -849,6 +910,7 @@ public abstract class RichHtml {
                                 parseBlockquote(node, arrayList, i, map);
                                 break;
                             }
+                            break;
                         case "details":
                             parseDetails(node, arrayList, i, map);
                             break;
@@ -856,12 +918,13 @@ public abstract class RichHtml {
                             addRow(arrayList, buildMediaRow(node));
                             break;
                         default:
-                            if (!node.children.isEmpty()) {
-                                parseBlocks(node.children, arrayList, i, map);
+                            if (node.children.isEmpty()) {
                                 break;
                             } else {
+                                parseBlocks(node.children, arrayList, i, map);
                                 break;
                             }
+                            break;
                     }
                 }
             }
@@ -879,7 +942,7 @@ public abstract class RichHtml {
         return null;
     }
 
-    private static void addText(ArrayList arrayList, TL_iv.PageBlock pageBlock, Node node, int i) throws NumberFormatException {
+    private static void addText(ArrayList arrayList, TL_iv.PageBlock pageBlock, Node node, int i) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         appendChildrenInline(spannableStringBuilder, node, 0, null, 0L);
         RichTextCell.applyStyledTextToBlock(pageBlock, trim(spannableStringBuilder));
@@ -892,7 +955,7 @@ public abstract class RichHtml {
         }
     }
 
-    private static CharSequence inlineOf(Node node) throws NumberFormatException {
+    private static CharSequence inlineOf(Node node) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         appendChildrenInline(spannableStringBuilder, node, 0, null, 0L);
         return trim(spannableStringBuilder);
@@ -921,16 +984,14 @@ public abstract class RichHtml {
         return new BlockRow(pageblocktable);
     }
 
-    private static BlockRow parseButtonRow(Node node) throws NumberFormatException {
+    private static BlockRow parseButtonRow(Node node) {
         TL_keyboard.InlineButtonType inlineButtonTypeInlineButtonTypeOf;
         TL_iv.pageBlockButtonRow pageblockbuttonrow = new TL_iv.pageBlockButtonRow();
         String strAttr = node.attr("data-align");
         pageblockbuttonrow.align_left = "left".equalsIgnoreCase(strAttr);
         pageblockbuttonrow.align_center = "center".equalsIgnoreCase(strAttr);
         pageblockbuttonrow.align_right = "right".equalsIgnoreCase(strAttr);
-        Iterator it = node.children.iterator();
-        while (it.hasNext()) {
-            Node node2 = (Node) it.next();
+        for (Node node2 : node.children) {
             if (pageblockbuttonrow.buttons.size() >= 8) {
                 break;
             }
@@ -951,9 +1012,7 @@ public abstract class RichHtml {
     }
 
     private static void collectTableRows(Node node, TL_iv.pageBlockTable pageblocktable) {
-        Iterator it = node.children.iterator();
-        while (it.hasNext()) {
-            Node node2 = (Node) it.next();
+        for (Node node2 : node.children) {
             if (!node2.isText) {
                 String str = node2.tag;
                 str.hashCode();
@@ -977,9 +1036,7 @@ public abstract class RichHtml {
     private static TL_iv.pageTableRow parseTableRow(Node node) {
         TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
         pagetablerow.cells = new ArrayList<>();
-        Iterator it = node.children.iterator();
-        while (it.hasNext()) {
-            Node node2 = (Node) it.next();
+        for (Node node2 : node.children) {
             if (!node2.isText && ("td".equals(node2.tag) || "th".equals(node2.tag))) {
                 TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
                 pagetablecell.colspan = parseIntAttr(node2.attr("colspan"), 0);
@@ -1119,13 +1176,11 @@ public abstract class RichHtml {
         return pageblockphoto;
     }
 
-    private static BlockRow parseGallery(Node node, boolean z) throws NumberFormatException {
+    private static BlockRow parseGallery(Node node, boolean z) {
         TL_iv.PageBlock pageblockslideshow = z ? new TL_iv.pageBlockSlideshow() : new TL_iv.pageBlockCollage();
         ArrayList arrayListGalleryItems = RichEditorListView.galleryItems(pageblockslideshow);
-        Iterator it = node.children.iterator();
         CharSequence charSequenceInlineOf = null;
-        while (it.hasNext()) {
-            Node node2 = (Node) it.next();
+        for (Node node2 : node.children) {
             if (!node2.isText) {
                 if ("figcaption".equals(node2.tag)) {
                     charSequenceInlineOf = inlineOf(node2);
@@ -1159,12 +1214,10 @@ public abstract class RichHtml {
         return new BlockRow(pageblockslideshow);
     }
 
-    private static void parseFigure(Node node, ArrayList arrayList, int i) throws NumberFormatException {
-        Iterator it = node.children.iterator();
+    private static void parseFigure(Node node, ArrayList arrayList, int i) {
         BlockRow blockRowBuildMediaRow = null;
         CharSequence charSequenceInlineOf = null;
-        while (it.hasNext()) {
-            Node node2 = (Node) it.next();
+        for (Node node2 : node.children) {
             if (!node2.isText) {
                 if ("figcaption".equals(node2.tag)) {
                     charSequenceInlineOf = inlineOf(node2);
@@ -1245,18 +1298,14 @@ public abstract class RichHtml {
         }
     }
 
-    private static void parseList(Node node, ArrayList arrayList, int i, boolean z) throws NumberFormatException {
+    private static void parseList(Node node, ArrayList arrayList, int i, boolean z) {
         int i2 = i + 1;
-        Iterator it = node.children.iterator();
         int i3 = 1;
-        while (it.hasNext()) {
-            Node node2 = (Node) it.next();
+        for (Node node2 : node.children) {
             if (!node2.isText && "li".equals(node2.tag)) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                ArrayList arrayList2 = new ArrayList();
-                Iterator it2 = node2.children.iterator();
-                while (it2.hasNext()) {
-                    Node node3 = (Node) it2.next();
+                ArrayList<Node> arrayList2 = new ArrayList();
+                for (Node node3 : node2.children) {
                     if (!node3.isText && ("ul".equals(node3.tag) || "ol".equals(node3.tag))) {
                         arrayList2.add(node3);
                     } else if (node3.isText) {
@@ -1271,9 +1320,7 @@ public abstract class RichHtml {
                 blockRow.checkbox = node2.has("data-checkbox") || hasCheckboxClass(node2);
                 blockRow.checked = node2.has("data-checked");
                 arrayList.add(blockRow);
-                Iterator it3 = arrayList2.iterator();
-                while (it3.hasNext()) {
-                    Node node4 = (Node) it3.next();
+                for (Node node4 : arrayList2) {
                     parseList(node4, arrayList, i2, "ol".equals(node4.tag));
                 }
                 i3++;
@@ -1281,15 +1328,13 @@ public abstract class RichHtml {
         }
     }
 
-    private static void parseDetails(Node node, ArrayList arrayList, int i, Map map) throws NumberFormatException {
+    private static void parseDetails(Node node, ArrayList arrayList, int i, Map map) {
         TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
         pageblockdetails.open = node.has("open");
         pageblockdetails.blocks = new ArrayList<>();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         ArrayList arrayList2 = new ArrayList();
-        Iterator it = node.children.iterator();
-        while (it.hasNext()) {
-            Node node2 = (Node) it.next();
+        for (Node node2 : node.children) {
             if (!node2.isText && "summary".equals(node2.tag)) {
                 appendChildrenInline(spannableStringBuilder, node2, 0, null, 0L);
             } else {
@@ -1308,7 +1353,7 @@ public abstract class RichHtml {
         arrayList.add(blockRow);
     }
 
-    private static void parseBlockquote(Node node, ArrayList arrayList, int i, Map map) throws NumberFormatException {
+    private static void parseBlockquote(Node node, ArrayList arrayList, int i, Map map) {
         boolean z;
         String str;
         Iterator it = node.children.iterator();
@@ -1349,9 +1394,7 @@ public abstract class RichHtml {
         long jNewId = RichContainer.newId();
         int size = arrayList.size();
         ArrayList arrayList2 = new ArrayList();
-        Iterator it2 = node.children.iterator();
-        while (it2.hasNext()) {
-            Node node4 = (Node) it2.next();
+        for (Node node4 : node.children) {
             if (node4.isText || !"cite".equals(node4.tag)) {
                 arrayList2.add(node4);
             }
@@ -1370,7 +1413,7 @@ public abstract class RichHtml {
         map.put(Long.valueOf(jNewId), richTextCiteAuthor);
     }
 
-    private static void parsePullquote(Node node, ArrayList arrayList, int i) throws NumberFormatException {
+    private static void parsePullquote(Node node, ArrayList arrayList, int i) {
         Node node2;
         Iterator it = node.children.iterator();
         while (true) {
@@ -1402,10 +1445,8 @@ public abstract class RichHtml {
         return RichTextStyle.fromSpannable(charSequenceInlineOf);
     }
 
-    private static void appendChildrenInlineExcept(SpannableStringBuilder spannableStringBuilder, Node node, String str) throws NumberFormatException {
-        Iterator it = node.children.iterator();
-        while (it.hasNext()) {
-            Node node2 = (Node) it.next();
+    private static void appendChildrenInlineExcept(SpannableStringBuilder spannableStringBuilder, Node node, String str) {
+        for (Node node2 : node.children) {
             if (node2.isText) {
                 appendStyled(spannableStringBuilder, decode(node2.text), 0, null, 0L);
             } else if (!str.equals(node2.tag)) {
@@ -1442,10 +1483,8 @@ public abstract class RichHtml {
         }
     }
 
-    private static void appendChildrenInline(SpannableStringBuilder spannableStringBuilder, Node node, int i, String str, long j) throws NumberFormatException {
-        Iterator it = node.children.iterator();
-        while (it.hasNext()) {
-            Node node2 = (Node) it.next();
+    private static void appendChildrenInline(SpannableStringBuilder spannableStringBuilder, Node node, int i, String str, long j) {
+        for (Node node2 : node.children) {
             if (node2.isText) {
                 appendStyled(spannableStringBuilder, decode(node2.text), i, str, j);
             } else {
@@ -1454,8 +1493,174 @@ public abstract class RichHtml {
         }
     }
 
-    private static void appendInlineNode(android.text.SpannableStringBuilder r11, org.telegram.ui.iv.RichHtml.Node r12, int r13, java.lang.String r14, long r15) throws java.lang.NumberFormatException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichHtml.appendInlineNode(android.text.SpannableStringBuilder, org.telegram.ui.iv.RichHtml$Node, int, java.lang.String, long):void");
+    private static void appendInlineNode(SpannableStringBuilder spannableStringBuilder, Node node, int i, String str, long j) {
+        long j2;
+        int i2;
+        int i3;
+        String str2;
+        int i4;
+        TL_keyboard.InlineButtonType inlineButtonTypeInlineButtonTypeOf;
+        if ("button".equals(node.tag) && (inlineButtonTypeInlineButtonTypeOf = inlineButtonTypeOf(node)) != null) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            appendChildrenInline(spannableStringBuilder2, node, i, str, j);
+            if (spannableStringBuilder2.length() > 0) {
+                int length = spannableStringBuilder.length();
+                spannableStringBuilder.append((CharSequence) spannableStringBuilder2);
+                TL_iv.textButton textbutton = new TL_iv.textButton();
+                textbutton.text = RichTextStyle.fromSpannable(spannableStringBuilder2);
+                textbutton.type = inlineButtonTypeInlineButtonTypeOf;
+                textbutton.style = inlineButtonStyleOf(node);
+                spannableStringBuilder.setSpan(new RichInlineButtonSpan(textbutton), length, spannableStringBuilder.length(), 33);
+            }
+            return;
+        }
+        String str3 = node.tag;
+        str3.hashCode();
+        switch (str3) {
+            case "spoiler":
+                i2 = i | 256;
+                str2 = str;
+                j2 = j;
+                i3 = i2;
+                if (node.children.isEmpty() || node.isText) {
+                    appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                    break;
+                }
+                break;
+            case "strike":
+            case "s":
+            case "del":
+                i2 = i | 8;
+                str2 = str;
+                j2 = j;
+                i3 = i2;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            case "strong":
+            case "b":
+                i2 = i | 1;
+                str2 = str;
+                j2 = j;
+                i3 = i2;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            case "a":
+                String strAttr = node.attr("href");
+                if (strAttr != null) {
+                    j2 = j;
+                    i3 = i;
+                    str2 = strAttr;
+                } else {
+                    j2 = j;
+                    i3 = i;
+                    str2 = str;
+                }
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            case "i":
+            case "em":
+                i2 = i | 2;
+                str2 = str;
+                j2 = j;
+                i3 = i2;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            case "u":
+                i2 = 16 | i;
+                str2 = str;
+                j2 = j;
+                i3 = i2;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            case "br":
+                appendStyled(spannableStringBuilder, "\n", i, str, j);
+                break;
+            case "tt":
+            case "code":
+                i2 = i | 4;
+                str2 = str;
+                j2 = j;
+                i3 = i2;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            case "sub":
+                i2 = i | 16384;
+                str2 = str;
+                j2 = j;
+                i3 = i2;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            case "sup":
+                i4 = 32768;
+                i2 = i4 | i;
+                str2 = str;
+                j2 = j;
+                i3 = i2;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            case "mark":
+                i4 = 65536;
+                i2 = i4 | i;
+                str2 = str;
+                j2 = j;
+                i3 = i2;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            case "animated-emoji":
+                String strAttr2 = node.attr("data-document-id");
+                if (strAttr2 != null) {
+                    try {
+                        j2 = Long.parseLong(strAttr2.trim());
+                    } catch (Exception unused) {
+                        j2 = j;
+                    }
+                } else {
+                    j2 = j;
+                }
+                i3 = i;
+                str2 = str;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+            default:
+                j2 = j;
+                i3 = i;
+                str2 = str;
+                if (node.children.isEmpty()) {
+                    break;
+                }
+                appendChildrenInline(spannableStringBuilder, node, i3, str2, j2);
+                break;
+        }
     }
 
     private static TL_keyboard.InlineButtonType inlineButtonTypeOf(Node node) {
@@ -1554,7 +1759,7 @@ public abstract class RichHtml {
         return (i == 0 && length == spannableStringBuilder.length()) ? spannableStringBuilder : spannableStringBuilder.subSequence(i, length);
     }
 
-    public static String decode(String str) throws NumberFormatException {
+    public static String decode(String str) {
         if (str == null) {
             return "";
         }
@@ -1587,7 +1792,7 @@ public abstract class RichHtml {
         return sb.toString();
     }
 
-    private static String entity(String str) throws NumberFormatException {
+    private static String entity(String str) {
         int i;
         str.hashCode();
         switch (str) {
@@ -1687,10 +1892,7 @@ public abstract class RichHtml {
         List parse() {
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            while (true) {
-                if (this.p >= this.s.length()) {
-                    break;
-                }
+            while (this.p < this.s.length()) {
                 if (this.s.charAt(this.p) == '<') {
                     if (this.s.startsWith("<!--", this.p)) {
                         int iIndexOf = this.s.indexOf("-->", this.p + 4);
@@ -1781,8 +1983,86 @@ public abstract class RichHtml {
             addChild(arrayList, arrayList2, Node.text(str));
         }
 
-        private org.telegram.ui.iv.RichHtml.Node parseTag(java.lang.String r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichHtml.Parser.parseTag(java.lang.String):org.telegram.ui.iv.RichHtml$Node");
+        private Node parseTag(String str) {
+            String strSubstring;
+            int i;
+            String strSubstring2;
+            int i2;
+            String strTrim = str.trim();
+            if (strTrim.isEmpty()) {
+                return null;
+            }
+            int i3 = 0;
+            while (i3 < strTrim.length() && !isSpace(strTrim.charAt(i3))) {
+                i3++;
+            }
+            String lowerCase = strTrim.substring(0, i3).toLowerCase();
+            if (lowerCase.isEmpty()) {
+                return null;
+            }
+            Node nodeEl = Node.el(lowerCase);
+            while (i3 < strTrim.length()) {
+                while (i3 < strTrim.length() && isSpace(strTrim.charAt(i3))) {
+                    i3++;
+                }
+                if (i3 >= strTrim.length()) {
+                    break;
+                }
+                int i4 = i3;
+                while (i4 < strTrim.length() && strTrim.charAt(i4) != '=' && !isSpace(strTrim.charAt(i4))) {
+                    i4++;
+                }
+                String lowerCase2 = strTrim.substring(i3, i4).toLowerCase();
+                while (i4 < strTrim.length() && isSpace(strTrim.charAt(i4))) {
+                    i4++;
+                }
+                if (i4 < strTrim.length() && strTrim.charAt(i4) == '=') {
+                    while (true) {
+                        i2 = i4 + 1;
+                        if (i2 >= strTrim.length() || !isSpace(strTrim.charAt(i2))) {
+                            break;
+                        }
+                        i4 = i2;
+                    }
+                    if (i2 < strTrim.length() && (strTrim.charAt(i2) == '\"' || strTrim.charAt(i2) == '\'')) {
+                        char cCharAt = strTrim.charAt(i2);
+                        int i5 = i4 + 2;
+                        i = i5;
+                        while (i < strTrim.length() && strTrim.charAt(i) != cCharAt) {
+                            i++;
+                        }
+                        strSubstring2 = strTrim.substring(i5, Math.min(i, strTrim.length()));
+                        if (i < strTrim.length()) {
+                            i++;
+                        }
+                    } else {
+                        i4 = i2;
+                        while (i4 < strTrim.length() && !isSpace(strTrim.charAt(i4))) {
+                            i4++;
+                        }
+                        strSubstring = strTrim.substring(i2, i4);
+                    }
+                    if (lowerCase2.isEmpty()) {
+                        if (nodeEl.attrs == null) {
+                            nodeEl.attrs = new HashMap();
+                        }
+                        nodeEl.attrs.put(lowerCase2, RichHtml.decode(strSubstring2));
+                    }
+                    i3 = i;
+                } else {
+                    strSubstring = "";
+                }
+                i = i4;
+                strSubstring2 = strSubstring;
+                if (lowerCase2.isEmpty()) {
+                    if (nodeEl.attrs == null) {
+                        nodeEl.attrs = new HashMap();
+                    }
+                    nodeEl.attrs.put(lowerCase2, RichHtml.decode(strSubstring2));
+                }
+                i3 = i;
+            }
+            return nodeEl;
         }
     }
 }

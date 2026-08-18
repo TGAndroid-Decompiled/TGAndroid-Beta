@@ -63,21 +63,20 @@ public abstract class CustomTabsHelper {
     }
 
     private static boolean hasSpecializedHandlerIntents(Context context, Intent intent) {
-        List<ResolveInfo> listQueryIntentActivities;
         try {
-            listQueryIntentActivities = context.getPackageManager().queryIntentActivities(intent, 64);
+            List<ResolveInfo> listQueryIntentActivities = context.getPackageManager().queryIntentActivities(intent, 64);
+            if (listQueryIntentActivities != null && listQueryIntentActivities.size() != 0) {
+                for (ResolveInfo resolveInfo : listQueryIntentActivities) {
+                    IntentFilter intentFilter = resolveInfo.filter;
+                    if (intentFilter != null && intentFilter.countDataAuthorities() != 0 && intentFilter.countDataPaths() != 0 && resolveInfo.activityInfo != null) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return false;
         } catch (RuntimeException unused) {
             Log.e("CustomTabsHelper", "Runtime exception while getting specialized handlers");
         }
-        if (listQueryIntentActivities != null && listQueryIntentActivities.size() != 0) {
-            for (ResolveInfo resolveInfo : listQueryIntentActivities) {
-                IntentFilter intentFilter = resolveInfo.filter;
-                if (intentFilter != null && intentFilter.countDataAuthorities() != 0 && intentFilter.countDataPaths() != 0 && resolveInfo.activityInfo != null) {
-                    return true;
-                }
-            }
-            return false;
-        }
-        return false;
     }
 }

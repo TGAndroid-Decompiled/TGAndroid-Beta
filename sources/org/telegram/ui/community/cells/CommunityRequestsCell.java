@@ -157,7 +157,7 @@ public class CommunityRequestsCell extends LinearLayout implements Theme.Colorab
             uItemOfFactory.iconResId = i2;
             uItemOfFactory.text = charSequence;
             uItemOfFactory.textValue = charSequence2;
-            uItemOfFactory.longValue = (iconBackgroundColors.top & 4294967295L) | (iconBackgroundColors.bottom << 32);
+            uItemOfFactory.longValue = (((long) iconBackgroundColors.top) & 4294967295L) | (((long) iconBackgroundColors.bottom) << 32);
             uItemOfFactory.accent = z;
             return uItemOfFactory;
         }

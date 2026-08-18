@@ -33,7 +33,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
-import org.telegram.ui.Stories.recorder.Weather;
 
 public abstract class Weather {
     private static String cacheKey;
@@ -62,7 +61,7 @@ public abstract class Weather {
             if (z) {
                 return Math.round(this.temperature) + "°C";
             }
-            return ((int) Math.round(((this.temperature * 9.0d) / 5.0d) + 32.0d)) + "°F";
+            return ((int) Math.round(((((double) this.temperature) * 9.0d) / 5.0d) + 32.0d)) + "°F";
         }
 
         public static State TLdeserialize(AbstractSerializedData abstractSerializedData) {
@@ -205,13 +204,13 @@ public abstract class Weather {
     public static void lambda$fetch$4(final int[] iArr, final Utilities.Callback callback, final double d, final double d2, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 Weather.lambda$fetch$3(iArr, tLObject, callback, d, d2, str);
             }
         });
     }
 
-    public static void lambda$fetch$3(int[] iArr, TLObject tLObject, Utilities.Callback callback, double d, double d2, String str) throws NumberFormatException {
+    public static void lambda$fetch$3(int[] iArr, TLObject tLObject, Utilities.Callback callback, double d, double d2, String str) {
         iArr[0] = 0;
         if (tLObject instanceof TLRPC.messages_BotResults) {
             TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;

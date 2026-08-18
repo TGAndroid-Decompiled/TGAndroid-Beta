@@ -26,7 +26,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
@@ -68,7 +67,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
     Bulletin restrictBulletin;
     private Utilities.Callback onPowerAppliedChange = new Utilities.Callback() {
         @Override
-        public final void run(Object obj) throws IOException {
+        public final void run(Object obj) {
             this.f$0.lambda$new$1((Boolean) obj);
         }
     };
@@ -132,7 +131,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
 
             @Override
-            public final void onItemClick(View view, int i, float f, float f2) throws IOException {
+            public final void onItemClick(View view, int i, float f, float f2) {
                 this.f$0.lambda$createView$0(view, i, f, f2);
             }
         });
@@ -142,7 +141,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view, int i, float f, float f2) throws IOException {
+    public void lambda$createView$0(View view, int i, float f, float f2) {
         int expandedIndex;
         if (view == null || i < 0 || i >= this.items.size()) {
             return;
@@ -155,7 +154,8 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 return;
             }
             if (item.viewType == 3 && item.getFlagsCount() > 1 && (!LocaleController.isRTL ? f < view.getMeasuredWidth() - AndroidUtilities.dp(75.0f) : f > AndroidUtilities.dp(75.0f)) && (expandedIndex = getExpandedIndex(item.flags)) != -1) {
-                this.expanded[expandedIndex] = !r5[expandedIndex];
+                boolean[] zArr = this.expanded;
+                zArr[expandedIndex] = !zArr[expandedIndex];
                 updateValues();
                 updateItems();
                 return;
@@ -188,7 +188,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         LiteMode.removeOnPowerSaverAppliedListener(this.onPowerAppliedChange);
     }
 
-    public void lambda$new$1(Boolean bool) throws IOException {
+    public void lambda$new$1(Boolean bool) {
         updateValues();
     }
 
@@ -320,7 +320,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         }
     }
 
-    public void updateValues() throws IOException {
+    public void updateValues() {
         int childAdapterPosition;
         if (this.listView == null) {
             return;
@@ -380,7 +380,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IOException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             if (i < 0 || i >= LiteModeSettingsActivity.this.items.size()) {
                 return;
             }
@@ -509,11 +509,11 @@ public class LiteModeSettingsActivity extends BaseFragment {
             Switch r4 = new Switch(context);
             this.switchView = r4;
             r4.setVisibility(8);
-            Switch r42 = this.switchView;
+            Switch r5 = this.switchView;
             int i2 = Theme.key_switchTrack;
             int i3 = Theme.key_switchTrackChecked;
             int i4 = Theme.key_windowBackgroundWhite;
-            r42.setColors(i2, i3, i4, i4);
+            r5.setColors(i2, i3, i4, i4);
             this.switchView.setImportantForAccessibility(2);
             addView(this.switchView, LayoutHelper.createFrame(37, 50.0f, (LocaleController.isRTL ? 3 : 5) | 16, 19.0f, 0.0f, 19.0f, 0.0f));
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
@@ -524,9 +524,9 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.checkBoxView.setDrawBackgroundAsArc(10);
             this.checkBoxView.setVisibility(8);
             this.checkBoxView.setImportantForAccessibility(2);
-            CheckBox2 checkBox22 = this.checkBoxView;
+            CheckBox2 checkBox3 = this.checkBoxView;
             boolean z = LocaleController.isRTL;
-            addView(checkBox22, LayoutHelper.createFrame(21, 21.0f, (z ? 5 : 3) | 16, z ? 0.0f : 64.0f, 0.0f, z ? 64.0f : 0.0f, 0.0f));
+            addView(checkBox3, LayoutHelper.createFrame(21, 21.0f, (z ? 5 : 3) | 16, z ? 0.0f : 64.0f, 0.0f, z ? 64.0f : 0.0f, 0.0f));
             setFocusable(true);
         }
 
@@ -621,8 +621,37 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.countTextView.setText(String.format("%d/%d", Integer.valueOf(this.enabled), Integer.valueOf(this.all)), z && !LocaleController.isRTL);
         }
 
-        private int preprocessFlagsCount(int r5) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LiteModeSettingsActivity.SwitchCell.preprocessFlagsCount(int):int");
+        private int preprocessFlagsCount(int i) {
+            boolean zIsPremium = LiteModeSettingsActivity.this.getUserConfig().isPremium();
+            int iBitCount = Integer.bitCount(i);
+            if (zIsPremium) {
+                if ((i & 4096) > 0) {
+                    iBitCount--;
+                }
+                if ((i & 8192) > 0) {
+                    iBitCount--;
+                }
+                if ((i & 16384) > 0) {
+                    iBitCount--;
+                }
+            } else {
+                if ((i & 16) > 0) {
+                    iBitCount--;
+                }
+                if ((i & 8) > 0) {
+                    iBitCount--;
+                }
+                if ((i & 4) > 0) {
+                    iBitCount--;
+                }
+            }
+            if (SharedConfig.getDevicePerformanceClass() < 1 && (i & 256) > 0) {
+                iBitCount--;
+            }
+            if ((Build.VERSION.SDK_INT < 33 || (SharedConfig.getDevicePerformanceClass() < 1 && !BuildVars.DEBUG_PRIVATE_VERSION)) && (262144 & i) > 0) {
+                iBitCount--;
+            }
+            return (ThanosEffect.supports() || (i & 65536) <= 0) ? iBitCount : iBitCount - 1;
         }
 
         @Override
@@ -687,7 +716,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         SeekBarView seekBarView;
         FrameLayout valuesView;
 
-        public PowerSaverSlider(Context context) throws IOException {
+        public PowerSaverSlider(Context context) {
             super(context);
             LinearLayout linearLayout = new LinearLayout(context);
             this.headerLayout = linearLayout;
@@ -739,7 +768,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 }
 
                 @Override
-                public void onSeekBarDrag(boolean z, float f) throws IOException {
+                public void onSeekBarDrag(boolean z, float f) {
                     int iRound = Math.round(f * 100.0f);
                     if (iRound != LiteMode.getPowerSaverLevel()) {
                         LiteMode.setPowerSaverLevel(iRound);
@@ -835,7 +864,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 }
 
                 @Override
-                public void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) throws IOException {
+                public void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
                     super.onPopulateAccessibilityEvent(view, accessibilityEvent);
                     StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
                     sb.append(", ");
@@ -871,7 +900,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             return this.seekBarAccessibilityDelegate.performAccessibilityAction(this, i, bundle);
         }
 
-        public void update() throws IOException {
+        public void update() {
             int powerSaverLevel = LiteMode.getPowerSaverLevel();
             this.middleTextView.cancelAnimation();
             if (powerSaverLevel <= 0) {
@@ -1048,7 +1077,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
     }
 
     @Override
-    public void onFragmentDestroy() throws IOException {
+    public void onFragmentDestroy() {
         super.onFragmentDestroy();
         LiteMode.savePreference();
         AnimatedEmojiDrawable.updateAll();

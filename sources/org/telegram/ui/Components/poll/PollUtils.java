@@ -2,7 +2,6 @@ package org.telegram.ui.Components.poll;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.Iterator;
 import me.vkryl.core.BitwiseUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -59,14 +58,12 @@ public abstract class PollUtils {
         }
         if (BitwiseUtils.hasFlag(i, 4)) {
             ArrayList arrayList = new ArrayList(tL_messageMediaPoll.poll.countries_iso2.size());
-            Iterator<String> it = tL_messageMediaPoll.poll.countries_iso2.iterator();
-            while (it.hasNext()) {
-                String next = it.next();
-                String countryName = LocaleController.getCountryName(next);
+            for (String str : tL_messageMediaPoll.poll.countries_iso2) {
+                String countryName = LocaleController.getCountryName(str);
                 if (!TextUtils.isEmpty(countryName)) {
-                    next = countryName;
+                    str = countryName;
                 }
-                arrayList.add(next);
+                arrayList.add(str);
             }
             boolean z = tL_messageMediaPoll.poll.subscribers_only;
             if (arrayList.size() == 1) {

@@ -22,7 +22,7 @@ final class CompletedContinuation {
         if ((i & 4) != 0) {
             function1 = completedContinuation.onCancellation;
         }
-        Function1 function12 = function1;
+        Function1 function2 = function1;
         if ((i & 8) != 0) {
             obj2 = completedContinuation.idempotentResume;
         }
@@ -30,7 +30,7 @@ final class CompletedContinuation {
         if ((i & 16) != 0) {
             th = completedContinuation.cancelCause;
         }
-        return completedContinuation.copy(obj, cancelHandler2, function12, obj4, th);
+        return completedContinuation.copy(obj, cancelHandler2, function2, obj4, th);
     }
 
     public final CompletedContinuation copy(Object obj, CancelHandler cancelHandler, Function1 function1, Object obj2, Throwable th) {

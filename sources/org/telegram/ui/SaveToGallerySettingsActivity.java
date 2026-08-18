@@ -48,7 +48,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBarView;
-import org.telegram.ui.DialogsActivity;
 
 public class SaveToGallerySettingsActivity extends BaseFragment {
     private final int VIEW_TYPE_ADD_EXCEPTION;
@@ -215,13 +214,15 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
 
     public void lambda$createView$2(View view, int i, float f, float f2) {
         if (i == this.savePhotosRow) {
-            getSettings().savePhoto = !r8.savePhoto;
+            SaveToGallerySettingsHelper.Settings settings = getSettings();
+            settings.savePhoto = !settings.savePhoto;
             onSettingsUpdated();
             updateRows();
             return;
         }
         if (i == this.saveVideosRow) {
-            getSettings().saveVideo = !r8.saveVideo;
+            SaveToGallerySettingsHelper.Settings settings2 = getSettings();
+            settings2.saveVideo = !settings2.saveVideo;
             onSettingsUpdated();
             updateRows();
             return;
@@ -430,7 +431,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View shadowSectionCell = null;
+            ?? shadowSectionCell = 0;
             switch (i) {
                 case 1:
                     TextCell textCell = new TextCell(viewGroup.getContext());
@@ -468,7 +469,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     shadowSectionCell = new TextInfoPrivacyCell(viewGroup.getContext());
                     break;
                 case 8:
-                    LinearLayout linearLayout = new LinearLayout(SaveToGallerySettingsActivity.this.getContext());
+                    ?? linearLayout = new LinearLayout(SaveToGallerySettingsActivity.this.getContext());
                     linearLayout.setOrientation(1);
                     final SeekBarView seekBarView = new SeekBarView(SaveToGallerySettingsActivity.this.getContext());
                     FrameLayout frameLayout = new FrameLayout(SaveToGallerySettingsActivity.this.getContext());

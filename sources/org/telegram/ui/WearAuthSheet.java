@@ -78,7 +78,7 @@ public abstract class WearAuthSheet {
             this.originNodeId = str;
         }
 
-        byte[] acceptAndBuildAnswer() throws NoSuchAlgorithmException {
+        byte[] acceptAndBuildAnswer() {
             SecureRandom secureRandom = new SecureRandom();
             BigInteger bigInteger = new BigInteger(2048, secureRandom);
             BigInteger bigIntegerModPow = WearAuthSheet.DH_G.modPow(bigInteger, WearAuthSheet.DH_P);
@@ -86,15 +86,15 @@ public abstract class WearAuthSheet {
                 byte[] bArrEncode256 = WearAuthSheet.encode256(bigIntegerModPow);
                 BigInteger bigInteger2 = new BigInteger(1, this.peerPub);
                 if (WearAuthSheet.isValidPub(bigInteger2)) {
-                    byte[] bArrEncode2562 = WearAuthSheet.encode256(bigInteger2.modPow(bigInteger, WearAuthSheet.DH_P));
+                    byte[] bArrEncode257 = WearAuthSheet.encode256(bigInteger2.modPow(bigInteger, WearAuthSheet.DH_P));
                     byte[] bArr = new byte[16];
                     secureRandom.nextBytes(bArr);
-                    byte[] bArrSha256 = WearAuthSheet.sha256(bArrEncode2562, this.sessionId, bArr);
-                    byte[] bArrSha2562 = WearAuthSheet.sha256(bArrEncode2562, this.peerPub);
+                    byte[] bArrSha256 = WearAuthSheet.sha256(bArrEncode257, this.sessionId, bArr);
+                    byte[] bArrSha257 = WearAuthSheet.sha256(bArrEncode257, this.peerPub);
                     this.privateExponent = bigInteger;
                     this.sharedKey = bArrSha256;
                     this.noncePhone = bArr;
-                    this.emojis = WearAuthSheet.emojify(bArrSha2562, 4);
+                    this.emojis = WearAuthSheet.emojify(bArrSha257, 4);
                     FileLog.d("wear-auth: built answer; session " + WearAuthSheet.hex(this.sessionId) + " emojis=" + this.emojis);
                     byte[] bArr2 = new byte[288];
                     System.arraycopy(this.sessionId, 0, bArr2, 0, 16);
@@ -421,7 +421,7 @@ public abstract class WearAuthSheet {
                     WearAuthSheet.lambda$showEmojis$7(buttonWithCounterView, exc);
                 }
             });
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
         } catch (Exception e) {
             FileLog.e(e);
             BulletinFactory.of(bottomSheet.topBulletinContainer, bottomSheet.getResourcesProvider()).showForError(e.getMessage());
@@ -462,7 +462,7 @@ public abstract class WearAuthSheet {
     public static void cancel() {
         BottomSheet bottomSheet = currentSheet;
         if (bottomSheet != null) {
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
             currentSheet = null;
         }
     }
@@ -488,7 +488,7 @@ public abstract class WearAuthSheet {
         throw new IllegalStateException("unexpected DH value size " + byteArray.length);
     }
 
-    public static byte[] sha256(byte[]... bArr) throws NoSuchAlgorithmException {
+    public static byte[] sha256(byte[]... bArr) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             for (byte[] bArr2 : bArr) {
@@ -513,12 +513,12 @@ public abstract class WearAuthSheet {
         String[] emojis = getEmojis();
         ArrayList arrayList = new ArrayList(i);
         for (int i2 = 0; i2 < i; i2++) {
-            arrayList.add(emojis[(int) (bytesToLong(bArr, i2 * 8) % emojis.length)]);
+            arrayList.add(emojis[(int) (bytesToLong(bArr, i2 * 8) % ((long) emojis.length))]);
         }
         return arrayList;
     }
 
     private static long bytesToLong(byte[] bArr, int i) {
-        return (bArr[i + 7] & 255) | ((bArr[i] & 127) << 56) | ((bArr[i + 1] & 255) << 48) | ((bArr[i + 2] & 255) << 40) | ((bArr[i + 3] & 255) << 32) | ((bArr[i + 4] & 255) << 24) | ((bArr[i + 5] & 255) << 16) | ((bArr[i + 6] & 255) << 8);
+        return (((long) bArr[i + 7]) & 255) | ((((long) bArr[i]) & 127) << 56) | ((((long) bArr[i + 1]) & 255) << 48) | ((((long) bArr[i + 2]) & 255) << 40) | ((((long) bArr[i + 3]) & 255) << 32) | ((((long) bArr[i + 4]) & 255) << 24) | ((((long) bArr[i + 5]) & 255) << 16) | ((((long) bArr[i + 6]) & 255) << 8);
     }
 }

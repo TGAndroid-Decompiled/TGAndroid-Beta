@@ -57,7 +57,8 @@ public class BotStarsController {
                         botStarsControllerArr[i] = botStarsController2;
                         botStarsController = botStarsController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -447,18 +448,16 @@ public class BotStarsController {
             MessagesController.getInstance(this.currentAccount).putUsers(connectedstarrefbots.users, false);
             for (int i = 0; i < connectedstarrefbots.connected_bots.size(); i++) {
                 TL_payments.connectedBotStarRef connectedbotstarref = connectedstarrefbots.connected_bots.get(i);
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= this.bots.size()) {
-                        break;
-                    }
-                    if (((TL_payments.connectedBotStarRef) this.bots.get(i2)).bot_id != connectedbotstarref.bot_id) {
-                        i2++;
-                    } else if (connectedbotstarref.revoked) {
-                        this.bots.remove(i2);
-                        this.count = Math.max(this.count - 1, 0);
-                    } else {
-                        this.bots.set(i2, connectedbotstarref);
+                for (int i2 = 0; i2 < this.bots.size(); i2++) {
+                    if (((TL_payments.connectedBotStarRef) this.bots.get(i2)).bot_id == connectedbotstarref.bot_id) {
+                        if (connectedbotstarref.revoked) {
+                            this.bots.remove(i2);
+                            this.count = Math.max(this.count - 1, 0);
+                            break;
+                        } else {
+                            this.bots.set(i2, connectedbotstarref);
+                            break;
+                        }
                     }
                 }
             }

@@ -1,7 +1,6 @@
 package kotlin.coroutines;
 
 import java.io.Serializable;
-import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
 
@@ -52,7 +51,10 @@ public final class CombinedContext implements CoroutineContext, Serializable {
             return this.left;
         }
         CoroutineContext coroutineContextMinusKey = this.left.minusKey(key);
-        return coroutineContextMinusKey == this.left ? this : coroutineContextMinusKey == EmptyCoroutineContext.INSTANCE ? this.element : new CombinedContext(coroutineContextMinusKey, this.element);
+        if (coroutineContextMinusKey == this.left) {
+            return this;
+        }
+        return coroutineContextMinusKey == EmptyCoroutineContext.INSTANCE ? this.element : new CombinedContext(coroutineContextMinusKey, this.element);
     }
 
     private final int size() {

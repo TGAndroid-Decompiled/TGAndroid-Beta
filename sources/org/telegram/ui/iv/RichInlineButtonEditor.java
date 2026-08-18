@@ -22,7 +22,6 @@ import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.TopicsFragment;
-import org.telegram.ui.iv.RichEditorListView;
 
 public abstract class RichInlineButtonEditor {
 

@@ -32,59 +32,61 @@ public class ForwardBackground {
         float fMax = Math.max(0, Math.min(6, SharedConfig.bubbleRadius) - 1);
         float fMin = Math.min(9, SharedConfig.bubbleRadius);
         float fMin2 = Math.min(3, SharedConfig.bubbleRadius);
-        float f = -AndroidUtilities.dp(((fMin / 9.0f) * 2.66f) + 4.0f);
-        float f2 = -AndroidUtilities.dp(3.0f);
+        float f = ((fMin / 9.0f) * 2.66f) + 4.0f;
+        float f2 = -AndroidUtilities.dp(f);
+        float f3 = -AndroidUtilities.dp(3.0f);
         float fDp2 = iDp + AndroidUtilities.dp(5.0f);
-        float lineWidth = staticLayoutArr[0].getLineWidth(0) + AndroidUtilities.dp(r8);
-        float lineWidth2 = staticLayoutArr[1].getLineWidth(0) + AndroidUtilities.dp(r8);
+        float lineWidth = staticLayoutArr[0].getLineWidth(0) + AndroidUtilities.dp(f);
+        float lineWidth2 = staticLayoutArr[1].getLineWidth(0) + AndroidUtilities.dp(f);
         this.path.rewind();
         if (!z) {
             fMax = SharedConfig.bubbleRadius / 2.0f;
         }
         float fDp3 = AndroidUtilities.dp(fMax) * 2;
-        this.r.set(f, f2, f + fDp3, fDp3 + f2);
+        this.r.set(f2, f3, f2 + fDp3, fDp3 + f3);
         this.path.arcTo(this.r, 180.0f, 90.0f);
-        float f3 = lineWidth - lineWidth2;
-        float fMax2 = Math.abs(f3) < ((float) AndroidUtilities.dp(fMin2 + fMin)) ? Math.max(lineWidth, lineWidth2) : lineWidth;
-        if (Math.abs(f3) > AndroidUtilities.dp(r12)) {
+        float f4 = lineWidth - lineWidth2;
+        float f5 = fMin2 + fMin;
+        float fMax2 = Math.abs(f4) < ((float) AndroidUtilities.dp(f5)) ? Math.max(lineWidth, lineWidth2) : lineWidth;
+        if (Math.abs(f4) > AndroidUtilities.dp(f5)) {
             float fDp4 = AndroidUtilities.dp(fMin2) * 2;
             if (lineWidth < lineWidth2) {
-                float f4 = ((fDp2 - f2) * 0.45f) + f2;
+                float f6 = ((fDp2 - f3) * 0.45f) + f3;
                 fDp = AndroidUtilities.dp(fMin) * 2;
-                this.r.set(fMax2 - fDp, f2, fMax2, f2 + fDp);
+                this.r.set(fMax2 - fDp, f3, fMax2, f3 + fDp);
                 this.path.arcTo(this.r, 270.0f, 90.0f);
-                this.r.set(lineWidth, f4 - fDp4, fDp4 + lineWidth, f4);
+                this.r.set(lineWidth, f6 - fDp4, fDp4 + lineWidth, f6);
                 this.path.arcTo(this.r, 180.0f, -90.0f);
-                float f5 = lineWidth2 - (fDp2 - f4);
-                this.r.set(f5, f4, lineWidth2, fDp2);
+                float f7 = lineWidth2 - (fDp2 - f6);
+                this.r.set(f7, f6, lineWidth2, fDp2);
                 this.path.arcTo(this.r, 270.0f, 90.0f);
-                this.r.set(f5, f4, lineWidth2, fDp2);
+                this.r.set(f7, f6, lineWidth2, fDp2);
                 this.path.arcTo(this.r, 0.0f, 90.0f);
             } else {
-                float f6 = ((fDp2 - f2) * 0.55f) + f2;
-                float f7 = f6 - f2;
-                this.r.set(fMax2 - f7, f2, fMax2, f6);
+                float f8 = ((fDp2 - f3) * 0.55f) + f3;
+                float f9 = f8 - f3;
+                this.r.set(fMax2 - f9, f3, fMax2, f8);
                 this.path.arcTo(this.r, 270.0f, 90.0f);
                 fDp = AndroidUtilities.dp(fMin) * 2;
-                this.r.set(lineWidth - f7, f2, lineWidth, f6);
+                this.r.set(lineWidth - f9, f3, lineWidth, f8);
                 this.path.arcTo(this.r, 0.0f, 90.0f);
-                this.r.set(lineWidth2, f6, lineWidth2 + fDp4, fDp4 + f6);
+                this.r.set(lineWidth2, f8, lineWidth2 + fDp4, fDp4 + f8);
                 this.path.arcTo(this.r, 270.0f, -90.0f);
                 this.r.set(lineWidth2 - fDp, fDp2 - fDp, lineWidth2, fDp2);
                 this.path.arcTo(this.r, 0.0f, 90.0f);
             }
         } else {
             fDp = AndroidUtilities.dp(fMin) * 2;
-            float f8 = fMax2 - fDp;
-            this.r.set(f8, f2, fMax2, f2 + fDp);
+            float f10 = fMax2 - fDp;
+            this.r.set(f10, f3, fMax2, f3 + fDp);
             this.path.arcTo(this.r, 270.0f, 90.0f);
-            this.r.set(f8, fDp2 - fDp, fMax2, fDp2);
+            this.r.set(f10, fDp2 - fDp, fMax2, fDp2);
             this.path.arcTo(this.r, 0.0f, 90.0f);
         }
-        this.r.set(f, fDp2 - fDp, fDp + f, fDp2);
+        this.r.set(f2, fDp2 - fDp, fDp + f2, fDp2);
         this.path.arcTo(this.r, 90.0f, 90.0f);
         this.path.close();
-        this.bounds.set((int) f, (int) f2, (int) Math.max(lineWidth, lineWidth2), (int) fDp2);
+        this.bounds.set((int) f2, (int) f3, (int) Math.max(lineWidth, lineWidth2), (int) fDp2);
     }
 
     public void setColor(int i) {

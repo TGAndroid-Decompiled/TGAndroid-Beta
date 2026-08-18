@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Pair;
@@ -18,10 +22,13 @@ import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.collection.LongSparseArray;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Consumer;
 import j$.util.Collection;
 import j$.util.DesugarArrays;
+import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
 import j$.util.function.Consumer$CC;
 import j$.util.function.Function$CC;
@@ -43,25 +50,23 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Function;
 import java.util.function.IntFunction;
+import java.util.function.LongFunction;
 import java.util.function.ToLongFunction;
 import me.vkryl.core.BitwiseUtils;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SavedMessagesController;
-import org.telegram.messenger.Timer;
-import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.support.LongSparseLongArray;
 import org.telegram.messenger.utils.EphemeralMessagesHelper;
+import org.telegram.messenger.voip.ConferenceCall;
 import org.telegram.messenger.voip.VoIPDebugToSend;
+import org.telegram.messenger.voip.VoIPPreNotificationService;
+import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
@@ -76,26 +81,32 @@ import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_forum;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatRightsEditActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+import org.telegram.ui.Components.TranscribeButton;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.MainTabsActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.SecretMediaViewer;
+import org.telegram.ui.Stars.BotStarsController;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stories.HighlightMessageSheet;
 import org.telegram.ui.Stories.StoriesController;
@@ -849,7 +860,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 return;
             }
             if (tLObject instanceof TLRPC.TL_help_appConfig) {
-                callback4.run(Boolean.FALSE, (TLRPC.TL_help_appConfig) tLObject, Long.valueOf(r5.hash), Boolean.TRUE);
+                TLRPC.TL_help_appConfig tL_help_appConfig = (TLRPC.TL_help_appConfig) tLObject;
+                callback4.run(Boolean.FALSE, tL_help_appConfig, Long.valueOf(tL_help_appConfig.hash), Boolean.TRUE);
                 return;
             }
             StringBuilder sb = new StringBuilder();
@@ -874,8 +886,64 @@ public class MessagesController extends BaseController implements NotificationCe
             });
         }
 
-        public static void lambda$getLocal$1(int r7, org.telegram.messenger.Utilities.Callback2 r8) throws java.lang.Throwable {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.AnonymousClass1.lambda$getLocal$1(int, org.telegram.messenger.Utilities$Callback2):void");
+        public static void lambda$getLocal$1(int i, Utilities.Callback2 callback2) throws Throwable {
+            SQLiteCursor sQLiteCursorQueryFinalized;
+            TLRPC.help_AppConfig help_appconfigTLdeserialize;
+            NativeByteBuffer nativeByteBufferByteBufferValue;
+            SQLiteCursor sQLiteCursor = 0;
+            SQLiteCursor sQLiteCursor2 = null;
+            try {
+                try {
+                    SQLiteDatabase database = MessagesStorage.getInstance(i).getDatabase();
+                    if (database != null) {
+                        sQLiteCursorQueryFinalized = database.queryFinalized("SELECT data FROM app_config", new Object[0]);
+                        try {
+                            if (!sQLiteCursorQueryFinalized.next() || (nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0)) == null) {
+                                help_appconfigTLdeserialize = null;
+                            } else {
+                                help_appconfigTLdeserialize = TLRPC.help_AppConfig.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), true);
+                                nativeByteBufferByteBufferValue.reuse();
+                            }
+                            if (help_appconfigTLdeserialize instanceof TLRPC.TL_help_appConfig) {
+                                TLRPC.TL_help_appConfig tL_help_appConfig = (TLRPC.TL_help_appConfig) help_appconfigTLdeserialize;
+                                callback2.run(Long.valueOf(tL_help_appConfig.hash), tL_help_appConfig);
+                            } else {
+                                callback2.run(0L, null);
+                            }
+                            sQLiteCursor2 = sQLiteCursorQueryFinalized;
+                        } catch (Exception e) {
+                            e = e;
+                            FileLog.e(e);
+                            callback2.run(0L, null);
+                            if (sQLiteCursorQueryFinalized == null) {
+                                return;
+                            } else {
+                                sQLiteCursor2 = sQLiteCursorQueryFinalized;
+                            }
+                        }
+                    }
+                    if (sQLiteCursor2 == null) {
+                        return;
+                    }
+                } catch (Throwable th) {
+                    th = th;
+                    sQLiteCursor = i;
+                    if (sQLiteCursor != 0) {
+                        sQLiteCursor.dispose();
+                    }
+                    throw th;
+                }
+            } catch (Exception e2) {
+                e = e2;
+                sQLiteCursorQueryFinalized = null;
+            } catch (Throwable th2) {
+                th = th2;
+                if (sQLiteCursor != 0) {
+                    sQLiteCursor.dispose();
+                }
+                throw th;
+            }
+            sQLiteCursor2.dispose();
         }
 
         @Override
@@ -954,8 +1022,76 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$getNextReactionMentionInternal$4(long r16, java.lang.String r18, long r19, java.lang.String r21, boolean r22, boolean r23, final androidx.core.util.Consumer r24, int r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$getNextReactionMentionInternal$4(long, java.lang.String, long, java.lang.String, boolean, boolean, androidx.core.util.Consumer, int):void");
+    public void lambda$getNextReactionMentionInternal$4(long j, String str, long j2, String str2, boolean z, boolean z2, final Consumer consumer, int i) {
+        boolean z3;
+        Object obj;
+        TLRPC.TL_messages_getUnreadReactions tL_messages_getUnreadReactions;
+        SQLiteCursor sQLiteCursorQueryFinalized;
+        final int iIntValue;
+        try {
+            if (j != 0) {
+                sQLiteCursorQueryFinalized = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT message_id FROM %s WHERE state = 1 AND dialog_id = %d AND topic_id = %d LIMIT 1", str, Long.valueOf(j2), Long.valueOf(j)), new Object[0]);
+            } else {
+                sQLiteCursorQueryFinalized = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT message_id FROM %s WHERE state = 1 AND dialog_id = %d LIMIT 1", str2, Long.valueOf(j2)), new Object[0]);
+            }
+            if (sQLiteCursorQueryFinalized.next()) {
+                iIntValue = sQLiteCursorQueryFinalized.intValue(0);
+                z3 = false;
+            } else {
+                iIntValue = 0;
+                z3 = true;
+            }
+            try {
+                sQLiteCursorQueryFinalized.dispose();
+                if (iIntValue != 0) {
+                    if (z) {
+                        getMessagesStorage().markMessageReactionsAsRead(j2, j, iIntValue);
+                    }
+                    if (z2) {
+                        getMessagesStorage().markMessagePollVotesAsRead(j2, j, iIntValue);
+                    }
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            MessagesController.lambda$getNextReactionMentionInternal$1(consumer, iIntValue);
+                        }
+                    });
+                }
+            } catch (SQLiteException e) {
+                e = e;
+                e.printStackTrace();
+            }
+        } catch (SQLiteException e2) {
+            e = e2;
+            z3 = true;
+        }
+        if (z3) {
+            if (z) {
+                tL_messages_getUnreadReactions = new TLRPC.TL_messages_getUnreadReactions();
+                tL_messages_getUnreadReactions.peer = getMessagesController().getInputPeer(j2);
+                tL_messages_getUnreadReactions.limit = 1;
+                tL_messages_getUnreadReactions.add_offset = i - 1;
+                if (isMonoForum(j2) && j != 0) {
+                    tL_messages_getUnreadReactions.saved_peer_id = getInputPeer(j);
+                    tL_messages_getUnreadReactions.flags |= 2;
+                    obj = tL_messages_getUnreadReactions;
+                }
+            } else {
+                TLRPC.TL_messages_getUnreadPollVotes tL_messages_getUnreadPollVotes = new TLRPC.TL_messages_getUnreadPollVotes();
+                tL_messages_getUnreadPollVotes.peer = getMessagesController().getInputPeer(j2);
+                tL_messages_getUnreadPollVotes.limit = 1;
+                tL_messages_getUnreadPollVotes.add_offset = i - 1;
+                obj = tL_messages_getUnreadPollVotes;
+            }
+            obj = tL_messages_getUnreadReactions;
+            obj = tL_messages_getUnreadReactions;
+            getConnectionsManager().sendRequestTyped(obj, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj2, Object obj3) {
+                    MessagesController.lambda$getNextReactionMentionInternal$3(consumer, (TLRPC.messages_Messages) obj2, (TLRPC.TL_error) obj3);
+                }
+            });
+        }
     }
 
     public static void lambda$getNextReactionMentionInternal$1(Consumer consumer, int i) {
@@ -986,16 +1122,11 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         if (!z) {
             if (!this.dialogFilters.get(0).isDefault()) {
-                int i = 1;
-                while (true) {
-                    if (i >= this.dialogFilters.size()) {
-                        break;
-                    }
+                for (int i = 1; i < this.dialogFilters.size(); i++) {
                     if (this.dialogFilters.get(i).isDefault()) {
                         this.dialogFilters.add(0, this.dialogFilters.remove(i));
                         break;
                     }
-                    i++;
                 }
             }
             lockFiltersInternal();
@@ -1122,37 +1253,38 @@ public class MessagesController extends BaseController implements NotificationCe
         int i = 0;
         for (int i2 = 0; i2 < tL_messages_stickerSet.documents.size(); i2++) {
             try {
-            } catch (Exception e2) {
-                tL_messages_stickerSet2 = tL_messages_stickerSet;
-                e = e2;
-            }
-            if (MessageObject.isPremiumSticker(tL_messages_stickerSet.documents.get(i2))) {
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_messages_stickerSet.getObjectSize());
-                tL_messages_stickerSet.serializeToStream(nativeByteBuffer);
-                nativeByteBuffer.position(0);
-                tL_messages_stickerSet2 = new TLRPC.TL_messages_stickerSet();
-                nativeByteBuffer.readInt32(true);
-                tL_messages_stickerSet2.readParams(nativeByteBuffer, true);
-                nativeByteBuffer.reuse();
-                while (i < tL_messages_stickerSet2.documents.size()) {
-                    try {
-                        if (MessageObject.isPremiumSticker(tL_messages_stickerSet2.documents.get(i))) {
-                            tL_messages_stickerSet2.documents.remove(i);
-                            tL_messages_stickerSet2.packs.remove(i);
-                            i--;
-                            if (tL_messages_stickerSet2.documents.isEmpty()) {
-                                return null;
+                if (MessageObject.isPremiumSticker(tL_messages_stickerSet.documents.get(i2))) {
+                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_messages_stickerSet.getObjectSize());
+                    tL_messages_stickerSet.serializeToStream(nativeByteBuffer);
+                    nativeByteBuffer.position(0);
+                    tL_messages_stickerSet2 = new TLRPC.TL_messages_stickerSet();
+                    nativeByteBuffer.readInt32(true);
+                    tL_messages_stickerSet2.readParams(nativeByteBuffer, true);
+                    nativeByteBuffer.reuse();
+                    while (i < tL_messages_stickerSet2.documents.size()) {
+                        try {
+                            if (MessageObject.isPremiumSticker(tL_messages_stickerSet2.documents.get(i))) {
+                                tL_messages_stickerSet2.documents.remove(i);
+                                tL_messages_stickerSet2.packs.remove(i);
+                                i--;
+                                if (tL_messages_stickerSet2.documents.isEmpty()) {
+                                    return null;
+                                }
                             }
+                            i++;
+                        } catch (Exception e2) {
+                            e = e2;
+                            e.printStackTrace();
                         }
-                        i++;
-                    } catch (Exception e3) {
-                        e = e3;
-                        e.printStackTrace();
-                        return tL_messages_stickerSet2;
                     }
+                    return tL_messages_stickerSet2;
                 }
-                return tL_messages_stickerSet2;
+            } catch (Exception e3) {
+                tL_messages_stickerSet2 = tL_messages_stickerSet;
+                e = e3;
             }
+            e.printStackTrace();
+            return tL_messages_stickerSet2;
         }
         return tL_messages_stickerSet;
     }
@@ -1317,6 +1449,10 @@ public class MessagesController extends BaseController implements NotificationCe
 
         SendAsPeersInfo(MessagesController messagesController, AnonymousClass1 anonymousClass1) {
             this();
+        }
+
+        static TLRPC.TL_channels_sendAsPeers access$400(SendAsPeersInfo sendAsPeersInfo) {
+            return sendAsPeersInfo.sendAsPeers;
         }
     }
 
@@ -1683,7 +1819,8 @@ public class MessagesController extends BaseController implements NotificationCe
                         messagesControllerArr[i] = messagesController2;
                         messagesController = messagesController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -2347,8 +2484,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 byte[] bArrDecode2 = Base64.decode(string2, 0);
                 if (bArrDecode2 != null) {
                     SerializedData serializedData2 = new SerializedData(bArrDecode2);
-                    int int322 = serializedData2.readInt32(true);
-                    for (int i6 = 0; i6 < int322; i6++) {
+                    int int33 = serializedData2.readInt32(true);
+                    for (int i6 = 0; i6 < int33; i6++) {
                         this.emojiSounds.put(serializedData2.readString(true), new EmojiSound(serializedData2.readInt64(true), serializedData2.readInt64(true), serializedData2.readByteArray(true)));
                     }
                     serializedData2.cleanup();
@@ -2374,8 +2511,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 byte[] bArrDecode3 = Base64.decode(string3, 0);
                 if (bArrDecode3 != null) {
                     SerializedData serializedData3 = new SerializedData(bArrDecode3);
-                    int int323 = serializedData3.readInt32(true);
-                    for (int i7 = 0; i7 < int323; i7++) {
+                    int int34 = serializedData3.readInt32(true);
+                    for (int i7 = 0; i7 < int34; i7++) {
                         this.gifSearchEmojies.add(serializedData3.readString(true));
                     }
                     serializedData3.cleanup();
@@ -2494,18 +2631,20 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_messages_getChats tL_messages_getChats;
         TLRPC.TL_channels_getChannels tL_channels_getChannels;
         ArrayList<TLObject> arrayList5 = new ArrayList<>();
+        Iterator it = map.entrySet().iterator();
         loop0: while (true) {
             tL_users_getUsers = null;
-            for (Map.Entry entry : map.entrySet()) {
+            do {
+                if (!it.hasNext()) {
+                    break loop0;
+                }
+                Map.Entry entry = (Map.Entry) it.next();
                 if (tL_users_getUsers == null) {
                     tL_users_getUsers = new TLRPC.TL_users_getUsers();
                     arrayList5.add(tL_users_getUsers);
                 }
                 tL_users_getUsers.id.add(getInputUser((TLRPC.InputPeer) entry.getValue()));
-                if (tL_users_getUsers.id.size() == 100) {
-                    break;
-                }
-            }
+            } while (tL_users_getUsers.id.size() != 100);
             sendLoadPeersRequest(tL_users_getUsers, arrayList5, messages_dialogs, messages_dialogs2, arrayList, arrayList2, arrayList3, sparseArray, arrayList4, map2, hashSet, runnable);
         }
         if (tL_users_getUsers != null) {
@@ -2555,9 +2694,14 @@ public class MessagesController extends BaseController implements NotificationCe
         if (tL_channels_getChannels2 != null) {
             sendLoadPeersRequest(tL_channels_getChannels2, arrayList5, messages_dialogs, messages_dialogs2, arrayList, arrayList2, arrayList3, sparseArray, arrayList4, map2, hashSet, runnable);
         }
+        Iterator it2 = map4.entrySet().iterator();
         loop3: while (true) {
             tL_messages_getPeerDialogs = null;
-            for (Map.Entry entry3 : map4.entrySet()) {
+            do {
+                if (!it2.hasNext()) {
+                    break loop3;
+                }
+                Map.Entry entry3 = (Map.Entry) it2.next();
                 if (tL_messages_getPeerDialogs == null) {
                     tL_messages_getPeerDialogs = new TLRPC.TL_messages_getPeerDialogs();
                     arrayList5.add(tL_messages_getPeerDialogs);
@@ -2565,10 +2709,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 TLRPC.TL_inputDialogPeer tL_inputDialogPeer = new TLRPC.TL_inputDialogPeer();
                 tL_inputDialogPeer.peer = (TLRPC.InputPeer) entry3.getValue();
                 tL_messages_getPeerDialogs.peers.add(tL_inputDialogPeer);
-                if (tL_messages_getPeerDialogs.peers.size() == i) {
-                    break;
-                }
-            }
+            } while (tL_messages_getPeerDialogs.peers.size() != i);
             sendLoadPeersRequest(tL_messages_getPeerDialogs, arrayList5, messages_dialogs, messages_dialogs2, arrayList, arrayList2, arrayList3, sparseArray, arrayList4, map2, hashSet, runnable);
         }
         if (tL_messages_getPeerDialogs != null) {
@@ -2585,12 +2726,428 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$processLoadedDialogFilters$23(org.telegram.tgnet.TLRPC.messages_Dialogs r20, final java.util.ArrayList r21, final org.telegram.tgnet.TLRPC.messages_Dialogs r22, final int r23, final java.util.ArrayList r24, final java.util.ArrayList r25, final java.util.ArrayList r26, final java.lang.Runnable r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processLoadedDialogFilters$23(org.telegram.tgnet.TLRPC$messages_Dialogs, java.util.ArrayList, org.telegram.tgnet.TLRPC$messages_Dialogs, int, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.lang.Runnable):void");
+    public void lambda$processLoadedDialogFilters$23(TLRPC.messages_Dialogs messages_dialogs, final ArrayList arrayList, final TLRPC.messages_Dialogs messages_dialogs2, final int i, final ArrayList arrayList2, final ArrayList arrayList3, final ArrayList arrayList4, final Runnable runnable) {
+        SparseArray sparseArray;
+        long j;
+        LongSparseArray longSparseArray;
+        TLRPC.Chat chat;
+        Integer num;
+        Integer num2;
+        ArrayList arrayList5;
+        TLRPC.Message message;
+        int i2;
+        TLRPC.Chat chat2;
+        MessageObject messageObject;
+        int i3;
+        long dialogId;
+        TLRPC.messages_Dialogs messages_dialogs3 = messages_dialogs;
+        final LongSparseArray longSparseArray2 = new LongSparseArray();
+        final LongSparseArray longSparseArray3 = new LongSparseArray();
+        LongSparseArray longSparseArray4 = new LongSparseArray();
+        LongSparseArray longSparseArray5 = new LongSparseArray();
+        for (int i4 = 0; i4 < messages_dialogs3.users.size(); i4++) {
+            TLRPC.User user = messages_dialogs3.users.get(i4);
+            longSparseArray4.put(user.id, user);
+        }
+        for (int i5 = 0; i5 < messages_dialogs3.chats.size(); i5++) {
+            TLRPC.Chat chat3 = messages_dialogs3.chats.get(i5);
+            longSparseArray5.put(chat3.id, chat3);
+        }
+        if (arrayList != null) {
+            sparseArray = new SparseArray();
+            int size = arrayList.size();
+            for (int i6 = 0; i6 < size; i6++) {
+                TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) arrayList.get(i6);
+                sparseArray.put(encryptedChat.id, encryptedChat);
+            }
+        } else {
+            sparseArray = null;
+        }
+        ArrayList arrayList6 = new ArrayList();
+        int i7 = 0;
+        while (true) {
+            j = 0;
+            if (i7 >= messages_dialogs3.messages.size()) {
+                break;
+            }
+            TLRPC.Message message2 = messages_dialogs3.messages.get(i7);
+            TLRPC.Peer peer = message2.peer_id;
+            long j2 = peer.channel_id;
+            if (j2 != 0) {
+                TLRPC.Chat chat4 = (TLRPC.Chat) longSparseArray5.get(j2);
+                if (chat4 != null && chat4.left) {
+                    long j3 = this.promoDialogId;
+                    if (j3 == 0 || j3 != (-chat4.id)) {
+                        i3 = i7;
+                    }
+                }
+                i3 = i7;
+                messageObject = new MessageObject(this.currentAccount, message2, longSparseArray4, longSparseArray5, false, false);
+                arrayList6.add(messageObject);
+                dialogId = messageObject.getDialogId();
+                if (longSparseArray3.containsKey(dialogId)) {
+                    ((ArrayList) longSparseArray3.get(dialogId)).add(messageObject);
+                } else {
+                    ArrayList arrayList7 = new ArrayList(1);
+                    arrayList7.add(messageObject);
+                    longSparseArray3.put(dialogId, arrayList7);
+                }
+            } else {
+                long j4 = peer.chat_id;
+                if (j4 == 0 || (chat2 = (TLRPC.Chat) longSparseArray5.get(j4)) == null || chat2.migrated_to == null) {
+                    i3 = i7;
+                    messageObject = new MessageObject(this.currentAccount, message2, longSparseArray4, longSparseArray5, false, false);
+                    arrayList6.add(messageObject);
+                    dialogId = messageObject.getDialogId();
+                    if (longSparseArray3.containsKey(dialogId)) {
+                        ((ArrayList) longSparseArray3.get(dialogId)).add(messageObject);
+                    } else {
+                        ArrayList arrayList8 = new ArrayList(1);
+                        arrayList8.add(messageObject);
+                        longSparseArray3.put(dialogId, arrayList8);
+                    }
+                } else {
+                    i3 = i7;
+                }
+            }
+            i7 = i3 + 1;
+        }
+        int i8 = 0;
+        while (i8 < messages_dialogs3.dialogs.size()) {
+            TLRPC.Dialog dialog = messages_dialogs3.dialogs.get(i8);
+            DialogObject.initDialog(dialog);
+            LongSparseArray longSparseArray6 = longSparseArray4;
+            long j5 = dialog.id;
+            if (j5 != j && (!DialogObject.isEncryptedDialog(j5) || sparseArray == null || sparseArray.get(DialogObject.getEncryptedChatId(dialog.id)) != null)) {
+                long j6 = this.promoDialogId;
+                if (j6 != j && j6 == dialog.id) {
+                    this.promoDialog = dialog;
+                }
+                if (dialog.last_message_date == 0 && (arrayList5 = (ArrayList) longSparseArray3.get(dialog.id)) != null) {
+                    int i9 = Integer.MIN_VALUE;
+                    for (int i10 = 0; i10 < arrayList5.size(); i10++) {
+                        MessageObject messageObject2 = (MessageObject) arrayList5.get(i10);
+                        if (messageObject2 != null && (message = messageObject2.messageOwner) != null && i9 < (i2 = message.date)) {
+                            i9 = i2;
+                        }
+                    }
+                    if (i9 > Integer.MIN_VALUE) {
+                        dialog.last_message_date = i9;
+                    }
+                }
+                if (DialogObject.isChannel(dialog)) {
+                    TLRPC.Chat chat5 = (TLRPC.Chat) longSparseArray5.get(-dialog.id);
+                    if (chat5 != null && chat5.left) {
+                        long j7 = this.promoDialogId;
+                        if (j7 == 0 || j7 != dialog.id) {
+                        }
+                    }
+                    this.channelsPts.put(-dialog.id, dialog.pts);
+                    longSparseArray2.put(dialog.id, dialog);
+                    num = this.dialogs_read_inbox_max.get(Long.valueOf(dialog.id));
+                    if (num == null) {
+                        num = 0;
+                    }
+                    this.dialogs_read_inbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num.intValue(), dialog.read_inbox_max_id)));
+                    num2 = this.dialogs_read_outbox_max.get(Long.valueOf(dialog.id));
+                    if (num2 == null) {
+                        num2 = 0;
+                    }
+                    this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num2.intValue(), dialog.read_outbox_max_id)));
+                } else {
+                    long j8 = dialog.id;
+                    if (j8 >= 0 || (chat = (TLRPC.Chat) longSparseArray5.get(-j8)) == null || chat.migrated_to == null) {
+                        longSparseArray2.put(dialog.id, dialog);
+                        num = this.dialogs_read_inbox_max.get(Long.valueOf(dialog.id));
+                        if (num == null) {
+                            num = 0;
+                        }
+                        this.dialogs_read_inbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num.intValue(), dialog.read_inbox_max_id)));
+                        num2 = this.dialogs_read_outbox_max.get(Long.valueOf(dialog.id));
+                        if (num2 == null) {
+                            num2 = 0;
+                        }
+                        this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num2.intValue(), dialog.read_outbox_max_id)));
+                    }
+                }
+            }
+            i8++;
+            messages_dialogs3 = messages_dialogs;
+            longSparseArray4 = longSparseArray6;
+            j = 0;
+        }
+        LongSparseArray longSparseArray7 = longSparseArray4;
+        if (messages_dialogs2 != null && !messages_dialogs2.dialogs.isEmpty()) {
+            ImageLoader.saveMessagesThumbs(messages_dialogs2.messages);
+            int i11 = 0;
+            while (i11 < messages_dialogs2.messages.size()) {
+                TLRPC.Message message3 = messages_dialogs2.messages.get(i11);
+                TLRPC.MessageAction messageAction = message3.action;
+                if (messageAction instanceof TLRPC.TL_messageActionChatDeleteUser) {
+                    longSparseArray = longSparseArray7;
+                    TLRPC.User user2 = (TLRPC.User) longSparseArray.get(messageAction.user_id);
+                    if (user2 != null && user2.bot) {
+                        message3.reply_markup = new TLRPC.TL_replyKeyboardHide();
+                        message3.flags |= 64;
+                    }
+                } else {
+                    longSparseArray = longSparseArray7;
+                }
+                TLRPC.MessageAction messageAction2 = message3.action;
+                if ((messageAction2 instanceof TLRPC.TL_messageActionChatMigrateTo) || (messageAction2 instanceof TLRPC.TL_messageActionChannelCreate)) {
+                    message3.unread = false;
+                    message3.media_unread = false;
+                } else {
+                    ConcurrentHashMap<Long, Integer> concurrentHashMap = message3.out ? this.dialogs_read_outbox_max : this.dialogs_read_inbox_max;
+                    Integer numValueOf = concurrentHashMap.get(Long.valueOf(message3.dialog_id));
+                    if (numValueOf == null) {
+                        numValueOf = Integer.valueOf(getMessagesStorage().getDialogReadMax(message3.out, message3.dialog_id));
+                        concurrentHashMap.put(Long.valueOf(message3.dialog_id), numValueOf);
+                    }
+                    message3.unread = numValueOf.intValue() < message3.id;
+                }
+                i11++;
+                longSparseArray7 = longSparseArray;
+            }
+            getMessagesStorage().putDialogs(messages_dialogs2, 0);
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$processLoadedDialogFilters$22(i, arrayList2, arrayList3, arrayList4, messages_dialogs2, arrayList, longSparseArray2, longSparseArray3, runnable);
+            }
+        });
     }
 
-    public void lambda$processLoadedDialogFilters$22(int r22, java.util.ArrayList r23, java.util.ArrayList r24, java.util.ArrayList r25, org.telegram.tgnet.TLRPC.messages_Dialogs r26, java.util.ArrayList r27, androidx.collection.LongSparseArray r28, androidx.collection.LongSparseArray r29, java.lang.Runnable r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processLoadedDialogFilters$22(int, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, org.telegram.tgnet.TLRPC$messages_Dialogs, java.util.ArrayList, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, java.lang.Runnable):void");
+    public void lambda$processLoadedDialogFilters$22(int i, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, TLRPC.messages_Dialogs messages_dialogs, ArrayList arrayList4, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, Runnable runnable) {
+        int i2;
+        ArrayList arrayList5;
+        ArrayList arrayList6;
+        int i3;
+        MessageObject messageObject;
+        int i4;
+        MessageObject messageObject2;
+        long j;
+        if (i != 2) {
+            this.dialogFilters = arrayList;
+            this.dialogFiltersById.clear();
+            int size = this.dialogFilters.size();
+            for (int i5 = 0; i5 < size; i5++) {
+                DialogFilter dialogFilter = this.dialogFilters.get(i5);
+                this.dialogFiltersById.put(dialogFilter.id, dialogFilter);
+            }
+            Collections.sort(this.dialogFilters, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    return MessagesController.lambda$processLoadedDialogFilters$21((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
+                }
+            });
+            putUsers(arrayList2, true);
+            putChats(arrayList3, true);
+            this.dialogFiltersLoaded = true;
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogFiltersUpdated, new Object[0]);
+            if (i == 0) {
+                loadRemoteFilters(false);
+            }
+            if (messages_dialogs != null && !messages_dialogs.dialogs.isEmpty()) {
+                applyDialogsNotificationsSettings(messages_dialogs.dialogs);
+            }
+            if (arrayList4 != null) {
+                for (int i6 = 0; i6 < arrayList4.size(); i6++) {
+                    TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) arrayList4.get(i6);
+                    if ((encryptedChat instanceof TLRPC.TL_encryptedChat) && AndroidUtilities.getMyLayerVersion(encryptedChat.layer) < SecretChatHelper.CURRENT_SECRET_CHAT_LAYER) {
+                        getSecretChatHelper().sendNotifyLayerMessage(encryptedChat, null);
+                    }
+                    putEncryptedChat(encryptedChat, true);
+                }
+            }
+            for (int i7 = 0; i7 < longSparseArray.size(); i7++) {
+                long jKeyAt = longSparseArray.keyAt(i7);
+                TLRPC.Dialog dialog = (TLRPC.Dialog) longSparseArray.valueAt(i7);
+                TLRPC.Dialog dialog2 = (TLRPC.Dialog) this.dialogs_dict.get(jKeyAt);
+                if (messages_dialogs != null && messages_dialogs.dialogs.contains(dialog)) {
+                    if (dialog.draft instanceof TLRPC.TL_draftMessage) {
+                        getMediaDataController().saveDraft(dialog.id, 0L, dialog.draft, null, false);
+                    }
+                    if (dialog2 != null) {
+                        dialog2.notify_settings = dialog.notify_settings;
+                    }
+                }
+                ArrayList arrayList7 = (ArrayList) longSparseArray2.get(dialog.id);
+                long j2 = 0;
+                if (dialog2 == null) {
+                    this.dialogs_dict.put(jKeyAt, dialog);
+                    this.dialogMessage.put(jKeyAt, arrayList7);
+                    if (arrayList7 != null) {
+                        for (int i8 = 0; i8 < arrayList7.size(); i8++) {
+                            MessageObject messageObject3 = (MessageObject) arrayList7.get(i8);
+                            if (messageObject3 != null && messageObject3.messageOwner.peer_id.channel_id == 0) {
+                                this.dialogMessagesByIds.put(messageObject3.getId(), messageObject3);
+                                long j3 = messageObject3.messageOwner.random_id;
+                                if (j3 != 0) {
+                                    this.dialogMessagesByRandomIds.put(j3, messageObject3);
+                                }
+                            }
+                        }
+                    }
+                    getTranslateController().checkDialogMessage(jKeyAt);
+                } else {
+                    dialog2.pinned = dialog.pinned;
+                    dialog2.pinnedNum = dialog.pinnedNum;
+                    ArrayList arrayList8 = (ArrayList) this.dialogMessage.get(jKeyAt);
+                    int i9 = 0;
+                    while (true) {
+                        if (arrayList8 != null && i9 < arrayList8.size()) {
+                            if (arrayList8.get(i9) == null || !((MessageObject) arrayList8.get(i9)).deleted) {
+                                i9++;
+                            }
+                        } else if (arrayList8 != null && dialog2.top_message <= 0) {
+                            this.dialogs_dict.put(jKeyAt, dialog);
+                            this.dialogMessage.put(jKeyAt, arrayList7);
+                            int i10 = 0;
+                            while (i10 < arrayList8.size()) {
+                                MessageObject messageObject4 = (MessageObject) arrayList8.get(i10);
+                                if (messageObject4 == null) {
+                                    arrayList6 = arrayList8;
+                                } else {
+                                    arrayList6 = arrayList8;
+                                    if (messageObject4.messageOwner.peer_id.channel_id == 0) {
+                                        this.dialogMessagesByIds.remove(messageObject4.getId());
+                                    }
+                                    long j4 = messageObject4.messageOwner.random_id;
+                                    if (j4 != 0) {
+                                        this.dialogMessagesByRandomIds.remove(j4);
+                                    }
+                                }
+                                i10++;
+                                arrayList8 = arrayList6;
+                            }
+                            ArrayList arrayList9 = arrayList8;
+                            if (arrayList7 != null) {
+                                int i11 = 0;
+                                while (i11 < arrayList7.size()) {
+                                    MessageObject messageObject5 = (MessageObject) arrayList7.get(i11);
+                                    if (messageObject5 == null || messageObject5.messageOwner.peer_id.channel_id != j2) {
+                                        arrayList5 = arrayList9;
+                                    } else {
+                                        int i12 = 0;
+                                        while (true) {
+                                            arrayList5 = arrayList9;
+                                            if (i12 >= arrayList9.size()) {
+                                                break;
+                                            }
+                                            MessageObject messageObject6 = (MessageObject) arrayList5.get(i12);
+                                            if (messageObject6 != null && messageObject6.getId() == messageObject5.getId()) {
+                                                messageObject5.deleted = messageObject6.deleted;
+                                                break;
+                                            } else {
+                                                i12++;
+                                                arrayList9 = arrayList5;
+                                            }
+                                        }
+                                        this.dialogMessagesByIds.put(messageObject5.getId(), messageObject5);
+                                        long j5 = messageObject5.messageOwner.random_id;
+                                        if (j5 != 0) {
+                                            this.dialogMessagesByRandomIds.put(j5, messageObject5);
+                                        }
+                                    }
+                                    i11++;
+                                    arrayList9 = arrayList5;
+                                    j2 = 0;
+                                }
+                            }
+                            getTranslateController().checkDialogMessage(jKeyAt);
+                        }
+                        if (dialog.top_message >= dialog2.top_message) {
+                            this.dialogs_dict.put(jKeyAt, dialog);
+                            this.dialogMessage.put(jKeyAt, arrayList7);
+                            if (arrayList8 != null) {
+                                for (i4 = 0; i4 < arrayList8.size(); i4++) {
+                                    messageObject2 = (MessageObject) arrayList8.get(i4);
+                                    if (messageObject2 != null) {
+                                        if (messageObject2.messageOwner.peer_id.channel_id == 0) {
+                                            this.dialogMessagesByIds.remove(messageObject2.getId());
+                                        }
+                                        j = messageObject2.messageOwner.random_id;
+                                        if (j != 0) {
+                                            this.dialogMessagesByRandomIds.remove(j);
+                                        }
+                                    }
+                                }
+                            }
+                            if (arrayList7 != null) {
+                                for (i3 = 0; i3 < arrayList7.size(); i3++) {
+                                    messageObject = (MessageObject) arrayList7.get(i3);
+                                    if (messageObject == null && messageObject.messageOwner.peer_id.channel_id == 0) {
+                                        for (int i13 = 0; arrayList8 != null && i13 < arrayList8.size(); i13++) {
+                                            MessageObject messageObject7 = (MessageObject) arrayList8.get(i13);
+                                            if (messageObject7 != null && messageObject7.getId() == messageObject.getId()) {
+                                                messageObject.deleted = messageObject7.deleted;
+                                                break;
+                                            }
+                                        }
+                                        this.dialogMessagesByIds.put(messageObject.getId(), messageObject);
+                                        long j6 = messageObject.messageOwner.random_id;
+                                        if (j6 != 0) {
+                                            this.dialogMessagesByRandomIds.put(j6, messageObject);
+                                        }
+                                    }
+                                }
+                            }
+                            getTranslateController().checkDialogMessage(jKeyAt);
+                        } else if ((arrayList8 == null) != (arrayList7 == null) || (arrayList8 != null && arrayList7 != null && arrayList8.size() != arrayList7.size())) {
+                            this.dialogs_dict.put(jKeyAt, dialog);
+                            this.dialogMessage.put(jKeyAt, arrayList7);
+                            if (arrayList8 != null) {
+                                while (i4 < arrayList8.size()) {
+                                    messageObject2 = (MessageObject) arrayList8.get(i4);
+                                    if (messageObject2 != null) {
+                                        if (messageObject2.messageOwner.peer_id.channel_id == 0) {
+                                            this.dialogMessagesByIds.remove(messageObject2.getId());
+                                        }
+                                        j = messageObject2.messageOwner.random_id;
+                                        if (j != 0) {
+                                            this.dialogMessagesByRandomIds.remove(j);
+                                        }
+                                    }
+                                }
+                            }
+                            if (arrayList7 != null) {
+                                while (i3 < arrayList7.size()) {
+                                    messageObject = (MessageObject) arrayList7.get(i3);
+                                    if (messageObject == null) {
+                                    }
+                                }
+                            }
+                            getTranslateController().checkDialogMessage(jKeyAt);
+                        }
+                    }
+                }
+            }
+            this.allDialogs.clear();
+            int size2 = this.dialogs_dict.size();
+            for (int i14 = 0; i14 < size2; i14++) {
+                TLRPC.Dialog dialog3 = (TLRPC.Dialog) this.dialogs_dict.valueAt(i14);
+                if (this.deletingDialogs.indexOfKey(dialog3.id) < 0) {
+                    this.allDialogs.add(dialog3);
+                }
+            }
+            sortDialogs(null);
+            i2 = 0;
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
+        } else {
+            i2 = 0;
+        }
+        if (i != 0) {
+            getUserConfig().filtersLoaded = true;
+            getUserConfig().saveConfig(i2);
+            this.loadingRemoteFilters = i2;
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.filterSettingsUpdated, new Object[i2]);
+        }
+        lockFiltersInternal();
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 
     public static int lambda$processLoadedDialogFilters$21(DialogFilter dialogFilter, DialogFilter dialogFilter2) {
@@ -2737,20 +3294,15 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
         if (!rootDirs.isEmpty()) {
-            int i = 0;
             String absolutePath = rootDirs.get(0).getAbsolutePath();
             if (!TextUtils.isEmpty(SharedConfig.storageCacheDir)) {
                 int size = rootDirs.size();
-                while (true) {
-                    if (i >= size) {
-                        break;
-                    }
+                for (int i = 0; i < size; i++) {
                     String absolutePath2 = rootDirs.get(i).getAbsolutePath();
                     if (absolutePath2.startsWith(SharedConfig.storageCacheDir)) {
                         absolutePath = absolutePath2;
                         break;
                     }
-                    i++;
                 }
             }
             boolean zContains = absolutePath.contains("/storage/emulated/");
@@ -2862,35 +3414,39 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void updateEmojiStatus(long j, TLRPC.EmojiStatus emojiStatus, TL_stars.StarGift starGift) {
         TLRPC.TL_channels_updateEmojiStatus tL_channels_updateEmojiStatus;
+        TLObject tLObject;
+        TL_account.updateEmojiStatus updateemojistatus;
         boolean z = j == 0 || j == getUserConfig().getClientUserId();
         TLRPC.EmojiStatus emojiStatusEmojiStatusCollectibleFromGift = ((emojiStatus instanceof TLRPC.TL_inputEmojiStatusCollectible) && (starGift instanceof TL_stars.TL_starGiftUnique)) ? emojiStatusCollectibleFromGift((TL_stars.TL_starGiftUnique) starGift) : emojiStatus;
         if (z) {
-            TL_account.updateEmojiStatus updateemojistatus = new TL_account.updateEmojiStatus();
+            updateemojistatus = new TL_account.updateEmojiStatus();
             updateemojistatus.emoji_status = emojiStatus;
             TLRPC.User currentUser = getUserConfig().getCurrentUser();
-            tL_channels_updateEmojiStatus = updateemojistatus;
             if (currentUser != null) {
+                tLObject = updateemojistatus;
                 currentUser.emoji_status = emojiStatusEmojiStatusCollectibleFromGift;
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userEmojiStatusUpdated, currentUser);
-                tL_channels_updateEmojiStatus = updateemojistatus;
+                tLObject = updateemojistatus;
             }
         } else {
-            TLRPC.TL_channels_updateEmojiStatus tL_channels_updateEmojiStatus2 = new TLRPC.TL_channels_updateEmojiStatus();
+            tL_channels_updateEmojiStatus = new TLRPC.TL_channels_updateEmojiStatus();
             long j2 = -j;
-            tL_channels_updateEmojiStatus2.channel = getInputChannel(j2);
-            tL_channels_updateEmojiStatus2.emoji_status = emojiStatus;
+            tL_channels_updateEmojiStatus.channel = getInputChannel(j2);
+            tL_channels_updateEmojiStatus.emoji_status = emojiStatus;
             TLRPC.Chat chat = getChat(Long.valueOf(j2));
-            tL_channels_updateEmojiStatus = tL_channels_updateEmojiStatus2;
             if (chat != null) {
+                tLObject = tL_channels_updateEmojiStatus;
                 chat.flags |= 512;
                 chat.emoji_status = emojiStatusEmojiStatusCollectibleFromGift;
                 putChat(chat, true);
-                tL_channels_updateEmojiStatus = tL_channels_updateEmojiStatus2;
+                tLObject = tL_channels_updateEmojiStatus;
             }
         }
+        tLObject = tL_channels_updateEmojiStatus;
+        tLObject = updateemojistatus;
         getMessagesController().updateEmojiStatusUntilUpdate(j, emojiStatusEmojiStatusCollectibleFromGift);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(UPDATE_MASK_EMOJI_STATUS));
-        getConnectionsManager().sendRequest(tL_channels_updateEmojiStatus, null);
+        getConnectionsManager().sendRequest(tLObject, null);
     }
 
     public void removeFilter(DialogFilter dialogFilter) {
@@ -2919,13 +3475,13 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$loadAppConfig$33(final TLRPC.TL_help_appConfig tL_help_appConfig) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$loadAppConfig$32(tL_help_appConfig);
             }
         });
     }
 
-    public void lambda$loadAppConfig$32(TLRPC.TL_help_appConfig tL_help_appConfig) throws NumberFormatException {
+    public void lambda$loadAppConfig$32(TLRPC.TL_help_appConfig tL_help_appConfig) {
         if (tL_help_appConfig != null) {
             TLRPC.JSONValue jSONValue = tL_help_appConfig.config;
             if (jSONValue instanceof TLRPC.TL_jsonObject) {
@@ -2936,8 +3492,7941 @@ public class MessagesController extends BaseController implements NotificationCe
         AndroidUtilities.runOnUIThread(this.loadAppConfigRunnable, 240010L);
     }
 
-    private void applyAppConfig(org.telegram.tgnet.TLRPC.TL_jsonObject r41) throws java.lang.NumberFormatException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.applyAppConfig(org.telegram.tgnet.TLRPC$TL_jsonObject):void");
+    private void applyAppConfig(TLRPC.TL_jsonObject tL_jsonObject) {
+        int i;
+        boolean z;
+        int i2;
+        byte b;
+        String str;
+        String str2;
+        String str3;
+        String str4;
+        String str5;
+        String str6;
+        String str7;
+        String str8;
+        String str9;
+        boolean z2;
+        boolean z3;
+        boolean z4;
+        boolean z5;
+        int i3;
+        boolean z6;
+        boolean z7;
+        String str10;
+        boolean z8;
+        boolean z9;
+        String str11;
+        String str12;
+        int i4;
+        String str13;
+        String str14;
+        String str15;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean zSavePremiumFeaturesPreviewOrder;
+        boolean z13;
+        boolean z14;
+        boolean z15;
+        boolean z16;
+        String str16;
+        String str17;
+        String str18;
+        String str19;
+        TLRPC.TL_jsonObject tL_jsonObject2;
+        String str20;
+        String str21;
+        String str22;
+        boolean z17;
+        boolean z18;
+        boolean z19;
+        boolean z20;
+        boolean z21;
+        boolean z22;
+        boolean z23;
+        int iIntValue;
+        boolean z24;
+        int i5;
+        boolean z25;
+        boolean z26;
+        int i6;
+        int i7;
+        String str23;
+        String str24;
+        boolean z27;
+        TLRPC.TL_jsonObject tL_jsonObject3 = tL_jsonObject;
+        String str25 = "stories_changelog_user_id";
+        String str26 = "giveaway_countries_max";
+        String str27 = "boosts_per_sent_gift";
+        String str28 = "giveaway_boosts_per_premium";
+        String str29 = "stories_stealth_future_period";
+        String str30 = "giveaway_period_max";
+        String str31 = "stories_stealth_past_period";
+        String str32 = "stories_stealth_cooldown_period";
+        String str33 = "giveaway_add_peers_max";
+        SharedPreferences.Editor editorEdit = this.mainPreferences.edit();
+        resetAppConfig();
+        boolean zApply = this.config.apply(editorEdit, tL_jsonObject3);
+        int size = tL_jsonObject3.value.size();
+        boolean z28 = zApply;
+        TLRPC.TL_jsonObject tL_jsonObject4 = null;
+        int i8 = 0;
+        int i9 = 0;
+        int i10 = 0;
+        boolean z29 = false;
+        boolean z30 = false;
+        while (i8 < size) {
+            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject3.value.get(i8);
+            String str34 = tL_jsonObjectValue.key;
+            str34.hashCode();
+            int i11 = size;
+            switch (str34.hashCode()) {
+                case -2144614625:
+                    i2 = i8;
+                    if (str34.equals("chatlists_joined_limit_premium")) {
+                        b = 0;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -2123640970:
+                    i2 = i8;
+                    if (str34.equals("channel_revenue_withdrawal_enabled")) {
+                        b = 1;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -2086426873:
+                    i2 = i8;
+                    if (str34.equals("dialog_filters_pinned_limit_premium")) {
+                        b = 2;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -2085529619:
+                    i2 = i8;
+                    if (str34.equals("business_chat_links_limit")) {
+                        b = 3;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -2049128089:
+                    i2 = i8;
+                    if (str34.equals("freeze_appeal_url")) {
+                        b = 4;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -2031587591:
+                    i2 = i8;
+                    if (str34.equals("telegram_antispam_user_id")) {
+                        b = 5;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -2010078200:
+                    i2 = i8;
+                    if (str34.equals("channel_custom_wallpaper_level_min")) {
+                        b = 6;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1983931574:
+                    i2 = i8;
+                    if (str34.equals("channel_restrict_sponsored_level_min")) {
+                        b = 7;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1960821615:
+                    i2 = i8;
+                    if (str34.equals("stargifts_message_length_max")) {
+                        b = 8;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1960403897:
+                    i2 = i8;
+                    if (str34.equals("enable_gifts_in_profile")) {
+                        b = 9;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1921306872:
+                    i2 = i8;
+                    if (str34.equals("large_queue_max_active_operations_count")) {
+                        b = 10;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1906216435:
+                    i2 = i8;
+                    if (str34.equals("upload_max_fileparts_default")) {
+                        b = 11;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1905041797:
+                    i2 = i8;
+                    if (str34.equals("pinned_dialogs_count_max_default")) {
+                        b = 12;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1899955653:
+                    i2 = i8;
+                    if (str34.equals("android_collect_device_stats")) {
+                        b = 13;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1878957152:
+                    i2 = i8;
+                    if (str34.equals("stories_suggested_reactions_limit_default")) {
+                        b = 14;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1842555673:
+                    i2 = i8;
+                    if (str34.equals("stars_gifts_enabled")) {
+                        b = 15;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1802366185:
+                    i2 = i8;
+                    if (str34.equals("pm_read_date_expire_period")) {
+                        b = 16;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1766766859:
+                    i2 = i8;
+                    if (str34.equals("starref_min_commission_permille")) {
+                        b = 17;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1741981325:
+                    i2 = i8;
+                    if (str34.equals("smsjobs_sticky_notification_enabled")) {
+                        b = 18;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1736722060:
+                    i2 = i8;
+                    if (str34.equals("upload_premium_speedup_notify_period")) {
+                        b = 19;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1730760944:
+                    i2 = i8;
+                    if (str34.equals("stories_sent_monthly_limit_default")) {
+                        b = 20;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1727638397:
+                    i2 = i8;
+                    if (str34.equals("bot_preview_medias_max")) {
+                        b = 21;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1688620344:
+                    i2 = i8;
+                    if (str34.equals("dialog_filters_tooltip")) {
+                        b = 22;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1683918311:
+                    i2 = i8;
+                    if (str34.equals("qr_login_camera")) {
+                        b = 23;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1631139636:
+                    i2 = i8;
+                    if (str34.equals("stars_purchase_blocked")) {
+                        b = 24;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1560863476:
+                    i2 = i8;
+                    if (str34.equals("group_custom_wallpaper_level_min")) {
+                        b = 25;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1557626216:
+                    i2 = i8;
+                    if (str34.equals(str33)) {
+                        b = 26;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1547147298:
+                    i2 = i8;
+                    if (str34.equals("channel_wallpaper_level_min")) {
+                        b = 27;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1547044498:
+                    i2 = i8;
+                    if (str34.equals("chatlist_update_period")) {
+                        b = 28;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1512224895:
+                    i2 = i8;
+                    if (str34.equals("stars_subscription_amount_max")) {
+                        b = 29;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1505291915:
+                    i2 = i8;
+                    if (str34.equals("stars_groupcall_message_amount_max")) {
+                        b = 30;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1489089702:
+                    i2 = i8;
+                    if (str34.equals("group_wallpaper_level_min")) {
+                        b = 31;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1481182919:
+                    i2 = i8;
+                    if (str34.equals("video_ignore_alt_documents")) {
+                        b = 32;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1391118177:
+                    i2 = i8;
+                    if (str34.equals("channel_emoji_status_level_min")) {
+                        b = 33;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1385240692:
+                    i2 = i8;
+                    if (str34.equals("channels_public_limit_premium")) {
+                        b = 34;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1379354758:
+                    i2 = i8;
+                    if (str34.equals("story_expiring_limit_premium")) {
+                        b = 35;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1354971637:
+                    i2 = i8;
+                    if (str34.equals("stars_paid_messages_available")) {
+                        b = 36;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1351431371:
+                    i2 = i8;
+                    if (str34.equals("group_profile_bg_icon_level_min")) {
+                        b = 37;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1340158869:
+                    i2 = i8;
+                    if (str34.equals("upload_premium_speedup_download")) {
+                        b = 38;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1318497457:
+                    i2 = i8;
+                    if (str34.equals("ignore_restriction_reasons")) {
+                        b = 39;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1304621435:
+                    i2 = i8;
+                    if (str34.equals("new_noncontact_peers_require_premium_without_ownpremium")) {
+                        b = 40;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1287877531:
+                    i2 = i8;
+                    if (str34.equals("stickers_faved_limit_premium")) {
+                        b = 41;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1276977346:
+                    i2 = i8;
+                    if (str34.equals("todo_item_length_max")) {
+                        b = 42;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1253023507:
+                    i2 = i8;
+                    if (str34.equals(str32)) {
+                        b = 43;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1241485120:
+                    i2 = i8;
+                    if (str34.equals("stargifts_convert_period_max")) {
+                        b = 44;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1133154193:
+                    i2 = i8;
+                    if (str34.equals("lite_app_options")) {
+                        b = 45;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1086302656:
+                    i2 = i8;
+                    if (str34.equals("lite_device_class")) {
+                        b = 46;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1071072567:
+                    i2 = i8;
+                    if (str34.equals("premium_gift_text_field_icon")) {
+                        b = 47;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1056002991:
+                    i2 = i8;
+                    if (str34.equals("chat_read_mark_expire_period")) {
+                        b = 48;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1049689381:
+                    i2 = i8;
+                    if (str34.equals("reactions_uniq_max")) {
+                        b = 49;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -1032177933:
+                    i2 = i8;
+                    if (str34.equals("emojies_send_dice")) {
+                        b = 50;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -980397720:
+                    i2 = i8;
+                    if (str34.equals("url_auth_domains")) {
+                        b = 51;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -973235223:
+                    i2 = i8;
+                    if (str34.equals("stars_revenue_withdrawal_min")) {
+                        b = 52;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -947423642:
+                    i2 = i8;
+                    if (str34.equals(str31)) {
+                        b = 53;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -915535880:
+                    i2 = i8;
+                    if (str34.equals("saved_dialogs_pinned_limit_premium")) {
+                        b = 54;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -896467099:
+                    i2 = i8;
+                    if (str34.equals("saved_gifs_limit_default")) {
+                        b = 55;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -736509977:
+                    i2 = i8;
+                    if (str34.equals("story_caption_length_limit_default")) {
+                        b = 56;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -728445056:
+                    i2 = i8;
+                    if (str34.equals("show_annual_per_month")) {
+                        b = 57;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -581904190:
+                    i2 = i8;
+                    if (str34.equals("dialog_filters_limit_default")) {
+                        b = 58;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -561040027:
+                    i2 = i8;
+                    if (str34.equals("premium_invoice_slug")) {
+                        b = 59;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -542518288:
+                    i2 = i8;
+                    if (str34.equals("stories_sent_weekly_limit_premium")) {
+                        b = 60;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -538467216:
+                    i2 = i8;
+                    if (str34.equals("ton_stakedice_stake_suggested_amounts")) {
+                        b = 61;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -533076272:
+                    i2 = i8;
+                    if (str34.equals("stories_export_nopublic_link")) {
+                        b = 62;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -528676601:
+                    i2 = i8;
+                    if (str34.equals("starref_max_commission_permille")) {
+                        b = 63;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -519548682:
+                    i2 = i8;
+                    if (str34.equals("call_requests_disabled")) {
+                        b = 64;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -515715076:
+                    i2 = i8;
+                    if (str34.equals("export_regex")) {
+                        b = 65;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -507953835:
+                    i2 = i8;
+                    if (str34.equals("chatlist_invites_limit_premium")) {
+                        b = 66;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -505523666:
+                    i2 = i8;
+                    if (str34.equals("stars_usd_sell_rate_x1000")) {
+                        b = 67;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -488472170:
+                    i2 = i8;
+                    if (str34.equals("about_length_limit_default")) {
+                        b = 68;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -473866179:
+                    i2 = i8;
+                    if (str34.equals("reactions_user_max_premium")) {
+                        b = 69;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -416504589:
+                    i2 = i8;
+                    if (str34.equals("caption_length_limit_premium")) {
+                        b = 70;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -413597349:
+                    i2 = i8;
+                    if (str34.equals("conference_call_size_limit")) {
+                        b = 71;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -413144568:
+                    i2 = i8;
+                    if (str34.equals("recommended_channels_limit_premium")) {
+                        b = 72;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -404170231:
+                    i2 = i8;
+                    if (str34.equals("keep_alive_service")) {
+                        b = 73;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -381432266:
+                    i2 = i8;
+                    if (str34.equals("premium_promo_order")) {
+                        b = 74;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -377047005:
+                    i2 = i8;
+                    if (str34.equals("ringtone_size_max")) {
+                        b = 75;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -350971916:
+                    i2 = i8;
+                    if (str34.equals("dialog_filters_chats_limit_premium")) {
+                        b = 76;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -298029137:
+                    i2 = i8;
+                    if (str34.equals("starref_program_allowed")) {
+                        b = 77;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -297801185:
+                    i2 = i8;
+                    if (str34.equals("business_promo_order")) {
+                        b = 78;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -281358583:
+                    i2 = i8;
+                    if (str34.equals("chatlists_joined_limit_default")) {
+                        b = 79;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -273604959:
+                    i2 = i8;
+                    if (str34.equals("stories_pinned_to_top_count_max")) {
+                        b = 80;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -256319580:
+                    i2 = i8;
+                    if (str34.equals("channels_limit_premium")) {
+                        b = 81;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -255781220:
+                    i2 = i8;
+                    if (str34.equals("bot_fullscreen_blur_disable")) {
+                        b = 82;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -253815153:
+                    i2 = i8;
+                    if (str34.equals("background_connection")) {
+                        b = 83;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -253729626:
+                    i2 = i8;
+                    if (str34.equals(str30)) {
+                        b = 84;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -232883529:
+                    i2 = i8;
+                    if (str34.equals("emojies_send_dice_success")) {
+                        b = 85;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -223170831:
+                    i2 = i8;
+                    if (str34.equals("dialog_filters_pinned_limit_default")) {
+                        b = 86;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -191129361:
+                    i2 = i8;
+                    if (str34.equals("hidden_members_group_size_min")) {
+                        b = 87;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -130123113:
+                    i2 = i8;
+                    if (str34.equals("freeze_until_date")) {
+                        b = 88;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -111779186:
+                    i2 = i8;
+                    if (str34.equals("autoarchive_setting_available")) {
+                        b = 89;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -100192526:
+                    i2 = i8;
+                    if (str34.equals("quick_replies_limit")) {
+                        b = 90;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -76561797:
+                    i2 = i8;
+                    if (str34.equals("youtube_pip")) {
+                        b = 91;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -44956361:
+                    i2 = i8;
+                    if (str34.equals("ton_proxy_address")) {
+                        b = 92;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -24016028:
+                    i2 = i8;
+                    if (str34.equals("emojies_animated_zoom")) {
+                        b = 93;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case -14783830:
+                    i2 = i8;
+                    if (str34.equals("telegram_antispam_group_size_min")) {
+                        b = 94;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 11698566:
+                    i2 = i8;
+                    if (str34.equals("stargifts_pinned_to_top_limit")) {
+                        b = 95;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 22533614:
+                    i2 = i8;
+                    if (str34.equals("translations_auto_enabled")) {
+                        b = 96;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 59202071:
+                    i2 = i8;
+                    if (str34.equals("stargifts_craft_attribute_permilles")) {
+                        b = 97;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 81433671:
+                    i2 = i8;
+                    if (str34.equals("giveaway_gifts_purchase_available")) {
+                        b = 98;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 141709566:
+                    i2 = i8;
+                    if (str34.equals("stars_paid_reaction_amount_max")) {
+                        b = 99;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 169095108:
+                    i2 = i8;
+                    if (str34.equals("stickers_emoji_suggest_only_api")) {
+                        b = 100;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 222975416:
+                    i2 = i8;
+                    if (str34.equals("gif_search_emojies")) {
+                        b = 101;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 227342346:
+                    i2 = i8;
+                    if (str34.equals("autologin_domains")) {
+                        b = 102;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 246778895:
+                    i2 = i8;
+                    if (str34.equals("export_group_urls")) {
+                        b = 103;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 280936278:
+                    i2 = i8;
+                    if (str34.equals("stories_posting")) {
+                        b = 104;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 284177841:
+                    i2 = i8;
+                    if (str34.equals("bot_verification_description_length_limit")) {
+                        b = 105;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 296645817:
+                    i2 = i8;
+                    if (str34.equals("channel_profile_bg_icon_level_min")) {
+                        b = 106;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 329993876:
+                    i2 = i8;
+                    if (str34.equals("verify_age_bot_username")) {
+                        b = 107;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 357521218:
+                    i2 = i8;
+                    if (str34.equals("weather_search_username")) {
+                        b = 108;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 365723077:
+                    i2 = i8;
+                    if (str34.equals("translations_manual_enabled")) {
+                        b = 109;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 396402384:
+                    i2 = i8;
+                    if (str34.equals("getfile_experimental_params")) {
+                        b = 110;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 411331190:
+                    i2 = i8;
+                    if (str34.equals("can_edit_factcheck")) {
+                        b = 111;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 428604605:
+                    i2 = i8;
+                    if (str34.equals("premium_playmarket_direct_currency_list")) {
+                        b = 112;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 450843102:
+                    i2 = i8;
+                    if (str34.equals("android_check_reset_langpack")) {
+                        b = 113;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 478015350:
+                    i2 = i8;
+                    if (str34.equals("channels_public_limit_default")) {
+                        b = 114;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 483901284:
+                    i2 = i8;
+                    if (str34.equals("story_expiring_limit_default")) {
+                        b = 115;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 511041306:
+                    i2 = i8;
+                    if (str34.equals("sponsored_links_inapp_allow")) {
+                        b = 116;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 517315989:
+                    i2 = i8;
+                    if (str34.equals(str29)) {
+                        b = 117;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 525494819:
+                    i2 = i8;
+                    if (str34.equals("upload_max_fileparts_premium")) {
+                        b = 118;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 526669457:
+                    i2 = i8;
+                    if (str34.equals("pinned_dialogs_count_max_premium")) {
+                        b = 119;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 552754102:
+                    i2 = i8;
+                    if (str34.equals("stories_suggested_reactions_limit_premium")) {
+                        b = 120;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 575378511:
+                    i2 = i8;
+                    if (str34.equals("stickers_faved_limit_default")) {
+                        b = 121;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 670122854:
+                    i2 = i8;
+                    if (str34.equals(str28)) {
+                        b = 122;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 676199595:
+                    i2 = i8;
+                    if (str34.equals("groupcall_video_participants_max")) {
+                        b = 123;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 684764449:
+                    i2 = i8;
+                    if (str34.equals("save_gifs_with_stickers")) {
+                        b = 124;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 700206086:
+                    i2 = i8;
+                    if (str34.equals(str27)) {
+                        b = 125;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 700950310:
+                    i2 = i8;
+                    if (str34.equals("stories_sent_monthly_limit_premium")) {
+                        b = 126;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 805025045:
+                    i2 = i8;
+                    if (str34.equals("android_disable_round_camera2")) {
+                        b = 127;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 812427767:
+                    i2 = i8;
+                    if (str34.equals("login_google_oauth_client_id")) {
+                        b = 128;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 856667894:
+                    i2 = i8;
+                    if (str34.equals("stars_usd_withdraw_rate_x1000")) {
+                        b = 129;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 878681646:
+                    i2 = i8;
+                    if (str34.equals("quote_length_max")) {
+                        b = 130;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 917364150:
+                    i2 = i8;
+                    if (str34.equals("ringtone_duration_max")) {
+                        b = 131;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 947720162:
+                    i2 = i8;
+                    if (str34.equals("saved_dialogs_pinned_limit_default")) {
+                        b = 132;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 950283923:
+                    i2 = i8;
+                    if (str34.equals("stars_paid_message_commission_permille")) {
+                        b = 133;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 992898905:
+                    i2 = i8;
+                    if (str34.equals("inapp_update_check_delay")) {
+                        b = 134;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1012863815:
+                    i2 = i8;
+                    if (str34.equals("group_emoji_stickers_level_min")) {
+                        b = 135;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1021871313:
+                    i2 = i8;
+                    if (str34.equals("stories_venue_search_username")) {
+                        b = 136;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1022209700:
+                    i2 = i8;
+                    if (str34.equals("upload_premium_speedup_upload")) {
+                        b = 137;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1022591658:
+                    i2 = i8;
+                    if (str34.equals("stars_paid_message_amount_max")) {
+                        b = 138;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1029490603:
+                    i2 = i8;
+                    if (str34.equals("todo_title_length_max")) {
+                        b = 139;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1052355894:
+                    i2 = i8;
+                    if (str34.equals("premium_bot_username")) {
+                        b = 140;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1085221270:
+                    i2 = i8;
+                    if (str34.equals("premium_purchase_blocked")) {
+                        b = 141;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1143898023:
+                    i2 = i8;
+                    if (str34.equals("stars_paid_post_amount_max")) {
+                        b = 142;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1155587444:
+                    i2 = i8;
+                    if (str34.equals("story_weather_preload")) {
+                        b = 143;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1181024400:
+                    i2 = i8;
+                    if (str34.equals("stars_groupcall_message_limits")) {
+                        b = 144;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1236470876:
+                    i2 = i8;
+                    if (str34.equals("intro_title_length_limit")) {
+                        b = 145;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1246364048:
+                    i2 = i8;
+                    if (str34.equals("verify_age_country")) {
+                        b = 146;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1262162175:
+                    i2 = i8;
+                    if (str34.equals("premium_manage_subscription_url")) {
+                        b = 147;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1295838485:
+                    i2 = i8;
+                    if (str34.equals("authorization_autoconfirm_period")) {
+                        b = 148;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1316035878:
+                    i2 = i8;
+                    if (str34.equals("premium_gift_attach_menu_icon")) {
+                        b = 149;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1320737754:
+                    i2 = i8;
+                    if (str34.equals("stories_sent_weekly_limit_default")) {
+                        b = 150;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1322701672:
+                    i2 = i8;
+                    if (str34.equals("round_video_encoding")) {
+                        b = 151;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1355302207:
+                    i2 = i8;
+                    if (str34.equals("chatlist_invites_limit_default")) {
+                        b = 152;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1366527782:
+                    i2 = i8;
+                    if (str34.equals("transcribe_audio_trial_cooldown_until")) {
+                        b = 153;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1389389863:
+                    i2 = i8;
+                    if (str34.equals("reactions_user_max_default")) {
+                        b = 154;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1446751453:
+                    i2 = i8;
+                    if (str34.equals("caption_length_limit_default")) {
+                        b = 155;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1450111474:
+                    i2 = i8;
+                    if (str34.equals("recommended_channels_limit_default")) {
+                        b = 156;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1466044629:
+                    i2 = i8;
+                    if (str34.equals("transcribe_audio_trial_duration_max")) {
+                        b = 157;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1468149675:
+                    i2 = i8;
+                    if (str34.equals("transcribe_audio_trial_weekly_number")) {
+                        b = 158;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1477031202:
+                    i2 = i8;
+                    if (str34.equals("upload_markup_video")) {
+                        b = 159;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1508636733:
+                    i2 = i8;
+                    if (str34.equals("chat_read_mark_size_threshold")) {
+                        b = 160;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1512284126:
+                    i2 = i8;
+                    if (str34.equals("dialog_filters_chats_limit_default")) {
+                        b = 161;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1520575749:
+                    i2 = i8;
+                    if (str34.equals("whitelisted_bots")) {
+                        b = 162;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1535244155:
+                    i2 = i8;
+                    if (str34.equals("saved_gifs_limit_premium")) {
+                        b = 163;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1548722654:
+                    i2 = i8;
+                    if (str34.equals("stargifts_blocked")) {
+                        b = 164;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1554302509:
+                    i2 = i8;
+                    if (str34.equals("stories_entities")) {
+                        b = 165;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1556659663:
+                    i2 = i8;
+                    if (str34.equals("channel_bg_icon_level_min")) {
+                        b = 166;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1564023449:
+                    i2 = i8;
+                    if (str34.equals(str26)) {
+                        b = 167;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1586523512:
+                    i2 = i8;
+                    if (str34.equals(str25)) {
+                        b = 168;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1597443023:
+                    i2 = i8;
+                    if (str34.equals("topics_pinned_limit")) {
+                        b = 169;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1606936462:
+                    i2 = i8;
+                    if (str34.equals("channels_limit_default")) {
+                        b = 170;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1625871267:
+                    i2 = i8;
+                    if (str34.equals("group_emoji_status_level_min")) {
+                        b = 171;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1637671355:
+                    i2 = i8;
+                    if (str34.equals("web_app_allowed_protocols")) {
+                        b = 172;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1667601876:
+                    i2 = i8;
+                    if (str34.equals("small_queue_max_active_operations_count")) {
+                        b = 173;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1695201277:
+                    i2 = i8;
+                    if (str34.equals("story_caption_length_limit_premium")) {
+                        b = 174;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1722549269:
+                    i2 = i8;
+                    if (str34.equals("starref_connect_allowed")) {
+                        b = 175;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1782655589:
+                    i2 = i8;
+                    if (str34.equals("factcheck_length_limit")) {
+                        b = 176;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1785205890:
+                    i2 = i8;
+                    if (str34.equals("reactions_in_chat_max")) {
+                        b = 177;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1807506764:
+                    i2 = i8;
+                    if (str34.equals("verify_age_min")) {
+                        b = 178;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1849807064:
+                    i2 = i8;
+                    if (str34.equals("dialog_filters_limit_premium")) {
+                        b = 179;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1850325103:
+                    i2 = i8;
+                    if (str34.equals("emojies_sounds")) {
+                        b = 180;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1907641101:
+                    i2 = i8;
+                    if (str34.equals("group_transcribe_level_min")) {
+                        b = 181;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1907822651:
+                    i2 = i8;
+                    if (str34.equals("freeze_since_date")) {
+                        b = 182;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1943239084:
+                    i2 = i8;
+                    if (str34.equals("about_length_limit_premium")) {
+                        b = 183;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1953570861:
+                    i2 = i8;
+                    if (str34.equals("starref_start_param_prefixes")) {
+                        b = 184;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 1956490398:
+                    i2 = i8;
+                    if (str34.equals("boosts_channel_level_max")) {
+                        b = 185;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 2000413432:
+                    i2 = i8;
+                    if (str34.equals("intro_description_length_limit")) {
+                        b = 186;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 2024718990:
+                    i2 = i8;
+                    if (str34.equals("ton_blockchain_explorer_url")) {
+                        b = 187;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 2074702027:
+                    i2 = i8;
+                    if (str34.equals("export_private_urls")) {
+                        b = 188;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 2089754540:
+                    i2 = i8;
+                    if (str34.equals("todo_items_max")) {
+                        b = 189;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 2093497260:
+                    i2 = i8;
+                    if (str34.equals("ton_stakedice_stake_amount_max")) {
+                        b = 190;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 2093497498:
+                    i2 = i8;
+                    if (str34.equals("ton_stakedice_stake_amount_min")) {
+                        b = 191;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 2101096574:
+                    i2 = i8;
+                    if (str34.equals("channel_autotranslation_level_min")) {
+                        b = 192;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 2130452052:
+                    i2 = i8;
+                    if (str34.equals("forum_upgrade_participants_min")) {
+                        b = 193;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                case 2136829446:
+                    i2 = i8;
+                    if (str34.equals("dialog_filters_enabled")) {
+                        b = 194;
+                    } else {
+                        b = -1;
+                    }
+                    break;
+                default:
+                    i2 = i8;
+                    b = -1;
+                    break;
+            }
+            switch (b) {
+                case 0:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue = tL_jsonObjectValue.value;
+                    if (jSONValue instanceof TLRPC.TL_jsonNumber) {
+                        double d = ((TLRPC.TL_jsonNumber) jSONValue).value;
+                        if (d != this.chatlistJoinedLimitPremium) {
+                            int i12 = (int) d;
+                            this.chatlistJoinedLimitPremium = i12;
+                            editorEdit.putInt("chatlistJoinedLimitPremium", i12);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 1:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue2 = tL_jsonObjectValue.value;
+                    if ((jSONValue2 instanceof TLRPC.TL_jsonBool) && (z2 = ((TLRPC.TL_jsonBool) jSONValue2).value) != this.channelRevenueWithdrawalEnabled) {
+                        this.channelRevenueWithdrawalEnabled = z2;
+                        editorEdit.putBoolean("channelRevenueWithdrawalEnabled", z2);
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    break;
+                case 2:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue3 = tL_jsonObjectValue.value;
+                    if (jSONValue3 instanceof TLRPC.TL_jsonNumber) {
+                        double d2 = ((TLRPC.TL_jsonNumber) jSONValue3).value;
+                        if (d2 != this.dialogFiltersPinnedLimitPremium) {
+                            int i13 = (int) d2;
+                            this.dialogFiltersPinnedLimitPremium = i13;
+                            editorEdit.putInt("dialogFiltersPinnedLimitPremium", i13);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 3:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue4 = tL_jsonObjectValue.value;
+                    if (jSONValue4 instanceof TLRPC.TL_jsonNumber) {
+                        double d3 = ((TLRPC.TL_jsonNumber) jSONValue4).value;
+                        if (d3 != this.businessChatLinksLimit) {
+                            int i14 = (int) d3;
+                            this.businessChatLinksLimit = i14;
+                            editorEdit.putInt("businessChatLinksLimit", i14);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 4:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue5 = tL_jsonObjectValue.value;
+                    if (jSONValue5 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString = (TLRPC.TL_jsonString) jSONValue5;
+                        if (!TextUtils.equals(tL_jsonString.value, this.freezeAppealUrl)) {
+                            String str35 = tL_jsonString.value;
+                            this.freezeAppealUrl = str35;
+                            editorEdit.putString("freezeAppealUrl", str35);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 5:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue6 = tL_jsonObjectValue.value;
+                    if (jSONValue6 instanceof TLRPC.TL_jsonString) {
+                        try {
+                            long j = Long.parseLong(((TLRPC.TL_jsonString) jSONValue6).value);
+                            if (j != this.telegramAntispamUserId) {
+                                this.telegramAntispamUserId = j;
+                                editorEdit.putLong("telegramAntispamUserId", j);
+                                z14 = true;
+                                z28 = z14;
+                            }
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                    }
+                    break;
+                case 6:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue7 = tL_jsonObjectValue.value;
+                    if (jSONValue7 instanceof TLRPC.TL_jsonNumber) {
+                        double d4 = ((TLRPC.TL_jsonNumber) jSONValue7).value;
+                        if (d4 != this.channelCustomWallpaperLevelMin) {
+                            int i15 = (int) d4;
+                            this.channelCustomWallpaperLevelMin = i15;
+                            editorEdit.putInt("channelCustomWallpaperLevelMin", i15);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 7:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue8 = tL_jsonObjectValue.value;
+                    if (jSONValue8 instanceof TLRPC.TL_jsonNumber) {
+                        double d5 = this.channelRestrictSponsoredLevelMin;
+                        double d6 = ((TLRPC.TL_jsonNumber) jSONValue8).value;
+                        if (d5 != d6) {
+                            int i16 = (int) d6;
+                            this.channelRestrictSponsoredLevelMin = i16;
+                            editorEdit.putInt("channelRestrictSponsoredLevelMin", i16);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 8:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue9 = tL_jsonObjectValue.value;
+                    if (jSONValue9 instanceof TLRPC.TL_jsonNumber) {
+                        double d7 = ((TLRPC.TL_jsonNumber) jSONValue9).value;
+                        if (d7 != this.stargiftsMessageLengthMax) {
+                            int i17 = (int) d7;
+                            this.stargiftsMessageLengthMax = i17;
+                            editorEdit.putInt("stargiftsMessageLengthMax", i17);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 9:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue10 = tL_jsonObjectValue.value;
+                    if (jSONValue10 instanceof TLRPC.TL_jsonBool) {
+                        boolean z31 = this.enableGiftsInProfile;
+                        boolean z32 = ((TLRPC.TL_jsonBool) jSONValue10).value;
+                        if (z31 != z32) {
+                            this.enableGiftsInProfile = z32;
+                            editorEdit.putBoolean("enableGiftsInProfile", z32);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 10:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue11 = tL_jsonObjectValue.value;
+                    if (jSONValue11 instanceof TLRPC.TL_jsonNumber) {
+                        int i18 = (int) ((TLRPC.TL_jsonNumber) jSONValue11).value;
+                        this.largeQueueMaxActiveOperations = i18;
+                        editorEdit.putInt("largeQueueMaxActiveOperations", i18);
+                    }
+                    break;
+                case 11:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue12 = tL_jsonObjectValue.value;
+                    if (jSONValue12 instanceof TLRPC.TL_jsonNumber) {
+                        double d8 = ((TLRPC.TL_jsonNumber) jSONValue12).value;
+                        if (d8 != this.uploadMaxFileParts) {
+                            int i19 = (int) d8;
+                            this.uploadMaxFileParts = i19;
+                            editorEdit.putInt("uploadMaxFileParts", i19);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 12:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue13 = tL_jsonObjectValue.value;
+                    if (jSONValue13 instanceof TLRPC.TL_jsonNumber) {
+                        double d9 = ((TLRPC.TL_jsonNumber) jSONValue13).value;
+                        if (d9 != this.maxPinnedDialogsCountDefault) {
+                            int i20 = (int) d9;
+                            this.maxPinnedDialogsCountDefault = i20;
+                            editorEdit.putInt("maxPinnedDialogsCountDefault", i20);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 13:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue14 = tL_jsonObjectValue.value;
+                    if ((jSONValue14 instanceof TLRPC.TL_jsonBool) && (z3 = ((TLRPC.TL_jsonBool) jSONValue14).value) != this.collectDeviceStats) {
+                        this.collectDeviceStats = z3;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    break;
+                case 14:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue15 = tL_jsonObjectValue.value;
+                    if (jSONValue15 instanceof TLRPC.TL_jsonNumber) {
+                        double d10 = ((TLRPC.TL_jsonNumber) jSONValue15).value;
+                        if (d10 != this.storiesSuggestedReactionsLimitDefault) {
+                            int i21 = (int) d10;
+                            this.storiesSuggestedReactionsLimitDefault = i21;
+                            editorEdit.putInt("storiesSuggestedReactionsLimitDefault", i21);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 15:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue16 = tL_jsonObjectValue.value;
+                    if ((jSONValue16 instanceof TLRPC.TL_jsonBool) && (z4 = ((TLRPC.TL_jsonBool) jSONValue16).value) != this.starsGiftsEnabled) {
+                        this.starsGiftsEnabled = z4;
+                        editorEdit.putBoolean("starsGiftsEnabled", z4);
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    break;
+                case 16:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue17 = tL_jsonObjectValue.value;
+                    if (jSONValue17 instanceof TLRPC.TL_jsonNumber) {
+                        double d11 = ((TLRPC.TL_jsonNumber) jSONValue17).value;
+                        if (d11 != this.pmReadDateExpirePeriod) {
+                            int i22 = (int) d11;
+                            this.pmReadDateExpirePeriod = i22;
+                            editorEdit.putInt("pmReadDateExpirePeriod", i22);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 17:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue18 = tL_jsonObjectValue.value;
+                    if (jSONValue18 instanceof TLRPC.TL_jsonNumber) {
+                        double d12 = ((TLRPC.TL_jsonNumber) jSONValue18).value;
+                        if (d12 != this.starrefMinCommissionPermille) {
+                            int i23 = (int) d12;
+                            this.starrefMinCommissionPermille = i23;
+                            editorEdit.putInt("starrefMinCommissionPermille", i23);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 18:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue19 = tL_jsonObjectValue.value;
+                    if ((jSONValue19 instanceof TLRPC.TL_jsonBool) && (z5 = ((TLRPC.TL_jsonBool) jSONValue19).value) != this.smsjobsStickyNotificationEnabled) {
+                        this.smsjobsStickyNotificationEnabled = z5;
+                        editorEdit.putBoolean("smsjobsStickyNotificationEnabled", z5);
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    break;
+                case 19:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue20 = tL_jsonObjectValue.value;
+                    if (jSONValue20 instanceof TLRPC.TL_jsonNumber) {
+                        double d13 = ((TLRPC.TL_jsonNumber) jSONValue20).value;
+                        if (d13 != this.uploadPremiumSpeedupNotifyPeriod) {
+                            int i24 = (int) d13;
+                            this.uploadPremiumSpeedupNotifyPeriod = i24;
+                            editorEdit.putInt("uploadPremiumSpeedupNotifyPeriod2", i24);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 20:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue21 = tL_jsonObjectValue.value;
+                    if (jSONValue21 instanceof TLRPC.TL_jsonNumber) {
+                        double d14 = ((TLRPC.TL_jsonNumber) jSONValue21).value;
+                        if (d14 != this.storiesSentMonthlyLimitDefault) {
+                            int i25 = (int) d14;
+                            this.storiesSentMonthlyLimitDefault = i25;
+                            editorEdit.putInt("storiesSentMonthlyLimitDefault", i25);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 21:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue22 = tL_jsonObjectValue.value;
+                    if ((jSONValue22 instanceof TLRPC.TL_jsonNumber) && (i3 = (int) ((TLRPC.TL_jsonNumber) jSONValue22).value) != this.botPreviewMediasMax) {
+                        this.botPreviewMediasMax = i3;
+                        editorEdit.putInt("botPreviewMediasMax", i3);
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    break;
+                case 22:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue23 = tL_jsonObjectValue.value;
+                    if ((jSONValue23 instanceof TLRPC.TL_jsonBool) && (z6 = ((TLRPC.TL_jsonBool) jSONValue23).value) != this.showFiltersTooltip) {
+                        this.showFiltersTooltip = z6;
+                        editorEdit.putBoolean("showFiltersTooltip", z6);
+                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.filterSettingsUpdated, new Object[0]);
+                        z28 = true;
+                    }
+                    break;
+                case 23:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue24 = tL_jsonObjectValue.value;
+                    if ((jSONValue24 instanceof TLRPC.TL_jsonBool) && (z7 = ((TLRPC.TL_jsonBool) jSONValue24).value) != this.qrLoginCamera) {
+                        this.qrLoginCamera = z7;
+                        editorEdit.putBoolean("qrLoginCamera", z7);
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    break;
+                case 24:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue25 = tL_jsonObjectValue.value;
+                    if (jSONValue25 instanceof TLRPC.TL_jsonBool) {
+                        boolean z33 = this.starsLocked;
+                        boolean z34 = ((TLRPC.TL_jsonBool) jSONValue25).value;
+                        if (z33 != z34) {
+                            this.starsLocked = z34;
+                            editorEdit.putBoolean("starsLocked", z34);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 25:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    TLRPC.JSONValue jSONValue26 = tL_jsonObjectValue.value;
+                    if (jSONValue26 instanceof TLRPC.TL_jsonNumber) {
+                        double d15 = ((TLRPC.TL_jsonNumber) jSONValue26).value;
+                        if (d15 != this.groupCustomWallpaperLevelMin) {
+                            int i26 = (int) d15;
+                            this.groupCustomWallpaperLevelMin = i26;
+                            editorEdit.putInt("groupCustomWallpaperLevelMin", i26);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    break;
+                case 26:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue27 = tL_jsonObjectValue.value;
+                    if (jSONValue27 instanceof TLRPC.TL_jsonNumber) {
+                        long j2 = (long) ((TLRPC.TL_jsonNumber) jSONValue27).value;
+                        if (j2 != this.giveawayAddPeersMax) {
+                            this.giveawayAddPeersMax = j2;
+                            str9 = str10;
+                            editorEdit.putLong(str9, j2);
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 27:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue28 = tL_jsonObjectValue.value;
+                    if (jSONValue28 instanceof TLRPC.TL_jsonNumber) {
+                        double d16 = ((TLRPC.TL_jsonNumber) jSONValue28).value;
+                        if (d16 != this.channelWallpaperLevelMin) {
+                            int i27 = (int) d16;
+                            this.channelWallpaperLevelMin = i27;
+                            editorEdit.putInt("channelWallpaperLevelMin", i27);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 28:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue29 = tL_jsonObjectValue.value;
+                    if (jSONValue29 instanceof TLRPC.TL_jsonNumber) {
+                        double d17 = ((TLRPC.TL_jsonNumber) jSONValue29).value;
+                        if (d17 != this.chatlistUpdatePeriod) {
+                            int i28 = (int) d17;
+                            this.chatlistUpdatePeriod = i28;
+                            editorEdit.putInt("chatlistUpdatePeriod", i28);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 29:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue30 = tL_jsonObjectValue.value;
+                    if (jSONValue30 instanceof TLRPC.TL_jsonNumber) {
+                        long j3 = (long) ((TLRPC.TL_jsonNumber) jSONValue30).value;
+                        if (j3 != this.starsSubscriptionAmountMax) {
+                            this.starsSubscriptionAmountMax = j3;
+                            editorEdit.putLong("starsSubscriptionAmountMax", j3);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 30:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue31 = tL_jsonObjectValue.value;
+                    if (jSONValue31 instanceof TLRPC.TL_jsonNumber) {
+                        int i29 = this.starsGroupcallMessageAmountMax;
+                        int i30 = (int) ((TLRPC.TL_jsonNumber) jSONValue31).value;
+                        if (i29 != i30) {
+                            this.starsGroupcallMessageAmountMax = i30;
+                            editorEdit.putInt("starsGroupcallMessageAmountMax", i30);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 31:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue32 = tL_jsonObjectValue.value;
+                    if (jSONValue32 instanceof TLRPC.TL_jsonNumber) {
+                        double d18 = ((TLRPC.TL_jsonNumber) jSONValue32).value;
+                        if (d18 != this.groupWallpaperLevelMin) {
+                            int i31 = (int) d18;
+                            this.groupWallpaperLevelMin = i31;
+                            editorEdit.putInt("groupWallpaperLevelMin", i31);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 32:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue33 = tL_jsonObjectValue.value;
+                    if ((jSONValue33 instanceof TLRPC.TL_jsonBool) && (z8 = ((TLRPC.TL_jsonBool) jSONValue33).value) != this.videoIgnoreAltDocuments) {
+                        this.videoIgnoreAltDocuments = z8;
+                        editorEdit.putBoolean("videoIgnoreAltDocuments", z8);
+                        str9 = str10;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str10;
+                    break;
+                case 33:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue34 = tL_jsonObjectValue.value;
+                    if (jSONValue34 instanceof TLRPC.TL_jsonNumber) {
+                        double d19 = ((TLRPC.TL_jsonNumber) jSONValue34).value;
+                        if (d19 != this.channelEmojiStatusLevelMin) {
+                            int i32 = (int) d19;
+                            this.channelEmojiStatusLevelMin = i32;
+                            editorEdit.putInt("channelEmojiStatusLevelMin", i32);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 34:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue35 = tL_jsonObjectValue.value;
+                    if (jSONValue35 instanceof TLRPC.TL_jsonNumber) {
+                        double d20 = ((TLRPC.TL_jsonNumber) jSONValue35).value;
+                        if (d20 != this.publicLinksLimitPremium) {
+                            int i33 = (int) d20;
+                            this.publicLinksLimitPremium = i33;
+                            editorEdit.putInt("publicLinksLimitPremium", i33);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 35:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue36 = tL_jsonObjectValue.value;
+                    if (jSONValue36 instanceof TLRPC.TL_jsonNumber) {
+                        double d21 = ((TLRPC.TL_jsonNumber) jSONValue36).value;
+                        if (d21 != this.storyExpiringLimitPremium) {
+                            int i34 = (int) d21;
+                            this.storyExpiringLimitPremium = i34;
+                            editorEdit.putInt("storyExpiringLimitPremium", i34);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 36:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue37 = tL_jsonObjectValue.value;
+                    if (jSONValue37 instanceof TLRPC.TL_jsonBool) {
+                        boolean z35 = this.starsPaidMessagesAvailable;
+                        boolean z36 = ((TLRPC.TL_jsonBool) jSONValue37).value;
+                        if (z35 != z36) {
+                            this.starsPaidMessagesAvailable = z36;
+                            editorEdit.putBoolean("starsPaidMessagesAvailable", z36);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 37:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue38 = tL_jsonObjectValue.value;
+                    if (jSONValue38 instanceof TLRPC.TL_jsonNumber) {
+                        double d22 = ((TLRPC.TL_jsonNumber) jSONValue38).value;
+                        if (d22 != this.groupProfileBgIconLevelMin) {
+                            int i35 = (int) d22;
+                            this.groupProfileBgIconLevelMin = i35;
+                            editorEdit.putInt("groupProfileBgIconLevelMin", i35);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 38:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue39 = tL_jsonObjectValue.value;
+                    if (jSONValue39 instanceof TLRPC.TL_jsonNumber) {
+                        TLRPC.TL_jsonNumber tL_jsonNumber = (TLRPC.TL_jsonNumber) jSONValue39;
+                        if (Math.abs(tL_jsonNumber.value - ((double) this.uploadPremiumSpeedupDownload)) >= 0.009999999776482582d) {
+                            float f = (float) tL_jsonNumber.value;
+                            this.uploadPremiumSpeedupDownload = f;
+                            editorEdit.putFloat("uploadPremiumSpeedupDownload", f);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 39:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    HashSet hashSet = new HashSet();
+                    TLRPC.JSONValue jSONValue40 = tL_jsonObjectValue.value;
+                    if (jSONValue40 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray = (TLRPC.TL_jsonArray) jSONValue40;
+                        int size2 = tL_jsonArray.value.size();
+                        for (int i36 = 0; i36 < size2; i36++) {
+                            TLRPC.JSONValue jSONValue41 = tL_jsonArray.value.get(i36);
+                            if (jSONValue41 instanceof TLRPC.TL_jsonString) {
+                                hashSet.add(((TLRPC.TL_jsonString) jSONValue41).value.toLowerCase());
+                            }
+                        }
+                    }
+                    if (!this.ignoreRestrictionReasons.equals(hashSet)) {
+                        this.ignoreRestrictionReasons = hashSet;
+                        editorEdit.putStringSet("ignoreRestrictionReasons", hashSet);
+                        str9 = str10;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str10;
+                    break;
+                case 40:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue42 = tL_jsonObjectValue.value;
+                    if ((jSONValue42 instanceof TLRPC.TL_jsonBool) && (z9 = ((TLRPC.TL_jsonBool) jSONValue42).value) != this.newNoncontactPeersRequirePremiumWithoutOwnpremium) {
+                        this.newNoncontactPeersRequirePremiumWithoutOwnpremium = z9;
+                        editorEdit.putBoolean("newNoncontactPeersRequirePremiumWithoutOwnpremium", z9);
+                        str9 = str10;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str10;
+                    break;
+                case 41:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue43 = tL_jsonObjectValue.value;
+                    if (jSONValue43 instanceof TLRPC.TL_jsonNumber) {
+                        double d23 = ((TLRPC.TL_jsonNumber) jSONValue43).value;
+                        if (d23 != this.stickersFavedLimitPremium) {
+                            int i37 = (int) d23;
+                            this.stickersFavedLimitPremium = i37;
+                            editorEdit.putInt("stickersFavedLimitPremium", i37);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 42:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue44 = tL_jsonObjectValue.value;
+                    if (jSONValue44 instanceof TLRPC.TL_jsonNumber) {
+                        double d24 = ((TLRPC.TL_jsonNumber) jSONValue44).value;
+                        if (d24 != this.todoItemLengthMax) {
+                            int i38 = (int) d24;
+                            this.todoItemLengthMax = i38;
+                            editorEdit.putInt("todoItemLengthMax", i38);
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str10;
+                    break;
+                case 43:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    String str36 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue45 = tL_jsonObjectValue.value;
+                    if (jSONValue45 instanceof TLRPC.TL_jsonNumber) {
+                        int i39 = (int) ((TLRPC.TL_jsonNumber) jSONValue45).value;
+                        this.stealthModeCooldown = i39;
+                        str8 = str36;
+                        editorEdit.putInt(str8, i39);
+                    } else {
+                        str8 = str36;
+                    }
+                    str9 = str10;
+                    break;
+                case 44:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    TLRPC.JSONValue jSONValue46 = tL_jsonObjectValue.value;
+                    if (jSONValue46 instanceof TLRPC.TL_jsonNumber) {
+                        double d25 = ((TLRPC.TL_jsonNumber) jSONValue46).value;
+                        if (d25 != this.stargiftsConvertPeriodMax) {
+                            int i40 = (int) d25;
+                            this.stargiftsConvertPeriodMax = i40;
+                            editorEdit.putInt("stargiftsConvertPeriodMax", i40);
+                            str9 = str12;
+                            str8 = str11;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 45:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    TLRPC.JSONValue jSONValue47 = tL_jsonObjectValue.value;
+                    if (jSONValue47 instanceof TLRPC.TL_jsonObject) {
+                        tL_jsonObject4 = (TLRPC.TL_jsonObject) jSONValue47;
+                        str9 = str12;
+                        str8 = str11;
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 46:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    TLRPC.JSONValue jSONValue48 = tL_jsonObjectValue.value;
+                    if ((jSONValue48 instanceof TLRPC.TL_jsonNumber) && (i4 = (int) ((TLRPC.TL_jsonNumber) jSONValue48).value) > 0) {
+                        SharedConfig.overrideDevicePerformanceClass(i4 - 1);
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 47:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    TLRPC.JSONValue jSONValue49 = tL_jsonObjectValue.value;
+                    if (jSONValue49 instanceof TLRPC.TL_jsonBool) {
+                        boolean z37 = this.giftTextFieldIcon;
+                        boolean z38 = ((TLRPC.TL_jsonBool) jSONValue49).value;
+                        if (z37 != z38) {
+                            this.giftTextFieldIcon = z38;
+                            editorEdit.putBoolean("giftTextFieldIcon", z38);
+                            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdatePremiumGiftFieldIcon, new Object[0]);
+                            str9 = str12;
+                            str8 = str11;
+                            z28 = true;
+                        }
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 48:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    TLRPC.JSONValue jSONValue50 = tL_jsonObjectValue.value;
+                    if (jSONValue50 instanceof TLRPC.TL_jsonNumber) {
+                        double d26 = ((TLRPC.TL_jsonNumber) jSONValue50).value;
+                        if (d26 != this.chatReadMarkExpirePeriod) {
+                            int i41 = (int) d26;
+                            this.chatReadMarkExpirePeriod = i41;
+                            editorEdit.putInt("chatReadMarkExpirePeriod", i41);
+                            str9 = str12;
+                            str8 = str11;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 49:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    TLRPC.JSONValue jSONValue51 = tL_jsonObjectValue.value;
+                    if (jSONValue51 instanceof TLRPC.TL_jsonBool) {
+                        double d27 = ((TLRPC.TL_jsonNumber) jSONValue51).value;
+                        if (d27 != this.reactionsUniqMax) {
+                            int i42 = (int) d27;
+                            this.reactionsUniqMax = i42;
+                            editorEdit.putInt("reactionsUniqMax", i42);
+                            str9 = str12;
+                            str8 = str11;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 50:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    HashSet<String> hashSet2 = new HashSet<>();
+                    TLRPC.JSONValue jSONValue52 = tL_jsonObjectValue.value;
+                    if (jSONValue52 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray2 = (TLRPC.TL_jsonArray) jSONValue52;
+                        int size3 = tL_jsonArray2.value.size();
+                        for (int i43 = 0; i43 < size3; i43++) {
+                            TLRPC.JSONValue jSONValue53 = tL_jsonArray2.value.get(i43);
+                            if (jSONValue53 instanceof TLRPC.TL_jsonString) {
+                                hashSet2.add(((TLRPC.TL_jsonString) jSONValue53).value.replace("️", ""));
+                            }
+                        }
+                    }
+                    if (!this.diceEmojies.equals(hashSet2)) {
+                        this.diceEmojies = hashSet2;
+                        editorEdit.putStringSet("diceEmojies", hashSet2);
+                        str9 = str12;
+                        str8 = str11;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 51:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    HashSet hashSet3 = new HashSet();
+                    TLRPC.JSONValue jSONValue54 = tL_jsonObjectValue.value;
+                    if (jSONValue54 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray3 = (TLRPC.TL_jsonArray) jSONValue54;
+                        int size4 = tL_jsonArray3.value.size();
+                        for (int i44 = 0; i44 < size4; i44++) {
+                            TLRPC.JSONValue jSONValue55 = tL_jsonArray3.value.get(i44);
+                            if (jSONValue55 instanceof TLRPC.TL_jsonString) {
+                                hashSet3.add(((TLRPC.TL_jsonString) jSONValue55).value);
+                            }
+                        }
+                    }
+                    if (!this.authDomains.equals(hashSet3)) {
+                        this.authDomains = hashSet3;
+                        editorEdit.putStringSet("authDomains", hashSet3);
+                        str9 = str12;
+                        str8 = str11;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 52:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    TLRPC.JSONValue jSONValue56 = tL_jsonObjectValue.value;
+                    if (jSONValue56 instanceof TLRPC.TL_jsonNumber) {
+                        long j4 = (long) ((TLRPC.TL_jsonNumber) jSONValue56).value;
+                        if (j4 != this.starsRevenueWithdrawalMin) {
+                            this.starsRevenueWithdrawalMin = j4;
+                            editorEdit.putLong("starsRevenueWithdrawalMin", j4);
+                            str9 = str12;
+                            str8 = str11;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 53:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    String str37 = str31;
+                    str11 = str32;
+                    str12 = str33;
+                    TLRPC.JSONValue jSONValue57 = tL_jsonObjectValue.value;
+                    if (jSONValue57 instanceof TLRPC.TL_jsonNumber) {
+                        int i45 = (int) ((TLRPC.TL_jsonNumber) jSONValue57).value;
+                        this.stealthModePast = i45;
+                        str7 = str37;
+                        editorEdit.putInt(str7, i45);
+                    } else {
+                        str7 = str37;
+                    }
+                    str9 = str12;
+                    str8 = str11;
+                    break;
+                case 54:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue58 = tL_jsonObjectValue.value;
+                    if (jSONValue58 instanceof TLRPC.TL_jsonNumber) {
+                        double d28 = ((TLRPC.TL_jsonNumber) jSONValue58).value;
+                        if (d28 != this.savedDialogsPinnedLimitPremium) {
+                            int i46 = (int) d28;
+                            this.savedDialogsPinnedLimitPremium = i46;
+                            editorEdit.putInt("savedDialogsPinnedLimitPremium", i46);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 55:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue59 = tL_jsonObjectValue.value;
+                    if (jSONValue59 instanceof TLRPC.TL_jsonNumber) {
+                        double d29 = ((TLRPC.TL_jsonNumber) jSONValue59).value;
+                        if (d29 != this.savedGifsLimitDefault) {
+                            int i47 = (int) d29;
+                            this.savedGifsLimitDefault = i47;
+                            editorEdit.putInt("savedGifsLimitDefault", i47);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 56:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue60 = tL_jsonObjectValue.value;
+                    if (jSONValue60 instanceof TLRPC.TL_jsonNumber) {
+                        double d30 = ((TLRPC.TL_jsonNumber) jSONValue60).value;
+                        if (d30 != this.storyCaptionLengthLimitDefault) {
+                            int i48 = (int) d30;
+                            this.storyCaptionLengthLimitDefault = i48;
+                            editorEdit.putInt("storyCaptionLengthLimit", i48);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 57:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue61 = tL_jsonObjectValue.value;
+                    if ((jSONValue61 instanceof TLRPC.TL_jsonBool) && (z10 = ((TLRPC.TL_jsonBool) jSONValue61).value) != this.showAnnualPerMonth) {
+                        this.showAnnualPerMonth = z10;
+                        editorEdit.putBoolean("showAnnualPerMonth", z10);
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 58:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue62 = tL_jsonObjectValue.value;
+                    if (jSONValue62 instanceof TLRPC.TL_jsonNumber) {
+                        double d31 = ((TLRPC.TL_jsonNumber) jSONValue62).value;
+                        if (d31 != this.dialogFiltersLimitDefault) {
+                            int i49 = (int) d31;
+                            this.dialogFiltersLimitDefault = i49;
+                            editorEdit.putInt("dialogFiltersLimitDefault", i49);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 59:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue63 = tL_jsonObjectValue.value;
+                    if (jSONValue63 instanceof TLRPC.TL_jsonString) {
+                        String str38 = ((TLRPC.TL_jsonString) jSONValue63).value;
+                        if (!str38.equals(this.premiumInvoiceSlug)) {
+                            this.premiumInvoiceSlug = str38;
+                            editorEdit.putString("premiumInvoiceSlug", str38);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 60:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue64 = tL_jsonObjectValue.value;
+                    if (jSONValue64 instanceof TLRPC.TL_jsonNumber) {
+                        double d32 = ((TLRPC.TL_jsonNumber) jSONValue64).value;
+                        if (d32 != this.storiesSentWeeklyLimitPremium) {
+                            int i50 = (int) d32;
+                            this.storiesSentWeeklyLimitPremium = i50;
+                            editorEdit.putInt("storiesSentWeeklyLimitPremium", i50);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 61:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue65 = tL_jsonObjectValue.value;
+                    if (jSONValue65 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray4 = (TLRPC.TL_jsonArray) jSONValue65;
+                        long[] jArr = new long[tL_jsonArray4.value.size()];
+                        for (int i51 = 0; i51 < tL_jsonArray4.value.size(); i51++) {
+                            if (tL_jsonArray4.value.get(i51) instanceof TLRPC.TL_jsonNumber) {
+                                jArr[i51] = (long) ((TLRPC.TL_jsonNumber) tL_jsonArray4.value.get(i51)).value;
+                            }
+                        }
+                        if (!Arrays.equals(jArr, this.tonStakediceStakeSuggestedAmounts)) {
+                            this.tonStakediceStakeSuggestedAmounts = jArr;
+                            editorEdit.putString("tonStakeddiceStakeSuggestedAmounts", (String) DesugarArrays.stream(jArr).mapToObj(new LongFunction() {
+                                @Override
+                                public final Object apply(long j5) {
+                                    return String.valueOf(j5);
+                                }
+                            }).collect(Collectors.joining(",")));
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 62:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue66 = tL_jsonObjectValue.value;
+                    if (jSONValue66 instanceof TLRPC.TL_jsonBool) {
+                        boolean z39 = this.storiesExportNopublicLink;
+                        boolean z40 = ((TLRPC.TL_jsonBool) jSONValue66).value;
+                        if (z39 != z40) {
+                            this.storiesExportNopublicLink = z40;
+                            editorEdit.putBoolean("storiesExportNopublicLink", z40);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 63:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue67 = tL_jsonObjectValue.value;
+                    if (jSONValue67 instanceof TLRPC.TL_jsonNumber) {
+                        double d33 = ((TLRPC.TL_jsonNumber) jSONValue67).value;
+                        if (d33 != this.starrefMaxCommissionPermille) {
+                            int i52 = (int) d33;
+                            this.starrefMaxCommissionPermille = i52;
+                            editorEdit.putInt("starrefMaxCommissionPermille", i52);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 64:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue68 = tL_jsonObjectValue.value;
+                    if ((jSONValue68 instanceof TLRPC.TL_jsonBool) && (z11 = ((TLRPC.TL_jsonBool) jSONValue68).value) != this.callRequestsDisabled) {
+                        this.callRequestsDisabled = z11;
+                        editorEdit.putBoolean("callRequestsDisabled", z11);
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 65:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    HashSet hashSet4 = new HashSet();
+                    TLRPC.JSONValue jSONValue69 = tL_jsonObjectValue.value;
+                    if (jSONValue69 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray5 = (TLRPC.TL_jsonArray) jSONValue69;
+                        int size5 = tL_jsonArray5.value.size();
+                        for (int i53 = 0; i53 < size5; i53++) {
+                            TLRPC.JSONValue jSONValue70 = tL_jsonArray5.value.get(i53);
+                            if (jSONValue70 instanceof TLRPC.TL_jsonString) {
+                                hashSet4.add(((TLRPC.TL_jsonString) jSONValue70).value);
+                            }
+                        }
+                    }
+                    if (!this.exportUri.equals(hashSet4)) {
+                        this.exportUri = hashSet4;
+                        editorEdit.putStringSet("exportUri2", hashSet4);
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 66:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue71 = tL_jsonObjectValue.value;
+                    if (jSONValue71 instanceof TLRPC.TL_jsonNumber) {
+                        double d34 = ((TLRPC.TL_jsonNumber) jSONValue71).value;
+                        if (d34 != this.chatlistInvitesLimitPremium) {
+                            int i54 = (int) d34;
+                            this.chatlistInvitesLimitPremium = i54;
+                            editorEdit.putInt("chatlistInvitesLimitPremium", i54);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 67:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue72 = tL_jsonObjectValue.value;
+                    if (jSONValue72 instanceof TLRPC.TL_jsonNumber) {
+                        TLRPC.TL_jsonNumber tL_jsonNumber2 = (TLRPC.TL_jsonNumber) jSONValue72;
+                        if (Math.abs(tL_jsonNumber2.value - ((double) this.starsUsdSellRate1000)) > 0.0010000000474974513d) {
+                            float f2 = (float) tL_jsonNumber2.value;
+                            this.starsUsdSellRate1000 = f2;
+                            editorEdit.putFloat("starsUsdSellRate1000", f2);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 68:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue73 = tL_jsonObjectValue.value;
+                    if (jSONValue73 instanceof TLRPC.TL_jsonNumber) {
+                        double d35 = ((TLRPC.TL_jsonNumber) jSONValue73).value;
+                        if (d35 != this.aboutLengthLimitDefault) {
+                            int i55 = (int) d35;
+                            this.aboutLengthLimitDefault = i55;
+                            editorEdit.putInt("aboutLengthLimitDefault", i55);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 69:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue74 = tL_jsonObjectValue.value;
+                    if (jSONValue74 instanceof TLRPC.TL_jsonNumber) {
+                        double d36 = ((TLRPC.TL_jsonNumber) jSONValue74).value;
+                        if (d36 != this.reactionsUserMaxPremium) {
+                            int i56 = (int) d36;
+                            this.reactionsUserMaxPremium = i56;
+                            editorEdit.putInt("reactionsUserMaxPremium", i56);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 70:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue75 = tL_jsonObjectValue.value;
+                    if (jSONValue75 instanceof TLRPC.TL_jsonNumber) {
+                        double d37 = ((TLRPC.TL_jsonNumber) jSONValue75).value;
+                        if (d37 != this.captionLengthLimitPremium) {
+                            int i57 = (int) d37;
+                            this.captionLengthLimitPremium = i57;
+                            editorEdit.putInt("captionLengthLimitPremium", i57);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 71:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue76 = tL_jsonObjectValue.value;
+                    if (jSONValue76 instanceof TLRPC.TL_jsonNumber) {
+                        double d38 = ((TLRPC.TL_jsonNumber) jSONValue76).value;
+                        if (d38 != this.conferenceCallSizeLimit) {
+                            int i58 = (int) d38;
+                            this.conferenceCallSizeLimit = i58;
+                            editorEdit.putInt("conferenceCallSizeLimit", i58);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 72:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue77 = tL_jsonObjectValue.value;
+                    if (jSONValue77 instanceof TLRPC.TL_jsonNumber) {
+                        double d39 = this.recommendedChannelsLimitPremium;
+                        double d40 = ((TLRPC.TL_jsonNumber) jSONValue77).value;
+                        if (d39 != d40) {
+                            int i59 = (int) d40;
+                            this.recommendedChannelsLimitPremium = i59;
+                            editorEdit.putInt("recommendedChannelsLimitPremium", i59);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 73:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue78 = tL_jsonObjectValue.value;
+                    if ((jSONValue78 instanceof TLRPC.TL_jsonBool) && (z12 = ((TLRPC.TL_jsonBool) jSONValue78).value) != this.keepAliveService) {
+                        this.keepAliveService = z12;
+                        editorEdit.putBoolean("keepAliveService", z12);
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z28 = true;
+                        z29 = true;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 74:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue79 = tL_jsonObjectValue.value;
+                    if (jSONValue79 instanceof TLRPC.TL_jsonArray) {
+                        zSavePremiumFeaturesPreviewOrder = savePremiumFeaturesPreviewOrder("premiumFeaturesTypesToPosition", this.premiumFeaturesTypesToPosition, editorEdit, ((TLRPC.TL_jsonArray) jSONValue79).value);
+                        z14 = zSavePremiumFeaturesPreviewOrder;
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z28 = z14;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 75:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue80 = tL_jsonObjectValue.value;
+                    if (jSONValue80 instanceof TLRPC.TL_jsonNumber) {
+                        double d41 = ((TLRPC.TL_jsonNumber) jSONValue80).value;
+                        if (d41 != this.ringtoneSizeMax) {
+                            int i60 = (int) d41;
+                            this.ringtoneSizeMax = i60;
+                            editorEdit.putInt("ringtoneSizeMax", i60);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 76:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue81 = tL_jsonObjectValue.value;
+                    if (jSONValue81 instanceof TLRPC.TL_jsonNumber) {
+                        double d42 = ((TLRPC.TL_jsonNumber) jSONValue81).value;
+                        if (d42 != this.dialogFiltersChatsLimitPremium) {
+                            int i61 = (int) d42;
+                            this.dialogFiltersChatsLimitPremium = i61;
+                            editorEdit.putInt("dialogFiltersChatsLimitPremium", i61);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 77:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue82 = tL_jsonObjectValue.value;
+                    if ((jSONValue82 instanceof TLRPC.TL_jsonBool) && (z13 = ((TLRPC.TL_jsonBool) jSONValue82).value) != this.starrefProgramAllowed) {
+                        this.starrefProgramAllowed = z13;
+                        editorEdit.putBoolean("starrefProgramAllowed", z13);
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 78:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue83 = tL_jsonObjectValue.value;
+                    if (jSONValue83 instanceof TLRPC.TL_jsonArray) {
+                        zSavePremiumFeaturesPreviewOrder = savePremiumFeaturesPreviewOrder("businessFeaturesTypesToPosition", this.businessFeaturesTypesToPosition, editorEdit, ((TLRPC.TL_jsonArray) jSONValue83).value);
+                        z14 = zSavePremiumFeaturesPreviewOrder;
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z28 = z14;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 79:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue84 = tL_jsonObjectValue.value;
+                    if (jSONValue84 instanceof TLRPC.TL_jsonNumber) {
+                        double d43 = ((TLRPC.TL_jsonNumber) jSONValue84).value;
+                        if (d43 != this.chatlistJoinedLimitDefault) {
+                            int i62 = (int) d43;
+                            this.chatlistJoinedLimitDefault = i62;
+                            editorEdit.putInt("chatlistJoinedLimitDefault", i62);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 80:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue85 = tL_jsonObjectValue.value;
+                    if (jSONValue85 instanceof TLRPC.TL_jsonNumber) {
+                        double d44 = ((TLRPC.TL_jsonNumber) jSONValue85).value;
+                        if (d44 != this.storiesPinnedToTopCountMax) {
+                            int i63 = (int) d44;
+                            this.storiesPinnedToTopCountMax = i63;
+                            editorEdit.putInt("storiesPinnedToTopCountMax", i63);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 81:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue86 = tL_jsonObjectValue.value;
+                    if (jSONValue86 instanceof TLRPC.TL_jsonNumber) {
+                        double d45 = ((TLRPC.TL_jsonNumber) jSONValue86).value;
+                        if (d45 != this.channelsLimitPremium) {
+                            int i64 = (int) d45;
+                            this.channelsLimitPremium = i64;
+                            editorEdit.putInt("channelsLimitPremium", i64);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 82:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue87 = tL_jsonObjectValue.value;
+                    if ((jSONValue87 instanceof TLRPC.TL_jsonBool) && (z15 = ((TLRPC.TL_jsonBool) jSONValue87).value) != this.disableBotFullscreenBlur) {
+                        this.disableBotFullscreenBlur = z15;
+                        editorEdit.putBoolean("disableBotFullscreenBlur", z15);
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 83:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue88 = tL_jsonObjectValue.value;
+                    if ((jSONValue88 instanceof TLRPC.TL_jsonBool) && (z16 = ((TLRPC.TL_jsonBool) jSONValue88).value) != this.backgroundConnection) {
+                        this.backgroundConnection = z16;
+                        editorEdit.putBoolean("backgroundConnection", z16);
+                        str9 = str15;
+                        str8 = str14;
+                        str7 = str13;
+                        z28 = true;
+                        z29 = true;
+                    }
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 84:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    String str39 = str30;
+                    str13 = str31;
+                    str14 = str32;
+                    str15 = str33;
+                    TLRPC.JSONValue jSONValue89 = tL_jsonObjectValue.value;
+                    if (jSONValue89 instanceof TLRPC.TL_jsonNumber) {
+                        long j5 = (long) ((TLRPC.TL_jsonNumber) jSONValue89).value;
+                        if (j5 != this.giveawayPeriodMax) {
+                            this.giveawayPeriodMax = j5;
+                            str6 = str39;
+                            editorEdit.putLong(str6, j5);
+                            str9 = str15;
+                            str8 = str14;
+                            str7 = str13;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str6 = str39;
+                    str9 = str15;
+                    str8 = str14;
+                    str7 = str13;
+                    break;
+                case 85:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    try {
+                        HashMap<String, DiceFrameSuccess> map = new HashMap<>();
+                        TLRPC.JSONValue jSONValue90 = tL_jsonObjectValue.value;
+                        if (jSONValue90 instanceof TLRPC.TL_jsonObject) {
+                            TLRPC.TL_jsonObject tL_jsonObject5 = (TLRPC.TL_jsonObject) jSONValue90;
+                            int size6 = tL_jsonObject5.value.size();
+                            int i65 = 0;
+                            while (i65 < size6) {
+                                TLRPC.TL_jsonObjectValue tL_jsonObjectValue2 = tL_jsonObject5.value.get(i65);
+                                TLRPC.JSONValue jSONValue91 = tL_jsonObjectValue2.value;
+                                if (jSONValue91 instanceof TLRPC.TL_jsonObject) {
+                                    TLRPC.TL_jsonObject tL_jsonObject6 = (TLRPC.TL_jsonObject) jSONValue91;
+                                    int size7 = tL_jsonObject6.value.size();
+                                    tL_jsonObject2 = tL_jsonObject5;
+                                    str = str25;
+                                    str2 = str26;
+                                    int i66 = 0;
+                                    int i67 = Integer.MAX_VALUE;
+                                    int i68 = Integer.MAX_VALUE;
+                                    while (i66 < size7) {
+                                        str3 = str27;
+                                        try {
+                                            TLRPC.TL_jsonObjectValue tL_jsonObjectValue3 = tL_jsonObject6.value.get(i66);
+                                            str4 = str28;
+                                            try {
+                                                if (tL_jsonObjectValue3.value instanceof TLRPC.TL_jsonNumber) {
+                                                    str5 = str29;
+                                                    try {
+                                                        if ("value".equals(tL_jsonObjectValue3.key)) {
+                                                            i68 = (int) ((TLRPC.TL_jsonNumber) tL_jsonObjectValue3.value).value;
+                                                        } else if ("frame_start".equals(tL_jsonObjectValue3.key)) {
+                                                            i67 = (int) ((TLRPC.TL_jsonNumber) tL_jsonObjectValue3.value).value;
+                                                        }
+                                                    } catch (Exception e2) {
+                                                        e = e2;
+                                                        FileLog.e(e);
+                                                        str9 = str19;
+                                                        str8 = str18;
+                                                        str7 = str17;
+                                                        str6 = str16;
+                                                        i8 = i2 + 1;
+                                                        str32 = str8;
+                                                        str31 = str7;
+                                                        str30 = str6;
+                                                        str33 = str9;
+                                                        size = i11;
+                                                        str25 = str;
+                                                        str26 = str2;
+                                                        str27 = str3;
+                                                        str28 = str4;
+                                                        str29 = str5;
+                                                        tL_jsonObject3 = tL_jsonObject;
+                                                        break;
+                                                    }
+                                                } else {
+                                                    str5 = str29;
+                                                }
+                                                i66++;
+                                                str27 = str3;
+                                                str28 = str4;
+                                                str29 = str5;
+                                            } catch (Exception e3) {
+                                                e = e3;
+                                                str5 = str29;
+                                                FileLog.e(e);
+                                                str9 = str19;
+                                                str8 = str18;
+                                                str7 = str17;
+                                                str6 = str16;
+                                                i8 = i2 + 1;
+                                                str32 = str8;
+                                                str31 = str7;
+                                                str30 = str6;
+                                                str33 = str9;
+                                                size = i11;
+                                                str25 = str;
+                                                str26 = str2;
+                                                str27 = str3;
+                                                str28 = str4;
+                                                str29 = str5;
+                                                tL_jsonObject3 = tL_jsonObject;
+                                            }
+                                        } catch (Exception e4) {
+                                            e = e4;
+                                            str4 = str28;
+                                            str5 = str29;
+                                            FileLog.e(e);
+                                            str9 = str19;
+                                            str8 = str18;
+                                            str7 = str17;
+                                            str6 = str16;
+                                            i8 = i2 + 1;
+                                            str32 = str8;
+                                            str31 = str7;
+                                            str30 = str6;
+                                            str33 = str9;
+                                            size = i11;
+                                            str25 = str;
+                                            str26 = str2;
+                                            str27 = str3;
+                                            str28 = str4;
+                                            str29 = str5;
+                                            tL_jsonObject3 = tL_jsonObject;
+                                        }
+                                        break;
+                                    }
+                                    str20 = str27;
+                                    str21 = str28;
+                                    str22 = str29;
+                                    if (i67 != Integer.MAX_VALUE && i68 != Integer.MAX_VALUE) {
+                                        map.put(tL_jsonObjectValue2.key.replace("️", ""), new DiceFrameSuccess(i67, i68));
+                                    }
+                                } else {
+                                    tL_jsonObject2 = tL_jsonObject5;
+                                    str = str25;
+                                    str2 = str26;
+                                    str20 = str27;
+                                    str21 = str28;
+                                    str22 = str29;
+                                }
+                                i65++;
+                                tL_jsonObject5 = tL_jsonObject2;
+                                str25 = str;
+                                str26 = str2;
+                                str27 = str20;
+                                str28 = str21;
+                                str29 = str22;
+                            }
+                        }
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        if (!this.diceSuccess.equals(map)) {
+                            this.diceSuccess = map;
+                            SerializedData serializedData = new SerializedData();
+                            serializedData.writeInt32(this.diceSuccess.size());
+                            for (Map.Entry<String, DiceFrameSuccess> entry : this.diceSuccess.entrySet()) {
+                                serializedData.writeString(entry.getKey());
+                                DiceFrameSuccess value = entry.getValue();
+                                serializedData.writeInt32(value.frame);
+                                serializedData.writeInt32(value.num);
+                            }
+                            editorEdit.putString("diceSuccess", Base64.encodeToString(serializedData.toByteArray(), 0));
+                            serializedData.cleanup();
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    } catch (Exception e5) {
+                        e = e5;
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                    }
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 86:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue92 = tL_jsonObjectValue.value;
+                    if (jSONValue92 instanceof TLRPC.TL_jsonNumber) {
+                        double d46 = ((TLRPC.TL_jsonNumber) jSONValue92).value;
+                        if (d46 != this.dialogFiltersPinnedLimitDefault) {
+                            int i69 = (int) d46;
+                            this.dialogFiltersPinnedLimitDefault = i69;
+                            editorEdit.putInt("dialogFiltersPinnedLimitDefault", i69);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 87:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue93 = tL_jsonObjectValue.value;
+                    if (jSONValue93 instanceof TLRPC.TL_jsonNumber) {
+                        double d47 = ((TLRPC.TL_jsonNumber) jSONValue93).value;
+                        if (d47 != this.hiddenMembersGroupSizeMin) {
+                            int i70 = (int) d47;
+                            this.hiddenMembersGroupSizeMin = i70;
+                            editorEdit.putInt("hiddenMembersGroupSizeMin", i70);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 88:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue94 = tL_jsonObjectValue.value;
+                    if (jSONValue94 instanceof TLRPC.TL_jsonNumber) {
+                        double d48 = ((TLRPC.TL_jsonNumber) jSONValue94).value;
+                        if (d48 != this.freezeUntilDate) {
+                            long j6 = (long) d48;
+                            this.freezeUntilDate = j6;
+                            editorEdit.putLong("freezeUntilDate", j6);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 89:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue95 = tL_jsonObjectValue.value;
+                    if ((jSONValue95 instanceof TLRPC.TL_jsonBool) && (z17 = ((TLRPC.TL_jsonBool) jSONValue95).value) != this.autoarchiveAvailable) {
+                        this.autoarchiveAvailable = z17;
+                        editorEdit.putBoolean("autoarchiveAvailable", z17);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 90:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue96 = tL_jsonObjectValue.value;
+                    if (jSONValue96 instanceof TLRPC.TL_jsonNumber) {
+                        double d49 = ((TLRPC.TL_jsonNumber) jSONValue96).value;
+                        if (d49 != this.quickRepliesLimit) {
+                            int i71 = (int) d49;
+                            this.quickRepliesLimit = i71;
+                            editorEdit.putInt("quickRepliesLimit", i71);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 91:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue97 = tL_jsonObjectValue.value;
+                    if (jSONValue97 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString2 = (TLRPC.TL_jsonString) jSONValue97;
+                        if (!tL_jsonString2.value.equals(this.youtubePipType)) {
+                            String str40 = tL_jsonString2.value;
+                            this.youtubePipType = str40;
+                            editorEdit.putString("youtubePipType", str40);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 92:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue98 = tL_jsonObjectValue.value;
+                    if (jSONValue98 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString3 = (TLRPC.TL_jsonString) jSONValue98;
+                        if (!TextUtils.equals(tL_jsonString3.value, this.tonProxyAddress)) {
+                            String str41 = tL_jsonString3.value;
+                            this.tonProxyAddress = str41;
+                            editorEdit.putString("tonProxyAddress", str41);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 93:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue99 = tL_jsonObjectValue.value;
+                    if (jSONValue99 instanceof TLRPC.TL_jsonNumber) {
+                        double d50 = this.animatedEmojisZoom;
+                        double d51 = ((TLRPC.TL_jsonNumber) jSONValue99).value;
+                        if (d50 != d51) {
+                            float f3 = (float) d51;
+                            this.animatedEmojisZoom = f3;
+                            editorEdit.putFloat("animatedEmojisZoom", f3);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 94:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue100 = tL_jsonObjectValue.value;
+                    if (jSONValue100 instanceof TLRPC.TL_jsonNumber) {
+                        double d52 = ((TLRPC.TL_jsonNumber) jSONValue100).value;
+                        if (d52 != this.telegramAntispamGroupSizeMin) {
+                            int i72 = (int) d52;
+                            this.telegramAntispamGroupSizeMin = i72;
+                            editorEdit.putInt("telegramAntispamGroupSizeMin", i72);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 95:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue101 = tL_jsonObjectValue.value;
+                    if (jSONValue101 instanceof TLRPC.TL_jsonNumber) {
+                        int i73 = this.stargiftsPinnedToTopLimit;
+                        int i74 = (int) ((TLRPC.TL_jsonNumber) jSONValue101).value;
+                        if (i73 != i74) {
+                            this.stargiftsPinnedToTopLimit = i74;
+                            editorEdit.putInt("stargiftsPinnedToTopLimit", i74);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 96:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue102 = tL_jsonObjectValue.value;
+                    if (jSONValue102 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString4 = (TLRPC.TL_jsonString) jSONValue102;
+                        if (!TextUtils.equals(this.translationsAutoEnabled, tL_jsonString4.value)) {
+                            String str42 = tL_jsonString4.value;
+                            this.translationsAutoEnabled = str42;
+                            editorEdit.putString("translationsAutoEnabled", str42);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 97:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue103 = tL_jsonObjectValue.value;
+                    if (jSONValue103 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray6 = (TLRPC.TL_jsonArray) jSONValue103;
+                        int[][] iArr = new int[tL_jsonArray6.value.size()][];
+                        for (int i75 = 0; i75 < tL_jsonArray6.value.size(); i75++) {
+                            if (tL_jsonArray6.value.get(i75) instanceof TLRPC.TL_jsonArray) {
+                                TLRPC.TL_jsonArray tL_jsonArray7 = (TLRPC.TL_jsonArray) tL_jsonArray6.value.get(i75);
+                                iArr[i75] = new int[tL_jsonArray7.value.size()];
+                                for (int i76 = 0; i76 < tL_jsonArray7.value.size(); i76++) {
+                                    if (tL_jsonArray7.value.get(i76) instanceof TLRPC.TL_jsonNumber) {
+                                        iArr[i75][i76] = (int) ((TLRPC.TL_jsonNumber) tL_jsonArray7.value.get(i76)).value;
+                                    }
+                                }
+                            }
+                        }
+                        if (!Arrays.deepEquals(iArr, this.stargiftsCraftAttributesPermilles)) {
+                            this.stargiftsCraftAttributesPermilles = iArr;
+                            editorEdit.putString("stargiftsCraftAttributesPermilles", (String) DesugarArrays.stream(iArr).map(new Function() {
+                                public Function andThen(Function function) {
+                                    return Function$CC.$default$andThen(this, function);
+                                }
+
+                                @Override
+                                public final Object apply(Object obj) {
+                                    return MessagesController.lambda$applyAppConfig$35((int[]) obj);
+                                }
+
+                                public Function compose(Function function) {
+                                    return Function$CC.$default$compose(this, function);
+                                }
+                            }).collect(Collectors.joining(",,")));
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 98:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue104 = tL_jsonObjectValue.value;
+                    if (jSONValue104 instanceof TLRPC.TL_jsonBool) {
+                        boolean z41 = this.giveawayGiftsPurchaseAvailable;
+                        boolean z42 = ((TLRPC.TL_jsonBool) jSONValue104).value;
+                        if (z41 != z42) {
+                            this.giveawayGiftsPurchaseAvailable = z42;
+                            editorEdit.putBoolean("giveawayGiftsPurchaseAvailable", z42);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 99:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue105 = tL_jsonObjectValue.value;
+                    if (jSONValue105 instanceof TLRPC.TL_jsonNumber) {
+                        long j7 = (long) ((TLRPC.TL_jsonNumber) jSONValue105).value;
+                        if (j7 != this.starsPaidReactionAmountMax) {
+                            this.starsPaidReactionAmountMax = j7;
+                            editorEdit.putLong("starsPaidReactionAmountMax", j7);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 100:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue106 = tL_jsonObjectValue.value;
+                    if ((jSONValue106 instanceof TLRPC.TL_jsonBool) && (z18 = ((TLRPC.TL_jsonBool) jSONValue106).value) != this.suggestStickersApiOnly) {
+                        this.suggestStickersApiOnly = z18;
+                        editorEdit.putBoolean("suggestStickersApiOnly", z18);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 101:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    ArrayList<String> arrayList = new ArrayList<>();
+                    TLRPC.JSONValue jSONValue107 = tL_jsonObjectValue.value;
+                    if (jSONValue107 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray8 = (TLRPC.TL_jsonArray) jSONValue107;
+                        int size8 = tL_jsonArray8.value.size();
+                        for (int i77 = 0; i77 < size8; i77++) {
+                            TLRPC.JSONValue jSONValue108 = tL_jsonArray8.value.get(i77);
+                            if (jSONValue108 instanceof TLRPC.TL_jsonString) {
+                                arrayList.add(((TLRPC.TL_jsonString) jSONValue108).value.replace("️", ""));
+                            }
+                        }
+                    }
+                    if (!this.gifSearchEmojies.equals(arrayList)) {
+                        this.gifSearchEmojies = arrayList;
+                        SerializedData serializedData2 = new SerializedData();
+                        serializedData2.writeInt32(this.gifSearchEmojies.size());
+                        int size9 = this.gifSearchEmojies.size();
+                        for (int i78 = 0; i78 < size9; i78++) {
+                            serializedData2.writeString(this.gifSearchEmojies.get(i78));
+                        }
+                        editorEdit.putString("gifSearchEmojies", Base64.encodeToString(serializedData2.toByteArray(), 0));
+                        serializedData2.cleanup();
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 102:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    HashSet hashSet5 = new HashSet();
+                    TLRPC.JSONValue jSONValue109 = tL_jsonObjectValue.value;
+                    if (jSONValue109 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray9 = (TLRPC.TL_jsonArray) jSONValue109;
+                        int size10 = tL_jsonArray9.value.size();
+                        for (int i79 = 0; i79 < size10; i79++) {
+                            TLRPC.JSONValue jSONValue110 = tL_jsonArray9.value.get(i79);
+                            if (jSONValue110 instanceof TLRPC.TL_jsonString) {
+                                hashSet5.add(((TLRPC.TL_jsonString) jSONValue110).value);
+                            }
+                        }
+                    }
+                    if (!this.autologinDomains.equals(hashSet5)) {
+                        this.autologinDomains = hashSet5;
+                        editorEdit.putStringSet("autologinDomains", hashSet5);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 103:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    HashSet hashSet6 = new HashSet();
+                    TLRPC.JSONValue jSONValue111 = tL_jsonObjectValue.value;
+                    if (jSONValue111 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray10 = (TLRPC.TL_jsonArray) jSONValue111;
+                        int size11 = tL_jsonArray10.value.size();
+                        for (int i80 = 0; i80 < size11; i80++) {
+                            TLRPC.JSONValue jSONValue112 = tL_jsonArray10.value.get(i80);
+                            if (jSONValue112 instanceof TLRPC.TL_jsonString) {
+                                hashSet6.add(((TLRPC.TL_jsonString) jSONValue112).value);
+                            }
+                        }
+                    }
+                    if (!this.exportGroupUri.equals(hashSet6)) {
+                        this.exportGroupUri = hashSet6;
+                        editorEdit.putStringSet("exportGroupUri", hashSet6);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 104:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue113 = tL_jsonObjectValue.value;
+                    if (jSONValue113 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString5 = (TLRPC.TL_jsonString) jSONValue113;
+                        if (!TextUtils.equals(tL_jsonString5.value, this.storiesPosting)) {
+                            String str43 = tL_jsonString5.value;
+                            this.storiesPosting = str43;
+                            editorEdit.putString("storiesPosting", str43);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z28 = true;
+                            z30 = true;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 105:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue114 = tL_jsonObjectValue.value;
+                    if (jSONValue114 instanceof TLRPC.TL_jsonNumber) {
+                        double d53 = ((TLRPC.TL_jsonNumber) jSONValue114).value;
+                        if (d53 != this.botVerificationDescriptionLengthLimit) {
+                            int i81 = (int) d53;
+                            this.botVerificationDescriptionLengthLimit = i81;
+                            editorEdit.putInt("botVerificationDescriptionLengthLimit", i81);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 106:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue115 = tL_jsonObjectValue.value;
+                    if (jSONValue115 instanceof TLRPC.TL_jsonNumber) {
+                        double d54 = ((TLRPC.TL_jsonNumber) jSONValue115).value;
+                        if (d54 != this.channelProfileIconLevelMin) {
+                            int i82 = (int) d54;
+                            this.channelProfileIconLevelMin = i82;
+                            editorEdit.putInt("channelProfileIconLevelMin", i82);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 107:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue116 = tL_jsonObjectValue.value;
+                    if (jSONValue116 instanceof TLRPC.TL_jsonString) {
+                        String str44 = ((TLRPC.TL_jsonString) jSONValue116).value;
+                        if (!str44.equals(this.verifyAgeBotUsername)) {
+                            this.verifyAgeBotUsername = str44;
+                            editorEdit.putString("verifyAgeBotUsername", str44);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 108:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue117 = tL_jsonObjectValue.value;
+                    if (jSONValue117 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString6 = (TLRPC.TL_jsonString) jSONValue117;
+                        if (!TextUtils.equals(tL_jsonString6.value, this.weatherSearchUsername)) {
+                            String str45 = tL_jsonString6.value;
+                            this.weatherSearchUsername = str45;
+                            editorEdit.putString("weatherSearchUsername", str45);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 109:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue118 = tL_jsonObjectValue.value;
+                    if (jSONValue118 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString7 = (TLRPC.TL_jsonString) jSONValue118;
+                        if (!TextUtils.equals(this.translationsManualEnabled, tL_jsonString7.value)) {
+                            String str46 = tL_jsonString7.value;
+                            this.translationsManualEnabled = str46;
+                            editorEdit.putString("translationsManualEnabled", str46);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 110:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue119 = tL_jsonObjectValue.value;
+                    if ((jSONValue119 instanceof TLRPC.TL_jsonBool) && (z19 = ((TLRPC.TL_jsonBool) jSONValue119).value) != this.getfileExperimentalParams) {
+                        this.getfileExperimentalParams = z19;
+                        editorEdit.putBoolean("getfileExperimentalParams", z19);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 111:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue120 = tL_jsonObjectValue.value;
+                    if ((jSONValue120 instanceof TLRPC.TL_jsonBool) && (z20 = ((TLRPC.TL_jsonBool) jSONValue120).value) != this.canEditFactcheck) {
+                        this.canEditFactcheck = z20;
+                        editorEdit.putBoolean("canEditFactcheck", z20);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 112:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue121 = tL_jsonObjectValue.value;
+                    if (jSONValue121 instanceof TLRPC.TL_jsonArray) {
+                        HashSet hashSet7 = new HashSet();
+                        for (TLRPC.JSONValue jSONValue122 : ((TLRPC.TL_jsonArray) jSONValue121).value) {
+                            if (jSONValue122 instanceof TLRPC.TL_jsonString) {
+                                hashSet7.add(((TLRPC.TL_jsonString) jSONValue122).value);
+                            }
+                        }
+                        if (!this.directPaymentsCurrency.containsAll(hashSet7) || !hashSet7.containsAll(this.directPaymentsCurrency)) {
+                            this.directPaymentsCurrency.clear();
+                            this.directPaymentsCurrency.addAll(hashSet7);
+                            editorEdit.putStringSet("directPaymentsCurrency", hashSet7);
+                            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z28 = true;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 113:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue123 = tL_jsonObjectValue.value;
+                    if (jSONValue123 instanceof TLRPC.TL_jsonNumber) {
+                        double d55 = ((TLRPC.TL_jsonNumber) jSONValue123).value;
+                        if (d55 != this.checkResetLangpack) {
+                            int i83 = (int) d55;
+                            this.checkResetLangpack = i83;
+                            editorEdit.putInt("checkResetLangpack", i83);
+                            LocaleController.getInstance().checkPatchLangpack(this.currentAccount);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 114:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue124 = tL_jsonObjectValue.value;
+                    if (jSONValue124 instanceof TLRPC.TL_jsonNumber) {
+                        double d56 = ((TLRPC.TL_jsonNumber) jSONValue124).value;
+                        if (d56 != this.publicLinksLimitDefault) {
+                            int i84 = (int) d56;
+                            this.publicLinksLimitDefault = i84;
+                            editorEdit.putInt("publicLinksLimit", i84);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 115:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue125 = tL_jsonObjectValue.value;
+                    if (jSONValue125 instanceof TLRPC.TL_jsonNumber) {
+                        double d57 = ((TLRPC.TL_jsonNumber) jSONValue125).value;
+                        if (d57 != this.storyExpiringLimitDefault) {
+                            int i85 = (int) d57;
+                            this.storyExpiringLimitDefault = i85;
+                            editorEdit.putInt("storyExpiringLimitDefault", i85);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 116:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue126 = tL_jsonObjectValue.value;
+                    if ((jSONValue126 instanceof TLRPC.TL_jsonBool) && (z21 = ((TLRPC.TL_jsonBool) jSONValue126).value) != this.sponsoredLinksInappAllow) {
+                        this.sponsoredLinksInappAllow = z21;
+                        editorEdit.putBoolean("sponsoredLinksInappAllow", z21);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 117:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue127 = tL_jsonObjectValue.value;
+                    if (jSONValue127 instanceof TLRPC.TL_jsonNumber) {
+                        int i86 = (int) ((TLRPC.TL_jsonNumber) jSONValue127).value;
+                        this.stealthModeFuture = i86;
+                        editorEdit.putInt(str29, i86);
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 118:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue128 = tL_jsonObjectValue.value;
+                    if (jSONValue128 instanceof TLRPC.TL_jsonNumber) {
+                        double d58 = ((TLRPC.TL_jsonNumber) jSONValue128).value;
+                        if (d58 != this.uploadMaxFilePartsPremium) {
+                            int i87 = (int) d58;
+                            this.uploadMaxFilePartsPremium = i87;
+                            editorEdit.putInt("uploadMaxFilePartsPremium", i87);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 119:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue129 = tL_jsonObjectValue.value;
+                    if (jSONValue129 instanceof TLRPC.TL_jsonNumber) {
+                        double d59 = ((TLRPC.TL_jsonNumber) jSONValue129).value;
+                        if (d59 != this.maxPinnedDialogsCountPremium) {
+                            int i88 = (int) d59;
+                            this.maxPinnedDialogsCountPremium = i88;
+                            editorEdit.putInt("maxPinnedDialogsCountPremium", i88);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 120:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue130 = tL_jsonObjectValue.value;
+                    if (jSONValue130 instanceof TLRPC.TL_jsonNumber) {
+                        double d60 = ((TLRPC.TL_jsonNumber) jSONValue130).value;
+                        if (d60 != this.storiesSuggestedReactionsLimitPremium) {
+                            int i89 = (int) d60;
+                            this.storiesSuggestedReactionsLimitPremium = i89;
+                            editorEdit.putInt("storiesSuggestedReactionsLimitPremium", i89);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 121:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue131 = tL_jsonObjectValue.value;
+                    if (jSONValue131 instanceof TLRPC.TL_jsonNumber) {
+                        double d61 = ((TLRPC.TL_jsonNumber) jSONValue131).value;
+                        if (d61 != this.stickersFavedLimitDefault) {
+                            int i90 = (int) d61;
+                            this.stickersFavedLimitDefault = i90;
+                            editorEdit.putInt("stickersFavedLimitDefault", i90);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 122:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue132 = tL_jsonObjectValue.value;
+                    if (jSONValue132 instanceof TLRPC.TL_jsonNumber) {
+                        long j8 = (long) ((TLRPC.TL_jsonNumber) jSONValue132).value;
+                        if (j8 != this.giveawayBoostsPerPremium) {
+                            this.giveawayBoostsPerPremium = j8;
+                            editorEdit.putLong(str28, j8);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 123:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue133 = tL_jsonObjectValue.value;
+                    if (jSONValue133 instanceof TLRPC.TL_jsonNumber) {
+                        double d62 = ((TLRPC.TL_jsonNumber) jSONValue133).value;
+                        if (d62 != this.groupCallVideoMaxParticipants) {
+                            int i91 = (int) d62;
+                            this.groupCallVideoMaxParticipants = i91;
+                            editorEdit.putInt("groipCallVideoMaxParticipants", i91);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 124:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue134 = tL_jsonObjectValue.value;
+                    if ((jSONValue134 instanceof TLRPC.TL_jsonBool) && (z22 = ((TLRPC.TL_jsonBool) jSONValue134).value) != this.saveGifsWithStickers) {
+                        this.saveGifsWithStickers = z22;
+                        editorEdit.putBoolean("saveGifsWithStickers", z22);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 125:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue135 = tL_jsonObjectValue.value;
+                    if (jSONValue135 instanceof TLRPC.TL_jsonNumber) {
+                        long j9 = (long) ((TLRPC.TL_jsonNumber) jSONValue135).value;
+                        if (j9 != this.boostsPerSentGift) {
+                            this.boostsPerSentGift = j9;
+                            editorEdit.putLong(str27, j9);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 126:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue136 = tL_jsonObjectValue.value;
+                    if (jSONValue136 instanceof TLRPC.TL_jsonNumber) {
+                        double d63 = ((TLRPC.TL_jsonNumber) jSONValue136).value;
+                        if (d63 != this.storiesSentMonthlyLimitPremium) {
+                            int i92 = (int) d63;
+                            this.storiesSentMonthlyLimitPremium = i92;
+                            editorEdit.putInt("storiesSentMonthlyLimitPremium", i92);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 127:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue137 = tL_jsonObjectValue.value;
+                    if ((jSONValue137 instanceof TLRPC.TL_jsonBool) && (z23 = ((TLRPC.TL_jsonBool) jSONValue137).value) != this.androidDisableRoundCamera2) {
+                        this.androidDisableRoundCamera2 = z23;
+                        editorEdit.putBoolean("androidDisableRoundCamera2", z23);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 128:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue138 = tL_jsonObjectValue.value;
+                    if (jSONValue138 instanceof TLRPC.TL_jsonString) {
+                        String str47 = ((TLRPC.TL_jsonString) jSONValue138).value;
+                        if (!Objects.equals(BuildVars.GOOGLE_AUTH_CLIENT_ID, str47)) {
+                            BuildVars.GOOGLE_AUTH_CLIENT_ID = str47;
+                            editorEdit.putString("googleAuthClientId", str47);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 129:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue139 = tL_jsonObjectValue.value;
+                    if (jSONValue139 instanceof TLRPC.TL_jsonNumber) {
+                        TLRPC.TL_jsonNumber tL_jsonNumber3 = (TLRPC.TL_jsonNumber) jSONValue139;
+                        if (Math.abs(tL_jsonNumber3.value - ((double) this.starsUsdWithdrawRate1000)) > 0.0010000000474974513d) {
+                            float f4 = (float) tL_jsonNumber3.value;
+                            this.starsUsdWithdrawRate1000 = f4;
+                            editorEdit.putFloat("starsUsdWithdrawRate1000", f4);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 130:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue140 = tL_jsonObjectValue.value;
+                    if (jSONValue140 instanceof TLRPC.TL_jsonNumber) {
+                        double d64 = this.quoteLengthMax;
+                        double d65 = ((TLRPC.TL_jsonNumber) jSONValue140).value;
+                        if (d64 != d65) {
+                            int i93 = (int) d65;
+                            this.quoteLengthMax = i93;
+                            editorEdit.putInt("quoteLengthMax", i93);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 131:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue141 = tL_jsonObjectValue.value;
+                    if (jSONValue141 instanceof TLRPC.TL_jsonNumber) {
+                        double d66 = ((TLRPC.TL_jsonNumber) jSONValue141).value;
+                        if (d66 != this.ringtoneDurationMax) {
+                            int i94 = (int) d66;
+                            this.ringtoneDurationMax = i94;
+                            editorEdit.putInt("ringtoneDurationMax", i94);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 132:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue142 = tL_jsonObjectValue.value;
+                    if (jSONValue142 instanceof TLRPC.TL_jsonNumber) {
+                        double d67 = ((TLRPC.TL_jsonNumber) jSONValue142).value;
+                        if (d67 != this.savedDialogsPinnedLimitDefault) {
+                            int i95 = (int) d67;
+                            this.savedDialogsPinnedLimitDefault = i95;
+                            editorEdit.putInt("savedDialogsPinnedLimitDefault", i95);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 133:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue143 = tL_jsonObjectValue.value;
+                    if (jSONValue143 instanceof TLRPC.TL_jsonNumber) {
+                        int i96 = this.starsPaidMessageCommissionPermille;
+                        int i97 = (int) ((TLRPC.TL_jsonNumber) jSONValue143).value;
+                        if (i96 != i97) {
+                            this.starsPaidMessageCommissionPermille = i97;
+                            editorEdit.putInt("starsPaidMessageCommissionPermille", i97);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 134:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue144 = tL_jsonObjectValue.value;
+                    if (jSONValue144 instanceof TLRPC.TL_jsonNumber) {
+                        double d68 = ((TLRPC.TL_jsonNumber) jSONValue144).value;
+                        if (d68 != this.updateCheckDelay) {
+                            int i98 = (int) d68;
+                            this.updateCheckDelay = i98;
+                            editorEdit.putInt("updateCheckDelay", i98);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                    } else {
+                        if ((jSONValue144 instanceof TLRPC.TL_jsonString) && (iIntValue = Utilities.parseInt((CharSequence) ((TLRPC.TL_jsonString) jSONValue144).value).intValue()) != this.updateCheckDelay) {
+                            this.updateCheckDelay = iIntValue;
+                            editorEdit.putInt("updateCheckDelay", iIntValue);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                    }
+                    break;
+                case 135:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue145 = tL_jsonObjectValue.value;
+                    if (jSONValue145 instanceof TLRPC.TL_jsonNumber) {
+                        double d69 = ((TLRPC.TL_jsonNumber) jSONValue145).value;
+                        if (d69 != this.groupEmojiStickersLevelMin) {
+                            int i99 = (int) d69;
+                            this.groupEmojiStickersLevelMin = i99;
+                            editorEdit.putInt("groupEmojiStickersLevelMin", i99);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 136:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue146 = tL_jsonObjectValue.value;
+                    if (jSONValue146 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString8 = (TLRPC.TL_jsonString) jSONValue146;
+                        if (!TextUtils.equals(this.storyVenueSearchBot, tL_jsonString8.value)) {
+                            String str48 = tL_jsonString8.value;
+                            this.storyVenueSearchBot = str48;
+                            editorEdit.putString("storyVenueSearchBot", str48);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 137:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue147 = tL_jsonObjectValue.value;
+                    if (jSONValue147 instanceof TLRPC.TL_jsonNumber) {
+                        TLRPC.TL_jsonNumber tL_jsonNumber4 = (TLRPC.TL_jsonNumber) jSONValue147;
+                        if (Math.abs(tL_jsonNumber4.value - ((double) this.uploadPremiumSpeedupUpload)) >= 0.009999999776482582d) {
+                            float f5 = (float) tL_jsonNumber4.value;
+                            this.uploadPremiumSpeedupUpload = f5;
+                            editorEdit.putFloat("uploadPremiumSpeedupUpload", f5);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 138:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue148 = tL_jsonObjectValue.value;
+                    if (jSONValue148 instanceof TLRPC.TL_jsonNumber) {
+                        long j10 = this.starsPaidMessageAmountMax;
+                        long j11 = (long) ((TLRPC.TL_jsonNumber) jSONValue148).value;
+                        if (j10 != j11) {
+                            this.starsPaidMessageAmountMax = j11;
+                            editorEdit.putLong("starsPaidMessageAmountMax", j11);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 139:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue149 = tL_jsonObjectValue.value;
+                    if (jSONValue149 instanceof TLRPC.TL_jsonNumber) {
+                        double d70 = ((TLRPC.TL_jsonNumber) jSONValue149).value;
+                        if (d70 != this.todoTitleLengthMax) {
+                            int i100 = (int) d70;
+                            this.todoTitleLengthMax = i100;
+                            editorEdit.putInt("todoTitleLengthMax", i100);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 140:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue150 = tL_jsonObjectValue.value;
+                    if (jSONValue150 instanceof TLRPC.TL_jsonString) {
+                        String str49 = ((TLRPC.TL_jsonString) jSONValue150).value;
+                        if (!str49.equals(this.premiumBotUsername)) {
+                            this.premiumBotUsername = str49;
+                            editorEdit.putString("premiumBotUsername", str49);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 141:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue151 = tL_jsonObjectValue.value;
+                    if (jSONValue151 instanceof TLRPC.TL_jsonBool) {
+                        boolean z43 = this.premiumLocked;
+                        boolean z44 = ((TLRPC.TL_jsonBool) jSONValue151).value;
+                        if (z43 != z44) {
+                            this.premiumLocked = z44;
+                            editorEdit.putBoolean("premiumLocked", z44);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 142:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue152 = tL_jsonObjectValue.value;
+                    if (jSONValue152 instanceof TLRPC.TL_jsonNumber) {
+                        long j12 = (long) ((TLRPC.TL_jsonNumber) jSONValue152).value;
+                        if (j12 != this.starsPaidPostAmountMax) {
+                            this.starsPaidPostAmountMax = j12;
+                            editorEdit.putLong("starsPaidPostAmountMax", j12);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 143:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue153 = tL_jsonObjectValue.value;
+                    if ((jSONValue153 instanceof TLRPC.TL_jsonBool) && (z24 = ((TLRPC.TL_jsonBool) jSONValue153).value) != this.storyWeatherPreload) {
+                        this.storyWeatherPreload = z24;
+                        editorEdit.putBoolean("storyWeatherPreload", z24);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 144:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue154 = tL_jsonObjectValue.value;
+                    if (jSONValue154 instanceof TLRPC.TL_jsonArray) {
+                        int[] tiers = HighlightMessageSheet.parseTiers((TLRPC.TL_jsonArray) jSONValue154);
+                        if (!HighlightMessageSheet.tiersEqual(tiers, this.starsGroupcallMessageLimits)) {
+                            this.starsGroupcallMessageLimits = tiers;
+                            editorEdit.putString("starsGroupcallMessageLimits", HighlightMessageSheet.tiersToString(tiers));
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 145:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue155 = tL_jsonObjectValue.value;
+                    if (jSONValue155 instanceof TLRPC.TL_jsonNumber) {
+                        double d71 = ((TLRPC.TL_jsonNumber) jSONValue155).value;
+                        if (d71 != this.introTitleLengthLimit) {
+                            int i101 = (int) d71;
+                            this.introTitleLengthLimit = i101;
+                            editorEdit.putInt("introTitleLengthLimit", i101);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 146:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue156 = tL_jsonObjectValue.value;
+                    if (jSONValue156 instanceof TLRPC.TL_jsonString) {
+                        String str50 = ((TLRPC.TL_jsonString) jSONValue156).value;
+                        if (!str50.equals(this.verifyAgeCountry)) {
+                            this.verifyAgeCountry = str50;
+                            editorEdit.putString("verifyAgeCountry", str50);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 147:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue157 = tL_jsonObjectValue.value;
+                    if (jSONValue157 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString9 = (TLRPC.TL_jsonString) jSONValue157;
+                        if (!TextUtils.equals(tL_jsonString9.value, this.premiumManageSubscriptionUrl)) {
+                            String str51 = tL_jsonString9.value;
+                            this.premiumManageSubscriptionUrl = str51;
+                            editorEdit.putString("premiumManageSubscriptionUrl", str51);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 148:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue158 = tL_jsonObjectValue.value;
+                    if (jSONValue158 instanceof TLRPC.TL_jsonNumber) {
+                        double d72 = this.authorizationAutoconfirmPeriod;
+                        double d73 = ((TLRPC.TL_jsonNumber) jSONValue158).value;
+                        if (d72 != d73) {
+                            int i102 = (int) d73;
+                            this.authorizationAutoconfirmPeriod = i102;
+                            editorEdit.putInt("authorizationAutoconfirmPeriod", i102);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 149:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue159 = tL_jsonObjectValue.value;
+                    if (jSONValue159 instanceof TLRPC.TL_jsonBool) {
+                        boolean z45 = this.giftAttachMenuIcon;
+                        boolean z46 = ((TLRPC.TL_jsonBool) jSONValue159).value;
+                        if (z45 != z46) {
+                            this.giftAttachMenuIcon = z46;
+                            editorEdit.putBoolean("giftAttachMenuIcon", z46);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 150:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue160 = tL_jsonObjectValue.value;
+                    if (jSONValue160 instanceof TLRPC.TL_jsonNumber) {
+                        double d74 = ((TLRPC.TL_jsonNumber) jSONValue160).value;
+                        if (d74 != this.storiesSentWeeklyLimitDefault) {
+                            int i103 = (int) d74;
+                            this.storiesSentWeeklyLimitDefault = i103;
+                            editorEdit.putInt("storiesSentWeeklyLimitDefault", i103);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 151:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue161 = tL_jsonObjectValue.value;
+                    if (jSONValue161 instanceof TLRPC.TL_jsonObject) {
+                        TLRPC.TL_jsonObject tL_jsonObject7 = (TLRPC.TL_jsonObject) jSONValue161;
+                        int size12 = tL_jsonObject7.value.size();
+                        int i104 = 0;
+                        while (i104 < size12) {
+                            TLRPC.TL_jsonObjectValue tL_jsonObjectValue4 = tL_jsonObject7.value.get(i104);
+                            String str52 = tL_jsonObjectValue4.key;
+                            str52.hashCode();
+                            switch (str52) {
+                                case "diameter":
+                                    TLRPC.JSONValue jSONValue162 = tL_jsonObjectValue4.value;
+                                    if (jSONValue162 instanceof TLRPC.TL_jsonNumber) {
+                                        double d75 = ((TLRPC.TL_jsonNumber) jSONValue162).value;
+                                        if (d75 != this.roundVideoSize) {
+                                            int i105 = (int) d75;
+                                            this.roundVideoSize = i105;
+                                            editorEdit.putInt("roundVideoSize", i105);
+                                            i5 = 1;
+                                            z28 = true;
+                                        }
+                                        break;
+                                    }
+                                    i5 = 1;
+                                    break;
+                                case "audio_bitrate":
+                                    TLRPC.JSONValue jSONValue163 = tL_jsonObjectValue4.value;
+                                    if (jSONValue163 instanceof TLRPC.TL_jsonNumber) {
+                                        double d76 = ((TLRPC.TL_jsonNumber) jSONValue163).value;
+                                        if (d76 != this.roundAudioBitrate) {
+                                            int i106 = (int) d76;
+                                            this.roundAudioBitrate = i106;
+                                            editorEdit.putInt("roundAudioBitrate", i106);
+                                            i5 = 1;
+                                            z28 = true;
+                                        }
+                                        break;
+                                    }
+                                    i5 = 1;
+                                    break;
+                                case "video_bitrate":
+                                    TLRPC.JSONValue jSONValue164 = tL_jsonObjectValue4.value;
+                                    if (jSONValue164 instanceof TLRPC.TL_jsonNumber) {
+                                        double d77 = ((TLRPC.TL_jsonNumber) jSONValue164).value;
+                                        if (d77 != this.roundVideoBitrate) {
+                                            int i107 = (int) d77;
+                                            this.roundVideoBitrate = i107;
+                                            editorEdit.putInt("roundVideoBitrate", i107);
+                                            i5 = 1;
+                                            z28 = true;
+                                        }
+                                        break;
+                                    }
+                                    i5 = 1;
+                                    break;
+                                default:
+                                    i5 = 1;
+                                    break;
+                            }
+                            i104 += i5;
+                        }
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 152:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue165 = tL_jsonObjectValue.value;
+                    if (jSONValue165 instanceof TLRPC.TL_jsonNumber) {
+                        double d78 = ((TLRPC.TL_jsonNumber) jSONValue165).value;
+                        if (d78 != this.chatlistInvitesLimitDefault) {
+                            int i108 = (int) d78;
+                            this.chatlistInvitesLimitDefault = i108;
+                            editorEdit.putInt("chatlistInvitesLimitDefault", i108);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 153:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue166 = tL_jsonObjectValue.value;
+                    if (jSONValue166 instanceof TLRPC.TL_jsonNumber) {
+                        i10 = (int) ((TLRPC.TL_jsonNumber) jSONValue166).value;
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 154:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue167 = tL_jsonObjectValue.value;
+                    if (jSONValue167 instanceof TLRPC.TL_jsonNumber) {
+                        double d79 = ((TLRPC.TL_jsonNumber) jSONValue167).value;
+                        if (d79 != this.reactionsUserMaxDefault) {
+                            int i109 = (int) d79;
+                            this.reactionsUserMaxDefault = i109;
+                            editorEdit.putInt("reactionsUserMaxDefault", i109);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 155:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue168 = tL_jsonObjectValue.value;
+                    if (jSONValue168 instanceof TLRPC.TL_jsonNumber) {
+                        double d80 = ((TLRPC.TL_jsonNumber) jSONValue168).value;
+                        if (d80 != this.captionLengthLimitDefault) {
+                            int i110 = (int) d80;
+                            this.captionLengthLimitDefault = i110;
+                            editorEdit.putInt("captionLengthLimitDefault", i110);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 156:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue169 = tL_jsonObjectValue.value;
+                    if (jSONValue169 instanceof TLRPC.TL_jsonNumber) {
+                        double d81 = this.recommendedChannelsLimitDefault;
+                        double d82 = ((TLRPC.TL_jsonNumber) jSONValue169).value;
+                        if (d81 != d82) {
+                            int i111 = (int) d82;
+                            this.recommendedChannelsLimitDefault = i111;
+                            editorEdit.putInt("recommendedChannelsLimitDefault", i111);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 157:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue170 = tL_jsonObjectValue.value;
+                    if (jSONValue170 instanceof TLRPC.TL_jsonNumber) {
+                        double d83 = this.transcribeAudioTrialDurationMax;
+                        double d84 = ((TLRPC.TL_jsonNumber) jSONValue170).value;
+                        if (d83 != d84) {
+                            int i112 = (int) d84;
+                            this.transcribeAudioTrialDurationMax = i112;
+                            editorEdit.putInt("transcribeAudioTrialDurationMax", i112);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 158:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue171 = tL_jsonObjectValue.value;
+                    if (jSONValue171 instanceof TLRPC.TL_jsonNumber) {
+                        i9 = (int) ((TLRPC.TL_jsonNumber) jSONValue171).value;
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 159:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue172 = tL_jsonObjectValue.value;
+                    if (jSONValue172 instanceof TLRPC.TL_jsonBool) {
+                        boolean z47 = this.uploadMarkupVideo;
+                        boolean z48 = ((TLRPC.TL_jsonBool) jSONValue172).value;
+                        if (z47 != z48) {
+                            this.uploadMarkupVideo = z48;
+                            editorEdit.putBoolean("uploadMarkupVideo", z48);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 160:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue173 = tL_jsonObjectValue.value;
+                    if (jSONValue173 instanceof TLRPC.TL_jsonNumber) {
+                        double d85 = ((TLRPC.TL_jsonNumber) jSONValue173).value;
+                        if (d85 != this.chatReadMarkSizeThreshold) {
+                            int i113 = (int) d85;
+                            this.chatReadMarkSizeThreshold = i113;
+                            editorEdit.putInt("chatReadMarkSizeThreshold", i113);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 161:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue174 = tL_jsonObjectValue.value;
+                    if (jSONValue174 instanceof TLRPC.TL_jsonNumber) {
+                        double d86 = ((TLRPC.TL_jsonNumber) jSONValue174).value;
+                        if (d86 != this.dialogFiltersChatsLimitDefault) {
+                            int i114 = (int) d86;
+                            this.dialogFiltersChatsLimitDefault = i114;
+                            editorEdit.putInt("dialogFiltersChatsLimitDefault", i114);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 162:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    HashSet<Long> hashSet8 = new HashSet<>();
+                    TLRPC.JSONValue jSONValue175 = tL_jsonObjectValue.value;
+                    if (jSONValue175 instanceof TLRPC.TL_jsonArray) {
+                        ArrayList<TLRPC.JSONValue> arrayList2 = ((TLRPC.TL_jsonArray) jSONValue175).value;
+                        for (int i115 = 0; i115 < arrayList2.size(); i115++) {
+                            if (arrayList2.get(i115) instanceof TLRPC.TL_jsonNumber) {
+                                hashSet8.add(Long.valueOf((long) ((TLRPC.TL_jsonNumber) arrayList2.get(i115)).value));
+                            }
+                        }
+                    }
+                    if (!hashSet8.equals(this.whitelistedBots)) {
+                        this.whitelistedBots = hashSet8;
+                        editorEdit.putStringSet("whitelistedBots", (Set) Collection.EL.stream(hashSet8).map(new Function() {
+                            public Function andThen(Function function) {
+                                return Function$CC.$default$andThen(this, function);
+                            }
+
+                            @Override
+                            public final Object apply(Object obj) {
+                                return String.valueOf((Long) obj);
+                            }
+
+                            public Function compose(Function function) {
+                                return Function$CC.$default$compose(this, function);
+                            }
+                        }).collect(Collectors.toCollection(new MessagesController$$ExternalSyntheticLambda106())));
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 163:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue176 = tL_jsonObjectValue.value;
+                    if (jSONValue176 instanceof TLRPC.TL_jsonNumber) {
+                        double d87 = ((TLRPC.TL_jsonNumber) jSONValue176).value;
+                        if (d87 != this.savedGifsLimitPremium) {
+                            int i116 = (int) d87;
+                            this.savedGifsLimitPremium = i116;
+                            editorEdit.putInt("savedGifsLimitPremium", i116);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 164:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue177 = tL_jsonObjectValue.value;
+                    if ((jSONValue177 instanceof TLRPC.TL_jsonBool) && (z25 = ((TLRPC.TL_jsonBool) jSONValue177).value) != this.stargiftsBlocked) {
+                        this.stargiftsBlocked = z25;
+                        editorEdit.putBoolean("stargiftsBlocked", z25);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 165:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue178 = tL_jsonObjectValue.value;
+                    if (jSONValue178 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString10 = (TLRPC.TL_jsonString) jSONValue178;
+                        if (!TextUtils.equals(tL_jsonString10.value, this.storiesEntities)) {
+                            String str53 = tL_jsonString10.value;
+                            this.storiesEntities = str53;
+                            editorEdit.putString("storiesEntities", str53);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 166:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue179 = tL_jsonObjectValue.value;
+                    if (jSONValue179 instanceof TLRPC.TL_jsonNumber) {
+                        double d88 = ((TLRPC.TL_jsonNumber) jSONValue179).value;
+                        if (d88 != this.channelBgIconLevelMin) {
+                            int i117 = (int) d88;
+                            this.channelBgIconLevelMin = i117;
+                            editorEdit.putInt("channelBgIconLevelMin", i117);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 167:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue180 = tL_jsonObjectValue.value;
+                    if (jSONValue180 instanceof TLRPC.TL_jsonNumber) {
+                        long j13 = (long) ((TLRPC.TL_jsonNumber) jSONValue180).value;
+                        if (j13 != this.giveawayCountriesMax) {
+                            this.giveawayCountriesMax = j13;
+                            editorEdit.putLong(str26, j13);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 168:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue181 = tL_jsonObjectValue.value;
+                    if (jSONValue181 instanceof TLRPC.TL_jsonNumber) {
+                        long j14 = (long) ((TLRPC.TL_jsonNumber) jSONValue181).value;
+                        this.storiesChangelogUserId = j14;
+                        editorEdit.putLong(str25, j14);
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 169:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue182 = tL_jsonObjectValue.value;
+                    if (jSONValue182 instanceof TLRPC.TL_jsonNumber) {
+                        double d89 = ((TLRPC.TL_jsonNumber) jSONValue182).value;
+                        if (d89 != this.topicsPinnedLimit) {
+                            int i118 = (int) d89;
+                            this.topicsPinnedLimit = i118;
+                            editorEdit.putInt("topicsPinnedLimit", i118);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 170:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue183 = tL_jsonObjectValue.value;
+                    if (jSONValue183 instanceof TLRPC.TL_jsonNumber) {
+                        double d90 = ((TLRPC.TL_jsonNumber) jSONValue183).value;
+                        if (d90 != this.channelsLimitDefault) {
+                            int i119 = (int) d90;
+                            this.channelsLimitDefault = i119;
+                            editorEdit.putInt("channelsLimitDefault", i119);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 171:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue184 = tL_jsonObjectValue.value;
+                    if (jSONValue184 instanceof TLRPC.TL_jsonNumber) {
+                        double d91 = ((TLRPC.TL_jsonNumber) jSONValue184).value;
+                        if (d91 != this.groupEmojiStatusLevelMin) {
+                            int i120 = (int) d91;
+                            this.groupEmojiStatusLevelMin = i120;
+                            editorEdit.putInt("groupEmojiStatusLevelMin", i120);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 172:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    HashSet hashSet9 = new HashSet();
+                    TLRPC.JSONValue jSONValue185 = tL_jsonObjectValue.value;
+                    if (jSONValue185 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray11 = (TLRPC.TL_jsonArray) jSONValue185;
+                        int size13 = tL_jsonArray11.value.size();
+                        for (int i121 = 0; i121 < size13; i121++) {
+                            TLRPC.JSONValue jSONValue186 = tL_jsonArray11.value.get(i121);
+                            if (jSONValue186 instanceof TLRPC.TL_jsonString) {
+                                hashSet9.add(((TLRPC.TL_jsonString) jSONValue186).value.toLowerCase());
+                            }
+                        }
+                    }
+                    if (!this.webAppAllowedProtocols.equals(hashSet9)) {
+                        this.webAppAllowedProtocols = hashSet9;
+                        editorEdit.putStringSet("webAppAllowedProtocols", hashSet9);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 173:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue187 = tL_jsonObjectValue.value;
+                    if (jSONValue187 instanceof TLRPC.TL_jsonNumber) {
+                        int i122 = (int) ((TLRPC.TL_jsonNumber) jSONValue187).value;
+                        this.smallQueueMaxActiveOperations = i122;
+                        editorEdit.putInt("smallQueueMaxActiveOperations", i122);
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 174:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue188 = tL_jsonObjectValue.value;
+                    if (jSONValue188 instanceof TLRPC.TL_jsonNumber) {
+                        double d92 = ((TLRPC.TL_jsonNumber) jSONValue188).value;
+                        if (d92 != this.storyCaptionLengthLimitPremium) {
+                            int i123 = (int) d92;
+                            this.storyCaptionLengthLimitPremium = i123;
+                            editorEdit.putInt("storyCaptionLengthLimitPremium", i123);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 175:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue189 = tL_jsonObjectValue.value;
+                    if ((jSONValue189 instanceof TLRPC.TL_jsonBool) && (z26 = ((TLRPC.TL_jsonBool) jSONValue189).value) != this.starrefConnectAllowed) {
+                        this.starrefConnectAllowed = z26;
+                        editorEdit.putBoolean("starrefConnectAllowed", z26);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 176:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue190 = tL_jsonObjectValue.value;
+                    if ((jSONValue190 instanceof TLRPC.TL_jsonNumber) && (i6 = (int) ((TLRPC.TL_jsonNumber) jSONValue190).value) != this.factcheckLengthLimit) {
+                        this.factcheckLengthLimit = i6;
+                        editorEdit.putInt("factcheckLengthLimit", i6);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 177:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue191 = tL_jsonObjectValue.value;
+                    if (jSONValue191 instanceof TLRPC.TL_jsonNumber) {
+                        double d93 = ((TLRPC.TL_jsonNumber) jSONValue191).value;
+                        if (d93 != this.reactionsInChatMax) {
+                            int i124 = (int) d93;
+                            this.reactionsInChatMax = i124;
+                            editorEdit.putInt("reactionsInChatMax", i124);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 178:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue192 = tL_jsonObjectValue.value;
+                    if ((jSONValue192 instanceof TLRPC.TL_jsonNumber) && (i7 = (int) ((TLRPC.TL_jsonNumber) jSONValue192).value) != this.verifyAgeMin) {
+                        this.verifyAgeMin = i7;
+                        editorEdit.putInt("verifyAgeMin", i7);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str9 = str19;
+                        str8 = str18;
+                        str7 = str17;
+                        str6 = str16;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 179:
+                    str16 = str30;
+                    str17 = str31;
+                    str18 = str32;
+                    str19 = str33;
+                    TLRPC.JSONValue jSONValue193 = tL_jsonObjectValue.value;
+                    if (jSONValue193 instanceof TLRPC.TL_jsonNumber) {
+                        double d94 = ((TLRPC.TL_jsonNumber) jSONValue193).value;
+                        if (d94 != this.dialogFiltersLimitPremium) {
+                            int i125 = (int) d94;
+                            this.dialogFiltersLimitPremium = i125;
+                            editorEdit.putInt("dialogFiltersLimitPremium", i125);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 180:
+                    String str54 = str32;
+                    str19 = str33;
+                    try {
+                        HashMap<String, EmojiSound> map2 = new HashMap<>();
+                        TLRPC.JSONValue jSONValue194 = tL_jsonObjectValue.value;
+                        if (jSONValue194 instanceof TLRPC.TL_jsonObject) {
+                            TLRPC.TL_jsonObject tL_jsonObject8 = (TLRPC.TL_jsonObject) jSONValue194;
+                            int size14 = tL_jsonObject8.value.size();
+                            int i126 = 0;
+                            while (i126 < size14) {
+                                int i127 = size14;
+                                TLRPC.TL_jsonObjectValue tL_jsonObjectValue5 = tL_jsonObject8.value.get(i126);
+                                TLRPC.TL_jsonObject tL_jsonObject9 = tL_jsonObject8;
+                                TLRPC.JSONValue jSONValue195 = tL_jsonObjectValue5.value;
+                                str18 = str54;
+                                try {
+                                    if (jSONValue195 instanceof TLRPC.TL_jsonObject) {
+                                        TLRPC.TL_jsonObject tL_jsonObject10 = (TLRPC.TL_jsonObject) jSONValue195;
+                                        int size15 = tL_jsonObject10.value.size();
+                                        str17 = str31;
+                                        String str55 = null;
+                                        long jLongValue = 0;
+                                        long jLongValue2 = 0;
+                                        int i128 = 0;
+                                        while (i128 < size15) {
+                                            int i129 = size15;
+                                            try {
+                                                TLRPC.TL_jsonObjectValue tL_jsonObjectValue6 = tL_jsonObject10.value.get(i128);
+                                                TLRPC.TL_jsonObject tL_jsonObject11 = tL_jsonObject10;
+                                                if (tL_jsonObjectValue6.value instanceof TLRPC.TL_jsonString) {
+                                                    str16 = str30;
+                                                    try {
+                                                        if ("id".equals(tL_jsonObjectValue6.key)) {
+                                                            jLongValue = Utilities.parseLong(((TLRPC.TL_jsonString) tL_jsonObjectValue6.value).value).longValue();
+                                                        } else if ("access_hash".equals(tL_jsonObjectValue6.key)) {
+                                                            jLongValue2 = Utilities.parseLong(((TLRPC.TL_jsonString) tL_jsonObjectValue6.value).value).longValue();
+                                                        } else if ("file_reference_base64".equals(tL_jsonObjectValue6.key)) {
+                                                            str55 = ((TLRPC.TL_jsonString) tL_jsonObjectValue6.value).value;
+                                                        }
+                                                    } catch (Exception e6) {
+                                                        e = e6;
+                                                        FileLog.e(e);
+                                                        str = str25;
+                                                        str2 = str26;
+                                                        str3 = str27;
+                                                        str4 = str28;
+                                                        str5 = str29;
+                                                        str9 = str19;
+                                                        str8 = str18;
+                                                        str7 = str17;
+                                                        str6 = str16;
+                                                        i8 = i2 + 1;
+                                                        str32 = str8;
+                                                        str31 = str7;
+                                                        str30 = str6;
+                                                        str33 = str9;
+                                                        size = i11;
+                                                        str25 = str;
+                                                        str26 = str2;
+                                                        str27 = str3;
+                                                        str28 = str4;
+                                                        str29 = str5;
+                                                        tL_jsonObject3 = tL_jsonObject;
+                                                        break;
+                                                    }
+                                                } else {
+                                                    str16 = str30;
+                                                }
+                                                i128++;
+                                                size15 = i129;
+                                                tL_jsonObject10 = tL_jsonObject11;
+                                                str30 = str16;
+                                            } catch (Exception e7) {
+                                                e = e7;
+                                                str16 = str30;
+                                            }
+                                        }
+                                        str23 = str30;
+                                        if (jLongValue != 0 && jLongValue2 != 0 && str55 != null) {
+                                            map2.put(tL_jsonObjectValue5.key.replace("️", ""), new EmojiSound(jLongValue, jLongValue2, str55));
+                                        }
+                                    } else {
+                                        str23 = str30;
+                                        str17 = str31;
+                                    }
+                                    i126++;
+                                    size14 = i127;
+                                    tL_jsonObject8 = tL_jsonObject9;
+                                    str54 = str18;
+                                    str31 = str17;
+                                    str30 = str23;
+                                } catch (Exception e8) {
+                                    e = e8;
+                                    str16 = str30;
+                                    str17 = str31;
+                                }
+                            }
+                        }
+                        str16 = str30;
+                        str17 = str31;
+                        str18 = str54;
+                        if (!this.emojiSounds.equals(map2)) {
+                            this.emojiSounds = map2;
+                            SerializedData serializedData3 = new SerializedData();
+                            serializedData3.writeInt32(this.emojiSounds.size());
+                            for (Map.Entry<String, EmojiSound> entry2 : this.emojiSounds.entrySet()) {
+                                serializedData3.writeString(entry2.getKey());
+                                EmojiSound value2 = entry2.getValue();
+                                serializedData3.writeInt64(value2.id);
+                                serializedData3.writeInt64(value2.accessHash);
+                                serializedData3.writeByteArray(value2.fileReference);
+                            }
+                            editorEdit.putString("emojiSounds", Base64.encodeToString(serializedData3.toByteArray(), 0));
+                            serializedData3.cleanup();
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str9 = str19;
+                            str8 = str18;
+                            str7 = str17;
+                            str6 = str16;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    } catch (Exception e9) {
+                        e = e9;
+                        str16 = str30;
+                        str17 = str31;
+                        str18 = str54;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str9 = str19;
+                    str8 = str18;
+                    str7 = str17;
+                    str6 = str16;
+                    break;
+                case 181:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue196 = tL_jsonObjectValue.value;
+                    if (jSONValue196 instanceof TLRPC.TL_jsonNumber) {
+                        double d95 = ((TLRPC.TL_jsonNumber) jSONValue196).value;
+                        if (d95 != this.groupTranscribeLevelMin) {
+                            int i130 = (int) d95;
+                            this.groupTranscribeLevelMin = i130;
+                            editorEdit.putInt("groupTranscribeLevelMin", i130);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 182:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue197 = tL_jsonObjectValue.value;
+                    if (jSONValue197 instanceof TLRPC.TL_jsonNumber) {
+                        double d96 = ((TLRPC.TL_jsonNumber) jSONValue197).value;
+                        if (d96 != this.freezeSinceDate) {
+                            long j15 = (long) d96;
+                            this.freezeSinceDate = j15;
+                            editorEdit.putLong("freezeSinceDate", j15);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 183:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue198 = tL_jsonObjectValue.value;
+                    if (jSONValue198 instanceof TLRPC.TL_jsonNumber) {
+                        double d97 = ((TLRPC.TL_jsonNumber) jSONValue198).value;
+                        if (d97 != this.aboutLengthLimitPremium) {
+                            int i131 = (int) d97;
+                            this.aboutLengthLimitPremium = i131;
+                            editorEdit.putInt("aboutLengthLimitPremium", i131);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 184:
+                    str24 = str32;
+                    str10 = str33;
+                    HashSet hashSet10 = new HashSet();
+                    TLRPC.JSONValue jSONValue199 = tL_jsonObjectValue.value;
+                    if (jSONValue199 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray12 = (TLRPC.TL_jsonArray) jSONValue199;
+                        int size16 = tL_jsonArray12.value.size();
+                        for (int i132 = 0; i132 < size16; i132++) {
+                            TLRPC.JSONValue jSONValue200 = tL_jsonArray12.value.get(i132);
+                            if (jSONValue200 instanceof TLRPC.TL_jsonString) {
+                                hashSet10.add(((TLRPC.TL_jsonString) jSONValue200).value.toLowerCase());
+                            }
+                        }
+                    }
+                    if (!this.starrefStartParamPrefixes.equals(hashSet10)) {
+                        this.starrefStartParamPrefixes = hashSet10;
+                        editorEdit.putStringSet("starrefStartParamPrefixes", hashSet10);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str6 = str30;
+                        str7 = str31;
+                        str8 = str24;
+                        str9 = str10;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 185:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue201 = tL_jsonObjectValue.value;
+                    if (jSONValue201 instanceof TLRPC.TL_jsonNumber) {
+                        double d98 = this.boostsChannelLevelMax;
+                        double d99 = ((TLRPC.TL_jsonNumber) jSONValue201).value;
+                        if (d98 != d99) {
+                            int i133 = (int) d99;
+                            this.boostsChannelLevelMax = i133;
+                            editorEdit.putInt("boostsChannelLevelMax", i133);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 186:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue202 = tL_jsonObjectValue.value;
+                    if (jSONValue202 instanceof TLRPC.TL_jsonNumber) {
+                        double d100 = ((TLRPC.TL_jsonNumber) jSONValue202).value;
+                        if (d100 != this.introDescriptionLengthLimit) {
+                            int i134 = (int) d100;
+                            this.introDescriptionLengthLimit = i134;
+                            editorEdit.putInt("introDescriptionLengthLimit", i134);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 187:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue203 = tL_jsonObjectValue.value;
+                    if (jSONValue203 instanceof TLRPC.TL_jsonString) {
+                        TLRPC.TL_jsonString tL_jsonString11 = (TLRPC.TL_jsonString) jSONValue203;
+                        if (!TextUtils.equals(tL_jsonString11.value, this.tonBlockchainExplorerUrl)) {
+                            String str56 = tL_jsonString11.value;
+                            this.tonBlockchainExplorerUrl = str56;
+                            editorEdit.putString("tonBlockchainExplorerUrl", str56);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 188:
+                    str24 = str32;
+                    str10 = str33;
+                    HashSet hashSet11 = new HashSet();
+                    TLRPC.JSONValue jSONValue204 = tL_jsonObjectValue.value;
+                    if (jSONValue204 instanceof TLRPC.TL_jsonArray) {
+                        TLRPC.TL_jsonArray tL_jsonArray13 = (TLRPC.TL_jsonArray) jSONValue204;
+                        int size17 = tL_jsonArray13.value.size();
+                        for (int i135 = 0; i135 < size17; i135++) {
+                            TLRPC.JSONValue jSONValue205 = tL_jsonArray13.value.get(i135);
+                            if (jSONValue205 instanceof TLRPC.TL_jsonString) {
+                                hashSet11.add(((TLRPC.TL_jsonString) jSONValue205).value);
+                            }
+                        }
+                    }
+                    if (!this.exportPrivateUri.equals(hashSet11)) {
+                        this.exportPrivateUri = hashSet11;
+                        editorEdit.putStringSet("exportPrivateUri", hashSet11);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str6 = str30;
+                        str7 = str31;
+                        str8 = str24;
+                        str9 = str10;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 189:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue206 = tL_jsonObjectValue.value;
+                    if (jSONValue206 instanceof TLRPC.TL_jsonNumber) {
+                        double d101 = ((TLRPC.TL_jsonNumber) jSONValue206).value;
+                        if (d101 != this.todoItemsMax) {
+                            int i136 = (int) d101;
+                            this.todoItemsMax = i136;
+                            editorEdit.putInt("todoItemsMax", i136);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 190:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue207 = tL_jsonObjectValue.value;
+                    if (jSONValue207 instanceof TLRPC.TL_jsonNumber) {
+                        long j16 = this.tonStakeddiceStakeAmountMax;
+                        long j17 = (long) ((TLRPC.TL_jsonNumber) jSONValue207).value;
+                        if (j16 != j17) {
+                            this.tonStakeddiceStakeAmountMax = j17;
+                            editorEdit.putLong("tonStakeddiceStakeAmountMax", j17);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 191:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue208 = tL_jsonObjectValue.value;
+                    if (jSONValue208 instanceof TLRPC.TL_jsonNumber) {
+                        long j18 = this.tonStakeddiceStakeAmountMin;
+                        long j19 = (long) ((TLRPC.TL_jsonNumber) jSONValue208).value;
+                        if (j18 != j19) {
+                            this.tonStakeddiceStakeAmountMin = j19;
+                            editorEdit.putLong("tonStakeddiceStakeAmountMin", j19);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 192:
+                    str24 = str32;
+                    str10 = str33;
+                    TLRPC.JSONValue jSONValue209 = tL_jsonObjectValue.value;
+                    if (jSONValue209 instanceof TLRPC.TL_jsonNumber) {
+                        double d102 = this.channelAutotranslationLevelMin;
+                        double d103 = ((TLRPC.TL_jsonNumber) jSONValue209).value;
+                        if (d102 != d103) {
+                            int i137 = (int) d103;
+                            this.channelAutotranslationLevelMin = i137;
+                            editorEdit.putInt("channelAutotranslationLevelMin", i137);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str24;
+                    str9 = str10;
+                    break;
+                case 193:
+                    TLRPC.JSONValue jSONValue210 = tL_jsonObjectValue.value;
+                    if (jSONValue210 instanceof TLRPC.TL_jsonNumber) {
+                        double d104 = ((TLRPC.TL_jsonNumber) jSONValue210).value;
+                        str24 = str32;
+                        str10 = str33;
+                        if (d104 != this.forumUpgradeParticipantsMin) {
+                            int i138 = (int) d104;
+                            this.forumUpgradeParticipantsMin = i138;
+                            editorEdit.putInt("forumUpgradeParticipantsMin", i138);
+                            str = str25;
+                            str2 = str26;
+                            str3 = str27;
+                            str4 = str28;
+                            str5 = str29;
+                            str6 = str30;
+                            str7 = str31;
+                            str8 = str24;
+                            str9 = str10;
+                            z14 = true;
+                            z28 = z14;
+                        }
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str6 = str30;
+                        str7 = str31;
+                        str8 = str24;
+                        str9 = str10;
+                    } else {
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str6 = str30;
+                        str7 = str31;
+                        str8 = str32;
+                        str9 = str33;
+                    }
+                    break;
+                case 194:
+                    TLRPC.JSONValue jSONValue211 = tL_jsonObjectValue.value;
+                    if ((jSONValue211 instanceof TLRPC.TL_jsonBool) && (z27 = ((TLRPC.TL_jsonBool) jSONValue211).value) != this.filtersEnabled) {
+                        this.filtersEnabled = z27;
+                        editorEdit.putBoolean("filtersEnabled", z27);
+                        str = str25;
+                        str2 = str26;
+                        str3 = str27;
+                        str4 = str28;
+                        str5 = str29;
+                        str6 = str30;
+                        str7 = str31;
+                        str8 = str32;
+                        str9 = str33;
+                        z14 = true;
+                        z28 = z14;
+                    }
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    break;
+                default:
+                    str = str25;
+                    str2 = str26;
+                    str3 = str27;
+                    str4 = str28;
+                    str5 = str29;
+                    str6 = str30;
+                    str7 = str31;
+                    str8 = str32;
+                    str9 = str33;
+                    break;
+            }
+            i8 = i2 + 1;
+            str32 = str8;
+            str31 = str7;
+            str30 = str6;
+            str33 = str9;
+            size = i11;
+            str25 = str;
+            str26 = str2;
+            str27 = str3;
+            str28 = str4;
+            str29 = str5;
+            tL_jsonObject3 = tL_jsonObject;
+        }
+        int i139 = i9;
+        if (i139 != this.transcribeAudioTrialWeeklyNumber) {
+            this.transcribeAudioTrialWeeklyNumber = i139;
+            editorEdit.putInt("transcribeAudioTrialWeeklyNumber", i139);
+            i = i10;
+            if ((this.transcribeAudioTrialCurrentNumber <= 0 && (i == 0 || getConnectionsManager().getCurrentTime() > i)) || this.transcribeAudioTrialCurrentNumber > i139) {
+                this.transcribeAudioTrialCurrentNumber = i139;
+                editorEdit.putInt("transcribeAudioTrialCurrentNumber", i139);
+            }
+            z28 = true;
+        } else {
+            i = i10;
+        }
+        if (i != this.transcribeAudioTrialCooldownUntil) {
+            this.transcribeAudioTrialCooldownUntil = i;
+            editorEdit.putInt("transcribeAudioTrialCooldownUntil", i);
+            scheduleTranscriptionUpdate();
+            z = true;
+        } else {
+            z = z28;
+        }
+        if (z) {
+            editorEdit.apply();
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$applyAppConfig$36();
+                }
+            });
+        }
+        if (tL_jsonObject4 != null) {
+            LiteMode.updatePresets(tL_jsonObject4);
+        }
+        if (z29) {
+            ApplicationLoader.startPushService();
+            ConnectionsManager connectionsManager = getConnectionsManager();
+            connectionsManager.setPushConnectionEnabled(connectionsManager.isPushConnectionEnabled());
+        }
+        if (z30) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$applyAppConfig$37();
+                }
+            });
+        }
+        logDeviceStats();
     }
 
     public static String lambda$applyAppConfig$35(int[] iArr) {
@@ -3150,11 +11639,9 @@ public class MessagesController extends BaseController implements NotificationCe
             try {
                 PeerColors peerColors = new PeerColors(i, 0);
                 if (tL_jsonObject != null) {
-                    Iterator<TLRPC.TL_jsonObjectValue> it = tL_jsonObject.value.iterator();
-                    while (it.hasNext()) {
-                        TLRPC.TL_jsonObjectValue next = it.next();
-                        int iIntValue = Utilities.parseInt((CharSequence) next.key).intValue();
-                        TLRPC.JSONValue jSONValue = next.value;
+                    for (TLRPC.TL_jsonObjectValue tL_jsonObjectValue : tL_jsonObject.value) {
+                        int iIntValue = Utilities.parseInt((CharSequence) tL_jsonObjectValue.key).intValue();
+                        TLRPC.JSONValue jSONValue = tL_jsonObjectValue.value;
                         if (jSONValue instanceof TLRPC.TL_jsonArray) {
                             ArrayList<TLRPC.JSONValue> arrayList = ((TLRPC.TL_jsonArray) jSONValue).value;
                             if (!arrayList.isEmpty()) {
@@ -3180,11 +11667,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                 }
                 if (tL_jsonObject2 != null) {
-                    Iterator<TLRPC.TL_jsonObjectValue> it2 = tL_jsonObject2.value.iterator();
-                    while (it2.hasNext()) {
-                        TLRPC.TL_jsonObjectValue next2 = it2.next();
-                        int iIntValue2 = Utilities.parseInt((CharSequence) next2.key).intValue();
-                        TLRPC.JSONValue jSONValue2 = next2.value;
+                    for (TLRPC.TL_jsonObjectValue tL_jsonObjectValue2 : tL_jsonObject2.value) {
+                        int iIntValue2 = Utilities.parseInt((CharSequence) tL_jsonObjectValue2.key).intValue();
+                        TLRPC.JSONValue jSONValue2 = tL_jsonObjectValue2.value;
                         if (jSONValue2 instanceof TLRPC.TL_jsonArray) {
                             ArrayList<TLRPC.JSONValue> arrayList2 = ((TLRPC.TL_jsonArray) jSONValue2).value;
                             if (!arrayList2.isEmpty()) {
@@ -3209,10 +11694,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
                 peerColors.colors.clear();
                 if (tL_jsonArray != null) {
-                    Iterator<TLRPC.JSONValue> it3 = tL_jsonArray.value.iterator();
-                    while (it3.hasNext()) {
-                        if (it3.next() instanceof TLRPC.TL_jsonNumber) {
-                            PeerColor peerColor3 = (PeerColor) peerColors.colorsById.get((int) ((TLRPC.TL_jsonNumber) r11).value);
+                    for (TLRPC.JSONValue jSONValue3 : tL_jsonArray.value) {
+                        if (jSONValue3 instanceof TLRPC.TL_jsonNumber) {
+                            PeerColor peerColor3 = (PeerColor) peerColors.colorsById.get((int) ((TLRPC.TL_jsonNumber) jSONValue3).value);
                             if (peerColor3 != null) {
                                 peerColors.colors.add(peerColor3);
                             }
@@ -3834,19 +12318,19 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_userForeign_old2.status = null;
         tL_userForeign_old2.photo = new TLRPC.TL_userProfilePhotoEmpty();
         putUser(tL_userForeign_old2, true);
-        TLRPC.TL_userForeign_old2 tL_userForeign_old22 = new TLRPC.TL_userForeign_old2();
-        tL_userForeign_old22.phone = "42777";
-        tL_userForeign_old22.id = 777000L;
-        tL_userForeign_old22.verified = true;
-        tL_userForeign_old22.first_name = "Telegram";
-        tL_userForeign_old22.last_name = "Notifications";
-        tL_userForeign_old22.status = null;
-        tL_userForeign_old22.photo = new TLRPC.TL_userProfilePhotoEmpty();
-        putUser(tL_userForeign_old22, true);
+        TLRPC.TL_userForeign_old2 tL_userForeign_old3 = new TLRPC.TL_userForeign_old2();
+        tL_userForeign_old3.phone = "42777";
+        tL_userForeign_old3.id = 777000L;
+        tL_userForeign_old3.verified = true;
+        tL_userForeign_old3.first_name = "Telegram";
+        tL_userForeign_old3.last_name = "Notifications";
+        tL_userForeign_old3.status = null;
+        tL_userForeign_old3.photo = new TLRPC.TL_userProfilePhotoEmpty();
+        putUser(tL_userForeign_old3, true);
     }
 
     public TLRPC.InputUser getInputUser(TLRPC.User user) {
-        TLRPC.TL_inputUser tL_inputUser;
+        TLRPC.InputUser inputUser;
         if (user == null) {
             return new TLRPC.TL_inputUserEmpty();
         }
@@ -3858,14 +12342,14 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_inputUserFromMessage.user_id = user.id;
             tL_inputUserFromMessage.peer = getInputPeer(user.fromMessageDialogId);
             tL_inputUserFromMessage.msg_id = user.fromMessageId;
-            tL_inputUser = tL_inputUserFromMessage;
+            inputUser = tL_inputUserFromMessage;
         } else {
-            TLRPC.TL_inputUser tL_inputUser2 = new TLRPC.TL_inputUser();
-            tL_inputUser2.user_id = user.id;
-            tL_inputUser2.access_hash = user.access_hash;
-            tL_inputUser = tL_inputUser2;
+            TLRPC.TL_inputUser tL_inputUser = new TLRPC.TL_inputUser();
+            tL_inputUser.user_id = user.id;
+            tL_inputUser.access_hash = user.access_hash;
+            inputUser = tL_inputUser;
         }
-        return tL_inputUser;
+        return inputUser;
     }
 
     public TLRPC.InputUser getInputUser(TLRPC.InputPeer inputPeer) {
@@ -3931,12 +12415,105 @@ public class MessagesController extends BaseController implements NotificationCe
         return getInputChannel(getChat(Long.valueOf(j)));
     }
 
-    public org.telegram.tgnet.TLRPC.InputPeer getInputPeer(org.telegram.tgnet.TLRPC.Peer r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.getInputPeer(org.telegram.tgnet.TLRPC$Peer):org.telegram.tgnet.TLRPC$InputPeer");
+    public TLRPC.InputPeer getInputPeer(TLRPC.Peer peer) {
+        TLRPC.InputPeer tL_inputPeerUser;
+        if (peer instanceof TLRPC.TL_peerChat) {
+            TLRPC.TL_inputPeerChat tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
+            tL_inputPeerChat.chat_id = peer.chat_id;
+            return tL_inputPeerChat;
+        }
+        if (peer instanceof TLRPC.TL_peerChannel) {
+            TLRPC.Chat chat = getChat(Long.valueOf(peer.channel_id));
+            if (chat == null || chat.access_hash != 0) {
+                tL_inputPeerUser = new TLRPC.TL_inputPeerChannel();
+                tL_inputPeerUser.channel_id = peer.channel_id;
+                if (chat != null) {
+                    tL_inputPeerUser.access_hash = chat.access_hash;
+                }
+            } else {
+                long j = chat.fromMessageDialogId;
+                if (j != 0 && j != peer.channel_id && chat.fromMessageId != 0) {
+                    tL_inputPeerUser = new TLRPC.TL_inputPeerChannelFromMessage();
+                    tL_inputPeerUser.channel_id = peer.channel_id;
+                    tL_inputPeerUser.peer = getInputPeer(chat.fromMessageDialogId);
+                    tL_inputPeerUser.msg_id = chat.fromMessageId;
+                } else {
+                    tL_inputPeerUser = new TLRPC.TL_inputPeerChannel();
+                    tL_inputPeerUser.channel_id = peer.channel_id;
+                    if (chat != null) {
+                        tL_inputPeerUser.access_hash = chat.access_hash;
+                    }
+                }
+            }
+        } else {
+            TLRPC.User user = getUser(Long.valueOf(peer.user_id));
+            if (user != null && user.access_hash == 0 && user.fromMessageDialogId != 0 && user.fromMessageId != 0) {
+                tL_inputPeerUser = new TLRPC.TL_inputPeerUserFromMessage();
+                tL_inputPeerUser.user_id = peer.user_id;
+                tL_inputPeerUser.peer = getInputPeer(user.fromMessageDialogId);
+                tL_inputPeerUser.msg_id = user.fromMessageId;
+            } else {
+                tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
+                tL_inputPeerUser.user_id = peer.user_id;
+                if (user != null) {
+                    tL_inputPeerUser.access_hash = user.access_hash;
+                }
+            }
+        }
+        return tL_inputPeerUser;
     }
 
-    public org.telegram.tgnet.TLRPC.InputPeer getInputPeer(long r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.getInputPeer(long):org.telegram.tgnet.TLRPC$InputPeer");
+    public TLRPC.InputPeer getInputPeer(long j) {
+        TLRPC.InputPeer tL_inputPeerUser;
+        if (j == getUserConfig().getClientUserId()) {
+            return new TLRPC.TL_inputPeerSelf();
+        }
+        if (j < 0) {
+            long j2 = -j;
+            TLRPC.Chat chat = getChat(Long.valueOf(j2));
+            if (ChatObject.isChannel(chat)) {
+                if (chat != null && chat.access_hash == 0) {
+                    long j3 = chat.fromMessageDialogId;
+                    if (j3 != 0 && j3 != j && chat.fromMessageId != 0) {
+                        TLRPC.TL_inputPeerChannelFromMessage tL_inputPeerChannelFromMessage = new TLRPC.TL_inputPeerChannelFromMessage();
+                        tL_inputPeerChannelFromMessage.channel_id = j2;
+                        tL_inputPeerChannelFromMessage.peer = getInputPeer(chat.fromMessageDialogId);
+                        tL_inputPeerChannelFromMessage.msg_id = chat.fromMessageId;
+                        return tL_inputPeerChannelFromMessage;
+                    }
+                }
+                TLRPC.TL_inputPeerChannel tL_inputPeerChannel = new TLRPC.TL_inputPeerChannel();
+                tL_inputPeerChannel.channel_id = j2;
+                tL_inputPeerChannel.access_hash = chat.access_hash;
+                return tL_inputPeerChannel;
+            }
+            TLRPC.TL_inputPeerChat tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
+            tL_inputPeerChat.chat_id = j2;
+            return tL_inputPeerChat;
+        }
+        TLRPC.User user = getUser(Long.valueOf(j));
+        if (user == null || user.access_hash != 0) {
+            tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
+            tL_inputPeerUser.user_id = j;
+            if (user != null) {
+                tL_inputPeerUser.access_hash = user.access_hash;
+            }
+        } else {
+            long j4 = user.fromMessageDialogId;
+            if (j4 != 0 && j4 != j && user.fromMessageId != 0) {
+                tL_inputPeerUser = new TLRPC.TL_inputPeerUserFromMessage();
+                tL_inputPeerUser.user_id = j;
+                tL_inputPeerUser.peer = getInputPeer(user.fromMessageDialogId);
+                tL_inputPeerUser.msg_id = user.fromMessageId;
+            } else {
+                tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
+                tL_inputPeerUser.user_id = j;
+                if (user != null) {
+                    tL_inputPeerUser.access_hash = user.access_hash;
+                }
+            }
+        }
+        return tL_inputPeerUser;
     }
 
     public static TLRPC.InputPeer getInputPeer(TLRPC.Chat chat) {
@@ -4830,7 +13407,7 @@ public class MessagesController extends BaseController implements NotificationCe
         return this.encryptedChats.get(num);
     }
 
-    public TLRPC.EncryptedChat getEncryptedChatDB(int i, boolean z) throws InterruptedException {
+    public TLRPC.EncryptedChat getEncryptedChatDB(int i, boolean z) {
         TLRPC.EncryptedChat encryptedChat = this.encryptedChats.get(Integer.valueOf(i));
         if (encryptedChat != null) {
             if (!z) {
@@ -4922,8 +13499,122 @@ public class MessagesController extends BaseController implements NotificationCe
         return putUser(user, z, false);
     }
 
-    public boolean putUser(org.telegram.tgnet.TLRPC.User r9, boolean r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.putUser(org.telegram.tgnet.TLRPC$User, boolean, boolean):boolean");
+    public boolean putUser(TLRPC.User user, boolean z, boolean z2) {
+        boolean z3;
+        TLRPC.UserStatus userStatus;
+        TLRPC.UserStatus userStatus2;
+        int i;
+        String str;
+        String str2;
+        if (user == null) {
+            return false;
+        }
+        if (z) {
+            long j = user.id;
+            if (j / 1000 == 333 || j == 777000) {
+                z3 = false;
+            } else {
+                z3 = true;
+            }
+        } else {
+            z3 = false;
+        }
+        TLRPC.User user2 = this.users.get(Long.valueOf(user.id));
+        if (user2 == user && !z2) {
+            return false;
+        }
+        if (user2 != null && !TextUtils.isEmpty(user2.username)) {
+            this.objectsByUsernames.remove(user2.username.toLowerCase());
+        }
+        if (user2 != null && user2.usernames != null) {
+            for (int i2 = 0; i2 < user2.usernames.size(); i2++) {
+                TLRPC.TL_username tL_username = user2.usernames.get(i2);
+                if (tL_username != null && (str2 = tL_username.username) != null) {
+                    this.objectsByUsernames.remove(str2.toLowerCase());
+                }
+            }
+        }
+        if (!TextUtils.isEmpty(user.username)) {
+            this.objectsByUsernames.put(user.username.toLowerCase(), user);
+        }
+        if (user.usernames != null) {
+            for (int i3 = 0; i3 < user.usernames.size(); i3++) {
+                TLRPC.TL_username tL_username2 = user.usernames.get(i3);
+                if (tL_username2 != null && (str = tL_username2.username) != null && tL_username2.active) {
+                    this.objectsByUsernames.put(str.toLowerCase(), user);
+                }
+            }
+        }
+        updateEmojiStatusUntilUpdate(user.id, user.emoji_status);
+        if (user2 != null && user2.access_hash == 0) {
+            long j2 = user.fromMessageDialogId;
+            if (j2 != 0 && (i = user.fromMessageId) != 0) {
+                user2.fromMessageDialogId = j2;
+                user2.fromMessageId = i;
+            }
+        }
+        if (user.min) {
+            if (user2 == null) {
+                this.users.put(Long.valueOf(user.id), user);
+            } else if (!z3) {
+                getUserNameResolver().update(user2, user);
+                if (user.bot) {
+                    String str3 = user.username;
+                    if (str3 != null) {
+                        user2.username = str3;
+                        user2.flags |= 8;
+                    } else {
+                        user2.flags &= -9;
+                        user2.username = null;
+                    }
+                }
+                if (user.apply_min_photo) {
+                    TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
+                    if (userProfilePhoto != null) {
+                        user2.photo = userProfilePhoto;
+                        user2.flags |= 32;
+                    } else {
+                        user2.flags &= -33;
+                        user2.photo = null;
+                    }
+                }
+            }
+        } else if (!z3) {
+            this.users.put(Long.valueOf(user.id), user);
+            if (user.id == getUserConfig().getClientUserId()) {
+                getUserConfig().setCurrentUser(user);
+                getUserConfig().saveConfig(true);
+            }
+            getUserNameResolver().update(user2, user);
+            if (user2 != null && (userStatus = user.status) != null && (userStatus2 = user2.status) != null && userStatus.expires != userStatus2.expires) {
+                return true;
+            }
+        } else if (user2 == null) {
+            this.users.put(Long.valueOf(user.id), user);
+        } else if (user2.min) {
+            if (user2.bot) {
+                String str4 = user2.username;
+                if (str4 != null) {
+                    user.username = str4;
+                    user.flags |= 8;
+                } else {
+                    user.flags &= -9;
+                    user.username = null;
+                }
+            }
+            if (user2.apply_min_photo) {
+                TLRPC.UserProfilePhoto userProfilePhoto2 = user2.photo;
+                if (userProfilePhoto2 != null) {
+                    user.photo = userProfilePhoto2;
+                    user.flags |= 32;
+                } else {
+                    user.flags &= -33;
+                    user.photo = null;
+                }
+            }
+            this.users.put(Long.valueOf(user.id), user);
+        }
+        return false;
     }
 
     public void reloadUser(long j) {
@@ -5454,13 +14145,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$reloadDialogsReadValue$64(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$reloadDialogsReadValue$64(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$reloadDialogsReadValue$64(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
             ArrayList<TLRPC.Update> arrayList = new ArrayList<>();
@@ -5655,7 +14346,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void loadChannelAdmins(final long j, boolean z) {
-        if ((SystemClock.elapsedRealtime() / 1000) - this.loadingChannelAdmins.get(j) < 60) {
+        if ((SystemClock.elapsedRealtime() / 1000) - ((long) this.loadingChannelAdmins.get(j)) < 60) {
             return;
         }
         this.loadingChannelAdmins.put(j, (int) (SystemClock.elapsedRealtime() / 1000));
@@ -5711,11 +14402,45 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void loadFullChat(final long r12, final int r14, boolean r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.loadFullChat(long, int, boolean):void");
+    public void loadFullChat(final long j, final int i, boolean z) {
+        TLRPC.TL_messages_getFullChat tL_messages_getFullChat;
+        TLObject tLObject;
+        boolean z2 = this.loadedFullChats.get(j, 0L) > 0;
+        if (this.loadingFullChats.contains(Long.valueOf(j))) {
+            return;
+        }
+        if (z || !z2) {
+            this.loadingFullChats.add(Long.valueOf(j));
+            final long j2 = -j;
+            final TLRPC.Chat chat = getChat(Long.valueOf(j));
+            if (ChatObject.isChannel(chat)) {
+                TLRPC.TL_channels_getFullChannel tL_channels_getFullChannel = new TLRPC.TL_channels_getFullChannel();
+                tL_channels_getFullChannel.channel = getInputChannel(chat);
+                loadChannelAdmins(j, true ^ z2);
+                tLObject = tL_channels_getFullChannel;
+            } else {
+                tL_messages_getFullChat = new TLRPC.TL_messages_getFullChat();
+                tL_messages_getFullChat.chat_id = j;
+                if (this.dialogs_read_inbox_max.get(Long.valueOf(j2)) == null || this.dialogs_read_outbox_max.get(Long.valueOf(j2)) == null) {
+                    tLObject = tL_messages_getFullChat;
+                    reloadDialogsReadValue(null, j2);
+                    tLObject = tL_messages_getFullChat;
+                }
+            }
+            tLObject = tL_messages_getFullChat;
+            int iSendRequest = getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$loadFullChat$69(j2, j, chat, i, tLObject2, tL_error);
+                }
+            });
+            if (i != 0) {
+                getConnectionsManager().bindRequestToGuid(iSendRequest, i);
+            }
+        }
     }
 
-    public void lambda$loadFullChat$69(final long j, final long j2, TLRPC.Chat chat, final int i, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$loadFullChat$69(final long j, final long j2, TLRPC.Chat chat, final int i, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             final TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject;
             getMessagesStorage().putUsersAndChats(tL_messages_chatFull.users, tL_messages_chatFull.chats, true, true);
@@ -5964,7 +14689,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     private void reloadMessages(ArrayList<Integer> arrayList, final long j, final int i) {
-        TLRPC.TL_messages_getMessages tL_messages_getMessages;
+        TLObject tLObject;
         if (arrayList.isEmpty()) {
             return;
         }
@@ -5975,13 +14700,13 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
             tL_channels_getMessages.channel = getInputChannel(chat);
             tL_channels_getMessages.id = arrayList2;
-            tL_messages_getMessages = tL_channels_getMessages;
+            tLObject = tL_channels_getMessages;
         } else {
-            TLRPC.TL_messages_getMessages tL_messages_getMessages2 = new TLRPC.TL_messages_getMessages();
-            tL_messages_getMessages2.id = arrayList2;
-            tL_messages_getMessages = tL_messages_getMessages2;
+            TLRPC.TL_messages_getMessages tL_messages_getMessages = new TLRPC.TL_messages_getMessages();
+            tL_messages_getMessages.id = arrayList2;
+            tLObject = tL_messages_getMessages;
         }
-        TLRPC.TL_messages_getMessages tL_messages_getMessages3 = tL_messages_getMessages;
+        TLObject tLObject2 = tLObject;
         ArrayList arrayList3 = (ArrayList) this.reloadingMessages.get(j);
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             Integer num = arrayList.get(i2);
@@ -5997,10 +14722,10 @@ public class MessagesController extends BaseController implements NotificationCe
             this.reloadingMessages.put(j, arrayList3);
         }
         arrayList3.addAll(arrayList2);
-        getConnectionsManager().sendRequest(tL_messages_getMessages3, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tLObject2, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$reloadMessages$74(j, z, i, arrayList2, tLObject, tL_error);
+            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$reloadMessages$74(j, z, i, arrayList2, tLObject3, tL_error);
             }
         });
     }
@@ -6067,23 +14792,19 @@ public class MessagesController extends BaseController implements NotificationCe
         if (arrayList4 != null) {
             for (int i = 0; i < arrayList4.size(); i++) {
                 MessageObject messageObject = (MessageObject) arrayList4.get(i);
-                int i2 = 0;
-                while (true) {
-                    if (i2 < arrayList2.size()) {
-                        MessageObject messageObject2 = (MessageObject) arrayList2.get(i2);
-                        if (messageObject.getId() == messageObject2.getId()) {
-                            arrayList4.set(i, messageObject2);
-                            if (messageObject2.messageOwner.peer_id.channel_id == 0) {
-                                MessageObject messageObject3 = this.dialogMessagesByIds.get(messageObject2.getId());
-                                this.dialogMessagesByIds.remove(messageObject2.getId());
-                                if (messageObject3 != null) {
-                                    this.dialogMessagesByIds.put(messageObject3.getId(), messageObject3);
-                                }
+                for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                    MessageObject messageObject2 = (MessageObject) arrayList2.get(i2);
+                    if (messageObject.getId() == messageObject2.getId()) {
+                        arrayList4.set(i, messageObject2);
+                        if (messageObject2.messageOwner.peer_id.channel_id == 0) {
+                            MessageObject messageObject3 = this.dialogMessagesByIds.get(messageObject2.getId());
+                            this.dialogMessagesByIds.remove(messageObject2.getId());
+                            if (messageObject3 != null) {
+                                this.dialogMessagesByIds.put(messageObject3.getId(), messageObject3);
                             }
-                            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
-                        } else {
-                            i2++;
                         }
+                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
+                        break;
                     }
                 }
             }
@@ -6462,14 +15183,12 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$checkDeletingTask$86(final LongSparseArray longSparseArray, final LongSparseArray longSparseArray2) {
-        long j;
-        ArrayList<Integer> arrayList;
         boolean z = true;
         if (longSparseArray != null) {
             int size = longSparseArray.size();
             for (int i = 0; i < size; i++) {
-                ArrayList<Integer> arrayList2 = (ArrayList) longSparseArray.valueAt(i);
-                deleteMessages(arrayList2, null, null, longSparseArray.keyAt(i), 0, true, 0, !arrayList2.isEmpty() && arrayList2.get(0).intValue() > 0);
+                ArrayList<Integer> arrayList = (ArrayList) longSparseArray.valueAt(i);
+                deleteMessages(arrayList, null, null, longSparseArray.keyAt(i), 0, true, 0, !arrayList.isEmpty() && arrayList.get(0).intValue() > 0);
             }
         }
         if (longSparseArray2 != null) {
@@ -6479,14 +15198,12 @@ public class MessagesController extends BaseController implements NotificationCe
             int i2 = 0;
             while (i2 < size2) {
                 final long jKeyAt = longSparseArray2.keyAt(i2);
-                ArrayList<Integer> arrayList3 = (ArrayList) longSparseArray2.valueAt(i2);
-                if (z2 && currentMessageObject != null && currentMessageObject.currentAccount == this.currentAccount && currentMessageObject.getDialogId() == jKeyAt && arrayList3.contains(Integer.valueOf(currentMessageObject.getId()))) {
+                ArrayList<Integer> arrayList2 = (ArrayList) longSparseArray2.valueAt(i2);
+                if (z2 && currentMessageObject != null && currentMessageObject.currentAccount == this.currentAccount && currentMessageObject.getDialogId() == jKeyAt && arrayList2.contains(Integer.valueOf(currentMessageObject.getId()))) {
                     final int id = currentMessageObject.getId();
-                    arrayList3.remove(Integer.valueOf(id));
+                    arrayList2.remove(Integer.valueOf(id));
                     currentMessageObject.forceExpired = z;
                     final long jCreateDeleteShowOnceTask = createDeleteShowOnceTask(jKeyAt, id);
-                    j = jKeyAt;
-                    arrayList = arrayList3;
                     SecretMediaViewer.getInstance().setOnClose(new Runnable() {
                         @Override
                         public final void run() {
@@ -6494,12 +15211,9 @@ public class MessagesController extends BaseController implements NotificationCe
                         }
                     });
                     getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateMessageMedia, currentMessageObject.messageOwner);
-                } else {
-                    j = jKeyAt;
-                    arrayList = arrayList3;
                 }
-                if (!arrayList.isEmpty()) {
-                    getMessagesStorage().emptyMessagesMedia(j, arrayList);
+                if (!arrayList2.isEmpty()) {
+                    getMessagesStorage().emptyMessagesMedia(jKeyAt, arrayList2);
                 }
                 i2++;
                 z = true;
@@ -6548,7 +15262,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     this.f$0.lambda$processLoadedDeleteTask$87();
                 }
             };
-            Utilities.stageQueue.postRunnable(this.currentDeleteTaskRunnable, Math.abs(getConnectionsManager().getCurrentTime() - this.currentDeletingTaskTime) * 1000);
+            Utilities.stageQueue.postRunnable(this.currentDeleteTaskRunnable, ((long) Math.abs(getConnectionsManager().getCurrentTime() - this.currentDeletingTaskTime)) * 1000);
             return;
         }
         this.currentDeletingTaskTime = 0;
@@ -6749,17 +15463,12 @@ public class MessagesController extends BaseController implements NotificationCe
             photos_photos.count = iMax;
             boolean z2 = iMax != this.photos.size() || i + i2 > this.photos.size();
             if (!z2) {
-                int i3 = 0;
-                while (true) {
-                    if (i3 >= photos_photos.photos.size()) {
-                        break;
-                    }
+                for (int i3 = 0; i3 < photos_photos.photos.size(); i3++) {
                     int i4 = i + i3;
                     if (this.photos.get(i4) != null && this.photos.get(i4).id != photos_photos.photos.get(i3).id) {
                         z2 = true;
                         break;
                     }
-                    i3++;
                 }
             }
             if (z2) {
@@ -6860,13 +15569,6 @@ public class MessagesController extends BaseController implements NotificationCe
                                                 sQLiteCursor.dispose();
                                             }
                                             iIntValue = i;
-                                            final int iMax = Math.max(iIntValue, map.size());
-                                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                                @Override
-                                                public final void run() {
-                                                    this.f$0.lambda$loadCache$4(iMax, map);
-                                                }
-                                            });
                                         } catch (Throwable th) {
                                             th = th;
                                             sQLiteCursor = sQLiteCursorQueryFinalized2;
@@ -6894,11 +15596,11 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
             } catch (Exception unused5) {
             }
-            final int iMax2 = Math.max(iIntValue, map.size());
+            final int iMax = Math.max(iIntValue, map.size());
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadCache$4(iMax2, map);
+                    this.f$0.lambda$loadCache$4(iMax, map);
                 }
             });
         }
@@ -7594,7 +16296,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (themeInfo == null) {
             return;
         }
-        if (themeAccent != 0) {
+        if (themeAccent != null) {
             absolutePath = themeAccent.saveToFile().getAbsolutePath();
             pathToWallpaper = themeAccent.getPathToWallpaper();
         } else {
@@ -7606,7 +16308,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (str == null || this.uploadingThemes.containsKey(str)) {
             return;
         }
-        this.uploadingThemes.put(str, themeAccent != 0 ? themeAccent : themeInfo);
+        this.uploadingThemes.put(str, themeAccent != null ? themeAccent : themeInfo);
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -7642,8 +16344,128 @@ public class MessagesController extends BaseController implements NotificationCe
         getFileLoader().uploadFile(str, false, true, 16777216);
     }
 
-    public void saveWallpaperToServer(java.io.File r8, org.telegram.ui.ActionBar.Theme.OverrideWallpaperInfo r9, boolean r10, final long r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.saveWallpaperToServer(java.io.File, org.telegram.ui.ActionBar.Theme$OverrideWallpaperInfo, boolean, long):void");
+    public void saveWallpaperToServer(File file, Theme.OverrideWallpaperInfo overrideWallpaperInfo, boolean z, final long j) {
+        TLObject tLObject;
+        Exception e;
+        NativeByteBuffer nativeByteBuffer;
+        TLRPC.WallPaper tL_wallPaper;
+        NativeByteBuffer nativeByteBuffer2 = null;
+        if (this.uploadingWallpaper != null) {
+            File file2 = new File(ApplicationLoader.getFilesDirFixed(), overrideWallpaperInfo.originalFileName);
+            if (file != null && (file.getAbsolutePath().equals(this.uploadingWallpaper) || file.equals(file2))) {
+                this.uploadingWallpaperInfo = overrideWallpaperInfo;
+                return;
+            } else {
+                getFileLoader().cancelFileUpload(this.uploadingWallpaper, false);
+                this.uploadingWallpaper = null;
+                this.uploadingWallpaperInfo = null;
+            }
+        }
+        if (file != null) {
+            this.uploadingWallpaper = file.getAbsolutePath();
+            this.uploadingWallpaperInfo = overrideWallpaperInfo;
+            getFileLoader().uploadFile(this.uploadingWallpaper, false, true, 16777216);
+        } else if (!overrideWallpaperInfo.isDefault() && !overrideWallpaperInfo.isColor() && overrideWallpaperInfo.wallpaperId > 0 && !overrideWallpaperInfo.isTheme()) {
+            TLRPC.InputWallPaper inputWallpaper = getInputWallpaper(overrideWallpaperInfo);
+            TLRPC.TL_wallPaperSettings wallpaperSetting = getWallpaperSetting(overrideWallpaperInfo);
+            if (z) {
+                TL_account.installWallPaper installwallpaper = new TL_account.installWallPaper();
+                installwallpaper.wallpaper = inputWallpaper;
+                installwallpaper.settings = wallpaperSetting;
+                tLObject = installwallpaper;
+            } else {
+                TL_account.saveWallPaper savewallpaper = new TL_account.saveWallPaper();
+                savewallpaper.wallpaper = inputWallpaper;
+                savewallpaper.settings = wallpaperSetting;
+                tLObject = savewallpaper;
+            }
+            if (j == 0) {
+                try {
+                    nativeByteBuffer = new NativeByteBuffer(1024);
+                    try {
+                        nativeByteBuffer.writeInt32(21);
+                        nativeByteBuffer.writeBool(overrideWallpaperInfo.isBlurred);
+                        nativeByteBuffer.writeBool(overrideWallpaperInfo.isMotion);
+                        nativeByteBuffer.writeInt32(overrideWallpaperInfo.color);
+                        nativeByteBuffer.writeInt32(overrideWallpaperInfo.gradientColor1);
+                        nativeByteBuffer.writeInt32(overrideWallpaperInfo.rotation);
+                        nativeByteBuffer.writeDouble(overrideWallpaperInfo.intensity);
+                        nativeByteBuffer.writeBool(z);
+                        nativeByteBuffer.writeString(overrideWallpaperInfo.slug);
+                        nativeByteBuffer.writeString(overrideWallpaperInfo.originalFileName);
+                        nativeByteBuffer.limit(nativeByteBuffer.position());
+                    } catch (Exception e2) {
+                        e = e2;
+                        nativeByteBuffer2 = nativeByteBuffer;
+                        FileLog.e(e);
+                        nativeByteBuffer = nativeByteBuffer2;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                }
+                j = getMessagesStorage().createPendingTask(nativeByteBuffer);
+            }
+            getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$saveWallpaperToServer$121(j, tLObject2, tL_error);
+                }
+            });
+        }
+        if ((overrideWallpaperInfo.isColor() || overrideWallpaperInfo.gradientColor2 != 0) && overrideWallpaperInfo.wallpaperId <= 0) {
+            if (overrideWallpaperInfo.isColor()) {
+                tL_wallPaper = new TLRPC.TL_wallPaperNoFile();
+            } else {
+                tL_wallPaper = new TLRPC.TL_wallPaper();
+                tL_wallPaper.slug = overrideWallpaperInfo.slug;
+                tL_wallPaper.document = new TLRPC.TL_documentEmpty();
+            }
+            long j2 = overrideWallpaperInfo.wallpaperId;
+            if (j2 == 0) {
+                long jNextLong = Utilities.random.nextLong();
+                tL_wallPaper.id = jNextLong;
+                if (jNextLong > 0) {
+                    tL_wallPaper.id = -jNextLong;
+                }
+            } else {
+                tL_wallPaper.id = j2;
+            }
+            tL_wallPaper.dark = MotionBackgroundDrawable.isDark(overrideWallpaperInfo.color, overrideWallpaperInfo.gradientColor1, overrideWallpaperInfo.gradientColor2, overrideWallpaperInfo.gradientColor3);
+            tL_wallPaper.flags |= 4;
+            TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
+            tL_wallPaper.settings = tL_wallPaperSettings;
+            tL_wallPaperSettings.blur = overrideWallpaperInfo.isBlurred;
+            tL_wallPaperSettings.motion = overrideWallpaperInfo.isMotion;
+            int i = overrideWallpaperInfo.color;
+            if (i != 0) {
+                tL_wallPaperSettings.background_color = i;
+                int i2 = tL_wallPaperSettings.flags;
+                tL_wallPaperSettings.intensity = (int) (overrideWallpaperInfo.intensity * 100.0f);
+                tL_wallPaperSettings.flags = i2 | 9;
+            }
+            int i3 = overrideWallpaperInfo.gradientColor1;
+            if (i3 != 0) {
+                tL_wallPaperSettings.second_background_color = i3;
+                tL_wallPaperSettings.rotation = AndroidUtilities.getWallpaperRotation(overrideWallpaperInfo.rotation, true);
+                tL_wallPaper.settings.flags |= 16;
+            }
+            int i4 = overrideWallpaperInfo.gradientColor2;
+            if (i4 != 0) {
+                TLRPC.WallPaperSettings wallPaperSettings = tL_wallPaper.settings;
+                wallPaperSettings.third_background_color = i4;
+                wallPaperSettings.flags |= 32;
+            }
+            int i5 = overrideWallpaperInfo.gradientColor3;
+            if (i5 != 0) {
+                TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper.settings;
+                wallPaperSettings2.fourth_background_color = i5;
+                wallPaperSettings2.flags |= 64;
+            }
+            ArrayList<TLRPC.WallPaper> arrayList = new ArrayList<>();
+            arrayList.add(tL_wallPaper);
+            getMessagesStorage().putWallpapers(arrayList, -3);
+            getMessagesStorage().getWallpapers();
+        }
     }
 
     public void lambda$saveWallpaperToServer$121(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -7704,14 +16526,10 @@ public class MessagesController extends BaseController implements NotificationCe
             for (int i = 0; i < arrayList2.size(); i++) {
                 MessageObject messageObject = (MessageObject) arrayList2.get(i);
                 if (messageObject != null) {
-                    int i2 = 0;
-                    while (true) {
-                        if (i2 < arrayList.size()) {
-                            if (messageObject.getId() == arrayList.get(i2).intValue()) {
-                                messageObject.deleted = true;
-                                break;
-                            }
-                            i2++;
+                    for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                        if (messageObject.getId() == arrayList.get(i2).intValue()) {
+                            messageObject.deleted = true;
+                            break;
                         }
                     }
                 }
@@ -7731,8 +16549,264 @@ public class MessagesController extends BaseController implements NotificationCe
         deleteMessages(arrayList, arrayList2, encryptedChat, j, z, i, z2, j2, tLObject, i2, false, 0);
     }
 
-    public void deleteMessages(java.util.ArrayList<java.lang.Integer> r28, java.util.ArrayList<java.lang.Long> r29, org.telegram.tgnet.TLRPC.EncryptedChat r30, long r31, boolean r33, int r34, boolean r35, long r36, org.telegram.tgnet.TLObject r38, int r39, boolean r40, int r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.deleteMessages(java.util.ArrayList, java.util.ArrayList, org.telegram.tgnet.TLRPC$EncryptedChat, long, boolean, int, boolean, long, org.telegram.tgnet.TLObject, int, boolean, int):void");
+    public void deleteMessages(ArrayList<Integer> arrayList, ArrayList<Long> arrayList2, TLRPC.EncryptedChat encryptedChat, long j, boolean z, int i, boolean z2, long j2, TLObject tLObject, int i2, boolean z3, int i3) {
+        long j3;
+        ArrayList<Integer> arrayList3;
+        NativeByteBuffer nativeByteBuffer;
+        NativeByteBuffer nativeByteBuffer2;
+        final long jCreatePendingTask;
+        TLRPC.TL_messages_deleteMessages tL_messages_deleteMessages;
+        NativeByteBuffer nativeByteBuffer3;
+        long jCreatePendingTask2;
+        TLRPC.TL_channels_deleteMessages tL_channels_deleteMessages;
+        NativeByteBuffer nativeByteBuffer4;
+        final long jCreatePendingTask3;
+        TLRPC.TL_messages_deleteQuickReplyMessages tL_messages_deleteQuickReplyMessages;
+        NativeByteBuffer nativeByteBuffer5;
+        final long jCreatePendingTask4;
+        TLRPC.TL_messages_deleteScheduledMessages tL_messages_deleteScheduledMessages;
+        long j4;
+        ArrayList<Integer> arrayList4;
+        char c;
+        char c2;
+        boolean z4 = i == 1;
+        boolean z5 = i == 5;
+        boolean z6 = i == 9;
+        if ((arrayList == null || arrayList.isEmpty()) && j2 == 0) {
+            return;
+        }
+        if (j2 == 0) {
+            if (j == 0 || !DialogObject.isChatDialog(j)) {
+                j4 = 0;
+            } else {
+                TLRPC.Chat chat = getChat(Long.valueOf(-j));
+                if (ChatObject.isChannel(chat)) {
+                    j4 = chat.id;
+                } else {
+                    j4 = 0;
+                }
+            }
+            if (z2) {
+                arrayList4 = null;
+            } else {
+                ArrayList<Integer> arrayList5 = new ArrayList<>();
+                int size = arrayList.size();
+                for (int i4 = 0; i4 < size; i4++) {
+                    Integer num = arrayList.get(i4);
+                    if (num.intValue() > 0) {
+                        arrayList5.add(num);
+                    }
+                }
+                arrayList4 = arrayList5;
+            }
+            if (z4) {
+                c = 5;
+                getMessagesStorage().markMessagesAsDeleted(j, arrayList, true, false, 1, 0);
+            } else {
+                c = 5;
+                if (z5) {
+                    if (i == 5) {
+                        QuickRepliesController.getInstance(this.currentAccount).deleteLocalMessages(arrayList);
+                    }
+                    getMessagesStorage().markMessagesAsDeleted(j, arrayList, true, false, 5, i2);
+                } else {
+                    if (z6) {
+                        getMessagesStorage().markMessagesAsDeleted(j, arrayList, true, false, 9, i2);
+                    } else {
+                        if (j4 == 0) {
+                            for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                                MessageObject messageObject = this.dialogMessagesByIds.get(arrayList.get(i5).intValue());
+                                if (messageObject != null) {
+                                    messageObject.deleted = true;
+                                }
+                            }
+                        } else {
+                            markDialogMessageAsDeleted(j, arrayList);
+                        }
+                        c2 = 1;
+                        getMessagesStorage().markMessagesAsDeleted(j, arrayList, true, z, 0, i2);
+                        getMessagesStorage().updateDialogsWithDeletedMessages(j, j4, arrayList, null);
+                    }
+                    NotificationCenter notificationCenter = getNotificationCenter();
+                    int i6 = NotificationCenter.messagesDeleted;
+                    Long lValueOf = Long.valueOf(j4);
+                    Boolean boolValueOf = Boolean.valueOf(z4);
+                    Boolean boolValueOf2 = Boolean.valueOf(z3);
+                    Integer numValueOf = Integer.valueOf(i3);
+                    Object[] objArr = new Object[6];
+                    objArr[0] = arrayList;
+                    objArr[c2] = lValueOf;
+                    objArr[2] = boolValueOf;
+                    objArr[3] = Boolean.FALSE;
+                    objArr[4] = boolValueOf2;
+                    objArr[c] = numValueOf;
+                    notificationCenter.lambda$postNotificationNameOnUIThread$1(i6, objArr);
+                    j3 = j4;
+                    arrayList3 = arrayList4;
+                }
+            }
+            c2 = 1;
+            NotificationCenter notificationCenter2 = getNotificationCenter();
+            int i7 = NotificationCenter.messagesDeleted;
+            Long lValueOf2 = Long.valueOf(j4);
+            Boolean boolValueOf3 = Boolean.valueOf(z4);
+            Boolean boolValueOf4 = Boolean.valueOf(z3);
+            Integer numValueOf2 = Integer.valueOf(i3);
+            Object[] objArr2 = new Object[6];
+            objArr2[0] = arrayList;
+            objArr2[c2] = lValueOf2;
+            objArr2[2] = boolValueOf3;
+            objArr2[3] = Boolean.FALSE;
+            objArr2[4] = boolValueOf4;
+            objArr2[c] = numValueOf2;
+            notificationCenter2.lambda$postNotificationNameOnUIThread$1(i7, objArr2);
+            j3 = j4;
+            arrayList3 = arrayList4;
+        } else {
+            j3 = tLObject instanceof TLRPC.TL_channels_deleteMessages ? ((TLRPC.TL_channels_deleteMessages) tLObject).channel.channel_id : 0L;
+            arrayList3 = null;
+        }
+        if (z2) {
+            return;
+        }
+        if (z4) {
+            if (tLObject instanceof TLRPC.TL_messages_deleteScheduledMessages) {
+                tL_messages_deleteScheduledMessages = (TLRPC.TL_messages_deleteScheduledMessages) tLObject;
+                jCreatePendingTask4 = j2;
+            } else {
+                TLRPC.TL_messages_deleteScheduledMessages tL_messages_deleteScheduledMessages2 = new TLRPC.TL_messages_deleteScheduledMessages();
+                tL_messages_deleteScheduledMessages2.id = arrayList3;
+                tL_messages_deleteScheduledMessages2.peer = getInputPeer(j);
+                try {
+                    nativeByteBuffer5 = new NativeByteBuffer(tL_messages_deleteScheduledMessages2.getObjectSize() + 12);
+                    try {
+                        nativeByteBuffer5.writeInt32(24);
+                        nativeByteBuffer5.writeInt64(j);
+                        tL_messages_deleteScheduledMessages2.serializeToStream(nativeByteBuffer5);
+                    } catch (Exception e) {
+                        e = e;
+                        FileLog.e(e);
+                    }
+                } catch (Exception e2) {
+                    e = e2;
+                    nativeByteBuffer5 = null;
+                }
+                jCreatePendingTask4 = getMessagesStorage().createPendingTask(nativeByteBuffer5);
+                tL_messages_deleteScheduledMessages = tL_messages_deleteScheduledMessages2;
+            }
+            getConnectionsManager().sendRequest(tL_messages_deleteScheduledMessages, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$deleteMessages$122(jCreatePendingTask4, tLObject2, tL_error);
+                }
+            });
+            return;
+        }
+        if (z5) {
+            if (tLObject instanceof TLRPC.TL_messages_deleteQuickReplyMessages) {
+                tL_messages_deleteQuickReplyMessages = (TLRPC.TL_messages_deleteQuickReplyMessages) tLObject;
+                jCreatePendingTask3 = j2;
+            } else {
+                TLRPC.TL_messages_deleteQuickReplyMessages tL_messages_deleteQuickReplyMessages2 = new TLRPC.TL_messages_deleteQuickReplyMessages();
+                tL_messages_deleteQuickReplyMessages2.id = arrayList3;
+                tL_messages_deleteQuickReplyMessages2.shortcut_id = i2;
+                try {
+                    nativeByteBuffer4 = new NativeByteBuffer(tL_messages_deleteQuickReplyMessages2.getObjectSize() + 16);
+                    try {
+                        nativeByteBuffer4.writeInt32(103);
+                        nativeByteBuffer4.writeInt64(j);
+                        nativeByteBuffer4.writeInt32(i2);
+                        tL_messages_deleteQuickReplyMessages2.serializeToStream(nativeByteBuffer4);
+                    } catch (Exception e3) {
+                        e = e3;
+                        FileLog.e(e);
+                    }
+                } catch (Exception e4) {
+                    e = e4;
+                    nativeByteBuffer4 = null;
+                }
+                jCreatePendingTask3 = getMessagesStorage().createPendingTask(nativeByteBuffer4);
+                tL_messages_deleteQuickReplyMessages = tL_messages_deleteQuickReplyMessages2;
+            }
+            getConnectionsManager().sendRequest(tL_messages_deleteQuickReplyMessages, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$deleteMessages$123(jCreatePendingTask3, tLObject2, tL_error);
+                }
+            });
+            return;
+        }
+        if (j3 != 0) {
+            if (tLObject != null) {
+                tL_channels_deleteMessages = (TLRPC.TL_channels_deleteMessages) tLObject;
+                jCreatePendingTask2 = j2;
+            } else {
+                TLRPC.TL_channels_deleteMessages tL_channels_deleteMessages2 = new TLRPC.TL_channels_deleteMessages();
+                tL_channels_deleteMessages2.id = arrayList3;
+                tL_channels_deleteMessages2.channel = getInputChannel(j3);
+                try {
+                    nativeByteBuffer3 = new NativeByteBuffer(tL_channels_deleteMessages2.getObjectSize() + 12);
+                    try {
+                        nativeByteBuffer3.writeInt32(24);
+                        nativeByteBuffer3.writeInt64(j);
+                        tL_channels_deleteMessages2.serializeToStream(nativeByteBuffer3);
+                    } catch (Exception e5) {
+                        e = e5;
+                        FileLog.e(e);
+                    }
+                } catch (Exception e6) {
+                    e = e6;
+                    nativeByteBuffer3 = null;
+                }
+                jCreatePendingTask2 = getMessagesStorage().createPendingTask(nativeByteBuffer3);
+                tL_channels_deleteMessages = tL_channels_deleteMessages2;
+            }
+            final long j5 = j3;
+            final long j6 = jCreatePendingTask2;
+            getConnectionsManager().sendRequest(tL_channels_deleteMessages, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$deleteMessages$124(j5, j6, tLObject2, tL_error);
+                }
+            });
+            return;
+        }
+        if (arrayList2 == null || encryptedChat == null || arrayList2.isEmpty()) {
+            nativeByteBuffer = null;
+        } else {
+            nativeByteBuffer = null;
+            getSecretChatHelper().sendMessagesDeleteMessage(encryptedChat, arrayList2, null);
+        }
+        if (tLObject instanceof TLRPC.TL_messages_deleteMessages) {
+            tL_messages_deleteMessages = (TLRPC.TL_messages_deleteMessages) tLObject;
+            jCreatePendingTask = j2;
+        } else {
+            TLRPC.TL_messages_deleteMessages tL_messages_deleteMessages2 = new TLRPC.TL_messages_deleteMessages();
+            tL_messages_deleteMessages2.id = arrayList3;
+            tL_messages_deleteMessages2.revoke = z;
+            try {
+                nativeByteBuffer2 = new NativeByteBuffer(tL_messages_deleteMessages2.getObjectSize() + 12);
+                try {
+                    nativeByteBuffer2.writeInt32(24);
+                    nativeByteBuffer2.writeInt64(j);
+                    tL_messages_deleteMessages2.serializeToStream(nativeByteBuffer2);
+                } catch (Exception e7) {
+                    e = e7;
+                    FileLog.e(e);
+                }
+            } catch (Exception e8) {
+                e = e8;
+                nativeByteBuffer2 = nativeByteBuffer;
+            }
+            jCreatePendingTask = getMessagesStorage().createPendingTask(nativeByteBuffer2);
+            tL_messages_deleteMessages = tL_messages_deleteMessages2;
+        }
+        getConnectionsManager().sendRequest(tL_messages_deleteMessages, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$deleteMessages$125(jCreatePendingTask, tLObject2, tL_error);
+            }
+        });
     }
 
     public void lambda$deleteMessages$122(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -8030,14 +17104,12 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.ChatFull chatFull = getChatFull(j);
         ArrayList<CommunityPeerDialog> arrayList2 = new ArrayList<>();
         if (chatFull != null && (arrayList = chatFull.linked_peers) != null) {
-            Iterator<TL_communities.CommunityPeer> it = arrayList.iterator();
-            while (it.hasNext()) {
-                TL_communities.CommunityPeer next = it.next();
-                long peerDialogId = DialogObject.getPeerDialogId(next.peer);
+            for (TL_communities.CommunityPeer communityPeer : arrayList) {
+                long peerDialogId = DialogObject.getPeerDialogId(communityPeer.peer);
                 TLRPC.Chat chat = getChat(Long.valueOf(-peerDialogId));
                 TLRPC.User user = getUser(Long.valueOf(peerDialogId));
                 if (chat != null || user != null) {
-                    arrayList2.add(new CommunityPeerDialog(next, chat, user, getDialog(peerDialogId)));
+                    arrayList2.add(new CommunityPeerDialog(communityPeer, chat, user, getDialog(peerDialogId)));
                 }
             }
         }
@@ -8047,18 +17119,16 @@ public class MessagesController extends BaseController implements NotificationCe
     public CommunityPeersDialog buildCommunityPeers(long j) {
         ArrayList<CommunityPeerDialog> arrayListBuildCommunityChats = buildCommunityChats(j);
         CommunityPeersDialog communityPeersDialog = new CommunityPeersDialog();
-        Iterator<CommunityPeerDialog> it = arrayListBuildCommunityChats.iterator();
-        while (it.hasNext()) {
-            CommunityPeerDialog next = it.next();
-            CommunityChatType communityChatType = CommunityUtils.getCommunityChatType(next.chat, next.user, next.dialog, next.peer);
+        for (CommunityPeerDialog communityPeerDialog : arrayListBuildCommunityChats) {
+            CommunityChatType communityChatType = CommunityUtils.getCommunityChatType(communityPeerDialog.chat, communityPeerDialog.user, communityPeerDialog.dialog, communityPeerDialog.peer);
             if (communityChatType == CommunityChatType.YouAreIn) {
-                communityPeersDialog.chatsYouAreIn.add(next);
+                communityPeersDialog.chatsYouAreIn.add(communityPeerDialog);
             } else if (communityChatType == CommunityChatType.YouCanView) {
-                communityPeersDialog.chatsYouCanView.add(next);
+                communityPeersDialog.chatsYouCanView.add(communityPeerDialog);
             } else if (communityChatType == CommunityChatType.HiddenUnavailable) {
-                communityPeersDialog.chatsOther.add(next);
+                communityPeersDialog.chatsOther.add(communityPeerDialog);
             } else if (communityChatType == CommunityChatType.YouCanSendJoinRequest) {
-                communityPeersDialog.chatsYouCanJoin.add(next);
+                communityPeersDialog.chatsYouCanJoin.add(communityPeerDialog);
             }
         }
         Collections.sort(communityPeersDialog.chatsYouAreIn, this.communityPeerDialogComparator);
@@ -8371,7 +17441,7 @@ public class MessagesController extends BaseController implements NotificationCe
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, Boolean.TRUE);
     }
 
-    protected void deleteDialog(final long r32, int r34, final int r35, int r36, final boolean r37, final org.telegram.tgnet.TLRPC.InputPeer r38, final long r39) {
+    protected void deleteDialog(long r32, int r34, int r35, int r36, boolean r37, org.telegram.tgnet.TLRPC.InputPeer r38, long r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.deleteDialog(long, int, int, int, boolean, org.telegram.tgnet.TLRPC$InputPeer, long):void");
     }
 
@@ -8874,7 +17944,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                 Long l2 = l;
                                 ArrayList arrayList6 = arrayList3;
                                 int i12 = i10;
-                                if (printingUser.lastTime + (printingUser.action instanceof TLRPC.TL_sendMessageGamePlayAction ? 30000 : 5900) < jCurrentTimeMillis) {
+                                if (printingUser.lastTime + ((long) (printingUser.action instanceof TLRPC.TL_sendMessageGamePlayAction ? 30000 : 5900)) < jCurrentTimeMillis) {
                                     arrayList5.remove(printingUser);
                                     i4--;
                                     i3 = 1;
@@ -9023,44 +18093,39 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$updateTimerProc$157(int i) {
-        int i2;
         long jElapsedRealtime = SystemClock.elapsedRealtime();
         int size = this.pollsToCheck.size();
         int iMin = Integer.MAX_VALUE;
-        int i3 = 0;
-        while (i3 < size) {
-            SparseArray sparseArray = (SparseArray) this.pollsToCheck.valueAt(i3);
+        int i2 = 0;
+        while (i2 < size) {
+            SparseArray sparseArray = (SparseArray) this.pollsToCheck.valueAt(i2);
             if (sparseArray != null) {
                 int size2 = sparseArray.size();
-                int i4 = 0;
+                int i3 = 0;
                 while (true) {
-                    int i5 = 1000;
-                    if (i4 >= size2) {
+                    int i4 = 1000;
+                    if (i3 >= size2) {
                         break;
                     }
-                    MessageObject messageObject = (MessageObject) sparseArray.valueAt(i4);
+                    MessageObject messageObject = (MessageObject) sparseArray.valueAt(i3);
                     TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media).poll;
-                    int i6 = poll.close_date;
-                    final boolean z = (i6 == 0 || poll.closed) ? false : true;
+                    int i5 = poll.close_date;
+                    final boolean z = (i5 == 0 || poll.closed) ? false : true;
                     if (!z) {
-                        i2 = i3;
-                        i5 = 30000;
-                    } else if (i6 <= i) {
-                        i2 = i3;
-                    } else {
-                        iMin = Math.min(iMin, i6 - i);
-                        i2 = i3;
-                        i5 = 30000;
+                        i4 = 30000;
+                    } else if (i5 > i) {
+                        iMin = Math.min(iMin, i5 - i);
+                        i4 = 30000;
                     }
-                    int i7 = size2;
-                    if (Math.abs(jElapsedRealtime - messageObject.pollLastCheckTime) < i5) {
+                    int i6 = size2;
+                    if (Math.abs(jElapsedRealtime - messageObject.pollLastCheckTime) < i4) {
                         if (!messageObject.pollVisibleOnScreen && !z) {
                             sparseArray.remove(messageObject.getId());
-                            size2 = i7 - 1;
-                            i4--;
+                            size2 = i6 - 1;
+                            i3--;
                         }
-                        i4++;
-                        i3 = i2;
+                        i3++;
+                        i2 = i2;
                     } else {
                         messageObject.pollLastCheckTime = jElapsedRealtime;
                         TLRPC.TL_messages_getPollResults tL_messages_getPollResults = new TLRPC.TL_messages_getPollResults();
@@ -9074,24 +18139,24 @@ public class MessagesController extends BaseController implements NotificationCe
                             }
                         });
                     }
-                    size2 = i7;
-                    i4++;
-                    i3 = i2;
+                    size2 = i6;
+                    i3++;
+                    i2 = i2;
                 }
-                int i8 = i3;
+                int i7 = i2;
                 if (iMin < 5) {
-                    this.lastViewsCheckTime = Math.min(this.lastViewsCheckTime, System.currentTimeMillis() - ((5 - iMin) * 1000));
+                    this.lastViewsCheckTime = Math.min(this.lastViewsCheckTime, System.currentTimeMillis() - ((long) ((5 - iMin) * 1000)));
                 }
                 if (sparseArray.size() == 0) {
                     LongSparseArray longSparseArray = this.pollsToCheck;
-                    longSparseArray.remove(longSparseArray.keyAt(i8));
+                    longSparseArray.remove(longSparseArray.keyAt(i7));
                     size--;
-                    i3 = i8 - 1;
+                    i2 = i7 - 1;
                 } else {
-                    i3 = i8;
+                    i2 = i7;
                 }
             }
-            i3++;
+            i2++;
         }
         this.pollsToCheckSize = this.pollsToCheck.size();
     }
@@ -9221,8 +18286,205 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$checkPromoInfoInternal$169(final int r17, java.lang.String r18, java.lang.String r19, org.telegram.tgnet.TLObject r20, org.telegram.tgnet.TLRPC.TL_error r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$checkPromoInfoInternal$169(int, java.lang.String, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public void lambda$checkPromoInfoInternal$169(final int i, String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) {
+        long j;
+        final long j2;
+        boolean z;
+        SharedPreferences.Editor editorEdit;
+        String str3;
+        String str4;
+        boolean z2;
+        if (i != this.lastCheckPromoId) {
+            return;
+        }
+        if (tLObject instanceof TLRPC.TL_help_promoDataEmpty) {
+            this.nextPromoInfoCheckTime = ((TLRPC.TL_help_promoDataEmpty) tLObject).expires;
+        } else {
+            if (tLObject instanceof TLRPC.TL_help_promoData) {
+                final TLRPC.TL_help_promoData tL_help_promoData = (TLRPC.TL_help_promoData) tLObject;
+                TLRPC.Peer peer = tL_help_promoData.peer;
+                if (peer == null) {
+                    j2 = 0;
+                } else {
+                    long j3 = peer.user_id;
+                    if (j3 != 0) {
+                        j2 = j3;
+                    } else {
+                        long j4 = peer.chat_id;
+                        if (j4 != 0) {
+                            j = -j4;
+                            int i2 = 0;
+                            while (true) {
+                                if (i2 < tL_help_promoData.chats.size()) {
+                                    TLRPC.Chat chat = tL_help_promoData.chats.get(i2);
+                                    if (chat.id == tL_help_promoData.peer.chat_id) {
+                                        if (chat.kicked || chat.restricted) {
+                                            j2 = j;
+                                            z = true;
+                                        }
+                                        this.promoDialogId = j2;
+                                        if (tL_help_promoData.proxy) {
+                                            this.promoDialogType = PROMO_TYPE_PROXY;
+                                        } else if (!TextUtils.isEmpty(tL_help_promoData.psa_type)) {
+                                            this.promoDialogType = PROMO_TYPE_PSA;
+                                            this.promoPsaType = tL_help_promoData.psa_type;
+                                        } else {
+                                            this.promoDialogType = PROMO_TYPE_OTHER;
+                                        }
+                                        this.proxyDialogAddress = str + str2;
+                                        this.promoPsaMessage = tL_help_promoData.psa_message;
+                                        this.nextPromoInfoCheckTime = tL_help_promoData.expires;
+                                        editorEdit = getGlobalMainSettings().edit();
+                                        editorEdit.putLong("proxy_dialog", this.promoDialogId);
+                                        editorEdit.putString("proxyDialogAddress", this.proxyDialogAddress);
+                                        editorEdit.putInt("promo_dialog_type", this.promoDialogType);
+                                        str3 = this.promoPsaMessage;
+                                        if (str3 != null) {
+                                            editorEdit.putString("promo_psa_message", str3);
+                                        } else {
+                                            editorEdit.remove("promo_psa_message");
+                                        }
+                                        str4 = this.promoPsaType;
+                                        if (str4 != null) {
+                                            editorEdit.putString("promo_psa_type", str4);
+                                        } else {
+                                            editorEdit.remove("promo_psa_type");
+                                        }
+                                        editorEdit.putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime);
+                                        editorEdit.commit();
+                                        if (!z) {
+                                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                                @Override
+                                                public final void run() {
+                                                    this.f$0.lambda$checkPromoInfoInternal$168(j2, tL_help_promoData, i);
+                                                }
+                                            });
+                                        }
+                                        z2 = z;
+                                    } else {
+                                        i2++;
+                                    }
+                                }
+                                j2 = j;
+                            }
+                        } else {
+                            j = -peer.channel_id;
+                            int i3 = 0;
+                            while (true) {
+                                if (i3 < tL_help_promoData.chats.size()) {
+                                    TLRPC.Chat chat2 = tL_help_promoData.chats.get(i3);
+                                    if (chat2.id == tL_help_promoData.peer.channel_id) {
+                                        if (chat2.kicked || chat2.restricted) {
+                                            j2 = j;
+                                            z = true;
+                                        }
+                                        this.promoDialogId = j2;
+                                        if (tL_help_promoData.proxy) {
+                                            this.promoDialogType = PROMO_TYPE_PROXY;
+                                        } else if (!TextUtils.isEmpty(tL_help_promoData.psa_type)) {
+                                            this.promoDialogType = PROMO_TYPE_PSA;
+                                            this.promoPsaType = tL_help_promoData.psa_type;
+                                        } else {
+                                            this.promoDialogType = PROMO_TYPE_OTHER;
+                                        }
+                                        this.proxyDialogAddress = str + str2;
+                                        this.promoPsaMessage = tL_help_promoData.psa_message;
+                                        this.nextPromoInfoCheckTime = tL_help_promoData.expires;
+                                        editorEdit = getGlobalMainSettings().edit();
+                                        editorEdit.putLong("proxy_dialog", this.promoDialogId);
+                                        editorEdit.putString("proxyDialogAddress", this.proxyDialogAddress);
+                                        editorEdit.putInt("promo_dialog_type", this.promoDialogType);
+                                        str3 = this.promoPsaMessage;
+                                        if (str3 != null) {
+                                            editorEdit.putString("promo_psa_message", str3);
+                                        } else {
+                                            editorEdit.remove("promo_psa_message");
+                                        }
+                                        str4 = this.promoPsaType;
+                                        if (str4 != null) {
+                                            editorEdit.putString("promo_psa_type", str4);
+                                        } else {
+                                            editorEdit.remove("promo_psa_type");
+                                        }
+                                        editorEdit.putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime);
+                                        editorEdit.commit();
+                                        if (!z) {
+                                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                                @Override
+                                                public final void run() {
+                                                    this.f$0.lambda$checkPromoInfoInternal$168(j2, tL_help_promoData, i);
+                                                }
+                                            });
+                                        }
+                                        z2 = z;
+                                    } else {
+                                        i3++;
+                                    }
+                                }
+                                j2 = j;
+                            }
+                        }
+                    }
+                }
+                z = false;
+                this.promoDialogId = j2;
+                if (tL_help_promoData.proxy) {
+                    this.promoDialogType = PROMO_TYPE_PROXY;
+                } else if (!TextUtils.isEmpty(tL_help_promoData.psa_type)) {
+                    this.promoDialogType = PROMO_TYPE_PSA;
+                    this.promoPsaType = tL_help_promoData.psa_type;
+                } else {
+                    this.promoDialogType = PROMO_TYPE_OTHER;
+                }
+                this.proxyDialogAddress = str + str2;
+                this.promoPsaMessage = tL_help_promoData.psa_message;
+                this.nextPromoInfoCheckTime = tL_help_promoData.expires;
+                editorEdit = getGlobalMainSettings().edit();
+                editorEdit.putLong("proxy_dialog", this.promoDialogId);
+                editorEdit.putString("proxyDialogAddress", this.proxyDialogAddress);
+                editorEdit.putInt("promo_dialog_type", this.promoDialogType);
+                str3 = this.promoPsaMessage;
+                if (str3 != null) {
+                    editorEdit.putString("promo_psa_message", str3);
+                } else {
+                    editorEdit.remove("promo_psa_message");
+                }
+                str4 = this.promoPsaType;
+                if (str4 != null) {
+                    editorEdit.putString("promo_psa_type", str4);
+                } else {
+                    editorEdit.remove("promo_psa_type");
+                }
+                editorEdit.putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime);
+                editorEdit.commit();
+                if (!z) {
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$checkPromoInfoInternal$168(j2, tL_help_promoData, i);
+                        }
+                    });
+                }
+                z2 = z;
+            } else {
+                this.nextPromoInfoCheckTime = getConnectionsManager().getCurrentTime() + 3600;
+            }
+            if (z2) {
+                this.promoDialogId = 0L;
+                getGlobalMainSettings().edit().putLong("proxy_dialog", this.promoDialogId).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime).commit();
+                this.checkingPromoInfoRequestId = 0;
+                this.checkingPromoInfo = false;
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda59(this));
+            }
+        }
+        z2 = true;
+        if (z2) {
+            this.promoDialogId = 0L;
+            getGlobalMainSettings().edit().putLong("proxy_dialog", this.promoDialogId).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime).commit();
+            this.checkingPromoInfoRequestId = 0;
+            this.checkingPromoInfo = false;
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda59(this));
+        }
     }
 
     public void lambda$checkPromoInfoInternal$168(final long j, final TLRPC.TL_help_promoData tL_help_promoData, final int i) {
@@ -9347,6 +18609,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$checkPromoInfoInternal$165(TLRPC.TL_help_promoData tL_help_promoData, TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs, long j) {
+        Integer num = 0;
         putUsers(tL_help_promoData.users, false);
         putChats(tL_help_promoData.chats, false);
         putUsers(tL_messages_peerDialogs.users, false);
@@ -9372,13 +18635,13 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC.Dialog dialog3 = this.promoDialog;
             longSparseIntArray.put(-dialog3.id, dialog3.pts);
         }
-        Integer num = this.dialogs_read_inbox_max.get(Long.valueOf(this.promoDialog.id));
-        if (num == null) {
-            num = num;
+        Integer num2 = this.dialogs_read_inbox_max.get(Long.valueOf(this.promoDialog.id));
+        if (num2 == null) {
+            num2 = num;
         }
-        this.dialogs_read_inbox_max.put(Long.valueOf(this.promoDialog.id), Integer.valueOf(Math.max(num.intValue(), this.promoDialog.read_inbox_max_id)));
-        Integer num2 = this.dialogs_read_outbox_max.get(Long.valueOf(this.promoDialog.id));
-        this.dialogs_read_outbox_max.put(Long.valueOf(this.promoDialog.id), Integer.valueOf(Math.max((num2 != null ? num2 : 0).intValue(), this.promoDialog.read_outbox_max_id)));
+        this.dialogs_read_inbox_max.put(Long.valueOf(this.promoDialog.id), Integer.valueOf(Math.max(num2.intValue(), this.promoDialog.read_inbox_max_id)));
+        Integer num3 = this.dialogs_read_outbox_max.get(Long.valueOf(this.promoDialog.id));
+        this.dialogs_read_outbox_max.put(Long.valueOf(this.promoDialog.id), Integer.valueOf(Math.max((num3 != null ? num3 : 0).intValue(), this.promoDialog.read_outbox_max_id)));
         this.dialogs_dict.put(j, this.promoDialog);
         if (!tL_messages_peerDialogs.messages.isEmpty()) {
             LongSparseArray longSparseArray = new LongSparseArray();
@@ -9466,7 +18729,210 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     private void updatePrintingStrings() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.updatePrintingStrings():void");
+        LongSparseArray longSparseArray;
+        String string;
+        int i;
+        Paint paint;
+        int i2;
+        int i3;
+        int i4 = 1;
+        LongSparseArray longSparseArray2 = new LongSparseArray();
+        final LongSparseArray longSparseArray3 = new LongSparseArray();
+        for (Map.Entry<Long, ConcurrentHashMap<Integer, ArrayList<PrintingUser>>> entry : this.printingUsers.entrySet()) {
+            Long key = entry.getKey();
+            boolean zIsEncryptedDialog = DialogObject.isEncryptedDialog(key.longValue());
+            for (Map.Entry<Integer, ArrayList<PrintingUser>> entry2 : entry.getValue().entrySet()) {
+                Integer key2 = entry2.getKey();
+                ArrayList<PrintingUser> value = entry2.getValue();
+                LongSparseArray longSparseArray4 = new LongSparseArray();
+                LongSparseArray longSparseArray5 = new LongSparseArray();
+                longSparseArray2.put(key.longValue(), longSparseArray4);
+                longSparseArray3.put(key.longValue(), longSparseArray5);
+                if (key.longValue() > 0 || zIsEncryptedDialog || value.size() == i4) {
+                    longSparseArray = longSparseArray2;
+                    PrintingUser printingUser = value.get(0);
+                    TLRPC.User user = getUser(Long.valueOf(printingUser.userId));
+                    if (user != null) {
+                        boolean z = key.longValue() < 0 && !zIsEncryptedDialog;
+                        TLRPC.SendMessageAction sendMessageAction = printingUser.action;
+                        if (sendMessageAction instanceof TLRPC.TL_sendMessageRecordAudioAction) {
+                            if (z) {
+                                string = LocaleController.formatString("IsRecordingAudio", R.string.IsRecordingAudio, getUserNameForTyping(user));
+                            } else {
+                                string = LocaleController.getString(R.string.RecordingAudio);
+                            }
+                            i = 1;
+                        } else {
+                            if (!(sendMessageAction instanceof TLRPC.TL_sendMessageRecordRoundAction)) {
+                                if (!(sendMessageAction instanceof TLRPC.TL_sendMessageUploadRoundAction)) {
+                                    if (sendMessageAction instanceof TLRPC.TL_sendMessageUploadAudioAction) {
+                                        if (z) {
+                                            string = LocaleController.formatString("IsSendingAudio", R.string.IsSendingAudio, getUserNameForTyping(user));
+                                        } else {
+                                            string = LocaleController.getString(R.string.SendingAudio);
+                                        }
+                                    } else if (sendMessageAction instanceof TLRPC.TL_sendMessageUploadVideoAction) {
+                                        if (z) {
+                                            string = LocaleController.formatString("IsSendingVideo", R.string.IsSendingVideo, getUserNameForTyping(user));
+                                        } else {
+                                            string = LocaleController.getString(R.string.SendingVideoStatus);
+                                        }
+                                    } else if (sendMessageAction instanceof TLRPC.TL_sendMessageRecordVideoAction) {
+                                        if (z) {
+                                            string = LocaleController.formatString("IsRecordingVideo", R.string.IsRecordingVideo, getUserNameForTyping(user));
+                                        } else {
+                                            string = LocaleController.getString(R.string.RecordingVideoStatus);
+                                        }
+                                    } else if (sendMessageAction instanceof TLRPC.TL_sendMessageUploadDocumentAction) {
+                                        if (z) {
+                                            string = LocaleController.formatString("IsSendingFile", R.string.IsSendingFile, getUserNameForTyping(user));
+                                        } else {
+                                            string = LocaleController.getString(R.string.SendingFile);
+                                        }
+                                    } else if (sendMessageAction instanceof TLRPC.TL_sendMessageUploadPhotoAction) {
+                                        if (z) {
+                                            string = LocaleController.formatString("IsSendingPhoto", R.string.IsSendingPhoto, getUserNameForTyping(user));
+                                        } else {
+                                            string = LocaleController.getString(R.string.SendingPhoto);
+                                        }
+                                    } else if (sendMessageAction instanceof TLRPC.TL_sendMessageGamePlayAction) {
+                                        if (z) {
+                                            string = LocaleController.formatString("IsSendingGame", R.string.IsSendingGame, getUserNameForTyping(user));
+                                        } else {
+                                            string = LocaleController.getString(R.string.SendingGame);
+                                        }
+                                        i = 3;
+                                    } else {
+                                        if (sendMessageAction instanceof TLRPC.TL_sendMessageGeoLocationAction) {
+                                            if (z) {
+                                                string = LocaleController.formatString("IsSelectingLocation", R.string.IsSelectingLocation, getUserNameForTyping(user));
+                                            } else {
+                                                string = LocaleController.getString(R.string.SelectingLocation);
+                                            }
+                                        } else if (!(sendMessageAction instanceof TLRPC.TL_sendMessageChooseContactAction)) {
+                                            if (sendMessageAction instanceof TLRPC.TL_sendMessageEmojiInteractionSeen) {
+                                                String str = ((TLRPC.TL_sendMessageEmojiInteractionSeen) sendMessageAction).emoticon;
+                                                if (z) {
+                                                    string = LocaleController.formatString("IsEnjoyngAnimations", R.string.IsEnjoyngAnimations, getUserNameForTyping(user), str);
+                                                } else {
+                                                    string = LocaleController.formatString("EnjoyngAnimations", R.string.EnjoyngAnimations, str);
+                                                }
+                                            } else if (!(sendMessageAction instanceof TLRPC.TL_sendMessageChooseStickerAction)) {
+                                                if (z) {
+                                                    string = LocaleController.formatString("IsTypingGroup", R.string.IsTypingGroup, getUserNameForTyping(user));
+                                                } else {
+                                                    string = LocaleController.getString(R.string.Typing);
+                                                }
+                                                i = 0;
+                                            } else if (z) {
+                                                string = LocaleController.formatString("IsChoosingSticker", R.string.IsChoosingSticker, getUserNameForTyping(user));
+                                            } else {
+                                                string = LocaleController.getString(R.string.ChoosingSticker);
+                                            }
+                                            i = 5;
+                                        } else if (z) {
+                                            string = LocaleController.formatString("IsSelectingContact", R.string.IsSelectingContact, getUserNameForTyping(user));
+                                        } else {
+                                            string = LocaleController.getString(R.string.SelectingContact);
+                                        }
+                                        i = 0;
+                                    }
+                                    i = 2;
+                                } else if (z) {
+                                    string = LocaleController.formatString("IsSendingVideo", R.string.IsSendingVideo, getUserNameForTyping(user));
+                                } else {
+                                    string = LocaleController.getString(R.string.SendingVideoStatus);
+                                }
+                                if (string == null) {
+                                    paint = Theme.dialogs_messageNamePaint;
+                                    if (paint == null) {
+                                        paint = new Paint();
+                                        paint.setTypeface(AndroidUtilities.bold());
+                                        paint.setTextSize(AndroidUtilities.dp(14.0f));
+                                    }
+                                    longSparseArray4.put(key2.intValue(), Emoji.replaceEmoji(string, paint.getFontMetricsInt(), false));
+                                    longSparseArray5.put(key2.intValue(), Integer.valueOf(i));
+                                }
+                            } else if (z) {
+                                string = LocaleController.formatString("IsRecordingRound", R.string.IsRecordingRound, getUserNameForTyping(user));
+                            } else {
+                                string = LocaleController.getString(R.string.RecordingRound);
+                            }
+                            i = 4;
+                        }
+                    }
+                    longSparseArray2 = longSparseArray;
+                    i4 = 1;
+                } else {
+                    StringBuilder sb = new StringBuilder();
+                    Iterator<PrintingUser> it = value.iterator();
+                    int i5 = 0;
+                    while (true) {
+                        if (!it.hasNext()) {
+                            longSparseArray = longSparseArray2;
+                            i2 = 1;
+                            i3 = i5;
+                            break;
+                        }
+                        longSparseArray = longSparseArray2;
+                        TLRPC.User user2 = getUser(Long.valueOf(it.next().userId));
+                        if (user2 != null) {
+                            if (sb.length() != 0) {
+                                sb.append(", ");
+                            }
+                            sb.append(getUserNameForTyping(user2));
+                            i2 = 1;
+                            i5++;
+                        } else {
+                            i2 = 1;
+                        }
+                        i3 = i5;
+                        if (i3 == 2) {
+                            break;
+                        }
+                        i5 = i3;
+                        longSparseArray2 = longSparseArray;
+                    }
+                    if (sb.length() == 0) {
+                        string = null;
+                    } else if (i3 == i2) {
+                        int i6 = R.string.IsTypingGroup;
+                        Object[] objArr = new Object[i2];
+                        objArr[0] = sb.toString();
+                        string = LocaleController.formatString("IsTypingGroup", i6, objArr);
+                    } else if (value.size() > 2) {
+                        try {
+                            string = String.format(LocaleController.getPluralString("AndMoreTypingGroup", value.size() - 2), sb.toString(), Integer.valueOf(value.size() - 2));
+                        } catch (Exception unused) {
+                            string = "LOC_ERR: AndMoreTypingGroup";
+                        }
+                    } else {
+                        string = LocaleController.formatString("AreTypingGroup", R.string.AreTypingGroup, sb.toString());
+                    }
+                    i = 0;
+                }
+                if (string == null) {
+                    paint = Theme.dialogs_messageNamePaint;
+                    if (paint == null) {
+                        paint = new Paint();
+                        paint.setTypeface(AndroidUtilities.bold());
+                        paint.setTextSize(AndroidUtilities.dp(14.0f));
+                    }
+                    longSparseArray4.put(key2.intValue(), Emoji.replaceEmoji(string, paint.getFontMetricsInt(), false));
+                    longSparseArray5.put(key2.intValue(), Integer.valueOf(i));
+                }
+                longSparseArray2 = longSparseArray;
+                i4 = 1;
+            }
+        }
+        final LongSparseArray longSparseArray6 = longSparseArray2;
+        this.lastPrintingStringCount = longSparseArray6.size();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$updatePrintingStrings$170(longSparseArray6, longSparseArray3);
+            }
+        });
     }
 
     public void lambda$updatePrintingStrings$170(LongSparseArray longSparseArray, LongSparseArray longSparseArray2) {
@@ -9856,18 +19322,14 @@ public class MessagesController extends BaseController implements NotificationCe
             if (i3 == 0 || messages_messages.messages.isEmpty()) {
                 i13 = i2;
             } else {
-                int i14 = messages_messages.messages.get(r0.size() - 1).id;
-                int size = messages_messages.messages.size() - 1;
-                while (true) {
-                    if (size < 0) {
-                        break;
-                    }
+                ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
+                int i14 = arrayList.get(arrayList.size() - 1).id;
+                for (int size = messages_messages.messages.size() - 1; size >= 0; size--) {
                     TLRPC.Message message = messages_messages.messages.get(size);
                     if (message.date > i3) {
                         i14 = message.id;
                         break;
                     }
-                    size--;
                 }
                 i13 = i14;
             }
@@ -9886,8 +19348,54 @@ public class MessagesController extends BaseController implements NotificationCe
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.loadingMessagesFailed, Integer.valueOf(i), tL_messages_getSavedHistory, tL_error);
     }
 
-    public void lambda$loadMessagesInternal$180(int r28, int r29, int r30, int r31, int r32, long r33, long r35, final int r37, int r38, int r39, int r40, int r41, long r42, int r44, boolean r45, int r46, boolean r47, boolean r48, final org.telegram.tgnet.TLRPC.TL_messages_getReplies r49, org.telegram.tgnet.TLObject r50, final org.telegram.tgnet.TLRPC.TL_error r51) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$loadMessagesInternal$180(int, int, int, int, int, long, long, int, int, int, int, int, long, int, boolean, int, boolean, boolean, org.telegram.tgnet.TLRPC$TL_messages_getReplies, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public void lambda$loadMessagesInternal$180(int i, int i2, int i3, int i4, int i5, long j, long j2, final int i6, int i7, int i8, int i9, int i10, long j3, int i11, boolean z, int i12, boolean z2, boolean z3, final TLRPC.TL_messages_getReplies tL_messages_getReplies, TLObject tLObject, final TLRPC.TL_error tL_error) {
+        int i13;
+        int i14;
+        if (tLObject != null) {
+            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+            if (messages_messages.messages.size() > i) {
+                messages_messages.messages.remove(0);
+            }
+            if (messages_messages.messages.isEmpty()) {
+                i13 = i2;
+                i14 = 0;
+            } else if (i3 != 0) {
+                ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
+                int i15 = arrayList.get(arrayList.size() - 1).id;
+                for (int size = messages_messages.messages.size() - 1; size >= 0; size--) {
+                    TLRPC.Message message = messages_messages.messages.get(size);
+                    if (message.date > i3) {
+                        i15 = message.id;
+                        break;
+                    }
+                }
+                i13 = i15;
+                i14 = 0;
+            } else {
+                if (i4 != 0) {
+                    if (i5 == 2 && i2 > 0) {
+                        for (int size2 = messages_messages.messages.size() - 1; size2 >= 0; size2--) {
+                            TLRPC.Message message2 = messages_messages.messages.get(size2);
+                            int i16 = message2.id;
+                            if (i16 > i4 && !message2.out) {
+                                i13 = i2;
+                                i14 = i16;
+                            }
+                        }
+                    }
+                }
+                i13 = i2;
+                i14 = 0;
+            }
+            processLoadedMessages(messages_messages, messages_messages.messages.size(), j, j2, i, i13, i3, false, i6, i14, i7, i8, i9, i5, false, i10, j3, i11, z, i12, z2, z3, null);
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$loadMessagesInternal$179(i6, tL_messages_getReplies, tL_error);
+            }
+        });
     }
 
     public void lambda$loadMessagesInternal$179(int i, TLRPC.TL_messages_getReplies tL_messages_getReplies, TLRPC.TL_error tL_error) {
@@ -9904,18 +19412,14 @@ public class MessagesController extends BaseController implements NotificationCe
             if (i2 == 0 || messages_messages.messages.isEmpty()) {
                 i13 = i;
             } else {
-                int i14 = messages_messages.messages.get(r0.size() - 1).id;
-                int size = messages_messages.messages.size() - 1;
-                while (true) {
-                    if (size < 0) {
-                        break;
-                    }
+                ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
+                int i14 = arrayList.get(arrayList.size() - 1).id;
+                for (int size = messages_messages.messages.size() - 1; size >= 0; size--) {
                     TLRPC.Message message = messages_messages.messages.get(size);
                     if (message.date > i2) {
                         i14 = message.id;
                         break;
                     }
-                    size--;
                 }
                 i13 = i14;
             }
@@ -9963,18 +19467,14 @@ public class MessagesController extends BaseController implements NotificationCe
             if (i3 == 0 || messages_messages.messages.isEmpty()) {
                 i13 = i2;
             } else {
-                int i14 = messages_messages.messages.get(r0.size() - 1).id;
-                int size = messages_messages.messages.size() - 1;
-                while (true) {
-                    if (size < 0) {
-                        break;
-                    }
+                ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
+                int i14 = arrayList.get(arrayList.size() - 1).id;
+                for (int size = messages_messages.messages.size() - 1; size >= 0; size--) {
                     TLRPC.Message message = messages_messages.messages.get(size);
                     if (message.date > i3) {
                         i14 = message.id;
                         break;
                     }
-                    size--;
                 }
                 i13 = i14;
             }
@@ -10039,8 +19539,50 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$reloadWebPages$186(java.util.HashMap r16, java.lang.String r17, org.telegram.tgnet.TLObject r18, androidx.collection.LongSparseArray r19, long r20, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$reloadWebPages$186(java.util.HashMap, java.lang.String, org.telegram.tgnet.TLObject, androidx.collection.LongSparseArray, long, int):void");
+    public void lambda$reloadWebPages$186(HashMap map, String str, TLObject tLObject, LongSparseArray longSparseArray, long j, int i) {
+        TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage;
+        ArrayList arrayList = (ArrayList) map.remove(str);
+        if (arrayList == null) {
+            return;
+        }
+        TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
+        if (tLObject instanceof TL_account.webPagePreview) {
+            TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) tLObject;
+            putUsers(webpagepreview.users, false);
+            putChats(webpagepreview.chats, false);
+            TLRPC.MessageMedia messageMedia = webpagepreview.media;
+            if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+                tL_messageMediaWebPage = (TLRPC.TL_messageMediaWebPage) messageMedia;
+            } else {
+                tL_messageMediaWebPage = null;
+            }
+        } else {
+            tL_messageMediaWebPage = null;
+        }
+        if (tL_messageMediaWebPage == null) {
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                ((MessageObject) arrayList.get(i2)).messageOwner.media.webpage = new TLRPC.TL_webPageEmpty();
+                tL_messages_messages.messages.add(((MessageObject) arrayList.get(i2)).messageOwner);
+            }
+        } else {
+            TLRPC.WebPage webPage = tL_messageMediaWebPage.webpage;
+            if ((webPage instanceof TLRPC.TL_webPage) || (webPage instanceof TLRPC.TL_webPageEmpty)) {
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    ((MessageObject) arrayList.get(i3)).messageOwner.media.webpage = tL_messageMediaWebPage.webpage;
+                    if (i3 == 0) {
+                        ImageLoader.saveMessageThumbs(((MessageObject) arrayList.get(i3)).messageOwner);
+                    }
+                    tL_messages_messages.messages.add(((MessageObject) arrayList.get(i3)).messageOwner);
+                }
+            } else {
+                longSparseArray.put(webPage.id, arrayList);
+            }
+        }
+        if (tL_messages_messages.messages.isEmpty()) {
+            return;
+        }
+        getMessagesStorage().putMessages((TLRPC.messages_Messages) tL_messages_messages, j, -2, 0, false, i, 0L);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(j), arrayList);
     }
 
     public static void extendUsersFromMessage(long j, ArrayList<TLRPC.User> arrayList, ArrayList<TLRPC.Message> arrayList2) {
@@ -10099,11 +19641,434 @@ public class MessagesController extends BaseController implements NotificationCe
             return null;
         }
         MessageObject messageObject = (MessageObject) arrayList.get(arrayList.size() - 1);
-        return !TextUtils.isEmpty(messageObject.caption) ? messageObject.caption.toString() : !TextUtils.isEmpty(messageObject.messageText) ? messageObject.messageText.toString() : "";
+        if (TextUtils.isEmpty(messageObject.caption)) {
+            return !TextUtils.isEmpty(messageObject.messageText) ? messageObject.messageText.toString() : "";
+        }
+        return messageObject.caption.toString();
     }
 
-    public void processLoadedMessages(final org.telegram.tgnet.TLRPC.messages_Messages r36, final int r37, final long r38, final long r40, final int r42, final int r43, final int r44, final boolean r45, final int r46, final int r47, final int r48, final int r49, final int r50, final int r51, final boolean r52, final int r53, final long r54, final int r56, final boolean r57, final int r58, final boolean r59, final boolean r60, final org.telegram.messenger.Timer r61) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.processLoadedMessages(org.telegram.tgnet.TLRPC$messages_Messages, int, long, long, int, int, int, boolean, int, int, int, int, int, int, boolean, int, long, int, boolean, int, boolean, boolean, org.telegram.messenger.Timer):void");
+    public void processLoadedMessages(final TLRPC.messages_Messages messages_messages, final int i, final long j, final long j2, final int i2, final int i3, final int i4, final boolean z, final int i5, final int i6, final int i7, final int i8, final int i9, final int i10, final boolean z2, final int i11, final long j3, final int i12, final boolean z3, final int i13, final boolean z4, final boolean z5, final Timer timer) {
+        long j4;
+        int i14;
+        boolean z6;
+        LongSparseArray longSparseArray;
+        long j5;
+        boolean z7;
+        LongSparseArray longSparseArray2;
+        TLRPC.messages_Messages messages_messages2;
+        long j6;
+        int i15;
+        LongSparseArray longSparseArray3;
+        int i16;
+        long j7;
+        ArrayList arrayList;
+        boolean z8;
+        boolean z9;
+        LongSparseArray longSparseArray4;
+        LongSparseArray longSparseArray5;
+        final long j8;
+        long j9;
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("processLoadedMessages size " + messages_messages.messages.size() + " in chat " + j + " topic_id " + j3 + " count " + i2 + " max_id " + i3 + " cache " + z + " guid " + i5 + " load_type " + i10 + " last_message_id " + i7 + " index " + i12 + " firstUnread " + i6 + " unread_count " + i8 + " last_date " + i9 + " queryFromServer " + z3 + " isTopic " + z5 + " mode " + i11);
+        }
+        Timer.Task taskStart = Timer.start(timer, "processLoadedMessages");
+        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        if (messages_messages instanceof TLRPC.TL_messages_channelMessages) {
+            long j10 = -j;
+            if (i11 == 0 && j3 == 0 && this.channelsPts.get(j10) == 0 && getMessagesStorage().getChannelPtsSync(j10) == 0) {
+                this.channelsPts.put(j10, messages_messages.pts);
+                if (this.needShortPollChannels.indexOfKey(j10) >= 0 && this.shortPollChannels.indexOfKey(j10) < 0) {
+                    j4 = 0;
+                    i14 = 1;
+                    getChannelDifference(j10, 2, 0L, null);
+                } else {
+                    i14 = 1;
+                    j4 = 0;
+                    getChannelDifference(j10);
+                }
+                z6 = true;
+            } else {
+                j4 = 0;
+                i14 = 1;
+                z6 = false;
+            }
+        } else {
+            j4 = 0;
+            i14 = 1;
+            z6 = false;
+        }
+        if (!z) {
+            ImageLoader.saveMessagesThumbs(messages_messages.messages);
+        }
+        boolean z10 = i4 == 0 && i3 == 0;
+        LongSparseArray longSparseArray6 = new LongSparseArray();
+        LongSparseArray longSparseArray7 = new LongSparseArray();
+        for (int i17 = 0; i17 < messages_messages.users.size(); i17++) {
+            TLRPC.User user = messages_messages.users.get(i17);
+            extendUserChatFromMessage(j, user, messages_messages.messages);
+            longSparseArray6.put(user.id, user);
+        }
+        for (int i18 = 0; i18 < messages_messages.chats.size(); i18++) {
+            TLRPC.Chat chat = messages_messages.chats.get(i18);
+            extendUserChatFromMessage(j, chat, messages_messages.messages);
+            longSparseArray7.put(chat.id, chat);
+        }
+        if (i11 == i14) {
+            longSparseArray = longSparseArray7;
+            j5 = j3;
+            if (SystemClock.elapsedRealtime() - ((Long) this.lastScheduledServerQueryTime.get(j, Long.valueOf(j4))).longValue() > 60000) {
+                z7 = true;
+            } else {
+                z7 = false;
+            }
+        } else if (i11 == 5) {
+            longSparseArray = longSparseArray7;
+            j5 = j3;
+            if (SystemClock.elapsedRealtime() - ((Long) this.lastQuickReplyServerQueryTime.get(j5, Long.valueOf(j4))).longValue() > 60000) {
+                z7 = true;
+            } else {
+                z7 = false;
+            }
+        } else {
+            longSparseArray = longSparseArray7;
+            j5 = j3;
+            if (i11 != 9 ? i11 != 3 ? i != 0 || (z10 && SystemClock.elapsedRealtime() - ((Long) this.lastServerQueryTime.get(j, Long.valueOf(j4))).longValue() <= 60000 && !(z && z5)) : i != 0 || (z10 && SystemClock.elapsedRealtime() - ((Long) this.lastSavedServerQueryTime.get(j5, Long.valueOf(j4))).longValue() <= 60000 && !z) : SystemClock.elapsedRealtime() - ((Long) this.lastWelcomeMessagesServerQueryTime.get(j, Long.valueOf(j4))).longValue() <= 60000) {
+                z7 = false;
+            } else {
+                z7 = true;
+            }
+        }
+        if (!DialogObject.isEncryptedDialog(j) && z && z7) {
+            if (i11 == 1) {
+                this.lastScheduledServerQueryTime.put(j, Long.valueOf(SystemClock.elapsedRealtime()));
+            } else if (i11 == 5) {
+                this.lastQuickReplyServerQueryTime.put(j5, Long.valueOf(SystemClock.elapsedRealtime()));
+            } else if (i11 == 9) {
+                this.lastWelcomeMessagesServerQueryTime.put(j, Long.valueOf(SystemClock.elapsedRealtime()));
+            } else if (i11 == 3) {
+                this.lastSavedServerQueryTime.put(j5, Long.valueOf(SystemClock.elapsedRealtime()));
+            } else if (i11 == 0) {
+                this.lastServerQueryTime.put(j, Long.valueOf(SystemClock.elapsedRealtime()));
+            }
+            if (i11 == 1) {
+                int size = messages_messages.messages.size();
+                long jCalcHash = j4;
+                int i19 = 0;
+                while (i19 < size) {
+                    TLRPC.Message message = messages_messages.messages.get(i19);
+                    int i20 = message.id;
+                    LongSparseArray longSparseArray8 = longSparseArray6;
+                    if (i20 >= 0) {
+                        jCalcHash = MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(jCalcHash, i20), message.edit_date), message.date);
+                    }
+                    i19++;
+                    longSparseArray6 = longSparseArray8;
+                }
+                longSparseArray5 = longSparseArray6;
+                j8 = jCalcHash;
+            } else {
+                longSparseArray5 = longSparseArray6;
+                if (i11 == 0 || i11 == 3) {
+                    long j11 = j4;
+                    int size2 = messages_messages.messages.size();
+                    long jCalcHash2 = j11;
+                    for (int i21 = 0; i21 < size2; i21++) {
+                        TLRPC.Message message2 = messages_messages.messages.get(i21);
+                        if (message2.id >= 0) {
+                            long jCalcHash3 = MediaDataController.calcHash(MediaDataController.calcHash(jCalcHash2, Math.abs(DialogObject.getPeerDialogId(message2.peer_id))), message2.id);
+                            if (message2.pinned) {
+                                jCalcHash3 = MediaDataController.calcHash(jCalcHash3, 1L);
+                            }
+                            int i22 = message2.date;
+                            if ((message2.flags & 32768) != 0) {
+                                i22 = message2.edit_date;
+                            }
+                            jCalcHash2 = MediaDataController.calcHash(jCalcHash3, i22);
+                        }
+                    }
+                    j8 = jCalcHash2;
+                } else if (i11 == 5) {
+                    int size3 = messages_messages.messages.size();
+                    long jCalcHash4 = j4;
+                    int i23 = 0;
+                    while (i23 < size3) {
+                        TLRPC.Message message3 = messages_messages.messages.get(i23);
+                        int i24 = message3.id;
+                        if (i24 < 0) {
+                            j9 = j4;
+                        } else {
+                            long jCalcHash5 = MediaDataController.calcHash(jCalcHash4, i24);
+                            if ((message3.flags & 32768) != 0) {
+                                jCalcHash4 = MediaDataController.calcHash(jCalcHash5, message3.edit_date);
+                                j9 = j4;
+                            } else {
+                                j9 = j4;
+                                jCalcHash4 = MediaDataController.calcHash(jCalcHash5, j9);
+                            }
+                        }
+                        i23++;
+                        j4 = j9;
+                    }
+                    j8 = jCalcHash4;
+                } else {
+                    j8 = j4;
+                }
+            }
+            j4 = 0;
+            longSparseArray2 = longSparseArray5;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processLoadedMessages$188(j, j2, i2, i10, z3, i6, i3, i4, i5, i7, i11, j3, i12, i8, i9, i13, z4, z5, timer, j8);
+                }
+            });
+            messages_messages2 = messages_messages;
+            if (messages_messages2.messages.isEmpty()) {
+                return;
+            }
+        } else {
+            longSparseArray2 = longSparseArray6;
+            messages_messages2 = messages_messages;
+        }
+        int size4 = messages_messages2.messages.size();
+        if (z) {
+            j6 = j;
+            i15 = i11;
+            longSparseArray3 = longSparseArray2;
+            i16 = 3;
+        } else {
+            Integer numValueOf = this.dialogs_read_inbox_max.get(Long.valueOf(j));
+            if (numValueOf == null) {
+                j6 = j;
+                z8 = false;
+                numValueOf = Integer.valueOf(getMessagesStorage().getDialogReadMax(false, j6));
+                this.dialogs_read_inbox_max.put(Long.valueOf(j), numValueOf);
+            } else {
+                j6 = j;
+                z8 = false;
+            }
+            Integer numValueOf2 = this.dialogs_read_outbox_max.get(Long.valueOf(j));
+            if (numValueOf2 == null) {
+                z9 = true;
+                numValueOf2 = Integer.valueOf(getMessagesStorage().getDialogReadMax(true, j6));
+                this.dialogs_read_outbox_max.put(Long.valueOf(j), numValueOf2);
+            } else {
+                z9 = true;
+            }
+            int i25 = 0;
+            while (i25 < size4) {
+                TLRPC.Message message4 = messages_messages2.messages.get(i25);
+                if (i11 == 0) {
+                    TLRPC.MessageAction messageAction = message4.action;
+                    if (messageAction instanceof TLRPC.TL_messageActionChatDeleteUser) {
+                        longSparseArray4 = longSparseArray2;
+                        TLRPC.User user2 = (TLRPC.User) longSparseArray4.get(messageAction.user_id);
+                        if (user2 != null && user2.bot) {
+                            message4.reply_markup = new TLRPC.TL_replyKeyboardHide();
+                            message4.flags |= 64;
+                        }
+                    } else {
+                        longSparseArray4 = longSparseArray2;
+                    }
+                    TLRPC.MessageAction messageAction2 = message4.action;
+                    if ((messageAction2 instanceof TLRPC.TL_messageActionChatMigrateTo) || (messageAction2 instanceof TLRPC.TL_messageActionChannelCreate)) {
+                        message4.unread = z8;
+                        message4.media_unread = z8;
+                    } else {
+                        if (j3 == j4) {
+                            message4.unread = (message4.out ? numValueOf2 : numValueOf).intValue() < message4.id;
+                        } else {
+                            message4.unread = z9;
+                        }
+                        z8 = false;
+                    }
+                } else {
+                    longSparseArray4 = longSparseArray2;
+                }
+                i25++;
+                longSparseArray2 = longSparseArray4;
+            }
+            i15 = i11;
+            longSparseArray3 = longSparseArray2;
+            if (j3 != j4 && !z5 && i15 != 8) {
+                if (i15 != 3 && i15 != 5 && i15 != 9) {
+                    i16 = 3;
+                }
+                if (i15 == i16) {
+                    getSavedMessagesController().update(j3, messages_messages2);
+                }
+            }
+            i16 = 3;
+            getMessagesStorage().putMessages(messages_messages, j, i10, i3, z6, i11, j3);
+            if (i15 == i16) {
+                getSavedMessagesController().update(j3, messages_messages2);
+            }
+        }
+        if (!z4 && DialogObject.isEncryptedDialog(j)) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processLoadedMessages$189(i5, messages_messages, z, z2, i7);
+                }
+            });
+            return;
+        }
+        final ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+        final ArrayList arrayList3 = new ArrayList();
+        final HashMap map = new HashMap();
+        int i26 = 0;
+        while (i26 < size4) {
+            TLRPC.Message message5 = messages_messages2.messages.get(i26);
+            message5.dialog_id = j6;
+            int i27 = size4;
+            MessageObject messageObject = new MessageObject(this.currentAccount, message5, longSparseArray3, longSparseArray, true, false, i15 == i16);
+            messageObject.scheduled = i11 == 1;
+            arrayList2.add(messageObject);
+            if (z) {
+                if (message5.legacy && message5.layer < 229) {
+                    arrayList3.add(Integer.valueOf(message5.id));
+                } else {
+                    if ((MessageObject.getMedia(message5) instanceof TLRPC.TL_messageMediaUnsupported) && MessageObject.getMedia(message5).bytes != null) {
+                        if (MessageObject.getMedia(message5).bytes.length == 0 || (MessageObject.getMedia(message5).bytes.length == 1 && MessageObject.getMedia(message5).bytes[0] < 229)) {
+                            if (!MessageObject.isEphemeral(message5)) {
+                                arrayList3.add(Integer.valueOf(message5.id));
+                            }
+                        } else if (MessageObject.getMedia(message5).bytes.length == 4 && Utilities.bytesToInt(MessageObject.getMedia(message5).bytes) < 229) {
+                            if (!MessageObject.isEphemeral(message5)) {
+                                arrayList3.add(Integer.valueOf(message5.id));
+                            }
+                        }
+                    }
+                    if (!(MessageObject.getMedia(message5) instanceof TLRPC.TL_messageMediaWebPage)) {
+                        if (!(MessageObject.getMedia(message5).webpage instanceof TLRPC.TL_webPagePending) && MessageObject.getMedia(message5).webpage.date <= getConnectionsManager().getCurrentTime()) {
+                            if (!MessageObject.isEphemeral(message5)) {
+                                arrayList3.add(Integer.valueOf(message5.id));
+                            }
+                        } else if (MessageObject.getMedia(message5).webpage instanceof TLRPC.TL_webPageUrlPending) {
+                            arrayList = (ArrayList) map.get(MessageObject.getMedia(message5).webpage.url);
+                            if (arrayList == null) {
+                                arrayList = new ArrayList();
+                                map.put(MessageObject.getMedia(message5).webpage.url, arrayList);
+                            }
+                            arrayList.add(messageObject);
+                        }
+                    }
+                }
+                if (!(MessageObject.getMedia(message5) instanceof TLRPC.TL_messageMediaWebPage)) {
+                    if (!(MessageObject.getMedia(message5).webpage instanceof TLRPC.TL_webPagePending)) {
+                        if (MessageObject.getMedia(message5).webpage instanceof TLRPC.TL_webPageUrlPending) {
+                            arrayList = (ArrayList) map.get(MessageObject.getMedia(message5).webpage.url);
+                            if (arrayList == null) {
+                                arrayList = new ArrayList();
+                                map.put(MessageObject.getMedia(message5).webpage.url, arrayList);
+                            }
+                            arrayList.add(messageObject);
+                        }
+                    } else if (MessageObject.getMedia(message5).webpage instanceof TLRPC.TL_webPageUrlPending) {
+                        arrayList = (ArrayList) map.get(MessageObject.getMedia(message5).webpage.url);
+                        if (arrayList == null) {
+                            arrayList = new ArrayList();
+                            map.put(MessageObject.getMedia(message5).webpage.url, arrayList);
+                        }
+                        arrayList.add(messageObject);
+                    }
+                }
+            }
+            i26++;
+            messages_messages2 = messages_messages;
+            j6 = j;
+            size4 = i27;
+            i15 = i11;
+            i16 = 3;
+        }
+        int i28 = i15;
+        getFileLoader().checkMediaExistance(arrayList2);
+        if (MessageObject.canCreateStripedThubms()) {
+            for (int i29 = 0; i29 < arrayList2.size(); i29++) {
+                arrayList2.get(i29).createStrippedThumb();
+            }
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("process time=");
+            sb.append(SystemClock.elapsedRealtime() - jElapsedRealtime);
+            sb.append(" count=");
+            sb.append(arrayList2.size());
+            sb.append(" for dialog  ");
+            j7 = j;
+            sb.append(j7);
+            FileLog.d(sb.toString());
+        } else {
+            j7 = j;
+        }
+        if (i28 == 9) {
+            Collections.sort(arrayList2, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    return MessagesController.lambda$processLoadedMessages$190((MessageObject) obj, (MessageObject) obj2);
+                }
+            });
+            if (!arrayList2.isEmpty()) {
+                arrayList2.get(arrayList2.size() - 1).messageOwner.welcomeTemplateFirst = true;
+                this.welcomeMessages.put(j7, arrayList2);
+            }
+        } else if (i28 == 1) {
+            Collections.sort(arrayList2, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    return MessagesController.lambda$processLoadedMessages$191((MessageObject) obj, (MessageObject) obj2);
+                }
+            });
+        } else if (i28 == 5) {
+            Collections.sort(arrayList2, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    return MessagesController.lambda$processLoadedMessages$192((MessageObject) obj, (MessageObject) obj2);
+                }
+            });
+            for (int i30 = 0; i30 < arrayList2.size(); i30++) {
+                MessageObject messageObject2 = arrayList2.get(i30);
+                if (messageObject2.isReply()) {
+                    int i31 = messageObject2.messageOwner.reply_to.reply_to_msg_id;
+                    for (int i32 = 0; i32 < arrayList2.size(); i32++) {
+                        if (i30 != i32 && arrayList2.get(i32) != messageObject2 && arrayList2.get(i32).getId() == i31) {
+                            messageObject2.replyMessageObject = arrayList2.get(i32);
+                            messageObject2.applyTimestampsHighlightForReplyMsg();
+                            TLRPC.MessageAction messageAction3 = messageObject2.messageOwner.action;
+                            if (messageAction3 instanceof TLRPC.TL_messageActionPinMessage) {
+                                messageObject2.generatePinMessageText(null, null);
+                                break;
+                            }
+                            if (messageAction3 instanceof TLRPC.TL_messageActionGameScore) {
+                                messageObject2.generateGameMessageText(null);
+                                break;
+                            }
+                            if (messageAction3 instanceof TLRPC.TL_messageActionPaymentSent) {
+                                messageObject2.generatePaymentSentMessageText(null, false);
+                                break;
+                            } else if (messageAction3 instanceof TLRPC.TL_messageActionPaymentSentMe) {
+                                messageObject2.generatePaymentSentMessageText(null, true);
+                                break;
+                            } else {
+                                if (!(messageAction3 instanceof TLRPC.TL_messageActionSuggestedPostApproval)) {
+                                    break;
+                                }
+                                messageObject2.generateSuggestionApprovalMessageText();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Timer.done(taskStart);
+        final Timer.Task taskStart2 = Timer.start(timer, "processLoadedMessages: runOnUIThread");
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$processLoadedMessages$194(taskStart2, timer, messages_messages, z, z4, i11, z3, i10, i6, i2, j, arrayList2, j3, i5, i, z2, i7, i8, i9, i12, i3, i13, arrayList3, map);
+            }
+        });
     }
 
     public void lambda$processLoadedMessages$188(long j, long j2, int i, int i2, boolean z, int i3, int i4, int i5, int i6, int i7, int i8, long j3, int i9, int i10, int i11, int i12, boolean z2, boolean z3, Timer timer, long j4) {
@@ -10139,9 +20104,8 @@ public class MessagesController extends BaseController implements NotificationCe
         int i13;
         int i14;
         int i15;
-        int i16;
         MessagesController messagesController;
-        int i17;
+        int i16;
         long j3;
         Timer.done(task);
         Timer.Task taskStart = Timer.start(timer, "processLoadedMessages: post runOnUIThread");
@@ -10151,50 +20115,48 @@ public class MessagesController extends BaseController implements NotificationCe
             AnimatedEmojiDrawable.getDocumentFetcher(this.currentAccount).processDocuments(messages_messages.animatedEmoji);
         }
         if (i == 1) {
-            i15 = 0;
+            i14 = 0;
         } else {
             if (z3 && i2 == 2) {
-                i14 = Integer.MAX_VALUE;
-                for (int i18 = 0; i18 < messages_messages.messages.size(); i18++) {
-                    TLRPC.Message message = messages_messages.messages.get(i18);
-                    if ((!message.out || message.from_scheduled) && (i16 = message.id) > i3 && i16 < i14) {
-                        i14 = i16;
+                i13 = Integer.MAX_VALUE;
+                for (int i17 = 0; i17 < messages_messages.messages.size(); i17++) {
+                    TLRPC.Message message = messages_messages.messages.get(i17);
+                    if ((!message.out || message.from_scheduled) && (i15 = message.id) > i3 && i15 < i13) {
+                        i13 = i15;
                     }
                 }
-                i13 = i3;
             } else {
-                i13 = i3;
-                i14 = Integer.MAX_VALUE;
+                i13 = Integer.MAX_VALUE;
             }
-            i15 = i14 == Integer.MAX_VALUE ? i13 : i14;
+            i14 = i13 == Integer.MAX_VALUE ? i3 : i13;
         }
         if (i == 1 && i4 == 1) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.scheduledMessagesUpdated, Long.valueOf(j), Integer.valueOf(arrayList.size()), Boolean.FALSE);
         }
         if (!DialogObject.isEncryptedDialog(j) && i != 5) {
             final Timer.Task taskStart2 = Timer.start(timer, "loadReplyMessagesForMessages");
-            final int i19 = i15;
+            final int i18 = i14;
             getMediaDataController().loadReplyMessagesForMessages(arrayList, j, i, j2, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processLoadedMessages$193(taskStart2, z2, i5, i6, z, z4, i7, j, i4, arrayList, i19, i8, i9, i2, i10, i11, i12, i);
+                    this.f$0.lambda$processLoadedMessages$193(taskStart2, z2, i5, i6, z, z4, i7, j, i4, arrayList, i18, i8, i9, i2, i10, i11, i12, i);
                 }
             }, i5, timer);
         } else {
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDidLoad, Long.valueOf(j), Integer.valueOf(i4), arrayList, Boolean.valueOf(z), Integer.valueOf(i15), Integer.valueOf(i7), Integer.valueOf(i8), Integer.valueOf(i9), Integer.valueOf(i2), Boolean.valueOf(z4), Integer.valueOf(i5), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i12), Integer.valueOf(i));
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDidLoad, Long.valueOf(j), Integer.valueOf(i4), arrayList, Boolean.valueOf(z), Integer.valueOf(i14), Integer.valueOf(i7), Integer.valueOf(i8), Integer.valueOf(i9), Integer.valueOf(i2), Boolean.valueOf(z4), Integer.valueOf(i5), Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(i12), Integer.valueOf(i));
         }
         if (arrayList2.isEmpty()) {
             messagesController = this;
-            i17 = i;
+            i16 = i;
             j3 = j;
         } else {
             messagesController = this;
-            i17 = i;
+            i16 = i;
             j3 = j;
-            messagesController.reloadMessages(arrayList2, j3, i17);
+            messagesController.reloadMessages(arrayList2, j3, i16);
         }
         if (!map.isEmpty()) {
-            messagesController.reloadWebPages(j3, map, i17);
+            messagesController.reloadWebPages(j3, map, i16);
         }
         Timer.done(taskStart);
         Timer.finish(timer);
@@ -10359,8 +20321,103 @@ public class MessagesController extends BaseController implements NotificationCe
         return addDialogToFolder(arrayList, i, i2, null, j2);
     }
 
-    public int addDialogToFolder(java.util.ArrayList<java.lang.Long> r22, int r23, int r24, java.util.ArrayList<org.telegram.tgnet.TLRPC.TL_inputFolderPeer> r25, long r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.addDialogToFolder(java.util.ArrayList, int, int, java.util.ArrayList, long):int");
+    public int addDialogToFolder(ArrayList<Long> arrayList, int i, int i2, ArrayList<TLRPC.TL_inputFolderPeer> arrayList2, long j) {
+        final long jCreatePendingTask;
+        NativeByteBuffer nativeByteBuffer;
+        TLRPC.Dialog dialog;
+        TLRPC.TL_folders_editPeerFolders tL_folders_editPeerFolders = new TLRPC.TL_folders_editPeerFolders();
+        boolean[] zArr = null;
+        NativeByteBuffer nativeByteBuffer2 = null;
+        if (j == 0) {
+            long clientUserId = getUserConfig().getClientUserId();
+            int size = arrayList.size();
+            boolean[] zArr2 = null;
+            boolean z = false;
+            int i3 = 0;
+            int objectSize = 0;
+            while (i3 < size) {
+                long jLongValue = arrayList.get(i3).longValue();
+                if ((DialogObject.isChatDialog(jLongValue) || DialogObject.isUserDialog(jLongValue) || DialogObject.isEncryptedDialog(jLongValue)) && !((i == 1 && (jLongValue == clientUserId || jLongValue == 777000 || isPromoDialog(jLongValue, false))) || (dialog = (TLRPC.Dialog) this.dialogs_dict.get(jLongValue)) == null)) {
+                    dialog.folder_id = i;
+                    if (i2 > 0) {
+                        dialog.pinned = true;
+                        dialog.pinnedNum = i2;
+                    } else {
+                        dialog.pinned = false;
+                        dialog.pinnedNum = 0;
+                    }
+                    if (zArr2 == null) {
+                        zArr2 = new boolean[1];
+                        this.hasArchivedChats = true;
+                        ensureFolderDialogExists(i, zArr2);
+                    }
+                    boolean[] zArr3 = zArr2;
+                    if (DialogObject.isEncryptedDialog(jLongValue)) {
+                        getMessagesStorage().setDialogsFolderId(null, null, jLongValue, i);
+                    } else {
+                        TLRPC.TL_inputFolderPeer tL_inputFolderPeer = new TLRPC.TL_inputFolderPeer();
+                        tL_inputFolderPeer.folder_id = i;
+                        tL_inputFolderPeer.peer = getInputPeer(jLongValue);
+                        tL_folders_editPeerFolders.folder_peers.add(tL_inputFolderPeer);
+                        objectSize += tL_inputFolderPeer.getObjectSize();
+                    }
+                    zArr2 = zArr3;
+                    z = true;
+                } else {
+                    i3 = i3;
+                    size = size;
+                }
+                i3++;
+                size = size;
+            }
+            if (!z) {
+                return 0;
+            }
+            sortDialogs(null);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
+            if (objectSize != 0) {
+                try {
+                    nativeByteBuffer = new NativeByteBuffer(objectSize + 12);
+                    try {
+                        nativeByteBuffer.writeInt32(17);
+                        nativeByteBuffer.writeInt32(i);
+                        nativeByteBuffer.writeInt32(tL_folders_editPeerFolders.folder_peers.size());
+                        int size2 = tL_folders_editPeerFolders.folder_peers.size();
+                        for (int i4 = 0; i4 < size2; i4++) {
+                            tL_folders_editPeerFolders.folder_peers.get(i4).serializeToStream(nativeByteBuffer);
+                        }
+                    } catch (Exception e) {
+                        e = e;
+                        nativeByteBuffer2 = nativeByteBuffer;
+                        FileLog.e(e);
+                        nativeByteBuffer = nativeByteBuffer2;
+                    }
+                } catch (Exception e2) {
+                    e = e2;
+                }
+                jCreatePendingTask = getMessagesStorage().createPendingTask(nativeByteBuffer);
+                zArr = zArr2;
+            } else {
+                zArr = zArr2;
+                jCreatePendingTask = 0;
+            }
+        } else {
+            tL_folders_editPeerFolders.folder_peers = arrayList2;
+            jCreatePendingTask = j;
+        }
+        if (!tL_folders_editPeerFolders.folder_peers.isEmpty()) {
+            getConnectionsManager().sendRequest(tL_folders_editPeerFolders, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$addDialogToFolder$198(jCreatePendingTask, tLObject, tL_error);
+                }
+            });
+            getMessagesStorage().setDialogsFolderId(null, tL_folders_editPeerFolders.folder_peers, 0L, i);
+        }
+        if (zArr == null) {
+            return 0;
+        }
+        return zArr[0] ? 2 : 1;
     }
 
     public void lambda$addDialogToFolder$198(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -10376,8 +20433,103 @@ public class MessagesController extends BaseController implements NotificationCe
         loadDialogs(i, i2, i3, z, null);
     }
 
-    public void loadDialogs(final int r17, int r18, final int r19, boolean r20, final java.lang.Runnable r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.loadDialogs(int, int, int, boolean, java.lang.Runnable):void");
+    public void loadDialogs(final int i, int i2, final int i3, boolean z, final Runnable runnable) {
+        long j;
+        if (this.loadingDialogs.get(i) || this.resetingDialogs) {
+            return;
+        }
+        this.loadingDialogs.put(i, true);
+        NotificationCenter notificationCenter = getNotificationCenter();
+        int i4 = NotificationCenter.dialogsNeedReload;
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i4, new Object[0]);
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("folderId = " + i + " load cacheOffset = " + i2 + " count = " + i3 + " cache = " + z);
+        }
+        if (z) {
+            getMessagesStorage().getDialogs(i, i2 == 0 ? 0 : this.nextDialogsCacheOffset.get(i, 0), i3, i == 0 && i2 == 0);
+            return;
+        }
+        TLRPC.TL_messages_getDialogs tL_messages_getDialogs = new TLRPC.TL_messages_getDialogs();
+        tL_messages_getDialogs.limit = i3;
+        tL_messages_getDialogs.exclude_pinned = true;
+        if (i != 0) {
+            tL_messages_getDialogs.flags |= 2;
+            tL_messages_getDialogs.folder_id = i;
+        }
+        long[] dialogLoadOffsets = getUserConfig().getDialogLoadOffsets(i);
+        long j2 = dialogLoadOffsets[0];
+        if (j2 != -1) {
+            if (j2 == 2147483647L) {
+                this.dialogsEndReached.put(i, true);
+                this.serverDialogsEndReached.put(i, true);
+                this.loadingDialogs.put(i, false);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i4, new Object[0]);
+                return;
+            }
+            int i5 = (int) j2;
+            tL_messages_getDialogs.offset_id = i5;
+            tL_messages_getDialogs.offset_date = (int) dialogLoadOffsets[1];
+            if (i5 == 0) {
+                tL_messages_getDialogs.offset_peer = new TLRPC.TL_inputPeerEmpty();
+            } else {
+                if (dialogLoadOffsets[4] != 0) {
+                    TLRPC.TL_inputPeerChannel tL_inputPeerChannel = new TLRPC.TL_inputPeerChannel();
+                    tL_messages_getDialogs.offset_peer = tL_inputPeerChannel;
+                    tL_inputPeerChannel.channel_id = dialogLoadOffsets[4];
+                } else if (dialogLoadOffsets[2] != 0) {
+                    TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
+                    tL_messages_getDialogs.offset_peer = tL_inputPeerUser;
+                    tL_inputPeerUser.user_id = dialogLoadOffsets[2];
+                } else {
+                    TLRPC.TL_inputPeerChat tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
+                    tL_messages_getDialogs.offset_peer = tL_inputPeerChat;
+                    tL_inputPeerChat.chat_id = dialogLoadOffsets[3];
+                }
+                tL_messages_getDialogs.offset_peer.access_hash = dialogLoadOffsets[5];
+            }
+        } else {
+            ArrayList<TLRPC.Dialog> dialogs = getDialogs(i);
+            for (int size = dialogs.size() - 1; size >= 0; size--) {
+                TLRPC.Dialog dialog = dialogs.get(size);
+                if (!dialog.pinned && !DialogObject.isEncryptedDialog(dialog.id) && dialog.top_message > 0) {
+                    ArrayList arrayList = (ArrayList) this.dialogMessage.get(dialog.id);
+                    MessageObject messageObject = null;
+                    if (arrayList != null) {
+                        for (int i6 = 0; i6 < arrayList.size(); i6++) {
+                            MessageObject messageObject2 = (MessageObject) arrayList.get(i6);
+                            if (messageObject2 != null && (messageObject == null || messageObject2.getId() > messageObject.getId())) {
+                                messageObject = (MessageObject) arrayList.get(i6);
+                            }
+                        }
+                    }
+                    if (messageObject != null && messageObject.getId() > 0) {
+                        TLRPC.Message message = messageObject.messageOwner;
+                        tL_messages_getDialogs.offset_date = message.date;
+                        tL_messages_getDialogs.offset_id = message.id;
+                        TLRPC.Peer peer = message.peer_id;
+                        long j3 = peer.channel_id;
+                        if (j3 != 0) {
+                            j = -j3;
+                        } else {
+                            j3 = peer.chat_id;
+                            if (j3 != 0) {
+                                j = -j3;
+                            } else {
+                                j = peer.user_id;
+                            }
+                        }
+                        tL_messages_getDialogs.offset_peer = getInputPeer(j);
+                    }
+                }
+            }
+            tL_messages_getDialogs.offset_peer = new TLRPC.TL_inputPeerEmpty();
+        }
+        getConnectionsManager().sendRequest(tL_messages_getDialogs, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$loadDialogs$199(i, i3, runnable, tLObject, tL_error);
+            }
+        });
     }
 
     public void lambda$loadDialogs$199(int i, int i2, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -10634,32 +20786,24 @@ public class MessagesController extends BaseController implements NotificationCe
         if (j == 0) {
             try {
                 nativeByteBuffer = new NativeByteBuffer(inputPeer.getObjectSize() + 4);
-            } catch (Exception e) {
-                e = e;
-                nativeByteBuffer = null;
-            }
-            try {
-                nativeByteBuffer.writeInt32(15);
-                inputPeer.serializeToStream(nativeByteBuffer);
+                try {
+                    nativeByteBuffer.writeInt32(15);
+                    inputPeer.serializeToStream(nativeByteBuffer);
+                } catch (Exception e) {
+                    e = e;
+                    FileLog.e(e);
+                }
             } catch (Exception e2) {
                 e = e2;
-                FileLog.e(e);
-                j = getMessagesStorage().createPendingTask(nativeByteBuffer);
-                final long j2 = j;
-                getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$loadUnknownDialog$208(j2, peerDialogId, tLObject, tL_error);
-                    }
-                });
+                nativeByteBuffer = null;
             }
             j = getMessagesStorage().createPendingTask(nativeByteBuffer);
         }
-        final long j22 = j;
+        final long j2 = j;
         getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadUnknownDialog$208(j22, peerDialogId, tLObject, tL_error);
+                this.f$0.lambda$loadUnknownDialog$208(j2, peerDialogId, tLObject, tL_error);
             }
         });
     }
@@ -10710,10 +20854,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                 tL_inputPeerUser = new TLRPC.TL_inputPeerChannel();
                                 tL_inputPeerUser.channel_id = dialog.peer.channel_id;
                                 int size3 = tL_messages_peerDialogs.chats.size();
-                                while (true) {
-                                    if (i >= size3) {
-                                        break;
-                                    }
+                                while (i < size3) {
                                     TLRPC.Chat chat = tL_messages_peerDialogs.chats.get(i);
                                     if (chat.id == tL_inputPeerUser.channel_id) {
                                         tL_inputPeerUser.access_hash = chat.access_hash;
@@ -10728,10 +20869,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                 tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
                                 tL_inputPeerUser.user_id = dialog.peer.user_id;
                                 int size4 = tL_messages_peerDialogs.users.size();
-                                while (true) {
-                                    if (i >= size4) {
-                                        break;
-                                    }
+                                while (i < size4) {
                                     TLRPC.User user = tL_messages_peerDialogs.users.get(i);
                                     if (user.id == tL_inputPeerUser.user_id) {
                                         tL_inputPeerUser.access_hash = user.access_hash;
@@ -10767,8 +20905,184 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    private void resetDialogs(boolean r27, final int r28, final int r29, final int r30, final int r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.resetDialogs(boolean, int, int, int, int):void");
+    private void resetDialogs(boolean z, final int i, final int i2, final int i3, final int i4) {
+        TLRPC.messages_Dialogs messages_dialogs;
+        long j;
+        TLRPC.User user;
+        TLRPC.Chat chat;
+        Integer num;
+        Integer num2;
+        ArrayList arrayList;
+        TLRPC.Message message;
+        int i5;
+        TLRPC.Chat chat2;
+        ArrayList arrayList2;
+        Integer num3 = 0;
+        if (z) {
+            if (this.resetingDialogs) {
+                return;
+            }
+            getUserConfig().setPinnedDialogsLoaded(1, false);
+            this.resetingDialogs = true;
+            getConnectionsManager().sendRequest(new TLRPC.TL_messages_getPinnedDialogs(), new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$resetDialogs$209(i, i2, i3, i4, tLObject, tL_error);
+                }
+            });
+            TLRPC.TL_messages_getDialogs tL_messages_getDialogs = new TLRPC.TL_messages_getDialogs();
+            tL_messages_getDialogs.limit = 100;
+            tL_messages_getDialogs.exclude_pinned = true;
+            tL_messages_getDialogs.offset_peer = new TLRPC.TL_inputPeerEmpty();
+            getConnectionsManager().sendRequest(tL_messages_getDialogs, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$resetDialogs$210(i, i2, i3, i4, tLObject, tL_error);
+                }
+            });
+            return;
+        }
+        if (this.resetDialogsPinned == null || (messages_dialogs = this.resetDialogsAll) == null) {
+            return;
+        }
+        int size = messages_dialogs.messages.size();
+        int size2 = this.resetDialogsAll.dialogs.size();
+        fetchFolderInLoadedPinnedDialogs(this.resetDialogsPinned);
+        this.resetDialogsAll.dialogs.addAll(this.resetDialogsPinned.dialogs);
+        this.resetDialogsAll.messages.addAll(this.resetDialogsPinned.messages);
+        this.resetDialogsAll.users.addAll(this.resetDialogsPinned.users);
+        this.resetDialogsAll.chats.addAll(this.resetDialogsPinned.chats);
+        LongSparseArray longSparseArray = new LongSparseArray();
+        LongSparseArray longSparseArray2 = new LongSparseArray();
+        LongSparseArray longSparseArray3 = new LongSparseArray();
+        LongSparseArray longSparseArray4 = new LongSparseArray();
+        for (int i6 = 0; i6 < this.resetDialogsAll.users.size(); i6++) {
+            TLRPC.User user2 = this.resetDialogsAll.users.get(i6);
+            longSparseArray3.put(user2.id, user2);
+        }
+        for (int i7 = 0; i7 < this.resetDialogsAll.chats.size(); i7++) {
+            TLRPC.Chat chat3 = this.resetDialogsAll.chats.get(i7);
+            longSparseArray4.put(chat3.id, chat3);
+        }
+        int i8 = 0;
+        TLRPC.Message message2 = null;
+        while (true) {
+            j = 0;
+            if (i8 >= this.resetDialogsAll.messages.size()) {
+                break;
+            }
+            TLRPC.Message message3 = this.resetDialogsAll.messages.get(i8);
+            if (i8 < size && (message2 == null || message3.date < message2.date)) {
+                message2 = message3;
+            }
+            TLRPC.Peer peer = message3.peer_id;
+            Integer num4 = num3;
+            long j2 = peer.channel_id;
+            if (j2 != 0) {
+                TLRPC.Chat chat4 = (TLRPC.Chat) longSparseArray4.get(j2);
+                if (chat4 == null || !chat4.left) {
+                    MessageObject messageObject = new MessageObject(this.currentAccount, message3, longSparseArray3, longSparseArray4, false, true);
+                    long dialogId = messageObject.getDialogId();
+                    arrayList2 = (ArrayList) longSparseArray2.get(dialogId);
+                    if (arrayList2 == null) {
+                        arrayList2 = new ArrayList(1);
+                    }
+                    arrayList2.add(messageObject);
+                    longSparseArray2.put(dialogId, arrayList2);
+                }
+            } else {
+                long j3 = peer.chat_id;
+                if (j3 == 0 || (chat2 = (TLRPC.Chat) longSparseArray4.get(j3)) == null || chat2.migrated_to == null) {
+                    MessageObject messageObject2 = new MessageObject(this.currentAccount, message3, longSparseArray3, longSparseArray4, false, true);
+                    long dialogId2 = messageObject2.getDialogId();
+                    arrayList2 = (ArrayList) longSparseArray2.get(dialogId2);
+                    if (arrayList2 == null) {
+                        arrayList2 = new ArrayList(1);
+                    }
+                    arrayList2.add(messageObject2);
+                    longSparseArray2.put(dialogId2, arrayList2);
+                }
+            }
+            i8++;
+            num3 = num4;
+        }
+        Integer num5 = num3;
+        int i9 = 0;
+        while (i9 < this.resetDialogsAll.dialogs.size()) {
+            TLRPC.Dialog dialog = this.resetDialogsAll.dialogs.get(i9);
+            DialogObject.initDialog(dialog);
+            long j4 = dialog.id;
+            if (j4 != j) {
+                if (dialog.last_message_date == 0 && (arrayList = (ArrayList) longSparseArray2.get(j4)) != null) {
+                    int i10 = Integer.MIN_VALUE;
+                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                        MessageObject messageObject3 = (MessageObject) arrayList.get(i11);
+                        if (messageObject3 != null && (message = messageObject3.messageOwner) != null && (i5 = message.date) > i10) {
+                            i10 = i5;
+                        }
+                    }
+                    if (i10 > Integer.MIN_VALUE) {
+                        dialog.last_message_date = i10;
+                    }
+                }
+                if (DialogObject.isChannel(dialog)) {
+                    TLRPC.Chat chat5 = (TLRPC.Chat) longSparseArray4.get(-dialog.id);
+                    if (chat5 == null || !chat5.left) {
+                        this.channelsPts.put(-dialog.id, dialog.pts);
+                        longSparseArray.put(dialog.id, dialog);
+                        num = this.dialogs_read_inbox_max.get(Long.valueOf(dialog.id));
+                        if (num == null) {
+                            num = num5;
+                        }
+                        this.dialogs_read_inbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num.intValue(), dialog.read_inbox_max_id)));
+                        num2 = this.dialogs_read_outbox_max.get(Long.valueOf(dialog.id));
+                        if (num2 == null) {
+                            num2 = num5;
+                        }
+                        this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num2.intValue(), dialog.read_outbox_max_id)));
+                    }
+                } else if (!DialogObject.isChatDialog(dialog.id) || (chat = (TLRPC.Chat) longSparseArray4.get(-dialog.id)) == null || chat.migrated_to == null) {
+                    longSparseArray.put(dialog.id, dialog);
+                    num = this.dialogs_read_inbox_max.get(Long.valueOf(dialog.id));
+                    if (num == null) {
+                        num = num5;
+                    }
+                    this.dialogs_read_inbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num.intValue(), dialog.read_inbox_max_id)));
+                    num2 = this.dialogs_read_outbox_max.get(Long.valueOf(dialog.id));
+                    if (num2 == null) {
+                        num2 = num5;
+                    }
+                    this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num2.intValue(), dialog.read_outbox_max_id)));
+                }
+            }
+            i9++;
+            j = 0;
+        }
+        ImageLoader.saveMessagesThumbs(this.resetDialogsAll.messages);
+        for (int i12 = 0; i12 < this.resetDialogsAll.messages.size(); i12++) {
+            TLRPC.Message message4 = this.resetDialogsAll.messages.get(i12);
+            TLRPC.MessageAction messageAction = message4.action;
+            if ((messageAction instanceof TLRPC.TL_messageActionChatDeleteUser) && (user = (TLRPC.User) longSparseArray3.get(messageAction.user_id)) != null && user.bot) {
+                message4.reply_markup = new TLRPC.TL_replyKeyboardHide();
+                message4.flags |= 64;
+            }
+            TLRPC.MessageAction messageAction2 = message4.action;
+            if ((messageAction2 instanceof TLRPC.TL_messageActionChatMigrateTo) || (messageAction2 instanceof TLRPC.TL_messageActionChannelCreate)) {
+                message4.unread = false;
+                message4.media_unread = false;
+            } else {
+                ConcurrentHashMap<Long, Integer> concurrentHashMap = message4.out ? this.dialogs_read_outbox_max : this.dialogs_read_inbox_max;
+                Integer numValueOf = concurrentHashMap.get(Long.valueOf(message4.dialog_id));
+                if (numValueOf == null) {
+                    numValueOf = Integer.valueOf(getMessagesStorage().getDialogReadMax(message4.out, message4.dialog_id));
+                    concurrentHashMap.put(Long.valueOf(message4.dialog_id), numValueOf);
+                }
+                message4.unread = numValueOf.intValue() < message4.id;
+            }
+        }
+        getMessagesStorage().resetDialogs(this.resetDialogsAll, size, i, i2, i3, i4, longSparseArray, longSparseArray2, message2, size2);
+        this.resetDialogsPinned = null;
+        this.resetDialogsAll = null;
     }
 
     protected void completeDialogsReset(final TLRPC.messages_Dialogs messages_dialogs, int i, int i2, final int i3, final int i4, final int i5, final LongSparseArray longSparseArray, final LongSparseArray longSparseArray2, TLRPC.Message message) {
@@ -10795,13 +21109,11 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$completeDialogsReset$211(TLRPC.messages_Dialogs messages_dialogs, LongSparseArray longSparseArray, LongSparseArray longSparseArray2) {
-        MediaDataController mediaDataController;
-        long j;
         this.resetingDialogs = false;
         applyDialogsNotificationsSettings(messages_dialogs.dialogs);
-        MediaDataController mediaDataController2 = getMediaDataController();
-        mediaDataController2.clearAllDrafts(false);
-        mediaDataController2.loadDraftsIfNeed();
+        MediaDataController mediaDataController = getMediaDataController();
+        mediaDataController.clearAllDrafts(false);
+        mediaDataController.loadDraftsIfNeed();
         putUsers(messages_dialogs.users, false);
         putChats(messages_dialogs.chats, false);
         for (int i = 0; i < this.allDialogs.size(); i++) {
@@ -10817,9 +21129,9 @@ public class MessagesController extends BaseController implements NotificationCe
                             if (messageObject.messageOwner.peer_id.channel_id == 0) {
                                 this.dialogMessagesByIds.remove(messageObject.getId());
                             }
-                            long j2 = messageObject.messageOwner.random_id;
-                            if (j2 != 0) {
-                                this.dialogMessagesByRandomIds.remove(j2);
+                            long j = messageObject.messageOwner.random_id;
+                            if (j != 0) {
+                                this.dialogMessagesByRandomIds.remove(j);
                             }
                         }
                     }
@@ -10832,32 +21144,27 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC.Dialog dialog2 = (TLRPC.Dialog) longSparseArray.valueAt(i3);
             TLRPC.DraftMessage draftMessage = dialog2.draft;
             if (draftMessage instanceof TLRPC.TL_draftMessage) {
-                mediaDataController = mediaDataController2;
-                j = jKeyAt;
-                mediaDataController2.saveDraft(dialog2.id, 0L, draftMessage, null, false);
-            } else {
-                mediaDataController = mediaDataController2;
-                j = jKeyAt;
+                mediaDataController.saveDraft(dialog2.id, 0L, draftMessage, null, false);
             }
-            this.dialogs_dict.put(j, dialog2);
+            this.dialogs_dict.put(jKeyAt, dialog2);
             ArrayList arrayList2 = (ArrayList) longSparseArray2.get(dialog2.id);
-            this.dialogMessage.put(j, arrayList2);
+            this.dialogMessage.put(jKeyAt, arrayList2);
             if (arrayList2 != null) {
                 for (int i4 = 0; i4 < arrayList2.size(); i4++) {
                     MessageObject messageObject2 = (MessageObject) arrayList2.get(i4);
                     if (messageObject2 != null && messageObject2.messageOwner.peer_id.channel_id == 0) {
                         this.dialogMessagesByIds.put(messageObject2.getId(), messageObject2);
                         this.dialogsLoadedTillDate = Math.min(this.dialogsLoadedTillDate, messageObject2.messageOwner.date);
-                        long j3 = messageObject2.messageOwner.random_id;
-                        if (j3 != 0) {
-                            this.dialogMessagesByRandomIds.put(j3, messageObject2);
+                        long j2 = messageObject2.messageOwner.random_id;
+                        if (j2 != 0) {
+                            this.dialogMessagesByRandomIds.put(j2, messageObject2);
                         }
                     }
                 }
             }
-            getTranslateController().checkDialogMessage(j);
+            getTranslateController().checkDialogMessage(jKeyAt);
             i3++;
-            mediaDataController2 = mediaDataController;
+            mediaDataController = mediaDataController;
         }
         this.allDialogs.clear();
         int size = this.dialogs_dict.size();
@@ -10875,8 +21182,8 @@ public class MessagesController extends BaseController implements NotificationCe
         int totalDialogsCount = getUserConfig().getTotalDialogsCount(0);
         long[] dialogLoadOffsets = getUserConfig().getDialogLoadOffsets(0);
         if (totalDialogsCount < 400) {
-            long j4 = dialogLoadOffsets[0];
-            if (j4 != -1 && j4 != 2147483647L) {
+            long j3 = dialogLoadOffsets[0];
+            if (j3 != -1 && j3 != 2147483647L) {
                 loadDialogs(0, 0, 100, false);
             }
         }
@@ -10894,7 +21201,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_getDialogs.offset_id = i;
         tL_messages_getDialogs.offset_date = i2;
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("start migrate with id " + i + " date " + LocaleController.getInstance().getFormatterStats().format(i2 * 1000));
+            FileLog.d("start migrate with id " + i + " date " + LocaleController.getInstance().getFormatterStats().format(((long) i2) * 1000));
         }
         if (i == 0) {
             tL_messages_getDialogs.offset_peer = new TLRPC.TL_inputPeerEmpty();
@@ -10941,8 +21248,262 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$migrateDialogs$214(org.telegram.tgnet.TLRPC.messages_Dialogs r38, int r39) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$migrateDialogs$214(org.telegram.tgnet.TLRPC$messages_Dialogs, int):void");
+    public void lambda$migrateDialogs$214(TLRPC.messages_Dialogs messages_dialogs, int i) {
+        TLRPC.Message message;
+        int i2;
+        SQLiteCursor sQLiteCursor;
+        TLRPC.Message message2;
+        TLRPC.Peer peer;
+        int i3;
+        TLRPC.User user;
+        int i4;
+        TLRPC.Chat chat;
+        int i5;
+        TLRPC.Chat chat2;
+        SQLiteCursor sQLiteCursor2;
+        LongSparseArray longSparseArray;
+        int i6;
+        LongSparseArray longSparseArray2;
+        int i7;
+        try {
+            getUserConfig().setTotalDialogsCount(0, getUserConfig().getTotalDialogsCount(0) + messages_dialogs.dialogs.size());
+            TLRPC.Message message3 = null;
+            for (int i8 = 0; i8 < messages_dialogs.messages.size(); i8++) {
+                TLRPC.Message message4 = messages_dialogs.messages.get(i8);
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("search migrate id " + message4.id + " date " + LocaleController.getInstance().getFormatterStats().format(((long) message4.date) * 1000));
+                }
+                if (message3 == null || message4.date < message3.date) {
+                    message3 = message4;
+                }
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("migrate step with id " + message3.id + " date " + LocaleController.getInstance().getFormatterStats().format(((long) message3.date) * 1000));
+            }
+            int i9 = 2;
+            if (messages_dialogs.dialogs.size() >= 100) {
+                i2 = message3.id;
+                message = message3;
+            } else {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("migrate stop due to not 100 dialogs");
+                }
+                int i10 = 0;
+                while (i10 < 2) {
+                    getUserConfig().setDialogsLoadOffset(i10, Integer.MAX_VALUE, getUserConfig().migrateOffsetDate, getUserConfig().migrateOffsetUserId, getUserConfig().migrateOffsetChatId, getUserConfig().migrateOffsetChannelId, getUserConfig().migrateOffsetAccess);
+                    i10++;
+                    message3 = message3;
+                }
+                message = message3;
+                i2 = -1;
+            }
+            StringBuilder sb = new StringBuilder(messages_dialogs.dialogs.size() * 12);
+            LongSparseArray longSparseArray3 = new LongSparseArray();
+            for (int i11 = 0; i11 < messages_dialogs.dialogs.size(); i11++) {
+                TLRPC.Dialog dialog = messages_dialogs.dialogs.get(i11);
+                DialogObject.initDialog(dialog);
+                if (sb.length() > 0) {
+                    sb.append(",");
+                }
+                sb.append(dialog.id);
+                longSparseArray3.put(dialog.id, dialog);
+            }
+            int i12 = 0;
+            SQLiteCursor sQLiteCursorQueryFinalized = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT did, folder_id FROM dialogs WHERE did IN (%s)", sb.toString()), new Object[0]);
+            while (sQLiteCursorQueryFinalized.next()) {
+                long jLongValue = sQLiteCursorQueryFinalized.longValue(i12);
+                int iIntValue = sQLiteCursorQueryFinalized.intValue(1);
+                TLRPC.Dialog dialog2 = (TLRPC.Dialog) longSparseArray3.get(jLongValue);
+                if (dialog2 != null) {
+                    if (dialog2.folder_id == iIntValue) {
+                        messages_dialogs.dialogs.remove(dialog2);
+                        int i13 = 0;
+                        while (i13 < messages_dialogs.messages.size()) {
+                            TLRPC.Message message5 = messages_dialogs.messages.get(i13);
+                            if (MessageObject.getDialogId(message5) == jLongValue) {
+                                messages_dialogs.messages.remove(i13);
+                                i13--;
+                                if (message5.id == dialog2.top_message) {
+                                    dialog2.top_message = 0;
+                                    break;
+                                }
+                            }
+                            i13++;
+                        }
+                        longSparseArray3.remove(jLongValue);
+                    }
+                } else {
+                    longSparseArray3.remove(jLongValue);
+                }
+                i12 = 0;
+            }
+            sQLiteCursorQueryFinalized.dispose();
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("migrate found missing dialogs " + messages_dialogs.dialogs.size());
+            }
+            SQLiteCursor sQLiteCursorQueryFinalized2 = getMessagesStorage().getDatabase().queryFinalized("SELECT min(date) FROM dialogs WHERE date != 0 AND did >> 32 NOT IN (536870912, 1073741824)", new Object[0]);
+            if (sQLiteCursorQueryFinalized2.next()) {
+                int iMax = Math.max(1441062000, sQLiteCursorQueryFinalized2.intValue(0));
+                int i14 = 0;
+                while (i14 < messages_dialogs.messages.size()) {
+                    TLRPC.Message message6 = messages_dialogs.messages.get(i14);
+                    if (message6.date < iMax) {
+                        if (i != -1) {
+                            int i15 = 0;
+                            while (i15 < i9) {
+                                getUserConfig().setDialogsLoadOffset(i15, getUserConfig().migrateOffsetId, getUserConfig().migrateOffsetDate, getUserConfig().migrateOffsetUserId, getUserConfig().migrateOffsetChatId, getUserConfig().migrateOffsetChannelId, getUserConfig().migrateOffsetAccess);
+                                i15++;
+                                sQLiteCursorQueryFinalized2 = sQLiteCursorQueryFinalized2;
+                                longSparseArray3 = longSparseArray3;
+                                iMax = iMax;
+                                i9 = 2;
+                            }
+                            sQLiteCursor2 = sQLiteCursorQueryFinalized2;
+                            longSparseArray2 = longSparseArray3;
+                            int i16 = iMax;
+                            if (BuildVars.LOGS_ENABLED) {
+                                StringBuilder sb2 = new StringBuilder();
+                                sb2.append("migrate stop due to reached loaded dialogs ");
+                                i6 = i16;
+                                sb2.append(LocaleController.getInstance().getFormatterStats().format(((long) i6) * 1000));
+                                FileLog.d(sb2.toString());
+                            } else {
+                                i6 = i16;
+                            }
+                            i7 = -1;
+                        } else {
+                            sQLiteCursor2 = sQLiteCursorQueryFinalized2;
+                            longSparseArray2 = longSparseArray3;
+                            i6 = iMax;
+                            i7 = i2;
+                        }
+                        messages_dialogs.messages.remove(i14);
+                        i14--;
+                        long dialogId = MessageObject.getDialogId(message6);
+                        longSparseArray = longSparseArray2;
+                        TLRPC.Dialog dialog3 = (TLRPC.Dialog) longSparseArray.get(dialogId);
+                        longSparseArray.remove(dialogId);
+                        if (dialog3 != null) {
+                            messages_dialogs.dialogs.remove(dialog3);
+                        }
+                        i2 = i7;
+                    } else {
+                        sQLiteCursor2 = sQLiteCursorQueryFinalized2;
+                        int i17 = iMax;
+                        longSparseArray = longSparseArray3;
+                        i6 = i17;
+                    }
+                    i14++;
+                    sQLiteCursorQueryFinalized2 = sQLiteCursor2;
+                    i9 = 2;
+                    LongSparseArray longSparseArray4 = longSparseArray;
+                    iMax = i6;
+                    longSparseArray3 = longSparseArray4;
+                }
+                sQLiteCursor = sQLiteCursorQueryFinalized2;
+                int i18 = iMax;
+                if (message != null) {
+                    message2 = message;
+                    if (message2.date < i18 && i != -1) {
+                        int i19 = 0;
+                        for (int i20 = 2; i19 < i20; i20 = 2) {
+                            getUserConfig().setDialogsLoadOffset(i19, getUserConfig().migrateOffsetId, getUserConfig().migrateOffsetDate, getUserConfig().migrateOffsetUserId, getUserConfig().migrateOffsetChatId, getUserConfig().migrateOffsetChannelId, getUserConfig().migrateOffsetAccess);
+                            i19++;
+                        }
+                        if (BuildVars.LOGS_ENABLED) {
+                            FileLog.d("migrate stop due to reached loaded dialogs " + LocaleController.getInstance().getFormatterStats().format(((long) i18) * 1000));
+                        }
+                        i2 = -1;
+                    }
+                }
+                sQLiteCursor.dispose();
+                getUserConfig().migrateOffsetDate = message2.date;
+                peer = message2.peer_id;
+                if (peer.channel_id != 0) {
+                    getUserConfig().migrateOffsetChannelId = message2.peer_id.channel_id;
+                    getUserConfig().migrateOffsetChatId = 0L;
+                    getUserConfig().migrateOffsetUserId = 0L;
+                    for (i5 = 0; i5 < messages_dialogs.chats.size(); i5++) {
+                        chat2 = messages_dialogs.chats.get(i5);
+                        if (chat2.id == getUserConfig().migrateOffsetChannelId) {
+                            getUserConfig().migrateOffsetAccess = chat2.access_hash;
+                            break;
+                        }
+                    }
+                } else if (peer.chat_id != 0) {
+                    getUserConfig().migrateOffsetChatId = message2.peer_id.chat_id;
+                    getUserConfig().migrateOffsetChannelId = 0L;
+                    getUserConfig().migrateOffsetUserId = 0L;
+                    for (i4 = 0; i4 < messages_dialogs.chats.size(); i4++) {
+                        chat = messages_dialogs.chats.get(i4);
+                        if (chat.id == getUserConfig().migrateOffsetChatId) {
+                            getUserConfig().migrateOffsetAccess = chat.access_hash;
+                            break;
+                        }
+                    }
+                } else if (peer.user_id != 0) {
+                    getUserConfig().migrateOffsetUserId = message2.peer_id.user_id;
+                    getUserConfig().migrateOffsetChatId = 0L;
+                    getUserConfig().migrateOffsetChannelId = 0L;
+                    for (i3 = 0; i3 < messages_dialogs.users.size(); i3++) {
+                        user = messages_dialogs.users.get(i3);
+                        if (user.id == getUserConfig().migrateOffsetUserId) {
+                            getUserConfig().migrateOffsetAccess = user.access_hash;
+                            break;
+                        }
+                    }
+                }
+                processLoadedDialogs(messages_dialogs, null, null, 0, i2, 0, 0, false, true, false);
+            }
+            sQLiteCursor = sQLiteCursorQueryFinalized2;
+            message2 = message;
+            sQLiteCursor.dispose();
+            getUserConfig().migrateOffsetDate = message2.date;
+            peer = message2.peer_id;
+            if (peer.channel_id != 0) {
+                getUserConfig().migrateOffsetChannelId = message2.peer_id.channel_id;
+                getUserConfig().migrateOffsetChatId = 0L;
+                getUserConfig().migrateOffsetUserId = 0L;
+                while (i5 < messages_dialogs.chats.size()) {
+                    chat2 = messages_dialogs.chats.get(i5);
+                    if (chat2.id == getUserConfig().migrateOffsetChannelId) {
+                        getUserConfig().migrateOffsetAccess = chat2.access_hash;
+                        break;
+                    }
+                }
+            } else if (peer.chat_id != 0) {
+                getUserConfig().migrateOffsetChatId = message2.peer_id.chat_id;
+                getUserConfig().migrateOffsetChannelId = 0L;
+                getUserConfig().migrateOffsetUserId = 0L;
+                while (i4 < messages_dialogs.chats.size()) {
+                    chat = messages_dialogs.chats.get(i4);
+                    if (chat.id == getUserConfig().migrateOffsetChatId) {
+                        getUserConfig().migrateOffsetAccess = chat.access_hash;
+                        break;
+                    }
+                }
+            } else if (peer.user_id != 0) {
+                getUserConfig().migrateOffsetUserId = message2.peer_id.user_id;
+                getUserConfig().migrateOffsetChatId = 0L;
+                getUserConfig().migrateOffsetChannelId = 0L;
+                while (i3 < messages_dialogs.users.size()) {
+                    user = messages_dialogs.users.get(i3);
+                    if (user.id == getUserConfig().migrateOffsetUserId) {
+                        getUserConfig().migrateOffsetAccess = user.access_hash;
+                        break;
+                    }
+                }
+            }
+            processLoadedDialogs(messages_dialogs, null, null, 0, i2, 0, 0, false, true, false);
+        } catch (Exception e) {
+            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$migrateDialogs$213();
+                }
+            });
+        }
     }
 
     public void lambda$migrateDialogs$213() {
@@ -10962,8 +21523,468 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$processLoadedDialogs$220(final int r32, final int r33, final org.telegram.tgnet.TLRPC.messages_Dialogs r34, final java.util.ArrayList r35, final boolean r36, final int r37, final java.util.ArrayList r38, final int r39, final boolean r40, final boolean r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processLoadedDialogs$220(int, int, org.telegram.tgnet.TLRPC$messages_Dialogs, java.util.ArrayList, boolean, int, java.util.ArrayList, int, boolean, boolean):void");
+    public void lambda$processLoadedDialogs$220(final int i, final int i2, final TLRPC.messages_Dialogs messages_dialogs, final ArrayList arrayList, final boolean z, final int i3, final ArrayList arrayList2, final int i4, final boolean z2, final boolean z3) {
+        SparseArray sparseArray;
+        LongSparseArray longSparseArray;
+        LongSparseArray longSparseArray2;
+        boolean z4;
+        LongSparseArray longSparseArray3;
+        LongSparseArray longSparseArray4;
+        LongSparseArray longSparseArray5;
+        LongSparseArray longSparseArray6;
+        boolean z5;
+        TLRPC.Chat chat;
+        LongSparseArray longSparseArray7;
+        LongSparseArray longSparseArray8;
+        Integer numValueOf;
+        Integer numValueOf2;
+        LongSparseArray longSparseArray9;
+        LongSparseArray longSparseArray10;
+        LongSparseArray longSparseArray11;
+        TLRPC.Message message;
+        int i5;
+        LongSparseArray longSparseArray12;
+        int i6;
+        long j;
+        long j2;
+        long j3;
+        long j4;
+        int i7;
+        int i8;
+        long j5;
+        long j6;
+        int i9;
+        int i10;
+        long j7;
+        TLRPC.Message message2;
+        TLRPC.Chat chat2;
+        ArrayList arrayList3;
+        if (!this.firstGettingTask) {
+            getNewDeleteTask(null, null);
+            this.firstGettingTask = true;
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("loaded folderId " + i + " loadType " + i2 + " count " + messages_dialogs.dialogs.size());
+        }
+        final long[] dialogLoadOffsets = getUserConfig().getDialogLoadOffsets(i);
+        if (i2 == this.DIALOGS_LOAD_TYPE_CACHE && messages_dialogs.dialogs.size() == 0) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processLoadedDialogs$217(messages_dialogs, arrayList, i, z, dialogLoadOffsets, i3);
+                }
+            });
+            return;
+        }
+        LongSparseArray longSparseArray13 = new LongSparseArray();
+        LongSparseArray longSparseArray14 = new LongSparseArray();
+        LongSparseArray longSparseArray15 = new LongSparseArray();
+        LongSparseArray longSparseArray16 = new LongSparseArray();
+        int i11 = 0;
+        while (i11 < messages_dialogs.users.size()) {
+            TLRPC.User user = messages_dialogs.users.get(i11);
+            longSparseArray15.put(user.id, user);
+            i11++;
+            dialogLoadOffsets = dialogLoadOffsets;
+        }
+        long[] jArr = dialogLoadOffsets;
+        for (int i12 = 0; i12 < messages_dialogs.chats.size(); i12++) {
+            TLRPC.Chat chat3 = messages_dialogs.chats.get(i12);
+            longSparseArray16.put(chat3.id, chat3);
+        }
+        if (arrayList2 != null) {
+            SparseArray sparseArray2 = new SparseArray();
+            int size = arrayList2.size();
+            for (int i13 = 0; i13 < size; i13++) {
+                TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) arrayList2.get(i13);
+                sparseArray2.put(encryptedChat.id, encryptedChat);
+            }
+            sparseArray = sparseArray2;
+        } else {
+            sparseArray = null;
+        }
+        if (i2 == this.DIALOGS_LOAD_TYPE_CACHE) {
+            this.nextDialogsCacheOffset.put(i, i4 + i3);
+        }
+        ArrayList arrayList4 = new ArrayList();
+        int i14 = 0;
+        TLRPC.Message message3 = null;
+        while (i14 < messages_dialogs.messages.size()) {
+            TLRPC.Message message4 = messages_dialogs.messages.get(i14);
+            int i15 = message4.date;
+            SparseArray sparseArray3 = sparseArray;
+            if (i15 != 0) {
+                if (message3 == null || i15 < message3.date) {
+                    message3 = message4;
+                }
+                TLRPC.Peer peer = message4.peer_id;
+                long j8 = peer.channel_id;
+                if (j8 != 0) {
+                    TLRPC.Chat chat4 = (TLRPC.Chat) longSparseArray16.get(j8);
+                    if (chat4 == null || !chat4.left) {
+                        message2 = message3;
+                    } else {
+                        long j9 = this.promoDialogId;
+                        message2 = message3;
+                        if (j9 == 0 || j9 != (-chat4.id)) {
+                        }
+                    }
+                    MessageObject messageObject = new MessageObject(this.currentAccount, message4, longSparseArray15, longSparseArray16, false, false);
+                    arrayList4.add(messageObject);
+                    long dialogId = messageObject.getDialogId();
+                    arrayList3 = (ArrayList) longSparseArray14.get(dialogId);
+                    if (arrayList3 == null) {
+                        arrayList3 = new ArrayList(1);
+                    }
+                    arrayList3.add(messageObject);
+                    longSparseArray14.put(dialogId, arrayList3);
+                } else {
+                    message2 = message3;
+                    long j10 = peer.chat_id;
+                    if (j10 == 0 || (chat2 = (TLRPC.Chat) longSparseArray16.get(j10)) == null || chat2.migrated_to == null) {
+                        MessageObject messageObject2 = new MessageObject(this.currentAccount, message4, longSparseArray15, longSparseArray16, false, false);
+                        arrayList4.add(messageObject2);
+                        long dialogId2 = messageObject2.getDialogId();
+                        arrayList3 = (ArrayList) longSparseArray14.get(dialogId2);
+                        if (arrayList3 == null) {
+                            arrayList3 = new ArrayList(1);
+                        }
+                        arrayList3.add(messageObject2);
+                        longSparseArray14.put(dialogId2, arrayList3);
+                    }
+                }
+                message3 = message2;
+            }
+            i14++;
+            sparseArray = sparseArray3;
+        }
+        SparseArray sparseArray4 = sparseArray;
+        if (z2 || z3 || jArr[0] == -1 || i2 != 0) {
+            longSparseArray = longSparseArray16;
+            longSparseArray2 = longSparseArray15;
+            z4 = false;
+        } else {
+            int totalDialogsCount = getUserConfig().getTotalDialogsCount(i);
+            if (message3 == null || message3.id == jArr[0]) {
+                longSparseArray12 = longSparseArray15;
+                i6 = totalDialogsCount;
+                j = 0;
+                j2 = 0;
+                j3 = 0;
+                j4 = 0;
+                i7 = Integer.MAX_VALUE;
+                i8 = 0;
+            } else {
+                int size2 = totalDialogsCount + messages_dialogs.dialogs.size();
+                int i16 = message3.id;
+                int i17 = message3.date;
+                TLRPC.Peer peer2 = message3.peer_id;
+                LongSparseArray longSparseArray17 = longSparseArray15;
+                long j11 = peer2.channel_id;
+                if (j11 != 0) {
+                    int i18 = 0;
+                    while (true) {
+                        if (i18 >= messages_dialogs.chats.size()) {
+                            i9 = size2;
+                            i10 = i16;
+                            j7 = 0;
+                            break;
+                        }
+                        TLRPC.Chat chat5 = messages_dialogs.chats.get(i18);
+                        i9 = size2;
+                        i10 = i16;
+                        if (chat5.id == j11) {
+                            j7 = chat5.access_hash;
+                            break;
+                        } else {
+                            i18++;
+                            size2 = i9;
+                            i16 = i10;
+                        }
+                    }
+                    j4 = j7;
+                    i8 = i17;
+                    j3 = j11;
+                    j2 = 0;
+                    i6 = i9;
+                    i7 = i10;
+                    j = 0;
+                    longSparseArray12 = longSparseArray17;
+                } else {
+                    long j12 = peer2.chat_id;
+                    if (j12 != 0) {
+                        int i19 = 0;
+                        while (true) {
+                            if (i19 >= messages_dialogs.chats.size()) {
+                                j6 = 0;
+                                break;
+                            }
+                            TLRPC.Chat chat6 = messages_dialogs.chats.get(i19);
+                            if (chat6.id == j12) {
+                                j6 = chat6.access_hash;
+                                break;
+                            }
+                            i19++;
+                        }
+                        j2 = j12;
+                        i8 = i17;
+                        j4 = j6;
+                        j3 = 0;
+                        i6 = size2;
+                        i7 = i16;
+                        j = 0;
+                        longSparseArray12 = longSparseArray17;
+                    } else {
+                        long j13 = peer2.user_id;
+                        if (j13 != 0) {
+                            int i20 = 0;
+                            while (true) {
+                                if (i20 >= messages_dialogs.users.size()) {
+                                    j5 = 0;
+                                    break;
+                                }
+                                TLRPC.User user2 = messages_dialogs.users.get(i20);
+                                if (user2.id == j13) {
+                                    j5 = user2.access_hash;
+                                    break;
+                                }
+                                i20++;
+                            }
+                            i8 = i17;
+                            j4 = j5;
+                            j2 = 0;
+                            j3 = 0;
+                            i6 = size2;
+                            i7 = i16;
+                            j = j13;
+                            longSparseArray12 = longSparseArray17;
+                        } else {
+                            i8 = i17;
+                            j2 = 0;
+                            j3 = 0;
+                            j4 = 0;
+                            i6 = size2;
+                            i7 = i16;
+                            j = 0;
+                            longSparseArray12 = longSparseArray17;
+                        }
+                    }
+                }
+            }
+            longSparseArray2 = longSparseArray12;
+            longSparseArray = longSparseArray16;
+            getUserConfig().setDialogsLoadOffset(i, i7, i8, j, j2, j3, j4);
+            getUserConfig().setTotalDialogsCount(i, i6);
+            z4 = false;
+            getUserConfig().saveConfig(false);
+        }
+        final ArrayList arrayList5 = new ArrayList();
+        int i21 = 0;
+        LongSparseArray longSparseArray18 = longSparseArray;
+        LongSparseArray longSparseArray19 = longSparseArray14;
+        while (i21 < messages_dialogs.dialogs.size()) {
+            TLRPC.Dialog dialog = messages_dialogs.dialogs.get(i21);
+            DialogObject.initDialog(dialog);
+            long j14 = dialog.id;
+            if (j14 == 0 || (DialogObject.isEncryptedDialog(j14) && sparseArray4 != 0 && sparseArray4.get(DialogObject.getEncryptedChatId(dialog.id)) == null)) {
+                longSparseArray8 = longSparseArray13;
+                longSparseArray5 = longSparseArray19;
+            } else {
+                long j15 = this.promoDialogId;
+                if (j15 != 0 && j15 == dialog.id) {
+                    this.promoDialog = dialog;
+                }
+                if (dialog.last_message_date == 0) {
+                    longSparseArray5 = longSparseArray19;
+                    ArrayList arrayList6 = (ArrayList) longSparseArray5.get(dialog.id);
+                    if (arrayList6 != null) {
+                        int i22 = Integer.MIN_VALUE;
+                        for (int i23 = 0; i23 < arrayList6.size(); i23++) {
+                            MessageObject messageObject3 = (MessageObject) arrayList6.get(i23);
+                            if (messageObject3 != null && (message = messageObject3.messageOwner) != null && (i5 = message.date) > i22) {
+                                i22 = i5;
+                            }
+                        }
+                        if (i22 > Integer.MIN_VALUE) {
+                            dialog.last_message_date = i22;
+                        }
+                    }
+                } else {
+                    longSparseArray5 = longSparseArray19;
+                }
+                if (DialogObject.isChannel(dialog)) {
+                    longSparseArray11 = longSparseArray18;
+                    TLRPC.Chat chat7 = (TLRPC.Chat) longSparseArray11.get(-dialog.id);
+                    if (chat7 != null) {
+                        z5 = chat7.megagroup;
+                        if (ChatObject.isNotInChat(chat7)) {
+                            long j16 = this.promoDialogId;
+                            if (j16 == 0 || j16 != dialog.id) {
+                                longSparseArray10 = longSparseArray6;
+                                longSparseArray10 = longSparseArray6;
+                                longSparseArray10 = longSparseArray6;
+                                longSparseArray10 = longSparseArray11;
+                                longSparseArray10 = longSparseArray11;
+                                longSparseArray10 = longSparseArray11;
+                                longSparseArray18 = longSparseArray10;
+                                longSparseArray8 = longSparseArray13;
+                            }
+                        }
+                    } else {
+                        z5 = true;
+                    }
+                    longSparseArray10 = longSparseArray11;
+                    longSparseArray10 = longSparseArray11;
+                    this.channelsPts.put(-dialog.id, dialog.pts);
+                    longSparseArray7 = longSparseArray11;
+                    longSparseArray8 = longSparseArray13;
+                    longSparseArray8.put(dialog.id, dialog);
+                    if (z5) {
+                        longSparseArray9 = longSparseArray7;
+                        if (i2 == this.DIALOGS_LOAD_TYPE_CACHE && (dialog.read_outbox_max_id == 0 || dialog.read_inbox_max_id == 0)) {
+                            longSparseArray18 = longSparseArray9;
+                            longSparseArray18 = longSparseArray9;
+                            longSparseArray18 = longSparseArray9;
+                            longSparseArray18 = longSparseArray9;
+                            if (dialog.top_message != 0) {
+                                arrayList5.add(dialog);
+                                longSparseArray18 = longSparseArray9;
+                            }
+                        }
+                    } else {
+                        longSparseArray18 = longSparseArray7;
+                    }
+                    longSparseArray18 = longSparseArray9;
+                    longSparseArray18 = longSparseArray9;
+                    longSparseArray18 = longSparseArray9;
+                    numValueOf = this.dialogs_read_inbox_max.get(Long.valueOf(dialog.id));
+                    if (numValueOf == null) {
+                        numValueOf = Integer.valueOf(z4 ? 1 : 0);
+                    }
+                    this.dialogs_read_inbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(numValueOf.intValue(), dialog.read_inbox_max_id)));
+                    numValueOf2 = this.dialogs_read_outbox_max.get(Long.valueOf(dialog.id));
+                    if (numValueOf2 == null) {
+                        numValueOf2 = Integer.valueOf(z4 ? 1 : 0);
+                    }
+                    this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(numValueOf2.intValue(), dialog.read_outbox_max_id)));
+                } else {
+                    longSparseArray6 = longSparseArray18;
+                    if (!DialogObject.isChatDialog(dialog.id) || (chat = (TLRPC.Chat) longSparseArray6.get(-dialog.id)) == null || (chat.migrated_to == null && !ChatObject.isNotInChat(chat))) {
+                        longSparseArray10 = longSparseArray6;
+                        longSparseArray10 = longSparseArray6;
+                        z5 = true;
+                        longSparseArray7 = longSparseArray6;
+                        longSparseArray8 = longSparseArray13;
+                        longSparseArray8.put(dialog.id, dialog);
+                        if (z5) {
+                            longSparseArray9 = longSparseArray7;
+                            if (i2 == this.DIALOGS_LOAD_TYPE_CACHE) {
+                                longSparseArray18 = longSparseArray9;
+                                longSparseArray18 = longSparseArray9;
+                                longSparseArray18 = longSparseArray9;
+                                longSparseArray18 = longSparseArray9;
+                                if (dialog.top_message != 0) {
+                                    arrayList5.add(dialog);
+                                    longSparseArray18 = longSparseArray9;
+                                }
+                            }
+                        } else {
+                            longSparseArray18 = longSparseArray7;
+                        }
+                        longSparseArray18 = longSparseArray9;
+                        longSparseArray18 = longSparseArray9;
+                        longSparseArray18 = longSparseArray9;
+                        numValueOf = this.dialogs_read_inbox_max.get(Long.valueOf(dialog.id));
+                        if (numValueOf == null) {
+                            numValueOf = Integer.valueOf(z4 ? 1 : 0);
+                        }
+                        this.dialogs_read_inbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(numValueOf.intValue(), dialog.read_inbox_max_id)));
+                        numValueOf2 = this.dialogs_read_outbox_max.get(Long.valueOf(dialog.id));
+                        if (numValueOf2 == null) {
+                            numValueOf2 = Integer.valueOf(z4 ? 1 : 0);
+                        }
+                        this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(numValueOf2.intValue(), dialog.read_outbox_max_id)));
+                    } else {
+                        longSparseArray10 = longSparseArray6;
+                        longSparseArray10 = longSparseArray6;
+                        longSparseArray10 = longSparseArray6;
+                        longSparseArray10 = longSparseArray11;
+                        longSparseArray10 = longSparseArray11;
+                        longSparseArray10 = longSparseArray11;
+                        longSparseArray18 = longSparseArray10;
+                        longSparseArray8 = longSparseArray13;
+                    }
+                }
+            }
+            i21++;
+            longSparseArray13 = longSparseArray8;
+            longSparseArray19 = longSparseArray5;
+            longSparseArray18 = longSparseArray18;
+        }
+        final LongSparseArray longSparseArray20 = longSparseArray13;
+        final LongSparseArray longSparseArray21 = longSparseArray19;
+        if (i2 != this.DIALOGS_LOAD_TYPE_CACHE) {
+            ImageLoader.saveMessagesThumbs(messages_dialogs.messages);
+            int i24 = 0;
+            LongSparseArray longSparseArray22 = longSparseArray2;
+            while (i24 < messages_dialogs.messages.size()) {
+                TLRPC.Message message5 = messages_dialogs.messages.get(i24);
+                TLRPC.MessageAction messageAction = message5.action;
+                if (messageAction instanceof TLRPC.TL_messageActionChatDeleteUser) {
+                    long j17 = messageAction.user_id;
+                    longSparseArray4 = longSparseArray22;
+                    TLRPC.User user3 = (TLRPC.User) longSparseArray4.get(j17);
+                    if (user3 != null && user3.bot) {
+                        longSparseArray3 = longSparseArray4;
+                        longSparseArray3 = longSparseArray4;
+                        message5.reply_markup = new TLRPC.TL_replyKeyboardHide();
+                        message5.flags |= 64;
+                        longSparseArray3 = longSparseArray4;
+                    }
+                } else {
+                    longSparseArray3 = longSparseArray22;
+                }
+                longSparseArray3 = longSparseArray4;
+                longSparseArray3 = longSparseArray4;
+                longSparseArray3 = longSparseArray4;
+                TLRPC.MessageAction messageAction2 = message5.action;
+                if ((messageAction2 instanceof TLRPC.TL_messageActionChatMigrateTo) || (messageAction2 instanceof TLRPC.TL_messageActionChannelCreate)) {
+                    longSparseArray3 = longSparseArray3;
+                    message5.unread = z4;
+                    message5.media_unread = z4;
+                } else {
+                    ConcurrentHashMap<Long, Integer> concurrentHashMap = message5.out ? this.dialogs_read_outbox_max : this.dialogs_read_inbox_max;
+                    Integer numValueOf3 = concurrentHashMap.get(Long.valueOf(message5.dialog_id));
+                    if (numValueOf3 == null) {
+                        numValueOf3 = Integer.valueOf(getMessagesStorage().getDialogReadMax(message5.out, message5.dialog_id));
+                        concurrentHashMap.put(Long.valueOf(message5.dialog_id), numValueOf3);
+                    }
+                    message5.unread = numValueOf3.intValue() < message5.id;
+                }
+                i24++;
+                z4 = false;
+                longSparseArray22 = longSparseArray3;
+            }
+            getMessagesStorage().putDialogs(messages_dialogs, i2 == this.DIALOGS_LOAD_TYPE_UNKNOWN ? 3 : 0);
+        }
+        if (i2 == this.DIALOGS_LOAD_TYPE_CHANNEL) {
+            final TLRPC.Chat chat8 = messages_dialogs.chats.get(0);
+            getChannelDifference(chat8.id);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processLoadedDialogs$218(chat8);
+                }
+            });
+        }
+        final TLRPC.Message message6 = message3;
+        final LongSparseArray longSparseArray23 = longSparseArray18;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$processLoadedDialogs$219(message6, i2, messages_dialogs, arrayList, arrayList2, z3, i, longSparseArray20, longSparseArray21, longSparseArray23, i3, z2, i4, arrayList5);
+            }
+        });
     }
 
     public void lambda$processLoadedDialogs$217(TLRPC.messages_Dialogs messages_dialogs, ArrayList arrayList, int i, boolean z, long[] jArr, int i2) {
@@ -10992,8 +22013,307 @@ public class MessagesController extends BaseController implements NotificationCe
         checkChatInviter(chat.id, true);
     }
 
-    public void lambda$processLoadedDialogs$219(org.telegram.tgnet.TLRPC.Message r25, int r26, org.telegram.tgnet.TLRPC.messages_Dialogs r27, java.util.ArrayList r28, java.util.ArrayList r29, boolean r30, int r31, androidx.collection.LongSparseArray r32, androidx.collection.LongSparseArray r33, androidx.collection.LongSparseArray r34, int r35, boolean r36, int r37, java.util.ArrayList r38) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processLoadedDialogs$219(org.telegram.tgnet.TLRPC$Message, int, org.telegram.tgnet.TLRPC$messages_Dialogs, java.util.ArrayList, java.util.ArrayList, boolean, int, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, int, boolean, int, java.util.ArrayList):void");
+    public void lambda$processLoadedDialogs$219(TLRPC.Message message, int i, TLRPC.messages_Dialogs messages_dialogs, ArrayList arrayList, ArrayList arrayList2, boolean z, int i2, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, LongSparseArray longSparseArray3, int i3, boolean z2, int i4, ArrayList arrayList3) {
+        int i5;
+        int i6;
+        int i7;
+        int i8;
+        int i9;
+        int i10;
+        MessageObject messageObject;
+        int i11;
+        MessageObject messageObject2;
+        long j;
+        if (message != null) {
+            this.dialogsLoadedTillDate = Math.min(this.dialogsLoadedTillDate, message.date);
+        } else {
+            this.dialogsLoadedTillDate = Integer.MIN_VALUE;
+        }
+        if (i != this.DIALOGS_LOAD_TYPE_CACHE) {
+            applyDialogsNotificationsSettings(messages_dialogs.dialogs);
+            getMediaDataController().loadDraftsIfNeed();
+        }
+        putUsers(messages_dialogs.users, i == this.DIALOGS_LOAD_TYPE_CACHE);
+        putChats(messages_dialogs.chats, i == this.DIALOGS_LOAD_TYPE_CACHE);
+        if (arrayList != null) {
+            for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                long j2 = ((TLRPC.UserFull) arrayList.get(i12)).id;
+                this.fullUsers.put(j2, (TLRPC.UserFull) arrayList.get(i12));
+                getTranslateController().updateDialogFull(j2);
+            }
+        }
+        if (arrayList2 != null) {
+            for (int i13 = 0; i13 < arrayList2.size(); i13++) {
+                TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) arrayList2.get(i13);
+                if ((encryptedChat instanceof TLRPC.TL_encryptedChat) && AndroidUtilities.getMyLayerVersion(encryptedChat.layer) < SecretChatHelper.CURRENT_SECRET_CHAT_LAYER) {
+                    getSecretChatHelper().sendNotifyLayerMessage(encryptedChat, null);
+                }
+                putEncryptedChat(encryptedChat, true);
+            }
+        }
+        if (!z && i != this.DIALOGS_LOAD_TYPE_UNKNOWN && i != this.DIALOGS_LOAD_TYPE_CHANNEL) {
+            this.loadingDialogs.put(i2, false);
+        }
+        this.dialogsLoaded = true;
+        if (!z || this.allDialogs.isEmpty()) {
+            i5 = 0;
+        } else {
+            ArrayList<TLRPC.Dialog> arrayList4 = this.allDialogs;
+            i5 = arrayList4.get(arrayList4.size() - 1).last_message_date;
+        }
+        int i14 = 0;
+        int i15 = 0;
+        boolean z3 = false;
+        while (i14 < longSparseArray.size()) {
+            boolean z4 = z3;
+            long jKeyAt = longSparseArray.keyAt(i14);
+            TLRPC.Dialog dialog = (TLRPC.Dialog) longSparseArray.valueAt(i14);
+            TLRPC.Dialog dialog2 = (TLRPC.Dialog) this.dialogs_dict.get(jKeyAt);
+            if (z && dialog2 != null) {
+                dialog2.folder_id = dialog.folder_id;
+            }
+            if (!z || i5 == 0 || dialog.last_message_date >= i5) {
+                if (i != this.DIALOGS_LOAD_TYPE_CACHE && (dialog.draft instanceof TLRPC.TL_draftMessage)) {
+                    getMediaDataController().saveDraft(dialog.id, 0L, dialog.draft, null, false);
+                }
+                if (dialog.folder_id != i2) {
+                    i15++;
+                }
+                ArrayList arrayList5 = (ArrayList) longSparseArray2.get(dialog.id);
+                if (dialog2 == null) {
+                    this.dialogs_dict.put(jKeyAt, dialog);
+                    this.dialogMessage.put(jKeyAt, arrayList5);
+                    if (arrayList5 != null) {
+                        int i16 = 0;
+                        while (i16 < arrayList5.size()) {
+                            MessageObject messageObject3 = (MessageObject) arrayList5.get(i16);
+                            if (messageObject3 != null && messageObject3.messageOwner.peer_id.channel_id == 0) {
+                                this.dialogMessagesByIds.put(messageObject3.getId(), messageObject3);
+                                long j3 = messageObject3.messageOwner.random_id;
+                                if (j3 != 0) {
+                                    this.dialogMessagesByRandomIds.put(j3, messageObject3);
+                                }
+                            }
+                            i16++;
+                            i5 = i5;
+                        }
+                    }
+                    i7 = i5;
+                    if (getTranslateController().isFeatureAvailable(jKeyAt)) {
+                        getTranslateController().checkDialogMessageSure(jKeyAt);
+                    }
+                    z3 = true;
+                } else {
+                    i7 = i5;
+                    if (i != this.DIALOGS_LOAD_TYPE_CACHE) {
+                        dialog2.notify_settings = dialog.notify_settings;
+                    }
+                    dialog2.pinned = dialog.pinned;
+                    dialog2.pinnedNum = dialog.pinnedNum;
+                    ArrayList arrayList6 = (ArrayList) this.dialogMessage.get(jKeyAt);
+                    int i17 = 0;
+                    while (true) {
+                        if (arrayList6 != null && i17 < arrayList6.size()) {
+                            if (arrayList6.get(i17) == null || !((MessageObject) arrayList6.get(i17)).deleted) {
+                                i17++;
+                            }
+                        } else {
+                            if (arrayList6 != null && dialog2.top_message <= 0) {
+                                this.dialogs_dict.put(jKeyAt, dialog);
+                                this.dialogMessage.put(jKeyAt, arrayList5);
+                                for (int i18 = 0; i18 < arrayList6.size(); i18++) {
+                                    MessageObject messageObject4 = (MessageObject) arrayList6.get(i18);
+                                    if (messageObject4 != null) {
+                                        if (messageObject4.messageOwner.peer_id.channel_id == 0) {
+                                            this.dialogMessagesByIds.remove(messageObject4.getId());
+                                        }
+                                        long j4 = messageObject4.messageOwner.random_id;
+                                        if (j4 != 0) {
+                                            this.dialogMessagesByRandomIds.remove(j4);
+                                        }
+                                    }
+                                }
+                                if (arrayList5 != null) {
+                                    int i19 = 0;
+                                    while (i19 < arrayList5.size()) {
+                                        MessageObject messageObject5 = (MessageObject) arrayList5.get(i19);
+                                        if (messageObject5 == null || messageObject5.messageOwner.peer_id.channel_id != 0) {
+                                            i9 = i15;
+                                        } else {
+                                            int i20 = 0;
+                                            while (true) {
+                                                if (i20 >= arrayList6.size()) {
+                                                    i9 = i15;
+                                                    break;
+                                                }
+                                                MessageObject messageObject6 = (MessageObject) arrayList6.get(i20);
+                                                if (messageObject6 != null) {
+                                                    i9 = i15;
+                                                    if (messageObject6.getId() == messageObject5.getId()) {
+                                                        messageObject5.deleted = messageObject6.deleted;
+                                                        break;
+                                                    }
+                                                } else {
+                                                    i9 = i15;
+                                                }
+                                                i20++;
+                                                i15 = i9;
+                                            }
+                                            this.dialogMessagesByIds.put(messageObject5.getId(), messageObject5);
+                                            long j5 = messageObject5.messageOwner.random_id;
+                                            if (j5 != 0) {
+                                                this.dialogMessagesByRandomIds.put(j5, messageObject5);
+                                            }
+                                        }
+                                        i19++;
+                                        i15 = i9;
+                                    }
+                                }
+                                i8 = i15;
+                                if (getTranslateController().isFeatureAvailable(jKeyAt)) {
+                                    getTranslateController().checkDialogMessageSure(jKeyAt);
+                                }
+                            }
+                            z3 = z4;
+                            i15 = i8;
+                        }
+                        i8 = i15;
+                        if (dialog.top_message >= dialog2.top_message) {
+                            this.dialogs_dict.put(jKeyAt, dialog);
+                            this.dialogMessage.put(jKeyAt, arrayList5);
+                            if (arrayList6 != null) {
+                                for (i11 = 0; i11 < arrayList6.size(); i11++) {
+                                    messageObject2 = (MessageObject) arrayList6.get(i11);
+                                    if (messageObject2 != null) {
+                                        if (messageObject2.messageOwner.peer_id.channel_id == 0) {
+                                            this.dialogMessagesByIds.remove(messageObject2.getId());
+                                        }
+                                        j = messageObject2.messageOwner.random_id;
+                                        if (j != 0) {
+                                            this.dialogMessagesByRandomIds.remove(j);
+                                        }
+                                    }
+                                }
+                            }
+                            if (arrayList5 != null) {
+                                for (i10 = 0; i10 < arrayList5.size(); i10++) {
+                                    messageObject = (MessageObject) arrayList5.get(i10);
+                                    if (messageObject == null && messageObject.messageOwner.peer_id.channel_id == 0) {
+                                        for (int i21 = 0; arrayList6 != null && i21 < arrayList6.size(); i21++) {
+                                            MessageObject messageObject7 = (MessageObject) arrayList6.get(i21);
+                                            if (messageObject7 != null && messageObject7.getId() == messageObject.getId()) {
+                                                messageObject.deleted = messageObject7.deleted;
+                                                break;
+                                            }
+                                        }
+                                        this.dialogMessagesByIds.put(messageObject.getId(), messageObject);
+                                        long j6 = messageObject.messageOwner.random_id;
+                                        if (j6 != 0) {
+                                            this.dialogMessagesByRandomIds.put(j6, messageObject);
+                                        }
+                                    }
+                                }
+                            }
+                            if (getTranslateController().isFeatureAvailable(jKeyAt)) {
+                                getTranslateController().checkDialogMessageSure(jKeyAt);
+                            }
+                        } else if ((arrayList6 == null) != (arrayList5 == null) || (arrayList6 != null && arrayList5 != null && arrayList6.size() != arrayList5.size())) {
+                            this.dialogs_dict.put(jKeyAt, dialog);
+                            this.dialogMessage.put(jKeyAt, arrayList5);
+                            if (arrayList6 != null) {
+                                while (i11 < arrayList6.size()) {
+                                    messageObject2 = (MessageObject) arrayList6.get(i11);
+                                    if (messageObject2 != null) {
+                                        if (messageObject2.messageOwner.peer_id.channel_id == 0) {
+                                            this.dialogMessagesByIds.remove(messageObject2.getId());
+                                        }
+                                        j = messageObject2.messageOwner.random_id;
+                                        if (j != 0) {
+                                            this.dialogMessagesByRandomIds.remove(j);
+                                        }
+                                    }
+                                }
+                            }
+                            if (arrayList5 != null) {
+                                while (i10 < arrayList5.size()) {
+                                    messageObject = (MessageObject) arrayList5.get(i10);
+                                    if (messageObject == null) {
+                                    }
+                                }
+                            }
+                            if (getTranslateController().isFeatureAvailable(jKeyAt)) {
+                                getTranslateController().checkDialogMessageSure(jKeyAt);
+                            }
+                        }
+                        z3 = z4;
+                        i15 = i8;
+                    }
+                }
+            } else {
+                z3 = z4;
+                i7 = i5;
+            }
+            i14++;
+            i5 = i7;
+        }
+        boolean z5 = z3;
+        this.allDialogs.clear();
+        int size = this.dialogs_dict.size();
+        for (int i22 = 0; i22 < size; i22++) {
+            TLRPC.Dialog dialog3 = (TLRPC.Dialog) this.dialogs_dict.valueAt(i22);
+            if (this.deletingDialogs.indexOfKey(dialog3.id) < 0) {
+                this.allDialogs.add(dialog3);
+            }
+        }
+        sortDialogs(z ? longSparseArray3 : null);
+        putAllNeededDraftDialogs();
+        if (i != this.DIALOGS_LOAD_TYPE_CHANNEL && i != this.DIALOGS_LOAD_TYPE_UNKNOWN && !z) {
+            this.dialogsEndReached.put(i2, (messages_dialogs.dialogs.size() == 0 || messages_dialogs.dialogs.size() != i3) && i == 0);
+            if (i15 > 0 && i15 < 20 && i2 == 0) {
+                this.dialogsEndReached.put(1, true);
+                if (getUserConfig().getDialogLoadOffsets(i2)[0] == 2147483647L) {
+                    this.serverDialogsEndReached.put(1, true);
+                }
+            }
+            if (!z2) {
+                this.serverDialogsEndReached.put(i2, (messages_dialogs.dialogs.size() == 0 || messages_dialogs.dialogs.size() != i3) && i == 0);
+            }
+        }
+        int totalDialogsCount = getUserConfig().getTotalDialogsCount(i2);
+        long[] dialogLoadOffsets = getUserConfig().getDialogLoadOffsets(i2);
+        if (z2 || z || totalDialogsCount >= 400) {
+            i6 = 0;
+        } else {
+            i6 = 0;
+            i6 = 0;
+            i6 = 0;
+            long j7 = dialogLoadOffsets[0];
+            if (j7 != -1 && j7 != 2147483647L) {
+                loadDialogs(i2, 0, 100, false);
+            }
+        }
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[i6]);
+        if (z) {
+            getUserConfig().migrateOffsetId = i4;
+            getUserConfig().saveConfig(i6);
+            this.migratingDialogs = i6;
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needReloadRecentDialogsSearch, new Object[i6]);
+        } else if (!z5 && i == this.DIALOGS_LOAD_TYPE_CACHE && this.dialogsEndReached.get(i2)) {
+            loadDialogs(i2, i6, i3, i6);
+        }
+        migrateDialogs(getUserConfig().migrateOffsetId, getUserConfig().migrateOffsetDate, getUserConfig().migrateOffsetUserId, getUserConfig().migrateOffsetChatId, getUserConfig().migrateOffsetChannelId, getUserConfig().migrateOffsetAccess);
+        if (!arrayList3.isEmpty()) {
+            reloadDialogsReadValue(arrayList3, 0L);
+        }
+        loadUnreadDialogs();
+        if (messages_dialogs.dialogs != null) {
+            for (int i23 = i6; i23 < messages_dialogs.dialogs.size(); i23++) {
+                long j8 = messages_dialogs.dialogs.get(i23).id;
+                if (isForum(j8) || isMonoForumWithManageRights(j8)) {
+                    this.topicsController.preloadTopics(-j8);
+                }
+            }
+        }
     }
 
     private void applyDialogNotificationsSettings(long j, long j2, TLRPC.PeerNotifySettings peerNotifySettings) {
@@ -11017,33 +22337,23 @@ public class MessagesController extends BaseController implements NotificationCe
         if (j == 0) {
             try {
                 nativeByteBuffer = new NativeByteBuffer(inputPeer.getObjectSize() + 4);
-            } catch (Exception e2) {
-                e = e2;
-                nativeByteBuffer = null;
-            }
-            try {
-                nativeByteBuffer.writeInt32(22);
-                inputPeer.serializeToStream(nativeByteBuffer);
+                try {
+                    nativeByteBuffer.writeInt32(22);
+                    inputPeer.serializeToStream(nativeByteBuffer);
+                } catch (Exception e2) {
+                    e = e2;
+                    FileLog.e(e);
+                }
             } catch (Exception e3) {
                 e = e3;
-                FileLog.e(e);
-                j = getMessagesStorage().createPendingTask(nativeByteBuffer);
-                TLRPC.TL_messages_getUnreadMentions tL_messages_getUnreadMentions = new TLRPC.TL_messages_getUnreadMentions();
-                tL_messages_getUnreadMentions.peer = inputPeer;
-                tL_messages_getUnreadMentions.limit = 1;
-                getConnectionsManager().sendRequest(tL_messages_getUnreadMentions, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$reloadMentionsCountForChannel$221(inputPeer, j, tLObject, tL_error);
-                    }
-                });
+                nativeByteBuffer = null;
             }
             j = getMessagesStorage().createPendingTask(nativeByteBuffer);
         }
-        TLRPC.TL_messages_getUnreadMentions tL_messages_getUnreadMentions2 = new TLRPC.TL_messages_getUnreadMentions();
-        tL_messages_getUnreadMentions2.peer = inputPeer;
-        tL_messages_getUnreadMentions2.limit = 1;
-        getConnectionsManager().sendRequest(tL_messages_getUnreadMentions2, new RequestDelegate() {
+        TLRPC.TL_messages_getUnreadMentions tL_messages_getUnreadMentions = new TLRPC.TL_messages_getUnreadMentions();
+        tL_messages_getUnreadMentions.peer = inputPeer;
+        tL_messages_getUnreadMentions.limit = 1;
+        getConnectionsManager().sendRequest(tL_messages_getUnreadMentions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$reloadMentionsCountForChannel$221(inputPeer, j, tLObject, tL_error);
@@ -11097,17 +22407,12 @@ public class MessagesController extends BaseController implements NotificationCe
                 long jKeyAt = longSparseIntArray.keyAt(i);
                 TLRPC.Dialog dialog = (TLRPC.Dialog) this.dialogs_dict.get(jKeyAt);
                 if (dialog == null) {
-                    int i2 = 0;
-                    while (true) {
-                        if (i2 >= this.allDialogs.size()) {
-                            break;
-                        }
+                    for (int i2 = 0; i2 < this.allDialogs.size(); i2++) {
                         if (this.allDialogs.get(i2).id == jKeyAt) {
                             this.dialogs_dict.put(jKeyAt, this.allDialogs.get(i2));
                             dialog = this.allDialogs.get(i2);
                             break;
                         }
-                        i2++;
                     }
                 }
                 if (dialog == null) {
@@ -11135,12 +22440,12 @@ public class MessagesController extends BaseController implements NotificationCe
                                 }
                                 DialogFilter dialogFilter = dialogFilterArr[i4];
                                 if (dialogFilter != null && (dialogFilter.flags & DIALOG_FILTER_FLAG_EXCLUDE_READ) != 0) {
+                                    z = true;
                                     break;
-                                } else {
-                                    i4++;
+                                    break;
                                 }
+                                i4++;
                             }
-                            z = true;
                         }
                     } else if (i3 == 0 && !dialog.unread_mark && dialog.unread_count != 0) {
                         if (!isDialogMuted(jKeyAt, 0L)) {
@@ -11155,12 +22460,11 @@ public class MessagesController extends BaseController implements NotificationCe
                                 }
                                 DialogFilter dialogFilter2 = dialogFilterArr2[i5];
                                 if (dialogFilter2 != null && (dialogFilter2.flags & DIALOG_FILTER_FLAG_EXCLUDE_READ) != 0) {
+                                    z = true;
                                     break;
-                                } else {
-                                    i5++;
                                 }
+                                i5++;
                             }
-                            z = true;
                         }
                     }
                 }
@@ -11187,12 +22491,12 @@ public class MessagesController extends BaseController implements NotificationCe
                             if (dialogFilter3 != null) {
                                 int i8 = dialogFilter3.flags;
                                 if ((DIALOG_FILTER_FLAG_EXCLUDE_MUTED & i8) != 0 || (i8 & DIALOG_FILTER_FLAG_EXCLUDE_READ) != 0) {
+                                    z = true;
                                     break;
                                 }
                             }
                             i7++;
                         }
-                        z = true;
                     }
                 }
             }
@@ -11229,36 +22533,29 @@ public class MessagesController extends BaseController implements NotificationCe
         if (j == 0) {
             try {
                 nativeByteBuffer = new NativeByteBuffer(tL_messages_getHistory.peer.getObjectSize() + 60);
-            } catch (Exception e2) {
-                e = e2;
-                nativeByteBuffer = null;
-            }
-            try {
-                nativeByteBuffer.writeInt32(14);
-                nativeByteBuffer.writeInt64(dialog.id);
-                nativeByteBuffer.writeInt32(dialog.top_message);
-                nativeByteBuffer.writeInt32(dialog.read_inbox_max_id);
-                nativeByteBuffer.writeInt32(dialog.read_outbox_max_id);
-                nativeByteBuffer.writeInt32(dialog.unread_count);
-                nativeByteBuffer.writeInt32(dialog.last_message_date);
-                nativeByteBuffer.writeInt32(dialog.pts);
-                nativeByteBuffer.writeInt32(dialog.flags);
-                nativeByteBuffer.writeBool(dialog.pinned);
-                nativeByteBuffer.writeInt32(dialog.pinnedNum);
-                nativeByteBuffer.writeInt32(dialog.unread_mentions_count);
-                nativeByteBuffer.writeBool(dialog.unread_mark);
-                nativeByteBuffer.writeInt32(dialog.folder_id);
-                tL_messages_getHistory.peer.serializeToStream(nativeByteBuffer);
+                try {
+                    nativeByteBuffer.writeInt32(14);
+                    nativeByteBuffer.writeInt64(dialog.id);
+                    nativeByteBuffer.writeInt32(dialog.top_message);
+                    nativeByteBuffer.writeInt32(dialog.read_inbox_max_id);
+                    nativeByteBuffer.writeInt32(dialog.read_outbox_max_id);
+                    nativeByteBuffer.writeInt32(dialog.unread_count);
+                    nativeByteBuffer.writeInt32(dialog.last_message_date);
+                    nativeByteBuffer.writeInt32(dialog.pts);
+                    nativeByteBuffer.writeInt32(dialog.flags);
+                    nativeByteBuffer.writeBool(dialog.pinned);
+                    nativeByteBuffer.writeInt32(dialog.pinnedNum);
+                    nativeByteBuffer.writeInt32(dialog.unread_mentions_count);
+                    nativeByteBuffer.writeBool(dialog.unread_mark);
+                    nativeByteBuffer.writeInt32(dialog.folder_id);
+                    tL_messages_getHistory.peer.serializeToStream(nativeByteBuffer);
+                } catch (Exception e2) {
+                    e = e2;
+                    FileLog.e(e);
+                }
             } catch (Exception e3) {
                 e = e3;
-                FileLog.e(e);
-                j = getMessagesStorage().createPendingTask(nativeByteBuffer);
-                getConnectionsManager().sendRequest(tL_messages_getHistory, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$checkLastDialogMessage$227(dialog, j, tLObject, tL_error);
-                    }
-                });
+                nativeByteBuffer = null;
             }
             j = getMessagesStorage().createPendingTask(nativeByteBuffer);
         }
@@ -11370,8 +22667,163 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$processDialogsUpdate$229(final org.telegram.tgnet.TLRPC.messages_Dialogs r20, final boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processDialogsUpdate$229(org.telegram.tgnet.TLRPC$messages_Dialogs, boolean):void");
+    public void lambda$processDialogsUpdate$229(final TLRPC.messages_Dialogs messages_dialogs, final boolean z) {
+        TLRPC.Chat chat;
+        LongSparseIntArray longSparseIntArray;
+        TLRPC.Chat chat2;
+        ArrayList arrayList;
+        TLRPC.Message message;
+        int i;
+        long j;
+        TLRPC.Chat chat3;
+        ArrayList<MessageObject> arrayList2;
+        ArrayList arrayList3;
+        final LongSparseArray longSparseArray = new LongSparseArray();
+        final LongSparseArray longSparseArray2 = new LongSparseArray();
+        LongSparseArray longSparseArray3 = new LongSparseArray(messages_dialogs.users.size());
+        LongSparseArray longSparseArray4 = new LongSparseArray(messages_dialogs.chats.size());
+        LongSparseIntArray longSparseIntArray2 = new LongSparseIntArray();
+        for (int i2 = 0; i2 < messages_dialogs.users.size(); i2++) {
+            TLRPC.User user = messages_dialogs.users.get(i2);
+            longSparseArray3.put(user.id, user);
+        }
+        for (int i3 = 0; i3 < messages_dialogs.chats.size(); i3++) {
+            TLRPC.Chat chat4 = messages_dialogs.chats.get(i3);
+            longSparseArray4.put(chat4.id, chat4);
+        }
+        ArrayList<MessageObject> arrayList4 = new ArrayList<>();
+        int i4 = 0;
+        while (i4 < messages_dialogs.messages.size()) {
+            TLRPC.Message message2 = messages_dialogs.messages.get(i4);
+            LongSparseIntArray longSparseIntArray3 = longSparseIntArray2;
+            long j2 = this.promoDialogId;
+            if (j2 == 0 || j2 != message2.dialog_id) {
+                TLRPC.Peer peer = message2.peer_id;
+                if (peer != null) {
+                    long j3 = peer.channel_id;
+                    if (j3 != 0) {
+                        TLRPC.Chat chat5 = (TLRPC.Chat) longSparseArray4.get(j3);
+                        if (chat5 == null || !ChatObject.isNotInChat(chat5)) {
+                            arrayList2 = arrayList4;
+                            MessageObject messageObject = new MessageObject(this.currentAccount, message2, longSparseArray3, longSparseArray4, false, false);
+                            arrayList2.add(messageObject);
+                            long dialogId = messageObject.getDialogId();
+                            arrayList3 = (ArrayList) longSparseArray2.get(dialogId);
+                            if (arrayList3 == null) {
+                                arrayList3 = new ArrayList(1);
+                            }
+                            arrayList3.add(messageObject);
+                            longSparseArray2.put(dialogId, arrayList3);
+                        } else {
+                            arrayList2 = arrayList4;
+                        }
+                    } else {
+                        if (peer != null) {
+                            j = peer.chat_id;
+                            if (j == 0 && (chat3 = (TLRPC.Chat) longSparseArray4.get(j)) != null && (chat3.migrated_to != null || ChatObject.isNotInChat(chat3))) {
+                                arrayList2 = arrayList4;
+                            }
+                        }
+                        arrayList2 = arrayList4;
+                        MessageObject messageObject2 = new MessageObject(this.currentAccount, message2, longSparseArray3, longSparseArray4, false, false);
+                        arrayList2.add(messageObject2);
+                        long dialogId2 = messageObject2.getDialogId();
+                        arrayList3 = (ArrayList) longSparseArray2.get(dialogId2);
+                        if (arrayList3 == null) {
+                            arrayList3 = new ArrayList(1);
+                        }
+                        arrayList3.add(messageObject2);
+                        longSparseArray2.put(dialogId2, arrayList3);
+                    }
+                } else {
+                    if (peer != null) {
+                        j = peer.chat_id;
+                        if (j == 0) {
+                        }
+                    }
+                    arrayList2 = arrayList4;
+                    MessageObject messageObject3 = new MessageObject(this.currentAccount, message2, longSparseArray3, longSparseArray4, false, false);
+                    arrayList2.add(messageObject3);
+                    long dialogId3 = messageObject3.getDialogId();
+                    arrayList3 = (ArrayList) longSparseArray2.get(dialogId3);
+                    if (arrayList3 == null) {
+                        arrayList3 = new ArrayList(1);
+                    }
+                    arrayList3.add(messageObject3);
+                    longSparseArray2.put(dialogId3, arrayList3);
+                }
+            } else {
+                arrayList2 = arrayList4;
+                MessageObject messageObject4 = new MessageObject(this.currentAccount, message2, longSparseArray3, longSparseArray4, false, false);
+                arrayList2.add(messageObject4);
+                long dialogId4 = messageObject4.getDialogId();
+                arrayList3 = (ArrayList) longSparseArray2.get(dialogId4);
+                if (arrayList3 == null) {
+                    arrayList3 = new ArrayList(1);
+                }
+                arrayList3.add(messageObject4);
+                longSparseArray2.put(dialogId4, arrayList3);
+            }
+            i4++;
+            arrayList4 = arrayList2;
+            longSparseIntArray2 = longSparseIntArray3;
+        }
+        LongSparseIntArray longSparseIntArray4 = longSparseIntArray2;
+        getFileLoader().checkMediaExistance(arrayList4);
+        int i5 = 0;
+        while (i5 < messages_dialogs.dialogs.size()) {
+            TLRPC.Dialog dialog = messages_dialogs.dialogs.get(i5);
+            DialogObject.initDialog(dialog);
+            long j4 = this.promoDialogId;
+            if ((j4 == 0 || j4 != dialog.id) && (!DialogObject.isChannel(dialog) ? !(!DialogObject.isChatDialog(dialog.id) || (chat = (TLRPC.Chat) longSparseArray4.get(-dialog.id)) == null || (chat.migrated_to == null && !ChatObject.isNotInChat(chat))) : !((chat2 = (TLRPC.Chat) longSparseArray4.get(-dialog.id)) == null || !ChatObject.isNotInChat(chat2)))) {
+                longSparseIntArray = longSparseIntArray4;
+            } else {
+                if (dialog.last_message_date == 0 && (arrayList = (ArrayList) longSparseArray2.get(dialog.id)) != null) {
+                    int i6 = Integer.MIN_VALUE;
+                    for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                        MessageObject messageObject5 = (MessageObject) arrayList.get(i7);
+                        if (messageObject5 != null && (message = messageObject5.messageOwner) != null && (i = message.date) > i6) {
+                            i6 = i;
+                        }
+                    }
+                    if (i6 > Integer.MIN_VALUE) {
+                        dialog.last_message_date = i6;
+                    }
+                }
+                longSparseArray.put(dialog.id, dialog);
+                longSparseIntArray = longSparseIntArray4;
+                longSparseIntArray.put(dialog.id, dialog.unread_count);
+                Integer numValueOf = this.dialogs_read_inbox_max.get(Long.valueOf(dialog.id));
+                if (numValueOf == null) {
+                    numValueOf = 0;
+                }
+                int i8 = dialog.read_inbox_max_id;
+                int i9 = dialog.top_message;
+                if (i8 > i9) {
+                    dialog.read_inbox_max_id = i9;
+                }
+                int iIntValue = numValueOf.intValue();
+                int i10 = dialog.top_message;
+                if (iIntValue > i10) {
+                    numValueOf = Integer.valueOf(i10);
+                }
+                this.dialogs_read_inbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(numValueOf.intValue(), dialog.read_inbox_max_id)));
+                Integer num = this.dialogs_read_outbox_max.get(Long.valueOf(dialog.id));
+                if (num == null) {
+                    num = 0;
+                }
+                this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num.intValue(), dialog.read_outbox_max_id)));
+            }
+            i5++;
+            longSparseIntArray4 = longSparseIntArray;
+        }
+        final LongSparseIntArray longSparseIntArray5 = longSparseIntArray4;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$processDialogsUpdate$228(messages_dialogs, longSparseArray, longSparseArray2, z, longSparseIntArray5);
+            }
+        });
     }
 
     public void lambda$processDialogsUpdate$228(org.telegram.tgnet.TLRPC.messages_Dialogs r20, androidx.collection.LongSparseArray r21, androidx.collection.LongSparseArray r22, boolean r23, org.telegram.messenger.support.LongSparseIntArray r24) {
@@ -11459,7 +22911,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (z) {
             this.lastViewsCheckTime = 0L;
         } else if (iMin < 5) {
-            this.lastViewsCheckTime = Math.min(this.lastViewsCheckTime, System.currentTimeMillis() - ((5 - iMin) * 1000));
+            this.lastViewsCheckTime = Math.min(this.lastViewsCheckTime, System.currentTimeMillis() - ((long) ((5 - iMin) * 1000)));
         }
     }
 
@@ -11551,18 +23003,17 @@ public class MessagesController extends BaseController implements NotificationCe
         NativeByteBuffer nativeByteBuffer;
         try {
             nativeByteBuffer = new NativeByteBuffer(16);
-        } catch (Exception e) {
-            e = e;
-            nativeByteBuffer = null;
-        }
-        try {
-            nativeByteBuffer.writeInt32(102);
-            nativeByteBuffer.writeInt64(j);
-            nativeByteBuffer.writeInt32(i);
+            try {
+                nativeByteBuffer.writeInt32(102);
+                nativeByteBuffer.writeInt64(j);
+                nativeByteBuffer.writeInt32(i);
+            } catch (Exception e) {
+                e = e;
+                FileLog.e(e);
+            }
         } catch (Exception e2) {
             e = e2;
-            FileLog.e(e);
-            return getMessagesStorage().createPendingTask(nativeByteBuffer);
+            nativeByteBuffer = null;
         }
         return getMessagesStorage().createPendingTask(nativeByteBuffer);
     }
@@ -11578,8 +23029,74 @@ public class MessagesController extends BaseController implements NotificationCe
         markMessageAsRead2(j, i, inputChannel, i2, j2, true);
     }
 
-    public void markMessageAsRead2(long r15, int r17, org.telegram.tgnet.TLRPC.InputChannel r18, int r19, long r20, boolean r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.markMessageAsRead2(long, int, org.telegram.tgnet.TLRPC$InputChannel, int, long, boolean):void");
+    public void markMessageAsRead2(long j, int i, TLRPC.InputChannel inputChannel, int i2, long j2, boolean z) {
+        TLRPC.InputChannel inputChannel2;
+        NativeByteBuffer nativeByteBuffer;
+        final long jCreatePendingTask;
+        if (i == 0 || i2 < 0) {
+            return;
+        }
+        if (DialogObject.isChatDialog(j) && inputChannel == null) {
+            TLRPC.InputChannel inputChannel3 = getInputChannel(j);
+            if (inputChannel3 == null) {
+                return;
+            } else {
+                inputChannel2 = inputChannel3;
+            }
+        } else {
+            inputChannel2 = inputChannel;
+        }
+        if (j2 == 0) {
+            try {
+                nativeByteBuffer = new NativeByteBuffer(20 + (inputChannel2 != null ? inputChannel2.getObjectSize() : 0));
+                try {
+                    nativeByteBuffer.writeInt32(z ? 23 : 101);
+                    try {
+                        nativeByteBuffer.writeInt64(j);
+                        nativeByteBuffer.writeInt32(i);
+                        nativeByteBuffer.writeInt32(i2);
+                        if (inputChannel2 != null) {
+                            inputChannel2.serializeToStream(nativeByteBuffer);
+                        }
+                    } catch (Exception e) {
+                        e = e;
+                        FileLog.e(e);
+                    }
+                } catch (Exception e2) {
+                    e = e2;
+                }
+            } catch (Exception e3) {
+                e = e3;
+                nativeByteBuffer = null;
+            }
+            jCreatePendingTask = getMessagesStorage().createPendingTask(nativeByteBuffer);
+        } else {
+            jCreatePendingTask = j2;
+        }
+        int currentTime = getConnectionsManager().getCurrentTime();
+        if (z) {
+            getMessagesStorage().createTaskForMid(j, i, currentTime, currentTime, i2, false);
+        }
+        if (inputChannel2 != null) {
+            TLRPC.TL_channels_readMessageContents tL_channels_readMessageContents = new TLRPC.TL_channels_readMessageContents();
+            tL_channels_readMessageContents.channel = inputChannel2;
+            tL_channels_readMessageContents.id.add(Integer.valueOf(i));
+            getConnectionsManager().sendRequest(tL_channels_readMessageContents, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$markMessageAsRead2$235(jCreatePendingTask, tLObject, tL_error);
+                }
+            });
+            return;
+        }
+        TLRPC.TL_messages_readMessageContents tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
+        tL_messages_readMessageContents.id.add(Integer.valueOf(i));
+        getConnectionsManager().sendRequest(tL_messages_readMessageContents, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$markMessageAsRead2$236(jCreatePendingTask, tLObject, tL_error);
+            }
+        });
     }
 
     public void lambda$markMessageAsRead2$235(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -11615,7 +23132,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     private void completeReadTask(ReadTask readTask) {
-        TLRPC.TL_messages_readHistory tL_messages_readHistory;
+        TLObject tLObject;
         if (readTask.replyId != 0 && readTask.monoForumPeerId == 0) {
             TLRPC.TL_messages_readDiscussion tL_messages_readDiscussion = new TLRPC.TL_messages_readDiscussion();
             tL_messages_readDiscussion.msg_id = (int) readTask.replyId;
@@ -11623,8 +23140,8 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_readDiscussion.read_max_id = readTask.maxId;
             getConnectionsManager().sendRequest(tL_messages_readDiscussion, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    MessagesController.lambda$completeReadTask$237(tLObject, tL_error);
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    MessagesController.lambda$completeReadTask$237(tLObject2, tL_error);
                 }
             });
             return;
@@ -11636,22 +23153,22 @@ public class MessagesController extends BaseController implements NotificationCe
                 tL_messages_readSavedHistory.parent_peer = getInputPeer(readTask.dialogId);
                 tL_messages_readSavedHistory.peer = getInputPeer(readTask.monoForumPeerId);
                 tL_messages_readSavedHistory.max_id = readTask.maxId;
-                tL_messages_readHistory = tL_messages_readSavedHistory;
+                tLObject = tL_messages_readSavedHistory;
             } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
                 TLRPC.TL_channels_readHistory tL_channels_readHistory = new TLRPC.TL_channels_readHistory();
                 tL_channels_readHistory.channel = getInputChannel(-readTask.dialogId);
                 tL_channels_readHistory.max_id = readTask.maxId;
-                tL_messages_readHistory = tL_channels_readHistory;
+                tLObject = tL_channels_readHistory;
             } else {
-                TLRPC.TL_messages_readHistory tL_messages_readHistory2 = new TLRPC.TL_messages_readHistory();
-                tL_messages_readHistory2.peer = inputPeer;
-                tL_messages_readHistory2.max_id = readTask.maxId;
-                tL_messages_readHistory = tL_messages_readHistory2;
+                TLRPC.TL_messages_readHistory tL_messages_readHistory = new TLRPC.TL_messages_readHistory();
+                tL_messages_readHistory.peer = inputPeer;
+                tL_messages_readHistory.max_id = readTask.maxId;
+                tLObject = tL_messages_readHistory;
             }
-            getConnectionsManager().sendRequest(tL_messages_readHistory, new RequestDelegate() {
+            getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$completeReadTask$238(tLObject, tL_error);
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$completeReadTask$238(tLObject2, tL_error);
                 }
             });
             return;
@@ -11669,8 +23186,8 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_readEncryptedHistory.max_date = readTask.maxDate;
         getConnectionsManager().sendRequest(tL_messages_readEncryptedHistory, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                MessagesController.lambda$completeReadTask$239(tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                MessagesController.lambda$completeReadTask$239(tLObject2, tL_error);
             }
         });
     }
@@ -11756,8 +23273,60 @@ public class MessagesController extends BaseController implements NotificationCe
         getConnectionsManager().sendRequest(tL_messages_readMentions, null);
     }
 
-    public void markDialogAsRead(final long r17, final int r19, final int r20, final int r21, final boolean r22, final long r23, final int r25, final boolean r26, int r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.markDialogAsRead(long, int, int, int, boolean, long, int, boolean, int):void");
+    public void markDialogAsRead(final long j, final int i, final int i2, final int i3, final boolean z, final long j2, final int i4, final boolean z2, int i5) {
+        boolean z3;
+        if (j2 == 0) {
+            boolean z4 = getNotificationsController().showBadgeMessages;
+            if (DialogObject.isEncryptedDialog(j)) {
+                if (i3 == 0) {
+                    return;
+                }
+                TLRPC.EncryptedChat encryptedChat = getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(j)));
+                getMessagesStorage().processPendingRead(j, i, i2, i5);
+                getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$markDialogAsRead$244(j, i3, z, i4, i2);
+                    }
+                });
+                if (encryptedChat != null && encryptedChat.ttl > 0) {
+                    getMessagesStorage().createTaskForSecretChat(encryptedChat.id, i3, Math.max(getConnectionsManager().getCurrentTime(), i3), 0, null);
+                }
+            } else {
+                if (i == 0) {
+                    return;
+                }
+                Integer num = this.dialogs_read_inbox_max.get(Long.valueOf(j));
+                if (num == null) {
+                    num = 0;
+                }
+                this.dialogs_read_inbox_max.put(Long.valueOf(j), Integer.valueOf(Math.max(num.intValue(), i)));
+                getMessagesStorage().processPendingRead(j, i, i2, i5);
+                getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$markDialogAsRead$242(j, i4, i, z);
+                    }
+                });
+                if (i == Integer.MAX_VALUE) {
+                    z3 = false;
+                }
+            }
+            z3 = true;
+        } else if (i != Integer.MAX_VALUE) {
+            z3 = true;
+        } else {
+            z3 = false;
+        }
+        final long j3 = getMessagesStorage().isMonoForum(j) ? j2 : 0L;
+        if (z3) {
+            Utilities.stageQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$markDialogAsRead$245(j2, j, j3, z2, i3, i);
+                }
+            });
+        }
     }
 
     public void lambda$markDialogAsRead$242(final long j, final int i, final int i2, final boolean z) {
@@ -12067,11 +23636,9 @@ public class MessagesController extends BaseController implements NotificationCe
         if (messages_chats != null) {
             ArrayList arrayList = new ArrayList(messages_chats.chats.size());
             putChats(messages_chats.chats, true);
-            Iterator<TLRPC.Chat> it = messages_chats.chats.iterator();
-            while (it.hasNext()) {
-                TLRPC.Chat next = it.next();
-                if (next.creator && !ChatObject.isMonoForum(next) && !ChatObject.isCommunity(next)) {
-                    arrayList.add(next);
+            for (TLRPC.Chat chat : messages_chats.chats) {
+                if (chat.creator && !ChatObject.isMonoForum(chat) && !ChatObject.isCommunity(chat)) {
+                    arrayList.add(chat);
                 }
             }
             callback2.run(arrayList, null);
@@ -12371,34 +23938,29 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.InputChannel inputChannel;
         if (longCallback != null) {
             int i = 0;
-            int i2 = 0;
             while (true) {
                 chat = null;
-                if (i2 >= updates.chats.size()) {
+                if (i >= updates.chats.size()) {
                     chat2 = null;
                     break;
                 }
-                chat2 = updates.chats.get(i2);
+                chat2 = updates.chats.get(i);
                 if (j == chat2.id) {
                     break;
                 } else {
-                    i2++;
+                    i++;
                 }
             }
             if (chat2 == null || (inputChannel = chat2.migrated_to) == null) {
                 return;
             }
             long j2 = inputChannel.channel_id;
-            while (true) {
-                if (i >= updates.chats.size()) {
-                    break;
-                }
-                TLRPC.Chat chat3 = updates.chats.get(i);
+            for (int i2 = 0; i2 < updates.chats.size(); i2++) {
+                TLRPC.Chat chat3 = updates.chats.get(i2);
                 if (j2 == chat3.id) {
                     chat = chat3;
                     break;
                 }
-                i++;
             }
             if (chat != null) {
                 longCallback.run(j2);
@@ -12625,24 +24187,24 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             return;
         }
-        Iterator<TLRPC.Update> it = updates.updates.iterator();
-        while (true) {
-            if (!it.hasNext()) {
-                i = 0;
-                break;
-            }
-            TLRPC.Update next = it.next();
-            if (next instanceof TL_update.TL_updateNewMessage) {
-                TLRPC.MessageAction messageAction = ((TL_update.TL_updateNewMessage) next).message.action;
+        for (TLRPC.Update update : updates.updates) {
+            if (update instanceof TL_update.TL_updateNewMessage) {
+                TLRPC.MessageAction messageAction = ((TL_update.TL_updateNewMessage) update).message.action;
                 if (messageAction instanceof TLRPC.TL_messageActionNoForwardsRequest) {
                     i = 2;
-                    break;
                 } else if (messageAction instanceof TLRPC.TL_messageActionNoForwardsToggle) {
                     i = 1;
-                    break;
                 }
+                processUpdates(updates, false);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$toggleChatNoForwards$276(callback2, i);
+                    }
+                });
             }
         }
+        i = 0;
         processUpdates(updates, false);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -12922,8 +24484,64 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$updateChannelUserName$291(long r5, java.lang.String r7, java.lang.Runnable r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$updateChannelUserName$291(long, java.lang.String, java.lang.Runnable):void");
+    public void lambda$updateChannelUserName$291(long j, String str, Runnable runnable) {
+        ArrayList<TLRPC.TL_username> arrayList;
+        TLRPC.Chat chat = getChat(Long.valueOf(j));
+        if (chat.usernames != null) {
+            int i = 0;
+            while (true) {
+                if (i < chat.usernames.size()) {
+                    TLRPC.TL_username tL_username = chat.usernames.get(i);
+                    if (tL_username == null || !tL_username.editable) {
+                        i++;
+                    } else {
+                        tL_username.username = str;
+                    }
+                } else {
+                    arrayList = chat.usernames;
+                    if (arrayList != null || arrayList.size() >= 1) {
+                        if (chat.usernames == null) {
+                            chat.usernames = new ArrayList<>();
+                        }
+                        TLRPC.TL_username tL_username2 = new TLRPC.TL_username();
+                        tL_username2.username = str;
+                        tL_username2.active = true;
+                        tL_username2.editable = true;
+                        chat.usernames.add(0, tL_username2);
+                    } else {
+                        chat.username = str;
+                    }
+                }
+            }
+        } else {
+            arrayList = chat.usernames;
+            if (arrayList != null) {
+                if (chat.usernames == null) {
+                    chat.usernames = new ArrayList<>();
+                }
+                TLRPC.TL_username tL_username3 = new TLRPC.TL_username();
+                tL_username3.username = str;
+                tL_username3.active = true;
+                tL_username3.editable = true;
+                chat.usernames.add(0, tL_username3);
+            } else {
+                if (chat.usernames == null) {
+                    chat.usernames = new ArrayList<>();
+                }
+                TLRPC.TL_username tL_username4 = new TLRPC.TL_username();
+                tL_username4.username = str;
+                tL_username4.active = true;
+                tL_username4.editable = true;
+                chat.usernames.add(0, tL_username4);
+            }
+        }
+        ArrayList arrayList2 = new ArrayList();
+        arrayList2.add(chat);
+        getMessagesStorage().putUsersAndChats(null, arrayList2, true, true);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(UPDATE_MASK_CHAT));
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 
     public void sendBotStart(TLRPC.User user, String str) {
@@ -13029,7 +24647,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void addUserToChat(final long j, final TLRPC.User user, int i, String str, final BaseFragment baseFragment, final boolean z, final Runnable runnable, final ErrorDelegate errorDelegate, final Utilities.Callback<TLRPC.TL_messages_invitedUsers> callback) {
-        TLRPC.TL_messages_addChatUser tL_messages_addChatUser;
+        TLObject tLObject;
         if (user == null) {
             if (errorDelegate != null) {
                 errorDelegate.run(null);
@@ -13056,7 +24674,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             tL_messages_startBot.start_param = str;
             tL_messages_startBot.random_id = Utilities.random.nextLong();
-            tL_messages_addChatUser = tL_messages_startBot;
+            tLObject = tL_messages_startBot;
         } else if (zIsChannel) {
             if (inputUser instanceof TLRPC.TL_inputUserSelf) {
                 if (this.joiningToChannels.contains(Long.valueOf(j))) {
@@ -13069,26 +24687,26 @@ public class MessagesController extends BaseController implements NotificationCe
                     TLRPC.TL_channels_joinChannel tL_channels_joinChannel = new TLRPC.TL_channels_joinChannel();
                     tL_channels_joinChannel.channel = getInputChannel(j);
                     this.joiningToChannels.add(Long.valueOf(j));
-                    tL_messages_addChatUser = tL_channels_joinChannel;
+                    tLObject = tL_channels_joinChannel;
                 }
             } else {
                 TLRPC.TL_channels_inviteToChannel tL_channels_inviteToChannel = new TLRPC.TL_channels_inviteToChannel();
                 tL_channels_inviteToChannel.channel = getInputChannel(j);
                 tL_channels_inviteToChannel.users.add(inputUser);
-                tL_messages_addChatUser = tL_channels_inviteToChannel;
+                tLObject = tL_channels_inviteToChannel;
             }
         } else {
-            TLRPC.TL_messages_addChatUser tL_messages_addChatUser2 = new TLRPC.TL_messages_addChatUser();
-            tL_messages_addChatUser2.chat_id = j;
-            tL_messages_addChatUser2.fwd_limit = i;
-            tL_messages_addChatUser2.user_id = inputUser;
-            tL_messages_addChatUser = tL_messages_addChatUser2;
+            TLRPC.TL_messages_addChatUser tL_messages_addChatUser = new TLRPC.TL_messages_addChatUser();
+            tL_messages_addChatUser.chat_id = j;
+            tL_messages_addChatUser.fwd_limit = i;
+            tL_messages_addChatUser.user_id = inputUser;
+            tLObject = tL_messages_addChatUser;
         }
-        final TLRPC.TL_messages_addChatUser tL_messages_addChatUser3 = tL_messages_addChatUser;
-        getConnectionsManager().sendRequest(tL_messages_addChatUser3, new RequestDelegate() {
+        final TLObject tLObject2 = tLObject;
+        getConnectionsManager().sendRequest(tLObject2, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$addUserToChat$310(zIsChannel, inputUser, j, callback, runnable, user, z, errorDelegate, baseFragment, tL_messages_addChatUser3, z2, chat, tLObject, tL_error);
+            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$addUserToChat$310(zIsChannel, inputUser, j, callback, runnable, user, z, errorDelegate, baseFragment, tLObject2, z2, chat, tLObject3, tL_error);
             }
         });
     }
@@ -13335,8 +24953,9 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void deleteParticipantFromChat(final long j, TLRPC.InputPeer inputPeer, boolean z, boolean z2, final Runnable runnable) {
-        TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser;
-        TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser2;
+        TLObject tLObject;
+        TLRPC.TL_channels_editBanned tL_channels_editBanned;
+        TLObject tLObject2;
         if (inputPeer == null) {
             return;
         }
@@ -13348,15 +24967,15 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (chat.creator && z) {
                     TLRPC.TL_channels_deleteChannel tL_channels_deleteChannel = new TLRPC.TL_channels_deleteChannel();
                     tL_channels_deleteChannel.channel = getInputChannel(chat);
-                    tL_messages_deleteChatUser2 = tL_channels_deleteChannel;
+                    tLObject2 = tL_channels_deleteChannel;
                 } else {
                     TLRPC.TL_channels_leaveChannel tL_channels_leaveChannel = new TLRPC.TL_channels_leaveChannel();
                     tL_channels_leaveChannel.channel = getInputChannel(chat);
-                    tL_messages_deleteChatUser2 = tL_channels_leaveChannel;
+                    tLObject2 = tL_channels_leaveChannel;
                 }
-                tL_messages_deleteChatUser = tL_messages_deleteChatUser2;
+                tLObject = tLObject2;
             } else {
-                TLRPC.TL_channels_editBanned tL_channels_editBanned = new TLRPC.TL_channels_editBanned();
+                tL_channels_editBanned = new TLRPC.TL_channels_editBanned();
                 tL_channels_editBanned.channel = getInputChannel(chat);
                 tL_channels_editBanned.participant = inputPeer;
                 TLRPC.TL_chatBannedRights tL_chatBannedRights = new TLRPC.TL_chatBannedRights();
@@ -13375,33 +24994,34 @@ public class MessagesController extends BaseController implements NotificationCe
                 tL_chatBannedRights.change_info = true;
                 tL_chatBannedRights.edit_rank = true;
                 tL_chatBannedRights.send_reactions = true;
-                tL_messages_deleteChatUser = tL_channels_editBanned;
             }
         } else if (z) {
             TLRPC.TL_messages_deleteChat tL_messages_deleteChat = new TLRPC.TL_messages_deleteChat();
             tL_messages_deleteChat.chat_id = j;
             getConnectionsManager().sendRequest(tL_messages_deleteChat, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    MessagesController.lambda$deleteParticipantFromChat$311(tLObject, tL_error);
+                public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                    MessagesController.lambda$deleteParticipantFromChat$311(tLObject3, tL_error);
                 }
             });
             return;
         } else {
-            TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser3 = new TLRPC.TL_messages_deleteChatUser();
-            tL_messages_deleteChatUser3.chat_id = j;
-            tL_messages_deleteChatUser3.user_id = getInputUser(inputPeer);
-            tL_messages_deleteChatUser3.revoke_history = true;
-            tL_messages_deleteChatUser = tL_messages_deleteChatUser3;
+            TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser = new TLRPC.TL_messages_deleteChatUser();
+            tL_messages_deleteChatUser.chat_id = j;
+            tL_messages_deleteChatUser.user_id = getInputUser(inputPeer);
+            tL_messages_deleteChatUser.revoke_history = true;
+            tLObject = tL_messages_deleteChatUser;
         }
         if (z3) {
+            tLObject = tL_channels_editBanned;
             deleteDialog(-j, 0, z2);
         }
+        tLObject = tL_channels_editBanned;
         final boolean z4 = z3;
-        getConnectionsManager().sendRequest(tL_messages_deleteChatUser, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$deleteParticipantFromChat$313(zIsChannel, z4, j, runnable, tLObject, tL_error);
+            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$deleteParticipantFromChat$313(zIsChannel, z4, j, runnable, tLObject3, tL_error);
             }
         }, 64);
     }
@@ -13430,8 +25050,8 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void deleteParticipantFromChat(final long j, final TLRPC.User user, TLRPC.Chat chat, boolean z, boolean z2) {
         TLRPC.InputPeer inputPeer;
-        TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser;
-        TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser2;
+        TLObject tLObject;
+        TLObject tLObject2;
         if (user == null && chat == null) {
             return;
         }
@@ -13447,18 +25067,18 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (chat2.creator && z) {
                     TLRPC.TL_channels_deleteChannel tL_channels_deleteChannel = new TLRPC.TL_channels_deleteChannel();
                     tL_channels_deleteChannel.channel = getInputChannel(chat2);
-                    tL_messages_deleteChatUser = tL_channels_deleteChannel;
+                    tLObject = tL_channels_deleteChannel;
                 } else {
                     TLRPC.TL_channels_leaveChannel tL_channels_leaveChannel = new TLRPC.TL_channels_leaveChannel();
                     tL_channels_leaveChannel.channel = getInputChannel(chat2);
-                    tL_messages_deleteChatUser = tL_channels_leaveChannel;
+                    tLObject = tL_channels_leaveChannel;
                 }
             } else {
                 if (ChatObject.isCommunity(chat2)) {
                     TL_communities.TL_communities_toggleParticipantBanned tL_communities_toggleParticipantBanned = new TL_communities.TL_communities_toggleParticipantBanned();
                     tL_communities_toggleParticipantBanned.participant = inputPeer;
                     tL_communities_toggleParticipantBanned.community = getInputChannel(chat2);
-                    tL_messages_deleteChatUser2 = tL_communities_toggleParticipantBanned;
+                    tLObject2 = tL_communities_toggleParticipantBanned;
                 } else {
                     TLRPC.TL_channels_editBanned tL_channels_editBanned = new TLRPC.TL_channels_editBanned();
                     tL_channels_editBanned.channel = getInputChannel(chat2);
@@ -13479,34 +25099,34 @@ public class MessagesController extends BaseController implements NotificationCe
                     tL_chatBannedRights.change_info = true;
                     tL_chatBannedRights.edit_rank = true;
                     tL_chatBannedRights.send_reactions = true;
-                    tL_messages_deleteChatUser2 = tL_channels_editBanned;
+                    tLObject2 = tL_channels_editBanned;
                 }
-                tL_messages_deleteChatUser = tL_messages_deleteChatUser2;
+                tLObject = tLObject2;
             }
         } else if (z) {
             TLRPC.TL_messages_deleteChat tL_messages_deleteChat = new TLRPC.TL_messages_deleteChat();
             tL_messages_deleteChat.chat_id = j;
             getConnectionsManager().sendRequest(tL_messages_deleteChat, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    MessagesController.lambda$deleteParticipantFromChat$314(tLObject, tL_error);
+                public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                    MessagesController.lambda$deleteParticipantFromChat$314(tLObject3, tL_error);
                 }
             });
             return;
         } else {
-            TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser3 = new TLRPC.TL_messages_deleteChatUser();
-            tL_messages_deleteChatUser3.chat_id = j;
-            tL_messages_deleteChatUser3.user_id = getInputUser(user);
-            tL_messages_deleteChatUser3.revoke_history = true;
-            tL_messages_deleteChatUser = tL_messages_deleteChatUser3;
+            TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser = new TLRPC.TL_messages_deleteChatUser();
+            tL_messages_deleteChatUser.chat_id = j;
+            tL_messages_deleteChatUser.user_id = getInputUser(user);
+            tL_messages_deleteChatUser.revoke_history = true;
+            tLObject = tL_messages_deleteChatUser;
         }
         if (UserObject.isUserSelf(user)) {
             deleteDialog(-j, 0, z2);
         }
-        getConnectionsManager().sendRequest(tL_messages_deleteChatUser, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$deleteParticipantFromChat$316(zIsChannel, user, j, tLObject, tL_error);
+            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$deleteParticipantFromChat$316(zIsChannel, user, j, tLObject3, tL_error);
             }
         }, 64);
     }
@@ -13538,22 +25158,22 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void changeChatTitle(long j, String str, final Runnable runnable) {
-        TLRPC.TL_messages_editChatTitle tL_messages_editChatTitle;
+        TLObject tLObject;
         if (ChatObject.isChannel(j, this.currentAccount)) {
             TLRPC.TL_channels_editTitle tL_channels_editTitle = new TLRPC.TL_channels_editTitle();
             tL_channels_editTitle.channel = getInputChannel(j);
             tL_channels_editTitle.title = str;
-            tL_messages_editChatTitle = tL_channels_editTitle;
+            tLObject = tL_channels_editTitle;
         } else {
-            TLRPC.TL_messages_editChatTitle tL_messages_editChatTitle2 = new TLRPC.TL_messages_editChatTitle();
-            tL_messages_editChatTitle2.chat_id = j;
-            tL_messages_editChatTitle2.title = str;
-            tL_messages_editChatTitle = tL_messages_editChatTitle2;
+            TLRPC.TL_messages_editChatTitle tL_messages_editChatTitle = new TLRPC.TL_messages_editChatTitle();
+            tL_messages_editChatTitle.chat_id = j;
+            tL_messages_editChatTitle.title = str;
+            tLObject = tL_messages_editChatTitle;
         }
-        getConnectionsManager().sendRequest(tL_messages_editChatTitle, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$changeChatTitle$317(runnable, tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$changeChatTitle$317(runnable, tLObject2, tL_error);
             }
         }, 64);
     }
@@ -13569,11 +25189,9 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void changeChatAvatar(final long j, final TLRPC.TL_inputChatPhoto tL_inputChatPhoto, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, final TLRPC.FileLocation fileLocation, final TLRPC.FileLocation fileLocation2, final Runnable runnable) {
-        MessagesController messagesController;
         TLRPC.InputChatPhoto tL_inputChatPhotoEmpty;
-        TLRPC.TL_messages_editChatPhoto tL_messages_editChatPhoto;
+        TLObject tLObject;
         if (tL_inputChatPhoto != null) {
-            messagesController = this;
             tL_inputChatPhotoEmpty = tL_inputChatPhoto;
         } else if (inputFile != null || inputFile2 != null || videoSize != null) {
             TLRPC.TL_inputChatUploadedPhoto tL_inputChatUploadedPhoto = new TLRPC.TL_inputChatUploadedPhoto();
@@ -13591,27 +25209,25 @@ public class MessagesController extends BaseController implements NotificationCe
                 tL_inputChatUploadedPhoto.video_emoji_markup = videoSize;
                 tL_inputChatUploadedPhoto.flags |= 8;
             }
-            messagesController = this;
             tL_inputChatPhotoEmpty = tL_inputChatUploadedPhoto;
         } else {
             tL_inputChatPhotoEmpty = new TLRPC.TL_inputChatPhotoEmpty();
-            messagesController = this;
         }
-        if (ChatObject.isChannel(j, messagesController.currentAccount)) {
+        if (ChatObject.isChannel(j, this.currentAccount)) {
             TLRPC.TL_channels_editPhoto tL_channels_editPhoto = new TLRPC.TL_channels_editPhoto();
             tL_channels_editPhoto.channel = getInputChannel(j);
             tL_channels_editPhoto.photo = tL_inputChatPhotoEmpty;
-            tL_messages_editChatPhoto = tL_channels_editPhoto;
+            tLObject = tL_channels_editPhoto;
         } else {
-            TLRPC.TL_messages_editChatPhoto tL_messages_editChatPhoto2 = new TLRPC.TL_messages_editChatPhoto();
-            tL_messages_editChatPhoto2.chat_id = j;
-            tL_messages_editChatPhoto2.photo = tL_inputChatPhotoEmpty;
-            tL_messages_editChatPhoto = tL_messages_editChatPhoto2;
+            TLRPC.TL_messages_editChatPhoto tL_messages_editChatPhoto = new TLRPC.TL_messages_editChatPhoto();
+            tL_messages_editChatPhoto.chat_id = j;
+            tL_messages_editChatPhoto.photo = tL_inputChatPhotoEmpty;
+            tLObject = tL_messages_editChatPhoto;
         }
-        getConnectionsManager().sendRequest(tL_messages_editChatPhoto, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$changeChatAvatar$319(tL_inputChatPhoto, fileLocation, fileLocation2, str, j, runnable, tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$changeChatAvatar$319(tL_inputChatPhoto, fileLocation, fileLocation2, str, j, runnable, tLObject2, tL_error);
             }
         }, 64);
     }
@@ -13713,8 +25329,77 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void performLogout(int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.performLogout(int):void");
+    public void performLogout(int i) {
+        int i2;
+        LaunchActivity launchActivity;
+        if (i == 1) {
+            unregistedPush();
+            getConnectionsManager().sendRequest(new TLRPC.TL_auth_logOut(), new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$performLogout$322(tLObject, tL_error);
+                }
+            });
+        } else {
+            getConnectionsManager().cleanup(i == 2);
+        }
+        getUserConfig().clearConfig();
+        SharedPrefsHelper.cleanupAccount(this.currentAccount);
+        ArrayList<NotificationCenter.NotificationCenterDelegate> observers = getNotificationCenter().getObservers(NotificationCenter.appDidLogout);
+        if (observers != null) {
+            int size = observers.size();
+            for (int i3 = 0; i3 < size; i3++) {
+                if (!(observers.get(i3) instanceof LaunchActivity)) {
+                }
+            }
+            if (UserConfig.selectedAccount == this.currentAccount) {
+                i2 = 0;
+                while (true) {
+                    if (i2 < 4) {
+                        i2 = -1;
+                        break;
+                    } else if (UserConfig.getInstance(i2).isClientActivated()) {
+                        break;
+                    } else {
+                        i2++;
+                    }
+                }
+                if (i2 != -1) {
+                    UserConfig.selectedAccount = i2;
+                    UserConfig.getInstance(0).saveConfig(false);
+                    launchActivity = LaunchActivity.instance;
+                    if (launchActivity != null) {
+                        launchActivity.clearFragments();
+                    }
+                }
+            }
+        } else if (UserConfig.selectedAccount == this.currentAccount) {
+            i2 = 0;
+            while (true) {
+                if (i2 < 4) {
+                    i2 = -1;
+                    break;
+                } else {
+                    if (UserConfig.getInstance(i2).isClientActivated()) {
+                        break;
+                        break;
+                    }
+                    i2++;
+                }
+            }
+            if (i2 != -1) {
+                UserConfig.selectedAccount = i2;
+                UserConfig.getInstance(0).saveConfig(false);
+                launchActivity = LaunchActivity.instance;
+                if (launchActivity != null) {
+                    launchActivity.clearFragments();
+                }
+            }
+        }
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appDidLogout, new Object[0]);
+        getMessagesStorage().cleanup(false);
+        cleanup();
+        getContactsController().deleteUnknownAppAccounts();
     }
 
     public void lambda$performLogout$322(final TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -14077,23 +25762,16 @@ public class MessagesController extends BaseController implements NotificationCe
         if (j == 0) {
             try {
                 nativeByteBuffer = new NativeByteBuffer(chat.getObjectSize() + 4);
-            } catch (Exception e2) {
-                e = e2;
-                nativeByteBuffer = null;
-            }
-            try {
-                nativeByteBuffer.writeInt32(0);
-                chat.serializeToStream(nativeByteBuffer);
+                try {
+                    nativeByteBuffer.writeInt32(0);
+                    chat.serializeToStream(nativeByteBuffer);
+                } catch (Exception e2) {
+                    e = e2;
+                    FileLog.e(e);
+                }
             } catch (Exception e3) {
                 e = e3;
-                FileLog.e(e);
-                j = getMessagesStorage().createPendingTask(nativeByteBuffer);
-                getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$loadUnknownChannel$330(j, chat, tLObject, tL_error);
-                    }
-                });
+                nativeByteBuffer = null;
             }
             j = getMessagesStorage().createPendingTask(nativeByteBuffer);
         }
@@ -14226,8 +25904,112 @@ public class MessagesController extends BaseController implements NotificationCe
         return false;
     }
 
-    protected void getChannelDifference(final long r17, final int r19, long r20, org.telegram.tgnet.TLRPC.InputChannel r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.getChannelDifference(long, int, long, org.telegram.tgnet.TLRPC$InputChannel):void");
+    protected void getChannelDifference(final long j, final int i, long j2, TLRPC.InputChannel inputChannel) {
+        int channelPtsSync;
+        int i2;
+        TLRPC.InputChannel inputChannel2;
+        NativeByteBuffer nativeByteBuffer;
+        long jCreatePendingTask = j2;
+        if (((Boolean) this.gettingDifferenceChannels.get(j, Boolean.FALSE)).booleanValue()) {
+            return;
+        }
+        if (i == 1) {
+            if (this.channelsPts.get(j) != 0) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$getChannelDifference$334(j);
+                    }
+                });
+                return;
+            } else {
+                channelPtsSync = 1;
+                i2 = 1;
+            }
+        } else {
+            channelPtsSync = this.channelsPts.get(j);
+            if (channelPtsSync == 0) {
+                channelPtsSync = getMessagesStorage().getChannelPtsSync(j);
+                if (channelPtsSync != 0) {
+                    this.channelsPts.put(j, channelPtsSync);
+                }
+                if (channelPtsSync == 0 && (i == 2 || i == 3)) {
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$getChannelDifference$335(j);
+                        }
+                    });
+                    return;
+                }
+            }
+            if (channelPtsSync == 0) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$getChannelDifference$336(j);
+                    }
+                });
+                return;
+            }
+            i2 = 100;
+        }
+        if (inputChannel == null) {
+            TLRPC.Chat chat = getChat(Long.valueOf(j));
+            if (chat == null && (chat = getMessagesStorage().getChatSync(j)) != null) {
+                putChat(chat, true);
+            }
+            inputChannel2 = getInputChannel(chat);
+        } else {
+            inputChannel2 = inputChannel;
+        }
+        if (inputChannel2.access_hash == 0) {
+            if (jCreatePendingTask != 0) {
+                getMessagesStorage().removePendingTask(jCreatePendingTask);
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$getChannelDifference$337(j);
+                }
+            });
+            return;
+        }
+        if (jCreatePendingTask == 0) {
+            try {
+                nativeByteBuffer = new NativeByteBuffer(inputChannel2.getObjectSize() + 16);
+                try {
+                    nativeByteBuffer.writeInt32(25);
+                    nativeByteBuffer.writeInt64(j);
+                    nativeByteBuffer.writeInt32(i);
+                    inputChannel2.serializeToStream(nativeByteBuffer);
+                } catch (Exception e) {
+                    e = e;
+                    FileLog.e(e);
+                }
+            } catch (Exception e2) {
+                e = e2;
+                nativeByteBuffer = null;
+            }
+            jCreatePendingTask = getMessagesStorage().createPendingTask(nativeByteBuffer);
+        }
+        final long j3 = jCreatePendingTask;
+        this.gettingDifferenceChannels.put(j, Boolean.TRUE);
+        TLRPC.TL_updates_getChannelDifference tL_updates_getChannelDifference = new TLRPC.TL_updates_getChannelDifference();
+        tL_updates_getChannelDifference.channel = inputChannel2;
+        tL_updates_getChannelDifference.filter = new TLRPC.TL_channelMessagesFilterEmpty();
+        tL_updates_getChannelDifference.pts = channelPtsSync;
+        tL_updates_getChannelDifference.limit = i2;
+        tL_updates_getChannelDifference.force = i != 3;
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("start getChannelDifference with pts = " + channelPtsSync + " channelId = " + j);
+        }
+        getConnectionsManager().sendRequest(tL_updates_getChannelDifference, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$getChannelDifference$349(j, i, j3, tLObject, tL_error);
+            }
+        });
     }
 
     public void lambda$getChannelDifference$334(long j) {
@@ -14339,7 +26121,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$getChannelDifference$346(updates_channeldifference, j, chat, longSparseArray, i, j2);
             }
         });
@@ -14361,8 +26143,152 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$getChannelDifference$346(final org.telegram.tgnet.TLRPC.updates_ChannelDifference r23, final long r24, org.telegram.tgnet.TLRPC.Chat r26, androidx.collection.LongSparseArray r27, int r28, long r29) throws java.lang.InterruptedException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$getChannelDifference$346(org.telegram.tgnet.TLRPC$updates_ChannelDifference, long, org.telegram.tgnet.TLRPC$Chat, androidx.collection.LongSparseArray, int, long):void");
+    public void lambda$getChannelDifference$346(final TLRPC.updates_ChannelDifference updates_channeldifference, final long j, TLRPC.Chat chat, LongSparseArray longSparseArray, int i, long j2) {
+        boolean z;
+        boolean z2;
+        TLRPC.Chat chat2 = chat;
+        boolean z3 = false;
+        if ((updates_channeldifference instanceof TLRPC.TL_updates_channelDifference) || (updates_channeldifference instanceof TLRPC.TL_updates_channelDifferenceEmpty)) {
+            if (!updates_channeldifference.new_messages.isEmpty()) {
+                final LongSparseArray longSparseArray2 = new LongSparseArray();
+                ImageLoader.saveMessagesThumbs(updates_channeldifference.new_messages);
+                final ArrayList arrayList = new ArrayList();
+                long j3 = -j;
+                Integer numValueOf = this.dialogs_read_inbox_max.get(Long.valueOf(j3));
+                if (numValueOf == null) {
+                    numValueOf = Integer.valueOf(getMessagesStorage().getDialogReadMax(false, j3));
+                    this.dialogs_read_inbox_max.put(Long.valueOf(j3), numValueOf);
+                }
+                Integer numValueOf2 = this.dialogs_read_outbox_max.get(Long.valueOf(j3));
+                if (numValueOf2 == null) {
+                    numValueOf2 = Integer.valueOf(getMessagesStorage().getDialogReadMax(true, j3));
+                    this.dialogs_read_outbox_max.put(Long.valueOf(j3), numValueOf2);
+                }
+                int i2 = 0;
+                while (i2 < updates_channeldifference.new_messages.size()) {
+                    TLRPC.Message message = updates_channeldifference.new_messages.get(i2);
+                    if (!(message instanceof TLRPC.TL_messageEmpty)) {
+                        if (chat2 != null && chat2.left) {
+                            z = false;
+                        } else if ((message.out ? numValueOf2 : numValueOf).intValue() >= message.id || (message.action instanceof TLRPC.TL_messageActionChannelCreate)) {
+                            z = false;
+                        } else {
+                            z = true;
+                        }
+                        message.unread = z;
+                        boolean zContains = this.createdDialogIds.contains(Long.valueOf(j3));
+                        MessageObject messageObject = new MessageObject(this.currentAccount, message, longSparseArray, zContains, zContains);
+                        if ((!messageObject.isOut() || messageObject.messageOwner.from_scheduled) && messageObject.isUnread()) {
+                            arrayList.add(messageObject);
+                        }
+                        ArrayList arrayList2 = (ArrayList) longSparseArray2.get(j3);
+                        if (arrayList2 == null) {
+                            arrayList2 = new ArrayList();
+                            longSparseArray2.put(j3, arrayList2);
+                        }
+                        arrayList2.add(messageObject);
+                    }
+                    i2++;
+                    chat2 = chat;
+                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$getChannelDifference$340(longSparseArray2);
+                    }
+                });
+                getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$getChannelDifference$342(arrayList, updates_channeldifference);
+                    }
+                });
+            }
+            if (!updates_channeldifference.other_updates.isEmpty()) {
+                processUpdateArray(updates_channeldifference.other_updates, updates_channeldifference.users, updates_channeldifference.chats, true, 0);
+            }
+            processChannelsUpdatesQueue(j, 1);
+            getMessagesStorage().saveChannelPts(j, updates_channeldifference.pts);
+        } else {
+            if (updates_channeldifference instanceof TLRPC.TL_updates_channelDifferenceTooLong) {
+                long j4 = -j;
+                Integer numValueOf3 = this.dialogs_read_inbox_max.get(Long.valueOf(j4));
+                if (numValueOf3 == null) {
+                    numValueOf3 = Integer.valueOf(getMessagesStorage().getDialogReadMax(false, j4));
+                    this.dialogs_read_inbox_max.put(Long.valueOf(j4), numValueOf3);
+                }
+                Integer numValueOf4 = this.dialogs_read_outbox_max.get(Long.valueOf(j4));
+                if (numValueOf4 == null) {
+                    numValueOf4 = Integer.valueOf(getMessagesStorage().getDialogReadMax(true, j4));
+                    this.dialogs_read_outbox_max.put(Long.valueOf(j4), numValueOf4);
+                }
+                for (int i3 = 0; i3 < updates_channeldifference.messages.size(); i3++) {
+                    TLRPC.Message message2 = updates_channeldifference.messages.get(i3);
+                    message2.dialog_id = j4;
+                    if ((message2.action instanceof TLRPC.TL_messageActionChannelCreate) || (chat2 != null && chat2.left)) {
+                        z2 = false;
+                    } else if ((message2.out ? numValueOf4 : numValueOf3).intValue() < message2.id) {
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    message2.unread = z2;
+                }
+                getMessagesStorage().overwriteChannel(j, (TLRPC.TL_updates_channelDifferenceTooLong) updates_channeldifference, i, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$getChannelDifference$344(j);
+                    }
+                });
+            }
+            this.gettingDifferenceChannels.delete(j);
+            this.channelsPts.put(j, updates_channeldifference.pts);
+            if ((updates_channeldifference.flags & 2) != 0) {
+                this.shortPollChannels.put(j, ((int) (System.currentTimeMillis() / 1000)) + updates_channeldifference.timeout);
+            }
+            if (!updates_channeldifference.isFinal) {
+                getChannelDifference(j);
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("received channel difference with pts = " + updates_channeldifference.pts + " channelId = " + j);
+                FileLog.d("new_messages = " + updates_channeldifference.new_messages.size() + " messages = " + updates_channeldifference.messages.size() + " users = " + updates_channeldifference.users.size() + " chats = " + updates_channeldifference.chats.size() + " other updates = " + updates_channeldifference.other_updates.size());
+            }
+            if (j2 != 0) {
+                getMessagesStorage().removePendingTask(j2);
+            }
+            if (z3) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$getChannelDifference$345(j);
+                    }
+                });
+            }
+        }
+        z3 = true;
+        this.gettingDifferenceChannels.delete(j);
+        this.channelsPts.put(j, updates_channeldifference.pts);
+        if ((updates_channeldifference.flags & 2) != 0) {
+            this.shortPollChannels.put(j, ((int) (System.currentTimeMillis() / 1000)) + updates_channeldifference.timeout);
+        }
+        if (!updates_channeldifference.isFinal) {
+            getChannelDifference(j);
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("received channel difference with pts = " + updates_channeldifference.pts + " channelId = " + j);
+            FileLog.d("new_messages = " + updates_channeldifference.new_messages.size() + " messages = " + updates_channeldifference.messages.size() + " users = " + updates_channeldifference.users.size() + " chats = " + updates_channeldifference.chats.size() + " other updates = " + updates_channeldifference.other_updates.size());
+        }
+        if (j2 != 0) {
+            getMessagesStorage().removePendingTask(j2);
+        }
+        if (z3) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$getChannelDifference$345(j);
+                }
+            });
+        }
     }
 
     public void lambda$getChannelDifference$340(LongSparseArray longSparseArray) {
@@ -14573,7 +26499,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$getDifference$357(updates_difference, longSparseArray, longSparseArray2);
             }
         });
@@ -14595,8 +26521,120 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$getDifference$357(final org.telegram.tgnet.TLRPC.updates_Difference r19, androidx.collection.LongSparseArray r20, androidx.collection.LongSparseArray r21) throws java.lang.InterruptedException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$getDifference$357(org.telegram.tgnet.TLRPC$updates_Difference, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
+    public void lambda$getDifference$357(final TLRPC.updates_Difference updates_difference, LongSparseArray longSparseArray, LongSparseArray longSparseArray2) {
+        MessageObject messageObject;
+        ArrayList arrayList;
+        TLRPC.User user;
+        int i = 0;
+        if (!updates_difference.new_messages.isEmpty() || !updates_difference.new_encrypted_messages.isEmpty()) {
+            final LongSparseArray longSparseArray3 = new LongSparseArray();
+            for (int i2 = 0; i2 < updates_difference.new_encrypted_messages.size(); i2++) {
+                ArrayList<TLRPC.Message> arrayListDecryptMessage = getSecretChatHelper().decryptMessage(updates_difference.new_encrypted_messages.get(i2));
+                if (arrayListDecryptMessage != null && !arrayListDecryptMessage.isEmpty()) {
+                    updates_difference.new_messages.addAll(arrayListDecryptMessage);
+                }
+            }
+            ImageLoader.saveMessagesThumbs(updates_difference.new_messages);
+            final ArrayList arrayList2 = new ArrayList();
+            long clientUserId = getUserConfig().getClientUserId();
+            for (int i3 = 0; i3 < updates_difference.new_messages.size(); i3++) {
+                TLRPC.Message message = updates_difference.new_messages.get(i3);
+                if (!(message instanceof TLRPC.TL_messageEmpty)) {
+                    MessageObject.getDialogId(message);
+                    if (!DialogObject.isEncryptedDialog(message.dialog_id)) {
+                        TLRPC.MessageAction messageAction = message.action;
+                        if ((messageAction instanceof TLRPC.TL_messageActionChatDeleteUser) && (user = (TLRPC.User) longSparseArray.get(messageAction.user_id)) != null && user.bot) {
+                            message.reply_markup = new TLRPC.TL_replyKeyboardHide();
+                            message.flags |= 64;
+                        }
+                        TLRPC.MessageAction messageAction2 = message.action;
+                        if ((messageAction2 instanceof TLRPC.TL_messageActionChatMigrateTo) || (messageAction2 instanceof TLRPC.TL_messageActionChannelCreate)) {
+                            message.unread = false;
+                            message.media_unread = false;
+                        } else {
+                            ConcurrentHashMap<Long, Integer> concurrentHashMap = message.out ? this.dialogs_read_outbox_max : this.dialogs_read_inbox_max;
+                            Integer numValueOf = concurrentHashMap.get(Long.valueOf(message.dialog_id));
+                            if (numValueOf == null) {
+                                numValueOf = Integer.valueOf(getMessagesStorage().getDialogReadMax(message.out, message.dialog_id));
+                                concurrentHashMap.put(Long.valueOf(message.dialog_id), numValueOf);
+                            }
+                            message.unread = numValueOf.intValue() < message.id;
+                        }
+                    }
+                    long j = message.dialog_id;
+                    if (j == clientUserId) {
+                        message.unread = false;
+                        message.media_unread = false;
+                        message.out = true;
+                    }
+                    boolean zContains = this.createdDialogIds.contains(Long.valueOf(j));
+                    MessageObject messageObject2 = new MessageObject(this.currentAccount, message, longSparseArray, longSparseArray2, zContains, zContains);
+                    if (messageObject2.isOut()) {
+                        messageObject = messageObject2;
+                        if (messageObject.messageOwner.from_scheduled) {
+                        }
+                        arrayList = (ArrayList) longSparseArray3.get(message.dialog_id);
+                        if (arrayList == null) {
+                            arrayList = new ArrayList();
+                            longSparseArray3.put(message.dialog_id, arrayList);
+                        }
+                        arrayList.add(messageObject);
+                    } else {
+                        messageObject = messageObject2;
+                    }
+                    if (messageObject.isUnread()) {
+                        arrayList2.add(messageObject);
+                    }
+                    arrayList = (ArrayList) longSparseArray3.get(message.dialog_id);
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                        longSparseArray3.put(message.dialog_id, arrayList);
+                    }
+                    arrayList.add(messageObject);
+                }
+            }
+            getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$getDifference$356(arrayList2, updates_difference, longSparseArray3);
+                }
+            });
+            getSecretChatHelper().processPendingEncMessages();
+        }
+        if (!updates_difference.other_updates.isEmpty()) {
+            processUpdateArray(updates_difference.other_updates, updates_difference.users, updates_difference.chats, true, 0);
+        }
+        if (updates_difference instanceof TLRPC.TL_updates_difference) {
+            this.gettingDifference = false;
+            getMessagesStorage().setLastSeqValue(updates_difference.state.seq);
+            getMessagesStorage().setLastDateValue(updates_difference.state.date);
+            getMessagesStorage().setLastPtsValue(updates_difference.state.pts);
+            getMessagesStorage().setLastQtsValue(updates_difference.state.qts);
+            FileLog.d("received difference: isUpdating = false");
+            getConnectionsManager().setIsUpdating(false);
+            while (i < 3) {
+                processUpdatesQueue(i, 1);
+                i++;
+            }
+        } else if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
+            getMessagesStorage().setLastDateValue(updates_difference.intermediate_state.date);
+            getMessagesStorage().setLastPtsValue(updates_difference.intermediate_state.pts);
+            getMessagesStorage().setLastQtsValue(updates_difference.intermediate_state.qts);
+        } else if (updates_difference instanceof TLRPC.TL_updates_differenceEmpty) {
+            this.gettingDifference = false;
+            getMessagesStorage().setLastSeqValue(updates_difference.seq);
+            getMessagesStorage().setLastDateValue(updates_difference.date);
+            getConnectionsManager().setIsUpdating(false);
+            FileLog.d("received differenceEmpty: isUpdating = false");
+            while (i < 3) {
+                processUpdatesQueue(i, 1);
+                i++;
+            }
+        }
+        getMessagesStorage().saveDiffParams(getMessagesStorage().getLastSeqValue(), getMessagesStorage().getLastPtsValue(), getMessagesStorage().getLastDateValue(), getMessagesStorage().getLastQtsValue());
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("received difference with date = " + getMessagesStorage().getLastDateValue() + " pts = " + getMessagesStorage().getLastPtsValue() + " seq = " + getMessagesStorage().getLastSeqValue() + " messages = " + updates_difference.new_messages.size() + " users = " + updates_difference.users.size() + " chats = " + updates_difference.chats.size() + " other updates = " + updates_difference.other_updates.size());
+        }
     }
 
     public void lambda$getDifference$356(final ArrayList arrayList, final TLRPC.updates_Difference updates_difference, LongSparseArray longSparseArray) {
@@ -14683,25 +26721,18 @@ public class MessagesController extends BaseController implements NotificationCe
         if (j2 == 0) {
             try {
                 nativeByteBuffer = new NativeByteBuffer(inputPeer.getObjectSize() + 12);
-            } catch (Exception e) {
-                e = e;
-            }
-            try {
-                nativeByteBuffer.writeInt32(9);
-                nativeByteBuffer.writeInt64(j);
-                inputPeer.serializeToStream(nativeByteBuffer);
+                try {
+                    nativeByteBuffer.writeInt32(9);
+                    nativeByteBuffer.writeInt64(j);
+                    inputPeer.serializeToStream(nativeByteBuffer);
+                } catch (Exception e) {
+                    e = e;
+                    nativeByteBuffer2 = nativeByteBuffer;
+                    FileLog.e(e);
+                    nativeByteBuffer = nativeByteBuffer2;
+                }
             } catch (Exception e2) {
                 e = e2;
-                nativeByteBuffer2 = nativeByteBuffer;
-                FileLog.e(e);
-                nativeByteBuffer = nativeByteBuffer2;
-                j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
-                getConnectionsManager().sendRequest(tL_messages_markDialogUnread, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$markDialogAsUnread$360(j2, tLObject, tL_error);
-                    }
-                });
             }
             j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
         }
@@ -14829,13 +26860,6 @@ public class MessagesController extends BaseController implements NotificationCe
                 } catch (Exception e) {
                     e = e;
                     FileLog.e(e);
-                    j = getMessagesStorage().createPendingTask(nativeByteBuffer);
-                    getConnectionsManager().sendRequest(tL_messages_reorderPinnedDialogs, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$reorderPinnedDialogs$363(j, tLObject, tL_error);
-                        }
-                    });
                 }
             } catch (Exception e2) {
                 e = e2;
@@ -14906,28 +26930,19 @@ public class MessagesController extends BaseController implements NotificationCe
             if (j2 == 0) {
                 try {
                     nativeByteBuffer = new NativeByteBuffer(inputPeer2.getObjectSize() + 16);
-                } catch (Exception e) {
-                    e = e;
-                }
-                try {
-                    nativeByteBuffer.writeInt32(4);
-                    nativeByteBuffer.writeInt64(j);
-                    nativeByteBuffer.writeBool(z);
-                    inputPeer2.serializeToStream(nativeByteBuffer);
+                    try {
+                        nativeByteBuffer.writeInt32(4);
+                        nativeByteBuffer.writeInt64(j);
+                        nativeByteBuffer.writeBool(z);
+                        inputPeer2.serializeToStream(nativeByteBuffer);
+                    } catch (Exception e) {
+                        e = e;
+                        nativeByteBuffer2 = nativeByteBuffer;
+                        FileLog.e(e);
+                        nativeByteBuffer = nativeByteBuffer2;
+                    }
                 } catch (Exception e2) {
                     e = e2;
-                    nativeByteBuffer2 = nativeByteBuffer;
-                    FileLog.e(e);
-                    nativeByteBuffer = nativeByteBuffer2;
-                    jCreatePendingTask = getMessagesStorage().createPendingTask(nativeByteBuffer);
-                    getConnectionsManager().sendRequest(tL_messages_toggleDialogPin, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$pinDialog$364(jCreatePendingTask, tLObject, tL_error);
-                        }
-                    });
-                    getMessagesStorage().setDialogPinned(j, dialog.pinnedNum);
-                    return true;
                 }
                 jCreatePendingTask = getMessagesStorage().createPendingTask(nativeByteBuffer);
             } else {
@@ -14965,8 +26980,105 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$loadPinnedDialogs$367(final int r19, org.telegram.tgnet.TLObject r20, org.telegram.tgnet.TLRPC.TL_error r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$loadPinnedDialogs$367(int, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public void lambda$loadPinnedDialogs$367(final int i, TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.Chat chat;
+        ArrayList arrayList;
+        TLRPC.Message message;
+        int i2;
+        TLRPC.Chat chat2;
+        TLRPC.Chat chat3;
+        ArrayList arrayList2;
+        if (tLObject != null) {
+            final TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
+            final ArrayList arrayList3 = new ArrayList(tL_messages_peerDialogs.dialogs);
+            fetchFolderInLoadedPinnedDialogs(tL_messages_peerDialogs);
+            final TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
+            tL_messages_dialogs.users.addAll(tL_messages_peerDialogs.users);
+            tL_messages_dialogs.chats.addAll(tL_messages_peerDialogs.chats);
+            tL_messages_dialogs.dialogs.addAll(tL_messages_peerDialogs.dialogs);
+            tL_messages_dialogs.messages.addAll(tL_messages_peerDialogs.messages);
+            final LongSparseArray longSparseArray = new LongSparseArray();
+            LongSparseArray longSparseArray2 = new LongSparseArray();
+            LongSparseArray longSparseArray3 = new LongSparseArray();
+            for (int i3 = 0; i3 < tL_messages_peerDialogs.users.size(); i3++) {
+                TLRPC.User user = tL_messages_peerDialogs.users.get(i3);
+                longSparseArray2.put(user.id, user);
+            }
+            for (int i4 = 0; i4 < tL_messages_peerDialogs.chats.size(); i4++) {
+                TLRPC.Chat chat4 = tL_messages_peerDialogs.chats.get(i4);
+                longSparseArray3.put(chat4.id, chat4);
+            }
+            ArrayList arrayList4 = new ArrayList();
+            for (int i5 = 0; i5 < tL_messages_peerDialogs.messages.size(); i5++) {
+                TLRPC.Message message2 = tL_messages_peerDialogs.messages.get(i5);
+                TLRPC.Peer peer = message2.peer_id;
+                long j = peer.channel_id;
+                if (j != 0) {
+                    TLRPC.Chat chat5 = (TLRPC.Chat) longSparseArray3.get(j);
+                    if (chat5 == null || !chat5.left) {
+                        MessageObject messageObject = new MessageObject(this.currentAccount, message2, longSparseArray2, longSparseArray3, false, false);
+                        arrayList4.add(messageObject);
+                        long dialogId = messageObject.getDialogId();
+                        arrayList2 = (ArrayList) longSparseArray.get(dialogId);
+                        if (arrayList2 == null) {
+                            arrayList2 = new ArrayList();
+                        }
+                        arrayList2.add(messageObject);
+                        longSparseArray.put(dialogId, arrayList2);
+                    }
+                } else {
+                    long j2 = peer.chat_id;
+                    if (j2 == 0 || (chat3 = (TLRPC.Chat) longSparseArray3.get(j2)) == null || chat3.migrated_to == null) {
+                        MessageObject messageObject2 = new MessageObject(this.currentAccount, message2, longSparseArray2, longSparseArray3, false, false);
+                        arrayList4.add(messageObject2);
+                        long dialogId2 = messageObject2.getDialogId();
+                        arrayList2 = (ArrayList) longSparseArray.get(dialogId2);
+                        if (arrayList2 == null) {
+                            arrayList2 = new ArrayList();
+                        }
+                        arrayList2.add(messageObject2);
+                        longSparseArray.put(dialogId2, arrayList2);
+                    }
+                }
+            }
+            final boolean z = !arrayList3.isEmpty() && (arrayList3.get(0) instanceof TLRPC.TL_dialogFolder);
+            int size = arrayList3.size();
+            for (int i6 = 0; i6 < size; i6++) {
+                TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList3.get(i6);
+                dialog.pinned = true;
+                DialogObject.initDialog(dialog);
+                if (!DialogObject.isChannel(dialog) ? !DialogObject.isChatDialog(dialog.id) || (chat = (TLRPC.Chat) longSparseArray3.get(-dialog.id)) == null || chat.migrated_to == null : (chat2 = (TLRPC.Chat) longSparseArray3.get(-dialog.id)) == null || !chat2.left) {
+                    if (dialog.last_message_date == 0 && (arrayList = (ArrayList) longSparseArray.get(dialog.id)) != null) {
+                        int i7 = Integer.MIN_VALUE;
+                        for (int i8 = 0; i8 < arrayList.size(); i8++) {
+                            MessageObject messageObject3 = (MessageObject) arrayList.get(i8);
+                            if (messageObject3 != null && (message = messageObject3.messageOwner) != null && (i2 = message.date) > i7) {
+                                i7 = i2;
+                            }
+                        }
+                        if (i7 > Integer.MIN_VALUE) {
+                            dialog.last_message_date = i7;
+                        }
+                    }
+                    Integer num = this.dialogs_read_inbox_max.get(Long.valueOf(dialog.id));
+                    if (num == null) {
+                        num = 0;
+                    }
+                    this.dialogs_read_inbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num.intValue(), dialog.read_inbox_max_id)));
+                    Integer num2 = this.dialogs_read_outbox_max.get(Long.valueOf(dialog.id));
+                    if (num2 == null) {
+                        num2 = 0;
+                    }
+                    this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num2.intValue(), dialog.read_outbox_max_id)));
+                }
+            }
+            getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$loadPinnedDialogs$366(i, arrayList3, z, tL_messages_peerDialogs, longSparseArray, tL_messages_dialogs);
+                }
+            });
+        }
     }
 
     public void lambda$loadPinnedDialogs$366(final int i, final ArrayList arrayList, final boolean z, final TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs, final LongSparseArray longSparseArray, final TLRPC.TL_messages_dialogs tL_messages_dialogs) {
@@ -14982,29 +27094,28 @@ public class MessagesController extends BaseController implements NotificationCe
         boolean z2;
         boolean z3;
         boolean z4;
-        ArrayList<Integer> arrayList2;
-        ArrayList arrayList3;
+        ArrayList arrayList2;
         this.loadingPinnedDialogs.delete(i);
         applyDialogsNotificationsSettings(arrayList);
         ArrayList<TLRPC.Dialog> dialogs = getDialogs(i);
-        int i2 = z ? 1 : 0;
-        int i3 = 0;
+        ?? r6 = z;
+        int i2 = 0;
         int iMax = 0;
         boolean z5 = false;
         while (true) {
             z2 = true;
-            if (i3 >= dialogs.size()) {
+            if (i2 >= dialogs.size()) {
                 break;
             }
-            TLRPC.Dialog dialog = dialogs.get(i3);
+            TLRPC.Dialog dialog = dialogs.get(i2);
             if (!(dialog instanceof TLRPC.TL_dialogFolder)) {
                 if (DialogObject.isEncryptedDialog(dialog.id)) {
-                    if (i2 < arrayList.size()) {
-                        arrayList.add(i2, dialog);
+                    if (r6 < arrayList.size()) {
+                        arrayList.add(r6, dialog);
                     } else {
                         arrayList.add(dialog);
                     }
-                    i2++;
+                    r6++;
                 } else if (!dialog.pinned) {
                     if (dialog.id != this.promoDialogId) {
                         break;
@@ -15013,45 +27124,44 @@ public class MessagesController extends BaseController implements NotificationCe
                     iMax = Math.max(dialog.pinnedNum, iMax);
                     dialog.pinned = false;
                     dialog.pinnedNum = 0;
-                    i2++;
+                    r6++;
                     z5 = true;
                 }
             }
-            i3++;
+            i2++;
+            r6 = r6;
         }
-        ArrayList<Long> arrayList4 = new ArrayList<>();
+        ArrayList<Long> arrayList3 = new ArrayList<>();
         if (arrayList.isEmpty()) {
             z3 = false;
         } else {
             putUsers(tL_messages_peerDialogs.users, false);
             putChats(tL_messages_peerDialogs.chats, false);
-            ArrayList<Long> arrayList5 = new ArrayList<>();
-            ArrayList<Integer> arrayList6 = new ArrayList<>();
+            ArrayList<Long> arrayList4 = new ArrayList<>();
+            ArrayList<Integer> arrayList5 = new ArrayList<>();
             int size = arrayList.size();
-            int i4 = 0;
+            int i3 = 0;
             z3 = false;
-            while (i4 < size) {
-                TLRPC.Dialog dialog2 = (TLRPC.Dialog) arrayList.get(i4);
-                dialog2.pinnedNum = (size - i4) + iMax;
-                arrayList4.add(Long.valueOf(dialog2.id));
+            while (i3 < size) {
+                TLRPC.Dialog dialog2 = (TLRPC.Dialog) arrayList.get(i3);
+                dialog2.pinnedNum = (size - i3) + iMax;
+                arrayList3.add(Long.valueOf(dialog2.id));
                 TLRPC.Dialog dialog3 = (TLRPC.Dialog) this.dialogs_dict.get(dialog2.id);
                 if (dialog3 != null) {
                     dialog3.pinned = z2;
                     dialog3.pinnedNum = dialog2.pinnedNum;
-                    arrayList5.add(Long.valueOf(dialog2.id));
-                    arrayList6.add(Integer.valueOf(dialog2.pinnedNum));
-                    arrayList2 = arrayList6;
+                    arrayList4.add(Long.valueOf(dialog2.id));
+                    arrayList5.add(Integer.valueOf(dialog2.pinnedNum));
                 } else {
                     this.dialogs_dict.put(dialog2.id, dialog2);
-                    ArrayList arrayList7 = (ArrayList) longSparseArray.get(dialog2.id);
-                    arrayList2 = arrayList6;
-                    this.dialogMessage.put(dialog2.id, arrayList7);
-                    if (arrayList7 != null) {
-                        int i5 = 0;
-                        while (i5 < arrayList7.size()) {
-                            MessageObject messageObject = (MessageObject) arrayList7.get(i5);
+                    ArrayList arrayList6 = (ArrayList) longSparseArray.get(dialog2.id);
+                    this.dialogMessage.put(dialog2.id, arrayList6);
+                    if (arrayList6 != null) {
+                        int i4 = 0;
+                        while (i4 < arrayList6.size()) {
+                            MessageObject messageObject = (MessageObject) arrayList6.get(i4);
                             if (messageObject != null) {
-                                arrayList3 = arrayList7;
+                                arrayList2 = arrayList6;
                                 if (messageObject.messageOwner.peer_id.channel_id == 0) {
                                     this.dialogMessagesByIds.put(messageObject.getId(), messageObject);
                                     this.dialogsLoadedTillDate = Math.min(this.dialogsLoadedTillDate, messageObject.messageOwner.date);
@@ -15061,28 +27171,28 @@ public class MessagesController extends BaseController implements NotificationCe
                                     }
                                 }
                             } else {
-                                arrayList3 = arrayList7;
+                                arrayList2 = arrayList6;
                             }
-                            i5++;
-                            arrayList7 = arrayList3;
+                            i4++;
+                            arrayList6 = arrayList2;
                         }
                     }
                     getTranslateController().checkDialogMessage(dialog2.id);
                     z3 = true;
                 }
-                i4++;
-                arrayList6 = arrayList2;
+                i3++;
+                arrayList5 = arrayList5;
                 z5 = true;
                 z2 = true;
             }
-            getMessagesStorage().setDialogsPinned(arrayList5, arrayList6);
+            getMessagesStorage().setDialogsPinned(arrayList4, arrayList5);
         }
         if (z5) {
             if (z3) {
                 this.allDialogs.clear();
                 int size2 = this.dialogs_dict.size();
-                for (int i6 = 0; i6 < size2; i6++) {
-                    TLRPC.Dialog dialog4 = (TLRPC.Dialog) this.dialogs_dict.valueAt(i6);
+                for (int i5 = 0; i5 < size2; i5++) {
+                    TLRPC.Dialog dialog4 = (TLRPC.Dialog) this.dialogs_dict.valueAt(i5);
                     if (this.deletingDialogs.indexOfKey(dialog4.id) < 0) {
                         this.allDialogs.add(dialog4);
                     }
@@ -15094,7 +27204,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             z4 = false;
         }
-        getMessagesStorage().unpinAllDialogsExceptNew(arrayList4, i);
+        getMessagesStorage().unpinAllDialogsExceptNew(arrayList3, i);
         getMessagesStorage().putDialogs(tL_messages_dialogs, 1);
         getUserConfig().setPinnedDialogsLoaded(i, true);
         getUserConfig().saveConfig(z4);
@@ -15185,16 +27295,11 @@ public class MessagesController extends BaseController implements NotificationCe
             for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                 MessageObject messageObject2 = (MessageObject) arrayList2.get(i2);
                 int size2 = arrayList.size();
-                int i3 = 0;
-                while (true) {
-                    if (i3 >= size2) {
-                        break;
-                    }
+                for (int i3 = 0; i3 < size2; i3++) {
                     if (messageObject2.getId() == ((Integer) arrayList.get(i3)).intValue()) {
                         messageObject2.deleted = true;
                         break;
                     }
-                    i3++;
                 }
             }
         }
@@ -15496,8 +27601,730 @@ public class MessagesController extends BaseController implements NotificationCe
         return 0L;
     }
 
-    public void processUpdates(final org.telegram.tgnet.TLRPC.Updates r30, boolean r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.processUpdates(org.telegram.tgnet.TLRPC$Updates, boolean):void");
+    public void processUpdates(final TLRPC.Updates updates, boolean z) {
+        boolean z2;
+        TLRPC.User user;
+        TLRPC.Chat chat;
+        boolean z3;
+        TLRPC.User user2;
+        boolean z4;
+        String str;
+        boolean z5;
+        boolean z6;
+        boolean z7;
+        ArrayList arrayList;
+        boolean z8;
+        TLRPC.UserStatus userStatus;
+        TLRPC.Chat chat2;
+        boolean z9;
+        ArrayList arrayList2;
+        ArrayList arrayList3;
+        boolean z10;
+        ArrayList arrayList4;
+        int i;
+        int i2;
+        long jKeyAt;
+        int i3 = 0;
+        if (updates instanceof TLRPC.TL_updateShort) {
+            ArrayList<TLRPC.Update> arrayList5 = new ArrayList<>();
+            arrayList5.add(updates.update);
+            processUpdateArray(arrayList5, null, null, false, updates.date);
+        } else {
+            boolean z11 = updates instanceof TLRPC.TL_updateShortChatMessage;
+            String str2 = " count = ";
+            String str3 = " ";
+            z2 = true;
+            if (z11 || (updates instanceof TLRPC.TL_updateShortMessage)) {
+                final long j = z11 ? updates.from_id : updates.user_id;
+                TLRPC.User user3 = getUser(Long.valueOf(j));
+                FileLog.d("update message short userId = " + j);
+                if (user3 == null || user3.min) {
+                    user3 = getMessagesStorage().getUserSync(j);
+                    if (user3 != null && user3.min) {
+                        user3 = null;
+                    }
+                    putUser(user3, true);
+                }
+                TLRPC.MessageFwdHeader messageFwdHeader = updates.fwd_from;
+                if (messageFwdHeader != null) {
+                    TLRPC.Peer peer = messageFwdHeader.from_id;
+                    if (peer instanceof TLRPC.TL_peerUser) {
+                        user = getUser(Long.valueOf(peer.user_id));
+                        if (user == null) {
+                            user = getMessagesStorage().getUserSync(updates.fwd_from.from_id.user_id);
+                            putUser(user, true);
+                        }
+                        chat = null;
+                    } else {
+                        if (peer instanceof TLRPC.TL_peerChannel) {
+                            chat2 = getChat(Long.valueOf(peer.channel_id));
+                            if (chat2 == null) {
+                                chat2 = getMessagesStorage().getChatSync(updates.fwd_from.from_id.channel_id);
+                                putChat(chat2, true);
+                            }
+                        } else if (peer instanceof TLRPC.TL_peerChat) {
+                            chat2 = getChat(Long.valueOf(peer.chat_id));
+                            if (chat2 == null) {
+                                chat2 = getMessagesStorage().getChatSync(updates.fwd_from.from_id.chat_id);
+                                putChat(chat2, true);
+                            }
+                        } else {
+                            user = null;
+                            chat = null;
+                            z3 = false;
+                        }
+                        chat = chat2;
+                        user = null;
+                    }
+                    z3 = true;
+                } else {
+                    user = null;
+                    chat = null;
+                    z3 = false;
+                }
+                long j2 = updates.via_bot_id;
+                if (j2 != 0) {
+                    user2 = getUser(Long.valueOf(j2));
+                    if (user2 == null) {
+                        user2 = getMessagesStorage().getUserSync(updates.via_bot_id);
+                        putUser(user2, true);
+                    }
+                    z4 = true;
+                } else {
+                    user2 = null;
+                    z4 = false;
+                }
+                boolean z12 = updates instanceof TLRPC.TL_updateShortMessage;
+                if (!z12) {
+                    str = "add to queue";
+                    TLRPC.Chat chat3 = getChat(Long.valueOf(updates.chat_id));
+                    if (chat3 == null) {
+                        chat3 = getMessagesStorage().getChatSync(updates.chat_id);
+                        putChat(chat3, true);
+                    }
+                    z5 = chat3 == null || user3 == null || (z3 && user == null && chat == null) || (z4 && user2 == null);
+                } else if (user3 == null || ((z3 && user == null && chat == null) || (z4 && user2 == null))) {
+                    str2 = " count = ";
+                    str = "add to queue";
+                    str3 = " ";
+                } else {
+                    str = "add to queue";
+                    str3 = " ";
+                }
+                if (!z5 && !updates.entities.isEmpty()) {
+                    for (int i4 = 0; i4 < updates.entities.size(); i4++) {
+                        TLRPC.MessageEntity messageEntity = updates.entities.get(i4);
+                        if (messageEntity instanceof TLRPC.TL_messageEntityMentionName) {
+                            long j3 = ((TLRPC.TL_messageEntityMentionName) messageEntity).user_id;
+                            TLRPC.User user4 = getUser(Long.valueOf(j3));
+                            if (user4 == null || user4.min) {
+                                TLRPC.User userSync = getMessagesStorage().getUserSync(j3);
+                                if (userSync != null && userSync.min) {
+                                    userSync = null;
+                                }
+                                if (userSync == null) {
+                                    z5 = true;
+                                    break;
+                                }
+                                putUser(user3, true);
+                            }
+                        }
+                    }
+                }
+                if (updates.out || user3 == null || (userStatus = user3.status) == null || userStatus.expires > 0 || Math.abs(getConnectionsManager().getCurrentTime() - updates.date) >= 30) {
+                    z6 = false;
+                } else {
+                    this.onlinePrivacy.put(Long.valueOf(user3.id), Integer.valueOf(updates.date));
+                    z6 = true;
+                }
+                if (!z5) {
+                    if (getMessagesStorage().getLastPtsValue() + updates.pts_count == updates.pts) {
+                        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                        tL_message.id = updates.id;
+                        long clientUserId = getUserConfig().getClientUserId();
+                        if (z12) {
+                            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                            tL_message.from_id = tL_peerUser;
+                            if (updates.out) {
+                                tL_peerUser.user_id = clientUserId;
+                            } else {
+                                tL_peerUser.user_id = j;
+                            }
+                            TLRPC.TL_peerUser tL_peerUser2 = new TLRPC.TL_peerUser();
+                            tL_message.peer_id = tL_peerUser2;
+                            tL_peerUser2.user_id = j;
+                            tL_message.dialog_id = j;
+                        } else {
+                            TLRPC.TL_peerUser tL_peerUser3 = new TLRPC.TL_peerUser();
+                            tL_message.from_id = tL_peerUser3;
+                            tL_peerUser3.user_id = j;
+                            TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
+                            tL_message.peer_id = tL_peerChat;
+                            long j4 = updates.chat_id;
+                            tL_peerChat.chat_id = j4;
+                            tL_message.dialog_id = -j4;
+                        }
+                        tL_message.fwd_from = updates.fwd_from;
+                        tL_message.silent = updates.silent;
+                        tL_message.out = updates.out;
+                        tL_message.mentioned = updates.mentioned;
+                        tL_message.media_unread = updates.media_unread;
+                        tL_message.entities = updates.entities;
+                        tL_message.message = updates.message;
+                        tL_message.date = updates.date;
+                        tL_message.via_bot_id = updates.via_bot_id;
+                        tL_message.flags = updates.flags | 256;
+                        tL_message.reply_to = updates.reply_to;
+                        tL_message.ttl_period = updates.ttl_period;
+                        tL_message.media = new TLRPC.TL_messageMediaEmpty();
+                        ConcurrentHashMap<Long, Integer> concurrentHashMap = tL_message.out ? this.dialogs_read_outbox_max : this.dialogs_read_inbox_max;
+                        Integer numValueOf = concurrentHashMap.get(Long.valueOf(tL_message.dialog_id));
+                        if (numValueOf == null) {
+                            numValueOf = Integer.valueOf(getMessagesStorage().getDialogReadMax(tL_message.out, tL_message.dialog_id));
+                            concurrentHashMap.put(Long.valueOf(tL_message.dialog_id), numValueOf);
+                        }
+                        tL_message.unread = numValueOf.intValue() < tL_message.id;
+                        if (tL_message.dialog_id == clientUserId) {
+                            tL_message.unread = false;
+                            tL_message.media_unread = false;
+                            tL_message.out = true;
+                        }
+                        getMessagesStorage().setLastPtsValue(updates.pts);
+                        boolean zContains = this.createdDialogIds.contains(Long.valueOf(tL_message.dialog_id));
+                        MessageObject messageObject = new MessageObject(this.currentAccount, tL_message, zContains, zContains);
+                        final ArrayList<MessageObject> arrayList6 = new ArrayList<>();
+                        arrayList6.add(messageObject);
+                        ArrayList<TLRPC.Message> arrayList7 = new ArrayList<>();
+                        arrayList7.add(tL_message);
+                        if (z12) {
+                            final boolean z13 = !updates.out && updatePrintingUsersWithNewMessages(updates.user_id, arrayList6);
+                            if (z13) {
+                                updatePrintingStrings();
+                            }
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$processUpdates$376(z13, j, arrayList6);
+                                }
+                            });
+                        } else {
+                            final boolean zUpdatePrintingUsersWithNewMessages = updatePrintingUsersWithNewMessages(-updates.chat_id, arrayList6);
+                            if (zUpdatePrintingUsersWithNewMessages) {
+                                updatePrintingStrings();
+                            }
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$processUpdates$377(zUpdatePrintingUsersWithNewMessages, updates, arrayList6);
+                                }
+                            });
+                        }
+                        if (!messageObject.isOut()) {
+                            getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$processUpdates$379(arrayList6);
+                                }
+                            });
+                        }
+                        getMessagesStorage().putMessages(arrayList7, false, true, false, 0, 0, 0L);
+                    } else if (getMessagesStorage().getLastPtsValue() != updates.pts) {
+                        if (BuildVars.LOGS_ENABLED) {
+                            FileLog.d("need get diff short message, pts: " + getMessagesStorage().getLastPtsValue() + str3 + updates.pts + str2 + updates.pts_count);
+                        }
+                        if (this.gettingDifference || this.updatesStartWaitTimePts == 0 || Math.abs(System.currentTimeMillis() - this.updatesStartWaitTimePts) <= 1500) {
+                            if (this.updatesStartWaitTimePts == 0) {
+                                this.updatesStartWaitTimePts = System.currentTimeMillis();
+                            }
+                            if (BuildVars.LOGS_ENABLED) {
+                                FileLog.d(str);
+                            }
+                            this.updatesQueuePts.add(updates);
+                        }
+                    }
+                    arrayList = null;
+                    z8 = false;
+                    z2 = false;
+                    getSecretChatHelper().processPendingEncMessages();
+                    if (!z) {
+                        for (i = 0; i < this.updatesQueueChannels.size(); i++) {
+                            jKeyAt = this.updatesQueueChannels.keyAt(i);
+                            if (arrayList == null && arrayList.contains(Long.valueOf(jKeyAt))) {
+                                getChannelDifference(jKeyAt);
+                            } else {
+                                processChannelsUpdatesQueue(jKeyAt, 0);
+                            }
+                        }
+                        if (z2) {
+                            getDifference();
+                        } else {
+                            for (i2 = 0; i2 < 3; i2++) {
+                                processUpdatesQueue(i2, 0);
+                            }
+                        }
+                    }
+                    if (z8) {
+                        TLRPC.TL_messages_receivedQueue tL_messages_receivedQueue = new TLRPC.TL_messages_receivedQueue();
+                        tL_messages_receivedQueue.max_qts = getMessagesStorage().getLastQtsValue();
+                        getConnectionsManager().sendRequest(tL_messages_receivedQueue, null);
+                    }
+                    if (z6) {
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$processUpdates$380();
+                            }
+                        });
+                    }
+                    getMessagesStorage().saveDiffParams(getMessagesStorage().getLastSeqValue(), getMessagesStorage().getLastPtsValue(), getMessagesStorage().getLastDateValue(), getMessagesStorage().getLastQtsValue());
+                }
+                z7 = z6;
+            } else {
+                if ((updates instanceof TLRPC.TL_updatesCombined) || (updates instanceof TLRPC.TL_updates)) {
+                    LongSparseArray longSparseArray = null;
+                    for (int i5 = 0; i5 < updates.chats.size(); i5++) {
+                        TLRPC.Chat chat4 = updates.chats.get(i5);
+                        if ((chat4 instanceof TLRPC.TL_channel) && chat4.min) {
+                            TLRPC.Chat chat5 = getChat(Long.valueOf(chat4.id));
+                            if (chat5 == null || chat5.min) {
+                                chat5 = getMessagesStorage().getChatSync(updates.chat_id);
+                                putChat(chat5, true);
+                            }
+                            if (chat5 == null || chat5.min) {
+                                if (longSparseArray == null) {
+                                    longSparseArray = new LongSparseArray();
+                                }
+                                longSparseArray.put(chat4.id, chat4);
+                            }
+                        }
+                    }
+                    if (longSparseArray == null) {
+                        z9 = false;
+                        break;
+                    }
+                    int i6 = 0;
+                    while (true) {
+                        if (i6 >= updates.updates.size()) {
+                            z9 = false;
+                            break;
+                        }
+                        TLRPC.Update update = updates.updates.get(i6);
+                        if (update instanceof TL_update.TL_updateNewChannelMessage) {
+                            long j5 = ((TL_update.TL_updateNewChannelMessage) update).message.peer_id.channel_id;
+                            if (longSparseArray.indexOfKey(j5) >= 0) {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    FileLog.d("need get diff because of min channel " + j5);
+                                }
+                                z9 = true;
+                                break;
+                            }
+                        }
+                        i6++;
+                    }
+                    if (z9) {
+                        z2 = z9;
+                        arrayList = null;
+                        z8 = false;
+                    } else {
+                        getMessagesStorage().putUsersAndChats(updates.users, updates.chats, true, true);
+                        Collections.sort(updates.updates, this.updatesComparator);
+                        boolean z14 = z9;
+                        ArrayList arrayList8 = null;
+                        boolean z15 = false;
+                        while (true) {
+                            if (updates.updates.size() > 0) {
+                                TLRPC.Update update2 = updates.updates.get(i3);
+                                if (getUpdateType(update2) == 0) {
+                                    TLRPC.TL_updates tL_updates = new TLRPC.TL_updates();
+                                    tL_updates.updates.add(update2);
+                                    tL_updates.pts = getUpdatePts(update2);
+                                    tL_updates.pts_count = getUpdatePtsCount(update2);
+                                    while (1 < updates.updates.size()) {
+                                        TLRPC.Update update3 = updates.updates.get(1);
+                                        int updatePts = getUpdatePts(update3);
+                                        int updatePtsCount = getUpdatePtsCount(update3);
+                                        if (getUpdateType(update3) != 0 || tL_updates.pts + updatePtsCount != updatePts) {
+                                            break;
+                                        }
+                                        tL_updates.updates.add(update3);
+                                        tL_updates.pts = updatePts;
+                                        tL_updates.pts_count += updatePtsCount;
+                                        updates.updates.remove(1);
+                                    }
+                                    if (getMessagesStorage().getLastPtsValue() + tL_updates.pts_count == tL_updates.pts) {
+                                        arrayList3 = arrayList8;
+                                        if (!processUpdateArray(tL_updates.updates, updates.users, updates.chats, false, updates.date)) {
+                                            if (BuildVars.LOGS_ENABLED) {
+                                                FileLog.d("need get diff inner TL_updates, pts: " + getMessagesStorage().getLastPtsValue() + " " + updates.seq);
+                                            }
+                                            arrayList8 = arrayList3;
+                                            z14 = true;
+                                        } else {
+                                            getMessagesStorage().setLastPtsValue(tL_updates.pts);
+                                            arrayList4 = arrayList3;
+                                            arrayList8 = arrayList4;
+                                        }
+                                    } else {
+                                        arrayList3 = arrayList8;
+                                        if (getMessagesStorage().getLastPtsValue() != tL_updates.pts) {
+                                            if (BuildVars.LOGS_ENABLED) {
+                                                FileLog.d(update2 + " need get diff, pts: " + getMessagesStorage().getLastPtsValue() + " " + tL_updates.pts + " count = " + tL_updates.pts_count);
+                                            }
+                                            if (this.gettingDifference || this.updatesStartWaitTimePts == 0 || Math.abs(System.currentTimeMillis() - this.updatesStartWaitTimePts) <= 1500) {
+                                                if (this.updatesStartWaitTimePts == 0) {
+                                                    this.updatesStartWaitTimePts = System.currentTimeMillis();
+                                                }
+                                                if (BuildVars.LOGS_ENABLED) {
+                                                    FileLog.d("add to queue");
+                                                }
+                                                this.updatesQueuePts.add(tL_updates);
+                                            } else {
+                                                arrayList8 = arrayList3;
+                                                z14 = true;
+                                            }
+                                        }
+                                        arrayList4 = arrayList3;
+                                        arrayList8 = arrayList4;
+                                    }
+                                } else {
+                                    arrayList3 = arrayList8;
+                                    if (getUpdateType(update2) == 1) {
+                                        TLRPC.TL_updates tL_updates2 = new TLRPC.TL_updates();
+                                        tL_updates2.updates.add(update2);
+                                        tL_updates2.pts = getUpdateQts(update2);
+                                        while (1 < updates.updates.size()) {
+                                            TLRPC.Update update4 = updates.updates.get(1);
+                                            int updateQts = getUpdateQts(update4);
+                                            if (getUpdateType(update4) != 1 || tL_updates2.pts + 1 != updateQts) {
+                                                break;
+                                            }
+                                            tL_updates2.updates.add(update4);
+                                            tL_updates2.pts = updateQts;
+                                            updates.updates.remove(1);
+                                        }
+                                        if (getMessagesStorage().getLastQtsValue() == 0 || getMessagesStorage().getLastQtsValue() + tL_updates2.updates.size() == tL_updates2.pts) {
+                                            processUpdateArray(tL_updates2.updates, updates.users, updates.chats, false, updates.date);
+                                            getMessagesStorage().setLastQtsValue(tL_updates2.pts);
+                                            arrayList8 = arrayList3;
+                                            z15 = true;
+                                        } else {
+                                            if (getMessagesStorage().getLastPtsValue() != tL_updates2.pts) {
+                                                if (BuildVars.LOGS_ENABLED) {
+                                                    FileLog.d(update2 + " need get diff, qts: " + getMessagesStorage().getLastQtsValue() + " " + tL_updates2.pts);
+                                                }
+                                                if (this.gettingDifference || this.updatesStartWaitTimeQts == 0 || Math.abs(System.currentTimeMillis() - this.updatesStartWaitTimeQts) <= 1500) {
+                                                    if (this.updatesStartWaitTimeQts == 0) {
+                                                        this.updatesStartWaitTimeQts = System.currentTimeMillis();
+                                                    }
+                                                    if (BuildVars.LOGS_ENABLED) {
+                                                        FileLog.d("add to queue");
+                                                    }
+                                                    this.updatesQueueQts.add(tL_updates2);
+                                                } else {
+                                                    arrayList8 = arrayList3;
+                                                    z14 = true;
+                                                }
+                                            }
+                                            arrayList4 = arrayList3;
+                                            arrayList8 = arrayList4;
+                                        }
+                                    } else if (getUpdateType(update2) == 2) {
+                                        long updateChannelId = getUpdateChannelId(update2);
+                                        int channelPtsSync = this.channelsPts.get(updateChannelId);
+                                        if (channelPtsSync == 0) {
+                                            channelPtsSync = getMessagesStorage().getChannelPtsSync(updateChannelId);
+                                            if (channelPtsSync == 0) {
+                                                int i7 = 0;
+                                                while (true) {
+                                                    if (i7 < updates.chats.size()) {
+                                                        TLRPC.Chat chat6 = updates.chats.get(i7);
+                                                        int i8 = i7;
+                                                        if (chat6.id == updateChannelId) {
+                                                            loadUnknownChannel(chat6, 0L);
+                                                            z10 = true;
+                                                            break;
+                                                        }
+                                                        i7 = i8 + 1;
+                                                    }
+                                                }
+                                            } else {
+                                                this.channelsPts.put(updateChannelId, channelPtsSync);
+                                            }
+                                            z10 = false;
+                                            break;
+                                        }
+                                        z10 = false;
+                                        break;
+                                        TLRPC.TL_updates tL_updates3 = new TLRPC.TL_updates();
+                                        tL_updates3.updates.add(update2);
+                                        tL_updates3.pts = getUpdatePts(update2);
+                                        tL_updates3.pts_count = getUpdatePtsCount(update2);
+                                        while (1 < updates.updates.size()) {
+                                            TLRPC.Update update5 = updates.updates.get(1);
+                                            int updatePts2 = getUpdatePts(update5);
+                                            int updatePtsCount2 = getUpdatePtsCount(update5);
+                                            if (getUpdateType(update5) != 2 || updateChannelId != getUpdateChannelId(update5) || tL_updates3.pts + updatePtsCount2 != updatePts2) {
+                                                break;
+                                            }
+                                            tL_updates3.updates.add(update5);
+                                            tL_updates3.pts = updatePts2;
+                                            tL_updates3.pts_count += updatePtsCount2;
+                                            updates.updates.remove(1);
+                                        }
+                                        if (!z10) {
+                                            int i9 = tL_updates3.pts_count + channelPtsSync;
+                                            int i10 = tL_updates3.pts;
+                                            if (i9 != i10) {
+                                                arrayList4 = arrayList3;
+                                                if (channelPtsSync != i10) {
+                                                    if (BuildVars.LOGS_ENABLED) {
+                                                        FileLog.d(update2 + " need get channel diff, pts: " + channelPtsSync + " " + tL_updates3.pts + " count = " + tL_updates3.pts_count + " channelId = " + updateChannelId);
+                                                    }
+                                                    long j6 = this.updatesStartWaitTimeChannels.get(updateChannelId);
+                                                    if (((Boolean) this.gettingDifferenceChannels.get(updateChannelId, Boolean.FALSE)).booleanValue() || j6 == 0 || Math.abs(System.currentTimeMillis() - j6) <= 1500) {
+                                                        if (j6 == 0) {
+                                                            this.updatesStartWaitTimeChannels.put(updateChannelId, System.currentTimeMillis());
+                                                        }
+                                                        if (BuildVars.LOGS_ENABLED) {
+                                                            FileLog.d("add to queue");
+                                                        }
+                                                        ArrayList arrayList9 = (ArrayList) this.updatesQueueChannels.get(updateChannelId);
+                                                        if (arrayList9 == null) {
+                                                            arrayList9 = new ArrayList();
+                                                            this.updatesQueueChannels.put(updateChannelId, arrayList9);
+                                                        }
+                                                        arrayList9.add(tL_updates3);
+                                                    } else if (arrayList4 == null) {
+                                                        arrayList8 = new ArrayList();
+                                                    } else if (!arrayList4.contains(Long.valueOf(updateChannelId))) {
+                                                        arrayList4.add(Long.valueOf(updateChannelId));
+                                                    }
+                                                }
+                                            } else if (!processUpdateArray(tL_updates3.updates, updates.users, updates.chats, false, updates.date)) {
+                                                if (BuildVars.LOGS_ENABLED) {
+                                                    FileLog.d("need get channel diff inner TL_updates, channel_id = " + updateChannelId);
+                                                }
+                                                arrayList4 = arrayList3;
+                                                if (arrayList4 == null) {
+                                                    arrayList8 = new ArrayList();
+                                                } else if (!arrayList4.contains(Long.valueOf(updateChannelId))) {
+                                                    arrayList4.add(Long.valueOf(updateChannelId));
+                                                }
+                                            } else {
+                                                arrayList4 = arrayList3;
+                                                this.channelsPts.put(updateChannelId, tL_updates3.pts);
+                                                getMessagesStorage().saveChannelPts(updateChannelId, tL_updates3.pts);
+                                            }
+                                        } else {
+                                            arrayList4 = arrayList3;
+                                            if (BuildVars.LOGS_ENABLED) {
+                                                FileLog.d("need load unknown channel = " + updateChannelId);
+                                            }
+                                        }
+                                        arrayList8 = arrayList4;
+                                    } else {
+                                        arrayList2 = arrayList3;
+                                    }
+                                }
+                                if (updates.updates.size() <= 0) {
+                                    arrayList = arrayList8;
+                                    break;
+                                } else {
+                                    updates.updates.remove(0);
+                                    i3 = 0;
+                                }
+                            } else {
+                                arrayList2 = arrayList8;
+                            }
+                            arrayList = arrayList2;
+                            break;
+                        }
+                        boolean z16 = updates instanceof TLRPC.TL_updatesCombined;
+                        if (z16) {
+                            if (getMessagesStorage().getLastSeqValue() + 1 == updates.seq_start || getMessagesStorage().getLastSeqValue() == updates.seq_start) {
+                                processUpdateArray(updates.updates, updates.users, updates.chats, false, updates.date);
+                                if (updates.seq != 0) {
+                                    if (updates.date != 0) {
+                                        getMessagesStorage().setLastDateValue(updates.date);
+                                    }
+                                    getMessagesStorage().setLastSeqValue(updates.seq);
+                                }
+                            } else {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    if (z16) {
+                                        FileLog.d("need get diff TL_updatesCombined, seq: " + getMessagesStorage().getLastSeqValue() + " " + updates.seq_start);
+                                    } else {
+                                        FileLog.d("need get diff TL_updates, seq: " + getMessagesStorage().getLastSeqValue() + " " + updates.seq);
+                                    }
+                                }
+                                if (!this.gettingDifference || this.updatesStartWaitTimeSeq == 0 || Math.abs(System.currentTimeMillis() - this.updatesStartWaitTimeSeq) <= 1500) {
+                                    if (this.updatesStartWaitTimeSeq == 0) {
+                                        this.updatesStartWaitTimeSeq = System.currentTimeMillis();
+                                    }
+                                    if (BuildVars.LOGS_ENABLED) {
+                                        FileLog.d("add TL_updates/Combined to queue");
+                                    }
+                                    this.updatesQueueSeq.add(updates);
+                                }
+                                z8 = z15;
+                            }
+                            z2 = z14;
+                            z8 = z15;
+                        } else {
+                            int lastSeqValue = getMessagesStorage().getLastSeqValue() + 1;
+                            int i11 = updates.seq;
+                            if (lastSeqValue == i11 || i11 == 0 || i11 == getMessagesStorage().getLastSeqValue()) {
+                                processUpdateArray(updates.updates, updates.users, updates.chats, false, updates.date);
+                                if (updates.seq != 0) {
+                                    if (updates.date != 0) {
+                                        getMessagesStorage().setLastDateValue(updates.date);
+                                    }
+                                    getMessagesStorage().setLastSeqValue(updates.seq);
+                                }
+                            } else {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    if (z16) {
+                                        FileLog.d("need get diff TL_updatesCombined, seq: " + getMessagesStorage().getLastSeqValue() + " " + updates.seq_start);
+                                    } else {
+                                        FileLog.d("need get diff TL_updates, seq: " + getMessagesStorage().getLastSeqValue() + " " + updates.seq);
+                                    }
+                                }
+                                if (!this.gettingDifference) {
+                                }
+                                if (this.updatesStartWaitTimeSeq == 0) {
+                                    this.updatesStartWaitTimeSeq = System.currentTimeMillis();
+                                }
+                                if (BuildVars.LOGS_ENABLED) {
+                                    FileLog.d("add TL_updates/Combined to queue");
+                                }
+                                this.updatesQueueSeq.add(updates);
+                            }
+                            z2 = z14;
+                            z8 = z15;
+                        }
+                    }
+                    z6 = false;
+                } else if (updates instanceof TLRPC.TL_updatesTooLong) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        FileLog.d("need get diff TL_updatesTooLong");
+                    }
+                    z7 = false;
+                } else if (updates instanceof UserActionUpdatesSeq) {
+                    getMessagesStorage().setLastSeqValue(updates.seq);
+                } else if (updates instanceof UserActionUpdatesPts) {
+                    long j7 = updates.chat_id;
+                    if (j7 != 0) {
+                        this.channelsPts.put(j7, updates.pts);
+                        getMessagesStorage().saveChannelPts(updates.chat_id, updates.pts);
+                    } else {
+                        getMessagesStorage().setLastPtsValue(updates.pts);
+                    }
+                }
+                getSecretChatHelper().processPendingEncMessages();
+                if (!z) {
+                    while (i < this.updatesQueueChannels.size()) {
+                        jKeyAt = this.updatesQueueChannels.keyAt(i);
+                        if (arrayList == null) {
+                            processChannelsUpdatesQueue(jKeyAt, 0);
+                        } else {
+                            processChannelsUpdatesQueue(jKeyAt, 0);
+                        }
+                    }
+                    if (z2) {
+                        getDifference();
+                    } else {
+                        while (i2 < 3) {
+                            processUpdatesQueue(i2, 0);
+                        }
+                    }
+                }
+                if (z8) {
+                    TLRPC.TL_messages_receivedQueue tL_messages_receivedQueue2 = new TLRPC.TL_messages_receivedQueue();
+                    tL_messages_receivedQueue2.max_qts = getMessagesStorage().getLastQtsValue();
+                    getConnectionsManager().sendRequest(tL_messages_receivedQueue2, null);
+                }
+                if (z6) {
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$processUpdates$380();
+                        }
+                    });
+                }
+                getMessagesStorage().saveDiffParams(getMessagesStorage().getLastSeqValue(), getMessagesStorage().getLastPtsValue(), getMessagesStorage().getLastDateValue(), getMessagesStorage().getLastQtsValue());
+            }
+            z6 = z7;
+            arrayList = null;
+            z8 = false;
+            getSecretChatHelper().processPendingEncMessages();
+            if (!z) {
+                while (i < this.updatesQueueChannels.size()) {
+                    jKeyAt = this.updatesQueueChannels.keyAt(i);
+                    if (arrayList == null) {
+                        processChannelsUpdatesQueue(jKeyAt, 0);
+                    } else {
+                        processChannelsUpdatesQueue(jKeyAt, 0);
+                    }
+                }
+                if (z2) {
+                    getDifference();
+                } else {
+                    while (i2 < 3) {
+                        processUpdatesQueue(i2, 0);
+                    }
+                }
+            }
+            if (z8) {
+                TLRPC.TL_messages_receivedQueue tL_messages_receivedQueue3 = new TLRPC.TL_messages_receivedQueue();
+                tL_messages_receivedQueue3.max_qts = getMessagesStorage().getLastQtsValue();
+                getConnectionsManager().sendRequest(tL_messages_receivedQueue3, null);
+            }
+            if (z6) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$processUpdates$380();
+                    }
+                });
+            }
+            getMessagesStorage().saveDiffParams(getMessagesStorage().getLastSeqValue(), getMessagesStorage().getLastPtsValue(), getMessagesStorage().getLastDateValue(), getMessagesStorage().getLastQtsValue());
+        }
+        arrayList = null;
+        z8 = false;
+        z6 = false;
+        z2 = false;
+        getSecretChatHelper().processPendingEncMessages();
+        if (!z) {
+            while (i < this.updatesQueueChannels.size()) {
+                jKeyAt = this.updatesQueueChannels.keyAt(i);
+                if (arrayList == null) {
+                    processChannelsUpdatesQueue(jKeyAt, 0);
+                } else {
+                    processChannelsUpdatesQueue(jKeyAt, 0);
+                }
+            }
+            if (z2) {
+                getDifference();
+            } else {
+                while (i2 < 3) {
+                    processUpdatesQueue(i2, 0);
+                }
+            }
+        }
+        if (z8) {
+            TLRPC.TL_messages_receivedQueue tL_messages_receivedQueue4 = new TLRPC.TL_messages_receivedQueue();
+            tL_messages_receivedQueue4.max_qts = getMessagesStorage().getLastQtsValue();
+            getConnectionsManager().sendRequest(tL_messages_receivedQueue4, null);
+        }
+        if (z6) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processUpdates$380();
+                }
+            });
+        }
+        getMessagesStorage().saveDiffParams(getMessagesStorage().getLastSeqValue(), getMessagesStorage().getLastPtsValue(), getMessagesStorage().getLastDateValue(), getMessagesStorage().getLastQtsValue());
     }
 
     public void lambda$processUpdates$376(boolean z, long j, ArrayList arrayList) {
@@ -15565,7 +28392,7 @@ public class MessagesController extends BaseController implements NotificationCe
         return z;
     }
 
-    public boolean processUpdateArray(java.util.ArrayList<org.telegram.tgnet.TLRPC.Update> r90, final java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r91, final java.util.ArrayList<org.telegram.tgnet.TLRPC.Chat> r92, boolean r93, final int r94) throws java.lang.InterruptedException {
+    public boolean processUpdateArray(java.util.ArrayList<org.telegram.tgnet.TLRPC.Update> r90, java.util.ArrayList<org.telegram.tgnet.TLRPC.User> r91, java.util.ArrayList<org.telegram.tgnet.TLRPC.Chat> r92, boolean r93, int r94) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.processUpdateArray(java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, boolean, int):boolean");
     }
 
@@ -15769,8 +28596,1466 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$processUpdateArray$415(int r50, java.util.ArrayList r51, java.util.ArrayList r52, java.util.ArrayList r53, java.util.ArrayList r54, androidx.collection.LongSparseArray r55, int r56, org.telegram.messenger.support.LongSparseIntArray r57, androidx.collection.LongSparseArray r58, androidx.collection.LongSparseArray r59, java.util.ArrayList r60, androidx.collection.LongSparseArray r61, androidx.collection.LongSparseArray r62, org.telegram.messenger.utils.EphemeralMessagesHelper.EphemeralUpdates r63, androidx.collection.LongSparseArray r64, boolean r65, java.util.ArrayList r66, java.util.ArrayList r67, androidx.collection.LongSparseArray r68, androidx.collection.LongSparseArray r69, androidx.collection.LongSparseArray r70, java.util.ArrayList r71) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processUpdateArray$415(int, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, androidx.collection.LongSparseArray, int, org.telegram.messenger.support.LongSparseIntArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, java.util.ArrayList, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, org.telegram.messenger.utils.EphemeralMessagesHelper$EphemeralUpdates, androidx.collection.LongSparseArray, boolean, java.util.ArrayList, java.util.ArrayList, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, java.util.ArrayList):void");
+    public void lambda$processUpdateArray$415(int i, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, LongSparseArray longSparseArray, int i2, LongSparseIntArray longSparseIntArray, LongSparseArray longSparseArray2, LongSparseArray longSparseArray3, ArrayList arrayList5, LongSparseArray longSparseArray4, LongSparseArray longSparseArray5, EphemeralMessagesHelper.EphemeralUpdates ephemeralUpdates, LongSparseArray longSparseArray6, boolean z, ArrayList arrayList6, ArrayList arrayList7, LongSparseArray longSparseArray7, LongSparseArray longSparseArray8, LongSparseArray longSparseArray9, ArrayList arrayList8) {
+        int i3;
+        int i4;
+        int i5;
+        boolean z2;
+        boolean z3;
+        int i6;
+        int size;
+        int i7;
+        int size2;
+        int i8;
+        long jKeyAt;
+        ArrayList arrayList9;
+        ArrayList arrayList10;
+        Iterator it;
+        int i9;
+        int size3;
+        int i10;
+        int size4;
+        int i11;
+        int size5;
+        int i12;
+        long jKeyAt2;
+        ArrayList<MessageObject> arrayList11;
+        int size6;
+        SparseBooleanArray sparseBooleanArray;
+        int i13;
+        ArrayList arrayList12;
+        int i14;
+        MessageObject messageObject;
+        int size7;
+        int i15;
+        int i16;
+        MessageObject messageObject2;
+        TLRPC.Peer peer;
+        MessageObject messageObject3;
+        MessageObject messageObject4;
+        TLRPC.Message message;
+        int size8;
+        int i17;
+        LongSparseArray longSparseArray10;
+        int i18;
+        int i19;
+        long dialogId;
+        char c;
+        boolean z4;
+        int i20;
+        int i21;
+        ArrayList<TLRPC.User> arrayList13;
+        ConferenceCall conferenceCall;
+        TLRPC.ChatFull chatFull;
+        TLRPC.UserFull userFull;
+        long j;
+        long j2;
+        long j3;
+        boolean z5;
+        boolean z6;
+        long j4;
+        TLRPC.ChatFull chatFull2;
+        TLRPC.InputGroupCall inputGroupCall;
+        int i22;
+        int i23;
+        int i24;
+        int i25;
+        TLRPC.Dialog dialog;
+        ChatObject.Call groupCall;
+        long j5;
+        long j6;
+        boolean z7;
+        Boolean boolValueOf;
+        Boolean boolValueOf2;
+        Boolean boolValueOf3;
+        TLRPC.User user;
+        TLRPC.UserProfilePhoto userProfilePhoto;
+        boolean z8;
+        long j7;
+        ArrayList<Long> arrayList14;
+        long j8;
+        ArrayList arrayList15 = arrayList;
+        int i26 = 0;
+        if (arrayList15 != null) {
+            ArrayList<TLRPC.User> arrayList16 = new ArrayList<>();
+            ArrayList<TLRPC.User> arrayList17 = new ArrayList<>();
+            int size9 = arrayList.size();
+            i4 = i;
+            SharedPreferences.Editor editorEdit = null;
+            i5 = 0;
+            z2 = false;
+            while (i26 < size9) {
+                TLRPC.Update update = (TLRPC.Update) arrayList15.get(i26);
+                if (update instanceof TL_update.TL_updatePrivacy) {
+                    TL_update.TL_updatePrivacy tL_updatePrivacy = (TL_update.TL_updatePrivacy) update;
+                    TLRPC.PrivacyKey privacyKey = tL_updatePrivacy.key;
+                    if (privacyKey instanceof TLRPC.TL_privacyKeyStatusTimestamp) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 0);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyChatInvite) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 1);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyPhoneCall) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 2);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyPhoneP2P) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 3);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyProfilePhoto) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 4);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyForwards) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 5);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyPhoneNumber) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 6);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyAddedByPhone) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 7);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyVoiceMessages) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 8);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyAbout) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 9);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyBirthday) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 11);
+                    } else if (privacyKey instanceof TLRPC.TL_privacyKeyStarGiftsAutoSave) {
+                        getContactsController().setPrivacyRules(tL_updatePrivacy.rules, 12);
+                    }
+                    arrayList16 = arrayList16;
+                    arrayList13 = arrayList17;
+                    i21 = size9;
+                } else {
+                    if (update instanceof TL_update.TL_updateStarGiftAuctionState) {
+                        i20 = size9;
+                        GiftAuctionController.getInstance(this.currentAccount).processUpdate((TL_update.TL_updateStarGiftAuctionState) update);
+                    } else {
+                        i20 = size9;
+                        if (update instanceof TL_update.TL_updateStarGiftAuctionUserState) {
+                            GiftAuctionController.getInstance(this.currentAccount).processUpdate((TL_update.TL_updateStarGiftAuctionUserState) update);
+                        } else if (update instanceof TL_update.TL_updateStarsRevenueStatus) {
+                            BotStarsController.getInstance(this.currentAccount).onUpdate((TL_update.TL_updateStarsRevenueStatus) update);
+                        } else if (update instanceof TL_update.TL_updateUserStatus) {
+                            TL_update.TL_updateUserStatus tL_updateUserStatus = (TL_update.TL_updateUserStatus) update;
+                            TLRPC.User user2 = getUser(Long.valueOf(tL_updateUserStatus.user_id));
+                            TLRPC.UserStatus userStatus = tL_updateUserStatus.status;
+                            if (userStatus instanceof TLRPC.TL_userStatusRecently) {
+                                userStatus.expires = -100;
+                            } else if (userStatus instanceof TLRPC.TL_userStatusLastWeek) {
+                                userStatus.expires = -101;
+                            } else if (userStatus instanceof TLRPC.TL_userStatusLastMonth) {
+                                userStatus.expires = -102;
+                            }
+                            if (user2 != null) {
+                                user2.id = tL_updateUserStatus.user_id;
+                                user2.status = userStatus;
+                            }
+                            TLRPC.TL_user tL_user = new TLRPC.TL_user();
+                            tL_user.id = tL_updateUserStatus.user_id;
+                            tL_user.status = tL_updateUserStatus.status;
+                            arrayList17.add(tL_user);
+                            if (tL_updateUserStatus.user_id == getUserConfig().getClientUserId()) {
+                                getNotificationsController().setLastOnlineFromOtherDevice(tL_updateUserStatus.status.expires);
+                            }
+                        } else if (update instanceof TL_update.TL_updateMonoForumNoPaidException) {
+                            TL_update.TL_updateMonoForumNoPaidException tL_updateMonoForumNoPaidException = (TL_update.TL_updateMonoForumNoPaidException) update;
+                            StarsController.getInstance(this.currentAccount).processUpdateMonoForumNoPaidException(tL_updateMonoForumNoPaidException.channel_id, DialogObject.getPeerDialogId(tL_updateMonoForumNoPaidException.saved_peer_id), tL_updateMonoForumNoPaidException.exception);
+                        } else {
+                            if (update instanceof TL_update.TL_updatePeerWallpaper) {
+                                ChatThemeController.getInstance(this.currentAccount).processUpdate((TL_update.TL_updatePeerWallpaper) update);
+                            } else {
+                                if (update instanceof TL_update.TL_updateUserEmojiStatus) {
+                                    TL_update.TL_updateUserEmojiStatus tL_updateUserEmojiStatus = (TL_update.TL_updateUserEmojiStatus) update;
+                                    TLRPC.User user3 = getUser(Long.valueOf(tL_updateUserEmojiStatus.user_id));
+                                    if (user3 != null) {
+                                        user3.id = tL_updateUserEmojiStatus.user_id;
+                                        user3.emoji_status = tL_updateUserEmojiStatus.emoji_status;
+                                        if (UserObject.isUserSelf(user3)) {
+                                            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userEmojiStatusUpdated, user3);
+                                        }
+                                    }
+                                    TLRPC.TL_user tL_user2 = new TLRPC.TL_user();
+                                    tL_user2.id = tL_updateUserEmojiStatus.user_id;
+                                    tL_user2.emoji_status = tL_updateUserEmojiStatus.emoji_status;
+                                    arrayList16.add(tL_user2);
+                                } else {
+                                    arrayList17 = arrayList17;
+                                    if (update instanceof TL_update.TL_updateUserName) {
+                                        TL_update.TL_updateUserName tL_updateUserName = (TL_update.TL_updateUserName) update;
+                                        TLRPC.User user4 = getUser(Long.valueOf(tL_updateUserName.user_id));
+                                        if (user4 != null) {
+                                            if (!UserObject.isContact(user4)) {
+                                                user4.first_name = tL_updateUserName.first_name;
+                                                user4.last_name = tL_updateUserName.last_name;
+                                            }
+                                            if (user4.usernames != null) {
+                                                for (int i27 = 0; i27 < user4.usernames.size(); i27++) {
+                                                    TLRPC.TL_username tL_username = user4.usernames.get(i27);
+                                                    if (tL_username != null && !TextUtils.isEmpty(tL_username.username)) {
+                                                        this.objectsByUsernames.remove(tL_username.username);
+                                                    }
+                                                }
+                                            }
+                                            for (int i28 = 0; i28 < tL_updateUserName.usernames.size(); i28++) {
+                                                String str = tL_updateUserName.usernames.get(i28).username;
+                                                if (!TextUtils.isEmpty(str) && tL_updateUserName.usernames.get(i28).active) {
+                                                    this.objectsByUsernames.put(str, user4);
+                                                }
+                                            }
+                                            ArrayList<TLRPC.TL_username> arrayList18 = tL_updateUserName.usernames;
+                                            if (arrayList18 != null && arrayList18.size() > 1) {
+                                                user4.username = null;
+                                                user4.usernames = tL_updateUserName.usernames;
+                                            } else {
+                                                ArrayList<TLRPC.TL_username> arrayList19 = tL_updateUserName.usernames;
+                                                user4.username = (arrayList19 == null || arrayList19.size() != 1) ? null : tL_updateUserName.usernames.get(0).username;
+                                                user4.usernames.clear();
+                                            }
+                                        }
+                                        TLRPC.TL_user tL_user3 = new TLRPC.TL_user();
+                                        tL_user3.id = tL_updateUserName.user_id;
+                                        tL_user3.first_name = tL_updateUserName.first_name;
+                                        tL_user3.last_name = tL_updateUserName.last_name;
+                                        ArrayList<TLRPC.TL_username> arrayList20 = tL_updateUserName.usernames;
+                                        tL_user3.username = (arrayList20 == null || arrayList20.size() != 1) ? null : tL_updateUserName.usernames.get(0).username;
+                                        arrayList16.add(tL_user3);
+                                    } else if (update instanceof TL_update.TL_updateDialogPinned) {
+                                        TL_update.TL_updateDialogPinned tL_updateDialogPinned = (TL_update.TL_updateDialogPinned) update;
+                                        TLRPC.DialogPeer dialogPeer = tL_updateDialogPinned.peer;
+                                        long peerDialogId = dialogPeer instanceof TLRPC.TL_dialogPeer ? DialogObject.getPeerDialogId(((TLRPC.TL_dialogPeer) dialogPeer).peer) : 0L;
+                                        arrayList16 = arrayList16;
+                                        i21 = i20;
+                                        arrayList13 = arrayList17;
+                                        if (!pinDialog(peerDialogId, tL_updateDialogPinned.pinned, null, -1L)) {
+                                            getUserConfig().setPinnedDialogsLoaded(tL_updateDialogPinned.folder_id, false);
+                                            getUserConfig().saveConfig(false);
+                                            loadPinnedDialogs(tL_updateDialogPinned.folder_id, peerDialogId, null);
+                                        }
+                                    } else {
+                                        arrayList16 = arrayList16;
+                                        i21 = i20;
+                                        arrayList13 = arrayList17;
+                                        if (update instanceof TL_update.TL_updatePinnedDialogs) {
+                                            TL_update.TL_updatePinnedDialogs tL_updatePinnedDialogs = (TL_update.TL_updatePinnedDialogs) update;
+                                            getUserConfig().setPinnedDialogsLoaded(tL_updatePinnedDialogs.folder_id, false);
+                                            getUserConfig().saveConfig(false);
+                                            if ((tL_updatePinnedDialogs.flags & 1) != 0) {
+                                                arrayList14 = new ArrayList<>();
+                                                ArrayList<TLRPC.DialogPeer> arrayList21 = tL_updatePinnedDialogs.order;
+                                                int size10 = arrayList21.size();
+                                                for (int i29 = 0; i29 < size10; i29++) {
+                                                    TLRPC.DialogPeer dialogPeer2 = arrayList21.get(i29);
+                                                    if (dialogPeer2 instanceof TLRPC.TL_dialogPeer) {
+                                                        TLRPC.Peer peer2 = ((TLRPC.TL_dialogPeer) dialogPeer2).peer;
+                                                        long j9 = peer2.user_id;
+                                                        if (j9 != 0) {
+                                                            j8 = j9;
+                                                        } else {
+                                                            long j10 = peer2.chat_id;
+                                                            j8 = j10 != 0 ? -j10 : -peer2.channel_id;
+                                                        }
+                                                    } else {
+                                                        j8 = 0;
+                                                    }
+                                                    arrayList14.add(Long.valueOf(j8));
+                                                }
+                                                j7 = 0;
+                                            } else {
+                                                j7 = 0;
+                                                arrayList14 = null;
+                                            }
+                                            loadPinnedDialogs(tL_updatePinnedDialogs.folder_id, j7, arrayList14);
+                                        } else if (update instanceof TL_update.TL_updateUserPhoto) {
+                                            TL_update.TL_updateUserPhoto tL_updateUserPhoto = (TL_update.TL_updateUserPhoto) update;
+                                            TLRPC.User user5 = getUser(Long.valueOf(tL_updateUserPhoto.user_id));
+                                            if (user5 != null) {
+                                                user5.photo = tL_updateUserPhoto.photo;
+                                            }
+                                            TLRPC.TL_user tL_user4 = new TLRPC.TL_user();
+                                            tL_user4.id = tL_updateUserPhoto.user_id;
+                                            tL_user4.photo = tL_updateUserPhoto.photo;
+                                            arrayList16.add(tL_user4);
+                                            if (UserObject.isUserSelf(user5)) {
+                                                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
+                                            }
+                                        } else if (update instanceof TL_update.TL_updateNewStoryReaction) {
+                                            TL_update.TL_updateNewStoryReaction tL_updateNewStoryReaction = (TL_update.TL_updateNewStoryReaction) update;
+                                            long peerDialogId2 = DialogObject.getPeerDialogId(tL_updateNewStoryReaction.peer);
+                                            int i30 = tL_updateNewStoryReaction.story_id;
+                                            TLRPC.Message message2 = new TLRPC.Message();
+                                            message2.id = -i30;
+                                            message2.dialog_id = peerDialogId2;
+                                            message2.peer_id = getPeer(peerDialogId2);
+                                            message2.date = getConnectionsManager().getCurrentTime();
+                                            TLRPC.User user6 = getMessagesController().getUser(Long.valueOf(message2.dialog_id));
+                                            if (user6 != null && getNotificationsSettings(this.currentAccount).getBoolean("EnableReactionsPreview", true)) {
+                                                ReactionsLayoutInBubble.VisibleReaction visibleReactionFlatten = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_updateNewStoryReaction.reaction).flatten();
+                                                if (visibleReactionFlatten.emojicon != null) {
+                                                    z8 = false;
+                                                    message2.message = LocaleController.formatString(R.string.PushReactStory, UserObject.getFirstName(user6), visibleReactionFlatten.emojicon);
+                                                } else {
+                                                    z8 = false;
+                                                    message2.message = LocaleController.formatString(R.string.PushReactStoryHidden, new Object[0]);
+                                                }
+                                            } else {
+                                                z8 = false;
+                                                message2.message = LocaleController.formatString(R.string.PushReactStoryHidden, new Object[0]);
+                                            }
+                                            ArrayList<MessageObject> arrayList22 = new ArrayList<>();
+                                            MessageObject messageObject5 = new MessageObject(this.currentAccount, message2, z8, z8);
+                                            messageObject5.isStoryReactionPush = true;
+                                            messageObject5.localType = 1;
+                                            if (user6 != null && !UserObject.isDeleted(user6)) {
+                                                messageObject5.localUserName = UserObject.getFirstName(user6);
+                                            } else {
+                                                messageObject5.localUserName = LocaleController.getString(R.string.PushReactStoryHiddenSender);
+                                            }
+                                            arrayList22.add(messageObject5);
+                                            getNotificationsController().processNewMessages(arrayList22, true, false, null);
+                                        } else if (update instanceof TL_update.TL_updateStarsBalance) {
+                                            TL_update.TL_updateStarsBalance tL_updateStarsBalance = (TL_update.TL_updateStarsBalance) update;
+                                            boolean z9 = tL_updateStarsBalance.balance instanceof TL_stars.TL_starsTonAmount;
+                                            StarsController.getInstance(this.currentAccount, z9).updateBalance(tL_updateStarsBalance.balance);
+                                            StarsController.getInstance(this.currentAccount, z9).invalidateTransactions(false);
+                                        } else if (update instanceof TL_update.TL_updateUser) {
+                                            TL_update.TL_updateUser tL_updateUser = (TL_update.TL_updateUser) update;
+                                            TLRPC.User user7 = getUser(Long.valueOf(tL_updateUser.user_id));
+                                            if (arrayList2 == 0) {
+                                                user = null;
+                                                break;
+                                            }
+                                            int i31 = 0;
+                                            while (true) {
+                                                if (i31 >= arrayList2.size()) {
+                                                    user = null;
+                                                    break;
+                                                }
+                                                user = (TLRPC.User) arrayList2.get(i31);
+                                                if (user != null && user.id == tL_updateUser.user_id) {
+                                                    break;
+                                                } else {
+                                                    i31++;
+                                                }
+                                            }
+                                            if (user != null && (userProfilePhoto = user.photo) != null) {
+                                                if (user7 != null) {
+                                                    user7.photo = userProfilePhoto;
+                                                }
+                                                TLRPC.TL_user tL_user5 = new TLRPC.TL_user();
+                                                tL_user5.id = user.id;
+                                                tL_user5.photo = user.photo;
+                                                arrayList16.add(tL_user5);
+                                            }
+                                            if (UserObject.isUserSelf(user7)) {
+                                                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
+                                            }
+                                        } else if (update instanceof TL_update.TL_updateUserPhone) {
+                                            TL_update.TL_updateUserPhone tL_updateUserPhone = (TL_update.TL_updateUserPhone) update;
+                                            final TLRPC.User user8 = getUser(Long.valueOf(tL_updateUserPhone.user_id));
+                                            if (user8 != null) {
+                                                user8.phone = tL_updateUserPhone.phone;
+                                                Utilities.phoneBookQueue.postRunnable(new Runnable() {
+                                                    @Override
+                                                    public final void run() {
+                                                        this.f$0.lambda$processUpdateArray$408(user8);
+                                                    }
+                                                });
+                                                if (UserObject.isUserSelf(user8)) {
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
+                                                }
+                                            }
+                                            TLRPC.TL_user tL_user6 = new TLRPC.TL_user();
+                                            tL_user6.id = tL_updateUserPhone.user_id;
+                                            tL_user6.phone = tL_updateUserPhone.phone;
+                                            arrayList16.add(tL_user6);
+                                        } else if (update instanceof TL_update.TL_updateNotifySettings) {
+                                            TL_update.TL_updateNotifySettings tL_updateNotifySettings = (TL_update.TL_updateNotifySettings) update;
+                                            if (tL_updateNotifySettings.notify_settings instanceof TLRPC.TL_peerNotifySettings) {
+                                                int i32 = i5 | DIALOG_FILTER_FLAG_EXCLUDE_MUTED;
+                                                if (editorEdit == null) {
+                                                    editorEdit = this.notificationsPreferences.edit();
+                                                }
+                                                SharedPreferences.Editor editor = editorEdit;
+                                                getConnectionsManager().getCurrentTime();
+                                                TLRPC.NotifyPeer notifyPeer = tL_updateNotifySettings.peer;
+                                                boolean z10 = notifyPeer instanceof TLRPC.TL_notifyPeer;
+                                                if (z10 || (notifyPeer instanceof TLRPC.TL_notifyForumTopic)) {
+                                                    if (z10) {
+                                                        TLRPC.Peer peer3 = ((TLRPC.TL_notifyPeer) notifyPeer).peer;
+                                                        j5 = peer3.user_id;
+                                                        j6 = 0;
+                                                        if (j5 == 0) {
+                                                            long j11 = peer3.chat_id;
+                                                            j5 = j11 != 0 ? -j11 : -peer3.channel_id;
+                                                        }
+                                                    } else {
+                                                        TLRPC.TL_notifyForumTopic tL_notifyForumTopic = (TLRPC.TL_notifyForumTopic) notifyPeer;
+                                                        TLRPC.Peer peer4 = tL_notifyForumTopic.peer;
+                                                        long j12 = peer4.user_id;
+                                                        if (j12 != 0) {
+                                                            j5 = j12;
+                                                        } else {
+                                                            long j13 = peer4.chat_id;
+                                                            j5 = j13 != 0 ? -j13 : -peer4.channel_id;
+                                                        }
+                                                        j6 = tL_notifyForumTopic.top_msg_id;
+                                                    }
+                                                    getNotificationsController().getNotificationsSettingsFacade().applyDialogNotificationsSettings(j5, j6, tL_updateNotifySettings.notify_settings);
+                                                } else if (notifyPeer instanceof TLRPC.TL_notifyChats) {
+                                                    TLRPC.PeerNotifySettings peerNotifySettings = tL_updateNotifySettings.notify_settings;
+                                                    if ((peerNotifySettings.flags & 1) != 0) {
+                                                        editor.putBoolean("EnablePreviewGroup", peerNotifySettings.show_previews);
+                                                    }
+                                                    if ((tL_updateNotifySettings.notify_settings.flags & 4) != 0) {
+                                                        int i33 = this.notificationsPreferences.getInt("EnableGroup2", 0);
+                                                        int i34 = tL_updateNotifySettings.notify_settings.mute_until;
+                                                        if (i33 != i34) {
+                                                            editor.putInt("EnableGroup2", i34);
+                                                            editor.putBoolean("overwrite_group", true);
+                                                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    this.f$0.lambda$processUpdateArray$409();
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                    getNotificationsController().getNotificationsSettingsFacade().applySoundSettings(tL_updateNotifySettings.notify_settings.android_sound, editor, 0L, 0L, 0, false);
+                                                } else if (notifyPeer instanceof TLRPC.TL_notifyUsers) {
+                                                    TLRPC.PeerNotifySettings peerNotifySettings2 = tL_updateNotifySettings.notify_settings;
+                                                    if ((peerNotifySettings2.flags & 1) != 0) {
+                                                        editor.putBoolean("EnablePreviewAll", peerNotifySettings2.show_previews);
+                                                    }
+                                                    int i35 = tL_updateNotifySettings.notify_settings.flags;
+                                                    if (this.notificationsPreferences.contains("EnableAllStories")) {
+                                                        z7 = true;
+                                                        boolValueOf = Boolean.valueOf(this.notificationsPreferences.getBoolean("EnableAllStories", true));
+                                                    } else {
+                                                        z7 = true;
+                                                        boolValueOf = null;
+                                                    }
+                                                    Boolean boolValueOf4 = this.notificationsPreferences.contains("EnableHideStoriesSenders") ? Boolean.valueOf(this.notificationsPreferences.getBoolean("EnableHideStoriesSenders", z7)) : null;
+                                                    TLRPC.PeerNotifySettings peerNotifySettings3 = tL_updateNotifySettings.notify_settings;
+                                                    if ((peerNotifySettings3.flags & 64) != 0) {
+                                                        boolean z11 = !peerNotifySettings3.stories_muted;
+                                                        boolValueOf2 = Boolean.valueOf(z11);
+                                                        editor.putBoolean("EnableAllStories", z11);
+                                                    } else {
+                                                        boolValueOf2 = null;
+                                                    }
+                                                    TLRPC.PeerNotifySettings peerNotifySettings4 = tL_updateNotifySettings.notify_settings;
+                                                    if ((peerNotifySettings4.flags & 128) != 0) {
+                                                        boolean z12 = peerNotifySettings4.stories_hide_sender;
+                                                        boolValueOf3 = Boolean.valueOf(z12);
+                                                        editor.putBoolean("EnableHideStoriesSenders", z12);
+                                                    } else {
+                                                        boolValueOf3 = null;
+                                                    }
+                                                    if ((boolValueOf == null) != (boolValueOf2 == null)) {
+                                                        editor.putBoolean("overwrite_stories", true);
+                                                    } else if ((boolValueOf4 == null) != (boolValueOf3 == null) || ((boolValueOf != null && boolValueOf != boolValueOf2) || (boolValueOf4 != null && boolValueOf4 != boolValueOf3))) {
+                                                        editor.putBoolean("overwrite_stories", true);
+                                                    }
+                                                    getNotificationsController().getNotificationsSettingsFacade().applySoundSettings(tL_updateNotifySettings.notify_settings.android_sound, editor, 0L, 0L, 1, false);
+                                                    if ((tL_updateNotifySettings.notify_settings.flags & 4) != 0) {
+                                                        int i36 = this.notificationsPreferences.getInt("EnableAll2", 0);
+                                                        int i37 = tL_updateNotifySettings.notify_settings.mute_until;
+                                                        if (i36 != i37) {
+                                                            editor.putInt("EnableAll2", i37);
+                                                            editor.putBoolean("overwrite_private", true);
+                                                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    this.f$0.lambda$processUpdateArray$410();
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                } else if (notifyPeer instanceof TLRPC.TL_notifyBroadcasts) {
+                                                    TLRPC.PeerNotifySettings peerNotifySettings5 = tL_updateNotifySettings.notify_settings;
+                                                    if ((peerNotifySettings5.flags & 1) != 0) {
+                                                        editor.putBoolean("EnablePreviewChannel", peerNotifySettings5.show_previews);
+                                                    }
+                                                    if ((tL_updateNotifySettings.notify_settings.flags & 4) != 0) {
+                                                        int i38 = this.notificationsPreferences.getInt("EnableChannel2", 0);
+                                                        int i39 = tL_updateNotifySettings.notify_settings.mute_until;
+                                                        if (i38 != i39) {
+                                                            editor.putInt("EnableChannel2", i39);
+                                                            editor.putBoolean("overwrite_channel", true);
+                                                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                                                @Override
+                                                                public final void run() {
+                                                                    this.f$0.lambda$processUpdateArray$411();
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                    getNotificationsController().getNotificationsSettingsFacade().applySoundSettings(tL_updateNotifySettings.notify_settings.android_sound, editor, 0L, 0L, 2, false);
+                                                }
+                                                getMessagesStorage().updateMutedDialogsFiltersCounters();
+                                                i5 = i32;
+                                                editorEdit = editor;
+                                                i22 = 1;
+                                            }
+                                        } else if (update instanceof TL_update.TL_updateNewAuthorization) {
+                                            getUnconfirmedAuthController().processUpdate((TL_update.TL_updateNewAuthorization) update);
+                                        } else if (update instanceof TL_update.TL_updateNewBotConnection) {
+                                            getUnconfirmedAuthController().processUpdate((TL_update.TL_updateNewBotConnection) update);
+                                        } else {
+                                            if (update instanceof TL_update.TL_updateChannel) {
+                                                final TL_update.TL_updateChannel tL_updateChannel = (TL_update.TL_updateChannel) update;
+                                                TLRPC.Dialog dialog2 = (TLRPC.Dialog) this.dialogs_dict.get(-tL_updateChannel.channel_id);
+                                                TLRPC.Chat chat = getChat(Long.valueOf(tL_updateChannel.channel_id));
+                                                if (chat != null) {
+                                                    if (dialog2 == null && (chat instanceof TLRPC.TL_channel) && !chat.left) {
+                                                        Utilities.stageQueue.postRunnable(new Runnable() {
+                                                            @Override
+                                                            public final void run() {
+                                                                this.f$0.lambda$processUpdateArray$412(tL_updateChannel);
+                                                            }
+                                                        });
+                                                    } else if (ChatObject.isNotInChat(chat) && dialog2 != null && ((dialog = this.promoDialog) == null || dialog.id != dialog2.id)) {
+                                                        deleteDialog(dialog2.id, 0);
+                                                    }
+                                                    if (((chat instanceof TLRPC.TL_channelForbidden) || chat.kicked) && (groupCall = getGroupCall(chat.id, false)) != null) {
+                                                        TL_update.TL_updateGroupCall tL_updateGroupCall = new TL_update.TL_updateGroupCall();
+                                                        tL_updateGroupCall.flags |= 2;
+                                                        tL_updateGroupCall.peer = getPeer(-chat.id);
+                                                        TLRPC.TL_groupCallDiscarded tL_groupCallDiscarded = new TLRPC.TL_groupCallDiscarded();
+                                                        tL_updateGroupCall.call = tL_groupCallDiscarded;
+                                                        TLRPC.GroupCall groupCall2 = groupCall.call;
+                                                        tL_groupCallDiscarded.id = groupCall2.id;
+                                                        tL_groupCallDiscarded.access_hash = groupCall2.access_hash;
+                                                        groupCall.processGroupCallUpdate(tL_updateGroupCall);
+                                                        if (VoIPService.getSharedInstance() != null) {
+                                                            VoIPService.getSharedInstance().onGroupCallUpdated(tL_updateGroupCall.call);
+                                                        }
+                                                    }
+                                                }
+                                                i25 = i4 | UPDATE_MASK_CHAT;
+                                                loadFullChat(tL_updateChannel.channel_id, 0, true);
+                                            } else if (update instanceof TL_update.TL_updateChat) {
+                                                TL_update.TL_updateChat tL_updateChat = (TL_update.TL_updateChat) update;
+                                                TLRPC.Chat chat2 = getChat(Long.valueOf(tL_updateChat.chat_id));
+                                                if (chat2 == null || !((chat2 instanceof TLRPC.TL_chatForbidden) || chat2.kicked)) {
+                                                    i24 = 0;
+                                                } else {
+                                                    ChatObject.Call groupCall3 = getGroupCall(chat2.id, false);
+                                                    if (groupCall3 != null) {
+                                                        TL_update.TL_updateGroupCall tL_updateGroupCall2 = new TL_update.TL_updateGroupCall();
+                                                        tL_updateGroupCall2.flags |= 2;
+                                                        tL_updateGroupCall2.peer = getPeer(-chat2.id);
+                                                        TLRPC.TL_groupCallDiscarded tL_groupCallDiscarded2 = new TLRPC.TL_groupCallDiscarded();
+                                                        tL_updateGroupCall2.call = tL_groupCallDiscarded2;
+                                                        TLRPC.GroupCall groupCall4 = groupCall3.call;
+                                                        tL_groupCallDiscarded2.id = groupCall4.id;
+                                                        tL_groupCallDiscarded2.access_hash = groupCall4.access_hash;
+                                                        groupCall3.processGroupCallUpdate(tL_updateGroupCall2);
+                                                        if (VoIPService.getSharedInstance() != null) {
+                                                            VoIPService.getSharedInstance().onGroupCallUpdated(tL_updateGroupCall2.call);
+                                                        }
+                                                    }
+                                                    TLRPC.Dialog dialog3 = (TLRPC.Dialog) this.dialogs_dict.get(-chat2.id);
+                                                    if (dialog3 != null) {
+                                                        i24 = 0;
+                                                        deleteDialog(dialog3.id, 0);
+                                                    } else {
+                                                        i24 = 0;
+                                                    }
+                                                }
+                                                i25 = i4 | UPDATE_MASK_CHAT;
+                                                loadFullChat(tL_updateChat.chat_id, i24, true);
+                                            } else if (update instanceof TL_update.TL_updateChatDefaultBannedRights) {
+                                                TL_update.TL_updateChatDefaultBannedRights tL_updateChatDefaultBannedRights = (TL_update.TL_updateChatDefaultBannedRights) update;
+                                                TLRPC.Peer peer5 = tL_updateChatDefaultBannedRights.peer;
+                                                long j14 = peer5.channel_id;
+                                                if (j14 == 0) {
+                                                    j14 = peer5.chat_id;
+                                                }
+                                                final TLRPC.Chat chat3 = getChat(Long.valueOf(j14));
+                                                if (chat3 != null) {
+                                                    chat3.default_banned_rights = tL_updateChatDefaultBannedRights.default_banned_rights;
+                                                    AndroidUtilities.runOnUIThread(new Runnable() {
+                                                        @Override
+                                                        public final void run() {
+                                                            this.f$0.lambda$processUpdateArray$413(chat3);
+                                                        }
+                                                    });
+                                                }
+                                            } else if (update instanceof TL_update.TL_updateBotCommands) {
+                                                TL_update.TL_updateBotCommands tL_updateBotCommands = (TL_update.TL_updateBotCommands) update;
+                                                getMediaDataController().updateBotInfo(MessageObject.getPeerId(tL_updateBotCommands.peer), tL_updateBotCommands);
+                                            } else if (update instanceof TL_update.TL_updateStickerSets) {
+                                                getMediaDataController().loadStickers(0, false, true);
+                                            } else if (update instanceof TL_update.TL_updateStickerSetsOrder) {
+                                                TL_update.TL_updateStickerSetsOrder tL_updateStickerSetsOrder = (TL_update.TL_updateStickerSetsOrder) update;
+                                                if (tL_updateStickerSetsOrder.masks) {
+                                                    i23 = 1;
+                                                } else {
+                                                    i23 = tL_updateStickerSetsOrder.emojis ? 5 : 0;
+                                                }
+                                                getMediaDataController().reorderStickers(i23, tL_updateStickerSetsOrder.order, false);
+                                            } else {
+                                                boolean z13 = update instanceof TL_update.TL_updateRecentReactions;
+                                                if (z13) {
+                                                    getMediaDataController().loadRecentAndTopReactions(true);
+                                                } else if (z13) {
+                                                    getMediaDataController().loadSavedReactions(true);
+                                                } else if (update instanceof TL_update.TL_updateSavedReactionTags) {
+                                                    getSavedReactionTags(0L, true);
+                                                } else if (update instanceof TL_update.TL_updateFavedStickers) {
+                                                    getMediaDataController().loadRecents(2, false, false, true);
+                                                } else if (update instanceof TL_update.TL_updateContactsReset) {
+                                                    getContactsController().forceImportContacts();
+                                                } else if (update instanceof TL_update.TL_updateNewStickerSet) {
+                                                    getMediaDataController().addNewStickerSet(((TL_update.TL_updateNewStickerSet) update).stickerset);
+                                                } else if (update instanceof TL_update.TL_updateSavedGifs) {
+                                                    this.emojiPreferences.edit().putLong("lastGifLoadTime", 0L).commit();
+                                                } else if (update instanceof TL_update.TL_updateRecentStickers) {
+                                                    this.emojiPreferences.edit().putLong("lastStickersLoadTime", 0L).commit();
+                                                } else if (update instanceof TL_update.TL_updateDraftMessage) {
+                                                    TL_update.TL_updateDraftMessage tL_updateDraftMessage = (TL_update.TL_updateDraftMessage) update;
+                                                    TLRPC.Peer peer6 = tL_updateDraftMessage.peer;
+                                                    long j15 = peer6.user_id;
+                                                    if (j15 == 0) {
+                                                        long j16 = peer6.channel_id;
+                                                        j15 = j16 != 0 ? -j16 : -peer6.chat_id;
+                                                    }
+                                                    long j17 = j15;
+                                                    TLRPC.Peer peer7 = tL_updateDraftMessage.saved_peer_id;
+                                                    getMediaDataController().saveDraft(j17, peer7 != null ? DialogObject.getPeerDialogId(peer7) : tL_updateDraftMessage.top_msg_id, tL_updateDraftMessage.draft, null, true);
+                                                    i22 = 1;
+                                                    z2 = true;
+                                                } else if (update instanceof TL_stories.TL_updateStoriesStealthMode) {
+                                                    getStoriesController().setStealthMode(((TL_stories.TL_updateStoriesStealthMode) update).stealth_mode);
+                                                } else if (update instanceof TL_update.TL_updateReadFeaturedStickers) {
+                                                    getMediaDataController().markFeaturedStickersAsRead(false, false);
+                                                } else if (update instanceof TL_update.TL_updateReadFeaturedEmojiStickers) {
+                                                    getMediaDataController().markFeaturedStickersAsRead(true, false);
+                                                } else if (update instanceof TL_update.TL_updateMoveStickerSetToTop) {
+                                                    TL_update.TL_updateMoveStickerSetToTop tL_updateMoveStickerSetToTop = (TL_update.TL_updateMoveStickerSetToTop) update;
+                                                    getMediaDataController().moveStickerSetToTop(tL_updateMoveStickerSetToTop.stickerset, tL_updateMoveStickerSetToTop.emojis, tL_updateMoveStickerSetToTop.masks);
+                                                } else if (update instanceof TL_update.TL_updatePinnedForumTopic) {
+                                                    TL_update.TL_updatePinnedForumTopic tL_updatePinnedForumTopic = (TL_update.TL_updatePinnedForumTopic) update;
+                                                    long j18 = -DialogObject.getPeerDialogId(tL_updatePinnedForumTopic.peer);
+                                                    ArrayList<Integer> currentPinnedOrder = getTopicsController().getCurrentPinnedOrder(j18);
+                                                    currentPinnedOrder.remove(Integer.valueOf(tL_updatePinnedForumTopic.topic_id));
+                                                    if (tL_updatePinnedForumTopic.pinned) {
+                                                        currentPinnedOrder.add(0, Integer.valueOf(tL_updatePinnedForumTopic.topic_id));
+                                                    }
+                                                    getTopicsController().applyPinnedOrder(j18, currentPinnedOrder);
+                                                } else if (update instanceof TL_update.TL_updatePinnedForumTopics) {
+                                                    TL_update.TL_updatePinnedForumTopics tL_updatePinnedForumTopics = (TL_update.TL_updatePinnedForumTopics) update;
+                                                    long peerDialogId3 = DialogObject.getPeerDialogId(tL_updatePinnedForumTopics.peer);
+                                                    if ((tL_updatePinnedForumTopics.flags & 1) != 0) {
+                                                        getTopicsController().applyPinnedOrder(-peerDialogId3, tL_updatePinnedForumTopics.order);
+                                                    } else {
+                                                        getTopicsController().reloadTopics(-peerDialogId3, false);
+                                                    }
+                                                } else if (update instanceof TL_update.TL_updatePhoneCallSignalingData) {
+                                                    TL_update.TL_updatePhoneCallSignalingData tL_updatePhoneCallSignalingData = (TL_update.TL_updatePhoneCallSignalingData) update;
+                                                    VoIPService sharedInstance = VoIPService.getSharedInstance();
+                                                    if (sharedInstance != null) {
+                                                        sharedInstance.onSignalingData(tL_updatePhoneCallSignalingData);
+                                                    }
+                                                } else if (update instanceof TL_update.TL_updateGroupCallParticipants) {
+                                                    TL_update.TL_updateGroupCallParticipants tL_updateGroupCallParticipants = (TL_update.TL_updateGroupCallParticipants) update;
+                                                    ChatObject.Call call = (ChatObject.Call) this.groupCalls.get(tL_updateGroupCallParticipants.call.id);
+                                                    if (call != null) {
+                                                        call.processParticipantsUpdate(tL_updateGroupCallParticipants, false);
+                                                    }
+                                                    if (VoIPService.getSharedInstance() != null) {
+                                                        VoIPService.getSharedInstance().onGroupCallParticipantsUpdate(tL_updateGroupCallParticipants);
+                                                    }
+                                                } else if (update instanceof TL_update.TL_updateGroupCall) {
+                                                    TL_update.TL_updateGroupCall tL_updateGroupCall3 = (TL_update.TL_updateGroupCall) update;
+                                                    if (tL_updateGroupCall3.live_story) {
+                                                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyGroupCallUpdated, Long.valueOf(DialogObject.getPeerDialogId(tL_updateGroupCall3.peer)), tL_updateGroupCall3.call);
+                                                    }
+                                                    ChatObject.Call call2 = (ChatObject.Call) this.groupCalls.get(tL_updateGroupCall3.call.id);
+                                                    if (call2 != null) {
+                                                        call2.processGroupCallUpdate(tL_updateGroupCall3);
+                                                        TLRPC.Chat chat4 = getChat(Long.valueOf(call2.chatId));
+                                                        if (chat4 != null) {
+                                                            chat4.call_active = tL_updateGroupCall3.call instanceof TLRPC.TL_groupCall;
+                                                        }
+                                                    } else {
+                                                        TLRPC.Peer peer8 = tL_updateGroupCall3.peer;
+                                                        if (peer8 != null && (chatFull2 = getChatFull((j4 = -DialogObject.getPeerDialogId(peer8)))) != null && ((inputGroupCall = chatFull2.call) == null || inputGroupCall.id != tL_updateGroupCall3.call.id)) {
+                                                            loadFullChat(j4, 0, true);
+                                                        }
+                                                    }
+                                                    if (VoIPService.getSharedInstance() != null) {
+                                                        VoIPService.getSharedInstance().onGroupCallUpdated(tL_updateGroupCall3.call);
+                                                    }
+                                                } else if (update instanceof TL_update.TL_updatePhoneCall) {
+                                                    TL_phone.PhoneCall phoneCall = ((TL_update.TL_updatePhoneCall) update).phone_call;
+                                                    VoIPService sharedInstance2 = VoIPService.getSharedInstance();
+                                                    if (BuildVars.LOGS_ENABLED) {
+                                                        FileLog.d("Received call in update: " + phoneCall);
+                                                        FileLog.d("call id " + phoneCall.id);
+                                                    }
+                                                    VoIPDebugToSend voIPDebugToSend = this.voipDebug;
+                                                    if (voIPDebugToSend != null && (phoneCall instanceof TL_phone.TL_phoneCallDiscarded)) {
+                                                        TL_phone.TL_phoneCallDiscarded tL_phoneCallDiscarded = (TL_phone.TL_phoneCallDiscarded) phoneCall;
+                                                        voIPDebugToSend.done(tL_phoneCallDiscarded.id, tL_phoneCallDiscarded.need_debug);
+                                                    }
+                                                    if (phoneCall instanceof TL_phone.phoneCallRequested) {
+                                                        if (phoneCall.date + (this.callRingTimeout / 1000) < getConnectionsManager().getCurrentTime()) {
+                                                            if (BuildVars.LOGS_ENABLED) {
+                                                                FileLog.d("ignoring too old call");
+                                                            }
+                                                        } else {
+                                                            if (NotificationManagerCompat.from(ApplicationLoader.applicationContext).areNotificationsEnabled()) {
+                                                                z5 = false;
+                                                            } else if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
+                                                                z5 = true;
+                                                            } else if (BuildVars.LOGS_ENABLED) {
+                                                                FileLog.d("Ignoring incoming call because notifications are disabled in system");
+                                                            }
+                                                            TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
+                                                            try {
+                                                                z6 = Build.VERSION.SDK_INT < 31 ? telephonyManager.getCallState() == 0 : !(ContextCompat.checkSelfPermission(ApplicationLoader.applicationContext, "android.permission.READ_PHONE_STATE") == 0 && telephonyManager.getCallStateForSubscription() != 0);
+                                                            } catch (Throwable th) {
+                                                                FileLog.e(th);
+                                                            }
+                                                            FileLog.e("updatePhoneCall: svc=" + sharedInstance2 + " callIShouldHavePutIntoIntent=" + VoIPService.callIShouldHavePutIntoIntent + " callStateIsIdle=" + z6);
+                                                            if (sharedInstance2 != null || VoIPService.callIShouldHavePutIntoIntent != null || !z6) {
+                                                                if (sharedInstance2 == null || sharedInstance2.getAccount() == this.currentAccount || sharedInstance2.getUser() == null || sharedInstance2.getUser().id != getUserConfig().getClientUserId()) {
+                                                                    if (BuildVars.LOGS_ENABLED) {
+                                                                        FileLog.d("Auto-declining call " + phoneCall.id + " because there's already active one");
+                                                                    }
+                                                                    TL_phone.discardCall discardcall = new TL_phone.discardCall();
+                                                                    TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
+                                                                    discardcall.peer = tL_inputPhoneCall;
+                                                                    tL_inputPhoneCall.access_hash = phoneCall.access_hash;
+                                                                    tL_inputPhoneCall.id = phoneCall.id;
+                                                                    discardcall.reason = new TLRPC.TL_phoneCallDiscardReasonBusy();
+                                                                    FileLog.e("discardCall " + discardcall.reason);
+                                                                    getConnectionsManager().sendRequest(discardcall, new RequestDelegate() {
+                                                                        @Override
+                                                                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                                                            this.f$0.lambda$processUpdateArray$414(tLObject, tL_error);
+                                                                        }
+                                                                    });
+                                                                }
+                                                            } else {
+                                                                if (BuildVars.LOGS_ENABLED) {
+                                                                    FileLog.d("Starting service for call " + phoneCall.id);
+                                                                }
+                                                                VoIPService.callIShouldHavePutIntoIntent = phoneCall;
+                                                                FileLog.e("set VoIPService.callIShouldHavePutIntoIntent = " + phoneCall);
+                                                                Intent intent = new Intent(ApplicationLoader.applicationContext, (Class<?>) VoIPService.class);
+                                                                intent.putExtra("is_outgoing", false);
+                                                                intent.putExtra("user_id", phoneCall.participant_id == getUserConfig().getClientUserId() ? phoneCall.admin_id : phoneCall.participant_id);
+                                                                intent.putExtra("account", this.currentAccount);
+                                                                intent.putExtra("notifications_disabled", z5);
+                                                                try {
+                                                                    int i40 = Build.VERSION.SDK_INT;
+                                                                    if (i40 >= 33) {
+                                                                        intent.putExtra("accept", true);
+                                                                        VoIPPreNotificationService.show(ApplicationLoader.applicationContext, intent, phoneCall);
+                                                                    } else if (!z5 && i40 >= 26) {
+                                                                        ApplicationLoader.applicationContext.startForegroundService(intent);
+                                                                    } else {
+                                                                        ApplicationLoader.applicationContext.startService(intent);
+                                                                    }
+                                                                    if (ApplicationLoader.mainInterfacePaused || !ApplicationLoader.isScreenOn) {
+                                                                        this.ignoreSetOnline = true;
+                                                                    }
+                                                                } catch (Throwable th2) {
+                                                                    FileLog.e(th2);
+                                                                }
+                                                            }
+                                                        }
+                                                    } else if (sharedInstance2 != null && sharedInstance2.getAccount() == this.currentAccount && phoneCall != null) {
+                                                        sharedInstance2.onCallUpdated(phoneCall);
+                                                    } else {
+                                                        if (phoneCall instanceof TL_phone.TL_phoneCallDiscarded) {
+                                                            VoIPPreNotificationService.dismiss(ApplicationLoader.applicationContext, false);
+                                                        }
+                                                        if (VoIPService.callIShouldHavePutIntoIntent != null) {
+                                                            if (BuildVars.LOGS_ENABLED) {
+                                                                FileLog.d("Updated the call while the service is starting");
+                                                            }
+                                                            if (phoneCall.id == VoIPService.callIShouldHavePutIntoIntent.id) {
+                                                                if (phoneCall instanceof TL_phone.TL_phoneCallDiscarded) {
+                                                                    phoneCall = null;
+                                                                }
+                                                                VoIPService.callIShouldHavePutIntoIntent = phoneCall;
+                                                                FileLog.e("(2) set VoIPService.callIShouldHavePutIntoIntent = " + VoIPService.callIShouldHavePutIntoIntent);
+                                                            }
+                                                        }
+                                                    }
+                                                } else if (update instanceof TL_update.TL_updateDialogUnreadMark) {
+                                                    TL_update.TL_updateDialogUnreadMark tL_updateDialogUnreadMark = (TL_update.TL_updateDialogUnreadMark) update;
+                                                    TLRPC.DialogPeer dialogPeer3 = tL_updateDialogUnreadMark.peer;
+                                                    if (dialogPeer3 instanceof TLRPC.TL_dialogPeer) {
+                                                        TLRPC.Peer peer9 = ((TLRPC.TL_dialogPeer) dialogPeer3).peer;
+                                                        long j19 = peer9.user_id;
+                                                        if (j19 != 0) {
+                                                            j3 = j19;
+                                                        } else {
+                                                            long j20 = peer9.chat_id;
+                                                            j3 = j20 != 0 ? -j20 : -peer9.channel_id;
+                                                        }
+                                                    } else {
+                                                        j3 = 0;
+                                                    }
+                                                    getMessagesStorage().setDialogUnread(j3, tL_updateDialogUnreadMark.unread);
+                                                    TLRPC.Dialog dialog4 = (TLRPC.Dialog) this.dialogs_dict.get(j3);
+                                                    if (dialog4 != null) {
+                                                        boolean z14 = dialog4.unread_mark;
+                                                        boolean z15 = tL_updateDialogUnreadMark.unread;
+                                                        if (z14 != z15) {
+                                                            dialog4.unread_mark = z15;
+                                                            if (dialog4.unread_count == 0 && !isDialogMuted(j3, 0L)) {
+                                                                if (dialog4.unread_mark) {
+                                                                    this.unreadUnmutedDialogs++;
+                                                                } else {
+                                                                    this.unreadUnmutedDialogs--;
+                                                                }
+                                                            }
+                                                            i4 |= UPDATE_MASK_READ_DIALOG_MESSAGE;
+                                                            i5 |= DIALOG_FILTER_FLAG_EXCLUDE_READ;
+                                                            i22 = 1;
+                                                        }
+                                                    }
+                                                } else if (update instanceof TL_update.TL_updateMessagePoll) {
+                                                    TL_update.TL_updateMessagePoll tL_updateMessagePoll = (TL_update.TL_updateMessagePoll) update;
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdatePollResults, Long.valueOf(tL_updateMessagePoll.poll_id), tL_updateMessagePoll.poll, tL_updateMessagePoll.results);
+                                                } else if (update instanceof TL_update.TL_updatePeerSettings) {
+                                                    TL_update.TL_updatePeerSettings tL_updatePeerSettings = (TL_update.TL_updatePeerSettings) update;
+                                                    TLRPC.Peer peer10 = tL_updatePeerSettings.peer;
+                                                    if (peer10 instanceof TLRPC.TL_peerUser) {
+                                                        j2 = peer10.user_id;
+                                                    } else {
+                                                        if (peer10 instanceof TLRPC.TL_peerChat) {
+                                                            j = peer10.chat_id;
+                                                        } else {
+                                                            j = peer10.channel_id;
+                                                        }
+                                                        j2 = -j;
+                                                    }
+                                                    savePeerSettings(j2, tL_updatePeerSettings.settings, true);
+                                                } else if (update instanceof TL_update.TL_updatePeerLocated) {
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newPeopleNearbyAvailable, update);
+                                                } else if (update instanceof TL_update.TL_updateMessageReactions) {
+                                                    TL_update.TL_updateMessageReactions tL_updateMessageReactions = (TL_update.TL_updateMessageReactions) update;
+                                                    long peerId = MessageObject.getPeerId(tL_updateMessageReactions.peer);
+                                                    long pendingPaidReactions = StarsController.getInstance(this.currentAccount).getPendingPaidReactions(peerId, tL_updateMessageReactions.msg_id);
+                                                    if (pendingPaidReactions != 0) {
+                                                        MessageObject.addPaidReactions(this.currentAccount, tL_updateMessageReactions.reactions, (int) pendingPaidReactions, StarsController.getInstance(this.currentAccount).getPaidReactionsDialogId(StarsController.MessageId.from(peerId, tL_updateMessageReactions.msg_id), tL_updateMessageReactions.reactions), true);
+                                                    }
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateReactions, Long.valueOf(peerId), Integer.valueOf(tL_updateMessageReactions.msg_id), tL_updateMessageReactions.reactions);
+                                                } else if (update instanceof TL_update.TL_updateMessageExtendedMedia) {
+                                                    TL_update.TL_updateMessageExtendedMedia tL_updateMessageExtendedMedia = (TL_update.TL_updateMessageExtendedMedia) update;
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateExtendedMedia, Long.valueOf(DialogObject.getPeerDialogId(tL_updateMessageExtendedMedia.peer)), Integer.valueOf(tL_updateMessageExtendedMedia.msg_id), tL_updateMessageExtendedMedia.extended_media);
+                                                } else if (update instanceof TL_update.TL_updateTheme) {
+                                                    Theme.setThemeUploadInfo(null, null, (TLRPC.TL_theme) ((TL_update.TL_updateTheme) update).theme, this.currentAccount, true);
+                                                } else if ((update instanceof TL_update.TL_updateDialogFilter) || (update instanceof TL_update.TL_updateDialogFilterOrder) || (update instanceof TL_update.TL_updateDialogFilters)) {
+                                                    loadRemoteFilters(true);
+                                                } else if (update instanceof TL_update.TL_updateRecentEmojiStatuses) {
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.recentEmojiStatusesUpdate, new Object[0]);
+                                                } else if (update instanceof TL_update.TL_updateWebViewResultSent) {
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.webViewResultSent, Long.valueOf(((TL_update.TL_updateWebViewResultSent) update).query_id));
+                                                } else if (update instanceof TL_update.TL_updateAttachMenuBots) {
+                                                    getMediaDataController().loadAttachMenuBots(false, true);
+                                                } else if (update instanceof TL_update.TL_updateJoinChatWebViewDecision) {
+                                                    TL_update.TL_updateJoinChatWebViewDecision tL_updateJoinChatWebViewDecision = (TL_update.TL_updateJoinChatWebViewDecision) update;
+                                                    BotGuardHelper.getInstance(this.currentAccount).closeGuardBotWebApp(DialogObject.getPeerDialogId(tL_updateJoinChatWebViewDecision.peer), tL_updateJoinChatWebViewDecision.query_id, tL_updateJoinChatWebViewDecision.result);
+                                                } else if (update instanceof TL_bots.TL_updateBotMenuButton) {
+                                                    TL_bots.TL_updateBotMenuButton tL_updateBotMenuButton = (TL_bots.TL_updateBotMenuButton) update;
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateBotMenuButton, Long.valueOf(tL_updateBotMenuButton.bot_id), tL_updateBotMenuButton.button);
+                                                } else if (update instanceof TL_update.TL_updateReadChannelDiscussionInbox) {
+                                                    TL_update.TL_updateReadChannelDiscussionInbox tL_updateReadChannelDiscussionInbox = (TL_update.TL_updateReadChannelDiscussionInbox) update;
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.threadMessagesRead, Long.valueOf(-tL_updateReadChannelDiscussionInbox.channel_id), Integer.valueOf(tL_updateReadChannelDiscussionInbox.top_msg_id), Integer.valueOf(tL_updateReadChannelDiscussionInbox.read_max_id), 0);
+                                                    if ((tL_updateReadChannelDiscussionInbox.flags & 1) != 0) {
+                                                        getMessagesStorage().updateRepliesMaxReadId(tL_updateReadChannelDiscussionInbox.broadcast_id, tL_updateReadChannelDiscussionInbox.broadcast_post, tL_updateReadChannelDiscussionInbox.read_max_id, 0, true);
+                                                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.commentsRead, Long.valueOf(tL_updateReadChannelDiscussionInbox.broadcast_id), Integer.valueOf(tL_updateReadChannelDiscussionInbox.broadcast_post), Integer.valueOf(tL_updateReadChannelDiscussionInbox.read_max_id));
+                                                    }
+                                                } else if (update instanceof TL_update.TL_updateReadChannelDiscussionOutbox) {
+                                                    TL_update.TL_updateReadChannelDiscussionOutbox tL_updateReadChannelDiscussionOutbox = (TL_update.TL_updateReadChannelDiscussionOutbox) update;
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.threadMessagesRead, Long.valueOf(-tL_updateReadChannelDiscussionOutbox.channel_id), Integer.valueOf(tL_updateReadChannelDiscussionOutbox.top_msg_id), 0, Integer.valueOf(tL_updateReadChannelDiscussionOutbox.read_max_id));
+                                                } else if (update instanceof TL_update.TL_updateReadMonoForumInbox) {
+                                                    TL_update.TL_updateReadMonoForumInbox tL_updateReadMonoForumInbox = (TL_update.TL_updateReadMonoForumInbox) update;
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.monoForumMessagesRead, Long.valueOf(-tL_updateReadMonoForumInbox.channel_id), Long.valueOf(DialogObject.getPeerDialogId(tL_updateReadMonoForumInbox.saved_peer_id)), Integer.valueOf(tL_updateReadMonoForumInbox.read_max_id), 0);
+                                                    getMessagesStorage().updateRepliesMaxReadId(tL_updateReadMonoForumInbox.channel_id, DialogObject.getPeerDialogId(tL_updateReadMonoForumInbox.saved_peer_id), tL_updateReadMonoForumInbox.read_max_id, 0, true);
+                                                } else if (update instanceof TL_update.TL_updateReadMonoForumOutbox) {
+                                                    TL_update.TL_updateReadMonoForumOutbox tL_updateReadMonoForumOutbox = (TL_update.TL_updateReadMonoForumOutbox) update;
+                                                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.monoForumMessagesRead, Long.valueOf(-tL_updateReadMonoForumOutbox.channel_id), Long.valueOf(DialogObject.getPeerDialogId(tL_updateReadMonoForumOutbox.saved_peer_id)), 0, Integer.valueOf(tL_updateReadMonoForumOutbox.read_max_id));
+                                                } else if (update instanceof TL_update.TL_updatePeerHistoryTTL) {
+                                                    TL_update.TL_updatePeerHistoryTTL tL_updatePeerHistoryTTL = (TL_update.TL_updatePeerHistoryTTL) update;
+                                                    long peerId2 = MessageObject.getPeerId(tL_updatePeerHistoryTTL.peer);
+                                                    if (peerId2 > 0) {
+                                                        TLRPC.UserFull userFull2 = getUserFull(peerId2);
+                                                        if (userFull2 != null) {
+                                                            int i41 = tL_updatePeerHistoryTTL.ttl_period;
+                                                            userFull2.ttl_period = i41;
+                                                            if (i41 == 0) {
+                                                                userFull2.flags &= -16385;
+                                                            } else {
+                                                                userFull2.flags |= 16384;
+                                                            }
+                                                        }
+                                                        userFull = userFull2;
+                                                        chatFull = null;
+                                                    } else {
+                                                        chatFull = getChatFull(-peerId2);
+                                                        if (chatFull != null) {
+                                                            int i42 = tL_updatePeerHistoryTTL.ttl_period;
+                                                            chatFull.ttl_period = i42;
+                                                            if (chatFull instanceof TLRPC.TL_channelFull) {
+                                                                if (i42 == 0) {
+                                                                    chatFull.flags &= -16777217;
+                                                                } else {
+                                                                    chatFull.flags |= 16777216;
+                                                                }
+                                                            } else if (i42 == 0) {
+                                                                chatFull.flags &= -16385;
+                                                            } else {
+                                                                chatFull.flags |= 16384;
+                                                            }
+                                                        }
+                                                        userFull = null;
+                                                    }
+                                                    if (chatFull != null) {
+                                                        NotificationCenter notificationCenter = getNotificationCenter();
+                                                        int i43 = NotificationCenter.chatInfoDidLoad;
+                                                        Boolean bool = Boolean.FALSE;
+                                                        notificationCenter.lambda$postNotificationNameOnUIThread$1(i43, chatFull, 0, bool, bool);
+                                                        getMessagesStorage().updateChatInfo(chatFull, false);
+                                                    } else if (userFull != null) {
+                                                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(peerId2), userFull);
+                                                        getMessagesStorage().updateUserInfo(userFull, false);
+                                                    }
+                                                    getMessagesStorage().setDialogTtl(peerId2, tL_updatePeerHistoryTTL.ttl_period);
+                                                    TLRPC.Dialog dialog5 = (TLRPC.Dialog) this.dialogs_dict.get(peerId2);
+                                                    if (dialog5 != null) {
+                                                        dialog5.ttl_period = tL_updatePeerHistoryTTL.ttl_period;
+                                                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
+                                                    }
+                                                } else if (update instanceof TL_update.TL_updatePendingJoinRequests) {
+                                                    getMemberRequestsController().onPendingRequestsUpdated((TL_update.TL_updatePendingJoinRequests) update);
+                                                } else if (update instanceof TL_update.TL_updateSavedRingtones) {
+                                                    getMediaDataController().ringtoneDataStore.loadUserRingtones(true);
+                                                } else if (update instanceof TL_update.TL_updateTranscribeAudio) {
+                                                    FileLog.e("Received legacy TL_updateTranscribeAudio update");
+                                                } else if (update instanceof TL_update.TL_updateTranscribedAudio) {
+                                                    TL_update.TL_updateTranscribedAudio tL_updateTranscribedAudio = (TL_update.TL_updateTranscribedAudio) update;
+                                                    if (BuildVars.LOGS_ENABLED) {
+                                                        FileLog.d("Transcription update received, pending=" + tL_updateTranscribedAudio.pending + " id=" + tL_updateTranscribedAudio.transcription_id + " text=" + tL_updateTranscribedAudio.text);
+                                                    }
+                                                    if ((!tL_updateTranscribedAudio.pending || !TextUtils.isEmpty(tL_updateTranscribedAudio.text)) && (tL_updateTranscribedAudio.pending || !TranscribeButton.finishTranscription(null, tL_updateTranscribedAudio.transcription_id, tL_updateTranscribedAudio.text))) {
+                                                        getMessagesStorage().updateMessageVoiceTranscription(DialogObject.getPeerDialogId(tL_updateTranscribedAudio.peer), tL_updateTranscribedAudio.msg_id, tL_updateTranscribedAudio.text, tL_updateTranscribedAudio.transcription_id, !tL_updateTranscribedAudio.pending);
+                                                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, null, Long.valueOf(tL_updateTranscribedAudio.transcription_id), tL_updateTranscribedAudio.text, null, Boolean.valueOf(!tL_updateTranscribedAudio.pending));
+                                                    }
+                                                } else if (update instanceof TL_update.TL_updateSentStoryReaction) {
+                                                    TL_update.TL_updateSentStoryReaction tL_updateSentStoryReaction = (TL_update.TL_updateSentStoryReaction) update;
+                                                    getStoriesController().updateStoryReaction(DialogObject.getPeerDialogId(tL_updateSentStoryReaction.peer), tL_updateSentStoryReaction.story_id, tL_updateSentStoryReaction.reaction);
+                                                } else if (update instanceof TL_update.TL_updateChannelViewForumAsMessages) {
+                                                    TL_update.TL_updateChannelViewForumAsMessages tL_updateChannelViewForumAsMessages = (TL_update.TL_updateChannelViewForumAsMessages) update;
+                                                    TLRPC.ChatFull chatFull3 = getChatFull(tL_updateChannelViewForumAsMessages.channel_id);
+                                                    if (chatFull3 != null) {
+                                                        boolean z16 = chatFull3.view_forum_as_messages;
+                                                        boolean z17 = tL_updateChannelViewForumAsMessages.enabled;
+                                                        if (z16 != z17) {
+                                                            chatFull3.view_forum_as_messages = z17;
+                                                            if (z17) {
+                                                                chatFull3.flags2 |= 64;
+                                                            } else {
+                                                                chatFull3.flags2 &= -65;
+                                                            }
+                                                            getMessagesStorage().updateChatInfo(chatFull3, false);
+                                                        }
+                                                    } else {
+                                                        getMessagesController().loadFullChat(tL_updateChannelViewForumAsMessages.channel_id, 0, true);
+                                                    }
+                                                    TLRPC.Dialog dialog6 = getDialog(-tL_updateChannelViewForumAsMessages.channel_id);
+                                                    if (dialog6 != null) {
+                                                        boolean z18 = dialog6.view_forum_as_messages;
+                                                        boolean z19 = tL_updateChannelViewForumAsMessages.enabled;
+                                                        if (z18 != z19) {
+                                                            dialog6.view_forum_as_messages = z19;
+                                                            getMessagesStorage().setDialogViewThreadAsMessages(-tL_updateChannelViewForumAsMessages.channel_id, tL_updateChannelViewForumAsMessages.enabled);
+                                                        }
+                                                    } else {
+                                                        getMessagesStorage().setDialogViewThreadAsMessages(-tL_updateChannelViewForumAsMessages.channel_id, tL_updateChannelViewForumAsMessages.enabled);
+                                                    }
+                                                } else if ((update instanceof TL_update.TL_updatePinnedSavedDialogs) || (update instanceof TL_update.TL_updateSavedDialogPinned)) {
+                                                    getSavedMessagesController().processUpdate(update);
+                                                } else if (!QuickRepliesController.getInstance(this.currentAccount).processUpdate(update, null, 0)) {
+                                                    if (update instanceof TL_update.TL_updatePaidReactionPrivacy) {
+                                                        SharedPreferences.Editor editorEdit2 = this.mainPreferences.edit();
+                                                        long jCurrentTimeMillis = System.currentTimeMillis();
+                                                        this.paidReactionsPrivacyTime = jCurrentTimeMillis;
+                                                        SharedPreferences.Editor editorPutLong = editorEdit2.putLong("paidReactionsAnonymousTime", jCurrentTimeMillis);
+                                                        long dialogId2 = ((TL_update.TL_updatePaidReactionPrivacy) update).privacy.getDialogId();
+                                                        this.paidReactionsPrivacy = Long.valueOf(dialogId2);
+                                                        editorPutLong.putLong("paidReactionsDialogId", dialogId2).apply();
+                                                        this.loadingArePaidReactionsAnonymous = false;
+                                                    } else if (update instanceof TL_update.TL_updateGroupCallChainBlocks) {
+                                                        VoIPService sharedInstance3 = VoIPService.getSharedInstance();
+                                                        if (sharedInstance3 != null && (conferenceCall = sharedInstance3.conference) != null) {
+                                                            conferenceCall.applyUpdate(null, (TL_update.TL_updateGroupCallChainBlocks) update, true, null);
+                                                        }
+                                                    } else if (update instanceof TL_update.TL_updateChatParticipantRank) {
+                                                        TL_update.TL_updateChatParticipantRank tL_updateChatParticipantRank = (TL_update.TL_updateChatParticipantRank) update;
+                                                        updateRank(tL_updateChatParticipantRank.chat_id, tL_updateChatParticipantRank.user_id, tL_updateChatParticipantRank.rank);
+                                                    } else if (update instanceof TL_update.TL_updateAiComposeTones) {
+                                                        AiTonesController aiTonesController = this.tonesController;
+                                                        if (aiTonesController != null) {
+                                                            aiTonesController.invalidate();
+                                                        }
+                                                    } else if (update instanceof TL_update.TL_updateWebBrowserSettings) {
+                                                        applyWebBrowserUpdate((TL_update.TL_updateWebBrowserSettings) update);
+                                                    } else if (update instanceof TL_update.TL_updateWebBrowserException) {
+                                                        applyWebBrowserUpdate((TL_update.TL_updateWebBrowserException) update);
+                                                    } else {
+                                                        ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
+                                                        if (applicationLoader != null) {
+                                                            applicationLoader.processUpdate(this.currentAccount, update);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            i4 = i25;
+                                            i22 = 1;
+                                        }
+                                    }
+                                }
+                                i21 = i20;
+                                arrayList13 = arrayList17;
+                            }
+                            i26 += i22;
+                            arrayList16 = arrayList16;
+                            size9 = i21;
+                            arrayList17 = arrayList13;
+                            arrayList15 = arrayList;
+                        }
+                    }
+                    arrayList13 = arrayList17;
+                    i21 = i20;
+                }
+                i22 = 1;
+                i26 += i22;
+                arrayList16 = arrayList16;
+                size9 = i21;
+                arrayList17 = arrayList13;
+                arrayList15 = arrayList;
+            }
+            ArrayList<TLRPC.User> arrayList23 = arrayList16;
+            ArrayList<TLRPC.User> arrayList24 = arrayList17;
+            i3 = 9;
+            if (editorEdit != null) {
+                editorEdit.commit();
+                z4 = false;
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
+            } else {
+                z4 = false;
+            }
+            getMessagesStorage().updateUsers(arrayList24, true, true, true);
+            getMessagesStorage().updateUsers(arrayList23, z4, true, true);
+        } else {
+            i3 = 9;
+            i4 = i;
+            i5 = 0;
+            z2 = false;
+        }
+        if (arrayList3 != null) {
+            Iterator it2 = arrayList3.iterator();
+            while (it2.hasNext()) {
+                TLRPC.Message message3 = (TLRPC.Message) it2.next();
+                long peerId3 = MessageObject.getPeerId(message3.peer_id);
+                long peerId4 = MessageObject.getPeerId(message3.from_id);
+                TLRPC.UserFull userFull3 = getUserFull(peerId3);
+                if (userFull3 != null) {
+                    TLRPC.MessageAction messageAction = message3.action;
+                    if (messageAction instanceof TLRPC.TL_messageActionNoForwardsToggle) {
+                        if (!((TLRPC.TL_messageActionNoForwardsToggle) messageAction).new_value) {
+                            userFull3.noforwards_peer_enabled = false;
+                            userFull3.noforwards_my_enabled = false;
+                            c = 1;
+                        } else if (peerId4 == peerId3) {
+                            c = 1;
+                            userFull3.noforwards_peer_enabled = true;
+                        } else {
+                            c = 1;
+                            userFull3.noforwards_my_enabled = true;
+                        }
+                        NotificationCenter notificationCenter2 = getNotificationCenter();
+                        int i44 = NotificationCenter.userInfoDidLoad;
+                        Object[] objArr = new Object[2];
+                        objArr[0] = Long.valueOf(peerId3);
+                        objArr[c] = userFull3;
+                        notificationCenter2.lambda$postNotificationNameOnUIThread$1(i44, objArr);
+                        getMessagesStorage().updateUserInfo(userFull3, false);
+                    }
+                }
+            }
+        }
+        if (arrayList4 != null) {
+            int size11 = arrayList4.size();
+            for (int i45 = 0; i45 < size11; i45++) {
+                getMediaDataController().increaseGuestRating(((Long) arrayList4.get(i45)).longValue());
+            }
+        }
+        if (longSparseArray != null) {
+            int size12 = longSparseArray.size();
+            for (int i46 = 0; i46 < size12; i46++) {
+                ChatObject.Call call3 = (ChatObject.Call) this.groupCallsByChatId.get(longSparseArray.keyAt(i46));
+                if (call3 != null) {
+                    call3.processTypingsUpdate(getAccountInstance(), (ArrayList) longSparseArray.valueAt(i46), i2);
+                }
+            }
+        }
+        if (longSparseIntArray != null) {
+            int size13 = longSparseIntArray.size();
+            for (int i47 = 0; i47 < size13; i47++) {
+                SendMessagesHelper.ImportingHistory importingHistory = getSendMessagesHelper().getImportingHistory(longSparseIntArray.keyAt(i47));
+                if (importingHistory != null) {
+                    importingHistory.setImportProgress(longSparseIntArray.valueAt(i47));
+                }
+            }
+        }
+        int i48 = 1;
+        if (longSparseArray2 != null) {
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceivedWebpagesInUpdates, longSparseArray2);
+            int i49 = 0;
+            while (i49 < 3) {
+                if (i49 == i48) {
+                    longSparseArray10 = this.reloadingScheduledWebpagesPending;
+                    i18 = 1;
+                } else if (i49 == 2) {
+                    longSparseArray10 = this.reloadingSavedWebpagesPending;
+                    i18 = 3;
+                } else {
+                    longSparseArray10 = this.reloadingWebpagesPending;
+                    i18 = 0;
+                }
+                int size14 = longSparseArray2.size();
+                int i50 = 0;
+                while (i50 < size14) {
+                    long jKeyAt3 = longSparseArray2.keyAt(i50);
+                    ArrayList arrayList25 = (ArrayList) longSparseArray10.get(jKeyAt3);
+                    longSparseArray10.remove(jKeyAt3);
+                    if (arrayList25 != null) {
+                        TLRPC.WebPage webPage = (TLRPC.WebPage) longSparseArray2.valueAt(i50);
+                        ArrayList<TLRPC.Message> arrayList26 = new ArrayList<>();
+                        if ((webPage instanceof TLRPC.TL_webPage) || (webPage instanceof TLRPC.TL_webPageEmpty)) {
+                            int size15 = arrayList25.size();
+                            dialogId = 0;
+                            for (int i51 = 0; i51 < size15; i51++) {
+                                ((MessageObject) arrayList25.get(i51)).messageOwner.media.webpage = webPage;
+                                if (i51 == 0) {
+                                    dialogId = ((MessageObject) arrayList25.get(i51)).getDialogId();
+                                    ImageLoader.saveMessageThumbs(((MessageObject) arrayList25.get(i51)).messageOwner);
+                                }
+                                arrayList26.add(((MessageObject) arrayList25.get(i51)).messageOwner);
+                            }
+                        } else {
+                            longSparseArray10.put(webPage.id, arrayList25);
+                            dialogId = 0;
+                        }
+                        if (arrayList26.isEmpty()) {
+                            i19 = 1;
+                        } else {
+                            getMessagesStorage().putMessages(arrayList26, true, true, false, getDownloadController().getAutodownloadMask(), i18, 0L);
+                            i19 = 1;
+                            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(dialogId), arrayList25);
+                        }
+                    } else {
+                        i19 = 1;
+                    }
+                    i50 += i19;
+                }
+                i49++;
+                i48 = 1;
+            }
+        }
+        if (i5 == 0) {
+            break;
+            break;
+        }
+        int i52 = 0;
+        while (true) {
+            DialogFilter[] dialogFilterArr = this.selectedDialogFilter;
+            if (i52 >= dialogFilterArr.length) {
+                break;
+            }
+            DialogFilter dialogFilter = dialogFilterArr[i52];
+            if (dialogFilter != null && (dialogFilter.flags & i5) != 0) {
+                z2 = true;
+                break;
+            }
+            i52++;
+        }
+        if (longSparseArray3 != 0) {
+            int size16 = longSparseArray3.size();
+            boolean z20 = false;
+            for (int i53 = 0; i53 < size16; i53++) {
+                if (updateInterfaceWithMessages(longSparseArray3.keyAt(i53), (ArrayList) longSparseArray3.valueAt(i53), 0)) {
+                    z20 = true;
+                }
+            }
+            if (applyFoldersUpdates(arrayList5) || (!z20 && z2)) {
+                sortDialogs(null);
+            }
+        } else {
+            boolean zApplyFoldersUpdates = applyFoldersUpdates(arrayList5);
+            if (z2 || zApplyFoldersUpdates) {
+                sortDialogs(null);
+            } else {
+                z3 = false;
+            }
+            if (longSparseArray4 != 0) {
+                size8 = longSparseArray4.size();
+                for (i17 = 0; i17 < size8; i17++) {
+                    updateInterfaceWithMessages(longSparseArray4.keyAt(i17), (ArrayList) longSparseArray4.valueAt(i17), 1);
+                }
+            }
+            if (longSparseArray5 != null) {
+                size5 = longSparseArray5.size();
+                for (i12 = 0; i12 < size5; i12++) {
+                    jKeyAt2 = longSparseArray5.keyAt(i12);
+                    arrayList11 = (ArrayList) longSparseArray5.valueAt(i12);
+                    size6 = arrayList11.size();
+                    sparseBooleanArray = null;
+                    for (i13 = 0; i13 < size6; i13++) {
+                        messageObject4 = arrayList11.get(i13);
+                        if (jKeyAt2 <= 0) {
+                            if (sparseBooleanArray == null) {
+                                sparseBooleanArray = new SparseBooleanArray();
+                            }
+                            sparseBooleanArray.put(messageObject4.getId(), MessageObject.hasUnreadReactions(messageObject4.messageOwner));
+                            message = messageObject4.messageOwner;
+                            if (!(message instanceof TLRPC.TL_messageService) && (message.action instanceof TLRPC.TL_messageActionConferenceCall) && VoIPService.getSharedInstance() != null) {
+                                VoIPService.getSharedInstance().processMessageUpdate(messageObject4);
+                            }
+                        }
+                    }
+                    if (jKeyAt2 > 0) {
+                        checkUnreadReactions(jKeyAt2, 0L, sparseBooleanArray);
+                    }
+                    arrayList12 = (ArrayList) this.dialogMessage.get(jKeyAt2);
+                    if (arrayList12 != null) {
+                        i14 = 0;
+                        while (i14 < arrayList12.size()) {
+                            messageObject = (MessageObject) arrayList12.get(i14);
+                            size7 = arrayList11.size();
+                            i15 = 0;
+                            while (true) {
+                                if (i15 < size7) {
+                                    i16 = 1;
+                                    break;
+                                }
+                                messageObject2 = arrayList11.get(i15);
+                                if (messageObject.getId() == messageObject2.getId()) {
+                                    arrayList12.set(i14, messageObject2);
+                                    peer = messageObject2.messageOwner.peer_id;
+                                    if (peer != null && peer.channel_id == 0) {
+                                        this.dialogMessagesByIds.put(messageObject2.getId(), messageObject2);
+                                    }
+                                    z3 = true;
+                                } else if (messageObject.getDialogId() == messageObject2.getDialogId() || !(messageObject.messageOwner.action instanceof TLRPC.TL_messageActionPinMessage) || (messageObject3 = messageObject.replyMessageObject) == null || messageObject3.getId() != messageObject2.getId()) {
+                                    i15++;
+                                } else {
+                                    messageObject.replyMessageObject = messageObject2;
+                                    messageObject.generatePinMessageText(null, null);
+                                    z3 = true;
+                                }
+                                i16 = 1;
+                                break;
+                            }
+                            i14 += i16;
+                        }
+                    }
+                    getMediaDataController().loadReplyMessagesForMessages(arrayList11, jKeyAt2, 0, 0L, null, 0, null);
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(jKeyAt2), arrayList11, Boolean.FALSE);
+                }
+            }
+            if (ephemeralUpdates != null) {
+                size3 = ephemeralUpdates.welcomeMessagesToAdd.objectsByDialog.size();
+                for (i10 = 0; i10 < size3; i10++) {
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveNewMessages, Long.valueOf(ephemeralUpdates.welcomeMessagesToAdd.objectsByDialog.keyAt(i10)), ephemeralUpdates.welcomeMessagesToAdd.objectsByDialog.valueAt(i10), Boolean.FALSE, Integer.valueOf(i3));
+                }
+                size4 = ephemeralUpdates.welcomeMessagesToEdit.objectsByDialog.size();
+                for (i11 = 0; i11 < size4; i11++) {
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(ephemeralUpdates.welcomeMessagesToEdit.objectsByDialog.keyAt(i11)), ephemeralUpdates.welcomeMessagesToEdit.objectsByDialog.valueAt(i11), Boolean.FALSE);
+                }
+            }
+            if (longSparseArray6 != null) {
+                size2 = longSparseArray6.size();
+                i8 = 0;
+                while (i8 < size2) {
+                    jKeyAt = longSparseArray6.keyAt(i8);
+                    arrayList9 = (ArrayList) longSparseArray6.valueAt(i8);
+                    if (arrayList9 == null) {
+                        i9 = 1;
+                    } else {
+                        arrayList10 = new ArrayList(arrayList9.size());
+                        it = arrayList9.iterator();
+                        while (it.hasNext()) {
+                            arrayList10.add(Integer.valueOf(MessageObject.ephemeralMessageIdPack(((Integer) it.next()).intValue())));
+                        }
+                        i9 = 1;
+                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDeleted, arrayList10, Long.valueOf(-jKeyAt), Boolean.FALSE);
+                    }
+                    i8 += i9;
+                }
+            }
+            if (z3) {
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
+            }
+            if (z) {
+                i4 |= UPDATE_MASK_USER_PRINT;
+            }
+            if (arrayList6 != null) {
+                i4 = i4 | UPDATE_MASK_NAME | UPDATE_MASK_USER_PHONE;
+            }
+            if (arrayList7 != null) {
+                size = arrayList7.size();
+                for (i7 = 0; i7 < size; i7++) {
+                    getMessagesStorage().updateChatParticipants((TLRPC.ChatParticipants) arrayList7.get(i7));
+                }
+            }
+            if (longSparseArray7 != null && longSparseArray8 == null && longSparseArray9 == null) {
+                i6 = 1;
+            } else {
+                i6 = 1;
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateMessagesViews, longSparseArray7, longSparseArray8, longSparseArray9, Boolean.TRUE);
+            }
+            if (i4 != 0) {
+                NotificationCenter notificationCenter3 = getNotificationCenter();
+                int i54 = NotificationCenter.updateInterfaces;
+                Object[] objArr2 = new Object[i6];
+                objArr2[0] = Integer.valueOf(i4);
+                notificationCenter3.lambda$postNotificationNameOnUIThread$1(i54, objArr2);
+            }
+            if (arrayList8 != null) {
+                ImageLoader.getInstance().putThumbsToCache(arrayList8);
+            }
+        }
+        z3 = true;
+        if (longSparseArray4 != 0) {
+            size8 = longSparseArray4.size();
+            while (i17 < size8) {
+                updateInterfaceWithMessages(longSparseArray4.keyAt(i17), (ArrayList) longSparseArray4.valueAt(i17), 1);
+            }
+        }
+        if (longSparseArray5 != null) {
+            size5 = longSparseArray5.size();
+            while (i12 < size5) {
+                jKeyAt2 = longSparseArray5.keyAt(i12);
+                arrayList11 = (ArrayList) longSparseArray5.valueAt(i12);
+                size6 = arrayList11.size();
+                sparseBooleanArray = null;
+                while (i13 < size6) {
+                    messageObject4 = arrayList11.get(i13);
+                    if (jKeyAt2 <= 0) {
+                        if (sparseBooleanArray == null) {
+                            sparseBooleanArray = new SparseBooleanArray();
+                        }
+                        sparseBooleanArray.put(messageObject4.getId(), MessageObject.hasUnreadReactions(messageObject4.messageOwner));
+                        message = messageObject4.messageOwner;
+                        if (!(message instanceof TLRPC.TL_messageService)) {
+                        }
+                    }
+                }
+                if (jKeyAt2 > 0) {
+                    checkUnreadReactions(jKeyAt2, 0L, sparseBooleanArray);
+                }
+                arrayList12 = (ArrayList) this.dialogMessage.get(jKeyAt2);
+                if (arrayList12 != null) {
+                    i14 = 0;
+                    while (i14 < arrayList12.size()) {
+                        messageObject = (MessageObject) arrayList12.get(i14);
+                        size7 = arrayList11.size();
+                        i15 = 0;
+                        while (true) {
+                            if (i15 < size7) {
+                                i16 = 1;
+                                break;
+                                break;
+                            }
+                            messageObject2 = arrayList11.get(i15);
+                            if (messageObject.getId() == messageObject2.getId()) {
+                                arrayList12.set(i14, messageObject2);
+                                peer = messageObject2.messageOwner.peer_id;
+                                if (peer != null) {
+                                    this.dialogMessagesByIds.put(messageObject2.getId(), messageObject2);
+                                }
+                                z3 = true;
+                            } else {
+                                if (messageObject.getDialogId() == messageObject2.getDialogId()) {
+                                }
+                                i15++;
+                            }
+                            i16 = 1;
+                            break;
+                            break;
+                        }
+                        i14 += i16;
+                    }
+                }
+                getMediaDataController().loadReplyMessagesForMessages(arrayList11, jKeyAt2, 0, 0L, null, 0, null);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(jKeyAt2), arrayList11, Boolean.FALSE);
+            }
+        }
+        if (ephemeralUpdates != null) {
+            size3 = ephemeralUpdates.welcomeMessagesToAdd.objectsByDialog.size();
+            while (i10 < size3) {
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveNewMessages, Long.valueOf(ephemeralUpdates.welcomeMessagesToAdd.objectsByDialog.keyAt(i10)), ephemeralUpdates.welcomeMessagesToAdd.objectsByDialog.valueAt(i10), Boolean.FALSE, Integer.valueOf(i3));
+            }
+            size4 = ephemeralUpdates.welcomeMessagesToEdit.objectsByDialog.size();
+            while (i11 < size4) {
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(ephemeralUpdates.welcomeMessagesToEdit.objectsByDialog.keyAt(i11)), ephemeralUpdates.welcomeMessagesToEdit.objectsByDialog.valueAt(i11), Boolean.FALSE);
+            }
+        }
+        if (longSparseArray6 != null) {
+            size2 = longSparseArray6.size();
+            i8 = 0;
+            while (i8 < size2) {
+                jKeyAt = longSparseArray6.keyAt(i8);
+                arrayList9 = (ArrayList) longSparseArray6.valueAt(i8);
+                if (arrayList9 == null) {
+                    i9 = 1;
+                } else {
+                    arrayList10 = new ArrayList(arrayList9.size());
+                    it = arrayList9.iterator();
+                    while (it.hasNext()) {
+                        arrayList10.add(Integer.valueOf(MessageObject.ephemeralMessageIdPack(((Integer) it.next()).intValue())));
+                    }
+                    i9 = 1;
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDeleted, arrayList10, Long.valueOf(-jKeyAt), Boolean.FALSE);
+                }
+                i8 += i9;
+            }
+        }
+        if (z3) {
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
+        }
+        if (z) {
+            i4 |= UPDATE_MASK_USER_PRINT;
+        }
+        if (arrayList6 != null) {
+            i4 = i4 | UPDATE_MASK_NAME | UPDATE_MASK_USER_PHONE;
+        }
+        if (arrayList7 != null) {
+            size = arrayList7.size();
+            while (i7 < size) {
+                getMessagesStorage().updateChatParticipants((TLRPC.ChatParticipants) arrayList7.get(i7));
+            }
+        }
+        if (longSparseArray7 != null) {
+            i6 = 1;
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateMessagesViews, longSparseArray7, longSparseArray8, longSparseArray9, Boolean.TRUE);
+        } else {
+            i6 = 1;
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateMessagesViews, longSparseArray7, longSparseArray8, longSparseArray9, Boolean.TRUE);
+        }
+        if (i4 != 0) {
+            NotificationCenter notificationCenter4 = getNotificationCenter();
+            int i55 = NotificationCenter.updateInterfaces;
+            Object[] objArr3 = new Object[i6];
+            objArr3[0] = Integer.valueOf(i4);
+            notificationCenter4.lambda$postNotificationNameOnUIThread$1(i55, objArr3);
+        }
+        if (arrayList8 != null) {
+            ImageLoader.getInstance().putThumbsToCache(arrayList8);
+        }
     }
 
     public void lambda$processUpdateArray$417(final LongSparseIntArray longSparseIntArray, final LongSparseIntArray longSparseIntArray2, final SparseIntArray sparseIntArray, final LongSparseArray longSparseArray, final LongSparseArray longSparseArray2, final LongSparseArray longSparseArray3, final LongSparseArray longSparseArray4, final LongSparseArray longSparseArray5, final LongSparseIntArray longSparseIntArray3) {
@@ -15782,8 +30067,308 @@ public class MessagesController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$processUpdateArray$416(org.telegram.messenger.support.LongSparseIntArray r22, org.telegram.messenger.support.LongSparseIntArray r23, android.util.SparseIntArray r24, androidx.collection.LongSparseArray r25, androidx.collection.LongSparseArray r26, androidx.collection.LongSparseArray r27, androidx.collection.LongSparseArray r28, androidx.collection.LongSparseArray r29, org.telegram.messenger.support.LongSparseIntArray r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processUpdateArray$416(org.telegram.messenger.support.LongSparseIntArray, org.telegram.messenger.support.LongSparseIntArray, android.util.SparseIntArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, org.telegram.messenger.support.LongSparseIntArray):void");
+    public void lambda$processUpdateArray$416(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, SparseIntArray sparseIntArray, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, LongSparseArray longSparseArray3, LongSparseArray longSparseArray4, LongSparseArray longSparseArray5, LongSparseIntArray longSparseIntArray3) {
+        int i;
+        int i2;
+        ArrayList arrayList;
+        int i3;
+        int i4;
+        ArrayList arrayList2;
+        ?? r8;
+        int i5;
+        int i6;
+        long j;
+        int i7;
+        int i8;
+        int i9;
+        int i10;
+        int i11;
+        ArrayList arrayList3;
+        LongSparseIntArray longSparseIntArray4 = longSparseIntArray;
+        int i12 = 0;
+        if (longSparseIntArray4 != null || longSparseIntArray2 != null) {
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesRead, longSparseIntArray4, longSparseIntArray2);
+            if (longSparseIntArray4 != null) {
+                getNotificationsController().processReadMessages(longSparseIntArray, 0L, 0, 0, false);
+                SharedPreferences.Editor editorEdit = this.notificationsPreferences.edit();
+                int size = longSparseIntArray.size();
+                int i13 = 0;
+                int i14 = 0;
+                while (i14 < size) {
+                    long jKeyAt = longSparseIntArray4.keyAt(i14);
+                    int iValueAt = longSparseIntArray4.valueAt(i14);
+                    int i15 = size;
+                    TLRPC.Dialog dialog = (TLRPC.Dialog) this.dialogs_dict.get(jKeyAt);
+                    int i16 = i13;
+                    if (dialog == null || (i4 = dialog.top_message) <= 0 || i4 > iValueAt || (arrayList2 = (ArrayList) this.dialogMessage.get(dialog.id)) == null) {
+                        i3 = 1;
+                        i13 = i16;
+                    } else {
+                        i13 = i16;
+                        for (int i17 = 0; i17 < arrayList2.size(); i17++) {
+                            MessageObject messageObject = (MessageObject) arrayList2.get(i17);
+                            if (messageObject != null && !messageObject.isOut()) {
+                                messageObject.setIsRead();
+                                i13 |= UPDATE_MASK_READ_DIALOG_MESSAGE;
+                            }
+                        }
+                        i3 = 1;
+                    }
+                    if (jKeyAt != getUserConfig().getClientUserId()) {
+                        editorEdit.remove("diditem" + jKeyAt);
+                        editorEdit.remove("diditemo" + jKeyAt);
+                    }
+                    i14 += i3;
+                    longSparseIntArray4 = longSparseIntArray;
+                    size = i15;
+                }
+                i = 1;
+                editorEdit.commit();
+                i12 = i13;
+            } else {
+                i = 1;
+                i12 = 0;
+            }
+            if (longSparseIntArray2 != null) {
+                int size2 = longSparseIntArray2.size();
+                int i18 = i12;
+                for (int i19 = 0; i19 < size2; i19 += i) {
+                    long jKeyAt2 = longSparseIntArray2.keyAt(i19);
+                    int iValueAt2 = longSparseIntArray2.valueAt(i19);
+                    TLRPC.Dialog dialog2 = (TLRPC.Dialog) this.dialogs_dict.get(jKeyAt2);
+                    if (dialog2 != null && iValueAt2 > dialog2.read_outbox_max_id) {
+                        dialog2.read_outbox_max_id = iValueAt2;
+                        i18 |= UPDATE_MASK_READ_DIALOG_MESSAGE;
+                    }
+                    if (dialog2 != null && (i2 = dialog2.top_message) > 0 && i2 <= iValueAt2 && (arrayList = (ArrayList) this.dialogMessage.get(dialog2.id)) != null) {
+                        for (int i20 = 0; i20 < arrayList.size(); i20 += i) {
+                            MessageObject messageObject2 = (MessageObject) arrayList.get(i20);
+                            if (messageObject2 != null && messageObject2.isOut()) {
+                                messageObject2.setIsRead();
+                                i18 |= UPDATE_MASK_READ_DIALOG_MESSAGE;
+                            }
+                        }
+                    }
+                }
+                i12 = i18;
+            }
+        }
+        if (sparseIntArray != null) {
+            int size3 = sparseIntArray.size();
+            int i21 = i12;
+            int i22 = 0;
+            while (i22 < size3) {
+                int iKeyAt = sparseIntArray.keyAt(i22);
+                int iValueAt3 = sparseIntArray.valueAt(i22);
+                int i23 = size3;
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesReadEncrypted, Integer.valueOf(iKeyAt), Integer.valueOf(iValueAt3));
+                long jMakeEncryptedDialogId = DialogObject.makeEncryptedDialogId(iKeyAt);
+                if (((TLRPC.Dialog) this.dialogs_dict.get(jMakeEncryptedDialogId)) != null && (arrayList3 = (ArrayList) this.dialogMessage.get(jMakeEncryptedDialogId)) != null) {
+                    for (int i24 = 0; i24 < arrayList3.size(); i24++) {
+                        MessageObject messageObject3 = (MessageObject) arrayList3.get(i24);
+                        if (messageObject3 != null && messageObject3.messageOwner.date <= iValueAt3) {
+                            messageObject3.setIsRead();
+                            i21 |= UPDATE_MASK_READ_DIALOG_MESSAGE;
+                        }
+                    }
+                }
+                i22++;
+                size3 = i23;
+            }
+            r8 = 0;
+            i12 = i21;
+        } else {
+            r8 = 0;
+        }
+        if (longSparseArray != null) {
+            int size4 = longSparseArray.size();
+            for (int i25 = 0; i25 < size4; i25++) {
+                long jKeyAt3 = longSparseArray.keyAt(i25);
+                ArrayList arrayList4 = (ArrayList) longSparseArray.valueAt(i25);
+                NotificationCenter notificationCenter = getNotificationCenter();
+                int i26 = NotificationCenter.messagesReadContent;
+                Object[] objArr = new Object[2];
+                objArr[r8] = Long.valueOf(jKeyAt3);
+                objArr[1] = arrayList4;
+                notificationCenter.lambda$postNotificationNameOnUIThread$1(i26, objArr);
+            }
+        }
+        if (longSparseArray2 != null) {
+            int i27 = 0;
+            for (int size5 = longSparseArray2.size(); i27 < size5; size5 = i9) {
+                long jKeyAt4 = longSparseArray2.keyAt(i27);
+                ArrayList arrayList5 = (ArrayList) longSparseArray2.valueAt(i27);
+                if (arrayList5 == null) {
+                    i9 = size5;
+                } else {
+                    NotificationCenter notificationCenter2 = getNotificationCenter();
+                    int i28 = NotificationCenter.messagesDeleted;
+                    Long lValueOf = Long.valueOf(-jKeyAt4);
+                    i9 = size5;
+                    Object[] objArr2 = new Object[3];
+                    objArr2[r8] = arrayList5;
+                    objArr2[1] = lValueOf;
+                    objArr2[2] = Boolean.FALSE;
+                    notificationCenter2.lambda$postNotificationNameOnUIThread$1(i28, objArr2);
+                    if (jKeyAt4 == 0) {
+                        int size6 = arrayList5.size();
+                        int i29 = 0;
+                        while (i29 < size6) {
+                            MessageObject messageObject4 = this.dialogMessagesByIds.get(((Integer) arrayList5.get(i29)).intValue());
+                            if (messageObject4 != null) {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    FileLog.d("mark messages " + messageObject4.getId() + " deleted");
+                                }
+                                i11 = 1;
+                                messageObject4.deleted = true;
+                            } else {
+                                i11 = 1;
+                            }
+                            i29 += i11;
+                        }
+                    } else {
+                        ArrayList arrayList6 = (ArrayList) this.dialogMessage.get(jKeyAt4);
+                        if (arrayList6 != null) {
+                            int i30 = 0;
+                            while (i30 < arrayList6.size()) {
+                                MessageObject messageObject5 = (MessageObject) arrayList6.get(i30);
+                                if (messageObject5 == null) {
+                                    i10 = 1;
+                                    break;
+                                    break;
+                                }
+                                int size7 = arrayList5.size();
+                                int i31 = 0;
+                                while (true) {
+                                    if (i31 >= size7) {
+                                        i10 = 1;
+                                        break;
+                                    } else {
+                                        if (messageObject5.getId() == ((Integer) arrayList5.get(i31)).intValue()) {
+                                            i10 = 1;
+                                            messageObject5.deleted = true;
+                                            break;
+                                        }
+                                        i31++;
+                                    }
+                                }
+                                i30 += i10;
+                            }
+                        }
+                    }
+                }
+                i27++;
+            }
+            getNotificationsController().removeDeletedMessagesFromNotifications(longSparseArray2, r8);
+        }
+        if (longSparseArray3 != null) {
+            int size8 = longSparseArray3.size();
+            int i32 = 0;
+            while (i32 < size8) {
+                long jKeyAt5 = longSparseArray3.keyAt(i32);
+                ArrayList arrayList7 = (ArrayList) longSparseArray3.valueAt(i32);
+                if (arrayList7 == null) {
+                    i8 = 1;
+                } else {
+                    NotificationCenter notificationCenter3 = getNotificationCenter();
+                    int i33 = NotificationCenter.quickRepliesDeleted;
+                    Long lValueOf2 = Long.valueOf(jKeyAt5);
+                    Object[] objArr3 = new Object[2];
+                    objArr3[r8] = arrayList7;
+                    i8 = 1;
+                    objArr3[1] = lValueOf2;
+                    notificationCenter3.lambda$postNotificationNameOnUIThread$1(i33, objArr3);
+                }
+                i32 += i8;
+            }
+        }
+        if (longSparseArray4 != null) {
+            int size9 = longSparseArray4.size();
+            int i34 = 0;
+            while (i34 < size9) {
+                long jKeyAt6 = longSparseArray4.keyAt(i34);
+                ArrayList arrayList8 = (ArrayList) longSparseArray4.valueAt(i34);
+                if (arrayList8 == null) {
+                    i7 = 1;
+                } else {
+                    ArrayList arrayList9 = longSparseArray5 != null ? (ArrayList) longSparseArray5.get(jKeyAt6) : null;
+                    NotificationCenter notificationCenter4 = getNotificationCenter();
+                    int i35 = NotificationCenter.messagesDeleted;
+                    if (DialogObject.isChatDialog(jKeyAt6)) {
+                        j = -jKeyAt6;
+                        if (!ChatObject.isChannel(getChat(Long.valueOf(j)))) {
+                            j = 0;
+                        }
+                    } else {
+                        j = 0;
+                    }
+                    Long lValueOf3 = Long.valueOf(j);
+                    Integer numValueOf = Integer.valueOf((int) r8);
+                    Object[] objArr4 = new Object[7];
+                    objArr4[r8] = arrayList8;
+                    objArr4[1] = lValueOf3;
+                    objArr4[2] = Boolean.TRUE;
+                    Boolean bool = Boolean.FALSE;
+                    objArr4[3] = bool;
+                    objArr4[4] = bool;
+                    objArr4[5] = numValueOf;
+                    objArr4[6] = arrayList9;
+                    notificationCenter4.lambda$postNotificationNameOnUIThread$1(i35, objArr4);
+                    i7 = 1;
+                }
+                i34 += i7;
+            }
+        }
+        if (longSparseIntArray3 != null) {
+            int size10 = longSparseIntArray3.size();
+            int i36 = 0;
+            while (i36 < size10) {
+                long jKeyAt7 = longSparseIntArray3.keyAt(i36);
+                int iValueAt4 = longSparseIntArray3.valueAt(i36);
+                long j2 = -jKeyAt7;
+                NotificationCenter notificationCenter5 = getNotificationCenter();
+                int i37 = NotificationCenter.historyCleared;
+                Long lValueOf4 = Long.valueOf(j2);
+                Integer numValueOf2 = Integer.valueOf(iValueAt4);
+                Object[] objArr5 = new Object[2];
+                objArr5[r8] = lValueOf4;
+                objArr5[1] = numValueOf2;
+                notificationCenter5.lambda$postNotificationNameOnUIThread$1(i37, objArr5);
+                ArrayList arrayList10 = (ArrayList) this.dialogMessage.get(j2);
+                if (arrayList10 == null) {
+                    i6 = 1;
+                    break;
+                    break;
+                }
+                int i38 = 0;
+                while (true) {
+                    if (i38 >= arrayList10.size()) {
+                        i6 = 1;
+                        break;
+                    }
+                    MessageObject messageObject6 = (MessageObject) arrayList10.get(i38);
+                    if (messageObject6 != null && messageObject6.getId() <= iValueAt4) {
+                        i6 = 1;
+                        messageObject6.deleted = true;
+                        break;
+                    }
+                    i38++;
+                }
+                i36 += i6;
+            }
+            i5 = 1;
+            getNotificationsController().removeDeletedHisoryFromNotifications(longSparseIntArray3);
+        } else {
+            i5 = 1;
+        }
+        if (i12 != 0) {
+            NotificationCenter notificationCenter6 = getNotificationCenter();
+            int i39 = NotificationCenter.updateInterfaces;
+            Integer numValueOf3 = Integer.valueOf(i12);
+            Object[] objArr6 = new Object[i5];
+            objArr6[r8] = numValueOf3;
+            notificationCenter6.lambda$postNotificationNameOnUIThread$1(i39, objArr6);
+        }
     }
 
     public void lambda$processUpdateArray$418(long j, ArrayList arrayList) {
@@ -15821,7 +30406,6 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$checkUnreadReactionsInternal$421(SparseBooleanArray sparseBooleanArray, long j, String str, long j2, String str2, boolean z, boolean z2) {
         boolean z3;
         int i;
-        SQLitePreparedStatement sQLitePreparedStatementExecuteFast;
         SQLiteCursor sQLiteCursorQueryFinalized;
         SparseBooleanArray sparseBooleanArray2 = sparseBooleanArray;
         ArrayList<Integer> arrayList = new ArrayList<>();
@@ -15868,16 +30452,18 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             if (j == 0) {
                 try {
-                    SQLitePreparedStatement sQLitePreparedStatementExecuteFast2 = getMessagesStorage().getDatabase().executeFast(String.format(Locale.US, "REPLACE INTO %s VALUES(?, ?, ?)", str));
-                    sQLitePreparedStatementExecuteFast2.requery();
-                    sQLitePreparedStatementExecuteFast2.bindInteger(1, iKeyAt2);
-                    sQLitePreparedStatementExecuteFast2.bindInteger(2, zValueAt ? 1 : 0);
-                    sQLitePreparedStatementExecuteFast2.bindLong(3, j2);
-                    sQLitePreparedStatementExecuteFast2.step();
-                    sQLitePreparedStatementExecuteFast2.dispose();
+                    SQLitePreparedStatement sQLitePreparedStatementExecuteFast = getMessagesStorage().getDatabase().executeFast(String.format(Locale.US, "REPLACE INTO %s VALUES(?, ?, ?)", str));
+                    sQLitePreparedStatementExecuteFast.requery();
+                    sQLitePreparedStatementExecuteFast.bindInteger(1, iKeyAt2);
+                    sQLitePreparedStatementExecuteFast.bindInteger(2, zValueAt ? 1 : 0);
+                    sQLitePreparedStatementExecuteFast.bindLong(3, j2);
+                    sQLitePreparedStatementExecuteFast.step();
+                    sQLitePreparedStatementExecuteFast.dispose();
                     i = 1;
                 } catch (SQLiteException e2) {
                     e = e2;
+                    e.printStackTrace();
+                    i = 1;
                 }
                 i3 += i;
                 sparseBooleanArray2 = sparseBooleanArray;
@@ -15888,38 +30474,34 @@ public class MessagesController extends BaseController implements NotificationCe
                 Object[] objArr = new Object[1];
                 try {
                     objArr[0] = str2;
-                    sQLitePreparedStatementExecuteFast = database.executeFast(String.format(locale, "REPLACE INTO %s VALUES(?, ?, ?, ?)", objArr));
-                    sQLitePreparedStatementExecuteFast.requery();
-                    sQLitePreparedStatementExecuteFast.bindInteger(1, iKeyAt2);
+                    SQLitePreparedStatement sQLitePreparedStatementExecuteFast2 = database.executeFast(String.format(locale, "REPLACE INTO %s VALUES(?, ?, ?, ?)", objArr));
+                    sQLitePreparedStatementExecuteFast2.requery();
+                    sQLitePreparedStatementExecuteFast2.bindInteger(1, iKeyAt2);
                     try {
-                        sQLitePreparedStatementExecuteFast.bindInteger(2, zValueAt ? 1 : 0);
-                    } catch (SQLiteException e3) {
-                        e = e3;
+                        sQLitePreparedStatementExecuteFast2.bindInteger(2, zValueAt ? 1 : 0);
+                        try {
+                            sQLitePreparedStatementExecuteFast2.bindLong(3, j2);
+                            try {
+                                sQLitePreparedStatementExecuteFast2.bindLong(4, j);
+                                sQLitePreparedStatementExecuteFast2.step();
+                                sQLitePreparedStatementExecuteFast2.dispose();
+                            } catch (SQLiteException e3) {
+                                e = e3;
+                                e.printStackTrace();
+                            }
+                        } catch (SQLiteException e4) {
+                            e = e4;
+                        }
+                    } catch (SQLiteException e5) {
+                        e = e5;
                         e.printStackTrace();
                         i = 1;
                         i3 += i;
                         sparseBooleanArray2 = sparseBooleanArray;
                         z4 = z3;
                     }
-                } catch (SQLiteException e4) {
-                    e = e4;
-                }
-                try {
-                    sQLitePreparedStatementExecuteFast.bindLong(3, j2);
-                    try {
-                        sQLitePreparedStatementExecuteFast.bindLong(4, j);
-                        sQLitePreparedStatementExecuteFast.step();
-                        sQLitePreparedStatementExecuteFast.dispose();
-                    } catch (SQLiteException e5) {
-                        e = e5;
-                    }
                 } catch (SQLiteException e6) {
                     e = e6;
-                    e.printStackTrace();
-                    i = 1;
-                    i3 += i;
-                    sparseBooleanArray2 = sparseBooleanArray;
-                    z4 = z3;
                 }
                 i = 1;
                 i3 += i;
@@ -16333,8 +30915,89 @@ public class MessagesController extends BaseController implements NotificationCe
         return null;
     }
 
-    public void lambda$getSponsoredMessages$440(final long r20, final org.telegram.messenger.MessagesController.SponsoredMessagesInfo r22, org.telegram.tgnet.TLObject r23, org.telegram.tgnet.TLRPC.TL_error r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$getSponsoredMessages$440(long, org.telegram.messenger.MessagesController$SponsoredMessagesInfo, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public void lambda$getSponsoredMessages$440(final long j, final SponsoredMessagesInfo sponsoredMessagesInfo, TLObject tLObject, TLRPC.TL_error tL_error) {
+        final Integer num;
+        final ArrayList arrayList = null;
+        numValueOf = null;
+        Integer numValueOf = null;
+        if (tLObject instanceof TLRPC.messages_SponsoredMessages) {
+            final TLRPC.messages_SponsoredMessages messages_sponsoredmessages = (TLRPC.messages_SponsoredMessages) tLObject;
+            if (messages_sponsoredmessages.messages.isEmpty()) {
+                num = null;
+            } else {
+                if ((messages_sponsoredmessages instanceof TLRPC.TL_messages_sponsoredMessages) && (messages_sponsoredmessages.flags & 1) > 0) {
+                    numValueOf = Integer.valueOf(messages_sponsoredmessages.posts_between);
+                }
+                ArrayList arrayList2 = new ArrayList();
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$getSponsoredMessages$438(messages_sponsoredmessages);
+                    }
+                });
+                LongSparseArray longSparseArray = new LongSparseArray();
+                LongSparseArray longSparseArray2 = new LongSparseArray();
+                int i = 0;
+                for (int i2 = 0; i2 < messages_sponsoredmessages.users.size(); i2++) {
+                    TLRPC.User user = messages_sponsoredmessages.users.get(i2);
+                    longSparseArray.put(user.id, user);
+                }
+                for (int i3 = 0; i3 < messages_sponsoredmessages.chats.size(); i3++) {
+                    TLRPC.Chat chat = messages_sponsoredmessages.chats.get(i3);
+                    longSparseArray2.put(chat.id, chat);
+                }
+                int size = messages_sponsoredmessages.messages.size();
+                int i4 = -10000000;
+                while (i < size) {
+                    TLRPC.TL_sponsoredMessage tL_sponsoredMessage = messages_sponsoredmessages.messages.get(i);
+                    TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                    if (!tL_sponsoredMessage.entities.isEmpty()) {
+                        tL_message.entities = tL_sponsoredMessage.entities;
+                        tL_message.flags |= 128;
+                    }
+                    tL_message.peer_id = getPeer(j);
+                    tL_message.flags |= 256;
+                    tL_message.date = getConnectionsManager().getCurrentTime();
+                    int i5 = i4 - 1;
+                    tL_message.id = i4;
+                    tL_message.message = tL_sponsoredMessage.message;
+                    TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
+                    if (messageMedia != null) {
+                        tL_message.flags |= 512;
+                    }
+                    tL_message.media = messageMedia;
+                    MessageObject messageObject = new MessageObject(this.currentAccount, (TLRPC.Message) tL_message, longSparseArray, longSparseArray2, true, true);
+                    messageObject.sponsoredId = tL_sponsoredMessage.random_id;
+                    messageObject.sponsoredTitle = tL_sponsoredMessage.title;
+                    messageObject.sponsoredUrl = tL_sponsoredMessage.url;
+                    messageObject.sponsoredRecommended = tL_sponsoredMessage.recommended;
+                    messageObject.sponsoredPhoto = tL_sponsoredMessage.photo;
+                    messageObject.sponsoredInfo = tL_sponsoredMessage.sponsor_info;
+                    messageObject.sponsoredAdditionalInfo = tL_sponsoredMessage.additional_info;
+                    messageObject.sponsoredButtonText = tL_sponsoredMessage.button_text;
+                    messageObject.sponsoredCanReport = tL_sponsoredMessage.can_report;
+                    messageObject.sponsoredColor = tL_sponsoredMessage.color;
+                    messageObject.sponsoredMedia = tL_sponsoredMessage.media;
+                    messageObject.setType();
+                    messageObject.textLayoutBlocks = new ArrayList<>();
+                    messageObject.generateThumbs(true);
+                    arrayList2.add(messageObject);
+                    i++;
+                    messages_sponsoredmessages = messages_sponsoredmessages;
+                    i4 = i5;
+                }
+                num = numValueOf;
+                arrayList = arrayList2;
+            }
+        } else {
+            num = null;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$getSponsoredMessages$439(arrayList, j, sponsoredMessagesInfo, num);
+            }
+        });
     }
 
     public void lambda$getSponsoredMessages$438(TLRPC.messages_SponsoredMessages messages_sponsoredmessages) {
@@ -16389,8 +31052,30 @@ public class MessagesController extends BaseController implements NotificationCe
         return null;
     }
 
-    public void lambda$getSendAsPeers$443(final androidx.collection.LongSparseArray r9, final long r10, final org.telegram.messenger.MessagesController.SendAsPeersInfo r12, final boolean r13, org.telegram.tgnet.TLObject r14, org.telegram.tgnet.TLRPC.TL_error r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$getSendAsPeers$443(androidx.collection.LongSparseArray, long, org.telegram.messenger.MessagesController$SendAsPeersInfo, boolean, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public void lambda$getSendAsPeers$443(final LongSparseArray longSparseArray, final long j, final SendAsPeersInfo sendAsPeersInfo, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
+        final TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers;
+        if (tLObject != null) {
+            tL_channels_sendAsPeers = (TLRPC.TL_channels_sendAsPeers) tLObject;
+            if (tL_channels_sendAsPeers.peers.isEmpty()) {
+                tL_channels_sendAsPeers = null;
+            } else {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$getSendAsPeers$441(tL_channels_sendAsPeers);
+                    }
+                });
+            }
+        } else {
+            tL_channels_sendAsPeers = null;
+        }
+        final TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers2 = tL_channels_sendAsPeers;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$getSendAsPeers$442(tL_channels_sendAsPeers2, longSparseArray, j, sendAsPeersInfo, z);
+            }
+        });
     }
 
     public void lambda$getSendAsPeers$441(TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers) {
@@ -16446,11 +31131,9 @@ public class MessagesController extends BaseController implements NotificationCe
             }
         } else if (j < 0) {
             ArrayList arrayList2 = new ArrayList();
-            Iterator<MessageObject> it = arrayList.iterator();
-            while (it.hasNext()) {
-                MessageObject next = it.next();
-                if (next.isFromUser() && !arrayList2.contains(Long.valueOf(next.messageOwner.from_id.user_id))) {
-                    arrayList2.add(Long.valueOf(next.messageOwner.from_id.user_id));
+            for (MessageObject messageObject : arrayList) {
+                if (messageObject.isFromUser() && !arrayList2.contains(Long.valueOf(messageObject.messageOwner.from_id.user_id))) {
+                    arrayList2.add(Long.valueOf(messageObject.messageOwner.from_id.user_id));
                 }
             }
             ConcurrentHashMap<Integer, ArrayList<PrintingUser>> concurrentHashMap = this.printingUsers.get(Long.valueOf(j));
@@ -16495,8 +31178,275 @@ public class MessagesController extends BaseController implements NotificationCe
         return false;
     }
 
-    public boolean updateInterfaceWithMessages(final long r27, java.util.ArrayList<org.telegram.messenger.MessageObject> r29, int r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.updateInterfaceWithMessages(long, java.util.ArrayList, int):boolean");
+    public boolean updateInterfaceWithMessages(final long j, ArrayList<MessageObject> arrayList, int i) {
+        MessageObject messageObject;
+        long j2;
+        boolean z;
+        LongSparseArray longSparseArray;
+        boolean z2;
+        boolean z3;
+        boolean z4;
+        TLRPC.Chat chat;
+        long j3;
+        int i2;
+        TLRPC.ChatFull chatFull;
+        TLRPC.InputGroupCall inputGroupCall;
+        if (arrayList == null || arrayList.isEmpty()) {
+            return false;
+        }
+        boolean z5 = i == 1;
+        boolean z6 = i == 5;
+        boolean z7 = i == 9;
+        boolean zIsEncryptedDialog = DialogObject.isEncryptedDialog(j);
+        long j4 = 0;
+        if (z5 || z6 || z7) {
+            messageObject = null;
+            j2 = 0;
+            z = false;
+        } else {
+            long j5 = 0;
+            int i3 = 0;
+            MessageObject messageObject2 = null;
+            boolean z8 = false;
+            z = false;
+            while (i3 < arrayList.size()) {
+                MessageObject messageObject3 = arrayList.get(i3);
+                if (messageObject2 == null || ((!zIsEncryptedDialog && messageObject3.getId() > messageObject2.getId()) || (((zIsEncryptedDialog || (messageObject3.getId() < 0 && messageObject2.getId() < 0)) && messageObject3.getId() < messageObject2.getId()) || messageObject3.messageOwner.date > messageObject2.messageOwner.date))) {
+                    long j6 = messageObject3.messageOwner.peer_id.channel_id;
+                    if (j6 != j4) {
+                        j5 = j6;
+                    }
+                    messageObject2 = messageObject3;
+                }
+                TLRPC.Message message = messageObject3.messageOwner;
+                if ((message.action instanceof TLRPC.TL_messageActionGroupCall) && (chatFull = getChatFull(message.peer_id.channel_id)) != null && ((inputGroupCall = chatFull.call) == null || inputGroupCall.id != messageObject3.messageOwner.action.call.id)) {
+                    loadFullChat(messageObject3.messageOwner.peer_id.channel_id, 0, true);
+                }
+                if (!z8 && !messageObject3.isOut()) {
+                    z8 = true;
+                }
+                if (messageObject3.isOut() && !messageObject3.isSending() && !messageObject3.isForwarded()) {
+                    if (messageObject3.isNewGif()) {
+                        if (MessageObject.isDocumentHasAttachedStickers(messageObject3.messageOwner.media.document) ? getMessagesController().saveGifsWithStickers : true) {
+                            MediaDataController mediaDataController = getMediaDataController();
+                            TLRPC.Message message2 = messageObject3.messageOwner;
+                            mediaDataController.addRecentGif(message2.media.document, message2.date, messageObject3.wasJustSent);
+                        }
+                    } else if (!messageObject3.isAnimatedEmoji() && (messageObject3.isSticker() || messageObject3.isAnimatedSticker())) {
+                        MediaDataController mediaDataController2 = getMediaDataController();
+                        TLRPC.Message message3 = messageObject3.messageOwner;
+                        mediaDataController2.addRecentSticker(0, messageObject3, message3.media.document, message3.date, false);
+                    }
+                }
+                if (messageObject3.isOut() && messageObject3.isSent()) {
+                    i2 = 1;
+                    z = true;
+                } else {
+                    i2 = 1;
+                }
+                i3 += i2;
+                j4 = 0;
+            }
+            messageObject = messageObject2;
+            j2 = j5;
+        }
+        getMediaDataController().loadReplyMessagesForMessages(arrayList, j, i, 0L, null, 0, null);
+        if (i == 5) {
+            QuickRepliesController.getInstance(this.currentAccount).checkLocalMessages(arrayList);
+        }
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveNewMessages, Long.valueOf(j), arrayList, Boolean.valueOf(z5), Integer.valueOf(i));
+        if (messageObject == null || z5) {
+            return false;
+        }
+        TLRPC.TL_dialog tL_dialog = (TLRPC.TL_dialog) this.dialogs_dict.get(j);
+        if (messageObject.messageOwner.action instanceof TLRPC.TL_messageActionChatMigrateTo) {
+            if (tL_dialog != null) {
+                this.allDialogs.remove(tL_dialog);
+                this.dialogsServerOnly.remove(tL_dialog);
+                this.dialogsCanAddUsers.remove(tL_dialog);
+                this.dialogsMyGroups.remove(tL_dialog);
+                this.dialogsMyChannels.remove(tL_dialog);
+                this.dialogsChannelsOnly.remove(tL_dialog);
+                this.dialogsGroupsOnly.remove(tL_dialog);
+                int i4 = 0;
+                while (true) {
+                    DialogFilter[] dialogFilterArr = this.selectedDialogFilter;
+                    if (i4 >= dialogFilterArr.length) {
+                        break;
+                    }
+                    DialogFilter dialogFilter = dialogFilterArr[i4];
+                    if (dialogFilter != null) {
+                        dialogFilter.dialogs.remove(tL_dialog);
+                        this.selectedDialogFilter[i4].dialogsForward.remove(tL_dialog);
+                    }
+                    i4++;
+                }
+                this.dialogsUsersOnly.remove(tL_dialog);
+                this.dialogsForBlock.remove(tL_dialog);
+                this.dialogsForward.remove(tL_dialog);
+                this.dialogs_dict.remove(tL_dialog.id);
+                this.dialogs_read_inbox_max.remove(Long.valueOf(tL_dialog.id));
+                this.dialogs_read_outbox_max.remove(Long.valueOf(tL_dialog.id));
+                int i5 = this.nextDialogsCacheOffset.get(tL_dialog.folder_id, 0);
+                if (i5 > 0) {
+                    this.nextDialogsCacheOffset.put(tL_dialog.folder_id, i5 - 1);
+                }
+                this.dialogMessage.remove(tL_dialog.id);
+                ArrayList<TLRPC.Dialog> arrayList2 = this.dialogsByFolder.get(tL_dialog.folder_id);
+                if (arrayList2 != null) {
+                    arrayList2.remove(tL_dialog);
+                }
+                removeDialogFromCommunityMap(tL_dialog);
+                MessageObject messageObject4 = this.dialogMessagesByIds.get(tL_dialog.top_message);
+                if (messageObject4 != null) {
+                    j3 = 0;
+                    if (messageObject4.messageOwner.peer_id.channel_id == 0) {
+                        this.dialogMessagesByIds.remove(tL_dialog.top_message);
+                    }
+                } else {
+                    j3 = 0;
+                }
+                if (messageObject4 != null) {
+                    long j7 = messageObject4.messageOwner.random_id;
+                    if (j7 != j3) {
+                        this.dialogMessagesByRandomIds.remove(j7);
+                    }
+                }
+                z4 = false;
+                tL_dialog.top_message = 0;
+                getNotificationsController().removeNotificationsForDialog(tL_dialog.id);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needReloadRecentDialogsSearch, new Object[0]);
+            } else {
+                z4 = false;
+            }
+            if (!DialogObject.isChatDialog(j)) {
+                return z4;
+            }
+            ChatObject.Call groupCall = getGroupCall(-j, z4);
+            if (groupCall != null && (chat = getChat(Long.valueOf(messageObject.messageOwner.action.channel_id))) != null) {
+                groupCall.migrateToChat(chat);
+            }
+            return false;
+        }
+        if (tL_dialog == null) {
+            TLRPC.Chat chat2 = getChat(Long.valueOf(j2));
+            if (j2 != 0 && chat2 == null) {
+                return false;
+            }
+            if (chat2 != null && (ChatObject.isNotInChat(chat2) || chat2.min)) {
+                return false;
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("not found dialog with id " + j + " dictCount = " + this.dialogs_dict.size() + " allCount = " + this.allDialogs.size());
+            }
+            final TLRPC.TL_dialog tL_dialog2 = new TLRPC.TL_dialog();
+            tL_dialog2.id = j;
+            final int id = messageObject.getId();
+            tL_dialog2.top_message = id;
+            tL_dialog2.last_message_date = messageObject.messageOwner.date;
+            tL_dialog2.flags = ChatObject.isChannel(chat2) ? 1 : 0;
+            if (this.pendingUnreadCounter.get(j, 0) <= 0) {
+                z3 = false;
+                break;
+            }
+            tL_dialog2.unread_count = this.pendingUnreadCounter.get(j);
+            this.pendingUnreadCounter.delete(j);
+            if (!isDialogMuted(j, 0L)) {
+                this.unreadUnmutedDialogs++;
+            }
+            int i6 = 0;
+            while (true) {
+                DialogFilter[] dialogFilterArr2 = this.selectedDialogFilter;
+                if (i6 >= dialogFilterArr2.length) {
+                    z3 = false;
+                    break;
+                }
+                DialogFilter dialogFilter2 = dialogFilterArr2[i6];
+                if (dialogFilter2 != null && (dialogFilter2.flags & DIALOG_FILTER_FLAG_EXCLUDE_READ) != 0) {
+                    z3 = true;
+                    break;
+                }
+                i6++;
+            }
+            this.dialogs_dict.put(j, tL_dialog2);
+            this.allDialogs.add(tL_dialog2);
+            ArrayList arrayList3 = new ArrayList();
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                MessageObject messageObject5 = arrayList.get(i7);
+                if (messageObject5 != null && (messageObject5.getId() == messageObject.getId() || (messageObject5.hasValidGroupId() && messageObject.hasValidGroupId() && messageObject5.getGroupIdForUse() == messageObject.getGroupIdForUse()))) {
+                    arrayList3.add(messageObject5);
+                    if (messageObject5.messageOwner.peer_id.channel_id == 0) {
+                        this.dialogMessagesByIds.put(messageObject5.getId(), messageObject5);
+                        long j8 = messageObject5.messageOwner.random_id;
+                        if (j8 != 0) {
+                            this.dialogMessagesByRandomIds.put(j8, messageObject5);
+                        }
+                    }
+                }
+            }
+            this.dialogMessage.put(j, arrayList3);
+            getTranslateController().checkDialogMessage(j);
+            longSparseArray = null;
+            if (z3) {
+                sortDialogs(null);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
+            }
+            getMessagesStorage().getDialogFolderId(j, new MessagesStorage.IntCallback() {
+                @Override
+                public final void run(int i8) {
+                    this.f$0.lambda$updateInterfaceWithMessages$444(tL_dialog2, id, j, i8);
+                }
+            });
+        } else {
+            longSparseArray = null;
+            if ((tL_dialog.top_message <= 0 || messageObject.getId() <= 0 || messageObject.getId() <= tL_dialog.top_message) && ((tL_dialog.top_message >= 0 || messageObject.getId() >= 0 || messageObject.getId() >= tL_dialog.top_message) && this.dialogMessage.indexOfKey(j) >= 0 && tL_dialog.top_message >= 0 && tL_dialog.last_message_date > messageObject.messageOwner.date)) {
+                z2 = false;
+            } else {
+                MessageObject messageObject6 = this.dialogMessagesByIds.get(tL_dialog.top_message);
+                if (messageObject6 != null && messageObject6.messageOwner.peer_id.channel_id == 0) {
+                    this.dialogMessagesByIds.remove(tL_dialog.top_message);
+                }
+                if (messageObject6 != null) {
+                    long j9 = messageObject6.messageOwner.random_id;
+                    if (j9 != 0) {
+                        this.dialogMessagesByRandomIds.remove(j9);
+                    }
+                }
+                tL_dialog.top_message = messageObject.getId();
+                tL_dialog.last_message_date = messageObject.messageOwner.date;
+                ArrayList arrayList4 = new ArrayList(1);
+                for (int i8 = 0; i8 < arrayList.size(); i8++) {
+                    MessageObject messageObject7 = arrayList.get(i8);
+                    if (messageObject7 != null && (messageObject7.getId() == messageObject.getId() || (messageObject7.hasValidGroupId() && messageObject.hasValidGroupId() && messageObject7.getGroupIdForUse() == messageObject.getGroupIdForUse()))) {
+                        arrayList4.add(messageObject7);
+                    }
+                }
+                this.dialogMessage.put(j, arrayList4);
+                getTranslateController().checkDialogMessage(j);
+                if (messageObject.messageOwner.peer_id.channel_id == 0) {
+                    this.dialogMessagesByIds.put(messageObject.getId(), messageObject);
+                    long j10 = messageObject.messageOwner.random_id;
+                    if (j10 != 0) {
+                        this.dialogMessagesByRandomIds.put(j10, messageObject);
+                    }
+                }
+            }
+            if (z2) {
+                sortDialogs(longSparseArray);
+            }
+            if (z) {
+                getMediaDataController().increasePeerRaiting(j);
+            }
+            return z2;
+        }
+        z2 = true;
+        if (z2) {
+            sortDialogs(longSparseArray);
+        }
+        if (z) {
+            getMediaDataController().increasePeerRaiting(j);
+        }
+        return z2;
     }
 
     public void lambda$updateInterfaceWithMessages$444(TLRPC.Dialog dialog, int i, long j, int i2) {
@@ -16731,8 +31681,258 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void sortDialogs(androidx.collection.LongSparseArray r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.sortDialogs(androidx.collection.LongSparseArray):void");
+    public void sortDialogs(LongSparseArray longSparseArray) {
+        long j;
+        TLRPC.EncryptedChat encryptedChat;
+        TLRPC.Chat chat;
+        TLRPC.User currentUser;
+        TLRPC.Dialog dialog;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        TLRPC.Chat chat2;
+        boolean z;
+        boolean z2;
+        boolean z3;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights2;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights3;
+        TLRPC.TL_chatBannedRights tL_chatBannedRights;
+        TLRPC.Message message;
+        int i;
+        TLRPC.Chat chat3;
+        if (longSparseArray == null && ApplicationLoader.mainInterfacePaused) {
+            return;
+        }
+        this.dialogsServerOnly.clear();
+        this.dialogsCanAddUsers.clear();
+        this.dialogsMyGroups.clear();
+        this.dialogsMyChannels.clear();
+        this.dialogsChannelsOnly.clear();
+        this.dialogsGroupsOnly.clear();
+        this.dialogsUsersOnly.clear();
+        this.dialogsForBlock.clear();
+        this.dialogsForward.clear();
+        checkCollapsedDialogsInCommunity();
+        for (int i2 = 0; i2 < this.dialogsByFolder.size(); i2++) {
+            ArrayList<TLRPC.Dialog> arrayListValueAt = this.dialogsByFolder.valueAt(i2);
+            if (arrayListValueAt != null) {
+                arrayListValueAt.clear();
+            }
+        }
+        for (int i3 = 0; i3 < this.dialogsByCommunity.size(); i3++) {
+            ArrayList arrayList = (ArrayList) this.dialogsByCommunity.valueAt(i3);
+            if (arrayList != null) {
+                arrayList.clear();
+            }
+        }
+        this.unreadUnmutedDialogs = 0;
+        long clientUserId = getUserConfig().getClientUserId();
+        DialogFilter[] dialogFilterArr = this.selectedDialogFilter;
+        if (dialogFilterArr[0] != null || dialogFilterArr[1] != null) {
+            int i4 = 0;
+            while (true) {
+                DialogFilter[] dialogFilterArr2 = this.selectedDialogFilter;
+                if (i4 >= dialogFilterArr2.length) {
+                    break;
+                }
+                DialogFilter dialogFilter = dialogFilterArr2[i4];
+                this.sortingDialogFilter = dialogFilter;
+                if (dialogFilter != null) {
+                    ArrayList<TLRPC.Dialog> arrayList2 = dialogFilter.dialogs;
+                    ArrayList<TLRPC.Dialog> arrayList3 = dialogFilter.dialogsForward;
+                    arrayList2.clear();
+                    arrayList3.clear();
+                    try {
+                        Collections.sort(this.allDialogs, this.dialogDateComparator);
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                    int size = this.allDialogs.size();
+                    int i5 = 0;
+                    while (i5 < size) {
+                        TLRPC.Dialog dialog2 = this.allDialogs.get(i5);
+                        boolean z4 = dialog2 instanceof TLRPC.TL_dialogCommunity;
+                        if ((dialog2 instanceof TLRPC.TL_dialog) || z4) {
+                            long j2 = dialog2.id;
+                            j = clientUserId;
+                            if (!z4 || (chat = getChat(Long.valueOf(-j2))) == null || chat.collapsed_in_dialogs) {
+                                if (DialogObject.isEncryptedDialog(j2) && (encryptedChat = getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(j2)))) != null) {
+                                    j2 = encryptedChat.user_id;
+                                }
+                                if (this.sortingDialogFilter.includesDialog(getAccountInstance(), j2, dialog2)) {
+                                    if (canAddToForward(dialog2)) {
+                                        arrayList3.add(dialog2);
+                                    }
+                                    arrayList2.add(dialog2);
+                                }
+                            }
+                        } else {
+                            j = clientUserId;
+                        }
+                        i5++;
+                        clientUserId = j;
+                    }
+                }
+                i4++;
+                clientUserId = clientUserId;
+            }
+        }
+        long j3 = clientUserId;
+        try {
+            Collections.sort(this.allDialogs, this.dialogComparator);
+        } catch (Exception unused) {
+        }
+        this.isLeftPromoChannel = true;
+        TLRPC.Dialog dialog3 = this.promoDialog;
+        if (dialog3 != null) {
+            long j4 = dialog3.id;
+            if (j4 < 0 && (chat3 = getChat(Long.valueOf(-j4))) != null && !chat3.left) {
+                this.isLeftPromoChannel = false;
+            }
+        }
+        int size2 = this.allDialogs.size();
+        boolean z5 = false;
+        int i6 = 0;
+        while (i6 < size2) {
+            TLRPC.Dialog dialog4 = this.allDialogs.get(i6);
+            if (dialog4 instanceof TLRPC.TL_dialog) {
+                ArrayList arrayList4 = (ArrayList) this.dialogMessage.get(dialog4.id);
+                if (arrayList4 != null) {
+                    int i7 = Integer.MIN_VALUE;
+                    for (int i8 = 0; i8 < arrayList4.size(); i8++) {
+                        MessageObject messageObject = (MessageObject) arrayList4.get(i8);
+                        if (messageObject != null && (message = messageObject.messageOwner) != null && (i = message.date) > i7) {
+                            i7 = i;
+                        }
+                    }
+                    if (i7 <= Integer.MIN_VALUE || i7 >= this.dialogsLoadedTillDate) {
+                    }
+                }
+                if (!DialogObject.isEncryptedDialog(dialog4.id)) {
+                    this.dialogsServerOnly.add(dialog4);
+                    if (DialogObject.isChannel(dialog4)) {
+                        TLRPC.Chat chat4 = getChat(Long.valueOf(-dialog4.id));
+                        if (chat4 != null && ((z = chat4.creator) || (((z3 = chat4.megagroup) && (((tL_chatAdminRights3 = chat4.admin_rights) != null && (tL_chatAdminRights3.post_messages || tL_chatAdminRights3.add_admins)) || (tL_chatBannedRights = chat4.default_banned_rights) == null || !tL_chatBannedRights.invite_users)) || (!z3 && (tL_chatAdminRights2 = chat4.admin_rights) != null && tL_chatAdminRights2.add_admins)))) {
+                            if (z || (((z2 = chat4.megagroup) && chat4.admin_rights != null) || (!z2 && chat4.admin_rights != null))) {
+                                if (chat4.megagroup) {
+                                    this.dialogsMyGroups.add(dialog4);
+                                } else {
+                                    this.dialogsMyChannels.add(dialog4);
+                                }
+                            } else {
+                                this.dialogsCanAddUsers.add(dialog4);
+                            }
+                        }
+                        if (chat4 != null && chat4.megagroup) {
+                            this.dialogsGroupsOnly.add(dialog4);
+                        } else {
+                            this.dialogsChannelsOnly.add(dialog4);
+                        }
+                    } else {
+                        long j5 = dialog4.id;
+                        if (j5 < 0) {
+                            if (longSparseArray != null && (chat2 = (TLRPC.Chat) longSparseArray.get(-j5)) != null && chat2.migrated_to != null) {
+                                this.allDialogs.remove(i6);
+                            } else {
+                                TLRPC.Chat chat5 = getChat(Long.valueOf(-dialog4.id));
+                                if (chat5 != null && (((tL_chatAdminRights = chat5.admin_rights) != null && (tL_chatAdminRights.add_admins || tL_chatAdminRights.invite_users)) || chat5.creator)) {
+                                    if (chat5.creator) {
+                                        this.dialogsMyGroups.add(dialog4);
+                                    } else {
+                                        this.dialogsCanAddUsers.add(dialog4);
+                                    }
+                                }
+                                this.dialogsGroupsOnly.add(dialog4);
+                            }
+                            i6--;
+                            size2--;
+                        } else if (j5 != j3) {
+                            this.dialogsUsersOnly.add(dialog4);
+                            if (!UserObject.isReplyUser(dialog4.id) && dialog4.id != 489000) {
+                                this.dialogsForBlock.add(dialog4);
+                            }
+                        }
+                    }
+                }
+                if (canAddToForward(dialog4) && dialog4.folder_id == 0) {
+                    if (dialog4.id == j3) {
+                        this.dialogsForward.add(0, dialog4);
+                        z5 = true;
+                    } else {
+                        this.dialogsForward.add(dialog4);
+                    }
+                }
+                if ((getDialogUnreadCount(dialog4) == 0 || dialog4.unread_mark) && !isDialogMuted(dialog4.id, 0L)) {
+                    this.unreadUnmutedDialogs++;
+                }
+                dialog = this.promoDialog;
+                if (dialog == null && dialog4.id == dialog.id && this.isLeftPromoChannel) {
+                    this.allDialogs.remove(i6);
+                    i6--;
+                    size2--;
+                } else if (addDialogToItsCommunity(dialog4) || !ChatObject.isCollapsedInCommunity(this.currentAccount, dialog4.id)) {
+                    addDialogToItsFolder(-1, dialog4);
+                }
+            } else if (dialog4 instanceof TLRPC.TL_dialogCommunity) {
+                TLRPC.Chat chat6 = getChat(Long.valueOf(-dialog4.id));
+                if (chat6 != null && chat6.collapsed_in_dialogs) {
+                    this.dialogsForward.add(dialog4);
+                    if (getDialogUnreadCount(dialog4) == 0) {
+                        this.unreadUnmutedDialogs++;
+                    } else {
+                        this.unreadUnmutedDialogs++;
+                    }
+                    dialog = this.promoDialog;
+                    if (dialog == null) {
+                    }
+                    if (addDialogToItsCommunity(dialog4)) {
+                        addDialogToItsFolder(-1, dialog4);
+                    } else {
+                        addDialogToItsFolder(-1, dialog4);
+                    }
+                }
+            } else {
+                if (getDialogUnreadCount(dialog4) == 0) {
+                    this.unreadUnmutedDialogs++;
+                } else {
+                    this.unreadUnmutedDialogs++;
+                }
+                dialog = this.promoDialog;
+                if (dialog == null) {
+                }
+                if (addDialogToItsCommunity(dialog4)) {
+                    addDialogToItsFolder(-1, dialog4);
+                } else {
+                    addDialogToItsFolder(-1, dialog4);
+                }
+            }
+            i6++;
+        }
+        TLRPC.Dialog dialog5 = this.promoDialog;
+        if (dialog5 != null && this.isLeftPromoChannel) {
+            this.allDialogs.add(0, dialog5);
+            addDialogToItsFolder(-2, this.promoDialog);
+        }
+        if (!z5 && (currentUser = getUserConfig().getCurrentUser()) != null) {
+            TLRPC.TL_dialog tL_dialog = new TLRPC.TL_dialog();
+            tL_dialog.id = currentUser.id;
+            tL_dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
+            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+            tL_dialog.peer = tL_peerUser;
+            tL_peerUser.user_id = currentUser.id;
+            this.dialogsForward.add(0, tL_dialog);
+        }
+        for (int i9 = 0; i9 < this.dialogsByFolder.size(); i9++) {
+            int iKeyAt = this.dialogsByFolder.keyAt(i9);
+            if (this.dialogsByFolder.valueAt(i9).isEmpty()) {
+                this.dialogsByFolder.remove(iKeyAt);
+            }
+        }
+        for (int i10 = 0; i10 < this.dialogsByCommunity.size(); i10++) {
+            long jKeyAt = this.dialogsByCommunity.keyAt(i10);
+            if (((ArrayList) this.dialogsByCommunity.valueAt(i10)).isEmpty()) {
+                this.dialogsByCommunity.remove(jKeyAt);
+            }
+        }
+        this.hasArchivedChats = this.dialogsByFolder.get(1, null) != null;
     }
 
     private boolean addDialogToItsCommunity(TLRPC.Dialog dialog) {
@@ -16815,8 +32015,48 @@ public class MessagesController extends BaseController implements NotificationCe
         return false;
     }
 
-    public void checkSensitive(final org.telegram.ui.ActionBar.BaseFragment r10, final long r11, final java.lang.Runnable r13, final java.lang.Runnable r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.checkSensitive(org.telegram.ui.ActionBar.BaseFragment, long, java.lang.Runnable, java.lang.Runnable):void");
+    public void checkSensitive(final BaseFragment baseFragment, final long j, final Runnable runnable, final Runnable runnable2) {
+        TLRPC.User user;
+        ArrayList<TLRPC.RestrictionReason> arrayList;
+        if (j < 0) {
+            TLRPC.Chat chat = getChat(Long.valueOf(-j));
+            if (chat != null) {
+                arrayList = chat.restriction_reason;
+            } else {
+                arrayList = null;
+            }
+        } else if (j < 0 || (user = getUser(Long.valueOf(j))) == null) {
+            arrayList = null;
+        } else {
+            arrayList = user.restriction_reason;
+        }
+        if (!isSensitive(arrayList) || this.sensitiveAgreed.contains(Long.valueOf(j))) {
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
+            return;
+        }
+        Context context = baseFragment.getContext();
+        if (context == null) {
+            context = AndroidUtilities.findActivity(LaunchActivity.instance);
+        }
+        if (context == null) {
+            context = LaunchActivity.instance;
+        }
+        if (context == null) {
+            context = ApplicationLoader.applicationContext;
+        }
+        final AlertDialog alertDialog = context != null ? new AlertDialog(context, 3) : null;
+        if (alertDialog != null) {
+            alertDialog.showDelayed(200L);
+        }
+        getContentSettings(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                this.f$0.lambda$checkSensitive$450(alertDialog, baseFragment, runnable2, j, runnable, (TL_account.contentSettings) obj);
+            }
+        });
     }
 
     public void lambda$checkSensitive$450(AlertDialog alertDialog, BaseFragment baseFragment, final Runnable runnable, final long j, final Runnable runnable2, final TL_account.contentSettings contentsettings) {
@@ -16964,7 +32204,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.User user;
         TLRPC.Chat chat;
         String restrictionReason;
-        TLRPC.TL_messages_getMessages tL_messages_getMessages;
+        TLObject tLObject;
         if (bundle != null && baseFragment != null) {
             long j = bundle.getLong("user_id", 0L);
             long j2 = bundle.getLong("chat_id", 0L);
@@ -17005,20 +32245,20 @@ public class MessagesController extends BaseController implements NotificationCe
                         chat = getChat(Long.valueOf(-dialogId));
                     }
                     if (dialogId > 0 || !ChatObject.isChannel(chat)) {
-                        TLRPC.TL_messages_getMessages tL_messages_getMessages2 = new TLRPC.TL_messages_getMessages();
-                        tL_messages_getMessages2.id.add(Integer.valueOf(messageObject.getId()));
-                        tL_messages_getMessages = tL_messages_getMessages2;
+                        TLRPC.TL_messages_getMessages tL_messages_getMessages = new TLRPC.TL_messages_getMessages();
+                        tL_messages_getMessages.id.add(Integer.valueOf(messageObject.getId()));
+                        tLObject = tL_messages_getMessages;
                     } else {
                         TLRPC.Chat chat2 = getChat(Long.valueOf(-dialogId));
                         TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
                         tL_channels_getMessages.channel = getInputChannel(chat2);
                         tL_channels_getMessages.id.add(Integer.valueOf(messageObject.getId()));
-                        tL_messages_getMessages = tL_channels_getMessages;
+                        tLObject = tL_channels_getMessages;
                     }
-                    final int iSendRequest = getConnectionsManager().sendRequest(tL_messages_getMessages, new RequestDelegate() {
+                    final int iSendRequest = getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$checkCanOpenChat$452(alertDialog2, progress, baseFragment, bundle, tLObject, tL_error);
+                        public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                            this.f$0.lambda$checkCanOpenChat$452(alertDialog2, progress, baseFragment, bundle, tLObject2, tL_error);
                         }
                     });
                     if (alertDialog2 != null) {
@@ -17077,11 +32317,13 @@ public class MessagesController extends BaseController implements NotificationCe
         if (alertDialog != null) {
             try {
                 alertDialog.dismiss();
+                if (progress != null) {
+                    progress.end();
+                }
             } catch (Exception e) {
                 FileLog.e(e);
             }
-        }
-        if (progress != null) {
+        } else if (progress != null) {
             progress.end();
         }
         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
@@ -17155,8 +32397,64 @@ public class MessagesController extends BaseController implements NotificationCe
         openByUserName(str, baseFragment, i, null);
     }
 
-    public void openByUserName(java.lang.String r16, final org.telegram.ui.ActionBar.BaseFragment r17, final int r18, final org.telegram.messenger.browser.Browser.Progress r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.openByUserName(java.lang.String, org.telegram.ui.ActionBar.BaseFragment, int, org.telegram.messenger.browser.Browser$Progress):void");
+    public void openByUserName(String str, final BaseFragment baseFragment, final int i, final Browser.Progress progress) {
+        TLRPC.Chat chat;
+        if (str == null || baseFragment == null) {
+            return;
+        }
+        TLObject userOrChat = getUserOrChat(str);
+        TLRPC.User user = null;
+        if (userOrChat instanceof TLRPC.User) {
+            TLRPC.User user2 = (TLRPC.User) userOrChat;
+            if (user2.min) {
+                chat = null;
+            } else {
+                user = user2;
+                chat = null;
+            }
+        } else if (userOrChat instanceof TLRPC.Chat) {
+            chat = (TLRPC.Chat) userOrChat;
+            if (chat.min) {
+                chat = null;
+            }
+        } else {
+            chat = null;
+        }
+        if (user != null) {
+            openChatOrProfileWith(user, null, baseFragment, i, false);
+            return;
+        }
+        if (chat != null) {
+            openChatOrProfileWith(null, chat, baseFragment, 1, false);
+            return;
+        }
+        if (baseFragment.getParentActivity() == null) {
+            return;
+        }
+        final AlertDialog[] alertDialogArr = {new AlertDialog(baseFragment.getParentActivity(), 3)};
+        final boolean[] zArr = {false};
+        getMessagesController().getUserNameResolver().resolve(str, new com.google.android.exoplayer2.util.Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                this.f$0.lambda$openByUserName$455(progress, alertDialogArr, baseFragment, zArr, i, (Long) obj);
+            }
+        });
+        if (progress != null) {
+            progress.onCancel(new Runnable() {
+                @Override
+                public final void run() {
+                    MessagesController.lambda$openByUserName$456(zArr);
+                }
+            });
+            progress.init();
+        } else {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MessagesController.lambda$openByUserName$458(alertDialogArr, zArr, baseFragment);
+                }
+            }, 500L);
+        }
     }
 
     public void lambda$openByUserName$455(Browser.Progress progress, AlertDialog[] alertDialogArr, BaseFragment baseFragment, boolean[] zArr, int i, Long l) {
@@ -17624,8 +32922,93 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void checkIsInChat(boolean r11, org.telegram.tgnet.TLRPC.Chat r12, org.telegram.tgnet.TLRPC.User r13, final org.telegram.messenger.MessagesController.IsInChatCheckedCallback r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.checkIsInChat(boolean, org.telegram.tgnet.TLRPC$Chat, org.telegram.tgnet.TLRPC$User, org.telegram.messenger.MessagesController$IsInChatCheckedCallback):void");
+    public void checkIsInChat(boolean z, TLRPC.Chat chat, TLRPC.User user, final IsInChatCheckedCallback isInChatCheckedCallback) {
+        TLRPC.ChatFull chatFull;
+        TLRPC.ChatParticipant chatParticipant;
+        ArrayList<TLRPC.ChatParticipant> arrayList;
+        TLRPC.ChatParticipant chatParticipant2;
+        ArrayList<TLRPC.ChatParticipant> arrayList2;
+        int i = 0;
+        if (chat == null || user == null) {
+            if (isInChatCheckedCallback != null) {
+                isInChatCheckedCallback.run(false, null, null);
+                return;
+            }
+            return;
+        }
+        if (chat.megagroup || ChatObject.isChannel(chat)) {
+            if (z && (chatFull = getChatFull(chat.id)) != null) {
+                TLRPC.ChatParticipants chatParticipants = chatFull.participants;
+                if (chatParticipants != null && (arrayList = chatParticipants.participants) != null) {
+                    int size = arrayList.size();
+                    while (true) {
+                        if (i < size) {
+                            chatParticipant = chatFull.participants.participants.get(i);
+                            if (chatParticipant != null && chatParticipant.user_id == user.id) {
+                                break;
+                            } else {
+                                i++;
+                            }
+                        } else {
+                            chatParticipant = null;
+                            break;
+                        }
+                    }
+                } else {
+                    chatParticipant = null;
+                    break;
+                }
+                if (isInChatCheckedCallback != null && chatParticipant != null) {
+                    TLRPC.ChatParticipants chatParticipants2 = chatFull.participants;
+                    isInChatCheckedCallback.run(true, (chatParticipants2 == null || chatParticipants2.admin_id != user.id) ? null : ChatRightsEditActivity.emptyAdminRights(true), null);
+                    return;
+                }
+            }
+            TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
+            tL_channels_getParticipant.channel = getInputChannel(chat.id);
+            tL_channels_getParticipant.participant = getInputPeer(user);
+            getConnectionsManager().sendRequest(tL_channels_getParticipant, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    MessagesController.lambda$checkIsInChat$473(isInChatCheckedCallback, tLObject, tL_error);
+                }
+            });
+            return;
+        }
+        TLRPC.ChatFull chatFull2 = getChatFull(chat.id);
+        if (chatFull2 == null) {
+            if (isInChatCheckedCallback != null) {
+                isInChatCheckedCallback.run(false, null, null);
+                return;
+            }
+            return;
+        }
+        TLRPC.ChatParticipants chatParticipants3 = chatFull2.participants;
+        if (chatParticipants3 != null && (arrayList2 = chatParticipants3.participants) != null) {
+            int size2 = arrayList2.size();
+            int i2 = 0;
+            while (true) {
+                if (i2 < size2) {
+                    chatParticipant2 = chatFull2.participants.participants.get(i2);
+                    if (chatParticipant2 != null && chatParticipant2.user_id == user.id) {
+                        break;
+                    } else {
+                        i2++;
+                    }
+                } else {
+                    chatParticipant2 = null;
+                    break;
+                }
+            }
+        } else {
+            chatParticipant2 = null;
+            break;
+        }
+        if (isInChatCheckedCallback != null) {
+            boolean z2 = chatParticipant2 != null;
+            TLRPC.ChatParticipants chatParticipants4 = chatFull2.participants;
+            isInChatCheckedCallback.run(z2, (chatParticipants4 == null || chatParticipants4.admin_id != user.id) ? null : ChatRightsEditActivity.emptyAdminRights(true), null);
+        }
     }
 
     public static void lambda$checkIsInChat$473(IsInChatCheckedCallback isInChatCheckedCallback, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -17652,8 +33035,9 @@ public class MessagesController extends BaseController implements NotificationCe
         Iterator<Long> it = this.emojiStatusUntilValues.keySet().iterator();
         Long lValueOf = null;
         while (it.hasNext()) {
-            if (this.emojiStatusUntilValues.get(it.next()).intValue() > iCurrentTimeMillis) {
-                lValueOf = Long.valueOf(Math.min(lValueOf == null ? Long.MAX_VALUE : lValueOf.longValue(), r5 - iCurrentTimeMillis));
+            int iIntValue = this.emojiStatusUntilValues.get(it.next()).intValue();
+            if (iIntValue > iCurrentTimeMillis) {
+                lValueOf = Long.valueOf(Math.min(lValueOf == null ? Long.MAX_VALUE : lValueOf.longValue(), iIntValue - iCurrentTimeMillis));
             } else {
                 it.remove();
             }
@@ -17704,11 +33088,15 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         int i = dialog.unread_count;
         TLRPC.Chat chat = getChat(Long.valueOf(-dialog.id));
-        return chat != null ? (chat.forum || chat.monoforum) ? this.topicsController.getForumUnreadCount(-dialog.id)[0] : i : i;
+        if (chat != null) {
+            return (chat.forum || chat.monoforum) ? this.topicsController.getForumUnreadCount(-dialog.id)[0] : i;
+        }
+        return i;
     }
 
     public TLRPC.TL_exportedContactToken getCachedContactToken() {
-        if (this.cachedContactToken == null || r0.expires <= System.currentTimeMillis() / 1000) {
+        TLRPC.TL_exportedContactToken tL_exportedContactToken = this.cachedContactToken;
+        if (tL_exportedContactToken == null || tL_exportedContactToken.expires <= System.currentTimeMillis() / 1000) {
             return null;
         }
         return this.cachedContactToken;
@@ -17722,7 +33110,8 @@ public class MessagesController extends BaseController implements NotificationCe
         if (callback == null || this.requestingContactToken) {
             return;
         }
-        if (this.cachedContactToken != null && r0.expires > System.currentTimeMillis() / 1000) {
+        TLRPC.TL_exportedContactToken tL_exportedContactToken = this.cachedContactToken;
+        if (tL_exportedContactToken != null && tL_exportedContactToken.expires > System.currentTimeMillis() / 1000) {
             callback.run(this.cachedContactToken);
             return;
         }
@@ -17784,7 +33173,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (chatlistUpdatesStat.loading) {
                 return;
             }
-            if (System.currentTimeMillis() - chatlistUpdatesStat.lastRequestTime <= this.chatlistUpdatePeriod * 1000 && !z) {
+            if (System.currentTimeMillis() - chatlistUpdatesStat.lastRequestTime <= ((long) this.chatlistUpdatePeriod) * 1000 && !z) {
                 return;
             }
         }
@@ -17991,7 +33380,30 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean storiesEnabled() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.storiesEnabled():boolean");
+        byte b;
+        String str = this.storiesPosting;
+        int iHashCode = str.hashCode();
+        if (iHashCode != -1609594047) {
+            if (iHashCode != -318452137) {
+                if (iHashCode == 270940796 && str.equals("disabled")) {
+                    b = 3;
+                } else {
+                    b = -1;
+                }
+            } else if (str.equals("premium")) {
+                b = 0;
+            } else {
+                b = -1;
+            }
+        } else if (str.equals("enabled")) {
+            b = 1;
+        } else {
+            b = -1;
+        }
+        if (b != 0) {
+            return b == 1;
+        }
+        return getUserConfig().isPremium();
     }
 
     public boolean richEditorAvailable() {
@@ -18002,15 +33414,87 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean richEditorAllowed() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.richEditorAllowed():boolean");
+        byte b;
+        String str = this.config.richMessagePosting.get();
+        int iHashCode = str.hashCode();
+        if (iHashCode != -1609594047) {
+            if (iHashCode != -318452137) {
+                if (iHashCode == 270940796 && str.equals("disabled")) {
+                    b = 3;
+                } else {
+                    b = -1;
+                }
+            } else if (str.equals("premium")) {
+                b = 0;
+            } else {
+                b = -1;
+            }
+        } else if (str.equals("enabled")) {
+            b = 1;
+        } else {
+            b = -1;
+        }
+        if (b != 0) {
+            return b == 1;
+        }
+        return getUserConfig().isPremium();
     }
 
     public boolean storyEntitiesAllowed() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.storyEntitiesAllowed():boolean");
+        byte b;
+        String str = this.storiesEntities;
+        int iHashCode = str.hashCode();
+        if (iHashCode != -1609594047) {
+            if (iHashCode != -318452137) {
+                if (iHashCode == 270940796 && str.equals("disabled")) {
+                    b = 3;
+                } else {
+                    b = -1;
+                }
+            } else if (str.equals("premium")) {
+                b = 0;
+            } else {
+                b = -1;
+            }
+        } else if (str.equals("enabled")) {
+            b = 1;
+        } else {
+            b = -1;
+        }
+        if (b != 0) {
+            return b == 1;
+        }
+        return getUserConfig().isPremium();
     }
 
-    public boolean storyEntitiesAllowed(org.telegram.tgnet.TLRPC.User r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.storyEntitiesAllowed(org.telegram.tgnet.TLRPC$User):boolean");
+    public boolean storyEntitiesAllowed(TLRPC.User user) {
+        byte b;
+        if (user != null && user.id == this.storiesChangelogUserId) {
+            return true;
+        }
+        String str = this.storiesEntities;
+        int iHashCode = str.hashCode();
+        if (iHashCode != -1609594047) {
+            if (iHashCode != -318452137) {
+                if (iHashCode == 270940796 && str.equals("disabled")) {
+                    b = 3;
+                } else {
+                    b = -1;
+                }
+            } else if (str.equals("premium")) {
+                b = 0;
+            } else {
+                b = -1;
+            }
+        } else if (str.equals("enabled")) {
+            b = 1;
+        } else {
+            b = -1;
+        }
+        if (b != 0) {
+            return b == 1;
+        }
+        return user != null && user.premium;
     }
 
     public static class ChannelRecommendations {
@@ -18038,6 +33522,8 @@ public class MessagesController extends BaseController implements NotificationCe
     public ChannelRecommendations getChannelRecommendations(final long j) {
         ChannelRecommendations channelRecommendations;
         TLRPC.TL_channels_getChannelRecommendations tL_channels_getChannelRecommendations;
+        TLObject tLObject;
+        TL_bots.getBotRecommendations getbotrecommendations;
         if (this.cachedChannelRecommendations == null) {
             this.cachedChannelRecommendations = new HashMap<>();
         }
@@ -18051,31 +33537,35 @@ public class MessagesController extends BaseController implements NotificationCe
             channelRecommendations = null;
         }
         if (j > 0) {
-            TL_bots.getBotRecommendations getbotrecommendations = new TL_bots.getBotRecommendations();
+            getbotrecommendations = new TL_bots.getBotRecommendations();
             TLRPC.InputUser inputUser = getInputUser(j);
             getbotrecommendations.bot = inputUser;
-            tL_channels_getChannelRecommendations = getbotrecommendations;
             if (inputUser == null) {
+                tLObject = getbotrecommendations;
                 return null;
             }
         } else {
-            TLRPC.TL_channels_getChannelRecommendations tL_channels_getChannelRecommendations2 = new TLRPC.TL_channels_getChannelRecommendations();
-            tL_channels_getChannelRecommendations = tL_channels_getChannelRecommendations2;
+            tL_channels_getChannelRecommendations = new TLRPC.TL_channels_getChannelRecommendations();
             if (j != 0) {
-                tL_channels_getChannelRecommendations2.flags |= 1;
+                tL_channels_getChannelRecommendations.flags |= 1;
                 TLRPC.InputChannel inputChannel = getInputChannel(-j);
-                tL_channels_getChannelRecommendations2.channel = inputChannel;
-                tL_channels_getChannelRecommendations = tL_channels_getChannelRecommendations2;
+                tL_channels_getChannelRecommendations.channel = inputChannel;
                 if (inputChannel == null) {
+                    tLObject = tL_channels_getChannelRecommendations;
+                    tLObject = tL_channels_getChannelRecommendations;
                     return null;
                 }
             }
         }
+        tLObject = tL_channels_getChannelRecommendations;
+        tLObject = tL_channels_getChannelRecommendations;
+        tLObject = tL_channels_getChannelRecommendations;
+        tLObject = getbotrecommendations;
         this.cachedChannelRecommendations.put(Long.valueOf(j), null);
-        getConnectionsManager().sendRequest(tL_channels_getChannelRecommendations, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$getChannelRecommendations$482(zIsPremium, j, tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$getChannelRecommendations$482(zIsPremium, j, tLObject2, tL_error);
             }
         });
         return channelRecommendations;
@@ -18329,9 +33819,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     tL_savedReactionTag.title = str;
                 }
                 z2 = true;
-            } else {
-                i++;
+                break;
             }
+            i++;
         }
         if (!z2) {
             TLRPC.TL_savedReactionTag tL_savedReactionTag2 = new TLRPC.TL_savedReactionTag();
@@ -18435,8 +33925,65 @@ public class MessagesController extends BaseController implements NotificationCe
         return null;
     }
 
-    public void lambda$getSavedReactionTags$488(final long r8) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$getSavedReactionTags$488(long):void");
+    public void lambda$getSavedReactionTags$488(final long j) throws Throwable {
+        SQLiteCursor sQLiteCursorQueryFinalized;
+        NativeByteBuffer nativeByteBufferByteBufferValue;
+        ?? database = getMessagesStorage().getDatabase();
+        ?? r3 = 0;
+        messages_savedreactiontagsTLdeserialize = null;
+        messages_savedreactiontagsTLdeserialize = null;
+        messages_savedreactiontagsTLdeserialize = null;
+        final TLRPC.messages_SavedReactionTags messages_savedreactiontagsTLdeserialize = null;
+        try {
+            try {
+                sQLiteCursorQueryFinalized = database.queryFinalized("SELECT data FROM saved_reaction_tags WHERE topic_id = ?", Long.valueOf(j));
+                try {
+                    boolean next = sQLiteCursorQueryFinalized.next();
+                    database = sQLiteCursorQueryFinalized;
+                    if (next && (nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0)) != null) {
+                        database = sQLiteCursorQueryFinalized;
+                        messages_savedreactiontagsTLdeserialize = TLRPC.messages_SavedReactionTags.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(true), true);
+                        database = sQLiteCursorQueryFinalized;
+                    }
+                } catch (Exception e) {
+                    e = e;
+                    FileLog.e(e);
+                    database = sQLiteCursorQueryFinalized;
+                    if (sQLiteCursorQueryFinalized != null) {
+                    }
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$getSavedReactionTags$487(messages_savedreactiontagsTLdeserialize, j);
+                        }
+                    });
+                }
+            } catch (Throwable th) {
+                th = th;
+                r3 = database;
+                if (r3 != 0) {
+                    r3.dispose();
+                }
+                throw th;
+            }
+        } catch (Exception e2) {
+            e = e2;
+            sQLiteCursorQueryFinalized = null;
+        } catch (Throwable th2) {
+            th = th2;
+            if (r3 != 0) {
+                r3.dispose();
+            }
+            throw th;
+        }
+        database = sQLiteCursorQueryFinalized;
+        database.dispose();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$getSavedReactionTags$487(messages_savedreactiontagsTLdeserialize, j);
+            }
+        });
     }
 
     public void lambda$getSavedReactionTags$487(final TLRPC.messages_SavedReactionTags messages_savedreactiontags, final long j) {
@@ -18677,13 +34224,11 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         TL_account.getRequirementsToContact getrequirementstocontact = new TL_account.getRequirementsToContact();
         final ArrayList arrayList = new ArrayList();
-        Iterator<Long> it = this.loadingIsUserContactBlocked.iterator();
-        while (it.hasNext()) {
-            Long next = it.next();
-            TLRPC.InputUser inputUser = getInputUser(next.longValue());
+        for (Long l : this.loadingIsUserContactBlocked) {
+            TLRPC.InputUser inputUser = getInputUser(l.longValue());
             if (inputUser != null) {
                 getrequirementstocontact.id.add(inputUser);
-                arrayList.add(next);
+                arrayList.add(l);
             }
         }
         this.loadingIsUserContactBlocked.clear();
@@ -18756,10 +34301,11 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isSponsoredDisabled() {
-        if (getUserFull(getUserConfig().getClientUserId()) == null) {
+        TLRPC.UserFull userFull = getUserFull(getUserConfig().getClientUserId());
+        if (userFull == null) {
             return false;
         }
-        return !r0.sponsored_enabled;
+        return !userFull.sponsored_enabled;
     }
 
     public TLRPC.messages_AvailableEffects getAvailableEffects() {
@@ -18851,7 +34397,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 return;
             }
             if (tLObject instanceof TLRPC.TL_messages_availableEffects) {
-                callback4.run(Boolean.FALSE, (TLRPC.TL_messages_availableEffects) tLObject, Long.valueOf(r5.hash), Boolean.TRUE);
+                TLRPC.TL_messages_availableEffects tL_messages_availableEffects = (TLRPC.TL_messages_availableEffects) tLObject;
+                callback4.run(Boolean.FALSE, tL_messages_availableEffects, Long.valueOf(tL_messages_availableEffects.hash), Boolean.TRUE);
                 return;
             }
             StringBuilder sb = new StringBuilder();
@@ -18876,8 +34423,64 @@ public class MessagesController extends BaseController implements NotificationCe
             });
         }
 
-        public static void lambda$getLocal$1(int r7, org.telegram.messenger.Utilities.Callback2 r8) throws java.lang.Throwable {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.AnonymousClass4.lambda$getLocal$1(int, org.telegram.messenger.Utilities$Callback2):void");
+        public static void lambda$getLocal$1(int i, Utilities.Callback2 callback2) throws Throwable {
+            SQLiteCursor sQLiteCursorQueryFinalized;
+            TLRPC.messages_AvailableEffects messages_availableeffectsTLdeserialize;
+            NativeByteBuffer nativeByteBufferByteBufferValue;
+            SQLiteCursor sQLiteCursor = 0;
+            SQLiteCursor sQLiteCursor2 = null;
+            try {
+                try {
+                    SQLiteDatabase database = MessagesStorage.getInstance(i).getDatabase();
+                    if (database != null) {
+                        sQLiteCursorQueryFinalized = database.queryFinalized("SELECT data FROM effects", new Object[0]);
+                        try {
+                            if (!sQLiteCursorQueryFinalized.next() || (nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0)) == null) {
+                                messages_availableeffectsTLdeserialize = null;
+                            } else {
+                                messages_availableeffectsTLdeserialize = TLRPC.messages_AvailableEffects.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), true);
+                                nativeByteBufferByteBufferValue.reuse();
+                            }
+                            if (messages_availableeffectsTLdeserialize instanceof TLRPC.TL_messages_availableEffects) {
+                                TLRPC.TL_messages_availableEffects tL_messages_availableEffects = (TLRPC.TL_messages_availableEffects) messages_availableeffectsTLdeserialize;
+                                callback2.run(Long.valueOf(tL_messages_availableEffects.hash), tL_messages_availableEffects);
+                            } else {
+                                callback2.run(0L, null);
+                            }
+                            sQLiteCursor2 = sQLiteCursorQueryFinalized;
+                        } catch (Exception e) {
+                            e = e;
+                            FileLog.e(e);
+                            callback2.run(0L, null);
+                            if (sQLiteCursorQueryFinalized == null) {
+                                return;
+                            } else {
+                                sQLiteCursor2 = sQLiteCursorQueryFinalized;
+                            }
+                        }
+                    }
+                    if (sQLiteCursor2 == null) {
+                        return;
+                    }
+                } catch (Throwable th) {
+                    th = th;
+                    sQLiteCursor = i;
+                    if (sQLiteCursor != 0) {
+                        sQLiteCursor.dispose();
+                    }
+                    throw th;
+                }
+            } catch (Exception e2) {
+                e = e2;
+                sQLiteCursorQueryFinalized = null;
+            } catch (Throwable th2) {
+                th = th2;
+                if (sQLiteCursor != 0) {
+                    sQLiteCursor.dispose();
+                }
+                throw th;
+            }
+            sQLiteCursor2.dispose();
         }
 
         @Override
@@ -18923,7 +34526,10 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public static boolean equals(TLRPC.MessageMedia messageMedia, TLRPC.MessageMedia messageMedia2) {
-        return messageMedia instanceof TLRPC.TL_messageMediaDocument ? (messageMedia2 instanceof TLRPC.TL_messageMediaDocument) && messageMedia.document.id == messageMedia2.document.id : (messageMedia2 instanceof TLRPC.TL_messageMediaPhoto) && (messageMedia2 instanceof TLRPC.TL_messageMediaPhoto) && messageMedia.photo.id == messageMedia2.photo.id;
+        if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
+            return (messageMedia2 instanceof TLRPC.TL_messageMediaDocument) && messageMedia.document.id == messageMedia2.document.id;
+        }
+        return (messageMedia2 instanceof TLRPC.TL_messageMediaPhoto) && (messageMedia2 instanceof TLRPC.TL_messageMediaPhoto) && messageMedia.photo.id == messageMedia2.photo.id;
     }
 
     public static TLRPC.InputDocument toInputDocument(TLRPC.Document document) {
@@ -20093,8 +35699,62 @@ public class MessagesController extends BaseController implements NotificationCe
             });
         }
 
-        public static void lambda$getLocal$2(int r6, org.telegram.messenger.Utilities.Callback2 r7) throws java.lang.Throwable {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.AnonymousClass5.lambda$getLocal$2(int, org.telegram.messenger.Utilities$Callback2):void");
+        public static void lambda$getLocal$2(int i, Utilities.Callback2 callback2) throws Throwable {
+            SQLiteCursor sQLiteCursorQueryFinalized;
+            SQLiteCursor sQLiteCursor = 0;
+            SQLiteCursor sQLiteCursor2 = null;
+            try {
+                try {
+                    SQLiteDatabase database = MessagesStorage.getInstance(i).getDatabase();
+                    if (database != null) {
+                        sQLiteCursorQueryFinalized = database.queryFinalized("SELECT data FROM web_browser_settings", new Object[0]);
+                        try {
+                            TL_account.WebBrowserSettings webBrowserSettings = sQLiteCursorQueryFinalized.next() ? (TL_account.WebBrowserSettings) sQLiteCursorQueryFinalized.tlObjectValue(0, new Vector.TLDeserializer() {
+                                @Override
+                                public final TLObject deserialize(InputSerializedData inputSerializedData, int i2, boolean z) {
+                                    return TL_account.WebBrowserSettings.TLdeserialize(inputSerializedData, i2, z);
+                                }
+                            }, true) : null;
+                            if (webBrowserSettings instanceof TL_account.TL_webBrowserSettings) {
+                                TL_account.TL_webBrowserSettings tL_webBrowserSettings = (TL_account.TL_webBrowserSettings) webBrowserSettings;
+                                callback2.run(Long.valueOf(tL_webBrowserSettings.hash), tL_webBrowserSettings);
+                            } else {
+                                callback2.run(0L, null);
+                            }
+                            sQLiteCursor2 = sQLiteCursorQueryFinalized;
+                        } catch (Exception e) {
+                            e = e;
+                            FileLog.e(e);
+                            callback2.run(0L, null);
+                            if (sQLiteCursorQueryFinalized == null) {
+                                return;
+                            } else {
+                                sQLiteCursor2 = sQLiteCursorQueryFinalized;
+                            }
+                        }
+                    }
+                    if (sQLiteCursor2 == null) {
+                        return;
+                    }
+                } catch (Throwable th) {
+                    th = th;
+                    sQLiteCursor = i;
+                    if (sQLiteCursor != 0) {
+                        sQLiteCursor.dispose();
+                    }
+                    throw th;
+                }
+            } catch (Exception e2) {
+                e = e2;
+                sQLiteCursorQueryFinalized = null;
+            } catch (Throwable th2) {
+                th = th2;
+                if (sQLiteCursor != 0) {
+                    sQLiteCursor.dispose();
+                }
+                throw th;
+            }
+            sQLiteCursor2.dispose();
         }
     }
 

@@ -23,8 +23,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
@@ -606,16 +604,16 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
                 this.aiHint = null;
             }
             if (MessagesController.getGlobalMainSettings().getInt("aihintshown", 0) < 3) {
-                final HintView2 hintView22 = new HintView2(getContext(), 3);
-                this.aiHint = hintView22;
-                hintView22.setMultilineText(true);
+                final HintView2 hintView3 = new HintView2(getContext(), 3);
+                this.aiHint = hintView3;
+                hintView3.setMultilineText(true);
                 this.aiHint.setText(LocaleController.getString(R.string.AIEditorHint));
                 this.aiHint.setJointPx(1.0f, ((-this.aiButton.getWidth()) / 2.0f) + AndroidUtilities.dp(4.0f));
                 addView(this.aiHint, LayoutHelper.createFrame(-1, 200.0f, 48, 0.0f, -196.0f, 0.0f, 0.0f));
                 this.aiHint.setOnHiddenListener(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$showAiButton$9(hintView22);
+                        this.f$0.lambda$showAiButton$9(hintView3);
                     }
                 });
                 this.aiHint.setDuration(4000L);
@@ -625,9 +623,9 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
             }
             return;
         }
-        HintView2 hintView23 = this.aiHint;
-        if (hintView23 != null) {
-            hintView23.hide();
+        HintView2 hintView4 = this.aiHint;
+        if (hintView4 != null) {
+            hintView4.hide();
             this.aiHint = null;
         }
     }

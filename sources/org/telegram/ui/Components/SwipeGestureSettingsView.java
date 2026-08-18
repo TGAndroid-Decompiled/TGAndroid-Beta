@@ -17,7 +17,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.NumberPicker;
 
 public class SwipeGestureSettingsView extends FrameLayout {
     int[] backgroundKeys;
@@ -183,8 +182,103 @@ public class SwipeGestureSettingsView extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SwipeGestureSettingsView.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        float f;
+        float f2;
+        super.onDraw(canvas);
+        boolean z = this.picker.getValue() == 5;
+        if (z) {
+            float f3 = this.progressToSwipeFolders;
+            if (f3 != 1.0f) {
+                float f4 = f3 + 0.053333335f;
+                this.progressToSwipeFolders = f4;
+                if (f4 > 1.0f) {
+                    this.progressToSwipeFolders = 1.0f;
+                } else {
+                    this.iconViews[0].invalidate();
+                    this.iconViews[1].invalidate();
+                    invalidate();
+                }
+            } else if (!z) {
+                f = this.progressToSwipeFolders;
+                if (f != 0.0f) {
+                    f2 = f - 0.053333335f;
+                    this.progressToSwipeFolders = f2;
+                    if (f2 < 0.0f) {
+                        this.progressToSwipeFolders = 0.0f;
+                    } else {
+                        this.iconViews[0].invalidate();
+                        this.iconViews[1].invalidate();
+                        invalidate();
+                    }
+                }
+            }
+        } else if (!z) {
+            f = this.progressToSwipeFolders;
+            if (f != 0.0f) {
+                f2 = f - 0.053333335f;
+                this.progressToSwipeFolders = f2;
+                if (f2 < 0.0f) {
+                    this.progressToSwipeFolders = 0.0f;
+                } else {
+                    this.iconViews[0].invalidate();
+                    this.iconViews[1].invalidate();
+                    invalidate();
+                }
+            }
+        }
+        Paint paint = this.outlinePaint;
+        int i = Theme.key_switchTrack;
+        paint.setColor(Theme.getColor(i));
+        this.linePaint.setColor(Theme.getColor(i));
+        int measuredWidth = getMeasuredWidth() - ((AndroidUtilities.dp(132.0f) + AndroidUtilities.dp(21.0f)) + AndroidUtilities.dp(16.0f));
+        int iDp = AndroidUtilities.dp(21.0f);
+        int measuredHeight = (getMeasuredHeight() - AndroidUtilities.dp(48.0f)) / 2;
+        float f5 = iDp;
+        float f6 = measuredHeight;
+        this.rect.set(f5, f6, measuredWidth, getMeasuredHeight() - measuredHeight);
+        if (this.currentColorKey < 0) {
+            this.currentColorKey = this.backgroundKeys[this.picker.getValue()];
+            this.colorProgress = 1.0f;
+            this.fromColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(this.currentColorKey), 0.9f);
+        } else if (this.backgroundKeys[this.picker.getValue()] != this.currentColorKey) {
+            this.fromColor = ColorUtils.blendARGB(this.fromColor, ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(this.currentColorKey), 0.9f), this.colorProgress);
+            this.colorProgress = 0.0f;
+            this.currentColorKey = this.backgroundKeys[this.picker.getValue()];
+        }
+        float f7 = this.colorProgress;
+        if (f7 != 1.0f) {
+            float f8 = f7 + 0.16f;
+            this.colorProgress = f8;
+            if (f8 > 1.0f) {
+                this.colorProgress = 1.0f;
+            } else {
+                invalidate();
+            }
+        }
+        int i2 = this.fromColor;
+        int i3 = Theme.key_windowBackgroundWhite;
+        this.filledPaint.setColor(ColorUtils.blendARGB(i2, ColorUtils.blendARGB(Theme.getColor(i3), Theme.getColor(this.currentColorKey), 0.9f), this.colorProgress));
+        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.filledPaint);
+        this.filledPaint.setColor(Theme.getColor(i3));
+        this.filledPaint.setAlpha(255);
+        this.rect.set(f5, f6, measuredWidth - AndroidUtilities.dp(58.0f), getMeasuredHeight() - measuredHeight);
+        this.rect.inset(-AndroidUtilities.dp(1.0f), -AndroidUtilities.dp(1.0f));
+        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.filledPaint);
+        this.outlinePaint.setAlpha(31);
+        canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.outlinePaint);
+        canvas.save();
+        canvas.clipRect(this.rect);
+        this.filledPaint.setColor(Theme.getColor(i));
+        this.filledPaint.setAlpha(60);
+        RectF rectF = this.rect;
+        canvas.drawCircle(rectF.left + 0.0f, rectF.centerY(), AndroidUtilities.dp(15.0f), this.filledPaint);
+        float fCenterY = this.rect.centerY() - AndroidUtilities.dp(6.0f);
+        this.linePaint.setAlpha(57);
+        canvas.drawLine(this.rect.left + AndroidUtilities.dp(23.0f) + 0.0f, fCenterY, this.rect.right - AndroidUtilities.dp(68.0f), fCenterY, this.linePaint);
+        float fCenterY2 = this.rect.centerY() + AndroidUtilities.dp(6.0f);
+        canvas.drawLine(this.rect.left + AndroidUtilities.dp(23.0f) + 0.0f, fCenterY2, this.rect.right - AndroidUtilities.dp(23.0f), fCenterY2, this.linePaint);
+        canvas.restore();
     }
 
     public RLottieDrawable getIcon(int i) {

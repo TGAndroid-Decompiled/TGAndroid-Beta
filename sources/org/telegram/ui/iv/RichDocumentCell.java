@@ -10,6 +10,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
@@ -31,8 +32,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.iv.RichCaptionController;
-import org.telegram.ui.iv.RichEditor;
 
 public class RichDocumentCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, DownloadController.FileDownloadProgressListener {
     private boolean attached;
@@ -519,8 +518,33 @@ public class RichDocumentCell extends RichBlockCell implements Theme.Colorable, 
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichDocumentCell.onTouchEvent(android.view.MotionEvent):boolean");
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z;
+        if (motionEvent.getX() < this.mediaX || motionEvent.getX() > getWidth() - AndroidUtilities.dp(12.0f) || motionEvent.getY() < AndroidUtilities.dp(10.0f)) {
+            z = false;
+        } else {
+            if (motionEvent.getY() <= AndroidUtilities.dp(this.hasPreview ? 96.0f : 54.0f)) {
+                z = true;
+            } else {
+                z = false;
+            }
+        }
+        if (motionEvent.getActionMasked() == 0 && z) {
+            this.pressed = true;
+            return true;
+        }
+        if (motionEvent.getActionMasked() != 1 || !this.pressed) {
+            if (motionEvent.getActionMasked() == 3) {
+                this.pressed = false;
+            }
+            return this.pressed || super.onTouchEvent(motionEvent);
+        }
+        this.pressed = false;
+        if (z) {
+            playSoundEffect(0);
+            pressButton();
+        }
+        return true;
     }
 
     @Override

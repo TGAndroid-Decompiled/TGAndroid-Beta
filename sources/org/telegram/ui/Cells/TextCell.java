@@ -6,6 +6,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -533,9 +534,9 @@ public class TextCell extends FrameLayout {
             r11.setColors(i3, i4, i5, i5);
             addView(this.checkBox, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         }
-        Switch r112 = this.checkBox;
-        if (r112 != null) {
-            r112.setVisibility(0);
+        Switch r12 = this.checkBox;
+        if (r12 != null) {
+            r12.setVisibility(0);
             this.checkBox.setChecked(z, false);
         }
         this.needDivider = z2;
@@ -935,8 +936,88 @@ public class TextCell extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.TextCell.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        float f;
+        float f2;
+        if (this.drawLoading || this.drawLoadingProgress != 0.0f) {
+            if (this.paint == null) {
+                Paint paint = new Paint(1);
+                this.paint = paint;
+                paint.setColor(Theme.getColor(Theme.key_dialogSearchBackground, this.resourcesProvider));
+            }
+            if (this.incrementLoadingProgress) {
+                float f3 = this.loadingProgress + 0.016f;
+                this.loadingProgress = f3;
+                if (f3 > 1.0f) {
+                    this.loadingProgress = 1.0f;
+                    this.incrementLoadingProgress = false;
+                }
+            } else {
+                float f4 = this.loadingProgress - 0.016f;
+                this.loadingProgress = f4;
+                if (f4 < 0.0f) {
+                    this.loadingProgress = 0.0f;
+                    this.incrementLoadingProgress = true;
+                }
+            }
+            int i = this.changeProgressStartDelay;
+            if (i > 0) {
+                this.changeProgressStartDelay = i - 15;
+            } else {
+                boolean z = this.drawLoading;
+                if (z) {
+                    float f5 = this.drawLoadingProgress;
+                    if (f5 != 1.0f) {
+                        float f6 = f5 + 0.10666667f;
+                        this.drawLoadingProgress = f6;
+                        if (f6 > 1.0f) {
+                            this.drawLoadingProgress = 1.0f;
+                        }
+                    } else if (!z) {
+                        f = this.drawLoadingProgress;
+                        if (f != 0.0f) {
+                            f2 = f - 0.10666667f;
+                            this.drawLoadingProgress = f2;
+                            if (f2 < 0.0f) {
+                                this.drawLoadingProgress = 0.0f;
+                            }
+                        }
+                    }
+                } else if (!z) {
+                    f = this.drawLoadingProgress;
+                    if (f != 0.0f) {
+                        f2 = f - 0.10666667f;
+                        this.drawLoadingProgress = f2;
+                        if (f2 < 0.0f) {
+                            this.drawLoadingProgress = 0.0f;
+                        }
+                    }
+                }
+            }
+            this.paint.setAlpha((int) (((this.loadingProgress * 0.4f) + 0.6f) * this.drawLoadingProgress * 255.0f));
+            int measuredHeight = getMeasuredHeight() >> 1;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((getMeasuredWidth() - AndroidUtilities.dp(21.0f)) - AndroidUtilities.dp(this.loadingSize), measuredHeight - AndroidUtilities.dp(3.0f), getMeasuredWidth() - AndroidUtilities.dp(21.0f), measuredHeight + AndroidUtilities.dp(3.0f));
+            if (LocaleController.isRTL) {
+                rectF.left = getMeasuredWidth() - rectF.left;
+                rectF.right = getMeasuredWidth() - rectF.right;
+            }
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.paint);
+            invalidate();
+        }
+        AnimatedTextView animatedTextView = this.valueTextView;
+        float f7 = 1.0f - this.drawLoadingProgress;
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emojiDrawable;
+        animatedTextView.setAlpha(f7 * (swapAnimatedEmojiDrawable == null ? 1.0f : 1.0f - swapAnimatedEmojiDrawable.isNotEmpty()) * (isEnabled() ? 1.0f : 0.5f));
+        SimpleTextView simpleTextView = this.valueSpoilersTextView;
+        float f8 = 1.0f - this.drawLoadingProgress;
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = this.emojiDrawable;
+        simpleTextView.setAlpha(f8 * (swapAnimatedEmojiDrawable2 == null ? 1.0f : 1.0f - swapAnimatedEmojiDrawable2.isNotEmpty()) * (isEnabled() ? 1.0f : 0.5f));
+        super.dispatchDraw(canvas);
+        if (this.emojiDrawable != null) {
+            updateEmojiBounds();
+            this.emojiDrawable.draw(canvas);
+        }
     }
 
     public void setSubtitle(CharSequence charSequence) {

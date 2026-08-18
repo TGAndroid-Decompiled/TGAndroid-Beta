@@ -26,6 +26,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Cells.TextCheckCell;
+import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
@@ -155,12 +156,25 @@ public class PostSuggestionsEditActivity extends BaseFragment {
         return LocaleController.formatNumber(num2.intValue(), ',');
     }
 
-    public void lambda$fillItems$1(java.lang.Integer r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PostSuggestionsEditActivity.lambda$fillItems$1(java.lang.Integer):void");
+    public void lambda$fillItems$1(Integer num) {
+        this.suggestionsStarsCount = num.intValue();
+        View viewFindViewByItemId = this.listView.findViewByItemId(4);
+        if (viewFindViewByItemId instanceof TextInfoPrivacyCell) {
+            TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewFindViewByItemId;
+            if (textInfoPrivacyCell.getFixedSize() <= 0 && this.suggestionsStarsCount > 0) {
+                textInfoPrivacyCell.setText(getIncomeInfo());
+            } else {
+                this.listView.adapter.update(true);
+            }
+        } else {
+            this.listView.adapter.update(true);
+        }
+        checkDone(true);
     }
 
     private CharSequence getIncomeInfo() {
-        return LocaleController.formatString(R.string.PostSuggestionsPriceInfo2, AffiliateProgramFragment.percents(getMessagesController().starsPaidMessageCommissionPermille), String.valueOf(((int) (((this.suggestionsStarsCount * (r0 / 1000.0f)) / 1000.0d) * getMessagesController().starsUsdWithdrawRate1000)) / 100.0d));
+        int i = getMessagesController().starsPaidMessageCommissionPermille;
+        return LocaleController.formatString(R.string.PostSuggestionsPriceInfo2, AffiliateProgramFragment.percents(i), String.valueOf(((double) ((int) ((((double) (this.suggestionsStarsCount * (i / 1000.0f))) / 1000.0d) * ((double) getMessagesController().starsUsdWithdrawRate1000)))) / 100.0d));
     }
 
     public void onItemClick(UItem uItem, View view, int i, float f, float f2) {

@@ -6,10 +6,11 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Outline;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
@@ -26,12 +27,14 @@ import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -47,6 +50,7 @@ import org.telegram.messenger.MessagePreviewParams;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
@@ -60,10 +64,7 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.IMessageCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
-import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
@@ -300,8 +301,609 @@ public abstract class MessagePreviewView extends FrameLayout {
             return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
         }
 
-        public Page(final android.content.Context r26, int r27) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MessagePreviewView.Page.<init>(org.telegram.ui.Components.MessagePreviewView, android.content.Context, int):void");
+        public Page(final Context context, int i) {
+            int i2;
+            boolean z;
+            boolean z2;
+            final ToggleButton toggleButton;
+            int i3;
+            View view;
+            MessagePreviewParams messagePreviewParams;
+            MessagePreviewParams.Messages messages;
+            float f;
+            ViewGroup viewGroup;
+            super(context);
+            this.firstLayout = true;
+            this.scrollToQuoteStartY = -1;
+            this.scrollToQuoteEndY = -1;
+            this.shouldScrollToQuote = false;
+            this.rect = new Rect();
+            this.updateScroll = false;
+            this.firstAttach = true;
+            this.sharedResources = new ChatMessageSharedResources(context);
+            this.currentTab = i;
+            setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                    return this.f$0.lambda$new$0(view2, motionEvent);
+                }
+            });
+            SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
+                @Override
+                protected Drawable getNewDrawable() {
+                    Drawable wallpaperDrawable = MessagePreviewView.this.resourcesProvider.getWallpaperDrawable();
+                    return wallpaperDrawable != null ? wallpaperDrawable : super.getNewDrawable();
+                }
+
+                @Override
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                    if (motionEvent.getY() < Page.this.currentTopOffset) {
+                        return false;
+                    }
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+            };
+            this.chatPreviewContainer = sizeNotifierFrameLayout;
+            sizeNotifierFrameLayout.setBackgroundImage(MessagePreviewView.this.resourcesProvider.getWallpaperDrawable(), MessagePreviewView.this.resourcesProvider.isWallpaperMotion());
+            this.chatPreviewContainer.setOccupyStatusBar(false);
+            this.chatPreviewContainer.setOutlineProvider(new ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view2, Outline outline) {
+                    outline.setRoundRect(0, Page.this.currentTopOffset + 1, view2.getMeasuredWidth(), view2.getMeasuredHeight(), AndroidUtilities.dp(8.0f));
+                }
+            });
+            this.chatPreviewContainer.setClipToOutline(true);
+            this.chatPreviewContainer.setElevation(AndroidUtilities.dp(4.0f));
+            ActionBar actionBar = MessagePreviewView.this.new ActionBar(context, MessagePreviewView.this.resourcesProvider);
+            this.actionBar = actionBar;
+            actionBar.setBackgroundColor(MessagePreviewView.this.getThemedColor(Theme.key_actionBarDefault));
+            TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper = new TextSelectionHelper.ChatListTextSelectionHelper() {
+                {
+                    this.resourcesProvider = MessagePreviewView.this.resourcesProvider;
+                }
+
+                @Override
+                protected boolean canCopy() {
+                    if (Page.this.isReplyToRichMessage()) {
+                        return false;
+                    }
+                    MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                    return messagePreviewParams2 == null || !messagePreviewParams2.noforwards;
+                }
+
+                @Override
+                protected Theme.ResourcesProvider getResourcesProvider() {
+                    return this.resourcesProvider;
+                }
+
+                @Override
+                public void invalidate() {
+                    super.invalidate();
+                    RecyclerListView recyclerListView = Page.this.chatListView;
+                    if (recyclerListView != null) {
+                        recyclerListView.invalidate();
+                    }
+                }
+
+                @Override
+                protected boolean canShowQuote() {
+                    Page page = Page.this;
+                    return (page.currentTab != 0 || MessagePreviewView.this.messagePreviewParams.isSecret || page.isReplyToRichMessage()) ? false : true;
+                }
+
+                @Override
+                protected void onQuoteClick(MessageObject messageObject, int i4, int i5, CharSequence charSequence) {
+                    ChatActivity.ReplyQuote replyQuote;
+                    MessageObject messageObject2;
+                    Page page = Page.this;
+                    TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper2 = page.textSelectionHelper;
+                    if (chatListTextSelectionHelper2.selectionEnd - chatListTextSelectionHelper2.selectionStart > MessagesController.getInstance(MessagePreviewView.this.currentAccount).quoteLengthMax) {
+                        Page.this.showQuoteLengthError();
+                        return;
+                    }
+                    Page page2 = Page.this;
+                    MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                    TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper3 = page2.textSelectionHelper;
+                    messagePreviewParams2.quoteStart = chatListTextSelectionHelper3.selectionStart;
+                    messagePreviewParams2.quoteEnd = chatListTextSelectionHelper3.selectionEnd;
+                    MessageObject replyMessage = page2.getReplyMessage(messageObject);
+                    if (replyMessage != null && ((replyQuote = MessagePreviewView.this.messagePreviewParams.quote) == null || (messageObject2 = replyQuote.message) == null || messageObject2.getId() != replyMessage.getId())) {
+                        MessagePreviewView.this.messagePreviewParams.quote = ChatActivity.ReplyQuote.from(replyMessage, i4, i5);
+                    }
+                    MessagePreviewView.this.onQuoteSelectedPart();
+                    MessagePreviewView.this.dismiss(true);
+                }
+
+                @Override
+                public boolean isSelected(MessageObject messageObject) {
+                    Page page = Page.this;
+                    return page.currentTab == 0 && !MessagePreviewView.this.messagePreviewParams.isSecret && isInSelectionMode();
+                }
+            };
+            this.textSelectionHelper = chatListTextSelectionHelper;
+            chatListTextSelectionHelper.setCallback(new TextSelectionHelper.Callback() {
+                @Override
+                public void onStateChanged(boolean z3) {
+                    Page page = Page.this;
+                    if (MessagePreviewView.this.showing) {
+                        if (!z3 && page.menu.getSwipeBack().isForegroundOpen()) {
+                            Page.this.menu.getSwipeBack().closeForeground(true);
+                            return;
+                        }
+                        if (z3) {
+                            Page page2 = Page.this;
+                            TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper2 = page2.textSelectionHelper;
+                            if (chatListTextSelectionHelper2.selectionEnd - chatListTextSelectionHelper2.selectionStart > MessagesController.getInstance(MessagePreviewView.this.currentAccount).quoteLengthMax) {
+                                Page.this.showQuoteLengthError();
+                                return;
+                            }
+                            MessageObject replyMessage = Page.this.getReplyMessage(Page.this.textSelectionHelper.getSelectedCell() != null ? ((ChatMessageCell) Page.this.textSelectionHelper.getSelectedCell()).getMessageObject() : null);
+                            Page page3 = Page.this;
+                            MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                            if (messagePreviewParams2.quote == null) {
+                                TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper3 = page3.textSelectionHelper;
+                                int i4 = chatListTextSelectionHelper3.selectionStart;
+                                messagePreviewParams2.quoteStart = i4;
+                                int i5 = chatListTextSelectionHelper3.selectionEnd;
+                                messagePreviewParams2.quoteEnd = i5;
+                                messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(replyMessage, i4, i5);
+                                Page.this.menu.getSwipeBack().openForeground(Page.this.menuBack);
+                            }
+                        }
+                    }
+                }
+            });
+            AnonymousClass6 anonymousClass6 = new AnonymousClass6(context, MessagePreviewView.this.resourcesProvider, MessagePreviewView.this);
+            this.chatListView = anonymousClass6;
+            AnonymousClass7 anonymousClass7 = new AnonymousClass7(null, this.chatListView, MessagePreviewView.this.resourcesProvider, MessagePreviewView.this);
+            this.itemAnimator = anonymousClass7;
+            anonymousClass6.setItemAnimator(anonymousClass7);
+            this.chatListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
+                    super.onScrolled(recyclerView, i4, i5);
+                    for (int i6 = 0; i6 < Page.this.chatListView.getChildCount(); i6++) {
+                        View childAt = Page.this.chatListView.getChildAt(i6);
+                        if (childAt instanceof ChatMessageCell) {
+                            ((ChatMessageCell) childAt).setParentViewSize(Page.this.chatPreviewContainer.getMeasuredWidth(), Page.this.chatPreviewContainer.getBackgroundSizeY());
+                        }
+                    }
+                    TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper2 = Page.this.textSelectionHelper;
+                    if (chatListTextSelectionHelper2 != null) {
+                        chatListTextSelectionHelper2.invalidate();
+                    }
+                }
+            });
+            this.chatListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view2, int i4) {
+                    Page page = Page.this;
+                    if (page.currentTab != 1 || page.messages.previewMessages.size() <= 1) {
+                        return;
+                    }
+                    int id = Page.this.messages.previewMessages.get(i4).getId();
+                    boolean z3 = Page.this.messages.selectedIds.get(id, false);
+                    boolean z4 = !z3;
+                    if (Page.this.messages.selectedIds.size() == 1 && z3) {
+                        return;
+                    }
+                    if (z3) {
+                        Page.this.messages.selectedIds.delete(id);
+                    } else {
+                        Page.this.messages.selectedIds.put(id, z4);
+                    }
+                    if (view2 instanceof ChatMessageCell) {
+                        ((ChatMessageCell) view2).setChecked(z4, z4, true);
+                    }
+                    Page.this.updateSubtitle(true);
+                }
+            });
+            RecyclerListView recyclerListView = this.chatListView;
+            Adapter adapter = new Adapter();
+            this.adapter = adapter;
+            recyclerListView.setAdapter(adapter);
+            this.chatListView.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+            AnonymousClass10 anonymousClass10 = new AnonymousClass10(context, 1000, 1, true, MessagePreviewView.this);
+            this.chatLayoutManager = anonymousClass10;
+            anonymousClass10.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int i4) {
+                    if (i4 < 0 || i4 >= Page.this.messages.previewMessages.size()) {
+                        return 1000;
+                    }
+                    MessageObject messageObject = Page.this.messages.previewMessages.get(i4);
+                    MessageObject.GroupedMessages validGroupedMessage = Page.this.getValidGroupedMessage(messageObject);
+                    if (validGroupedMessage != null) {
+                        return validGroupedMessage.getPosition(messageObject).spanSize;
+                    }
+                    return 1000;
+                }
+            });
+            this.chatListView.setClipToPadding(false);
+            this.chatListView.setLayoutManager(this.chatLayoutManager);
+            this.chatListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                @Override
+                public void getItemOffsets(Rect rect, View view2, RecyclerView recyclerView, RecyclerView.State state) {
+                    ChatMessageCell chatMessageCell;
+                    MessageObject.GroupedMessages currentMessagesGroup;
+                    MessageObject.GroupedMessagePosition currentPosition;
+                    rect.bottom = 0;
+                    if (!(view2 instanceof ChatMessageCell) || (currentMessagesGroup = (chatMessageCell = (ChatMessageCell) view2).getCurrentMessagesGroup()) == null || (currentPosition = chatMessageCell.getCurrentPosition()) == null || currentPosition.siblingHeights == null) {
+                        return;
+                    }
+                    Point point = AndroidUtilities.displaySize;
+                    float fMax = Math.max(point.x, point.y) * 0.5f;
+                    int extraInsetHeight = chatMessageCell.getExtraInsetHeight();
+                    int i4 = 0;
+                    while (true) {
+                        float[] fArr = currentPosition.siblingHeights;
+                        if (i4 >= fArr.length) {
+                            break;
+                        }
+                        extraInsetHeight += (int) Math.ceil(fArr[i4] * fMax);
+                        i4++;
+                    }
+                    int iRound = extraInsetHeight + ((currentPosition.maxY - currentPosition.minY) * Math.round(AndroidUtilities.density * 7.0f));
+                    int size = currentMessagesGroup.posArray.size();
+                    for (int i5 = 0; i5 < size; i5++) {
+                        MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i5);
+                        byte b = groupedMessagePosition.minY;
+                        byte b2 = currentPosition.minY;
+                        if (b == b2 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b != b2 || groupedMessagePosition.maxY != currentPosition.maxY) && b == b2)) {
+                            iRound -= ((int) Math.ceil(fMax * groupedMessagePosition.ph)) - AndroidUtilities.dp(4.0f);
+                            break;
+                        }
+                    }
+                    rect.bottom = -iRound;
+                }
+            });
+            this.chatPreviewContainer.addView(this.chatListView);
+            addView(this.chatPreviewContainer, LayoutHelper.createFrame(-1, 400.0f, 0, 8.0f, 0.0f, 8.0f, 0.0f));
+            this.chatPreviewContainer.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext(), R.drawable.popup_fixed_alert2, MessagePreviewView.this.resourcesProvider, 1);
+            this.menu = actionBarPopupWindowLayout;
+            actionBarPopupWindowLayout.getSwipeBack().setOnForegroundOpenFinished(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$new$1();
+                }
+            });
+            this.menu.setBackground(MessagePreviewView.this.iBlur3Factory.create(this.menu).setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(MessagePreviewView.this.resourcesProvider)).setPadding(AndroidUtilities.dp(8.0f)).setHasPadding(true).setRadius(AndroidUtilities.dp(12.0f)));
+            addView(this.menu, LayoutHelper.createFrame(-2, -2.0f));
+            if (i == 0 && (messages = (messagePreviewParams = MessagePreviewView.this.messagePreviewParams).replyMessage) != null) {
+                if (!messages.hasText || messagePreviewParams.isSecret) {
+                    f = 48.0f;
+                } else {
+                    LinearLayout linearLayout = new LinearLayout(context);
+                    linearLayout.setOrientation(1);
+                    if (MessagePreviewView.this.showOutdatedQuote) {
+                        viewGroup = linearLayout;
+                    } else {
+                        viewGroup = linearLayout;
+                        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(context, false, true, false, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                        actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back);
+                        actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                this.f$0.lambda$new$2(view2);
+                            }
+                        });
+                        viewGroup.addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, 48));
+                        ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(context, MessagePreviewView.this.resourcesProvider);
+                        gapView.setColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, MessagePreviewView.this.resourcesProvider), 0.06f));
+                        gapView.setTag(R.id.fit_width_tag, 1);
+                        viewGroup.addView(gapView, LayoutHelper.createLinear(-1, 8));
+                        ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(context, false, false, true, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                        actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.QuoteSelectedPart), R.drawable.menu_quote_specific);
+                        actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                this.f$0.lambda$new$3(view2);
+                            }
+                        });
+                        viewGroup.addView(actionBarMenuSubItem2, LayoutHelper.createLinear(-1, 48));
+                    }
+                    this.menuBack = this.menu.addViewToSwipeBack(viewGroup);
+                    this.menu.getSwipeBack().setStickToRight(true);
+                    FrameLayout frameLayout = new FrameLayout(context);
+                    f = 48.0f;
+                    ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(context, true, true, false, MessagePreviewView.this.resourcesProvider) {
+                        @Override
+                        public boolean onTouchEvent(MotionEvent motionEvent) {
+                            if (getVisibility() != 0 || getAlpha() < 0.5f) {
+                                return false;
+                            }
+                            return super.onTouchEvent(motionEvent);
+                        }
+
+                        @Override
+                        public void updateBackground() {
+                            setBackground(null);
+                        }
+                    };
+                    this.quoteButton = actionBarMenuSubItem3;
+                    actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString(MessagePreviewView.this.showOutdatedQuote ? R.string.QuoteSelectedPart : R.string.SelectSpecificQuote), R.drawable.menu_select_quote);
+                    ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(context, true, true, false, MessagePreviewView.this.resourcesProvider) {
+                        @Override
+                        public boolean onTouchEvent(MotionEvent motionEvent) {
+                            if (getVisibility() != 0 || getAlpha() < 0.5f) {
+                                return false;
+                            }
+                            return super.onTouchEvent(motionEvent);
+                        }
+
+                        @Override
+                        public void updateBackground() {
+                            setBackground(null);
+                        }
+                    };
+                    this.clearQuoteButton = actionBarMenuSubItem4;
+                    actionBarMenuSubItem4.setTextAndIcon(LocaleController.getString(R.string.ClearQuote), R.drawable.menu_quote_delete);
+                    frameLayout.setBackground(Theme.createRadSelectorDrawable(MessagePreviewView.this.getThemedColor(Theme.key_dialogButtonSelector), 6, 0));
+                    frameLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            this.f$0.lambda$new$4(view2);
+                        }
+                    });
+                    frameLayout.addView(this.quoteButton, LayoutHelper.createFrame(-1, 48.0f));
+                    frameLayout.addView(this.clearQuoteButton, LayoutHelper.createFrame(-1, 48.0f));
+                    this.menu.addView((View) frameLayout, LayoutHelper.createLinear(-1, 48));
+                }
+                MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                if (!messagePreviewParams2.monoforum && !messagePreviewParams2.noforwards && !messagePreviewParams2.hasSecretMessages) {
+                    FrameLayout frameLayout2 = new FrameLayout(context);
+                    ActionBarMenuSubItem actionBarMenuSubItem5 = new ActionBarMenuSubItem(context, true, false, false, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                    this.replyAnotherChatButton = actionBarMenuSubItem5;
+                    String string = LocaleController.getString(R.string.ReplyToAnotherChat);
+                    int i4 = R.drawable.msg_forward_replace;
+                    actionBarMenuSubItem5.setTextAndIcon(string, i4);
+                    this.replyAnotherChatButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            this.f$0.lambda$new$5(view2);
+                        }
+                    });
+                    ActionBarMenuSubItem actionBarMenuSubItem6 = new ActionBarMenuSubItem(context, true, false, false, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                    this.quoteAnotherChatButton = actionBarMenuSubItem6;
+                    actionBarMenuSubItem6.setTextAndIcon(LocaleController.getString(R.string.QuoteToAnotherChat), i4);
+                    this.quoteAnotherChatButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            this.f$0.lambda$new$6(view2);
+                        }
+                    });
+                    frameLayout2.addView(this.quoteAnotherChatButton, LayoutHelper.createFrame(-1, f));
+                    frameLayout2.addView(this.replyAnotherChatButton, LayoutHelper.createFrame(-1, f));
+                    this.menu.addView((View) frameLayout2, LayoutHelper.createLinear(-1, 48));
+                }
+                MessagePreviewParams messagePreviewParams3 = MessagePreviewView.this.messagePreviewParams;
+                if (!messagePreviewParams3.noforwards && !messagePreviewParams3.hasSecretMessages) {
+                    ActionBarPopupWindow.GapView gapView2 = new ActionBarPopupWindow.GapView(context, MessagePreviewView.this.resourcesProvider);
+                    gapView2.setColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, MessagePreviewView.this.resourcesProvider), 0.06f));
+                    gapView2.setTag(R.id.fit_width_tag, 1);
+                    this.menu.addView((View) gapView2, LayoutHelper.createLinear(-1, 8));
+                }
+                switchToQuote(MessagePreviewView.this.messagePreviewParams.quote != null, false);
+                ActionBarMenuSubItem actionBarMenuSubItem7 = new ActionBarMenuSubItem(context, true, false, false, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                actionBarMenuSubItem7.setTextAndIcon(LocaleController.getString(R.string.ApplyChanges), R.drawable.msg_select);
+                actionBarMenuSubItem7.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        this.f$0.lambda$new$7(view2);
+                    }
+                });
+                this.menu.addView((View) actionBarMenuSubItem7, LayoutHelper.createLinear(-1, 48));
+                ActionBarMenuSubItem actionBarMenuSubItem8 = new ActionBarMenuSubItem(context, true, false, true, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                this.deleteReplyButton = actionBarMenuSubItem8;
+                actionBarMenuSubItem8.setTextAndIcon(LocaleController.getString(MessagePreviewView.this.showOutdatedQuote ? R.string.DoNotQuote : R.string.DoNotReply), R.drawable.msg_delete);
+                ActionBarMenuSubItem actionBarMenuSubItem9 = this.deleteReplyButton;
+                int themedColor = MessagePreviewView.this.getThemedColor(Theme.key_text_RedBold);
+                int i5 = Theme.key_text_RedRegular;
+                actionBarMenuSubItem9.setColors(themedColor, MessagePreviewView.this.getThemedColor(i5));
+                this.deleteReplyButton.setSelectorColor(Theme.multAlpha(Theme.getColor(i5), 0.12f));
+                this.deleteReplyButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        this.f$0.lambda$new$8(view2);
+                    }
+                });
+                this.menu.addView((View) this.deleteReplyButton, LayoutHelper.createLinear(-1, 48));
+            } else {
+                if (i == 1 && MessagePreviewView.this.messagePreviewParams.forwardMessages != null) {
+                    if (!UserConfig.getInstance(MessagePreviewView.this.currentAccount).isPremium()) {
+                        int i6 = 0;
+                        while (true) {
+                            if (i6 >= MessagePreviewView.this.messagePreviewParams.forwardMessages.messages.size()) {
+                                z = true;
+                                break;
+                            } else {
+                                if (MessagePreviewView.this.messagePreviewParams.forwardMessages.messages.get(i6).type == 36) {
+                                    z = false;
+                                    break;
+                                }
+                                i6++;
+                            }
+                        }
+                    } else {
+                        z = true;
+                        break;
+                    }
+                    final ToggleButton toggleButton2 = new ToggleButton(context, R.raw.name_hide, LocaleController.getString(MessagePreviewView.this.messagePreviewParams.multipleUsers ? R.string.ShowSenderNames : R.string.ShowSendersName), R.raw.name_show, LocaleController.getString(MessagePreviewView.this.messagePreviewParams.multipleUsers ? R.string.HideSenderNames : R.string.HideSendersName), MessagePreviewView.this.resourcesProvider);
+                    this.menu.addView((View) toggleButton2, LayoutHelper.createLinear(-1, 48));
+                    if (MessagePreviewView.this.messagePreviewParams.hasCaption) {
+                        toggleButton = new ToggleButton(context, R.raw.caption_hide, LocaleController.getString(R.string.ShowCaption), R.raw.caption_show, LocaleController.getString(R.string.HideCaption), MessagePreviewView.this.resourcesProvider);
+                        z2 = false;
+                        toggleButton.setState(MessagePreviewView.this.messagePreviewParams.hideCaption, false);
+                        this.menu.addView((View) toggleButton, LayoutHelper.createLinear(-1, 48));
+                    } else {
+                        z2 = false;
+                        toggleButton = null;
+                    }
+                    ActionBarMenuSubItem actionBarMenuSubItem10 = new ActionBarMenuSubItem(context, true, z2, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                    actionBarMenuSubItem10.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            this.f$0.lambda$new$9(view2);
+                        }
+                    });
+                    actionBarMenuSubItem10.setTextAndIcon(LocaleController.getString(R.string.ChangeRecipient), R.drawable.msg_forward_replace);
+                    this.menu.addView((View) actionBarMenuSubItem10, LayoutHelper.createLinear(-1, 48));
+                    ActionBarPopupWindow.GapView gapView3 = new ActionBarPopupWindow.GapView(context, MessagePreviewView.this.resourcesProvider);
+                    gapView3.setColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, MessagePreviewView.this.resourcesProvider), 0.06f));
+                    gapView3.setTag(R.id.fit_width_tag, 1);
+                    this.menu.addView((View) gapView3, LayoutHelper.createLinear(-1, 8));
+                    ActionBarMenuSubItem actionBarMenuSubItem11 = new ActionBarMenuSubItem(context, true, false, false, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                    actionBarMenuSubItem11.setTextAndIcon(LocaleController.getString(R.string.ApplyChanges), R.drawable.msg_select);
+                    actionBarMenuSubItem11.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            this.f$0.lambda$new$10(view2);
+                        }
+                    });
+                    this.menu.addView((View) actionBarMenuSubItem11, LayoutHelper.createLinear(-1, 48));
+                    ActionBarMenuSubItem actionBarMenuSubItem12 = new ActionBarMenuSubItem(context, true, false, true, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                    actionBarMenuSubItem12.setTextAndIcon(LocaleController.getString(R.string.DoNotForward), R.drawable.msg_delete);
+                    int themedColor2 = MessagePreviewView.this.getThemedColor(Theme.key_text_RedBold);
+                    int i7 = Theme.key_text_RedRegular;
+                    actionBarMenuSubItem12.setColors(themedColor2, MessagePreviewView.this.getThemedColor(i7));
+                    actionBarMenuSubItem12.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            this.f$0.lambda$new$11(view2);
+                        }
+                    });
+                    actionBarMenuSubItem12.setSelectorColor(Theme.multAlpha(Theme.getColor(i7), 0.12f));
+                    this.menu.addView((View) actionBarMenuSubItem12, LayoutHelper.createLinear(-1, 48));
+                    toggleButton2.setState(MessagePreviewView.this.messagePreviewParams.hideForwardSendersName, false);
+                    final boolean z3 = z;
+                    final ToggleButton toggleButton3 = toggleButton;
+                    toggleButton2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            this.f$0.lambda$new$14(z3, context, toggleButton3, toggleButton2, view2);
+                        }
+                    });
+                    if (toggleButton != null) {
+                        toggleButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                this.f$0.lambda$new$15(toggleButton, toggleButton2, view2);
+                            }
+                        });
+                    }
+                } else {
+                    i2 = 2;
+                    if (i == 2 && MessagePreviewView.this.messagePreviewParams.linkMessage != null) {
+                        ToggleButton toggleButton4 = new ToggleButton(context, R.raw.position_below, LocaleController.getString(R.string.LinkAbove), R.raw.position_above, LocaleController.getString(R.string.LinkBelow), MessagePreviewView.this.resourcesProvider);
+                        this.changePositionBtn = toggleButton4;
+                        toggleButton4.setState(!MessagePreviewView.this.messagePreviewParams.webpageTop, false);
+                        this.menu.addView((View) this.changePositionBtn, LayoutHelper.createLinear(-1, 48));
+                        FrameLayout frameLayout3 = new FrameLayout(context);
+                        this.changeSizeBtnContainer = frameLayout3;
+                        frameLayout3.setBackground(Theme.createRadSelectorDrawable(MessagePreviewView.this.getThemedColor(Theme.key_dialogButtonSelector), 0, 0));
+                        int i8 = R.raw.media_shrink;
+                        String string2 = LocaleController.getString(R.string.LinkMediaLarger);
+                        int i9 = R.raw.media_enlarge;
+                        ToggleButton toggleButton5 = new ToggleButton(context, i8, string2, i9, LocaleController.getString(R.string.LinkMediaSmaller), MessagePreviewView.this.resourcesProvider);
+                        this.changeSizeBtn = toggleButton5;
+                        toggleButton5.setBackground(null);
+                        this.changeSizeBtn.setVisibility(MessagePreviewView.this.messagePreviewParams.isVideo ? 4 : 0);
+                        this.changeSizeBtnContainer.addView(this.changeSizeBtn, LayoutHelper.createLinear(-1, 48));
+                        ToggleButton toggleButton6 = new ToggleButton(context, i8, LocaleController.getString(R.string.LinkVideoLarger), i9, LocaleController.getString(R.string.LinkVideoSmaller), MessagePreviewView.this.resourcesProvider);
+                        this.videoChangeSizeBtn = toggleButton6;
+                        toggleButton6.setBackground(null);
+                        this.videoChangeSizeBtn.setVisibility(!MessagePreviewView.this.messagePreviewParams.isVideo ? 4 : 0);
+                        this.changeSizeBtnContainer.setAlpha(MessagePreviewView.this.messagePreviewParams.hasMedia ? 1.0f : 0.5f);
+                        this.changeSizeBtnContainer.addView(this.videoChangeSizeBtn, LayoutHelper.createLinear(-1, 48));
+                        this.menu.addView((View) this.changeSizeBtnContainer, LayoutHelper.createLinear(-1, 48));
+                        FrameLayout frameLayout4 = this.changeSizeBtnContainer;
+                        MessagePreviewParams messagePreviewParams4 = MessagePreviewView.this.messagePreviewParams;
+                        frameLayout4.setVisibility((!messagePreviewParams4.singleLink || messagePreviewParams4.hasMedia) ? 0 : 8);
+                        this.changeSizeBtn.setState(MessagePreviewView.this.messagePreviewParams.webpageSmall, false);
+                        this.videoChangeSizeBtn.setState(MessagePreviewView.this.messagePreviewParams.webpageSmall, false);
+                        ActionBarPopupWindow.GapView gapView4 = new ActionBarPopupWindow.GapView(context, MessagePreviewView.this.resourcesProvider);
+                        gapView4.setColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, MessagePreviewView.this.resourcesProvider), 0.06f));
+                        gapView4.setTag(R.id.fit_width_tag, 1);
+                        this.menu.addView((View) gapView4, LayoutHelper.createLinear(-1, 8));
+                        ActionBarMenuSubItem actionBarMenuSubItem13 = new ActionBarMenuSubItem(context, true, false, false, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                        actionBarMenuSubItem13.setTextAndIcon(LocaleController.getString(R.string.ApplyChanges), R.drawable.msg_select);
+                        actionBarMenuSubItem13.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                this.f$0.lambda$new$16(view2);
+                            }
+                        });
+                        this.menu.addView((View) actionBarMenuSubItem13, LayoutHelper.createLinear(-1, 48));
+                        ActionBarMenuSubItem actionBarMenuSubItem14 = new ActionBarMenuSubItem(context, true, false, true, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider);
+                        actionBarMenuSubItem14.setTextAndIcon(LocaleController.getString(R.string.DoNotLinkPreview), R.drawable.msg_delete);
+                        int themedColor3 = MessagePreviewView.this.getThemedColor(Theme.key_text_RedBold);
+                        int i10 = Theme.key_text_RedRegular;
+                        actionBarMenuSubItem14.setColors(themedColor3, MessagePreviewView.this.getThemedColor(i10));
+                        actionBarMenuSubItem14.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                this.f$0.lambda$new$17(view2);
+                            }
+                        });
+                        actionBarMenuSubItem14.setSelectorColor(Theme.multAlpha(Theme.getColor(i10), 0.12f));
+                        this.menu.addView((View) actionBarMenuSubItem14, LayoutHelper.createLinear(-1, 48));
+                        this.changeSizeBtnContainer.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                this.f$0.lambda$new$18(view2);
+                            }
+                        });
+                        this.changePositionBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                this.f$0.lambda$new$19(view2);
+                            }
+                        });
+                    }
+                }
+                i3 = this.currentTab;
+                if (i3 == 1) {
+                    this.messages = MessagePreviewView.this.messagePreviewParams.forwardMessages;
+                } else if (i3 == 0) {
+                    this.messages = MessagePreviewView.this.messagePreviewParams.replyMessage;
+                } else if (i3 == i2) {
+                    this.messages = MessagePreviewView.this.messagePreviewParams.linkMessage;
+                }
+                TextSelectionHelper.TextSelectionOverlay overlayView = this.textSelectionHelper.getOverlayView(context);
+                this.textSelectionOverlay = overlayView;
+                overlayView.setElevation(AndroidUtilities.dp(8.0f));
+                this.textSelectionOverlay.setOutlineProvider(null);
+                view = this.textSelectionOverlay;
+                if (view != null) {
+                    if (view.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) this.textSelectionOverlay.getParent()).removeView(this.textSelectionOverlay);
+                    }
+                    addView(this.textSelectionOverlay, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, org.telegram.ui.ActionBar.ActionBar.getCurrentActionBarHeight() / AndroidUtilities.density, 0.0f, 0.0f));
+                }
+                this.textSelectionHelper.setParentView(this.chatListView);
+            }
+            i2 = 2;
+            i3 = this.currentTab;
+            if (i3 == 1) {
+                this.messages = MessagePreviewView.this.messagePreviewParams.forwardMessages;
+            } else if (i3 == 0) {
+                this.messages = MessagePreviewView.this.messagePreviewParams.replyMessage;
+            } else if (i3 == i2) {
+                this.messages = MessagePreviewView.this.messagePreviewParams.linkMessage;
+            }
+            TextSelectionHelper.TextSelectionOverlay overlayView2 = this.textSelectionHelper.getOverlayView(context);
+            this.textSelectionOverlay = overlayView2;
+            overlayView2.setElevation(AndroidUtilities.dp(8.0f));
+            this.textSelectionOverlay.setOutlineProvider(null);
+            view = this.textSelectionOverlay;
+            if (view != null) {
+                if (view.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) this.textSelectionOverlay.getParent()).removeView(this.textSelectionOverlay);
+                }
+                addView(this.textSelectionOverlay, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, org.telegram.ui.ActionBar.ActionBar.getCurrentActionBarHeight() / AndroidUtilities.density, 0.0f, 0.0f));
+            }
+            this.textSelectionHelper.setParentView(this.chatListView);
         }
 
         public boolean lambda$new$0(View view, MotionEvent motionEvent) {
@@ -320,7 +922,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) throws IOException {
+            public boolean drawChild(Canvas canvas, View view, long j) {
                 if (view instanceof ChatMessageCell) {
                     ChatMessageCell chatMessageCell = (ChatMessageCell) view;
                     boolean zDrawChild = super.drawChild(canvas, view, j);
@@ -409,8 +1011,138 @@ public abstract class MessagePreviewView extends FrameLayout {
                 }
             }
 
-            private void drawChatBackgroundElements(android.graphics.Canvas r29) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MessagePreviewView.Page.AnonymousClass6.drawChatBackgroundElements(android.graphics.Canvas):void");
+            private void drawChatBackgroundElements(Canvas canvas) {
+                boolean z;
+                int i;
+                MessageObject.GroupedMessages currentMessagesGroup;
+                MessageObject.GroupedMessages currentMessagesGroup2;
+                int childCount = getChildCount();
+                ?? r3 = 0;
+                MessageObject.GroupedMessages groupedMessages = null;
+                for (int i2 = 0; i2 < childCount; i2++) {
+                    View childAt = getChildAt(i2);
+                    if ((childAt instanceof ChatMessageCell) && ((currentMessagesGroup2 = ((ChatMessageCell) childAt).getCurrentMessagesGroup()) == null || currentMessagesGroup2 != groupedMessages)) {
+                        groupedMessages = currentMessagesGroup2;
+                    }
+                }
+                int i3 = 0;
+                while (i3 < 3) {
+                    MessagePreviewView.this.drawingGroups.clear();
+                    if (i3 != 2 || Page.this.chatListView.isFastScrollAnimationRunning()) {
+                        int i4 = 0;
+                        while (true) {
+                            z = true;
+                            if (i4 >= childCount) {
+                                break;
+                            }
+                            View childAt2 = Page.this.chatListView.getChildAt(i4);
+                            if (childAt2 instanceof ChatMessageCell) {
+                                ChatMessageCell chatMessageCell = (ChatMessageCell) childAt2;
+                                if (childAt2.getY() <= Page.this.chatListView.getHeight() && childAt2.getY() + childAt2.getHeight() >= 0.0f && (currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup()) != null && ((i3 != 0 || currentMessagesGroup.messages.size() != 1) && ((i3 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i3 != 0 || !chatMessageCell.getMessageObject().deleted) && ((i3 != 1 || chatMessageCell.getMessageObject().deleted) && ((i3 != 2 || chatMessageCell.willRemovedAfterAnimation()) && (i3 == 2 || !chatMessageCell.willRemovedAfterAnimation()))))))) {
+                                    if (!MessagePreviewView.this.drawingGroups.contains(currentMessagesGroup)) {
+                                        MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
+                                        transitionParams.left = r3;
+                                        transitionParams.top = r3;
+                                        transitionParams.right = r3;
+                                        transitionParams.bottom = r3;
+                                        transitionParams.pinnedBotton = r3;
+                                        transitionParams.pinnedTop = r3;
+                                        transitionParams.cell = chatMessageCell;
+                                        MessagePreviewView.this.drawingGroups.add(currentMessagesGroup);
+                                    }
+                                    currentMessagesGroup.transitionParams.pinnedTop = chatMessageCell.isPinnedTop();
+                                    currentMessagesGroup.transitionParams.pinnedBotton = chatMessageCell.isPinnedBottom();
+                                    int left = chatMessageCell.getLeft() + chatMessageCell.getBackgroundDrawableLeft();
+                                    int left2 = chatMessageCell.getLeft() + chatMessageCell.getBackgroundDrawableRight();
+                                    int top = chatMessageCell.getTop() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableTop();
+                                    int top2 = chatMessageCell.getTop() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableBottom();
+                                    if ((chatMessageCell.getCurrentPosition().flags & 4) == 0) {
+                                        top -= AndroidUtilities.dp(10.0f);
+                                    }
+                                    if ((chatMessageCell.getCurrentPosition().flags & 8) == 0) {
+                                        top2 += AndroidUtilities.dp(10.0f);
+                                    }
+                                    if (chatMessageCell.willRemovedAfterAnimation()) {
+                                        currentMessagesGroup.transitionParams.cell = chatMessageCell;
+                                    }
+                                    MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
+                                    int i5 = transitionParams2.top;
+                                    if (i5 == 0 || top < i5) {
+                                        transitionParams2.top = top;
+                                    }
+                                    int i6 = transitionParams2.bottom;
+                                    if (i6 == 0 || top2 > i6) {
+                                        transitionParams2.bottom = top2;
+                                    }
+                                    int i7 = transitionParams2.left;
+                                    if (i7 == 0 || left < i7) {
+                                        transitionParams2.left = left;
+                                    }
+                                    int i8 = transitionParams2.right;
+                                    if (i8 == 0 || left2 > i8) {
+                                        transitionParams2.right = left2;
+                                    }
+                                }
+                            }
+                            i4++;
+                        }
+                        int i9 = 0;
+                        while (i9 < MessagePreviewView.this.drawingGroups.size()) {
+                            MessageObject.GroupedMessages groupedMessages2 = (MessageObject.GroupedMessages) MessagePreviewView.this.drawingGroups.get(i9);
+                            if (groupedMessages2 == null) {
+                                i = i3;
+                            } else {
+                                float nonAnimationTranslationX = groupedMessages2.transitionParams.cell.getNonAnimationTranslationX(z);
+                                MessageObject.GroupedMessages.TransitionParams transitionParams3 = groupedMessages2.transitionParams;
+                                float f = transitionParams3.left + nonAnimationTranslationX + transitionParams3.offsetLeft;
+                                float translationY = transitionParams3.top + transitionParams3.offsetTop;
+                                float f2 = transitionParams3.right + nonAnimationTranslationX + transitionParams3.offsetRight;
+                                float measuredHeight = transitionParams3.bottom + transitionParams3.offsetBottom;
+                                if (!transitionParams3.backgroundChangeBounds) {
+                                    translationY += transitionParams3.cell.getTranslationY();
+                                    measuredHeight += groupedMessages2.transitionParams.cell.getTranslationY();
+                                }
+                                if (translationY < (-AndroidUtilities.dp(20.0f))) {
+                                    translationY = -AndroidUtilities.dp(20.0f);
+                                }
+                                if (measuredHeight > Page.this.chatListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f)) {
+                                    measuredHeight = Page.this.chatListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f);
+                                }
+                                boolean z2 = (groupedMessages2.transitionParams.cell.getScaleX() == 1.0f && groupedMessages2.transitionParams.cell.getScaleY() == 1.0f) ? false : true;
+                                if (z2) {
+                                    canvas.save();
+                                    canvas.scale(groupedMessages2.transitionParams.cell.getScaleX(), groupedMessages2.transitionParams.cell.getScaleY(), f + ((f2 - f) / 2.0f), translationY + ((measuredHeight - translationY) / 2.0f));
+                                }
+                                MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages2.transitionParams;
+                                i = i3;
+                                transitionParams4.cell.drawBackground(canvas, (int) f, (int) translationY, (int) f2, (int) measuredHeight, transitionParams4.pinnedTop, transitionParams4.pinnedBotton, false, 0);
+                                MessageObject.GroupedMessages.TransitionParams transitionParams5 = groupedMessages2.transitionParams;
+                                transitionParams5.cell = null;
+                                transitionParams5.drawCaptionLayout = groupedMessages2.hasCaption;
+                                if (z2) {
+                                    canvas.restore();
+                                    for (int i10 = 0; i10 < childCount; i10++) {
+                                        View childAt3 = Page.this.chatListView.getChildAt(i10);
+                                        if (childAt3 instanceof ChatMessageCell) {
+                                            ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt3;
+                                            if (chatMessageCell2.getCurrentMessagesGroup() == groupedMessages2) {
+                                                int left3 = chatMessageCell2.getLeft();
+                                                int top3 = chatMessageCell2.getTop();
+                                                childAt3.setPivotX((f - left3) + ((f2 - f) / 2.0f));
+                                                childAt3.setPivotY((translationY - top3) + ((measuredHeight - translationY) / 2.0f));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            i9++;
+                            i3 = i;
+                            z = true;
+                        }
+                    }
+                    i3++;
+                    r3 = 0;
+                }
             }
 
             @Override
@@ -1218,7 +1950,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException, IOException, NumberFormatException {
+                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) {
                         super.setMessageObject(messageObject, groupedMessages, z, z2, z3, z4);
                         Page.this.updateLinkHighlight(this);
                     }
@@ -1705,7 +2437,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) throws Resources.NotFoundException {
+                    public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) {
                         Page page2 = Page.this;
                         if (page2.currentTab != 2 || MessagePreviewView.this.messagePreviewParams.currentLink == characterStyle || chatMessageCell2.getMessageObject() == null || !(characterStyle instanceof URLSpan)) {
                             return;
@@ -2426,8 +3158,10 @@ public abstract class MessagePreviewView extends FrameLayout {
                 this.tabsView.addTab(0, LocaleController.getString(R.string.MessageOptionsReply));
             } else if (i3 == 1 && messagePreviewParams.forwardMessages != null && !z) {
                 this.tabsView.addTab(1, LocaleController.getString(R.string.MessageOptionsForward));
-            } else if (i3 == 2 && messagePreviewParams.linkMessage != null && !z) {
-                this.tabsView.addTab(2, LocaleController.getString(R.string.MessageOptionsLink));
+            } else {
+                if (i3 == 2 && messagePreviewParams.linkMessage != null && !z) {
+                    this.tabsView.addTab(2, LocaleController.getString(R.string.MessageOptionsLink));
+                }
             }
             if (i3 == i2) {
                 size = this.tabsView.tabs.size() - 1;
@@ -2483,16 +3217,11 @@ public abstract class MessagePreviewView extends FrameLayout {
             return;
         }
         int i = 0;
-        int i2 = 0;
-        while (true) {
-            if (i2 >= this.tabsView.tabs.size()) {
-                break;
-            }
+        for (int i2 = 0; i2 < this.tabsView.tabs.size(); i2++) {
             if (((TabsView.Tab) this.tabsView.tabs.get(i2)).id == num.intValue()) {
                 i = i2;
                 break;
             }
-            i2++;
         }
         if (this.viewPager.getCurrentPosition() == i) {
             return;

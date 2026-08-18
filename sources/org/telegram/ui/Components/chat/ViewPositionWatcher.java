@@ -120,7 +120,9 @@ public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawList
                     if (tracked.multiwindow) {
                         int[] iArr = tmpCords;
                         view.getLocationOnScreen(iArr);
-                        this.tmpRect.set(iArr[0], iArr[1], r8 + view.getWidth(), iArr[1] + view.getHeight());
+                        RectF rectF = this.tmpRect;
+                        int i = iArr[0];
+                        rectF.set(i, iArr[1], i + view.getWidth(), iArr[1] + view.getHeight());
                         tracked.parent.getLocationOnScreen(iArr);
                         this.tmpRect.offset(-iArr[0], -iArr[1]);
                     } else if (!computeRectInParent(view, tracked.parent, this.tmpRect)) {

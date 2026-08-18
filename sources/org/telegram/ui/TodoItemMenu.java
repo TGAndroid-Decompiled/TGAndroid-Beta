@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -27,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.core.graphics.Insets;
@@ -34,34 +34,45 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.BaseCell;
+import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.Bulletin;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessagePreviewView;
+import org.telegram.ui.Components.MessagePrivateSeenView;
+import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrimOptions;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
@@ -70,7 +81,6 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.utils.Blur3Utils;
 import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
-import org.telegram.ui.PollCreateActivity;
 
 public class TodoItemMenu extends Dialog {
     private Bitmap blurBitmap;
@@ -359,7 +369,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) throws IOException {
+                protected void onDraw(Canvas canvas) {
                     canvas.save();
                     int todoIndex = getTodoIndex(i);
                     float pollButtonTop = getPollButtonTop(todoIndex);
@@ -382,7 +392,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -892,7 +902,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -1413,16 +1423,11 @@ public class TodoItemMenu extends Dialog {
                 i3++;
             }
         }
-        int i4 = 0;
-        while (true) {
-            if (i4 >= tL_messageMediaToDo.completions.size()) {
-                break;
-            }
+        for (int i4 = 0; i4 < tL_messageMediaToDo.completions.size(); i4++) {
             if (tL_messageMediaToDo.completions.get(i4).id == i) {
                 todoCompletion = tL_messageMediaToDo.completions.get(i4);
                 break;
             }
-            i4++;
         }
         if (this.messageObject.canCompleteTodo()) {
             if (todoCompletion != null) {
@@ -1492,7 +1497,7 @@ public class TodoItemMenu extends Dialog {
             if (tL_messageMediaToDo.todo.list.size() > 1) {
                 itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.TodoDeleteItem), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
+                    public final void run() {
                         this.f$0.lambda$setCell$8(tL_messageMediaToDo, i, chatActivity);
                     }
                 });
@@ -1568,7 +1573,7 @@ public class TodoItemMenu extends Dialog {
         chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
     }
 
-    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) {
         int i2 = 0;
         while (i2 < tL_messageMediaToDo.todo.list.size()) {
             if (tL_messageMediaToDo.todo.list.get(i2).id == i) {
@@ -1594,8 +1599,235 @@ public class TodoItemMenu extends Dialog {
         dismiss(false);
     }
 
-    public void setupMessageOptions(final org.telegram.ui.ChatActivity r23, java.util.ArrayList r24, java.util.ArrayList r25, java.util.ArrayList r26, final org.telegram.messenger.Utilities.Callback r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TodoItemMenu.setupMessageOptions(org.telegram.ui.ChatActivity, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, org.telegram.messenger.Utilities$Callback):void");
+    public void setupMessageOptions(final ChatActivity chatActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, final Utilities.Callback callback) {
+        TLRPC.ChatFull chatFull;
+        boolean z;
+        MessageObject messageObject;
+        boolean z2;
+        int i;
+        TLRPC.User user;
+        TLRPC.UserFull userFull;
+        TLRPC.ChatFull chatFull2;
+        TLRPC.ChatFull chatFull3;
+        MessageObject messageObject2 = this.messageObject;
+        List<TLRPC.TL_availableReaction> enabledReactionsList = chatActivity.getMediaDataController().getEnabledReactionsList();
+        boolean z3 = (chatActivity.isSecretChat() || chatActivity.isInScheduleMode() || chatActivity.currentUser != null || !messageObject2.hasReactions() || (ChatObject.isChannel(chatActivity.currentChat) && !chatActivity.currentChat.megagroup) || ChatObject.isMonoForum(chatActivity.currentChat) || enabledReactionsList.isEmpty() || !messageObject2.messageOwner.reactions.can_see_list || messageObject2.isSecretMedia()) ? false : true;
+        boolean z4 = !messageObject2.isForwardedChannelPost() ? messageObject2.isSecretMedia() || chatActivity.getChatMode() == 5 || chatActivity.isSecretChat() || chatActivity.isInScheduleMode() || !messageObject2.isReactionsAvailable() || ((((chatFull = chatActivity.chatInfo) == null || ((chatFull.available_reactions instanceof TLRPC.TL_chatReactionsNone) && !chatFull.paid_reactions_available)) && ((chatFull != null || ChatObject.isChannel(chatActivity.currentChat)) && chatActivity.currentUser == null && !ChatObject.isMonoForum(chatActivity.currentChat))) || enabledReactionsList.isEmpty()) : (chatFull3 = chatActivity.getMessagesController().getChatFull(-messageObject2.getFromChatId())) != null && (chatActivity.isSecretChat() || chatActivity.getChatMode() == 5 || chatActivity.isInScheduleMode() || !messageObject2.isReactionsAvailable() || (((chatFull3.available_reactions instanceof TLRPC.TL_chatReactionsNone) && !chatFull3.paid_reactions_available) || enabledReactionsList.isEmpty()));
+        boolean z5 = (z3 || chatActivity.isInScheduleMode() || chatActivity.currentChat == null || !messageObject2.isOutOwner() || !messageObject2.isSent() || messageObject2.isEditing() || messageObject2.isSending() || messageObject2.isSendError() || messageObject2.isContentUnread() || messageObject2.isUnread() || ConnectionsManager.getInstance(chatActivity.getCurrentAccount()).getCurrentTime() - messageObject2.messageOwner.date >= chatActivity.getMessagesController().chatReadMarkExpirePeriod || (!ChatObject.isMegagroup(chatActivity.currentChat) && ChatObject.isChannel(chatActivity.currentChat)) || (chatFull2 = chatActivity.chatInfo) == null || chatFull2.participants_count > chatActivity.getMessagesController().chatReadMarkSizeThreshold || (messageObject2.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest) || chatActivity.getChatMode() == 3 || !messageObject2.canSetReaction() || ChatObject.isMonoForum(chatActivity.currentChat)) ? false : true;
+        if (chatActivity.currentChat != null && !messageObject2.isOut() && ChatObject.isMonoForum(chatActivity.currentChat) && ChatObject.canManageMonoForum(chatActivity.getCurrentAccount(), chatActivity.currentChat)) {
+            long j = chatActivity.currentChat.linked_monoforum_id;
+            messageObject2.getFromChatId();
+        }
+        if (z3 || chatActivity.currentChat != null || chatActivity.currentEncryptedChat != null || (user = chatActivity.currentUser) == null || UserObject.isUserSelf(user) || UserObject.isReplyUser(chatActivity.currentUser) || UserObject.isAnonymous(chatActivity.currentUser)) {
+            z = false;
+        } else {
+            TLRPC.User user2 = chatActivity.currentUser;
+            if (user2.bot || UserObject.isService(user2.id) || (((userFull = chatActivity.userInfo) != null && userFull.read_dates_private) || chatActivity.isInScheduleMode() || !messageObject2.isOutOwner() || !messageObject2.isSent() || messageObject2.isEditing() || messageObject2.isSending() || messageObject2.isSendError() || messageObject2.isContentUnread() || messageObject2.isUnread() || chatActivity.getConnectionsManager().getCurrentTime() - messageObject2.messageOwner.date >= chatActivity.getMessagesController().pmReadDateExpirePeriod || (messageObject2.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
+                z = false;
+            } else {
+                z = true;
+            }
+        }
+        TLRPC.User user3 = chatActivity.currentUser;
+        boolean z6 = (user3 == null || !(UserObject.isReplyUser(user3) || UserObject.isAnonymous(chatActivity.currentUser))) && !chatActivity.isInScheduleMode() && messageObject2.isEdited() && !(messageObject2.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest);
+        final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.containerView, chatActivity.getResourceProvider(), (View) null, z3 || z5);
+        if (z5) {
+            final MessageSeenView messageSeenView = new MessageSeenView(getContext(), chatActivity.getCurrentAccount(), messageObject2, chatActivity.currentChat);
+            FrameLayout frameLayout = new FrameLayout(getContext());
+            frameLayout.addView(messageSeenView, LayoutHelper.createFrame(-1, 36.0f));
+            final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
+            ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), true, false, this.resourcesProvider);
+            actionBarMenuSubItem.setItemHeight(44);
+            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back);
+            actionBarMenuSubItem.getTextView().setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0);
+            FrameLayout frameLayout2 = new FrameLayout(getContext());
+            final LinearLayout linearLayout = new LinearLayout(getContext());
+            linearLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, this.resourcesProvider));
+            linearLayout.setOrientation(1);
+            final RecyclerListView recyclerListViewCreateListView = messageSeenView.createListView();
+            frameLayout2.addView(actionBarMenuSubItem);
+            linearLayout.addView(frameLayout2);
+            linearLayout.addView(new ActionBarPopupWindow.GapView(getContext(), this.resourcesProvider), LayoutHelper.createLinear(-1, 8));
+            frameLayout2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Bulletin.hideVisible();
+                    itemOptionsMakeOptions.closeSwipeback();
+                }
+            });
+            z2 = z4;
+            messageObject = messageObject2;
+            i = -2;
+            messageSeenView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (messageSeenView.users.isEmpty()) {
+                        return;
+                    }
+                    if (messageSeenView.users.size() == 1 && (messageSeenView.dates.size() <= 0 || ((Integer) messageSeenView.dates.get(0)).intValue() <= 0)) {
+                        TLObject tLObject = (TLObject) messageSeenView.users.get(0);
+                        if (tLObject == null) {
+                            return;
+                        }
+                        Bundle bundle = new Bundle();
+                        if (tLObject instanceof TLRPC.User) {
+                            bundle.putLong("user_id", ((TLRPC.User) tLObject).id);
+                        } else if (tLObject instanceof TLRPC.Chat) {
+                            bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).id);
+                        }
+                        chatActivity.presentFragment(new ProfileActivity(bundle));
+                        TodoItemMenu.this.dismiss(false);
+                        return;
+                    }
+                    if (SharedConfig.messageSeenHintCount > 0 && chatActivity.contentView.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
+                        chatActivity.messageSeenPrivacyBulletin = BulletinFactory.of(Bulletin.BulletinWindow.make(TodoItemMenu.this.getContext()), TodoItemMenu.this.resourcesProvider).createErrorBulletin(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)));
+                        chatActivity.messageSeenPrivacyBulletin.setDuration(4000);
+                        chatActivity.messageSeenPrivacyBulletin.show();
+                        SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
+                    }
+                    recyclerListViewCreateListView.requestLayout();
+                    linearLayout.requestLayout();
+                    recyclerListViewCreateListView.getAdapter().notifyDataSetChanged();
+                    itemOptionsMakeOptions.openSwipeback(itemOptionsMakeSwipeback);
+                }
+            });
+            linearLayout.addView(recyclerListViewCreateListView, LayoutHelper.createLinear(-1, -2));
+            itemOptionsMakeSwipeback.addView(linearLayout);
+            itemOptionsMakeOptions.addView(frameLayout);
+            itemOptionsMakeOptions.addGap();
+        } else {
+            messageObject = messageObject2;
+            z2 = z4;
+            i = -2;
+            if (z) {
+                itemOptionsMakeOptions.addView(new MessagePrivateSeenView(getContext(), 0, messageObject, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$setupMessageOptions$9();
+                    }
+                }, this.resourcesProvider), LayoutHelper.createLinear(-1, 36));
+                itemOptionsMakeOptions.addGap();
+            } else if (z6) {
+                itemOptionsMakeOptions.addView(new MessagePrivateSeenView(getContext(), 1, messageObject, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$setupMessageOptions$10();
+                    }
+                }, this.resourcesProvider), LayoutHelper.createLinear(-1, 36));
+                itemOptionsMakeOptions.addGap();
+            }
+        }
+        int size = arrayList.size();
+        for (int i2 = 0; i2 < size; i2++) {
+            final int iIntValue = ((Integer) arrayList3.get(i2)).intValue();
+            itemOptionsMakeOptions.add(((Integer) arrayList.get(i2)).intValue(), (CharSequence) arrayList2.get(i2), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$setupMessageOptions$11(callback, iIntValue);
+                }
+            });
+        }
+        itemOptionsMakeOptions.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
+        itemOptionsMakeOptions.setBlurBackground(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
+        itemOptionsMakeOptions.setupSelectors();
+        ViewGroup layout = itemOptionsMakeOptions.getLayout();
+        this.messageOptionsView = layout;
+        layout.setPivotX(0.0f);
+        this.messageOptionsView.setPivotY(0.0f);
+        this.menuContainer.addView(this.messageOptionsView, LayoutHelper.createFrame(i, i, 51));
+        View view = this.messageOptionsView;
+        if (view instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+            ((ActionBarPopupWindow.ActionBarPopupWindowLayout) view).setOnSizeChangedListener(new ActionBarPopupWindow.onSizeChangedListener() {
+                @Override
+                public final void onSizeChanged() {
+                    this.f$0.updateTranslation();
+                }
+            });
+            this.messageOptionsView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                    return this.f$0.lambda$setupMessageOptions$12(view2, motionEvent);
+                }
+            });
+        }
+        if (z2) {
+            final ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout((chatActivity.getUserConfig().getClientUserId() > chatActivity.getDialogId() ? 1 : (chatActivity.getUserConfig().getClientUserId() == chatActivity.getDialogId() ? 0 : -1)) == 0 ? 3 : 0, chatActivity, getContext(), chatActivity.getCurrentAccount(), this.resourcesProvider);
+            reactionsContainerLayout.forceAttachToParent = true;
+            float f = 22;
+            reactionsContainerLayout.setPadding(AndroidUtilities.dp(4.0f) + (LocaleController.isRTL ? 0 : 24), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + (LocaleController.isRTL ? 24 : 0), AndroidUtilities.dp(f));
+            final MessageObject messageObject3 = messageObject;
+            reactionsContainerLayout.setDelegate(new ReactionsContainerLayout.ReactionsContainerDelegate() {
+                @Override
+                public boolean allowLongPress() {
+                    return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
+                }
+
+                @Override
+                public boolean drawBackground() {
+                    return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
+                }
+
+                @Override
+                public void drawRoundRect(Canvas canvas, RectF rectF, float f2, float f3, float f4, int i3, boolean z7) {
+                    ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f2, f3, f4, i3, z7);
+                }
+
+                @Override
+                public boolean needEnterText() {
+                    return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$needEnterText(this);
+                }
+
+                @Override
+                public void onEmojiWindowDismissed() {
+                    ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
+                }
+
+                @Override
+                public void onReactionClicked(View view2, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z7, boolean z8) {
+                    float f2;
+                    float f3;
+                    int i3;
+                    float f4;
+                    BaseCell baseCellFindMessageCell = chatActivity.findMessageCell(messageObject3.getId(), true);
+                    if (baseCellFindMessageCell instanceof ChatMessageCell) {
+                        ChatMessageCell chatMessageCell = (ChatMessageCell) baseCellFindMessageCell;
+                        ReactionsLayoutInBubble.ReactionButton reactionButton = chatMessageCell.reactionsLayoutInBubble.getReactionButton(visibleReaction);
+                        if (reactionButton != null) {
+                            ReactionsLayoutInBubble reactionsLayoutInBubble = chatMessageCell.reactionsLayoutInBubble;
+                            f2 = reactionsLayoutInBubble.x + reactionButton.x + (reactionButton.width / 2.0f);
+                            f3 = reactionsLayoutInBubble.y + reactionButton.y;
+                            i3 = reactionButton.height;
+                            f4 = f3 + (i3 / 2.0f);
+                        } else {
+                            f2 = 0.0f;
+                            f4 = 0.0f;
+                        }
+                    } else {
+                        if (baseCellFindMessageCell instanceof ChatActionCell) {
+                            ChatActionCell chatActionCell = (ChatActionCell) baseCellFindMessageCell;
+                            ReactionsLayoutInBubble.ReactionButton reactionButton2 = chatActionCell.reactionsLayoutInBubble.getReactionButton(visibleReaction);
+                            if (reactionButton2 != null) {
+                                ReactionsLayoutInBubble reactionsLayoutInBubble2 = chatActionCell.reactionsLayoutInBubble;
+                                f2 = reactionsLayoutInBubble2.x + reactionButton2.x + (reactionButton2.width / 2.0f);
+                                f3 = reactionsLayoutInBubble2.y + reactionButton2.y;
+                                i3 = reactionButton2.height;
+                                f4 = f3 + (i3 / 2.0f);
+                            }
+                        }
+                        f2 = 0.0f;
+                        f4 = 0.0f;
+                    }
+                    chatActivity.selectReaction(baseCellFindMessageCell, messageObject3, reactionsContainerLayout, view2, f2, f4, visibleReaction, false, (visibleReaction == null || !visibleReaction.isStar) ? z7 : true, z8, false);
+                    TodoItemMenu.this.dismiss(false);
+                }
+            });
+            FrameLayout frameLayout3 = this.menuContainer;
+            this.reactionsView = reactionsContainerLayout;
+            frameLayout3.addView(reactionsContainerLayout, LayoutHelper.createFrame(i, (int) ((reactionsContainerLayout.getTopOffset() / AndroidUtilities.density) + 52.0f + f), 51));
+            reactionsContainerLayout.setMessage(messageObject3, chatActivity.chatInfo, true);
+            this.reactionsView.setTransitionProgress(1.0f);
+        }
+        updateTranslation();
     }
 
     public void lambda$setupMessageOptions$9() {
@@ -1663,23 +1895,25 @@ public class TodoItemMenu extends Dialog {
                 this.dtx2 = 0.0f;
                 float f2 = this.ty;
                 this.dty2 = f2;
-                float f3 = (int) pollButtonBottom;
+                int i2 = (int) pollButtonBottom;
+                float f3 = i2;
                 float f4 = f2 + f3;
                 int height4 = this.windowView.getHeight();
                 Insets insets4 = this.insets;
                 if (f4 > (((height4 - insets4.top) - insets4.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) {
                     int height5 = this.windowView.getHeight();
                     Insets insets5 = this.insets;
-                    this.dty2 = ((((height5 - insets5.top) - insets5.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - r0;
+                    this.dty2 = ((((height5 - insets5.top) - insets5.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - i2;
                 }
-                if (this.taskOptionsView != null) {
-                    float height6 = this.dty2 + f3 + r2.getHeight();
+                View view = this.taskOptionsView;
+                if (view != null) {
+                    float height6 = this.dty2 + f3 + view.getHeight();
                     int height7 = this.windowView.getHeight();
                     Insets insets6 = this.insets;
                     if (height6 > (((height7 - insets6.top) - insets6.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) {
                         int height8 = this.windowView.getHeight();
                         Insets insets7 = this.insets;
-                        this.dty2 = (((((height8 - insets7.top) - insets7.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - r0) - this.taskOptionsView.getHeight();
+                        this.dty2 = (((((height8 - insets7.top) - insets7.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - i2) - this.taskOptionsView.getHeight();
                     }
                 }
             }

@@ -10,7 +10,7 @@ import org.telegram.tgnet.tl.TL_keyboard;
 
 public abstract class RichMessageButtonUsers {
     public static ArrayList collect(int i, ArrayList arrayList) {
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        LinkedHashSet<Long> linkedHashSet = new LinkedHashSet();
         if (arrayList != null) {
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
@@ -19,9 +19,7 @@ public abstract class RichMessageButtonUsers {
         }
         ArrayList arrayList2 = new ArrayList(linkedHashSet.size());
         MessagesController messagesController = MessagesController.getInstance(i);
-        Iterator it2 = linkedHashSet.iterator();
-        while (it2.hasNext()) {
-            Long l = (Long) it2.next();
+        for (Long l : linkedHashSet) {
             l.longValue();
             TLRPC.User user = messagesController.getUser(l);
             if (user != null) {
@@ -44,12 +42,10 @@ public abstract class RichMessageButtonUsers {
         if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
             ArrayList<TL_keyboard.PageButton> arrayList2 = ((TL_iv.pageBlockButtonRow) pageBlock).buttons;
             if (arrayList2 != null) {
-                Iterator<TL_keyboard.PageButton> it = arrayList2.iterator();
-                while (it.hasNext()) {
-                    TL_keyboard.PageButton next = it.next();
-                    if (next != null) {
-                        collectType(next.type, linkedHashSet);
-                        collectText(next.text, linkedHashSet);
+                for (TL_keyboard.PageButton pageButton : arrayList2) {
+                    if (pageButton != null) {
+                        collectType(pageButton.type, linkedHashSet);
+                        collectText(pageButton.text, linkedHashSet);
                     }
                 }
                 return;
@@ -79,13 +75,11 @@ public abstract class RichMessageButtonUsers {
         if (pageBlock instanceof TL_iv.pageBlockList) {
             ArrayList<TL_iv.PageListItem> arrayList3 = ((TL_iv.pageBlockList) pageBlock).items;
             if (arrayList3 != null) {
-                Iterator<TL_iv.PageListItem> it2 = arrayList3.iterator();
-                while (it2.hasNext()) {
-                    TL_iv.PageListItem next2 = it2.next();
-                    if (next2 instanceof TL_iv.TL_pageListItemText) {
-                        collectText(((TL_iv.TL_pageListItemText) next2).text, linkedHashSet);
-                    } else if (next2 instanceof TL_iv.TL_pageListItemBlocks) {
-                        collectBlocks(((TL_iv.TL_pageListItemBlocks) next2).blocks, linkedHashSet);
+                for (TL_iv.PageListItem pageListItem : arrayList3) {
+                    if (pageListItem instanceof TL_iv.TL_pageListItemText) {
+                        collectText(((TL_iv.TL_pageListItemText) pageListItem).text, linkedHashSet);
+                    } else if (pageListItem instanceof TL_iv.TL_pageListItemBlocks) {
+                        collectBlocks(((TL_iv.TL_pageListItemBlocks) pageListItem).blocks, linkedHashSet);
                     }
                 }
                 return;
@@ -95,13 +89,11 @@ public abstract class RichMessageButtonUsers {
         if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
             ArrayList<TL_iv.PageListOrderedItem> arrayList4 = ((TL_iv.pageBlockOrderedList) pageBlock).items;
             if (arrayList4 != null) {
-                Iterator<TL_iv.PageListOrderedItem> it3 = arrayList4.iterator();
-                while (it3.hasNext()) {
-                    TL_iv.PageListOrderedItem next3 = it3.next();
-                    if (next3 instanceof TL_iv.TL_pageListOrderedItemText) {
-                        collectText(((TL_iv.TL_pageListOrderedItemText) next3).text, linkedHashSet);
-                    } else if (next3 instanceof TL_iv.TL_pageListOrderedItemBlocks) {
-                        collectBlocks(((TL_iv.TL_pageListOrderedItemBlocks) next3).blocks, linkedHashSet);
+                for (TL_iv.PageListOrderedItem pageListOrderedItem : arrayList4) {
+                    if (pageListOrderedItem instanceof TL_iv.TL_pageListOrderedItemText) {
+                        collectText(((TL_iv.TL_pageListOrderedItemText) pageListOrderedItem).text, linkedHashSet);
+                    } else if (pageListOrderedItem instanceof TL_iv.TL_pageListOrderedItemBlocks) {
+                        collectBlocks(((TL_iv.TL_pageListOrderedItemBlocks) pageListOrderedItem).blocks, linkedHashSet);
                     }
                 }
                 return;
@@ -113,15 +105,11 @@ public abstract class RichMessageButtonUsers {
             collectText(pageblocktable.title, linkedHashSet);
             ArrayList<TL_iv.pageTableRow> arrayList5 = pageblocktable.rows;
             if (arrayList5 != null) {
-                Iterator<TL_iv.pageTableRow> it4 = arrayList5.iterator();
-                while (it4.hasNext()) {
-                    TL_iv.pageTableRow next4 = it4.next();
-                    if (next4 != null && (arrayList = next4.cells) != null) {
-                        Iterator<TL_iv.pageTableCell> it5 = arrayList.iterator();
-                        while (it5.hasNext()) {
-                            TL_iv.pageTableCell next5 = it5.next();
-                            if (next5 != null) {
-                                collectText(next5.text, linkedHashSet);
+                for (TL_iv.pageTableRow pagetablerow : arrayList5) {
+                    if (pagetablerow != null && (arrayList = pagetablerow.cells) != null) {
+                        for (TL_iv.pageTableCell pagetablecell : arrayList) {
+                            if (pagetablecell != null) {
+                                collectText(pagetablecell.text, linkedHashSet);
                             }
                         }
                     }

@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class DebugMetadataKt {
-    public static final StackTraceElement getStackTraceElement(BaseContinuationImpl baseContinuationImpl) throws IllegalAccessException, NoSuchFieldException, SecurityException, IllegalArgumentException {
+    public static final StackTraceElement getStackTraceElement(BaseContinuationImpl baseContinuationImpl) {
         String strC;
         Intrinsics.checkNotNullParameter(baseContinuationImpl, "<this>");
         DebugMetadata debugMetadataAnnotation = getDebugMetadataAnnotation(baseContinuationImpl);
@@ -27,7 +27,7 @@ public abstract class DebugMetadataKt {
         return (DebugMetadata) baseContinuationImpl.getClass().getAnnotation(DebugMetadata.class);
     }
 
-    private static final int getLabel(BaseContinuationImpl baseContinuationImpl) throws IllegalAccessException, NoSuchFieldException, SecurityException, IllegalArgumentException {
+    private static final int getLabel(BaseContinuationImpl baseContinuationImpl) {
         try {
             Field declaredField = baseContinuationImpl.getClass().getDeclaredField("label");
             declaredField.setAccessible(true);

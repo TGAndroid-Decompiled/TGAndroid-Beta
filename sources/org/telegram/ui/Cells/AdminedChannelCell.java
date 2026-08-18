@@ -54,9 +54,9 @@ public class AdminedChannelCell extends FrameLayout {
             checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             this.checkBox.setDrawUnchecked(false);
             this.checkBox.setDrawBackgroundAsArc(3);
-            CheckBox2 checkBox22 = this.checkBox;
+            CheckBox2 checkBox3 = this.checkBox;
             boolean z3 = LocaleController.isRTL;
-            addView(checkBox22, LayoutHelper.createFrame(24, 24.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : i + 42, 32.0f, z3 ? i + 42 : 0.0f, 0.0f));
+            addView(checkBox3, LayoutHelper.createFrame(24, 24.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : i + 42, 32.0f, z3 ? i + 42 : 0.0f, 0.0f));
         }
         int i2 = onClickListener == null ? 24 : 62;
         SimpleTextView simpleTextView = new SimpleTextView(context);

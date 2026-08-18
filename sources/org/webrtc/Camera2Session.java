@@ -15,9 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.telegram.ui.Stories.LivePlayer;
-import org.webrtc.CameraEnumerationAndroid;
-import org.webrtc.CameraSession;
-import org.webrtc.VideoSink;
 
 class Camera2Session implements CameraSession {
     private static final String TAG = "Camera2Session";
@@ -95,7 +92,7 @@ class Camera2Session implements CameraSession {
         }
 
         @Override
-        public void onOpened(CameraDevice cameraDevice) throws CameraAccessException {
+        public void onOpened(CameraDevice cameraDevice) {
             Camera2Session.this.checkIsOnCameraThread();
             Logging.d("Camera2Session", "Camera opened.");
             Camera2Session.this.cameraDevice = cameraDevice;
@@ -128,7 +125,7 @@ class Camera2Session implements CameraSession {
         }
 
         @Override
-        public void onConfigured(CameraCaptureSession cameraCaptureSession) throws CameraAccessException {
+        public void onConfigured(CameraCaptureSession cameraCaptureSession) {
             Camera2Session.this.checkIsOnCameraThread();
             Logging.d("Camera2Session", "Camera capture session configured.");
             Camera2Session.this.captureSession = cameraCaptureSession;
@@ -223,7 +220,7 @@ class Camera2Session implements CameraSession {
         new Camera2Session(createSessionCallback, events, context, cameraManager, surfaceTextureHelper, str, i, i2, i3);
     }
 
-    private Camera2Session(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, CameraManager cameraManager, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) throws CameraAccessException {
+    private Camera2Session(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, CameraManager cameraManager, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
         Logging.d("Camera2Session", "Create new camera2 session on camera " + str);
         this.constructionTimeNs = System.nanoTime();
         this.cameraThreadHandler = new Handler();
@@ -240,7 +237,7 @@ class Camera2Session implements CameraSession {
         start();
     }
 
-    private void start() throws CameraAccessException {
+    private void start() {
         checkIsOnCameraThread();
         Logging.d("Camera2Session", "start");
         try {
@@ -275,7 +272,7 @@ class Camera2Session implements CameraSession {
         Logging.d("Camera2Session", "Using capture format: " + this.captureFormat);
     }
 
-    private void openCamera() throws CameraAccessException {
+    private void openCamera() {
         checkIsOnCameraThread();
         Logging.d("Camera2Session", "Opening camera " + this.cameraId);
         this.events.onCameraOpening();

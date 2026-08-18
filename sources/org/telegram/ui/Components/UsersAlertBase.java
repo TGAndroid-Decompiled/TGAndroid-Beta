@@ -32,8 +32,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.GroupCallTextCell;
 import org.telegram.ui.Cells.GroupCallUserCell;
-import org.telegram.ui.Components.AnimationProperties;
-import org.telegram.ui.Components.RecyclerListView;
 
 public abstract class UsersAlertBase extends BottomSheet {
     public static final Property COLOR_PROGRESS = new AnimationProperties.FloatProperty("colorProgress") {
@@ -540,8 +538,9 @@ public abstract class UsersAlertBase extends BottomSheet {
             int i4 = measuredHeight - i;
             float translationY = ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop + i2 + getTranslationY();
             int i5 = AndroidUtilities.statusBarHeight;
-            if (translationY < i5 * 2) {
-                int iMin = (int) Math.min(i5, ((r5 - i2) - ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop) - getTranslationY());
+            int i6 = i5 * 2;
+            if (translationY < i6) {
+                int iMin = (int) Math.min(i5, ((i6 - i2) - ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop) - getTranslationY());
                 i2 -= iMin;
                 i4 += iMin;
                 fMin = 1.0f - Math.min(1.0f, (iMin * 2) / AndroidUtilities.statusBarHeight);
@@ -549,8 +548,9 @@ public abstract class UsersAlertBase extends BottomSheet {
                 fMin = 1.0f;
             }
             float translationY2 = ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop + i2 + getTranslationY();
-            float f = AndroidUtilities.statusBarHeight;
-            int iMin2 = translationY2 < f ? (int) Math.min(f, ((r5 - i2) - ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop) - getTranslationY()) : 0;
+            int i7 = AndroidUtilities.statusBarHeight;
+            float f = i7;
+            int iMin2 = translationY2 < f ? (int) Math.min(f, ((i7 - i2) - ((BottomSheet) UsersAlertBase.this).backgroundPaddingTop) - getTranslationY()) : 0;
             UsersAlertBase.this.shadowDrawable.setBounds(0, i2, getMeasuredWidth(), i4);
             UsersAlertBase.this.shadowDrawable.draw(canvas);
             if (!UsersAlertBase.this.drawTitle) {

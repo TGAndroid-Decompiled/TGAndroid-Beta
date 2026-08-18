@@ -67,16 +67,10 @@ public class AudioDecoder {
         this.trackIndex = i;
         if (i == -1) {
             int trackCount = this.extractor.getTrackCount();
-            int i2 = 0;
-            while (true) {
-                if (i2 < trackCount) {
-                    String string = this.extractor.getTrackFormat(i2).getString("mime");
-                    if (string != null && string.startsWith("audio/")) {
-                        this.trackIndex = i2;
-                        break;
-                    }
-                    i2++;
-                } else {
+            for (int i2 = 0; i2 < trackCount; i2++) {
+                String string = this.extractor.getTrackFormat(i2).getString("mime");
+                if (string != null && string.startsWith("audio/")) {
+                    this.trackIndex = i2;
                     break;
                 }
             }
@@ -220,7 +214,7 @@ public class AudioDecoder {
         this.decodingDone = false;
     }
 
-    public DecodedBufferData decode() throws MediaCodec.CryptoException {
+    public DecodedBufferData decode() {
         int iUsToBytes;
         int iLimit;
         int iDequeueInputBuffer;

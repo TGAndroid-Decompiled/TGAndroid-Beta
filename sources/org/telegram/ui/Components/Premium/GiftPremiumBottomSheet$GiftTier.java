@@ -81,7 +81,7 @@ public final class GiftPremiumBottomSheet$GiftTier {
         if (this.pricePerMonth == 0) {
             long price = getPrice();
             if (price != 0) {
-                this.pricePerMonth = price / getMonths();
+                this.pricePerMonth = price / ((long) getMonths());
             }
         }
         return this.pricePerMonth;

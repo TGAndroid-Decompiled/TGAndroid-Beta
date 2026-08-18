@@ -32,7 +32,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.NumberPicker;
 
 public class ProximitySheet extends FrameLayout {
     private int backgroundPaddingLeft;
@@ -276,7 +275,29 @@ public class ProximitySheet extends FrameLayout {
     }
 
     public float getValue() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ProximitySheet.getValue():float");
+        float f;
+        float value = this.kmPicker.getValue() * 1000;
+        int value2 = this.mPicker.getValue();
+        boolean z = this.useImperialSystem;
+        if (z) {
+            if (value2 == 1) {
+                f = 47.349f;
+            } else {
+                if (value2 > 1) {
+                    value2--;
+                }
+                f = value2 * 100;
+            }
+        } else if (value2 == 1) {
+            f = 50.0f;
+        } else {
+            if (value2 > 1) {
+                value2--;
+            }
+            f = value2 * 100;
+        }
+        float f2 = value + f;
+        return z ? f2 * 1.60934f : f2;
     }
 
     public boolean getRadiusSet() {
@@ -294,7 +315,8 @@ public class ProximitySheet extends FrameLayout {
             if (this.currentUser == null) {
                 this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonGroup", R.string.LocationNotifiationButtonGroup, distance));
             } else {
-                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", R.string.LocationNotifiationButtonUser, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString(r13)))))), TextUtils.TruncateAt.END), distance));
+                int i = R.string.LocationNotifiationButtonUser;
+                this.buttonTextView.setText(LocaleController.formatString("LocationNotifiationButtonUser", i, TextUtils.ellipsize(UserObject.getFirstName(this.currentUser), this.buttonTextView.getPaint(), Math.max(AndroidUtilities.dp(10.0f), (int) (((this.totalWidth - AndroidUtilities.dp(94.0f)) * 1.5f) - ((int) Math.ceil(this.buttonTextView.getPaint().measureText(LocaleController.getString(i)))))), TextUtils.TruncateAt.END), distance));
             }
             if (this.buttonTextView.getTag() != null) {
                 this.buttonTextView.setTag(null);
@@ -313,7 +335,8 @@ public class ProximitySheet extends FrameLayout {
     }
 
     private void checkDismiss(float f, float f2) {
-        if ((this.containerView.getTranslationY() >= AndroidUtilities.getPixelsInCM(0.8f, false) || (f2 >= 3500.0f && Math.abs(f2) >= Math.abs(f))) && (f2 >= 0.0f || Math.abs(f2) < 3500.0f)) {
+        float translationY = this.containerView.getTranslationY();
+        if ((translationY >= AndroidUtilities.getPixelsInCM(0.8f, false) || (f2 >= 3500.0f && Math.abs(f2) >= Math.abs(f))) && (f2 >= 0.0f || Math.abs(f2) < 3500.0f)) {
             this.useFastDismiss = true;
             dismiss();
             return;
@@ -321,7 +344,7 @@ public class ProximitySheet extends FrameLayout {
         AnimatorSet animatorSet = new AnimatorSet();
         this.currentAnimation = animatorSet;
         animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, 0.0f));
-        this.currentAnimation.setDuration((int) ((Math.max(0.0f, r1) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 150.0f));
+        this.currentAnimation.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 150.0f));
         this.currentAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         this.currentAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -429,8 +452,74 @@ public class ProximitySheet extends FrameLayout {
     }
 
     @Override
-    protected void onLayout(boolean r8, int r9, int r10, int r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ProximitySheet.onLayout(boolean, int, int, int, int):void");
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int i5;
+        int i6;
+        int i7;
+        int i8;
+        int i9;
+        int i10;
+        int i11 = i4 - i2;
+        int measuredHeight = i11 - this.containerView.getMeasuredHeight();
+        int i12 = i3 - i;
+        int measuredWidth = (i12 - this.containerView.getMeasuredWidth()) / 2;
+        ViewGroup viewGroup = this.containerView;
+        viewGroup.layout(measuredWidth, measuredHeight, viewGroup.getMeasuredWidth() + measuredWidth, this.containerView.getMeasuredHeight() + measuredHeight);
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            View childAt = getChildAt(i13);
+            if (childAt.getVisibility() != 8 && childAt != this.containerView) {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                int measuredWidth2 = childAt.getMeasuredWidth();
+                int measuredHeight2 = childAt.getMeasuredHeight();
+                int i14 = layoutParams.gravity;
+                if (i14 == -1) {
+                    i14 = 51;
+                }
+                int i15 = i14 & 112;
+                int i16 = i14 & 7;
+                if (i16 == 1) {
+                    i5 = ((i12 - measuredWidth2) / 2) + layoutParams.leftMargin;
+                    i6 = layoutParams.rightMargin;
+                } else {
+                    if (i16 == 5) {
+                        i5 = i3 - measuredWidth2;
+                        i6 = layoutParams.rightMargin;
+                    } else {
+                        i7 = layoutParams.leftMargin;
+                    }
+                    if (i15 != 16) {
+                        i8 = ((i11 - measuredHeight2) / 2) + layoutParams.topMargin;
+                        i9 = layoutParams.bottomMargin;
+                    } else {
+                        if (i15 != 80) {
+                            i8 = i11 - measuredHeight2;
+                            i9 = layoutParams.bottomMargin;
+                        } else {
+                            i10 = layoutParams.topMargin;
+                        }
+                        childAt.layout(i7, i10, measuredWidth2 + i7, measuredHeight2 + i10);
+                    }
+                    i10 = i8 - i9;
+                    childAt.layout(i7, i10, measuredWidth2 + i7, measuredHeight2 + i10);
+                }
+                i7 = i5 - i6;
+                if (i15 != 16) {
+                    i8 = ((i11 - measuredHeight2) / 2) + layoutParams.topMargin;
+                    i9 = layoutParams.bottomMargin;
+                } else {
+                    if (i15 != 80) {
+                        i8 = i11 - measuredHeight2;
+                        i9 = layoutParams.bottomMargin;
+                    } else {
+                        i10 = layoutParams.topMargin;
+                    }
+                    childAt.layout(i7, i10, measuredWidth2 + i7, measuredHeight2 + i10);
+                }
+                i10 = i8 - i9;
+                childAt.layout(i7, i10, measuredWidth2 + i7, measuredHeight2 + i10);
+            }
+        }
     }
 
     @Override
@@ -471,7 +560,8 @@ public class ProximitySheet extends FrameLayout {
         if (this.useHardwareLayer) {
             setLayerType(2, null);
         }
-        this.containerView.setTranslationY(r2.getMeasuredHeight());
+        ViewGroup viewGroup = this.containerView;
+        viewGroup.setTranslationY(viewGroup.getMeasuredHeight());
         this.currentSheetAnimationType = 1;
         AnimatorSet animatorSet = new AnimatorSet();
         this.currentSheetAnimation = animatorSet;
@@ -522,7 +612,8 @@ public class ProximitySheet extends FrameLayout {
         this.currentSheetAnimationType = 2;
         AnimatorSet animatorSet = new AnimatorSet();
         this.currentSheetAnimation = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, r3.getMeasuredHeight() + AndroidUtilities.dp(10.0f)));
+        ViewGroup viewGroup = this.containerView;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) View.TRANSLATION_Y, viewGroup.getMeasuredHeight() + AndroidUtilities.dp(10.0f)));
         if (this.useFastDismiss) {
             float measuredHeight = this.containerView.getMeasuredHeight();
             this.currentSheetAnimation.setDuration(Math.max(60, (int) (((measuredHeight - this.containerView.getTranslationY()) * 250.0f) / measuredHeight)));

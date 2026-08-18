@@ -3,20 +3,24 @@ package org.telegram.messenger.camera;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
-import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
+import android.media.Image;
 import android.media.ImageReader;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Range;
 import android.view.Surface;
+import android.view.WindowManager;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -79,7 +83,8 @@ public class Camera2Session {
                     CameraCharacteristics cameraCharacteristics = cameraManager2.getCameraCharacteristics(str2);
                     if (cameraCharacteristics != null && ((Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == (!z)) {
                         StreamConfigurationMap streamConfigurationMap = (StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-                        float width = ((android.util.Size) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE)) == null ? 0.0f : r14.getWidth() / r14.getHeight();
+                        android.util.Size size2 = (android.util.Size) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE);
+                        float width = size2 == null ? 0.0f : size2.getWidth() / size2.getHeight();
                         float f2 = i / i2;
                         cameraManager = cameraManager2;
                         if ((f2 >= 1.0f) != (width >= 1.0f)) {
@@ -105,7 +110,6 @@ public class Camera2Session {
                 } catch (Exception e) {
                     e = e;
                     FileLog.e(e);
-                    return str == null ? null : null;
                 }
             }
         } catch (Exception e2) {
@@ -113,12 +117,13 @@ public class Camera2Session {
             str = null;
             size = null;
         }
-        if (str == null && size != null) {
-            return new Camera2Session(context, z, str, size);
+        if (str == null || size == null) {
+            return null;
         }
+        return new Camera2Session(context, z, str, size);
     }
 
-    private Camera2Session(Context context, boolean z, String str, android.util.Size size) throws CameraAccessException {
+    private Camera2Session(Context context, boolean z, String str, android.util.Size size) {
         float fFloatValue = 1.0f;
         this.maxZoom = 1.0f;
         HandlerThread handlerThread = new HandlerThread("tg_camera2");
@@ -164,7 +169,7 @@ public class Camera2Session {
         }
 
         @Override
-        public void onOpened(CameraDevice cameraDevice) throws CameraAccessException {
+        public void onOpened(CameraDevice cameraDevice) {
             Camera2Session.this.cameraDevice = cameraDevice;
             Camera2Session.this.lastTime = System.currentTimeMillis();
             FileLog.d("Camera2Session camera #" + this.val$cameraId + " opened");
@@ -260,13 +265,13 @@ public class Camera2Session {
     public void open(final SurfaceTexture surfaceTexture) {
         this.handler.post(new Runnable() {
             @Override
-            public final void run() throws CameraAccessException {
+            public final void run() {
                 this.f$0.lambda$open$1(surfaceTexture);
             }
         });
     }
 
-    public void lambda$open$1(SurfaceTexture surfaceTexture) throws CameraAccessException {
+    public void lambda$open$1(SurfaceTexture surfaceTexture) {
         this.surfaceTexture = surfaceTexture;
         if (surfaceTexture != null) {
             surfaceTexture.setDefaultBufferSize(getPreviewWidth(), getPreviewHeight());
@@ -274,7 +279,7 @@ public class Camera2Session {
         checkOpen();
     }
 
-    public void checkOpen() throws CameraAccessException {
+    public void checkOpen() {
         if (this.opened || this.surfaceTexture == null || this.cameraDevice == null) {
             return;
         }
@@ -305,11 +310,63 @@ public class Camera2Session {
     }
 
     public int getDisplayOrientation() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.Camera2Session.getDisplayOrientation():int");
+        int i;
+        try {
+            Context context = ApplicationLoader.applicationContext;
+            if (context == null) {
+                return 0;
+            }
+            int rotation = ((WindowManager) context.getSystemService("window")).getDefaultDisplay().getRotation();
+            if (rotation == 0) {
+                i = 0;
+            } else if (rotation == 1) {
+                i = 90;
+            } else if (rotation == 2) {
+                i = 180;
+            } else if (rotation != 3) {
+                i = 0;
+            } else {
+                i = 270;
+            }
+            Integer num = (Integer) this.cameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
+            if (this.isFront) {
+                return (360 - ((num.intValue() + i) % 360)) % 360;
+            }
+            return ((num.intValue() - i) + 360) % 360;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return 0;
+        }
     }
 
     private int getJpegOrientation() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.Camera2Session.getJpegOrientation():int");
+        int i;
+        try {
+            Context context = ApplicationLoader.applicationContext;
+            if (context == null) {
+                return 0;
+            }
+            int rotation = ((WindowManager) context.getSystemService("window")).getDefaultDisplay().getRotation();
+            if (rotation == 0) {
+                i = 0;
+            } else if (rotation == 1) {
+                i = 90;
+            } else if (rotation == 2) {
+                i = 180;
+            } else if (rotation != 3) {
+                i = 0;
+            } else {
+                i = 270;
+            }
+            Integer num = (Integer) this.cameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION);
+            if (this.isFront) {
+                return (360 - ((num.intValue() + i) % 360)) % 360;
+            }
+            return ((num.intValue() - i) + 360) % 360;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return 0;
+        }
     }
 
     public int getWorldAngle() {
@@ -365,7 +422,7 @@ public class Camera2Session {
         destroy(z, null);
     }
 
-    public void destroy(boolean z, final Runnable runnable) throws InterruptedException {
+    public void destroy(boolean z, final Runnable runnable) {
         this.isClosed = true;
         if (z) {
             this.handler.post(new Runnable() {
@@ -421,13 +478,13 @@ public class Camera2Session {
         this.thread.quitSafely();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$destroy$3(runnable);
             }
         });
     }
 
-    public void lambda$destroy$3(Runnable runnable) throws InterruptedException {
+    public void lambda$destroy$3(Runnable runnable) {
         try {
             this.thread.join();
         } catch (Exception e) {
@@ -445,21 +502,21 @@ public class Camera2Session {
         }
     }
 
-    public void setScanningBarcode(boolean z) throws CameraAccessException {
+    public void setScanningBarcode(boolean z) {
         if (this.scanningBarcode != z) {
             this.scanningBarcode = z;
             updateCaptureRequest();
         }
     }
 
-    public void setNightMode(boolean z) throws CameraAccessException {
+    public void setNightMode(boolean z) {
         if (this.nightMode != z) {
             this.nightMode = z;
             updateCaptureRequest();
         }
     }
 
-    public void updateCaptureRequest() throws CameraAccessException {
+    public void updateCaptureRequest() {
         int i;
         CameraDevice cameraDevice = this.cameraDevice;
         if (cameraDevice == null || this.surface == null || this.captureSession == null) {
@@ -506,7 +563,7 @@ public class Camera2Session {
         }
     }
 
-    public boolean takePicture(File file, Utilities.Callback<Integer> callback) throws CameraAccessException {
+    public boolean takePicture(File file, Utilities.Callback<Integer> callback) {
         CameraDevice cameraDevice = this.cameraDevice;
         if (cameraDevice != null && this.captureSession != null) {
             try {
@@ -540,8 +597,72 @@ public class Camera2Session {
         }
 
         @Override
-        public void onImageAvailable(android.media.ImageReader r5) throws java.lang.Throwable {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.Camera2Session.AnonymousClass3.onImageAvailable(android.media.ImageReader):void");
+        public void onImageAvailable(ImageReader imageReader) throws Throwable {
+            FileOutputStream fileOutputStream;
+            Throwable th;
+            IOException e;
+            Image imageAcquireLatestImage = imageReader.acquireLatestImage();
+            ByteBuffer buffer = imageAcquireLatestImage.getPlanes()[0].getBuffer();
+            byte[] bArr = new byte[buffer.remaining()];
+            buffer.get(bArr);
+            try {
+                try {
+                    fileOutputStream = new FileOutputStream(this.val$file);
+                    try {
+                        fileOutputStream.write(bArr);
+                        imageAcquireLatestImage.close();
+                    } catch (IOException e2) {
+                        e = e2;
+                        e.printStackTrace();
+                        imageAcquireLatestImage.close();
+                        if (fileOutputStream != null) {
+                        }
+                        final Utilities.Callback callback = this.val$whenDone;
+                        final int i = this.val$orientation;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                Camera2Session.AnonymousClass3.lambda$onImageAvailable$0(callback, i);
+                            }
+                        });
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    imageAcquireLatestImage.close();
+                    if (fileOutputStream != null) {
+                        try {
+                            fileOutputStream.close();
+                        } catch (IOException e3) {
+                            e3.printStackTrace();
+                        }
+                    }
+                    throw th;
+                }
+            } catch (IOException e4) {
+                fileOutputStream = null;
+                e = e4;
+            } catch (Throwable th3) {
+                fileOutputStream = null;
+                th = th3;
+                imageAcquireLatestImage.close();
+                if (fileOutputStream != null) {
+                    fileOutputStream.close();
+                }
+                throw th;
+            }
+            try {
+                fileOutputStream.close();
+            } catch (IOException e5) {
+                e5.printStackTrace();
+            }
+            final Utilities.Callback callback2 = this.val$whenDone;
+            final int i2 = this.val$orientation;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    Camera2Session.AnonymousClass3.lambda$onImageAvailable$0(callback2, i2);
+                }
+            });
         }
 
         public static void lambda$onImageAvailable$0(Utilities.Callback callback, int i) {
@@ -578,7 +699,7 @@ public class Camera2Session {
 
         @Override
         public int compare(android.util.Size size, android.util.Size size2) {
-            return Long.signum((size.getWidth() * size.getHeight()) - (size2.getWidth() * size2.getHeight()));
+            return Long.signum((((long) size.getWidth()) * ((long) size.getHeight())) - (((long) size2.getWidth()) * ((long) size2.getHeight())));
         }
     }
 }

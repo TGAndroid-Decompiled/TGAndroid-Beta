@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -66,7 +65,6 @@ import org.telegram.ui.Components.Premium.boosts.cells.statistics.GiveawayCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.Stars.StarsIntroActivity;
-import org.telegram.ui.StatisticActivity;
 
 public class BoostsActivity extends GradientHeaderActivity implements NotificationCenter.NotificationCenterDelegate {
     private TL_stories.TL_premium_boostsStatus boostsStatus;
@@ -105,7 +103,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     return new RecyclerListView.Holder(overviewCell);
                 case 1:
                 case 16:
-                    View chartHeaderView = new ChartHeaderView(BoostsActivity.this.getContext());
+                    ChartHeaderView chartHeaderView = new ChartHeaderView(BoostsActivity.this.getContext());
                     chartHeaderView.setPadding(chartHeaderView.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView.getRight(), AndroidUtilities.dp(16.0f));
                     overviewCell = chartHeaderView;
                     overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
@@ -179,7 +177,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     return new RecyclerListView.Holder(overviewCell);
                 case 12:
-                    View chartHeaderView2 = new ChartHeaderView(BoostsActivity.this.getContext());
+                    ChartHeaderView chartHeaderView2 = new ChartHeaderView(BoostsActivity.this.getContext());
                     chartHeaderView2.setPadding(chartHeaderView2.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView2.getRight(), AndroidUtilities.dp(8.0f));
                     overviewCell = chartHeaderView2;
                     overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
@@ -247,7 +245,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             String string;
             if (viewHolder.getItemViewType() == 4 || viewHolder.getItemViewType() == 14 || viewHolder.getItemViewType() == 15) {
                 return;
@@ -311,13 +309,14 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 return;
             }
             if (viewHolder.getItemViewType() == 11) {
-                TL_stories.PrepaidGiveaway prepaidGiveaway = ((ItemInternal) BoostsActivity.this.items.get(i)).prepaidGiveaway;
+                ItemInternal itemInternal = (ItemInternal) BoostsActivity.this.items.get(i);
+                TL_stories.PrepaidGiveaway prepaidGiveaway = itemInternal.prepaidGiveaway;
                 GiveawayCell giveawayCell = (GiveawayCell) viewHolder.itemView;
                 if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-                    giveawayCell.setData(prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months, new Object[0])), 0, !r15.isLast);
+                    giveawayCell.setData(prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months, new Object[0])), 0, !itemInternal.isLast);
                 } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
                     TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
-                    giveawayCell.setData(prepaidGiveaway, LocaleController.formatPluralStringComma("BoostingStarsCountPlural", (int) tL_prepaidStarsGiveaway.stars), LocaleController.formatPluralString("AmongWinners", tL_prepaidStarsGiveaway.quantity, new Object[0]), 0, !r15.isLast);
+                    giveawayCell.setData(prepaidGiveaway, LocaleController.formatPluralStringComma("BoostingStarsCountPlural", (int) tL_prepaidStarsGiveaway.stars), LocaleController.formatPluralString("AmongWinners", tL_prepaidStarsGiveaway.quantity, new Object[0]), 0, !itemInternal.isLast);
                 }
                 giveawayCell.setImage(prepaidGiveaway);
                 giveawayCell.setAvatarPadding(5);
@@ -499,7 +498,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         if (bool == null) {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$loadUsers$5();
                 }
             });
@@ -520,7 +519,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         }
     }
 
-    public void lambda$loadUsers$5() throws InterruptedException {
+    public void lambda$loadUsers$5() {
         CountDownLatch countDownLatch = new CountDownLatch(2);
         loadOnlyBoosts(countDownLatch, null);
         loadOnlyGifts(countDownLatch, null);

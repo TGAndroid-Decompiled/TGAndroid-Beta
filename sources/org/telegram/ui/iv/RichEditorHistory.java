@@ -206,48 +206,29 @@ public class RichEditorHistory {
     }
 
     private Snapshot capture() {
-        ArrayList arrayList;
-        HashMap map;
-        ArrayList arrayList2;
         ArrayList rows = this.delegate.getRows();
-        HashMap map2 = new HashMap();
+        HashMap map = new HashMap();
         Snapshot snapshot = this.baseline;
         int i = 0;
         if (snapshot != null) {
             for (RowState rowState : snapshot.rows) {
-                map2.put(Long.valueOf(rowState.id), rowState);
+                map.put(Long.valueOf(rowState.id), rowState);
             }
         }
         RowState[] rowStateArr = new RowState[rows.size()];
         while (i < rows.size()) {
             BlockRow blockRow = (BlockRow) rows.get(i);
             byte[] bArrSerializeBlock = serializeBlock(blockRow.block);
-            RowState rowState2 = (RowState) map2.get(Long.valueOf(blockRow.id));
+            RowState rowState2 = (RowState) map.get(Long.valueOf(blockRow.id));
             if (rowState2 != null && rowState2.level == blockRow.level && rowState2.num == blockRow.num && rowState2.checkbox == blockRow.checkbox && rowState2.checked == blockRow.checked && rowState2.detailsEnd == blockRow.detailsEnd && rowState2.media == blockRow.media && sameMedias(rowState2.medias, blockRow.medias) && rowState2.quoteIds.equals(blockRow.quoteIds) && Arrays.equals(rowState2.blockData, bArrSerializeBlock)) {
                 rowStateArr[i] = rowState2;
-                arrayList = rows;
-                map = map2;
+                map = map;
             } else {
-                long j = blockRow.id;
-                int i2 = blockRow.level;
-                int i3 = blockRow.num;
-                boolean z = blockRow.checkbox;
-                boolean z2 = blockRow.checked;
-                boolean z3 = blockRow.detailsEnd;
-                MediaUploadState mediaUploadState = blockRow.media;
-                arrayList = rows;
-                if (blockRow.medias != null) {
-                    map = map2;
-                    arrayList2 = new ArrayList(blockRow.medias);
-                } else {
-                    map = map2;
-                    arrayList2 = null;
-                }
-                rowStateArr[i] = new RowState(j, bArrSerializeBlock, i2, i3, z, z2, z3, mediaUploadState, arrayList2, new ArrayList(blockRow.quoteIds));
+                rowStateArr[i] = new RowState(blockRow.id, bArrSerializeBlock, blockRow.level, blockRow.num, blockRow.checkbox, blockRow.checked, blockRow.detailsEnd, blockRow.media, blockRow.medias != null ? new ArrayList(blockRow.medias) : null, new ArrayList(blockRow.quoteIds));
             }
             i++;
-            rows = arrayList;
-            map2 = map;
+            rows = rows;
+            map = map;
         }
         return new Snapshot(rowStateArr, this.delegate.captureFocus());
     }
@@ -374,18 +355,14 @@ public class RichEditorHistory {
             if (pageblocktable.rows == null) {
                 pageblocktable.rows = new ArrayList<>();
             }
-            Iterator<TL_iv.pageTableRow> it2 = pageblocktable.rows.iterator();
-            while (it2.hasNext()) {
-                TL_iv.pageTableRow next = it2.next();
-                if (next != null) {
-                    if (next.cells == null) {
-                        next.cells = new ArrayList<>();
+            for (TL_iv.pageTableRow pagetablerow : pageblocktable.rows) {
+                if (pagetablerow != null) {
+                    if (pagetablerow.cells == null) {
+                        pagetablerow.cells = new ArrayList<>();
                     }
-                    Iterator<TL_iv.pageTableCell> it3 = next.cells.iterator();
-                    while (it3.hasNext()) {
-                        TL_iv.pageTableCell next2 = it3.next();
-                        if (next2 != null && next2.text == null) {
-                            next2.text = emptyRichText();
+                    for (TL_iv.pageTableCell pagetablecell : pagetablerow.cells) {
+                        if (pagetablecell != null && pagetablecell.text == null) {
+                            pagetablecell.text = emptyRichText();
                         }
                     }
                 }
@@ -397,11 +374,9 @@ public class RichEditorHistory {
             if (pageblockbuttonrow.buttons == null) {
                 pageblockbuttonrow.buttons = new ArrayList<>();
             }
-            Iterator<TL_keyboard.PageButton> it4 = pageblockbuttonrow.buttons.iterator();
-            while (it4.hasNext()) {
-                TL_keyboard.PageButton next3 = it4.next();
-                if (next3 != null && next3.text == null) {
-                    next3.text = emptyRichText();
+            for (TL_keyboard.PageButton pageButton : pageblockbuttonrow.buttons) {
+                if (pageButton != null && pageButton.text == null) {
+                    pageButton.text = emptyRichText();
                 }
             }
             return;
@@ -411,9 +386,9 @@ public class RichEditorHistory {
             if (pageblockcollage.items == null) {
                 pageblockcollage.items = new ArrayList<>();
             }
-            Iterator<TL_iv.PageBlock> it5 = pageblockcollage.items.iterator();
-            while (it5.hasNext()) {
-                normalize(it5.next());
+            Iterator<TL_iv.PageBlock> it2 = pageblockcollage.items.iterator();
+            while (it2.hasNext()) {
+                normalize(it2.next());
             }
             return;
         }
@@ -422,9 +397,9 @@ public class RichEditorHistory {
             if (pageblockslideshow.items == null) {
                 pageblockslideshow.items = new ArrayList<>();
             }
-            Iterator<TL_iv.PageBlock> it6 = pageblockslideshow.items.iterator();
-            while (it6.hasNext()) {
-                normalize(it6.next());
+            Iterator<TL_iv.PageBlock> it3 = pageblockslideshow.items.iterator();
+            while (it3.hasNext()) {
+                normalize(it3.next());
             }
         }
     }

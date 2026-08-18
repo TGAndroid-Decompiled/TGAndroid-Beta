@@ -14,7 +14,6 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.messenger.Emoji;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
@@ -52,8 +51,32 @@ public class CompoundEmoji {
         return compoundEmojiDrawable;
     }
 
-    public static android.util.Pair<java.lang.Integer, java.lang.Integer> isHandshake(java.lang.String r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.CompoundEmoji.isHandshake(java.lang.String):android.util.Pair");
+    public static Pair<Integer, Integer> isHandshake(String str) {
+        int skinTone;
+        int skinTone2 = -1;
+        if (str.startsWith("🤝")) {
+            if (str.length() != 2) {
+                if (str.length() == 4) {
+                    skinTone = getSkinTone(str);
+                    skinTone2 = skinTone >= 0 ? skinTone : -1;
+                } else {
+                    skinTone = -1;
+                }
+            }
+            return new Pair<>(Integer.valueOf(skinTone2), Integer.valueOf(skinTone2));
+        }
+        skinTone = -1;
+        String[] strArrSplit = str.split("\u200d");
+        if (strArrSplit.length != 2 || !strArrSplit[0].startsWith("🫱") || !strArrSplit[1].startsWith("🫲")) {
+            return null;
+        }
+        if (strArrSplit[0].length() != 2 && (strArrSplit[0].length() != 4 || (skinTone = getSkinTone(strArrSplit[0])) < 0)) {
+            return null;
+        }
+        if (strArrSplit[1].length() == 2 || (strArrSplit[1].length() == 4 && (skinTone2 = getSkinTone(strArrSplit[1])) >= 0)) {
+            return new Pair<>(Integer.valueOf(skinTone), Integer.valueOf(skinTone2));
+        }
+        return null;
     }
 
     public static String applyColor(String str, String str2) {

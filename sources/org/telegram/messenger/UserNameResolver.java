@@ -31,7 +31,7 @@ public class UserNameResolver {
     }
 
     public Runnable resolve(final String str, String str2, boolean z, Consumer consumer) {
-        TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername;
+        TLObject tLObject;
         CachedPeer cachedPeer;
         if (TextUtils.isEmpty(str2) && !z && (cachedPeer = this.resolvedCache.get(str)) != null) {
             if (System.currentTimeMillis() - cachedPeer.time < 3600000) {
@@ -52,20 +52,20 @@ public class UserNameResolver {
         if (AndroidUtilities.isNumeric(str)) {
             TLRPC.TL_contacts_resolvePhone tL_contacts_resolvePhone = new TLRPC.TL_contacts_resolvePhone();
             tL_contacts_resolvePhone.phone = str;
-            tL_contacts_resolveUsername = tL_contacts_resolvePhone;
+            tLObject = tL_contacts_resolvePhone;
         } else {
-            TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername2 = new TLRPC.TL_contacts_resolveUsername();
-            tL_contacts_resolveUsername2.username = str;
+            TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+            tL_contacts_resolveUsername.username = str;
             if (!TextUtils.isEmpty(str2)) {
-                tL_contacts_resolveUsername2.flags |= 1;
-                tL_contacts_resolveUsername2.referer = str2;
+                tL_contacts_resolveUsername.flags |= 1;
+                tL_contacts_resolveUsername.referer = str2;
             }
-            tL_contacts_resolveUsername = tL_contacts_resolveUsername2;
+            tLObject = tL_contacts_resolveUsername;
         }
-        final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_resolveUsername, new RequestDelegate() {
+        final int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$resolve$1(str, tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$resolve$1(str, tLObject2, tL_error);
             }
         });
         return new Runnable() {

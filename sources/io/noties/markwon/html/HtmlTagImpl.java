@@ -1,6 +1,5 @@
 package io.noties.markwon.html;
 
-import io.noties.markwon.html.HtmlTag;
 import j$.util.DesugarCollections;
 import java.util.Collections;
 import java.util.Iterator;

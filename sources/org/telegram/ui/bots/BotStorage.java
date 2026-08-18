@@ -20,7 +20,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -36,14 +35,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -68,7 +63,6 @@ import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.bots.BotStorage;
 
 public class BotStorage {
     public final int account;
@@ -96,10 +90,8 @@ public class BotStorage {
             if (filesDir != null) {
                 File file = new File(filesDir, "apps_storage/");
                 file.mkdirs();
-                if (filesDir.exists() || filesDir.mkdirs()) {
-                    if (filesDir.canWrite()) {
-                        return file;
-                    }
+                if ((filesDir.exists() || filesDir.mkdirs()) && filesDir.canWrite()) {
+                    return file;
                 }
             }
         } catch (Exception unused) {
@@ -143,15 +135,10 @@ public class BotStorage {
         return file;
     }
 
-    public File getFile() throws JSONException {
+    public File getFile() {
         if (this.secured && TextUtils.isEmpty(this.storage_id)) {
             HashMap config = readConfig();
-            Iterator it = config.entrySet().iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
-                Map.Entry entry = (Map.Entry) it.next();
+            for (Map.Entry entry : config.entrySet()) {
                 if (((StorageConfig) entry.getValue()).user_id == this.user_id) {
                     this.storage_id = (String) entry.getKey();
                     break;
@@ -191,7 +178,7 @@ public class BotStorage {
         return (SecretKey) keyStore.getKey("MiniAppsKey", null);
     }
 
-    private byte[] getBytes(File file) throws BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, IOException, InvalidKeyException, InvalidAlgorithmParameterException {
+    private byte[] getBytes(File file) throws IOException {
         byte[] bArr;
         FileInputStream fileInputStream = new FileInputStream(file);
         int length = (int) file.length();
@@ -225,7 +212,7 @@ public class BotStorage {
         }
     }
 
-    private void setBytes(File file, byte[] bArr) throws BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, IOException, InvalidKeyException {
+    private void setBytes(File file, byte[] bArr) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         if (this.secured) {
             try {
@@ -313,7 +300,6 @@ public class BotStorage {
     }
 
     public Pair getKey(String str) {
-        File file;
         JSONObject json;
         if (this.secured && !isSecuredSupported()) {
             throw new RuntimeException("UNSUPPORTED");
@@ -347,18 +333,15 @@ public class BotStorage {
                     return BotStorage.lambda$getKey$0(hashSet, (BotStorage.StorageConfig) obj);
                 }
             }).collect(Collectors.toSet())).iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
+            while (it.hasNext()) {
                 try {
-                    file = getFile(((StorageConfig) it.next()).storage_id);
+                    File file = getFile(((StorageConfig) it.next()).storage_id);
+                    if (file.exists() && (json = getJSON(file)) != null && json.has(str)) {
+                        z = true;
+                        break;
+                    }
                 } catch (Exception e) {
                     FileLog.e(e);
-                }
-                if (file.exists() && (json = getJSON(file)) != null && json.has(str)) {
-                    z = true;
-                    break;
                 }
             }
         }
@@ -468,7 +451,7 @@ public class BotStorage {
         fileOutputStream.close();
     }
 
-    private HashMap readConfig() throws JSONException {
+    private HashMap readConfig() {
         HashMap map = new HashMap();
         try {
             JSONObject jSONObject = new JSONObject(new String(getRawBytes(getConfigFile())));
@@ -490,7 +473,7 @@ public class BotStorage {
         return map;
     }
 
-    private void saveConfig(HashMap map) throws JSONException {
+    private void saveConfig(HashMap map) {
         try {
             JSONObject jSONObject = new JSONObject();
             for (Map.Entry entry : map.entrySet()) {

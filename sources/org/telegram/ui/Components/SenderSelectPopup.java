@@ -40,8 +40,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.PremiumPreviewFragment;
 
 public abstract class SenderSelectPopup extends ActionBarPopupWindow {
@@ -240,7 +238,8 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
                         contentView.getLocationInWindow(iArr);
                         iArr[0] = iArr[0] + SenderSelectPopup.this.popupX;
                         iArr[1] = iArr[1] + SenderSelectPopup.this.popupY;
-                        getLocationInWindow(new int[2]);
+                        int[] iArr2 = new int[2];
+                        getLocationInWindow(iArr2);
                         if ((motionEvent.getAction() == 0 && motionEvent.getX() <= iArr[0]) || motionEvent.getX() >= iArr[0] + contentView.getWidth() || motionEvent.getY() <= iArr[1] || motionEvent.getY() >= iArr[1] + contentView.getHeight()) {
                             if (!SenderSelectPopup.this.dismissed && !SenderSelectPopup.this.isDismissingByBulletin) {
                                 SenderSelectPopup.this.isDismissingByBulletin = true;
@@ -248,7 +247,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
                             }
                             return true;
                         }
-                        motionEvent.offsetLocation(r1[0] - iArr[0], (AndroidUtilities.statusBarHeight + r1[1]) - iArr[1]);
+                        motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
                         return contentView.dispatchTouchEvent(motionEvent);
                     }
                 };
@@ -385,7 +384,8 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         }
         this.springAnimations.clear();
         this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.dp(8.0f));
-        this.scrimPopupContainerLayout.setPivotY(r4.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
+        FrameLayout frameLayout = this.scrimPopupContainerLayout;
+        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
         this.recyclerContainer.setPivotX(0.0f);
         this.recyclerContainer.setPivotY(0.0f);
         ArrayList<TLRPC.TL_sendAsPeer> arrayList = this.sendAsPeers.peers;
@@ -393,22 +393,24 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
             int iDp = AndroidUtilities.dp(54.0f);
             int size = arrayList.size() * iDp;
             int i = 0;
-            while (i < arrayList.size()) {
-                TLRPC.Peer peer = arrayList.get(i).peer;
-                long j = peer.channel_id;
-                if (j == 0 || j != this.defPeer.channel_id) {
-                    long j2 = peer.user_id;
-                    if (j2 == 0 || j2 != this.defPeer.user_id) {
-                        long j3 = peer.chat_id;
-                        if (j3 == 0 || j3 != this.defPeer.chat_id) {
-                            i++;
+            while (true) {
+                if (i < arrayList.size()) {
+                    TLRPC.Peer peer = arrayList.get(i).peer;
+                    long j = peer.channel_id;
+                    if (j == 0 || j != this.defPeer.channel_id) {
+                        long j2 = peer.user_id;
+                        if (j2 == 0 || j2 != this.defPeer.user_id) {
+                            long j3 = peer.chat_id;
+                            if (j3 == 0 || j3 != this.defPeer.chat_id) {
+                                i++;
+                            }
                         }
                     }
-                }
-                this.layoutManager.scrollToPositionWithOffset(i, ((i == arrayList.size() - 1 || this.recyclerView.getMeasuredHeight() >= size) ? 0 : this.recyclerView.getMeasuredHeight() % iDp) + AndroidUtilities.dp(7.0f) + (size - ((arrayList.size() - 2) * iDp)));
-                if (this.recyclerView.computeVerticalScrollOffset() > 0) {
-                    this.headerShadow.animate().cancel();
-                    this.headerShadow.animate().alpha(1.0f).setDuration(150L).start();
+                    this.layoutManager.scrollToPositionWithOffset(i, ((i == arrayList.size() - 1 || this.recyclerView.getMeasuredHeight() >= size) ? 0 : this.recyclerView.getMeasuredHeight() % iDp) + AndroidUtilities.dp(7.0f) + (size - ((arrayList.size() - 2) * iDp)));
+                    if (this.recyclerView.computeVerticalScrollOffset() > 0) {
+                        this.headerShadow.animate().cancel();
+                        this.headerShadow.animate().alpha(1.0f).setDuration(150L).start();
+                    }
                 }
             }
         }
@@ -427,9 +429,9 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
                 this.f$0.lambda$startShowAnimation$4(dynamicAnimation, f, f2);
             }
         });
-        FrameLayout frameLayout = this.scrimPopupContainerLayout;
+        FrameLayout frameLayout2 = this.scrimPopupContainerLayout;
         DynamicAnimation.ViewProperty viewProperty = DynamicAnimation.ALPHA;
-        for (final SpringAnimation springAnimation3 : Arrays.asList(springAnimation, springAnimation2, new SpringAnimation(frameLayout, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.recyclerContainer, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)))) {
+        for (final SpringAnimation springAnimation3 : Arrays.asList(springAnimation, springAnimation2, new SpringAnimation(frameLayout2, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.recyclerContainer, viewProperty).setSpring(new SpringForce(1.0f).setStiffness(750.0f).setDampingRatio(1.0f)))) {
             this.springAnimations.add(springAnimation3);
             springAnimation3.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
@@ -464,7 +466,8 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         }
         this.springAnimations.clear();
         this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.dp(8.0f));
-        this.scrimPopupContainerLayout.setPivotY(r2.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
+        FrameLayout frameLayout = this.scrimPopupContainerLayout;
+        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
         this.recyclerContainer.setPivotX(0.0f);
         this.recyclerContainer.setPivotY(0.0f);
         this.scrimPopupContainerLayout.setScaleX(1.0f);
@@ -483,9 +486,9 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
                 this.f$0.lambda$startDismissAnimation$7(dynamicAnimation, f, f2);
             }
         });
-        FrameLayout frameLayout = this.scrimPopupContainerLayout;
+        FrameLayout frameLayout2 = this.scrimPopupContainerLayout;
         DynamicAnimation.ViewProperty viewProperty = DynamicAnimation.ALPHA;
-        arrayList.addAll(Arrays.asList(springAnimation, springAnimation2, new SpringAnimation(frameLayout, viewProperty).setSpring(new SpringForce(0.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.recyclerContainer, viewProperty).setSpring(new SpringForce(0.25f).setStiffness(750.0f).setDampingRatio(1.0f))));
+        arrayList.addAll(Arrays.asList(springAnimation, springAnimation2, new SpringAnimation(frameLayout2, viewProperty).setSpring(new SpringForce(0.0f).setStiffness(750.0f).setDampingRatio(1.0f)), new SpringAnimation(this.recyclerContainer, viewProperty).setSpring(new SpringForce(0.25f).setStiffness(750.0f).setDampingRatio(1.0f))));
         for (SpringAnimation springAnimation3 : springAnimationArr) {
             if (springAnimation3 != null) {
                 arrayList.add(springAnimation3);

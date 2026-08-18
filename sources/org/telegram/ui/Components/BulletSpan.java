@@ -43,7 +43,9 @@ public class BulletSpan implements LeadingMarginSpan {
             if (layout != null) {
                 i5 -= layout.getLineForOffset(i6) != layout.getLineCount() + (-1) ? (int) layout.getSpacingAdd() : 0;
             }
-            canvas.drawCircle(i + (i2 * r7), (i3 + i5) / 2.0f, this.mBulletRadius, paint);
+            float f = (i3 + i5) / 2.0f;
+            int i8 = this.mBulletRadius;
+            canvas.drawCircle(i + (i2 * i8), f, i8, paint);
             if (this.mWantColor) {
                 paint.setColor(color);
             }

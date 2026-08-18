@@ -59,7 +59,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberTextView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SlideChooseView;
-import org.telegram.ui.ProxyListActivity;
 
 public class ProxyListActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int callsDetailRow;
@@ -730,13 +729,18 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             if (this.wasCheckedAllList) {
                 z3 = false;
             } else {
-                for (SharedConfig.ProxyInfo proxyInfo : this.proxyList) {
+                Iterator it = this.proxyList.iterator();
+                while (true) {
+                    if (!it.hasNext()) {
+                        z3 = false;
+                        break;
+                    }
+                    SharedConfig.ProxyInfo proxyInfo = (SharedConfig.ProxyInfo) it.next();
                     if (proxyInfo.checking || proxyInfo.availableCheckTime == 0) {
                         z3 = true;
                         break;
                     }
                 }
-                z3 = false;
                 if (!z3) {
                     this.wasCheckedAllList = true;
                 }
@@ -806,7 +810,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         if (!proxyInfo2.available) {
             j2 += 100000;
         }
-        return Long.compare((!z || proxyInfo == proxyInfo3) ? j + proxyInfo.ping : SharedConfig.proxyList.indexOf(proxyInfo) * 10000, (!z || proxyInfo2 == SharedConfig.currentProxy) ? proxyInfo2.ping + j2 : SharedConfig.proxyList.indexOf(proxyInfo2) * 10000);
+        return Long.compare((!z || proxyInfo == proxyInfo3) ? j + proxyInfo.ping : ((long) SharedConfig.proxyList.indexOf(proxyInfo)) * 10000, (!z || proxyInfo2 == SharedConfig.currentProxy) ? proxyInfo2.ping + j2 : ((long) SharedConfig.proxyList.indexOf(proxyInfo2)) * 10000);
     }
 
     private void checkProxyList() {
@@ -993,31 +997,25 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                     textSettingsCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
                     if (i == ProxyListActivity.this.proxyAddRow) {
                         textSettingsCell.setText(LocaleController.getString(R.string.AddProxy), ProxyListActivity.this.deleteAllRow != -1);
-                        break;
                     } else if (i == ProxyListActivity.this.deleteAllRow) {
                         textSettingsCell.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
                         textSettingsCell.setText(LocaleController.getString(R.string.DeleteAllProxies), false);
-                        break;
                     }
                     break;
                 case 2:
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     if (i == ProxyListActivity.this.connectionsHeaderRow) {
                         headerCell.setText(LocaleController.getString(R.string.ProxyConnections));
-                        break;
                     }
                     break;
                 case 3:
                     TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
                     if (i == ProxyListActivity.this.useProxyRow) {
                         textCheckCell.setTextAndCheck(LocaleController.getString(R.string.UseProxySettings), ProxyListActivity.this.useProxySettings, ProxyListActivity.this.rotationRow != -1);
-                        break;
                     } else if (i == ProxyListActivity.this.callsRow) {
                         textCheckCell.setTextAndCheck(LocaleController.getString(R.string.UseProxyForCalls), ProxyListActivity.this.useProxyForCalls, false);
-                        break;
                     } else if (i == ProxyListActivity.this.rotationRow) {
                         textCheckCell.setTextAndCheck(LocaleController.getString(R.string.UseProxyRotation), SharedConfig.proxyRotationEnabled, true);
-                        break;
                     }
                     break;
                 case 4:
@@ -1025,11 +1023,9 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                     if (i != ProxyListActivity.this.callsDetailRow) {
                         if (i == ProxyListActivity.this.rotationTimeoutInfoRow) {
                             textInfoPrivacyCell.setText(LocaleController.getString(R.string.ProxyRotationTimeoutInfo));
-                            break;
                         }
                     } else {
                         textInfoPrivacyCell.setText(LocaleController.getString(R.string.UseProxyForCallsInfo));
-                        break;
                     }
                     break;
                 case 5:
@@ -1060,7 +1056,6 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                             }
                         });
                         slideChooseView.setOptions(SharedConfig.proxyRotationTimeout, strArr);
-                        break;
                     }
                     break;
             }

@@ -1,7 +1,13 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.Theme;
 
 public class StickerImageView extends BackupImageView implements NotificationCenter.NotificationCenterDelegate {
     int currentAccount;
@@ -48,6 +54,32 @@ public class StickerImageView extends BackupImageView implements NotificationCen
     }
 
     public void setSticker() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickerImageView.setSticker():void");
+        TLRPC.Document document;
+        TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName(this.stickerPackName);
+        if (stickerSetByName == null) {
+            stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName(this.stickerPackName);
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
+        if (tL_messages_stickerSet != null) {
+            int size = tL_messages_stickerSet.documents.size();
+            int i = this.stickerNum;
+            if (size > i) {
+                document = tL_messages_stickerSet.documents.get(i);
+            } else {
+                document = null;
+            }
+        } else {
+            document = null;
+        }
+        SvgHelper.SvgDrawable svgThumb = document != null ? DocumentObject.getSvgThumb(document.thumbs, Theme.key_emptyListPlaceholder, 0.2f) : null;
+        if (svgThumb != null) {
+            svgThumb.overrideWidthAndHeight(512, 512);
+        }
+        if (document != null) {
+            setImage(ImageLocation.getForDocument(document), "130_130", "tgs", svgThumb, tL_messages_stickerSet);
+        } else {
+            this.imageReceiver.clearImage();
+            MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(this.stickerPackName, false, tL_messages_stickerSet == null);
+        }
     }
 }

@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -31,10 +32,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.AvatarSpan;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.ButtonSpan;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Stars.StarsIntroActivity;
 
@@ -227,8 +224,49 @@ public class TableView extends android.widget.TableLayout {
         return addRowUnpadded(charSequence, linksSimpleTextView);
     }
 
-    public static void lambda$addRowUserWithEmojiStatus$1(long r6, int r8, org.telegram.ui.Components.AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable r9, org.telegram.ui.Components.LinkSpanDrawable.LinksSimpleTextView r10, android.graphics.drawable.Drawable r11, int r12, java.lang.Object[] r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TableView.lambda$addRowUserWithEmojiStatus$1(long, int, org.telegram.ui.Components.AnimatedEmojiDrawable$SwapAnimatedEmojiDrawable, org.telegram.ui.Components.LinkSpanDrawable$LinksSimpleTextView, android.graphics.drawable.Drawable, int, java.lang.Object[]):void");
+    public static void lambda$addRowUserWithEmojiStatus$1(long j, int i, AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable, LinkSpanDrawable.LinksSimpleTextView linksSimpleTextView, Drawable drawable, int i2, Object[] objArr) {
+        TLRPC.EmojiStatus emojiStatus;
+        boolean z;
+        long emojiStatusDocumentId;
+        if (j == 2666000 || UserObject.isService(j)) {
+            return;
+        }
+        if (j > 0) {
+            TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+            emojiStatus = user != null ? user.emoji_status : null;
+            if (user != null && user.premium) {
+                z = true;
+            }
+            emojiStatusDocumentId = DialogObject.getEmojiStatusDocumentId(emojiStatus);
+            if (emojiStatusDocumentId != 0) {
+                swapAnimatedEmojiDrawable.set(emojiStatusDocumentId, true);
+                swapAnimatedEmojiDrawable.setParticles(DialogObject.isEmojiStatusCollectible(emojiStatus), true);
+                linksSimpleTextView.setRightDrawable(swapAnimatedEmojiDrawable);
+            } else if (z) {
+                swapAnimatedEmojiDrawable.set(drawable, true);
+                swapAnimatedEmojiDrawable.setParticles(false, true);
+                linksSimpleTextView.setRightDrawable(swapAnimatedEmojiDrawable);
+            } else {
+                linksSimpleTextView.setRightDrawable((Drawable) null);
+            }
+            swapAnimatedEmojiDrawable.setColor(Integer.valueOf(i2));
+        }
+        TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+        emojiStatus = chat != null ? chat.emoji_status : null;
+        z = false;
+        emojiStatusDocumentId = DialogObject.getEmojiStatusDocumentId(emojiStatus);
+        if (emojiStatusDocumentId != 0) {
+            swapAnimatedEmojiDrawable.set(emojiStatusDocumentId, true);
+            swapAnimatedEmojiDrawable.setParticles(DialogObject.isEmojiStatusCollectible(emojiStatus), true);
+            linksSimpleTextView.setRightDrawable(swapAnimatedEmojiDrawable);
+        } else if (z) {
+            swapAnimatedEmojiDrawable.set(drawable, true);
+            swapAnimatedEmojiDrawable.setParticles(false, true);
+            linksSimpleTextView.setRightDrawable(swapAnimatedEmojiDrawable);
+        } else {
+            linksSimpleTextView.setRightDrawable((Drawable) null);
+        }
+        swapAnimatedEmojiDrawable.setColor(Integer.valueOf(i2));
     }
 
     public TableRow addRowUser(CharSequence charSequence, int i, long j, Runnable runnable) {
@@ -309,7 +347,7 @@ public class TableView extends android.widget.TableLayout {
     }
 
     public TableRow addRowDateTime(CharSequence charSequence, int i) {
-        long j = i * 1000;
+        long j = ((long) i) * 1000;
         return addRow(charSequence, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(j)), LocaleController.getInstance().getFormatterDay().format(new Date(j))));
     }
 

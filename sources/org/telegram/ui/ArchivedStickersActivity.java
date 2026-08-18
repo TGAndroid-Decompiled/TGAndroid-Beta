@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -266,13 +265,11 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
 
     public void lambda$processResponse$3(final TLRPC.TL_messages_archivedStickers tL_messages_archivedStickers) {
         if (!this.isInTransition) {
-            Iterator<TLRPC.StickerSetCovered> it = tL_messages_archivedStickers.sets.iterator();
             int i = 0;
-            while (it.hasNext()) {
-                TLRPC.StickerSetCovered next = it.next();
-                if (!this.loadedSets.contains(Long.valueOf(next.set.id))) {
-                    this.loadedSets.add(Long.valueOf(next.set.id));
-                    this.sets.add(next);
+            for (TLRPC.StickerSetCovered stickerSetCovered : tL_messages_archivedStickers.sets) {
+                if (!this.loadedSets.contains(Long.valueOf(stickerSetCovered.set.id))) {
+                    this.loadedSets.add(Long.valueOf(stickerSetCovered.set.id));
+                    this.sets.add(stickerSetCovered);
                     i++;
                 }
             }
@@ -332,16 +329,11 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
             ArrayList arrayList = new ArrayList((List) objArr[0]);
             for (int size = arrayList.size() - 1; size >= 0; size--) {
                 int size2 = this.sets.size();
-                int i3 = 0;
-                while (true) {
-                    if (i3 >= size2) {
-                        break;
-                    }
+                for (int i3 = 0; i3 < size2; i3++) {
                     if (((TLRPC.StickerSetCovered) this.sets.get(i3)).set.id == ((TLRPC.StickerSetCovered) arrayList.get(size)).set.id) {
                         arrayList.remove(size);
                         break;
                     }
-                    i3++;
                 }
             }
             if (arrayList.isEmpty()) {

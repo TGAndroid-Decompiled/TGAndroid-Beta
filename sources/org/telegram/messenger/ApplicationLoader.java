@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -23,7 +22,6 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import java.io.File;
 import java.util.Locale;
 import org.json.JSONObject;
-import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
@@ -336,7 +334,7 @@ public class ApplicationLoader extends Application {
     }
 
     @Override
-    public void onCreate() throws PackageManager.NameNotFoundException {
+    public void onCreate() {
         String str;
         applicationLoaderInstance = this;
         try {
@@ -497,10 +495,7 @@ public class ApplicationLoader extends Application {
     public static boolean isRoaming() {
         try {
             ensureCurrentNetworkGet(false);
-            if (currentNetworkInfo != null) {
-                return currentNetworkInfo.isRoaming();
-            }
-            return false;
+            return currentNetworkInfo != null && currentNetworkInfo.isRoaming();
         } catch (Exception e) {
             FileLog.e(e);
             return false;
@@ -512,11 +507,9 @@ public class ApplicationLoader extends Application {
             ensureCurrentNetworkGet(false);
             if (currentNetworkInfo != null && (currentNetworkInfo.getType() == 1 || currentNetworkInfo.getType() == 9)) {
                 NetworkInfo.State state = currentNetworkInfo.getState();
-                if (state != NetworkInfo.State.CONNECTED && state != NetworkInfo.State.CONNECTING) {
-                    if (state == NetworkInfo.State.SUSPENDED) {
-                    }
+                if (state == NetworkInfo.State.CONNECTED || state == NetworkInfo.State.CONNECTING || state == NetworkInfo.State.SUSPENDED) {
+                    return true;
                 }
-                return true;
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -539,42 +532,37 @@ public class ApplicationLoader extends Application {
     }
 
     public static boolean isConnectionSlow() {
+        int subtype;
         try {
             ensureCurrentNetworkGet(false);
-            if (currentNetworkInfo != null && currentNetworkInfo.getType() == 0) {
-                int subtype = currentNetworkInfo.getSubtype();
-                if (subtype == 1 || subtype == 2 || subtype == 4 || subtype == 7 || subtype == 11) {
-                    return true;
-                }
-            }
+            return currentNetworkInfo != null && currentNetworkInfo.getType() == 0 && ((subtype = currentNetworkInfo.getSubtype()) == 1 || subtype == 2 || subtype == 4 || subtype == 7 || subtype == 11);
         } catch (Throwable unused) {
         }
-        return false;
     }
 
     public static int getAutodownloadNetworkType() {
         int i;
         try {
             ensureCurrentNetworkGet(false);
+            if (currentNetworkInfo == null) {
+                return 0;
+            }
+            if (currentNetworkInfo.getType() != 1 && currentNetworkInfo.getType() != 9) {
+                return currentNetworkInfo.isRoaming() ? 2 : 0;
+            }
+            if (Build.VERSION.SDK_INT >= 24 && (((i = lastKnownNetworkType) == 0 || i == 1) && System.currentTimeMillis() - lastNetworkCheckTypeTime < 5000)) {
+                return lastKnownNetworkType;
+            }
+            if (connectivityManager.isActiveNetworkMetered()) {
+                lastKnownNetworkType = 0;
+            } else {
+                lastKnownNetworkType = 1;
+            }
+            lastNetworkCheckTypeTime = System.currentTimeMillis();
+            return lastKnownNetworkType;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (currentNetworkInfo == null) {
-            return 0;
-        }
-        if (currentNetworkInfo.getType() != 1 && currentNetworkInfo.getType() != 9) {
-            return currentNetworkInfo.isRoaming() ? 2 : 0;
-        }
-        if (Build.VERSION.SDK_INT >= 24 && (((i = lastKnownNetworkType) == 0 || i == 1) && System.currentTimeMillis() - lastNetworkCheckTypeTime < 5000)) {
-            return lastKnownNetworkType;
-        }
-        if (connectivityManager.isActiveNetworkMetered()) {
-            lastKnownNetworkType = 0;
-        } else {
-            lastKnownNetworkType = 1;
-        }
-        lastNetworkCheckTypeTime = System.currentTimeMillis();
-        return lastKnownNetworkType;
     }
 
     public static int getCurrentNetworkType() {
@@ -593,12 +581,7 @@ public class ApplicationLoader extends Application {
                     return true;
                 }
                 NetworkInfo networkInfo2 = connectivityManager.getNetworkInfo(1);
-                if (networkInfo2 != null) {
-                    if (networkInfo2.isConnectedOrConnecting()) {
-                        return true;
-                    }
-                }
-                return false;
+                return networkInfo2 != null && networkInfo2.isConnectedOrConnecting();
             }
             return true;
         } catch (Exception e) {
@@ -617,12 +600,7 @@ public class ApplicationLoader extends Application {
                     return true;
                 }
                 NetworkInfo networkInfo2 = connectivityManager2.getNetworkInfo(1);
-                if (networkInfo2 != null) {
-                    if (networkInfo2.isConnectedOrConnecting()) {
-                        return true;
-                    }
-                }
-                return false;
+                return networkInfo2 != null && networkInfo2.isConnectedOrConnecting();
             }
             return true;
         } catch (Exception e) {

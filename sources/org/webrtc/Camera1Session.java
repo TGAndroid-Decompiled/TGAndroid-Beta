@@ -9,9 +9,6 @@ import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.telegram.ui.Stories.LivePlayer;
-import org.webrtc.CameraEnumerationAndroid;
-import org.webrtc.CameraSession;
-import org.webrtc.VideoSink;
 
 class Camera1Session implements CameraSession {
     private static final int NUMBER_OF_CAPTURE_BUFFERS = 3;
@@ -38,7 +35,7 @@ class Camera1Session implements CameraSession {
         STOPPED
     }
 
-    public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, boolean z, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) throws IOException {
+    public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, boolean z, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
         long jNanoTime = System.nanoTime();
         Logging.d("Camera1Session", "Open camera " + str);
         events.onCameraOpening();

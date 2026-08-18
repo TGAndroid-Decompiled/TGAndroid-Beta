@@ -202,8 +202,9 @@ public abstract class DualCameraView extends CameraView {
         } else {
             dualPosition.postConcat(this.toScreen);
             float measuredWidth = getMeasuredWidth() * 0.43f;
+            float measuredHeight = getMeasuredHeight() * 0.43f;
             float fMin = Math.min(getMeasuredWidth(), getMeasuredWidth()) * 0.025f;
-            dualPosition.postScale(measuredWidth / getMeasuredWidth(), (getMeasuredHeight() * 0.43f) / getMeasuredHeight());
+            dualPosition.postScale(measuredWidth / getMeasuredWidth(), measuredHeight / getMeasuredHeight());
             dualPosition.postTranslate((getMeasuredWidth() - fMin) - measuredWidth, fMin);
             dualPosition.postConcat(this.toGL);
         }

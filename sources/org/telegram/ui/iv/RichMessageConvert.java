@@ -29,11 +29,11 @@ public abstract class RichMessageConvert {
             i++;
             int i3 = i < iArrLineStarts.length ? iArrLineStarts[i] - 1 : length;
             CodeHighlighting.Span span = spanned == null ? null : (CodeHighlighting.Span) blockSpan(spanned, i2, i3, CodeHighlighting.Span.class);
-            QuoteSpan quoteSpan = (spanned == null || span != null) ? 0 : (QuoteSpan) blockSpan(spanned, i2, i3, QuoteSpan.class);
-            if (span == null && quoteSpan == 0) {
+            QuoteSpan quoteSpan = (spanned == null || span != null) ? null : (QuoteSpan) blockSpan(spanned, i2, i3, QuoteSpan.class);
+            if (span == null && quoteSpan == null) {
                 arrayList.add(paragraph(charSequence.subSequence(i2, i3)));
             } else {
-                CodeHighlighting.Span span2 = span != null ? span : quoteSpan;
+                Object obj = span != null ? span : quoteSpan;
                 while (i < iArrLineStarts.length) {
                     int i4 = iArrLineStarts[i];
                     int i5 = i + 1;
@@ -43,7 +43,7 @@ public abstract class RichMessageConvert {
                     } else {
                         objBlockSpan = blockSpan(spanned, i4, i6, QuoteSpan.class);
                     }
-                    if (objBlockSpan != span2) {
+                    if (objBlockSpan != obj) {
                         break;
                     }
                     i = i5;
@@ -63,7 +63,7 @@ public abstract class RichMessageConvert {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = RichTextStyle.fromSpannable(charSequenceSubSequence);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    pageblockblockquote.collapsed = quoteSpan != 0 && quoteSpan.isCollapsing;
+                    pageblockblockquote.collapsed = quoteSpan != null && quoteSpan.isCollapsing;
                     arrayList.add(pageblockblockquote);
                 }
             }
@@ -210,6 +210,7 @@ public abstract class RichMessageConvert {
     }
 
     private static CharSequence renderList(ArrayList arrayList) {
+        String str;
         if (arrayList == null || arrayList.isEmpty()) {
             return null;
         }
@@ -219,7 +220,12 @@ public abstract class RichMessageConvert {
             TL_iv.PageListItem pageListItem = (TL_iv.PageListItem) it.next();
             CharSequence charSequenceListItemText = listItemText(pageListItem);
             if (charSequenceListItemText != null) {
-                arrayList2.add(prefixed(pageListItem.checkbox ? pageListItem.checked ? "☑  " : "☐  " : "•  ", charSequenceListItemText));
+                if (pageListItem.checkbox) {
+                    str = pageListItem.checked ? "☑  " : "☐  ";
+                } else {
+                    str = "•  ";
+                }
+                arrayList2.add(prefixed(str, charSequenceListItemText));
             }
         }
         if (arrayList2.isEmpty()) {
@@ -257,17 +263,15 @@ public abstract class RichMessageConvert {
         }
         ArrayList<TL_iv.pageTableRow> arrayList2 = pageblocktable.rows;
         if (arrayList2 != null) {
-            Iterator<TL_iv.pageTableRow> it = arrayList2.iterator();
-            while (it.hasNext()) {
-                TL_iv.pageTableRow next = it.next();
-                ArrayList<TL_iv.pageTableCell> arrayList3 = next.cells;
+            for (TL_iv.pageTableRow pagetablerow : arrayList2) {
+                ArrayList<TL_iv.pageTableCell> arrayList3 = pagetablerow.cells;
                 if (arrayList3 != null && !arrayList3.isEmpty()) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    for (int i = 0; i < next.cells.size(); i++) {
+                    for (int i = 0; i < pagetablerow.cells.size(); i++) {
                         if (i > 0) {
                             spannableStringBuilder.append((CharSequence) "  |  ");
                         }
-                        spannableStringBuilder.append(RichTextStyle.toSpannable(next.cells.get(i).text));
+                        spannableStringBuilder.append(RichTextStyle.toSpannable(pagetablerow.cells.get(i).text));
                     }
                     arrayList.add(spannableStringBuilder);
                 }

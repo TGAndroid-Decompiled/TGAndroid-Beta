@@ -104,7 +104,8 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
         this.titleLayout = null;
         int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.dp(48.0f);
         try {
-            CharSequence charSequenceEllipsize = TextUtils.ellipsize(this.currentMessageObject.getMusicTitle().replace('\n', ' '), Theme.chat_contextResult_titleTextPaint, Math.min((int) Math.ceil(Theme.chat_contextResult_titleTextPaint.measureText(r0)), size), TextUtils.TruncateAt.END);
+            String musicTitle = this.currentMessageObject.getMusicTitle();
+            CharSequence charSequenceEllipsize = TextUtils.ellipsize(musicTitle.replace('\n', ' '), Theme.chat_contextResult_titleTextPaint, Math.min((int) Math.ceil(Theme.chat_contextResult_titleTextPaint.measureText(musicTitle)), size), TextUtils.TruncateAt.END);
             CharSequence charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceEllipsize, this.currentMessageObject.highlightedWords, this.resourcesProvider);
             StaticLayout staticLayout = new StaticLayout(charSequenceHighlightText == null ? charSequenceEllipsize : charSequenceHighlightText, Theme.chat_contextResult_titleTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.titleLayout = staticLayout;

@@ -1,7 +1,5 @@
 package kotlin.coroutines;
 
-import kotlin.coroutines.ContinuationInterceptor;
-import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
 

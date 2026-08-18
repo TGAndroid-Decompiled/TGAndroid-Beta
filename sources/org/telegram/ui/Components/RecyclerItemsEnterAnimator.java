@@ -101,6 +101,7 @@ public class RecyclerItemsEnterAnimator {
                     RecyclerItemsEnterAnimator recyclerItemsEnterAnimator = RecyclerItemsEnterAnimator.this;
                     recyclerItemsEnterAnimator.invalidateAlpha = true;
                     recyclerItemsEnterAnimator.listView.invalidate();
+                    int iMin = (int) ((Math.min(RecyclerItemsEnterAnimator.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / RecyclerItemsEnterAnimator.this.listView.getMeasuredHeight()) * 100.0f);
                     ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
@@ -117,7 +118,7 @@ public class RecyclerItemsEnterAnimator {
                             recyclerItemsEnterAnimator2.listView.invalidate();
                         }
                     });
-                    valueAnimatorOfFloat.setStartDelay((int) ((Math.min(RecyclerItemsEnterAnimator.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / RecyclerItemsEnterAnimator.this.listView.getMeasuredHeight()) * 100.0f));
+                    valueAnimatorOfFloat.setStartDelay(iMin);
                     valueAnimatorOfFloat.setDuration(200L);
                     animatorSet.playTogether(valueAnimatorOfFloat);
                 }

@@ -3,7 +3,6 @@ package me.vkryl.core.reference;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import me.vkryl.core.reference.ReferenceList;
 
 public class ReferenceMap {
     private final boolean cacheIterator;
@@ -88,7 +87,8 @@ public class ReferenceMap {
             try {
                 ReferenceList referenceList = (ReferenceList) this.map.get(obj);
                 z = (referenceList == null || referenceList.isEmpty()) ? false : true;
-            } finally {
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return z;

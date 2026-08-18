@@ -331,8 +331,31 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
         return LocaleController.getString(R.string.BusinessLinks);
     }
 
-    private static int getPrivacyType(java.util.ArrayList r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.BusinessLinksActivity.getPrivacyType(java.util.ArrayList):int");
+    private static int getPrivacyType(ArrayList arrayList) {
+        byte b = -1;
+        boolean z = false;
+        for (int i = 0; i < arrayList.size(); i++) {
+            TLRPC.PrivacyRule privacyRule = (TLRPC.PrivacyRule) arrayList.get(i);
+            if (!(privacyRule instanceof TLRPC.TL_privacyValueAllowChatParticipants)) {
+                if (privacyRule instanceof TLRPC.TL_privacyValueDisallowChatParticipants) {
+                    z = true;
+                } else if (!(privacyRule instanceof TLRPC.TL_privacyValueAllowUsers)) {
+                    if (privacyRule instanceof TLRPC.TL_privacyValueDisallowUsers) {
+                        z = true;
+                    } else if (!(privacyRule instanceof TLRPC.TL_privacyValueAllowPremium) && b == -1) {
+                        if (privacyRule instanceof TLRPC.TL_privacyValueAllowAll) {
+                            b = 0;
+                        } else {
+                            b = privacyRule instanceof TLRPC.TL_privacyValueDisallowAll ? (byte) 1 : (byte) 2;
+                        }
+                    }
+                }
+            }
+        }
+        if (b == 0 || (b == -1 && z)) {
+            return 0;
+        }
+        return b == 2 ? 2 : 1;
     }
 
     @Override
@@ -350,7 +373,7 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
         universalAdapter.whiteSectionEnd();
         TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         String str = MessagesController.getInstance(this.currentAccount).linkPrefix + "/";
-        ArrayList arrayList2 = new ArrayList(2);
+        ArrayList<String> arrayList2 = new ArrayList(2);
         String publicUsername = UserObject.getPublicUsername(currentUser);
         if (publicUsername != null) {
             arrayList2.add(str + publicUsername);
@@ -369,9 +392,7 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
             string = LocaleController.formatString(R.string.BusinessLinksFooterOneLink, arrayList2.get(0));
         }
         SpannableString spannableString = new SpannableString(string);
-        Iterator it2 = arrayList2.iterator();
-        while (it2.hasNext()) {
-            String str2 = (String) it2.next();
+        for (String str2 : arrayList2) {
             int iIndexOf = string.indexOf(str2);
             if (iIndexOf > -1) {
                 spannableString.setSpan(new URLSpanCopyToClipboard("https://" + str2, this), iIndexOf, str2.length() + iIndexOf, 33);

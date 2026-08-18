@@ -3,8 +3,10 @@ package org.telegram.ui.Components.poll;
 import androidx.collection.LongSparseArray;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
@@ -52,8 +54,28 @@ public class WebPageLoader {
         });
     }
 
-    public void lambda$get$0(java.lang.String r4, org.telegram.tgnet.tl.TL_account.webPagePreview r5, org.telegram.tgnet.TLRPC.TL_error r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.poll.WebPageLoader.lambda$get$0(java.lang.String, org.telegram.tgnet.tl.TL_account$webPagePreview, org.telegram.tgnet.TLRPC$TL_error):void");
+    public void lambda$get$0(String str, TL_account.webPagePreview webpagepreview, TLRPC.TL_error tL_error) {
+        TLRPC.WebPage webPage;
+        if (webpagepreview != null) {
+            MessagesController.getInstance(this.currentAccount).putUsers(webpagepreview.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(webpagepreview.chats, false);
+            TLRPC.MessageMedia messageMedia = webpagepreview.media;
+            if (messageMedia != null) {
+                webPage = messageMedia.webpage;
+            } else {
+                webPage = null;
+            }
+        } else {
+            webPage = null;
+        }
+        this.pages.put(str, webPage);
+        ArrayList arrayList = (ArrayList) this.callbacks.remove(str);
+        if (arrayList != null) {
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                ((Utilities.Callback2) it.next()).run(webPage, tL_error);
+            }
+        }
     }
 
     public void apply(LongSparseArray longSparseArray) {

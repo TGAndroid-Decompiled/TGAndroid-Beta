@@ -43,7 +43,7 @@ public abstract class Render {
         Point pointSubstract = point2.substract(point);
         Point point3 = new Point(1.0d, 1.0d, 0.0d);
         float fAtan2 = Math.abs(renderState.angle) > 0.0f ? renderState.angle : (float) Math.atan2(pointSubstract.y, pointSubstract.x);
-        float f = (float) ((((renderState.baseWeight * point2.z) * renderState.scale) * 1.0d) / renderState.viewportScale);
+        float f = (float) ((((((double) renderState.baseWeight) * point2.z) * ((double) renderState.scale)) * 1.0d) / ((double) renderState.viewportScale));
         double dMax = Math.max(1.0f, renderState.spacing * f);
         if (distanceTo > 0.0d) {
             point3 = pointSubstract.multiplyByScalar(1.0d / distanceTo);

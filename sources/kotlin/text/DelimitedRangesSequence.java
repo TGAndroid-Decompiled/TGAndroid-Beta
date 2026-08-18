@@ -2,6 +2,7 @@ package kotlin.text;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import kotlin.Pair;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.IntRange;
@@ -44,7 +45,43 @@ final class DelimitedRangesSequence implements Sequence {
             }
 
             private final void calcNext() {
-                throw new UnsupportedOperationException("Method not decompiled: kotlin.text.DelimitedRangesSequence.AnonymousClass1.calcNext():void");
+                Pair pair;
+                if (this.nextSearchIndex >= 0) {
+                    if (DelimitedRangesSequence.this.limit > 0) {
+                        int i = this.counter + 1;
+                        this.counter = i;
+                        if (i < DelimitedRangesSequence.this.limit) {
+                            if (this.nextSearchIndex <= DelimitedRangesSequence.this.input.length() || (pair = (Pair) DelimitedRangesSequence.this.getNextMatch.invoke(DelimitedRangesSequence.this.input, Integer.valueOf(this.nextSearchIndex))) == null) {
+                                this.nextItem = new IntRange(this.currentStartIndex, StringsKt__StringsKt.getLastIndex(DelimitedRangesSequence.this.input));
+                                this.nextSearchIndex = -1;
+                            } else {
+                                int iIntValue = ((Number) pair.component1()).intValue();
+                                int iIntValue2 = ((Number) pair.component2()).intValue();
+                                this.nextItem = RangesKt.until(this.currentStartIndex, iIntValue);
+                                int i2 = iIntValue + iIntValue2;
+                                this.currentStartIndex = i2;
+                                this.nextSearchIndex = i2 + (iIntValue2 == 0 ? 1 : 0);
+                            }
+                        } else {
+                            this.nextItem = new IntRange(this.currentStartIndex, StringsKt__StringsKt.getLastIndex(DelimitedRangesSequence.this.input));
+                            this.nextSearchIndex = -1;
+                        }
+                    } else if (this.nextSearchIndex <= DelimitedRangesSequence.this.input.length()) {
+                        this.nextItem = new IntRange(this.currentStartIndex, StringsKt__StringsKt.getLastIndex(DelimitedRangesSequence.this.input));
+                        this.nextSearchIndex = -1;
+                    } else {
+                        int iIntValue3 = ((Number) pair.component1()).intValue();
+                        int iIntValue4 = ((Number) pair.component2()).intValue();
+                        this.nextItem = RangesKt.until(this.currentStartIndex, iIntValue3);
+                        int i3 = iIntValue3 + iIntValue4;
+                        this.currentStartIndex = i3;
+                        this.nextSearchIndex = i3 + (iIntValue4 == 0 ? 1 : 0);
+                    }
+                    this.nextState = 1;
+                    return;
+                }
+                this.nextState = 0;
+                this.nextItem = null;
             }
 
             @Override

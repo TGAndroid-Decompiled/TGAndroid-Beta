@@ -11,7 +11,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.opengl.GLES20;
 import androidx.core.graphics.ColorUtils;
-import java.io.IOException;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -20,13 +19,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
-import java.util.zip.DataFormatException;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.Paint.Brush;
 import org.telegram.ui.Components.Size;
 
 public class Painting {
@@ -314,13 +311,13 @@ public class Painting {
         public void onAnimationEnd(Animator animator) {
             Painting.this.renderView.performInContext(new Runnable() {
                 @Override
-                public final void run() throws DataFormatException, IOException {
+                public final void run() {
                     this.f$0.lambda$onAnimationEnd$0();
                 }
             });
         }
 
-        public void lambda$onAnimationEnd$0() throws DataFormatException, IOException {
+        public void lambda$onAnimationEnd$0() {
             if (Painting.this.helperShape == null) {
                 Painting.this.helperApplyAnimator = null;
                 return;
@@ -462,20 +459,11 @@ public class Painting {
     }
 
     public Slice commitShapeInternal(Shape shape, int i, RectF rectF) {
-        RectF rectF2;
-        boolean z;
         Brush brush = shape.brush;
         if (brush == null) {
             brush = this.brush;
         }
-        if (this.blurManager == null || !(brush instanceof Brush.Blurer)) {
-            rectF2 = rectF;
-            z = false;
-        } else {
-            rectF2 = rectF;
-            z = true;
-        }
-        Slice sliceRegisterUndo = registerUndo(rectF2, z);
+        Slice sliceRegisterUndo = registerUndo(rectF, this.blurManager != null && (brush instanceof Brush.Blurer));
         beginSuppressingChanges();
         GLES20.glBindFramebuffer(36160, getReusableFramebuffer());
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, getTexture(), 0);
@@ -747,17 +735,17 @@ public class Painting {
     public void lambda$registerUndo$11(final Slice slice) {
         this.renderView.performInContext(new Runnable() {
             @Override
-            public final void run() throws DataFormatException, IOException {
+            public final void run() {
                 this.f$0.lambda$restoreSlice$13(slice);
             }
         });
     }
 
-    public void lambda$restoreSlice$13(Slice slice) throws DataFormatException, IOException {
+    public void lambda$restoreSlice$13(Slice slice) {
         restoreSliceInternal(slice, true);
     }
 
-    public void restoreSliceInternal(Slice slice, boolean z) throws DataFormatException, IOException {
+    public void restoreSliceInternal(Slice slice, boolean z) {
         PaintingDelegate paintingDelegate;
         Texture texture;
         if (slice == null) {
@@ -857,7 +845,8 @@ public class Painting {
         GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.renderProjection));
         GLES20.glUniform1i(shader.getUniform("texture"), 0);
         GLES20.glUniform1i(shader.getUniform("mask"), 1);
-        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(this.renderView.getCurrentColor(), (int) (Color.alpha(r6) * f)));
+        int currentColor = this.renderView.getCurrentColor();
+        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(currentColor, (int) (Color.alpha(currentColor) * f)));
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, i);
         GLES20.glActiveTexture(33985);
@@ -909,7 +898,8 @@ public class Painting {
         GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.renderProjection));
         GLES20.glUniform1i(shader.getUniform("texture"), 0);
         GLES20.glUniform1i(shader.getUniform("mask"), 1);
-        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(path.getColor(), (int) (Color.alpha(r6) * brush.getOverrideAlpha() * f)));
+        int color = path.getColor();
+        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(color, (int) (Color.alpha(color) * brush.getOverrideAlpha() * f)));
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, getTexture());
         GLES20.glActiveTexture(33985);

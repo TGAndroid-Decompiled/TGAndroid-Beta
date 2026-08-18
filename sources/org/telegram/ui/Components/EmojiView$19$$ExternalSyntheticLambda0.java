@@ -1,7 +1,5 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.Components.EmojiView;
-
 public final class EmojiView$19$$ExternalSyntheticLambda0 implements Runnable {
     public final EmojiView.SearchRunnable f$0;
 

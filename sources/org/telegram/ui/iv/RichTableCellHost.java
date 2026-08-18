@@ -5,6 +5,7 @@ import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
@@ -42,9 +43,10 @@ public class RichTableCellHost extends FrameLayout {
             boolean z = x >= ((float) this.editText.getLeft()) && x < ((float) this.editText.getRight());
             boolean z2 = y < ((float) this.editText.getTop()) || y >= ((float) this.editText.getBottom());
             if (z && z2 && this.editText.getHeight() > 0) {
+                float left = x - this.editText.getLeft();
                 float fMax = Math.max(0.0f, Math.min(y - this.editText.getTop(), this.editText.getHeight() - 1));
                 MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
-                motionEventObtain.setLocation(x - this.editText.getLeft(), fMax);
+                motionEventObtain.setLocation(left, fMax);
                 boolean zOnTouchEvent = this.editText.onTouchEvent(motionEventObtain);
                 motionEventObtain.recycle();
                 return zOnTouchEvent;
@@ -53,8 +55,22 @@ public class RichTableCellHost extends FrameLayout {
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public void bind(org.telegram.tgnet.tl.TL_iv.pageTableCell r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTableCellHost.bind(org.telegram.tgnet.tl.TL_iv$pageTableCell):void");
+    public void bind(TL_iv.pageTableCell pagetablecell) {
+        boolean z;
+        this.cell = pagetablecell;
+        applyAlignment();
+        CharSequence styledText = TableModel.readStyledText(pagetablecell);
+        if (pagetablecell.header) {
+            z = true;
+            if (styledText.length() != 0 && (RichTextStyle.stylesFullyCovering(styledText, 0, styledText.length()) & 1) == 0) {
+                z = false;
+            }
+        } else {
+            z = false;
+        }
+        this.editText.setAutoBold(z);
+        this.editText.setTextSilently(Emoji.replaceEmoji(styledText, this.editText.getPaint().getFontMetricsInt(), false));
+        this.editText.invalidateEffects();
     }
 
     public void applyHeaderWithDefaultBold(boolean z) {

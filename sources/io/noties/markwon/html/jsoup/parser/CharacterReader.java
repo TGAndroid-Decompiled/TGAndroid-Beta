@@ -18,7 +18,7 @@ public final class CharacterReader {
     private int readerPos;
     private final String[] stringCache;
 
-    public CharacterReader(Reader reader, int i) throws IOException {
+    public CharacterReader(Reader reader, int i) {
         this.stringCache = new String[128];
         Validate.notNull(reader);
         Validate.isTrue(reader.markSupported());
@@ -31,7 +31,7 @@ public final class CharacterReader {
         this(new StringReader(str), str.length());
     }
 
-    private void bufferUp() throws IOException {
+    private void bufferUp() {
         int i = this.bufPos;
         if (i < this.bufSplitPoint) {
             return;
@@ -60,7 +60,7 @@ public final class CharacterReader {
         return this.readerPos + this.bufPos;
     }
 
-    public boolean isEmpty() throws IOException {
+    public boolean isEmpty() {
         bufferUp();
         return this.bufPos >= this.bufLength;
     }
@@ -69,7 +69,7 @@ public final class CharacterReader {
         return this.bufPos >= this.bufLength;
     }
 
-    public char current() throws IOException {
+    public char current() {
         bufferUp();
         if (isEmptyNoBufferUp()) {
             return (char) 65535;
@@ -77,7 +77,7 @@ public final class CharacterReader {
         return this.charBuf[this.bufPos];
     }
 
-    char consume() throws IOException {
+    char consume() {
         bufferUp();
         char c = isEmptyNoBufferUp() ? (char) 65535 : this.charBuf[this.bufPos];
         this.bufPos++;
@@ -100,7 +100,7 @@ public final class CharacterReader {
         this.bufPos = this.bufMark;
     }
 
-    int nextIndexOf(char c) throws IOException {
+    int nextIndexOf(char c) {
         bufferUp();
         for (int i = this.bufPos; i < this.bufLength; i++) {
             if (c == this.charBuf[i]) {
@@ -110,7 +110,7 @@ public final class CharacterReader {
         return -1;
     }
 
-    int nextIndexOf(CharSequence charSequence) throws IOException {
+    int nextIndexOf(CharSequence charSequence) {
         bufferUp();
         char cCharAt = charSequence.charAt(0);
         int i = this.bufPos;
@@ -140,7 +140,7 @@ public final class CharacterReader {
         return -1;
     }
 
-    public String consumeTo(char c) throws IOException {
+    public String consumeTo(char c) {
         int iNextIndexOf = nextIndexOf(c);
         if (iNextIndexOf != -1) {
             String strCacheString = cacheString(this.charBuf, this.stringCache, this.bufPos, iNextIndexOf);
@@ -150,7 +150,7 @@ public final class CharacterReader {
         return consumeToEnd();
     }
 
-    String consumeTo(String str) throws IOException {
+    String consumeTo(String str) {
         int iNextIndexOf = nextIndexOf(str);
         if (iNextIndexOf != -1) {
             String strCacheString = cacheString(this.charBuf, this.stringCache, this.bufPos, iNextIndexOf);
@@ -160,7 +160,7 @@ public final class CharacterReader {
         return consumeToEnd();
     }
 
-    public String consumeToAny(char... cArr) throws IOException {
+    public String consumeToAny(char... cArr) {
         bufferUp();
         int i = this.bufPos;
         int i2 = this.bufLength;
@@ -177,7 +177,7 @@ public final class CharacterReader {
         return i3 > i ? cacheString(this.charBuf, this.stringCache, i, i3 - i) : "";
     }
 
-    String consumeToAnySorted(char... cArr) throws IOException {
+    String consumeToAnySorted(char... cArr) {
         bufferUp();
         int i = this.bufPos;
         int i2 = this.bufLength;
@@ -193,7 +193,7 @@ public final class CharacterReader {
         return i4 > i ? cacheString(this.charBuf, this.stringCache, i, i4 - i) : "";
     }
 
-    String consumeData() throws IOException {
+    String consumeData() {
         int i;
         char c;
         bufferUp();
@@ -210,7 +210,7 @@ public final class CharacterReader {
         return i > i2 ? cacheString(this.charBuf, this.stringCache, i2, i - i2) : "";
     }
 
-    String consumeTagName() throws IOException {
+    String consumeTagName() {
         int i;
         char c;
         bufferUp();
@@ -227,7 +227,7 @@ public final class CharacterReader {
         return i > i2 ? cacheString(this.charBuf, this.stringCache, i2, i - i2) : "";
     }
 
-    String consumeToEnd() throws IOException {
+    String consumeToEnd() {
         bufferUp();
         char[] cArr = this.charBuf;
         String[] strArr = this.stringCache;
@@ -237,7 +237,7 @@ public final class CharacterReader {
         return strCacheString;
     }
 
-    String consumeLetterSequence() throws IOException {
+    String consumeLetterSequence() {
         char c;
         bufferUp();
         int i = this.bufPos;
@@ -251,7 +251,7 @@ public final class CharacterReader {
         return cacheString(this.charBuf, this.stringCache, i, this.bufPos - i);
     }
 
-    String consumeLetterThenDigitSequence() throws IOException {
+    String consumeLetterThenDigitSequence() {
         char c;
         bufferUp();
         int i = this.bufPos;
@@ -274,7 +274,7 @@ public final class CharacterReader {
         return cacheString(this.charBuf, this.stringCache, i, this.bufPos - i);
     }
 
-    String consumeHexSequence() throws IOException {
+    String consumeHexSequence() {
         int i;
         char c;
         bufferUp();
@@ -289,7 +289,7 @@ public final class CharacterReader {
         return cacheString(this.charBuf, this.stringCache, i2, i - i2);
     }
 
-    String consumeDigitSequence() throws IOException {
+    String consumeDigitSequence() {
         int i;
         char c;
         bufferUp();
@@ -308,7 +308,7 @@ public final class CharacterReader {
         return !isEmpty() && this.charBuf[this.bufPos] == c;
     }
 
-    boolean matches(String str) throws IOException {
+    boolean matches(String str) {
         bufferUp();
         int length = str.length();
         if (length > this.bufLength - this.bufPos) {
@@ -322,7 +322,7 @@ public final class CharacterReader {
         return true;
     }
 
-    boolean matchesIgnoreCase(String str) throws IOException {
+    boolean matchesIgnoreCase(String str) {
         bufferUp();
         int length = str.length();
         if (length > this.bufLength - this.bufPos) {
@@ -336,7 +336,7 @@ public final class CharacterReader {
         return true;
     }
 
-    boolean matchesAny(char... cArr) throws IOException {
+    boolean matchesAny(char... cArr) {
         if (isEmpty()) {
             return false;
         }
@@ -350,7 +350,7 @@ public final class CharacterReader {
         return false;
     }
 
-    boolean matchesAnySorted(char[] cArr) throws IOException {
+    boolean matchesAnySorted(char[] cArr) {
         bufferUp();
         return !isEmpty() && Arrays.binarySearch(cArr, this.charBuf[this.bufPos]) >= 0;
     }
@@ -368,7 +368,7 @@ public final class CharacterReader {
         return !isEmpty() && (c = this.charBuf[this.bufPos]) >= '0' && c <= '9';
     }
 
-    boolean matchConsume(String str) throws IOException {
+    boolean matchConsume(String str) {
         bufferUp();
         if (!matches(str)) {
             return false;

@@ -1,7 +1,5 @@
 package io.noties.markwon.html;
 
-import io.noties.markwon.html.HtmlTagImpl;
-import io.noties.markwon.html.MarkwonHtmlParser;
 import io.noties.markwon.html.jsoup.nodes.Attribute;
 import io.noties.markwon.html.jsoup.nodes.Attributes;
 import io.noties.markwon.html.jsoup.parser.CharacterReader;
@@ -9,7 +7,6 @@ import io.noties.markwon.html.jsoup.parser.ParseErrorList;
 import io.noties.markwon.html.jsoup.parser.Token;
 import io.noties.markwon.html.jsoup.parser.Tokeniser;
 import j$.util.DesugarCollections;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -46,7 +43,7 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
     }
 
     @Override
-    public void processFragment(Appendable appendable, String str) throws IOException {
+    public void processFragment(Appendable appendable, String str) {
         Tokeniser tokeniser = new Tokeniser(new CharacterReader(str), ParseErrorList.noTracking());
         while (true) {
             Token token = tokeniser.read();
@@ -136,7 +133,7 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
         this.currentBlock = HtmlTagImpl.BlockImpl.root();
     }
 
-    protected void processInlineTagStart(Appendable appendable, Token.StartTag startTag) throws IOException {
+    protected void processInlineTagStart(Appendable appendable, Token.StartTag startTag) {
         String str = startTag.normalName;
         CharSequence charSequence = (CharSequence) appendable;
         HtmlTagImpl.InlineImpl inlineImpl = new HtmlTagImpl.InlineImpl(str, charSequence.length(), extractAttributes(startTag));
@@ -151,7 +148,7 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
         this.inlineTags.add(inlineImpl);
     }
 
-    protected void processInlineTagEnd(Appendable appendable, Token.EndTag endTag) throws IOException {
+    protected void processInlineTagEnd(Appendable appendable, Token.EndTag endTag) {
         HtmlTagImpl.InlineImpl inlineImplFindOpenInlineTag = findOpenInlineTag(endTag.normalName);
         if (inlineImplFindOpenInlineTag != null) {
             if (isEmpty(appendable, inlineImplFindOpenInlineTag)) {
@@ -161,7 +158,7 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
         }
     }
 
-    protected void processBlockTagStart(Appendable appendable, Token.StartTag startTag) throws IOException {
+    protected void processBlockTagStart(Appendable appendable, Token.StartTag startTag) {
         String str = startTag.normalName;
         if ("p".equals(this.currentBlock.name)) {
             this.currentBlock.closeAt(((CharSequence) appendable).length());
@@ -194,7 +191,7 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
         this.currentBlock = blockImplCreate;
     }
 
-    protected void processBlockTagEnd(Appendable appendable, Token.EndTag endTag) throws IOException {
+    protected void processBlockTagEnd(Appendable appendable, Token.EndTag endTag) {
         String str = endTag.normalName;
         HtmlTagImpl.BlockImpl blockImplFindOpenBlockTag = findOpenBlockTag(str);
         if (blockImplFindOpenBlockTag != null) {
@@ -215,7 +212,7 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
         }
     }
 
-    protected void processCharacter(Appendable appendable, Token.Character character) throws IOException {
+    protected void processCharacter(Appendable appendable, Token.Character character) {
         if (this.isInsidePreTag) {
             AppendableUtils.appendQuietly(appendable, character.getData());
         } else {
@@ -255,7 +252,7 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
         return blockImpl;
     }
 
-    protected void ensureNewLineIfPreviousWasBlock(Appendable appendable) throws IOException {
+    protected void ensureNewLineIfPreviousWasBlock(Appendable appendable) {
         if (this.previousIsBlock) {
             ensureNewLine(appendable);
             this.previousIsBlock = false;
@@ -274,7 +271,7 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
         return BLOCK_TAGS.contains(str);
     }
 
-    protected static void ensureNewLine(Appendable appendable) throws IOException {
+    protected static void ensureNewLine(Appendable appendable) {
         CharSequence charSequence = (CharSequence) appendable;
         int length = charSequence.length();
         if (length <= 0 || '\n' == charSequence.charAt(length - 1)) {
@@ -284,13 +281,11 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
     }
 
     protected static Map extractAttributes(Token.StartTag startTag) {
-        Attributes attributes = startTag.attributes;
+        Attributes<Attribute> attributes = startTag.attributes;
         int size = attributes.size();
         if (size > 0) {
             HashMap map = new HashMap(size);
-            Iterator it = attributes.iterator();
-            while (it.hasNext()) {
-                Attribute attribute = (Attribute) it.next();
+            for (Attribute attribute : attributes) {
                 map.put(attribute.getKey().toLowerCase(Locale.US), attribute.getValue());
             }
             return DesugarCollections.unmodifiableMap(map);
@@ -302,7 +297,7 @@ public class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
         return htmlTagImpl.start == ((CharSequence) appendable).length();
     }
 
-    protected void appendEmptyTagReplacement(Appendable appendable, HtmlTagImpl htmlTagImpl) throws IOException {
+    protected void appendEmptyTagReplacement(Appendable appendable, HtmlTagImpl htmlTagImpl) {
         String strReplace = this.emptyTagReplacement.replace(htmlTagImpl);
         if (strReplace != null) {
             AppendableUtils.appendQuietly(appendable, strReplace);

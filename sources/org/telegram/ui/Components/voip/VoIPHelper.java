@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -150,7 +149,7 @@ public abstract class VoIPHelper {
         initiateCall(null, chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
     }
 
-    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) throws InterruptedException {
+    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) {
         String name;
         int i;
         String name2;
@@ -214,7 +213,7 @@ public abstract class VoIPHelper {
                     }
                     new AlertDialog.Builder(activity).setTitle(LocaleController.getString(callerId < 0 ? R.string.VoipOngoingChatAlertTitle : R.string.VoipOngoingAlertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, name, name2))).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                         @Override
-                        public final void onClick(AlertDialog alertDialog, int i4) throws InterruptedException {
+                        public final void onClick(AlertDialog alertDialog, int i4) {
                             VoIPHelper.lambda$initiateCall$3(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance, alertDialog, i4);
                         }
                     }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
@@ -236,7 +235,7 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$initiateCall$3(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) throws InterruptedException {
+    public static void lambda$initiateCall$3(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) {
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
@@ -262,14 +261,14 @@ public abstract class VoIPHelper {
         joinConference(activity, i, inputGroupCall, z, groupCall, null);
     }
 
-    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) throws InterruptedException {
+    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) {
         if (activity == null) {
             return;
         }
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     VoIPHelper.lambda$joinConference$4(activity, i, inputGroupCall, z, groupCall, hashSet);
                 }
             });
@@ -313,7 +312,7 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) throws InterruptedException {
+    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) {
         lastCallTime = 0L;
         joinConference(activity, i, inputGroupCall, z, groupCall, hashSet);
     }
@@ -687,7 +686,8 @@ public abstract class VoIPHelper {
     }
 
     public static void lambda$showRateAlert$11(View view) {
-        ((CheckBoxCell) view).setChecked(!r2.isChecked(), true);
+        CheckBoxCell checkBoxCell = (CheckBoxCell) view;
+        checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
     }
 
     public static void lambda$showRateAlert$12(boolean[] zArr, CheckBoxCell checkBoxCell, View view) {
@@ -854,7 +854,7 @@ public abstract class VoIPHelper {
         textCheckCell.setChecked(z2);
     }
 
-    public static int getDataSavingDefault() throws IOException {
+    public static int getDataSavingDefault() {
         boolean z = DownloadController.getInstance(0).lowPreset.lessCallData;
         boolean z2 = DownloadController.getInstance(0).mediumPreset.lessCallData;
         boolean z3 = DownloadController.getInstance(0).highPreset.lessCallData;
@@ -885,12 +885,10 @@ public abstract class VoIPHelper {
         File[] fileArrListFiles;
         File logsDir = getLogsDir();
         if (!BuildVars.DEBUG_VERSION && (fileArrListFiles = logsDir.listFiles()) != null) {
-            ArrayList arrayList = new ArrayList(Arrays.asList(fileArrListFiles));
+            ArrayList<File> arrayList = new ArrayList(Arrays.asList(fileArrListFiles));
             while (arrayList.size() > 20) {
                 File file = (File) arrayList.get(0);
-                Iterator it = arrayList.iterator();
-                while (it.hasNext()) {
-                    File file2 = (File) it.next();
+                for (File file2 : arrayList) {
                     if (file2.getName().endsWith(".log") && file2.lastModified() < file.lastModified()) {
                         file = file2;
                     }

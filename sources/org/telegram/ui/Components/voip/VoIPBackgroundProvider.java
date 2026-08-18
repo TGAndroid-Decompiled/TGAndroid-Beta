@@ -161,11 +161,12 @@ public class VoIPBackgroundProvider {
     }
 
     public void setLightTranslation(float f, float f2) {
+        float height = (this.totalHeight * 1.12f) / this.lightShaderTools.getBitmap().getHeight();
         float f3 = this.totalHeight;
         float f4 = 1.12f * f3;
         float f5 = -f;
         float f6 = -f2;
-        this.lightShaderTools.setMatrix(f5 - ((f4 - this.totalWidth) / 2.0f), f6 - ((f4 - f3) / 2.0f), (this.totalHeight * 1.12f) / this.lightShaderTools.getBitmap().getHeight(), this.degree);
+        this.lightShaderTools.setMatrix(f5 - ((f4 - this.totalWidth) / 2.0f), f6 - ((f4 - f3) / 2.0f), height, this.degree);
         this.revealShaderTools.setBounds(f5, f6, this.totalWidth - f, this.totalHeight - f2);
     }
 

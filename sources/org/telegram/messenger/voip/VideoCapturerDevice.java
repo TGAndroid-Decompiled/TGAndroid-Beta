@@ -11,7 +11,6 @@ import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
@@ -117,12 +116,15 @@ public class VideoCapturerDevice {
             }
             float f2 = i6 * f;
             i2 = (int) f2;
-            if (f2 != i2) {
-                i6++;
-            } else if (point.x <= point.y) {
+            if (f2 == i2) {
+                if (point.x > point.y) {
+                    break;
+                }
                 i2 = i6;
                 i6 = i2;
+                break;
             }
+            i6++;
         }
         if (i6 != -1 && f != 1.0f) {
             while (true) {

@@ -184,7 +184,7 @@ public class AudioVisualizerDrawable {
             circleBezierDrawableArr[1].radius = fDp;
             circleBezierDrawable.radius = fDp;
             canvas.save();
-            float f11 = (float) (this.rotation + 0.6d);
+            float f11 = (float) (((double) this.rotation) + 0.6d);
             this.rotation = f11;
             canvas.rotate(f11, f, f2);
             canvas.save();

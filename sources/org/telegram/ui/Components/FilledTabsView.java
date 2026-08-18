@@ -94,18 +94,20 @@ public class FilledTabsView extends View {
                 i2 = i3 + 1;
             } else {
                 AndroidUtilities.dp(2.0f);
+                float fDp4 = (height - AndroidUtilities.dp(26.0f)) / 2.0f;
+                float fDp5 = (height + AndroidUtilities.dp(26.0f)) / 2.0f;
                 int iClamp = Utilities.clamp((int) Math.floor(this.selectedTabIndex), this.tabs.length - 1, 0);
                 int iClamp2 = Utilities.clamp((int) Math.ceil(this.selectedTabIndex), this.tabs.length - 1, 0);
-                float fDp4 = this.bounds[iClamp].left + AndroidUtilities.dp(2.0f);
-                float fDp5 = this.bounds[iClamp2].left + AndroidUtilities.dp(2.0f);
+                float fDp6 = this.bounds[iClamp].left + AndroidUtilities.dp(2.0f);
+                float fDp7 = this.bounds[iClamp2].left + AndroidUtilities.dp(2.0f);
                 double d = this.selectedTabIndex;
-                float fLerp = AndroidUtilities.lerp(fDp4, fDp5, (float) (d - Math.floor(d)));
-                float fDp6 = this.bounds[iClamp].right - AndroidUtilities.dp(2.0f);
-                float fDp7 = this.bounds[iClamp2].right - AndroidUtilities.dp(2.0f);
+                float fLerp = AndroidUtilities.lerp(fDp6, fDp7, (float) (d - Math.floor(d)));
+                float fDp8 = this.bounds[iClamp].right - AndroidUtilities.dp(2.0f);
+                float fDp9 = this.bounds[iClamp2].right - AndroidUtilities.dp(2.0f);
                 double d2 = this.selectedTabIndex;
-                float fLerp2 = AndroidUtilities.lerp(fDp6, fDp7, (float) (d2 - Math.floor(d2)));
+                float fLerp2 = AndroidUtilities.lerp(fDp8, fDp9, (float) (d2 - Math.floor(d2)));
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(fLerp, (height - AndroidUtilities.dp(26.0f)) / 2.0f, fLerp2, (height + AndroidUtilities.dp(26.0f)) / 2.0f);
+                rectF2.set(fLerp, fDp4, fLerp2, fDp5);
                 canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.selectedPaint);
                 canvas.restore();
                 return;

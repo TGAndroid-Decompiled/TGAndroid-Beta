@@ -289,19 +289,16 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         this.imageReceiver.setRoundRadius((int) (AndroidUtilities.dp(40.0f) / 2.0f));
         this.counterDrawable.setSize(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(100.0f));
         if (this.isTopic) {
-            this.lastWidthTopicId = this.nextTopic == null ? 0L : r14.id;
+            TLRPC.TL_forumTopic tL_forumTopic3 = this.nextTopic;
+            this.lastWidthTopicId = tL_forumTopic3 == null ? 0L : tL_forumTopic3.id;
         }
     }
 
     public void draw(Canvas canvas, View view, float f, float f2) {
-        int i;
-        int i2;
-        int i3;
         float f3;
         float f4;
-        float f5;
         ImageReceiver imageReceiver;
-        float f6;
+        float f5;
         if (this.parentView != view) {
             this.parentView = view;
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
@@ -314,29 +311,24 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         if (fDp < AndroidUtilities.dp(8.0f)) {
             return;
         }
-        float f7 = f < 0.2f ? 5.0f * f * f2 : f2;
+        float f6 = f < 0.2f ? 5.0f * f * f2 : f2;
         Theme.applyServiceShaderMatrix(this.lastWidth, view.getMeasuredHeight(), 0.0f, view.getMeasuredHeight() - fDp);
         TextPaint textPaint = this.textPaint;
-        int i4 = Theme.key_chat_serviceText;
-        textPaint.setColor(getThemedColor(i4));
-        this.arrowPaint.setColor(getThemedColor(i4));
+        int i = Theme.key_chat_serviceText;
+        textPaint.setColor(getThemedColor(i));
+        this.arrowPaint.setColor(getThemedColor(i));
         this.textPaint2.setColor(getThemedColor(Theme.key_chat_messagePanelHint));
         int alpha = getThemedPaint("paintChatActionBackground").getAlpha();
         int alpha2 = Theme.chat_actionBackgroundGradientDarkenPaint.getAlpha();
         int alpha3 = this.textPaint.getAlpha();
         int alpha4 = this.arrowPaint.getAlpha();
-        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha2 * f7));
-        int i5 = (int) (alpha * f7);
-        getThemedPaint("paintChatActionBackground").setAlpha(i5);
-        int i6 = (int) (alpha3 * f7);
-        this.textPaint.setAlpha(i6);
-        if ((f < 1.0f || this.lastProgress >= 1.0f) && (f >= 1.0f || this.lastProgress != 1.0f)) {
-            i = i5;
-            i2 = alpha;
-        } else {
-            i = i5;
+        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha2 * f6));
+        int i2 = (int) (alpha * f6);
+        getThemedPaint("paintChatActionBackground").setAlpha(i2);
+        int i3 = (int) (alpha3 * f6);
+        this.textPaint.setAlpha(i3);
+        if ((f >= 1.0f && this.lastProgress < 1.0f) || (f < 1.0f && this.lastProgress == 1.0f)) {
             long jCurrentTimeMillis = System.currentTimeMillis();
-            i2 = alpha;
             if (jCurrentTimeMillis - this.lastHapticTime > 100) {
                 try {
                     view.performHapticFeedback(3, 2);
@@ -355,115 +347,112 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             this.animateSwipeToRelease = false;
             showReleaseState(false, view);
         }
-        float f8 = this.lastWidth / 2.0f;
-        float f9 = this.bounceProgress * (-AndroidUtilities.dp(4.0f));
+        float f7 = this.lastWidth / 2.0f;
+        float f8 = this.bounceProgress * (-AndroidUtilities.dp(4.0f));
         if (this.emptyStub) {
-            fDp -= f9;
+            fDp -= f8;
         }
-        float f10 = fDp / 2.0f;
-        float fMax = Math.max(0.0f, Math.min(this.circleRadius, (f10 - (AndroidUtilities.dp(16.0f) * f)) - AndroidUtilities.dp(4.0f)));
-        float fMax2 = ((Math.max(0.0f, Math.min(this.circleRadius * f, f10 - (AndroidUtilities.dp(8.0f) * f))) * 2.0f) - AndroidUtilities.dp2(16.0f)) * (1.0f - this.swipeToReleaseProgress);
+        float f9 = fDp / 2.0f;
+        float fMax = Math.max(0.0f, Math.min(this.circleRadius, (f9 - (AndroidUtilities.dp(16.0f) * f)) - AndroidUtilities.dp(4.0f)));
+        float fMax2 = ((Math.max(0.0f, Math.min(this.circleRadius * f, f9 - (AndroidUtilities.dp(8.0f) * f))) * 2.0f) - AndroidUtilities.dp2(16.0f)) * (1.0f - this.swipeToReleaseProgress);
         float fDp2 = AndroidUtilities.dp(56.0f);
-        float f11 = this.swipeToReleaseProgress;
-        float f12 = fMax2 + (fDp2 * f11);
-        if (f11 < 1.0f || this.emptyStub) {
-            float f13 = -fDp;
-            i3 = alpha2;
-            f3 = f7;
-            float fDp3 = ((-AndroidUtilities.dp(8.0f)) * (1.0f - this.swipeToReleaseProgress)) + ((AndroidUtilities.dp(56.0f) + f13) * this.swipeToReleaseProgress);
+        float f10 = this.swipeToReleaseProgress;
+        float f11 = fMax2 + (fDp2 * f10);
+        if (f10 < 1.0f || this.emptyStub) {
+            float f12 = -fDp;
+            float fDp3 = ((-AndroidUtilities.dp(8.0f)) * (1.0f - this.swipeToReleaseProgress)) + ((AndroidUtilities.dp(56.0f) + f12) * this.swipeToReleaseProgress);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f8 - fMax, f13, fMax + f8, fDp3);
+            rectF.set(f7 - fMax, f12, fMax + f7, fDp3);
             if (this.swipeToReleaseProgress <= 0.0f || this.emptyStub) {
-                f4 = 1.0f;
+                f3 = 1.0f;
             } else {
                 float fDp4 = AndroidUtilities.dp(16.0f) * this.swipeToReleaseProgress;
                 rectF.inset(fDp4, fDp4);
-                f4 = 1.0f - this.swipeToReleaseProgress;
+                f3 = 1.0f - this.swipeToReleaseProgress;
             }
-            drawBackground(canvas, rectF, f4);
-            float fDp5 = ((AndroidUtilities.dp(24.0f) + f13) + (AndroidUtilities.dp(8.0f) * (1.0f - f))) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress);
+            drawBackground(canvas, rectF, f3);
+            float fDp5 = ((AndroidUtilities.dp(24.0f) + f12) + (AndroidUtilities.dp(8.0f) * (1.0f - f))) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress);
             canvas.save();
-            f5 = fDp;
             rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
             canvas.clipRect(rectF);
-            float f14 = this.swipeToReleaseProgress;
-            if (f14 > 0.0f) {
-                this.arrowPaint.setAlpha((int) ((1.0f - f14) * 255.0f));
+            float f13 = this.swipeToReleaseProgress;
+            if (f13 > 0.0f) {
+                this.arrowPaint.setAlpha((int) ((1.0f - f13) * 255.0f));
             }
-            drawArrow(canvas, f8, fDp5, AndroidUtilities.dp(24.0f) * f);
+            drawArrow(canvas, f7, fDp5, AndroidUtilities.dp(24.0f) * f);
             if (this.emptyStub) {
-                float fDp22 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f12) * (1.0f - this.swipeToReleaseProgress)) + ((f13 - AndroidUtilities.dp(2.0f)) * this.swipeToReleaseProgress) + f9;
+                float fDp6 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f11) * (1.0f - this.swipeToReleaseProgress)) + ((f12 - AndroidUtilities.dp(2.0f)) * this.swipeToReleaseProgress) + f8;
                 this.arrowPaint.setAlpha(alpha4);
                 canvas.save();
-                canvas.scale(f, f, f8, AndroidUtilities.dp(28.0f) + fDp22);
-                drawCheck(canvas, f8, fDp22 + AndroidUtilities.dp(28.0f));
+                canvas.scale(f, f, f7, AndroidUtilities.dp(28.0f) + fDp6);
+                drawCheck(canvas, f7, fDp6 + AndroidUtilities.dp(28.0f));
                 canvas.restore();
             }
             canvas.restore();
-        } else {
-            f5 = fDp;
-            f3 = f7;
-            i3 = alpha2;
         }
         if (this.chatNameLayout != null && this.swipeToReleaseProgress > 0.0f) {
-            getThemedPaint("paintChatActionBackground").setAlpha(i);
-            this.textPaint.setAlpha(i6);
-            float fDp6 = ((AndroidUtilities.dp(20.0f) * (1.0f - this.swipeToReleaseProgress)) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress)) + f9;
+            getThemedPaint("paintChatActionBackground").setAlpha(i2);
+            this.textPaint.setAlpha(i3);
+            float fDp7 = ((AndroidUtilities.dp(20.0f) * (1.0f - this.swipeToReleaseProgress)) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress)) + f8;
             RectF rectF2 = AndroidUtilities.rectTmp;
-            float f15 = (r5 - this.chatNameWidth) / 2.0f;
-            rectF2.set(f15, fDp6, this.lastWidth - f15, this.chatNameLayout.getHeight() + fDp6);
+            int i4 = this.lastWidth;
+            float f14 = (i4 - this.chatNameWidth) / 2.0f;
+            rectF2.set(f14, fDp7, i4 - f14, this.chatNameLayout.getHeight() + fDp7);
             rectF2.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(4.0f));
             canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), getThemedPaint("paintChatActionBackground"));
             if (hasGradientService()) {
                 canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), Theme.chat_actionBackgroundGradientDarkenPaint);
             }
             canvas.save();
-            canvas.translate((this.lastWidth - this.chatNameWidth) / 2.0f, fDp6);
+            canvas.translate((this.lastWidth - this.chatNameWidth) / 2.0f, fDp7);
             this.chatNameLayout.draw(canvas);
             canvas.restore();
         }
-        if (!this.emptyStub && f12 > 0.0f) {
-            float fDp23 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f12) * (1.0f - this.swipeToReleaseProgress)) + (((-f5) + AndroidUtilities.dp(4.0f)) * this.swipeToReleaseProgress) + f9;
+        if (!this.emptyStub && f11 > 0.0f) {
+            float fDp8 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f11) * (1.0f - this.swipeToReleaseProgress)) + (((-f4) + AndroidUtilities.dp(4.0f)) * this.swipeToReleaseProgress) + f8;
             AnimatedEmojiDrawable animatedEmojiDrawable2 = this.animatedEmojiDrawable;
             if (animatedEmojiDrawable2 != null && animatedEmojiDrawable2.getImageReceiver() != null) {
+                f4 = fDp;
                 imageReceiver = this.animatedEmojiDrawable.getImageReceiver();
             } else {
+                f4 = fDp;
+                f4 = fDp;
                 imageReceiver = this.imageReceiver;
             }
             ImageReceiver imageReceiver2 = imageReceiver;
-            imageReceiver2.setAlpha(f3);
-            float f16 = f12 / 2.0f;
-            imageReceiver2.setRoundRadius((int) f16);
-            imageReceiver2.setImageCoords(f8 - f16, fDp23, f12, f12);
+            imageReceiver2.setAlpha(f6);
+            float f15 = f11 / 2.0f;
+            imageReceiver2.setRoundRadius((int) f15);
+            imageReceiver2.setImageCoords(f7 - f15, fDp8, f11, f11);
             if (this.isTopic && imageReceiver2.getDrawable() != null && (imageReceiver2.getDrawable() instanceof CombinedDrawable) && (((CombinedDrawable) imageReceiver2.getDrawable()).getIcon() instanceof LetterDrawable)) {
                 ((LetterDrawable) ((CombinedDrawable) imageReceiver2.getDrawable()).getIcon()).scale = f;
             }
             if (this.swipeToReleaseProgress > 0.0f && this.visibleCounterDrawable) {
-                f6 = 1.0f;
+                f5 = 1.0f;
                 canvas.saveLayerAlpha(imageReceiver2.getImageX(), imageReceiver2.getImageY(), imageReceiver2.getImageWidth() + imageReceiver2.getImageX(), imageReceiver2.getImageHeight() + imageReceiver2.getImageY(), 255, 31);
                 imageReceiver2.draw(canvas);
-                float f17 = this.swipeToReleaseProgress;
-                canvas.scale(f17, f17, AndroidUtilities.dp(12.0f) + f8 + this.counterDrawable.getCenterX(), (fDp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
-                canvas.translate(AndroidUtilities.dp(12.0f) + f8, fDp23 - AndroidUtilities.dp(6.0f));
+                float f16 = this.swipeToReleaseProgress;
+                canvas.scale(f16, f16, AndroidUtilities.dp(12.0f) + f7 + this.counterDrawable.getCenterX(), (fDp8 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
+                canvas.translate(AndroidUtilities.dp(12.0f) + f7, fDp8 - AndroidUtilities.dp(6.0f));
                 this.counterDrawable.updateBackgroundRect();
                 this.counterDrawable.rectF.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
                 RectF rectF3 = this.counterDrawable.rectF;
                 canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, this.counterDrawable.rectF.height() / 2.0f, this.xRefPaint);
                 canvas.restore();
                 canvas.save();
-                float f18 = this.swipeToReleaseProgress;
-                canvas.scale(f18, f18, AndroidUtilities.dp(12.0f) + f8 + this.counterDrawable.getCenterX(), (fDp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
-                canvas.translate(f8 + AndroidUtilities.dp(12.0f), fDp23 - AndroidUtilities.dp(6.0f));
+                float f17 = this.swipeToReleaseProgress;
+                canvas.scale(f17, f17, AndroidUtilities.dp(12.0f) + f7 + this.counterDrawable.getCenterX(), (fDp8 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
+                canvas.translate(f7 + AndroidUtilities.dp(12.0f), fDp8 - AndroidUtilities.dp(6.0f));
                 this.counterDrawable.draw(canvas);
                 canvas.restore();
             } else {
-                f6 = 1.0f;
+                f5 = 1.0f;
                 imageReceiver2.draw(canvas);
             }
-            imageReceiver2.setAlpha(f6);
+            imageReceiver2.setAlpha(f5);
         }
-        getThemedPaint("paintChatActionBackground").setAlpha(i2);
-        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha(i3);
+        getThemedPaint("paintChatActionBackground").setAlpha(alpha);
+        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha(alpha2);
         this.textPaint.setAlpha(alpha3);
         this.arrowPaint.setAlpha(alpha4);
     }

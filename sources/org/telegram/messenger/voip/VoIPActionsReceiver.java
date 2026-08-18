@@ -1,13 +1,12 @@
 package org.telegram.messenger.voip;
 
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
 public class VoIPActionsReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) throws InterruptedException, PendingIntent.CanceledException {
+    public void onReceive(Context context, Intent intent) {
         if (!intent.hasExtra("group_call_invite_msg_id") && VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().handleNotificationAction(intent);
             return;

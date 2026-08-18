@@ -27,7 +27,6 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Stories.recorder.CollageLayout;
 
 public class DraftsController {
     public final int currentAccount;
@@ -54,61 +53,66 @@ public class DraftsController {
     }
 
     public static void lambda$loadInternal$1(MessagesStorage messagesStorage, boolean z, final Utilities.Callback callback) {
-        SQLiteDatabase database;
         final ArrayList arrayList = new ArrayList();
         SQLiteCursor sQLiteCursorQueryFinalized = null;
         try {
             try {
-                database = messagesStorage.getDatabase();
+                SQLiteDatabase database = messagesStorage.getDatabase();
+                if (database == null) {
+                    return;
+                }
+                ArrayList arrayList2 = new ArrayList();
+                StringBuilder sb = new StringBuilder();
+                sb.append("SELECT id, data, type FROM story_drafts WHERE type = ");
+                sb.append(z ? "2" : "0 OR type = 1");
+                sb.append(" ORDER BY date DESC");
+                String string = sb.toString();
+                sQLiteCursorQueryFinalized = database.queryFinalized(string, new Object[0]);
+                while (sQLiteCursorQueryFinalized.next()) {
+                    long jLongValue = sQLiteCursorQueryFinalized.longValue(0);
+                    NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(1);
+                    if (nativeByteBufferByteBufferValue != null) {
+                        try {
+                            StoryDraft storyDraft = new StoryDraft(nativeByteBufferByteBufferValue, true);
+                            storyDraft.id = jLongValue;
+                            arrayList.add(storyDraft);
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            arrayList2.add(Long.valueOf(jLongValue));
+                        }
+                        nativeByteBufferByteBufferValue.reuse();
+                    }
+                }
+                sQLiteCursorQueryFinalized.dispose();
+                if (arrayList2.size() > 0) {
+                    for (int i = 0; i < arrayList2.size(); i++) {
+                        database.executeFast("DELETE FROM story_drafts WHERE id = " + arrayList2.get(i)).stepThis().dispose();
+                    }
+                }
+                sQLiteCursorQueryFinalized.dispose();
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        callback.run(arrayList);
+                    }
+                });
             } catch (Throwable th) {
                 if (sQLiteCursorQueryFinalized != null) {
                     sQLiteCursorQueryFinalized.dispose();
                 }
                 throw th;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e2) {
+            FileLog.e(e2);
             if (sQLiteCursorQueryFinalized != null) {
             }
-        }
-        if (database == null) {
-            return;
-        }
-        ArrayList arrayList2 = new ArrayList();
-        StringBuilder sb = new StringBuilder();
-        sb.append("SELECT id, data, type FROM story_drafts WHERE type = ");
-        sb.append(z ? "2" : "0 OR type = 1");
-        sb.append(" ORDER BY date DESC");
-        String string = sb.toString();
-        sQLiteCursorQueryFinalized = database.queryFinalized(string, new Object[0]);
-        while (sQLiteCursorQueryFinalized.next()) {
-            long jLongValue = sQLiteCursorQueryFinalized.longValue(0);
-            NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(1);
-            if (nativeByteBufferByteBufferValue != null) {
-                try {
-                    StoryDraft storyDraft = new StoryDraft(nativeByteBufferByteBufferValue, true);
-                    storyDraft.id = jLongValue;
-                    arrayList.add(storyDraft);
-                } catch (Exception e2) {
-                    FileLog.e(e2);
-                    arrayList2.add(Long.valueOf(jLongValue));
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    callback.run(arrayList);
                 }
-                nativeByteBufferByteBufferValue.reuse();
-            }
+            });
         }
-        sQLiteCursorQueryFinalized.dispose();
-        if (arrayList2.size() > 0) {
-            for (int i = 0; i < arrayList2.size(); i++) {
-                database.executeFast("DELETE FROM story_drafts WHERE id = " + arrayList2.get(i)).stepThis().dispose();
-            }
-        }
-        sQLiteCursorQueryFinalized.dispose();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                callback.run(arrayList);
-            }
-        });
     }
 
     public void load() {
@@ -206,35 +210,34 @@ public class DraftsController {
     }
 
     public static void lambda$edit$4(MessagesStorage messagesStorage, StoryDraft storyDraft) {
-        SQLiteDatabase database;
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
-                database = messagesStorage.getDatabase();
+                SQLiteDatabase database = messagesStorage.getDatabase();
+                if (database == null) {
+                    return;
+                }
+                sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO story_drafts VALUES (?, ?, ?, ?)");
+                sQLitePreparedStatementExecuteFast.requery();
+                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyDraft.getObjectSize());
+                storyDraft.toStream(nativeByteBuffer);
+                int i = 1;
+                sQLitePreparedStatementExecuteFast.bindLong(1, storyDraft.id);
+                sQLitePreparedStatementExecuteFast.bindLong(2, storyDraft.date);
+                sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
+                if (!storyDraft.isEdit) {
+                    i = storyDraft.isError ? 2 : 0;
+                }
+                sQLitePreparedStatementExecuteFast.bindInteger(4, i);
+                sQLitePreparedStatementExecuteFast.step();
+                nativeByteBuffer.reuse();
+                sQLitePreparedStatementExecuteFast.dispose();
             } catch (Exception e) {
                 FileLog.e(e);
                 if (sQLitePreparedStatementExecuteFast == null) {
                     return;
                 }
             }
-            if (database == null) {
-                return;
-            }
-            sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO story_drafts VALUES (?, ?, ?, ?)");
-            sQLitePreparedStatementExecuteFast.requery();
-            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyDraft.getObjectSize());
-            storyDraft.toStream(nativeByteBuffer);
-            int i = 1;
-            sQLitePreparedStatementExecuteFast.bindLong(1, storyDraft.id);
-            sQLitePreparedStatementExecuteFast.bindLong(2, storyDraft.date);
-            sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
-            if (!storyDraft.isEdit) {
-                i = storyDraft.isError ? 2 : 0;
-            }
-            sQLitePreparedStatementExecuteFast.bindInteger(4, i);
-            sQLitePreparedStatementExecuteFast.step();
-            nativeByteBuffer.reuse();
-            sQLitePreparedStatementExecuteFast.dispose();
             sQLitePreparedStatementExecuteFast.dispose();
         } catch (Throwable th) {
             if (sQLitePreparedStatementExecuteFast != null) {
@@ -349,35 +352,34 @@ public class DraftsController {
     }
 
     public static void lambda$append$5(MessagesStorage messagesStorage, StoryDraft storyDraft) {
-        SQLiteDatabase database;
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
-                database = messagesStorage.getDatabase();
+                SQLiteDatabase database = messagesStorage.getDatabase();
+                if (database == null) {
+                    return;
+                }
+                sQLitePreparedStatementExecuteFast = database.executeFast("INSERT INTO story_drafts VALUES (?, ?, ?, ?)");
+                sQLitePreparedStatementExecuteFast.requery();
+                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyDraft.getObjectSize());
+                storyDraft.toStream(nativeByteBuffer);
+                int i = 1;
+                sQLitePreparedStatementExecuteFast.bindLong(1, storyDraft.id);
+                sQLitePreparedStatementExecuteFast.bindLong(2, storyDraft.date);
+                sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
+                if (!storyDraft.isEdit) {
+                    i = storyDraft.isError ? 2 : 0;
+                }
+                sQLitePreparedStatementExecuteFast.bindInteger(4, i);
+                sQLitePreparedStatementExecuteFast.step();
+                nativeByteBuffer.reuse();
+                sQLitePreparedStatementExecuteFast.dispose();
             } catch (Exception e) {
                 FileLog.e(e);
                 if (sQLitePreparedStatementExecuteFast == null) {
                     return;
                 }
             }
-            if (database == null) {
-                return;
-            }
-            sQLitePreparedStatementExecuteFast = database.executeFast("INSERT INTO story_drafts VALUES (?, ?, ?, ?)");
-            sQLitePreparedStatementExecuteFast.requery();
-            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyDraft.getObjectSize());
-            storyDraft.toStream(nativeByteBuffer);
-            int i = 1;
-            sQLitePreparedStatementExecuteFast.bindLong(1, storyDraft.id);
-            sQLitePreparedStatementExecuteFast.bindLong(2, storyDraft.date);
-            sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
-            if (!storyDraft.isEdit) {
-                i = storyDraft.isError ? 2 : 0;
-            }
-            sQLitePreparedStatementExecuteFast.bindInteger(4, i);
-            sQLitePreparedStatementExecuteFast.step();
-            nativeByteBuffer.reuse();
-            sQLitePreparedStatementExecuteFast.dispose();
             sQLitePreparedStatementExecuteFast.dispose();
         } catch (Throwable th) {
             if (sQLitePreparedStatementExecuteFast != null) {
@@ -392,9 +394,7 @@ public class DraftsController {
             return;
         }
         ArrayList arrayList = new ArrayList();
-        Iterator it = this.drafts.iterator();
-        while (it.hasNext()) {
-            StoryEntry storyEntry2 = (StoryEntry) it.next();
+        for (StoryEntry storyEntry2 : this.drafts) {
             if (storyEntry2.isEdit && storyEntry2.editStoryId == storyItem.id) {
                 arrayList.add(storyEntry2);
             }
@@ -410,7 +410,7 @@ public class DraftsController {
         int i = storyItem.id;
         storyEntry.editStoryId = i;
         storyDraft.editStoryId = i;
-        long j2 = storyItem.expire_date * 1000;
+        long j2 = ((long) storyItem.expire_date) * 1000;
         storyEntry.editExpireDate = j2;
         storyDraft.editExpireDate = j2;
         TLRPC.MessageMedia messageMedia = storyItem.media;
@@ -438,9 +438,7 @@ public class DraftsController {
         if (storyItem == null) {
             return null;
         }
-        Iterator it = this.drafts.iterator();
-        while (it.hasNext()) {
-            StoryEntry storyEntry = (StoryEntry) it.next();
+        for (StoryEntry storyEntry : this.drafts) {
             if (storyEntry.isEdit && storyItem.id == storyEntry.editStoryId && j == storyEntry.editStoryPeerId && ((document = (messageMedia = storyItem.media).document) == null || document.id == storyEntry.editDocumentId)) {
                 TLRPC.Photo photo = messageMedia.photo;
                 if (photo == null || photo.id == storyEntry.editPhotoId) {
@@ -1015,8 +1013,8 @@ public class DraftsController {
                 }
                 return;
             }
-            int int322 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < int322; i2++) {
+            int int33 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < int33; i2++) {
                 if (this.captionEntities == null) {
                     this.captionEntities = new ArrayList();
                 }
@@ -1028,9 +1026,9 @@ public class DraftsController {
                 }
                 return;
             }
-            int int323 = abstractSerializedData.readInt32(z);
+            int int34 = abstractSerializedData.readInt32(z);
             this.privacyRules.clear();
-            for (int i3 = 0; i3 < int323; i3++) {
+            for (int i3 = 0; i3 < int34; i3++) {
                 this.privacyRules.add(TLRPC.InputPrivacyRule.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
             }
             abstractSerializedData.readBool(z);
@@ -1046,8 +1044,8 @@ public class DraftsController {
                 }
                 return;
             }
-            int int324 = abstractSerializedData.readInt32(z);
-            for (int i4 = 0; i4 < int324; i4++) {
+            int int35 = abstractSerializedData.readInt32(z);
+            for (int i4 = 0; i4 < int35; i4++) {
                 if (this.mediaEntities == null) {
                     this.mediaEntities = new ArrayList();
                 }
@@ -1059,8 +1057,8 @@ public class DraftsController {
                 }
                 return;
             }
-            int int325 = abstractSerializedData.readInt32(z);
-            for (int i5 = 0; i5 < int325; i5++) {
+            int int36 = abstractSerializedData.readInt32(z);
+            for (int i5 = 0; i5 < int36; i5++) {
                 if (this.stickers == null) {
                     this.stickers = new ArrayList();
                 }
@@ -1071,10 +1069,10 @@ public class DraftsController {
             if (string5 != null && string5.length() == 0) {
                 this.filterFilePath = null;
             }
-            int int326 = abstractSerializedData.readInt32(z);
-            if (int326 == 1450380236) {
+            int int37 = abstractSerializedData.readInt32(z);
+            if (int37 == 1450380236) {
                 this.filterState = null;
-            } else if (int326 == -1318387530) {
+            } else if (int37 == -1318387530) {
                 MediaController.SavedFilterState savedFilterState = new MediaController.SavedFilterState();
                 this.filterState = savedFilterState;
                 savedFilterState.readParams(abstractSerializedData, z);
@@ -1108,11 +1106,11 @@ public class DraftsController {
             }
             if (abstractSerializedData.remaining() > 0) {
                 this.isError = abstractSerializedData.readBool(z);
-                int int327 = abstractSerializedData.readInt32(z);
-                if (int327 == 1450380236) {
+                int int38 = abstractSerializedData.readInt32(z);
+                if (int38 == 1450380236) {
                     this.error = null;
                 } else {
-                    this.error = TLRPC.TL_error.TLdeserialize(abstractSerializedData, int327, z);
+                    this.error = TLRPC.TL_error.TLdeserialize(abstractSerializedData, int38, z);
                 }
                 this.fullThumb = abstractSerializedData.readString(z);
             }
@@ -1147,9 +1145,9 @@ public class DraftsController {
             if (abstractSerializedData.remaining() > 0) {
                 this.botId = abstractSerializedData.readInt64(z);
                 this.botLang = abstractSerializedData.readString(z);
-                int int328 = abstractSerializedData.readInt32(z);
-                if (int328 != 1450380236) {
-                    this.botEdit = TLRPC.InputMedia.TLdeserialize(abstractSerializedData, int328, z);
+                int int39 = abstractSerializedData.readInt32(z);
+                if (int39 != 1450380236) {
+                    this.botEdit = TLRPC.InputMedia.TLdeserialize(abstractSerializedData, int39, z);
                 }
             }
             if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == -559038737) {

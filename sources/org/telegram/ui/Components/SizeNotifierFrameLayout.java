@@ -44,7 +44,6 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.BlurSettingsBottomSheet;
 import org.telegram.ui.ChatBackgroundDrawable;
-import org.telegram.ui.Components.WallpaperParallaxEffect;
 
 public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colorable {
     private static DispatchQueue blurQueue;
@@ -739,7 +738,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
         } else {
             blurBitmap.needBlurBottom = false;
         }
-        this.times2 = (int) (this.times2 + (System.currentTimeMillis() - jCurrentTimeMillis));
+        this.times2 = (int) (((long) this.times2) + (System.currentTimeMillis() - jCurrentTimeMillis));
         int i3 = this.count2 + 1;
         this.count2 = i3;
         if (i3 >= 20) {
@@ -771,19 +770,20 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
             if (blurBitmap.needBlurBottom && (bitmap = blurBitmap.bottomBitmap) != null) {
                 Utilities.stackBlurBitmap(bitmap, this.radius);
             }
-            SizeNotifierFrameLayout.this.times = (int) (r2.times + (System.currentTimeMillis() - jCurrentTimeMillis));
             SizeNotifierFrameLayout sizeNotifierFrameLayout = SizeNotifierFrameLayout.this;
-            int i = sizeNotifierFrameLayout.count + 1;
-            sizeNotifierFrameLayout.count = i;
+            sizeNotifierFrameLayout.times = (int) (((long) sizeNotifierFrameLayout.times) + (System.currentTimeMillis() - jCurrentTimeMillis));
+            SizeNotifierFrameLayout sizeNotifierFrameLayout2 = SizeNotifierFrameLayout.this;
+            int i = sizeNotifierFrameLayout2.count + 1;
+            sizeNotifierFrameLayout2.count = i;
             if (i > 1000) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("chat blur generating average time");
-                SizeNotifierFrameLayout sizeNotifierFrameLayout2 = SizeNotifierFrameLayout.this;
-                sb.append(sizeNotifierFrameLayout2.times / sizeNotifierFrameLayout2.count);
-                FileLog.d(sb.toString());
                 SizeNotifierFrameLayout sizeNotifierFrameLayout3 = SizeNotifierFrameLayout.this;
-                sizeNotifierFrameLayout3.count = 0;
-                sizeNotifierFrameLayout3.times = 0;
+                sb.append(sizeNotifierFrameLayout3.times / sizeNotifierFrameLayout3.count);
+                FileLog.d(sb.toString());
+                SizeNotifierFrameLayout sizeNotifierFrameLayout4 = SizeNotifierFrameLayout.this;
+                sizeNotifierFrameLayout4.count = 0;
+                sizeNotifierFrameLayout4.times = 0;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -1145,11 +1145,12 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
                 Matrix matrix3 = this.matrix;
                 BlurBitmap blurBitmap5 = this.currentBitmap;
                 matrix3.preScale(blurBitmap5.topScaleX, blurBitmap5.topScaleY);
-                if (this.prevBitmap != null) {
-                    this.matrix2.setTranslate(0.0f, (f3 - r7.pixelFixOffset) - 34.0f);
+                BlurBitmap blurBitmap6 = this.prevBitmap;
+                if (blurBitmap6 != null) {
+                    this.matrix2.setTranslate(0.0f, (f3 - blurBitmap6.pixelFixOffset) - 34.0f);
                     Matrix matrix4 = this.matrix2;
-                    BlurBitmap blurBitmap6 = this.prevBitmap;
-                    matrix4.preScale(blurBitmap6.topScaleX, blurBitmap6.topScaleY);
+                    BlurBitmap blurBitmap7 = this.prevBitmap;
+                    matrix4.preScale(blurBitmap7.topScaleX, blurBitmap7.topScaleY);
                 }
             }
             this.selectedBlurPaint.getShader().setLocalMatrix(this.matrix);

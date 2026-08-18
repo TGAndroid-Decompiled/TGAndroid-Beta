@@ -8,15 +8,25 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.ColorMatrix;
+import android.graphics.CornerPathEffect;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.text.style.CharacterStyle;
+import android.text.style.ForegroundColorSpan;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +37,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
+import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
@@ -381,9 +395,10 @@ public class ScrimOptions extends Dialog {
 
     public static void lambda$makeGlobalBlurBitmaps$8(View view, Utilities.Callback2 callback2, Bitmap bitmap) {
         if (view.getWidth() > 0 && view.getHeight() > 0) {
-            view.getLocationOnScreen(new int[2]);
-            int iClamp = Utilities.clamp((int) ((r0[0] / AndroidUtilities.displaySize.x) * bitmap.getWidth()), bitmap.getWidth(), 0);
-            int iClamp2 = Utilities.clamp((int) ((r0[1] / ((AndroidUtilities.displaySize.y + AndroidUtilities.statusBarHeight) + AndroidUtilities.navigationBarHeight)) * bitmap.getHeight()), bitmap.getHeight(), 0);
+            int[] iArr = new int[2];
+            view.getLocationOnScreen(iArr);
+            int iClamp = Utilities.clamp((int) ((iArr[0] / AndroidUtilities.displaySize.x) * bitmap.getWidth()), bitmap.getWidth(), 0);
+            int iClamp2 = Utilities.clamp((int) ((iArr[1] / ((AndroidUtilities.displaySize.y + AndroidUtilities.statusBarHeight) + AndroidUtilities.navigationBarHeight)) * bitmap.getHeight()), bitmap.getHeight(), 0);
             int iClamp3 = Utilities.clamp((int) ((view.getWidth() / AndroidUtilities.displaySize.x) * bitmap.getWidth()), bitmap.getWidth() - iClamp, 0);
             int iClamp4 = Utilities.clamp((int) ((view.getHeight() / ((AndroidUtilities.displaySize.y + AndroidUtilities.statusBarHeight) + AndroidUtilities.navigationBarHeight)) * bitmap.getHeight()), bitmap.getHeight() - iClamp2, 0);
             if ((iClamp != 0 || iClamp2 != 0 || iClamp3 != bitmap.getWidth() || iClamp4 != bitmap.getHeight()) && iClamp3 > 0 && iClamp4 > 0) {
@@ -417,7 +432,8 @@ public class ScrimOptions extends Dialog {
         Drawable drawable = this.scrimDrawable;
         if (drawable != null) {
             Rect bounds = drawable.getBounds();
-            if (this.optionsContainer != null) {
+            FrameLayout frameLayout = this.optionsContainer;
+            if (frameLayout != null) {
                 float f = bounds.left;
                 float f2 = this.scrimDrawableTx2;
                 float f3 = f + f2;
@@ -430,12 +446,13 @@ public class ScrimOptions extends Dialog {
                 if (this.optionsAtCenter) {
                     z = false;
                 } else {
-                    if (f4 - r1.getMeasuredWidth() < AndroidUtilities.dp(8.0f)) {
+                    if (f4 - frameLayout.getMeasuredWidth() < AndroidUtilities.dp(8.0f)) {
                         this.optionsView.setPivotX(AndroidUtilities.dp(6.0f));
                         this.optionsContainer.setX(Math.min(this.containerView.getWidth() - this.optionsContainer.getWidth(), f3 - AndroidUtilities.dp(10.0f)) - this.containerView.getX());
                         z = false;
                     } else {
-                        this.optionsView.setPivotX(r1.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
+                        View view = this.optionsView;
+                        view.setPivotX(view.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
                         this.optionsContainer.setX(Math.max(AndroidUtilities.dp(8.0f), (AndroidUtilities.dp(4.0f) + f4) - this.optionsContainer.getMeasuredWidth()) - this.containerView.getX());
                         z = true;
                     }
@@ -444,7 +461,8 @@ public class ScrimOptions extends Dialog {
                 }
                 float fDp = f8 + (this.scrimDrawableBackground != null ? AndroidUtilities.dp(21.0f) : 0);
                 if (this.optionsContainer.getMeasuredHeight() + fDp > this.windowView.getMeasuredHeight() - AndroidUtilities.dp(16.0f)) {
-                    this.optionsView.setPivotY(r0.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
+                    View view2 = this.optionsView;
+                    view2.setPivotY(view2.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
                     this.optionsContainer.setY(((f7 - AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredHeight()) - this.containerView.getY());
                 } else {
                     this.optionsView.setPivotY(AndroidUtilities.dp(6.0f));
@@ -473,7 +491,367 @@ public class ScrimOptions extends Dialog {
         setScrim(chatMessageCell, characterStyle, charSequence, false);
     }
 
-    public void setScrim(final org.telegram.ui.Cells.ChatMessageCell r31, android.text.style.CharacterStyle r32, java.lang.CharSequence r33, boolean r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ScrimOptions.setScrim(org.telegram.ui.Cells.ChatMessageCell, android.text.style.CharacterStyle, java.lang.CharSequence, boolean):void");
+    public void setScrim(final ChatMessageCell chatMessageCell, CharacterStyle characterStyle, CharSequence charSequence, boolean z) {
+        float captionX;
+        float captionY;
+        ArrayList<MessageObject.TextLayoutBlock> arrayList;
+        float f;
+        int width;
+        int spanStart;
+        int spanEnd;
+        StaticLayout staticLayout;
+        int i;
+        float fMax;
+        StaticLayout staticLayout2;
+        float f2;
+        int length;
+        StaticLayout staticLayout3;
+        RectF rectF;
+        final Bitmap bitmap;
+        int i2;
+        RichMessageLayout richMessageLayout;
+        RichMessageLayout.FoundLink foundLinkFindLink;
+        StaticLayout staticLayout4;
+        ArrayList<ChatMessageCell.PollButton> pollButtons;
+        int i3;
+        float f3;
+        float f4;
+        int i4;
+        CharacterStyle[] characterStyleArr;
+        if (chatMessageCell == null) {
+            return;
+        }
+        this.scrimCell = chatMessageCell;
+        int i5 = 0;
+        this.isGroup = chatMessageCell.getCurrentMessagesGroup() != null;
+        MessageObject messageObject = chatMessageCell.getMessageObject();
+        boolean z2 = chatMessageCell.getExplanationLayout() != null && messageObject.expandedExplanation;
+        if (z2 && z) {
+            captionX = chatMessageCell.getExplanationX();
+            captionY = chatMessageCell.getExplanationY();
+            arrayList = chatMessageCell.getExplanationLayout().textLayoutBlocks;
+            f = chatMessageCell.getExplanationLayout().textXOffset;
+        } else if (chatMessageCell.getCaptionLayout() != null) {
+            captionX = chatMessageCell.getCaptionX();
+            captionY = chatMessageCell.getCaptionY();
+            arrayList = chatMessageCell.getCaptionLayout().textLayoutBlocks;
+            f = chatMessageCell.getCaptionLayout().textXOffset;
+        } else {
+            captionX = 0.0f;
+            captionY = 0.0f;
+            arrayList = null;
+            f = 0.0f;
+        }
+        if (arrayList == null) {
+            captionX = chatMessageCell.getTextX();
+            captionY = chatMessageCell.getTextY() + chatMessageCell.transitionYOffsetForDrawables;
+            arrayList = messageObject.textLayoutBlocks;
+            f = messageObject.textXOffset;
+        }
+        if (arrayList == null) {
+            width = 0;
+            spanStart = 0;
+            spanEnd = 0;
+            staticLayout = null;
+            break;
+        }
+        int i6 = 0;
+        loop0: while (true) {
+            if (i6 >= arrayList.size()) {
+                width = 0;
+                spanStart = 0;
+                spanEnd = 0;
+                staticLayout = null;
+                break;
+            }
+            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i6);
+            StaticLayout staticLayout5 = textLayoutBlock.textLayout;
+            if (staticLayout5 != null && (staticLayout5.getText() instanceof Spanned) && (characterStyleArr = (CharacterStyle[]) ((Spanned) staticLayout5.getText()).getSpans(i5, staticLayout5.getText().length(), CharacterStyle.class)) != null) {
+                for (CharacterStyle characterStyle2 : characterStyleArr) {
+                    if (characterStyle2 == characterStyle) {
+                        spanStart = ((Spanned) staticLayout5.getText()).getSpanStart(characterStyle);
+                        spanEnd = ((Spanned) staticLayout5.getText()).getSpanEnd(characterStyle);
+                        captionX += textLayoutBlock.isRtl() ? (int) Math.ceil(f) : 0;
+                        captionY += textLayoutBlock.padTop + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams);
+                        width = textLayoutBlock.originalWidth;
+                        staticLayout = staticLayout5;
+                        break loop0;
+                    }
+                }
+            }
+            i6++;
+            i5 = 0;
+        }
+        if (staticLayout == null && chatMessageCell.getDescriptionlayout() != null) {
+            StaticLayout descriptionlayout = chatMessageCell.getDescriptionlayout();
+            int i7 = 0;
+            while (i7 == 0) {
+                if (descriptionlayout != null && (descriptionlayout.getText() instanceof Spanned)) {
+                    i4 = width;
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) ((Spanned) descriptionlayout.getText()).getSpans(0, descriptionlayout.getText().length(), CharacterStyle.class);
+                    if (characterStyleArr2 != null) {
+                        int i8 = 0;
+                        while (true) {
+                            if (i8 < characterStyleArr2.length) {
+                                if (characterStyleArr2[i8] == characterStyle) {
+                                    int spanStart2 = ((Spanned) descriptionlayout.getText()).getSpanStart(characterStyle);
+                                    int spanEnd2 = ((Spanned) descriptionlayout.getText()).getSpanEnd(characterStyle);
+                                    float descriptionLayoutX = chatMessageCell.getDescriptionLayoutX();
+                                    float descriptionLayoutY = chatMessageCell.getDescriptionLayoutY();
+                                    staticLayout = descriptionlayout;
+                                    spanStart = spanStart2;
+                                    width = descriptionlayout.getWidth();
+                                    spanEnd = spanEnd2;
+                                    captionX = descriptionLayoutX;
+                                    captionY = descriptionLayoutY;
+                                    break;
+                                }
+                                i8++;
+                            }
+                        }
+                    }
+                    i7++;
+                    staticLayout = staticLayout;
+                } else {
+                    i4 = width;
+                }
+                width = i4;
+                i7++;
+                staticLayout = staticLayout;
+            }
+            staticLayout = staticLayout;
+        }
+        if (staticLayout == null && ((messageObject.isTodo() || messageObject.isPoll()) && (pollButtons = chatMessageCell.getPollButtons()) != null)) {
+            int i9 = 0;
+            staticLayout = staticLayout;
+            while (i9 < pollButtons.size()) {
+                ChatMessageCell.PollButton pollButton = pollButtons.get(i9);
+                StaticLayout staticLayout6 = pollButton.title;
+                if (staticLayout6 == null) {
+                    i3 = width;
+                } else {
+                    i3 = width;
+                    if (staticLayout6.getText() instanceof Spanned) {
+                        f3 = captionX;
+                        f4 = captionY;
+                        CharacterStyle[] characterStyleArr3 = (CharacterStyle[]) ((Spanned) staticLayout6.getText()).getSpans(0, staticLayout6.getText().length(), CharacterStyle.class);
+                        if (characterStyleArr3 != null) {
+                            int i10 = 0;
+                            while (true) {
+                                if (i10 < characterStyleArr3.length) {
+                                    if (characterStyleArr3[i10] == characterStyle) {
+                                        int spanStart3 = ((Spanned) staticLayout6.getText()).getSpanStart(characterStyle);
+                                        int spanEnd3 = ((Spanned) staticLayout6.getText()).getSpanEnd(characterStyle);
+                                        float f5 = pollButton.titleX;
+                                        float f6 = pollButton.titleY;
+                                        staticLayout = staticLayout6;
+                                        spanStart = spanStart3;
+                                        width = staticLayout6.getWidth();
+                                        spanEnd = spanEnd3;
+                                        captionX = f5;
+                                        captionY = f6;
+                                        break;
+                                    }
+                                    i10++;
+                                }
+                            }
+                        }
+                        i9++;
+                        staticLayout = staticLayout;
+                    }
+                    width = i3;
+                    captionY = f4;
+                    captionX = f3;
+                    i9++;
+                    staticLayout = staticLayout;
+                }
+                f3 = captionX;
+                f4 = captionY;
+                width = i3;
+                captionY = f4;
+                captionX = f3;
+                i9++;
+                staticLayout = staticLayout;
+            }
+        }
+        if (staticLayout != null || messageObject == null || (richMessageLayout = messageObject.richLayout) == null || (foundLinkFindLink = richMessageLayout.findLink(characterStyle)) == null) {
+            i = width;
+            fMax = captionX;
+            staticLayout2 = staticLayout;
+        } else {
+            staticLayout4 = foundLinkFindLink.layout;
+            int i11 = foundLinkFindLink.start;
+            spanEnd = foundLinkFindLink.end;
+            spanStart = i11;
+            i = foundLinkFindLink.originalWidth;
+            fMax = chatMessageCell.getTextX() + foundLinkFindLink.x;
+            captionY = foundLinkFindLink.y + chatMessageCell.getTextY();
+        }
+        if (staticLayout2 == null && z2 && !z) {
+            setScrim(chatMessageCell, characterStyle, charSequence, true);
+            return;
+        }
+        staticLayout2 = staticLayout4;
+        if (staticLayout2 == null) {
+            return;
+        }
+        if (charSequence != null) {
+            int lineForOffset = staticLayout2.getLineForOffset(spanStart);
+            float lineTop = staticLayout2.getLineTop(lineForOffset) + captionY;
+            float primaryHorizontal = staticLayout2.getPrimaryHorizontal(spanStart);
+            float lineWidth = staticLayout2.getLineWidth(lineForOffset);
+            LinkPath linkPath = new LinkPath(true);
+            linkPath.setCurrentLayout(staticLayout2, spanStart, 0.0f);
+            staticLayout2.getSelectionPath(spanStart, spanEnd, linkPath);
+            RectF rectF2 = new RectF();
+            linkPath.computeBounds(rectF2, true);
+            StaticLayout staticLayoutMakeStaticLayout = MessageObject.makeStaticLayout(charSequence, staticLayout2.getPaint(), staticLayout2.getWidth(), 1.0f, 0.0f, false);
+            length = charSequence.length();
+            float width2 = staticLayoutMakeStaticLayout.getWidth();
+            float fMax2 = 0.0f;
+            for (int i12 = 0; i12 < staticLayoutMakeStaticLayout.getLineCount(); i12++) {
+                width2 = Math.min(width2, staticLayoutMakeStaticLayout.getLineLeft(i12));
+                fMax2 = Math.max(fMax2, staticLayoutMakeStaticLayout.getLineRight(i12));
+            }
+            fMax += Math.max(0.0f, Math.min(primaryHorizontal, lineWidth - Math.max(0.0f, fMax2 - width2)));
+            f2 = lineTop;
+            staticLayout3 = staticLayoutMakeStaticLayout;
+            spanStart = 0;
+            rectF = rectF2;
+        } else {
+            f2 = captionY;
+            length = spanEnd;
+            staticLayout3 = staticLayout2;
+            rectF = null;
+        }
+        float f7 = fMax;
+        final Paint paint = new Paint(1);
+        paint.setColor(Theme.getColor(messageObject.isOutOwner() ? Theme.key_chat_outBubble : Theme.key_chat_inBubble, this.resourcesProvider));
+        paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(5.0f)));
+        final LinkPath linkPath2 = new LinkPath(true);
+        linkPath2.setUseCornerPathImplementation(true);
+        linkPath2.setCurrentLayout(staticLayout3, spanStart, 0.0f);
+        staticLayout3.getSelectionPath(spanStart, length, linkPath2);
+        linkPath2.closeRects();
+        final RectF rectF3 = new RectF();
+        linkPath2.computeBounds(rectF3, true);
+        int iWidth = (int) (rectF3.width() + LinkPath.getRadius());
+        if (!chatMessageCell.drawBackgroundInParent() || iWidth <= 0 || rectF3.height() <= 0.0f) {
+            bitmap = null;
+        } else {
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iWidth, (int) rectF3.height(), Bitmap.Config.ALPHA_8);
+            Canvas canvas = new Canvas(bitmapCreateBitmap);
+            rectF = rectF;
+            Paint paint2 = new Paint(1);
+            paint2.setColor(-1);
+            canvas.drawRect(0.0f, 0.0f, iWidth, rectF3.height(), paint2);
+            Paint paint3 = new Paint(1);
+            paint3.setColor(-1);
+            paint3.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(5.0f)));
+            paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            canvas.translate(-rectF3.left, -rectF3.top);
+            canvas.drawPath(linkPath2, paint3);
+            bitmap = bitmapCreateBitmap;
+        }
+        final Paint paint4 = new Paint(3);
+        paint4.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        chatMessageCell.setupTextColors();
+        TextPaint textPaint = new TextPaint(staticLayout3.getPaint());
+        textPaint.set(staticLayout3.getPaint());
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(AnimatedEmojiSpan.cloneSpans(staticLayout3.getText(), -1, textPaint.getFontMetricsInt()));
+        if (spanStart > 0) {
+            i2 = 0;
+            spannableStringBuilder.setSpan(new ForegroundColorSpan(0), 0, spanStart, 33);
+        } else {
+            i2 = 0;
+        }
+        if (length < spannableStringBuilder.length()) {
+            spannableStringBuilder.setSpan(new ForegroundColorSpan(i2), length, spannableStringBuilder.length(), 33);
+        }
+        final StaticLayout staticLayoutMakeStaticLayout2 = MessageObject.makeStaticLayout(spannableStringBuilder, textPaint, i, 1.0f, messageObject.totalAnimatedEmojiCount >= 4 ? -1.0f : 0.0f, false);
+        final int[] iArr = new int[2];
+        chatMessageCell.getLocationOnScreen(iArr);
+        final int[] iArr2 = {iArr[0] + ((int) f7), iArr[1] + ((int) f2)};
+        this.scrimDrawable = new Drawable() {
+            private int alpha = 255;
+
+            @Override
+            public int getOpacity() {
+                return -2;
+            }
+
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+            }
+
+            @Override
+            public void draw(Canvas canvas2) {
+                if (this.alpha <= 0) {
+                    return;
+                }
+                RectF rectF4 = AndroidUtilities.rectTmp;
+                rectF4.set(getBounds());
+                rectF4.left -= LinkPath.getRadius() / 2.0f;
+                canvas2.save();
+                canvas2.saveLayerAlpha(rectF4, this.alpha, 31);
+                int[] iArr3 = iArr2;
+                canvas2.translate(iArr3[0], iArr3[1]);
+                ChatMessageCell chatMessageCell2 = chatMessageCell;
+                if (chatMessageCell2 != null && chatMessageCell2.drawBackgroundInParent()) {
+                    MessageDrawable messageDrawable = chatMessageCell.currentBackgroundDrawable;
+                    if (messageDrawable != null && messageDrawable.getPaint() != null) {
+                        canvas2.save();
+                        chatMessageCell.setBackgroundTopY(true);
+                        canvas2.translate(0.0f, -chatMessageCell.currentBackgroundDrawable.getTopY());
+                        canvas2.drawPaint(chatMessageCell.currentBackgroundDrawable.getPaint());
+                        canvas2.restore();
+                    } else {
+                        int[] iArr4 = iArr2;
+                        canvas2.translate(-iArr4[0], -iArr4[1]);
+                        int[] iArr5 = iArr;
+                        canvas2.translate(iArr5[0], iArr5[1] + chatMessageCell.getPaddingTop());
+                        chatMessageCell.drawBackgroundInternal(canvas2, true);
+                        int[] iArr6 = iArr;
+                        canvas2.translate(-iArr6[0], (-iArr6[1]) - chatMessageCell.getPaddingTop());
+                        int[] iArr7 = iArr2;
+                        canvas2.translate(iArr7[0], iArr7[1]);
+                    }
+                    if (bitmap != null) {
+                        canvas2.save();
+                        Bitmap bitmap2 = bitmap;
+                        RectF rectF5 = rectF3;
+                        canvas2.drawBitmap(bitmap2, rectF5.left, rectF5.top, paint4);
+                        canvas2.restore();
+                    }
+                } else {
+                    canvas2.drawPath(linkPath2, paint);
+                }
+                canvas2.clipPath(linkPath2);
+                staticLayoutMakeStaticLayout2.draw(canvas2);
+                canvas2.restore();
+            }
+
+            @Override
+            public void setAlpha(int i13) {
+                this.alpha = i13;
+            }
+        };
+        int radius = (int) (iArr[0] + f7 + rectF3.left + (LinkPath.getRadius() / 2.0f));
+        int i13 = (int) (iArr[1] + f2 + rectF3.top);
+        this.scrimDrawable.setBounds(radius, i13, ((int) rectF3.width()) + radius, ((int) rectF3.height()) + i13);
+        if (charSequence != null) {
+            float f8 = radius;
+            if (rectF3.width() + f8 > AndroidUtilities.displaySize.x - AndroidUtilities.dp(8.0f)) {
+                this.scrimDrawableTx2 -= (f8 + rectF3.width()) - (AndroidUtilities.displaySize.x - AndroidUtilities.dp(8.0f));
+            }
+            float f9 = i13;
+            if (rectF3.height() + f9 > ((AndroidUtilities.displaySize.y - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(8.0f)) {
+                this.scrimDrawableTy2 -= (f9 + rectF3.height()) - (((AndroidUtilities.displaySize.y - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(8.0f));
+            }
+            if (rectF != null) {
+                this.scrimDrawableSw = rectF.width() / rectF3.width();
+                this.scrimDrawableSh = rectF.height() / rectF3.height();
+            }
+        }
     }
 }

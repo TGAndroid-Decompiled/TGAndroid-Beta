@@ -11,7 +11,8 @@ import android.util.LongSparseArray;
 import android.util.SparseBooleanArray;
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.MessagePreviewView;
@@ -96,13 +97,9 @@ public class MessagePreviewParams {
                 MessageObject previewMessage = MessagePreviewParams.this.toPreviewMessage(messageObject, bool, i);
                 if (!this.hasSpoilers) {
                     Iterator<TLRPC.MessageEntity> it = previewMessage.messageOwner.entities.iterator();
-                    while (true) {
-                        if (it.hasNext()) {
-                            if (it.next() instanceof TLRPC.TL_messageEntitySpoiler) {
-                                this.hasSpoilers = true;
-                                break;
-                            }
-                        } else {
+                    while (it.hasNext()) {
+                        if (it.next() instanceof TLRPC.TL_messageEntitySpoiler) {
+                            this.hasSpoilers = true;
                             break;
                         }
                     }
@@ -159,11 +156,12 @@ public class MessagePreviewParams {
                 return;
             }
             if (arrayList.size() == 1) {
-                int i7 = arrayList.get(0).type;
+                MessageObject messageObject2 = arrayList.get(0);
+                int i7 = messageObject2.type;
                 if (i7 == 0 || i7 == 19) {
-                    this.hasText = !TextUtils.isEmpty(r1.messageText);
+                    this.hasText = !TextUtils.isEmpty(messageObject2.messageText);
                 } else {
-                    this.hasText = !TextUtils.isEmpty(r1.caption);
+                    this.hasText = !TextUtils.isEmpty(messageObject2.caption);
                 }
             }
         }
@@ -185,18 +183,13 @@ public class MessagePreviewParams {
                 for (int i = 0; i < this.messages.size(); i++) {
                     MessageObject messageObject = this.messages.get(i);
                     if (messageObject != null) {
-                        int i2 = 0;
-                        while (true) {
-                            if (i2 >= arrayList.size()) {
-                                break;
-                            }
+                        for (int i2 = 0; i2 < arrayList.size(); i2++) {
                             MessageObject messageObject2 = arrayList.get(i2);
                             if (messageObject2 != null && messageObject.getId() == messageObject2.getId() && messageObject.getDialogId() == messageObject2.getDialogId()) {
                                 this.messages.set(i, messageObject2);
                                 z = true;
                                 break;
                             }
-                            i2++;
                         }
                     }
                 }
@@ -494,8 +487,114 @@ public class MessagePreviewParams {
         return messages.selectedIds.size();
     }
 
-    public org.telegram.messenger.MessageObject toPreviewMessage(org.telegram.messenger.MessageObject r16, java.lang.Boolean r17, final int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagePreviewParams.toPreviewMessage(org.telegram.messenger.MessageObject, java.lang.Boolean, int):org.telegram.messenger.MessageObject");
+    public MessageObject toPreviewMessage(MessageObject messageObject, Boolean bool, final int i) {
+        TLRPC.MessageFwdHeader tL_messageFwdHeader;
+        MessageObject messageObject2;
+        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+        if (i != 1) {
+            tL_message.date = ConnectionsManager.getInstance(messageObject.currentAccount).getCurrentTime();
+        } else {
+            tL_message.date = messageObject.messageOwner.date;
+        }
+        TLRPC.Message message = messageObject.messageOwner;
+        tL_message.id = message.id;
+        tL_message.grouped_id = message.grouped_id;
+        tL_message.peer_id = message.peer_id;
+        tL_message.from_id = message.from_id;
+        tL_message.message = message.message;
+        tL_message.rich_message = message.rich_message;
+        tL_message.media = message.media;
+        tL_message.action = message.action;
+        tL_message.edit_date = 0;
+        ArrayList<TLRPC.MessageEntity> arrayList = message.entities;
+        if (arrayList != null) {
+            tL_message.entities.addAll(arrayList);
+        }
+        boolean zBooleanValue = bool == null ? messageObject.messageOwner.out : bool.booleanValue();
+        tL_message.out = zBooleanValue;
+        if (zBooleanValue) {
+            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+            tL_message.from_id = tL_peerUser;
+            tL_peerUser.user_id = UserConfig.getInstance(messageObject.currentAccount).getClientUserId();
+        }
+        tL_message.unread = false;
+        TLRPC.Message message2 = messageObject.messageOwner;
+        tL_message.via_bot_id = message2.via_bot_id;
+        tL_message.reply_markup = message2.reply_markup;
+        tL_message.post = message2.post;
+        tL_message.legacy = message2.legacy;
+        tL_message.restriction_reason = message2.restriction_reason;
+        TLRPC.Message message3 = message2.replyMessage;
+        tL_message.replyMessage = message3;
+        if (message3 == null && (messageObject2 = messageObject.replyMessageObject) != null) {
+            tL_message.replyMessage = messageObject2.messageOwner;
+        }
+        tL_message.reply_to = message2.reply_to;
+        tL_message.invert_media = message2.invert_media;
+        if (i == 0) {
+            long clientUserId = UserConfig.getInstance(messageObject.currentAccount).getClientUserId();
+            if (this.isSecret) {
+                tL_messageFwdHeader = null;
+            } else {
+                TLRPC.Message message4 = messageObject.messageOwner;
+                tL_messageFwdHeader = message4.fwd_from;
+                if (tL_messageFwdHeader != null) {
+                    if (!messageObject.isDice()) {
+                        this.hasSenders = true;
+                    } else {
+                        this.willSeeSenders = true;
+                    }
+                } else {
+                    long j = message4.from_id.user_id;
+                    if (j != 0 && message4.dialog_id == clientUserId && j == clientUserId) {
+                        tL_messageFwdHeader = null;
+                    } else {
+                        tL_messageFwdHeader = new TLRPC.TL_messageFwdHeader();
+                        tL_messageFwdHeader.from_id = messageObject.messageOwner.from_id;
+                        if (!messageObject.isDice()) {
+                            this.hasSenders = true;
+                        } else {
+                            this.willSeeSenders = true;
+                        }
+                    }
+                }
+            }
+            if (tL_messageFwdHeader != null) {
+                tL_message.fwd_from = tL_messageFwdHeader;
+                tL_message.flags |= 4;
+            }
+            if (messageObject.isWelcomeAnchored()) {
+                tL_message.id = messageObject.getEphemeralId();
+                TLRPC.MessageFwdHeader messageFwdHeader = tL_message.fwd_from;
+                if (messageFwdHeader != null && messageFwdHeader.from_id != null) {
+                    messageFwdHeader.from_id = (TLRPC.Peer) TLObject.deepCopy(messageObject.messageOwner.peer_id, new MessagePreviewParams$$ExternalSyntheticLambda0());
+                    long peerDialogId = DialogObject.getPeerDialogId(messageObject.messageOwner.from_id);
+                    if (peerDialogId > 0) {
+                        tL_message.via_bot_id = peerDialogId;
+                    }
+                }
+            }
+        }
+        MessageObject messageObject3 = new MessageObject(messageObject.currentAccount, tL_message, true, false) {
+            @Override
+            public void generateLayout(TLRPC.User user) {
+                super.generateLayout(user);
+                if (i == 2) {
+                    MessagePreviewParams.this.checkCurrentLink(this);
+                }
+            }
+
+            @Override
+            public boolean needDrawForwarded() {
+                if (MessagePreviewParams.this.hideForwardSendersName) {
+                    return false;
+                }
+                return super.needDrawForwarded();
+            }
+        };
+        messageObject3.previewForward = i == 0;
+        messageObject3.preview = true;
+        return messageObject3;
     }
 
     public boolean isEmpty() {

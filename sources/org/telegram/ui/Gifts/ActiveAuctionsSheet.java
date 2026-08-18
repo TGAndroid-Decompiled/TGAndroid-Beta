@@ -74,7 +74,7 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
 
     public void lambda$new$0(Context context, Theme.ResourcesProvider resourcesProvider, GiftAuctionController.Auction auction, View view) {
         new AuctionBidSheet(context, resourcesProvider, null, auction).show();
-        lambda$new$0();
+        dismiss();
     }
 
     @Override
@@ -103,9 +103,9 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
     }
 
     @Override
-    public void lambda$new$0() {
+    public void dismiss() {
         GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromActiveAuctionsUpdates(this);
-        super.lambda$new$0();
+        super.dismiss();
     }
 
     @Override
@@ -199,8 +199,9 @@ public class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView impleme
         }
 
         public void updateStatus(boolean z) {
-            if (this.auction.auctionStateActive != null) {
-                this.titleView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(r3.current_round, ','), LocaleController.formatNumber(this.auction.auctionStateActive.total_rounds, ',')), z);
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.auction.auctionStateActive;
+            if (tL_starGiftAuctionState != null) {
+                this.titleView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(this.auction.auctionStateActive.total_rounds, ',')), z);
             }
             String str = "⭐️" + LocaleController.formatNumber(this.auction.auctionUserState.bid_amount, ',');
             if (this.auction.getBidStatus().isOutbid()) {

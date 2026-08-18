@@ -3,6 +3,7 @@ package org.telegram.messenger.voip;
 import java.util.ArrayList;
 import java.util.Iterator;
 import me.vkryl.core.BitwiseUtils;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 
@@ -20,8 +21,33 @@ public class GroupCallMessage {
     public final long reactionAnimatedEmojiId;
     public final ReactionsLayoutInBubble.VisibleReaction visibleReaction;
 
-    public GroupCallMessage(int r3, long r4, long r6, org.telegram.tgnet.TLRPC.TL_textWithEntities r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.GroupCallMessage.<init>(int, long, long, org.telegram.tgnet.TLRPC$TL_textWithEntities):void");
+    public GroupCallMessage(int i, long j, long j2, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        long j3;
+        TLRPC.TL_availableReaction tL_availableReaction;
+        ReactionsLayoutInBubble.VisibleReaction visibleReactionFromEmojicon;
+        this.currentAccount = i;
+        this.fromId = j;
+        this.randomId = j2;
+        this.message = tL_textWithEntities;
+        ArrayList<TLRPC.MessageEntity> arrayList = tL_textWithEntities.entities;
+        if (arrayList == null || arrayList.size() != 1) {
+            j3 = 0;
+        } else {
+            TLRPC.MessageEntity messageEntity = tL_textWithEntities.entities.get(0);
+            if (messageEntity instanceof TLRPC.TL_messageEntityCustomEmoji) {
+                j3 = ((TLRPC.TL_messageEntityCustomEmoji) messageEntity).document_id;
+            } else {
+                j3 = 0;
+            }
+        }
+        if (j3 != 0) {
+            visibleReactionFromEmojicon = ReactionsLayoutInBubble.VisibleReaction.fromCustomEmoji(Long.valueOf(j3));
+        } else {
+            ArrayList<TLRPC.MessageEntity> arrayList2 = tL_textWithEntities.entities;
+            visibleReactionFromEmojicon = ((arrayList2 == null || arrayList2.isEmpty()) && (tL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(tL_textWithEntities.text)) != null) ? ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(tL_availableReaction) : null;
+        }
+        this.reactionAnimatedEmojiId = j3;
+        this.visibleReaction = visibleReactionFromEmojicon;
     }
 
     public void setIsOut(boolean z) {

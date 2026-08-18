@@ -27,10 +27,6 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Stories.SelfStoriesPreviewView;
-import org.telegram.ui.Stories.SelfStoryViewsPage;
-import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.Stories.StoryViewer;
 
 public class SelfStoryViewsView extends FrameLayout {
     public float bottomPadding;

@@ -8,6 +8,7 @@ import android.text.style.CharacterStyle;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
@@ -23,8 +24,45 @@ import org.telegram.ui.Components.URLSpanReplacement;
 public abstract class RichTextStyle {
     private static final int[] STYLE_FLAGS = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
 
-    public static int emojiOnlyCount(java.lang.CharSequence r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTextStyle.emojiOnlyCount(java.lang.CharSequence):int");
+    public static int emojiOnlyCount(CharSequence charSequence) {
+        if (!(charSequence instanceof Spanned) || charSequence.length() == 0) {
+            return 0;
+        }
+        Spanned spanned = (Spanned) charSequence;
+        ArrayList arrayList = new ArrayList();
+        AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spanned.getSpans(0, charSequence.length(), AnimatedEmojiSpan.class);
+        for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
+            arrayList.add(animatedEmojiSpan);
+        }
+        for (Emoji.EmojiSpan emojiSpan : (Emoji.EmojiSpan[]) spanned.getSpans(0, charSequence.length(), Emoji.EmojiSpan.class)) {
+            int spanStart = spanned.getSpanStart(emojiSpan);
+            int spanEnd = spanned.getSpanEnd(emojiSpan);
+            int length = animatedEmojiSpanArr.length;
+            int i = 0;
+            while (true) {
+                if (i < length) {
+                    AnimatedEmojiSpan animatedEmojiSpan2 = animatedEmojiSpanArr[i];
+                    if (spanned.getSpanStart(animatedEmojiSpan2) == spanStart && spanned.getSpanEnd(animatedEmojiSpan2) == spanEnd) {
+                        break;
+                    }
+                    i++;
+                } else {
+                    arrayList.add(emojiSpan);
+                    break;
+                }
+            }
+        }
+        if (arrayList.isEmpty()) {
+            return 0;
+        }
+        for (int i2 = 0; i2 < charSequence.length(); i2++) {
+            for (Object obj : arrayList) {
+                if (spanned.getSpanStart(obj) <= i2 && spanned.getSpanEnd(obj) > i2) {
+                }
+            }
+            return 0;
+        }
+        return arrayList.size();
     }
 
     public static CharSequence toSpannable(TL_iv.RichText richText) {

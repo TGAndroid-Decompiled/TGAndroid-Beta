@@ -113,7 +113,8 @@ public abstract class JobIntentService extends Service {
                                 this.mLaunchWakeLock.acquire(60000L);
                             }
                         }
-                    } finally {
+                    } catch (Throwable th) {
+                        throw th;
                     }
                 }
             }
@@ -446,7 +447,8 @@ public abstract class JobIntentService extends Service {
                     } else if (!this.mDestroyed) {
                         this.mCompatWorkEnqueuer.serviceProcessingFinished();
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }

@@ -1,6 +1,5 @@
 package org.scilab.forge.jlatexmath;
 
-import org.scilab.forge.jlatexmath.TeXFormula;
 import ru.noties.jlatexmath.awt.Font;
 
 public class JavaFontRenderingAtom extends Atom {

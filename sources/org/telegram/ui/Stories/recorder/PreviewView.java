@@ -1,6 +1,8 @@
 package org.telegram.ui.Stories.recorder;
 
+import android.content.ContentUris;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -17,9 +19,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Pair;
+import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.MotionEvent;
 import android.view.TextureView;
@@ -34,8 +38,8 @@ import com.google.zxing.common.detector.MathUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MediaController;
@@ -48,6 +52,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.theme.ThemeKey;
+import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -57,8 +62,6 @@ import org.telegram.ui.Components.Paint.Views.RoundView;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.VideoEditTextureView;
 import org.telegram.ui.Components.VideoPlayer;
-import org.telegram.ui.Stories.recorder.StoryEntry;
-import org.telegram.ui.Stories.recorder.TimelineView;
 
 public abstract class PreviewView extends FrameLayout {
     private boolean allowCropping;
@@ -420,20 +423,17 @@ public abstract class PreviewView extends FrameLayout {
                 storyEntry3.audioAuthor = null;
                 storyEntry3.audioTitle = null;
                 if (document != null) {
-                    Iterator<TLRPC.DocumentAttribute> it = document.attributes.iterator();
-                    while (true) {
-                        if (!it.hasNext()) {
+                    for (TLRPC.DocumentAttribute documentAttribute : document.attributes) {
+                        if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
+                            this.entry.audioAuthor = documentAttribute.performer;
+                            if (!TextUtils.isEmpty(documentAttribute.title)) {
+                                this.entry.audioTitle = documentAttribute.title;
+                            }
+                            this.entry.audioDuration = (long) (documentAttribute.duration * 1000.0d);
                             break;
                         }
-                        TLRPC.DocumentAttribute next = it.next();
-                        if (next instanceof TLRPC.TL_documentAttributeAudio) {
-                            this.entry.audioAuthor = next.performer;
-                            if (!TextUtils.isEmpty(next.title)) {
-                                this.entry.audioTitle = next.title;
-                            }
-                            this.entry.audioDuration = (long) (next.duration * 1000.0d);
-                        } else if (next instanceof TLRPC.TL_documentAttributeFilename) {
-                            this.entry.audioTitle = next.file_name;
+                        if (documentAttribute instanceof TLRPC.TL_documentAttributeFilename) {
+                            this.entry.audioTitle = documentAttribute.file_name;
                         }
                     }
                 }
@@ -456,7 +456,7 @@ public abstract class PreviewView extends FrameLayout {
                 TimelineView timelineView = this.timelineView;
                 int maxCount = timelineView != null ? timelineView.getMaxCount() : 1;
                 StoryEntry storyEntry6 = this.entry;
-                storyEntry6.audioRight = storyEntry6.audioDuration != 0 ? Math.min(1.0f, Math.min(duration, maxCount * 59000) / this.entry.audioDuration) : 1.0f;
+                storyEntry6.audioRight = storyEntry6.audioDuration != 0 ? Math.min(1.0f, Math.min(duration, ((long) maxCount) * 59000) / this.entry.audioDuration) : 1.0f;
             }
         }
         setupAudio(this.entry, z);
@@ -633,7 +633,8 @@ public abstract class PreviewView extends FrameLayout {
                     if (PreviewView.this.videoPlayer == null || PreviewView.this.videoPlayer.getDuration() == -9223372036854775807L) {
                         return;
                     }
-                    PreviewView.this.seekTo((long) (f * r5.videoPlayer.getDuration()));
+                    PreviewView previewView = PreviewView.this;
+                    previewView.seekTo((long) (f * previewView.videoPlayer.getDuration()));
                 }
 
                 @Override
@@ -786,14 +787,73 @@ public abstract class PreviewView extends FrameLayout {
     private void setupImage(final StoryEntry storyEntry) {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$setupImage$5(storyEntry);
             }
         });
     }
 
-    public void lambda$setupImage$5(final org.telegram.ui.Stories.recorder.StoryEntry r15) throws java.lang.NumberFormatException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.lambda$setupImage$5(org.telegram.ui.Stories.recorder.StoryEntry):void");
+    public void lambda$setupImage$5(final StoryEntry storyEntry) {
+        long j;
+        String str;
+        Uri uriWithAppendedId;
+        final Bitmap[] bitmapArr = new Bitmap[1];
+        final boolean[] zArr = {true};
+        if (storyEntry != null) {
+            int measuredWidth = getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : getMeasuredWidth();
+            int i = (int) ((measuredWidth * 16) / 9.0f);
+            if (storyEntry.isVideo) {
+                Bitmap bitmap = storyEntry.blurredVideoThumb;
+                if (bitmap != null) {
+                    bitmapArr[0] = bitmap;
+                }
+                if (bitmapArr[0] == null && (str = storyEntry.thumbPath) != null && str.startsWith("vthumb://")) {
+                    j = Long.parseLong(storyEntry.thumbPath.substring(9));
+                    if (bitmapArr[0] == null && Build.VERSION.SDK_INT >= 29) {
+                        try {
+                            if (storyEntry.isVideo) {
+                                uriWithAppendedId = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, j);
+                            } else {
+                                uriWithAppendedId = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, j);
+                            }
+                            bitmapArr[0] = getContext().getContentResolver().loadThumbnail(uriWithAppendedId, new Size(measuredWidth, i), null);
+                        } catch (Exception unused) {
+                        }
+                    }
+                } else {
+                    j = -1;
+                }
+            } else {
+                j = -1;
+            }
+            final long j2 = j;
+            if (j2 < 0 && storyEntry.isVideo && storyEntry.thumbPath == null) {
+                invalidate();
+                return;
+            }
+            if (bitmapArr[0] == null) {
+                File originalFile = storyEntry.getOriginalFile();
+                if (originalFile == null) {
+                    return;
+                }
+                final String path = originalFile.getPath();
+                StoryEntry.DecodeBitmap decodeBitmap = new StoryEntry.DecodeBitmap() {
+                    @Override
+                    public final Bitmap decode(BitmapFactory.Options options) {
+                        return this.f$0.lambda$setupImage$3(storyEntry, j2, path, options);
+                    }
+                };
+                boolean z = storyEntry.isVideo;
+                bitmapArr[0] = StoryEntry.getScaledBitmap(decodeBitmap, measuredWidth, i, !z ? storyEntry.orientation : 0, false, !z);
+                zArr[0] = false;
+            }
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$setupImage$4(bitmapArr, storyEntry, zArr);
+            }
+        });
     }
 
     public Bitmap lambda$setupImage$3(StoryEntry storyEntry, long j, String str, BitmapFactory.Options options) {
@@ -1202,17 +1262,17 @@ public abstract class PreviewView extends FrameLayout {
         }
 
         public void takeTextureView(Utilities.Callback callback, Utilities.Callback2 callback2) {
-            Utilities.Callback2 callback22;
+            Utilities.Callback2 callback3;
             this.whenTextureViewReceived = callback;
             this.whenTextureViewActive = callback2;
             TextureView textureView = this.textureView;
             if (textureView != null && callback != null) {
                 callback.run(textureView);
             }
-            if (!this.textureViewActive || (callback22 = this.whenTextureViewActive) == null) {
+            if (!this.textureViewActive || (callback3 = this.whenTextureViewActive) == null) {
                 return;
             }
-            callback22.run(Integer.valueOf(this.videoWidth), Integer.valueOf(this.videoHeight));
+            callback3.run(Integer.valueOf(this.videoWidth), Integer.valueOf(this.videoHeight));
         }
     }
 
@@ -1228,14 +1288,15 @@ public abstract class PreviewView extends FrameLayout {
             canvas.save();
             canvas.scale(getWidth() / this.entry.resultWidth, getHeight() / this.entry.resultHeight);
             canvas.concat(this.entry.matrix);
-            if (this.entry.crop != null) {
-                canvas.translate(r0.width / 2.0f, r0.height / 2.0f);
+            StoryEntry storyEntry3 = this.entry;
+            if (storyEntry3.crop != null) {
+                canvas.translate(storyEntry3.width / 2.0f, storyEntry3.height / 2.0f);
                 canvas.rotate(-this.entry.orientation);
-                StoryEntry storyEntry3 = this.entry;
-                int i = storyEntry3.width;
-                int i2 = storyEntry3.height;
-                int i3 = storyEntry3.orientation;
-                MediaController.CropState cropState = storyEntry3.crop;
+                StoryEntry storyEntry4 = this.entry;
+                int i = storyEntry4.width;
+                int i2 = storyEntry4.height;
+                int i3 = storyEntry4.orientation;
+                MediaController.CropState cropState = storyEntry4.crop;
                 if (((i3 + cropState.transformRotation) / 90) % 2 == 1) {
                     i2 = i;
                     i = i2;
@@ -1244,8 +1305,8 @@ public abstract class PreviewView extends FrameLayout {
                 float f2 = cropState.cropPh;
                 canvas.clipRect(((-i) * f) / 2.0f, ((-i2) * f2) / 2.0f, (i * f) / 2.0f, (i2 * f2) / 2.0f);
                 canvas.rotate(this.entry.orientation);
-                StoryEntry storyEntry4 = this.entry;
-                canvas.translate((-storyEntry4.width) / 2.0f, (-storyEntry4.height) / 2.0f);
+                StoryEntry storyEntry5 = this.entry;
+                canvas.translate((-storyEntry5.width) / 2.0f, (-storyEntry5.height) / 2.0f);
             }
             canvas.concat(this.invertMatrix);
             canvas.scale(1.0f / (getWidth() / this.entry.resultWidth), 1.0f / (getHeight() / this.entry.resultHeight));
@@ -1397,7 +1458,51 @@ public abstract class PreviewView extends FrameLayout {
     }
 
     public void lambda$new$10() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.lambda$new$10():void");
+        boolean z;
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer == null || this.timelineView == null) {
+            return;
+        }
+        long currentPosition = videoPlayer.getCurrentPosition();
+        if (getDuration() > 1) {
+            float duration = currentPosition / getDuration();
+            if (this.timelineView.isDragging()) {
+                if (currentPosition < this.lastPos) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                updateAudioPlayer(z);
+                updateRoundPlayer(currentPosition < this.lastPos);
+            } else {
+                StoryEntry storyEntry = this.entry;
+                if ((duration < storyEntry.left || duration > storyEntry.right) && System.currentTimeMillis() - this.seekedLastTime > 500) {
+                    this.seekedLastTime = System.currentTimeMillis();
+                    VideoPlayer videoPlayer2 = this.videoPlayer;
+                    long duration2 = (long) (this.entry.left * getDuration());
+                    videoPlayer2.seekTo(duration2);
+                    updateAudioPlayer(true);
+                    updateRoundPlayer(true);
+                    currentPosition = duration2;
+                } else {
+                    if (currentPosition < this.lastPos) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    updateAudioPlayer(z);
+                    updateRoundPlayer(currentPosition < this.lastPos);
+                }
+            }
+            this.timelineView.setProgress(this.videoPlayer.getCurrentPosition());
+        } else {
+            this.timelineView.setProgress(this.videoPlayer.getCurrentPosition());
+        }
+        if (this.videoPlayer.isPlaying()) {
+            AndroidUtilities.cancelRunOnUIThread(this.updateProgressRunnable);
+            AndroidUtilities.runOnUIThread(this.updateProgressRunnable, (long) (1000.0f / AndroidUtilities.screenRefreshRate));
+        }
+        this.lastPos = currentPosition;
     }
 
     public void lambda$new$11() {
@@ -1413,7 +1518,8 @@ public abstract class PreviewView extends FrameLayout {
             if ((f < f2 * f3 || f > storyEntry.audioRight * f3) && System.currentTimeMillis() - this.seekedLastTime > 500) {
                 this.seekedLastTime = System.currentTimeMillis();
                 VideoPlayer videoPlayer = this.audioPlayer;
-                long j = (long) (this.entry.audioLeft * r1.audioDuration);
+                StoryEntry storyEntry2 = this.entry;
+                long j = (long) (storyEntry2.audioLeft * storyEntry2.audioDuration);
                 videoPlayer.seekTo(j);
                 currentPosition = j;
             }
@@ -1438,7 +1544,8 @@ public abstract class PreviewView extends FrameLayout {
             if ((f < f2 * f3 || f > storyEntry.roundRight * f3) && System.currentTimeMillis() - this.seekedLastTime > 500) {
                 this.seekedLastTime = System.currentTimeMillis();
                 VideoPlayer videoPlayer = this.roundPlayer;
-                long j = (long) (this.entry.roundLeft * r1.roundDuration);
+                StoryEntry storyEntry2 = this.entry;
+                long j = (long) (storyEntry2.roundLeft * storyEntry2.roundDuration);
                 videoPlayer.seekTo(j);
                 updateAudioPlayer(true);
                 currentPosition = j;
@@ -1451,8 +1558,58 @@ public abstract class PreviewView extends FrameLayout {
         }
     }
 
-    public void updateAudioPlayer(boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.updateAudioPlayer(boolean):void");
+    public void updateAudioPlayer(boolean z) {
+        long currentPosition;
+        boolean zIsPlaying;
+        boolean z2;
+        if (this.audioPlayer == null || this.entry == null) {
+            return;
+        }
+        if (this.videoPlayer == null && this.roundPlayer == null && !isCollage()) {
+            this.audioPlayer.setPlayWhenReady(this.pauseLinks.isEmpty());
+            this.audioPlayer.setLooping(true);
+            long currentPosition2 = this.audioPlayer.getCurrentPosition();
+            if (!z || this.audioPlayer.getDuration() == -9223372036854775807L) {
+                return;
+            }
+            float duration = currentPosition2 / this.audioPlayer.getDuration();
+            StoryEntry storyEntry = this.entry;
+            if ((duration < storyEntry.audioLeft || duration > storyEntry.audioRight) && System.currentTimeMillis() - this.seekedLastTime > 500) {
+                this.seekedLastTime = System.currentTimeMillis();
+                this.audioPlayer.seekTo(-this.entry.audioOffset);
+                return;
+            }
+            return;
+        }
+        if (isCollage()) {
+            currentPosition = this.collage.getPositionWithOffset();
+            zIsPlaying = this.collage.isPlaying();
+        } else {
+            VideoPlayer videoPlayer = this.videoPlayer;
+            if (videoPlayer == null) {
+                videoPlayer = this.roundPlayer;
+            }
+            currentPosition = videoPlayer.getCurrentPosition();
+            zIsPlaying = videoPlayer.isPlaying();
+        }
+        StoryEntry storyEntry2 = this.entry;
+        float f = storyEntry2.audioRight;
+        float f2 = storyEntry2.audioLeft;
+        float f3 = storyEntry2.audioDuration;
+        long j = (long) ((f - f2) * f3);
+        if (zIsPlaying) {
+            long j2 = storyEntry2.audioOffset;
+            z2 = currentPosition >= j2 && currentPosition <= j2 + j;
+        }
+        long j3 = currentPosition - (storyEntry2.audioOffset - ((long) (f2 * f3)));
+        if (this.audioPlayer.isPlaying() != z2) {
+            this.audioPlayer.setPlayWhenReady(z2);
+            this.audioPlayer.seekTo(j3);
+        } else if (z) {
+            if (Math.abs(this.audioPlayer.getCurrentPosition() - j3) > (isCollage() ? 300 : 120)) {
+                this.audioPlayer.seekTo(j3);
+            }
+        }
     }
 
     public void updateRoundPlayer(boolean z) {
@@ -1525,11 +1682,17 @@ public abstract class PreviewView extends FrameLayout {
 
     public void checkVolumes() {
         float f;
+        float f2;
         StoryEntry storyEntry;
         VideoPlayer videoPlayer = this.videoPlayer;
-        float f2 = 0.0f;
+        float f3 = 0.0f;
         if (videoPlayer != null) {
-            videoPlayer.setVolume((this.isMuted || ((storyEntry = this.entry) != null && storyEntry.muted)) ? 0.0f : storyEntry != null ? storyEntry.videoVolume : 1.0f);
+            if (this.isMuted || ((storyEntry = this.entry) != null && storyEntry.muted)) {
+                f2 = 0.0f;
+            } else {
+                f2 = storyEntry != null ? storyEntry.videoVolume : 1.0f;
+            }
+            videoPlayer.setVolume(f2);
         }
         VideoPlayer videoPlayer2 = this.roundPlayer;
         if (videoPlayer2 != null) {
@@ -1545,9 +1708,9 @@ public abstract class PreviewView extends FrameLayout {
         if (videoPlayer3 != null) {
             if (!this.isMuted) {
                 StoryEntry storyEntry3 = this.entry;
-                f2 = storyEntry3 != null ? storyEntry3.audioVolume : 1.0f;
+                f3 = storyEntry3 != null ? storyEntry3.audioVolume : 1.0f;
             }
-            videoPlayer3.setVolume(f2);
+            videoPlayer3.setVolume(f3);
         }
         CollageLayoutView2 collageLayoutView2 = this.collage;
         if (collageLayoutView2 != null) {
@@ -1556,19 +1719,20 @@ public abstract class PreviewView extends FrameLayout {
     }
 
     private void extractPointsData(Matrix matrix) {
-        if (this.entry == null) {
+        StoryEntry storyEntry = this.entry;
+        if (storyEntry == null) {
             return;
         }
         float[] fArr = this.vertices;
-        fArr[0] = r0.width / 2.0f;
-        fArr[1] = r0.height / 2.0f;
+        fArr[0] = storyEntry.width / 2.0f;
+        fArr[1] = storyEntry.height / 2.0f;
         matrix.mapPoints(fArr);
         float[] fArr2 = this.vertices;
         this.cx = fArr2[0];
         this.cy = fArr2[1];
-        StoryEntry storyEntry = this.entry;
-        fArr2[0] = storyEntry.width;
-        fArr2[1] = storyEntry.height / 2.0f;
+        StoryEntry storyEntry2 = this.entry;
+        fArr2[0] = storyEntry2.width;
+        fArr2[1] = storyEntry2.height / 2.0f;
         matrix.mapPoints(fArr2);
         float[] fArr3 = this.vertices;
         this.angle = (float) Math.toDegrees(Math.atan2(fArr3[1] - this.cy, fArr3[0] - this.cx));
@@ -1577,9 +1741,9 @@ public abstract class PreviewView extends FrameLayout {
         float[] fArr4 = this.vertices;
         this.w = MathUtils.distance(f, f2, fArr4[0], fArr4[1]) * 2.0f;
         float[] fArr5 = this.vertices;
-        StoryEntry storyEntry2 = this.entry;
-        fArr5[0] = storyEntry2.width / 2.0f;
-        fArr5[1] = storyEntry2.height;
+        StoryEntry storyEntry3 = this.entry;
+        fArr5[0] = storyEntry3.width / 2.0f;
+        fArr5[1] = storyEntry3.height;
         matrix.mapPoints(fArr5);
         float f3 = this.cx;
         float f4 = this.cy;
@@ -1632,14 +1796,15 @@ public abstract class PreviewView extends FrameLayout {
                 canvas.save();
                 canvas.scale(getWidth() / this.entry.resultWidth, getHeight() / this.entry.resultHeight);
                 canvas.concat(this.entry.matrix);
-                if (this.entry.crop != null) {
-                    canvas.translate(r7.width / 2.0f, r7.height / 2.0f);
+                StoryEntry storyEntry = this.entry;
+                if (storyEntry.crop != null) {
+                    canvas.translate(storyEntry.width / 2.0f, storyEntry.height / 2.0f);
                     canvas.rotate(-this.entry.orientation);
-                    StoryEntry storyEntry = this.entry;
-                    int i = storyEntry.width;
-                    int i2 = storyEntry.height;
-                    int i3 = storyEntry.orientation;
-                    MediaController.CropState cropState = storyEntry.crop;
+                    StoryEntry storyEntry2 = this.entry;
+                    int i = storyEntry2.width;
+                    int i2 = storyEntry2.height;
+                    int i3 = storyEntry2.orientation;
+                    MediaController.CropState cropState = storyEntry2.crop;
                     if (((i3 + cropState.transformRotation) / 90) % 2 != 1) {
                         i2 = i;
                         i = i2;
@@ -1653,13 +1818,14 @@ public abstract class PreviewView extends FrameLayout {
                     canvas.scale(f6, f6);
                     MediaController.CropState cropState2 = this.entry.crop;
                     canvas.translate(cropState2.cropPx * f4, cropState2.cropPy * f5);
-                    canvas.rotate(this.entry.crop.cropRotate + r7.transformRotation);
+                    MediaController.CropState cropState3 = this.entry.crop;
+                    canvas.rotate(cropState3.cropRotate + cropState3.transformRotation);
                     if (this.entry.crop.mirrored) {
                         canvas.scale(-1.0f, 1.0f);
                     }
                     canvas.rotate(this.entry.orientation);
-                    StoryEntry storyEntry2 = this.entry;
-                    canvas.translate((-storyEntry2.width) / 2.0f, (-storyEntry2.height) / 2.0f);
+                    StoryEntry storyEntry3 = this.entry;
+                    canvas.translate((-storyEntry3.width) / 2.0f, (-storyEntry3.height) / 2.0f);
                 }
                 canvas.scale(this.entry.width / this.thumbBitmap.getWidth(), this.entry.height / this.thumbBitmap.getHeight());
                 this.bitmapPaint.setAlpha(255);
@@ -1670,40 +1836,42 @@ public abstract class PreviewView extends FrameLayout {
                 canvas.save();
                 canvas.scale(getWidth() / this.entry.resultWidth, getHeight() / this.entry.resultHeight);
                 canvas.concat(this.entry.matrix);
-                if (this.entry.crop != null) {
-                    canvas.translate(r2.width / 2.0f, r2.height / 2.0f);
+                StoryEntry storyEntry4 = this.entry;
+                if (storyEntry4.crop != null) {
+                    canvas.translate(storyEntry4.width / 2.0f, storyEntry4.height / 2.0f);
                     canvas.rotate(-this.entry.orientation);
-                    StoryEntry storyEntry3 = this.entry;
-                    int i4 = storyEntry3.width;
-                    int i5 = storyEntry3.height;
-                    int i6 = storyEntry3.orientation;
-                    MediaController.CropState cropState3 = storyEntry3.crop;
-                    if (((i6 + cropState3.transformRotation) / 90) % 2 != 1) {
+                    StoryEntry storyEntry5 = this.entry;
+                    int i4 = storyEntry5.width;
+                    int i5 = storyEntry5.height;
+                    int i6 = storyEntry5.orientation;
+                    MediaController.CropState cropState4 = storyEntry5.crop;
+                    if (((i6 + cropState4.transformRotation) / 90) % 2 != 1) {
                         i5 = i4;
                         i4 = i5;
                     }
-                    float f7 = cropState3.cropPw;
-                    float f8 = cropState3.cropPh;
+                    float f7 = cropState4.cropPw;
+                    float f8 = cropState4.cropPh;
                     float f9 = i5;
                     float f10 = i4;
                     canvas.clipRect(((-i5) * f7) / 2.0f, ((-i4) * f8) / 2.0f, (f7 * f9) / 2.0f, (f8 * f10) / 2.0f);
                     float f11 = this.entry.crop.cropScale;
                     canvas.scale(f11, f11);
-                    MediaController.CropState cropState4 = this.entry.crop;
-                    canvas.translate(cropState4.cropPx * f9, cropState4.cropPy * f10);
-                    canvas.rotate(this.entry.crop.cropRotate + r1.transformRotation);
+                    MediaController.CropState cropState5 = this.entry.crop;
+                    canvas.translate(cropState5.cropPx * f9, cropState5.cropPy * f10);
+                    MediaController.CropState cropState6 = this.entry.crop;
+                    canvas.rotate(cropState6.cropRotate + cropState6.transformRotation);
                     if (this.entry.crop.mirrored) {
                         canvas.scale(-1.0f, 1.0f);
                     }
                     canvas.rotate(this.entry.orientation);
-                    StoryEntry storyEntry4 = this.entry;
-                    canvas.translate((-storyEntry4.width) / 2.0f, (-storyEntry4.height) / 2.0f);
+                    StoryEntry storyEntry6 = this.entry;
+                    canvas.translate((-storyEntry6.width) / 2.0f, (-storyEntry6.height) / 2.0f);
                 }
                 this.bitmapPaint.setAlpha((int) ((1.0f - f) * 255.0f));
                 this.bitmapSrc.set(0, 0, this.bitmap.getWidth(), this.bitmap.getHeight());
                 Rect rect = this.bitmapDst;
-                StoryEntry storyEntry5 = this.entry;
-                rect.set(0, 0, storyEntry5.width, storyEntry5.height);
+                StoryEntry storyEntry7 = this.entry;
+                rect.set(0, 0, storyEntry7.width, storyEntry7.height);
                 canvas.drawBitmap(this.bitmap, this.bitmapSrc, this.bitmapDst, this.bitmapPaint);
                 canvas.restore();
             }
@@ -1836,10 +2004,11 @@ public abstract class PreviewView extends FrameLayout {
             this.lastTouchRotation = dAtan2;
             this.multitouch = z;
         }
-        if (this.entry == null) {
+        StoryEntry storyEntry = this.entry;
+        if (storyEntry == null) {
             return false;
         }
-        float width = r2.resultWidth / getWidth();
+        float width = storyEntry.resultWidth / getWidth();
         if (motionEvent.getActionMasked() == 0) {
             this.rotationDiff = 0.0f;
             this.snappedRotation = false;
@@ -2018,8 +2187,110 @@ public abstract class PreviewView extends FrameLayout {
         return getBackgroundDrawable(drawable, i, wallPaper, z);
     }
 
-    public static android.graphics.drawable.Drawable getBackgroundDrawable(android.graphics.drawable.Drawable r5, int r6, org.telegram.tgnet.TLRPC.WallPaper r7, boolean r8) throws java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.getBackgroundDrawable(android.graphics.drawable.Drawable, int, org.telegram.tgnet.TLRPC$WallPaper, boolean):android.graphics.drawable.Drawable");
+    public static Drawable getBackgroundDrawable(Drawable drawable, int i, TLRPC.WallPaper wallPaper, boolean z) {
+        Theme.ThemeInfo theme;
+        SparseIntArray sparseIntArray;
+        String[] strArr;
+        String str;
+        SparseIntArray themeFileValues;
+        int[] defaultColors;
+        Theme.ThemeAccent accent;
+        int i2;
+        Theme.BackgroundDrawableSettings backgroundDrawableSettingsCreateBackgroundDrawable;
+        Drawable drawable2;
+        int i3;
+        if (wallPaper != null && TextUtils.isEmpty(ChatThemeController.getWallpaperEmoticon(wallPaper))) {
+            return ChatBackgroundDrawable.getOrCreate(drawable, wallPaper, z);
+        }
+        EmojiThemes theme2 = (wallPaper == null || wallPaper.settings == null) ? null : ChatThemeController.getInstance(i).getTheme(ThemeKey.ofEmoticon(wallPaper.settings.emoticon));
+        if (theme2 != null) {
+            return getBackgroundDrawableFromTheme(i, theme2, 0, z);
+        }
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
+        String str2 = "Blue";
+        String string = sharedPreferences.getString("lastDayTheme", "Blue");
+        if (Theme.getTheme(string) == null || Theme.getTheme(string).isDark()) {
+            string = "Blue";
+        }
+        String str3 = "Dark Blue";
+        String string2 = sharedPreferences.getString("lastDarkTheme", "Dark Blue");
+        if (Theme.getTheme(string2) == null || !Theme.getTheme(string2).isDark()) {
+            string2 = "Dark Blue";
+        }
+        Theme.ThemeInfo activeTheme = Theme.getActiveTheme();
+        if (string.equals(string2)) {
+            if (activeTheme.isDark() || string.equals("Dark Blue") || string.equals("Night")) {
+                str3 = string2;
+            }
+            if (z) {
+                theme = Theme.getTheme(str3);
+            } else {
+                theme = Theme.getTheme(str2);
+            }
+            sparseIntArray = new SparseIntArray();
+            strArr = new String[1];
+            str = theme.assetName;
+            if (str != null) {
+                themeFileValues = Theme.getThemeFileValues(null, str, strArr);
+            } else {
+                themeFileValues = Theme.getThemeFileValues(new File(theme.pathToFile), null, strArr);
+            }
+            defaultColors = Theme.getDefaultColors();
+            if (defaultColors != null) {
+                for (i3 = 0; i3 < defaultColors.length; i3++) {
+                    sparseIntArray.put(i3, defaultColors[i3]);
+                }
+            }
+            accent = theme.getAccent(false);
+            if (accent != null) {
+                accent.fillAccentColors(themeFileValues, sparseIntArray);
+            } else if (themeFileValues != null) {
+                for (i2 = 0; i2 < themeFileValues.size(); i2++) {
+                    sparseIntArray.put(themeFileValues.keyAt(i2), themeFileValues.valueAt(i2));
+                }
+            }
+            backgroundDrawableSettingsCreateBackgroundDrawable = Theme.createBackgroundDrawable(theme, sparseIntArray, strArr[0], 0, true);
+            drawable2 = backgroundDrawableSettingsCreateBackgroundDrawable.themedWallpaper;
+            if (drawable2 != null) {
+                return drawable2;
+            }
+            return backgroundDrawableSettingsCreateBackgroundDrawable.wallpaper;
+        }
+        str3 = string2;
+        str2 = string;
+        if (z) {
+            theme = Theme.getTheme(str3);
+        } else {
+            theme = Theme.getTheme(str2);
+        }
+        sparseIntArray = new SparseIntArray();
+        strArr = new String[1];
+        str = theme.assetName;
+        if (str != null) {
+            themeFileValues = Theme.getThemeFileValues(null, str, strArr);
+        } else {
+            themeFileValues = Theme.getThemeFileValues(new File(theme.pathToFile), null, strArr);
+        }
+        defaultColors = Theme.getDefaultColors();
+        if (defaultColors != null) {
+            while (i3 < defaultColors.length) {
+                sparseIntArray.put(i3, defaultColors[i3]);
+            }
+        }
+        accent = theme.getAccent(false);
+        if (accent != null) {
+            accent.fillAccentColors(themeFileValues, sparseIntArray);
+        } else if (themeFileValues != null) {
+            while (i2 < themeFileValues.size()) {
+                sparseIntArray.put(themeFileValues.keyAt(i2), themeFileValues.valueAt(i2));
+            }
+        }
+        backgroundDrawableSettingsCreateBackgroundDrawable = Theme.createBackgroundDrawable(theme, sparseIntArray, strArr[0], 0, true);
+        drawable2 = backgroundDrawableSettingsCreateBackgroundDrawable.themedWallpaper;
+        if (drawable2 != null) {
+            return drawable2;
+        }
+        return backgroundDrawableSettingsCreateBackgroundDrawable.wallpaper;
     }
 
     public void setupWallpaper(StoryEntry storyEntry, boolean z) {

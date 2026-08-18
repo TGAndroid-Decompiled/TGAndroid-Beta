@@ -15,7 +15,6 @@ import java.util.function.ToIntFunction;
 import me.vkryl.android.animator.ListAnimator;
 import me.vkryl.core.lambda.Destroyable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.AnimatedLinearLayout;
 
 public abstract class AnimatedLinearLayout extends LinearLayout {
     private static final Comparator comparator = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new ToIntFunction() {
@@ -206,9 +205,7 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
     }
 
     private void checkViewsVisibility() {
-        Iterator it = this.listAnimator.iterator();
-        while (it.hasNext()) {
-            ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
+        for (ListAnimator.Entry entry : this.listAnimator) {
             View view = ((Holder) entry.item).view;
             RectF rectF = entry.getRectF();
             if (getOrientation() == 1) {

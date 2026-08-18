@@ -273,10 +273,16 @@ public class FlashViews {
             FlashViews$$ExternalSyntheticApiModelOutline1.m();
             int i = this.lastWidth;
             int i2 = this.lastHeight;
+            float fMin = (Math.min(i, i2) / 2.0f) * 1.35f * (2.0f - this.invert);
+            float fRed = Color.red(this.color) / 255.0f;
+            float fGreen = Color.green(this.color) / 255.0f;
+            float fBlue = Color.blue(this.color) / 255.0f;
             ColorSpace.Named named = ColorSpace.Named.EXTENDED_SRGB;
-            this.gradient = FlashViews$$ExternalSyntheticApiModelOutline0.m(i * 0.5f, i2 * 0.4f, (Math.min(i, i2) / 2.0f) * 1.35f * (2.0f - this.invert), new long[]{Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            this.gradient = FlashViews$$ExternalSyntheticApiModelOutline0.m(i * 0.5f, i2 * 0.4f, fMin, new long[]{Color.valueOf(fRed, fGreen, fBlue, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         } else {
-            this.gradient = new RadialGradient(this.lastWidth * 0.5f, 0.4f * this.lastHeight, (Math.min(r4, r6) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            int i3 = this.lastWidth;
+            int i4 = this.lastHeight;
+            this.gradient = new RadialGradient(i3 * 0.5f, 0.4f * i4, (Math.min(i3, i4) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         }
         this.paint.setShader(this.gradient);
         invalidate();

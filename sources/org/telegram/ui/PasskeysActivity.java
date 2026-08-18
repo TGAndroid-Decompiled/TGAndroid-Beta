@@ -8,7 +8,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -121,7 +120,7 @@ public class PasskeysActivity extends BaseFragment {
 
     public void openMenu(View view) {
         boolean z = view instanceof ImageView;
-        ViewParent parent = view;
+        View parent = view;
         if (z) {
             parent = view.getParent();
         }

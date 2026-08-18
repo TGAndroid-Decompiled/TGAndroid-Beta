@@ -84,6 +84,7 @@ public abstract class GroupCallInvitedCell extends FrameLayout {
     }
 
     public void setData(int i, Long l, boolean z, boolean z2, boolean z3) {
+        int i2;
         TLRPC.User user = MessagesController.getInstance(i).getUser(l);
         this.currentUser = user;
         if (user == null) {
@@ -94,15 +95,23 @@ public abstract class GroupCallInvitedCell extends FrameLayout {
         this.nameTextView.setText(UserObject.getUserName(this.currentUser));
         this.avatarImageView.getImageReceiver().setCurrentAccount(i);
         this.avatarImageView.setForUserOrChat(this.currentUser, this.avatarDrawable);
-        this.statusTextView.setText(LocaleController.getString(z3 ? R.string.ShadyLeaving : z2 ? R.string.ShadyJoining : z ? R.string.ConferenceCalling : R.string.Invited));
+        SimpleTextView simpleTextView = this.statusTextView;
+        if (z3) {
+            i2 = R.string.ShadyLeaving;
+        } else if (z2) {
+            i2 = R.string.ShadyJoining;
+        } else {
+            i2 = z ? R.string.ConferenceCalling : R.string.Invited;
+        }
+        simpleTextView.setText(LocaleController.getString(i2));
         float f = 0.5f;
         this.avatarImageView.setAlpha((z2 || z3) ? 0.5f : 1.0f);
         this.nameTextView.setAlpha((z2 || z3) ? 0.5f : 1.0f);
-        SimpleTextView simpleTextView = this.statusTextView;
+        SimpleTextView simpleTextView2 = this.statusTextView;
         if (!z2 && !z3) {
             f = 1.0f;
         }
-        simpleTextView.setAlpha(f);
+        simpleTextView2.setAlpha(f);
         this.muteButton.setAlpha((z2 || z3) ? 0.0f : 1.0f);
     }
 

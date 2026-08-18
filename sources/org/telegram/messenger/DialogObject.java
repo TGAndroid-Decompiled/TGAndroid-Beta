@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -32,7 +31,7 @@ public class DialogObject {
     }
 
     public static long makeFolderDialogId(int i) {
-        return i | 2305843009213693952L;
+        return ((long) i) | 2305843009213693952L;
     }
 
     public static boolean isChannel(TLRPC.Dialog dialog) {
@@ -243,7 +242,10 @@ public class DialogObject {
     }
 
     public static boolean hasPhoto(TLObject tLObject) {
-        return tLObject instanceof TLRPC.User ? ((TLRPC.User) tLObject).photo != null : (tLObject instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).photo != null;
+        if (tLObject instanceof TLRPC.User) {
+            return ((TLRPC.User) tLObject).photo != null;
+        }
+        return (tLObject instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).photo != null;
     }
 
     public static String setDialogPhotoTitle(BackupImageView backupImageView, TLObject tLObject) {
@@ -330,7 +332,7 @@ public class DialogObject {
         if (length == 0) {
             return 1.0d;
         }
-        return (length - editDistance(str, str2)) / length;
+        return ((double) (length - editDistance(str, str2))) / ((double) length);
     }
 
     public static int editDistance(String str, String str2) {
@@ -474,11 +476,9 @@ public class DialogObject {
         if (arrayList == null) {
             return null;
         }
-        Iterator<TLRPC.TL_username> it = arrayList.iterator();
-        while (it.hasNext()) {
-            TLRPC.TL_username next = it.next();
-            if (next != null && TextUtils.equals(next.username, str)) {
-                return next;
+        for (TLRPC.TL_username tL_username : arrayList) {
+            if (tL_username != null && TextUtils.equals(tL_username.username, str)) {
+                return tL_username;
             }
         }
         return null;

@@ -143,18 +143,13 @@ public class VoIPNotificationsLayout extends LinearLayout {
         int i = 0;
         while (i < this.viewToAdd.size()) {
             NotificationView notificationView = (NotificationView) this.viewToAdd.get(i);
-            int i2 = 0;
-            while (true) {
-                if (i2 >= this.viewToRemove.size()) {
-                    break;
-                }
+            for (int i2 = 0; i2 < this.viewToRemove.size(); i2++) {
                 if (notificationView.tag.equals(((NotificationView) this.viewToRemove.get(i2)).tag)) {
                     this.viewToAdd.remove(i);
                     this.viewToRemove.remove(i2);
                     i--;
                     break;
                 }
-                i2++;
             }
             i++;
         }

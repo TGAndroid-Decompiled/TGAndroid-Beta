@@ -17,8 +17,6 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import org.telegram.messenger.ILocationServiceProvider;
-import org.telegram.messenger.PushListenerController;
 
 public class GoogleLocationProvider implements ILocationServiceProvider {
     private FusedLocationProviderClient locationProviderClient;
@@ -133,7 +131,15 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
 
         @Override
         public void setPriority(int i) {
-            this.request.setPriority(i != 1 ? i != 2 ? i != 3 ? 100 : 105 : 104 : 102);
+            int i2;
+            if (i == 1) {
+                i2 = 102;
+            } else if (i != 2) {
+                i2 = i != 3 ? 100 : 105;
+            } else {
+                i2 = 104;
+            }
+            this.request.setPriority(i2);
         }
 
         @Override

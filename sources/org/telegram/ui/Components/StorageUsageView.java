@@ -339,19 +339,20 @@ public class StorageUsageView extends FrameLayout {
             }
             int iDp = AndroidUtilities.dp(24.0f);
             if (!StorageUsageView.this.calculating) {
-                int iDp2 = AndroidUtilities.dp(24.0f) + ((int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2));
-                canvas.drawLine(iDp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + r5, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
+                int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2);
+                int iDp2 = AndroidUtilities.dp(24.0f) + measuredWidth;
+                canvas.drawLine(iDp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
                 canvas.drawRect(iDp2, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), iDp2 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
             }
             if (StorageUsageView.this.calculating) {
                 return;
             }
-            int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress);
-            if (measuredWidth < AndroidUtilities.dp(1.0f)) {
-                measuredWidth = AndroidUtilities.dp(1.0f);
+            int measuredWidth2 = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress);
+            if (measuredWidth2 < AndroidUtilities.dp(1.0f)) {
+                measuredWidth2 = AndroidUtilities.dp(1.0f);
             }
-            int iDp3 = AndroidUtilities.dp(24.0f) + measuredWidth;
-            canvas.drawLine(iDp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
+            int iDp3 = AndroidUtilities.dp(24.0f) + measuredWidth2;
+            canvas.drawLine(iDp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth2, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
             canvas.drawRect(iDp3, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), iDp3 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
         }
     }

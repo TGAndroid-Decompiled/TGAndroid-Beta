@@ -18,7 +18,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
-import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.StatisticActivity;
@@ -65,8 +64,35 @@ public abstract class ReactionsUtils {
         return "";
     }
 
-    public static void applyForStoryViews(org.telegram.tgnet.TLRPC.Reaction r5, org.telegram.tgnet.TLRPC.Reaction r6, org.telegram.tgnet.tl.TL_stories.StoryViews r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsUtils.applyForStoryViews(org.telegram.tgnet.TLRPC$Reaction, org.telegram.tgnet.TLRPC$Reaction, org.telegram.tgnet.tl.TL_stories$StoryViews):void");
+    public static void applyForStoryViews(TLRPC.Reaction reaction, TLRPC.Reaction reaction2, TL_stories.StoryViews storyViews) {
+        if (storyViews == null) {
+            return;
+        }
+        int i = 0;
+        boolean z = false;
+        while (i < storyViews.reactions.size()) {
+            TLRPC.ReactionCount reactionCount = storyViews.reactions.get(i);
+            if (reaction != null && compare(reactionCount.reaction, reaction)) {
+                int i2 = reactionCount.count - 1;
+                reactionCount.count = i2;
+                if (i2 <= 0) {
+                    storyViews.reactions.remove(i);
+                    i--;
+                } else if (reaction2 == null) {
+                }
+            } else if (reaction2 == null && compare(reactionCount.reaction, reaction2)) {
+                reactionCount.count++;
+                z = true;
+            }
+            i++;
+        }
+        if (z) {
+            return;
+        }
+        TLRPC.TL_reactionCount tL_reactionCount = new TLRPC.TL_reactionCount();
+        tL_reactionCount.count = 1;
+        tL_reactionCount.reaction = reaction2;
+        storyViews.reactions.add(tL_reactionCount);
     }
 
     public static void showLimitReachedDialogForReactions(final long j, int i, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
@@ -136,16 +162,14 @@ public abstract class ReactionsUtils {
         if (chatFull != null && ChatObject.isChannelAndNotMegaGroup(chat)) {
             TLRPC.ChatReactions chatReactions = chatFull.available_reactions;
             if (chatReactions instanceof TLRPC.TL_chatReactionsSome) {
-                Iterator<TLRPC.Reaction> it = ((TLRPC.TL_chatReactionsSome) chatReactions).reactions.iterator();
-                while (it.hasNext()) {
-                    TLRPC.Reaction next = it.next();
-                    if (next instanceof TLRPC.TL_reactionEmoji) {
-                        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(((TLRPC.TL_reactionEmoji) next).emoticon);
+                for (TLRPC.Reaction reaction : ((TLRPC.TL_chatReactionsSome) chatReactions).reactions) {
+                    if (reaction instanceof TLRPC.TL_reactionEmoji) {
+                        TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(((TLRPC.TL_reactionEmoji) reaction).emoticon);
                         if (tL_availableReaction != null) {
                             animatedEmojiDrawableMake = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), tL_availableReaction.activate_animation);
                         }
                     } else {
-                        animatedEmojiDrawableMake = next instanceof TLRPC.TL_reactionCustomEmoji ? AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), ((TLRPC.TL_reactionCustomEmoji) next).document_id) : null;
+                        animatedEmojiDrawableMake = reaction instanceof TLRPC.TL_reactionCustomEmoji ? AnimatedEmojiDrawable.make(UserConfig.selectedAccount, AnimatedEmojiDrawable.getCacheTypeForEnterView(), ((TLRPC.TL_reactionCustomEmoji) reaction).document_id) : null;
                     }
                     if (animatedEmojiDrawableMake != null) {
                         arrayList.add(animatedEmojiDrawableMake);

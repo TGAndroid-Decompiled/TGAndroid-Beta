@@ -1,7 +1,5 @@
 package org.webrtc;
 
-import org.webrtc.MediaStreamTrack;
-
 public class RtpReceiver {
     private MediaStreamTrack cachedTrack;
     private long nativeObserver;

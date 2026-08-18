@@ -105,13 +105,13 @@ public class NumberPicker extends LinearLayout {
     }
 
     static boolean access$380(NumberPicker numberPicker, int i) {
-        ?? r2 = (byte) (i ^ (numberPicker.mIncrementVirtualButtonPressed ? 1 : 0));
+        ?? r2 = (i ^ (numberPicker.mIncrementVirtualButtonPressed ? 1 : 0)) == true ? (byte) 1 : (byte) 0;
         numberPicker.mIncrementVirtualButtonPressed = r2;
         return r2;
     }
 
     static boolean access$580(NumberPicker numberPicker, int i) {
-        ?? r2 = (byte) (i ^ (numberPicker.mDecrementVirtualButtonPressed ? 1 : 0));
+        ?? r2 = (i ^ (numberPicker.mDecrementVirtualButtonPressed ? 1 : 0)) == true ? (byte) 1 : (byte) 0;
         numberPicker.mDecrementVirtualButtonPressed = r2;
         return r2;
     }
@@ -581,8 +581,14 @@ public class NumberPicker extends LinearLayout {
         return this.mWrapSelectorWheel;
     }
 
-    public void setWrapSelectorWheel(boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.NumberPicker.setWrapSelectorWheel(boolean):void");
+    public void setWrapSelectorWheel(boolean z) {
+        boolean z2;
+        Integer num;
+        if (!this.mMaxValueSet || !this.mMinValueSet || ((num = this.allItemsCount) != null && (this.mMaxValue - this.mMinValue) + 1 >= num.intValue())) {
+            this.mWrapSelectorWheelSetting = z;
+            z2 = z;
+        }
+        this.mWrapSelectorWheel = z2;
     }
 
     public void setAllItemsCount(int i) {
@@ -754,8 +760,10 @@ public class NumberPicker extends LinearLayout {
             i2 = 3;
         }
         if (this.drawDividers) {
-            canvas.drawRect(0.0f, this.mTopSelectionDividerTop, getRight(), this.mSelectionDividerHeight + r1, this.mSelectionDivider);
-            canvas.drawRect(0.0f, r1 - this.mSelectionDividerHeight, getRight(), this.mBottomSelectionDividerBottom, this.mSelectionDivider);
+            int i4 = this.mTopSelectionDividerTop;
+            canvas.drawRect(0.0f, i4, getRight(), this.mSelectionDividerHeight + i4, this.mSelectionDivider);
+            int i5 = this.mBottomSelectionDividerBottom;
+            canvas.drawRect(0.0f, i5 - this.mSelectionDividerHeight, getRight(), i5, this.mSelectionDivider);
         }
     }
 
@@ -853,10 +861,11 @@ public class NumberPicker extends LinearLayout {
 
     private void initializeSelectorWheel() {
         initializeSelectorWheelIndices();
-        int length = this.mSelectorIndices.length * this.mTextSize;
+        int[] iArr = this.mSelectorIndices;
+        int length = iArr.length * this.mTextSize;
         int bottom = getBottom() - getTop();
         int i = this.mTextSize;
-        int length2 = (int) ((((bottom + i) - length) / r0.length) + 0.5f);
+        int length2 = (int) ((((bottom + i) - length) / iArr.length) + 0.5f);
         this.mSelectorTextGapHeight = length2;
         this.mSelectorElementHeight = i + length2;
         int baseline = (this.mInputText.getBaseline() + this.mInputText.getTop()) - (this.mSelectorElementHeight * this.SELECTOR_MIDDLE_ITEM_INDEX);

@@ -145,8 +145,48 @@ public class LockFreeLinkedListNode {
         }
     }
 
-    private final kotlinx.coroutines.internal.LockFreeLinkedListNode correctPrev(kotlinx.coroutines.internal.OpDescriptor r8) {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.LockFreeLinkedListNode.correctPrev(kotlinx.coroutines.internal.OpDescriptor):kotlinx.coroutines.internal.LockFreeLinkedListNode");
+    private final LockFreeLinkedListNode correctPrev(OpDescriptor opDescriptor) {
+        Object obj;
+        while (true) {
+            LockFreeLinkedListNode lockFreeLinkedListNode = (LockFreeLinkedListNode) _prev$volatile$FU.get(this);
+            LockFreeLinkedListNode lockFreeLinkedListNode2 = lockFreeLinkedListNode;
+            while (true) {
+                LockFreeLinkedListNode lockFreeLinkedListNode3 = null;
+                while (true) {
+                    obj = _next$volatile$FU.get(lockFreeLinkedListNode2);
+                    if (obj == this) {
+                        if (lockFreeLinkedListNode != lockFreeLinkedListNode2 && !AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_prev$volatile$FU, this, lockFreeLinkedListNode, lockFreeLinkedListNode2)) {
+                            break;
+                        }
+                        return lockFreeLinkedListNode2;
+                    }
+                    if (isRemoved()) {
+                        return null;
+                    }
+                    if (obj == opDescriptor) {
+                        return lockFreeLinkedListNode2;
+                    }
+                    if (obj instanceof OpDescriptor) {
+                        ((OpDescriptor) obj).perform(lockFreeLinkedListNode2);
+                        break;
+                    }
+                    if (!(obj instanceof Removed)) {
+                        Intrinsics.checkNotNull(obj, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");
+                        lockFreeLinkedListNode3 = lockFreeLinkedListNode2;
+                        lockFreeLinkedListNode2 = (LockFreeLinkedListNode) obj;
+                    } else {
+                        if (lockFreeLinkedListNode3 != null) {
+                            break;
+                        }
+                        lockFreeLinkedListNode2 = (LockFreeLinkedListNode) _prev$volatile$FU.get(lockFreeLinkedListNode2);
+                    }
+                }
+                if (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$volatile$FU, lockFreeLinkedListNode3, lockFreeLinkedListNode2, ((Removed) obj).ref)) {
+                    break;
+                }
+                lockFreeLinkedListNode2 = lockFreeLinkedListNode3;
+            }
+        }
     }
 
     public String toString() {

@@ -14,10 +14,6 @@ import org.telegram.tgnet.TLRPC$TL_messages_getDialogUnreadMarks$$ExternalSynthe
 import org.telegram.tgnet.TLRPC$TL_messages_quickReplies$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.Vector$$ExternalSyntheticLambda7;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_ephemeral;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.tgnet.tl.TL_stars;
 
 public class TL_update {
     private TL_update() {

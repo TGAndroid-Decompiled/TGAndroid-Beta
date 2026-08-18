@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
@@ -286,8 +287,51 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.FeaturedStickerSetInfoCell.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        float f;
+        float f2;
+        boolean z = this.isUnread;
+        if (z || this.unreadProgress != 0.0f) {
+            if (z) {
+                float f3 = this.unreadProgress;
+                if (f3 != 1.0f) {
+                    float f4 = f3 + 0.16f;
+                    this.unreadProgress = f4;
+                    if (f4 > 1.0f) {
+                        this.unreadProgress = 1.0f;
+                    } else {
+                        invalidate();
+                    }
+                } else if (!z) {
+                    f = this.unreadProgress;
+                    if (f != 0.0f) {
+                        f2 = f - 0.16f;
+                        this.unreadProgress = f2;
+                        if (f2 < 0.0f) {
+                            this.unreadProgress = 0.0f;
+                        } else {
+                            invalidate();
+                        }
+                    }
+                }
+            } else if (!z) {
+                f = this.unreadProgress;
+                if (f != 0.0f) {
+                    f2 = f - 0.16f;
+                    this.unreadProgress = f2;
+                    if (f2 < 0.0f) {
+                        this.unreadProgress = 0.0f;
+                    } else {
+                        invalidate();
+                    }
+                }
+            }
+            this.paint.setColor(getThemedColor(Theme.key_featuredStickers_unread));
+            canvas.drawCircle(this.nameTextView.getRight() + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f) * this.unreadProgress, this.paint);
+        }
+        if (this.needDivider) {
+            canvas.drawLine(0.0f, 0.0f, getWidth(), 0.0f, Theme.getThemePaint("paintDivider", this.resourcesProvider));
+        }
     }
 
     public void updateColors() {

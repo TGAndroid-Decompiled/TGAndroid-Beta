@@ -155,11 +155,9 @@ public class QuickShareSelectorOverlayLayout extends View {
         long j = userConfig.clientUserId;
         this.dialogs.add(Long.valueOf(j));
         if (userConfig.suggestContacts) {
-            Iterator<TLRPC.TL_topPeer> it = MediaDataController.getInstance(this.currentAccount).hints.iterator();
-            while (it.hasNext()) {
-                TLRPC.TL_topPeer next = it.next();
-                long j2 = next.peer.user_id;
-                if (j2 != 0 && MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(next.peer.user_id)) != null) {
+            for (TLRPC.TL_topPeer tL_topPeer : MediaDataController.getInstance(this.currentAccount).hints) {
+                long j2 = tL_topPeer.peer.user_id;
+                if (j2 != 0 && MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_topPeer.peer.user_id)) != null) {
                     this.dialogs.add(Long.valueOf(j2));
                 }
             }

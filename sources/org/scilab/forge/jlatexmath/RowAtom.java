@@ -122,27 +122,29 @@ public class RowAtom extends Atom implements Row {
                     listIterator.previous();
                 }
                 changeToOrd(dummy2, this.previousAtom, next);
-                while (listIterator.hasNext() && dummy2.getRightType() == 0 && dummy2.isCharSymbol()) {
-                    Atom next3 = listIterator.next();
-                    int i3 = i + 1;
-                    if ((next3 instanceof CharSymbol) && ligKernSet.get(next3.getLeftType())) {
-                        dummy2.markAsTextSymbol();
-                        CharFont charFont = dummy2.getCharFont(teXFont);
-                        CharFont charFont2 = ((CharSymbol) next3).getCharFont(teXFont);
-                        CharFont ligature = teXFont.getLigature(charFont, charFont2);
-                        if (ligature == null) {
-                            kern = teXFont.getKern(charFont, charFont2, teXEnvironment.getStyle());
+                while (true) {
+                    if (listIterator.hasNext() && dummy2.getRightType() == 0 && dummy2.isCharSymbol()) {
+                        Atom next3 = listIterator.next();
+                        int i3 = i + 1;
+                        if ((next3 instanceof CharSymbol) && ligKernSet.get(next3.getLeftType())) {
+                            dummy2.markAsTextSymbol();
+                            CharFont charFont = dummy2.getCharFont(teXFont);
+                            CharFont charFont2 = ((CharSymbol) next3).getCharFont(teXFont);
+                            CharFont ligature = teXFont.getLigature(charFont, charFont2);
+                            if (ligature == null) {
+                                kern = teXFont.getKern(charFont, charFont2, teXEnvironment.getStyle());
+                                listIterator.previous();
+                                break;
+                            }
+                            dummy2.changeAtom(new FixedCharAtom(ligature));
+                            i = i3;
+                        } else {
                             listIterator.previous();
-                            break;
                         }
-                        dummy2.changeAtom(new FixedCharAtom(ligature));
-                        i = i3;
-                    } else {
-                        listIterator.previous();
-                        break;
                     }
+                    kern = 0.0f;
+                    break;
                 }
-                kern = 0.0f;
                 if (listIterator.previousIndex() != 0 && (dummy = this.previousAtom) != null && !dummy.isKern() && !dummy2.isKern()) {
                     horizontalBox.add(Glue.get(this.previousAtom.getRightType(), dummy2.getLeftType(), teXEnvironment));
                 }
@@ -187,6 +189,7 @@ public class RowAtom extends Atom implements Row {
         if (this.elements.size() == 0) {
             return 0;
         }
-        return this.elements.get(r0.size() - 1).getRightType();
+        LinkedList<Atom> linkedList = this.elements;
+        return linkedList.get(linkedList.size() - 1).getRightType();
     }
 }

@@ -301,7 +301,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             PagerSlidingTabStrip.this.currentPosition = i;
             PagerSlidingTabStrip.this.currentPositionOffset = f;
             if (PagerSlidingTabStrip.this.tabsContainer.getChildAt(i) != null) {
-                PagerSlidingTabStrip.this.scrollToChild(i, (int) (r0.tabsContainer.getChildAt(i).getWidth() * f));
+                PagerSlidingTabStrip pagerSlidingTabStrip = PagerSlidingTabStrip.this;
+                pagerSlidingTabStrip.scrollToChild(i, (int) (pagerSlidingTabStrip.tabsContainer.getChildAt(i).getWidth() * f));
                 PagerSlidingTabStrip.this.invalidate();
                 ViewPager.OnPageChangeListener onPageChangeListener = PagerSlidingTabStrip.this.delegatePageListener;
                 if (onPageChangeListener != null) {

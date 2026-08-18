@@ -26,6 +26,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -250,8 +251,9 @@ public abstract class BoostRepository {
     }
 
     public static void lambda$payGiftCodeByGoogle$11(final TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, ConnectionsManager connectionsManager, final Utilities.Callback callback, final Utilities.Callback callback2, final BaseFragment baseFragment, final BillingResult billingResult, final List list) {
-        tL_inputStorePaymentPremiumGiftCode.currency = ((ProductDetails) list.get(0)).getOneTimePurchaseOfferDetails().getPriceCurrencyCode();
-        tL_inputStorePaymentPremiumGiftCode.amount = (long) ((r0.getPriceAmountMicros() / Math.pow(10.0d, 6.0d)) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_premiumGiftCodeOption.currency)));
+        ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = ((ProductDetails) list.get(0)).getOneTimePurchaseOfferDetails();
+        tL_inputStorePaymentPremiumGiftCode.currency = oneTimePurchaseOfferDetails.getPriceCurrencyCode();
+        tL_inputStorePaymentPremiumGiftCode.amount = (long) ((oneTimePurchaseOfferDetails.getPriceAmountMicros() / Math.pow(10.0d, 6.0d)) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_premiumGiftCodeOption.currency)));
         TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
         tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiftCode;
         connectionsManager.sendRequest(tL_payments_canPurchaseStore, new RequestDelegate() {
@@ -542,8 +544,9 @@ public abstract class BoostRepository {
     }
 
     public static void lambda$payGiveAwayByGoogle$24(final TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, ConnectionsManager connectionsManager, final Utilities.Callback callback, final Utilities.Callback callback2, final BaseFragment baseFragment, final BillingResult billingResult, final List list) {
-        tL_inputStorePaymentPremiumGiveaway.currency = ((ProductDetails) list.get(0)).getOneTimePurchaseOfferDetails().getPriceCurrencyCode();
-        tL_inputStorePaymentPremiumGiveaway.amount = (long) ((r0.getPriceAmountMicros() / Math.pow(10.0d, 6.0d)) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_premiumGiftCodeOption.currency)));
+        ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = ((ProductDetails) list.get(0)).getOneTimePurchaseOfferDetails();
+        tL_inputStorePaymentPremiumGiveaway.currency = oneTimePurchaseOfferDetails.getPriceCurrencyCode();
+        tL_inputStorePaymentPremiumGiveaway.amount = (long) ((oneTimePurchaseOfferDetails.getPriceAmountMicros() / Math.pow(10.0d, 6.0d)) * Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_premiumGiftCodeOption.currency)));
         TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
         tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiveaway;
         connectionsManager.sendRequest(tL_payments_canPurchaseStore, new RequestDelegate() {
@@ -871,10 +874,7 @@ public abstract class BoostRepository {
             ProductDetails productDetails = (ProductDetails) it.next();
             ProductDetails.OneTimePurchaseOfferDetails oneTimePurchaseOfferDetails = productDetails.getOneTimePurchaseOfferDetails();
             Iterator it2 = list.iterator();
-            while (true) {
-                if (!it2.hasNext()) {
-                    break;
-                }
+            while (it2.hasNext()) {
                 TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) it2.next();
                 String str = tL_premiumGiftCodeOption.store_product;
                 if (str != null && str.equals(productDetails.getProductId())) {
@@ -946,8 +946,69 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void searchContactsLocally(java.lang.String r12, boolean r13, org.telegram.messenger.Utilities.Callback r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.BoostRepository.searchContactsLocally(java.lang.String, boolean, org.telegram.messenger.Utilities$Callback):void");
+    public static void searchContactsLocally(String str, boolean z, Utilities.Callback callback) {
+        TLRPC.User user;
+        int i = UserConfig.selectedAccount;
+        ArrayList arrayList = new ArrayList();
+        ArrayList<TLRPC.TL_contact> arrayList2 = ContactsController.getInstance(i).contacts;
+        if (arrayList2 == null || arrayList2.isEmpty()) {
+            ContactsController.getInstance(i).loadContacts(false, 0L);
+        }
+        MessagesController messagesController = MessagesController.getInstance(i);
+        String lowerCase = str.toLowerCase();
+        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+        if (arrayList2 != null) {
+            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                TLRPC.TL_contact tL_contact = arrayList2.get(i2);
+                if (tL_contact != null && (user = messagesController.getUser(Long.valueOf(tL_contact.user_id))) != null && ((z || !user.bot) && !UserObject.isService(user.id) && !UserObject.isUserSelf(user))) {
+                    String lowerCase2 = UserObject.getUserName(user).toLowerCase();
+                    String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                    if (lowerCase2.startsWith(lowerCase)) {
+                        arrayList.add(user);
+                    } else {
+                        if (lowerCase2.contains(" " + lowerCase) || strTranslitSafe2.startsWith(strTranslitSafe)) {
+                            arrayList.add(user);
+                        } else {
+                            if (strTranslitSafe2.contains(" " + strTranslitSafe)) {
+                                arrayList.add(user);
+                            } else if (user.usernames != null) {
+                                for (int i3 = 0; i3 < user.usernames.size(); i3++) {
+                                    TLRPC.TL_username tL_username = user.usernames.get(i3);
+                                    if (tL_username != null && tL_username.active) {
+                                        String lowerCase3 = tL_username.username.toLowerCase();
+                                        if (!lowerCase3.startsWith(lowerCase)) {
+                                            if (!lowerCase3.contains("_" + lowerCase) && !lowerCase3.startsWith(strTranslitSafe)) {
+                                                if (lowerCase3.contains(" " + strTranslitSafe)) {
+                                                }
+                                            }
+                                        }
+                                        arrayList.add(user);
+                                        break;
+                                    }
+                                }
+                            } else {
+                                String str2 = user.username;
+                                if (str2 != null) {
+                                    String lowerCase4 = str2.toLowerCase();
+                                    if (lowerCase4.startsWith(lowerCase)) {
+                                        arrayList.add(user);
+                                    } else {
+                                        if (lowerCase4.contains("_" + lowerCase) || lowerCase4.startsWith(strTranslitSafe)) {
+                                            arrayList.add(user);
+                                        } else {
+                                            if (lowerCase4.contains(" " + strTranslitSafe)) {
+                                                arrayList.add(user);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        callback.run(arrayList);
     }
 
     public static void searchChats(final long j, int i, String str, int i2, final Utilities.Callback callback) {

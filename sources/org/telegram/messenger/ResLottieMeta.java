@@ -18,7 +18,7 @@ public final class ResLottieMeta {
     }
 
     private static long pack(int i, int i2, int i3, boolean z) {
-        return ((i2 & 255) << 24) | (i << 32) | (z ? 8388608L : 0L) | (i3 & 8388607);
+        return (((long) (i2 & 255)) << 24) | (((long) i) << 32) | (z ? 8388608L : 0L) | ((long) (i3 & 8388607));
     }
 
     public static int resIdOf(long j) {

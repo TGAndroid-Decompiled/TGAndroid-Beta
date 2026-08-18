@@ -956,8 +956,57 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 });
             }
 
-            public void lambda$run$0(java.lang.String r17) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.InviteContactsActivity.InviteAdapter.AnonymousClass1.lambda$run$0(java.lang.String):void");
+            public void lambda$run$0(String str) {
+                String lowerCase = str.trim().toLowerCase();
+                if (lowerCase.isEmpty()) {
+                    InviteAdapter.this.updateSearchResults(new ArrayList(), new ArrayList());
+                    return;
+                }
+                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
+                if (lowerCase.equals(translitString) || translitString.isEmpty()) {
+                    translitString = null;
+                }
+                int i = (translitString != null ? 1 : 0) + 1;
+                String[] strArr = new String[i];
+                strArr[0] = lowerCase;
+                if (translitString != null) {
+                    strArr[1] = translitString;
+                }
+                ArrayList arrayList = new ArrayList();
+                ArrayList arrayList2 = new ArrayList();
+                for (int i2 = 0; i2 < InviteContactsActivity.this.phoneBookContacts.size(); i2++) {
+                    ContactsController.Contact contact = (ContactsController.Contact) InviteContactsActivity.this.phoneBookContacts.get(i2);
+                    String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
+                    String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
+                    if (lowerCase2.equals(translitString2)) {
+                        translitString2 = null;
+                    }
+                    boolean z = false;
+                    for (int i3 = 0; i3 < i; i3++) {
+                        String str2 = strArr[i3];
+                        if (lowerCase2.startsWith(str2)) {
+                            z = true;
+                        } else {
+                            if (lowerCase2.contains(" " + str2)) {
+                                z = true;
+                            } else if (translitString2 != null) {
+                                if (translitString2.startsWith(str2)) {
+                                    z = true;
+                                } else {
+                                    if (translitString2.contains(" " + str2)) {
+                                        z = true;
+                                    }
+                                }
+                            }
+                        }
+                        if (z) {
+                            arrayList2.add(AndroidUtilities.generateSearchName(contact.first_name, contact.last_name, str2));
+                            arrayList.add(contact);
+                            break;
+                        }
+                    }
+                }
+                InviteAdapter.this.updateSearchResults(arrayList, arrayList2);
             }
         }
 

@@ -3,7 +3,6 @@ package org.scilab.forge.jlatexmath;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.lang.Character;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

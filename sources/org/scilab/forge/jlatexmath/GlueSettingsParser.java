@@ -85,12 +85,11 @@ public class GlueSettingsParser {
         String[] strArr = {"space", "stretch", "shrink"};
         float[] fArr = new float[3];
         for (int i = 0; i < 3; i++) {
-            String attribute = null;
             try {
-                attribute = element.getAttribute(strArr[i]);
+                String attribute = element.getAttribute(strArr[i]);
                 fArr[i] = (float) (!attribute.equals("") ? Double.parseDouble(attribute) : 0.0d);
             } catch (NumberFormatException unused) {
-                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i], "has an invalid real value '" + attribute + "'!");
+                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i], "has an invalid real value '" + ((String) null) + "'!");
             }
         }
         return new Glue(fArr[0], fArr[1], fArr[2], str);

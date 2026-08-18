@@ -88,8 +88,32 @@ public class DownscaleScrollableNoiseSuppressor {
         }
     }
 
-    public void drawInline(android.graphics.Canvas r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor.drawInline(android.graphics.Canvas, int):void");
+    public void drawInline(Canvas canvas, int i) {
+        int i2;
+        boolean z = this.isLiquidGlassEnabled;
+        if (z || !this.simpleMode) {
+            i2 = 1;
+            if (i == -2) {
+                i2 = 1 ^ (z ? 1 : 0);
+            } else if (i == -4) {
+                i2 = 0;
+            } else if (i != -3) {
+                return;
+            }
+        } else {
+            i2 = 0;
+        }
+        for (int i3 = 0; i3 < this.rectRenderNodesCount; i3++) {
+            SourcePart sourcePart = (SourcePart) this.rectRenderNodes.get(i3);
+            Rect rect = sourcePart.position;
+            if (!canvas.quickReject(rect.left, rect.top, rect.right, rect.bottom)) {
+                canvas.save();
+                Rect rect2 = sourcePart.position;
+                canvas.translate(rect2.left, rect2.top);
+                canvas.drawRenderNode(getRenderNode(i2, i3));
+                canvas.restore();
+            }
+        }
     }
 
     public class DownscaledRenderNode {
@@ -162,10 +186,11 @@ public class DownscaleScrollableNoiseSuppressor {
             boolean z = (this.renderNodeOriginalWithOffset.hasDisplayList() && this.renderNodeDownsampled[0].hasDisplayList()) ? false : true;
             int i = 0;
             while (true) {
-                if (i >= this.renderNodeDownsampled.length) {
+                RenderNode[] renderNodeArr = this.renderNodeDownsampled;
+                if (i >= renderNodeArr.length) {
                     break;
                 }
-                z |= !r15[i].hasDisplayList();
+                z |= !renderNodeArr[i].hasDisplayList();
                 if (!this.simpleMode) {
                     z |= !this.renderNodeRestored[i].hasDisplayList();
                 }
@@ -186,11 +211,11 @@ public class DownscaleScrollableNoiseSuppressor {
             this.renderNodeDownsampled[0].endRecording();
             int i3 = 0;
             while (true) {
-                RenderNode[] renderNodeArr = this.renderNodeDownsampled;
-                if (i3 >= renderNodeArr.length) {
+                RenderNode[] renderNodeArr2 = this.renderNodeDownsampled;
+                if (i3 >= renderNodeArr2.length) {
                     return;
                 }
-                renderNodeArr[i3].setPosition(i2, i2, iRound, iRound2);
+                renderNodeArr2[i3].setPosition(i2, i2, iRound, iRound2);
                 RecordingCanvas recordingCanvasBeginRecording2 = this.renderNodeDownsampled[i3].beginRecording(iRound, iRound2);
                 if (i3 > 0) {
                     recordingCanvasBeginRecording2.drawRenderNode(this.renderNodeDownsampled[i2]);
@@ -312,7 +337,8 @@ public class DownscaleScrollableNoiseSuppressor {
         int i3 = 0;
         for (int i4 = 0; i4 < this.rectRenderNodesCount; i4++) {
             SourcePart sourcePart = (SourcePart) this.rectRenderNodes.get(i4);
-            this.tmpRectF.set(sourcePart.position);
+            Rect rect = sourcePart.position;
+            this.tmpRectF.set(rect);
             this.builder.start();
             iBlur3Capture.captureCalculateHash(this.builder, this.tmpRectF);
             long j = this.builder.get();
@@ -320,7 +346,7 @@ public class DownscaleScrollableNoiseSuppressor {
                 sourcePart.lastHash = j;
                 RecordingCanvas recordingCanvasBeginRecordingRect = beginRecordingRect(i4);
                 recordingCanvasBeginRecordingRect.save();
-                recordingCanvasBeginRecordingRect.translate(-r4.left, -r4.top);
+                recordingCanvasBeginRecordingRect.translate(-rect.left, -rect.top);
                 iBlur3Capture.capture(recordingCanvasBeginRecordingRect, this.tmpRectF);
                 recordingCanvasBeginRecordingRect.restore();
                 endRecordingRect();

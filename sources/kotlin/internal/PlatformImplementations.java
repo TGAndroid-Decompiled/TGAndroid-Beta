@@ -24,14 +24,13 @@ public abstract class PlatformImplementations {
             Intrinsics.checkNotNull(methods);
             int length = methods.length;
             int i = 0;
-            int i2 = 0;
             while (true) {
                 method = null;
-                if (i2 >= length) {
+                if (i >= length) {
                     method2 = null;
                     break;
                 }
-                method2 = methods[i2];
+                method2 = methods[i];
                 if (Intrinsics.areEqual(method2.getName(), "addSuppressed")) {
                     Class<?>[] parameterTypes = method2.getParameterTypes();
                     Intrinsics.checkNotNullExpressionValue(parameterTypes, "getParameterTypes(...)");
@@ -39,26 +38,20 @@ public abstract class PlatformImplementations {
                         break;
                     }
                 }
-                i2++;
+                i++;
             }
             addSuppressed = method2;
-            int length2 = methods.length;
-            while (true) {
-                if (i >= length2) {
-                    break;
-                }
-                Method method3 = methods[i];
+            for (Method method3 : methods) {
                 if (Intrinsics.areEqual(method3.getName(), "getSuppressed")) {
                     method = method3;
                     break;
                 }
-                i++;
             }
             getSuppressed = method;
         }
     }
 
-    public void addSuppressed(Throwable cause, Throwable exception) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public void addSuppressed(Throwable cause, Throwable exception) throws IllegalAccessException, InvocationTargetException {
         Intrinsics.checkNotNullParameter(cause, "cause");
         Intrinsics.checkNotNullParameter(exception, "exception");
         Method method = ReflectThrowable.addSuppressed;

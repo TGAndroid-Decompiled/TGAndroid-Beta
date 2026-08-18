@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.BatteryManager;
 import androidx.core.math.MathUtils;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 
@@ -59,7 +57,7 @@ public class LiteMode {
         return getValue(false);
     }
 
-    public static int getValue(boolean z) throws IOException {
+    public static int getValue(boolean z) {
         if (!loaded) {
             loadPreference();
         }
@@ -126,7 +124,7 @@ public class LiteMode {
         toggleFlag(i, !isEnabled(i));
     }
 
-    public static void toggleFlag(int i, boolean z) throws IOException {
+    public static void toggleFlag(int i, boolean z) {
         int value2;
         if (z) {
             value2 = i | getValue(true);
@@ -141,11 +139,48 @@ public class LiteMode {
         savePreference();
     }
 
-    public static void updatePresets(org.telegram.tgnet.TLRPC.TL_jsonObject r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LiteMode.updatePresets(org.telegram.tgnet.TLRPC$TL_jsonObject):void");
+    public static void updatePresets(TLRPC.TL_jsonObject tL_jsonObject) {
+        TLRPC.JSONValue jSONValue;
+        for (int i = 0; i < tL_jsonObject.value.size(); i++) {
+            TLRPC.TL_jsonObjectValue tL_jsonObjectValue = tL_jsonObject.value.get(i);
+            if ("settings_mask".equals(tL_jsonObjectValue.key)) {
+                TLRPC.JSONValue jSONValue2 = tL_jsonObjectValue.value;
+                if (jSONValue2 instanceof TLRPC.TL_jsonArray) {
+                    ArrayList<TLRPC.JSONValue> arrayList = ((TLRPC.TL_jsonArray) jSONValue2).value;
+                    try {
+                        PRESET_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList.get(0)).value;
+                        PRESET_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList.get(1)).value;
+                        PRESET_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList.get(2)).value;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                } else if ("battery_low".equals(tL_jsonObjectValue.key)) {
+                    jSONValue = tL_jsonObjectValue.value;
+                    if (jSONValue instanceof TLRPC.TL_jsonArray) {
+                        ArrayList<TLRPC.JSONValue> arrayList2 = ((TLRPC.TL_jsonArray) jSONValue).value;
+                        try {
+                            BATTERY_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(0)).value;
+                            BATTERY_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(1)).value;
+                            BATTERY_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(2)).value;
+                        } catch (Exception e2) {
+                            FileLog.e(e2);
+                        }
+                    }
+                }
+            } else if ("battery_low".equals(tL_jsonObjectValue.key)) {
+                jSONValue = tL_jsonObjectValue.value;
+                if (jSONValue instanceof TLRPC.TL_jsonArray) {
+                    ArrayList<TLRPC.JSONValue> arrayList3 = ((TLRPC.TL_jsonArray) jSONValue).value;
+                    BATTERY_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList3.get(0)).value;
+                    BATTERY_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList3.get(1)).value;
+                    BATTERY_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList3.get(2)).value;
+                }
+            }
+        }
+        loadPreference();
     }
 
-    public static void loadPreference() throws IOException {
+    public static void loadPreference() {
         int i = PRESET_HIGH;
         int i2 = BATTERY_HIGH;
         if (SharedConfig.getDevicePerformanceClass() == 0) {
@@ -210,25 +245,25 @@ public class LiteMode {
         MessagesController.getGlobalMainSettings().edit().putInt("lite_mode6", value).putInt("lite_mode_battery_level", powerSaverLevel).apply();
     }
 
-    public static int getPowerSaverLevel() throws IOException {
+    public static int getPowerSaverLevel() {
         if (!loaded) {
             loadPreference();
         }
         return powerSaverLevel;
     }
 
-    public static void setPowerSaverLevel(int i) throws IOException {
+    public static void setPowerSaverLevel(int i) {
         powerSaverLevel = MathUtils.clamp(i, 0, 100);
         savePreference();
         getValue(false);
     }
 
-    public static boolean isPowerSaverApplied() throws IOException {
+    public static boolean isPowerSaverApplied() {
         getValue(false);
         return lastPowerSaverApplied;
     }
 
-    private static void onPowerSaverApplied(final boolean z) throws IOException {
+    private static void onPowerSaverApplied(final boolean z) {
         if (z) {
             onFlagsUpdate(getValue(true), PRESET_POWER_SAVER);
         } else {
@@ -245,16 +280,14 @@ public class LiteMode {
     }
 
     public static void lambda$onPowerSaverApplied$0(boolean z) {
-        Iterator<Utilities.Callback<Boolean>> it = onPowerSaverAppliedListeners.iterator();
-        while (it.hasNext()) {
-            Utilities.Callback<Boolean> next = it.next();
-            if (next != null) {
-                next.run(Boolean.valueOf(z));
+        for (Utilities.Callback<Boolean> callback : onPowerSaverAppliedListeners) {
+            if (callback != null) {
+                callback.run(Boolean.valueOf(z));
             }
         }
     }
 
-    private static void onFlagsUpdate(int i, int i2) throws IOException {
+    private static void onFlagsUpdate(int i, int i2) {
         int i3 = (~i) & i2;
         if ((i3 & 28700) > 0) {
             AnimatedEmojiDrawable.updateAll();

@@ -9,6 +9,6 @@ class FramerateBitrateAdjuster extends BaseBitrateAdjuster {
     @Override
     public void setTargets(int i, double d) {
         this.targetFramerateFps = 30.0d;
-        this.targetBitrateBps = (int) ((i * 30) / d);
+        this.targetBitrateBps = (int) (((double) (i * 30)) / d);
     }
 }

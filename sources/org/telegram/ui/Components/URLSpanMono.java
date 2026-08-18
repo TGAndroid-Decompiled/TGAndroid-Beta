@@ -6,7 +6,6 @@ import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.TextStyleSpan;
 
 public class URLSpanMono extends MetricAffectingSpan {
     private int currentEnd;

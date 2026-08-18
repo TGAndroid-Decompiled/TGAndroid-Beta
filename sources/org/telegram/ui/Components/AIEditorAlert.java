@@ -70,12 +70,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.EditTextCell;
-import org.telegram.ui.Components.AIEditorAlert;
-import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
-import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.TranslateAlert3;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
@@ -692,9 +687,9 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
             hintView2.hide();
             this.styleHint = null;
         }
-        HintView2 hintView22 = new HintView2(getContext(), 1);
-        this.styleHint = hintView22;
-        hintView22.setRoundingWithCornerEffect(false);
+        HintView2 hintView3 = new HintView2(getContext(), 1);
+        this.styleHint = hintView3;
+        hintView3.setRoundingWithCornerEffect(false);
         this.styleHint.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         this.styleHint.setRounding(20.0f);
         this.styleHint.setShadow(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(4.0f), Theme.multAlpha(-16777216, 0.25f));
@@ -1069,13 +1064,11 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         ArrayList<TLRPC.Photo> arrayList = richMessage.photos;
         if (arrayList != null && !arrayList.isEmpty()) {
             tL_inputRichMessage.flags |= 4;
-            Iterator<TLRPC.Photo> it = richMessage.photos.iterator();
-            while (it.hasNext()) {
-                TLRPC.Photo next = it.next();
+            for (TLRPC.Photo photo : richMessage.photos) {
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputPhoto.id = next.id;
-                tL_inputPhoto.access_hash = next.access_hash;
-                byte[] bArr = next.file_reference;
+                tL_inputPhoto.id = photo.id;
+                tL_inputPhoto.access_hash = photo.access_hash;
+                byte[] bArr = photo.file_reference;
                 if (bArr == null) {
                     bArr = new byte[0];
                 }
@@ -1086,13 +1079,11 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         ArrayList<TLRPC.Document> arrayList2 = richMessage.documents;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             tL_inputRichMessage.flags |= 8;
-            Iterator<TLRPC.Document> it2 = richMessage.documents.iterator();
-            while (it2.hasNext()) {
-                TLRPC.Document next2 = it2.next();
+            for (TLRPC.Document document : richMessage.documents) {
                 TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                tL_inputDocument.id = next2.id;
-                tL_inputDocument.access_hash = next2.access_hash;
-                byte[] bArr2 = next2.file_reference;
+                tL_inputDocument.id = document.id;
+                tL_inputDocument.access_hash = document.access_hash;
+                byte[] bArr2 = document.file_reference;
                 if (bArr2 == null) {
                     bArr2 = new byte[0];
                 }
@@ -1490,14 +1481,12 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         if (!TextUtils.isEmpty(this.to_lang)) {
             addChecked(itemOptionsMakeOptions, linearLayout, true, TranslateAlert2.capitalFirst(TranslateAlert2.languageName(this.to_lang)), null);
         }
-        Iterator<TranslateController.Language> it = suggestedLanguages.iterator();
-        while (it.hasNext()) {
-            final TranslateController.Language next = it.next();
-            if (!TextUtils.equals(next.code, this.to_lang)) {
-                addChecked(itemOptionsMakeOptions, linearLayout, false, next.displayName, new Runnable() {
+        for (final TranslateController.Language language : suggestedLanguages) {
+            if (!TextUtils.equals(language.code, this.to_lang)) {
+                addChecked(itemOptionsMakeOptions, linearLayout, false, language.displayName, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onToLangMenu$28(next);
+                        this.f$0.lambda$onToLangMenu$28(language);
                     }
                 });
             }
@@ -1505,13 +1494,11 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         View gapView = new ActionBarPopupWindow.GapView(getContext(), this.resourcesProvider);
         gapView.setTag(R.id.fit_width_tag, 1);
         linearLayout.addView(gapView, LayoutHelper.createLinear(-1, 8));
-        Iterator<TranslateController.Language> it2 = languages.iterator();
-        while (it2.hasNext()) {
-            final TranslateController.Language next2 = it2.next();
-            addChecked(itemOptionsMakeOptions, linearLayout, TextUtils.equals(next2.code, this.to_lang), next2.displayName, new Runnable() {
+        for (final TranslateController.Language language2 : languages) {
+            addChecked(itemOptionsMakeOptions, linearLayout, TextUtils.equals(language2.code, this.to_lang), language2.displayName, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onToLangMenu$29(next2);
+                    this.f$0.lambda$onToLangMenu$29(language2);
                 }
             });
         }
@@ -2149,15 +2136,9 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
                 this.textView.setText(charSequence);
                 int i = this.currentAccount;
                 if (ConnectionsManager.getInstance(i).isTestBackend()) {
-                    int i2 = 0;
-                    while (true) {
-                        if (i2 < 4) {
-                            if (UserConfig.getInstance(i2).isClientActivated() && !ConnectionsManager.getInstance(i2).isTestBackend()) {
-                                i = i2;
-                                break;
-                            }
-                            i2++;
-                        } else {
+                    for (int i2 = 0; i2 < 4; i2++) {
+                        if (UserConfig.getInstance(i2).isClientActivated() && !ConnectionsManager.getInstance(i2).isTestBackend()) {
+                            i = i2;
                             break;
                         }
                     }
@@ -2186,23 +2167,27 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
                 }
                 String strReplace = str.replace("️", "");
                 int i = 0;
+                int i2 = 0;
                 while (true) {
-                    if (i >= tL_messages_stickerSet.packs.size()) {
-                        break;
-                    }
-                    if (tL_messages_stickerSet.packs.get(i).documents.isEmpty() || !TextUtils.equals(tL_messages_stickerSet.packs.get(i).emoticon.replace("️", ""), strReplace)) {
-                        i++;
-                    } else {
-                        long jLongValue = tL_messages_stickerSet.packs.get(i).documents.get(0).longValue();
-                        for (int i2 = 0; i2 < tL_messages_stickerSet.documents.size(); i2++) {
-                            if (tL_messages_stickerSet.documents.get(i2).id == jLongValue) {
-                                document = tL_messages_stickerSet.documents.get(i2);
-                                break;
+                    if (i2 < tL_messages_stickerSet.packs.size()) {
+                        if (tL_messages_stickerSet.packs.get(i2).documents.isEmpty() || !TextUtils.equals(tL_messages_stickerSet.packs.get(i2).emoticon.replace("️", ""), strReplace)) {
+                            i2++;
+                        } else {
+                            long jLongValue = tL_messages_stickerSet.packs.get(i2).documents.get(0).longValue();
+                            while (true) {
+                                if (i < tL_messages_stickerSet.documents.size()) {
+                                    if (tL_messages_stickerSet.documents.get(i).id == jLongValue) {
+                                        document = tL_messages_stickerSet.documents.get(i);
+                                        break;
+                                    }
+                                    i++;
+                                }
                             }
                         }
                     }
+                    document = null;
+                    break;
                 }
-                document = null;
                 if (document != null) {
                     this.imageView.setImage(ImageLocation.getForDocument(document), "24_24", ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 24), document), "24_24", Emoji.getEmojiDrawable(str), (Object) null);
                 }
@@ -2449,7 +2434,8 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         }
 
         public void lambda$new$2(View view) {
-            this.checkbox.setChecked(!r3.isChecked(), true);
+            CheckBox2 checkBox2 = this.checkbox;
+            checkBox2.setChecked(!checkBox2.isChecked(), true);
         }
 
         public void lambda$new$5(Theme.ResourcesProvider resourcesProvider, View view, int i) {

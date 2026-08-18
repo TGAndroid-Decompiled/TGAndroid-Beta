@@ -124,7 +124,7 @@ public class WebRtcAudioEffects {
         return true;
     }
 
-    public void enable(int i) throws IllegalStateException {
+    public void enable(int i) {
         Logging.d("WebRtcAudioEffects", "enable(audioSession=" + i + ")");
         boolean z = false;
         assertTrue(this.aec == null);

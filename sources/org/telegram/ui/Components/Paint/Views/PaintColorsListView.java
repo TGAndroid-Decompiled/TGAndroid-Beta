@@ -107,9 +107,9 @@ public abstract class PaintColorsListView extends RecyclerListView {
             canvas.drawArc(rectF, -45.0f, -180.0f, true, colorCirclePaint);
             colorCirclePath.rewind();
             colorCirclePath.moveTo(rectF.centerX(), rectF.centerY());
-            colorCirclePath.lineTo((float) (rectF.centerX() + ((rectF.width() / 2.0f) * Math.cos(-1.5707963267948966d))), (float) (rectF.centerY() + ((rectF.height() / 2.0f) * Math.sin(-1.5707963267948966d))));
+            colorCirclePath.lineTo((float) (((double) rectF.centerX()) + (((double) (rectF.width() / 2.0f)) * Math.cos(-1.5707963267948966d))), (float) (((double) rectF.centerY()) + (((double) (rectF.height() / 2.0f)) * Math.sin(-1.5707963267948966d))));
             colorCirclePath.moveTo(rectF.centerX(), rectF.centerY());
-            colorCirclePath.lineTo((float) (rectF.centerX() + ((rectF.width() / 2.0f) * Math.cos(4.71238898038469d))), (float) (rectF.centerY() + ((rectF.height() / 2.0f) * Math.sin(4.71238898038469d))));
+            colorCirclePath.lineTo((float) (((double) rectF.centerX()) + (((double) (rectF.width() / 2.0f)) * Math.cos(4.71238898038469d))), (float) (((double) rectF.centerY()) + (((double) (rectF.height() / 2.0f)) * Math.sin(4.71238898038469d))));
             colorCirclePath.addArc(rectF, -45.0f, 180.0f);
             canvas.save();
             canvas.clipPath(colorCirclePath);
@@ -184,9 +184,10 @@ public abstract class PaintColorsListView extends RecyclerListView {
             float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
             PaintColorsListView.drawColorCircle(canvas, width, height, fMin, this.mColor);
             if (this.selectProgress != 0.0f) {
+                float fMin2 = (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f);
                 PaintColorsListView.this.outlinePaint.setColor(this.mColor);
                 PaintColorsListView.this.outlinePaint.setAlpha(255);
-                canvas.drawCircle(width, height, (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), PaintColorsListView.this.outlinePaint);
+                canvas.drawCircle(width, height, fMin2, PaintColorsListView.this.outlinePaint);
             }
         }
 

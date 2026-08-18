@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
@@ -66,8 +67,124 @@ public class ShareLocationDrawable extends Drawable {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShareLocationDrawable.draw(android.graphics.Canvas):void");
+    public void draw(Canvas canvas) {
+        int iDp;
+        int iDp2;
+        int iDp3;
+        int iDp4;
+        int iDp5;
+        int iDp6;
+        int iDp7;
+        int i;
+        float f;
+        float f2;
+        int iDp8;
+        int iDp9;
+        int intrinsicWidth = this.drawable.getIntrinsicWidth();
+        int intrinsicHeight = this.drawable.getIntrinsicHeight();
+        int i2 = this.currentType;
+        int i3 = 3;
+        int i4 = 5;
+        int i5 = 1;
+        if (i2 == 4 || i2 == 5) {
+            iDp = AndroidUtilities.dp(24.0f);
+        } else if (i2 == 3) {
+            iDp = AndroidUtilities.dp(44.0f);
+        } else if (i2 == 2) {
+            iDp = AndroidUtilities.dp(32.0f);
+        } else if (i2 == 1) {
+            iDp = AndroidUtilities.dp(30.0f);
+        } else {
+            iDp = AndroidUtilities.dp(120.0f);
+        }
+        int intrinsicHeight2 = getBounds().top + ((getIntrinsicHeight() - iDp) / 2);
+        int intrinsicWidth2 = getBounds().left + ((getIntrinsicWidth() - iDp) / 2);
+        int i6 = intrinsicWidth + intrinsicWidth2;
+        this.drawable.setBounds(intrinsicWidth2, intrinsicHeight2, i6, intrinsicHeight2 + intrinsicHeight);
+        this.drawable.draw(canvas);
+        int i7 = 0;
+        while (i7 < 2) {
+            float f3 = this.progress[i7];
+            if (f3 >= 0.0f) {
+                float f4 = (f3 * 0.5f) + 0.5f;
+                int i8 = this.currentType;
+                if (i8 == 4 || i8 == i4) {
+                    iDp2 = AndroidUtilities.dp(2.5f * f4);
+                    iDp3 = AndroidUtilities.dp(f4 * 6.5f);
+                    iDp4 = AndroidUtilities.dp(this.progress[i7] * 6.0f);
+                    iDp5 = (intrinsicWidth2 + AndroidUtilities.dp(3.0f)) - iDp4;
+                    iDp6 = (intrinsicHeight2 + (intrinsicHeight / 2)) - AndroidUtilities.dp(2.0f);
+                    iDp7 = AndroidUtilities.dp(3.0f);
+                } else {
+                    if (i8 == i3) {
+                        iDp2 = AndroidUtilities.dp(5.0f * f4);
+                        iDp3 = AndroidUtilities.dp(f4 * 18.0f);
+                        iDp8 = AndroidUtilities.dp(this.progress[i7] * 15.0f);
+                        iDp5 = (intrinsicWidth2 + AndroidUtilities.dp(2.0f)) - iDp8;
+                        iDp6 = (intrinsicHeight2 + (intrinsicHeight / 2)) - AndroidUtilities.dp(7.0f);
+                        iDp9 = AndroidUtilities.dp(2.0f);
+                    } else if (i8 == 2) {
+                        iDp2 = AndroidUtilities.dp(5.0f * f4);
+                        iDp3 = AndroidUtilities.dp(f4 * 18.0f);
+                        iDp8 = AndroidUtilities.dp(this.progress[i7] * 15.0f);
+                        iDp5 = (intrinsicWidth2 + AndroidUtilities.dp(2.0f)) - iDp8;
+                        iDp6 = intrinsicHeight2 + (intrinsicHeight / 2);
+                        iDp9 = AndroidUtilities.dp(2.0f);
+                    } else if (i8 == i5) {
+                        iDp2 = AndroidUtilities.dp(2.5f * f4);
+                        iDp3 = AndroidUtilities.dp(f4 * 6.5f);
+                        iDp4 = AndroidUtilities.dp(this.progress[i7] * 6.0f);
+                        iDp5 = (AndroidUtilities.dp(7.0f) + intrinsicWidth2) - iDp4;
+                        iDp6 = intrinsicHeight2 + (intrinsicHeight / 2);
+                        iDp7 = AndroidUtilities.dp(7.0f);
+                    } else {
+                        iDp2 = AndroidUtilities.dp(5.0f * f4);
+                        iDp3 = AndroidUtilities.dp(f4 * 18.0f);
+                        iDp4 = AndroidUtilities.dp(this.progress[i7] * 15.0f);
+                        iDp5 = (intrinsicWidth2 + AndroidUtilities.dp(42.0f)) - iDp4;
+                        iDp6 = (intrinsicHeight2 + (intrinsicHeight / 2)) - AndroidUtilities.dp(7.0f);
+                        iDp7 = AndroidUtilities.dp(42.0f);
+                    }
+                    i = (i6 - iDp9) + iDp8;
+                    f = this.progress[i7];
+                    if (f < 0.5f) {
+                        f2 = f / 0.5f;
+                    } else {
+                        f2 = 1.0f - ((f - 0.5f) / 0.5f);
+                    }
+                    int i9 = (int) (f2 * 255.0f);
+                    this.drawableLeft.setAlpha(i9);
+                    int i10 = iDp6 - iDp3;
+                    int i11 = iDp6 + iDp3;
+                    this.drawableLeft.setBounds(iDp5 - iDp2, i10, iDp5 + iDp2, i11);
+                    this.drawableLeft.draw(canvas);
+                    this.drawableRight.setAlpha(i9);
+                    this.drawableRight.setBounds(i - iDp2, i10, i + iDp2, i11);
+                    this.drawableRight.draw(canvas);
+                }
+                i = (i6 - iDp7) + iDp4;
+                f = this.progress[i7];
+                if (f < 0.5f) {
+                    f2 = f / 0.5f;
+                } else {
+                    f2 = 1.0f - ((f - 0.5f) / 0.5f);
+                }
+                int i12 = (int) (f2 * 255.0f);
+                this.drawableLeft.setAlpha(i12);
+                int i13 = iDp6 - iDp3;
+                int i14 = iDp6 + iDp3;
+                this.drawableLeft.setBounds(iDp5 - iDp2, i13, iDp5 + iDp2, i14);
+                this.drawableLeft.draw(canvas);
+                this.drawableRight.setAlpha(i12);
+                this.drawableRight.setBounds(i - iDp2, i13, i + iDp2, i14);
+                this.drawableRight.draw(canvas);
+            }
+            i7++;
+            i3 = 3;
+            i4 = 5;
+            i5 = 1;
+        }
+        update();
     }
 
     @Override

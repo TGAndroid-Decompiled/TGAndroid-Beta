@@ -3,6 +3,7 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
@@ -123,9 +124,9 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         this.checkBox.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
         this.checkBox.setDrawUnchecked(false);
         this.checkBox.setDrawBackgroundAsArc(3);
-        CheckBox2 checkBox22 = this.checkBox;
+        CheckBox2 checkBox3 = this.checkBox;
         boolean z = LocaleController.isRTL;
-        addView(checkBox22, LayoutHelper.createFrame(24, 24.0f, (z ? 5 : 3) | 48, z ? 0.0f : 38.1f, 32.1f, z ? 6.0f : 0.0f, 0.0f));
+        addView(checkBox3, LayoutHelper.createFrame(24, 24.0f, (z ? 5 : 3) | 48, z ? 0.0f : 38.1f, 32.1f, z ? 6.0f : 0.0f, 0.0f));
         if (i == 1) {
             TextPaint textPaint = new TextPaint(1);
             this.description2TextPaint = textPaint;
@@ -354,15 +355,21 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                 this.miniButtonPressed = true;
                 this.radialProgress.setPressed(true, true);
                 invalidate();
-            } else if (this.checkForButtonPress && this.radialProgress.getProgressRect().contains(x, y)) {
-                requestDisallowInterceptTouchEvent(true);
-                this.buttonPressed = true;
-                this.radialProgress.setPressed(true, false);
-                invalidate();
+            } else {
+                if (this.checkForButtonPress && this.radialProgress.getProgressRect().contains(x, y)) {
+                    requestDisallowInterceptTouchEvent(true);
+                    this.buttonPressed = true;
+                    this.radialProgress.setPressed(true, false);
+                    invalidate();
+                }
+                this.radialProgress.setPressed(this.miniButtonPressed, true);
+                return !z || this.buttonPressed;
             }
             z = true;
             this.radialProgress.setPressed(this.miniButtonPressed, true);
-            return z || this.buttonPressed;
+            if (z) {
+                return true;
+            }
         }
         z = false;
         this.radialProgress.setPressed(this.miniButtonPressed, true);
@@ -635,12 +642,82 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedAudioCell.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        float f;
+        boolean z = this.showName;
+        if (z) {
+            float f2 = this.showNameProgress;
+            if (f2 != 1.0f) {
+                this.showNameProgress = f2 + 0.10666667f;
+                invalidate();
+            } else if (!z) {
+                f = this.showNameProgress;
+                if (f != 0.0f) {
+                    this.showNameProgress = f - 0.10666667f;
+                    invalidate();
+                }
+            }
+        } else if (!z) {
+            f = this.showNameProgress;
+            if (f != 0.0f) {
+                this.showNameProgress = f - 0.10666667f;
+                invalidate();
+            }
+        }
+        this.showNameProgress = Utilities.clamp(this.showNameProgress, 1.0f, 0.0f);
+        if (this.enterAlpha != 1.0f && this.globalGradientView != null) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
+            this.globalGradientView.setViewType(4);
+            this.globalGradientView.updateColors();
+            this.globalGradientView.updateGradient();
+            this.globalGradientView.draw(canvas);
+            canvas.restore();
+            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (this.enterAlpha * 255.0f), 31);
+            drawInternal(canvas);
+            super.dispatchDraw(canvas);
+            drawReorder(canvas);
+            canvas.restore();
+            return;
+        }
+        drawInternal(canvas);
+        drawReorder(canvas);
+        super.dispatchDraw(canvas);
     }
 
-    private void drawReorder(android.graphics.Canvas r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedAudioCell.drawReorder(android.graphics.Canvas):void");
+    private void drawReorder(Canvas canvas) {
+        float f;
+        boolean z = this.showReorderIcon;
+        if (z || this.showReorderIconProgress != 0.0f) {
+            if (z) {
+                float f2 = this.showReorderIconProgress;
+                if (f2 != 1.0f) {
+                    this.showReorderIconProgress = f2 + 0.10666667f;
+                    invalidate();
+                } else if (!z) {
+                    f = this.showReorderIconProgress;
+                    if (f != 0.0f) {
+                        this.showReorderIconProgress = f - 0.10666667f;
+                        invalidate();
+                    }
+                }
+            } else if (!z) {
+                f = this.showReorderIconProgress;
+                if (f != 0.0f) {
+                    this.showReorderIconProgress = f - 0.10666667f;
+                    invalidate();
+                }
+            }
+            this.showReorderIconProgress = Utilities.clamp(this.showReorderIconProgress, 1.0f, 0.0f);
+            int measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
+            int measuredHeight = (getMeasuredHeight() - Theme.dialogs_reorderDrawable.getIntrinsicHeight()) >> 1;
+            canvas.save();
+            float f3 = this.showReorderIconProgress;
+            canvas.scale(f3, f3, measuredWidth + (Theme.dialogs_reorderDrawable.getIntrinsicWidth() / 2.0f), measuredHeight + (Theme.dialogs_reorderDrawable.getIntrinsicHeight() / 2.0f));
+            Drawable drawable = Theme.dialogs_reorderDrawable;
+            drawable.setBounds(measuredWidth, measuredHeight, drawable.getIntrinsicWidth() + measuredWidth, Theme.dialogs_reorderDrawable.getIntrinsicHeight() + measuredHeight);
+            Theme.dialogs_reorderDrawable.draw(canvas);
+            canvas.restore();
+        }
     }
 
     private void drawInternal(Canvas canvas) {

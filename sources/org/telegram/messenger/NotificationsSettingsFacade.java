@@ -85,8 +85,106 @@ public class NotificationsSettingsFacade {
         });
     }
 
-    public void lambda$applyDialogNotificationsSettings$1(long r20, long r22, org.telegram.tgnet.TLRPC.PeerNotifySettings r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsSettingsFacade.lambda$applyDialogNotificationsSettings$1(long, long, org.telegram.tgnet.TLRPC$PeerNotifySettings):void");
+    public void lambda$applyDialogNotificationsSettings$1(long j, long j2, TLRPC.PeerNotifySettings peerNotifySettings) {
+        boolean z;
+        int i;
+        int i2;
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2, true);
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
+        MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+        NotificationsController notificationsController = NotificationsController.getInstance(this.currentAccount);
+        int i3 = getPreferences().getInt("notify2_" + sharedPrefKey, -1);
+        int i4 = getPreferences().getInt("notifyuntil_" + sharedPrefKey, 0);
+        SharedPreferences.Editor editorEdit = getPreferences().edit();
+        if ((peerNotifySettings.flags & 2) != 0) {
+            editorEdit.putBoolean("silent_" + sharedPrefKey, peerNotifySettings.silent);
+        } else {
+            editorEdit.remove("silent_" + sharedPrefKey);
+        }
+        if ((peerNotifySettings.flags & 64) != 0) {
+            editorEdit.putBoolean("stories_" + sharedPrefKey, !peerNotifySettings.stories_muted);
+        } else {
+            editorEdit.remove("stories_" + sharedPrefKey);
+        }
+        TLRPC.Dialog dialog = j2 == 0 ? (TLRPC.Dialog) messagesController.dialogs_dict.get(j) : null;
+        if (dialog != null) {
+            dialog.notify_settings = peerNotifySettings;
+        }
+        if ((peerNotifySettings.flags & 4) == 0) {
+            z = true;
+            if (i3 != -1) {
+                if (dialog != null) {
+                    dialog.notify_settings.mute_until = 0;
+                }
+                editorEdit.remove("notify2_" + sharedPrefKey);
+            } else {
+                z = false;
+            }
+            if (j2 == 0) {
+                messagesStorage.setDialogFlags(j, 0L);
+            }
+        } else if (peerNotifySettings.mute_until > connectionsManager.getCurrentTime()) {
+            if (peerNotifySettings.mute_until > connectionsManager.getCurrentTime() + 31536000) {
+                if (i3 != 2) {
+                    editorEdit.putInt("notify2_" + sharedPrefKey, 2);
+                    if (dialog != null) {
+                        dialog.notify_settings.mute_until = Integer.MAX_VALUE;
+                    }
+                    z = true;
+                } else {
+                    z = false;
+                }
+                i2 = 0;
+            } else {
+                if (i3 == 3 && i4 == peerNotifySettings.mute_until) {
+                    z = false;
+                } else {
+                    editorEdit.putInt("notify2_" + sharedPrefKey, 3);
+                    editorEdit.putInt("notifyuntil_" + sharedPrefKey, peerNotifySettings.mute_until);
+                    if (dialog != null) {
+                        dialog.notify_settings.mute_until = 0;
+                    }
+                    z = true;
+                }
+                i2 = peerNotifySettings.mute_until;
+            }
+            if (j2 == 0) {
+                messagesStorage.setDialogFlags(j, (((long) i2) << 32) | 1);
+                notificationsController.removeNotificationsForDialog(j);
+            }
+        } else {
+            if (i3 != 0) {
+                z = true;
+                if (i3 != 1) {
+                    if (dialog != null) {
+                        i = 0;
+                        dialog.notify_settings.mute_until = 0;
+                    } else {
+                        i = 0;
+                    }
+                    editorEdit.putInt("notify2_" + sharedPrefKey, i);
+                } else {
+                    z = false;
+                }
+            } else {
+                z = false;
+            }
+            if (j2 == 0) {
+                messagesStorage.setDialogFlags(j, 0L);
+            }
+        }
+        boolean z2 = z;
+        applySoundSettings(peerNotifySettings.android_sound, editorEdit, j, j2, 0, false);
+        editorEdit.apply();
+        if (z2) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$applyDialogNotificationsSettings$0();
+                }
+            });
+        }
     }
 
     public void lambda$applyDialogNotificationsSettings$0() {

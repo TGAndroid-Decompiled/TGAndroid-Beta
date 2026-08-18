@@ -23,7 +23,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.PremiumStickersPreviewRecycler;
 import org.telegram.ui.Components.RecyclerListView;
 
 public abstract class PremiumStickersPreviewRecycler extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate, PagerHeaderView {
@@ -226,14 +225,18 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
             }
             Collections.sort(this.sortedView, this.comparator);
             if ((this.firstDraw || this.checkEffect) && this.sortedView.size() > 0 && !this.premiumStickers.isEmpty()) {
-                View view = (View) this.sortedView.get(r1.size() - 1);
+                ArrayList arrayList = this.sortedView;
+                View view = (View) arrayList.get(arrayList.size() - 1);
                 this.oldSelectedView = view;
                 drawEffectForView(view, !this.firstDraw);
                 this.firstDraw = false;
                 this.checkEffect = false;
             } else {
-                if (this.oldSelectedView != this.sortedView.get(r2.size() - 1)) {
-                    this.oldSelectedView = (View) this.sortedView.get(r1.size() - 1);
+                View view2 = this.oldSelectedView;
+                ArrayList arrayList2 = this.sortedView;
+                if (view2 != arrayList2.get(arrayList2.size() - 1)) {
+                    ArrayList arrayList3 = this.sortedView;
+                    this.oldSelectedView = (View) arrayList3.get(arrayList3.size() - 1);
                     if (this.haptic) {
                         try {
                             performHapticFeedback(3);

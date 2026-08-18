@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -240,8 +241,279 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallPipButton.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        float f5;
+        float f6;
+        float f7;
+        super.onDraw(canvas);
+        if (getAlpha() == 0.0f) {
+            return;
+        }
+        float measuredWidth = getMeasuredWidth() >> 1;
+        float measuredHeight = getMeasuredHeight() >> 1;
+        boolean z = this.pressedState;
+        if (z) {
+            float f8 = this.pressedProgress;
+            if (f8 != 1.0f) {
+                float f9 = f8 + 0.10666667f;
+                this.pressedProgress = f9;
+                if (f9 > 1.0f) {
+                    this.pressedProgress = 1.0f;
+                }
+            } else if (!z) {
+                f = this.pressedProgress;
+                if (f != 0.0f) {
+                    f2 = f - 0.10666667f;
+                    this.pressedProgress = f2;
+                    if (f2 < 0.0f) {
+                        this.pressedProgress = 0.0f;
+                    }
+                }
+            }
+        } else if (!z) {
+            f = this.pressedProgress;
+            if (f != 0.0f) {
+                f2 = f - 0.10666667f;
+                this.pressedProgress = f2;
+                if (f2 < 0.0f) {
+                    this.pressedProgress = 0.0f;
+                }
+            }
+        }
+        float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(this.pressedProgress) * 0.1f;
+        float f10 = interpolation + 1.0f;
+        this.muteButton.setScaleY(f10);
+        this.muteButton.setScaleX(f10);
+        if (this.stub) {
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            if (jCurrentTimeMillis - this.lastStubUpdateAmplitude > 1000) {
+                this.lastStubUpdateAmplitude = jCurrentTimeMillis;
+                float fAbs = ((Math.abs(this.random.nextInt() % 100) * 0.5f) / 100.0f) + 0.5f;
+                this.animateToAmplitude = fAbs;
+                this.animateAmplitudeDiff = (fAbs - this.amplitude) / ((BlobDrawable.AMPLITUDE_SPEED * 1500.0f) + 100.0f);
+            }
+        }
+        float f11 = this.animateToAmplitude;
+        float f12 = this.amplitude;
+        if (f11 != f12) {
+            float f13 = this.animateAmplitudeDiff;
+            float f14 = f12 + (16.0f * f13);
+            this.amplitude = f14;
+            if (f13 > 0.0f) {
+                if (f14 > f11) {
+                    this.amplitude = f11;
+                }
+            } else if (f14 < f11) {
+                this.amplitude = f11;
+            }
+        }
+        if (this.previousState != null) {
+            float f15 = this.progressToState + 0.064f;
+            this.progressToState = f15;
+            if (f15 > 1.0f) {
+                this.progressToState = 1.0f;
+                this.previousState = null;
+            }
+        }
+        boolean z2 = this.prepareToRemove;
+        if (z2) {
+            float f16 = this.progressToPrepareRemove;
+            if (f16 != 1.0f) {
+                float f17 = f16 + 0.045714285f;
+                this.progressToPrepareRemove = f17;
+                if (f17 > 1.0f) {
+                    this.progressToPrepareRemove = 1.0f;
+                }
+                if (this.removed) {
+                    invalidate();
+                }
+            } else if (!z2) {
+                f3 = this.progressToPrepareRemove;
+                if (f3 != 0.0f) {
+                    f4 = f3 - 0.045714285f;
+                    this.progressToPrepareRemove = f4;
+                    if (f4 < 0.0f) {
+                        this.progressToPrepareRemove = 0.0f;
+                    }
+                }
+            }
+        } else if (!z2) {
+            f3 = this.progressToPrepareRemove;
+            if (f3 != 0.0f) {
+                f4 = f3 - 0.045714285f;
+                this.progressToPrepareRemove = f4;
+                if (f4 < 0.0f) {
+                    this.progressToPrepareRemove = 0.0f;
+                }
+            }
+        }
+        int i = 0;
+        boolean z3 = (this.currentState.currentState == 3 || this.currentState.currentState == 2) ? false : true;
+        if (z3) {
+            float f18 = this.wavesEnter;
+            if (f18 != 1.0f) {
+                float f19 = f18 + 0.045714285f;
+                this.wavesEnter = f19;
+                if (f19 > 1.0f) {
+                    this.wavesEnter = 1.0f;
+                }
+            } else if (!z3) {
+                f5 = this.wavesEnter;
+                if (f5 != 0.0f) {
+                    f6 = f5 - 0.045714285f;
+                    this.wavesEnter = f6;
+                    if (f6 < 0.0f) {
+                        this.wavesEnter = 0.0f;
+                    }
+                }
+            }
+        } else if (!z3) {
+            f5 = this.wavesEnter;
+            if (f5 != 0.0f) {
+                f6 = f5 - 0.045714285f;
+                this.wavesEnter = f6;
+                if (f6 < 0.0f) {
+                    this.wavesEnter = 0.0f;
+                }
+            }
+        }
+        float interpolation2 = (this.overshootInterpolator.getInterpolation(this.wavesEnter) * 0.35f) + 0.65f;
+        this.blobDrawable.update(this.amplitude, this.stub ? 0.1f : 0.8f);
+        this.blobDrawable2.update(this.amplitude, this.stub ? 0.1f : 0.8f);
+        for (int i2 = 3; i < i2; i2 = 3) {
+            if (i != 0 || this.previousState != null) {
+                if (i == 0) {
+                    if (this.progressToPrepareRemove != 1.0f) {
+                        f7 = 1.0f - this.progressToState;
+                        this.previousState.update(16L, this.amplitude);
+                        this.previousState.setToPaint(this.paint);
+                        this.blobDrawable.maxRadius = AndroidUtilities.dp(40.0f);
+                        this.blobDrawable.minRadius = AndroidUtilities.dp(32.0f);
+                        this.blobDrawable2.maxRadius = AndroidUtilities.dp(38.0f);
+                        this.blobDrawable2.minRadius = AndroidUtilities.dp(33.0f);
+                        if (i != 2) {
+                            this.paint.setAlpha((int) (76.0f * f7 * (1.0f - this.progressToPrepareRemove)));
+                        } else {
+                            this.paint.setAlpha((int) (76.0f * f7 * this.progressToPrepareRemove));
+                        }
+                        if (this.wavesEnter != 0.0f) {
+                            float fMin = Math.min(((this.amplitude * 0.3f) + 1.0f + interpolation) * (1.0f - this.pinnedProgress), 1.3f) * interpolation2;
+                            canvas.save();
+                            canvas.scale(fMin, fMin, measuredWidth, measuredHeight);
+                            this.blobDrawable.draw(measuredWidth, measuredHeight, canvas, this.paint);
+                            canvas.restore();
+                            float fMin2 = Math.min(((this.amplitude * 0.26f) + 1.0f + interpolation) * (1.0f - this.pinnedProgress), 1.3f) * interpolation2;
+                            canvas.save();
+                            canvas.scale(fMin2, fMin2, measuredWidth, measuredHeight);
+                            this.blobDrawable2.draw(measuredWidth, measuredHeight, canvas, this.paint);
+                            canvas.restore();
+                        }
+                        if (i == 2) {
+                            this.paint.setAlpha((int) (this.progressToPrepareRemove * 255.0f));
+                        } else if (i == 1) {
+                            this.paint.setAlpha((int) (f7 * 255.0f));
+                        } else {
+                            this.paint.setAlpha(255);
+                        }
+                        canvas.save();
+                        canvas.scale(f10, f10, measuredWidth, measuredHeight);
+                        canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(32.0f), this.paint);
+                        canvas.restore();
+                    }
+                } else if (i == 1) {
+                    WeavingState weavingState = this.currentState;
+                    if (weavingState == null) {
+                        return;
+                    }
+                    if (this.progressToPrepareRemove != 1.0f) {
+                        f7 = this.previousState != null ? this.progressToState : 1.0f;
+                        weavingState.update(16L, this.amplitude);
+                        this.currentState.setToPaint(this.paint);
+                        this.blobDrawable.maxRadius = AndroidUtilities.dp(40.0f);
+                        this.blobDrawable.minRadius = AndroidUtilities.dp(32.0f);
+                        this.blobDrawable2.maxRadius = AndroidUtilities.dp(38.0f);
+                        this.blobDrawable2.minRadius = AndroidUtilities.dp(33.0f);
+                        if (i != 2) {
+                            this.paint.setAlpha((int) (76.0f * f7 * (1.0f - this.progressToPrepareRemove)));
+                        } else {
+                            this.paint.setAlpha((int) (76.0f * f7 * this.progressToPrepareRemove));
+                        }
+                        if (this.wavesEnter != 0.0f) {
+                            float fMin3 = Math.min(((this.amplitude * 0.3f) + 1.0f + interpolation) * (1.0f - this.pinnedProgress), 1.3f) * interpolation2;
+                            canvas.save();
+                            canvas.scale(fMin3, fMin3, measuredWidth, measuredHeight);
+                            this.blobDrawable.draw(measuredWidth, measuredHeight, canvas, this.paint);
+                            canvas.restore();
+                            float fMin4 = Math.min(((this.amplitude * 0.26f) + 1.0f + interpolation) * (1.0f - this.pinnedProgress), 1.3f) * interpolation2;
+                            canvas.save();
+                            canvas.scale(fMin4, fMin4, measuredWidth, measuredHeight);
+                            this.blobDrawable2.draw(measuredWidth, measuredHeight, canvas, this.paint);
+                            canvas.restore();
+                        }
+                        if (i == 2) {
+                            this.paint.setAlpha((int) (this.progressToPrepareRemove * 255.0f));
+                        } else if (i == 1) {
+                            this.paint.setAlpha((int) (f7 * 255.0f));
+                        } else {
+                            this.paint.setAlpha(255);
+                        }
+                        canvas.save();
+                        canvas.scale(f10, f10, measuredWidth, measuredHeight);
+                        canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(32.0f), this.paint);
+                        canvas.restore();
+                    }
+                } else if (this.progressToPrepareRemove != 0.0f) {
+                    this.paint.setColor(-65536);
+                    this.matrix.reset();
+                    this.matrix.postTranslate((-AndroidUtilities.dp(250.0f)) * (1.0f - this.progressToPrepareRemove), 0.0f);
+                    this.matrix.postRotate(this.removeAngle, measuredWidth, measuredHeight);
+                    this.prepareToRemoveShader.setLocalMatrix(this.matrix);
+                    this.paint.setShader(this.prepareToRemoveShader);
+                    f7 = 1.0f;
+                    this.blobDrawable.maxRadius = AndroidUtilities.dp(40.0f);
+                    this.blobDrawable.minRadius = AndroidUtilities.dp(32.0f);
+                    this.blobDrawable2.maxRadius = AndroidUtilities.dp(38.0f);
+                    this.blobDrawable2.minRadius = AndroidUtilities.dp(33.0f);
+                    if (i != 2) {
+                        this.paint.setAlpha((int) (76.0f * f7 * (1.0f - this.progressToPrepareRemove)));
+                    } else {
+                        this.paint.setAlpha((int) (76.0f * f7 * this.progressToPrepareRemove));
+                    }
+                    if (this.wavesEnter != 0.0f) {
+                        float fMin5 = Math.min(((this.amplitude * 0.3f) + 1.0f + interpolation) * (1.0f - this.pinnedProgress), 1.3f) * interpolation2;
+                        canvas.save();
+                        canvas.scale(fMin5, fMin5, measuredWidth, measuredHeight);
+                        this.blobDrawable.draw(measuredWidth, measuredHeight, canvas, this.paint);
+                        canvas.restore();
+                        float fMin6 = Math.min(((this.amplitude * 0.26f) + 1.0f + interpolation) * (1.0f - this.pinnedProgress), 1.3f) * interpolation2;
+                        canvas.save();
+                        canvas.scale(fMin6, fMin6, measuredWidth, measuredHeight);
+                        this.blobDrawable2.draw(measuredWidth, measuredHeight, canvas, this.paint);
+                        canvas.restore();
+                    }
+                    if (i == 2) {
+                        this.paint.setAlpha((int) (this.progressToPrepareRemove * 255.0f));
+                    } else if (i == 1) {
+                        this.paint.setAlpha((int) (f7 * 255.0f));
+                    } else {
+                        this.paint.setAlpha(255);
+                    }
+                    canvas.save();
+                    canvas.scale(f10, f10, measuredWidth, measuredHeight);
+                    canvas.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(32.0f), this.paint);
+                    canvas.restore();
+                }
+            }
+            i++;
+        }
+        if (this.removed || this.wavesEnter <= 0.0f) {
+            return;
+        }
+        invalidate();
     }
 
     private void setAmplitude(double d) {

@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -27,7 +26,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -69,7 +67,6 @@ import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
-import org.telegram.ui.Stories.bots.BotPreviewsEditContainer;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
@@ -383,7 +380,10 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
     }
 
     public boolean canScroll(boolean z) {
-        return z ? this.viewPager.getCurrentPosition() == this.langLists.size() : this.viewPager.getCurrentPosition() == 0;
+        if (z) {
+            return this.viewPager.getCurrentPosition() == this.langLists.size();
+        }
+        return this.viewPager.getCurrentPosition() == 0;
     }
 
     public boolean isSelectedAll() {
@@ -539,18 +539,14 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         StoriesController.BotPreviewsList botPreviewsList;
         StoryEntry storyEntry;
         ArrayList arrayList = new ArrayList(this.mainList.lang_codes);
-        Iterator it = this.localLangs.iterator();
-        while (it.hasNext()) {
-            String str = (String) it.next();
+        for (String str : this.localLangs) {
             if (!arrayList.contains(str)) {
                 arrayList.add(str);
             }
         }
-        ArrayList uploadingStories = MessagesController.getInstance(this.currentAccount).getStoriesController().getUploadingStories(this.bot_id);
+        ArrayList<StoriesController.UploadingStory> uploadingStories = MessagesController.getInstance(this.currentAccount).getStoriesController().getUploadingStories(this.bot_id);
         if (uploadingStories != null) {
-            Iterator it2 = uploadingStories.iterator();
-            while (it2.hasNext()) {
-                StoriesController.UploadingStory uploadingStory = (StoriesController.UploadingStory) it2.next();
+            for (StoriesController.UploadingStory uploadingStory : uploadingStories) {
                 if (uploadingStory != null && (storyEntry = uploadingStory.entry) != null && storyEntry.botId == this.bot_id && !TextUtils.isEmpty(storyEntry.botLang) && !arrayList.contains(uploadingStory.entry.botLang)) {
                     arrayList.add(uploadingStory.entry.botLang);
                 }
@@ -558,12 +554,12 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         }
         ArrayList arrayList2 = new ArrayList(this.langLists);
         this.langLists.clear();
-        Iterator it3 = arrayList.iterator();
+        Iterator it = arrayList.iterator();
         while (true) {
-            if (!it3.hasNext()) {
+            if (!it.hasNext()) {
                 break;
             }
-            String str2 = (String) it3.next();
+            String str2 = (String) it.next();
             int i = 0;
             while (true) {
                 if (i >= arrayList2.size()) {
@@ -713,7 +709,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         }
     }
 
-    public void createStory(final String str) throws IOException {
+    public void createStory(final String str) {
         BaseFragment baseFragment = this.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
@@ -768,7 +764,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             }
 
             @Override
-            public void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) throws Resources.NotFoundException, IOException {
+            public void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) {
                 if (chatAttachAlert.getPhotoLayout().getSelectedPhotos().isEmpty()) {
                     return;
                 }
@@ -873,7 +869,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             String string3 = LocaleController.getString(R.string.ProfileBotAddPreview);
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.lambda$updateFooter$0();
                 }
             };
@@ -917,7 +913,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             this.emptyView.button.setVisibility(this.adapter.getItemCount() >= MessagesController.getInstance(BotPreviewsEditContainer.this.currentAccount).botPreviewMediasMax ? 8 : 0);
         }
 
-        public void lambda$updateFooter$0() throws IOException {
+        public void lambda$updateFooter$0() {
             BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
             StoriesController.BotPreviewsList botPreviewsList = this.list;
             botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
@@ -1221,7 +1217,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             stickerEmptyView.button.setVisibility(0);
             stickerEmptyView.button.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws IOException {
+                public final void onClick(View view) {
                     this.f$0.lambda$new$6(view);
                 }
             });
@@ -1348,7 +1344,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             return true;
         }
 
-        public void lambda$new$6(View view) throws IOException {
+        public void lambda$new$6(View view) {
             BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
             StoriesController.BotPreviewsList botPreviewsList = this.list;
             botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
@@ -1620,16 +1616,11 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                     }
                     boolean z = this.lastPinnedIds.size() != arrayList.size();
                     if (!z) {
-                        int i2 = 0;
-                        while (true) {
-                            if (i2 >= this.lastPinnedIds.size()) {
-                                break;
-                            }
+                        for (int i2 = 0; i2 < this.lastPinnedIds.size(); i2++) {
                             if (this.lastPinnedIds.get(i2) != arrayList.get(i2)) {
                                 z = true;
                                 break;
                             }
-                            i2++;
                         }
                     }
                     if (z) {
@@ -1643,7 +1634,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             public void getPositionForScrollProgress(RecyclerListView recyclerListView, float f, int[] iArr) {
                 int measuredHeight = recyclerListView.getChildAt(0).getMeasuredHeight();
                 int iColumnsCount = columnsCount();
-                int iCeil = (int) (Math.ceil(getTotalItemsCount() / iColumnsCount) * measuredHeight);
+                int iCeil = (int) (Math.ceil(getTotalItemsCount() / iColumnsCount) * ((double) measuredHeight));
                 int measuredHeight2 = recyclerListView.getMeasuredHeight() - recyclerListView.getPaddingTop();
                 if (measuredHeight == 0) {
                     iArr[1] = 0;
@@ -1720,12 +1711,14 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                     float f = this.columnsAnimationProgress;
                     if (f == 1.0f || f == 0.0f) {
                         if (f == 1.0f) {
+                            int iCeil = (int) Math.ceil(this.pinchCenterPosition / this.animateToColumnsCount);
+                            float startedTrackingX = BotPreviewsEditContainer.this.getStartedTrackingX() / (this.listView.getMeasuredWidth() - ((int) (this.listView.getMeasuredWidth() / this.animateToColumnsCount)));
                             int i4 = this.animateToColumnsCount;
-                            int iCeil = (((int) Math.ceil(this.pinchCenterPosition / this.animateToColumnsCount)) * i4) + ((int) ((BotPreviewsEditContainer.this.getStartedTrackingX() / (this.listView.getMeasuredWidth() - ((int) (this.listView.getMeasuredWidth() / this.animateToColumnsCount)))) * (i4 - 1)));
-                            if (iCeil >= this.adapter.getItemCount()) {
-                                iCeil = this.adapter.getItemCount() - 1;
+                            int itemCount = (iCeil * i4) + ((int) (startedTrackingX * (i4 - 1)));
+                            if (itemCount >= this.adapter.getItemCount()) {
+                                itemCount = this.adapter.getItemCount() - 1;
                             }
-                            this.pinchCenterPosition = iCeil;
+                            this.pinchCenterPosition = itemCount;
                         }
                         finishPinchToMediaColumnsCount();
                         if (this.columnsAnimationProgress == 0.0f) {

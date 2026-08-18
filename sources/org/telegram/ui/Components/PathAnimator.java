@@ -163,9 +163,9 @@ public class PathAnimator {
                     if (lineTo2 != null) {
                         Path path2 = this.path;
                         float f6 = lineTo2.x;
-                        float fDpf22 = AndroidUtilities.dpf2(f6 + ((lineTo.x - f6) * f2));
+                        float fDpf3 = AndroidUtilities.dpf2(f6 + ((lineTo.x - f6) * f2));
                         float f7 = lineTo2.y;
-                        path2.lineTo(fDpf22, AndroidUtilities.dpf2(f7 + ((lineTo.y - f7) * f2)));
+                        path2.lineTo(fDpf3, AndroidUtilities.dpf2(f7 + ((lineTo.y - f7) * f2)));
                     } else {
                         this.path.lineTo(AndroidUtilities.dpf2(lineTo.x), AndroidUtilities.dpf2(lineTo.y));
                     }
@@ -175,17 +175,17 @@ public class PathAnimator {
                     if (curveTo2 != null) {
                         Path path3 = this.path;
                         float f8 = curveTo2.x1;
-                        float fDpf23 = AndroidUtilities.dpf2(f8 + ((curveTo.x1 - f8) * f2));
+                        float fDpf4 = AndroidUtilities.dpf2(f8 + ((curveTo.x1 - f8) * f2));
                         float f9 = curveTo2.y1;
-                        float fDpf24 = AndroidUtilities.dpf2(f9 + ((curveTo.y1 - f9) * f2));
+                        float fDpf5 = AndroidUtilities.dpf2(f9 + ((curveTo.y1 - f9) * f2));
                         float f10 = curveTo2.x2;
-                        float fDpf25 = AndroidUtilities.dpf2(f10 + ((curveTo.x2 - f10) * f2));
+                        float fDpf6 = AndroidUtilities.dpf2(f10 + ((curveTo.x2 - f10) * f2));
                         float f11 = curveTo2.y2;
-                        float fDpf26 = AndroidUtilities.dpf2(f11 + ((curveTo.y2 - f11) * f2));
+                        float fDpf7 = AndroidUtilities.dpf2(f11 + ((curveTo.y2 - f11) * f2));
                         float f12 = curveTo2.x;
-                        float fDpf27 = AndroidUtilities.dpf2(f12 + ((curveTo.x - f12) * f2));
+                        float fDpf8 = AndroidUtilities.dpf2(f12 + ((curveTo.x - f12) * f2));
                         float f13 = curveTo2.y;
-                        path3.cubicTo(fDpf23, fDpf24, fDpf25, fDpf26, fDpf27, AndroidUtilities.dpf2(f13 + ((curveTo.y - f13) * f2)));
+                        path3.cubicTo(fDpf4, fDpf5, fDpf6, fDpf7, fDpf8, AndroidUtilities.dpf2(f13 + ((curveTo.y - f13) * f2)));
                     } else {
                         this.path.cubicTo(AndroidUtilities.dpf2(curveTo.x1), AndroidUtilities.dpf2(curveTo.y1), AndroidUtilities.dpf2(curveTo.x2), AndroidUtilities.dpf2(curveTo.y2), AndroidUtilities.dpf2(curveTo.x), AndroidUtilities.dpf2(curveTo.y));
                     }

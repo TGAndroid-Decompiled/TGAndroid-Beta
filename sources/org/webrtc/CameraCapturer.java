@@ -6,8 +6,6 @@ import android.os.Handler;
 import android.os.Looper;
 import java.util.Arrays;
 import java.util.List;
-import org.webrtc.CameraSession;
-import org.webrtc.CameraVideoCapturer;
 
 abstract class CameraCapturer implements CameraVideoCapturer {
     private static final int MAX_OPEN_CAMERA_ATTEMPTS = 3;

@@ -25,8 +25,6 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.TranslateController$PollText$$ExternalSyntheticLambda0;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.json.TLJsonBuilder;
 import org.telegram.tgnet.json.TLJsonParser;
 import org.telegram.tgnet.tl.TL_account;
@@ -41,6 +39,7 @@ import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.tgnet.tl.legacy.TL_legacy_message;
+import org.telegram.ui.Components.poll.PollAttachedMediaPack;
 import org.telegram.ui.Stories.MessageMediaStoryFull;
 import org.telegram.ui.Stories.MessageMediaStoryFull_old;
 
@@ -64,7 +63,13 @@ public class TLRPC {
         public boolean withdrawal_enabled;
 
         public static BroadcastRevenueBalances TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (BroadcastRevenueBalances) TLObject.TLdeserialize(BroadcastRevenueBalances.class, i != -2076642874 ? i != -1006669337 ? null : new TL_broadcastRevenueBalances() : new TL_broadcastRevenueBalances_layer186(), inputSerializedData, i, z);
+            TLObject tL_broadcastRevenueBalances_layer186;
+            if (i != -2076642874) {
+                tL_broadcastRevenueBalances_layer186 = i != -1006669337 ? null : new TL_broadcastRevenueBalances();
+            } else {
+                tL_broadcastRevenueBalances_layer186 = new TL_broadcastRevenueBalances_layer186();
+            }
+            return (BroadcastRevenueBalances) TLObject.TLdeserialize(BroadcastRevenueBalances.class, tL_broadcastRevenueBalances_layer186, inputSerializedData, i, z);
         }
     }
 
@@ -143,7 +148,13 @@ public class TLRPC {
 
     public static class InputQuickReplyShortcut extends TLObject {
         public static InputQuickReplyShortcut TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (InputQuickReplyShortcut) TLObject.TLdeserialize(InputQuickReplyShortcut.class, i != 18418929 ? i != 609840449 ? null : new TL_inputQuickReplyShortcut() : new TL_inputQuickReplyShortcutId(), inputSerializedData, i, z);
+            TLObject tL_inputQuickReplyShortcutId;
+            if (i != 18418929) {
+                tL_inputQuickReplyShortcutId = i != 609840449 ? null : new TL_inputQuickReplyShortcut();
+            } else {
+                tL_inputQuickReplyShortcutId = new TL_inputQuickReplyShortcutId();
+            }
+            return (InputQuickReplyShortcut) TLObject.TLdeserialize(InputQuickReplyShortcut.class, tL_inputQuickReplyShortcutId, inputSerializedData, i, z);
         }
     }
 
@@ -181,7 +192,15 @@ public class TLRPC {
         public long gift_emoji_id;
 
         public static PeerColor TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (PeerColor) TLObject.TLdeserialize(PeerColor.class, i != -1253352753 ? i != -1192589655 ? i != -1178573926 ? null : new TL_peerColorCollectible() : new TL_inputPeerColorCollectible() : new TL_peerColor(), inputSerializedData, i, z);
+            TLObject tL_peerColor;
+            if (i == -1253352753) {
+                tL_peerColor = new TL_peerColor();
+            } else if (i != -1192589655) {
+                tL_peerColor = i != -1178573926 ? null : new TL_peerColorCollectible();
+            } else {
+                tL_peerColor = new TL_inputPeerColorCollectible();
+            }
+            return (PeerColor) TLObject.TLdeserialize(PeerColor.class, tL_peerColor, inputSerializedData, i, z);
         }
     }
 
@@ -226,7 +245,13 @@ public class TLRPC {
         public ArrayList<Document> documents = new ArrayList<>();
 
         public static SavedMusic TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (SavedMusic) TLObject.TLdeserialize(SavedMusic.class, i != -477656412 ? i != 883094167 ? null : new TL_savedMusic() : new TL_savedMusicNotModified(), inputSerializedData, i, z);
+            TLObject tL_savedMusicNotModified;
+            if (i != -477656412) {
+                tL_savedMusicNotModified = i != 883094167 ? null : new TL_savedMusic();
+            } else {
+                tL_savedMusicNotModified = new TL_savedMusicNotModified();
+            }
+            return (SavedMusic) TLObject.TLdeserialize(SavedMusic.class, tL_savedMusicNotModified, inputSerializedData, i, z);
         }
     }
 
@@ -4053,7 +4078,13 @@ public class TLRPC {
         public int id;
 
         public static TodoCompletion TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TodoCompletion) TLObject.TLdeserialize(TodoCompletion.class, i != 572241380 ? i != 1287725239 ? null : new TL_todoCompletion_layer216() : new TL_todoCompletion(), inputSerializedData, i, z);
+            TLObject tL_todoCompletion;
+            if (i != 572241380) {
+                tL_todoCompletion = i != 1287725239 ? null : new TL_todoCompletion_layer216();
+            } else {
+                tL_todoCompletion = new TL_todoCompletion();
+            }
+            return (TodoCompletion) TLObject.TLdeserialize(TodoCompletion.class, tL_todoCompletion, inputSerializedData, i, z);
         }
     }
 
@@ -4133,19 +4164,37 @@ public class TLRPC {
 
     public static class contacts_SponsoredPeers extends TLObject {
         public static contacts_SponsoredPeers TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (contacts_SponsoredPeers) TLObject.TLdeserialize(contacts_SponsoredPeers.class, i != -365775695 ? i != -352114556 ? null : new TL_contacts_sponsoredPeers() : new TL_contacts_sponsoredPeersEmpty(), inputSerializedData, i, z);
+            TLObject tL_contacts_sponsoredPeersEmpty;
+            if (i != -365775695) {
+                tL_contacts_sponsoredPeersEmpty = i != -352114556 ? null : new TL_contacts_sponsoredPeers();
+            } else {
+                tL_contacts_sponsoredPeersEmpty = new TL_contacts_sponsoredPeersEmpty();
+            }
+            return (contacts_SponsoredPeers) TLObject.TLdeserialize(contacts_SponsoredPeers.class, tL_contacts_sponsoredPeersEmpty, inputSerializedData, i, z);
         }
     }
 
     public static class help_PeerColorSet extends TLObject {
         public static help_PeerColorSet TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (help_PeerColorSet) TLObject.TLdeserialize(help_PeerColorSet.class, i != 639736408 ? i != 1987928555 ? null : new TL_help_peerColorProfileSet() : new TL_help_peerColorSet(), inputSerializedData, i, z);
+            TLObject tL_help_peerColorSet;
+            if (i != 639736408) {
+                tL_help_peerColorSet = i != 1987928555 ? null : new TL_help_peerColorProfileSet();
+            } else {
+                tL_help_peerColorSet = new TL_help_peerColorSet();
+            }
+            return (help_PeerColorSet) TLObject.TLdeserialize(help_PeerColorSet.class, tL_help_peerColorSet, inputSerializedData, i, z);
         }
     }
 
     public static class help_PeerColors extends TLObject {
         public static help_PeerColors TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (help_PeerColors) TLObject.TLdeserialize(help_PeerColors.class, i != 16313608 ? i != 732034510 ? null : new TL_help_peerColorsNotModified() : new TL_help_peerColors(), inputSerializedData, i, z);
+            TLObject tL_help_peerColors;
+            if (i != 16313608) {
+                tL_help_peerColors = i != 732034510 ? null : new TL_help_peerColorsNotModified();
+            } else {
+                tL_help_peerColors = new TL_help_peerColors();
+            }
+            return (help_PeerColors) TLObject.TLdeserialize(help_PeerColors.class, tL_help_peerColors, inputSerializedData, i, z);
         }
     }
 
@@ -4154,7 +4203,13 @@ public class TLRPC {
         public ArrayList<TL_timezone> timezones = new ArrayList<>();
 
         public static help_timezonesList TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (help_timezonesList) TLObject.TLdeserialize(help_timezonesList.class, i != -1761146676 ? i != 2071260529 ? null : new TL_help_timezonesList() : new TL_help_timezonesListNotModified(), inputSerializedData, i, z);
+            TLObject tL_help_timezonesListNotModified;
+            if (i != -1761146676) {
+                tL_help_timezonesListNotModified = i != 2071260529 ? null : new TL_help_timezonesList();
+            } else {
+                tL_help_timezonesListNotModified = new TL_help_timezonesListNotModified();
+            }
+            return (help_timezonesList) TLObject.TLdeserialize(help_timezonesList.class, tL_help_timezonesListNotModified, inputSerializedData, i, z);
         }
     }
 
@@ -4164,7 +4219,13 @@ public class TLRPC {
         public ArrayList<Document> documents = new ArrayList<>();
 
         public static messages_AvailableEffects TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (messages_AvailableEffects) TLObject.TLdeserialize(messages_AvailableEffects.class, i != -1109696146 ? i != -772957605 ? null : new TL_messages_availableEffectsNotModified() : new TL_messages_availableEffects(), inputSerializedData, i, z);
+            TLObject tL_messages_availableEffects;
+            if (i != -1109696146) {
+                tL_messages_availableEffects = i != -772957605 ? null : new TL_messages_availableEffectsNotModified();
+            } else {
+                tL_messages_availableEffects = new TL_messages_availableEffects();
+            }
+            return (messages_AvailableEffects) TLObject.TLdeserialize(messages_AvailableEffects.class, tL_messages_availableEffects, inputSerializedData, i, z);
         }
     }
 
@@ -4186,13 +4247,27 @@ public class TLRPC {
 
     public static class messages_SavedDialogs extends TLObject {
         public static messages_SavedDialogs TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (messages_SavedDialogs) TLObject.TLdeserialize(messages_SavedDialogs.class, i != -1071681560 ? i != -130358751 ? i != 1153080793 ? null : new TL_messages_savedDialogsSlice() : new TL_messages_savedDialogs() : new TL_messages_savedDialogsNotModified(), inputSerializedData, i, z);
+            TLObject tL_messages_savedDialogsNotModified;
+            if (i == -1071681560) {
+                tL_messages_savedDialogsNotModified = new TL_messages_savedDialogsNotModified();
+            } else if (i != -130358751) {
+                tL_messages_savedDialogsNotModified = i != 1153080793 ? null : new TL_messages_savedDialogsSlice();
+            } else {
+                tL_messages_savedDialogsNotModified = new TL_messages_savedDialogs();
+            }
+            return (messages_SavedDialogs) TLObject.TLdeserialize(messages_SavedDialogs.class, tL_messages_savedDialogsNotModified, inputSerializedData, i, z);
         }
     }
 
     public static class messages_quickReplies extends TLObject {
         public static messages_quickReplies TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (messages_quickReplies) TLObject.TLdeserialize(messages_quickReplies.class, i != -963811691 ? i != 1603398491 ? null : new TL_messages_quickRepliesNotModified() : new TL_messages_quickReplies(), inputSerializedData, i, z);
+            TLObject tL_messages_quickReplies;
+            if (i != -963811691) {
+                tL_messages_quickReplies = i != 1603398491 ? null : new TL_messages_quickRepliesNotModified();
+            } else {
+                tL_messages_quickReplies = new TL_messages_quickReplies();
+            }
+            return (messages_quickReplies) TLObject.TLdeserialize(messages_quickReplies.class, tL_messages_quickReplies, inputSerializedData, i, z);
         }
     }
 
@@ -4210,7 +4285,13 @@ public class TLRPC {
         public int unread_reactions_count;
 
         public static savedDialog TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (savedDialog) TLObject.TLdeserialize(savedDialog.class, i != -1115174036 ? i != 1681948327 ? null : new TL_monoForumDialog() : new TL_savedDialog(), inputSerializedData, i, z);
+            TLObject tL_savedDialog;
+            if (i != -1115174036) {
+                tL_savedDialog = i != 1681948327 ? null : new TL_monoForumDialog();
+            } else {
+                tL_savedDialog = new TL_savedDialog();
+            }
+            return (savedDialog) TLObject.TLdeserialize(savedDialog.class, tL_savedDialog, inputSerializedData, i, z);
         }
     }
 
@@ -11706,12 +11787,12 @@ public class TLRPC {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32;
-            int int322;
+            int int33;
             this.flags = inputSerializedData.readInt32(z);
             this.base_theme = BaseTheme.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.accent_color = inputSerializedData.readInt32(z);
-            if (TLObject.hasFlag(this.flags, 1) && (int322 = inputSerializedData.readInt32(z)) != 0) {
-                this.message_colors.add(Integer.valueOf(int322));
+            if (TLObject.hasFlag(this.flags, 1) && (int33 = inputSerializedData.readInt32(z)) != 0) {
+                this.message_colors.add(Integer.valueOf(int33));
             }
             if (TLObject.hasFlag(this.flags, 1) && (int32 = inputSerializedData.readInt32(z)) != 0) {
                 this.message_colors.add(0, Integer.valueOf(int32));
@@ -18299,9 +18380,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -18626,9 +18707,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -18944,9 +19025,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -19254,9 +19335,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -19558,9 +19639,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -19850,9 +19931,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -20136,9 +20217,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -20410,9 +20491,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -20675,9 +20756,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -20922,9 +21003,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -21163,9 +21244,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.antispam = TLObject.hasFlag(this.flags2, 2);
             this.participants_hidden = TLObject.hasFlag(this.flags2, 4);
             this.translations_disabled = TLObject.hasFlag(this.flags2, 8);
@@ -21392,9 +21473,9 @@ public class TLRPC {
             this.has_scheduled = TLObject.hasFlag(this.flags, 524288);
             this.can_view_stats = TLObject.hasFlag(this.flags, 1048576);
             this.blocked = TLObject.hasFlag(this.flags, 4194304);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.can_delete_channel = TLObject.hasFlag(int322, 1);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.can_delete_channel = TLObject.hasFlag(int33, 1);
             this.id = inputSerializedData.readInt64(z);
             this.about = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 1)) {
@@ -27386,9 +27467,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 8);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 16);
@@ -27630,9 +27711,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 8);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 16);
@@ -27868,9 +27949,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 8);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 16);
@@ -28098,9 +28179,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 8);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 16);
@@ -28319,9 +28400,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 8);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 16);
@@ -28534,9 +28615,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 8);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 16);
@@ -28746,9 +28827,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 8);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 16);
@@ -28952,9 +29033,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 8);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 16);
@@ -29152,9 +29233,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 8);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 16);
@@ -29334,9 +29415,9 @@ public class TLRPC {
             this.bot_attach_menu = TLObject.hasFlag(this.flags, 134217728);
             this.premium = TLObject.hasFlag(this.flags, 268435456);
             this.attach_menu_enabled = TLObject.hasFlag(this.flags, 536870912);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.bot_can_edit = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.bot_can_edit = TLObject.hasFlag(int33, 2);
             this.close_friend = TLObject.hasFlag(this.flags2, 4);
             this.stories_hidden = TLObject.hasFlag(this.flags2, 32);
             this.id = inputSerializedData.readInt64(z);
@@ -46851,9 +46932,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.signature_profiles = TLObject.hasFlag(this.flags2, 4096);
@@ -47070,9 +47151,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.signature_profiles = TLObject.hasFlag(this.flags2, 4096);
@@ -47367,9 +47448,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.signature_profiles = TLObject.hasFlag(this.flags2, 4096);
@@ -47584,9 +47665,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.signature_profiles = TLObject.hasFlag(this.flags2, 4096);
@@ -47786,9 +47867,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.signature_profiles = TLObject.hasFlag(this.flags2, 4096);
@@ -47979,9 +48060,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.signature_profiles = TLObject.hasFlag(this.flags2, 4096);
@@ -48166,9 +48247,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.id = inputSerializedData.readInt64(z);
@@ -48344,9 +48425,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.id = inputSerializedData.readInt64(z);
@@ -48504,9 +48585,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.id = inputSerializedData.readInt64(z);
@@ -48678,9 +48759,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.stories_unavailable = TLObject.hasFlag(this.flags2, 8);
             this.id = inputSerializedData.readInt64(z);
@@ -48836,9 +48917,9 @@ public class TLRPC {
             this.join_to_send = TLObject.hasFlag(this.flags, 268435456);
             this.join_request = TLObject.hasFlag(this.flags, 536870912);
             this.forum = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.stories_hidden = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.stories_hidden = TLObject.hasFlag(int33, 2);
             this.stories_hidden_min = TLObject.hasFlag(this.flags2, 4);
             this.id = inputSerializedData.readInt64(z);
             if (TLObject.hasFlag(this.flags, 8192)) {
@@ -51637,7 +51718,8 @@ public class TLRPC {
             if (arrayListDeserializeInt.isEmpty()) {
                 return;
             }
-            this.size = this.sizes.get(r2.size() - 1).intValue();
+            ArrayList<Integer> arrayList = this.sizes;
+            this.size = arrayList.get(arrayList.size() - 1).intValue();
         }
 
         @Override
@@ -51768,7 +51850,8 @@ public class TLRPC {
             if (arrayListDeserializeInt.isEmpty()) {
                 return;
             }
-            this.size = this.sizes.get(r2.size() - 1).intValue();
+            ArrayList<Integer> arrayList = this.sizes;
+            this.size = arrayList.get(arrayList.size() - 1).intValue();
         }
 
         @Override
@@ -52588,9 +52671,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.display_gifts_button = TLObject.hasFlag(this.flags2, 65536);
@@ -52879,9 +52962,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.display_gifts_button = TLObject.hasFlag(this.flags2, 65536);
@@ -53161,9 +53244,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.display_gifts_button = TLObject.hasFlag(this.flags2, 65536);
@@ -53431,9 +53514,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.display_gifts_button = TLObject.hasFlag(this.flags2, 65536);
@@ -53701,9 +53784,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.display_gifts_button = TLObject.hasFlag(this.flags2, 65536);
@@ -53957,9 +54040,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.display_gifts_button = TLObject.hasFlag(this.flags2, 65536);
@@ -54203,9 +54286,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.display_gifts_button = TLObject.hasFlag(this.flags2, 65536);
@@ -54441,9 +54524,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.id = inputSerializedData.readInt64(z);
@@ -54670,9 +54753,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.id = inputSerializedData.readInt64(z);
@@ -54899,9 +54982,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.id = inputSerializedData.readInt64(z);
@@ -55122,9 +55205,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.can_view_revenue = TLObject.hasFlag(this.flags2, 512);
             this.bot_can_manage_emoji_status = TLObject.hasFlag(this.flags2, 1024);
             this.id = inputSerializedData.readInt64(z);
@@ -55339,9 +55422,9 @@ public class TLRPC {
             this.wallpaper_overridden = TLObject.hasFlag(this.flags, 268435456);
             this.contact_require_premium = TLObject.hasFlag(this.flags, 536870912);
             this.read_dates_private = TLObject.hasFlag(this.flags, 1073741824);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.sponsored_enabled = TLObject.hasFlag(int322, 128);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.sponsored_enabled = TLObject.hasFlag(int33, 128);
             this.id = inputSerializedData.readInt64(z);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.about = inputSerializedData.readString(z);
@@ -66864,8 +66947,102 @@ public class TLRPC {
             return message;
         }
 
-        public void readAttachPath(org.telegram.tgnet.InputSerializedData r12, long r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.TLRPC.Message.readAttachPath(org.telegram.tgnet.InputSerializedData, long):void");
+        public void readAttachPath(InputSerializedData inputSerializedData, long j) {
+            boolean z;
+            boolean z2;
+            Peer peer;
+            MessageMedia messageMedia = this.media;
+            boolean z3 = (messageMedia == null || (messageMedia instanceof TL_messageMediaEmpty) || (messageMedia instanceof TL_messageMediaWebPage)) ? false : true;
+            if (TextUtils.isEmpty(this.message)) {
+                z = false;
+            } else {
+                MessageMedia messageMedia2 = this.media;
+                if (((messageMedia2 instanceof TL_messageMediaPhoto_old) || (messageMedia2 instanceof TL_messageMediaPhoto_layer68) || (messageMedia2 instanceof TL_messageMediaPhoto_layer74) || (messageMedia2 instanceof TL_messageMediaDocument_old) || (messageMedia2 instanceof TL_messageMediaDocument_layer68) || (messageMedia2 instanceof TL_messageMediaDocument_layer74)) && this.message.startsWith("-1")) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+            }
+            if (this.out) {
+                if (this.id < 0 && !z3 && this.send_state != 3) {
+                    if (this.legacy) {
+                    }
+                }
+                if ((this.flags & 4) != 0 || this.id >= 0) {
+                }
+                this.fwd_msg_id = inputSerializedData.readInt32(false);
+                return;
+            }
+            Peer peer2 = this.peer_id;
+            if (peer2 != null && (peer = this.from_id) != null) {
+                long j2 = peer2.user_id;
+                if (j2 != 0) {
+                    long j3 = peer.user_id;
+                    if (j2 == j3 && j3 == j) {
+                        if (this.id < 0) {
+                        }
+                    }
+                    if ((this.flags & 4) != 0) {
+                    }
+                }
+            }
+            if (this.legacy) {
+            }
+            if ((this.flags & 4) != 0) {
+            }
+            if (z3 && z) {
+                if (this.message.length() > 6 && this.message.charAt(2) == '_') {
+                    HashMap<String, String> map = new HashMap<>();
+                    this.params = map;
+                    map.put("ve", this.message);
+                }
+                if (this.params != null || this.message.length() == 2) {
+                    this.message = "";
+                }
+            }
+            if (inputSerializedData.remaining() > 0) {
+                String string = inputSerializedData.readString(false);
+                this.attachPath = string;
+                if (string != null) {
+                    if (string.startsWith("poll_with_media=")) {
+                        this.attachPath = this.attachPath.substring(16);
+                        z2 = true;
+                    } else {
+                        z2 = false;
+                    }
+                    if ((this.id < 0 || this.send_state == 3 || this.legacy || z2) && this.attachPath.startsWith("||")) {
+                        String[] strArrSplit = this.attachPath.split("\\|\\|");
+                        if (strArrSplit.length > 0) {
+                            if (this.params == null) {
+                                this.params = new HashMap<>();
+                            }
+                            for (int i = 1; i < strArrSplit.length - 1; i++) {
+                                String[] strArrSplit2 = strArrSplit[i].split("\\|=\\|");
+                                if (strArrSplit2.length == 2) {
+                                    String str = strArrSplit2[0];
+                                    String str2 = strArrSplit2[1];
+                                    if (z2 && str.startsWith("poll_attach_path_at_")) {
+                                        try {
+                                            PollAttachedMediaPack.setAttachPath(this, str2, Integer.parseInt(str.substring(20)));
+                                        } catch (Throwable unused) {
+                                        }
+                                    } else {
+                                        this.params.put(str, str2);
+                                    }
+                                }
+                            }
+                            this.attachPath = strArrSplit[strArrSplit.length - 1].trim();
+                            if (this.legacy) {
+                                this.layer = Utilities.parseInt((CharSequence) this.params.get("legacy_layer")).intValue();
+                            }
+                        }
+                    } else {
+                        this.attachPath = this.attachPath.trim();
+                    }
+                }
+            }
+            if ((this.flags & 4) != 0) {
+            }
         }
 
         protected void writeAttachPath(OutputSerializedData outputSerializedData) {
@@ -67528,9 +67705,9 @@ public class TLRPC {
             this.pinned = TLObject.hasFlag(this.flags, 16777216);
             this.noforwards = TLObject.hasFlag(this.flags, 67108864);
             this.invert_media = TLObject.hasFlag(this.flags, 134217728);
-            int int322 = inputSerializedData.readInt32(z);
-            this.flags2 = int322;
-            this.offline = TLObject.hasFlag(int322, 2);
+            int int33 = inputSerializedData.readInt32(z);
+            this.flags2 = int33;
+            this.offline = TLObject.hasFlag(int33, 2);
             this.video_processing_pending = TLObject.hasFlag(this.flags2, 16);
             this.paid_suggested_post_stars = TLObject.hasFlag(this.flags2, 256);
             this.paid_suggested_post_ton = TLObject.hasFlag(this.flags2, 512);
@@ -73525,9 +73702,9 @@ public class TLRPC {
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.boost_peer = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            int int322 = inputSerializedData.readInt32(z);
-            this.days = int322;
-            this.months = Math.round(int322 / 30.0f);
+            int int33 = inputSerializedData.readInt32(z);
+            this.days = int33;
+            this.months = Math.round(int33 / 30.0f);
             this.slug = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.currency = inputSerializedData.readString(z);
@@ -73581,9 +73758,9 @@ public class TLRPC {
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.boost_peer = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            int int322 = inputSerializedData.readInt32(z);
-            this.months = int322;
-            this.days = int322 * 30;
+            int int33 = inputSerializedData.readInt32(z);
+            this.months = int33;
+            this.days = int33 * 30;
             this.slug = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.currency = inputSerializedData.readString(z);
@@ -73637,9 +73814,9 @@ public class TLRPC {
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.boost_peer = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            int int322 = inputSerializedData.readInt32(z);
-            this.months = int322;
-            this.days = int322 * 30;
+            int int33 = inputSerializedData.readInt32(z);
+            this.months = int33;
+            this.days = int33 * 30;
             this.slug = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.currency = inputSerializedData.readString(z);
@@ -73695,9 +73872,9 @@ public class TLRPC {
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.boost_peer = Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            int int322 = inputSerializedData.readInt32(z);
-            this.months = int322;
-            this.days = int322 * 30;
+            int int33 = inputSerializedData.readInt32(z);
+            this.months = int33;
+            this.days = int33 * 30;
             this.slug = inputSerializedData.readString(z);
         }
 
@@ -74859,9 +75036,9 @@ public class TLRPC {
                 this.to_id = inputSerializedData.readInt64(z);
             }
             this.date = inputSerializedData.readInt32(z);
-            int int322 = inputSerializedData.readInt32(z);
-            this.days = int322;
-            this.months = Math.round(int322 / 30.0f);
+            int int33 = inputSerializedData.readInt32(z);
+            this.days = int33;
+            this.months = Math.round(int33 / 30.0f);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.used_date = inputSerializedData.readInt32(z);
             }

@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -31,7 +30,6 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.Bulletin;
 
 public class JoinGroupAlert extends BottomSheet {
     private BulletinFactory bulletinFactory;
@@ -49,7 +47,6 @@ public class JoinGroupAlert extends BottomSheet {
     public JoinGroupAlert(Context context, TLObject tLObject, String str, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, final int i) {
         final long j;
         String str2;
-        String str3;
         int i2;
         boolean z;
         boolean z2;
@@ -68,21 +65,17 @@ public class JoinGroupAlert extends BottomSheet {
             TLRPC.Chat chat = chatInvite.chat;
             if (chat != null) {
                 j = -chat.id;
-                str2 = str;
+            } else {
+                j = 0;
             }
-            str2 = str;
-            j = 0;
+        } else if (tLObject instanceof TLRPC.Chat) {
+            TLRPC.Chat chat2 = (TLRPC.Chat) tLObject;
+            this.currentChat = chat2;
+            j = chat2.id;
         } else {
-            if (tLObject instanceof TLRPC.Chat) {
-                TLRPC.Chat chat2 = (TLRPC.Chat) tLObject;
-                this.currentChat = chat2;
-                j = chat2.id;
-                str2 = str;
-            }
-            str2 = str;
             j = 0;
         }
-        this.hash = str2;
+        this.hash = str;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setClickable(true);
@@ -108,12 +101,13 @@ public class JoinGroupAlert extends BottomSheet {
         backupImageView.setRoundRadius(AndroidUtilities.dp(45.0f));
         linearLayout.addView(backupImageView, LayoutHelper.createLinear(90, 90, 49, 0, 27, 0, 0));
         TLRPC.ChatInvite chatInvite2 = this.chatInvite;
+        String str3 = null;
         if (chatInvite2 != null) {
             if (chatInvite2.chat != null) {
                 AvatarDrawable avatarDrawable = new AvatarDrawable(this.chatInvite.chat);
                 TLRPC.ChatInvite chatInvite3 = this.chatInvite;
                 TLRPC.Chat chat3 = chatInvite3.chat;
-                str = chat3.title;
+                str3 = chat3.title;
                 i2 = chat3.participants_count;
                 backupImageView.setForUserOrChat(chat3, avatarDrawable, chatInvite3);
             } else {
@@ -123,11 +117,11 @@ public class JoinGroupAlert extends BottomSheet {
                 String str4 = chatInvite4.title;
                 int i3 = chatInvite4.participants_count;
                 backupImageView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(chatInvite4.photo.sizes, 50), this.chatInvite.photo), "50_50", avatarDrawable2, this.chatInvite);
-                str = str4;
+                str3 = str4;
                 i2 = i3;
             }
             TLRPC.ChatInvite chatInvite5 = this.chatInvite;
-            str3 = chatInvite5.about;
+            str2 = chatInvite5.about;
             z2 = chatInvite5.verified;
             z3 = chatInvite5.fake;
             z = chatInvite5.scam;
@@ -135,19 +129,19 @@ public class JoinGroupAlert extends BottomSheet {
             AvatarDrawable avatarDrawable3 = new AvatarDrawable(this.currentChat);
             String str5 = this.currentChat.title;
             TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.currentChat.id);
-            str = chatFull != null ? chatFull.about : null;
+            str3 = chatFull != null ? chatFull.about : null;
             int iMax = Math.max(this.currentChat.participants_count, chatFull != null ? chatFull.participants_count : 0);
             TLRPC.Chat chat4 = this.currentChat;
             backupImageView.setForUserOrChat(chat4, avatarDrawable3, chat4);
             TLRPC.Chat chat5 = this.currentChat;
             z2 = chat5.verified;
             z3 = chat5.fake;
-            str3 = str;
-            str = str5;
+            str2 = str3;
+            str3 = str5;
             z = chat5.scam;
             i2 = iMax;
         } else {
-            str3 = null;
+            str2 = null;
             i2 = 0;
             z = 0;
             z2 = false;
@@ -158,7 +152,7 @@ public class JoinGroupAlert extends BottomSheet {
         simpleTextView.setTextSize(20);
         int i4 = Theme.key_dialogTextBlack;
         simpleTextView.setTextColor(getThemedColor(i4));
-        simpleTextView.setText(str);
+        simpleTextView.setText(str3);
         simpleTextView.setGravity(17);
         linearLayout.addView(simpleTextView, LayoutHelper.createLinear(-2, -2, 49, 10, 10, 10, i2 > 0 ? 0 : 20));
         if (z != 0 || z3) {
@@ -168,7 +162,7 @@ public class JoinGroupAlert extends BottomSheet {
         }
         TLRPC.ChatInvite chatInvite6 = this.chatInvite;
         final boolean z5 = (chatInvite6 != null && ((chatInvite6.channel && !chatInvite6.megagroup) || ChatObject.isChannelAndNotMegaGroup(chatInvite6.chat))) || (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup);
-        boolean zIsEmpty = TextUtils.isEmpty(str3);
+        boolean zIsEmpty = TextUtils.isEmpty(str2);
         TextView textView = new TextView(context);
         textView.setTextSize(1, 13.0f);
         int i5 = Theme.key_dialogTextGray3;
@@ -190,7 +184,7 @@ public class JoinGroupAlert extends BottomSheet {
         if (!zIsEmpty) {
             TextView textView2 = new TextView(context);
             textView2.setGravity(17);
-            textView2.setText(str3);
+            textView2.setText(str2);
             textView2.setTextColor(getThemedColor(i4));
             textView2.setTextSize(1, 15.0f);
             linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 48, 24, 10, 24, 20));
@@ -540,7 +534,7 @@ public class JoinGroupAlert extends BottomSheet {
         }
 
         @Override
-        public void onBecomeFullyVisible() throws Resources.NotFoundException {
+        public void onBecomeFullyVisible() {
             super.onBecomeFullyVisible();
             if (this.shownToast || !this.val$showJoined) {
                 return;

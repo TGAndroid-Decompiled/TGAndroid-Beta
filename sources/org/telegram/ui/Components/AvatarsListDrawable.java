@@ -112,9 +112,7 @@ public class AvatarsListDrawable extends Drawable {
             return;
         }
         this.attached = true;
-        Iterator it = this.avatarItemsPool.iterator();
-        while (it.hasNext()) {
-            AvatarItem avatarItem = (AvatarItem) it.next();
+        for (AvatarItem avatarItem : this.avatarItemsPool) {
             if (avatarItem.dialogId != 0) {
                 avatarItem.attach();
             }
@@ -132,9 +130,7 @@ public class AvatarsListDrawable extends Drawable {
     }
 
     private AvatarItem find(long j) {
-        Iterator it = this.avatarItemsPool.iterator();
-        while (it.hasNext()) {
-            AvatarItem avatarItem = (AvatarItem) it.next();
+        for (AvatarItem avatarItem : this.avatarItemsPool) {
             if (avatarItem.dialogId == j) {
                 return avatarItem;
             }

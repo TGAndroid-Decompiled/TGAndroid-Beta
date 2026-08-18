@@ -18,7 +18,6 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import java.io.IOException;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -104,7 +103,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         textView2.setText(LocaleController.getString(R.string.ShareQrCode));
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IOException {
+            public final void onClick(View view) {
                 this.f$0.lambda$new$0(context, view);
             }
         });
@@ -130,7 +129,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         setCustomView(scrollView);
     }
 
-    public void lambda$new$0(Context context, View view) throws IOException {
+    public void lambda$new$0(Context context, View view) {
         Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(this.qrCode, "qr_tmp.png", Bitmap.CompressFormat.PNG);
         if (bitmapShareUri != null) {
             Intent intent = new Intent("android.intent.action.SEND");

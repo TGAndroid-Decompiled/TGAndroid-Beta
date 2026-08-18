@@ -29,7 +29,6 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class StarReactionsOverlay extends View {
     private float accumulatedRippleIntensity;
@@ -273,9 +272,10 @@ public class StarReactionsOverlay extends View {
         } else {
             numValueOf = null;
         }
-        int i5 = this.pos[0];
-        int[] iArr4 = this.pos2;
-        canvas.translate(i5 - iArr4[0], (r5[1] - iArr4[1]) + this.cell.getPaddingTop());
+        int[] iArr4 = this.pos;
+        int i5 = iArr4[0];
+        int[] iArr5 = this.pos2;
+        canvas.translate(i5 - iArr5[0], (iArr4[1] - iArr5[1]) + this.cell.getPaddingTop());
         BaseCell baseCell2 = this.cell;
         if (baseCell2 instanceof ChatMessageCell) {
             ChatMessageCell chatMessageCell = (ChatMessageCell) baseCell2;
@@ -441,11 +441,12 @@ public class StarReactionsOverlay extends View {
         AndroidUtilities.runOnUIThread(this.hideCounterRunnable, 1500L);
         if (z2) {
             long jCurrentTimeMillis = System.currentTimeMillis();
-            if (jCurrentTimeMillis - this.lastRippleTime < 100) {
+            long j = jCurrentTimeMillis - this.lastRippleTime;
+            if (j < 100) {
                 this.accumulatedRippleIntensity += 0.5f;
                 return;
             }
-            this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - ((r0 - 100) / 200.0f), 1.0f, 0.0f);
+            this.accumulatedRippleIntensity *= Utilities.clamp(1.0f - ((j - 100) / 200.0f), 1.0f, 0.0f);
             if (getMeasuredWidth() == 0 && this.chatActivity.getLayoutContainer() != null) {
                 this.chatActivity.getLayoutContainer().getLocationInWindow(this.pos2);
             } else {

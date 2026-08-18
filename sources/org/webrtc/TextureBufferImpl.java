@@ -3,7 +3,6 @@ package org.webrtc;
 import android.graphics.Matrix;
 import android.os.Handler;
 import java.util.concurrent.Callable;
-import org.webrtc.VideoFrame;
 
 public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     private final int height;
@@ -132,7 +131,8 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     @Override
     public VideoFrame.Buffer cropAndScale(int i, int i2, int i3, int i4, int i5, int i6) {
         Matrix matrix = new Matrix();
-        matrix.preTranslate(i / this.width, (r0 - (i2 + i4)) / this.height);
+        int i7 = this.height;
+        matrix.preTranslate(i / this.width, (i7 - (i2 + i4)) / i7);
         matrix.preScale(i3 / this.width, i4 / this.height);
         return applyTransformMatrix(matrix, Math.round((this.unscaledWidth * i3) / this.width), Math.round((this.unscaledHeight * i4) / this.height), i5, i6);
     }

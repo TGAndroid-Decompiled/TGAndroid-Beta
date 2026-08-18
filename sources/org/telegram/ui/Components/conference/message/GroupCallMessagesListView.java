@@ -20,7 +20,6 @@ import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-import org.telegram.ui.Components.conference.message.GroupCallMessageCell;
 
 public class GroupCallMessagesListView extends RecyclerView {
     private final GroupCallMessagesAdapter adapter;

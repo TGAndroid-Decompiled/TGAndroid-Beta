@@ -5,7 +5,6 @@ import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
 import org.telegram.messenger.browser.Browser;
-import org.telegram.ui.Components.TextStyleSpan;
 
 public class URLSpanBrowser extends URLSpan {
     private TextStyleSpan.TextStyleRun style;

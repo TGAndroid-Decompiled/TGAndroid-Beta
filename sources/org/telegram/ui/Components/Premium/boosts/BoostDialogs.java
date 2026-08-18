@@ -390,7 +390,7 @@ public abstract class BoostDialogs {
         if (i2 == 0) {
             return LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
         }
-        long j2 = j + (i2 * 86400000);
+        long j2 = j + (((long) i2) * 86400000);
         calendar.setTimeInMillis(j2);
         if (calendar.get(1) == i) {
             return LocaleController.getInstance().getFormatterScheduleDay().format(j2);
@@ -454,7 +454,7 @@ public abstract class BoostDialogs {
     }
 
     public static void lambda$showDatePicker$8(Calendar calendar, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, AlertsCreator.ScheduleDatePickerDelegate scheduleDatePickerDelegate, BottomSheet.Builder builder, View view) {
-        calendar.setTimeInMillis(System.currentTimeMillis() + (numberPicker.getValue() * 86400000));
+        calendar.setTimeInMillis(System.currentTimeMillis() + (((long) numberPicker.getValue()) * 86400000));
         calendar.set(11, numberPicker2.getValue());
         calendar.set(12, numberPicker3.getValue() * 5);
         scheduleDatePickerDelegate.didSelectDate(true, (int) (calendar.getTimeInMillis() / 1000), 0);
@@ -562,9 +562,9 @@ public abstract class BoostDialogs {
     public static void showAbout(boolean z, String str, long j, TLRPC.TL_payments_giveawayInfo tL_payments_giveawayInfo, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, Theme.ResourcesProvider resourcesProvider) {
         int i = tL_messageMediaGiveaway.quantity;
         String pluralString = LocaleController.formatPluralString("BoldMonths", tL_messageMediaGiveaway.months, new Object[0]);
-        String str2 = LocaleController.getInstance().getFormatterGiveawayMonthDay().format(new Date(tL_messageMediaGiveaway.until_date * 1000));
-        String str3 = LocaleController.getInstance().getFormatterDay().format(new Date(tL_payments_giveawayInfo.start_date * 1000));
-        String str4 = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(tL_payments_giveawayInfo.start_date * 1000));
+        String str2 = LocaleController.getInstance().getFormatterGiveawayMonthDay().format(new Date(((long) tL_messageMediaGiveaway.until_date) * 1000));
+        String str3 = LocaleController.getInstance().getFormatterDay().format(new Date(((long) tL_payments_giveawayInfo.start_date) * 1000));
+        String str4 = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(((long) tL_payments_giveawayInfo.start_date) * 1000));
         boolean z2 = tL_messageMediaGiveaway.channels.size() > 1;
         boolean z3 = (tL_messageMediaGiveaway.flags & 32) != 0;
         AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
@@ -601,7 +601,7 @@ public abstract class BoostDialogs {
                 TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tL_payments_giveawayInfo.admin_disallowed_chat_id));
                 spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.BoostingGiveawayNotEligibleAdmin : R.string.BoostingGiveawayNotEligibleAdminGroup, chat != null ? chat.title : "")));
             } else if (tL_payments_giveawayInfo.joined_too_early_date != 0) {
-                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveawayNotEligible", R.string.BoostingGiveawayNotEligible, LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(tL_payments_giveawayInfo.joined_too_early_date * 1000)))));
+                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveawayNotEligible", R.string.BoostingGiveawayNotEligible, LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(((long) tL_payments_giveawayInfo.joined_too_early_date) * 1000)))));
             } else if (z2) {
                 spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayTakePartMultiPlural", tL_messageMediaGiveaway.channels.size() - 1, str, str2)));
             } else {
@@ -630,9 +630,9 @@ public abstract class BoostDialogs {
         }
         int i2 = tL_messageMediaGiveaway.quantity;
         String pluralString = LocaleController.formatPluralString("BoldMonths", tL_messageMediaGiveaway.months, new Object[0]);
-        String str2 = LocaleController.getInstance().getFormatterGiveawayMonthDay().format(new Date(tL_messageMediaGiveaway.until_date * 1000));
-        String str3 = LocaleController.getInstance().getFormatterDay().format(new Date(tL_payments_giveawayInfoResults.start_date * 1000));
-        String str4 = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(tL_payments_giveawayInfoResults.start_date * 1000));
+        String str2 = LocaleController.getInstance().getFormatterGiveawayMonthDay().format(new Date(((long) tL_messageMediaGiveaway.until_date) * 1000));
+        String str3 = LocaleController.getInstance().getFormatterDay().format(new Date(((long) tL_payments_giveawayInfoResults.start_date) * 1000));
+        String str4 = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(((long) tL_payments_giveawayInfoResults.start_date) * 1000));
         boolean z2 = tL_messageMediaGiveaway.channels.size() > 1;
         boolean z3 = (tL_messageMediaGiveaway.flags & 32) != 0;
         AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
@@ -812,7 +812,7 @@ public abstract class BoostDialogs {
         }
         final String giveawayCreatorName = getGiveawayCreatorName(messageObject);
         final boolean zIsChannel = isChannel(messageObject);
-        final long j = 1000 * messageObject.messageOwner.date;
+        final long j = 1000 * ((long) messageObject.messageOwner.date);
         BoostRepository.getGiveawayInfo(messageObject, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
@@ -901,7 +901,7 @@ public abstract class BoostDialogs {
             tL_messageMediaGiveaway = (TLRPC.TL_messageMediaGiveaway) messageMedia;
         }
         final TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway2 = tL_messageMediaGiveaway;
-        final long j = messageObject.messageOwner.date * 1000;
+        final long j = ((long) messageObject.messageOwner.date) * 1000;
         final BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null) {
             return;

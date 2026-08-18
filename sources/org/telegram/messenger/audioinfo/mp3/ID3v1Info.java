@@ -6,8 +6,13 @@ import java.io.InputStream;
 import org.telegram.messenger.audioinfo.AudioInfo;
 
 public class ID3v1Info extends AudioInfo {
-    public static boolean isID3v1StartPosition(java.io.InputStream r2) throws java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.ID3v1Info.isID3v1StartPosition(java.io.InputStream):boolean");
+    public static boolean isID3v1StartPosition(InputStream inputStream) throws IOException {
+        inputStream.mark(3);
+        try {
+            return inputStream.read() == 84 && inputStream.read() == 65 && inputStream.read() == 71;
+        } finally {
+            inputStream.reset();
+        }
     }
 
     public ID3v1Info(InputStream inputStream) throws IOException {

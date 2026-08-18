@@ -18,7 +18,6 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class ArchiveHelp extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {

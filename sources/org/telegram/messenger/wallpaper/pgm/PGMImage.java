@@ -41,7 +41,7 @@ public abstract class PGMImage {
         }
     }
 
-    public static Bitmap read(InputStream inputStream, List list) throws IOException, NumberFormatException {
+    public static Bitmap read(InputStream inputStream, List list) throws IOException {
         BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
         String strNextToken = nextToken(bufferedInputStream, list);
         if (!"P5".equals(strNextToken)) {
@@ -68,7 +68,7 @@ public abstract class PGMImage {
         return bitmapCreateBitmap;
     }
 
-    private static int parsePositiveInt(String str, String str2) throws NumberFormatException, IOException {
+    private static int parsePositiveInt(String str, String str2) throws IOException {
         try {
             int i = Integer.parseInt(str);
             if (i > 0) {
@@ -80,8 +80,46 @@ public abstract class PGMImage {
         }
     }
 
-    private static java.lang.String nextToken(java.io.BufferedInputStream r5, java.util.List r6) throws java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wallpaper.pgm.PGMImage.nextToken(java.io.BufferedInputStream, java.util.List):java.lang.String");
+    private static String nextToken(BufferedInputStream bufferedInputStream, List list) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        while (true) {
+            bufferedInputStream.mark(1);
+            int i = bufferedInputStream.read();
+            if (i == -1) {
+                if (sb.length() == 0) {
+                    return null;
+                }
+                return sb.toString();
+            }
+            if (Character.isWhitespace(i)) {
+                if (sb.length() > 0) {
+                    return sb.toString();
+                }
+            } else if (i == 35) {
+                String lineAscii = readLineAscii(bufferedInputStream);
+                if (list != null) {
+                    list.add(lineAscii);
+                }
+                if (sb.length() > 0) {
+                    return sb.toString();
+                }
+            } else {
+                sb.append((char) i);
+                while (true) {
+                    bufferedInputStream.mark(1);
+                    int i2 = bufferedInputStream.read();
+                    if (i2 == -1 || Character.isWhitespace(i2)) {
+                        break;
+                    }
+                    if (i2 == 35) {
+                        bufferedInputStream.reset();
+                        return sb.toString();
+                    }
+                    sb.append((char) i2);
+                }
+                return sb.toString();
+            }
+        }
     }
 
     private static String nextNonCommentToken(BufferedInputStream bufferedInputStream, List list) throws IOException {

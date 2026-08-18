@@ -33,7 +33,8 @@ public abstract class AnimatorUtils {
     };
 
     public static float lambda$static$0(float f) {
-        return f < 0.5f ? 2.0f * f * f : ((4.0f - r1) * f) - 1.0f;
+        float f2 = 2.0f * f;
+        return f < 0.5f ? f2 * f : ((4.0f - f2) * f) - 1.0f;
     }
 
     public static float lambda$static$1(float f) {

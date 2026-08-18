@@ -35,9 +35,6 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.web.AddressBarList;
-import org.telegram.ui.web.BookmarksFragment;
-import org.telegram.ui.web.WebMetadataCache;
 
 public class BookmarksFragment extends UniversalFragment {
     private final Runnable closeToTabs;
@@ -90,12 +87,7 @@ public class BookmarksFragment extends UniversalFragment {
                 break;
             }
             int iIntValue = ((Integer) it.next()).intValue();
-            Iterator it2 = this.list.links.iterator();
-            while (true) {
-                if (!it2.hasNext()) {
-                    break;
-                }
-                MessageObject messageObject2 = (MessageObject) it2.next();
+            for (MessageObject messageObject2 : this.list.links) {
                 if (messageObject2 != null && messageObject2.getId() == iIntValue) {
                     messageObject = messageObject2;
                     break;
@@ -103,12 +95,7 @@ public class BookmarksFragment extends UniversalFragment {
             }
             AddressBarList.BookmarksList bookmarksList = this.searchList;
             if (bookmarksList != null && messageObject == null) {
-                Iterator it3 = bookmarksList.links.iterator();
-                while (true) {
-                    if (!it3.hasNext()) {
-                        break;
-                    }
-                    MessageObject messageObject3 = (MessageObject) it3.next();
+                for (MessageObject messageObject3 : bookmarksList.links) {
                     if (messageObject3 != null && messageObject3.getId() == iIntValue) {
                         messageObject = messageObject3;
                         break;
@@ -374,9 +361,7 @@ public class BookmarksFragment extends UniversalFragment {
         TLRPC.MessageMedia messageMedia;
         this.addedUrls.clear();
         if (TextUtils.isEmpty(this.query)) {
-            Iterator it = this.list.links.iterator();
-            while (it.hasNext()) {
-                MessageObject messageObject = (MessageObject) it.next();
+            for (MessageObject messageObject : this.list.links) {
                 String link = AddressBarList.getLink(messageObject);
                 if (!TextUtils.isEmpty(link) && !link.startsWith("#") && !link.startsWith("$") && !link.startsWith("@")) {
                     this.addedUrls.add(link);
@@ -389,9 +374,7 @@ public class BookmarksFragment extends UniversalFragment {
                 arrayList.add(UItem.asFlicker(arrayList.size(), 32));
             }
         } else {
-            Iterator it2 = this.list.links.iterator();
-            while (it2.hasNext()) {
-                MessageObject messageObject2 = (MessageObject) it2.next();
+            for (MessageObject messageObject2 : this.list.links) {
                 String link2 = AddressBarList.getLink(messageObject2);
                 if (!TextUtils.isEmpty(link2) && !link2.startsWith("#") && !link2.startsWith("$") && !link2.startsWith("@")) {
                     this.addedUrls.add(link2);
@@ -405,9 +388,7 @@ public class BookmarksFragment extends UniversalFragment {
                     }
                 }
             }
-            Iterator it3 = this.searchList.links.iterator();
-            while (it3.hasNext()) {
-                MessageObject messageObject3 = (MessageObject) it3.next();
+            for (MessageObject messageObject3 : this.searchList.links) {
                 String link3 = AddressBarList.getLink(messageObject3);
                 if (!TextUtils.isEmpty(link3) && !link3.startsWith("#") && !link3.startsWith("$") && !link3.startsWith("@")) {
                     this.addedUrls.add(link3);

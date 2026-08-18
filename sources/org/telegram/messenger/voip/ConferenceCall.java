@@ -18,7 +18,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.ConferenceCall;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -205,7 +204,62 @@ public class ConferenceCall {
     }
 
     private void checkParticipants() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.ConferenceCall.checkParticipants():void");
+        long j = this.call_id;
+        HashSet<Long> hashSet = null;
+        if (j >= 0) {
+            try {
+                CallState callStateCall_get_state = call_get_state(j);
+                if (callStateCall_get_state != null && callStateCall_get_state.participants.length > 0) {
+                    HashSet<Long> hashSet2 = new HashSet<>();
+                    int i = 0;
+                    while (true) {
+                        try {
+                            CallParticipant[] callParticipantArr = callStateCall_get_state.participants;
+                            if (i >= callParticipantArr.length) {
+                                break;
+                            }
+                            hashSet2.add(Long.valueOf(callParticipantArr[i].user_id));
+                            i++;
+                        } catch (Exception e) {
+                            e = e;
+                            hashSet = hashSet2;
+                            FileLog.e(e);
+                        }
+                    }
+                    hashSet = hashSet2;
+                }
+            } catch (Exception e2) {
+                e = e2;
+            }
+        }
+        if (eq(hashSet, this.lastParticipants)) {
+            return;
+        }
+        if (this.lastParticipants != null && hashSet != null) {
+            for (Long l : hashSet) {
+                l.longValue();
+                if (!this.lastParticipants.contains(l)) {
+                    this.joiningBlockchainParticipants.add(l);
+                }
+            }
+            Iterator<Long> it = this.joiningBlockchainParticipants.iterator();
+            while (it.hasNext()) {
+                Long next = it.next();
+                next.longValue();
+                if (this.lastParticipants.contains(next)) {
+                    it.remove();
+                }
+            }
+        } else {
+            this.joiningBlockchainParticipants.clear();
+        }
+        this.lastParticipants = hashSet;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$checkParticipants$1();
+            }
+        });
     }
 
     public void lambda$checkParticipants$1() {
@@ -253,11 +307,9 @@ public class ConferenceCall {
         if (hashSet == null || hashSet2 == null || hashSet.size() != hashSet2.size()) {
             return false;
         }
-        Iterator<Long> it = hashSet.iterator();
-        while (it.hasNext()) {
-            Long next = it.next();
-            next.longValue();
-            if (!hashSet2.contains(next)) {
+        for (Long l : hashSet) {
+            l.longValue();
+            if (!hashSet2.contains(l)) {
                 return false;
             }
         }
@@ -548,7 +600,61 @@ public class ConferenceCall {
     }
 
     private void pull_outbound() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.ConferenceCall.pull_outbound():void");
+        int i;
+        if (this.destroyed) {
+            FileLog.d("[tde2e] conference.pull_outbound but destroyed!");
+            return;
+        }
+        long j = this.call_id;
+        if (j < 0) {
+            return;
+        }
+        int i2 = 0;
+        try {
+            byte[][] bArrCall_pull_outbound_messages = call_pull_outbound_messages(j);
+            FileLog.d("[tde2e] call_pull_outbound_messages(" + this.call_id + ") = " + bArrCall_pull_outbound_messages.length + " blocks");
+            i = 0;
+            while (i2 < bArrCall_pull_outbound_messages.length) {
+                try {
+                    TL_phone.sendConferenceCallBroadcast sendconferencecallbroadcast = new TL_phone.sendConferenceCallBroadcast();
+                    sendconferencecallbroadcast.call = this.inputGroupCall;
+                    sendconferencecallbroadcast.block = bArrCall_pull_outbound_messages[i2];
+                    FileLog.d("[tde2e] pull outbound block to server!");
+                    FileLog.d("[tde2e] call_pull_outbound_messages(" + this.call_id + ")[" + i2 + "] = " + call_describe_message(bArrCall_pull_outbound_messages[i2]));
+                    final long jCurrentTimeMillis = System.currentTimeMillis();
+                    ConnectionsManager.getInstance(this.currentAccount).sendRequest(sendconferencecallbroadcast, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            this.f$0.lambda$pull_outbound$6(jCurrentTimeMillis, tLObject, tL_error);
+                        }
+                    }, 64);
+                    i2++;
+                    i = 1;
+                } catch (Exception e) {
+                    e = e;
+                    i2 = i;
+                    FileLog.e(e);
+                    i = i2;
+                }
+            }
+        } catch (Exception e2) {
+            e = e2;
+        }
+        try {
+            FileLog.d("[tde2e] state = " + call_get_verification_state(this.call_id));
+        } catch (Exception e3) {
+            FileLog.e(e3);
+        }
+        try {
+            FileLog.d("[tde2e] call_describe(" + this.call_id + "): " + call_describe(this.call_id));
+        } catch (Exception e4) {
+            FileLog.e(e4);
+        }
+        checkEmojiHash();
+        checkParticipants();
+        if (i != 0) {
+            forcePoll();
+        }
     }
 
     public void lambda$pull_outbound$6(final long j, final TLObject tLObject, final TLRPC.TL_error tL_error) {

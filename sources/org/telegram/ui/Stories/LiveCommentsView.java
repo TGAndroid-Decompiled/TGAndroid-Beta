@@ -14,9 +14,14 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
+import android.text.style.ReplacementSpan;
 import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,11 +47,14 @@ import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -59,6 +67,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -72,6 +81,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
@@ -170,10 +180,8 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
 
         public int getStars(int i) {
-            Iterator it = this.messages.iterator();
             int i2 = 0;
-            while (it.hasNext()) {
-                Message message = (Message) it.next();
+            for (Message message : this.messages) {
                 long j = message.stars;
                 if (j > 0 && i - message.date <= HighlightMessageSheet.getTierOption(this.currentAccount, (int) j, HighlightMessageSheet.TIER_PERIOD)) {
                     i2 += (int) message.stars;
@@ -188,11 +196,9 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
 
         public float getProgress(int i) {
-            Iterator it = this.messages.iterator();
             int iMax = 0;
             int iMin = i;
-            while (it.hasNext()) {
-                Message message = (Message) it.next();
+            for (Message message : this.messages) {
                 if (message.stars > 0) {
                     iMin = Math.min(iMin, message.date);
                     iMax = Math.max(iMax, message.date + HighlightMessageSheet.getTierOption(this.currentAccount, (int) message.stars, HighlightMessageSheet.TIER_PERIOD));
@@ -202,11 +208,9 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
 
         public int expiresAfter(int i) {
-            Iterator it = this.messages.iterator();
             int iMin = i;
             int iMax = 0;
-            while (it.hasNext()) {
-                Message message = (Message) it.next();
+            for (Message message : this.messages) {
                 if (message.stars > 0) {
                     iMin = Math.min(iMin, message.date);
                     iMax = Math.max(iMax, message.date + HighlightMessageSheet.getTierOption(this.currentAccount, (int) message.stars, HighlightMessageSheet.TIER_PERIOD));
@@ -216,9 +220,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
 
         public boolean isExpired(int i) {
-            Iterator it = this.messages.iterator();
-            while (it.hasNext()) {
-                Message message = (Message) it.next();
+            for (Message message : this.messages) {
                 long j = message.stars;
                 if (j > 0 && i - message.date <= HighlightMessageSheet.getTierOption(this.currentAccount, (int) j, HighlightMessageSheet.TIER_PERIOD)) {
                     return false;
@@ -232,9 +234,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
 
         public void updateLastSentDate(int i) {
-            Iterator it = this.messages.iterator();
-            while (it.hasNext()) {
-                Message message = (Message) it.next();
+            for (Message message : this.messages) {
                 if (message.stars > 0) {
                     i = Math.min(i, message.date);
                 }
@@ -272,7 +272,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         Iterator it = this.topMessages.iterator();
         long jMin = Long.MAX_VALUE;
         while (it.hasNext()) {
-            jMin = Math.min(jMin, ((TopSender) it.next()).expiresAfter(currentTime) * 1000);
+            jMin = Math.min(jMin, ((long) ((TopSender) it.next()).expiresAfter(currentTime)) * 1000);
         }
         if (jMin >= Long.MAX_VALUE) {
             return;
@@ -610,62 +610,55 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     public void lambda$new$7(View view, int i, float f, float f2) {
         int i2;
         int i3;
-        Message message;
         int i4;
         TopSender topSender = ((LiveTopSenderView) view).sender;
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
         HashSet hashSet = new HashSet();
         int i5 = 0;
-        int i6 = 0;
         while (true) {
-            if (i6 >= topSender.messages.size()) {
+            if (i5 >= topSender.messages.size()) {
                 break;
             }
-            Message message2 = (Message) topSender.messages.get(i6);
-            long j = message2.stars;
-            if (j > 0 && currentTime - message2.date <= HighlightMessageSheet.getTierOption(this.currentAccount, (int) j, HighlightMessageSheet.TIER_PERIOD)) {
-                hashSet.add(Integer.valueOf(message2.id));
+            Message message = (Message) topSender.messages.get(i5);
+            long j = message.stars;
+            if (j > 0 && currentTime - message.date <= HighlightMessageSheet.getTierOption(this.currentAccount, (int) j, HighlightMessageSheet.TIER_PERIOD)) {
+                hashSet.add(Integer.valueOf(message.id));
             }
-            i6++;
+            i5++;
         }
         LivePlayer livePlayer = this.livePlayer;
         long sendPaidMessagesStars = livePlayer != null ? livePlayer.getSendPaidMessagesStars() : 0L;
+        int i6 = 0;
         int i7 = 0;
-        int i8 = 0;
         while (true) {
             i2 = -1;
-            if (i7 >= this.messages.size()) {
+            if (i6 >= this.messages.size()) {
                 i3 = -1;
                 break;
             }
-            message = (Message) this.messages.get(i7);
-            if (message.fromAdmin || !message.isReaction || message.stars >= sendPaidMessagesStars) {
-                if (hashSet.contains(Integer.valueOf(message.id)) && (this.highlightingDialog != topSender.dialogId || (i4 = this.highlightingMessageId) == 0 || message.id < i4)) {
+            Message message2 = (Message) this.messages.get(i6);
+            if (message2.fromAdmin || !message2.isReaction || message2.stars >= sendPaidMessagesStars) {
+                if (hashSet.contains(Integer.valueOf(message2.id)) && (this.highlightingDialog != topSender.dialogId || (i4 = this.highlightingMessageId) == 0 || message2.id < i4)) {
+                    i3 = message2.id;
                     break;
-                } else {
-                    i8++;
                 }
+                i7++;
             }
-            i7++;
+            i6++;
         }
-        i3 = message.id;
         if (i3 < 0) {
-            int i9 = 0;
-            while (true) {
-                if (i5 >= this.messages.size()) {
-                    break;
-                }
-                Message message3 = (Message) this.messages.get(i5);
+            int i8 = 0;
+            for (int i9 = 0; i9 < this.messages.size(); i9++) {
+                Message message3 = (Message) this.messages.get(i9);
                 if (message3.fromAdmin || !message3.isReaction || message3.stars >= sendPaidMessagesStars) {
                     if (hashSet.contains(Integer.valueOf(message3.id))) {
                         i2 = message3.id;
                         break;
                     }
-                    i9++;
+                    i8++;
                 }
-                i5++;
             }
-            i8 = i9;
+            i7 = i8;
         } else {
             i2 = i3;
         }
@@ -677,8 +670,8 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         this.callHighlight = true;
         RecyclerView.ItemAnimator itemAnimator = this.listView.getItemAnimator();
         this.listView.setItemAnimator(null);
-        this.layoutManager.scrollToPositionWithOffset(i8, this.listView.getHeight() / 2, true);
-        this.adapter.notifyItemChanged(i8);
+        this.layoutManager.scrollToPositionWithOffset(i7, this.listView.getHeight() / 2, true);
+        this.adapter.notifyItemChanged(i7);
         this.listView.setItemAnimator(itemAnimator);
     }
 
@@ -923,13 +916,16 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             MessagesController.getInstance(this.currentAccount).putChats(groupcallstars.chats, false);
             int i = 0;
             while (true) {
-                if (i >= groupcallstars.top_donors.size()) {
-                    break;
-                } else if (groupcallstars.top_donors.get(i).my) {
-                    z = groupcallstars.top_donors.get(i).stars > 0;
-                } else {
-                    i++;
+                if (i < groupcallstars.top_donors.size()) {
+                    if (!groupcallstars.top_donors.get(i).my) {
+                        i++;
+                    } else if (groupcallstars.top_donors.get(i).stars > 0) {
+                        z = true;
+                        break;
+                    }
                 }
+                z = false;
+                break;
             }
             long j = groupcallstars.total_stars;
             boolean z2 = (j == this.totalStars && this.sentStars == z) ? false : true;
@@ -1003,10 +999,10 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     }
 
     private int getTotalMyStars() {
-        int i = (int) (0 + this.localStars);
+        int i = (int) (((long) 0) + this.localStars);
         for (int i2 = 0; i2 < this.topDonors.size(); i2++) {
             if (((TL_phone.groupCallDonor) this.topDonors.get(i2)).my) {
-                i = (int) (i + ((TL_phone.groupCallDonor) this.topDonors.get(i2)).stars);
+                i = (int) (((long) i) + ((TL_phone.groupCallDonor) this.topDonors.get(i2)).stars);
             }
         }
         return i;
@@ -1211,22 +1207,18 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 onStarsCountUpdated();
             }
         }
-        int i3 = 0;
-        while (true) {
-            if (i3 >= this.topMessages.size()) {
-                break;
-            }
+        for (int i3 = 0; i3 < this.topMessages.size(); i3++) {
             if (((TopSender) this.topMessages.get(i3)).messages.contains(message)) {
                 ((TopSender) this.topMessages.get(i3)).messages.remove(message);
                 if (((TopSender) this.topMessages.get(i3)).messages.isEmpty()) {
                     this.topMessages.remove(i3);
                     z = true;
+                    break;
                 } else {
                     ((TopSender) this.topMessages.get(i3)).updateLastSentDate();
                     scheduleRemovingTopSenders();
+                    break;
                 }
-            } else {
-                i3++;
             }
         }
         this.messages.remove(i2);
@@ -1250,21 +1242,17 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         while (i < this.messages.size()) {
             if (((Message) this.messages.get(i)).dialogId == j) {
                 Message message = (Message) this.messages.get(i);
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= this.topMessages.size()) {
-                        break;
-                    }
+                for (int i2 = 0; i2 < this.topMessages.size(); i2++) {
                     if (((TopSender) this.topMessages.get(i2)).messages.contains(message)) {
                         ((TopSender) this.topMessages.get(i2)).messages.remove(message);
                         if (((TopSender) this.topMessages.get(i2)).messages.isEmpty()) {
                             this.topMessages.remove(i2);
                             z = true;
+                            break;
                         } else {
                             scheduleRemovingTopSenders();
+                            break;
                         }
-                    } else {
-                        i2++;
                     }
                 }
                 this.messages.remove(i);
@@ -1377,9 +1365,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             return;
         }
         TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-        Iterator it = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateMessageID.class).iterator();
-        while (it.hasNext()) {
-            TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) it.next();
+        for (TL_update.TL_updateMessageID tL_updateMessageID : MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateMessageID.class)) {
             if (sendgroupcallmessage.random_id == tL_updateMessageID.random_id) {
                 updateMessageId(i, tL_updateMessageID.id);
             }
@@ -1410,9 +1396,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     }
 
     private void updateMessageId(int i, int i2) {
-        Iterator it = this.messages.iterator();
-        while (it.hasNext()) {
-            Message message = (Message) it.next();
+        for (Message message : this.messages) {
             if (message.id == i) {
                 message.id = i2;
                 return;
@@ -1521,16 +1505,22 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 onStarsCountUpdated();
             }
         }
-        if (message.id >= 0) {
-            for (int size = this.messages.size() - 1; size >= 0; size--) {
+        if (message.id < 0) {
+            i3 = 0;
+            break;
+        }
+        int size = this.messages.size() - 1;
+        while (true) {
+            if (size < 0) {
+                i3 = 0;
+                break;
+            } else {
                 if (message.id < ((Message) this.messages.get(size)).id) {
                     i3 = size + 1;
                     break;
                 }
+                size--;
             }
-            i3 = 0;
-        } else {
-            i3 = 0;
         }
         this.messages.add(i3, message);
         if (!z2) {
@@ -1550,16 +1540,11 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         invalidate();
         onMessagesCountUpdated();
         if (!z2 && i2 > 0 && message.stars > 0) {
-            int i7 = 0;
-            while (true) {
-                if (i7 >= this.topDonors.size()) {
-                    break;
-                }
+            for (int i7 = 0; i7 < this.topDonors.size(); i7++) {
                 if (DialogObject.getPeerDialogId(((TL_phone.groupCallDonor) this.topDonors.get(i7)).peer_id) == message.dialogId) {
                     groupcalldonor = (TL_phone.groupCallDonor) this.topDonors.get(i7);
                     break;
                 }
-                i7++;
             }
             if (groupcalldonor == null) {
                 groupcalldonor = new TL_phone.groupCallDonor();
@@ -1711,8 +1696,10 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 return;
             }
             float x = this.starsView.getX() + this.starsView.getPaddingLeft() + this.starsViewCache[0].translateX;
-            float y = this.starsView.getY() + this.starsView.getPaddingTop() + this.starsViewCache[0].translateY;
-            rectF.set(x, y, r3.drawable.getBounds().width() + x, this.starsViewCache[0].drawable.getBounds().height() + y);
+            float y = this.starsView.getY() + this.starsView.getPaddingTop();
+            ColoredImageSpan coloredImageSpan = this.starsViewCache[0];
+            float f = y + coloredImageSpan.translateY;
+            rectF.set(x, f, coloredImageSpan.drawable.getBounds().width() + x, this.starsViewCache[0].drawable.getBounds().height() + f);
         }
 
         public LiveCommentView(Context context, int i, boolean z) {
@@ -1876,8 +1863,309 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             }
         }
 
-        public void set(org.telegram.ui.Stories.LiveCommentsView.Message r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.LiveCommentsView.LiveCommentView.set(org.telegram.ui.Stories.LiveCommentsView$Message):void");
+        public void set(Message message) {
+            ValueAnimator valueAnimator;
+            String forcedFirstName;
+            String str;
+            long j;
+            long j2;
+            boolean z;
+            float f;
+            ColoredImageSpan coloredImageSpan;
+            this.message = message;
+            if ((message == null || this.highlightingMessageId != message.id) && (valueAnimator = this.highlightAnimator) != null) {
+                valueAnimator.cancel();
+                this.highlightAnimator = null;
+                Drawable drawable = this.background;
+                if (drawable != null) {
+                    drawable.setAlpha((int) (this.backgroundViewAlpha * 255.0f));
+                    this.layout.invalidate();
+                }
+            }
+            if (message.dialogId >= 0) {
+                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(message.dialogId));
+                this.avatarDrawable.setInfo(user);
+                this.avatarView.setForUserOrChat(user, this.avatarDrawable);
+                forcedFirstName = UserObject.getForcedFirstName(user);
+            } else {
+                TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-message.dialogId));
+                this.avatarDrawable.setInfo(chat);
+                this.avatarView.setForUserOrChat(chat, this.avatarDrawable);
+                forcedFirstName = chat == null ? "" : chat.title;
+            }
+            int tierOption = HighlightMessageSheet.getTierOption(this.currentAccount, (int) message.stars, HighlightMessageSheet.TIER_COLOR1);
+            int tierOption2 = HighlightMessageSheet.getTierOption(this.currentAccount, (int) message.stars, HighlightMessageSheet.TIER_COLOR2);
+            int tierOption3 = HighlightMessageSheet.getTierOption(this.currentAccount, (int) message.stars, HighlightMessageSheet.TIER_COLOR_BACKGROUND);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            String str2 = " ";
+            String str3 = forcedFirstName;
+            if (!message.fromAdmin || message.stars > 0) {
+                if (message.place > 0) {
+                    spannableStringBuilder.append((CharSequence) ("#" + message.place));
+                    ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(new CrownDrawable(getContext(), message.place));
+                    coloredImageSpan2.setTranslateY((float) AndroidUtilities.dp(1.0f));
+                    spannableStringBuilder.setSpan(coloredImageSpan2, 0, spannableStringBuilder.length(), 33);
+                    spannableStringBuilder.append((CharSequence) "\u2009");
+                }
+                spannableStringBuilder.append(TextUtils.ellipsize(str3, this.textView.getPaint(), AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
+                if (this.filled) {
+                    spannableStringBuilder.setSpan(new AlphaSpan(0.75f), 0, spannableStringBuilder.length(), 33);
+                }
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.append((CharSequence) " ");
+            }
+            int tierOption4 = HighlightMessageSheet.getTierOption(this.currentAccount, (int) message.stars, HighlightMessageSheet.TIER_LENGTH);
+            int tierOption5 = HighlightMessageSheet.getTierOption(this.currentAccount, (int) message.stars, HighlightMessageSheet.TIER_EMOJIS);
+            TLRPC.TL_textWithEntities tL_textWithEntities = message.text;
+            if (tL_textWithEntities != null) {
+                CharSequence textWithEntities = MessageObject.formatTextWithEntities(tL_textWithEntities, false, this.textView.getPaint());
+                this.text = textWithEntities;
+                CharSequence charSequenceSuperTrim = AndroidUtilities.superTrim(textWithEntities);
+                this.text = charSequenceSuperTrim;
+                if (charSequenceSuperTrim.length() > tierOption4 && !message.fromAdmin) {
+                    this.text = this.text.subSequence(0, tierOption4);
+                }
+                CharSequence charSequence = this.text;
+                if (charSequence instanceof Spannable) {
+                    Spannable spannable = (Spannable) charSequence;
+                    AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannable.getSpans(0, charSequence.length(), AnimatedEmojiSpan.class);
+                    Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannable.getSpans(0, this.text.length(), Emoji.EmojiSpan.class);
+                    if (animatedEmojiSpanArr.length + emojiSpanArr.length <= tierOption5 || message.fromAdmin) {
+                        str = " ";
+                    } else {
+                        ArrayList arrayList = new ArrayList();
+                        int i = 0;
+                        while (i < animatedEmojiSpanArr.length) {
+                            arrayList.add(new Pair(Integer.valueOf(spannable.getSpanStart(animatedEmojiSpanArr[i])), Integer.valueOf(spannable.getSpanEnd(animatedEmojiSpanArr[i]))));
+                            i++;
+                            str2 = str2;
+                        }
+                        str = str2;
+                        for (int i2 = 0; i2 < emojiSpanArr.length; i2++) {
+                            arrayList.add(new Pair(Integer.valueOf(spannable.getSpanStart(emojiSpanArr[i2])), Integer.valueOf(spannable.getSpanEnd(emojiSpanArr[i2]))));
+                        }
+                        Collections.sort(arrayList, new Comparator() {
+                            @Override
+                            public final int compare(Object obj, Object obj2) {
+                                return LiveCommentsView.LiveCommentView.lambda$set$1((Pair) obj, (Pair) obj2);
+                            }
+                        });
+                        if (!(this.text instanceof SpannableStringBuilder)) {
+                            this.text = new SpannableStringBuilder(this.text);
+                        }
+                        for (int size = arrayList.size() - 1; size >= tierOption5; size--) {
+                            Pair pair = (Pair) arrayList.get(size);
+                            ((SpannableStringBuilder) this.text).replace(((Integer) pair.first).intValue(), ((Integer) pair.second).intValue(), (CharSequence) "");
+                        }
+                    }
+                } else {
+                    str = " ";
+                }
+                if (!message.fromAdmin) {
+                    this.text = AndroidUtilities.replaceNewLines(this.text);
+                }
+                spannableStringBuilder.append(this.text);
+            } else {
+                str = " ";
+                this.text = "";
+            }
+            SpoilersTextView spoilersTextView = this.textView;
+            spoilersTextView.setText(Emoji.replaceEmoji(spannableStringBuilder, spoilersTextView.getPaint().getFontMetricsInt(), false));
+            this.background = null;
+            LinearLayout linearLayout = this.adminLayout;
+            if (message.fromAdmin) {
+                j = 0;
+                int i3 = message.stars <= 0 ? 0 : 8;
+                linearLayout.setVisibility(i3);
+                j2 = message.stars;
+                if (j2 > j) {
+                    LinearLayout linearLayout2 = this.layout;
+                    if (j2 >= 250) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    this.drawParticles = z;
+                    linearLayout2.setWillNotDraw(!z);
+                    this.layout.invalidate();
+                    this.textView.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                    LinearLayout linearLayout3 = this.layout;
+                    GradientDrawable gradientDrawableCreateRoundRectGradientDrawable = Theme.createRoundRectGradientDrawable(AndroidUtilities.dp(13.0f), tierOption, tierOption2);
+                    this.background = gradientDrawableCreateRoundRectGradientDrawable;
+                    linearLayout3.setBackground(gradientDrawableCreateRoundRectGradientDrawable);
+                    Drawable drawable2 = this.background;
+                    if (this.filled) {
+                        f = 1.0f;
+                    } else {
+                        f = 0.65f;
+                    }
+                    this.backgroundViewAlpha = f;
+                    drawable2.setAlpha((int) (f * 255.0f));
+                    if (!message.isReaction) {
+                        this.smallStarsView.setVisibility(0);
+                        this.smallStarsView.setText(StarsIntroActivity.replaceStars("⭐️ " + LocaleController.formatNumber(message.stars, ','), 0.75f, this.smallStarsViewCache, 0.0f, 0.0f, 1.0f));
+                        this.starsView.setVisibility(8);
+                        this.starsView.setText("");
+                    } else {
+                        this.smallStarsView.setVisibility(8);
+                        this.smallStarsView.setText("");
+                        this.starsView.setVisibility(0);
+                        this.starsView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), Theme.multAlpha(tierOption3, 0.25f)));
+                        this.starsView.setText(StarsIntroActivity.replaceStars("⭐️ " + LocaleController.formatNumber(message.stars, ','), 0.75f, this.starsViewCache, 0.0f, AndroidUtilities.dp(0.66f), 1.0f));
+                        coloredImageSpan = this.starsViewCache[0];
+                        if (coloredImageSpan != null) {
+                            coloredImageSpan.draw = this.drawStar;
+                        }
+                    }
+                } else if (message.fromAdmin) {
+                    LinearLayout linearLayout4 = this.layout;
+                    this.drawParticles = false;
+                    linearLayout4.setWillNotDraw(true);
+                    LinearLayout linearLayout5 = this.layout;
+                    ShapeDrawable shapeDrawableCreateRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), -16777216);
+                    this.background = shapeDrawableCreateRoundRectDrawable;
+                    linearLayout5.setBackground(shapeDrawableCreateRoundRectDrawable);
+                    Drawable drawable3 = this.background;
+                    this.backgroundViewAlpha = 0.5f;
+                    drawable3.setAlpha((int) 127.5f);
+                    this.textView.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+                    spannableStringBuilder2.append((CharSequence) DialogObject.getName(this.currentAccount, message.dialogId));
+                    spannableStringBuilder2.append((CharSequence) str);
+                    int length = spannableStringBuilder2.length();
+                    spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.LiveStoryBadge));
+                    spannableStringBuilder2.setSpan(new ReplacementSpan() {
+                        private final RectF rect = new RectF();
+                        private final Paint bg = new Paint(1);
+                        private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 8.0f, AndroidUtilities.bold());
+
+                        @Override
+                        public int getSize(Paint paint, CharSequence charSequence2, int i4, int i5, Paint.FontMetricsInt fontMetricsInt) {
+                            return (int) (this.text.getWidth() + AndroidUtilities.dp(8.0f));
+                        }
+
+                        @Override
+                        public void draw(Canvas canvas, CharSequence charSequence2, int i4, int i5, float f2, int i6, int i7, int i8, Paint paint) {
+                            float fDp = ((i6 + i8) / 2.0f) + AndroidUtilities.dp(0.0f);
+                            this.rect.set(f2, fDp - AndroidUtilities.dp(6.0f), this.text.getWidth() + f2 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f) + fDp);
+                            this.bg.setColor(-572850);
+                            RectF rectF = this.rect;
+                            canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                            this.text.draw(canvas, AndroidUtilities.dp(4.0f) + f2, fDp, -1, 1.0f);
+                        }
+                    }, length, spannableStringBuilder2.length(), 33);
+                    this.adminNameView.setText(spannableStringBuilder2);
+                    this.adminRoleView.setText(LocaleController.getString(R.string.LiveStoryAdminRole));
+                    this.smallStarsView.setVisibility(8);
+                    this.starsView.setVisibility(8);
+                } else {
+                    LinearLayout linearLayout6 = this.layout;
+                    this.drawParticles = false;
+                    linearLayout6.setWillNotDraw(true);
+                    this.textView.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), Theme.multAlpha(-16777216, 0.6f));
+                    LinearLayout linearLayout7 = this.layout;
+                    this.background = null;
+                    linearLayout7.setBackground(null);
+                    this.smallStarsView.setVisibility(8);
+                    this.starsView.setVisibility(8);
+                }
+                this.layout.invalidate();
+            }
+            j = 0;
+            linearLayout.setVisibility(i3);
+            j2 = message.stars;
+            if (j2 > j) {
+                LinearLayout linearLayout8 = this.layout;
+                if (j2 >= 250) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                this.drawParticles = z;
+                linearLayout8.setWillNotDraw(!z);
+                this.layout.invalidate();
+                this.textView.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                LinearLayout linearLayout9 = this.layout;
+                GradientDrawable gradientDrawableCreateRoundRectGradientDrawable2 = Theme.createRoundRectGradientDrawable(AndroidUtilities.dp(13.0f), tierOption, tierOption2);
+                this.background = gradientDrawableCreateRoundRectGradientDrawable2;
+                linearLayout9.setBackground(gradientDrawableCreateRoundRectGradientDrawable2);
+                Drawable drawable4 = this.background;
+                if (this.filled) {
+                    f = 0.65f;
+                } else {
+                    f = 1.0f;
+                }
+                this.backgroundViewAlpha = f;
+                drawable4.setAlpha((int) (f * 255.0f));
+                if (!message.isReaction) {
+                    this.smallStarsView.setVisibility(0);
+                    this.smallStarsView.setText(StarsIntroActivity.replaceStars("⭐️ " + LocaleController.formatNumber(message.stars, ','), 0.75f, this.smallStarsViewCache, 0.0f, 0.0f, 1.0f));
+                    this.starsView.setVisibility(8);
+                    this.starsView.setText("");
+                } else {
+                    this.smallStarsView.setVisibility(8);
+                    this.smallStarsView.setText("");
+                    this.starsView.setVisibility(0);
+                    this.starsView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), Theme.multAlpha(tierOption3, 0.25f)));
+                    this.starsView.setText(StarsIntroActivity.replaceStars("⭐️ " + LocaleController.formatNumber(message.stars, ','), 0.75f, this.starsViewCache, 0.0f, AndroidUtilities.dp(0.66f), 1.0f));
+                    coloredImageSpan = this.starsViewCache[0];
+                    if (coloredImageSpan != null) {
+                        coloredImageSpan.draw = this.drawStar;
+                    }
+                }
+            } else if (message.fromAdmin) {
+                LinearLayout linearLayout10 = this.layout;
+                this.drawParticles = false;
+                linearLayout10.setWillNotDraw(true);
+                LinearLayout linearLayout11 = this.layout;
+                ShapeDrawable shapeDrawableCreateRoundRectDrawable2 = Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), -16777216);
+                this.background = shapeDrawableCreateRoundRectDrawable2;
+                linearLayout11.setBackground(shapeDrawableCreateRoundRectDrawable2);
+                Drawable drawable5 = this.background;
+                this.backgroundViewAlpha = 0.5f;
+                drawable5.setAlpha((int) 127.5f);
+                this.textView.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
+                spannableStringBuilder3.append((CharSequence) DialogObject.getName(this.currentAccount, message.dialogId));
+                spannableStringBuilder3.append((CharSequence) str);
+                int length2 = spannableStringBuilder3.length();
+                spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.LiveStoryBadge));
+                spannableStringBuilder3.setSpan(new ReplacementSpan() {
+                    private final RectF rect = new RectF();
+                    private final Paint bg = new Paint(1);
+                    private final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 8.0f, AndroidUtilities.bold());
+
+                    @Override
+                    public int getSize(Paint paint, CharSequence charSequence2, int i4, int i5, Paint.FontMetricsInt fontMetricsInt) {
+                        return (int) (this.text.getWidth() + AndroidUtilities.dp(8.0f));
+                    }
+
+                    @Override
+                    public void draw(Canvas canvas, CharSequence charSequence2, int i4, int i5, float f2, int i6, int i7, int i8, Paint paint) {
+                        float fDp = ((i6 + i8) / 2.0f) + AndroidUtilities.dp(0.0f);
+                        this.rect.set(f2, fDp - AndroidUtilities.dp(6.0f), this.text.getWidth() + f2 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f) + fDp);
+                        this.bg.setColor(-572850);
+                        RectF rectF = this.rect;
+                        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.rect.height() / 2.0f, this.bg);
+                        this.text.draw(canvas, AndroidUtilities.dp(4.0f) + f2, fDp, -1, 1.0f);
+                    }
+                }, length2, spannableStringBuilder3.length(), 33);
+                this.adminNameView.setText(spannableStringBuilder3);
+                this.adminRoleView.setText(LocaleController.getString(R.string.LiveStoryAdminRole));
+                this.smallStarsView.setVisibility(8);
+                this.starsView.setVisibility(8);
+            } else {
+                LinearLayout linearLayout12 = this.layout;
+                this.drawParticles = false;
+                linearLayout12.setWillNotDraw(true);
+                this.textView.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), Theme.multAlpha(-16777216, 0.6f));
+                LinearLayout linearLayout13 = this.layout;
+                this.background = null;
+                linearLayout13.setBackground(null);
+                this.smallStarsView.setVisibility(8);
+                this.starsView.setVisibility(8);
+            }
+            this.layout.invalidate();
         }
 
         public static int lambda$set$1(Pair pair, Pair pair2) {

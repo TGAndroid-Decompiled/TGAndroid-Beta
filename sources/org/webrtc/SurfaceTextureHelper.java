@@ -5,9 +5,6 @@ import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
 import java.util.concurrent.Callable;
-import org.webrtc.EglBase;
-import org.webrtc.TextureBufferImpl;
-import org.webrtc.VideoFrame;
 
 public class SurfaceTextureHelper {
     private static final String TAG = "SurfaceTextureHelper";

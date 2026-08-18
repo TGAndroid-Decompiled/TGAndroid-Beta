@@ -6,17 +6,13 @@ import android.media.MediaFormat;
 import android.opengl.GLES20;
 import android.os.Bundle;
 import android.view.Surface;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Map;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.FileLog;
-import org.webrtc.EglBase14;
-import org.webrtc.EncodedImage;
-import org.webrtc.ThreadUtils;
-import org.webrtc.VideoEncoder;
-import org.webrtc.VideoFrame;
 
 class HardwareVideoEncoder implements VideoEncoder {
     private static final int DEQUEUE_OUTPUT_BUFFER_TIMEOUT_US = 100000;
@@ -160,8 +156,83 @@ class HardwareVideoEncoder implements VideoEncoder {
         return initEncodeInternal();
     }
 
-    private org.webrtc.VideoCodecStatus initEncodeInternal() {
-        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoEncoder.initEncodeInternal():org.webrtc.VideoCodecStatus");
+    private VideoCodecStatus initEncodeInternal() {
+        this.encodeThreadChecker.checkIsOnValidThread();
+        this.nextPresentationTimestampUs = 0L;
+        this.lastKeyFrameNs = -1L;
+        byte b = 0;
+        this.isEncodingStatisticsEnabled = false;
+        try {
+            this.codec = this.mediaCodecWrapperFactory.createByCodecName(this.codecName);
+            int iIntValue = (this.useSurfaceMode ? this.surfaceColorFormat : this.yuvColorFormat).intValue();
+            try {
+                MediaFormat mediaFormatCreateVideoFormat = MediaFormat.createVideoFormat(this.codecType.mimeType(), this.width, this.height);
+                mediaFormatCreateVideoFormat.setInteger("bitrate", this.adjustedBitrate);
+                mediaFormatCreateVideoFormat.setInteger("bitrate-mode", 2);
+                mediaFormatCreateVideoFormat.setInteger("color-format", iIntValue);
+                mediaFormatCreateVideoFormat.setFloat("frame-rate", (float) this.bitrateAdjuster.getAdjustedFramerateFps());
+                mediaFormatCreateVideoFormat.setInteger("i-frame-interval", this.keyFrameIntervalSec);
+                if (this.codecType == VideoCodecMimeType.H264) {
+                    String str = this.params.get("profile-level-id");
+                    if (str == null) {
+                        str = "42e01f";
+                    }
+                    int iHashCode = str.hashCode();
+                    if (iHashCode != 1537948542) {
+                        if (iHashCode != 1595523974 || !str.equals("640c1f")) {
+                            b = -1;
+                        }
+                    } else if (str.equals("42e01f")) {
+                        b = 1;
+                    } else {
+                        b = -1;
+                    }
+                    if (b == 0) {
+                        mediaFormatCreateVideoFormat.setInteger("profile", 8);
+                        mediaFormatCreateVideoFormat.setInteger("level", 256);
+                    } else if (b != 1) {
+                        Logging.w("HardwareVideoEncoder", "Unknown profile level id: " + str);
+                    }
+                }
+                if (this.codecName.equals("c2.google.av1.encoder")) {
+                    mediaFormatCreateVideoFormat.setInteger("vendor.google-av1enc.encoding-preset.int32.value", 1);
+                }
+                if (isEncodingStatisticsSupported()) {
+                    mediaFormatCreateVideoFormat.setInteger("video-encoding-statistics-level", 1);
+                    this.isEncodingStatisticsEnabled = true;
+                }
+                Logging.d("HardwareVideoEncoder", "Format: " + mediaFormatCreateVideoFormat);
+                this.codec.configure(mediaFormatCreateVideoFormat, null, null, 1);
+                if (this.useSurfaceMode) {
+                    this.textureEglBase = EglBase.CC.createEgl14(this.sharedContext, EglBase.CONFIG_RECORDABLE);
+                    Surface surfaceCreateInputSurface = this.codec.createInputSurface();
+                    this.textureInputSurface = surfaceCreateInputSurface;
+                    this.textureEglBase.createSurface(surfaceCreateInputSurface);
+                    this.textureEglBase.makeCurrent();
+                }
+                updateInputFormat(this.codec.getInputFormat());
+                this.codec.start();
+                this.running = true;
+                this.outputThreadChecker.detachThread();
+                Thread threadCreateOutputThread = createOutputThread();
+                this.outputThread = threadCreateOutputThread;
+                threadCreateOutputThread.start();
+                return VideoCodecStatus.OK;
+            } catch (IllegalArgumentException e) {
+                e = e;
+                Logging.e("HardwareVideoEncoder", "initEncodeInternal failed", e);
+                release();
+                return VideoCodecStatus.FALLBACK_SOFTWARE;
+            } catch (IllegalStateException e2) {
+                e = e2;
+                Logging.e("HardwareVideoEncoder", "initEncodeInternal failed", e);
+                release();
+                return VideoCodecStatus.FALLBACK_SOFTWARE;
+            }
+        } catch (IOException | IllegalArgumentException unused) {
+            Logging.e("HardwareVideoEncoder", "Cannot create media encoder " + this.codecName);
+            return VideoCodecStatus.FALLBACK_SOFTWARE;
+        }
     }
 
     @Override

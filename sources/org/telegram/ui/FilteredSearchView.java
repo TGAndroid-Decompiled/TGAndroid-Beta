@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -23,7 +22,6 @@ import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
@@ -36,6 +34,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -67,6 +66,7 @@ import org.telegram.ui.Cells.SharedMediaSectionCell;
 import org.telegram.ui.Cells.SharedPhotoVideoCell;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmbedBottomSheet;
@@ -79,7 +79,6 @@ import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
-import org.telegram.ui.PhotoViewer;
 
 public class FilteredSearchView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
     private static SpannableStringBuilder[] arrowSpan = new SpannableStringBuilder[3];
@@ -200,8 +199,81 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             }
 
             @Override
-            public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r9, org.telegram.tgnet.TLRPC.FileLocation r10, int r11, boolean r12, boolean r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.FilteredSearchView.AnonymousClass2.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
+            public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
+                ImageReceiver photoImage;
+                View pinnedHeader;
+                MessageObject messageObject2;
+                if (messageObject == null) {
+                    return null;
+                }
+                RecyclerListView recyclerListView = FilteredSearchView.this.recyclerListView;
+                int childCount = recyclerListView.getChildCount();
+                for (int i2 = 0; i2 < childCount; i2++) {
+                    View childAt = recyclerListView.getChildAt(i2);
+                    int[] iArr = new int[2];
+                    if (childAt instanceof SharedPhotoVideoCell) {
+                        SharedPhotoVideoCell sharedPhotoVideoCell = (SharedPhotoVideoCell) childAt;
+                        photoImage = null;
+                        for (int i3 = 0; i3 < 6 && (messageObject2 = sharedPhotoVideoCell.getMessageObject(i3)) != null; i3++) {
+                            if (messageObject2.getId() == messageObject.getId()) {
+                                BackupImageView imageView = sharedPhotoVideoCell.getImageView(i3);
+                                ImageReceiver imageReceiver = imageView.getImageReceiver();
+                                imageView.getLocationInWindow(iArr);
+                                photoImage = imageReceiver;
+                            }
+                        }
+                    } else if (childAt instanceof SharedDocumentCell) {
+                        SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) childAt;
+                        if (sharedDocumentCell.getMessage().getId() == messageObject.getId()) {
+                            BackupImageView imageView2 = sharedDocumentCell.getImageView();
+                            photoImage = imageView2.getImageReceiver();
+                            imageView2.getLocationInWindow(iArr);
+                        } else {
+                            photoImage = null;
+                        }
+                    } else if (childAt instanceof ContextLinkCell) {
+                        ContextLinkCell contextLinkCell = (ContextLinkCell) childAt;
+                        MessageObject messageObject3 = (MessageObject) contextLinkCell.getParentObject();
+                        if (messageObject3 == null || messageObject3.getId() != messageObject.getId()) {
+                            photoImage = null;
+                        } else {
+                            photoImage = contextLinkCell.getPhotoImage();
+                            contextLinkCell.getLocationInWindow(iArr);
+                        }
+                    } else {
+                        photoImage = null;
+                    }
+                    if (photoImage != null) {
+                        PhotoViewer.PlaceProviderObject placeProviderObject = new PhotoViewer.PlaceProviderObject();
+                        placeProviderObject.viewX = iArr[0];
+                        placeProviderObject.viewY = iArr[1];
+                        placeProviderObject.parentView = recyclerListView;
+                        recyclerListView.getLocationInWindow(iArr);
+                        placeProviderObject.animatingImageViewYOffset = -iArr[1];
+                        placeProviderObject.imageReceiver = photoImage;
+                        placeProviderObject.allowTakeAnimation = false;
+                        placeProviderObject.radius = photoImage.getRoundRadius(true);
+                        placeProviderObject.thumb = placeProviderObject.imageReceiver.getBitmapSafe();
+                        placeProviderObject.parentView.getLocationInWindow(iArr);
+                        placeProviderObject.clipTopAddition = 0;
+                        if (PhotoViewer.isShowingImage(messageObject) && (pinnedHeader = recyclerListView.getPinnedHeader()) != null) {
+                            int iDp = (childAt instanceof SharedDocumentCell ? AndroidUtilities.dp(8.0f) : 0) - placeProviderObject.viewY;
+                            if (iDp > childAt.getHeight()) {
+                                recyclerListView.scrollBy(0, -(iDp + pinnedHeader.getHeight()));
+                            } else {
+                                int height = placeProviderObject.viewY - recyclerListView.getHeight();
+                                if (childAt instanceof SharedDocumentCell) {
+                                    height -= AndroidUtilities.dp(8.0f);
+                                }
+                                if (height >= 0) {
+                                    recyclerListView.scrollBy(0, height + childAt.getHeight());
+                                }
+                            }
+                        }
+                        return placeProviderObject;
+                    }
+                }
+                return null;
             }
 
             @Override
@@ -254,7 +326,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.recyclerListView = recyclerListView;
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) throws Resources.NotFoundException, IOException {
+            public final void onItemClick(View view, int i) {
                 this.f$0.lambda$new$1(view, i);
             }
         });
@@ -325,7 +397,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         checkUi_floatingDateView();
     }
 
-    public void lambda$new$1(View view, int i) throws Resources.NotFoundException, IOException {
+    public void lambda$new$1(View view, int i) {
         if (view instanceof SharedDocumentCell) {
             onItemClick(i, view, ((SharedDocumentCell) view).getMessage(), 0);
             return;
@@ -625,7 +697,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     }
 
     public void lambda$search$4(final long j, long j2, final String str, final FiltersView.MediaFilterData mediaFilterData, final int i, final long j3, long j4, final boolean z, boolean z2, String str2, final int i2) {
-        TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal;
+        Object obj;
         ArrayList<Object> arrayList = null;
         if (j != 0 && j2 == 0) {
             TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
@@ -640,17 +712,18 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 tL_messages_search.max_date = (int) (j4 / 1000);
             }
             if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
-                tL_messages_search.offset_id = ((MessageObject) this.messages.get(r1.size() - 1)).getId();
+                ArrayList arrayList2 = this.messages;
+                tL_messages_search.offset_id = ((MessageObject) arrayList2.get(arrayList2.size() - 1)).getId();
             } else {
                 tL_messages_search.offset_id = 0;
             }
-            tL_messages_searchGlobal = tL_messages_search;
+            obj = tL_messages_search;
         } else {
             if (!TextUtils.isEmpty(str)) {
                 arrayList = new ArrayList<>();
                 MessagesStorage.getInstance(i).localSearch(0, str, arrayList, new ArrayList<>(), new ArrayList<>(), null, z2 ? 1 : 0);
             }
-            tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
+            TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
             tL_messages_searchGlobal.limit = 20;
             tL_messages_searchGlobal.q = str;
             tL_messages_searchGlobal.filter = mediaFilterData == null ? new TLRPC.TL_inputMessagesFilterEmpty() : mediaFilterData.filter;
@@ -662,7 +735,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 tL_messages_searchGlobal.max_date = (int) (j4 / 1000);
             }
             if (z && str.equals(this.lastMessagesSearchString) && !this.messages.isEmpty()) {
-                MessageObject messageObject = (MessageObject) this.messages.get(r0.size() - 1);
+                ArrayList arrayList3 = this.messages;
+                MessageObject messageObject = (MessageObject) arrayList3.get(arrayList3.size() - 1);
                 tL_messages_searchGlobal.offset_id = messageObject.getId();
                 tL_messages_searchGlobal.offset_rate = this.nextSearchRate;
                 tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(i).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
@@ -673,16 +747,17 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             }
             tL_messages_searchGlobal.flags |= 1;
             tL_messages_searchGlobal.folder_id = z2 ? 1 : 0;
+            obj = tL_messages_searchGlobal;
         }
-        final ArrayList<Object> arrayList2 = arrayList;
+        final ArrayList<Object> arrayList4 = arrayList;
         this.lastMessagesSearchString = str;
         this.lastSearchFilterQueryString = str2;
-        final ArrayList arrayList3 = new ArrayList();
-        FiltersView.fillTipDates(this.lastMessagesSearchString, arrayList3);
-        ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_searchGlobal, new Utilities.Callback2() {
+        final ArrayList arrayList5 = new ArrayList();
+        FiltersView.fillTipDates(this.lastMessagesSearchString, arrayList5);
+        ConnectionsManager.getInstance(i).sendRequestTyped(obj, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$search$3(i, str, i2, z, mediaFilterData, j, j3, arrayList2, arrayList3, (TLRPC.messages_Messages) obj, (TLRPC.TL_error) obj2);
+            public final void run(Object obj2, Object obj3) {
+                this.f$0.lambda$search$3(i, str, i2, z, mediaFilterData, j, j3, arrayList4, arrayList5, (TLRPC.messages_Messages) obj2, (TLRPC.TL_error) obj3);
             }
         });
     }
@@ -699,13 +774,13 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() {
                 this.f$0.lambda$search$2(i2, tL_error, messages_messages, i, z, str, arrayList3, mediaFilterData, j, j2, arrayList, arrayList2);
             }
         });
     }
 
-    public void lambda$search$2(int i, TLRPC.TL_error tL_error, TLRPC.messages_Messages messages_messages, int i2, boolean z, String str, ArrayList arrayList, FiltersView.MediaFilterData mediaFilterData, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) throws Resources.NotFoundException {
+    public void lambda$search$2(int i, TLRPC.TL_error tL_error, TLRPC.messages_Messages messages_messages, int i2, boolean z, String str, ArrayList arrayList, FiltersView.MediaFilterData mediaFilterData, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
         String string;
         if (i != this.requestIndex) {
             return;
@@ -927,8 +1002,45 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.emptyView.setKeyboardHeight(i, z);
     }
 
-    public void messagesDeleted(long r10, java.util.ArrayList r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.FilteredSearchView.messagesDeleted(long, java.util.ArrayList):void");
+    public void messagesDeleted(long j, ArrayList arrayList) {
+        RecyclerView.Adapter adapter;
+        int i;
+        int i2 = 0;
+        boolean z = false;
+        while (i2 < this.messages.size()) {
+            MessageObject messageObject = (MessageObject) this.messages.get(i2);
+            long dialogId = messageObject.getDialogId();
+            if (dialogId < 0) {
+                i = (int) (-dialogId);
+                if (!ChatObject.isChannel(i, UserConfig.selectedAccount)) {
+                    i = 0;
+                }
+            } else {
+                i = 0;
+            }
+            if (i == j) {
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    if (messageObject.getId() == ((Integer) arrayList.get(i3)).intValue()) {
+                        this.messages.remove(i2);
+                        this.messagesById.remove(messageObject.getId());
+                        ArrayList arrayList2 = (ArrayList) this.sectionArrays.get(messageObject.monthKey);
+                        arrayList2.remove(messageObject);
+                        if (arrayList2.size() == 0) {
+                            this.sections.remove(messageObject.monthKey);
+                            this.sectionArrays.remove(messageObject.monthKey);
+                        }
+                        i2--;
+                        this.totalCount--;
+                        z = true;
+                    }
+                }
+            }
+            i2++;
+        }
+        if (!z || (adapter = this.adapter) == null) {
+            return;
+        }
+        adapter.notifyDataSetChanged();
     }
 
     private class SharedPhotoVideoAdapter extends RecyclerListView.SelectionAdapter {
@@ -953,17 +1065,17 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
+            View view;
             if (i == 0) {
                 SharedPhotoVideoCell sharedPhotoVideoCell = new SharedPhotoVideoCell(this.mContext, 1);
                 sharedPhotoVideoCell.setDelegate(new SharedPhotoVideoCell.SharedPhotoVideoCellDelegate() {
                     @Override
-                    public void didClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) throws Resources.NotFoundException, IOException {
+                    public void didClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) {
                         FilteredSearchView.this.onItemClick(i2, sharedPhotoVideoCell2, messageObject, i3);
                     }
 
                     @Override
-                    public boolean didLongClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) throws Resources.NotFoundException, IOException {
+                    public boolean didLongClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) {
                         if (!FilteredSearchView.this.uiCallback.actionModeShowing()) {
                             return FilteredSearchView.this.onItemLongClick(messageObject, sharedPhotoVideoCell2, i3);
                         }
@@ -971,11 +1083,11 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         return true;
                     }
                 });
-                frameLayout = sharedPhotoVideoCell;
+                view = sharedPhotoVideoCell;
             } else if (i == 2) {
-                FrameLayout graySectionCell = new GraySectionCell(this.mContext);
+                GraySectionCell graySectionCell = new GraySectionCell(this.mContext);
                 graySectionCell.setBackgroundColor(Theme.getColor(Theme.key_graySection) & (-218103809));
-                frameLayout = graySectionCell;
+                view = graySectionCell;
             } else {
                 FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.mContext) {
                     @Override
@@ -985,10 +1097,10 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 };
                 flickerLoadingView.setIsSingleCell(true);
                 flickerLoadingView.setViewType(2);
-                frameLayout = flickerLoadingView;
+                view = flickerLoadingView;
             }
-            frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(frameLayout);
+            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
@@ -1048,7 +1160,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.useFromUserAsAvatar = z;
     }
 
-    public void onItemClick(int i, View view, MessageObject messageObject, int i2) throws Resources.NotFoundException, IOException {
+    public void onItemClick(int i, View view, MessageObject messageObject, int i2) {
         if (messageObject == null) {
             return;
         }
@@ -1258,7 +1370,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            GraySectionCell graySectionCell;
+            View graySectionCell;
             if (i == 0) {
                 graySectionCell = new GraySectionCell(this.mContext);
             } else if (i == 1) {
@@ -1395,7 +1507,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View graySectionCell;
-            SharedDocumentCell sharedDocumentCell;
+            View sharedDocumentCell;
             if (i != 0) {
                 int i2 = 1;
                 if (i == 1) {
@@ -1618,9 +1730,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            DialogCell dialogCell;
+            View view;
             if (i == 0) {
-                dialogCell = new DialogCell(null, viewGroup.getContext(), true, true) {
+                view = new DialogCell(null, viewGroup.getContext(), true, true) {
                     @Override
                     public boolean isForumCell() {
                         return false;
@@ -1630,14 +1742,14 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 FlickerLoadingView flickerLoadingView = new FlickerLoadingView(viewGroup.getContext());
                 flickerLoadingView.setIsSingleCell(true);
                 flickerLoadingView.setViewType(1);
-                dialogCell = flickerLoadingView;
+                view = flickerLoadingView;
             } else {
                 GraySectionCell graySectionCell = new GraySectionCell(viewGroup.getContext());
                 graySectionCell.setText(LocaleController.getString(R.string.SearchMessages));
-                dialogCell = graySectionCell;
+                view = graySectionCell;
             }
-            dialogCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(dialogCell);
+            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(view);
         }
 
         @Override

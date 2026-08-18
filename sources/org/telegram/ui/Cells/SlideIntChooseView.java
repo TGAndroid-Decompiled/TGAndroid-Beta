@@ -18,7 +18,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -190,14 +189,16 @@ public class SlideIntChooseView extends FrameLayout {
         if (this.options.steps != null) {
             int i2 = 1;
             while (true) {
-                int[] iArr = this.options.steps;
+                Options options = this.options;
+                int[] iArr = options.steps;
                 if (i2 >= iArr.length) {
                     break;
                 }
-                int i3 = iArr[i2 - 1];
-                int i4 = iArr[i2];
-                if (i >= i3 && i <= i4) {
-                    return (1.0f / (iArr.length - 1)) * (r4 + (Math.round(((i - i3) / (i4 - i3)) * r2.betweenSteps) / this.options.betweenSteps));
+                int i3 = i2 - 1;
+                int i4 = iArr[i3];
+                int i5 = iArr[i2];
+                if (i >= i4 && i <= i5) {
+                    return (1.0f / (iArr.length - 1)) * (i3 + (Math.round(((i - i4) / (i5 - i4)) * options.betweenSteps) / this.options.betweenSteps));
                 }
                 i2++;
             }
@@ -206,14 +207,16 @@ public class SlideIntChooseView extends FrameLayout {
     }
 
     public int getValue(float f) {
-        if (this.options.steps != null) {
-            double length = f * (r1.length - 1);
+        Options options = this.options;
+        int[] iArr = options.steps;
+        if (iArr != null) {
+            double length = f * (iArr.length - 1);
             int iClamp = Utilities.clamp((int) Math.floor(length), this.options.steps.length - 1, 0);
             int iClamp2 = Utilities.clamp((int) Math.ceil(length), this.options.steps.length - 1, 0);
-            int[] iArr = this.options.steps;
-            return Math.round(AndroidUtilities.lerp(iArr[iClamp], iArr[iClamp2], Math.round(((float) (length - Math.floor(length))) * this.options.betweenSteps) / this.options.betweenSteps));
+            int[] iArr2 = this.options.steps;
+            return Math.round(AndroidUtilities.lerp(iArr2[iClamp], iArr2[iClamp2], Math.round(((float) (length - Math.floor(length))) * this.options.betweenSteps) / this.options.betweenSteps));
         }
-        return Math.round(r0.getMin() + ((this.options.getMax() - this.options.getMin()) * f));
+        return Math.round(options.getMin() + ((this.options.getMax() - this.options.getMin()) * f));
     }
 
     public int getStep(int i) {
@@ -424,8 +427,9 @@ public class SlideIntChooseView extends FrameLayout {
         }
 
         public int getStepsCount() {
-            if (this.steps != null) {
-                return (r0.length - 1) * this.betweenSteps;
+            int[] iArr = this.steps;
+            if (iArr != null) {
+                return (iArr.length - 1) * this.betweenSteps;
             }
             return getMax() - getMin();
         }

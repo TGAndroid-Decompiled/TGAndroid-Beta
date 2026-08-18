@@ -89,7 +89,7 @@ public class BlurVisibilityDrawable extends Drawable {
         if (i == 0) {
             return;
         }
-        double d = i / 255.0d;
+        double d = ((double) i) / 255.0d;
         double d2 = d / ((1.0d - d) * 6.0d);
         double d3 = 1.0d + d2;
         double dSqrt = ((-d3) + Math.sqrt((d3 * d3) - (((-d2) * 4.0d) * (-d)))) / ((-2.0d) * d2);

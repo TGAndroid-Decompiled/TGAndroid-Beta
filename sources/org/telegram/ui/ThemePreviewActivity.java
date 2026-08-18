@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.BlendMode;
@@ -15,12 +14,14 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
@@ -41,20 +42,23 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Scroller;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,7 +69,9 @@ import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
@@ -97,10 +103,13 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
+import org.telegram.ui.ActionBar.MenuDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.ChatActionCell;
@@ -110,7 +119,6 @@ import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.LoadingCell;
 import org.telegram.ui.Cells.PatternCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -127,8 +135,10 @@ import org.telegram.ui.Components.HintView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
+import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.Text;
@@ -136,9 +146,7 @@ import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.WallpaperCheckBoxView;
 import org.telegram.ui.Components.WallpaperParallaxEffect;
 import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
-import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.recorder.SliderView;
-import org.telegram.ui.WallpapersListActivity;
 
 public class ThemePreviewActivity extends BaseFragment implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
     private int TAG;
@@ -337,7 +345,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         return this.themeDelegate;
     }
 
-    public void lambda$new$0() throws NoSuchFieldException, IOException, SecurityException {
+    public void lambda$new$0() {
         this.applyColorScheduled = false;
         applyColor(this.lastPickedColor, this.lastPickedColorNum);
         this.lastPickedColorNum = -1;
@@ -364,33 +372,39 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     public static void showFor(final ChatActivity chatActivity, MessageObject messageObject) {
-        TLRPC.WallPaper wallPaper;
+        Object obj;
         TLRPC.MessageAction messageAction = messageObject.messageOwner.action;
         if (messageAction instanceof TLRPC.TL_messageActionSetChatWallPaper) {
-            TLRPC.WallPaper wallPaper2 = ((TLRPC.TL_messageActionSetChatWallPaper) messageAction).wallpaper;
-            if (wallPaper2.pattern || wallPaper2.document == null) {
-                String str = wallPaper2.slug;
-                TLRPC.WallPaperSettings wallPaperSettings = wallPaper2.settings;
-                WallpapersListActivity.ColorWallpaper colorWallpaper = new WallpapersListActivity.ColorWallpaper(str, wallPaperSettings.background_color, wallPaperSettings.second_background_color, wallPaperSettings.third_background_color, wallPaperSettings.fourth_background_color, AndroidUtilities.getWallpaperRotation(wallPaperSettings.rotation, false), r3.intensity / 100.0f, wallPaper2.settings.motion, null);
-                if (wallPaper2 instanceof TLRPC.TL_wallPaper) {
-                    colorWallpaper.pattern = (TLRPC.TL_wallPaper) wallPaper2;
+            TLRPC.WallPaper wallPaper = ((TLRPC.TL_messageActionSetChatWallPaper) messageAction).wallpaper;
+            if (wallPaper.pattern || wallPaper.document == null) {
+                String str = wallPaper.slug;
+                TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
+                int i = wallPaperSettings.background_color;
+                int i2 = wallPaperSettings.second_background_color;
+                int i3 = wallPaperSettings.third_background_color;
+                int i4 = wallPaperSettings.fourth_background_color;
+                int wallpaperRotation = AndroidUtilities.getWallpaperRotation(wallPaperSettings.rotation, false);
+                TLRPC.WallPaperSettings wallPaperSettings2 = wallPaper.settings;
+                WallpapersListActivity.ColorWallpaper colorWallpaper = new WallpapersListActivity.ColorWallpaper(str, i, i2, i3, i4, wallpaperRotation, wallPaperSettings2.intensity / 100.0f, wallPaperSettings2.motion, null);
+                if (wallPaper instanceof TLRPC.TL_wallPaper) {
+                    colorWallpaper.pattern = (TLRPC.TL_wallPaper) wallPaper;
                 }
-                wallPaper = colorWallpaper;
+                obj = colorWallpaper;
             } else {
-                wallPaper = wallPaper2;
+                obj = wallPaper;
             }
             final boolean zIsDark = Theme.getActiveTheme().isDark();
-            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(wallPaper, null, true, false) {
+            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(obj, null, true, false) {
                 @Override
-                public void onFragmentClosed() throws InterruptedException {
+                public void onFragmentClosed() {
                     super.onFragmentClosed();
                     ChatActivity.ThemeDelegate themeDelegate = chatActivity.themeDelegate;
                     themeDelegate.setCurrentTheme(themeDelegate.getCurrentTheme(), chatActivity.themeDelegate.getCurrentWallpaper(), false, Boolean.valueOf(zIsDark));
                 }
             };
-            TLRPC.WallPaperSettings wallPaperSettings2 = wallPaper2.settings;
-            if (wallPaperSettings2 != null) {
-                themePreviewActivity.setInitialModes(wallPaperSettings2.blur, wallPaperSettings2.motion, wallPaperSettings2.intensity / 100.0f);
+            TLRPC.WallPaperSettings wallPaperSettings3 = wallPaper.settings;
+            if (wallPaperSettings3 != null) {
+                themePreviewActivity.setInitialModes(wallPaperSettings3.blur, wallPaperSettings3.motion, wallPaperSettings3.intensity / 100.0f);
             }
             themePreviewActivity.setCurrentServerWallpaper(messageObject);
             themePreviewActivity.setDialogId(messageObject.getDialogId());
@@ -417,7 +431,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
 
                 @Override
-                public void switchDayNight(boolean z) throws InterruptedException {
+                public void switchDayNight(boolean z) {
                     this.forceDark = !this.forceDark;
                     ChatActivity.ThemeDelegate themeDelegate = this.val$chatActivity.themeDelegate;
                     themeDelegate.setCurrentTheme(themeDelegate.getCurrentTheme(), this.val$chatActivity.themeDelegate.getCurrentWallpaper(), z, Boolean.valueOf(this.forceDark));
@@ -464,7 +478,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.lastPickedColorNum = -1;
         this.applyColorAction = new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, IOException, SecurityException {
+            public final void run() {
                 this.f$0.lambda$new$0();
             }
         };
@@ -584,7 +598,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.lastPickedColorNum = -1;
         this.applyColorAction = new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, IOException, SecurityException {
+            public final void run() {
                 this.f$0.lambda$new$0();
             }
         };
@@ -713,8 +727,4165 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     @Override
-    public android.view.View createView(android.content.Context r46) throws java.lang.NoSuchFieldException, java.lang.SecurityException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.createView(android.content.Context):android.view.View");
+    public View createView(Context context) {
+        boolean z;
+        int i;
+        float f;
+        int i2;
+        boolean z2;
+        int i3;
+        int i4;
+        int i5;
+        final Rect rect;
+        TextPaint textPaint;
+        Object obj;
+        int i6;
+        String[] strArr;
+        int[] iArr;
+        int iMax;
+        final int i7;
+        final int i8;
+        int i9;
+        FrameLayout.LayoutParams layoutParamsCreateFrame;
+        float f2;
+        int iDp;
+        int i10;
+        Theme.ThemeAccent themeAccent;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int[] iArr2;
+        String[] strArr2;
+        int i16;
+        int iMax2;
+        int i17;
+        float f3;
+        float f4;
+        float f5;
+        final int i18;
+        boolean z3;
+        int iDp2;
+        FrameLayout.LayoutParams layoutParams;
+        boolean z4;
+        Theme.ThemeAccent themeAccent2;
+        int iDp3;
+        FrameLayout.LayoutParams layoutParams2;
+        int i19;
+        int i20;
+        float f6;
+        float f7;
+        float f8;
+        Integer numValueOf;
+        int i21;
+        DayNightSwitchDelegate dayNightSwitchDelegate;
+        int i22;
+        float f9;
+        float f10;
+        float f11;
+        INavigationLayout iNavigationLayout;
+        Theme.ThemeAccent themeAccent3;
+        int i23;
+        int i24;
+        String str = "";
+        String str2 = "d";
+        this.msgOutDrawable.setResourceProvider(getResourceProvider());
+        this.msgOutDrawableSelected.setResourceProvider(getResourceProvider());
+        this.msgOutMediaDrawable.setResourceProvider(getResourceProvider());
+        this.msgOutMediaDrawableSelected.setResourceProvider(getResourceProvider());
+        this.hasOwnBackground = true;
+        DayNightSwitchDelegate dayNightSwitchDelegate2 = this.onSwitchDayNightDelegate;
+        boolean z5 = (dayNightSwitchDelegate2 == null || this.dialogId == 0) ? false : true;
+        this.shouldShowDayNightIcon = z5;
+        if (z5) {
+            Object obj2 = this.currentWallpaper;
+            if (!(obj2 instanceof WallpapersListActivity.FileWallpaper)) {
+                if (obj2 instanceof TLRPC.TL_wallPaper) {
+                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) obj2;
+                    if (tL_wallPaper.document == null || tL_wallPaper.pattern) {
+                    }
+                }
+                z = false;
+            }
+            z = true;
+        } else {
+            z = false;
+        }
+        this.shouldShowBrightnessControll = z;
+        if (z) {
+            this.progressToDarkTheme = dayNightSwitchDelegate2.isDark() ? 1.0f : 0.0f;
+        }
+        INavigationLayout iNavigationLayout2 = this.parentLayout;
+        if (iNavigationLayout2 != null && iNavigationLayout2.isLayersLayout()) {
+            this.actionBar.setOccupyStatusBar(false);
+        }
+        this.page1 = new FrameLayout(context);
+        int i25 = 3;
+        if (this.shouldShowBrightnessControll && SharedConfig.dayNightWallpaperSwitchHint < 3) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$createView$2();
+                }
+            }, 2000L);
+        }
+        this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+            @Override
+            public boolean canCollapseSearch() {
+                return true;
+            }
+
+            @Override
+            public void onSearchCollapse() {
+            }
+
+            @Override
+            public void onSearchExpand() {
+            }
+
+            @Override
+            public void onTextChanged(EditText editText) {
+            }
+        }).setSearchFieldHint(LocaleController.getString(R.string.Search));
+        this.actionBar.setBackButtonDrawable(new MenuDrawable());
+        this.actionBar.setAddToContainer(false);
+        this.actionBar.setTitle(LocaleController.getString(R.string.ThemePreview));
+        FrameLayout frameLayout = new FrameLayout(context) {
+            @Override
+            protected void onMeasure(int i26, int i27) {
+                int size = View.MeasureSpec.getSize(i26);
+                int size2 = View.MeasureSpec.getSize(i27);
+                setMeasuredDimension(size, size2);
+                measureChildWithMargins(((BaseFragment) ThemePreviewActivity.this).actionBar, i26, 0, i27, 0);
+                int measuredHeight = ((BaseFragment) ThemePreviewActivity.this).actionBar.getMeasuredHeight();
+                if (((BaseFragment) ThemePreviewActivity.this).actionBar.getVisibility() == 0) {
+                    size2 -= measuredHeight;
+                }
+                ((FrameLayout.LayoutParams) ThemePreviewActivity.this.listView.getLayoutParams()).topMargin = measuredHeight;
+                ThemePreviewActivity.this.listView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                measureChildWithMargins(ThemePreviewActivity.this.floatingButton, i26, 0, i27, 0);
+            }
+
+            @Override
+            protected boolean drawChild(Canvas canvas, View view, long j) {
+                boolean zDrawChild = super.drawChild(canvas, view, j);
+                if (view == ((BaseFragment) ThemePreviewActivity.this).actionBar && ((BaseFragment) ThemePreviewActivity.this).parentLayout != null) {
+                    ((BaseFragment) ThemePreviewActivity.this).parentLayout.drawHeaderShadow(canvas, ((BaseFragment) ThemePreviewActivity.this).actionBar.getVisibility() == 0 ? ((BaseFragment) ThemePreviewActivity.this).actionBar.getMeasuredHeight() : 0);
+                }
+                return zDrawChild;
+            }
+        };
+        this.page1 = frameLayout;
+        frameLayout.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+        this.page1.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
+        RecyclerListView recyclerListView = new RecyclerListView(context);
+        this.listView = recyclerListView;
+        recyclerListView.setVerticalScrollBarEnabled(true);
+        this.listView.setItemAnimator(null);
+        this.listView.setLayoutAnimation(null);
+        this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
+        this.listView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
+        this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(this.screenType != 0 ? 12.0f : 0.0f));
+        this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+            @Override
+            public final void onItemClick(View view, int i26) {
+                ThemePreviewActivity.lambda$createView$3(view, i26);
+            }
+        });
+        this.page1.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
+        FragmentFloatingButton fragmentFloatingButton = new FragmentFloatingButton(context, this.resourceProvider);
+        this.floatingButton = fragmentFloatingButton;
+        fragmentFloatingButton.setImageResource(R.drawable.floating_pencil);
+        this.page1.addView(this.floatingButton, FragmentFloatingButton.createDefaultLayoutParams());
+        DialogsAdapter dialogsAdapter = new DialogsAdapter(context);
+        this.dialogsAdapter = dialogsAdapter;
+        this.listView.setAdapter(dialogsAdapter);
+        this.page2 = new FrameLayout(context) {
+            private boolean ignoreLayout;
+
+            @Override
+            protected void onMeasure(int i26, int i27) {
+                float f12;
+                int size = View.MeasureSpec.getSize(i26);
+                int size2 = View.MeasureSpec.getSize(i27);
+                setMeasuredDimension(size, size2);
+                if (ThemePreviewActivity.this.dropDownContainer != null) {
+                    this.ignoreLayout = true;
+                    if (!AndroidUtilities.isTablet()) {
+                        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) ThemePreviewActivity.this.dropDownContainer.getLayoutParams();
+                        layoutParams3.topMargin = AndroidUtilities.statusBarHeight;
+                        ThemePreviewActivity.this.dropDownContainer.setLayoutParams(layoutParams3);
+                    }
+                    if (AndroidUtilities.isTablet() || ApplicationLoader.applicationContext.getResources().getConfiguration().orientation != 2) {
+                        ThemePreviewActivity.this.dropDown.setTextSize(1, 20.0f);
+                    } else {
+                        ThemePreviewActivity.this.dropDown.setTextSize(1, 18.0f);
+                    }
+                    this.ignoreLayout = false;
+                }
+                measureChildWithMargins(ThemePreviewActivity.this.actionBar2, i26, 0, i27, 0);
+                int measuredHeight = ThemePreviewActivity.this.actionBar2.getMeasuredHeight();
+                if (ThemePreviewActivity.this.actionBar2.getVisibility() == 0) {
+                    size2 -= measuredHeight;
+                }
+                FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) ThemePreviewActivity.this.listView2.getLayoutParams();
+                layoutParams4.topMargin = measuredHeight;
+                if (ThemePreviewActivity.this.screenType == 2) {
+                    RecyclerListView recyclerListView2 = ThemePreviewActivity.this.listView2;
+                    int iDp4 = AndroidUtilities.dp(4.0f);
+                    ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
+                    recyclerListView2.setPadding(0, iDp4, 0, (AndroidUtilities.dp(((themePreviewActivity.self || themePreviewActivity.dialogId <= 0) ? 0 : 58) + 72) - 12) + (ThemePreviewActivity.this.insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0));
+                }
+                ThemePreviewActivity.this.listView2.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - layoutParams4.bottomMargin, 1073741824));
+                ((FrameLayout.LayoutParams) ThemePreviewActivity.this.backgroundImage.getLayoutParams()).topMargin = measuredHeight;
+                ThemePreviewActivity.this.backgroundImage.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                if (ThemePreviewActivity.this.dimmingSliderContainer != null) {
+                    ((FrameLayout.LayoutParams) ThemePreviewActivity.this.dimmingSliderContainer.getLayoutParams()).topMargin = measuredHeight;
+                    ThemePreviewActivity.this.dimmingSliderContainer.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(222.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824));
+                }
+                if (ThemePreviewActivity.this.bottomOverlayChat != null) {
+                    ThemePreviewActivity.this.bottomOverlayChat.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + (ThemePreviewActivity.this.insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0));
+                    FrameLayout.LayoutParams layoutParams5 = (FrameLayout.LayoutParams) ThemePreviewActivity.this.bottomOverlayChat.getLayoutParams();
+                    ThemePreviewActivity themePreviewActivity2 = ThemePreviewActivity.this;
+                    layoutParams5.height = AndroidUtilities.dp(72 + ((themePreviewActivity2.self || themePreviewActivity2.dialogId <= 0) ? 0 : 58)) + (ThemePreviewActivity.this.insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0);
+                    measureChildWithMargins(ThemePreviewActivity.this.bottomOverlayChat, i26, 0, i27, 0);
+                }
+                if (ThemePreviewActivity.this.sheetDrawable != null) {
+                    ThemePreviewActivity.this.sheetDrawable.getPadding(AndroidUtilities.rectTmp2);
+                }
+                int i28 = 0;
+                while (i28 < ThemePreviewActivity.this.patternLayout.length) {
+                    if (ThemePreviewActivity.this.patternLayout[i28] != null) {
+                        FrameLayout.LayoutParams layoutParams6 = (FrameLayout.LayoutParams) ThemePreviewActivity.this.patternLayout[i28].getLayoutParams();
+                        if (i28 == 0) {
+                            f12 = ThemePreviewActivity.this.screenType == 2 ? 321 : 273;
+                        } else {
+                            f12 = 316.0f;
+                        }
+                        layoutParams6.height = AndroidUtilities.dp(f12);
+                        if (ThemePreviewActivity.this.insideBottomSheet()) {
+                            layoutParams6.height += AndroidUtilities.navigationBarHeight;
+                        }
+                        if (i28 == 0) {
+                            layoutParams6.height += AndroidUtilities.dp(12.0f) + AndroidUtilities.rectTmp2.top;
+                        }
+                        ThemePreviewActivity.this.patternLayout[i28].setPadding(0, i28 == 0 ? AndroidUtilities.dp(12.0f) + AndroidUtilities.rectTmp2.top : 0, 0, ThemePreviewActivity.this.insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0);
+                        measureChildWithMargins(ThemePreviewActivity.this.patternLayout[i28], i26, 0, i27, 0);
+                    }
+                    i28++;
+                }
+            }
+
+            @Override
+            protected boolean drawChild(Canvas canvas, View view, long j) {
+                boolean zDrawChild = super.drawChild(canvas, view, j);
+                if (view == ThemePreviewActivity.this.actionBar2 && ((BaseFragment) ThemePreviewActivity.this).parentLayout != null) {
+                    ((BaseFragment) ThemePreviewActivity.this).parentLayout.drawHeaderShadow(canvas, ThemePreviewActivity.this.actionBar2.getVisibility() == 0 ? (int) (ThemePreviewActivity.this.actionBar2.getMeasuredHeight() + ThemePreviewActivity.this.actionBar2.getTranslationY()) : 0);
+                }
+                return zDrawChild;
+            }
+
+            @Override
+            public void requestLayout() {
+                if (this.ignoreLayout) {
+                    return;
+                }
+                super.requestLayout();
+            }
+        };
+        this.messagesAdapter = new MessagesAdapter(context);
+        this.actionBar2 = createActionBar(context);
+        if (AndroidUtilities.isTablet()) {
+            this.actionBar2.setOccupyStatusBar(false);
+        }
+        this.actionBar2.setBackButtonDrawable(new BackDrawable(false));
+        this.actionBar2.setActionBarMenuOnItemClick(new AnonymousClass8());
+        for (int i26 = 0; i26 < 2; i26++) {
+            this.backgroundImages[i26] = new BackgroundView(getContext());
+            this.page2.addView(this.backgroundImages[i26], LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
+        }
+        BackgroundView backgroundView = this.backgroundImages[0];
+        this.backgroundImage = backgroundView;
+        backgroundView.setVisibility(0);
+        this.backgroundImages[1].setVisibility(8);
+        if (this.screenType == 2) {
+            this.backgroundImage.getImageReceiver().setDelegate(new ImageReceiver.ImageReceiverDelegate() {
+                @Override
+                public final void didSetImage(ImageReceiver imageReceiver, boolean z6, boolean z7, boolean z8) {
+                    this.f$0.lambda$createView$4(imageReceiver, z6, z7, z8);
+                }
+
+                @Override
+                public void didSetImageBitmap(int i27, String str3, Drawable drawable) {
+                    ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i27, str3, drawable);
+                }
+
+                @Override
+                public void onAnimationReady(ImageReceiver imageReceiver) {
+                    ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
+                }
+            });
+        }
+        if (this.messagesAdapter.showSecretMessages) {
+            this.actionBar2.setTitle("Telegram Beta Chat");
+            this.actionBar2.setSubtitle(LocaleController.formatPluralString("Members", 505, new Object[0]));
+        } else {
+            int i27 = this.screenType;
+            if (i27 == 2) {
+                if (this.dialogId != 0) {
+                    this.actionBar2.setTitle(LocaleController.getString(R.string.WallpaperPreview));
+                } else {
+                    this.actionBar2.setTitle(LocaleController.getString(R.string.BackgroundPreview));
+                }
+                ActionBarMenu actionBarMenuCreateMenu = this.actionBar2.createMenu();
+                Object obj3 = this.currentWallpaper;
+                if ((obj3 instanceof WallpapersListActivity.FileWallpaper) && ((WallpapersListActivity.FileWallpaper) obj3).originalPath != null) {
+                    actionBarMenuCreateMenu.addItem(7, R.drawable.msg_header_draw);
+                }
+                if (this.dialogId == 0) {
+                    if (!BuildVars.DEBUG_PRIVATE_VERSION || Theme.getActiveTheme().getAccent(false) == null) {
+                        Object obj4 = this.currentWallpaper;
+                        if (((obj4 instanceof WallpapersListActivity.ColorWallpaper) && !"d".equals(((WallpapersListActivity.ColorWallpaper) obj4).slug)) || (this.currentWallpaper instanceof TLRPC.TL_wallPaper)) {
+                            actionBarMenuCreateMenu.addItem(5, R.drawable.msg_header_share);
+                        }
+                    } else {
+                        actionBarMenuCreateMenu.addItem(5, R.drawable.msg_header_share);
+                    }
+                }
+                if (this.dialogId != 0 && this.shouldShowDayNightIcon) {
+                    int i28 = R.raw.sun;
+                    RLottieDrawable rLottieDrawable = new RLottieDrawable(i28, "" + i28, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+                    this.sunDrawable = rLottieDrawable;
+                    this.dayNightItem = actionBarMenuCreateMenu.addItem(6, rLottieDrawable);
+                    this.sunDrawable.setPlayInDirectionOfCustomEndFrame(true);
+                    DayNightSwitchDelegate dayNightSwitchDelegate3 = this.onSwitchDayNightDelegate;
+                    if (dayNightSwitchDelegate3 != null && !dayNightSwitchDelegate3.isDark()) {
+                        this.sunDrawable.setCustomEndFrame(0);
+                        this.sunDrawable.setCurrentFrame(0);
+                    } else {
+                        this.sunDrawable.setCurrentFrame(35);
+                        this.sunDrawable.setCustomEndFrame(36);
+                    }
+                    this.sunDrawable.beginApplyLayerColors();
+                    int color = Theme.getColor(Theme.key_chats_menuName);
+                    this.sunDrawable.setLayerColor("Sunny", color);
+                    this.sunDrawable.setLayerColor("Path 6", color);
+                    this.sunDrawable.setLayerColor("Path", color);
+                    this.sunDrawable.setLayerColor("Path 5", color);
+                    this.sunDrawable.commitApplyLayerColors();
+                }
+            } else {
+                if (i27 != 1) {
+                    str2 = "d";
+                    str = "";
+                    i = 1;
+                    z2 = true;
+                    f = -2.0f;
+                    Theme.ThemeInfo themeInfo = this.applyingTheme;
+                    TLRPC.TL_theme tL_theme = themeInfo.info;
+                    String name = tL_theme != null ? tL_theme.title : themeInfo.getName();
+                    int iLastIndexOf = name.lastIndexOf(".attheme");
+                    if (iLastIndexOf >= 0) {
+                        name = name.substring(0, iLastIndexOf);
+                    }
+                    this.actionBar2.setTitle(name);
+                    TLRPC.TL_theme tL_theme2 = this.applyingTheme.info;
+                    if (tL_theme2 != null && (i2 = tL_theme2.installs_count) > 0) {
+                        this.actionBar2.setSubtitle(LocaleController.formatPluralString("ThemeInstallCount", i2, new Object[0]));
+                    } else {
+                        this.actionBar2.setSubtitle(LocaleController.formatDateOnline((System.currentTimeMillis() / 1000) - 3600, null));
+                    }
+                } else {
+                    ActionBarMenu actionBarMenuCreateMenu2 = this.actionBar2.createMenu();
+                    this.saveItem = actionBarMenuCreateMenu2.addItem(4, LocaleController.getString(R.string.Save));
+                    f = -2.0f;
+                    str2 = "d";
+                    str = "";
+                    z2 = true;
+                    ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, actionBarMenuCreateMenu2, 0, 0) {
+                        @Override
+                        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+                            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                            accessibilityNodeInfo.setText(ThemePreviewActivity.this.dropDown.getText());
+                        }
+                    };
+                    this.dropDownContainer = actionBarMenuItem;
+                    actionBarMenuItem.setSubMenuOpenSide(1);
+                    this.dropDownContainer.addSubItem(2, LocaleController.getString(R.string.ColorPickerBackground));
+                    ActionBarMenuItem actionBarMenuItem2 = this.dropDownContainer;
+                    int i29 = R.string.ColorPickerMainColor;
+                    actionBarMenuItem2.addSubItem(1, LocaleController.getString(i29));
+                    this.dropDownContainer.addSubItem(3, LocaleController.getString(R.string.ColorPickerMyMessages));
+                    this.dropDownContainer.setAllowCloseAnimation(false);
+                    this.dropDownContainer.setForceSmoothKeyboard(true);
+                    this.actionBar2.addView(this.dropDownContainer, LayoutHelper.createFrame(-2, -1.0f, 51, AndroidUtilities.isTablet() ? 64.0f : 56.0f, 0.0f, 40.0f, 0.0f));
+                    this.dropDownContainer.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$createView$5(view);
+                        }
+                    });
+                    TextView textView = new TextView(context);
+                    this.dropDown = textView;
+                    textView.setImportantForAccessibility(2);
+                    this.dropDown.setGravity(3);
+                    this.dropDown.setSingleLine(true);
+                    this.dropDown.setLines(1);
+                    this.dropDown.setMaxLines(1);
+                    this.dropDown.setEllipsize(TextUtils.TruncateAt.END);
+                    TextView textView2 = this.dropDown;
+                    int i30 = Theme.key_actionBarDefaultTitle;
+                    textView2.setTextColor(getThemedColor(i30));
+                    this.dropDown.setTypeface(AndroidUtilities.bold());
+                    this.dropDown.setText(LocaleController.getString(i29));
+                    Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_arrow_drop_down).mutate();
+                    drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i30), PorterDuff.Mode.MULTIPLY));
+                    this.dropDown.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, drawableMutate, (Drawable) null);
+                    this.dropDown.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
+                    this.dropDown.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);
+                    this.dropDownContainer.addView(this.dropDown, LayoutHelper.createFrame(-2, -2.0f, 16, 16.0f, 0.0f, 0.0f, 1.0f));
+                }
+                i = z2;
+            }
+            this.listView2 = new RecyclerListView(context) {
+                float lastX;
+                float lastY;
+                boolean scrollingBackground;
+                float startX;
+                float startY;
+
+                @Override
+                public boolean drawChild(Canvas canvas, View view, long j) {
+                    RecyclerView.ViewHolder childViewHolder;
+                    boolean zDrawChild = super.drawChild(canvas, view, j);
+                    if (view instanceof ChatMessageCell) {
+                        ChatMessageCell chatMessageCell = (ChatMessageCell) view;
+                        chatMessageCell.getMessageObject();
+                        ImageReceiver avatarImage = chatMessageCell.getAvatarImage();
+                        if (avatarImage != null) {
+                            int top = view.getTop();
+                            if (chatMessageCell.isPinnedBottom() && (childViewHolder = ThemePreviewActivity.this.listView2.getChildViewHolder(view)) != null) {
+                                if (ThemePreviewActivity.this.listView2.findViewHolderForAdapterPosition(childViewHolder.getAdapterPosition() - 1) != null) {
+                                    avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
+                                    avatarImage.draw(canvas);
+                                    return zDrawChild;
+                                }
+                            }
+                            float translationX = chatMessageCell.getTranslationX();
+                            int top2 = view.getTop() + chatMessageCell.getLayoutHeight();
+                            int measuredHeight = ThemePreviewActivity.this.listView2.getMeasuredHeight() - ThemePreviewActivity.this.listView2.getPaddingBottom();
+                            if (top2 > measuredHeight) {
+                                top2 = measuredHeight;
+                            }
+                            if (chatMessageCell.isPinnedTop() && (childViewHolder = ThemePreviewActivity.this.listView2.getChildViewHolder(view)) != null) {
+                                int i31 = 0;
+                                while (i31 < 20) {
+                                    i31++;
+                                    RecyclerView.ViewHolder childViewHolder2 = ThemePreviewActivity.this.listView2.findViewHolderForAdapterPosition(childViewHolder2.getAdapterPosition() + 1);
+                                    if (childViewHolder2 == null) {
+                                        break;
+                                    }
+                                    top = childViewHolder2.itemView.getTop();
+                                    if (top2 - AndroidUtilities.dp(48.0f) < childViewHolder2.itemView.getBottom()) {
+                                        translationX = Math.min(childViewHolder2.itemView.getTranslationX(), translationX);
+                                    }
+                                    View view2 = childViewHolder2.itemView;
+                                    if (!(view2 instanceof ChatMessageCell) || !((ChatMessageCell) view2).isPinnedTop()) {
+                                        break;
+                                    }
+                                }
+                            }
+                            if (top2 - AndroidUtilities.dp(48.0f) < top) {
+                                top2 = top + AndroidUtilities.dp(48.0f);
+                            }
+                            if (translationX != 0.0f) {
+                                canvas.save();
+                                canvas.translate(translationX, 0.0f);
+                            }
+                            avatarImage.setImageY(top2 - AndroidUtilities.dp(44.0f));
+                            avatarImage.draw(canvas);
+                            if (translationX != 0.0f) {
+                                canvas.restore();
+                            }
+                        }
+                    }
+                    return zDrawChild;
+                }
+
+                @Override
+                public void setTranslationY(float f12) {
+                    super.setTranslationY(f12);
+                    if (ThemePreviewActivity.this.backgroundCheckBoxView != null) {
+                        for (int i31 = 0; i31 < ThemePreviewActivity.this.backgroundCheckBoxView.length; i31++) {
+                            ThemePreviewActivity.this.backgroundCheckBoxView[i31].invalidate();
+                        }
+                    }
+                    if (ThemePreviewActivity.this.messagesCheckBoxView != null) {
+                        for (int i32 = 0; i32 < ThemePreviewActivity.this.messagesCheckBoxView.length; i32++) {
+                            ThemePreviewActivity.this.messagesCheckBoxView[i32].invalidate();
+                        }
+                    }
+                    if (ThemePreviewActivity.this.backgroundPlayAnimationView != null) {
+                        ThemePreviewActivity.this.backgroundPlayAnimationView.invalidate();
+                    }
+                    if (ThemePreviewActivity.this.messagesPlayAnimationView != null) {
+                        ThemePreviewActivity.this.messagesPlayAnimationView.invalidate();
+                    }
+                }
+
+                @Override
+                protected void onChildPressed(View view, float f12, float f13, boolean z6) {
+                    if (z6 && (view instanceof ChatMessageCell) && !((ChatMessageCell) view).isInsideBackground(f12, f13)) {
+                        return;
+                    }
+                    super.onChildPressed(view, f12, f13, z6);
+                }
+
+                @Override
+                protected boolean allowSelectChildAtPosition(View view) {
+                    RecyclerView.ViewHolder viewHolderFindContainingViewHolder = ThemePreviewActivity.this.listView2.findContainingViewHolder(view);
+                    if (viewHolderFindContainingViewHolder == null || viewHolderFindContainingViewHolder.getItemViewType() != 2) {
+                        return super.allowSelectChildAtPosition(view);
+                    }
+                    return false;
+                }
+
+                @Override
+                public boolean onTouchEvent(MotionEvent motionEvent) {
+                    checkMotionEvent(motionEvent);
+                    if (ThemePreviewActivity.this.hasScrollingBackground) {
+                        if (motionEvent.getAction() == 0) {
+                            float x = motionEvent.getX();
+                            this.startX = x;
+                            this.lastX = x;
+                            float y = motionEvent.getY();
+                            this.startY = y;
+                            this.lastY = y;
+                            if (getParent() != null) {
+                                getParent().requestDisallowInterceptTouchEvent(true);
+                            }
+                            this.scrollingBackground = true;
+                        } else if (motionEvent.getAction() == 2) {
+                            if (!this.scrollingBackground && Math.abs(this.startX - motionEvent.getX()) > AndroidUtilities.touchSlop) {
+                                if (getParent() != null) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                this.scrollingBackground = true;
+                            }
+                        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+                            this.scrollingBackground = false;
+                            if (getParent() != null) {
+                                getParent().requestDisallowInterceptTouchEvent(false);
+                            }
+                        }
+                        ThemePreviewActivity.this.gestureDetector2.onTouchEvent(motionEvent);
+                    }
+                    return this.scrollingBackground || super.onTouchEvent(motionEvent);
+                }
+
+                private void checkMotionEvent(MotionEvent motionEvent) {
+                    if (motionEvent.getAction() == 1) {
+                        if (!ThemePreviewActivity.this.wasScroll && (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) && ThemePreviewActivity.this.patternLayout[0].getVisibility() == 0) {
+                            ThemePreviewActivity.this.showPatternsView(0, false, true);
+                        }
+                        ThemePreviewActivity.this.wasScroll = false;
+                    }
+                }
+
+                @Override
+                protected void onLayout(boolean z6, int i31, int i32, int i33, int i34) {
+                    super.onLayout(z6, i31, i32, i33, i34);
+                    ThemePreviewActivity.this.invalidateBlur();
+                }
+            };
+            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
+                @Override
+                protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                    ThemePreviewActivity.this.listView2.invalidateViews();
+                }
+            };
+            defaultItemAnimator.setDelayAnimations(false);
+            this.listView2.setItemAnimator(defaultItemAnimator);
+            this.listView2.setVerticalScrollBarEnabled(i);
+            this.listView2.setOverScrollMode(2);
+            i3 = this.screenType;
+            if (i3 == 2) {
+                RecyclerListView recyclerListView2 = this.listView2;
+                int iDp4 = AndroidUtilities.dp(4.0f);
+                if (!this.self || this.dialogId <= 0) {
+                    i23 = 0;
+                } else {
+                    i23 = 58;
+                }
+                int iDp5 = AndroidUtilities.dp(72 + i23) - 12;
+                if (insideBottomSheet()) {
+                    i24 = AndroidUtilities.navigationBarHeight;
+                } else {
+                    i24 = 0;
+                }
+                recyclerListView2.setPadding(0, iDp4, 0, iDp5 + i24);
+            } else if (i3 == i) {
+                this.listView2.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(16.0f));
+            } else {
+                this.listView2.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+            }
+            this.listView2.setClipToPadding(false);
+            this.listView2.setLayoutManager(new LinearLayoutManager(context, i, i));
+            RecyclerListView recyclerListView3 = this.listView2;
+            if (LocaleController.isRTL) {
+                i4 = 1;
+            } else {
+                i4 = 2;
+            }
+            recyclerListView3.setVerticalScrollbarPosition(i4);
+            if (this.screenType == i) {
+                this.page2.addView(this.listView2, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 273.0f));
+                this.listView2.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
+                    @Override
+                    public boolean hasDoubleTap(View view, int i31) {
+                        return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i31);
+                    }
+
+                    @Override
+                    public void onDoubleTap(View view, int i31, float f12, float f13) {
+                        RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i31, f12, f13);
+                    }
+
+                    @Override
+                    public final void onItemClick(View view, int i31, float f12, float f13) {
+                        this.f$0.lambda$createView$6(view, i31, f12, f13);
+                    }
+                });
+            } else {
+                this.page2.addView(this.listView2, LayoutHelper.createFrame(-1, -1, 51));
+            }
+            this.listView2.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int i31, int i32) {
+                    ThemePreviewActivity.this.listView2.invalidateViews();
+                    ThemePreviewActivity.this.wasScroll = true;
+                }
+
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int i31) {
+                    if (i31 == 0) {
+                        ThemePreviewActivity.this.wasScroll = false;
+                    }
+                }
+            });
+            this.page2.addView(this.actionBar2, LayoutHelper.createFrame(-1, f));
+            WallpaperParallaxEffect wallpaperParallaxEffect = new WallpaperParallaxEffect(context);
+            this.parallaxEffect = wallpaperParallaxEffect;
+            wallpaperParallaxEffect.setCallback(new WallpaperParallaxEffect.Callback() {
+                @Override
+                public final void onOffsetsChanged(int i31, int i32, float f12) {
+                    this.f$0.lambda$createView$7(i31, i32, f12);
+                }
+            });
+            i5 = this.screenType;
+            if (i5 != i || i5 == 2) {
+                if (i5 == 2) {
+                    final boolean zInsideBottomSheet = insideBottomSheet();
+                    FrameLayout frameLayout2 = new FrameLayout(context) {
+                        private final ColorFilter colorFilter;
+                        private LinearGradient gradient;
+                        private int gradientHeight;
+                        private final Paint gradientPaint;
+
+                        {
+                            Paint paint = new Paint(3);
+                            this.gradientPaint = paint;
+                            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                            ColorMatrix colorMatrix = new ColorMatrix();
+                            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.4f);
+                            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.65f);
+                            this.colorFilter = new ColorMatrixColorFilter(colorMatrix);
+                        }
+
+                        @Override
+                        protected void dispatchDraw(Canvas canvas) {
+                            if (zInsideBottomSheet) {
+                                RectF rectF = AndroidUtilities.rectTmp;
+                                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                                Theme.applyServiceShaderMatrixForView(this, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                                Paint paint = ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground");
+                                ColorFilter colorFilter = paint.getColorFilter();
+                                paint.setColorFilter(this.colorFilter);
+                                float f12 = 1.0f;
+                                if (ThemePreviewActivity.this.backgroundImage != null && (ThemePreviewActivity.this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable) && ThemePreviewActivity.this.currentIntensity < 0.0f) {
+                                    f12 = 0.33f;
+                                }
+                                int alpha = paint.getAlpha();
+                                paint.setAlpha((int) (alpha * f12));
+                                canvas.drawRect(rectF, paint);
+                                paint.setAlpha(alpha);
+                                paint.setColorFilter(colorFilter);
+                                if (ThemePreviewActivity.this.shouldShowBrightnessControll && ThemePreviewActivity.this.dimAmount > 0.0f) {
+                                    canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
+                                }
+                                canvas.save();
+                                if (this.gradient == null || this.gradientHeight != getHeight()) {
+                                    int height = getHeight();
+                                    this.gradientHeight = height;
+                                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, height, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                                    this.gradient = linearGradient;
+                                    this.gradientPaint.setShader(linearGradient);
+                                }
+                                canvas.drawRect(rectF, this.gradientPaint);
+                                canvas.restore();
+                                canvas.restore();
+                            }
+                            super.dispatchDraw(canvas);
+                        }
+
+                        @Override
+                        protected void onMeasure(int i31, int i32) {
+                            super.onMeasure(i31, i32);
+                            for (int i33 = 0; i33 < getChildCount(); i33++) {
+                                View childAt = getChildAt(i33);
+                                if (childAt.getMeasuredWidth() > AndroidUtilities.dp(420.0f)) {
+                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(420.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getMeasuredHeight(), 1073741824));
+                                }
+                            }
+                        }
+                    };
+                    this.bottomOverlayChat = frameLayout2;
+                    frameLayout2.setWillNotDraw(false);
+                    FrameLayout frameLayout3 = this.bottomOverlayChat;
+                    int iDp6 = AndroidUtilities.dp(12.0f);
+                    int iDp7 = AndroidUtilities.dp(12.0f);
+                    int iDp8 = AndroidUtilities.dp(12.0f);
+                    int iDp9 = AndroidUtilities.dp(12.0f);
+                    if (insideBottomSheet()) {
+                        i21 = AndroidUtilities.navigationBarHeight;
+                    } else {
+                        i21 = 0;
+                    }
+                    frameLayout3.setPadding(iDp6, iDp7, iDp8, iDp9 + i21);
+                    this.page2.addView(this.bottomOverlayChat, LayoutHelper.createFrame(-1, 0, 81));
+                    BlurButton blurButton = new BlurButton(context);
+                    this.applyButton1 = blurButton;
+                    ScaleStateListAnimator.apply(blurButton, 0.033f, 1.2f);
+                    updateApplyButton1(false);
+                    this.applyButton1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$createView$8(view);
+                        }
+                    });
+                    if (this.dialogId <= 0 && !this.self && this.serverWallpaper == null) {
+                        BlurButton blurButton2 = new BlurButton(context);
+                        this.applyButton2 = blurButton2;
+                        ScaleStateListAnimator.apply(blurButton2, 0.033f, 1.2f);
+                        TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.dialogId));
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+                        if (!getUserConfig().isPremium()) {
+                            spannableStringBuilder.append((CharSequence) "l ");
+                            spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.msg_mini_lock3), 0, i, 33);
+                        }
+                        int i31 = R.string.ApplyWallpaperForMeAndPeer;
+                        Object[] objArr = new Object[i];
+                        objArr[0] = UserObject.getUserName(user);
+                        spannableStringBuilder.append((CharSequence) LocaleController.formatString(i31, objArr));
+                        this.applyButton2.setText(spannableStringBuilder);
+                        try {
+                            BlurButton blurButton3 = this.applyButton2;
+                            blurButton3.setText(Emoji.replaceEmoji(blurButton3.getText(), this.applyButton2.text.getFontMetricsInt(), false));
+                        } catch (Exception unused) {
+                        }
+                        this.applyButton2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$createView$9(view);
+                            }
+                        });
+                        this.bottomOverlayChat.addView(this.applyButton1, LayoutHelper.createFrame(-1, 48.0f, 81, 0.0f, 0.0f, 0.0f, 58.0f));
+                        this.bottomOverlayChat.addView(this.applyButton2, LayoutHelper.createFrame(-1, 48.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+                    } else {
+                        this.bottomOverlayChat.addView(this.applyButton1, LayoutHelper.createFrame(-1, 48.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+                    }
+                    if (this.shouldShowBrightnessControll) {
+                        FrameLayout frameLayout4 = new FrameLayout(getContext()) {
+                            private final Paint shadowPaint = new Paint(1);
+                            private final Paint dimPaint = new Paint(1);
+                            private final Paint dimPaint2 = new Paint(1);
+
+                            @Override
+                            protected void dispatchDraw(Canvas canvas) {
+                                RectF rectF = AndroidUtilities.rectTmp;
+                                rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+                                float fDp = AndroidUtilities.dp(8.0f);
+                                this.shadowPaint.setColor(0);
+                                this.shadowPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33f), ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimmingSlider.getAlpha() * 27.0f)));
+                                canvas.drawRoundRect(rectF, fDp, fDp, this.shadowPaint);
+                                Theme.applyServiceShaderMatrixForView(this, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                                Paint paint = ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground");
+                                int alpha = paint.getAlpha();
+                                paint.setAlpha((int) (alpha * ThemePreviewActivity.this.dimmingSlider.getAlpha()));
+                                canvas.drawRoundRect(rectF, fDp, fDp, paint);
+                                paint.setAlpha(alpha);
+                                if (ThemePreviewActivity.this.shouldShowBrightnessControll && ThemePreviewActivity.this.dimAmount > 0.0f) {
+                                    this.dimPaint2.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
+                                    canvas.drawRoundRect(rectF, fDp, fDp, this.dimPaint2);
+                                }
+                                this.dimPaint.setColor(520093695);
+                                this.dimPaint.setAlpha((int) (ThemePreviewActivity.this.dimmingSlider.getAlpha() * 30.0f));
+                                canvas.drawRoundRect(rectF, fDp, fDp, this.dimPaint);
+                                super.dispatchDraw(canvas);
+                            }
+                        };
+                        this.dimmingSliderContainer = frameLayout4;
+                        frameLayout4.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+                        this.page2.addView(this.dimmingSliderContainer, LayoutHelper.createFrame(222, 76, 49));
+                        SliderView sliderView = new SliderView(getContext(), i25) {
+                            @Override
+                            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                                if (getParent() != null) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                return super.dispatchTouchEvent(motionEvent);
+                            }
+                        };
+                        this.dimmingSlider = sliderView;
+                        sliderView.setValue(this.dimAmount);
+                        this.dimmingSlider.setMinMax(0.0f, 0.9f);
+                        this.dimmingSlider.setOnValueChange(new Utilities.Callback() {
+                            @Override
+                            public final void run(Object obj5) {
+                                this.f$0.lambda$createView$10((Float) obj5);
+                            }
+                        });
+                        this.dimmingSliderContainer.addView(this.dimmingSlider);
+                        dayNightSwitchDelegate = this.onSwitchDayNightDelegate;
+                        if (dayNightSwitchDelegate != null) {
+                            SliderView sliderView2 = this.dimmingSlider;
+                            if (dayNightSwitchDelegate.isDark()) {
+                                i22 = 0;
+                            } else {
+                                i22 = 8;
+                            }
+                            sliderView2.setVisibility(i22);
+                            SliderView sliderView3 = this.dimmingSlider;
+                            if (this.onSwitchDayNightDelegate.isDark()) {
+                                f9 = 1.0f;
+                            } else {
+                                f9 = 0.0f;
+                            }
+                            sliderView3.setAlpha(f9);
+                            SliderView sliderView4 = this.dimmingSlider;
+                            if (this.onSwitchDayNightDelegate.isDark()) {
+                                f10 = this.dimAmount;
+                            } else {
+                                f10 = 0.0f;
+                            }
+                            sliderView4.setValue(f10);
+                        }
+                    }
+                }
+                rect = new Rect();
+                Drawable drawableMutate2 = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+                this.sheetDrawable = drawableMutate2;
+                drawableMutate2.getPadding(rect);
+                this.sheetDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhite), PorterDuff.Mode.MULTIPLY));
+                textPaint = new TextPaint(i);
+                textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+                textPaint.setTypeface(AndroidUtilities.bold());
+                obj = this.currentWallpaper;
+                if (this.screenType != i || (obj instanceof WallpapersListActivity.ColorWallpaper)) {
+                    if ((obj instanceof WallpapersListActivity.ColorWallpaper) || !str2.equals(((WallpapersListActivity.ColorWallpaper) obj).slug)) {
+                        i6 = 3;
+                    } else {
+                        i6 = 0;
+                    }
+                } else if ((obj instanceof WallpapersListActivity.FileWallpaper) && "t".equals(((WallpapersListActivity.FileWallpaper) obj).slug)) {
+                    i6 = 0;
+                } else {
+                    i6 = 2;
+                }
+                strArr = new String[i6];
+                iArr = new int[i6];
+                this.backgroundCheckBoxView = new WallpaperCheckBoxView[i6];
+                if (i6 != 0) {
+                    this.backgroundButtonsContainer = new FrameLayout(context);
+                    if (this.screenType != i || (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) {
+                        strArr[0] = LocaleController.getString(R.string.BackgroundColors);
+                        strArr[i] = LocaleController.getString(R.string.BackgroundPattern);
+                        strArr[2] = LocaleController.getString(R.string.BackgroundMotion);
+                    } else {
+                        strArr[0] = LocaleController.getString(R.string.BackgroundBlurred);
+                        strArr[i] = LocaleController.getString(R.string.BackgroundMotion);
+                    }
+                    iMax = 0;
+                    for (i19 = 0; i19 < i6; i19 += i) {
+                        int iCeil = (int) Math.ceil(textPaint.measureText(strArr[i19]));
+                        iArr[i19] = iCeil;
+                        iMax = Math.max(iMax, iCeil);
+                    }
+                    FrameLayout frameLayout5 = new FrameLayout(context) {
+                        private RectF rect = new RectF();
+
+                        @Override
+                        protected void onDraw(Canvas canvas) {
+                            this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                            Theme.applyServiceShaderMatrixForView(ThemePreviewActivity.this.backgroundPlayAnimationView, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                            canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground"));
+                            if (Theme.hasGradientService()) {
+                                canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackgroundDarken"));
+                            }
+                        }
+                    };
+                    this.backgroundPlayAnimationView = frameLayout5;
+                    frameLayout5.setWillNotDraw(false);
+                    FrameLayout frameLayout6 = this.backgroundPlayAnimationView;
+                    if (this.backgroundGradientColor1 != 0) {
+                        i20 = 0;
+                    } else {
+                        i20 = 4;
+                    }
+                    frameLayout6.setVisibility(i20);
+                    FrameLayout frameLayout7 = this.backgroundPlayAnimationView;
+                    if (this.backgroundGradientColor1 != 0) {
+                        f6 = 1.0f;
+                    } else {
+                        f6 = 0.1f;
+                    }
+                    frameLayout7.setScaleX(f6);
+                    FrameLayout frameLayout8 = this.backgroundPlayAnimationView;
+                    if (this.backgroundGradientColor1 != 0) {
+                        f7 = 1.0f;
+                    } else {
+                        f7 = 0.1f;
+                    }
+                    frameLayout8.setScaleY(f7);
+                    FrameLayout frameLayout9 = this.backgroundPlayAnimationView;
+                    if (this.backgroundGradientColor1 != 0) {
+                        f8 = 1.0f;
+                    } else {
+                        f8 = 0.0f;
+                    }
+                    frameLayout9.setAlpha(f8);
+                    FrameLayout frameLayout10 = this.backgroundPlayAnimationView;
+                    if (this.backgroundGradientColor1 != 0) {
+                        numValueOf = Integer.valueOf(i);
+                    } else {
+                        numValueOf = null;
+                    }
+                    frameLayout10.setTag(numValueOf);
+                    this.backgroundButtonsContainer.addView(this.backgroundPlayAnimationView, LayoutHelper.createFrame(48, 48, 17));
+                    this.backgroundPlayAnimationView.setOnClickListener(new View.OnClickListener() {
+                        int rotation = 0;
+
+                        @Override
+                        public void onClick(View view) {
+                            ThemePreviewActivity.this.backgroundPlayAnimationImageView.setRotation(this.rotation);
+                            this.rotation -= 45;
+                            ThemePreviewActivity.this.backgroundPlayAnimationImageView.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
+                            if (ThemePreviewActivity.this.backgroundImages[0] != null) {
+                                Drawable background = ThemePreviewActivity.this.backgroundImages[0].getBackground();
+                                if (!(background instanceof MotionBackgroundDrawable)) {
+                                    ThemePreviewActivity.this.onColorsRotate();
+                                } else {
+                                    ((MotionBackgroundDrawable) background).switchToNextPosition();
+                                }
+                            }
+                            if (ThemePreviewActivity.this.backgroundImages[1] != null) {
+                                Drawable background2 = ThemePreviewActivity.this.backgroundImages[1].getBackground();
+                                if (background2 instanceof MotionBackgroundDrawable) {
+                                    ((MotionBackgroundDrawable) background2).switchToNextPosition();
+                                }
+                            }
+                        }
+                    });
+                    ImageView imageView = new ImageView(context);
+                    this.backgroundPlayAnimationImageView = imageView;
+                    imageView.setScaleType(ImageView.ScaleType.CENTER);
+                    this.backgroundPlayAnimationImageView.setImageResource(R.drawable.bg_rotate_large);
+                    this.backgroundPlayAnimationView.addView(this.backgroundPlayAnimationImageView, LayoutHelper.createFrame(-2, -2, 17));
+                } else {
+                    iMax = 0;
+                }
+                i7 = 0;
+                while (i7 < i6) {
+                    this.backgroundCheckBoxView[i7] = new WallpaperCheckBoxView(context, (this.screenType == i && !(this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) || i7 != 0, this.backgroundImage, this.themeDelegate);
+                    this.backgroundCheckBoxView[i7].setBackgroundColor(this.backgroundColor);
+                    this.backgroundCheckBoxView[i7].setText(strArr[i7], iArr[i7], iMax);
+                    if (this.screenType == i && !(this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) {
+                        this.backgroundCheckBoxView[i7].setChecked(i7 == 0 ? this.isBlurred : this.isMotion, false);
+                    } else if (i7 == i) {
+                        WallpaperCheckBoxView wallpaperCheckBoxView = this.backgroundCheckBoxView[i7];
+                        if (this.selectedPattern == null || !((themeAccent2 = this.accent) == null || TextUtils.isEmpty(themeAccent2.patternSlug))) {
+                            z4 = true;
+                        } else {
+                            z4 = false;
+                        }
+                        wallpaperCheckBoxView.setChecked(z4, false);
+                    } else if (i7 == 2) {
+                        this.backgroundCheckBoxView[i7].setChecked(this.isMotion, false);
+                    }
+                    iDp3 = AndroidUtilities.dp(56.0f) + iMax;
+                    layoutParams2 = new FrameLayout.LayoutParams(iDp3, -2);
+                    layoutParams2.gravity = 17;
+                    if (i6 == 3) {
+                        if (i7 != 0 || i7 == 2) {
+                            layoutParams2.leftMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                        } else {
+                            layoutParams2.rightMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                        }
+                    } else if (i7 == i) {
+                        layoutParams2.leftMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                    } else {
+                        layoutParams2.rightMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                    }
+                    this.backgroundButtonsContainer.addView(this.backgroundCheckBoxView[i7], layoutParams2);
+                    final WallpaperCheckBoxView wallpaperCheckBoxView2 = this.backgroundCheckBoxView[i7];
+                    wallpaperCheckBoxView2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$createView$11(i7, wallpaperCheckBoxView2, view);
+                        }
+                    });
+                    if (i7 == 2) {
+                        this.backgroundCheckBoxView[i7].setAlpha(0.0f);
+                        this.backgroundCheckBoxView[i7].setVisibility(4);
+                    }
+                    i7 += i;
+                }
+                if (this.screenType == i) {
+                    iArr2 = new int[2];
+                    this.messagesCheckBoxView = new WallpaperCheckBoxView[2];
+                    this.messagesButtonsContainer = new FrameLayout(context);
+                    strArr2 = new String[]{LocaleController.getString(R.string.BackgroundAnimate), LocaleController.getString(R.string.BackgroundColors)};
+                    i16 = 0;
+                    iMax2 = 0;
+                    for (i15 = 2; i16 < i15; i15 = 2) {
+                        int iCeil2 = (int) Math.ceil(textPaint.measureText(strArr2[i16]));
+                        iArr2[i16] = iCeil2;
+                        iMax2 = Math.max(iMax2, iCeil2);
+                        i16 += i;
+                    }
+                    if (this.accent != null) {
+                        FrameLayout frameLayout11 = new FrameLayout(context) {
+                            private RectF rect = new RectF();
+
+                            @Override
+                            protected void onDraw(Canvas canvas) {
+                                this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                                Theme.applyServiceShaderMatrixForView(ThemePreviewActivity.this.messagesPlayAnimationView, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                                canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground"));
+                                if (Theme.hasGradientService()) {
+                                    canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackgroundDarken"));
+                                }
+                            }
+                        };
+                        this.messagesPlayAnimationView = frameLayout11;
+                        frameLayout11.setWillNotDraw(false);
+                        FrameLayout frameLayout12 = this.messagesPlayAnimationView;
+                        if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                            i17 = 0;
+                        } else {
+                            i17 = 4;
+                        }
+                        frameLayout12.setVisibility(i17);
+                        FrameLayout frameLayout13 = this.messagesPlayAnimationView;
+                        if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                            f3 = 1.0f;
+                        } else {
+                            f3 = 0.1f;
+                        }
+                        frameLayout13.setScaleX(f3);
+                        FrameLayout frameLayout14 = this.messagesPlayAnimationView;
+                        if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                            f4 = 1.0f;
+                        } else {
+                            f4 = 0.1f;
+                        }
+                        frameLayout14.setScaleY(f4);
+                        FrameLayout frameLayout15 = this.messagesPlayAnimationView;
+                        if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                            f5 = 1.0f;
+                        } else {
+                            f5 = 0.0f;
+                        }
+                        frameLayout15.setAlpha(f5);
+                        this.messagesButtonsContainer.addView(this.messagesPlayAnimationView, LayoutHelper.createFrame(48, 48, 17));
+                        this.messagesPlayAnimationView.setOnClickListener(new View.OnClickListener() {
+                            int rotation = 0;
+
+                            @Override
+                            public void onClick(View view) {
+                                ThemePreviewActivity.this.messagesPlayAnimationImageView.setRotation(this.rotation);
+                                this.rotation -= 45;
+                                ThemePreviewActivity.this.messagesPlayAnimationImageView.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
+                                if (!ThemePreviewActivity.this.accent.myMessagesAnimated) {
+                                    if (ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3 != 0) {
+                                        int i32 = ThemePreviewActivity.this.accent.myMessagesAccentColor != 0 ? ThemePreviewActivity.this.accent.myMessagesAccentColor : ThemePreviewActivity.this.accent.accentColor;
+                                        ThemePreviewActivity.this.accent.myMessagesAccentColor = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1;
+                                        ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1 = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2;
+                                        ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2 = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3;
+                                        ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3 = i32;
+                                    } else {
+                                        int i33 = ThemePreviewActivity.this.accent.myMessagesAccentColor != 0 ? ThemePreviewActivity.this.accent.myMessagesAccentColor : ThemePreviewActivity.this.accent.accentColor;
+                                        ThemePreviewActivity.this.accent.myMessagesAccentColor = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1;
+                                        ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1 = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2;
+                                        ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2 = i33;
+                                    }
+                                    ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3, 3);
+                                    ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2, 2);
+                                    ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1, 1);
+                                    ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesAccentColor != 0 ? ThemePreviewActivity.this.accent.myMessagesAccentColor : ThemePreviewActivity.this.accent.accentColor, 0);
+                                    ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(0, ThemePreviewActivity.this.accent.myMessagesAccentColor);
+                                    ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(1, ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1);
+                                    ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(2, ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2);
+                                    ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(3, ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3);
+                                    Theme.refreshThemeColors(true, true);
+                                    ThemePreviewActivity.this.listView2.invalidateViews();
+                                    return;
+                                }
+                                if (ThemePreviewActivity.this.msgOutDrawable.getMotionBackgroundDrawable() != null) {
+                                    ThemePreviewActivity.this.msgOutDrawable.getMotionBackgroundDrawable().switchToNextPosition();
+                                }
+                            }
+                        });
+                        ImageView imageView2 = new ImageView(context);
+                        this.messagesPlayAnimationImageView = imageView2;
+                        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+                        this.messagesPlayAnimationImageView.setImageResource(R.drawable.bg_rotate_large);
+                        this.messagesPlayAnimationView.addView(this.messagesPlayAnimationImageView, LayoutHelper.createFrame(-2, -2, 17));
+                        for (i18 = 0; i18 < 2; i18 += i) {
+                            WallpaperCheckBoxView[] wallpaperCheckBoxViewArr = this.messagesCheckBoxView;
+                            if (i18 == 0) {
+                                z3 = true;
+                            } else {
+                                z3 = false;
+                            }
+                            wallpaperCheckBoxViewArr[i18] = new WallpaperCheckBoxView(context, z3, this.backgroundImage, this.themeDelegate);
+                            this.messagesCheckBoxView[i18].setText(strArr2[i18], iArr2[i18], iMax2);
+                            if (i18 == 0) {
+                                this.messagesCheckBoxView[i18].setChecked(this.accent.myMessagesAnimated, false);
+                            }
+                            iDp2 = AndroidUtilities.dp(56.0f) + iMax2;
+                            layoutParams = new FrameLayout.LayoutParams(iDp2, -2);
+                            layoutParams.gravity = 17;
+                            if (i18 == i) {
+                                layoutParams.leftMargin = (iDp2 / 2) + AndroidUtilities.dp(10.0f);
+                            } else {
+                                layoutParams.rightMargin = (iDp2 / 2) + AndroidUtilities.dp(10.0f);
+                            }
+                            this.messagesButtonsContainer.addView(this.messagesCheckBoxView[i18], layoutParams);
+                            final WallpaperCheckBoxView wallpaperCheckBoxView3 = this.messagesCheckBoxView[i18];
+                            wallpaperCheckBoxView3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    this.f$0.lambda$createView$12(i18, wallpaperCheckBoxView3, view);
+                                }
+                            });
+                        }
+                    }
+                }
+                if (this.screenType != i || (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) {
+                    this.isBlurred = false;
+                    for (i8 = 0; i8 < 2; i8 += i) {
+                        this.patternLayout[i8] = new FrameLayout(context) {
+                            @Override
+                            public void onDraw(Canvas canvas) {
+                                if (i8 == 0) {
+                                    ThemePreviewActivity.this.sheetDrawable.setBounds(ThemePreviewActivity.this.colorPicker.getLeft() - rect.left, 0, ThemePreviewActivity.this.colorPicker.getRight() + rect.right, getMeasuredHeight());
+                                } else {
+                                    ThemePreviewActivity.this.sheetDrawable.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+                                }
+                                ThemePreviewActivity.this.sheetDrawable.draw(canvas);
+                            }
+                        };
+                        if (i8 != i || this.screenType == 2) {
+                            this.patternLayout[i8].setVisibility(4);
+                        }
+                        this.patternLayout[i8].setWillNotDraw(false);
+                        if (this.screenType == 2) {
+                            if (i8 == 0) {
+                                i14 = 321;
+                            } else {
+                                i14 = 316;
+                            }
+                            layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i14, 83);
+                        } else {
+                            if (i8 == 0) {
+                                i9 = 273;
+                            } else {
+                                i9 = 316;
+                            }
+                            layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i9, 83);
+                        }
+                        if (i8 == 0) {
+                            if (this.screenType == 2) {
+                                i13 = 321;
+                            } else {
+                                i13 = 273;
+                            }
+                            f2 = i13;
+                        } else {
+                            f2 = 316.0f;
+                        }
+                        layoutParamsCreateFrame.height = AndroidUtilities.dp(f2);
+                        if (insideBottomSheet()) {
+                            layoutParamsCreateFrame.height += AndroidUtilities.navigationBarHeight;
+                        }
+                        if (i8 == 0) {
+                            Drawable drawable = this.sheetDrawable;
+                            Rect rect2 = AndroidUtilities.rectTmp2;
+                            drawable.getPadding(rect2);
+                            layoutParamsCreateFrame.height += AndroidUtilities.dp(12.0f) + rect2.top;
+                        }
+                        FrameLayout frameLayout16 = this.patternLayout[i8];
+                        if (i8 == 0) {
+                            iDp = AndroidUtilities.dp(12.0f) + rect.top;
+                        } else {
+                            iDp = 0;
+                        }
+                        if (insideBottomSheet()) {
+                            i10 = AndroidUtilities.navigationBarHeight;
+                        } else {
+                            i10 = 0;
+                        }
+                        frameLayout16.setPadding(0, iDp, 0, i10);
+                        this.page2.addView(this.patternLayout[i8], layoutParamsCreateFrame);
+                        if (i8 != i || this.screenType == 2) {
+                            this.patternsButtonsContainer[i8] = new FrameLayout(context) {
+                                Paint paint = new Paint();
+
+                                @Override
+                                public void onDraw(Canvas canvas) {
+                                    int intrinsicHeight = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                                    Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                                    Theme.chat_composeShadowDrawable.draw(canvas);
+                                    this.paint.setColor(ThemePreviewActivity.this.getThemedColor(Theme.key_chat_messagePanelBackground));
+                                    canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+                                }
+                            };
+                            this.patternsButtonsContainer[i8].setWillNotDraw(false);
+                            this.patternsButtonsContainer[i8].setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
+                            this.patternsButtonsContainer[i8].setClickable(i);
+                            this.patternLayout[i8].addView(this.patternsButtonsContainer[i8], LayoutHelper.createFrame(-1, 51, 80));
+                            this.patternsCancelButton[i8] = new TextView(context);
+                            this.patternsCancelButton[i8].setTextSize(i, 15.0f);
+                            this.patternsCancelButton[i8].setTypeface(AndroidUtilities.bold());
+                            TextView textView3 = this.patternsCancelButton[i8];
+                            int i32 = Theme.key_chat_fieldOverlayText;
+                            textView3.setTextColor(getThemedColor(i32));
+                            this.patternsCancelButton[i8].setText(LocaleController.getString(R.string.Cancel));
+                            this.patternsCancelButton[i8].setGravity(17);
+                            this.patternsCancelButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                            TextView textView4 = this.patternsCancelButton[i8];
+                            int i33 = Theme.key_listSelector;
+                            textView4.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i33), 0));
+                            this.patternsButtonsContainer[i8].addView(this.patternsCancelButton[i8], LayoutHelper.createFrame(-2, -1, 51));
+                            this.patternsCancelButton[i8].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    this.f$0.lambda$createView$13(i8, view);
+                                }
+                            });
+                            this.patternsSaveButton[i8] = new TextView(context);
+                            this.patternsSaveButton[i8].setTextSize(i, 15.0f);
+                            this.patternsSaveButton[i8].setTypeface(AndroidUtilities.bold());
+                            this.patternsSaveButton[i8].setTextColor(getThemedColor(i32));
+                            this.patternsSaveButton[i8].setText(LocaleController.getString(R.string.ApplyTheme));
+                            this.patternsSaveButton[i8].setGravity(17);
+                            this.patternsSaveButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                            this.patternsSaveButton[i8].setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i33), 0));
+                            this.patternsButtonsContainer[i8].addView(this.patternsSaveButton[i8], LayoutHelper.createFrame(-2, -1, 53));
+                            this.patternsSaveButton[i8].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    this.f$0.lambda$createView$14(i8, view);
+                                }
+                            });
+                        }
+                        if (i8 == i) {
+                            TextView textView5 = new TextView(context);
+                            this.patternTitleView = textView5;
+                            textView5.setLines(i);
+                            this.patternTitleView.setSingleLine(i);
+                            this.patternTitleView.setText(LocaleController.getString(R.string.BackgroundChoosePattern));
+                            this.patternTitleView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                            this.patternTitleView.setTextSize(i, 20.0f);
+                            this.patternTitleView.setTypeface(AndroidUtilities.bold());
+                            this.patternTitleView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
+                            this.patternTitleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+                            this.patternTitleView.setGravity(16);
+                            this.patternLayout[i8].addView(this.patternTitleView, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 21.0f, 0.0f, 0.0f));
+                            RecyclerListView recyclerListView4 = new RecyclerListView(context) {
+                                @Override
+                                public boolean onTouchEvent(MotionEvent motionEvent) {
+                                    if (motionEvent.getAction() == 0) {
+                                        getParent().requestDisallowInterceptTouchEvent(true);
+                                    }
+                                    return super.onTouchEvent(motionEvent);
+                                }
+                            };
+                            this.patternsListView = recyclerListView4;
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 0, false);
+                            this.patternsLayoutManager = linearLayoutManager;
+                            recyclerListView4.setLayoutManager(linearLayoutManager);
+                            RecyclerListView recyclerListView5 = this.patternsListView;
+                            PatternsAdapter patternsAdapter = new PatternsAdapter(context);
+                            this.patternsAdapter = patternsAdapter;
+                            recyclerListView5.setAdapter(patternsAdapter);
+                            this.patternsListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                                @Override
+                                public void getItemOffsets(Rect rect3, View view, RecyclerView recyclerView, RecyclerView.State state) {
+                                    int childAdapterPosition = recyclerView.getChildAdapterPosition(view);
+                                    rect3.left = AndroidUtilities.dp(12.0f);
+                                    rect3.top = 0;
+                                    rect3.bottom = 0;
+                                    if (childAdapterPosition == state.getItemCount() - 1) {
+                                        rect3.right = AndroidUtilities.dp(12.0f);
+                                    }
+                                }
+                            });
+                            this.patternLayout[i8].addView(this.patternsListView, LayoutHelper.createFrame(-1, 100.0f, 51, 0.0f, 76.0f, 0.0f, 0.0f));
+                            this.patternsListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                                @Override
+                                public final void onItemClick(View view, int i34) {
+                                    this.f$0.lambda$createView$15(view, i34);
+                                }
+                            });
+                            HeaderCell headerCell = new HeaderCell(context);
+                            this.intensityCell = headerCell;
+                            headerCell.setText(LocaleController.getString(R.string.BackgroundIntensity));
+                            this.patternLayout[i8].addView(this.intensityCell, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 175.0f, 0.0f, 0.0f));
+                            SeekBarView seekBarView = new SeekBarView(context, getResourceProvider()) {
+                                @Override
+                                public boolean onTouchEvent(MotionEvent motionEvent) {
+                                    if (motionEvent.getAction() == 0) {
+                                        getParent().requestDisallowInterceptTouchEvent(true);
+                                    }
+                                    return super.onTouchEvent(motionEvent);
+                                }
+                            };
+                            this.intensitySeekBar = seekBarView;
+                            seekBarView.setProgress(this.currentIntensity);
+                            this.intensitySeekBar.setReportChanges(i);
+                            this.intensitySeekBar.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+                                @Override
+                                public CharSequence getContentDescription() {
+                                    return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
+                                }
+
+                                @Override
+                                public int getStepsCount() {
+                                    return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+                                }
+
+                                @Override
+                                public boolean needVisuallyDivideSteps() {
+                                    return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                                }
+
+                                @Override
+                                public void onSeekBarPressed(boolean z6) {
+                                }
+
+                                @Override
+                                public void onSeekBarDrag(boolean z6, float f12) {
+                                    ThemePreviewActivity.this.currentIntensity = f12;
+                                    ThemePreviewActivity.this.updateIntensity();
+                                }
+                            });
+                            this.patternLayout[i8].addView(this.intensitySeekBar, LayoutHelper.createFrame(-1, 38.0f, 51, 5.0f, 211.0f, 5.0f, 0.0f));
+                        } else {
+                            ColorPicker colorPicker = new ColorPicker(context, this.editingTheme, new AnonymousClass26());
+                            this.colorPicker = colorPicker;
+                            colorPicker.setResourcesProvider(getResourceProvider());
+                            if (this.screenType == i) {
+                                this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1, i));
+                                if (this.applyingTheme.isDark()) {
+                                    this.colorPicker.setMinBrightness(0.2f);
+                                } else {
+                                    this.colorPicker.setMinBrightness(0.05f);
+                                    this.colorPicker.setMaxBrightness(0.8f);
+                                }
+                                themeAccent = this.accent;
+                                if (themeAccent != null) {
+                                    if (themeAccent.accentColor2 != 0) {
+                                        i11 = 2;
+                                    } else {
+                                        i11 = 1;
+                                    }
+                                    this.colorPicker.setType(1, hasChanges(i), 2, i11, false, 0, false);
+                                    this.colorPicker.setColor(this.accent.accentColor, 0);
+                                    i12 = this.accent.accentColor2;
+                                    if (i12 != 0) {
+                                        this.colorPicker.setColor(i12, i);
+                                    }
+                                }
+                            } else {
+                                this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1.0f, 1, 0.0f, 0.0f, 0.0f, 48.0f));
+                            }
+                        }
+                    }
+                }
+                updateButtonState(false, false);
+                if (!this.backgroundImage.getImageReceiver().hasBitmapImage()) {
+                    this.page2.setBackgroundColor(-16777216);
+                }
+                if (this.screenType != i && !(this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) {
+                    this.backgroundImage.getImageReceiver().setCrossfadeWithOldImage(i);
+                }
+            }
+            this.listView2.setAdapter(this.messagesAdapter);
+            FrameLayout frameLayout17 = new FrameLayout(context) {
+                private int[] loc = new int[2];
+
+                @Override
+                public void invalidate() {
+                    super.invalidate();
+                    if (ThemePreviewActivity.this.page2 != null) {
+                        ThemePreviewActivity.this.page2.invalidate();
+                    }
+                }
+
+                @Override
+                protected void onDraw(Canvas canvas) {
+                    if (AndroidUtilities.usingHardwareInput) {
+                        return;
+                    }
+                    getLocationInWindow(this.loc);
+                    if (ThemePreviewActivity.this.actionBar2.getTranslationY() != this.loc[1]) {
+                        ThemePreviewActivity.this.actionBar2.setTranslationY(-this.loc[1]);
+                        ThemePreviewActivity.this.page2.invalidate();
+                    }
+                    if (SystemClock.elapsedRealtime() < ThemePreviewActivity.this.watchForKeyboardEndTime) {
+                        invalidate();
+                    }
+                }
+            };
+            this.frameLayout = frameLayout17;
+            frameLayout17.setWillNotDraw(false);
+            FrameLayout frameLayout18 = this.frameLayout;
+            this.fragmentView = frameLayout18;
+            ViewTreeObserver viewTreeObserver = frameLayout18.getViewTreeObserver();
+            ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public final void onGlobalLayout() {
+                    this.f$0.lambda$createView$16();
+                }
+            };
+            this.onGlobalLayoutListener = onGlobalLayoutListener;
+            viewTreeObserver.addOnGlobalLayoutListener(onGlobalLayoutListener);
+            ViewPager viewPager = new ViewPager(context);
+            this.viewPager = viewPager;
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrollStateChanged(int i34) {
+                }
+
+                @Override
+                public void onPageScrolled(int i34, float f12, int i35) {
+                }
+
+                @Override
+                public void onPageSelected(int i34) {
+                    ThemePreviewActivity.this.dotsContainer.invalidate();
+                }
+            });
+            this.viewPager.setAdapter(new PagerAdapter() {
+                @Override
+                public int getItemPosition(Object obj5) {
+                    return -1;
+                }
+
+                @Override
+                public boolean isViewFromObject(View view, Object obj5) {
+                    return obj5 == view;
+                }
+
+                @Override
+                public int getCount() {
+                    return ThemePreviewActivity.this.screenType != 0 ? 1 : 2;
+                }
+
+                @Override
+                public Object instantiateItem(ViewGroup viewGroup, int i34) {
+                    FrameLayout frameLayout19 = i34 == 0 ? ThemePreviewActivity.this.page2 : ThemePreviewActivity.this.page1;
+                    viewGroup.addView(frameLayout19);
+                    return frameLayout19;
+                }
+
+                @Override
+                public void destroyItem(ViewGroup viewGroup, int i34, Object obj5) {
+                    viewGroup.removeView((View) obj5);
+                }
+            });
+            AndroidUtilities.setViewPagerEdgeEffectColor(this.viewPager, getThemedColor(Theme.key_actionBarDefault));
+            FrameLayout frameLayout19 = this.frameLayout;
+            ViewPager viewPager2 = this.viewPager;
+            if (this.screenType == 0) {
+                f11 = 48.0f;
+            } else {
+                f11 = 0.0f;
+            }
+            frameLayout19.addView(viewPager2, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, f11));
+            UndoView undoView = new UndoView(context, this);
+            this.undoView = undoView;
+            undoView.setAdditionalTranslationY(AndroidUtilities.dp(51.0f));
+            this.frameLayout.addView(this.undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+            if (this.screenType == 0) {
+                View view = new View(context);
+                view.setBackgroundColor(getThemedColor(Theme.key_dialogShadowLine));
+                FrameLayout.LayoutParams layoutParams3 = new FrameLayout.LayoutParams(-1, i, 83);
+                layoutParams3.bottomMargin = AndroidUtilities.dp(48.0f);
+                this.frameLayout.addView(view, layoutParams3);
+                FrameLayout frameLayout20 = new FrameLayout(context);
+                this.saveButtonsContainer = frameLayout20;
+                frameLayout20.setBackgroundColor(getButtonsColor(Theme.key_windowBackgroundWhite));
+                this.frameLayout.addView(this.saveButtonsContainer, LayoutHelper.createFrame(-1, 48, 83));
+                View view2 = new View(context) {
+                    private Paint paint = new Paint(1);
+
+                    @Override
+                    protected void onDraw(Canvas canvas) {
+                        int currentItem = ThemePreviewActivity.this.viewPager.getCurrentItem();
+                        this.paint.setColor(ThemePreviewActivity.this.getButtonsColor(Theme.key_chat_fieldOverlayText));
+                        int i34 = 0;
+                        while (i34 < 2) {
+                            this.paint.setAlpha(i34 == currentItem ? 255 : 127);
+                            canvas.drawCircle(AndroidUtilities.dp((i34 * 15) + 3), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.0f), this.paint);
+                            i34++;
+                        }
+                    }
+                };
+                this.dotsContainer = view2;
+                this.saveButtonsContainer.addView(view2, LayoutHelper.createFrame(22, 8, 17));
+                TextView textView6 = new TextView(context);
+                this.cancelButton = textView6;
+                textView6.setTextSize(i, 14.0f);
+                TextView textView7 = this.cancelButton;
+                int i34 = Theme.key_chat_fieldOverlayText;
+                textView7.setTextColor(getButtonsColor(i34));
+                this.cancelButton.setGravity(17);
+                this.cancelButton.setBackgroundDrawable(Theme.createSelectorDrawable(251658240, 0));
+                this.cancelButton.setPadding(AndroidUtilities.dp(29.0f), 0, AndroidUtilities.dp(29.0f), 0);
+                this.cancelButton.setText(LocaleController.getString(R.string.Cancel));
+                this.cancelButton.setTypeface(AndroidUtilities.bold());
+                this.saveButtonsContainer.addView(this.cancelButton, LayoutHelper.createFrame(-2, -1, 51));
+                this.cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        this.f$0.lambda$createView$17(view3);
+                    }
+                });
+                TextView textView8 = new TextView(context);
+                this.doneButton = textView8;
+                textView8.setTextSize(i, 14.0f);
+                this.doneButton.setTextColor(getButtonsColor(i34));
+                this.doneButton.setGravity(17);
+                this.doneButton.setBackgroundDrawable(Theme.createSelectorDrawable(251658240, 0));
+                this.doneButton.setPadding(AndroidUtilities.dp(29.0f), 0, AndroidUtilities.dp(29.0f), 0);
+                this.doneButton.setText(LocaleController.getString(R.string.ApplyTheme));
+                this.doneButton.setTypeface(AndroidUtilities.bold());
+                this.saveButtonsContainer.addView(this.doneButton, LayoutHelper.createFrame(-2, -1, 53));
+                this.doneButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        this.f$0.lambda$createView$18(view3);
+                    }
+                });
+            }
+            if (this.screenType == i && !Theme.hasCustomWallpaper() && (themeAccent3 = this.accent) != null && themeAccent3.backgroundOverrideColor != 4294967296L) {
+                selectColorType(2);
+            }
+            this.themeDescriptions = getThemeDescriptionsInternal();
+            setCurrentImage(i);
+            updatePlayAnimationView(false);
+            if (this.showColor) {
+                showPatternsView(0, i, false);
+            }
+            this.scroller = new Scroller(getContext());
+            iNavigationLayout = this.parentLayout;
+            if (iNavigationLayout != null && iNavigationLayout.getBottomSheet() != null) {
+                this.parentLayout.getBottomSheet().fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
+                if (this.screenType == 2 && this.dialogId != 0) {
+                    this.parentLayout.getBottomSheet().setOverlayNavBarColor(-16777216);
+                }
+            }
+            return this.fragmentView;
+        }
+        i = 1;
+        f = -2.0f;
+        this.listView2 = new RecyclerListView(context) {
+            float lastX;
+            float lastY;
+            boolean scrollingBackground;
+            float startX;
+            float startY;
+
+            @Override
+            public boolean drawChild(Canvas canvas, View view3, long j) {
+                RecyclerView.ViewHolder childViewHolder;
+                boolean zDrawChild = super.drawChild(canvas, view3, j);
+                if (view3 instanceof ChatMessageCell) {
+                    ChatMessageCell chatMessageCell = (ChatMessageCell) view3;
+                    chatMessageCell.getMessageObject();
+                    ImageReceiver avatarImage = chatMessageCell.getAvatarImage();
+                    if (avatarImage != null) {
+                        int top = view3.getTop();
+                        if (chatMessageCell.isPinnedBottom() && (childViewHolder = ThemePreviewActivity.this.listView2.getChildViewHolder(view3)) != null) {
+                            if (ThemePreviewActivity.this.listView2.findViewHolderForAdapterPosition(childViewHolder.getAdapterPosition() - 1) != null) {
+                                avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
+                                avatarImage.draw(canvas);
+                                return zDrawChild;
+                            }
+                        }
+                        float translationX = chatMessageCell.getTranslationX();
+                        int top2 = view3.getTop() + chatMessageCell.getLayoutHeight();
+                        int measuredHeight = ThemePreviewActivity.this.listView2.getMeasuredHeight() - ThemePreviewActivity.this.listView2.getPaddingBottom();
+                        if (top2 > measuredHeight) {
+                            top2 = measuredHeight;
+                        }
+                        if (chatMessageCell.isPinnedTop() && (childViewHolder2 = ThemePreviewActivity.this.listView2.getChildViewHolder(view3)) != null) {
+                            int i35 = 0;
+                            while (i35 < 20) {
+                                i35++;
+                                RecyclerView.ViewHolder childViewHolder2 = ThemePreviewActivity.this.listView2.findViewHolderForAdapterPosition(childViewHolder2.getAdapterPosition() + 1);
+                                if (childViewHolder2 == null) {
+                                    break;
+                                }
+                                top = childViewHolder2.itemView.getTop();
+                                if (top2 - AndroidUtilities.dp(48.0f) < childViewHolder2.itemView.getBottom()) {
+                                    translationX = Math.min(childViewHolder2.itemView.getTranslationX(), translationX);
+                                }
+                                View view4 = childViewHolder2.itemView;
+                                if (!(view4 instanceof ChatMessageCell) || !((ChatMessageCell) view4).isPinnedTop()) {
+                                    break;
+                                }
+                            }
+                        }
+                        if (top2 - AndroidUtilities.dp(48.0f) < top) {
+                            top2 = top + AndroidUtilities.dp(48.0f);
+                        }
+                        if (translationX != 0.0f) {
+                            canvas.save();
+                            canvas.translate(translationX, 0.0f);
+                        }
+                        avatarImage.setImageY(top2 - AndroidUtilities.dp(44.0f));
+                        avatarImage.draw(canvas);
+                        if (translationX != 0.0f) {
+                            canvas.restore();
+                        }
+                    }
+                }
+                return zDrawChild;
+            }
+
+            @Override
+            public void setTranslationY(float f12) {
+                super.setTranslationY(f12);
+                if (ThemePreviewActivity.this.backgroundCheckBoxView != null) {
+                    for (int i35 = 0; i35 < ThemePreviewActivity.this.backgroundCheckBoxView.length; i35++) {
+                        ThemePreviewActivity.this.backgroundCheckBoxView[i35].invalidate();
+                    }
+                }
+                if (ThemePreviewActivity.this.messagesCheckBoxView != null) {
+                    for (int i36 = 0; i36 < ThemePreviewActivity.this.messagesCheckBoxView.length; i36++) {
+                        ThemePreviewActivity.this.messagesCheckBoxView[i36].invalidate();
+                    }
+                }
+                if (ThemePreviewActivity.this.backgroundPlayAnimationView != null) {
+                    ThemePreviewActivity.this.backgroundPlayAnimationView.invalidate();
+                }
+                if (ThemePreviewActivity.this.messagesPlayAnimationView != null) {
+                    ThemePreviewActivity.this.messagesPlayAnimationView.invalidate();
+                }
+            }
+
+            @Override
+            protected void onChildPressed(View view3, float f12, float f13, boolean z6) {
+                if (z6 && (view3 instanceof ChatMessageCell) && !((ChatMessageCell) view3).isInsideBackground(f12, f13)) {
+                    return;
+                }
+                super.onChildPressed(view3, f12, f13, z6);
+            }
+
+            @Override
+            protected boolean allowSelectChildAtPosition(View view3) {
+                RecyclerView.ViewHolder viewHolderFindContainingViewHolder = ThemePreviewActivity.this.listView2.findContainingViewHolder(view3);
+                if (viewHolderFindContainingViewHolder == null || viewHolderFindContainingViewHolder.getItemViewType() != 2) {
+                    return super.allowSelectChildAtPosition(view3);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                checkMotionEvent(motionEvent);
+                if (ThemePreviewActivity.this.hasScrollingBackground) {
+                    if (motionEvent.getAction() == 0) {
+                        float x = motionEvent.getX();
+                        this.startX = x;
+                        this.lastX = x;
+                        float y = motionEvent.getY();
+                        this.startY = y;
+                        this.lastY = y;
+                        if (getParent() != null) {
+                            getParent().requestDisallowInterceptTouchEvent(true);
+                        }
+                        this.scrollingBackground = true;
+                    } else if (motionEvent.getAction() == 2) {
+                        if (!this.scrollingBackground && Math.abs(this.startX - motionEvent.getX()) > AndroidUtilities.touchSlop) {
+                            if (getParent() != null) {
+                                getParent().requestDisallowInterceptTouchEvent(true);
+                            }
+                            this.scrollingBackground = true;
+                        }
+                    } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+                        this.scrollingBackground = false;
+                        if (getParent() != null) {
+                            getParent().requestDisallowInterceptTouchEvent(false);
+                        }
+                    }
+                    ThemePreviewActivity.this.gestureDetector2.onTouchEvent(motionEvent);
+                }
+                return this.scrollingBackground || super.onTouchEvent(motionEvent);
+            }
+
+            private void checkMotionEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() == 1) {
+                    if (!ThemePreviewActivity.this.wasScroll && (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) && ThemePreviewActivity.this.patternLayout[0].getVisibility() == 0) {
+                        ThemePreviewActivity.this.showPatternsView(0, false, true);
+                    }
+                    ThemePreviewActivity.this.wasScroll = false;
+                }
+            }
+
+            @Override
+            protected void onLayout(boolean z6, int i35, int i36, int i37, int i38) {
+                super.onLayout(z6, i35, i36, i37, i38);
+                ThemePreviewActivity.this.invalidateBlur();
+            }
+        };
+        DefaultItemAnimator defaultItemAnimator2 = new DefaultItemAnimator() {
+            @Override
+            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                ThemePreviewActivity.this.listView2.invalidateViews();
+            }
+        };
+        defaultItemAnimator2.setDelayAnimations(false);
+        this.listView2.setItemAnimator(defaultItemAnimator2);
+        this.listView2.setVerticalScrollBarEnabled(i);
+        this.listView2.setOverScrollMode(2);
+        i3 = this.screenType;
+        if (i3 == 2) {
+            RecyclerListView recyclerListView6 = this.listView2;
+            int iDp10 = AndroidUtilities.dp(4.0f);
+            if (this.self) {
+                i23 = 0;
+            } else {
+                i23 = 0;
+            }
+            int iDp11 = AndroidUtilities.dp(72 + i23) - 12;
+            if (insideBottomSheet()) {
+                i24 = AndroidUtilities.navigationBarHeight;
+            } else {
+                i24 = 0;
+            }
+            recyclerListView6.setPadding(0, iDp10, 0, iDp11 + i24);
+        } else if (i3 == i) {
+            this.listView2.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(16.0f));
+        } else {
+            this.listView2.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+        }
+        this.listView2.setClipToPadding(false);
+        this.listView2.setLayoutManager(new LinearLayoutManager(context, i, i));
+        RecyclerListView recyclerListView7 = this.listView2;
+        if (LocaleController.isRTL) {
+            i4 = 1;
+        } else {
+            i4 = 2;
+        }
+        recyclerListView7.setVerticalScrollbarPosition(i4);
+        if (this.screenType == i) {
+            this.page2.addView(this.listView2, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 273.0f));
+            this.listView2.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
+                @Override
+                public boolean hasDoubleTap(View view3, int i35) {
+                    return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view3, i35);
+                }
+
+                @Override
+                public void onDoubleTap(View view3, int i35, float f12, float f13) {
+                    RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view3, i35, f12, f13);
+                }
+
+                @Override
+                public final void onItemClick(View view3, int i35, float f12, float f13) {
+                    this.f$0.lambda$createView$6(view3, i35, f12, f13);
+                }
+            });
+        } else {
+            this.page2.addView(this.listView2, LayoutHelper.createFrame(-1, -1, 51));
+        }
+        this.listView2.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i35, int i36) {
+                ThemePreviewActivity.this.listView2.invalidateViews();
+                ThemePreviewActivity.this.wasScroll = true;
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int i35) {
+                if (i35 == 0) {
+                    ThemePreviewActivity.this.wasScroll = false;
+                }
+            }
+        });
+        this.page2.addView(this.actionBar2, LayoutHelper.createFrame(-1, f));
+        WallpaperParallaxEffect wallpaperParallaxEffect2 = new WallpaperParallaxEffect(context);
+        this.parallaxEffect = wallpaperParallaxEffect2;
+        wallpaperParallaxEffect2.setCallback(new WallpaperParallaxEffect.Callback() {
+            @Override
+            public final void onOffsetsChanged(int i35, int i36, float f12) {
+                this.f$0.lambda$createView$7(i35, i36, f12);
+            }
+        });
+        i5 = this.screenType;
+        if (i5 != i) {
+            if (i5 == 2) {
+                final boolean zInsideBottomSheet2 = insideBottomSheet();
+                FrameLayout frameLayout21 = new FrameLayout(context) {
+                    private final ColorFilter colorFilter;
+                    private LinearGradient gradient;
+                    private int gradientHeight;
+                    private final Paint gradientPaint;
+
+                    {
+                        Paint paint = new Paint(3);
+                        this.gradientPaint = paint;
+                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                        ColorMatrix colorMatrix = new ColorMatrix();
+                        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.4f);
+                        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.65f);
+                        this.colorFilter = new ColorMatrixColorFilter(colorMatrix);
+                    }
+
+                    @Override
+                    protected void dispatchDraw(Canvas canvas) {
+                        if (zInsideBottomSheet2) {
+                            RectF rectF = AndroidUtilities.rectTmp;
+                            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                            Theme.applyServiceShaderMatrixForView(this, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                            Paint paint = ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground");
+                            ColorFilter colorFilter = paint.getColorFilter();
+                            paint.setColorFilter(this.colorFilter);
+                            float f12 = 1.0f;
+                            if (ThemePreviewActivity.this.backgroundImage != null && (ThemePreviewActivity.this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable) && ThemePreviewActivity.this.currentIntensity < 0.0f) {
+                                f12 = 0.33f;
+                            }
+                            int alpha = paint.getAlpha();
+                            paint.setAlpha((int) (alpha * f12));
+                            canvas.drawRect(rectF, paint);
+                            paint.setAlpha(alpha);
+                            paint.setColorFilter(colorFilter);
+                            if (ThemePreviewActivity.this.shouldShowBrightnessControll && ThemePreviewActivity.this.dimAmount > 0.0f) {
+                                canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
+                            }
+                            canvas.save();
+                            if (this.gradient == null || this.gradientHeight != getHeight()) {
+                                int height = getHeight();
+                                this.gradientHeight = height;
+                                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, height, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                                this.gradient = linearGradient;
+                                this.gradientPaint.setShader(linearGradient);
+                            }
+                            canvas.drawRect(rectF, this.gradientPaint);
+                            canvas.restore();
+                            canvas.restore();
+                        }
+                        super.dispatchDraw(canvas);
+                    }
+
+                    @Override
+                    protected void onMeasure(int i35, int i36) {
+                        super.onMeasure(i35, i36);
+                        for (int i37 = 0; i37 < getChildCount(); i37++) {
+                            View childAt = getChildAt(i37);
+                            if (childAt.getMeasuredWidth() > AndroidUtilities.dp(420.0f)) {
+                                childAt.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(420.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getMeasuredHeight(), 1073741824));
+                            }
+                        }
+                    }
+                };
+                this.bottomOverlayChat = frameLayout21;
+                frameLayout21.setWillNotDraw(false);
+                FrameLayout frameLayout22 = this.bottomOverlayChat;
+                int iDp12 = AndroidUtilities.dp(12.0f);
+                int iDp13 = AndroidUtilities.dp(12.0f);
+                int iDp14 = AndroidUtilities.dp(12.0f);
+                int iDp15 = AndroidUtilities.dp(12.0f);
+                if (insideBottomSheet()) {
+                    i21 = AndroidUtilities.navigationBarHeight;
+                } else {
+                    i21 = 0;
+                }
+                frameLayout22.setPadding(iDp12, iDp13, iDp14, iDp15 + i21);
+                this.page2.addView(this.bottomOverlayChat, LayoutHelper.createFrame(-1, 0, 81));
+                BlurButton blurButton4 = new BlurButton(context);
+                this.applyButton1 = blurButton4;
+                ScaleStateListAnimator.apply(blurButton4, 0.033f, 1.2f);
+                updateApplyButton1(false);
+                this.applyButton1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        this.f$0.lambda$createView$8(view3);
+                    }
+                });
+                if (this.dialogId <= 0) {
+                    this.bottomOverlayChat.addView(this.applyButton1, LayoutHelper.createFrame(-1, 48.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+                } else {
+                    this.bottomOverlayChat.addView(this.applyButton1, LayoutHelper.createFrame(-1, 48.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+                }
+                if (this.shouldShowBrightnessControll) {
+                    FrameLayout frameLayout23 = new FrameLayout(getContext()) {
+                        private final Paint shadowPaint = new Paint(1);
+                        private final Paint dimPaint = new Paint(1);
+                        private final Paint dimPaint2 = new Paint(1);
+
+                        @Override
+                        protected void dispatchDraw(Canvas canvas) {
+                            RectF rectF = AndroidUtilities.rectTmp;
+                            rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+                            float fDp = AndroidUtilities.dp(8.0f);
+                            this.shadowPaint.setColor(0);
+                            this.shadowPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33f), ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimmingSlider.getAlpha() * 27.0f)));
+                            canvas.drawRoundRect(rectF, fDp, fDp, this.shadowPaint);
+                            Theme.applyServiceShaderMatrixForView(this, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                            Paint paint = ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground");
+                            int alpha = paint.getAlpha();
+                            paint.setAlpha((int) (alpha * ThemePreviewActivity.this.dimmingSlider.getAlpha()));
+                            canvas.drawRoundRect(rectF, fDp, fDp, paint);
+                            paint.setAlpha(alpha);
+                            if (ThemePreviewActivity.this.shouldShowBrightnessControll && ThemePreviewActivity.this.dimAmount > 0.0f) {
+                                this.dimPaint2.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
+                                canvas.drawRoundRect(rectF, fDp, fDp, this.dimPaint2);
+                            }
+                            this.dimPaint.setColor(520093695);
+                            this.dimPaint.setAlpha((int) (ThemePreviewActivity.this.dimmingSlider.getAlpha() * 30.0f));
+                            canvas.drawRoundRect(rectF, fDp, fDp, this.dimPaint);
+                            super.dispatchDraw(canvas);
+                        }
+                    };
+                    this.dimmingSliderContainer = frameLayout23;
+                    frameLayout23.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+                    this.page2.addView(this.dimmingSliderContainer, LayoutHelper.createFrame(222, 76, 49));
+                    SliderView sliderView5 = new SliderView(getContext(), i25) {
+                        @Override
+                        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                            if (getParent() != null) {
+                                getParent().requestDisallowInterceptTouchEvent(true);
+                            }
+                            return super.dispatchTouchEvent(motionEvent);
+                        }
+                    };
+                    this.dimmingSlider = sliderView5;
+                    sliderView5.setValue(this.dimAmount);
+                    this.dimmingSlider.setMinMax(0.0f, 0.9f);
+                    this.dimmingSlider.setOnValueChange(new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj5) {
+                            this.f$0.lambda$createView$10((Float) obj5);
+                        }
+                    });
+                    this.dimmingSliderContainer.addView(this.dimmingSlider);
+                    dayNightSwitchDelegate = this.onSwitchDayNightDelegate;
+                    if (dayNightSwitchDelegate != null) {
+                        SliderView sliderView6 = this.dimmingSlider;
+                        if (dayNightSwitchDelegate.isDark()) {
+                            i22 = 0;
+                        } else {
+                            i22 = 8;
+                        }
+                        sliderView6.setVisibility(i22);
+                        SliderView sliderView7 = this.dimmingSlider;
+                        if (this.onSwitchDayNightDelegate.isDark()) {
+                            f9 = 1.0f;
+                        } else {
+                            f9 = 0.0f;
+                        }
+                        sliderView7.setAlpha(f9);
+                        SliderView sliderView8 = this.dimmingSlider;
+                        if (this.onSwitchDayNightDelegate.isDark()) {
+                            f10 = this.dimAmount;
+                        } else {
+                            f10 = 0.0f;
+                        }
+                        sliderView8.setValue(f10);
+                    }
+                }
+            }
+            rect = new Rect();
+            Drawable drawableMutate3 = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+            this.sheetDrawable = drawableMutate3;
+            drawableMutate3.getPadding(rect);
+            this.sheetDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhite), PorterDuff.Mode.MULTIPLY));
+            textPaint = new TextPaint(i);
+            textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+            textPaint.setTypeface(AndroidUtilities.bold());
+            obj = this.currentWallpaper;
+            if (this.screenType != i) {
+                if (obj instanceof WallpapersListActivity.ColorWallpaper) {
+                }
+                i6 = 3;
+            } else {
+                if (obj instanceof WallpapersListActivity.ColorWallpaper) {
+                }
+                i6 = 3;
+            }
+            strArr = new String[i6];
+            iArr = new int[i6];
+            this.backgroundCheckBoxView = new WallpaperCheckBoxView[i6];
+            if (i6 != 0) {
+                this.backgroundButtonsContainer = new FrameLayout(context);
+                if (this.screenType != i) {
+                    strArr[0] = LocaleController.getString(R.string.BackgroundColors);
+                    strArr[i] = LocaleController.getString(R.string.BackgroundPattern);
+                    strArr[2] = LocaleController.getString(R.string.BackgroundMotion);
+                } else {
+                    strArr[0] = LocaleController.getString(R.string.BackgroundColors);
+                    strArr[i] = LocaleController.getString(R.string.BackgroundPattern);
+                    strArr[2] = LocaleController.getString(R.string.BackgroundMotion);
+                }
+                iMax = 0;
+                while (i19 < i6) {
+                    int iCeil3 = (int) Math.ceil(textPaint.measureText(strArr[i19]));
+                    iArr[i19] = iCeil3;
+                    iMax = Math.max(iMax, iCeil3);
+                }
+                FrameLayout frameLayout24 = new FrameLayout(context) {
+                    private RectF rect = new RectF();
+
+                    @Override
+                    protected void onDraw(Canvas canvas) {
+                        this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                        Theme.applyServiceShaderMatrixForView(ThemePreviewActivity.this.backgroundPlayAnimationView, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                        canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground"));
+                        if (Theme.hasGradientService()) {
+                            canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackgroundDarken"));
+                        }
+                    }
+                };
+                this.backgroundPlayAnimationView = frameLayout24;
+                frameLayout24.setWillNotDraw(false);
+                FrameLayout frameLayout25 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    i20 = 0;
+                } else {
+                    i20 = 4;
+                }
+                frameLayout25.setVisibility(i20);
+                FrameLayout frameLayout26 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    f6 = 1.0f;
+                } else {
+                    f6 = 0.1f;
+                }
+                frameLayout26.setScaleX(f6);
+                FrameLayout frameLayout27 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.1f;
+                }
+                frameLayout27.setScaleY(f7);
+                FrameLayout frameLayout28 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    f8 = 1.0f;
+                } else {
+                    f8 = 0.0f;
+                }
+                frameLayout28.setAlpha(f8);
+                FrameLayout frameLayout110 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    numValueOf = Integer.valueOf(i);
+                } else {
+                    numValueOf = null;
+                }
+                frameLayout110.setTag(numValueOf);
+                this.backgroundButtonsContainer.addView(this.backgroundPlayAnimationView, LayoutHelper.createFrame(48, 48, 17));
+                this.backgroundPlayAnimationView.setOnClickListener(new View.OnClickListener() {
+                    int rotation = 0;
+
+                    @Override
+                    public void onClick(View view3) {
+                        ThemePreviewActivity.this.backgroundPlayAnimationImageView.setRotation(this.rotation);
+                        this.rotation -= 45;
+                        ThemePreviewActivity.this.backgroundPlayAnimationImageView.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
+                        if (ThemePreviewActivity.this.backgroundImages[0] != null) {
+                            Drawable background = ThemePreviewActivity.this.backgroundImages[0].getBackground();
+                            if (!(background instanceof MotionBackgroundDrawable)) {
+                                ThemePreviewActivity.this.onColorsRotate();
+                            } else {
+                                ((MotionBackgroundDrawable) background).switchToNextPosition();
+                            }
+                        }
+                        if (ThemePreviewActivity.this.backgroundImages[1] != null) {
+                            Drawable background2 = ThemePreviewActivity.this.backgroundImages[1].getBackground();
+                            if (background2 instanceof MotionBackgroundDrawable) {
+                                ((MotionBackgroundDrawable) background2).switchToNextPosition();
+                            }
+                        }
+                    }
+                });
+                ImageView imageView3 = new ImageView(context);
+                this.backgroundPlayAnimationImageView = imageView3;
+                imageView3.setScaleType(ImageView.ScaleType.CENTER);
+                this.backgroundPlayAnimationImageView.setImageResource(R.drawable.bg_rotate_large);
+                this.backgroundPlayAnimationView.addView(this.backgroundPlayAnimationImageView, LayoutHelper.createFrame(-2, -2, 17));
+            } else {
+                iMax = 0;
+            }
+            i7 = 0;
+            while (i7 < i6) {
+                this.backgroundCheckBoxView[i7] = new WallpaperCheckBoxView(context, (this.screenType == i && !(this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) || i7 != 0, this.backgroundImage, this.themeDelegate);
+                this.backgroundCheckBoxView[i7].setBackgroundColor(this.backgroundColor);
+                this.backgroundCheckBoxView[i7].setText(strArr[i7], iArr[i7], iMax);
+                if (this.screenType == i) {
+                    if (i7 == i) {
+                        WallpaperCheckBoxView wallpaperCheckBoxView4 = this.backgroundCheckBoxView[i7];
+                        if (this.selectedPattern == null) {
+                            z4 = true;
+                        } else {
+                            z4 = true;
+                        }
+                        wallpaperCheckBoxView4.setChecked(z4, false);
+                    } else if (i7 == 2) {
+                        this.backgroundCheckBoxView[i7].setChecked(this.isMotion, false);
+                    }
+                } else if (i7 == i) {
+                    WallpaperCheckBoxView wallpaperCheckBoxView5 = this.backgroundCheckBoxView[i7];
+                    if (this.selectedPattern == null) {
+                        z4 = true;
+                    } else {
+                        z4 = true;
+                    }
+                    wallpaperCheckBoxView5.setChecked(z4, false);
+                } else if (i7 == 2) {
+                    this.backgroundCheckBoxView[i7].setChecked(this.isMotion, false);
+                }
+                iDp3 = AndroidUtilities.dp(56.0f) + iMax;
+                layoutParams2 = new FrameLayout.LayoutParams(iDp3, -2);
+                layoutParams2.gravity = 17;
+                if (i6 == 3) {
+                    if (i7 != 0) {
+                        layoutParams2.leftMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                    } else {
+                        layoutParams2.leftMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                    }
+                } else if (i7 == i) {
+                    layoutParams2.leftMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                } else {
+                    layoutParams2.rightMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                }
+                this.backgroundButtonsContainer.addView(this.backgroundCheckBoxView[i7], layoutParams2);
+                final WallpaperCheckBoxView wallpaperCheckBoxView6 = this.backgroundCheckBoxView[i7];
+                wallpaperCheckBoxView6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        this.f$0.lambda$createView$11(i7, wallpaperCheckBoxView6, view3);
+                    }
+                });
+                if (i7 == 2) {
+                    this.backgroundCheckBoxView[i7].setAlpha(0.0f);
+                    this.backgroundCheckBoxView[i7].setVisibility(4);
+                }
+                i7 += i;
+            }
+            if (this.screenType == i) {
+                iArr2 = new int[2];
+                this.messagesCheckBoxView = new WallpaperCheckBoxView[2];
+                this.messagesButtonsContainer = new FrameLayout(context);
+                strArr2 = new String[]{LocaleController.getString(R.string.BackgroundAnimate), LocaleController.getString(R.string.BackgroundColors)};
+                i16 = 0;
+                iMax2 = 0;
+                while (i16 < i15) {
+                    int iCeil4 = (int) Math.ceil(textPaint.measureText(strArr2[i16]));
+                    iArr2[i16] = iCeil4;
+                    iMax2 = Math.max(iMax2, iCeil4);
+                    i16 += i;
+                }
+                if (this.accent != null) {
+                    FrameLayout frameLayout111 = new FrameLayout(context) {
+                        private RectF rect = new RectF();
+
+                        @Override
+                        protected void onDraw(Canvas canvas) {
+                            this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                            Theme.applyServiceShaderMatrixForView(ThemePreviewActivity.this.messagesPlayAnimationView, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                            canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground"));
+                            if (Theme.hasGradientService()) {
+                                canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackgroundDarken"));
+                            }
+                        }
+                    };
+                    this.messagesPlayAnimationView = frameLayout111;
+                    frameLayout111.setWillNotDraw(false);
+                    FrameLayout frameLayout112 = this.messagesPlayAnimationView;
+                    if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                        i17 = 0;
+                    } else {
+                        i17 = 4;
+                    }
+                    frameLayout112.setVisibility(i17);
+                    FrameLayout frameLayout113 = this.messagesPlayAnimationView;
+                    if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                        f3 = 1.0f;
+                    } else {
+                        f3 = 0.1f;
+                    }
+                    frameLayout113.setScaleX(f3);
+                    FrameLayout frameLayout114 = this.messagesPlayAnimationView;
+                    if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                        f4 = 1.0f;
+                    } else {
+                        f4 = 0.1f;
+                    }
+                    frameLayout114.setScaleY(f4);
+                    FrameLayout frameLayout115 = this.messagesPlayAnimationView;
+                    if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                        f5 = 1.0f;
+                    } else {
+                        f5 = 0.0f;
+                    }
+                    frameLayout115.setAlpha(f5);
+                    this.messagesButtonsContainer.addView(this.messagesPlayAnimationView, LayoutHelper.createFrame(48, 48, 17));
+                    this.messagesPlayAnimationView.setOnClickListener(new View.OnClickListener() {
+                        int rotation = 0;
+
+                        @Override
+                        public void onClick(View view3) {
+                            ThemePreviewActivity.this.messagesPlayAnimationImageView.setRotation(this.rotation);
+                            this.rotation -= 45;
+                            ThemePreviewActivity.this.messagesPlayAnimationImageView.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
+                            if (!ThemePreviewActivity.this.accent.myMessagesAnimated) {
+                                if (ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3 != 0) {
+                                    int i35 = ThemePreviewActivity.this.accent.myMessagesAccentColor != 0 ? ThemePreviewActivity.this.accent.myMessagesAccentColor : ThemePreviewActivity.this.accent.accentColor;
+                                    ThemePreviewActivity.this.accent.myMessagesAccentColor = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1 = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2 = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3 = i35;
+                                } else {
+                                    int i36 = ThemePreviewActivity.this.accent.myMessagesAccentColor != 0 ? ThemePreviewActivity.this.accent.myMessagesAccentColor : ThemePreviewActivity.this.accent.accentColor;
+                                    ThemePreviewActivity.this.accent.myMessagesAccentColor = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1 = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2 = i36;
+                                }
+                                ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3, 3);
+                                ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2, 2);
+                                ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1, 1);
+                                ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesAccentColor != 0 ? ThemePreviewActivity.this.accent.myMessagesAccentColor : ThemePreviewActivity.this.accent.accentColor, 0);
+                                ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(0, ThemePreviewActivity.this.accent.myMessagesAccentColor);
+                                ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(1, ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1);
+                                ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(2, ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2);
+                                ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(3, ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3);
+                                Theme.refreshThemeColors(true, true);
+                                ThemePreviewActivity.this.listView2.invalidateViews();
+                                return;
+                            }
+                            if (ThemePreviewActivity.this.msgOutDrawable.getMotionBackgroundDrawable() != null) {
+                                ThemePreviewActivity.this.msgOutDrawable.getMotionBackgroundDrawable().switchToNextPosition();
+                            }
+                        }
+                    });
+                    ImageView imageView4 = new ImageView(context);
+                    this.messagesPlayAnimationImageView = imageView4;
+                    imageView4.setScaleType(ImageView.ScaleType.CENTER);
+                    this.messagesPlayAnimationImageView.setImageResource(R.drawable.bg_rotate_large);
+                    this.messagesPlayAnimationView.addView(this.messagesPlayAnimationImageView, LayoutHelper.createFrame(-2, -2, 17));
+                    while (i18 < 2) {
+                        WallpaperCheckBoxView[] wallpaperCheckBoxViewArr2 = this.messagesCheckBoxView;
+                        if (i18 == 0) {
+                            z3 = true;
+                        } else {
+                            z3 = false;
+                        }
+                        wallpaperCheckBoxViewArr2[i18] = new WallpaperCheckBoxView(context, z3, this.backgroundImage, this.themeDelegate);
+                        this.messagesCheckBoxView[i18].setText(strArr2[i18], iArr2[i18], iMax2);
+                        if (i18 == 0) {
+                            this.messagesCheckBoxView[i18].setChecked(this.accent.myMessagesAnimated, false);
+                        }
+                        iDp2 = AndroidUtilities.dp(56.0f) + iMax2;
+                        layoutParams = new FrameLayout.LayoutParams(iDp2, -2);
+                        layoutParams.gravity = 17;
+                        if (i18 == i) {
+                            layoutParams.leftMargin = (iDp2 / 2) + AndroidUtilities.dp(10.0f);
+                        } else {
+                            layoutParams.rightMargin = (iDp2 / 2) + AndroidUtilities.dp(10.0f);
+                        }
+                        this.messagesButtonsContainer.addView(this.messagesCheckBoxView[i18], layoutParams);
+                        final WallpaperCheckBoxView wallpaperCheckBoxView7 = this.messagesCheckBoxView[i18];
+                        wallpaperCheckBoxView7.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$12(i18, wallpaperCheckBoxView7, view3);
+                            }
+                        });
+                    }
+                }
+            }
+            if (this.screenType != i) {
+                this.isBlurred = false;
+                while (i8 < 2) {
+                    this.patternLayout[i8] = new FrameLayout(context) {
+                        @Override
+                        public void onDraw(Canvas canvas) {
+                            if (i8 == 0) {
+                                ThemePreviewActivity.this.sheetDrawable.setBounds(ThemePreviewActivity.this.colorPicker.getLeft() - rect.left, 0, ThemePreviewActivity.this.colorPicker.getRight() + rect.right, getMeasuredHeight());
+                            } else {
+                                ThemePreviewActivity.this.sheetDrawable.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+                            }
+                            ThemePreviewActivity.this.sheetDrawable.draw(canvas);
+                        }
+                    };
+                    if (i8 != i) {
+                        this.patternLayout[i8].setVisibility(4);
+                    } else {
+                        this.patternLayout[i8].setVisibility(4);
+                    }
+                    this.patternLayout[i8].setWillNotDraw(false);
+                    if (this.screenType == 2) {
+                        if (i8 == 0) {
+                            i14 = 321;
+                        } else {
+                            i14 = 316;
+                        }
+                        layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i14, 83);
+                    } else {
+                        if (i8 == 0) {
+                            i9 = 273;
+                        } else {
+                            i9 = 316;
+                        }
+                        layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i9, 83);
+                    }
+                    if (i8 == 0) {
+                        if (this.screenType == 2) {
+                            i13 = 321;
+                        } else {
+                            i13 = 273;
+                        }
+                        f2 = i13;
+                    } else {
+                        f2 = 316.0f;
+                    }
+                    layoutParamsCreateFrame.height = AndroidUtilities.dp(f2);
+                    if (insideBottomSheet()) {
+                        layoutParamsCreateFrame.height += AndroidUtilities.navigationBarHeight;
+                    }
+                    if (i8 == 0) {
+                        Drawable drawable2 = this.sheetDrawable;
+                        Rect rect3 = AndroidUtilities.rectTmp2;
+                        drawable2.getPadding(rect3);
+                        layoutParamsCreateFrame.height += AndroidUtilities.dp(12.0f) + rect3.top;
+                    }
+                    FrameLayout frameLayout116 = this.patternLayout[i8];
+                    if (i8 == 0) {
+                        iDp = AndroidUtilities.dp(12.0f) + rect.top;
+                    } else {
+                        iDp = 0;
+                    }
+                    if (insideBottomSheet()) {
+                        i10 = AndroidUtilities.navigationBarHeight;
+                    } else {
+                        i10 = 0;
+                    }
+                    frameLayout116.setPadding(0, iDp, 0, i10);
+                    this.page2.addView(this.patternLayout[i8], layoutParamsCreateFrame);
+                    if (i8 != i) {
+                        this.patternsButtonsContainer[i8] = new FrameLayout(context) {
+                            Paint paint = new Paint();
+
+                            @Override
+                            public void onDraw(Canvas canvas) {
+                                int intrinsicHeight = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                                Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                                Theme.chat_composeShadowDrawable.draw(canvas);
+                                this.paint.setColor(ThemePreviewActivity.this.getThemedColor(Theme.key_chat_messagePanelBackground));
+                                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+                            }
+                        };
+                        this.patternsButtonsContainer[i8].setWillNotDraw(false);
+                        this.patternsButtonsContainer[i8].setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
+                        this.patternsButtonsContainer[i8].setClickable(i);
+                        this.patternLayout[i8].addView(this.patternsButtonsContainer[i8], LayoutHelper.createFrame(-1, 51, 80));
+                        this.patternsCancelButton[i8] = new TextView(context);
+                        this.patternsCancelButton[i8].setTextSize(i, 15.0f);
+                        this.patternsCancelButton[i8].setTypeface(AndroidUtilities.bold());
+                        TextView textView9 = this.patternsCancelButton[i8];
+                        int i35 = Theme.key_chat_fieldOverlayText;
+                        textView9.setTextColor(getThemedColor(i35));
+                        this.patternsCancelButton[i8].setText(LocaleController.getString(R.string.Cancel));
+                        this.patternsCancelButton[i8].setGravity(17);
+                        this.patternsCancelButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        TextView textView10 = this.patternsCancelButton[i8];
+                        int i36 = Theme.key_listSelector;
+                        textView10.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i36), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsCancelButton[i8], LayoutHelper.createFrame(-2, -1, 51));
+                        this.patternsCancelButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$13(i8, view3);
+                            }
+                        });
+                        this.patternsSaveButton[i8] = new TextView(context);
+                        this.patternsSaveButton[i8].setTextSize(i, 15.0f);
+                        this.patternsSaveButton[i8].setTypeface(AndroidUtilities.bold());
+                        this.patternsSaveButton[i8].setTextColor(getThemedColor(i35));
+                        this.patternsSaveButton[i8].setText(LocaleController.getString(R.string.ApplyTheme));
+                        this.patternsSaveButton[i8].setGravity(17);
+                        this.patternsSaveButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        this.patternsSaveButton[i8].setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i36), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsSaveButton[i8], LayoutHelper.createFrame(-2, -1, 53));
+                        this.patternsSaveButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$14(i8, view3);
+                            }
+                        });
+                    } else {
+                        this.patternsButtonsContainer[i8] = new FrameLayout(context) {
+                            Paint paint = new Paint();
+
+                            @Override
+                            public void onDraw(Canvas canvas) {
+                                int intrinsicHeight = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                                Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                                Theme.chat_composeShadowDrawable.draw(canvas);
+                                this.paint.setColor(ThemePreviewActivity.this.getThemedColor(Theme.key_chat_messagePanelBackground));
+                                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+                            }
+                        };
+                        this.patternsButtonsContainer[i8].setWillNotDraw(false);
+                        this.patternsButtonsContainer[i8].setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
+                        this.patternsButtonsContainer[i8].setClickable(i);
+                        this.patternLayout[i8].addView(this.patternsButtonsContainer[i8], LayoutHelper.createFrame(-1, 51, 80));
+                        this.patternsCancelButton[i8] = new TextView(context);
+                        this.patternsCancelButton[i8].setTextSize(i, 15.0f);
+                        this.patternsCancelButton[i8].setTypeface(AndroidUtilities.bold());
+                        TextView textView11 = this.patternsCancelButton[i8];
+                        int i37 = Theme.key_chat_fieldOverlayText;
+                        textView11.setTextColor(getThemedColor(i37));
+                        this.patternsCancelButton[i8].setText(LocaleController.getString(R.string.Cancel));
+                        this.patternsCancelButton[i8].setGravity(17);
+                        this.patternsCancelButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        TextView textView12 = this.patternsCancelButton[i8];
+                        int i38 = Theme.key_listSelector;
+                        textView12.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i38), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsCancelButton[i8], LayoutHelper.createFrame(-2, -1, 51));
+                        this.patternsCancelButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$13(i8, view3);
+                            }
+                        });
+                        this.patternsSaveButton[i8] = new TextView(context);
+                        this.patternsSaveButton[i8].setTextSize(i, 15.0f);
+                        this.patternsSaveButton[i8].setTypeface(AndroidUtilities.bold());
+                        this.patternsSaveButton[i8].setTextColor(getThemedColor(i37));
+                        this.patternsSaveButton[i8].setText(LocaleController.getString(R.string.ApplyTheme));
+                        this.patternsSaveButton[i8].setGravity(17);
+                        this.patternsSaveButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        this.patternsSaveButton[i8].setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i38), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsSaveButton[i8], LayoutHelper.createFrame(-2, -1, 53));
+                        this.patternsSaveButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$14(i8, view3);
+                            }
+                        });
+                    }
+                    if (i8 == i) {
+                        TextView textView13 = new TextView(context);
+                        this.patternTitleView = textView13;
+                        textView13.setLines(i);
+                        this.patternTitleView.setSingleLine(i);
+                        this.patternTitleView.setText(LocaleController.getString(R.string.BackgroundChoosePattern));
+                        this.patternTitleView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                        this.patternTitleView.setTextSize(i, 20.0f);
+                        this.patternTitleView.setTypeface(AndroidUtilities.bold());
+                        this.patternTitleView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
+                        this.patternTitleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+                        this.patternTitleView.setGravity(16);
+                        this.patternLayout[i8].addView(this.patternTitleView, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 21.0f, 0.0f, 0.0f));
+                        RecyclerListView recyclerListView8 = new RecyclerListView(context) {
+                            @Override
+                            public boolean onTouchEvent(MotionEvent motionEvent) {
+                                if (motionEvent.getAction() == 0) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                return super.onTouchEvent(motionEvent);
+                            }
+                        };
+                        this.patternsListView = recyclerListView8;
+                        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context, 0, false);
+                        this.patternsLayoutManager = linearLayoutManager2;
+                        recyclerListView8.setLayoutManager(linearLayoutManager2);
+                        RecyclerListView recyclerListView9 = this.patternsListView;
+                        PatternsAdapter patternsAdapter2 = new PatternsAdapter(context);
+                        this.patternsAdapter = patternsAdapter2;
+                        recyclerListView9.setAdapter(patternsAdapter2);
+                        this.patternsListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                            @Override
+                            public void getItemOffsets(Rect rect4, View view3, RecyclerView recyclerView, RecyclerView.State state) {
+                                int childAdapterPosition = recyclerView.getChildAdapterPosition(view3);
+                                rect4.left = AndroidUtilities.dp(12.0f);
+                                rect4.top = 0;
+                                rect4.bottom = 0;
+                                if (childAdapterPosition == state.getItemCount() - 1) {
+                                    rect4.right = AndroidUtilities.dp(12.0f);
+                                }
+                            }
+                        });
+                        this.patternLayout[i8].addView(this.patternsListView, LayoutHelper.createFrame(-1, 100.0f, 51, 0.0f, 76.0f, 0.0f, 0.0f));
+                        this.patternsListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                            @Override
+                            public final void onItemClick(View view3, int i39) {
+                                this.f$0.lambda$createView$15(view3, i39);
+                            }
+                        });
+                        HeaderCell headerCell2 = new HeaderCell(context);
+                        this.intensityCell = headerCell2;
+                        headerCell2.setText(LocaleController.getString(R.string.BackgroundIntensity));
+                        this.patternLayout[i8].addView(this.intensityCell, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 175.0f, 0.0f, 0.0f));
+                        SeekBarView seekBarView2 = new SeekBarView(context, getResourceProvider()) {
+                            @Override
+                            public boolean onTouchEvent(MotionEvent motionEvent) {
+                                if (motionEvent.getAction() == 0) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                return super.onTouchEvent(motionEvent);
+                            }
+                        };
+                        this.intensitySeekBar = seekBarView2;
+                        seekBarView2.setProgress(this.currentIntensity);
+                        this.intensitySeekBar.setReportChanges(i);
+                        this.intensitySeekBar.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+                            @Override
+                            public CharSequence getContentDescription() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
+                            }
+
+                            @Override
+                            public int getStepsCount() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+                            }
+
+                            @Override
+                            public boolean needVisuallyDivideSteps() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                            }
+
+                            @Override
+                            public void onSeekBarPressed(boolean z6) {
+                            }
+
+                            @Override
+                            public void onSeekBarDrag(boolean z6, float f12) {
+                                ThemePreviewActivity.this.currentIntensity = f12;
+                                ThemePreviewActivity.this.updateIntensity();
+                            }
+                        });
+                        this.patternLayout[i8].addView(this.intensitySeekBar, LayoutHelper.createFrame(-1, 38.0f, 51, 5.0f, 211.0f, 5.0f, 0.0f));
+                    } else {
+                        ColorPicker colorPicker2 = new ColorPicker(context, this.editingTheme, new AnonymousClass26());
+                        this.colorPicker = colorPicker2;
+                        colorPicker2.setResourcesProvider(getResourceProvider());
+                        if (this.screenType == i) {
+                            this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1, i));
+                            if (this.applyingTheme.isDark()) {
+                                this.colorPicker.setMinBrightness(0.2f);
+                            } else {
+                                this.colorPicker.setMinBrightness(0.05f);
+                                this.colorPicker.setMaxBrightness(0.8f);
+                            }
+                            themeAccent = this.accent;
+                            if (themeAccent != null) {
+                                if (themeAccent.accentColor2 != 0) {
+                                    i11 = 2;
+                                } else {
+                                    i11 = 1;
+                                }
+                                this.colorPicker.setType(1, hasChanges(i), 2, i11, false, 0, false);
+                                this.colorPicker.setColor(this.accent.accentColor, 0);
+                                i12 = this.accent.accentColor2;
+                                if (i12 != 0) {
+                                    this.colorPicker.setColor(i12, i);
+                                }
+                            }
+                        } else {
+                            this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1.0f, 1, 0.0f, 0.0f, 0.0f, 48.0f));
+                        }
+                    }
+                }
+            } else {
+                this.isBlurred = false;
+                while (i8 < 2) {
+                    this.patternLayout[i8] = new FrameLayout(context) {
+                        @Override
+                        public void onDraw(Canvas canvas) {
+                            if (i8 == 0) {
+                                ThemePreviewActivity.this.sheetDrawable.setBounds(ThemePreviewActivity.this.colorPicker.getLeft() - rect.left, 0, ThemePreviewActivity.this.colorPicker.getRight() + rect.right, getMeasuredHeight());
+                            } else {
+                                ThemePreviewActivity.this.sheetDrawable.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+                            }
+                            ThemePreviewActivity.this.sheetDrawable.draw(canvas);
+                        }
+                    };
+                    if (i8 != i) {
+                        this.patternLayout[i8].setVisibility(4);
+                    } else {
+                        this.patternLayout[i8].setVisibility(4);
+                    }
+                    this.patternLayout[i8].setWillNotDraw(false);
+                    if (this.screenType == 2) {
+                        if (i8 == 0) {
+                            i14 = 321;
+                        } else {
+                            i14 = 316;
+                        }
+                        layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i14, 83);
+                    } else {
+                        if (i8 == 0) {
+                            i9 = 273;
+                        } else {
+                            i9 = 316;
+                        }
+                        layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i9, 83);
+                    }
+                    if (i8 == 0) {
+                        if (this.screenType == 2) {
+                            i13 = 321;
+                        } else {
+                            i13 = 273;
+                        }
+                        f2 = i13;
+                    } else {
+                        f2 = 316.0f;
+                    }
+                    layoutParamsCreateFrame.height = AndroidUtilities.dp(f2);
+                    if (insideBottomSheet()) {
+                        layoutParamsCreateFrame.height += AndroidUtilities.navigationBarHeight;
+                    }
+                    if (i8 == 0) {
+                        Drawable drawable3 = this.sheetDrawable;
+                        Rect rect4 = AndroidUtilities.rectTmp2;
+                        drawable3.getPadding(rect4);
+                        layoutParamsCreateFrame.height += AndroidUtilities.dp(12.0f) + rect4.top;
+                    }
+                    FrameLayout frameLayout117 = this.patternLayout[i8];
+                    if (i8 == 0) {
+                        iDp = AndroidUtilities.dp(12.0f) + rect.top;
+                    } else {
+                        iDp = 0;
+                    }
+                    if (insideBottomSheet()) {
+                        i10 = AndroidUtilities.navigationBarHeight;
+                    } else {
+                        i10 = 0;
+                    }
+                    frameLayout117.setPadding(0, iDp, 0, i10);
+                    this.page2.addView(this.patternLayout[i8], layoutParamsCreateFrame);
+                    if (i8 != i) {
+                        this.patternsButtonsContainer[i8] = new FrameLayout(context) {
+                            Paint paint = new Paint();
+
+                            @Override
+                            public void onDraw(Canvas canvas) {
+                                int intrinsicHeight = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                                Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                                Theme.chat_composeShadowDrawable.draw(canvas);
+                                this.paint.setColor(ThemePreviewActivity.this.getThemedColor(Theme.key_chat_messagePanelBackground));
+                                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+                            }
+                        };
+                        this.patternsButtonsContainer[i8].setWillNotDraw(false);
+                        this.patternsButtonsContainer[i8].setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
+                        this.patternsButtonsContainer[i8].setClickable(i);
+                        this.patternLayout[i8].addView(this.patternsButtonsContainer[i8], LayoutHelper.createFrame(-1, 51, 80));
+                        this.patternsCancelButton[i8] = new TextView(context);
+                        this.patternsCancelButton[i8].setTextSize(i, 15.0f);
+                        this.patternsCancelButton[i8].setTypeface(AndroidUtilities.bold());
+                        TextView textView14 = this.patternsCancelButton[i8];
+                        int i39 = Theme.key_chat_fieldOverlayText;
+                        textView14.setTextColor(getThemedColor(i39));
+                        this.patternsCancelButton[i8].setText(LocaleController.getString(R.string.Cancel));
+                        this.patternsCancelButton[i8].setGravity(17);
+                        this.patternsCancelButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        TextView textView15 = this.patternsCancelButton[i8];
+                        int i310 = Theme.key_listSelector;
+                        textView15.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i310), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsCancelButton[i8], LayoutHelper.createFrame(-2, -1, 51));
+                        this.patternsCancelButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$13(i8, view3);
+                            }
+                        });
+                        this.patternsSaveButton[i8] = new TextView(context);
+                        this.patternsSaveButton[i8].setTextSize(i, 15.0f);
+                        this.patternsSaveButton[i8].setTypeface(AndroidUtilities.bold());
+                        this.patternsSaveButton[i8].setTextColor(getThemedColor(i39));
+                        this.patternsSaveButton[i8].setText(LocaleController.getString(R.string.ApplyTheme));
+                        this.patternsSaveButton[i8].setGravity(17);
+                        this.patternsSaveButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        this.patternsSaveButton[i8].setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i310), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsSaveButton[i8], LayoutHelper.createFrame(-2, -1, 53));
+                        this.patternsSaveButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$14(i8, view3);
+                            }
+                        });
+                    } else {
+                        this.patternsButtonsContainer[i8] = new FrameLayout(context) {
+                            Paint paint = new Paint();
+
+                            @Override
+                            public void onDraw(Canvas canvas) {
+                                int intrinsicHeight = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                                Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                                Theme.chat_composeShadowDrawable.draw(canvas);
+                                this.paint.setColor(ThemePreviewActivity.this.getThemedColor(Theme.key_chat_messagePanelBackground));
+                                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+                            }
+                        };
+                        this.patternsButtonsContainer[i8].setWillNotDraw(false);
+                        this.patternsButtonsContainer[i8].setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
+                        this.patternsButtonsContainer[i8].setClickable(i);
+                        this.patternLayout[i8].addView(this.patternsButtonsContainer[i8], LayoutHelper.createFrame(-1, 51, 80));
+                        this.patternsCancelButton[i8] = new TextView(context);
+                        this.patternsCancelButton[i8].setTextSize(i, 15.0f);
+                        this.patternsCancelButton[i8].setTypeface(AndroidUtilities.bold());
+                        TextView textView16 = this.patternsCancelButton[i8];
+                        int i311 = Theme.key_chat_fieldOverlayText;
+                        textView16.setTextColor(getThemedColor(i311));
+                        this.patternsCancelButton[i8].setText(LocaleController.getString(R.string.Cancel));
+                        this.patternsCancelButton[i8].setGravity(17);
+                        this.patternsCancelButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        TextView textView17 = this.patternsCancelButton[i8];
+                        int i312 = Theme.key_listSelector;
+                        textView17.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i312), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsCancelButton[i8], LayoutHelper.createFrame(-2, -1, 51));
+                        this.patternsCancelButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$13(i8, view3);
+                            }
+                        });
+                        this.patternsSaveButton[i8] = new TextView(context);
+                        this.patternsSaveButton[i8].setTextSize(i, 15.0f);
+                        this.patternsSaveButton[i8].setTypeface(AndroidUtilities.bold());
+                        this.patternsSaveButton[i8].setTextColor(getThemedColor(i311));
+                        this.patternsSaveButton[i8].setText(LocaleController.getString(R.string.ApplyTheme));
+                        this.patternsSaveButton[i8].setGravity(17);
+                        this.patternsSaveButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        this.patternsSaveButton[i8].setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i312), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsSaveButton[i8], LayoutHelper.createFrame(-2, -1, 53));
+                        this.patternsSaveButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$14(i8, view3);
+                            }
+                        });
+                    }
+                    if (i8 == i) {
+                        TextView textView18 = new TextView(context);
+                        this.patternTitleView = textView18;
+                        textView18.setLines(i);
+                        this.patternTitleView.setSingleLine(i);
+                        this.patternTitleView.setText(LocaleController.getString(R.string.BackgroundChoosePattern));
+                        this.patternTitleView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                        this.patternTitleView.setTextSize(i, 20.0f);
+                        this.patternTitleView.setTypeface(AndroidUtilities.bold());
+                        this.patternTitleView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
+                        this.patternTitleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+                        this.patternTitleView.setGravity(16);
+                        this.patternLayout[i8].addView(this.patternTitleView, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 21.0f, 0.0f, 0.0f));
+                        RecyclerListView recyclerListView10 = new RecyclerListView(context) {
+                            @Override
+                            public boolean onTouchEvent(MotionEvent motionEvent) {
+                                if (motionEvent.getAction() == 0) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                return super.onTouchEvent(motionEvent);
+                            }
+                        };
+                        this.patternsListView = recyclerListView10;
+                        LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(context, 0, false);
+                        this.patternsLayoutManager = linearLayoutManager3;
+                        recyclerListView10.setLayoutManager(linearLayoutManager3);
+                        RecyclerListView recyclerListView11 = this.patternsListView;
+                        PatternsAdapter patternsAdapter3 = new PatternsAdapter(context);
+                        this.patternsAdapter = patternsAdapter3;
+                        recyclerListView11.setAdapter(patternsAdapter3);
+                        this.patternsListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                            @Override
+                            public void getItemOffsets(Rect rect5, View view3, RecyclerView recyclerView, RecyclerView.State state) {
+                                int childAdapterPosition = recyclerView.getChildAdapterPosition(view3);
+                                rect5.left = AndroidUtilities.dp(12.0f);
+                                rect5.top = 0;
+                                rect5.bottom = 0;
+                                if (childAdapterPosition == state.getItemCount() - 1) {
+                                    rect5.right = AndroidUtilities.dp(12.0f);
+                                }
+                            }
+                        });
+                        this.patternLayout[i8].addView(this.patternsListView, LayoutHelper.createFrame(-1, 100.0f, 51, 0.0f, 76.0f, 0.0f, 0.0f));
+                        this.patternsListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                            @Override
+                            public final void onItemClick(View view3, int i313) {
+                                this.f$0.lambda$createView$15(view3, i313);
+                            }
+                        });
+                        HeaderCell headerCell3 = new HeaderCell(context);
+                        this.intensityCell = headerCell3;
+                        headerCell3.setText(LocaleController.getString(R.string.BackgroundIntensity));
+                        this.patternLayout[i8].addView(this.intensityCell, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 175.0f, 0.0f, 0.0f));
+                        SeekBarView seekBarView3 = new SeekBarView(context, getResourceProvider()) {
+                            @Override
+                            public boolean onTouchEvent(MotionEvent motionEvent) {
+                                if (motionEvent.getAction() == 0) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                return super.onTouchEvent(motionEvent);
+                            }
+                        };
+                        this.intensitySeekBar = seekBarView3;
+                        seekBarView3.setProgress(this.currentIntensity);
+                        this.intensitySeekBar.setReportChanges(i);
+                        this.intensitySeekBar.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+                            @Override
+                            public CharSequence getContentDescription() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
+                            }
+
+                            @Override
+                            public int getStepsCount() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+                            }
+
+                            @Override
+                            public boolean needVisuallyDivideSteps() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                            }
+
+                            @Override
+                            public void onSeekBarPressed(boolean z6) {
+                            }
+
+                            @Override
+                            public void onSeekBarDrag(boolean z6, float f12) {
+                                ThemePreviewActivity.this.currentIntensity = f12;
+                                ThemePreviewActivity.this.updateIntensity();
+                            }
+                        });
+                        this.patternLayout[i8].addView(this.intensitySeekBar, LayoutHelper.createFrame(-1, 38.0f, 51, 5.0f, 211.0f, 5.0f, 0.0f));
+                    } else {
+                        ColorPicker colorPicker3 = new ColorPicker(context, this.editingTheme, new AnonymousClass26());
+                        this.colorPicker = colorPicker3;
+                        colorPicker3.setResourcesProvider(getResourceProvider());
+                        if (this.screenType == i) {
+                            this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1, i));
+                            if (this.applyingTheme.isDark()) {
+                                this.colorPicker.setMinBrightness(0.2f);
+                            } else {
+                                this.colorPicker.setMinBrightness(0.05f);
+                                this.colorPicker.setMaxBrightness(0.8f);
+                            }
+                            themeAccent = this.accent;
+                            if (themeAccent != null) {
+                                if (themeAccent.accentColor2 != 0) {
+                                    i11 = 2;
+                                } else {
+                                    i11 = 1;
+                                }
+                                this.colorPicker.setType(1, hasChanges(i), 2, i11, false, 0, false);
+                                this.colorPicker.setColor(this.accent.accentColor, 0);
+                                i12 = this.accent.accentColor2;
+                                if (i12 != 0) {
+                                    this.colorPicker.setColor(i12, i);
+                                }
+                            }
+                        } else {
+                            this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1.0f, 1, 0.0f, 0.0f, 0.0f, 48.0f));
+                        }
+                    }
+                }
+            }
+            updateButtonState(false, false);
+            if (!this.backgroundImage.getImageReceiver().hasBitmapImage()) {
+                this.page2.setBackgroundColor(-16777216);
+            }
+            if (this.screenType != i) {
+                this.backgroundImage.getImageReceiver().setCrossfadeWithOldImage(i);
+            }
+        } else {
+            if (i5 == 2) {
+                final boolean zInsideBottomSheet3 = insideBottomSheet();
+                FrameLayout frameLayout29 = new FrameLayout(context) {
+                    private final ColorFilter colorFilter;
+                    private LinearGradient gradient;
+                    private int gradientHeight;
+                    private final Paint gradientPaint;
+
+                    {
+                        Paint paint = new Paint(3);
+                        this.gradientPaint = paint;
+                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                        ColorMatrix colorMatrix = new ColorMatrix();
+                        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.4f);
+                        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.65f);
+                        this.colorFilter = new ColorMatrixColorFilter(colorMatrix);
+                    }
+
+                    @Override
+                    protected void dispatchDraw(Canvas canvas) {
+                        if (zInsideBottomSheet3) {
+                            RectF rectF = AndroidUtilities.rectTmp;
+                            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                            Theme.applyServiceShaderMatrixForView(this, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                            Paint paint = ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground");
+                            ColorFilter colorFilter = paint.getColorFilter();
+                            paint.setColorFilter(this.colorFilter);
+                            float f12 = 1.0f;
+                            if (ThemePreviewActivity.this.backgroundImage != null && (ThemePreviewActivity.this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable) && ThemePreviewActivity.this.currentIntensity < 0.0f) {
+                                f12 = 0.33f;
+                            }
+                            int alpha = paint.getAlpha();
+                            paint.setAlpha((int) (alpha * f12));
+                            canvas.drawRect(rectF, paint);
+                            paint.setAlpha(alpha);
+                            paint.setColorFilter(colorFilter);
+                            if (ThemePreviewActivity.this.shouldShowBrightnessControll && ThemePreviewActivity.this.dimAmount > 0.0f) {
+                                canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
+                            }
+                            canvas.save();
+                            if (this.gradient == null || this.gradientHeight != getHeight()) {
+                                int height = getHeight();
+                                this.gradientHeight = height;
+                                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, height, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                                this.gradient = linearGradient;
+                                this.gradientPaint.setShader(linearGradient);
+                            }
+                            canvas.drawRect(rectF, this.gradientPaint);
+                            canvas.restore();
+                            canvas.restore();
+                        }
+                        super.dispatchDraw(canvas);
+                    }
+
+                    @Override
+                    protected void onMeasure(int i313, int i314) {
+                        super.onMeasure(i313, i314);
+                        for (int i315 = 0; i315 < getChildCount(); i315++) {
+                            View childAt = getChildAt(i315);
+                            if (childAt.getMeasuredWidth() > AndroidUtilities.dp(420.0f)) {
+                                childAt.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(420.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getMeasuredHeight(), 1073741824));
+                            }
+                        }
+                    }
+                };
+                this.bottomOverlayChat = frameLayout29;
+                frameLayout29.setWillNotDraw(false);
+                FrameLayout frameLayout210 = this.bottomOverlayChat;
+                int iDp16 = AndroidUtilities.dp(12.0f);
+                int iDp17 = AndroidUtilities.dp(12.0f);
+                int iDp18 = AndroidUtilities.dp(12.0f);
+                int iDp19 = AndroidUtilities.dp(12.0f);
+                if (insideBottomSheet()) {
+                    i21 = AndroidUtilities.navigationBarHeight;
+                } else {
+                    i21 = 0;
+                }
+                frameLayout210.setPadding(iDp16, iDp17, iDp18, iDp19 + i21);
+                this.page2.addView(this.bottomOverlayChat, LayoutHelper.createFrame(-1, 0, 81));
+                BlurButton blurButton5 = new BlurButton(context);
+                this.applyButton1 = blurButton5;
+                ScaleStateListAnimator.apply(blurButton5, 0.033f, 1.2f);
+                updateApplyButton1(false);
+                this.applyButton1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        this.f$0.lambda$createView$8(view3);
+                    }
+                });
+                if (this.dialogId <= 0) {
+                    this.bottomOverlayChat.addView(this.applyButton1, LayoutHelper.createFrame(-1, 48.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+                } else {
+                    this.bottomOverlayChat.addView(this.applyButton1, LayoutHelper.createFrame(-1, 48.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+                }
+                if (this.shouldShowBrightnessControll) {
+                    FrameLayout frameLayout211 = new FrameLayout(getContext()) {
+                        private final Paint shadowPaint = new Paint(1);
+                        private final Paint dimPaint = new Paint(1);
+                        private final Paint dimPaint2 = new Paint(1);
+
+                        @Override
+                        protected void dispatchDraw(Canvas canvas) {
+                            RectF rectF = AndroidUtilities.rectTmp;
+                            rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+                            float fDp = AndroidUtilities.dp(8.0f);
+                            this.shadowPaint.setColor(0);
+                            this.shadowPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33f), ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimmingSlider.getAlpha() * 27.0f)));
+                            canvas.drawRoundRect(rectF, fDp, fDp, this.shadowPaint);
+                            Theme.applyServiceShaderMatrixForView(this, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                            Paint paint = ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground");
+                            int alpha = paint.getAlpha();
+                            paint.setAlpha((int) (alpha * ThemePreviewActivity.this.dimmingSlider.getAlpha()));
+                            canvas.drawRoundRect(rectF, fDp, fDp, paint);
+                            paint.setAlpha(alpha);
+                            if (ThemePreviewActivity.this.shouldShowBrightnessControll && ThemePreviewActivity.this.dimAmount > 0.0f) {
+                                this.dimPaint2.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
+                                canvas.drawRoundRect(rectF, fDp, fDp, this.dimPaint2);
+                            }
+                            this.dimPaint.setColor(520093695);
+                            this.dimPaint.setAlpha((int) (ThemePreviewActivity.this.dimmingSlider.getAlpha() * 30.0f));
+                            canvas.drawRoundRect(rectF, fDp, fDp, this.dimPaint);
+                            super.dispatchDraw(canvas);
+                        }
+                    };
+                    this.dimmingSliderContainer = frameLayout211;
+                    frameLayout211.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+                    this.page2.addView(this.dimmingSliderContainer, LayoutHelper.createFrame(222, 76, 49));
+                    SliderView sliderView9 = new SliderView(getContext(), i25) {
+                        @Override
+                        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                            if (getParent() != null) {
+                                getParent().requestDisallowInterceptTouchEvent(true);
+                            }
+                            return super.dispatchTouchEvent(motionEvent);
+                        }
+                    };
+                    this.dimmingSlider = sliderView9;
+                    sliderView9.setValue(this.dimAmount);
+                    this.dimmingSlider.setMinMax(0.0f, 0.9f);
+                    this.dimmingSlider.setOnValueChange(new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj5) {
+                            this.f$0.lambda$createView$10((Float) obj5);
+                        }
+                    });
+                    this.dimmingSliderContainer.addView(this.dimmingSlider);
+                    dayNightSwitchDelegate = this.onSwitchDayNightDelegate;
+                    if (dayNightSwitchDelegate != null) {
+                        SliderView sliderView10 = this.dimmingSlider;
+                        if (dayNightSwitchDelegate.isDark()) {
+                            i22 = 0;
+                        } else {
+                            i22 = 8;
+                        }
+                        sliderView10.setVisibility(i22);
+                        SliderView sliderView11 = this.dimmingSlider;
+                        if (this.onSwitchDayNightDelegate.isDark()) {
+                            f9 = 1.0f;
+                        } else {
+                            f9 = 0.0f;
+                        }
+                        sliderView11.setAlpha(f9);
+                        SliderView sliderView12 = this.dimmingSlider;
+                        if (this.onSwitchDayNightDelegate.isDark()) {
+                            f10 = this.dimAmount;
+                        } else {
+                            f10 = 0.0f;
+                        }
+                        sliderView12.setValue(f10);
+                    }
+                }
+            }
+            rect = new Rect();
+            Drawable drawableMutate4 = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+            this.sheetDrawable = drawableMutate4;
+            drawableMutate4.getPadding(rect);
+            this.sheetDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhite), PorterDuff.Mode.MULTIPLY));
+            textPaint = new TextPaint(i);
+            textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+            textPaint.setTypeface(AndroidUtilities.bold());
+            obj = this.currentWallpaper;
+            if (this.screenType != i) {
+                if (obj instanceof WallpapersListActivity.ColorWallpaper) {
+                }
+                i6 = 3;
+            } else {
+                if (obj instanceof WallpapersListActivity.ColorWallpaper) {
+                }
+                i6 = 3;
+            }
+            strArr = new String[i6];
+            iArr = new int[i6];
+            this.backgroundCheckBoxView = new WallpaperCheckBoxView[i6];
+            if (i6 != 0) {
+                this.backgroundButtonsContainer = new FrameLayout(context);
+                if (this.screenType != i) {
+                    strArr[0] = LocaleController.getString(R.string.BackgroundColors);
+                    strArr[i] = LocaleController.getString(R.string.BackgroundPattern);
+                    strArr[2] = LocaleController.getString(R.string.BackgroundMotion);
+                } else {
+                    strArr[0] = LocaleController.getString(R.string.BackgroundColors);
+                    strArr[i] = LocaleController.getString(R.string.BackgroundPattern);
+                    strArr[2] = LocaleController.getString(R.string.BackgroundMotion);
+                }
+                iMax = 0;
+                while (i19 < i6) {
+                    int iCeil5 = (int) Math.ceil(textPaint.measureText(strArr[i19]));
+                    iArr[i19] = iCeil5;
+                    iMax = Math.max(iMax, iCeil5);
+                }
+                FrameLayout frameLayout212 = new FrameLayout(context) {
+                    private RectF rect = new RectF();
+
+                    @Override
+                    protected void onDraw(Canvas canvas) {
+                        this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                        Theme.applyServiceShaderMatrixForView(ThemePreviewActivity.this.backgroundPlayAnimationView, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                        canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground"));
+                        if (Theme.hasGradientService()) {
+                            canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackgroundDarken"));
+                        }
+                    }
+                };
+                this.backgroundPlayAnimationView = frameLayout212;
+                frameLayout212.setWillNotDraw(false);
+                FrameLayout frameLayout213 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    i20 = 0;
+                } else {
+                    i20 = 4;
+                }
+                frameLayout213.setVisibility(i20);
+                FrameLayout frameLayout214 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    f6 = 1.0f;
+                } else {
+                    f6 = 0.1f;
+                }
+                frameLayout214.setScaleX(f6);
+                FrameLayout frameLayout215 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.1f;
+                }
+                frameLayout215.setScaleY(f7);
+                FrameLayout frameLayout216 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    f8 = 1.0f;
+                } else {
+                    f8 = 0.0f;
+                }
+                frameLayout216.setAlpha(f8);
+                FrameLayout frameLayout118 = this.backgroundPlayAnimationView;
+                if (this.backgroundGradientColor1 != 0) {
+                    numValueOf = Integer.valueOf(i);
+                } else {
+                    numValueOf = null;
+                }
+                frameLayout118.setTag(numValueOf);
+                this.backgroundButtonsContainer.addView(this.backgroundPlayAnimationView, LayoutHelper.createFrame(48, 48, 17));
+                this.backgroundPlayAnimationView.setOnClickListener(new View.OnClickListener() {
+                    int rotation = 0;
+
+                    @Override
+                    public void onClick(View view3) {
+                        ThemePreviewActivity.this.backgroundPlayAnimationImageView.setRotation(this.rotation);
+                        this.rotation -= 45;
+                        ThemePreviewActivity.this.backgroundPlayAnimationImageView.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
+                        if (ThemePreviewActivity.this.backgroundImages[0] != null) {
+                            Drawable background = ThemePreviewActivity.this.backgroundImages[0].getBackground();
+                            if (!(background instanceof MotionBackgroundDrawable)) {
+                                ThemePreviewActivity.this.onColorsRotate();
+                            } else {
+                                ((MotionBackgroundDrawable) background).switchToNextPosition();
+                            }
+                        }
+                        if (ThemePreviewActivity.this.backgroundImages[1] != null) {
+                            Drawable background2 = ThemePreviewActivity.this.backgroundImages[1].getBackground();
+                            if (background2 instanceof MotionBackgroundDrawable) {
+                                ((MotionBackgroundDrawable) background2).switchToNextPosition();
+                            }
+                        }
+                    }
+                });
+                ImageView imageView5 = new ImageView(context);
+                this.backgroundPlayAnimationImageView = imageView5;
+                imageView5.setScaleType(ImageView.ScaleType.CENTER);
+                this.backgroundPlayAnimationImageView.setImageResource(R.drawable.bg_rotate_large);
+                this.backgroundPlayAnimationView.addView(this.backgroundPlayAnimationImageView, LayoutHelper.createFrame(-2, -2, 17));
+            } else {
+                iMax = 0;
+            }
+            i7 = 0;
+            while (i7 < i6) {
+                this.backgroundCheckBoxView[i7] = new WallpaperCheckBoxView(context, (this.screenType == i && !(this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) || i7 != 0, this.backgroundImage, this.themeDelegate);
+                this.backgroundCheckBoxView[i7].setBackgroundColor(this.backgroundColor);
+                this.backgroundCheckBoxView[i7].setText(strArr[i7], iArr[i7], iMax);
+                if (this.screenType == i) {
+                    if (i7 == i) {
+                        WallpaperCheckBoxView wallpaperCheckBoxView8 = this.backgroundCheckBoxView[i7];
+                        if (this.selectedPattern == null) {
+                            z4 = true;
+                        } else {
+                            z4 = true;
+                        }
+                        wallpaperCheckBoxView8.setChecked(z4, false);
+                    } else if (i7 == 2) {
+                        this.backgroundCheckBoxView[i7].setChecked(this.isMotion, false);
+                    }
+                } else if (i7 == i) {
+                    WallpaperCheckBoxView wallpaperCheckBoxView9 = this.backgroundCheckBoxView[i7];
+                    if (this.selectedPattern == null) {
+                        z4 = true;
+                    } else {
+                        z4 = true;
+                    }
+                    wallpaperCheckBoxView9.setChecked(z4, false);
+                } else if (i7 == 2) {
+                    this.backgroundCheckBoxView[i7].setChecked(this.isMotion, false);
+                }
+                iDp3 = AndroidUtilities.dp(56.0f) + iMax;
+                layoutParams2 = new FrameLayout.LayoutParams(iDp3, -2);
+                layoutParams2.gravity = 17;
+                if (i6 == 3) {
+                    if (i7 != 0) {
+                        layoutParams2.leftMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                    } else {
+                        layoutParams2.leftMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                    }
+                } else if (i7 == i) {
+                    layoutParams2.leftMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                } else {
+                    layoutParams2.rightMargin = (iDp3 / 2) + AndroidUtilities.dp(10.0f);
+                }
+                this.backgroundButtonsContainer.addView(this.backgroundCheckBoxView[i7], layoutParams2);
+                final WallpaperCheckBoxView wallpaperCheckBoxView10 = this.backgroundCheckBoxView[i7];
+                wallpaperCheckBoxView10.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view3) {
+                        this.f$0.lambda$createView$11(i7, wallpaperCheckBoxView10, view3);
+                    }
+                });
+                if (i7 == 2) {
+                    this.backgroundCheckBoxView[i7].setAlpha(0.0f);
+                    this.backgroundCheckBoxView[i7].setVisibility(4);
+                }
+                i7 += i;
+            }
+            if (this.screenType == i) {
+                iArr2 = new int[2];
+                this.messagesCheckBoxView = new WallpaperCheckBoxView[2];
+                this.messagesButtonsContainer = new FrameLayout(context);
+                strArr2 = new String[]{LocaleController.getString(R.string.BackgroundAnimate), LocaleController.getString(R.string.BackgroundColors)};
+                i16 = 0;
+                iMax2 = 0;
+                while (i16 < i15) {
+                    int iCeil6 = (int) Math.ceil(textPaint.measureText(strArr2[i16]));
+                    iArr2[i16] = iCeil6;
+                    iMax2 = Math.max(iMax2, iCeil6);
+                    i16 += i;
+                }
+                if (this.accent != null) {
+                    FrameLayout frameLayout119 = new FrameLayout(context) {
+                        private RectF rect = new RectF();
+
+                        @Override
+                        protected void onDraw(Canvas canvas) {
+                            this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                            Theme.applyServiceShaderMatrixForView(ThemePreviewActivity.this.messagesPlayAnimationView, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+                            canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground"));
+                            if (Theme.hasGradientService()) {
+                                canvas.drawRoundRect(this.rect, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackgroundDarken"));
+                            }
+                        }
+                    };
+                    this.messagesPlayAnimationView = frameLayout119;
+                    frameLayout119.setWillNotDraw(false);
+                    FrameLayout frameLayout1110 = this.messagesPlayAnimationView;
+                    if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                        i17 = 0;
+                    } else {
+                        i17 = 4;
+                    }
+                    frameLayout1110.setVisibility(i17);
+                    FrameLayout frameLayout1111 = this.messagesPlayAnimationView;
+                    if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                        f3 = 1.0f;
+                    } else {
+                        f3 = 0.1f;
+                    }
+                    frameLayout1111.setScaleX(f3);
+                    FrameLayout frameLayout1112 = this.messagesPlayAnimationView;
+                    if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                        f4 = 1.0f;
+                    } else {
+                        f4 = 0.1f;
+                    }
+                    frameLayout1112.setScaleY(f4);
+                    FrameLayout frameLayout1113 = this.messagesPlayAnimationView;
+                    if (this.accent.myMessagesGradientAccentColor1 != 0) {
+                        f5 = 1.0f;
+                    } else {
+                        f5 = 0.0f;
+                    }
+                    frameLayout1113.setAlpha(f5);
+                    this.messagesButtonsContainer.addView(this.messagesPlayAnimationView, LayoutHelper.createFrame(48, 48, 17));
+                    this.messagesPlayAnimationView.setOnClickListener(new View.OnClickListener() {
+                        int rotation = 0;
+
+                        @Override
+                        public void onClick(View view3) {
+                            ThemePreviewActivity.this.messagesPlayAnimationImageView.setRotation(this.rotation);
+                            this.rotation -= 45;
+                            ThemePreviewActivity.this.messagesPlayAnimationImageView.animate().rotationBy(-45.0f).setDuration(300L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
+                            if (!ThemePreviewActivity.this.accent.myMessagesAnimated) {
+                                if (ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3 != 0) {
+                                    int i313 = ThemePreviewActivity.this.accent.myMessagesAccentColor != 0 ? ThemePreviewActivity.this.accent.myMessagesAccentColor : ThemePreviewActivity.this.accent.accentColor;
+                                    ThemePreviewActivity.this.accent.myMessagesAccentColor = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1 = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2 = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3 = i313;
+                                } else {
+                                    int i314 = ThemePreviewActivity.this.accent.myMessagesAccentColor != 0 ? ThemePreviewActivity.this.accent.myMessagesAccentColor : ThemePreviewActivity.this.accent.accentColor;
+                                    ThemePreviewActivity.this.accent.myMessagesAccentColor = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1 = ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2;
+                                    ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2 = i314;
+                                }
+                                ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3, 3);
+                                ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2, 2);
+                                ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1, 1);
+                                ThemePreviewActivity.this.colorPicker.setColor(ThemePreviewActivity.this.accent.myMessagesAccentColor != 0 ? ThemePreviewActivity.this.accent.myMessagesAccentColor : ThemePreviewActivity.this.accent.accentColor, 0);
+                                ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(0, ThemePreviewActivity.this.accent.myMessagesAccentColor);
+                                ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(1, ThemePreviewActivity.this.accent.myMessagesGradientAccentColor1);
+                                ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(2, ThemePreviewActivity.this.accent.myMessagesGradientAccentColor2);
+                                ThemePreviewActivity.this.messagesCheckBoxView[1].setColor(3, ThemePreviewActivity.this.accent.myMessagesGradientAccentColor3);
+                                Theme.refreshThemeColors(true, true);
+                                ThemePreviewActivity.this.listView2.invalidateViews();
+                                return;
+                            }
+                            if (ThemePreviewActivity.this.msgOutDrawable.getMotionBackgroundDrawable() != null) {
+                                ThemePreviewActivity.this.msgOutDrawable.getMotionBackgroundDrawable().switchToNextPosition();
+                            }
+                        }
+                    });
+                    ImageView imageView6 = new ImageView(context);
+                    this.messagesPlayAnimationImageView = imageView6;
+                    imageView6.setScaleType(ImageView.ScaleType.CENTER);
+                    this.messagesPlayAnimationImageView.setImageResource(R.drawable.bg_rotate_large);
+                    this.messagesPlayAnimationView.addView(this.messagesPlayAnimationImageView, LayoutHelper.createFrame(-2, -2, 17));
+                    while (i18 < 2) {
+                        WallpaperCheckBoxView[] wallpaperCheckBoxViewArr3 = this.messagesCheckBoxView;
+                        if (i18 == 0) {
+                            z3 = true;
+                        } else {
+                            z3 = false;
+                        }
+                        wallpaperCheckBoxViewArr3[i18] = new WallpaperCheckBoxView(context, z3, this.backgroundImage, this.themeDelegate);
+                        this.messagesCheckBoxView[i18].setText(strArr2[i18], iArr2[i18], iMax2);
+                        if (i18 == 0) {
+                            this.messagesCheckBoxView[i18].setChecked(this.accent.myMessagesAnimated, false);
+                        }
+                        iDp2 = AndroidUtilities.dp(56.0f) + iMax2;
+                        layoutParams = new FrameLayout.LayoutParams(iDp2, -2);
+                        layoutParams.gravity = 17;
+                        if (i18 == i) {
+                            layoutParams.leftMargin = (iDp2 / 2) + AndroidUtilities.dp(10.0f);
+                        } else {
+                            layoutParams.rightMargin = (iDp2 / 2) + AndroidUtilities.dp(10.0f);
+                        }
+                        this.messagesButtonsContainer.addView(this.messagesCheckBoxView[i18], layoutParams);
+                        final WallpaperCheckBoxView wallpaperCheckBoxView11 = this.messagesCheckBoxView[i18];
+                        wallpaperCheckBoxView11.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$12(i18, wallpaperCheckBoxView11, view3);
+                            }
+                        });
+                    }
+                }
+            }
+            if (this.screenType != i) {
+                this.isBlurred = false;
+                while (i8 < 2) {
+                    this.patternLayout[i8] = new FrameLayout(context) {
+                        @Override
+                        public void onDraw(Canvas canvas) {
+                            if (i8 == 0) {
+                                ThemePreviewActivity.this.sheetDrawable.setBounds(ThemePreviewActivity.this.colorPicker.getLeft() - rect.left, 0, ThemePreviewActivity.this.colorPicker.getRight() + rect.right, getMeasuredHeight());
+                            } else {
+                                ThemePreviewActivity.this.sheetDrawable.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+                            }
+                            ThemePreviewActivity.this.sheetDrawable.draw(canvas);
+                        }
+                    };
+                    if (i8 != i) {
+                        this.patternLayout[i8].setVisibility(4);
+                    } else {
+                        this.patternLayout[i8].setVisibility(4);
+                    }
+                    this.patternLayout[i8].setWillNotDraw(false);
+                    if (this.screenType == 2) {
+                        if (i8 == 0) {
+                            i14 = 321;
+                        } else {
+                            i14 = 316;
+                        }
+                        layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i14, 83);
+                    } else {
+                        if (i8 == 0) {
+                            i9 = 273;
+                        } else {
+                            i9 = 316;
+                        }
+                        layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i9, 83);
+                    }
+                    if (i8 == 0) {
+                        if (this.screenType == 2) {
+                            i13 = 321;
+                        } else {
+                            i13 = 273;
+                        }
+                        f2 = i13;
+                    } else {
+                        f2 = 316.0f;
+                    }
+                    layoutParamsCreateFrame.height = AndroidUtilities.dp(f2);
+                    if (insideBottomSheet()) {
+                        layoutParamsCreateFrame.height += AndroidUtilities.navigationBarHeight;
+                    }
+                    if (i8 == 0) {
+                        Drawable drawable4 = this.sheetDrawable;
+                        Rect rect5 = AndroidUtilities.rectTmp2;
+                        drawable4.getPadding(rect5);
+                        layoutParamsCreateFrame.height += AndroidUtilities.dp(12.0f) + rect5.top;
+                    }
+                    FrameLayout frameLayout1114 = this.patternLayout[i8];
+                    if (i8 == 0) {
+                        iDp = AndroidUtilities.dp(12.0f) + rect.top;
+                    } else {
+                        iDp = 0;
+                    }
+                    if (insideBottomSheet()) {
+                        i10 = AndroidUtilities.navigationBarHeight;
+                    } else {
+                        i10 = 0;
+                    }
+                    frameLayout1114.setPadding(0, iDp, 0, i10);
+                    this.page2.addView(this.patternLayout[i8], layoutParamsCreateFrame);
+                    if (i8 != i) {
+                        this.patternsButtonsContainer[i8] = new FrameLayout(context) {
+                            Paint paint = new Paint();
+
+                            @Override
+                            public void onDraw(Canvas canvas) {
+                                int intrinsicHeight = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                                Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                                Theme.chat_composeShadowDrawable.draw(canvas);
+                                this.paint.setColor(ThemePreviewActivity.this.getThemedColor(Theme.key_chat_messagePanelBackground));
+                                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+                            }
+                        };
+                        this.patternsButtonsContainer[i8].setWillNotDraw(false);
+                        this.patternsButtonsContainer[i8].setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
+                        this.patternsButtonsContainer[i8].setClickable(i);
+                        this.patternLayout[i8].addView(this.patternsButtonsContainer[i8], LayoutHelper.createFrame(-1, 51, 80));
+                        this.patternsCancelButton[i8] = new TextView(context);
+                        this.patternsCancelButton[i8].setTextSize(i, 15.0f);
+                        this.patternsCancelButton[i8].setTypeface(AndroidUtilities.bold());
+                        TextView textView19 = this.patternsCancelButton[i8];
+                        int i313 = Theme.key_chat_fieldOverlayText;
+                        textView19.setTextColor(getThemedColor(i313));
+                        this.patternsCancelButton[i8].setText(LocaleController.getString(R.string.Cancel));
+                        this.patternsCancelButton[i8].setGravity(17);
+                        this.patternsCancelButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        TextView textView110 = this.patternsCancelButton[i8];
+                        int i314 = Theme.key_listSelector;
+                        textView110.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i314), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsCancelButton[i8], LayoutHelper.createFrame(-2, -1, 51));
+                        this.patternsCancelButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$13(i8, view3);
+                            }
+                        });
+                        this.patternsSaveButton[i8] = new TextView(context);
+                        this.patternsSaveButton[i8].setTextSize(i, 15.0f);
+                        this.patternsSaveButton[i8].setTypeface(AndroidUtilities.bold());
+                        this.patternsSaveButton[i8].setTextColor(getThemedColor(i313));
+                        this.patternsSaveButton[i8].setText(LocaleController.getString(R.string.ApplyTheme));
+                        this.patternsSaveButton[i8].setGravity(17);
+                        this.patternsSaveButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        this.patternsSaveButton[i8].setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i314), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsSaveButton[i8], LayoutHelper.createFrame(-2, -1, 53));
+                        this.patternsSaveButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$14(i8, view3);
+                            }
+                        });
+                    } else {
+                        this.patternsButtonsContainer[i8] = new FrameLayout(context) {
+                            Paint paint = new Paint();
+
+                            @Override
+                            public void onDraw(Canvas canvas) {
+                                int intrinsicHeight = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                                Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                                Theme.chat_composeShadowDrawable.draw(canvas);
+                                this.paint.setColor(ThemePreviewActivity.this.getThemedColor(Theme.key_chat_messagePanelBackground));
+                                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+                            }
+                        };
+                        this.patternsButtonsContainer[i8].setWillNotDraw(false);
+                        this.patternsButtonsContainer[i8].setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
+                        this.patternsButtonsContainer[i8].setClickable(i);
+                        this.patternLayout[i8].addView(this.patternsButtonsContainer[i8], LayoutHelper.createFrame(-1, 51, 80));
+                        this.patternsCancelButton[i8] = new TextView(context);
+                        this.patternsCancelButton[i8].setTextSize(i, 15.0f);
+                        this.patternsCancelButton[i8].setTypeface(AndroidUtilities.bold());
+                        TextView textView111 = this.patternsCancelButton[i8];
+                        int i315 = Theme.key_chat_fieldOverlayText;
+                        textView111.setTextColor(getThemedColor(i315));
+                        this.patternsCancelButton[i8].setText(LocaleController.getString(R.string.Cancel));
+                        this.patternsCancelButton[i8].setGravity(17);
+                        this.patternsCancelButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        TextView textView112 = this.patternsCancelButton[i8];
+                        int i316 = Theme.key_listSelector;
+                        textView112.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i316), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsCancelButton[i8], LayoutHelper.createFrame(-2, -1, 51));
+                        this.patternsCancelButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$13(i8, view3);
+                            }
+                        });
+                        this.patternsSaveButton[i8] = new TextView(context);
+                        this.patternsSaveButton[i8].setTextSize(i, 15.0f);
+                        this.patternsSaveButton[i8].setTypeface(AndroidUtilities.bold());
+                        this.patternsSaveButton[i8].setTextColor(getThemedColor(i315));
+                        this.patternsSaveButton[i8].setText(LocaleController.getString(R.string.ApplyTheme));
+                        this.patternsSaveButton[i8].setGravity(17);
+                        this.patternsSaveButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        this.patternsSaveButton[i8].setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i316), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsSaveButton[i8], LayoutHelper.createFrame(-2, -1, 53));
+                        this.patternsSaveButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$14(i8, view3);
+                            }
+                        });
+                    }
+                    if (i8 == i) {
+                        TextView textView113 = new TextView(context);
+                        this.patternTitleView = textView113;
+                        textView113.setLines(i);
+                        this.patternTitleView.setSingleLine(i);
+                        this.patternTitleView.setText(LocaleController.getString(R.string.BackgroundChoosePattern));
+                        this.patternTitleView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                        this.patternTitleView.setTextSize(i, 20.0f);
+                        this.patternTitleView.setTypeface(AndroidUtilities.bold());
+                        this.patternTitleView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
+                        this.patternTitleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+                        this.patternTitleView.setGravity(16);
+                        this.patternLayout[i8].addView(this.patternTitleView, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 21.0f, 0.0f, 0.0f));
+                        RecyclerListView recyclerListView12 = new RecyclerListView(context) {
+                            @Override
+                            public boolean onTouchEvent(MotionEvent motionEvent) {
+                                if (motionEvent.getAction() == 0) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                return super.onTouchEvent(motionEvent);
+                            }
+                        };
+                        this.patternsListView = recyclerListView12;
+                        LinearLayoutManager linearLayoutManager4 = new LinearLayoutManager(context, 0, false);
+                        this.patternsLayoutManager = linearLayoutManager4;
+                        recyclerListView12.setLayoutManager(linearLayoutManager4);
+                        RecyclerListView recyclerListView13 = this.patternsListView;
+                        PatternsAdapter patternsAdapter4 = new PatternsAdapter(context);
+                        this.patternsAdapter = patternsAdapter4;
+                        recyclerListView13.setAdapter(patternsAdapter4);
+                        this.patternsListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                            @Override
+                            public void getItemOffsets(Rect rect6, View view3, RecyclerView recyclerView, RecyclerView.State state) {
+                                int childAdapterPosition = recyclerView.getChildAdapterPosition(view3);
+                                rect6.left = AndroidUtilities.dp(12.0f);
+                                rect6.top = 0;
+                                rect6.bottom = 0;
+                                if (childAdapterPosition == state.getItemCount() - 1) {
+                                    rect6.right = AndroidUtilities.dp(12.0f);
+                                }
+                            }
+                        });
+                        this.patternLayout[i8].addView(this.patternsListView, LayoutHelper.createFrame(-1, 100.0f, 51, 0.0f, 76.0f, 0.0f, 0.0f));
+                        this.patternsListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                            @Override
+                            public final void onItemClick(View view3, int i317) {
+                                this.f$0.lambda$createView$15(view3, i317);
+                            }
+                        });
+                        HeaderCell headerCell4 = new HeaderCell(context);
+                        this.intensityCell = headerCell4;
+                        headerCell4.setText(LocaleController.getString(R.string.BackgroundIntensity));
+                        this.patternLayout[i8].addView(this.intensityCell, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 175.0f, 0.0f, 0.0f));
+                        SeekBarView seekBarView4 = new SeekBarView(context, getResourceProvider()) {
+                            @Override
+                            public boolean onTouchEvent(MotionEvent motionEvent) {
+                                if (motionEvent.getAction() == 0) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                return super.onTouchEvent(motionEvent);
+                            }
+                        };
+                        this.intensitySeekBar = seekBarView4;
+                        seekBarView4.setProgress(this.currentIntensity);
+                        this.intensitySeekBar.setReportChanges(i);
+                        this.intensitySeekBar.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+                            @Override
+                            public CharSequence getContentDescription() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
+                            }
+
+                            @Override
+                            public int getStepsCount() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+                            }
+
+                            @Override
+                            public boolean needVisuallyDivideSteps() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                            }
+
+                            @Override
+                            public void onSeekBarPressed(boolean z6) {
+                            }
+
+                            @Override
+                            public void onSeekBarDrag(boolean z6, float f12) {
+                                ThemePreviewActivity.this.currentIntensity = f12;
+                                ThemePreviewActivity.this.updateIntensity();
+                            }
+                        });
+                        this.patternLayout[i8].addView(this.intensitySeekBar, LayoutHelper.createFrame(-1, 38.0f, 51, 5.0f, 211.0f, 5.0f, 0.0f));
+                    } else {
+                        ColorPicker colorPicker4 = new ColorPicker(context, this.editingTheme, new AnonymousClass26());
+                        this.colorPicker = colorPicker4;
+                        colorPicker4.setResourcesProvider(getResourceProvider());
+                        if (this.screenType == i) {
+                            this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1, i));
+                            if (this.applyingTheme.isDark()) {
+                                this.colorPicker.setMinBrightness(0.2f);
+                            } else {
+                                this.colorPicker.setMinBrightness(0.05f);
+                                this.colorPicker.setMaxBrightness(0.8f);
+                            }
+                            themeAccent = this.accent;
+                            if (themeAccent != null) {
+                                if (themeAccent.accentColor2 != 0) {
+                                    i11 = 2;
+                                } else {
+                                    i11 = 1;
+                                }
+                                this.colorPicker.setType(1, hasChanges(i), 2, i11, false, 0, false);
+                                this.colorPicker.setColor(this.accent.accentColor, 0);
+                                i12 = this.accent.accentColor2;
+                                if (i12 != 0) {
+                                    this.colorPicker.setColor(i12, i);
+                                }
+                            }
+                        } else {
+                            this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1.0f, 1, 0.0f, 0.0f, 0.0f, 48.0f));
+                        }
+                    }
+                }
+            } else {
+                this.isBlurred = false;
+                while (i8 < 2) {
+                    this.patternLayout[i8] = new FrameLayout(context) {
+                        @Override
+                        public void onDraw(Canvas canvas) {
+                            if (i8 == 0) {
+                                ThemePreviewActivity.this.sheetDrawable.setBounds(ThemePreviewActivity.this.colorPicker.getLeft() - rect.left, 0, ThemePreviewActivity.this.colorPicker.getRight() + rect.right, getMeasuredHeight());
+                            } else {
+                                ThemePreviewActivity.this.sheetDrawable.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+                            }
+                            ThemePreviewActivity.this.sheetDrawable.draw(canvas);
+                        }
+                    };
+                    if (i8 != i) {
+                        this.patternLayout[i8].setVisibility(4);
+                    } else {
+                        this.patternLayout[i8].setVisibility(4);
+                    }
+                    this.patternLayout[i8].setWillNotDraw(false);
+                    if (this.screenType == 2) {
+                        if (i8 == 0) {
+                            i14 = 321;
+                        } else {
+                            i14 = 316;
+                        }
+                        layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i14, 83);
+                    } else {
+                        if (i8 == 0) {
+                            i9 = 273;
+                        } else {
+                            i9 = 316;
+                        }
+                        layoutParamsCreateFrame = LayoutHelper.createFrame(-1, i9, 83);
+                    }
+                    if (i8 == 0) {
+                        if (this.screenType == 2) {
+                            i13 = 321;
+                        } else {
+                            i13 = 273;
+                        }
+                        f2 = i13;
+                    } else {
+                        f2 = 316.0f;
+                    }
+                    layoutParamsCreateFrame.height = AndroidUtilities.dp(f2);
+                    if (insideBottomSheet()) {
+                        layoutParamsCreateFrame.height += AndroidUtilities.navigationBarHeight;
+                    }
+                    if (i8 == 0) {
+                        Drawable drawable5 = this.sheetDrawable;
+                        Rect rect6 = AndroidUtilities.rectTmp2;
+                        drawable5.getPadding(rect6);
+                        layoutParamsCreateFrame.height += AndroidUtilities.dp(12.0f) + rect6.top;
+                    }
+                    FrameLayout frameLayout1115 = this.patternLayout[i8];
+                    if (i8 == 0) {
+                        iDp = AndroidUtilities.dp(12.0f) + rect.top;
+                    } else {
+                        iDp = 0;
+                    }
+                    if (insideBottomSheet()) {
+                        i10 = AndroidUtilities.navigationBarHeight;
+                    } else {
+                        i10 = 0;
+                    }
+                    frameLayout1115.setPadding(0, iDp, 0, i10);
+                    this.page2.addView(this.patternLayout[i8], layoutParamsCreateFrame);
+                    if (i8 != i) {
+                        this.patternsButtonsContainer[i8] = new FrameLayout(context) {
+                            Paint paint = new Paint();
+
+                            @Override
+                            public void onDraw(Canvas canvas) {
+                                int intrinsicHeight = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                                Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                                Theme.chat_composeShadowDrawable.draw(canvas);
+                                this.paint.setColor(ThemePreviewActivity.this.getThemedColor(Theme.key_chat_messagePanelBackground));
+                                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+                            }
+                        };
+                        this.patternsButtonsContainer[i8].setWillNotDraw(false);
+                        this.patternsButtonsContainer[i8].setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
+                        this.patternsButtonsContainer[i8].setClickable(i);
+                        this.patternLayout[i8].addView(this.patternsButtonsContainer[i8], LayoutHelper.createFrame(-1, 51, 80));
+                        this.patternsCancelButton[i8] = new TextView(context);
+                        this.patternsCancelButton[i8].setTextSize(i, 15.0f);
+                        this.patternsCancelButton[i8].setTypeface(AndroidUtilities.bold());
+                        TextView textView114 = this.patternsCancelButton[i8];
+                        int i317 = Theme.key_chat_fieldOverlayText;
+                        textView114.setTextColor(getThemedColor(i317));
+                        this.patternsCancelButton[i8].setText(LocaleController.getString(R.string.Cancel));
+                        this.patternsCancelButton[i8].setGravity(17);
+                        this.patternsCancelButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        TextView textView115 = this.patternsCancelButton[i8];
+                        int i318 = Theme.key_listSelector;
+                        textView115.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i318), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsCancelButton[i8], LayoutHelper.createFrame(-2, -1, 51));
+                        this.patternsCancelButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$13(i8, view3);
+                            }
+                        });
+                        this.patternsSaveButton[i8] = new TextView(context);
+                        this.patternsSaveButton[i8].setTextSize(i, 15.0f);
+                        this.patternsSaveButton[i8].setTypeface(AndroidUtilities.bold());
+                        this.patternsSaveButton[i8].setTextColor(getThemedColor(i317));
+                        this.patternsSaveButton[i8].setText(LocaleController.getString(R.string.ApplyTheme));
+                        this.patternsSaveButton[i8].setGravity(17);
+                        this.patternsSaveButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        this.patternsSaveButton[i8].setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i318), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsSaveButton[i8], LayoutHelper.createFrame(-2, -1, 53));
+                        this.patternsSaveButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$14(i8, view3);
+                            }
+                        });
+                    } else {
+                        this.patternsButtonsContainer[i8] = new FrameLayout(context) {
+                            Paint paint = new Paint();
+
+                            @Override
+                            public void onDraw(Canvas canvas) {
+                                int intrinsicHeight = Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                                Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                                Theme.chat_composeShadowDrawable.draw(canvas);
+                                this.paint.setColor(ThemePreviewActivity.this.getThemedColor(Theme.key_chat_messagePanelBackground));
+                                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), this.paint);
+                            }
+                        };
+                        this.patternsButtonsContainer[i8].setWillNotDraw(false);
+                        this.patternsButtonsContainer[i8].setPadding(0, AndroidUtilities.dp(3.0f), 0, 0);
+                        this.patternsButtonsContainer[i8].setClickable(i);
+                        this.patternLayout[i8].addView(this.patternsButtonsContainer[i8], LayoutHelper.createFrame(-1, 51, 80));
+                        this.patternsCancelButton[i8] = new TextView(context);
+                        this.patternsCancelButton[i8].setTextSize(i, 15.0f);
+                        this.patternsCancelButton[i8].setTypeface(AndroidUtilities.bold());
+                        TextView textView116 = this.patternsCancelButton[i8];
+                        int i319 = Theme.key_chat_fieldOverlayText;
+                        textView116.setTextColor(getThemedColor(i319));
+                        this.patternsCancelButton[i8].setText(LocaleController.getString(R.string.Cancel));
+                        this.patternsCancelButton[i8].setGravity(17);
+                        this.patternsCancelButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        TextView textView117 = this.patternsCancelButton[i8];
+                        int i3110 = Theme.key_listSelector;
+                        textView117.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i3110), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsCancelButton[i8], LayoutHelper.createFrame(-2, -1, 51));
+                        this.patternsCancelButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$13(i8, view3);
+                            }
+                        });
+                        this.patternsSaveButton[i8] = new TextView(context);
+                        this.patternsSaveButton[i8].setTextSize(i, 15.0f);
+                        this.patternsSaveButton[i8].setTypeface(AndroidUtilities.bold());
+                        this.patternsSaveButton[i8].setTextColor(getThemedColor(i319));
+                        this.patternsSaveButton[i8].setText(LocaleController.getString(R.string.ApplyTheme));
+                        this.patternsSaveButton[i8].setGravity(17);
+                        this.patternsSaveButton[i8].setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                        this.patternsSaveButton[i8].setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i3110), 0));
+                        this.patternsButtonsContainer[i8].addView(this.patternsSaveButton[i8], LayoutHelper.createFrame(-2, -1, 53));
+                        this.patternsSaveButton[i8].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$14(i8, view3);
+                            }
+                        });
+                    }
+                    if (i8 == i) {
+                        TextView textView118 = new TextView(context);
+                        this.patternTitleView = textView118;
+                        textView118.setLines(i);
+                        this.patternTitleView.setSingleLine(i);
+                        this.patternTitleView.setText(LocaleController.getString(R.string.BackgroundChoosePattern));
+                        this.patternTitleView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                        this.patternTitleView.setTextSize(i, 20.0f);
+                        this.patternTitleView.setTypeface(AndroidUtilities.bold());
+                        this.patternTitleView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
+                        this.patternTitleView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+                        this.patternTitleView.setGravity(16);
+                        this.patternLayout[i8].addView(this.patternTitleView, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 21.0f, 0.0f, 0.0f));
+                        RecyclerListView recyclerListView14 = new RecyclerListView(context) {
+                            @Override
+                            public boolean onTouchEvent(MotionEvent motionEvent) {
+                                if (motionEvent.getAction() == 0) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                return super.onTouchEvent(motionEvent);
+                            }
+                        };
+                        this.patternsListView = recyclerListView14;
+                        LinearLayoutManager linearLayoutManager5 = new LinearLayoutManager(context, 0, false);
+                        this.patternsLayoutManager = linearLayoutManager5;
+                        recyclerListView14.setLayoutManager(linearLayoutManager5);
+                        RecyclerListView recyclerListView15 = this.patternsListView;
+                        PatternsAdapter patternsAdapter5 = new PatternsAdapter(context);
+                        this.patternsAdapter = patternsAdapter5;
+                        recyclerListView15.setAdapter(patternsAdapter5);
+                        this.patternsListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                            @Override
+                            public void getItemOffsets(Rect rect7, View view3, RecyclerView recyclerView, RecyclerView.State state) {
+                                int childAdapterPosition = recyclerView.getChildAdapterPosition(view3);
+                                rect7.left = AndroidUtilities.dp(12.0f);
+                                rect7.top = 0;
+                                rect7.bottom = 0;
+                                if (childAdapterPosition == state.getItemCount() - 1) {
+                                    rect7.right = AndroidUtilities.dp(12.0f);
+                                }
+                            }
+                        });
+                        this.patternLayout[i8].addView(this.patternsListView, LayoutHelper.createFrame(-1, 100.0f, 51, 0.0f, 76.0f, 0.0f, 0.0f));
+                        this.patternsListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                            @Override
+                            public final void onItemClick(View view3, int i3111) {
+                                this.f$0.lambda$createView$15(view3, i3111);
+                            }
+                        });
+                        HeaderCell headerCell5 = new HeaderCell(context);
+                        this.intensityCell = headerCell5;
+                        headerCell5.setText(LocaleController.getString(R.string.BackgroundIntensity));
+                        this.patternLayout[i8].addView(this.intensityCell, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 175.0f, 0.0f, 0.0f));
+                        SeekBarView seekBarView5 = new SeekBarView(context, getResourceProvider()) {
+                            @Override
+                            public boolean onTouchEvent(MotionEvent motionEvent) {
+                                if (motionEvent.getAction() == 0) {
+                                    getParent().requestDisallowInterceptTouchEvent(true);
+                                }
+                                return super.onTouchEvent(motionEvent);
+                            }
+                        };
+                        this.intensitySeekBar = seekBarView5;
+                        seekBarView5.setProgress(this.currentIntensity);
+                        this.intensitySeekBar.setReportChanges(i);
+                        this.intensitySeekBar.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+                            @Override
+                            public CharSequence getContentDescription() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
+                            }
+
+                            @Override
+                            public int getStepsCount() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+                            }
+
+                            @Override
+                            public boolean needVisuallyDivideSteps() {
+                                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                            }
+
+                            @Override
+                            public void onSeekBarPressed(boolean z6) {
+                            }
+
+                            @Override
+                            public void onSeekBarDrag(boolean z6, float f12) {
+                                ThemePreviewActivity.this.currentIntensity = f12;
+                                ThemePreviewActivity.this.updateIntensity();
+                            }
+                        });
+                        this.patternLayout[i8].addView(this.intensitySeekBar, LayoutHelper.createFrame(-1, 38.0f, 51, 5.0f, 211.0f, 5.0f, 0.0f));
+                    } else {
+                        ColorPicker colorPicker5 = new ColorPicker(context, this.editingTheme, new AnonymousClass26());
+                        this.colorPicker = colorPicker5;
+                        colorPicker5.setResourcesProvider(getResourceProvider());
+                        if (this.screenType == i) {
+                            this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1, i));
+                            if (this.applyingTheme.isDark()) {
+                                this.colorPicker.setMinBrightness(0.2f);
+                            } else {
+                                this.colorPicker.setMinBrightness(0.05f);
+                                this.colorPicker.setMaxBrightness(0.8f);
+                            }
+                            themeAccent = this.accent;
+                            if (themeAccent != null) {
+                                if (themeAccent.accentColor2 != 0) {
+                                    i11 = 2;
+                                } else {
+                                    i11 = 1;
+                                }
+                                this.colorPicker.setType(1, hasChanges(i), 2, i11, false, 0, false);
+                                this.colorPicker.setColor(this.accent.accentColor, 0);
+                                i12 = this.accent.accentColor2;
+                                if (i12 != 0) {
+                                    this.colorPicker.setColor(i12, i);
+                                }
+                            }
+                        } else {
+                            this.patternLayout[i8].addView(this.colorPicker, LayoutHelper.createFrame(-1, -1.0f, 1, 0.0f, 0.0f, 0.0f, 48.0f));
+                        }
+                    }
+                }
+            }
+            updateButtonState(false, false);
+            if (!this.backgroundImage.getImageReceiver().hasBitmapImage()) {
+                this.page2.setBackgroundColor(-16777216);
+            }
+            if (this.screenType != i) {
+                this.backgroundImage.getImageReceiver().setCrossfadeWithOldImage(i);
+            }
+        }
+        this.listView2.setAdapter(this.messagesAdapter);
+        FrameLayout frameLayout120 = new FrameLayout(context) {
+            private int[] loc = new int[2];
+
+            @Override
+            public void invalidate() {
+                super.invalidate();
+                if (ThemePreviewActivity.this.page2 != null) {
+                    ThemePreviewActivity.this.page2.invalidate();
+                }
+            }
+
+            @Override
+            protected void onDraw(Canvas canvas) {
+                if (AndroidUtilities.usingHardwareInput) {
+                    return;
+                }
+                getLocationInWindow(this.loc);
+                if (ThemePreviewActivity.this.actionBar2.getTranslationY() != this.loc[1]) {
+                    ThemePreviewActivity.this.actionBar2.setTranslationY(-this.loc[1]);
+                    ThemePreviewActivity.this.page2.invalidate();
+                }
+                if (SystemClock.elapsedRealtime() < ThemePreviewActivity.this.watchForKeyboardEndTime) {
+                    invalidate();
+                }
+            }
+        };
+        this.frameLayout = frameLayout120;
+        frameLayout120.setWillNotDraw(false);
+        FrameLayout frameLayout121 = this.frameLayout;
+        this.fragmentView = frameLayout121;
+        ViewTreeObserver viewTreeObserver2 = frameLayout121.getViewTreeObserver();
+        ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener2 = new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public final void onGlobalLayout() {
+                this.f$0.lambda$createView$16();
+            }
+        };
+        this.onGlobalLayoutListener = onGlobalLayoutListener2;
+        viewTreeObserver2.addOnGlobalLayoutListener(onGlobalLayoutListener2);
+        ViewPager viewPager3 = new ViewPager(context);
+        this.viewPager = viewPager3;
+        viewPager3.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrollStateChanged(int i320) {
+            }
+
+            @Override
+            public void onPageScrolled(int i320, float f12, int i321) {
+            }
+
+            @Override
+            public void onPageSelected(int i320) {
+                ThemePreviewActivity.this.dotsContainer.invalidate();
+            }
+        });
+        this.viewPager.setAdapter(new PagerAdapter() {
+            @Override
+            public int getItemPosition(Object obj5) {
+                return -1;
+            }
+
+            @Override
+            public boolean isViewFromObject(View view3, Object obj5) {
+                return obj5 == view3;
+            }
+
+            @Override
+            public int getCount() {
+                return ThemePreviewActivity.this.screenType != 0 ? 1 : 2;
+            }
+
+            @Override
+            public Object instantiateItem(ViewGroup viewGroup, int i320) {
+                FrameLayout frameLayout122 = i320 == 0 ? ThemePreviewActivity.this.page2 : ThemePreviewActivity.this.page1;
+                viewGroup.addView(frameLayout122);
+                return frameLayout122;
+            }
+
+            @Override
+            public void destroyItem(ViewGroup viewGroup, int i320, Object obj5) {
+                viewGroup.removeView((View) obj5);
+            }
+        });
+        AndroidUtilities.setViewPagerEdgeEffectColor(this.viewPager, getThemedColor(Theme.key_actionBarDefault));
+        FrameLayout frameLayout122 = this.frameLayout;
+        ViewPager viewPager4 = this.viewPager;
+        if (this.screenType == 0) {
+            f11 = 48.0f;
+        } else {
+            f11 = 0.0f;
+        }
+        frameLayout122.addView(viewPager4, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, f11));
+        UndoView undoView2 = new UndoView(context, this);
+        this.undoView = undoView2;
+        undoView2.setAdditionalTranslationY(AndroidUtilities.dp(51.0f));
+        this.frameLayout.addView(this.undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+        if (this.screenType == 0) {
+            View view3 = new View(context);
+            view3.setBackgroundColor(getThemedColor(Theme.key_dialogShadowLine));
+            FrameLayout.LayoutParams layoutParams4 = new FrameLayout.LayoutParams(-1, i, 83);
+            layoutParams4.bottomMargin = AndroidUtilities.dp(48.0f);
+            this.frameLayout.addView(view3, layoutParams4);
+            FrameLayout frameLayout217 = new FrameLayout(context);
+            this.saveButtonsContainer = frameLayout217;
+            frameLayout217.setBackgroundColor(getButtonsColor(Theme.key_windowBackgroundWhite));
+            this.frameLayout.addView(this.saveButtonsContainer, LayoutHelper.createFrame(-1, 48, 83));
+            View view4 = new View(context) {
+                private Paint paint = new Paint(1);
+
+                @Override
+                protected void onDraw(Canvas canvas) {
+                    int currentItem = ThemePreviewActivity.this.viewPager.getCurrentItem();
+                    this.paint.setColor(ThemePreviewActivity.this.getButtonsColor(Theme.key_chat_fieldOverlayText));
+                    int i320 = 0;
+                    while (i320 < 2) {
+                        this.paint.setAlpha(i320 == currentItem ? 255 : 127);
+                        canvas.drawCircle(AndroidUtilities.dp((i320 * 15) + 3), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(3.0f), this.paint);
+                        i320++;
+                    }
+                }
+            };
+            this.dotsContainer = view4;
+            this.saveButtonsContainer.addView(view4, LayoutHelper.createFrame(22, 8, 17));
+            TextView textView20 = new TextView(context);
+            this.cancelButton = textView20;
+            textView20.setTextSize(i, 14.0f);
+            TextView textView21 = this.cancelButton;
+            int i320 = Theme.key_chat_fieldOverlayText;
+            textView21.setTextColor(getButtonsColor(i320));
+            this.cancelButton.setGravity(17);
+            this.cancelButton.setBackgroundDrawable(Theme.createSelectorDrawable(251658240, 0));
+            this.cancelButton.setPadding(AndroidUtilities.dp(29.0f), 0, AndroidUtilities.dp(29.0f), 0);
+            this.cancelButton.setText(LocaleController.getString(R.string.Cancel));
+            this.cancelButton.setTypeface(AndroidUtilities.bold());
+            this.saveButtonsContainer.addView(this.cancelButton, LayoutHelper.createFrame(-2, -1, 51));
+            this.cancelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view5) {
+                    this.f$0.lambda$createView$17(view5);
+                }
+            });
+            TextView textView22 = new TextView(context);
+            this.doneButton = textView22;
+            textView22.setTextSize(i, 14.0f);
+            this.doneButton.setTextColor(getButtonsColor(i320));
+            this.doneButton.setGravity(17);
+            this.doneButton.setBackgroundDrawable(Theme.createSelectorDrawable(251658240, 0));
+            this.doneButton.setPadding(AndroidUtilities.dp(29.0f), 0, AndroidUtilities.dp(29.0f), 0);
+            this.doneButton.setText(LocaleController.getString(R.string.ApplyTheme));
+            this.doneButton.setTypeface(AndroidUtilities.bold());
+            this.saveButtonsContainer.addView(this.doneButton, LayoutHelper.createFrame(-2, -1, 53));
+            this.doneButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view5) {
+                    this.f$0.lambda$createView$18(view5);
+                }
+            });
+        }
+        if (this.screenType == i) {
+            selectColorType(2);
+        }
+        this.themeDescriptions = getThemeDescriptionsInternal();
+        setCurrentImage(i);
+        updatePlayAnimationView(false);
+        if (this.showColor) {
+            showPatternsView(0, i, false);
+        }
+        this.scroller = new Scroller(getContext());
+        iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null) {
+            this.parentLayout.getBottomSheet().fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
+            if (this.screenType == 2) {
+                this.parentLayout.getBottomSheet().setOverlayNavBarColor(-16777216);
+            }
+        }
+        return this.fragmentView;
     }
 
     public void lambda$createView$2() {
@@ -742,12 +4913,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void onItemClick(int i) throws Resources.NotFoundException, IOException {
+        public void onItemClick(int i) {
             File file;
             Theme.ThemeAccent accent;
             String url;
             String str;
-            int i2 = 0;
             if (i == -1) {
                 if (ThemePreviewActivity.this.checkDiscard(true)) {
                     ThemePreviewActivity.this.cancelThemeApply(false);
@@ -810,21 +4980,22 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         url = str2 + "?mode=" + sb.toString();
                     } else {
                         str = str2;
-                        ThemePreviewActivity.this.showDialog(new ShareAlert(ThemePreviewActivity.this.getParentActivity(), null, str, false, str, false) {
-                            @Override
-                            protected void onSend(LongSparseArray longSparseArray, int i3, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
-                                if (z) {
-                                    if (longSparseArray.size() == 1) {
-                                        ThemePreviewActivity.this.undoView.showWithAction(((TLRPC.Dialog) longSparseArray.valueAt(0)).id, 61, Integer.valueOf(i3));
-                                    } else {
-                                        ThemePreviewActivity.this.undoView.showWithAction(0L, 61, Integer.valueOf(i3), Integer.valueOf(longSparseArray.size()), (Runnable) null, (Runnable) null);
-                                    }
+                    }
+                    ThemePreviewActivity.this.showDialog(new ShareAlert(ThemePreviewActivity.this.getParentActivity(), null, str, false, str, false) {
+                        @Override
+                        protected void onSend(LongSparseArray longSparseArray, int i2, TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+                            if (z) {
+                                if (longSparseArray.size() == 1) {
+                                    ThemePreviewActivity.this.undoView.showWithAction(((TLRPC.Dialog) longSparseArray.valueAt(0)).id, 61, Integer.valueOf(i2));
+                                } else {
+                                    ThemePreviewActivity.this.undoView.showWithAction(0L, 61, Integer.valueOf(i2), Integer.valueOf(longSparseArray.size()), (Runnable) null, (Runnable) null);
                                 }
                             }
-                        });
-                        return;
-                    }
-                } else if (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
+                        }
+                    });
+                    return;
+                }
+                if (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
                     WallpapersListActivity.ColorWallpaper colorWallpaper = new WallpapersListActivity.ColorWallpaper(ThemePreviewActivity.this.selectedPattern != null ? ThemePreviewActivity.this.selectedPattern.slug : "c", ThemePreviewActivity.this.backgroundColor, ThemePreviewActivity.this.backgroundGradientColor1, ThemePreviewActivity.this.backgroundGradientColor2, ThemePreviewActivity.this.backgroundGradientColor3, ThemePreviewActivity.this.backgroundRotation, ThemePreviewActivity.this.currentIntensity, ThemePreviewActivity.this.isMotion, null);
                     colorWallpaper.pattern = ThemePreviewActivity.this.selectedPattern;
                     url = colorWallpaper.getUrl();
@@ -834,16 +5005,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
                     WallpapersListActivity.ColorWallpaper colorWallpaper2 = new WallpapersListActivity.ColorWallpaper(accent.patternSlug, (int) accent.backgroundOverrideColor, (int) accent.backgroundGradientOverrideColor1, (int) accent.backgroundGradientOverrideColor2, (int) accent.backgroundGradientOverrideColor3, accent.backgroundRotation, accent.patternIntensity, accent.patternMotion, null);
                     int size = ThemePreviewActivity.this.patterns.size();
-                    while (true) {
-                        if (i2 >= size) {
-                            break;
-                        }
+                    for (int i2 = 0; i2 < size; i2++) {
                         TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) ThemePreviewActivity.this.patterns.get(i2);
                         if (tL_wallPaper.pattern && accent.patternSlug.equals(tL_wallPaper.slug)) {
                             colorWallpaper2.pattern = tL_wallPaper;
                             break;
                         }
-                        i2++;
                     }
                     url = colorWallpaper2.getUrl();
                 }
@@ -1013,11 +5180,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    public void lambda$createView$8(View view) throws IOException {
+    public void lambda$createView$8(View view) {
         applyWallpaperBackground(false);
     }
 
-    public void lambda$createView$9(View view) throws IOException {
+    public void lambda$createView$9(View view) {
         applyWallpaperBackground(true);
     }
 
@@ -1090,7 +5257,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    public void lambda$createView$12(int i, WallpaperCheckBoxView wallpaperCheckBoxView, View view) throws IOException {
+    public void lambda$createView$12(int i, WallpaperCheckBoxView wallpaperCheckBoxView, View view) {
         if (this.messagesButtonsContainer.getAlpha() == 1.0f && i == 0) {
             wallpaperCheckBoxView.setChecked(!wallpaperCheckBoxView.isChecked(), true);
             this.accent.myMessagesAnimated = wallpaperCheckBoxView.isChecked();
@@ -1185,7 +5352,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void setColor(int i, int i2, boolean z) throws IOException {
+        public void setColor(int i, int i2, boolean z) {
             if (ThemePreviewActivity.this.screenType == 2) {
                 ThemePreviewActivity.this.setBackgroundColor(i, i2, z, true);
             } else {
@@ -1219,7 +5386,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             builder.setMessage(LocaleController.getString(R.string.DeleteThemeAlert));
             builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i) throws IOException {
+                public final void onClick(AlertDialog alertDialog, int i) {
                     this.f$0.lambda$deleteTheme$0(alertDialog, i);
                 }
             });
@@ -1232,7 +5399,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             }
         }
 
-        public void lambda$deleteTheme$0(AlertDialog alertDialog, int i) throws IOException {
+        public void lambda$deleteTheme$0(AlertDialog alertDialog, int i) {
             Theme.deleteThemeAccent(ThemePreviewActivity.this.applyingTheme, ThemePreviewActivity.this.accent, true);
             Theme.applyPreviousTheme();
             Theme.refreshThemeColors();
@@ -1255,11 +5422,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.frameLayout.invalidate();
     }
 
-    public void lambda$createView$17(View view) throws IOException {
+    public void lambda$createView$17(View view) {
         cancelThemeApply(false);
     }
 
-    public void lambda$createView$18(View view) throws IOException {
+    public void lambda$createView$18(View view) {
         Theme.ThemeAccent accent;
         Theme.ThemeInfo previousTheme = Theme.getPreviousTheme();
         if (previousTheme == null) {
@@ -1364,8 +5531,848 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         return getMessagesController().groupCustomWallpaperLevelMin;
     }
 
-    private void applyWallpaperBackground(boolean r32) throws java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.applyWallpaperBackground(boolean):void");
+    private void applyWallpaperBackground(boolean z) {
+        File file;
+        File httpFilePath;
+        boolean zCopyFile;
+        boolean zEquals;
+        File file2;
+        File file3;
+        Object obj;
+        String str;
+        int i;
+        int i2;
+        MediaController.SearchImage searchImage;
+        TLRPC.Photo photo;
+        File httpFilePath2;
+        int i3;
+        int i4;
+        Object obj2;
+        TLRPC.TL_wallPaper tL_wallPaper;
+        Theme.OverrideWallpaperInfo overrideWallpaperInfo;
+        Object obj3;
+        long j;
+        boolean z2;
+        ?? r5;
+        boolean z3;
+        ?? r0;
+        Theme.OverrideWallpaperInfo overrideWallpaperInfo2;
+        ?? r6;
+        ?? r1;
+        float f;
+        TLRPC.UserFull userFull;
+        WallpapersListActivity.ColorWallpaper colorWallpaper;
+        String str2;
+        float f2;
+        float f3;
+        int i5 = 0;
+        if (this.dialogId < 0) {
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.boostsStatus;
+            if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < getCustomWallpaperLevelMin()) {
+                getMessagesController().getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new Consumer() {
+                    @Override
+                    public final void accept(Object obj4) {
+                        this.f$0.lambda$applyWallpaperBackground$20((ChannelBoostsController.CanApplyBoost) obj4);
+                    }
+                });
+                return;
+            } else if (this.boostsStatus == null) {
+                return;
+            }
+        }
+        if (!getUserConfig().isPremium() && z) {
+            showDialog(new PremiumFeatureBottomSheet(this, 22, true));
+            return;
+        }
+        Theme.ThemeInfo activeTheme = Theme.getActiveTheme();
+        String strGenerateWallpaperName = activeTheme.generateWallpaperName(null, this.isBlurred);
+        String strGenerateWallpaperName2 = this.isBlurred ? activeTheme.generateWallpaperName(null, false) : strGenerateWallpaperName;
+        File file4 = new File(ApplicationLoader.getFilesDirFixed(), strGenerateWallpaperName);
+        Object obj4 = this.currentWallpaper;
+        if (obj4 instanceof TLRPC.TL_wallPaper) {
+            if (this.originalBitmap != null) {
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(file4);
+                    this.originalBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
+                    fileOutputStream.close();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    zCopyFile = false;
+                }
+            } else {
+                ImageReceiver imageReceiver = this.backgroundImage.getImageReceiver();
+                if (imageReceiver.hasNotThumb() || imageReceiver.hasStaticThumb()) {
+                    Bitmap bitmap = imageReceiver.getBitmap();
+                    try {
+                        FileOutputStream fileOutputStream2 = new FileOutputStream(file4);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream2);
+                        fileOutputStream2.close();
+                    } catch (Exception e2) {
+                        FileLog.e(e2);
+                        zCopyFile = false;
+                    }
+                }
+                zCopyFile = false;
+                if (!zCopyFile) {
+                    try {
+                        zCopyFile = AndroidUtilities.copyFile(FileLoader.getInstance(this.currentAccount).getPathToAttach(((TLRPC.TL_wallPaper) this.currentWallpaper).document, true), file4);
+                    } catch (Exception e3) {
+                        FileLog.e(e3);
+                        file = null;
+                        zCopyFile = false;
+                    }
+                }
+                file = null;
+                zEquals = false;
+            }
+            zCopyFile = true;
+            if (!zCopyFile) {
+                zCopyFile = AndroidUtilities.copyFile(FileLoader.getInstance(this.currentAccount).getPathToAttach(((TLRPC.TL_wallPaper) this.currentWallpaper).document, true), file4);
+            }
+            file = null;
+            zEquals = false;
+        } else if (obj4 instanceof WallpapersListActivity.ColorWallpaper) {
+            if (this.selectedPattern != null) {
+                try {
+                    Bitmap bitmap2 = this.backgroundImage.getImageReceiver().getBitmap();
+                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap2.getWidth(), bitmap2.getHeight(), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(bitmapCreateBitmap);
+                    if (this.backgroundGradientColor2 == 0) {
+                        if (this.backgroundGradientColor1 != 0) {
+                            GradientDrawable gradientDrawable = new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(this.backgroundRotation), new int[]{this.backgroundColor, this.backgroundGradientColor1});
+                            gradientDrawable.setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
+                            gradientDrawable.draw(canvas);
+                        } else {
+                            canvas.drawColor(this.backgroundColor);
+                        }
+                    }
+                    Paint paint = new Paint(2);
+                    paint.setColorFilter(new PorterDuffColorFilter(this.patternColor, this.blendMode));
+                    paint.setAlpha((int) (Math.abs(this.currentIntensity) * 255.0f));
+                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
+                    FileOutputStream fileOutputStream3 = new FileOutputStream(file4);
+                    if (this.backgroundGradientColor2 != 0) {
+                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream3);
+                    } else {
+                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream3);
+                    }
+                    fileOutputStream3.close();
+                    file = null;
+                } catch (Throwable th) {
+                    FileLog.e(th);
+                    zCopyFile = false;
+                    zEquals = false;
+                    file = null;
+                }
+            } else {
+                file = null;
+            }
+            zEquals = false;
+            zCopyFile = true;
+        } else if (obj4 instanceof WallpapersListActivity.FileWallpaper) {
+            WallpapersListActivity.FileWallpaper fileWallpaper = (WallpapersListActivity.FileWallpaper) obj4;
+            if (fileWallpaper.resId != 0 || "t".equals(fileWallpaper.slug)) {
+                file = null;
+                zEquals = false;
+                zCopyFile = true;
+            } else {
+                try {
+                    try {
+                        if (this.hasScrollingBackground && this.currentScrollOffset != this.defaultScrollOffset) {
+                            Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap((int) this.croppedWidth, this.currentWallpaperBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                            Canvas canvas2 = new Canvas(bitmapCreateBitmap2);
+                            canvas2.translate(-((this.currentScrollOffset / this.maxScrollOffset) * (this.currentWallpaperBitmap.getWidth() - bitmapCreateBitmap2.getWidth())), 0.0f);
+                            file = null;
+                            canvas2.drawBitmap(this.currentWallpaperBitmap, 0.0f, 0.0f, (Paint) null);
+                            fileWallpaper.path = new File(FileLoader.getDirectory(4), Utilities.random.nextInt() + ".jpg");
+                            FileOutputStream fileOutputStream4 = new FileOutputStream(fileWallpaper.path);
+                            bitmapCreateBitmap2.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream4);
+                            fileOutputStream4.close();
+                            bitmapCreateBitmap2.recycle();
+                            file3 = fileWallpaper.path;
+                        } else {
+                            file = null;
+                            file2 = fileWallpaper.originalPath;
+                            if (file2 == null) {
+                                file3 = fileWallpaper.path;
+                            }
+                            zEquals = file2.equals(file4);
+                            if (zEquals) {
+                                zCopyFile = true;
+                            } else {
+                                try {
+                                    zCopyFile = AndroidUtilities.copyFile(file2, file4);
+                                } catch (Exception e4) {
+                                    e = e4;
+                                    FileLog.e(e);
+                                    zCopyFile = false;
+                                }
+                            }
+                        }
+                        file2 = file3;
+                        zEquals = file2.equals(file4);
+                        if (zEquals) {
+                            zCopyFile = true;
+                        } else {
+                            zCopyFile = AndroidUtilities.copyFile(file2, file4);
+                        }
+                    } catch (Exception e5) {
+                        e = e5;
+                        zEquals = false;
+                        FileLog.e(e);
+                        zCopyFile = false;
+                        if (this.isBlurred) {
+                            try {
+                                FileOutputStream fileOutputStream5 = new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), strGenerateWallpaperName2));
+                                this.blurredBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream5);
+                                fileOutputStream5.close();
+                                zCopyFile = true;
+                            } catch (Throwable th2) {
+                                FileLog.e(th2);
+                                zCopyFile = false;
+                            }
+                        }
+                        obj = this.currentWallpaper;
+                        if (obj instanceof TLRPC.TL_wallPaper) {
+                            TLRPC.TL_wallPaper tL_wallPaper2 = (TLRPC.TL_wallPaper) obj;
+                            str = tL_wallPaper2.slug;
+                            obj2 = tL_wallPaper2;
+                        } else {
+                            if (obj instanceof WallpapersListActivity.ColorWallpaper) {
+                                if ("d".equals(((WallpapersListActivity.ColorWallpaper) obj).slug)) {
+                                    obj2 = file;
+                                    str = "d";
+                                } else {
+                                    tL_wallPaper = this.selectedPattern;
+                                    if (tL_wallPaper != null) {
+                                        str = tL_wallPaper.slug;
+                                    } else {
+                                        str = "c";
+                                    }
+                                    i = this.backgroundColor;
+                                    i4 = this.backgroundGradientColor1;
+                                    int i6 = this.backgroundGradientColor2;
+                                    int i7 = this.backgroundGradientColor3;
+                                    i2 = this.backgroundRotation;
+                                    zEquals = zEquals;
+                                    file4 = file4;
+                                    obj2 = null;
+                                    i3 = i7;
+                                    i5 = i6;
+                                    file = null;
+                                }
+                            } else {
+                                if (obj instanceof WallpapersListActivity.FileWallpaper) {
+                                    WallpapersListActivity.FileWallpaper fileWallpaper2 = (WallpapersListActivity.FileWallpaper) obj;
+                                    str = fileWallpaper2.slug;
+                                    httpFilePath2 = fileWallpaper2.path;
+                                } else {
+                                    if (obj instanceof MediaController.SearchImage) {
+                                        searchImage = (MediaController.SearchImage) obj;
+                                        photo = searchImage.photo;
+                                        if (photo != null) {
+                                            httpFilePath2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, this.maxWallpaperSize, true), true);
+                                        } else {
+                                            httpFilePath2 = ImageLoader.getHttpFilePath(searchImage.imageUrl, "jpg");
+                                        }
+                                        str = "";
+                                    } else {
+                                        str = "d";
+                                        i = 0;
+                                        i2 = 45;
+                                        i5 = 0;
+                                        file = null;
+                                    }
+                                    i3 = 0;
+                                    i4 = 0;
+                                    obj2 = null;
+                                }
+                                file = httpFilePath2;
+                                i = 0;
+                                i2 = 45;
+                                i5 = 0;
+                                i3 = 0;
+                                i4 = 0;
+                                obj2 = null;
+                            }
+                            overrideWallpaperInfo = new Theme.OverrideWallpaperInfo();
+                            overrideWallpaperInfo.fileName = strGenerateWallpaperName2;
+                            overrideWallpaperInfo.originalFileName = strGenerateWallpaperName;
+                            overrideWallpaperInfo.slug = str;
+                            overrideWallpaperInfo.isBlurred = this.isBlurred;
+                            overrideWallpaperInfo.isMotion = this.isMotion;
+                            overrideWallpaperInfo.color = i;
+                            overrideWallpaperInfo.gradientColor1 = i4;
+                            overrideWallpaperInfo.gradientColor2 = i5;
+                            overrideWallpaperInfo.gradientColor3 = i3;
+                            overrideWallpaperInfo.rotation = i2;
+                            if (this.shouldShowBrightnessControll) {
+                                f3 = this.dimAmount;
+                                if (f3 >= 0.0f) {
+                                    overrideWallpaperInfo.intensity = f3;
+                                } else {
+                                    overrideWallpaperInfo.intensity = this.currentIntensity;
+                                }
+                            } else {
+                                overrideWallpaperInfo.intensity = this.currentIntensity;
+                            }
+                            obj3 = this.currentWallpaper;
+                            if (obj3 instanceof WallpapersListActivity.ColorWallpaper) {
+                                colorWallpaper = (WallpapersListActivity.ColorWallpaper) obj3;
+                                if ("c".equals(str)) {
+                                    str2 = null;
+                                } else {
+                                    str2 = null;
+                                }
+                                f2 = colorWallpaper.intensity;
+                                if (f2 < 0.0f) {
+                                    f2 *= -1.0f;
+                                }
+                                if (colorWallpaper.parentWallpaper != null) {
+                                    TLRPC.WallPaper wallPaper = colorWallpaper.parentWallpaper;
+                                    overrideWallpaperInfo.wallpaperId = wallPaper.id;
+                                    overrideWallpaperInfo.accessHash = wallPaper.access_hash;
+                                }
+                            }
+                            j = this.dialogId;
+                            overrideWallpaperInfo.dialogId = j;
+                            if (j != 0) {
+                                overrideWallpaperInfo.prevUserWallpaper = userFull.wallpaper;
+                            }
+                            overrideWallpaperInfo.forBoth = z;
+                            MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+                            if (str == null) {
+                                z2 = false;
+                            } else {
+                                z2 = false;
+                            }
+                            messagesController.saveWallpaperToServer(file, overrideWallpaperInfo, z2, 0L);
+                            if (!zCopyFile) {
+                                if (this.dialogId != 0) {
+                                    if (file == null) {
+                                        ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                ThemePreviewActivity.lambda$applyWallpaperBackground$21();
+                                            }
+                                        });
+                                        r6 = obj2;
+                                    } else {
+                                        ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
+                                            @Override
+                                            public final void run() {
+                                                ThemePreviewActivity.lambda$applyWallpaperBackground$21();
+                                            }
+                                        });
+                                        r6 = obj2;
+                                    }
+                                    this.setupFinished = true;
+                                    r1 = this.delegate;
+                                    if (r1 != 0) {
+                                        r1.didSetNewBackground(r6);
+                                    }
+                                    finishFragment();
+                                    z3 = false;
+                                    r5 = r6;
+                                } else {
+                                    Theme.serviceMessageColorBackup = getThemedColor(Theme.key_chat_serviceBackground);
+                                    if ("t".equals(overrideWallpaperInfo.slug)) {
+                                        overrideWallpaperInfo2 = null;
+                                    } else {
+                                        overrideWallpaperInfo2 = overrideWallpaperInfo;
+                                    }
+                                    Theme.getActiveTheme().setOverrideWallpaper(overrideWallpaperInfo2);
+                                    Theme.reloadWallpaper(true);
+                                    if (!zEquals) {
+                                        ImageLoader.getInstance().removeImage(ImageLoader.getHttpFileName(file4.getAbsolutePath()) + "@100_100");
+                                    }
+                                }
+                                if (z3) {
+                                    r0 = this.delegate;
+                                    if (r0 != 0) {
+                                        r0.didSetNewBackground(r5);
+                                    }
+                                    finishFragment();
+                                }
+                            }
+                            r5 = obj2;
+                            z3 = true;
+                            if (z3) {
+                                r0 = this.delegate;
+                                if (r0 != 0) {
+                                    r0.didSetNewBackground(r5);
+                                }
+                                finishFragment();
+                            }
+                        }
+                        i = 0;
+                        i2 = 45;
+                        i3 = 0;
+                        i4 = 0;
+                        overrideWallpaperInfo = new Theme.OverrideWallpaperInfo();
+                        overrideWallpaperInfo.fileName = strGenerateWallpaperName2;
+                        overrideWallpaperInfo.originalFileName = strGenerateWallpaperName;
+                        overrideWallpaperInfo.slug = str;
+                        overrideWallpaperInfo.isBlurred = this.isBlurred;
+                        overrideWallpaperInfo.isMotion = this.isMotion;
+                        overrideWallpaperInfo.color = i;
+                        overrideWallpaperInfo.gradientColor1 = i4;
+                        overrideWallpaperInfo.gradientColor2 = i5;
+                        overrideWallpaperInfo.gradientColor3 = i3;
+                        overrideWallpaperInfo.rotation = i2;
+                        if (this.shouldShowBrightnessControll) {
+                            f3 = this.dimAmount;
+                            if (f3 >= 0.0f) {
+                                overrideWallpaperInfo.intensity = f3;
+                            } else {
+                                overrideWallpaperInfo.intensity = this.currentIntensity;
+                            }
+                        } else {
+                            overrideWallpaperInfo.intensity = this.currentIntensity;
+                        }
+                        obj3 = this.currentWallpaper;
+                        if (obj3 instanceof WallpapersListActivity.ColorWallpaper) {
+                            colorWallpaper = (WallpapersListActivity.ColorWallpaper) obj3;
+                            if ("c".equals(str)) {
+                                str2 = null;
+                            } else {
+                                str2 = null;
+                            }
+                            f2 = colorWallpaper.intensity;
+                            if (f2 < 0.0f) {
+                                f2 *= -1.0f;
+                            }
+                            if (colorWallpaper.parentWallpaper != null) {
+                                TLRPC.WallPaper wallPaper2 = colorWallpaper.parentWallpaper;
+                                overrideWallpaperInfo.wallpaperId = wallPaper2.id;
+                                overrideWallpaperInfo.accessHash = wallPaper2.access_hash;
+                            }
+                        }
+                        j = this.dialogId;
+                        overrideWallpaperInfo.dialogId = j;
+                        if (j != 0) {
+                            overrideWallpaperInfo.prevUserWallpaper = userFull.wallpaper;
+                        }
+                        overrideWallpaperInfo.forBoth = z;
+                        MessagesController messagesController2 = MessagesController.getInstance(this.currentAccount);
+                        if (str == null) {
+                            z2 = false;
+                        } else {
+                            z2 = false;
+                        }
+                        messagesController2.saveWallpaperToServer(file, overrideWallpaperInfo, z2, 0L);
+                        if (!zCopyFile) {
+                            if (this.dialogId != 0) {
+                                if (file == null) {
+                                    ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            ThemePreviewActivity.lambda$applyWallpaperBackground$21();
+                                        }
+                                    });
+                                    r6 = obj2;
+                                } else {
+                                    ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            ThemePreviewActivity.lambda$applyWallpaperBackground$21();
+                                        }
+                                    });
+                                    r6 = obj2;
+                                }
+                                this.setupFinished = true;
+                                r1 = this.delegate;
+                                if (r1 != 0) {
+                                    r1.didSetNewBackground(r6);
+                                }
+                                finishFragment();
+                                z3 = false;
+                                r5 = r6;
+                            } else {
+                                Theme.serviceMessageColorBackup = getThemedColor(Theme.key_chat_serviceBackground);
+                                if ("t".equals(overrideWallpaperInfo.slug)) {
+                                    overrideWallpaperInfo2 = null;
+                                } else {
+                                    overrideWallpaperInfo2 = overrideWallpaperInfo;
+                                }
+                                Theme.getActiveTheme().setOverrideWallpaper(overrideWallpaperInfo2);
+                                Theme.reloadWallpaper(true);
+                                if (!zEquals) {
+                                    ImageLoader.getInstance().removeImage(ImageLoader.getHttpFileName(file4.getAbsolutePath()) + "@100_100");
+                                }
+                            }
+                            if (z3) {
+                                r0 = this.delegate;
+                                if (r0 != 0) {
+                                    r0.didSetNewBackground(r5);
+                                }
+                                finishFragment();
+                            }
+                        }
+                        r5 = obj2;
+                        z3 = true;
+                        if (z3) {
+                            r0 = this.delegate;
+                            if (r0 != 0) {
+                                r0.didSetNewBackground(r5);
+                            }
+                            finishFragment();
+                        }
+                    }
+                } catch (Exception e6) {
+                    e = e6;
+                    file = null;
+                }
+            }
+        } else {
+            file = null;
+            if (obj4 instanceof MediaController.SearchImage) {
+                MediaController.SearchImage searchImage2 = (MediaController.SearchImage) obj4;
+                TLRPC.Photo photo2 = searchImage2.photo;
+                if (photo2 != null) {
+                    httpFilePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(photo2.sizes, this.maxWallpaperSize, true), true);
+                } else {
+                    httpFilePath = ImageLoader.getHttpFilePath(searchImage2.imageUrl, "jpg");
+                }
+                try {
+                    zCopyFile = AndroidUtilities.copyFile(httpFilePath, file4);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    zCopyFile = false;
+                }
+            } else {
+                zCopyFile = false;
+            }
+            zEquals = false;
+        }
+        if (this.isBlurred) {
+            FileOutputStream fileOutputStream6 = new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), strGenerateWallpaperName2));
+            this.blurredBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream6);
+            fileOutputStream6.close();
+            zCopyFile = true;
+        }
+        obj = this.currentWallpaper;
+        if (obj instanceof TLRPC.TL_wallPaper) {
+            TLRPC.TL_wallPaper tL_wallPaper3 = (TLRPC.TL_wallPaper) obj;
+            str = tL_wallPaper3.slug;
+            obj2 = tL_wallPaper3;
+        } else {
+            if (obj instanceof WallpapersListActivity.ColorWallpaper) {
+                if ("d".equals(((WallpapersListActivity.ColorWallpaper) obj).slug)) {
+                    obj2 = file;
+                    str = "d";
+                } else {
+                    tL_wallPaper = this.selectedPattern;
+                    if (tL_wallPaper != null) {
+                        str = tL_wallPaper.slug;
+                    } else {
+                        str = "c";
+                    }
+                    i = this.backgroundColor;
+                    i4 = this.backgroundGradientColor1;
+                    int i8 = this.backgroundGradientColor2;
+                    int i9 = this.backgroundGradientColor3;
+                    i2 = this.backgroundRotation;
+                    zEquals = zEquals;
+                    file4 = file4;
+                    obj2 = null;
+                    i3 = i9;
+                    i5 = i8;
+                    file = null;
+                }
+            } else {
+                if (obj instanceof WallpapersListActivity.FileWallpaper) {
+                    WallpapersListActivity.FileWallpaper fileWallpaper3 = (WallpapersListActivity.FileWallpaper) obj;
+                    str = fileWallpaper3.slug;
+                    httpFilePath2 = fileWallpaper3.path;
+                } else {
+                    if (obj instanceof MediaController.SearchImage) {
+                        searchImage = (MediaController.SearchImage) obj;
+                        photo = searchImage.photo;
+                        if (photo != null) {
+                            httpFilePath2 = FileLoader.getInstance(this.currentAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, this.maxWallpaperSize, true), true);
+                        } else {
+                            httpFilePath2 = ImageLoader.getHttpFilePath(searchImage.imageUrl, "jpg");
+                        }
+                        str = "";
+                    } else {
+                        str = "d";
+                        i = 0;
+                        i2 = 45;
+                        i5 = 0;
+                        file = null;
+                    }
+                    i3 = 0;
+                    i4 = 0;
+                    obj2 = null;
+                }
+                file = httpFilePath2;
+                i = 0;
+                i2 = 45;
+                i5 = 0;
+                i3 = 0;
+                i4 = 0;
+                obj2 = null;
+            }
+            overrideWallpaperInfo = new Theme.OverrideWallpaperInfo();
+            overrideWallpaperInfo.fileName = strGenerateWallpaperName2;
+            overrideWallpaperInfo.originalFileName = strGenerateWallpaperName;
+            overrideWallpaperInfo.slug = str;
+            overrideWallpaperInfo.isBlurred = this.isBlurred;
+            overrideWallpaperInfo.isMotion = this.isMotion;
+            overrideWallpaperInfo.color = i;
+            overrideWallpaperInfo.gradientColor1 = i4;
+            overrideWallpaperInfo.gradientColor2 = i5;
+            overrideWallpaperInfo.gradientColor3 = i3;
+            overrideWallpaperInfo.rotation = i2;
+            if (this.shouldShowBrightnessControll) {
+                f3 = this.dimAmount;
+                if (f3 >= 0.0f) {
+                    overrideWallpaperInfo.intensity = f3;
+                } else {
+                    overrideWallpaperInfo.intensity = this.currentIntensity;
+                }
+            } else {
+                overrideWallpaperInfo.intensity = this.currentIntensity;
+            }
+            obj3 = this.currentWallpaper;
+            if (obj3 instanceof WallpapersListActivity.ColorWallpaper) {
+                colorWallpaper = (WallpapersListActivity.ColorWallpaper) obj3;
+                if ("c".equals(str) || "t".equals(str) || "d".equals(str)) {
+                    str2 = null;
+                } else {
+                    str2 = str;
+                }
+                f2 = colorWallpaper.intensity;
+                if (f2 < 0.0f && !Theme.getActiveTheme().isDark()) {
+                    f2 *= -1.0f;
+                }
+                if (colorWallpaper.parentWallpaper != null && colorWallpaper.color == i && colorWallpaper.gradientColor1 == i4 && colorWallpaper.gradientColor2 == i5 && colorWallpaper.gradientColor3 == i3 && TextUtils.equals(colorWallpaper.slug, str2) && colorWallpaper.gradientRotation == i2 && (this.selectedPattern == null || Math.abs(f2 - this.currentIntensity) < 0.001f)) {
+                    TLRPC.WallPaper wallPaper3 = colorWallpaper.parentWallpaper;
+                    overrideWallpaperInfo.wallpaperId = wallPaper3.id;
+                    overrideWallpaperInfo.accessHash = wallPaper3.access_hash;
+                }
+            }
+            j = this.dialogId;
+            overrideWallpaperInfo.dialogId = j;
+            if (j != 0 && (userFull = getMessagesController().getUserFull(this.dialogId)) != null) {
+                overrideWallpaperInfo.prevUserWallpaper = userFull.wallpaper;
+            }
+            overrideWallpaperInfo.forBoth = z;
+            MessagesController messagesController3 = MessagesController.getInstance(this.currentAccount);
+            if (str == null && this.dialogId == 0) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+            messagesController3.saveWallpaperToServer(file, overrideWallpaperInfo, z2, 0L);
+            if (!zCopyFile) {
+                if (this.dialogId != 0) {
+                    if (file == null && getMessagesController().uploadingWallpaperInfo == overrideWallpaperInfo) {
+                        TLRPC.TL_wallPaper tL_wallPaper4 = new TLRPC.TL_wallPaper();
+                        TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
+                        tL_wallPaper4.settings = tL_wallPaperSettings;
+                        tL_wallPaperSettings.intensity = (int) (overrideWallpaperInfo.intensity * 100.0f);
+                        tL_wallPaperSettings.blur = overrideWallpaperInfo.isBlurred;
+                        tL_wallPaperSettings.motion = overrideWallpaperInfo.isMotion;
+                        tL_wallPaper4.uploadingImage = file.getAbsolutePath();
+                        Bitmap bitmapCreateBitmap3 = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+                        Canvas canvas3 = new Canvas(bitmapCreateBitmap3);
+                        float fMax = Math.max(50.0f / this.backgroundImage.getMeasuredWidth(), 50.0f / this.backgroundImage.getMeasuredHeight());
+                        canvas3.scale(fMax, fMax);
+                        if (this.backgroundImage.getMeasuredHeight() > this.backgroundImage.getMeasuredWidth()) {
+                            f = 0.0f;
+                            canvas3.translate(0.0f, (-(this.backgroundImage.getMeasuredHeight() - this.backgroundImage.getMeasuredWidth())) / 2.0f);
+                        } else {
+                            f = 0.0f;
+                            canvas3.translate((-(this.backgroundImage.getMeasuredWidth() - this.backgroundImage.getMeasuredHeight())) / 2.0f, 0.0f);
+                        }
+                        float f4 = this.dimAmount;
+                        this.dimAmount = f;
+                        this.backgroundImage.draw(canvas3);
+                        this.dimAmount = f4;
+                        Utilities.blurBitmap(bitmapCreateBitmap3, 3);
+                        tL_wallPaper4.stripedThumb = bitmapCreateBitmap3;
+                        createServiceMessageLocal(tL_wallPaper4, z);
+                        if (this.dialogId >= 0) {
+                            TLRPC.UserFull userFull2 = getMessagesController().getUserFull(this.dialogId);
+                            if (userFull2 != null) {
+                                userFull2.wallpaper = tL_wallPaper4;
+                                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(this.dialogId), userFull2);
+                            }
+                        } else {
+                            TLRPC.ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
+                            if (chatFull != null) {
+                                chatFull.wallpaper = tL_wallPaper4;
+                                NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
+                                int i10 = NotificationCenter.chatInfoDidLoad;
+                                Boolean bool = Boolean.FALSE;
+                                notificationCenter.lambda$postNotificationNameOnUIThread$1(i10, chatFull, 0, bool, bool);
+                                r6 = tL_wallPaper4;
+                            }
+                        }
+                        r6 = tL_wallPaper4;
+                    } else {
+                        ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
+                            @Override
+                            public final void run() {
+                                ThemePreviewActivity.lambda$applyWallpaperBackground$21();
+                            }
+                        });
+                        r6 = obj2;
+                    }
+                    this.setupFinished = true;
+                    r1 = this.delegate;
+                    if (r1 != 0) {
+                        r1.didSetNewBackground(r6);
+                    }
+                    finishFragment();
+                    z3 = false;
+                    r5 = r6;
+                } else {
+                    Theme.serviceMessageColorBackup = getThemedColor(Theme.key_chat_serviceBackground);
+                    if ("t".equals(overrideWallpaperInfo.slug)) {
+                        overrideWallpaperInfo2 = null;
+                    } else {
+                        overrideWallpaperInfo2 = overrideWallpaperInfo;
+                    }
+                    Theme.getActiveTheme().setOverrideWallpaper(overrideWallpaperInfo2);
+                    Theme.reloadWallpaper(true);
+                    if (!zEquals) {
+                        ImageLoader.getInstance().removeImage(ImageLoader.getHttpFileName(file4.getAbsolutePath()) + "@100_100");
+                    }
+                }
+                if (z3) {
+                    r0 = this.delegate;
+                    if (r0 != 0) {
+                        r0.didSetNewBackground(r5);
+                    }
+                    finishFragment();
+                }
+            }
+            r5 = obj2;
+            z3 = true;
+            if (z3) {
+                r0 = this.delegate;
+                if (r0 != 0) {
+                    r0.didSetNewBackground(r5);
+                }
+                finishFragment();
+            }
+        }
+        i = 0;
+        i2 = 45;
+        i3 = 0;
+        i4 = 0;
+        overrideWallpaperInfo = new Theme.OverrideWallpaperInfo();
+        overrideWallpaperInfo.fileName = strGenerateWallpaperName2;
+        overrideWallpaperInfo.originalFileName = strGenerateWallpaperName;
+        overrideWallpaperInfo.slug = str;
+        overrideWallpaperInfo.isBlurred = this.isBlurred;
+        overrideWallpaperInfo.isMotion = this.isMotion;
+        overrideWallpaperInfo.color = i;
+        overrideWallpaperInfo.gradientColor1 = i4;
+        overrideWallpaperInfo.gradientColor2 = i5;
+        overrideWallpaperInfo.gradientColor3 = i3;
+        overrideWallpaperInfo.rotation = i2;
+        if (this.shouldShowBrightnessControll) {
+            f3 = this.dimAmount;
+            if (f3 >= 0.0f) {
+                overrideWallpaperInfo.intensity = f3;
+            } else {
+                overrideWallpaperInfo.intensity = this.currentIntensity;
+            }
+        } else {
+            overrideWallpaperInfo.intensity = this.currentIntensity;
+        }
+        obj3 = this.currentWallpaper;
+        if (obj3 instanceof WallpapersListActivity.ColorWallpaper) {
+            colorWallpaper = (WallpapersListActivity.ColorWallpaper) obj3;
+            if ("c".equals(str)) {
+                str2 = null;
+            } else {
+                str2 = null;
+            }
+            f2 = colorWallpaper.intensity;
+            if (f2 < 0.0f) {
+                f2 *= -1.0f;
+            }
+            if (colorWallpaper.parentWallpaper != null) {
+                TLRPC.WallPaper wallPaper4 = colorWallpaper.parentWallpaper;
+                overrideWallpaperInfo.wallpaperId = wallPaper4.id;
+                overrideWallpaperInfo.accessHash = wallPaper4.access_hash;
+            }
+        }
+        j = this.dialogId;
+        overrideWallpaperInfo.dialogId = j;
+        if (j != 0) {
+            overrideWallpaperInfo.prevUserWallpaper = userFull.wallpaper;
+        }
+        overrideWallpaperInfo.forBoth = z;
+        MessagesController messagesController4 = MessagesController.getInstance(this.currentAccount);
+        if (str == null) {
+            z2 = false;
+        } else {
+            z2 = false;
+        }
+        messagesController4.saveWallpaperToServer(file, overrideWallpaperInfo, z2, 0L);
+        if (!zCopyFile) {
+            if (this.dialogId != 0) {
+                if (file == null) {
+                    ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
+                        @Override
+                        public final void run() {
+                            ThemePreviewActivity.lambda$applyWallpaperBackground$21();
+                        }
+                    });
+                    r6 = obj2;
+                } else {
+                    ChatThemeController.getInstance(this.currentAccount).setWallpaperToPeer(this.dialogId, null, overrideWallpaperInfo, this.serverWallpaper, new Runnable() {
+                        @Override
+                        public final void run() {
+                            ThemePreviewActivity.lambda$applyWallpaperBackground$21();
+                        }
+                    });
+                    r6 = obj2;
+                }
+                this.setupFinished = true;
+                r1 = this.delegate;
+                if (r1 != 0) {
+                    r1.didSetNewBackground(r6);
+                }
+                finishFragment();
+                z3 = false;
+                r5 = r6;
+            } else {
+                Theme.serviceMessageColorBackup = getThemedColor(Theme.key_chat_serviceBackground);
+                if ("t".equals(overrideWallpaperInfo.slug)) {
+                    overrideWallpaperInfo2 = null;
+                } else {
+                    overrideWallpaperInfo2 = overrideWallpaperInfo;
+                }
+                Theme.getActiveTheme().setOverrideWallpaper(overrideWallpaperInfo2);
+                Theme.reloadWallpaper(true);
+                if (!zEquals) {
+                    ImageLoader.getInstance().removeImage(ImageLoader.getHttpFileName(file4.getAbsolutePath()) + "@100_100");
+                }
+            }
+            if (z3) {
+                r0 = this.delegate;
+                if (r0 != 0) {
+                    r0.didSetNewBackground(r5);
+                }
+                finishFragment();
+            }
+        }
+        r5 = obj2;
+        z3 = true;
+        if (z3) {
+            r0 = this.delegate;
+            if (r0 != 0) {
+                r0.didSetNewBackground(r5);
+            }
+            finishFragment();
+        }
     }
 
     public void lambda$applyWallpaperBackground$20(ChannelBoostsController.CanApplyBoost canApplyBoost) {
@@ -1391,7 +6398,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         presentFragment(StatisticActivity.create(getMessagesController().getChat(Long.valueOf(-this.dialogId))));
     }
 
-    public void onColorsRotate() throws IOException {
+    public void onColorsRotate() {
         if (this.screenType == 2) {
             this.backgroundRotation += 45;
             while (true) {
@@ -1428,6 +6435,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
     private void selectColorType(int i, boolean z) {
         int i2;
+        int i3;
         if (getParentActivity() == null || this.colorType == i || this.patternViewAnimation != null || this.accent == null) {
             return;
         }
@@ -1438,22 +6446,22 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 builder.setMessage(LocaleController.getString(R.string.ChangeColorToColor));
                 builder.setPositiveButton(LocaleController.getString(R.string.Reset), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) throws IOException {
-                        this.f$0.lambda$selectColorType$22(alertDialog, i3);
+                    public final void onClick(AlertDialog alertDialog, int i4) {
+                        this.f$0.lambda$selectColorType$22(alertDialog, i4);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Continue), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) throws IOException {
-                        this.f$0.lambda$selectColorType$23(alertDialog, i3);
+                    public final void onClick(AlertDialog alertDialog, int i4) {
+                        this.f$0.lambda$selectColorType$23(alertDialog, i4);
                     }
                 });
             } else {
                 builder.setMessage(LocaleController.getString(R.string.ChangeWallpaperToColor));
                 builder.setPositiveButton(LocaleController.getString(R.string.Change), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) throws IOException {
-                        this.f$0.lambda$selectColorType$24(alertDialog, i3);
+                    public final void onClick(AlertDialog alertDialog, int i4) {
+                        this.f$0.lambda$selectColorType$24(alertDialog, i4);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1461,67 +6469,74 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             showDialog(builder.create());
             return;
         }
-        int i3 = this.colorType;
+        int i4 = this.colorType;
         this.colorType = i;
         if (i == 1) {
             this.dropDown.setText(LocaleController.getString(R.string.ColorPickerMainColor));
             this.colorPicker.setType(1, hasChanges(1), 2, this.accent.accentColor2 != 0 ? 2 : 1, false, 0, false);
             this.colorPicker.setColor(this.accent.accentColor, 0);
-            int i4 = this.accent.accentColor2;
-            if (i4 != 0) {
-                this.colorPicker.setColor(i4, 1);
+            int i5 = this.accent.accentColor2;
+            if (i5 != 0) {
+                this.colorPicker.setColor(i5, 1);
             }
-            if (i3 == 2 || (i3 == 3 && this.accent.myMessagesGradientAccentColor2 != 0)) {
+            if (i4 == 2 || (i4 == 3 && this.accent.myMessagesGradientAccentColor2 != 0)) {
                 this.messagesAdapter.notifyItemRemoved(0);
             }
         } else if (i == 2) {
             this.dropDown.setText(LocaleController.getString(R.string.ColorPickerBackground));
             int themedColor = getThemedColor(Theme.key_chat_wallpaper);
-            int i5 = Theme.key_chat_wallpaper_gradient_to1;
-            int themedColor2 = Theme.hasThemeKey(i5) ? getThemedColor(i5) : 0;
-            int i6 = Theme.key_chat_wallpaper_gradient_to2;
-            int themedColor3 = Theme.hasThemeKey(i6) ? getThemedColor(i6) : 0;
-            int i7 = Theme.key_chat_wallpaper_gradient_to3;
-            int themedColor4 = Theme.hasThemeKey(i7) ? getThemedColor(i7) : 0;
+            int i6 = Theme.key_chat_wallpaper_gradient_to1;
+            int themedColor2 = Theme.hasThemeKey(i6) ? getThemedColor(i6) : 0;
+            int i7 = Theme.key_chat_wallpaper_gradient_to2;
+            int themedColor3 = Theme.hasThemeKey(i7) ? getThemedColor(i7) : 0;
+            int i8 = Theme.key_chat_wallpaper_gradient_to3;
+            int themedColor4 = Theme.hasThemeKey(i8) ? getThemedColor(i8) : 0;
             Theme.ThemeAccent themeAccent = this.accent;
             long j = themeAccent.backgroundGradientOverrideColor1;
-            int i8 = (int) j;
-            if (i8 == 0 && j != 0) {
+            int i9 = (int) j;
+            if (i9 == 0 && j != 0) {
                 themedColor2 = 0;
             }
             long j2 = themeAccent.backgroundGradientOverrideColor2;
-            int i9 = (int) j2;
-            if (i9 == 0 && j2 != 0) {
+            int i10 = (int) j2;
+            if (i10 == 0 && j2 != 0) {
                 themedColor3 = 0;
             }
             long j3 = themeAccent.backgroundGradientOverrideColor3;
-            int i10 = (int) j3;
-            if (i10 == 0 && j3 != 0) {
+            int i11 = (int) j3;
+            if (i11 == 0 && j3 != 0) {
                 themedColor4 = 0;
             }
-            int i11 = (int) themeAccent.backgroundOverrideColor;
-            this.colorPicker.setType(2, hasChanges(2), 4, (i8 == 0 && themedColor2 == 0) ? 1 : (i10 == 0 && themedColor4 == 0) ? (i9 == 0 && themedColor3 == 0) ? 2 : 3 : 4, false, this.accent.backgroundRotation, false);
+            int i12 = (int) themeAccent.backgroundOverrideColor;
+            if (i9 == 0 && themedColor2 == 0) {
+                i2 = 1;
+            } else if (i11 == 0 && themedColor4 == 0) {
+                i2 = (i10 == 0 && themedColor3 == 0) ? 2 : 3;
+            } else {
+                i2 = 4;
+            }
+            this.colorPicker.setType(2, hasChanges(2), 4, i2, false, this.accent.backgroundRotation, false);
             ColorPicker colorPicker = this.colorPicker;
-            if (i10 == 0) {
-                i10 = themedColor4;
+            if (i11 == 0) {
+                i11 = themedColor4;
             }
-            colorPicker.setColor(i10, 3);
+            colorPicker.setColor(i11, 3);
             ColorPicker colorPicker2 = this.colorPicker;
-            if (i9 == 0) {
-                i9 = themedColor3;
+            if (i10 == 0) {
+                i10 = themedColor3;
             }
-            colorPicker2.setColor(i9, 2);
+            colorPicker2.setColor(i10, 2);
             ColorPicker colorPicker3 = this.colorPicker;
-            if (i8 == 0) {
-                i8 = themedColor2;
+            if (i9 == 0) {
+                i9 = themedColor2;
             }
-            colorPicker3.setColor(i8, 1);
+            colorPicker3.setColor(i9, 1);
             ColorPicker colorPicker4 = this.colorPicker;
-            if (i11 != 0) {
-                themedColor = i11;
+            if (i12 != 0) {
+                themedColor = i12;
             }
             colorPicker4.setColor(themedColor, 0);
-            if (i3 == 1 || this.accent.myMessagesGradientAccentColor2 == 0) {
+            if (i4 == 1 || this.accent.myMessagesGradientAccentColor2 == 0) {
                 this.messagesAdapter.notifyItemInserted(0);
             } else {
                 this.messagesAdapter.notifyItemChanged(0);
@@ -1531,41 +6546,41 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             this.dropDown.setText(LocaleController.getString(R.string.ColorPickerMyMessages));
             Theme.ThemeAccent themeAccent2 = this.accent;
             if (themeAccent2.myMessagesGradientAccentColor1 == 0) {
-                i2 = 1;
+                i3 = 1;
             } else if (themeAccent2.myMessagesGradientAccentColor3 != 0) {
-                i2 = 4;
+                i3 = 4;
             } else {
-                i2 = themeAccent2.myMessagesGradientAccentColor2 != 0 ? 3 : 2;
+                i3 = themeAccent2.myMessagesGradientAccentColor2 != 0 ? 3 : 2;
             }
-            this.colorPicker.setType(2, hasChanges(3), 4, i2, true, 0, false);
+            this.colorPicker.setType(2, hasChanges(3), 4, i3, true, 0, false);
             this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor3, 3);
             this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor2, 2);
             this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor1, 1);
             ColorPicker colorPicker5 = this.colorPicker;
             Theme.ThemeAccent themeAccent3 = this.accent;
-            int i12 = themeAccent3.myMessagesAccentColor;
-            if (i12 == 0) {
-                i12 = themeAccent3.accentColor;
+            int i13 = themeAccent3.myMessagesAccentColor;
+            if (i13 == 0) {
+                i13 = themeAccent3.accentColor;
             }
-            colorPicker5.setColor(i12, 0);
+            colorPicker5.setColor(i13, 0);
             this.messagesCheckBoxView[1].setColor(0, this.accent.myMessagesAccentColor);
             this.messagesCheckBoxView[1].setColor(1, this.accent.myMessagesGradientAccentColor1);
             this.messagesCheckBoxView[1].setColor(2, this.accent.myMessagesGradientAccentColor2);
             this.messagesCheckBoxView[1].setColor(3, this.accent.myMessagesGradientAccentColor3);
             if (this.accent.myMessagesGradientAccentColor2 != 0) {
-                if (i3 == 1) {
+                if (i4 == 1) {
                     this.messagesAdapter.notifyItemInserted(0);
                 } else {
                     this.messagesAdapter.notifyItemChanged(0);
                 }
-            } else if (i3 == 2) {
+            } else if (i4 == 2) {
                 this.messagesAdapter.notifyItemRemoved(0);
             }
             this.listView2.smoothScrollBy(0, AndroidUtilities.dp(60.0f));
             showAnimationHint();
         }
         if (i == 1 || i == 3) {
-            if (i3 == 2 && this.patternLayout[1].getVisibility() == 0) {
+            if (i4 == 2 && this.patternLayout[1].getVisibility() == 0) {
                 showPatternsView(0, true, true);
             }
             if (i == 1) {
@@ -1586,7 +6601,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.colorPicker.setMaxBrightness(1.0f);
     }
 
-    public void lambda$selectColorType$22(AlertDialog alertDialog, int i) throws IOException {
+    public void lambda$selectColorType$22(AlertDialog alertDialog, int i) {
         Theme.ThemeAccent themeAccent = this.accent;
         if (themeAccent.backgroundOverrideColor == 4294967296L) {
             themeAccent.backgroundOverrideColor = 0L;
@@ -1601,7 +6616,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         selectColorType(2, false);
     }
 
-    public void lambda$selectColorType$23(AlertDialog alertDialog, int i) throws IOException {
+    public void lambda$selectColorType$23(AlertDialog alertDialog, int i) {
         if (Theme.isCustomWallpaperColor()) {
             Theme.ThemeAccent themeAccent = this.accent;
             Theme.OverrideWallpaperInfo overrideWallpaperInfo = themeAccent.overrideWallpaper;
@@ -1617,17 +6632,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             this.currentIntensity = f;
             if (str != null && !"c".equals(str)) {
                 int size = this.patterns.size();
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= size) {
-                        break;
-                    }
+                for (int i2 = 0; i2 < size; i2++) {
                     TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) this.patterns.get(i2);
                     if (tL_wallPaper.pattern && this.accent.patternSlug.equals(tL_wallPaper.slug)) {
                         this.selectedPattern = tL_wallPaper;
                         break;
                     }
-                    i2++;
                 }
             } else {
                 this.selectedPattern = null;
@@ -1664,7 +6674,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         selectColorType(2, false);
     }
 
-    public void lambda$selectColorType$24(AlertDialog alertDialog, int i) throws IOException {
+    public void lambda$selectColorType$24(AlertDialog alertDialog, int i) {
         Theme.ThemeAccent themeAccent = this.accent;
         if (themeAccent.backgroundOverrideColor == 4294967296L) {
             themeAccent.backgroundOverrideColor = 0L;
@@ -1877,7 +6887,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.actionBar2.getActionBarMenuOnItemClick().onItemClick(4);
     }
 
-    public void lambda$checkDiscard$26(AlertDialog alertDialog, int i) throws IOException {
+    public void lambda$checkDiscard$26(AlertDialog alertDialog, int i) {
         cancelThemeApply(false);
     }
 
@@ -2165,7 +7175,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     @Override
-    public boolean onBackPressed(boolean z) throws IOException {
+    public boolean onBackPressed(boolean z) {
         if (!checkDiscard(z)) {
             return false;
         }
@@ -2373,7 +7383,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    public void cancelThemeApply(boolean z) throws IOException {
+    public void cancelThemeApply(boolean z) {
         if (this.screenType == 2) {
             if (z) {
                 return;
@@ -2424,7 +7434,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         return this.useDefaultThemeForButtons ? Theme.getDefaultColor(i) : getThemedColor(i);
     }
 
-    public void scheduleApplyColor(int i, int i2, boolean z) throws IOException {
+    public void scheduleApplyColor(int i, int i2, boolean z) {
         if (i2 == -1) {
             int i3 = this.colorType;
             if (i3 == 1 || i3 == 2) {
@@ -2545,7 +7555,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    private void applyColor(int i, int i2) throws NoSuchFieldException, IOException, SecurityException {
+    private void applyColor(int i, int i2) {
         int i3 = this.colorType;
         if (i3 == 1) {
             if (i2 == 0) {
@@ -2725,17 +7735,12 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             WallpapersListActivity.ColorWallpaper colorWallpaper = (WallpapersListActivity.ColorWallpaper) this.currentWallpaper;
             if (colorWallpaper.patternId != 0) {
                 int size = arrayList.size();
-                int i = 0;
-                while (true) {
-                    if (i >= size) {
-                        break;
-                    }
+                for (int i = 0; i < size; i++) {
                     TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) this.patterns.get(i);
                     if (tL_wallPaper.id == colorWallpaper.patternId) {
                         this.selectedPattern = tL_wallPaper;
                         break;
                     }
-                    i++;
                 }
                 this.currentIntensity = colorWallpaper.intensity;
             }
@@ -2843,20 +7848,28 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
     public void showPatternsView(final int i, final boolean z, boolean z2) {
         int iIndexOf;
+        int i2;
         final boolean z3 = z && i == 1 && this.selectedPattern != null;
         if (z) {
             if (i == 0) {
                 if (this.screenType == 2) {
                     this.previousBackgroundColor = this.backgroundColor;
-                    int i2 = this.backgroundGradientColor1;
-                    this.previousBackgroundGradientColor1 = i2;
-                    int i3 = this.backgroundGradientColor2;
-                    this.previousBackgroundGradientColor2 = i3;
-                    int i4 = this.backgroundGradientColor3;
-                    this.previousBackgroundGradientColor3 = i4;
-                    int i5 = this.backupBackgroundRotation;
-                    this.previousBackgroundRotation = i5;
-                    this.colorPicker.setType(0, false, 4, i4 != 0 ? 4 : i3 != 0 ? 3 : i2 != 0 ? 2 : 1, false, i5, false);
+                    int i3 = this.backgroundGradientColor1;
+                    this.previousBackgroundGradientColor1 = i3;
+                    int i4 = this.backgroundGradientColor2;
+                    this.previousBackgroundGradientColor2 = i4;
+                    int i5 = this.backgroundGradientColor3;
+                    this.previousBackgroundGradientColor3 = i5;
+                    int i6 = this.backupBackgroundRotation;
+                    this.previousBackgroundRotation = i6;
+                    if (i5 != 0) {
+                        i2 = 4;
+                    } else if (i4 != 0) {
+                        i2 = 3;
+                    } else {
+                        i2 = i3 != 0 ? 2 : 1;
+                    }
+                    this.colorPicker.setType(0, false, 4, i2, false, i6, false);
                     this.colorPicker.setColor(this.backgroundGradientColor3, 3);
                     this.colorPicker.setColor(this.backgroundGradientColor2, 2);
                     this.colorPicker.setColor(this.backgroundGradientColor1, 1);
@@ -2878,8 +7891,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
             }
         }
-        int i6 = this.screenType;
-        if (i6 == 1 || i6 == 2) {
+        int i7 = this.screenType;
+        if (i7 == 1 || i7 == 2) {
             this.backgroundCheckBoxView[z3 ? (char) 2 : (char) 0].setVisibility(0);
         }
         if (i == 1 && !this.intensitySeekBar.isTwoSided()) {
@@ -2893,11 +7906,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         if (z2) {
             this.patternViewAnimation = new AnimatorSet();
             ArrayList arrayList2 = new ArrayList();
-            int i7 = i == 0 ? 1 : 0;
+            int i8 = i == 0 ? 1 : 0;
             if (z) {
                 this.patternLayout[i].setVisibility(0);
-                int i8 = this.screenType;
-                if (i8 == 1) {
+                int i9 = this.screenType;
+                if (i9 == 1) {
                     arrayList2.add(ObjectAnimator.ofFloat(this.listView2, (Property<RecyclerListView, Float>) View.TRANSLATION_Y, i == 1 ? -AndroidUtilities.dp(21.0f) : 0.0f));
                     WallpaperCheckBoxView wallpaperCheckBoxView = this.backgroundCheckBoxView[2];
                     Property property = View.ALPHA;
@@ -2907,10 +7920,10 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) property, 0.0f, 1.0f));
                     } else {
                         this.patternLayout[i].setAlpha(1.0f);
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i7], (Property<FrameLayout, Float>) property, 0.0f));
+                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i8], (Property<FrameLayout, Float>) property, 0.0f));
                     }
                     this.colorPicker.hideKeyboard();
-                } else if (i8 == 2) {
+                } else if (i9 == 2) {
                     RecyclerListView recyclerListView = this.listView2;
                     Property property2 = View.TRANSLATION_Y;
                     arrayList2.add(ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) property2, (-this.patternLayout[i].getMeasuredHeight()) + AndroidUtilities.dp((this.applyButton2 == null ? 0 : 58) + 72) + (insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0)));
@@ -2918,19 +7931,20 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     Property property3 = View.ALPHA;
                     arrayList2.add(ObjectAnimator.ofFloat(wallpaperCheckBoxView2, (Property<WallpaperCheckBoxView, Float>) property3, z3 ? 1.0f : 0.0f));
                     arrayList2.add(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[0], (Property<WallpaperCheckBoxView, Float>) property3, z3 ? 0.0f : 1.0f));
-                    if (this.patternLayout[i7].getVisibility() == 0) {
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i7], (Property<FrameLayout, Float>) property3, 0.0f));
+                    if (this.patternLayout[i8].getVisibility() == 0) {
+                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i8], (Property<FrameLayout, Float>) property3, 0.0f));
                         arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) property3, 0.0f, 1.0f));
                         this.patternLayout[i].setTranslationY(0.0f);
                     } else {
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) property2, r8.getMeasuredHeight(), 0.0f));
+                        FrameLayout frameLayout = this.patternLayout[i];
+                        arrayList2.add(ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property2, frameLayout.getMeasuredHeight(), 0.0f));
                     }
                 } else {
                     if (i == 1) {
                         arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) View.ALPHA, 0.0f, 1.0f));
                     } else {
                         this.patternLayout[i].setAlpha(1.0f);
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i7], (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
+                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i8], (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
                     }
                     this.colorPicker.hideKeyboard();
                 }
@@ -2938,7 +7952,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 RecyclerListView recyclerListView2 = this.listView2;
                 Property property4 = View.TRANSLATION_Y;
                 arrayList2.add(ObjectAnimator.ofFloat(recyclerListView2, (Property<RecyclerListView, Float>) property4, 0.0f));
-                arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) property4, r8.getMeasuredHeight()));
+                FrameLayout frameLayout2 = this.patternLayout[i];
+                arrayList2.add(ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property4, frameLayout2.getMeasuredHeight()));
                 WallpaperCheckBoxView wallpaperCheckBoxView3 = this.backgroundCheckBoxView[0];
                 Property property5 = View.ALPHA;
                 arrayList2.add(ObjectAnimator.ofFloat(wallpaperCheckBoxView3, (Property<WallpaperCheckBoxView, Float>) property5, 1.0f));
@@ -2946,21 +7961,21 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 arrayList2.add(ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) property5, 1.0f));
             }
             this.patternViewAnimation.playTogether(arrayList2);
-            final int i9 = i7;
+            final int i10 = i8;
             this.patternViewAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     ThemePreviewActivity.this.patternViewAnimation = null;
-                    if (z && ThemePreviewActivity.this.patternLayout[i9].getVisibility() == 0) {
-                        ThemePreviewActivity.this.patternLayout[i9].setAlpha(1.0f);
-                        ThemePreviewActivity.this.patternLayout[i9].setVisibility(4);
+                    if (z && ThemePreviewActivity.this.patternLayout[i10].getVisibility() == 0) {
+                        ThemePreviewActivity.this.patternLayout[i10].setAlpha(1.0f);
+                        ThemePreviewActivity.this.patternLayout[i10].setVisibility(4);
                     } else if (!z) {
                         ThemePreviewActivity.this.patternLayout[i].setVisibility(4);
                     }
                     if (ThemePreviewActivity.this.screenType == 1 || ThemePreviewActivity.this.screenType == 2) {
                         ThemePreviewActivity.this.backgroundCheckBoxView[z3 ? (char) 0 : (char) 2].setVisibility(4);
                     } else if (i == 1) {
-                        ThemePreviewActivity.this.patternLayout[i9].setAlpha(0.0f);
+                        ThemePreviewActivity.this.patternLayout[i10].setAlpha(0.0f);
                     }
                 }
             });
@@ -2972,8 +7987,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         char c = i == 0 ? (char) 1 : (char) 0;
         if (z) {
             this.patternLayout[i].setVisibility(0);
-            int i10 = this.screenType;
-            if (i10 == 1) {
+            int i11 = this.screenType;
+            if (i11 == 1) {
                 this.listView2.setTranslationY(i == 1 ? -AndroidUtilities.dp(21.0f) : 0.0f);
                 this.backgroundCheckBoxView[2].setAlpha(z3 ? 1.0f : 0.0f);
                 this.backgroundCheckBoxView[0].setAlpha(z3 ? 0.0f : 1.0f);
@@ -2984,7 +7999,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     this.patternLayout[c].setAlpha(0.0f);
                 }
                 this.colorPicker.hideKeyboard();
-            } else if (i10 == 2) {
+            } else if (i11 == 2) {
                 this.listView2.setTranslationY((-AndroidUtilities.dp(i == 0 ? 343.0f : 316.0f)) + AndroidUtilities.dp((this.applyButton2 == null ? 0 : 58) + 72) + (insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0));
                 this.backgroundCheckBoxView[2].setAlpha(z3 ? 1.0f : 0.0f);
                 this.backgroundCheckBoxView[0].setAlpha(z3 ? 0.0f : 1.0f);
@@ -3006,7 +8021,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             }
         } else {
             this.listView2.setTranslationY(0.0f);
-            this.patternLayout[i].setTranslationY(r8.getMeasuredHeight());
+            FrameLayout frameLayout3 = this.patternLayout[i];
+            frameLayout3.setTranslationY(frameLayout3.getMeasuredHeight());
             this.backgroundCheckBoxView[0].setAlpha(1.0f);
             this.backgroundCheckBoxView[2].setAlpha(1.0f);
             this.backgroundImage.setAlpha(1.0f);
@@ -3017,8 +8033,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         } else if (!z) {
             this.patternLayout[i].setVisibility(4);
         }
-        int i11 = this.screenType;
-        if (i11 == 1 || i11 == 2) {
+        int i12 = this.screenType;
+        if (i12 == 1 || i12 == 2) {
             this.backgroundCheckBoxView[z3 ? (char) 0 : (char) 2].setVisibility(4);
         } else if (i == 1) {
             this.patternLayout[c].setAlpha(0.0f);
@@ -3047,8 +8063,135 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.motionAnimation.start();
     }
 
-    private void updatePlayAnimationView(boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.updatePlayAnimationView(boolean):void");
+    private void updatePlayAnimationView(boolean z) {
+        boolean z2;
+        int defaultAccentColor;
+        if (Build.VERSION.SDK_INT >= 29) {
+            int i = this.screenType;
+            if (i == 0) {
+                Theme.ThemeAccent themeAccent = this.accent;
+                if (themeAccent != null) {
+                    defaultAccentColor = (int) themeAccent.backgroundGradientOverrideColor2;
+                } else {
+                    defaultAccentColor = getThemedColor(Theme.key_chat_wallpaper_gradient_to2);
+                }
+            } else if (i == 1) {
+                defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to2);
+                long j = this.accent.backgroundGradientOverrideColor2;
+                int i2 = (int) j;
+                if (i2 == 0 && j != 0) {
+                    defaultAccentColor = 0;
+                } else if (i2 != 0) {
+                    defaultAccentColor = i2;
+                }
+            } else if (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
+                defaultAccentColor = this.backgroundGradientColor2;
+            } else {
+                defaultAccentColor = 0;
+            }
+            if (defaultAccentColor != 0 && this.currentIntensity >= 0.0f) {
+                this.backgroundImage.getImageReceiver().setBlendMode(BlendMode.SOFT_LIGHT);
+            } else {
+                this.backgroundImage.getImageReceiver().setBlendMode(null);
+            }
+        }
+        if (this.backgroundPlayAnimationView != null) {
+            int i3 = this.screenType;
+            if (i3 != 2) {
+                if (i3 == 1) {
+                    int defaultAccentColor2 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to1);
+                    long j2 = this.accent.backgroundGradientOverrideColor1;
+                    int i4 = (int) j2;
+                    if (i4 == 0 && j2 != 0) {
+                        defaultAccentColor2 = 0;
+                    } else if (i4 != 0) {
+                        defaultAccentColor2 = i4;
+                    }
+                    z2 = defaultAccentColor2 != 0;
+                }
+            } else if (this.backgroundGradientColor1 != 0) {
+            }
+            boolean z3 = this.backgroundPlayAnimationView.getTag() != null;
+            this.backgroundPlayAnimationView.setTag(z2 ? 1 : null);
+            if (z3 != z2) {
+                if (z2) {
+                    this.backgroundPlayAnimationView.setVisibility(0);
+                }
+                AnimatorSet animatorSet = this.backgroundPlayViewAnimator;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                }
+                if (z) {
+                    AnimatorSet animatorSet2 = new AnimatorSet();
+                    this.backgroundPlayViewAnimator = animatorSet2;
+                    ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this.backgroundPlayAnimationView, (Property<FrameLayout, Float>) View.ALPHA, z2 ? 1.0f : 0.0f);
+                    ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(this.backgroundPlayAnimationView, (Property<FrameLayout, Float>) View.SCALE_X, z2 ? 1.0f : 0.0f);
+                    ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(this.backgroundPlayAnimationView, (Property<FrameLayout, Float>) View.SCALE_Y, z2 ? 1.0f : 0.0f);
+                    WallpaperCheckBoxView wallpaperCheckBoxView = this.backgroundCheckBoxView[0];
+                    Property property = View.TRANSLATION_X;
+                    animatorSet2.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, ObjectAnimator.ofFloat(wallpaperCheckBoxView, (Property<WallpaperCheckBoxView, Float>) property, z2 ? AndroidUtilities.dp(34.0f) : 0.0f), ObjectAnimator.ofFloat(this.backgroundCheckBoxView[1], (Property<WallpaperCheckBoxView, Float>) property, z2 ? -AndroidUtilities.dp(34.0f) : 0.0f), ObjectAnimator.ofFloat(this.backgroundCheckBoxView[2], (Property<WallpaperCheckBoxView, Float>) property, z2 ? AndroidUtilities.dp(34.0f) : 0.0f));
+                    this.backgroundPlayViewAnimator.setDuration(180L);
+                    this.backgroundPlayViewAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            if (ThemePreviewActivity.this.backgroundPlayAnimationView.getTag() == null) {
+                                ThemePreviewActivity.this.backgroundPlayAnimationView.setVisibility(4);
+                            }
+                            ThemePreviewActivity.this.backgroundPlayViewAnimator = null;
+                        }
+                    });
+                    this.backgroundPlayViewAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                    this.backgroundPlayViewAnimator.start();
+                } else {
+                    this.backgroundPlayAnimationView.setAlpha(z2 ? 1.0f : 0.0f);
+                    this.backgroundPlayAnimationView.setScaleX(z2 ? 1.0f : 0.0f);
+                    this.backgroundPlayAnimationView.setScaleY(z2 ? 1.0f : 0.0f);
+                    this.backgroundCheckBoxView[0].setTranslationX(z2 ? AndroidUtilities.dp(34.0f) : 0.0f);
+                    this.backgroundCheckBoxView[1].setTranslationX(z2 ? -AndroidUtilities.dp(34.0f) : 0.0f);
+                    this.backgroundCheckBoxView[2].setTranslationX(z2 ? AndroidUtilities.dp(34.0f) : 0.0f);
+                }
+            }
+        }
+        FrameLayout frameLayout = this.messagesPlayAnimationView;
+        if (frameLayout != null) {
+            boolean z4 = frameLayout.getTag() != null;
+            this.messagesPlayAnimationView.setTag(1);
+            if (!z4) {
+                this.messagesPlayAnimationView.setVisibility(0);
+                AnimatorSet animatorSet3 = this.messagesPlayViewAnimator;
+                if (animatorSet3 != null) {
+                    animatorSet3.cancel();
+                }
+                if (z) {
+                    AnimatorSet animatorSet4 = new AnimatorSet();
+                    this.messagesPlayViewAnimator = animatorSet4;
+                    ObjectAnimator objectAnimatorOfFloat4 = ObjectAnimator.ofFloat(this.messagesPlayAnimationView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f);
+                    ObjectAnimator objectAnimatorOfFloat5 = ObjectAnimator.ofFloat(this.messagesPlayAnimationView, (Property<FrameLayout, Float>) View.SCALE_X, 1.0f);
+                    ObjectAnimator objectAnimatorOfFloat6 = ObjectAnimator.ofFloat(this.messagesPlayAnimationView, (Property<FrameLayout, Float>) View.SCALE_Y, 1.0f);
+                    WallpaperCheckBoxView wallpaperCheckBoxView2 = this.messagesCheckBoxView[0];
+                    Property property2 = View.TRANSLATION_X;
+                    animatorSet4.playTogether(objectAnimatorOfFloat4, objectAnimatorOfFloat5, objectAnimatorOfFloat6, ObjectAnimator.ofFloat(wallpaperCheckBoxView2, (Property<WallpaperCheckBoxView, Float>) property2, -AndroidUtilities.dp(34.0f)), ObjectAnimator.ofFloat(this.messagesCheckBoxView[1], (Property<WallpaperCheckBoxView, Float>) property2, AndroidUtilities.dp(34.0f)));
+                    this.messagesPlayViewAnimator.setDuration(180L);
+                    this.messagesPlayViewAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            if (ThemePreviewActivity.this.messagesPlayAnimationView.getTag() == null) {
+                                ThemePreviewActivity.this.messagesPlayAnimationView.setVisibility(4);
+                            }
+                            ThemePreviewActivity.this.messagesPlayViewAnimator = null;
+                        }
+                    });
+                    this.messagesPlayViewAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                    this.messagesPlayViewAnimator.start();
+                    return;
+                }
+                this.messagesPlayAnimationView.setAlpha(1.0f);
+                this.messagesPlayAnimationView.setScaleX(1.0f);
+                this.messagesPlayAnimationView.setScaleY(1.0f);
+                this.messagesCheckBoxView[0].setTranslationX(-AndroidUtilities.dp(34.0f));
+                this.messagesCheckBoxView[1].setTranslationX(AndroidUtilities.dp(34.0f));
+            }
+        }
     }
 
     public void setBackgroundColor(int i, int i2, boolean z, boolean z2) {
@@ -3169,8 +8312,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     public void setCurrentImage(boolean z) {
-        ColorDrawable colorDrawable;
+        Drawable colorDrawable;
         MotionBackgroundDrawable motionBackgroundDrawable;
+        MotionBackgroundDrawable motionBackgroundDrawable2;
         int i = this.screenType;
         if (i == 0 && this.accent == null) {
             this.backgroundImage.setBackground(Theme.getCachedWallpaper());
@@ -3282,18 +8426,19 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     if (defaultAccentColor3 != 0) {
                         Drawable background = this.backgroundImage.getBackground();
                         if (background instanceof MotionBackgroundDrawable) {
-                            motionBackgroundDrawable = (MotionBackgroundDrawable) background;
+                            motionBackgroundDrawable2 = (MotionBackgroundDrawable) background;
                         } else {
-                            MotionBackgroundDrawable motionBackgroundDrawable2 = new MotionBackgroundDrawable();
-                            motionBackgroundDrawable2.setParentView(this.backgroundImage);
-                            motionBackgroundDrawable = motionBackgroundDrawable2;
+                            motionBackgroundDrawable = new MotionBackgroundDrawable();
+                            motionBackgroundDrawable.setParentView(this.backgroundImage);
                             if (this.rotatePreview) {
-                                motionBackgroundDrawable2.rotatePreview(false);
-                                motionBackgroundDrawable = motionBackgroundDrawable2;
+                                motionBackgroundDrawable2 = motionBackgroundDrawable;
+                                motionBackgroundDrawable.rotatePreview(false);
+                                motionBackgroundDrawable2 = motionBackgroundDrawable;
                             }
                         }
-                        motionBackgroundDrawable.setColors(defaultAccentColor, defaultAccentColor2, defaultAccentColor3, defaultAccentColor4);
-                        colorDrawable = motionBackgroundDrawable;
+                        motionBackgroundDrawable2 = motionBackgroundDrawable;
+                        motionBackgroundDrawable2.setColors(defaultAccentColor, defaultAccentColor2, defaultAccentColor3, defaultAccentColor4);
+                        colorDrawable = motionBackgroundDrawable2;
                     } else if (defaultAccentColor2 != 0) {
                         BackgroundGradientDrawable backgroundGradientDrawable = new BackgroundGradientDrawable(BackgroundGradientDrawable.getGradientOrientation(this.accent.backgroundRotation), new int[]{defaultAccentColor, defaultAccentColor2});
                         this.backgroundGradientDisposable = backgroundGradientDrawable.startDithering(BackgroundGradientDrawable.Sizes.ofDeviceScreen(), new BackgroundGradientDrawable.ListenerAdapter() {
@@ -4030,9 +9175,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
+            View view;
             if (i == 0) {
-                ?? chatMessageCell = new ChatMessageCell(this.mContext, ((BaseFragment) ThemePreviewActivity.this).currentAccount, false, null, new Theme.ResourcesProvider() {
+                ChatMessageCell chatMessageCell = new ChatMessageCell(this.mContext, ((BaseFragment) ThemePreviewActivity.this).currentAccount, false, null, new Theme.ResourcesProvider() {
                     @Override
                     public ColorFilter getAnimatedEmojiColorFilter() {
                         return Theme.chat_animatedEmojiTextColorFilter;
@@ -4585,9 +9730,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$videoTimerReached(this);
                     }
                 });
-                frameLayout = chatMessageCell;
+                view = chatMessageCell;
             } else if (i == 1) {
-                ?? chatActionCell = new ChatActionCell(this.mContext, false, ThemePreviewActivity.this.themeDelegate);
+                ChatActionCell chatActionCell = new ChatActionCell(this.mContext, false, ThemePreviewActivity.this.themeDelegate);
                 chatActionCell.setDelegate(new ChatActionCell.ChatActionCellDelegate() {
                     @Override
                     public boolean canDrawOutboundsContent() {
@@ -4674,10 +9819,22 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         ChatActionCell.ChatActionCellDelegate.CC.$default$onTopicClick(this, chatActionCell2);
                     }
                 });
-                frameLayout = chatActionCell;
+                view = chatActionCell;
             } else if (i == 2) {
                 if (ThemePreviewActivity.this.backgroundButtonsContainer.getParent() != null) {
                     ((ViewGroup) ThemePreviewActivity.this.backgroundButtonsContainer.getParent()).removeView(ThemePreviewActivity.this.backgroundButtonsContainer);
+                }
+                FrameLayout frameLayout = new FrameLayout(this.mContext) {
+                    @Override
+                    protected void onMeasure(int i2, int i3) {
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                    }
+                };
+                frameLayout.addView(ThemePreviewActivity.this.backgroundButtonsContainer, LayoutHelper.createFrame(-1, 76, 17));
+                view = frameLayout;
+            } else if (i != 5) {
+                if (ThemePreviewActivity.this.messagesButtonsContainer.getParent() != null) {
+                    ((ViewGroup) ThemePreviewActivity.this.messagesButtonsContainer.getParent()).removeView(ThemePreviewActivity.this.messagesButtonsContainer);
                 }
                 FrameLayout frameLayout2 = new FrameLayout(this.mContext) {
                     @Override
@@ -4685,35 +9842,71 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
                     }
                 };
-                frameLayout2.addView(ThemePreviewActivity.this.backgroundButtonsContainer, LayoutHelper.createFrame(-1, 76, 17));
-                frameLayout = frameLayout2;
-            } else if (i != 5) {
-                if (ThemePreviewActivity.this.messagesButtonsContainer.getParent() != null) {
-                    ((ViewGroup) ThemePreviewActivity.this.messagesButtonsContainer.getParent()).removeView(ThemePreviewActivity.this.messagesButtonsContainer);
-                }
-                FrameLayout frameLayout3 = new FrameLayout(this.mContext) {
-                    @Override
-                    protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                    }
-                };
-                frameLayout3.addView(ThemePreviewActivity.this.messagesButtonsContainer, LayoutHelper.createFrame(-1, 76, 17));
-                frameLayout = frameLayout3;
+                frameLayout2.addView(ThemePreviewActivity.this.messagesButtonsContainer, LayoutHelper.createFrame(-1, 76, 17));
+                view = frameLayout2;
             } else {
-                frameLayout = new View(ThemePreviewActivity.this.getContext()) {
+                view = new View(ThemePreviewActivity.this.getContext()) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
                     }
                 };
             }
-            frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(frameLayout);
+            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(view);
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) throws android.content.res.Resources.NotFoundException {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.MessagesAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            boolean z;
+            boolean z2;
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 2 || itemViewType == 3) {
+                return;
+            }
+            if (hasButtons()) {
+                i--;
+            }
+            MessageObject messageObject = (MessageObject) this.messages.get(i);
+            View view = viewHolder.itemView;
+            if (view instanceof ChatMessageCell) {
+                ChatMessageCell chatMessageCell = (ChatMessageCell) view;
+                chatMessageCell.isChat = false;
+                int i2 = i - 1;
+                int itemViewType2 = getItemViewType(i2);
+                int i3 = i + 1;
+                int itemViewType3 = getItemViewType(i3);
+                if ((messageObject.messageOwner.reply_markup instanceof TLRPC.TL_replyInlineMarkup) || itemViewType2 != viewHolder.getItemViewType()) {
+                    z = false;
+                } else {
+                    MessageObject messageObject2 = (MessageObject) this.messages.get(i2);
+                    if (messageObject2.isOutOwner() != messageObject.isOutOwner() || Math.abs(messageObject2.messageOwner.date - messageObject.messageOwner.date) > 300) {
+                        z = false;
+                    } else {
+                        z = true;
+                    }
+                }
+                if (itemViewType3 != viewHolder.getItemViewType() || i3 >= this.messages.size()) {
+                    z2 = false;
+                } else {
+                    MessageObject messageObject3 = (MessageObject) this.messages.get(i3);
+                    if ((messageObject3.messageOwner.reply_markup instanceof TLRPC.TL_replyInlineMarkup) || messageObject3.isOutOwner() != messageObject.isOutOwner() || Math.abs(messageObject3.messageOwner.date - messageObject.messageOwner.date) > 300) {
+                        z2 = false;
+                    } else {
+                        z2 = true;
+                    }
+                }
+                chatMessageCell.isChat = this.showSecretMessages || ThemePreviewActivity.this.dialogId < 0;
+                chatMessageCell.setFullyDraw(true);
+                chatMessageCell.setMessageObject(messageObject, null, z, z2, false);
+                return;
+            }
+            if (view instanceof ChatActionCell) {
+                ChatActionCell chatActionCell = (ChatActionCell) view;
+                chatActionCell.setMessageObject(messageObject);
+                chatActionCell.setAlpha(1.0f);
+                ThemePreviewActivity.this.invalidateBlur();
+            }
         }
 
         @Override
@@ -5166,7 +10359,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     float startX = ThemePreviewActivity.this.scroller.getStartX();
                     ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
                     if (startX < themePreviewActivity.maxScrollOffset && themePreviewActivity.scroller.getStartX() > 0) {
-                        ThemePreviewActivity.this.currentScrollOffset = r1.scroller.getCurrX();
+                        ThemePreviewActivity themePreviewActivity2 = ThemePreviewActivity.this;
+                        themePreviewActivity2.currentScrollOffset = themePreviewActivity2.scroller.getCurrX();
                     }
                     ThemePreviewActivity.this.invalidateBlur();
                     invalidate();
@@ -5648,13 +10842,13 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         frameLayout.addView(this.changeDayNightView, new ViewGroup.LayoutParams(-1, -1));
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, IOException, SecurityException {
+            public final void run() {
                 this.f$0.lambda$toggleTheme$36();
             }
         });
     }
 
-    public void lambda$toggleTheme$36() throws NoSuchFieldException, IOException, SecurityException {
+    public void lambda$toggleTheme$36() {
         this.onSwitchDayNightDelegate.switchDayNight(false);
         setForceDark(this.themeDelegate.isDark(), true);
         setCurrentImage(false);

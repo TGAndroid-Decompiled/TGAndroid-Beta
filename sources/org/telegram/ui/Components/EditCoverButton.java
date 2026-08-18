@@ -91,10 +91,11 @@ public class EditCoverButton extends View {
 
     public void lambda$setImage$1(String str) {
         final Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(str);
-        Canvas canvas = new Canvas(Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888));
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
         Paint paint = new Paint(3);
-        canvas.translate(r0.getWidth() / 2.0f, r0.getHeight() / 2.0f);
-        float fMax = Math.max(r0.getWidth() / bitmapDecodeFile.getWidth(), r0.getHeight() / bitmapDecodeFile.getHeight());
+        canvas.translate(bitmapCreateBitmap.getWidth() / 2.0f, bitmapCreateBitmap.getHeight() / 2.0f);
+        float fMax = Math.max(bitmapCreateBitmap.getWidth() / bitmapDecodeFile.getWidth(), bitmapCreateBitmap.getHeight() / bitmapDecodeFile.getHeight());
         canvas.scale(fMax, fMax);
         canvas.drawBitmap(bitmapDecodeFile, (-bitmapDecodeFile.getWidth()) / 2.0f, (-bitmapDecodeFile.getHeight()) / 2.0f, paint);
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -108,13 +109,14 @@ public class EditCoverButton extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         boolean zHasBitmapImage = this.imageReceiver.hasBitmapImage();
-        int iCeil = ((int) Math.ceil(this.text.getCurrentWidth())) + AndroidUtilities.dp(zHasBitmapImage ? 30.33f : 11.33f) + AndroidUtilities.dp(19.0f);
-        int iDp = AndroidUtilities.dp(24.0f);
+        int iDp = AndroidUtilities.dp(zHasBitmapImage ? 30.33f : 11.33f);
+        int iCeil = ((int) Math.ceil(this.text.getCurrentWidth())) + iDp + AndroidUtilities.dp(19.0f);
+        int iDp2 = AndroidUtilities.dp(24.0f);
         int width = (getWidth() - iCeil) / 2;
         int height = getHeight() / 2;
-        int i = height - (iDp / 2);
+        int i = height - (iDp2 / 2);
         int i2 = iCeil + width;
-        this.bounds.set(width, i, i2, iDp + i);
+        this.bounds.set(width, i, i2, iDp2 + i);
         this.bounds.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
         if (blurredBackgroundDrawable != null) {
@@ -127,7 +129,7 @@ public class EditCoverButton extends View {
             this.imageReceiver.setImageCoords(this.imageBounds);
             this.imageReceiver.draw(canvas);
         }
-        this.text.draw(canvas, width + r1, height, -1, 1.0f);
+        this.text.draw(canvas, width + iDp, height, -1, 1.0f);
         this.arrowDrawable.setBounds(i2 - AndroidUtilities.dp(17.0f), height - AndroidUtilities.dp(6.0f), i2 - AndroidUtilities.dp(5.0f), height + AndroidUtilities.dp(6.0f));
         this.arrowDrawable.draw(canvas);
     }

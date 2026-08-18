@@ -26,13 +26,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.core.graphics.ColorUtils;
-import j$.util.stream.IntStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
 
 public class AnimatedTextView extends View {
     public boolean adaptWidth;
@@ -379,8 +377,9 @@ public class AnimatedTextView extends View {
                 clearCurrentParts();
                 this.currentParts = new Part[]{new Part(makeLayout(charSequence, iWidth), 0.0f, -1)};
                 this.currentText = charSequence;
-                this.currentWidth = this.currentParts[0].width;
-                this.currentHeight = r11.layout.getHeight();
+                Part part = this.currentParts[0];
+                this.currentWidth = part.width;
+                this.currentHeight = part.layout.getHeight();
                 this.isRTL = AndroidUtilities.isRTL(this.currentText);
             }
             clearOldParts();
@@ -408,17 +407,19 @@ public class AnimatedTextView extends View {
         }
 
         public void lambda$setText$1(int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
-            Part part = new Part(makeLayout(charSequence, i - ((int) Math.ceil(this.currentWidth))), this.currentWidth, -1);
+            StaticLayout staticLayoutMakeLayout = makeLayout(charSequence, i - ((int) Math.ceil(this.currentWidth)));
+            Part part = new Part(staticLayoutMakeLayout, this.currentWidth, -1);
             arrayList.add(part);
             this.currentWidth += part.width;
-            this.currentHeight = Math.max(this.currentHeight, r1.getHeight());
+            this.currentHeight = Math.max(this.currentHeight, staticLayoutMakeLayout.getHeight());
         }
 
         public void lambda$setText$2(int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
-            Part part = new Part(makeLayout(charSequence, i - ((int) Math.ceil(this.oldWidth))), this.oldWidth, -1);
+            StaticLayout staticLayoutMakeLayout = makeLayout(charSequence, i - ((int) Math.ceil(this.oldWidth)));
+            Part part = new Part(staticLayoutMakeLayout, this.oldWidth, -1);
             arrayList.add(part);
             this.oldWidth += part.width;
-            this.oldHeight = Math.max(this.oldHeight, r1.getHeight());
+            this.oldHeight = Math.max(this.oldHeight, staticLayoutMakeLayout.getHeight());
         }
 
         public void lambda$setText$3(ValueAnimator valueAnimator) {
@@ -501,12 +502,12 @@ public class AnimatedTextView extends View {
 
             @Override
             public IntStream chars() {
-                return IntStream.Wrapper.convert(chars());
+                return j$.util.stream.IntStream.Wrapper.convert(chars());
             }
 
             @Override
-            public java.util.stream.IntStream codePoints() {
-                return IntStream.Wrapper.convert(codePoints());
+            public IntStream codePoints() {
+                return j$.util.stream.IntStream.Wrapper.convert(codePoints());
             }
 
             public WordSequence(CharSequence charSequence) {
@@ -600,7 +601,7 @@ public class AnimatedTextView extends View {
             @Override
             public j$.util.stream.IntStream chars() {
                 if (Build.VERSION.SDK_INT >= 24) {
-                    return IntStream.VivifiedWrapper.convert(toCharSequence().chars());
+                    return j$.util.stream.IntStream.VivifiedWrapper.convert(toCharSequence().chars());
                 }
                 return null;
             }
@@ -608,7 +609,7 @@ public class AnimatedTextView extends View {
             @Override
             public j$.util.stream.IntStream codePoints() {
                 if (Build.VERSION.SDK_INT >= 24) {
-                    return IntStream.VivifiedWrapper.convert(toCharSequence().codePoints());
+                    return j$.util.stream.IntStream.VivifiedWrapper.convert(toCharSequence().codePoints());
                 }
                 return null;
             }
@@ -785,8 +786,10 @@ public class AnimatedTextView extends View {
                         Part[] partArr2 = this.currentParts;
                         Part part = partArr2[i2];
                         partArr2[i2] = new Part(staticLayoutMakeLayout, part.offset, part.toOppositeIndex);
-                        this.currentWidth = this.currentWidth + this.currentParts[i2].width;
-                        this.currentHeight = Math.max(this.currentHeight, r4.layout.getHeight());
+                        float f2 = this.currentWidth;
+                        Part part2 = this.currentParts[i2];
+                        this.currentWidth = f2 + part2.width;
+                        this.currentHeight = Math.max(this.currentHeight, part2.layout.getHeight());
                         i2++;
                     }
                 }
@@ -800,10 +803,12 @@ public class AnimatedTextView extends View {
                         }
                         StaticLayout staticLayoutMakeLayout2 = makeLayout(partArr3[i].layout.getText(), iWidth - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth))));
                         Part[] partArr4 = this.oldParts;
-                        Part part2 = partArr4[i];
-                        partArr4[i] = new Part(staticLayoutMakeLayout2, part2.offset, part2.toOppositeIndex);
-                        this.oldWidth = this.oldWidth + this.oldParts[i].width;
-                        this.oldHeight = Math.max(this.oldHeight, r2.layout.getHeight());
+                        Part part3 = partArr4[i];
+                        partArr4[i] = new Part(staticLayoutMakeLayout2, part3.offset, part3.toOppositeIndex);
+                        float f3 = this.oldWidth;
+                        Part part4 = this.oldParts[i];
+                        this.oldWidth = f3 + part4.width;
+                        this.oldHeight = Math.max(this.oldHeight, part4.layout.getHeight());
                         i++;
                     }
                 }

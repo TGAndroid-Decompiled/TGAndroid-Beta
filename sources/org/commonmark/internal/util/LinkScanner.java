@@ -8,12 +8,10 @@ public abstract class LinkScanner {
                     return -1;
                 case '\\':
                     int i2 = i + 1;
-                    if (!Parsing.isEscapable(charSequence, i2)) {
-                        break;
-                    } else {
+                    if (Parsing.isEscapable(charSequence, i2)) {
                         i = i2;
-                        break;
                     }
+                    break;
                 case ']':
                     return i;
             }
@@ -22,8 +20,30 @@ public abstract class LinkScanner {
         return charSequence.length();
     }
 
-    public static int scanLinkDestination(java.lang.CharSequence r4, int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.commonmark.internal.util.LinkScanner.scanLinkDestination(java.lang.CharSequence, int):int");
+    public static int scanLinkDestination(CharSequence charSequence, int i) {
+        char cCharAt;
+        if (i >= charSequence.length()) {
+            return -1;
+        }
+        if (charSequence.charAt(i) != '<') {
+            return scanLinkDestinationWithBalancedParens(charSequence, i);
+        }
+        while (true) {
+            i++;
+            if (i >= charSequence.length() || (cCharAt = charSequence.charAt(i)) == '\n' || cCharAt == '<') {
+                break;
+            }
+            if (cCharAt == '>') {
+                return i + 1;
+            }
+            if (cCharAt == '\\') {
+                int i2 = i + 1;
+                if (Parsing.isEscapable(charSequence, i2)) {
+                    i = i2;
+                }
+            }
+        }
+        return -1;
     }
 
     public static int scanLinkTitle(CharSequence charSequence, int i) {
@@ -48,8 +68,32 @@ public abstract class LinkScanner {
         return -1;
     }
 
-    public static int scanLinkTitleContent(java.lang.CharSequence r3, int r4, char r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.commonmark.internal.util.LinkScanner.scanLinkTitleContent(java.lang.CharSequence, int, char):int");
+    public static int scanLinkTitleContent(CharSequence charSequence, int i, char c) {
+        while (i < charSequence.length()) {
+            char cCharAt = charSequence.charAt(i);
+            if (cCharAt == '\\') {
+                int i2 = i + 1;
+                if (Parsing.isEscapable(charSequence, i2)) {
+                    i = i2;
+                } else {
+                    if (cCharAt == c) {
+                        return i;
+                    }
+                    if (c == ')' && cCharAt == '(') {
+                        return -1;
+                    }
+                }
+            } else {
+                if (cCharAt == c) {
+                    return i;
+                }
+                if (c == ')') {
+                    continue;
+                }
+            }
+            i++;
+        }
+        return charSequence.length();
     }
 
     private static int scanLinkDestinationWithBalancedParens(CharSequence charSequence, int i) {

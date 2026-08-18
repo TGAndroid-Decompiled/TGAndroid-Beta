@@ -13,6 +13,13 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.LineHeightSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -20,18 +27,28 @@ import android.widget.FrameLayout;
 import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.LocationMarker;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.Shaker$$ExternalSyntheticLambda0;
 import org.telegram.ui.EmojiAnimationsOverlay;
+import org.telegram.ui.LocationActivity;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.Weather;
@@ -186,18 +203,302 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof AreaView) {
                 AreaView areaView = (AreaView) getChildAt(i3);
-                areaView.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((areaView.mediaArea.coordinates.w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((areaView.mediaArea.coordinates.h / 100.0d) * size2), 1073741824));
+                areaView.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((areaView.mediaArea.coordinates.w / 100.0d) * ((double) size)), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((areaView.mediaArea.coordinates.h / 100.0d) * ((double) size2)), 1073741824));
             } else if (childAt instanceof FitViewWidget) {
                 FitViewWidget fitViewWidget = (FitViewWidget) getChildAt(i3);
-                fitViewWidget.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((fitViewWidget.mediaArea.coordinates.w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((fitViewWidget.mediaArea.coordinates.h / 100.0d) * size2), 1073741824));
+                fitViewWidget.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((fitViewWidget.mediaArea.coordinates.w / 100.0d) * ((double) size)), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((fitViewWidget.mediaArea.coordinates.h / 100.0d) * ((double) size2)), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);
     }
 
     @Override
-    public void onClick(android.view.View r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryMediaAreasView.onClick(android.view.View):void");
+    public void onClick(View view) {
+        boolean z;
+        SpannableString spannableString;
+        float f;
+        float f2;
+        SpannableString spannableString2;
+        float f3;
+        float f4;
+        int i;
+        float f5;
+        boolean z2;
+        int i2;
+        AreaView areaView;
+        if (view instanceof AreaView) {
+            if (view instanceof StoryReactionWidgetView) {
+                showEffect((StoryReactionWidgetView) view);
+                return;
+            }
+            AreaView areaView2 = this.selectedArea;
+            int i3 = 3;
+            if (areaView2 == view) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onClick$0();
+                    }
+                }, 200L);
+                TL_stories.MediaArea mediaArea = this.selectedArea.mediaArea;
+                if (mediaArea instanceof TL_stories.TL_mediaAreaChannelPost) {
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", ((TL_stories.TL_mediaAreaChannelPost) this.selectedArea.mediaArea).channel_id);
+                    bundle.putInt("message_id", ((TL_stories.TL_mediaAreaChannelPost) this.selectedArea.mediaArea).msg_id);
+                    presentFragment(new ChatActivity(bundle));
+                    this.selectedArea = null;
+                    invalidate();
+                    return;
+                }
+                if (mediaArea instanceof TL_stories.TL_mediaAreaUrl) {
+                    Browser.openUrl(getContext(), ((TL_stories.TL_mediaAreaUrl) this.selectedArea.mediaArea).url);
+                    this.selectedArea = null;
+                    invalidate();
+                    return;
+                }
+                if (mediaArea instanceof TL_stories.TL_mediaAreaStarGift) {
+                    String str = ((TL_stories.TL_mediaAreaStarGift) mediaArea).slug;
+                    Browser.openUrl(getContext(), "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/nft/" + str);
+                    this.selectedArea = null;
+                    invalidate();
+                    return;
+                }
+                LocationActivity locationActivity = new LocationActivity(i3) {
+                    @Override
+                    protected boolean disablePermissionCheck() {
+                        return true;
+                    }
+                };
+                locationActivity.fromStories = true;
+                locationActivity.searchStories(this.selectedArea.mediaArea);
+                locationActivity.setResourceProvider(this.resourcesProvider);
+                TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                TL_stories.MediaArea mediaArea2 = this.selectedArea.mediaArea;
+                if (mediaArea2 instanceof TL_stories.TL_mediaAreaVenue) {
+                    TL_stories.TL_mediaAreaVenue tL_mediaAreaVenue = (TL_stories.TL_mediaAreaVenue) mediaArea2;
+                    TLRPC.TL_messageMediaVenue tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                    tL_messageMediaVenue.venue_id = tL_mediaAreaVenue.venue_id;
+                    tL_messageMediaVenue.venue_type = tL_mediaAreaVenue.venue_type;
+                    tL_messageMediaVenue.title = tL_mediaAreaVenue.title;
+                    tL_messageMediaVenue.address = tL_mediaAreaVenue.address;
+                    tL_messageMediaVenue.provider = tL_mediaAreaVenue.provider;
+                    tL_messageMediaVenue.geo = tL_mediaAreaVenue.geo;
+                    tL_message.media = tL_messageMediaVenue;
+                } else if (mediaArea2 instanceof TL_stories.TL_mediaAreaGeoPoint) {
+                    locationActivity.setInitialMaxZoom(true);
+                    TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint = (TL_stories.TL_mediaAreaGeoPoint) this.selectedArea.mediaArea;
+                    TLRPC.TL_messageMediaGeo tL_messageMediaGeo = new TLRPC.TL_messageMediaGeo();
+                    tL_messageMediaGeo.geo = tL_mediaAreaGeoPoint.geo;
+                    tL_message.media = tL_messageMediaGeo;
+                } else {
+                    this.selectedArea = null;
+                    invalidate();
+                    return;
+                }
+                locationActivity.setSharingAllowed(false);
+                locationActivity.setMessageObject(new MessageObject(UserConfig.selectedAccount, tL_message, false, false));
+                presentFragment(locationActivity);
+                this.selectedArea = null;
+                invalidate();
+                return;
+            }
+            if (areaView2 != null && this.malicious) {
+                onClickAway();
+                return;
+            }
+            AreaView areaView3 = (AreaView) view;
+            this.lastSelectedArea = areaView3;
+            this.selectedArea = areaView3;
+            invalidate();
+            HintView2 hintView2 = this.hintView;
+            if (hintView2 != null) {
+                hintView2.hide();
+                this.hintView = null;
+            }
+            final HintView2 duration = new HintView2(getContext()).setSelectorColor(687865855).setJointPx(0.0f, this.selectedArea.getTranslationX() - AndroidUtilities.dp(8.0f)).setDuration(5000L);
+            this.hintView = duration;
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            TL_stories.MediaArea mediaArea3 = this.selectedArea.mediaArea;
+            if (mediaArea3 instanceof TL_stories.TL_mediaAreaChannelPost) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewMessage));
+            } else if (mediaArea3 instanceof TL_stories.TL_mediaAreaStarGift) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewGift));
+            } else {
+                if (mediaArea3 instanceof TL_stories.TL_mediaAreaUrl) {
+                    duration.setMultilineText(true);
+                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryOpenLink));
+                    spannableStringBuilder.append((CharSequence) "\n");
+                    TL_stories.TL_mediaAreaUrl tL_mediaAreaUrl = (TL_stories.TL_mediaAreaUrl) this.selectedArea.mediaArea;
+                    int length = spannableStringBuilder.length();
+                    spannableStringBuilder.append(TextUtils.ellipsize(tL_mediaAreaUrl.url, this.hintView.getTextPaint(), AndroidUtilities.displaySize.x * 0.6f, TextUtils.TruncateAt.END));
+                    spannableStringBuilder.setSpan(new RelativeSizeSpan(0.85f), length, spannableStringBuilder.length(), 33);
+                    spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.multAlpha(-1, 0.6f)), length, spannableStringBuilder.length(), 33);
+                    spannableStringBuilder.setSpan(new LineHeightSpan() {
+                        @Override
+                        public void chooseHeight(CharSequence charSequence, int i4, int i5, int i6, int i7, Paint.FontMetricsInt fontMetricsInt) {
+                            fontMetricsInt.ascent -= AndroidUtilities.dp(2.0f);
+                            fontMetricsInt.top -= AndroidUtilities.dp(2.0f);
+                        }
+                    }, length, spannableStringBuilder.length(), 33);
+                    duration.setInnerPadding(11.0f, 7.0f, 11.0f, 7.0f);
+                    z = true;
+                } else {
+                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewLocation));
+                }
+                spannableString = new SpannableString(">");
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.photos_arrow);
+                if (z) {
+                    f = 1.0f;
+                } else {
+                    f = 2.0f;
+                }
+                float fDp = AndroidUtilities.dp(f);
+                if (z) {
+                    f2 = 0.0f;
+                } else {
+                    f2 = 1.0f;
+                }
+                coloredImageSpan.translate(fDp, AndroidUtilities.dp(f2));
+                spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
+                spannableString2 = new SpannableString("<");
+                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.attach_arrow_right);
+                if (z) {
+                    f3 = -1.0f;
+                } else {
+                    f3 = -2.0f;
+                }
+                float fDp2 = AndroidUtilities.dp(f3);
+                if (z) {
+                    f4 = 0.0f;
+                } else {
+                    f4 = 1.0f;
+                }
+                coloredImageSpan2.translate(fDp2, AndroidUtilities.dp(f4));
+                coloredImageSpan2.setScale(-1.0f, 1.0f);
+                spannableString2.setSpan(coloredImageSpan2, 0, spannableString2.length(), 33);
+                if (AndroidUtilities.isRTL(spannableStringBuilder)) {
+                    spannableString = spannableString2;
+                }
+                AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString);
+                duration.setText(spannableStringBuilder);
+                duration.setOnHiddenListener(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onClick$1(duration);
+                    }
+                });
+                if (z) {
+                    i = 100;
+                } else {
+                    i = 50;
+                }
+                f5 = i;
+                z2 = this.selectedArea.getTranslationY() - ((float) AndroidUtilities.dp(f5)) < ((float) AndroidUtilities.dp(100.0f));
+                if (z2) {
+                    i2 = 1;
+                } else {
+                    i2 = 3;
+                }
+                duration.setDirection(i2);
+                areaView = this.selectedArea;
+                if (!(areaView.mediaArea instanceof TL_stories.TL_mediaAreaChannelPost) && (!z2 ? (areaView.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5) >= AndroidUtilities.dp(120.0f) : areaView.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f) <= getMeasuredHeight() - AndroidUtilities.dp(120.0f))) {
+                    duration.setTranslationY(this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
+                } else if (z2) {
+                    duration.setTranslationY(this.selectedArea.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f));
+                } else {
+                    duration.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5));
+                }
+                duration.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        this.f$0.lambda$onClick$2(view2);
+                    }
+                });
+                duration.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+                this.hintsContainer.addView(duration, LayoutHelper.createFrame(-1, f5));
+                duration.show();
+                onHintVisible(true);
+            }
+            z = false;
+            spannableString = new SpannableString(">");
+            ColoredImageSpan coloredImageSpan3 = new ColoredImageSpan(R.drawable.photos_arrow);
+            if (z) {
+                f = 1.0f;
+            } else {
+                f = 2.0f;
+            }
+            float fDp3 = AndroidUtilities.dp(f);
+            if (z) {
+                f2 = 0.0f;
+            } else {
+                f2 = 1.0f;
+            }
+            coloredImageSpan3.translate(fDp3, AndroidUtilities.dp(f2));
+            spannableString.setSpan(coloredImageSpan3, 0, spannableString.length(), 33);
+            spannableString2 = new SpannableString("<");
+            ColoredImageSpan coloredImageSpan4 = new ColoredImageSpan(R.drawable.attach_arrow_right);
+            if (z) {
+                f3 = -1.0f;
+            } else {
+                f3 = -2.0f;
+            }
+            float fDp4 = AndroidUtilities.dp(f3);
+            if (z) {
+                f4 = 0.0f;
+            } else {
+                f4 = 1.0f;
+            }
+            coloredImageSpan4.translate(fDp4, AndroidUtilities.dp(f4));
+            coloredImageSpan4.setScale(-1.0f, 1.0f);
+            spannableString2.setSpan(coloredImageSpan4, 0, spannableString2.length(), 33);
+            if (AndroidUtilities.isRTL(spannableStringBuilder)) {
+                spannableString = spannableString2;
+            }
+            AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString);
+            duration.setText(spannableStringBuilder);
+            duration.setOnHiddenListener(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$onClick$1(duration);
+                }
+            });
+            if (z) {
+                i = 100;
+            } else {
+                i = 50;
+            }
+            f5 = i;
+            if (this.selectedArea.getTranslationY() - ((float) AndroidUtilities.dp(f5)) < ((float) AndroidUtilities.dp(100.0f))) {
+            }
+            if (z2) {
+                i2 = 1;
+            } else {
+                i2 = 3;
+            }
+            duration.setDirection(i2);
+            areaView = this.selectedArea;
+            if (!(areaView.mediaArea instanceof TL_stories.TL_mediaAreaChannelPost)) {
+                if (z2) {
+                    duration.setTranslationY(this.selectedArea.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f));
+                } else {
+                    duration.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5));
+                }
+            } else if (z2) {
+                duration.setTranslationY(this.selectedArea.getTranslationY() + (this.selectedArea.getMeasuredHeight() / 2.0f));
+            } else {
+                duration.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5));
+            }
+            duration.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    this.f$0.lambda$onClick$2(view2);
+                }
+            });
+            duration.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+            this.hintsContainer.addView(duration, LayoutHelper.createFrame(-1, f5));
+            duration.show();
+            onHintVisible(true);
+        }
     }
 
     public void lambda$onClick$0() {
@@ -276,16 +577,16 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                 int measuredWidth = areaView.getMeasuredWidth();
                 int measuredHeight = areaView.getMeasuredHeight();
                 areaView.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
-                areaView.setTranslationX((float) ((areaView.mediaArea.coordinates.x / 100.0d) * getMeasuredWidth()));
-                areaView.setTranslationY((float) ((areaView.mediaArea.coordinates.y / 100.0d) * getMeasuredHeight()));
+                areaView.setTranslationX((float) ((areaView.mediaArea.coordinates.x / 100.0d) * ((double) getMeasuredWidth())));
+                areaView.setTranslationY((float) ((areaView.mediaArea.coordinates.y / 100.0d) * ((double) getMeasuredHeight())));
                 areaView.setRotation((float) areaView.mediaArea.coordinates.rotation);
             } else if (childAt instanceof FitViewWidget) {
                 FitViewWidget fitViewWidget = (FitViewWidget) childAt;
                 int measuredWidth2 = fitViewWidget.getMeasuredWidth();
                 int measuredHeight2 = fitViewWidget.getMeasuredHeight();
                 fitViewWidget.layout((-measuredWidth2) / 2, (-measuredHeight2) / 2, measuredWidth2 / 2, measuredHeight2 / 2);
-                fitViewWidget.setTranslationX((float) ((fitViewWidget.mediaArea.coordinates.x / 100.0d) * getMeasuredWidth()));
-                fitViewWidget.setTranslationY((float) ((fitViewWidget.mediaArea.coordinates.y / 100.0d) * getMeasuredHeight()));
+                fitViewWidget.setTranslationX((float) ((fitViewWidget.mediaArea.coordinates.x / 100.0d) * ((double) getMeasuredWidth())));
+                fitViewWidget.setTranslationY((float) ((fitViewWidget.mediaArea.coordinates.y / 100.0d) * ((double) getMeasuredHeight())));
                 fitViewWidget.setRotation((float) fitViewWidget.mediaArea.coordinates.rotation);
             }
         }
@@ -347,11 +648,12 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                 float fLerp = AndroidUtilities.lerp(1.0f, (this.lastSelectedArea.bounceOnTap ? this.lastSelectedArea.bounce.getScale(0.05f) : 1.0f) * 1.05f, f2);
                 canvas.scale(fLerp, fLerp, this.rectF.centerX(), this.rectF.centerY());
                 canvas.rotate(this.lastSelectedArea.getRotation(), this.rectF.centerX(), this.rectF.centerY());
-                TL_stories.MediaAreaCoordinates mediaAreaCoordinates = this.lastSelectedArea.mediaArea.coordinates;
+                AreaView areaView4 = this.lastSelectedArea;
+                TL_stories.MediaAreaCoordinates mediaAreaCoordinates = areaView4.mediaArea.coordinates;
                 if ((mediaAreaCoordinates.flags & 1) != 0) {
-                    measuredHeight = (float) ((mediaAreaCoordinates.radius / 100.0d) * r3.getMeasuredWidth());
+                    measuredHeight = (float) ((mediaAreaCoordinates.radius / 100.0d) * ((double) areaView4.getMeasuredWidth()));
                 } else {
-                    measuredHeight = r3.getMeasuredHeight() * 0.2f;
+                    measuredHeight = areaView4.getMeasuredHeight() * 0.2f;
                 }
                 this.clipPath.addRoundRect(this.rectF, measuredHeight, measuredHeight, Path.Direction.CW);
                 canvas.clipPath(this.clipPath);
@@ -561,7 +863,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
             TL_stories.MediaAreaCoordinates mediaAreaCoordinates;
             if ((getParent() instanceof View) && (mediaArea = this.mediaArea) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
                 if ((mediaAreaCoordinates.flags & 1) != 0) {
-                    return (float) (((mediaAreaCoordinates.radius / 100.0d) * getWidth()) / getScaleX());
+                    return (float) (((mediaAreaCoordinates.radius / 100.0d) * ((double) getWidth())) / ((double) getScaleX()));
                 }
                 return getMeasuredHeight() * 0.2f;
             }
@@ -636,20 +938,24 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
             this.child.measure(i, i2);
             int measuredWidth = (this.child.getMeasuredWidth() - this.child.getPaddingLeft()) - this.child.getPaddingRight();
             int measuredHeight = (this.child.getMeasuredHeight() - this.child.getPaddingTop()) - this.child.getPaddingBottom();
+            View view = this.child;
             float f = measuredWidth;
             float f2 = f / 2.0f;
-            this.child.setPivotX(r2.getPaddingLeft() + f2);
+            view.setPivotX(view.getPaddingLeft() + f2);
+            View view2 = this.child;
             float f3 = measuredHeight;
             float f4 = f3 / 2.0f;
-            this.child.setPivotY(r2.getPaddingTop() + f4);
+            view2.setPivotY(view2.getPaddingTop() + f4);
             int size = View.MeasureSpec.getSize(i);
             int size2 = View.MeasureSpec.getSize(i2);
             setMeasuredDimension(size, size2);
             float f5 = size;
             float f6 = size2;
             float fMin = Math.min(f5 / f, f6 / f3);
-            this.child.setTranslationX((f5 / 2.0f) - (f2 + r1.getPaddingLeft()));
-            this.child.setTranslationY((f6 / 2.0f) - (f4 + r8.getPaddingTop()));
+            View view3 = this.child;
+            view3.setTranslationX((f5 / 2.0f) - (f2 + view3.getPaddingLeft()));
+            View view4 = this.child;
+            view4.setTranslationY((f6 / 2.0f) - (f4 + view4.getPaddingTop()));
             this.child.setScaleX(fMin);
             this.child.setScaleY(fMin);
         }

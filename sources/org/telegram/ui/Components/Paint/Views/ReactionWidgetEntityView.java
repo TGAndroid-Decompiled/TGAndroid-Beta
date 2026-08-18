@@ -18,7 +18,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.Paint.Views.EntityView;
 import org.telegram.ui.Components.Reactions.ReactionImageHolder;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RectOld;
@@ -57,7 +56,7 @@ public class ReactionWidgetEntityView extends EntityView {
         return 0.5f;
     }
 
-    public ReactionWidgetEntityView(Context context, PointF pointF, Size size) throws NumberFormatException {
+    public ReactionWidgetEntityView(Context context, PointF pointF, Size size) {
         super(context, pointF);
         this.storyReactionWidgetBackground = new StoryReactionWidgetBackground(this);
         this.outBackground = new StoryReactionWidgetBackground(this);
@@ -125,25 +124,26 @@ public class ReactionWidgetEntityView extends EntityView {
         Size size2 = this.baseSize;
         storyReactionWidgetBackground3.setBounds(padding, padding, ((int) size2.width) - padding, ((int) size2.height) - padding);
         this.storyReactionWidgetBackground.draw(canvas);
+        float fWidth = this.storyReactionWidgetBackground.getBounds().width() * 0.61f;
         Rect rect = AndroidUtilities.rectTmp2;
-        float fWidth = (this.storyReactionWidgetBackground.getBounds().width() * 0.61f) / 2.0f;
-        rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - fWidth), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - fWidth), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + fWidth), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + fWidth));
-        float f3 = this.progressToNext.set(1.0f);
+        float f3 = fWidth / 2.0f;
+        rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - f3), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - f3), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + f3), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + f3));
+        float f4 = this.progressToNext.set(1.0f);
         this.reactionHolder.setBounds(rect);
         this.nextReactionHolder.setBounds(rect);
         this.reactionHolder.setColor(this.storyReactionWidgetBackground.isDarkStyle() ? -1 : -16777216);
-        if (f3 == 1.0f) {
+        if (f4 == 1.0f) {
             this.reactionHolder.draw(canvas);
         } else {
             canvas.save();
-            float f4 = 1.0f - f3;
-            canvas.scale(f4, f4, rect.centerX(), rect.top);
-            this.nextReactionHolder.setAlpha(f4);
+            float f5 = 1.0f - f4;
+            canvas.scale(f5, f5, rect.centerX(), rect.top);
+            this.nextReactionHolder.setAlpha(f5);
             this.nextReactionHolder.draw(canvas);
             canvas.restore();
             canvas.save();
-            canvas.scale(f3, f3, rect.centerX(), rect.bottom);
-            this.reactionHolder.setAlpha(f3);
+            canvas.scale(f4, f4, rect.centerX(), rect.bottom);
+            this.reactionHolder.setAlpha(f4);
             this.reactionHolder.draw(canvas);
             canvas.restore();
         }

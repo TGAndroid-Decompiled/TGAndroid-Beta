@@ -17,7 +17,6 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
 
 public class Text {
     private Layout.Alignment align;
@@ -261,13 +260,14 @@ public class Text {
     }
 
     public void draw(Canvas canvas) {
-        if (this.layout == null) {
+        StaticLayout staticLayout = this.layout;
+        if (staticLayout == null) {
             return;
         }
         if (!this.doNotSave) {
             float f = this.ellipsizeWidth;
             if (f >= 0.0f && this.width > f) {
-                canvas.saveLayerAlpha(0.0f, -this.vertPad, f - 1.0f, r0.getHeight() + this.vertPad, 255, 31);
+                canvas.saveLayerAlpha(0.0f, -this.vertPad, f - 1.0f, staticLayout.getHeight() + this.vertPad, 255, 31);
             }
         }
         canvas.save();

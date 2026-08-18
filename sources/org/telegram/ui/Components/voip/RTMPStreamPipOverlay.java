@@ -187,7 +187,23 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
     }
 
     private float getRatio() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.RTMPStreamPipOverlay.getRatio():float");
+        float f;
+        if (this.aspectRatio == null) {
+            if (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.isEmpty()) {
+                f = 0.5625f;
+            } else {
+                float f2 = VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.get(0).aspectRatio;
+                if (f2 != 0.0f) {
+                    f = 1.0f / f2;
+                } else {
+                    f = 0.5625f;
+                }
+            }
+            this.aspectRatio = Float.valueOf(f);
+            Point point = AndroidUtilities.displaySize;
+            this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / getSuggestedWidth();
+        }
+        return this.aspectRatio.floatValue();
     }
 
     public void toggleControls(boolean z) {
@@ -324,9 +340,10 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                     AndroidUtilities.cancelRunOnUIThread(RTMPStreamPipOverlay.this.dismissControlsCallback);
                     RTMPStreamPipOverlay.this.postedDismissControls = false;
                 }
-                RTMPStreamPipOverlay.this.isShowingControls = !r4.isShowingControls;
                 RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
-                rTMPStreamPipOverlay.toggleControls(rTMPStreamPipOverlay.isShowingControls);
+                rTMPStreamPipOverlay.isShowingControls = !rTMPStreamPipOverlay.isShowingControls;
+                RTMPStreamPipOverlay rTMPStreamPipOverlay2 = RTMPStreamPipOverlay.this;
+                rTMPStreamPipOverlay2.toggleControls(rTMPStreamPipOverlay2.isShowingControls);
                 if (RTMPStreamPipOverlay.this.isShowingControls && !RTMPStreamPipOverlay.this.postedDismissControls) {
                     AndroidUtilities.runOnUIThread(RTMPStreamPipOverlay.this.dismissControlsCallback, 2500L);
                     RTMPStreamPipOverlay.this.postedDismissControls = true;
@@ -339,7 +356,10 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                 if (!RTMPStreamPipOverlay.this.isScrolling || RTMPStreamPipOverlay.this.isScrollDisallowed) {
                     return false;
                 }
-                ((SpringAnimation) ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartVelocity(f)).setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring().setFinalPosition((RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f)) + (f / 7.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r0 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+                SpringForce spring = ((SpringAnimation) ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartVelocity(f)).setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring();
+                float f3 = RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f) + (f / 7.0f);
+                int i2 = AndroidUtilities.displaySize.x;
+                spring.setFinalPosition(f3 >= ((float) i2) / 2.0f ? (i2 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
                 RTMPStreamPipOverlay.this.pipXSpring.start();
                 ((SpringAnimation) ((SpringAnimation) RTMPStreamPipOverlay.this.pipYSpring.setStartVelocity(f)).setStartValue(RTMPStreamPipOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(RTMPStreamPipOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - RTMPStreamPipOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
                 RTMPStreamPipOverlay.this.pipYSpring.start();
@@ -388,7 +408,10 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                     RTMPStreamPipOverlay.this.isScrolling = false;
                     RTMPStreamPipOverlay.this.isScrollDisallowed = false;
                     if (!RTMPStreamPipOverlay.this.pipXSpring.isRunning()) {
-                        ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring().setFinalPosition(RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r6 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+                        SpringForce spring = ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring();
+                        float f = RTMPStreamPipOverlay.this.pipX + (RTMPStreamPipOverlay.this.pipWidth / 2.0f);
+                        int i2 = AndroidUtilities.displaySize.x;
+                        spring.setFinalPosition(f >= ((float) i2) / 2.0f ? (i2 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
                         RTMPStreamPipOverlay.this.pipXSpring.start();
                     }
                     if (!RTMPStreamPipOverlay.this.pipYSpring.isRunning()) {
@@ -580,15 +603,20 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
             RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
             rTMPStreamPipOverlay.scaleFactor = MathUtils.clamp(rTMPStreamPipOverlay.scaleFactor * scaleGestureDetector.getScaleFactor(), RTMPStreamPipOverlay.this.minScaleFactor, RTMPStreamPipOverlay.this.maxScaleFactor);
-            RTMPStreamPipOverlay.this.pipWidth = (int) (r0.getSuggestedWidth() * RTMPStreamPipOverlay.this.scaleFactor);
-            RTMPStreamPipOverlay.this.pipHeight = (int) (r0.getSuggestedHeight() * RTMPStreamPipOverlay.this.scaleFactor);
+            RTMPStreamPipOverlay rTMPStreamPipOverlay2 = RTMPStreamPipOverlay.this;
+            rTMPStreamPipOverlay2.pipWidth = (int) (rTMPStreamPipOverlay2.getSuggestedWidth() * RTMPStreamPipOverlay.this.scaleFactor);
+            RTMPStreamPipOverlay rTMPStreamPipOverlay3 = RTMPStreamPipOverlay.this;
+            rTMPStreamPipOverlay3.pipHeight = (int) (rTMPStreamPipOverlay3.getSuggestedHeight() * RTMPStreamPipOverlay.this.scaleFactor);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$onScale$0();
                 }
             });
-            ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring().setFinalPosition(scaleGestureDetector.getFocusX() >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r2 - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+            SpringForce spring = ((SpringAnimation) RTMPStreamPipOverlay.this.pipXSpring.setStartValue(RTMPStreamPipOverlay.this.pipX)).getSpring();
+            float focusX = scaleGestureDetector.getFocusX();
+            int i = AndroidUtilities.displaySize.x;
+            spring.setFinalPosition(focusX >= ((float) i) / 2.0f ? (i - RTMPStreamPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
             if (!RTMPStreamPipOverlay.this.pipXSpring.isRunning()) {
                 RTMPStreamPipOverlay.this.pipXSpring.start();
             }

@@ -12,6 +12,7 @@ import androidx.core.math.MathUtils;
 import androidx.core.view.GestureDetectorCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.RenderView;
 import org.telegram.ui.Components.Paint.Swatch;
 
@@ -174,8 +175,99 @@ public class PaintWeightChooserView extends View {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.PaintWeightChooserView.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        float f;
+        float f2;
+        super.onDraw(canvas);
+        long jMin = Math.min(16L, System.currentTimeMillis() - this.lastUpdate);
+        this.lastUpdate = System.currentTimeMillis();
+        AnimatedFloat animatedFloat = this.animatedWeight;
+        ValueOverride valueOverride = this.valueOverride;
+        float f3 = animatedFloat.set(valueOverride != null ? valueOverride.get() : this.colorSwatch.brushWeight);
+        float f4 = this.animatedMin.set(this.min);
+        float f5 = this.animatedMax.set(this.max);
+        boolean z = this.isViewHidden;
+        if (z) {
+            float f6 = this.hideProgress;
+            if (f6 != 1.0f) {
+                this.hideProgress = Math.min(1.0f, f6 + (jMin / 200.0f));
+                invalidate();
+            } else if (!z) {
+                f = this.hideProgress;
+                if (f != 0.0f) {
+                    this.hideProgress = Math.max(0.0f, f - (jMin / 200.0f));
+                    invalidate();
+                }
+            }
+        } else if (!z) {
+            f = this.hideProgress;
+            if (f != 0.0f) {
+                this.hideProgress = Math.max(0.0f, f - (jMin / 200.0f));
+                invalidate();
+            }
+        }
+        boolean z2 = this.isTouchInProgress;
+        if (z2) {
+            float f7 = this.showProgress;
+            if (f7 != 1.0f) {
+                this.showProgress = Math.min(1.0f, f7 + (jMin / 200.0f));
+                invalidate();
+            } else if (!z2) {
+                f2 = this.showProgress;
+                if (f2 != 0.0f) {
+                    this.showProgress = Math.max(0.0f, f2 - (jMin / 200.0f));
+                    invalidate();
+                }
+            }
+        } else if (!z2) {
+            f2 = this.showProgress;
+            if (f2 != 0.0f) {
+                this.showProgress = Math.max(0.0f, f2 - (jMin / 200.0f));
+                invalidate();
+            }
+        }
+        float fHeight = this.touchRect.height();
+        int iDp = AndroidUtilities.dp(16.0f);
+        int iDp2 = AndroidUtilities.dp(3.0f);
+        int iDp3 = AndroidUtilities.dp(3.0f);
+        this.path.rewind();
+        this.path.moveTo(0.0f, 0.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        int i = -iDp3;
+        int i2 = -iDp;
+        rectF.set(AndroidUtilities.lerp(i, i2, this.showProgress), 0.0f, AndroidUtilities.lerp(iDp3, iDp, this.showProgress), AndroidUtilities.lerp(iDp3, iDp, this.showProgress) * 2);
+        this.path.arcTo(rectF, -90.0f, 90.0f);
+        this.path.lineTo(AndroidUtilities.lerp(iDp3, iDp2, this.showProgress), fHeight);
+        rectF.set(AndroidUtilities.lerp(i, -iDp2, this.showProgress), fHeight - (iDp2 * 2), AndroidUtilities.lerp(iDp3, iDp2, this.showProgress), fHeight);
+        this.path.arcTo(rectF, 0.0f, 180.0f);
+        float f8 = iDp;
+        this.path.lineTo(AndroidUtilities.lerp(i, i2, this.showProgress), f8);
+        rectF.set(AndroidUtilities.lerp(i, i2, this.showProgress), 0.0f, AndroidUtilities.lerp(iDp3, iDp, this.showProgress), iDp * 2);
+        this.path.arcTo(rectF, -180.0f, 90.0f);
+        this.path.close();
+        if (this.hideProgress != 0.0f) {
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            canvas.saveLayerAlpha(rectF, (int) ((1.0f - this.hideProgress) * 255.0f), 31);
+        }
+        canvas.save();
+        float fDp = AndroidUtilities.dp(32.0f);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        canvas.translate(fDp * cubicBezierInterpolator.getInterpolation(this.showProgress), this.touchRect.top);
+        canvas.drawPath(this.path, this.backgroundPaint);
+        canvas.restore();
+        float fDp2 = AndroidUtilities.dp(32.0f) * cubicBezierInterpolator.getInterpolation(this.showProgress);
+        RectF rectF2 = this.touchRect;
+        float f9 = (f3 - f4) / (f5 - f4);
+        float fHeight2 = rectF2.top + (rectF2.height() * (1.0f - f9));
+        RectF rectF3 = this.touchRect;
+        float f10 = iDp2 * 1.5f;
+        drawCircleWithShadow(canvas, fDp2, MathUtils.clamp(fHeight2, rectF3.top + f8, rectF3.bottom - Math.min(f10, f8)), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.lerp(Math.min(f10, f8), f8, f9), this.showProgress), false);
+        if (this.drawCenter && this.showProgress != 0.0f && this.showPreview && this.renderView != null) {
+            drawCircleWithShadow(canvas, getWidth() / 2.0f, getHeight() / 2.0f, this.renderView.brushWeightForSize(f3) * this.renderView.getCurrentBrush().getScale() * this.renderView.getCurrentBrush().getPreviewScale(), true);
+        }
+        if (this.hideProgress != 0.0f) {
+            canvas.restore();
+        }
     }
 
     private void drawCircleWithShadow(Canvas canvas, float f, float f2, float f3, boolean z) {

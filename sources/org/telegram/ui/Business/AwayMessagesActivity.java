@@ -23,7 +23,6 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.ChatActivity;
@@ -125,7 +124,69 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
     }
 
     private void setValue() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.AwayMessagesActivity.setValue():void");
+        TL_account.TL_businessAwayMessage tL_businessAwayMessage;
+        UniversalAdapter universalAdapter;
+        if (this.valueSet) {
+            return;
+        }
+        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        if (userFull == null) {
+            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
+            return;
+        }
+        TL_account.TL_businessAwayMessage tL_businessAwayMessage2 = userFull.business_away_message;
+        this.currentValue = tL_businessAwayMessage2;
+        this.hasHours = userFull.business_work_hours != null;
+        this.enabled = tL_businessAwayMessage2 != null;
+        this.exclude = tL_businessAwayMessage2 != null ? tL_businessAwayMessage2.recipients.exclude_selected : true;
+        this.offline_only = tL_businessAwayMessage2 != null ? tL_businessAwayMessage2.offline_only : true;
+        BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
+        if (businessRecipientsHelper != null) {
+            businessRecipientsHelper.setValue(tL_businessAwayMessage2 == null ? null : tL_businessAwayMessage2.recipients);
+        }
+        TL_account.TL_businessAwayMessage tL_businessAwayMessage3 = this.currentValue;
+        if (tL_businessAwayMessage3 != null) {
+            TL_account.BusinessAwayMessageSchedule businessAwayMessageSchedule = tL_businessAwayMessage3.schedule;
+            if (businessAwayMessageSchedule instanceof TL_account.TL_businessAwayMessageScheduleCustom) {
+                this.currentValueScheduleType = 2;
+                this.schedule = 2;
+                TL_account.TL_businessAwayMessageScheduleCustom tL_businessAwayMessageScheduleCustom = (TL_account.TL_businessAwayMessageScheduleCustom) businessAwayMessageSchedule;
+                int i = tL_businessAwayMessageScheduleCustom.start_date;
+                this.currentScheduleCustomStart = i;
+                this.scheduleCustomStart = i;
+                int i2 = tL_businessAwayMessageScheduleCustom.end_date;
+                this.currentScheduleCustomEnd = i2;
+                this.scheduleCustomEnd = i2;
+            } else {
+                this.scheduleCustomStart = getConnectionsManager().getCurrentTime();
+                this.scheduleCustomEnd = getConnectionsManager().getCurrentTime() + 86400;
+                tL_businessAwayMessage = this.currentValue;
+                if ((tL_businessAwayMessage != null || !(tL_businessAwayMessage.schedule instanceof TL_account.TL_businessAwayMessageScheduleAlways)) && tL_businessAwayMessage != null && (tL_businessAwayMessage.schedule instanceof TL_account.TL_businessAwayMessageScheduleOutsideWorkHours)) {
+                    this.currentValueScheduleType = 1;
+                    this.schedule = 1;
+                } else {
+                    this.currentValueScheduleType = 0;
+                    this.schedule = 0;
+                }
+            }
+        } else {
+            this.scheduleCustomStart = getConnectionsManager().getCurrentTime();
+            this.scheduleCustomEnd = getConnectionsManager().getCurrentTime() + 86400;
+            tL_businessAwayMessage = this.currentValue;
+            if (tL_businessAwayMessage != null) {
+                this.currentValueScheduleType = 1;
+                this.schedule = 1;
+            } else {
+                this.currentValueScheduleType = 1;
+                this.schedule = 1;
+            }
+        }
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
+            universalAdapter.update(true);
+        }
+        checkDone(true);
+        this.valueSet = true;
     }
 
     public boolean hasChanges() {

@@ -56,9 +56,10 @@ public class ResizeAtom extends Atom {
             } else {
                 d = factor3;
                 d2 = factor2;
-                return new ScaleBox(boxCreateBox, d2, d);
             }
-        } else if (i != -1 && this.hunit == -1) {
+            return new ScaleBox(boxCreateBox, d2, d);
+        }
+        if (i != -1 && this.hunit == -1) {
             factor = (this.w * SpaceAtom.getFactor(i, teXEnvironment)) / boxCreateBox.width;
         } else {
             factor = (this.h * SpaceAtom.getFactor(this.hunit, teXEnvironment)) / boxCreateBox.height;

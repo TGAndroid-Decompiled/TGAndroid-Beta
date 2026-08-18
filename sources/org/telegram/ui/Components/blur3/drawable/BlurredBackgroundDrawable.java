@@ -356,29 +356,32 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             }
             this.strokePathBottom.rewind();
             Path path4 = this.strokePathBottom;
-            float f11 = this.boundsWithPadding.left;
-            float fMax = Math.max(r2.bottom - this.radii[4], r2.top);
             Rect rect5 = this.boundsWithPadding;
-            path4.addRoundRect(f11, fMax, rect5.right, rect5.bottom, BlurredBackgroundDrawable.tmpRadii, direction);
-            Path path5 = this.strokePathBottom;
-            float f12 = this.boundsWithPadding.left;
-            float fMax2 = Math.max(r2.bottom - this.radii[4], r2.top);
+            float f11 = rect5.left;
+            float fMax = Math.max(rect5.bottom - this.radii[4], rect5.top);
             Rect rect6 = this.boundsWithPadding;
-            path5.addRoundRect(f12, fMax2, rect6.right, rect6.bottom - this.strokeWidthBottom, BlurredBackgroundDrawable.tmpRadii, direction2);
+            path4.addRoundRect(f11, fMax, rect6.right, rect6.bottom, BlurredBackgroundDrawable.tmpRadii, direction);
+            Path path5 = this.strokePathBottom;
+            Rect rect7 = this.boundsWithPadding;
+            float f12 = rect7.left;
+            float fMax2 = Math.max(rect7.bottom - this.radii[4], rect7.top);
+            Rect rect8 = this.boundsWithPadding;
+            path5.addRoundRect(f12, fMax2, rect8.right, rect8.bottom - this.strokeWidthBottom, BlurredBackgroundDrawable.tmpRadii, direction2);
             this.strokePathBottom.close();
         }
 
         public void drawShadows(Canvas canvas, Paint paint, boolean z) {
             if (z) {
-                float f = this.boundsWithPadding.top;
-                float fClamp = MathUtils.clamp((this.radii[0] * 2.0f) + f, f, r14.bottom);
+                Rect rect = this.boundsWithPadding;
+                float f = rect.top;
+                float fClamp = MathUtils.clamp((this.radii[0] * 2.0f) + f, f, rect.bottom);
                 canvas.save();
-                Rect rect = this.bounds;
-                canvas.clipRect(rect.left, rect.top, rect.right, fClamp);
-                Rect rect2 = this.boundsWithPadding;
-                float f2 = rect2.left;
-                float f3 = rect2.top;
-                float f4 = rect2.right;
+                Rect rect2 = this.bounds;
+                canvas.clipRect(rect2.left, rect2.top, rect2.right, fClamp);
+                Rect rect3 = this.boundsWithPadding;
+                float f2 = rect3.left;
+                float f3 = rect3.top;
+                float f4 = rect3.right;
                 float f5 = this.radii[0];
                 canvas.drawRoundRect(f2, f3, f4, fClamp, f5, f5, paint);
                 canvas.restore();
@@ -446,8 +449,73 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         return this.alpha;
     }
 
-    public static void drawStroke(android.graphics.Canvas r20, float r21, float r22, float r23, float r24, float[] r25, float r26, boolean r27, android.graphics.Paint r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable.drawStroke(android.graphics.Canvas, float, float, float, float, float[], float, boolean, android.graphics.Paint):void");
+    public static void drawStroke(Canvas canvas, float f, float f2, float f3, float f4, float[] fArr, float f5, boolean z, Paint paint) {
+        boolean z2;
+        if (z) {
+            float f6 = fArr[0];
+            float f7 = fArr[1];
+            if (f6 == f7) {
+                float f8 = fArr[2];
+                if (f7 == f8 && f8 == fArr[3]) {
+                    z2 = true;
+                }
+            }
+            z2 = false;
+        } else {
+            float f9 = fArr[4];
+            float f10 = fArr[5];
+            if (f9 == f10) {
+                float f11 = fArr[6];
+                if (f10 == f11 && f11 == fArr[7]) {
+                    z2 = true;
+                }
+            }
+            z2 = false;
+        }
+        float f12 = f5 / 2.0f;
+        if (z) {
+            if (z2) {
+                canvas.save();
+                if (canvas.clipRect(f, f2, f3, MathUtils.clamp((fArr[0] * 2.0f) + f2, f2, f4))) {
+                    float f13 = fArr[0];
+                    canvas.drawRoundRect(f - f12, f2 + f12, f3 + f12, f4 + f12, f13, f13, paint);
+                }
+                canvas.restore();
+                return;
+            }
+            float f14 = (f + f3) / 2.0f;
+            canvas.save();
+            if (canvas.clipRect(f, f2, f14, MathUtils.clamp((fArr[0] * 2.0f) + f2, f2, f4))) {
+                canvas.drawRoundRect(f - f12, f2 + f12, f3 + f12, f4 + f12, fArr[0], fArr[1], paint);
+            }
+            canvas.restore();
+            canvas.save();
+            if (canvas.clipRect(f14, f2, f3, MathUtils.clamp((fArr[0] * 2.0f) + f2, f2, f4))) {
+                canvas.drawRoundRect(f - f12, f2 + f12, f3 + f12, f4 + f12, fArr[2], fArr[3], paint);
+            }
+            canvas.restore();
+            return;
+        }
+        if (z2) {
+            canvas.save();
+            if (canvas.clipRect(f, MathUtils.clamp(f4 - (fArr[4] * 2.0f), f2, f4), f3, f4)) {
+                float f15 = fArr[4];
+                canvas.drawRoundRect(f - f12, f2 - f12, f3 + f12, f4 - f12, f15, f15, paint);
+            }
+            canvas.restore();
+            return;
+        }
+        float f16 = (f + f3) / 2.0f;
+        canvas.save();
+        if (canvas.clipRect(f, MathUtils.clamp(f4 - (fArr[4] * 2.0f), f2, f4), f16, f4)) {
+            canvas.drawRoundRect(f - f12, f2 - f12, f3 + f12, f4 - f12, fArr[6], fArr[7], paint);
+        }
+        canvas.restore();
+        canvas.save();
+        if (canvas.clipRect(f16, MathUtils.clamp(f4 - (fArr[4] * 2.0f), f2, f4), f3, f4)) {
+            canvas.drawRoundRect(f - f12, f2 - f12, f3 + f12, f4 - f12, fArr[4], fArr[5], paint);
+        }
+        canvas.restore();
     }
 
     public static void drawStroke(Canvas canvas, RectF rectF, float f, float f2, boolean z, Paint paint) {

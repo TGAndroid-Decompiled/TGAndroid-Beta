@@ -19,7 +19,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
-import org.telegram.ui.Components.voip.RateCallLayout;
 
 public class RateCallLayout extends FrameLayout {
     private final VoIPBackgroundProvider backgroundProvider;
@@ -120,7 +119,7 @@ public class RateCallLayout extends FrameLayout {
             this.startsViews[i].setAlpha(0.0f);
             animatorSet2.playTogether(ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.SCALE_X, 0.3f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.SCALE_Y, 0.3f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(30.0f), 0.0f));
             animatorSet2.setDuration(250L);
-            animatorSet2.setStartDelay(i * 16);
+            animatorSet2.setStartDelay(((long) i) * 16);
             animatorSet2.start();
         }
         animatorSet.start();
@@ -241,8 +240,9 @@ public class RateCallLayout extends FrameLayout {
                     }
                 }
                 if (this.onSelectedStar != null) {
-                    getLocationOnScreen(new int[2]);
-                    this.onSelectedStar.onSelected(r0[0] + (getWidth() / 2.0f), r0[1] + (getHeight() / 2.0f), this.pos + 1);
+                    int[] iArr = new int[2];
+                    getLocationOnScreen(iArr);
+                    this.onSelectedStar.onSelected(iArr[0] + (getWidth() / 2.0f), iArr[1] + (getHeight() / 2.0f), this.pos + 1);
                 }
             } else if (action == 3 && (allStarsProvider = this.allStarsProvider) != null) {
                 StarContainer[] allStartsViews3 = allStarsProvider.getAllStartsViews();

@@ -8,7 +8,6 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Stories.recorder.FlashViews;
 
 public class HintTextView extends View implements FlashViews.Invertable {
     private final AnimatedTextView.AnimatedTextDrawable textDrawable;

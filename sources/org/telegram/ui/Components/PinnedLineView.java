@@ -174,38 +174,48 @@ public class PinnedLineView extends View {
             measuredHeight2 = (f4 * (1.0f - f5)) + (this.startOffsetTo * f5);
         } else {
             if (this.animationInProgress) {
-                float f6 = this.animationProgress;
-                measuredHeight2 = ((this.animateFromPosition - 1.0f) * measuredHeight * (1.0f - f6)) + ((this.animateToPosition - 1) * measuredHeight * f6);
+                float f6 = (this.animateFromPosition - 1.0f) * measuredHeight;
+                float f7 = (this.animateToPosition - 1) * measuredHeight;
+                float f8 = this.animationProgress;
+                measuredHeight2 = (f6 * (1.0f - f8)) + (f7 * f8);
             } else {
                 measuredHeight2 = (this.selectedPosition - 1) * measuredHeight;
             }
             if (measuredHeight2 < 0.0f) {
                 measuredHeight2 = 0.0f;
             } else {
-                float f7 = iDp;
-                if ((((this.totalCount - 1) * measuredHeight) + f7) - measuredHeight2 < (getMeasuredHeight() - iDp) - measuredHeight) {
-                    measuredHeight2 = (f7 + ((this.totalCount - 1) * measuredHeight)) - ((getMeasuredHeight() - iDp) - measuredHeight);
+                float f9 = iDp;
+                if ((((this.totalCount - 1) * measuredHeight) + f9) - measuredHeight2 < (getMeasuredHeight() - iDp) - measuredHeight) {
+                    measuredHeight2 = (f9 + ((this.totalCount - 1) * measuredHeight)) - ((getMeasuredHeight() - iDp) - measuredHeight);
                 }
             }
         }
         float measuredWidth = getMeasuredWidth() / 2.0f;
-        float f8 = iDp;
-        int iMax = Math.max(0, (int) (((f8 + measuredHeight2) / measuredHeight) - 1.0f));
+        float f10 = iDp;
+        int iMax = Math.max(0, (int) (((f10 + measuredHeight2) / measuredHeight) - 1.0f));
         int iMin = Math.min(iMax + 6, this.replaceInProgress ? Math.max(this.animateFromTotal, this.animateToTotal) : this.totalCount);
         while (iMax < iMin) {
-            float f9 = ((iMax * measuredHeight) + f8) - measuredHeight2;
-            float f10 = f9 + measuredHeight;
-            if (f10 >= f3 && f9 <= getMeasuredHeight()) {
-                this.rectF.set(f3, f9 + fDpf2, getMeasuredWidth(), f10 - fDpf2);
+            float f11 = ((iMax * measuredHeight) + f10) - measuredHeight2;
+            float f12 = f11 + measuredHeight;
+            if (f12 >= f3 && f11 <= getMeasuredHeight()) {
+                this.rectF.set(f3, f11 + fDpf2, getMeasuredWidth(), f12 - fDpf2);
                 boolean z = this.replaceInProgress;
                 if (z && iMax >= this.animateToTotal) {
-                    this.paint.setColor(ColorUtils.setAlphaComponent(this.color, (int) ((Color.alpha(r14) / 255.0f) * 76.0f * (1.0f - this.animationProgress))));
+                    Paint paint = this.paint;
+                    int i = this.color;
+                    paint.setColor(ColorUtils.setAlphaComponent(i, (int) ((Color.alpha(i) / 255.0f) * 76.0f * (1.0f - this.animationProgress))));
                     canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.paint);
-                    this.paint.setColor(ColorUtils.setAlphaComponent(this.color, (int) ((Color.alpha(r11) / 255.0f) * 76.0f)));
+                    Paint paint2 = this.paint;
+                    int i2 = this.color;
+                    paint2.setColor(ColorUtils.setAlphaComponent(i2, (int) ((Color.alpha(i2) / 255.0f) * 76.0f)));
                 } else if (z && iMax >= this.animateFromTotal) {
-                    this.paint.setColor(ColorUtils.setAlphaComponent(this.color, (int) ((Color.alpha(r11) / 255.0f) * 76.0f * this.animationProgress)));
+                    Paint paint3 = this.paint;
+                    int i3 = this.color;
+                    paint3.setColor(ColorUtils.setAlphaComponent(i3, (int) ((Color.alpha(i3) / 255.0f) * 76.0f * this.animationProgress)));
                     canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.paint);
-                    this.paint.setColor(ColorUtils.setAlphaComponent(this.color, (int) ((Color.alpha(r11) / 255.0f) * 76.0f)));
+                    Paint paint4 = this.paint;
+                    int i4 = this.color;
+                    paint4.setColor(ColorUtils.setAlphaComponent(i4, (int) ((Color.alpha(i4) / 255.0f) * 76.0f)));
                 } else {
                     canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.paint);
                 }
@@ -214,14 +224,14 @@ public class PinnedLineView extends View {
             f3 = 0.0f;
         }
         if (this.animationInProgress) {
-            float f11 = this.animateFromPosition;
-            float f12 = this.animationProgress;
-            float f13 = (f8 + (((f11 * (1.0f - f12)) + (this.animateToPosition * f12)) * measuredHeight)) - measuredHeight2;
-            this.rectF.set(0.0f, f13 + fDpf2, getMeasuredWidth(), (f13 + measuredHeight) - fDpf2);
+            float f13 = this.animateFromPosition;
+            float f14 = this.animationProgress;
+            float f15 = (f10 + (((f13 * (1.0f - f14)) + (this.animateToPosition * f14)) * measuredHeight)) - measuredHeight2;
+            this.rectF.set(0.0f, f15 + fDpf2, getMeasuredWidth(), (f15 + measuredHeight) - fDpf2);
             canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.selectedPaint);
         } else {
-            float f14 = (f8 + (this.selectedPosition * measuredHeight)) - measuredHeight2;
-            this.rectF.set(0.0f, f14 + fDpf2, getMeasuredWidth(), (f14 + measuredHeight) - fDpf2);
+            float f16 = (f10 + (this.selectedPosition * measuredHeight)) - measuredHeight2;
+            this.rectF.set(0.0f, f16 + fDpf2, getMeasuredWidth(), (f16 + measuredHeight) - fDpf2);
             canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.selectedPaint);
         }
         if (this.needDrawFade) {
@@ -255,29 +265,32 @@ public class PinnedLineView extends View {
             int i4 = iDp * 2;
             this.lineHFrom = (getMeasuredHeight() - i4) / Math.min(this.totalCount, 3);
             this.lineHTo = (getMeasuredHeight() - i4) / Math.min(i2, 3);
-            float f = (this.selectedPosition - 1) * this.lineHFrom;
+            int i5 = this.selectedPosition - 1;
+            int i6 = this.lineHFrom;
+            float f = i5 * i6;
             this.startOffsetFrom = f;
             if (f < 0.0f) {
                 this.startOffsetFrom = 0.0f;
             } else {
-                float f2 = (((this.totalCount - 1) * r3) + iDp) - f;
+                float f2 = (((this.totalCount - 1) * i6) + iDp) - f;
                 int measuredHeight = getMeasuredHeight() - iDp;
-                int i5 = this.lineHFrom;
-                if (f2 < measuredHeight - i5) {
-                    this.startOffsetFrom = (((this.totalCount - 1) * i5) + iDp) - ((getMeasuredHeight() - iDp) - this.lineHFrom);
+                int i7 = this.lineHFrom;
+                if (f2 < measuredHeight - i7) {
+                    this.startOffsetFrom = (((this.totalCount - 1) * i7) + iDp) - ((getMeasuredHeight() - iDp) - this.lineHFrom);
                 }
             }
-            float f3 = (i - 1) * this.lineHTo;
+            int i8 = this.lineHTo;
+            float f3 = (i - 1) * i8;
             this.startOffsetTo = f3;
             if (f3 < 0.0f) {
                 this.startOffsetTo = 0.0f;
             } else {
-                int i6 = i2 - 1;
-                float f4 = ((r3 * i6) + iDp) - f3;
+                int i9 = i2 - 1;
+                float f4 = ((i8 * i9) + iDp) - f3;
                 int measuredHeight2 = getMeasuredHeight() - iDp;
-                int i7 = this.lineHTo;
-                if (f4 < measuredHeight2 - i7) {
-                    this.startOffsetTo = ((i6 * i7) + iDp) - ((getMeasuredHeight() - iDp) - this.lineHTo);
+                int i10 = this.lineHTo;
+                if (f4 < measuredHeight2 - i10) {
+                    this.startOffsetTo = ((i9 * i10) + iDp) - ((getMeasuredHeight() - iDp) - this.lineHTo);
                 }
             }
             this.animateFromPosition = this.selectedPosition;

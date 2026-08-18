@@ -20,7 +20,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -69,8 +68,6 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.BotStarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.bots.AffiliateProgramFragment;
-import org.telegram.ui.bots.ChannelAffiliateProgramsFragment;
 
 public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity implements NotificationCenter.NotificationCenterDelegate {
     private FrameLayout aboveTitleView;
@@ -711,8 +708,6 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     }
 
     public static void showConnectAffiliateAlert(final Context context, final int i, final TL_payments.starRefProgram starrefprogram, final long j, final Theme.ResourcesProvider resourcesProvider, final boolean z) {
-        long[] jArr;
-        TLRPC.User user;
         String pluralString;
         LinearLayout linearLayout;
         BackupImageView backupImageView;
@@ -721,8 +716,8 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             return;
         }
         BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
-        long[] jArr2 = {j};
-        TLRPC.User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(starrefprogram.bot_id));
+        final long[] jArr = {j};
+        final TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(starrefprogram.bot_id));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
         linearLayout2.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
@@ -738,8 +733,8 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         BackupImageView backupImageView2 = new BackupImageView(context);
         backupImageView2.setRoundRadius(AndroidUtilities.dp(30.0f));
         AvatarDrawable avatarDrawable = new AvatarDrawable();
-        avatarDrawable.setInfo(user2);
-        backupImageView2.setForUserOrChat(user2, avatarDrawable);
+        avatarDrawable.setInfo(user);
+        backupImageView2.setForUserOrChat(user, avatarDrawable);
         ScaleStateListAnimator.apply(backupImageView2);
         frameLayout2.addView(backupImageView2, LayoutHelper.createFrame(60, 60, 119));
         if (starrefprogram.daily_revenue_per_user.positive()) {
@@ -753,15 +748,9 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             textView2.setPadding(AndroidUtilities.dp(5.33f), 0, AndroidUtilities.dp(5.33f), 0);
             textView2.setTextColor(-1);
             textView2.setGravity(17);
-            StringBuilder sb = new StringBuilder();
-            sb.append("⭐️ ");
-            jArr = jArr2;
-            sb.append((Object) StarsIntroActivity.formatStarsAmountShort(starrefprogram.daily_revenue_per_user, 1.0f, ','));
-            textView2.setText(StarsIntroActivity.replaceStars(sb.toString(), 0.75f, new ColoredImageSpan[1]));
+            textView2.setText(StarsIntroActivity.replaceStars("⭐️ " + ((Object) StarsIntroActivity.formatStarsAmountShort(starrefprogram.daily_revenue_per_user, 1.0f, ',')), 0.75f, new ColoredImageSpan[1]));
             frameLayout3.addView(textView2, LayoutHelper.createFrame(-2, 15.66f));
             frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, -4.0f));
-        } else {
-            jArr = jArr2;
         }
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
@@ -844,18 +833,13 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         textView7.setGravity(17);
         NotificationCenter.listenEmojiLoading(textView7);
         int i6 = R.string.ChannelAffiliateProgramJoinText;
-        String userName = UserObject.getUserName(user2);
+        String userName = UserObject.getUserName(user);
         CharSequence charSequencePercents = AffiliateProgramFragment.percents(starrefprogram.commission_permille);
         int i7 = starrefprogram.duration_months;
         if (i7 <= 0) {
             pluralString = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
-            user = user2;
-        } else if (i7 < 12 || i7 % 12 != 0) {
-            user = user2;
-            pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i7, new Object[0]);
         } else {
-            user = user2;
-            pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i7 / 12, new Object[0]);
+            pluralString = (i7 < 12 || i7 % 12 != 0) ? LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i7, new Object[0]) : LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Years", i7 / 12, new Object[0]);
         }
         textView7.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(i6, userName, charSequencePercents, pluralString)), textView7.getPaint().getFontMetricsInt(), false));
         linearLayout2.addView(textView7, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 22.0f));
@@ -914,13 +898,11 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                 ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$10(bottomSheetCreate, starrefprogram, view);
             }
         });
-        final long[] jArr3 = jArr;
         final LinearLayout linearLayout5 = linearLayout;
-        final TLRPC.User user3 = user;
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$13(buttonWithCounterView, jArr3, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user3, view);
+                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$13(buttonWithCounterView, jArr, i, starrefprogram, bottomSheetCreate, j, z, context, resourcesProvider, user, view);
             }
         });
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -929,24 +911,22 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                 ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$14(dialogInterface);
             }
         });
-        final long[] jArr4 = jArr;
         final BackupImageView backupImageView5 = backupImageView;
         final TextView textView10 = textView;
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$15(jArr4, i, backupImageView3, backupImageView5, textView10);
+                ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$15(jArr, i, backupImageView3, backupImageView5, textView10);
             }
         };
         runnable.run();
         if (linearLayout5 != null) {
             BotStarsController.getInstance(i).loadAdminedBots();
             BotStarsController.getInstance(i).loadAdminedChannels();
-            final long[] jArr5 = jArr;
             linearLayout5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$17(i, bottomSheetCreate, resourcesProvider, linearLayout5, jArr5, runnable, view);
+                    ChannelAffiliateProgramsFragment.lambda$showConnectAffiliateAlert$17(i, bottomSheetCreate, resourcesProvider, linearLayout5, jArr, runnable, view);
                 }
             });
         }
@@ -1072,12 +1052,10 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
 
     public static void lambda$showConnectAffiliateAlert$17(int i, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, View view, final long[] jArr, final Runnable runnable, View view2) {
         final long j;
-        ArrayList admined = BotStarsController.getInstance(i).getAdmined();
+        ArrayList<TLObject> admined = BotStarsController.getInstance(i).getAdmined();
         admined.add(0, UserConfig.getInstance(i).getCurrentUser());
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(bottomSheet.getContainerView(), resourcesProvider, view);
-        Iterator it = admined.iterator();
-        while (it.hasNext()) {
-            TLObject tLObject = (TLObject) it.next();
+        for (TLObject tLObject : admined) {
             if (tLObject instanceof TLRPC.User) {
                 j = ((TLRPC.User) tLObject).id;
             } else if (tLObject instanceof TLRPC.Chat) {
@@ -1119,47 +1097,41 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     }
 
     public static BottomSheet showShareAffiliateAlert(final Context context, final int i, final TL_payments.connectedBotStarRef connectedbotstarref, final long j, final Theme.ResourcesProvider resourcesProvider) {
-        FrameLayout frameLayout;
-        BottomSheet.Builder builder;
         int i2;
-        PorterDuff.Mode mode;
-        LinearLayout linearLayout;
-        TLRPC.User user;
         char c;
         String pluralString;
         int i3;
         char c2;
         String pluralString2;
         int i4;
-        LinearLayout linearLayout2;
+        View view;
         int i5;
         String pluralString3;
-        ImageView.ScaleType scaleType;
         if (connectedbotstarref == null || context == null) {
             return null;
         }
-        BottomSheet.Builder builder2 = new BottomSheet.Builder(context, false, resourcesProvider);
-        TLRPC.User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(connectedbotstarref.bot_id));
-        LinearLayout linearLayout3 = new LinearLayout(context);
-        linearLayout3.setOrientation(1);
-        linearLayout3.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-        linearLayout3.setClipChildren(false);
-        linearLayout3.setClipToPadding(false);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        View view = new View(context);
-        view.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(40.0f), Theme.getColor(connectedbotstarref.revoked ? Theme.key_color_red : Theme.key_featuredStickers_addButton, resourcesProvider)));
-        frameLayout2.addView(view, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
+        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
+        TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(connectedbotstarref.bot_id));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        FrameLayout frameLayout = new FrameLayout(context);
+        View view2 = new View(context);
+        view2.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(40.0f), Theme.getColor(connectedbotstarref.revoked ? Theme.key_color_red : Theme.key_featuredStickers_addButton, resourcesProvider)));
+        frameLayout.addView(view2, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        ImageView.ScaleType scaleType2 = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType2);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
         imageView.setImageResource(connectedbotstarref.revoked ? R.drawable.msg_link_2 : R.drawable.msg_limit_links);
         imageView.setScaleX(connectedbotstarref.revoked ? 2.0f : 1.8f);
         imageView.setScaleY(connectedbotstarref.revoked ? 2.0f : 1.8f);
-        frameLayout2.addView(imageView, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.addView(imageView, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
         if (connectedbotstarref.participants > 0) {
-            FrameLayout frameLayout3 = new FrameLayout(context);
-            frameLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(50.0f), Theme.getColor(Theme.key_dialogBackground, resourcesProvider)));
-            frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 66.0f, 0.0f, 0.0f));
+            FrameLayout frameLayout2 = new FrameLayout(context);
+            frameLayout2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(50.0f), Theme.getColor(Theme.key_dialogBackground, resourcesProvider)));
+            frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 66.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 12.0f);
@@ -1172,18 +1144,13 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             coloredImageSpan.setScale(0.937f, 0.937f);
             coloredImageSpan.translate(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.0f));
             coloredImageSpan.spaceScaleX = 0.8f;
-            builder = builder2;
             spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
-            frameLayout = frameLayout2;
             spannableStringBuilder.append((CharSequence) String.valueOf(connectedbotstarref.participants));
             textView.setText(spannableStringBuilder);
             textView.setGravity(17);
-            frameLayout3.addView(textView, LayoutHelper.createFrame(-1, 19.0f, 119, 1.33f, 1.33f, 1.33f, 1.33f));
-        } else {
-            frameLayout = frameLayout2;
-            builder = builder2;
+            frameLayout2.addView(textView, LayoutHelper.createFrame(-1, 19.0f, 119, 1.33f, 1.33f, 1.33f, 1.33f));
         }
-        linearLayout3.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 0));
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 0));
         TextView textView2 = new TextView(context);
         int i6 = Theme.key_windowBackgroundWhiteBlackText;
         textView2.setTextColor(Theme.getColor(i6, resourcesProvider));
@@ -1191,35 +1158,35 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkTitle));
         textView2.setTypeface(AndroidUtilities.bold());
-        linearLayout3.addView(textView2, LayoutHelper.createLinear(-1, -2, 20.0f, 16.0f, 20.0f, 9.33f));
-        LinearLayout linearLayout4 = new LinearLayout(context);
-        linearLayout4.setOrientation(0);
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 20.0f, 16.0f, 20.0f, 9.33f));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(0);
         int iDp = AndroidUtilities.dp(28.0f);
         int i7 = Theme.key_windowBackgroundGray;
-        linearLayout4.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i7, resourcesProvider)));
+        linearLayout2.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i7, resourcesProvider)));
         BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(14.0f));
         AvatarDrawable avatarDrawable = new AvatarDrawable();
-        linearLayout4.addView(backupImageView, LayoutHelper.createLinear(28, 28));
+        linearLayout2.addView(backupImageView, LayoutHelper.createLinear(28, 28));
         TextView textView3 = new TextView(context);
         textView3.setTextSize(1, 13.0f);
         textView3.setTextColor(Theme.getColor(i6, resourcesProvider));
         textView3.setText(DialogObject.getName(i, connectedbotstarref.bot_id));
-        avatarDrawable.setInfo(user2);
-        backupImageView.setForUserOrChat(user2, avatarDrawable);
-        linearLayout4.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
+        avatarDrawable.setInfo(user);
+        backupImageView.setForUserOrChat(user, avatarDrawable);
+        linearLayout2.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
         ImageView imageView2 = new ImageView(context);
-        imageView2.setScaleType(scaleType2);
+        imageView2.setScaleType(scaleType);
         int i8 = Theme.key_dialogTextGray3;
         int color = Theme.getColor(i8, resourcesProvider);
-        PorterDuff.Mode mode2 = PorterDuff.Mode.SRC_IN;
-        imageView2.setColorFilter(new PorterDuffColorFilter(color, mode2));
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView2.setColorFilter(new PorterDuffColorFilter(color, mode));
         imageView2.setImageResource(R.drawable.settings_arrow);
         imageView2.setScaleX(1.2f);
         imageView2.setScaleY(1.2f);
-        linearLayout4.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 5, 0, 8, 0));
-        linearLayout3.addView(linearLayout4, LayoutHelper.createLinear(-2, 28, 1, 4, 0, 4, 0));
-        ScaleStateListAnimator.apply(linearLayout4);
+        linearLayout2.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 5, 0, 8, 0));
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, 28, 1, 4, 0, 4, 0));
+        ScaleStateListAnimator.apply(linearLayout2);
         TextView textView4 = new TextView(context);
         textView4.setTextColor(Theme.getColor(i6, resourcesProvider));
         textView4.setTextSize(1, 14.0f);
@@ -1227,15 +1194,11 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         if (connectedbotstarref.revoked) {
             textView4.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ChannelAffiliateProgramLinkTextRevoked)));
             i2 = i8;
-            mode = mode2;
-            user = user2;
-            linearLayout = linearLayout4;
+            user = user;
         } else if (j < 0) {
             int i9 = R.string.ChannelAffiliateProgramLinkTextChannel;
-            linearLayout = linearLayout4;
             CharSequence charSequencePercents = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
-            String userName = UserObject.getUserName(user2);
-            mode = mode2;
+            String userName = UserObject.getUserName(user);
             int i10 = connectedbotstarref.duration_months;
             if (i10 <= 0) {
                 pluralString2 = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
@@ -1256,22 +1219,18 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             objArr[1] = userName;
             objArr[2] = pluralString2;
             textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i9, objArr)));
-            user = user2;
+            user = user;
         } else {
             i2 = i8;
-            mode = mode2;
-            linearLayout = linearLayout4;
             int i11 = R.string.ChannelAffiliateProgramLinkTextUser;
             CharSequence charSequencePercents2 = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
-            String userName2 = UserObject.getUserName(user2);
+            String userName2 = UserObject.getUserName(user);
             int i12 = connectedbotstarref.duration_months;
             if (i12 <= 0) {
                 pluralString = LocaleController.getString(R.string.ChannelAffiliateProgramJoinText_Lifetime);
-                user = user2;
                 i3 = 3;
                 c = 0;
             } else {
-                user = user2;
                 if (i12 < 12 || i12 % 12 != 0) {
                     c = 0;
                     pluralString = LocaleController.formatPluralString("ChannelAffiliateProgramJoinText_Months", i12, new Object[0]);
@@ -1287,49 +1246,47 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             objArr2[2] = pluralString;
             textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i11, objArr2)));
         }
-        linearLayout3.addView(textView4, LayoutHelper.createLinear(-1, -2, 20.0f, 19.0f, 20.0f, 18.0f));
+        linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 20.0f, 19.0f, 20.0f, 18.0f));
         if (connectedbotstarref.revoked) {
             i4 = i7;
-            linearLayout2 = null;
+            view = null;
         } else {
             TextView textView5 = new TextView(context);
             textView5.setTextColor(Theme.getColor(i6, resourcesProvider));
             textView5.setTextSize(1, 14.0f);
             textView5.setGravity(17);
             textView5.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkSendTo));
-            linearLayout3.addView(textView5, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
-            LinearLayout linearLayout5 = new LinearLayout(context);
-            linearLayout5.setOrientation(0);
+            linearLayout.addView(textView5, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
+            LinearLayout linearLayout3 = new LinearLayout(context);
+            linearLayout3.setOrientation(0);
             i4 = i7;
-            linearLayout5.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider)));
+            linearLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider)));
             BackupImageView backupImageView2 = new BackupImageView(context);
             backupImageView2.setRoundRadius(AndroidUtilities.dp(14.0f));
             AvatarDrawable avatarDrawable2 = new AvatarDrawable();
-            linearLayout5.addView(backupImageView2, LayoutHelper.createLinear(28, 28));
+            linearLayout3.addView(backupImageView2, LayoutHelper.createLinear(28, 28));
             TextView textView6 = new TextView(context);
             textView6.setTextSize(1, 13.0f);
             textView6.setTextColor(Theme.getColor(i6, resourcesProvider));
             if (j >= 0) {
-                TLRPC.User user3 = MessagesController.getInstance(i).getUser(Long.valueOf(j));
-                avatarDrawable2.setInfo(user3);
-                backupImageView2.setForUserOrChat(user3, avatarDrawable2);
-                textView6.setText(UserObject.getUserName(user3));
-                scaleType = scaleType2;
+                TLRPC.User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+                avatarDrawable2.setInfo(user2);
+                backupImageView2.setForUserOrChat(user2, avatarDrawable2);
+                textView6.setText(UserObject.getUserName(user2));
             } else {
-                scaleType = scaleType2;
                 TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
                 avatarDrawable2.setInfo(chat);
                 backupImageView2.setForUserOrChat(chat, avatarDrawable2);
                 textView6.setText(chat == null ? "" : chat.title);
             }
-            linearLayout5.addView(textView6, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
+            linearLayout3.addView(textView6, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
             ImageView imageView3 = new ImageView(context);
             imageView3.setScaleType(scaleType);
             imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), mode));
             imageView3.setImageResource(R.drawable.arrows_select);
-            linearLayout5.addView(imageView3, LayoutHelper.createLinear(-2, -2, 16, 2, 0, 5, 0));
-            linearLayout3.addView(linearLayout5, LayoutHelper.createLinear(-2, 28, 1, 0, 9, 0, 22));
-            linearLayout2 = linearLayout5;
+            linearLayout3.addView(imageView3, LayoutHelper.createLinear(-2, -2, 16, 2, 0, 5, 0));
+            linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-2, 28, 1, 0, 9, 0, 22));
+            view = linearLayout3;
         }
         TextView textView7 = new TextView(context);
         textView7.setTextSize(1, 16.0f);
@@ -1339,7 +1296,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         textView7.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f));
         String str = connectedbotstarref.url;
         textView7.setText((str == null || !str.startsWith("https://")) ? connectedbotstarref.url : connectedbotstarref.url.substring(8));
-        linearLayout3.addView(textView7, LayoutHelper.createFrame(-1, -2.0f, 7, 0.0f, 0.0f, 0.0f, 12.0f));
+        linearLayout.addView(textView7, LayoutHelper.createFrame(-1, -2.0f, 7, 0.0f, 0.0f, 0.0f, 12.0f));
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         if (!connectedbotstarref.revoked) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
@@ -1350,7 +1307,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         } else {
             buttonWithCounterView.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkRejoin), false);
         }
-        linearLayout3.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
+        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
         long j2 = connectedbotstarref.participants;
         if (j2 <= 0) {
@@ -1365,29 +1322,28 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         linksTextView.setTextSize(i5, 12.0f);
         linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
-        linearLayout3.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 12, 14, 2));
-        BottomSheet.Builder builder3 = builder;
-        builder3.setCustomView(linearLayout3);
-        final BottomSheet bottomSheetCreate = builder3.create();
-        final TLRPC.User user4 = user;
+        linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 12, 14, 2));
+        builder.setCustomView(linearLayout);
+        final BottomSheet bottomSheetCreate = builder.create();
+        final TLRPC.User user3 = user;
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$19(connectedbotstarref, bottomSheetCreate, resourcesProvider, user4);
+                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$19(connectedbotstarref, bottomSheetCreate, resourcesProvider, user3);
             }
         };
         if (!connectedbotstarref.revoked) {
             textView7.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) {
+                public final void onClick(View view3) {
                     runnable.run();
                 }
             });
         }
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$23(connectedbotstarref, i, bottomSheetCreate, context, j, resourcesProvider, runnable, view2);
+            public final void onClick(View view3) {
+                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$23(connectedbotstarref, i, bottomSheetCreate, context, j, resourcesProvider, runnable, view3);
             }
         });
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -1396,21 +1352,21 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
                 ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$24(dialogInterface);
             }
         });
-        if (linearLayout2 != null) {
+        if (view != null) {
             BotStarsController.getInstance(i).loadAdminedBots();
             BotStarsController.getInstance(i).loadAdminedChannels();
-            final LinearLayout linearLayout6 = linearLayout2;
-            linearLayout2.setOnClickListener(new View.OnClickListener() {
+            final View view3 = view;
+            view.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) {
-                    ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$29(i, bottomSheetCreate, resourcesProvider, linearLayout6, j, context, connectedbotstarref, view2);
+                public final void onClick(View view4) {
+                    ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$29(i, bottomSheetCreate, resourcesProvider, view3, j, context, connectedbotstarref, view4);
                 }
             });
         }
-        linearLayout.setOnClickListener(new View.OnClickListener() {
+        linearLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
-                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$30(bottomSheetCreate, connectedbotstarref, view2);
+            public final void onClick(View view4) {
+                ChannelAffiliateProgramsFragment.lambda$showShareAffiliateAlert$30(bottomSheetCreate, connectedbotstarref, view4);
             }
         });
         bottomSheetCreate.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
@@ -1463,12 +1419,10 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
 
     public static void lambda$showShareAffiliateAlert$29(final int i, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, View view, long j, final Context context, final TL_payments.connectedBotStarRef connectedbotstarref, View view2) {
         long j2;
-        ArrayList admined = BotStarsController.getInstance(i).getAdmined();
+        ArrayList<TLObject> admined = BotStarsController.getInstance(i).getAdmined();
         admined.add(0, UserConfig.getInstance(i).getCurrentUser());
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(bottomSheet.getContainerView(), resourcesProvider, view);
-        Iterator it = admined.iterator();
-        while (it.hasNext()) {
-            TLObject tLObject = (TLObject) it.next();
+        for (TLObject tLObject : admined) {
             if (tLObject instanceof TLRPC.User) {
                 j2 = ((TLRPC.User) tLObject).id;
             } else if (tLObject instanceof TLRPC.Chat) {

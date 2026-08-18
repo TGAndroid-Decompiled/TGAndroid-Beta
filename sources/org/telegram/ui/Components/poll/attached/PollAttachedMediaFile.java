@@ -232,13 +232,14 @@ public class PollAttachedMediaFile extends PollAttachedMedia {
             Rect bounds = getBounds();
             float f = bounds.left + this.paddingStart;
             float f2 = bounds.top + this.paddingTop;
+            float height = this.titleLayout.getHeight() + f2 + this.lineSpacing;
             this.radialProgress.setProgressRect(bounds.left + AndroidUtilities.dp(10.0f), bounds.top + AndroidUtilities.dp(9.0f), bounds.left + AndroidUtilities.dp(10.0f) + AndroidUtilities.dp(42.0f), bounds.top + AndroidUtilities.dp(9.0f) + AndroidUtilities.dp(42.0f));
             canvas.save();
             canvas.translate(f, f2);
             this.titleLayout.draw(canvas);
             canvas.restore();
             canvas.save();
-            canvas.translate(f, this.titleLayout.getHeight() + f2 + this.lineSpacing);
+            canvas.translate(f, height);
             this.subtitleLayout.draw(canvas);
             canvas.restore();
             this.radialProgress.draw(canvas);

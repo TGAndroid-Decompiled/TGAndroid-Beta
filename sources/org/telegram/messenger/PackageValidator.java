@@ -40,10 +40,7 @@ public final class PackageValidator {
     private static boolean hasPermission(Context context, String str, int i) {
         PackageManager packageManager = context.getPackageManager();
         try {
-            if (packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) == 0) {
-                return true;
-            }
-            return packageManager.checkPermission("android.permission.BIND_NOTIFICATION_LISTENER_SERVICE", str) == 0;
+            return packageManager.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", str) == 0 || packageManager.checkPermission("android.permission.BIND_NOTIFICATION_LISTENER_SERVICE", str) == 0;
         } catch (Throwable unused) {
             return false;
         }

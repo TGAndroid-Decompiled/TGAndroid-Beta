@@ -14,7 +14,6 @@ import java.net.Inet4Address;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.Iterator;
 import org.telegram.messenger.ApplicationLoader;
@@ -35,7 +34,7 @@ public class JNIUtilities {
         return linkProperties.getInterfaceName();
     }
 
-    public static String[] getLocalNetworkAddressesAndInterfaceName() throws SocketException {
+    public static String[] getLocalNetworkAddressesAndInterfaceName() {
         LinkProperties linkProperties;
         ConnectivityManager connectivityManager = (ConnectivityManager) ApplicationLoader.applicationContext.getSystemService("connectivity");
         String hostAddress = null;

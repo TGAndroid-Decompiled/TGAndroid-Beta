@@ -30,8 +30,6 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.Crop.CropGestureDetector;
 import org.telegram.ui.Components.PaintingOverlay;
 import org.telegram.ui.Components.VideoEditTextureView;
 
@@ -1072,7 +1070,6 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     }
 
     public static void editBitmap(Context context, String str, Bitmap bitmap, Canvas canvas, Bitmap bitmap2, Bitmap.CompressFormat compressFormat, Matrix matrix, int i, int i2, float f, float f2, float f3, float f4, boolean z, ArrayList arrayList, boolean z2) {
-        int i3 = i;
         if (z2) {
             try {
                 bitmap2.eraseColor(0);
@@ -1100,9 +1097,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         fileOutputStream.close();
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = arrayList.size();
-            int i4 = 0;
-            while (i4 < size) {
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i4);
+            for (int i3 = 0; i3 < size; i3++) {
+                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i3);
                 float[] fArr = {(mediaEntity.x + (mediaEntity.width / 2.0f)) * bitmapDecodeFile.getWidth(), (mediaEntity.y + (mediaEntity.height / 2.0f)) * bitmapDecodeFile.getHeight(), mediaEntity.textViewX * bitmapDecodeFile.getWidth(), mediaEntity.textViewY * bitmapDecodeFile.getHeight()};
                 matrix2.mapPoints(fArr);
                 int width = bitmapDecodeFile.getWidth();
@@ -1112,10 +1108,10 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
                     height = bitmapDecodeFile.getWidth();
                 }
                 if (mediaEntity.type == 1) {
-                    mediaEntity.width = ((mediaEntity.width * i3) / bitmap2.getWidth()) * f4 * f;
+                    mediaEntity.width = ((mediaEntity.width * i) / bitmap2.getWidth()) * f4 * f;
                     mediaEntity.height = ((mediaEntity.height * i2) / bitmap2.getHeight()) * f4 * f;
                 } else {
-                    float f6 = i3;
+                    float f6 = i;
                     float f7 = width;
                     mediaEntity.viewWidth = (int) ((mediaEntity.viewWidth / f6) * f7);
                     float f8 = i2;
@@ -1128,9 +1124,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
                 mediaEntity.y = (fArr[1] / bitmap2.getHeight()) - (mediaEntity.height / 2.0f);
                 mediaEntity.textViewX = fArr[2] / bitmap2.getWidth();
                 mediaEntity.textViewY = fArr[3] / bitmap2.getHeight();
-                mediaEntity.rotation = (float) (mediaEntity.rotation - ((f2 + f3) * 0.017453292519943295d));
-                i4++;
-                i3 = i;
+                mediaEntity.rotation = (float) (((double) mediaEntity.rotation) - (((double) (f2 + f3)) * 0.017453292519943295d));
             }
         }
         bitmapDecodeFile.recycle();
@@ -1145,11 +1139,12 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         }
         this.areaView.getCropRect(this.cropRect);
         int iCeil = (int) Math.ceil(scaleWidthToMaxSize(this.cropRect, this.sizeRect));
-        int iCeil2 = (int) Math.ceil(r2 / this.areaView.getAspectRatio());
-        float cropWidth = iCeil / this.areaView.getCropWidth();
+        float f2 = iCeil;
+        int iCeil2 = (int) Math.ceil(f2 / this.areaView.getAspectRatio());
+        float cropWidth = f2 / this.areaView.getCropWidth();
         this.state.matrix.getValues(this.values);
         CropState cropState = this.state;
-        float f2 = cropState.minimumScale * cropWidth;
+        float f3 = cropState.minimumScale * cropWidth;
         int orientationOnly = cropState.getOrientationOnly();
         while (orientationOnly < 0) {
             orientationOnly += 360;
@@ -1165,31 +1160,31 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         }
         int i2 = (int) f;
         double d = iCeil;
-        float f3 = i;
-        float fCeil = (float) (d / Math.ceil(f3 * f2));
-        float f4 = i2;
-        float fCeil2 = (float) (iCeil2 / Math.ceil(f2 * f4));
+        float f4 = i;
+        float fCeil = (float) (d / Math.ceil(f4 * f3));
+        float f5 = i2;
+        float fCeil2 = (float) (((double) iCeil2) / Math.ceil(f3 * f5));
         if (fCeil > 1.0f || fCeil2 > 1.0f) {
             float fMax2 = Math.max(fCeil, fCeil2);
             fCeil /= fMax2;
             fCeil2 /= fMax2;
         }
-        float f5 = fCeil2;
-        float f6 = fCeil;
-        RectF targetRectToFill = this.areaView.getTargetRectToFill(f3 / f4);
+        float f6 = fCeil2;
+        float f7 = fCeil;
+        RectF targetRectToFill = this.areaView.getTargetRectToFill(f4 / f5);
         if (this.freeform) {
-            fMax = targetRectToFill.width() / f3;
+            fMax = targetRectToFill.width() / f4;
         } else {
-            fMax = Math.max(targetRectToFill.width() / f3, targetRectToFill.height() / f4);
+            fMax = Math.max(targetRectToFill.width() / f4, targetRectToFill.height() / f5);
         }
         CropState cropState4 = this.state;
-        float f7 = cropState4.scale;
-        float f8 = f7 / fMax;
-        float f9 = f7 / cropState4.minimumScale;
+        float f8 = cropState4.scale;
+        float f9 = f8 / fMax;
+        float f10 = f8 / cropState4.minimumScale;
         float[] fArr = this.values;
-        float f10 = (fArr[2] / f3) / f7;
-        float f11 = (fArr[5] / f4) / f7;
-        float f12 = cropState4.rotation;
+        float f11 = (fArr[2] / f4) / f8;
+        float f12 = (fArr[5] / f5) / f8;
+        float f13 = cropState4.rotation;
         RectF targetRectToFill2 = this.areaView.getTargetRectToFill();
         float cropCenterX = this.areaView.getCropCenterX() - targetRectToFill2.centerX();
         float cropCenterY = this.areaView.getCropCenterY() - targetRectToFill2.centerY();
@@ -1198,7 +1193,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         boolean z = cropState5.mirrored || cropState5.hasChanges() || this.state.getBaseRotation() >= 1.0E-5f;
         int orientationOnly2 = this.state.getOrientationOnly();
         CropState cropState6 = this.state;
-        cropTransform.setViewTransform(z, f10, f11, f12, orientationOnly2, f8, f9, cropState6.minimumScale / fMax, f6, f5, cropCenterX, cropCenterY, cropState6.mirrored);
+        cropTransform.setViewTransform(z, f11, f12, f13, orientationOnly2, f9, f10, cropState6.minimumScale / fMax, f7, f6, cropCenterX, cropCenterY, cropState6.mirrored);
     }
 
     public static String getCopy(String str) {
@@ -1217,8 +1212,9 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         }
         this.areaView.getCropRect(this.cropRect);
         int iCeil = (int) Math.ceil(scaleWidthToMaxSize(this.cropRect, this.sizeRect));
-        int iCeil2 = (int) Math.ceil(r3 / this.areaView.getAspectRatio());
-        float cropWidth = iCeil / this.areaView.getCropWidth();
+        float f = iCeil;
+        int iCeil2 = (int) Math.ceil(f / this.areaView.getAspectRatio());
+        float cropWidth = f / this.areaView.getCropWidth();
         if (mediaEditState.paintPath != null) {
             Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iCeil, iCeil2, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmapCreateBitmap);
@@ -1258,11 +1254,12 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         float f;
         this.areaView.getCropRect(this.cropRect);
         int iCeil = (int) Math.ceil(scaleWidthToMaxSize(this.cropRect, this.sizeRect));
-        int iCeil2 = (int) Math.ceil(r1 / this.areaView.getAspectRatio());
-        float cropWidth = iCeil / this.areaView.getCropWidth();
+        float f2 = iCeil;
+        int iCeil2 = (int) Math.ceil(f2 / this.areaView.getAspectRatio());
+        float cropWidth = f2 / this.areaView.getCropWidth();
         this.state.matrix.getValues(this.values);
         CropState cropState2 = this.state;
-        float f2 = cropState2.minimumScale * cropWidth;
+        float f3 = cropState2.minimumScale * cropWidth;
         cropState.transformRotation = cropState2.getOrientationOnly();
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("set transformRotation = " + cropState.transformRotation);
@@ -1285,26 +1282,26 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
             f = cropState4.height;
         }
         int i3 = (int) f;
-        float f3 = i2;
-        cropState.cropPw = (float) (iCeil / Math.ceil(f3 * f2));
-        float f4 = i3;
-        float fCeil = (float) (iCeil2 / Math.ceil(f2 * f4));
+        float f4 = i2;
+        cropState.cropPw = (float) (((double) iCeil) / Math.ceil(f4 * f3));
+        float f5 = i3;
+        float fCeil = (float) (((double) iCeil2) / Math.ceil(f3 * f5));
         cropState.cropPh = fCeil;
-        float f5 = cropState.cropPw;
-        if (f5 > 1.0f || fCeil > 1.0f) {
-            float fMax = Math.max(f5, fCeil);
+        float f6 = cropState.cropPw;
+        if (f6 > 1.0f || fCeil > 1.0f) {
+            float fMax = Math.max(f6, fCeil);
             cropState.cropPw /= fMax;
             cropState.cropPh /= fMax;
         }
-        cropState.cropScale = this.state.scale * Math.min(f3 / this.areaView.getCropWidth(), f4 / this.areaView.getCropHeight());
+        cropState.cropScale = this.state.scale * Math.min(f4 / this.areaView.getCropWidth(), f5 / this.areaView.getCropHeight());
         float[] fArr = this.values;
-        float f6 = fArr[2] / f3;
+        float f7 = fArr[2] / f4;
         CropState cropState5 = this.state;
-        float f7 = cropState5.scale;
-        cropState.cropPx = f6 / f7;
-        cropState.cropPy = (fArr[5] / f4) / f7;
+        float f8 = cropState5.scale;
+        cropState.cropPx = f7 / f8;
+        cropState.cropPy = (fArr[5] / f5) / f8;
         cropState.cropRotate = cropState5.rotation;
-        cropState.stateScale = f7;
+        cropState.stateScale = f8;
         cropState.mirrored = cropState5.mirrored;
         cropState.scale = cropWidth;
         cropState.matrix = cropState5.matrix;

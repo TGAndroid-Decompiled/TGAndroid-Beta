@@ -19,8 +19,6 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.Premium.boosts.BoostViaGiftsBottomSheet;
-import org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 

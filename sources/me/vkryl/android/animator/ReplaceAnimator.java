@@ -3,7 +3,6 @@ package me.vkryl.android.animator;
 import android.view.animation.Interpolator;
 import java.util.Collections;
 import java.util.Iterator;
-import me.vkryl.android.animator.ListAnimator;
 
 public class ReplaceAnimator implements Iterable {
     private final ListAnimator list;

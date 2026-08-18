@@ -9,7 +9,6 @@ import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.messenger.video.audio_input.AudioInput;
 
 public class AudioRecoder {
@@ -70,7 +69,7 @@ public class AudioRecoder {
         }
     }
 
-    public boolean step(MediaCodecVideoConvertor.Muxer muxer, int i) throws MediaCodec.CryptoException {
+    public boolean step(MediaCodecVideoConvertor.Muxer muxer, int i) {
         int iDequeueInputBuffer;
         if (!this.encoderInputDone && (iDequeueInputBuffer = this.encoder.dequeueInputBuffer(2500L)) >= 0) {
             if (isInputAvailable()) {
@@ -117,8 +116,9 @@ public class AudioRecoder {
             boolean z = false;
             short next = 0;
             for (int i2 = 0; i2 < this.audioInputs.size() && isInputAvailable(); i2++) {
-                if (this.audioInputs.get(i2).hasRemaining()) {
-                    next = (short) (next + (((short) (r6.getNext() * r6.getVolume())) / this.audioInputs.size()));
+                AudioInput audioInput = this.audioInputs.get(i2);
+                if (audioInput.hasRemaining()) {
+                    next = (short) (next + (((short) (audioInput.getNext() * audioInput.getVolume())) / this.audioInputs.size()));
                     z = true;
                 }
             }

@@ -37,7 +37,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -332,7 +331,7 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws InterruptedException {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         getLocationOnScreen(this.location);
         Matrix matrix = this.blurBitmapMatrix;
@@ -456,17 +455,20 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
         if (bitmap == null) {
             return null;
         }
-        float f = this.location[0] / AndroidUtilities.displaySize.x;
+        int i = this.location[0];
+        float f = i / AndroidUtilities.displaySize.x;
+        float measuredWidth = (i + getMeasuredWidth()) / AndroidUtilities.displaySize.x;
+        float currentActionBarHeight = ((this.location[1] - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) / AndroidUtilities.displaySize.y;
         int width = (int) (f * bitmap.getWidth());
-        int measuredWidth = (int) (((r1 + getMeasuredWidth()) / AndroidUtilities.displaySize.x) * bitmap.getWidth());
-        int currentActionBarHeight = (int) ((((this.location[1] - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) / AndroidUtilities.displaySize.y) * bitmap.getHeight());
-        if (width < 0 || width >= bitmap.getWidth() || measuredWidth < 0 || measuredWidth >= bitmap.getWidth() || currentActionBarHeight < 0 || currentActionBarHeight >= bitmap.getHeight()) {
+        int width2 = (int) (measuredWidth * bitmap.getWidth());
+        int height = (int) (currentActionBarHeight * bitmap.getHeight());
+        if (width < 0 || width >= bitmap.getWidth() || width2 < 0 || width2 >= bitmap.getWidth() || height < 0 || height >= bitmap.getHeight()) {
             return null;
         }
-        return new Pair(Integer.valueOf(bitmap.getPixel(width, currentActionBarHeight)), Integer.valueOf(bitmap.getPixel(measuredWidth, currentActionBarHeight)));
+        return new Pair(Integer.valueOf(bitmap.getPixel(width, height)), Integer.valueOf(bitmap.getPixel(width2, height)));
     }
 
-    private void updatePseudoBlurColors() throws InterruptedException {
+    private void updatePseudoBlurColors() {
         int color;
         int iIntValue;
         Bitmap bitmap;
@@ -485,16 +487,17 @@ public abstract class ActionBarMenuSlider extends FrameLayout {
                     int iIntValue2 = ((Integer) bitmapGradientColors.first).intValue();
                     iIntValue = ((Integer) bitmapGradientColors.second).intValue();
                     color = iIntValue2;
-                    if (this.pseudoBlurGradient == null && this.pseudoBlurColor1 == color && this.pseudoBlurColor2 == iIntValue) {
-                        return;
-                    }
-                    this.pseudoBlurColor1 = color;
-                    this.pseudoBlurColor2 = iIntValue;
-                    LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, iIntValue}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                    this.pseudoBlurGradient = linearGradient;
-                    this.pseudoBlurPaint.setShader(linearGradient);
+                } else {
+                    color = Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), 0.25f);
                 }
-                color = Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), 0.25f);
+                if (this.pseudoBlurGradient == null && this.pseudoBlurColor1 == color && this.pseudoBlurColor2 == iIntValue) {
+                    return;
+                }
+                this.pseudoBlurColor1 = color;
+                this.pseudoBlurColor2 = iIntValue;
+                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{color, iIntValue}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                this.pseudoBlurGradient = linearGradient;
+                this.pseudoBlurPaint.setShader(linearGradient);
             }
         } else {
             color = Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider);

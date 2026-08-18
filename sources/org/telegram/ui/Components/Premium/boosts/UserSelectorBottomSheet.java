@@ -535,7 +535,8 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     public void lambda$new$4(View view) {
-        this.videoCheckbox.setChecked(!r3.isChecked(), true);
+        CheckBox2 checkBox2 = this.videoCheckbox;
+        checkBox2.setChecked(!checkBox2.isChecked(), true);
     }
 
     public void lambda$new$5(View view) {
@@ -608,13 +609,13 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             }
             if (i == 4 && this.selectedIds.isEmpty()) {
                 this.selectedIds.add(Long.valueOf(j));
-                Utilities.Callback2 callback22 = this.onUsersSelectedListener;
-                if (callback22 != null) {
+                Utilities.Callback2 callback3 = this.onUsersSelectedListener;
+                if (callback3 != null) {
                     CheckBox2 checkBox2 = this.videoCheckbox;
                     if (checkBox2 != null && checkBox2.isChecked()) {
                         z = true;
                     }
-                    callback22.run(Boolean.valueOf(z), this.selectedIds);
+                    callback3.run(Boolean.valueOf(z), this.selectedIds);
                     this.onUsersSelectedListener = null;
                 }
                 lambda$new$0();
@@ -869,8 +870,34 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         updateActionButton(z);
     }
 
-    private void updateCheckboxes(boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet.updateCheckboxes(boolean):void");
+    private void updateCheckboxes(boolean z) {
+        int childAdapterPosition;
+        int childAdapterPosition2;
+        int i = -1;
+        int i2 = 0;
+        for (int i3 = 0; i3 < this.recyclerListView.getChildCount(); i3++) {
+            View childAt = this.recyclerListView.getChildAt(i3);
+            if ((childAt instanceof SelectorUserCell) && (childAdapterPosition2 = (childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt)) - 1) >= 0 && childAdapterPosition2 < this.items.size()) {
+                if (i == -1) {
+                    i = childAdapterPosition;
+                }
+                SelectorAdapter.Item item = (SelectorAdapter.Item) this.items.get(childAdapterPosition2);
+                SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
+                selectorUserCell.setChecked(item.checked, z);
+                TLRPC.Chat chat = item.chat;
+                if (chat != null) {
+                    selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount(chat) > 200 ? 0.3f : 1.0f, z);
+                } else {
+                    selectorUserCell.setCheckboxAlpha(1.0f, z);
+                }
+                i2 = childAdapterPosition;
+            }
+        }
+        if (z) {
+            this.selectorAdapter.notifyItemRangeChanged(0, i);
+            SelectorAdapter selectorAdapter = this.selectorAdapter;
+            selectorAdapter.notifyItemRangeChanged(i2, selectorAdapter.getItemCount() - i2);
+        }
     }
 
     public void updateActionButton(boolean z) {
@@ -994,10 +1021,8 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         this.oldItems.addAll(this.items);
         this.items.clear();
         if (isSearching()) {
-            Iterator it = this.searchResult.iterator();
             iDp2 = 0;
-            while (it.hasNext()) {
-                TLObject tLObject = (TLObject) it.next();
+            for (TLObject tLObject : this.searchResult) {
                 if (tLObject instanceof TLRPC.User) {
                     TLRPC.User user2 = (TLRPC.User) tLObject;
                     if (!user2.bot && !UserObject.isService(user2.id)) {
@@ -1059,9 +1084,9 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             SelectorAdapter.Item itemAsTopSection = null;
             if (!this.hints.isEmpty()) {
                 ArrayList arrayList3 = new ArrayList();
-                Iterator it2 = this.hints.iterator();
-                while (it2.hasNext()) {
-                    TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TLRPC.TL_topPeer) it2.next()).peer.user_id));
+                Iterator it = this.hints.iterator();
+                while (it.hasNext()) {
+                    TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TLRPC.TL_topPeer) it.next()).peer.user_id));
                     if (user3 != null) {
                         long j3 = user3.id;
                         if (j3 != this.userId && !user3.self && !user3.bot && !UserObject.isService(j3) && !UserObject.isDeleted(user3) && ((birthdayState2 = this.birthdays) == null || !birthdayState2.contains(user3.id))) {

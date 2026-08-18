@@ -97,18 +97,18 @@ public class TeXIcon implements Icon {
 
     @Override
     public int getIconHeight() {
-        return sanitizePx(((int) ((this.box.getHeight() * this.size) + 0.99d + this.insets.top)) + ((int) ((this.box.getDepth() * this.size) + 0.99d + this.insets.bottom)));
+        return sanitizePx(((int) (((double) (this.box.getHeight() * this.size)) + 0.99d + ((double) this.insets.top))) + ((int) (((double) (this.box.getDepth() * this.size)) + 0.99d + ((double) this.insets.bottom))));
     }
 
     public int getIconDepth() {
-        return sanitizePx((int) ((this.box.getDepth() * this.size) + 0.99d + this.insets.bottom));
+        return sanitizePx((int) (((double) (this.box.getDepth() * this.size)) + 0.99d + ((double) this.insets.bottom)));
     }
 
     @Override
     public int getIconWidth() {
-        double width = (this.box.getWidth() * this.size) + 0.99d;
+        double width = ((double) (this.box.getWidth() * this.size)) + 0.99d;
         Insets insets = this.insets;
-        return sanitizePx((int) (width + insets.left + insets.right));
+        return sanitizePx((int) (width + ((double) insets.left) + ((double) insets.right)));
     }
 
     public float getTrueIconHeight() {
@@ -124,10 +124,10 @@ public class TeXIcon implements Icon {
     }
 
     public float getBaseLine() {
-        double height = (this.box.getHeight() * this.size) + 0.99d + this.insets.top;
-        double height2 = ((this.box.getHeight() + this.box.getDepth()) * this.size) + 0.99d;
+        double height = ((double) (this.box.getHeight() * this.size)) + 0.99d + ((double) this.insets.top);
+        double height2 = ((double) ((this.box.getHeight() + this.box.getDepth()) * this.size)) + 0.99d;
         Insets insets = this.insets;
-        return (float) (height / ((height2 + insets.top) + insets.bottom));
+        return (float) (height / ((height2 + ((double) insets.top)) + ((double) insets.bottom)));
     }
 
     public Box getBox() {
@@ -154,9 +154,10 @@ public class TeXIcon implements Icon {
             graphics2D.setColor(defaultColor);
         }
         Box box = this.box;
-        float f2 = i + this.insets.left;
+        Insets insets = this.insets;
+        float f2 = i + insets.left;
         float f3 = this.size;
-        box.draw(graphics2D, f2 / f3, ((i2 + r3.top) / f3) + box.getHeight());
+        box.draw(graphics2D, f2 / f3, ((i2 + insets.top) / f3) + box.getHeight());
         graphics2D.setRenderingHints(renderingHints);
         graphics2D.setTransform(transform);
         graphics2D.setColor(color);

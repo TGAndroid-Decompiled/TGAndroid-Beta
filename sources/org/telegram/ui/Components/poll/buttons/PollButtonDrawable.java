@@ -228,7 +228,9 @@ public class PollButtonDrawable extends Drawable implements DownloadController.F
     }
 
     public float getVotersCountTargetWidth() {
-        return this.votersCountDrawable.getAnimateToWidth() + (this.recentVotersCount > 0 ? AndroidUtilities.dp((r1 * 9.34f) + 8.66f) : 0);
+        float animateToWidth = this.votersCountDrawable.getAnimateToWidth();
+        int i = this.recentVotersCount;
+        return animateToWidth + (i > 0 ? AndroidUtilities.dp((i * 9.34f) + 8.66f) : 0);
     }
 
     public float getVotersCountAnimatedWidth(float f) {

@@ -3,7 +3,6 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import java.io.File;
-import java.io.IOException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueuePoolBackground;
 import org.telegram.messenger.FileLog;
@@ -72,7 +71,7 @@ public class RLottieDiceDrawable extends RLottieDrawable {
         if (this.destroyAfterLoading) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.lambda$setDiceNumber$0();
                 }
             });
@@ -85,13 +84,13 @@ public class RLottieDiceDrawable extends RLottieDrawable {
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$setDiceNumber$1(frameCount);
             }
         });
     }
 
-    public void lambda$setDiceNumber$0() throws IOException {
+    public void lambda$setDiceNumber$0() {
         this.secondLoadingInBackground = false;
         if (this.loadingInBackground || !this.destroyAfterLoading) {
             return;
@@ -99,7 +98,7 @@ public class RLottieDiceDrawable extends RLottieDrawable {
         recycle(true);
     }
 
-    public void lambda$setDiceNumber$1(int i) throws IOException {
+    public void lambda$setDiceNumber$1(int i) {
         this.secondLoadingInBackground = false;
         if (this.destroyAfterLoading) {
             recycle(true);
@@ -146,13 +145,13 @@ public class RLottieDiceDrawable extends RLottieDrawable {
         this.nativePtr = RLottieNative.createFromRawJson(str, "dice", this.metaData, null);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$setBaseDice$3();
             }
         });
     }
 
-    public void lambda$setBaseDice$3() throws IOException {
+    public void lambda$setBaseDice$3() {
         this.loadingInBackground = false;
         if (!this.secondLoadingInBackground && this.destroyAfterLoading) {
             recycle(true);
@@ -179,6 +178,7 @@ public class RLottieDiceDrawable extends RLottieDrawable {
                 z = false;
             } catch (Throwable th) {
                 FileLog.e(th);
+                z = true;
             }
         } else {
             z = true;
@@ -235,7 +235,7 @@ public class RLottieDiceDrawable extends RLottieDrawable {
     }
 
     @Override
-    public void recycle(boolean z) throws IOException {
+    public void recycle(boolean z) {
         this.isRunning = false;
         this.isRecycled = true;
         checkRunningTasks();

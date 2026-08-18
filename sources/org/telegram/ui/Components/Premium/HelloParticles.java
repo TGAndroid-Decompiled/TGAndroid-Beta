@@ -163,37 +163,38 @@ public abstract class HelloParticles {
                     Drawable.this.bitmaps.put(str, this.bitmap);
                 }
                 RectF rectF = Drawable.this.rect;
-                float f = this.w / 4.0f;
-                float fCenterX = rectF.left + f;
-                float fCenterX2 = rectF.right - f;
+                float f = rectF.left;
+                float f2 = this.w / 4.0f;
+                float fCenterX = f + f2;
+                float fCenterX2 = rectF.right - f2;
                 if (i % 2 == 0) {
                     fCenterX2 = rectF.centerX() - (this.w / 2.0f);
                 } else {
                     fCenterX = (this.w / 2.0f) + rectF.centerX();
                 }
-                float f2 = fCenterX2 - fCenterX;
-                float fAbs = Math.abs(Utilities.fastRandom.nextInt() % f2) + fCenterX;
+                float f3 = fCenterX2 - fCenterX;
+                float fAbs = Math.abs(Utilities.fastRandom.nextInt() % f3) + fCenterX;
                 float fAbs2 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                float f3 = 0.0f;
+                float f4 = 0.0f;
                 for (int i2 = 0; i2 < 10; i2++) {
-                    float fAbs3 = Math.abs(Utilities.fastRandom.nextInt() % f2) + fCenterX;
+                    float fAbs3 = Math.abs(Utilities.fastRandom.nextInt() % f3) + fCenterX;
                     float fAbs4 = Drawable.this.rect.top + Math.abs(Utilities.fastRandom.nextInt() % Drawable.this.rect.height());
-                    float f4 = 2.1474836E9f;
+                    float f5 = 2.1474836E9f;
                     for (int i3 = 0; i3 < Drawable.this.particles.size(); i3++) {
                         Particle particle = (Particle) Drawable.this.particles.get(i3);
                         if (particle.set) {
                             float fMin = Math.min(Math.abs((particle.x + ((particle.w * (this.scale / Drawable.this.bitmapScale)) * 1.1f)) - fAbs3), Math.abs(particle.x - fAbs3));
-                            float f5 = particle.y - fAbs4;
-                            float f6 = (fMin * fMin) + (f5 * f5);
-                            if (f6 < f4) {
-                                f4 = f6;
+                            float f6 = particle.y - fAbs4;
+                            float f7 = (fMin * fMin) + (f6 * f6);
+                            if (f7 < f5) {
+                                f5 = f7;
                             }
                         }
                     }
-                    if (f4 > f3) {
+                    if (f5 > f4) {
                         fAbs = fAbs3;
                         fAbs2 = fAbs4;
-                        f3 = f4;
+                        f4 = f5;
                     }
                 }
                 this.x = fAbs;

@@ -11,7 +11,6 @@ import android.graphics.RectF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Paint.Views.EntityView;
 import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Stories.recorder.Weather;
 

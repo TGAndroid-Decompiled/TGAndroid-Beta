@@ -170,6 +170,6 @@ public final class RLottieNative {
         int frameCount = rLottieNativeCreateFromFile.getFrameCount();
         int fps = rLottieNativeCreateFromFile.getFps();
         rLottieNativeCreateFromFile.recycle();
-        return frameCount / fps;
+        return ((double) frameCount) / ((double) fps);
     }
 }

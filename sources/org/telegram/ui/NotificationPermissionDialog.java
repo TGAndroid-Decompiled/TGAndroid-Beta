@@ -208,6 +208,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
 
         public boolean setCount(int i) {
             int i2 = this.lastCount;
+            boolean z = false;
             if (i2 != i) {
                 z = i2 < i;
                 this.lastCount = i;

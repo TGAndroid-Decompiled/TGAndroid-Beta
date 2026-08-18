@@ -2,9 +2,11 @@ package org.telegram.ui.Cells;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -275,8 +277,81 @@ public class TextSettingsCell extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.TextSettingsCell.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        float f;
+        float f2;
+        if (this.drawLoading || this.drawLoadingProgress != 0.0f) {
+            if (this.paint == null) {
+                Paint paint = new Paint(1);
+                this.paint = paint;
+                paint.setColor(Theme.getColor(Theme.key_dialogSearchBackground, this.resourcesProvider));
+            }
+            if (this.incrementLoadingProgress) {
+                float f3 = this.loadingProgress + 0.016f;
+                this.loadingProgress = f3;
+                if (f3 > 1.0f) {
+                    this.loadingProgress = 1.0f;
+                    this.incrementLoadingProgress = false;
+                }
+            } else {
+                float f4 = this.loadingProgress - 0.016f;
+                this.loadingProgress = f4;
+                if (f4 < 0.0f) {
+                    this.loadingProgress = 0.0f;
+                    this.incrementLoadingProgress = true;
+                }
+            }
+            int i = this.changeProgressStartDelay;
+            if (i > 0) {
+                this.changeProgressStartDelay = i - 15;
+            } else {
+                boolean z = this.drawLoading;
+                if (z) {
+                    float f5 = this.drawLoadingProgress;
+                    if (f5 != 1.0f) {
+                        float f6 = f5 + 0.10666667f;
+                        this.drawLoadingProgress = f6;
+                        if (f6 > 1.0f) {
+                            this.drawLoadingProgress = 1.0f;
+                        }
+                    } else if (!z) {
+                        f = this.drawLoadingProgress;
+                        if (f != 0.0f) {
+                            f2 = f - 0.10666667f;
+                            this.drawLoadingProgress = f2;
+                            if (f2 < 0.0f) {
+                                this.drawLoadingProgress = 0.0f;
+                            }
+                        }
+                    }
+                } else if (!z) {
+                    f = this.drawLoadingProgress;
+                    if (f != 0.0f) {
+                        f2 = f - 0.10666667f;
+                        this.drawLoadingProgress = f2;
+                        if (f2 < 0.0f) {
+                            this.drawLoadingProgress = 0.0f;
+                        }
+                    }
+                }
+            }
+            this.paint.setAlpha((int) (((this.loadingProgress * 0.4f) + 0.6f) * this.drawLoadingProgress * 255.0f));
+            int measuredHeight = getMeasuredHeight() >> 1;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((getMeasuredWidth() - AndroidUtilities.dp(this.padding)) - AndroidUtilities.dp(this.loadingSize), measuredHeight - AndroidUtilities.dp(3.0f), getMeasuredWidth() - AndroidUtilities.dp(this.padding), measuredHeight + AndroidUtilities.dp(3.0f));
+            if (LocaleController.isRTL) {
+                rectF.left = getMeasuredWidth() - rectF.left;
+                rectF.right = getMeasuredWidth() - rectF.right;
+            }
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.paint);
+            invalidate();
+        }
+        this.valueTextView.setAlpha(1.0f - this.drawLoadingProgress);
+        super.dispatchDraw(canvas);
+        if (this.needDivider) {
+            int iDp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 58.0f : 20.0f);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : iDp, getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? iDp : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
     }
 
     @Override
@@ -311,8 +386,9 @@ public class TextSettingsCell extends FrameLayout {
         if (this.valueBackupImageView == null) {
             BackupImageView backupImageView = new BackupImageView(getContext());
             this.valueBackupImageView = backupImageView;
+            int i = (LocaleController.isRTL ? 3 : 5) | 16;
             float f = this.padding - 4;
-            addView(backupImageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 3 : 5) | 16, f, 0.0f, f, 0.0f));
+            addView(backupImageView, LayoutHelper.createFrame(24, 24.0f, i, f, 0.0f, f, 0.0f));
         }
         return this.valueBackupImageView;
     }

@@ -7,7 +7,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class TopViewCell extends LinearLayout implements Theme.Colorable {

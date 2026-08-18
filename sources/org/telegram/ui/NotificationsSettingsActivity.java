@@ -11,6 +11,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.provider.Settings;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -18,9 +20,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Comparator$CC;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.function.ToDoubleFunction;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -31,6 +41,7 @@ import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -189,14 +200,520 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         final ArrayList arrayList = new ArrayList(MediaDataController.getInstance(this.currentAccount).hints);
         MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$loadExceptions$2(arrayList, runnable);
             }
         });
     }
 
-    public void lambda$loadExceptions$2(java.util.ArrayList r30, final java.lang.Runnable r31) throws java.lang.NumberFormatException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsSettingsActivity.lambda$loadExceptions$2(java.util.ArrayList, java.lang.Runnable):void");
+    public void lambda$loadExceptions$2(ArrayList arrayList, final Runnable runnable) {
+        boolean z;
+        ArrayList<TLRPC.Chat> arrayList2;
+        ArrayList<TLRPC.User> arrayList3;
+        ArrayList<TLRPC.EncryptedChat> arrayList4;
+        int size;
+        int i;
+        ArrayList arrayList5;
+        int size2;
+        int i2;
+        int size3;
+        int i3;
+        int size4;
+        int i4;
+        TLRPC.User user;
+        TLRPC.Chat chat;
+        ArrayList arrayList6;
+        ArrayList arrayList7;
+        ArrayList arrayList8;
+        final ArrayList arrayList9 = new ArrayList();
+        final ArrayList arrayList10 = new ArrayList();
+        final ArrayList arrayList11 = new ArrayList();
+        ArrayList arrayList12 = new ArrayList();
+        ArrayList arrayList13 = new ArrayList();
+        LongSparseArray longSparseArray = new LongSparseArray();
+        ArrayList<Long> arrayList14 = new ArrayList<>();
+        ArrayList arrayList15 = new ArrayList();
+        ArrayList arrayList16 = new ArrayList();
+        ArrayList<TLRPC.User> arrayList17 = new ArrayList<>();
+        ArrayList<TLRPC.Chat> arrayList18 = new ArrayList<>();
+        ArrayList<TLRPC.EncryptedChat> arrayList19 = new ArrayList<>();
+        long j = UserConfig.getInstance(this.currentAccount).clientUserId;
+        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
+        Map<String, ?> all = notificationsSettings.getAll();
+        Iterator<Map.Entry<String, ?>> it = all.entrySet().iterator();
+        while (true) {
+            arrayList19 = arrayList19;
+            if (!it.hasNext()) {
+                break;
+            }
+            Map.Entry<String, ?> next = it.next();
+            String key = next.getKey();
+            arrayList13 = arrayList13;
+            if (key.startsWith("notify2_")) {
+                String strReplace = key.replace("notify2_", "");
+                if (!strReplace.contains("_")) {
+                    Long l = Utilities.parseLong(strReplace);
+                    ArrayList arrayList20 = arrayList10;
+                    ArrayList arrayList21 = arrayList11;
+                    long jLongValue = l.longValue();
+                    if (jLongValue == 0 || jLongValue == j) {
+                        arrayList10 = arrayList20;
+                        arrayList19 = arrayList19;
+                        arrayList13 = arrayList13;
+                        arrayList11 = arrayList21;
+                    } else {
+                        NotificationException notificationException = new NotificationException();
+                        notificationException.did = jLongValue;
+                        ArrayList arrayList22 = arrayList12;
+                        StringBuilder sb = new StringBuilder();
+                        long j2 = j;
+                        sb.append("custom_");
+                        sb.append(jLongValue);
+                        notificationException.hasCustom = notificationsSettings.getBoolean(sb.toString(), false);
+                        int iIntValue = ((Integer) next.getValue()).intValue();
+                        notificationException.notify = iIntValue;
+                        if (iIntValue != 0) {
+                            Integer num = (Integer) all.get("notifyuntil_" + strReplace);
+                            if (num != null) {
+                                notificationException.muteUntil = num.intValue();
+                            }
+                        }
+                        if (DialogObject.isEncryptedDialog(jLongValue)) {
+                            int encryptedChatId = DialogObject.getEncryptedChatId(jLongValue);
+                            TLRPC.EncryptedChat encryptedChat = MessagesController.getInstance(this.currentAccount).getEncryptedChat(Integer.valueOf(encryptedChatId));
+                            if (encryptedChat == null) {
+                                arrayList16.add(Integer.valueOf(encryptedChatId));
+                                longSparseArray.put(jLongValue, notificationException);
+                            } else {
+                                TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(encryptedChat.user_id));
+                                if (user2 == null) {
+                                    arrayList14.add(Long.valueOf(encryptedChat.user_id));
+                                    longSparseArray.put(encryptedChat.user_id, notificationException);
+                                } else if (!user2.deleted) {
+                                }
+                            }
+                            arrayList9.add(notificationException);
+                        } else if (DialogObject.isUserDialog(jLongValue)) {
+                            TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(l);
+                            if (user3 == null) {
+                                arrayList14.add(l);
+                                longSparseArray.put(jLongValue, notificationException);
+                            } else if (!user3.deleted) {
+                            }
+                            arrayList9.add(notificationException);
+                        } else {
+                            long j3 = -jLongValue;
+                            TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j3));
+                            if (chat2 == null) {
+                                arrayList15.add(Long.valueOf(j3));
+                                longSparseArray.put(jLongValue, notificationException);
+                            } else {
+                                if (!chat2.left && !chat2.kicked && chat2.migrated_to == null) {
+                                    if (ChatObject.isChannel(chat2) && !chat2.megagroup) {
+                                        arrayList11 = arrayList21;
+                                        arrayList11.add(notificationException);
+                                    } else {
+                                        arrayList11 = arrayList21;
+                                        arrayList10 = arrayList20;
+                                        arrayList10.add(notificationException);
+                                        arrayList19 = arrayList19;
+                                        arrayList13 = arrayList13;
+                                    }
+                                    arrayList12 = arrayList22;
+                                    j = j2;
+                                }
+                                arrayList10 = arrayList20;
+                                arrayList12 = arrayList22;
+                                j = j2;
+                            }
+                        }
+                        arrayList11 = arrayList21;
+                        arrayList10 = arrayList20;
+                        arrayList12 = arrayList22;
+                        j = j2;
+                    }
+                }
+            }
+            arrayList19 = arrayList19;
+            arrayList13 = arrayList13;
+        }
+        ArrayList arrayList23 = arrayList12;
+        ArrayList arrayList24 = arrayList13;
+        long j4 = j;
+        HashSet hashSet = new HashSet();
+        Iterator<Map.Entry<String, ?>> it2 = all.entrySet().iterator();
+        while (true) {
+            z = true;
+            if (!it2.hasNext()) {
+                break;
+            }
+            Map.Entry<String, ?> next2 = it2.next();
+            String key2 = next2.getKey();
+            if (key2.startsWith("stories_")) {
+                try {
+                    Long l2 = Utilities.parseLong(key2.substring(8));
+                    long jLongValue2 = l2.longValue();
+                    if (jLongValue2 != 0 && jLongValue2 != j4) {
+                        NotificationException notificationException2 = new NotificationException();
+                        notificationException2.did = jLongValue2;
+                        notificationException2.notify = ((Boolean) next2.getValue()).booleanValue() ? 0 : Integer.MAX_VALUE;
+                        notificationException2.story = true;
+                        if (DialogObject.isUserDialog(jLongValue2)) {
+                            TLRPC.User user4 = getMessagesController().getUser(l2);
+                            if (user4 == null) {
+                                try {
+                                    arrayList14.add(l2);
+                                    longSparseArray.put(jLongValue2, notificationException2);
+                                } catch (Exception unused) {
+                                    arrayList8 = arrayList23;
+                                }
+                            } else if (user4.deleted) {
+                            }
+                            arrayList8 = arrayList23;
+                            try {
+                                arrayList8.add(notificationException2);
+                                hashSet.add(l2);
+                            } catch (Exception unused2) {
+                            }
+                            arrayList23 = arrayList8;
+                        }
+                    }
+                } catch (Exception unused3) {
+                    arrayList8 = arrayList23;
+                }
+            }
+        }
+        ArrayList arrayList25 = arrayList;
+        final ArrayList arrayList26 = arrayList23;
+        if (arrayList25 != null) {
+            Collections.sort(arrayList25, Comparator$CC.comparingDouble(new ToDoubleFunction() {
+                @Override
+                public final double applyAsDouble(Object obj) {
+                    return ((TLRPC.TL_topPeer) obj).rating;
+                }
+            }));
+            int iMax = Math.max(0, arrayList.size() - 5);
+            while (iMax < arrayList.size()) {
+                long peerDialogId = DialogObject.getPeerDialogId(((TLRPC.TL_topPeer) arrayList25.get(iMax)).peer);
+                if (hashSet.contains(Long.valueOf(peerDialogId))) {
+                    arrayList7 = arrayList24;
+                } else {
+                    NotificationException notificationException3 = new NotificationException();
+                    notificationException3.did = peerDialogId;
+                    notificationException3.notify = 0;
+                    notificationException3.auto = z;
+                    notificationException3.story = z;
+                    if (DialogObject.isUserDialog(peerDialogId)) {
+                        TLRPC.User user5 = getMessagesController().getUser(Long.valueOf(peerDialogId));
+                        if (user5 == null) {
+                            arrayList14.add(Long.valueOf(peerDialogId));
+                            longSparseArray.put(peerDialogId, notificationException3);
+                        } else if (user5.deleted) {
+                            arrayList7 = arrayList24;
+                        }
+                        arrayList7 = arrayList24;
+                        arrayList7.add(0, notificationException3);
+                        hashSet.add(Long.valueOf(peerDialogId));
+                    } else {
+                        arrayList7 = arrayList24;
+                    }
+                }
+                iMax++;
+                arrayList24 = arrayList7;
+                z = true;
+                arrayList25 = arrayList;
+            }
+        }
+        ArrayList arrayList27 = arrayList24;
+        if (longSparseArray.size() != 0) {
+            try {
+                if (arrayList16.isEmpty()) {
+                    arrayList4 = arrayList19;
+                } else {
+                    try {
+                        arrayList4 = arrayList19;
+                        try {
+                            MessagesStorage.getInstance(this.currentAccount).getEncryptedChatsInternal(TextUtils.join(",", arrayList16), arrayList4, arrayList14);
+                        } catch (Exception e) {
+                            e = e;
+                            arrayList2 = arrayList18;
+                            arrayList3 = arrayList17;
+                            FileLog.e(e);
+                            size = arrayList2.size();
+                            i = 0;
+                            while (i < size) {
+                                chat = arrayList2.get(i);
+                                if (chat.left) {
+                                    arrayList6 = arrayList27;
+                                } else {
+                                    arrayList6 = arrayList27;
+                                }
+                                i++;
+                                arrayList27 = arrayList6;
+                            }
+                            arrayList5 = arrayList27;
+                            size2 = arrayList3.size();
+                            for (i2 = 0; i2 < size2; i2++) {
+                                user = arrayList3.get(i2);
+                                if (!user.deleted) {
+                                    longSparseArray.remove(user.id);
+                                }
+                            }
+                            size3 = arrayList4.size();
+                            for (i3 = 0; i3 < size3; i3++) {
+                                longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+                            }
+                            size4 = longSparseArray.size();
+                            for (i4 = 0; i4 < size4; i4++) {
+                                if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                                    arrayList10.remove(longSparseArray.valueAt(i4));
+                                    arrayList11.remove(longSparseArray.valueAt(i4));
+                                } else {
+                                    arrayList9.remove(longSparseArray.valueAt(i4));
+                                }
+                            }
+                            final ArrayList<TLRPC.User> arrayList28 = arrayList3;
+                            final ArrayList<TLRPC.Chat> arrayList29 = arrayList2;
+                            final ArrayList<TLRPC.EncryptedChat> arrayList30 = arrayList4;
+                            final ArrayList arrayList31 = arrayList5;
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$loadExceptions$1(arrayList28, arrayList29, arrayList30, arrayList9, arrayList10, arrayList11, arrayList26, arrayList31, runnable);
+                                }
+                            });
+                        }
+                    } catch (Exception e2) {
+                        e = e2;
+                        arrayList4 = arrayList19;
+                        arrayList2 = arrayList18;
+                        arrayList3 = arrayList17;
+                        FileLog.e(e);
+                        size = arrayList2.size();
+                        i = 0;
+                        while (i < size) {
+                            chat = arrayList2.get(i);
+                            if (chat.left) {
+                                arrayList6 = arrayList27;
+                            } else {
+                                arrayList6 = arrayList27;
+                            }
+                            i++;
+                            arrayList27 = arrayList6;
+                        }
+                        arrayList5 = arrayList27;
+                        size2 = arrayList3.size();
+                        while (i2 < size2) {
+                            user = arrayList3.get(i2);
+                            if (!user.deleted) {
+                                longSparseArray.remove(user.id);
+                            }
+                        }
+                        size3 = arrayList4.size();
+                        while (i3 < size3) {
+                            longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+                        }
+                        size4 = longSparseArray.size();
+                        while (i4 < size4) {
+                            if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                                arrayList10.remove(longSparseArray.valueAt(i4));
+                                arrayList11.remove(longSparseArray.valueAt(i4));
+                            } else {
+                                arrayList9.remove(longSparseArray.valueAt(i4));
+                            }
+                        }
+                        final ArrayList arrayList210 = arrayList3;
+                        final ArrayList arrayList211 = arrayList2;
+                        final ArrayList arrayList32 = arrayList4;
+                        final ArrayList arrayList33 = arrayList5;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$loadExceptions$1(arrayList210, arrayList211, arrayList32, arrayList9, arrayList10, arrayList11, arrayList26, arrayList33, runnable);
+                            }
+                        });
+                    }
+                }
+                if (arrayList14.isEmpty()) {
+                    arrayList3 = arrayList17;
+                } else {
+                    try {
+                        arrayList3 = arrayList17;
+                        try {
+                            MessagesStorage.getInstance(this.currentAccount).getUsersInternal(arrayList14, arrayList3);
+                        } catch (Exception e3) {
+                            e = e3;
+                            arrayList2 = arrayList18;
+                            FileLog.e(e);
+                            size = arrayList2.size();
+                            i = 0;
+                            while (i < size) {
+                                chat = arrayList2.get(i);
+                                if (chat.left) {
+                                    arrayList6 = arrayList27;
+                                } else {
+                                    arrayList6 = arrayList27;
+                                }
+                                i++;
+                                arrayList27 = arrayList6;
+                            }
+                            arrayList5 = arrayList27;
+                            size2 = arrayList3.size();
+                            while (i2 < size2) {
+                                user = arrayList3.get(i2);
+                                if (!user.deleted) {
+                                    longSparseArray.remove(user.id);
+                                }
+                            }
+                            size3 = arrayList4.size();
+                            while (i3 < size3) {
+                                longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+                            }
+                            size4 = longSparseArray.size();
+                            while (i4 < size4) {
+                                if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                                    arrayList10.remove(longSparseArray.valueAt(i4));
+                                    arrayList11.remove(longSparseArray.valueAt(i4));
+                                } else {
+                                    arrayList9.remove(longSparseArray.valueAt(i4));
+                                }
+                            }
+                            final ArrayList arrayList212 = arrayList3;
+                            final ArrayList arrayList213 = arrayList2;
+                            final ArrayList arrayList34 = arrayList4;
+                            final ArrayList arrayList35 = arrayList5;
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$loadExceptions$1(arrayList212, arrayList213, arrayList34, arrayList9, arrayList10, arrayList11, arrayList26, arrayList35, runnable);
+                                }
+                            });
+                        }
+                    } catch (Exception e4) {
+                        e = e4;
+                        arrayList3 = arrayList17;
+                        arrayList2 = arrayList18;
+                        FileLog.e(e);
+                        size = arrayList2.size();
+                        i = 0;
+                        while (i < size) {
+                            chat = arrayList2.get(i);
+                            if (chat.left) {
+                                arrayList6 = arrayList27;
+                            } else {
+                                arrayList6 = arrayList27;
+                            }
+                            i++;
+                            arrayList27 = arrayList6;
+                        }
+                        arrayList5 = arrayList27;
+                        size2 = arrayList3.size();
+                        while (i2 < size2) {
+                            user = arrayList3.get(i2);
+                            if (!user.deleted) {
+                                longSparseArray.remove(user.id);
+                            }
+                        }
+                        size3 = arrayList4.size();
+                        while (i3 < size3) {
+                            longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+                        }
+                        size4 = longSparseArray.size();
+                        while (i4 < size4) {
+                            if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                                arrayList10.remove(longSparseArray.valueAt(i4));
+                                arrayList11.remove(longSparseArray.valueAt(i4));
+                            } else {
+                                arrayList9.remove(longSparseArray.valueAt(i4));
+                            }
+                        }
+                        final ArrayList arrayList214 = arrayList3;
+                        final ArrayList arrayList215 = arrayList2;
+                        final ArrayList arrayList36 = arrayList4;
+                        final ArrayList arrayList37 = arrayList5;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$loadExceptions$1(arrayList214, arrayList215, arrayList36, arrayList9, arrayList10, arrayList11, arrayList26, arrayList37, runnable);
+                            }
+                        });
+                    }
+                }
+                if (arrayList15.isEmpty()) {
+                    arrayList2 = arrayList18;
+                } else {
+                    arrayList2 = arrayList18;
+                    try {
+                        MessagesStorage.getInstance(this.currentAccount).getChatsInternal(TextUtils.join(",", arrayList15), arrayList2);
+                    } catch (Exception e5) {
+                        e = e5;
+                        FileLog.e(e);
+                    }
+                }
+            } catch (Exception e6) {
+                e = e6;
+                arrayList2 = arrayList18;
+                arrayList3 = arrayList17;
+                arrayList4 = arrayList19;
+            }
+            size = arrayList2.size();
+            i = 0;
+            while (i < size) {
+                chat = arrayList2.get(i);
+                if (chat.left || chat.kicked || chat.migrated_to != null) {
+                    arrayList6 = arrayList27;
+                } else {
+                    arrayList6 = arrayList27;
+                    NotificationException notificationException4 = (NotificationException) longSparseArray.get(-chat.id);
+                    longSparseArray.remove(-chat.id);
+                    if (notificationException4 != null) {
+                        if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                            arrayList11.add(notificationException4);
+                        } else {
+                            arrayList10.add(notificationException4);
+                        }
+                    }
+                }
+                i++;
+                arrayList27 = arrayList6;
+            }
+            arrayList5 = arrayList27;
+            size2 = arrayList3.size();
+            while (i2 < size2) {
+                user = arrayList3.get(i2);
+                if (!user.deleted) {
+                    longSparseArray.remove(user.id);
+                }
+            }
+            size3 = arrayList4.size();
+            while (i3 < size3) {
+                longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+            }
+            size4 = longSparseArray.size();
+            while (i4 < size4) {
+                if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                    arrayList10.remove(longSparseArray.valueAt(i4));
+                    arrayList11.remove(longSparseArray.valueAt(i4));
+                } else {
+                    arrayList9.remove(longSparseArray.valueAt(i4));
+                }
+            }
+        } else {
+            arrayList5 = arrayList27;
+            arrayList2 = arrayList18;
+            arrayList3 = arrayList17;
+            arrayList4 = arrayList19;
+        }
+        final ArrayList arrayList216 = arrayList3;
+        final ArrayList arrayList217 = arrayList2;
+        final ArrayList arrayList38 = arrayList4;
+        final ArrayList arrayList39 = arrayList5;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$loadExceptions$1(arrayList216, arrayList217, arrayList38, arrayList9, arrayList10, arrayList11, arrayList26, arrayList39, runnable);
+            }
+        });
     }
 
     public void lambda$loadExceptions$1(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8, Runnable runnable) {
@@ -624,7 +1141,21 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
     }
 
     public void lambda$createView$9(int i, DialogInterface dialogInterface, int i2) {
-        MessagesController.getNotificationsSettings(this.currentAccount).edit().putInt("repeat_messages", i2 != 1 ? i2 == 2 ? 10 : i2 == 3 ? 30 : i2 == 4 ? 60 : i2 == 5 ? 120 : i2 == 6 ? 240 : 0 : 5).commit();
+        int i3 = 5;
+        if (i2 != 1) {
+            if (i2 == 2) {
+                i3 = 10;
+            } else if (i2 == 3) {
+                i3 = 30;
+            } else if (i2 == 4) {
+                i3 = 60;
+            } else if (i2 == 5) {
+                i3 = 120;
+            } else {
+                i3 = i2 == 6 ? 240 : 0;
+            }
+        }
+        MessagesController.getNotificationsSettings(this.currentAccount).edit().putInt("repeat_messages", i3).commit();
         this.updateRepeatNotifications = true;
         this.adapter.notifyItemChanged(i);
     }
@@ -680,32 +1211,35 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             }
         } else if (i == this.privateRow) {
             arrayList = this.exceptionUsers;
-            if (arrayList != null && !arrayList.isEmpty()) {
+            if (arrayList == null || arrayList.isEmpty()) {
+                arrayList2 = null;
+            } else {
                 pluralString = LocaleController.formatPluralString("ChatsException", arrayList.size(), new Object[0]);
                 pluralString2 = pluralString;
                 arrayList2 = null;
             }
-            arrayList2 = null;
         } else if (i == this.groupRow) {
             arrayList = this.exceptionChats;
-            if (arrayList != null && !arrayList.isEmpty()) {
+            if (arrayList == null || arrayList.isEmpty()) {
+                arrayList2 = null;
+            } else {
                 pluralString = LocaleController.formatPluralString("Groups", arrayList.size(), new Object[0]);
                 pluralString2 = pluralString;
                 arrayList2 = null;
             }
-            arrayList2 = null;
         } else {
             if (i == this.reactionsRow) {
                 runnable.run();
                 return;
             }
             arrayList = this.exceptionChannels;
-            if (arrayList != null && !arrayList.isEmpty()) {
+            if (arrayList == null || arrayList.isEmpty()) {
+                arrayList2 = null;
+            } else {
                 pluralString = LocaleController.formatPluralString("Channels", arrayList.size(), new Object[0]);
                 pluralString2 = pluralString;
                 arrayList2 = null;
             }
-            arrayList2 = null;
         }
         if (pluralString2 == null) {
             runnable.run();
@@ -793,8 +1327,354 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r21, int r22) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsSettingsActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            String string;
+            ArrayList arrayList;
+            int i2;
+            int i3;
+            int i4;
+            ArrayList arrayList2;
+            boolean z;
+            int i5;
+            StringBuilder sb;
+            boolean z2;
+            int size;
+            boolean z3;
+            String pluralString;
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 0) {
+                HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+                if (i != NotificationsSettingsActivity.this.notificationsSectionRow) {
+                    if (i != NotificationsSettingsActivity.this.inappSectionRow) {
+                        if (i != NotificationsSettingsActivity.this.eventsSectionRow) {
+                            if (i != NotificationsSettingsActivity.this.otherSectionRow) {
+                                if (i != NotificationsSettingsActivity.this.resetSectionRow) {
+                                    if (i != NotificationsSettingsActivity.this.callsSectionRow) {
+                                        if (i != NotificationsSettingsActivity.this.badgeNumberSection) {
+                                            if (i == NotificationsSettingsActivity.this.accountsSectionRow) {
+                                                headerCell.setText(LocaleController.getString("ShowNotificationsFor", R.string.ShowNotificationsFor));
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                        headerCell.setText(LocaleController.getString("BadgeNumber", R.string.BadgeNumber));
+                                        return;
+                                    }
+                                    headerCell.setText(LocaleController.getString("VoipNotificationSettings", R.string.VoipNotificationSettings));
+                                    return;
+                                }
+                                headerCell.setText(LocaleController.getString("Reset", R.string.Reset));
+                                return;
+                            }
+                            headerCell.setText(LocaleController.getString("NotificationsOther", R.string.NotificationsOther));
+                            return;
+                        }
+                        headerCell.setText(LocaleController.getString("Events", R.string.Events));
+                        return;
+                    }
+                    headerCell.setText(LocaleController.getString("InAppNotifications", R.string.InAppNotifications));
+                    return;
+                }
+                headerCell.setText(LocaleController.getString("NotificationsForChats", R.string.NotificationsForChats));
+                return;
+            }
+            if (itemViewType == 1) {
+                TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
+                SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) NotificationsSettingsActivity.this).currentAccount);
+                if (i != NotificationsSettingsActivity.this.inappSoundRow) {
+                    if (i != NotificationsSettingsActivity.this.inappVibrateRow) {
+                        if (i != NotificationsSettingsActivity.this.inappPreviewRow) {
+                            if (i != NotificationsSettingsActivity.this.inappPriorityRow) {
+                                if (i != NotificationsSettingsActivity.this.contactJoinedRow) {
+                                    if (i != NotificationsSettingsActivity.this.pinnedMessageRow) {
+                                        if (i != NotificationsSettingsActivity.this.androidAutoAlertRow) {
+                                            if (i != NotificationsSettingsActivity.this.notificationsServiceRow) {
+                                                if (i != NotificationsSettingsActivity.this.notificationsServiceConnectionRow) {
+                                                    if (i == NotificationsSettingsActivity.this.badgeNumberShowRow) {
+                                                        textCheckCell.setTextAndCheck(LocaleController.getString("BadgeNumberShow", R.string.BadgeNumberShow), NotificationsSettingsActivity.this.getNotificationsController().showBadgeNumber, true);
+                                                        return;
+                                                    }
+                                                    if (i == NotificationsSettingsActivity.this.badgeNumberMutedRow) {
+                                                        textCheckCell.setTextAndCheck(LocaleController.getString("BadgeNumberMutedChats", R.string.BadgeNumberMutedChats), NotificationsSettingsActivity.this.getNotificationsController().showBadgeMuted, true);
+                                                        return;
+                                                    }
+                                                    if (i == NotificationsSettingsActivity.this.badgeNumberMessagesRow) {
+                                                        textCheckCell.setTextAndCheck(LocaleController.getString("BadgeNumberUnread", R.string.BadgeNumberUnread), NotificationsSettingsActivity.this.getNotificationsController().showBadgeMessages, false);
+                                                        return;
+                                                    }
+                                                    if (i != NotificationsSettingsActivity.this.inchatSoundRow) {
+                                                        if (i != NotificationsSettingsActivity.this.callsVibrateRow) {
+                                                            if (i == NotificationsSettingsActivity.this.accountsAllRow) {
+                                                                textCheckCell.setTextAndCheck(LocaleController.getString("AllAccounts", R.string.AllAccounts), MessagesController.getGlobalNotificationsSettings().getBoolean("AllAccounts", true), false);
+                                                                return;
+                                                            }
+                                                            return;
+                                                        }
+                                                        textCheckCell.setTextAndCheck(LocaleController.getString("Vibrate", R.string.Vibrate), notificationsSettings.getBoolean("EnableCallVibrate", true), true);
+                                                        return;
+                                                    }
+                                                    textCheckCell.setTextAndCheck(LocaleController.getString("InChatSound", R.string.InChatSound), notificationsSettings.getBoolean("EnableInChatSound", true), true);
+                                                    return;
+                                                }
+                                                textCheckCell.setTextAndValueAndCheck(LocaleController.getString("NotificationsServiceConnection", R.string.NotificationsServiceConnection), LocaleController.getString("NotificationsServiceConnectionInfo", R.string.NotificationsServiceConnectionInfo), notificationsSettings.getBoolean("pushConnection", NotificationsSettingsActivity.this.getMessagesController().backgroundConnection), true, true);
+                                                return;
+                                            }
+                                            textCheckCell.setTextAndValueAndCheck(LocaleController.getString("NotificationsService", R.string.NotificationsService), LocaleController.getString("NotificationsServiceInfo", R.string.NotificationsServiceInfo), notificationsSettings.getBoolean("pushService", NotificationsSettingsActivity.this.getMessagesController().keepAliveService), true, true);
+                                            return;
+                                        }
+                                        textCheckCell.setTextAndCheck("Android Auto", notificationsSettings.getBoolean("EnableAutoNotifications", false), true);
+                                        return;
+                                    }
+                                    textCheckCell.setTextAndCheck(LocaleController.getString("PinnedMessages", R.string.PinnedMessages), notificationsSettings.getBoolean("PinnedMessages", true), false);
+                                    return;
+                                }
+                                textCheckCell.setTextAndCheck(LocaleController.getString("ContactJoined", R.string.ContactJoined), notificationsSettings.getBoolean("EnableContactJoined", true), true);
+                                return;
+                            }
+                            textCheckCell.setTextAndValueAndCheck(LocaleController.getString(R.string.InAppPopup), LocaleController.getString(R.string.InAppPopupInfo), notificationsSettings.getBoolean("EnableInAppPopup", true), true, false);
+                            return;
+                        }
+                        textCheckCell.setTextAndCheck(LocaleController.getString(R.string.InAppPreview), notificationsSettings.getBoolean("EnableInAppPreview", true), true);
+                        return;
+                    }
+                    textCheckCell.setTextAndCheck(LocaleController.getString(R.string.InAppVibrate), notificationsSettings.getBoolean("EnableInAppVibrate", true), true);
+                    return;
+                }
+                textCheckCell.setTextAndCheck(LocaleController.getString(R.string.InAppSounds), notificationsSettings.getBoolean("EnableInAppSounds", true), true);
+                return;
+            }
+            if (itemViewType == 2) {
+                TextDetailSettingsCell textDetailSettingsCell = (TextDetailSettingsCell) viewHolder.itemView;
+                textDetailSettingsCell.setMultilineDetail(true);
+                if (i == NotificationsSettingsActivity.this.resetNotificationsRow) {
+                    textDetailSettingsCell.setTextAndValue(LocaleController.getString("ResetAllNotifications", R.string.ResetAllNotifications), LocaleController.getString("UndoAllCustom", R.string.UndoAllCustom), false);
+                    return;
+                }
+                return;
+            }
+            if (itemViewType != 3) {
+                if (itemViewType != 5) {
+                    if (itemViewType != 6) {
+                        return;
+                    }
+                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                    if (i == NotificationsSettingsActivity.this.accountsInfoRow) {
+                        textInfoPrivacyCell.setText(LocaleController.getString("ShowNotificationsForInfo", R.string.ShowNotificationsForInfo));
+                        return;
+                    }
+                    return;
+                }
+                TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
+                SharedPreferences notificationsSettings2 = MessagesController.getNotificationsSettings(((BaseFragment) NotificationsSettingsActivity.this).currentAccount);
+                if (i != NotificationsSettingsActivity.this.callsRingtoneRow) {
+                    if (i != NotificationsSettingsActivity.this.callsVibrateRow) {
+                        if (i == NotificationsSettingsActivity.this.repeatRow) {
+                            int i6 = notificationsSettings2.getInt("repeat_messages", 60);
+                            if (i6 == 0) {
+                                pluralString = LocaleController.getString("RepeatNotificationsNever", R.string.RepeatNotificationsNever);
+                            } else if (i6 < 60) {
+                                pluralString = LocaleController.formatPluralString("Minutes", i6, new Object[0]);
+                            } else {
+                                pluralString = LocaleController.formatPluralString("Hours", i6 / 60, new Object[0]);
+                            }
+                            textSettingsCell.setTextAndValue(LocaleController.getString("RepeatNotifications", R.string.RepeatNotifications), pluralString, NotificationsSettingsActivity.this.updateRepeatNotifications, false);
+                            NotificationsSettingsActivity.this.updateRepeatNotifications = false;
+                            return;
+                        }
+                        return;
+                    }
+                    int i7 = notificationsSettings2.getInt("vibrate_calls", 0);
+                    if (i7 == 0) {
+                        textSettingsCell.setTextAndValue(LocaleController.getString("Vibrate", R.string.Vibrate), LocaleController.getString("VibrationDefault", R.string.VibrationDefault), NotificationsSettingsActivity.this.updateVibrate, true);
+                    } else if (i7 == 1) {
+                        textSettingsCell.setTextAndValue(LocaleController.getString("Vibrate", R.string.Vibrate), LocaleController.getString("Short", R.string.Short), NotificationsSettingsActivity.this.updateVibrate, true);
+                    } else if (i7 == 2) {
+                        textSettingsCell.setTextAndValue(LocaleController.getString("Vibrate", R.string.Vibrate), LocaleController.getString("VibrationDisabled", R.string.VibrationDisabled), NotificationsSettingsActivity.this.updateVibrate, true);
+                    } else if (i7 == 3) {
+                        textSettingsCell.setTextAndValue(LocaleController.getString("Vibrate", R.string.Vibrate), LocaleController.getString("Long", R.string.Long), NotificationsSettingsActivity.this.updateVibrate, true);
+                    } else if (i7 == 4) {
+                        textSettingsCell.setTextAndValue(LocaleController.getString("Vibrate", R.string.Vibrate), LocaleController.getString("OnlyIfSilent", R.string.OnlyIfSilent), NotificationsSettingsActivity.this.updateVibrate, true);
+                    }
+                    NotificationsSettingsActivity.this.updateVibrate = false;
+                    return;
+                }
+                String string2 = notificationsSettings2.getString("CallsRingtone", LocaleController.getString("DefaultRingtone", R.string.DefaultRingtone));
+                if (string2.equals("NoSound")) {
+                    string2 = LocaleController.getString("NoSound", R.string.NoSound);
+                }
+                textSettingsCell.setTextAndValue(LocaleController.getString("VoipSettingsRingtone", R.string.VoipSettingsRingtone), string2, NotificationsSettingsActivity.this.updateRingtone, false);
+                NotificationsSettingsActivity.this.updateRingtone = false;
+                return;
+            }
+            NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) viewHolder.itemView;
+            SharedPreferences notificationsSettings3 = MessagesController.getNotificationsSettings(((BaseFragment) NotificationsSettingsActivity.this).currentAccount);
+            int currentTime = ConnectionsManager.getInstance(((BaseFragment) NotificationsSettingsActivity.this).currentAccount).getCurrentTime();
+            ArrayList arrayList3 = null;
+            if (i != NotificationsSettingsActivity.this.privateRow) {
+                if (i != NotificationsSettingsActivity.this.groupRow) {
+                    if (i != NotificationsSettingsActivity.this.storiesRow) {
+                        if (i == NotificationsSettingsActivity.this.reactionsRow) {
+                            string = LocaleController.getString(R.string.NotificationReactions);
+                            int i8 = (notificationsSettings3.getBoolean("EnableReactionsMessages", true) || notificationsSettings3.getBoolean("EnableReactionsStories", true)) ? 0 : Integer.MAX_VALUE;
+                            i3 = R.drawable.msg_reactions;
+                            i4 = i8;
+                            arrayList2 = null;
+                        } else {
+                            string = LocaleController.getString(R.string.NotificationsChannels);
+                            arrayList = NotificationsSettingsActivity.this.exceptionChannels;
+                            i2 = notificationsSettings3.getInt("EnableChannel2", 0);
+                            i3 = R.drawable.msg_channel;
+                        }
+                    } else {
+                        string = LocaleController.getString(R.string.NotificationStories);
+                        arrayList3 = NotificationsSettingsActivity.this.exceptionStories;
+                        arrayList2 = NotificationsSettingsActivity.this.exceptionAutoStories;
+                        i4 = notificationsSettings3.getBoolean("EnableAllStories", false) ? 0 : Integer.MAX_VALUE;
+                        i3 = R.drawable.msg_menu_stories;
+                    }
+                    if (i4 < currentTime) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    if (z && i4 - 31536000 < currentTime) {
+                        i5 = 2;
+                    } else {
+                        i5 = 0;
+                    }
+                    sb = new StringBuilder();
+                    int i9 = i3;
+                    if (i == NotificationsSettingsActivity.this.reactionsRow) {
+                        if (i4 > 0) {
+                            sb.append(LocaleController.getString("NotificationsOff", R.string.NotificationsOff));
+                            z2 = false;
+                        } else {
+                            if (notificationsSettings3.getBoolean("EnableReactionsMessages", true)) {
+                                sb.append(LocaleController.getString(R.string.NotificationReactionsMessages));
+                            }
+                            if (notificationsSettings3.getBoolean("EnableReactionsStories", true)) {
+                                if (sb.length() > 0) {
+                                    sb.append(", ");
+                                }
+                                sb.append(LocaleController.getString(R.string.NotificationReactionsStories));
+                            }
+                            z2 = true;
+                        }
+                    } else if (arrayList3 == null && !arrayList3.isEmpty()) {
+                        boolean z4 = i4 < currentTime;
+                        if (z4) {
+                            sb.append(LocaleController.getString("NotificationsOn", R.string.NotificationsOn));
+                        } else {
+                            if (i4 - 31536000 >= currentTime) {
+                                sb.append(LocaleController.getString("NotificationsOff", R.string.NotificationsOff));
+                            } else {
+                                sb.append(LocaleController.formatString("NotificationsOffUntil", R.string.NotificationsOffUntil, LocaleController.stringForMessageListDate(i4)));
+                            }
+                            if (sb.length() != 0) {
+                                sb.append(", ");
+                            }
+                            size = arrayList3.size();
+                            if (i == NotificationsSettingsActivity.this.storiesRow && !notificationsSettings3.contains("EnableAllStories") && arrayList2 != null) {
+                                size += arrayList2.size();
+                            }
+                            sb.append(LocaleController.formatPluralString("Exception", size, new Object[0]));
+                            z2 = z4;
+                        }
+                        if (sb.length() != 0) {
+                            sb.append(", ");
+                        }
+                        size = arrayList3.size();
+                        if (i == NotificationsSettingsActivity.this.storiesRow) {
+                            size += arrayList2.size();
+                        }
+                        sb.append(LocaleController.formatPluralString("Exception", size, new Object[0]));
+                        z2 = z4;
+                    } else {
+                        if (arrayList2 == null && !arrayList2.isEmpty()) {
+                            if (i4 > 0) {
+                                sb.append(LocaleController.getString("NotificationsOff", R.string.NotificationsOff));
+                            } else {
+                                sb.append(LocaleController.getString("NotificationsOn", R.string.NotificationsOn));
+                            }
+                            if (!arrayList2.isEmpty() && !notificationsSettings3.contains("EnableAllStories")) {
+                                sb.append(", ");
+                                sb.append(LocaleController.formatPluralString("AutoException", arrayList2.size(), new Object[0]));
+                            }
+                        } else {
+                            sb.append(LocaleController.getString("TapToChange", R.string.TapToChange));
+                        }
+                        z2 = z;
+                    }
+                    if (i != NotificationsSettingsActivity.this.reactionsRow) {
+                        z3 = true;
+                    } else {
+                        z3 = false;
+                    }
+                    notificationsCheckCell.setTextAndValueAndIconAndCheck(string, sb, i9, z2, i5, false, z3);
+                }
+                string = LocaleController.getString(R.string.NotificationsGroups);
+                arrayList = NotificationsSettingsActivity.this.exceptionChats;
+                i2 = notificationsSettings3.getInt("EnableGroup2", 0);
+                i3 = R.drawable.msg_groups;
+            } else {
+                string = LocaleController.getString(R.string.NotificationsPrivateChats);
+                arrayList = NotificationsSettingsActivity.this.exceptionUsers;
+                i2 = notificationsSettings3.getInt("EnableAll2", 0);
+                i3 = R.drawable.msg_openprofile;
+            }
+            int i10 = i2;
+            arrayList2 = null;
+            arrayList3 = arrayList;
+            i4 = i10;
+            if (i4 < currentTime) {
+                z = true;
+            } else {
+                z = false;
+            }
+            if (z) {
+                i5 = 0;
+            } else {
+                i5 = 2;
+            }
+            sb = new StringBuilder();
+            int i11 = i3;
+            if (i == NotificationsSettingsActivity.this.reactionsRow) {
+                if (i4 > 0) {
+                    sb.append(LocaleController.getString("NotificationsOff", R.string.NotificationsOff));
+                    z2 = false;
+                } else {
+                    if (notificationsSettings3.getBoolean("EnableReactionsMessages", true)) {
+                        sb.append(LocaleController.getString(R.string.NotificationReactionsMessages));
+                    }
+                    if (notificationsSettings3.getBoolean("EnableReactionsStories", true)) {
+                        if (sb.length() > 0) {
+                            sb.append(", ");
+                        }
+                        sb.append(LocaleController.getString(R.string.NotificationReactionsStories));
+                    }
+                    z2 = true;
+                }
+            } else if (arrayList3 == null) {
+                if (arrayList2 == null) {
+                    sb.append(LocaleController.getString("TapToChange", R.string.TapToChange));
+                } else {
+                    sb.append(LocaleController.getString("TapToChange", R.string.TapToChange));
+                }
+                z2 = z;
+            } else {
+                if (arrayList2 == null) {
+                    sb.append(LocaleController.getString("TapToChange", R.string.TapToChange));
+                } else {
+                    sb.append(LocaleController.getString("TapToChange", R.string.TapToChange));
+                }
+                z2 = z;
+            }
+            if (i != NotificationsSettingsActivity.this.reactionsRow) {
+                z3 = true;
+            } else {
+                z3 = false;
+            }
+            notificationsCheckCell.setTextAndValueAndIconAndCheck(string, sb, i11, z2, i5, false, z3);
         }
 
         @Override

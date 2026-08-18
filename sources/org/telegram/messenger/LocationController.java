@@ -1,6 +1,8 @@
 package org.telegram.messenger;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -10,18 +12,17 @@ import android.text.TextUtils;
 import android.util.SparseIntArray;
 import androidx.collection.LongSparseArray;
 import androidx.core.util.Consumer;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.ILocationServiceProvider;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.PermissionRequest;
 
@@ -95,7 +96,8 @@ public class LocationController extends BaseController implements NotificationCe
                         locationControllerArr[i] = locationController2;
                         locationController = locationController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -264,11 +266,7 @@ public class LocationController extends BaseController implements NotificationCe
                 boolean z2 = false;
                 for (int i7 = 0; i7 < arrayList6.size(); i7++) {
                     MessageObject messageObject3 = (MessageObject) arrayList6.get(i7);
-                    int i8 = 0;
-                    while (true) {
-                        if (i8 >= arrayList.size()) {
-                            break;
-                        }
+                    for (int i8 = 0; i8 < arrayList.size(); i8++) {
                         if (MessageObject.getFromChatId((TLRPC.Message) arrayList.get(i8)) == messageObject3.getFromChatId()) {
                             if (!messageObject3.isLiveLocation()) {
                                 arrayList.remove(i8);
@@ -276,8 +274,7 @@ public class LocationController extends BaseController implements NotificationCe
                                 arrayList.set(i8, messageObject3.messageOwner);
                             }
                             z2 = true;
-                        } else {
-                            i8++;
+                            break;
                         }
                     }
                 }
@@ -405,8 +402,145 @@ public class LocationController extends BaseController implements NotificationCe
         return this.servicesAvailable.booleanValue();
     }
 
-    private void broadcastLastKnownLocation(boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocationController.broadcastLastKnownLocation(boolean):void");
+    private void broadcastLastKnownLocation(boolean z) {
+        TLRPC.InputMedia inputMedia;
+        TLRPC.InputGeoPoint inputGeoPoint;
+        int i;
+        int i2;
+        TLRPC.GeoPoint geoPoint;
+        if (this.lastKnownLocation == null) {
+            return;
+        }
+        if (this.requests.size() != 0) {
+            if (z) {
+                for (int i3 = 0; i3 < this.requests.size(); i3++) {
+                    getConnectionsManager().cancelRequest(this.requests.keyAt(i3), false);
+                }
+            }
+            this.requests.clear();
+        }
+        if (!this.sharingLocations.isEmpty()) {
+            int currentTime = getConnectionsManager().getCurrentTime();
+            float[] fArr = new float[1];
+            for (int i4 = 0; i4 < this.sharingLocations.size(); i4++) {
+                final SharingLocationInfo sharingLocationInfo = this.sharingLocations.get(i4);
+                TLRPC.Message message = sharingLocationInfo.messageObject.messageOwner;
+                TLRPC.MessageMedia messageMedia = message.media;
+                if (messageMedia != null && (geoPoint = messageMedia.geo) != null && sharingLocationInfo.lastSentProximityMeters == sharingLocationInfo.proximityMeters) {
+                    int i5 = message.edit_date;
+                    if (i5 == 0) {
+                        i5 = message.date;
+                    }
+                    if (Math.abs(currentTime - i5) < 10) {
+                        Location.distanceBetween(geoPoint.lat, geoPoint._long, this.lastKnownLocation.getLatitude(), this.lastKnownLocation.getLongitude(), fArr);
+                        if (fArr[0] >= 1.0f) {
+                            final TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
+                            tL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
+                            tL_messages_editMessage.id = sharingLocationInfo.mid;
+                            tL_messages_editMessage.flags |= 16384;
+                            TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
+                            tL_messages_editMessage.media = tL_inputMediaGeoLive;
+                            tL_inputMediaGeoLive.stopped = false;
+                            tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPoint();
+                            tL_messages_editMessage.media.geo_point.lat = AndroidUtilities.fixLocationCoord(this.lastKnownLocation.getLatitude());
+                            tL_messages_editMessage.media.geo_point._long = AndroidUtilities.fixLocationCoord(this.lastKnownLocation.getLongitude());
+                            tL_messages_editMessage.media.geo_point.accuracy_radius = (int) this.lastKnownLocation.getAccuracy();
+                            inputMedia = tL_messages_editMessage.media;
+                            inputGeoPoint = inputMedia.geo_point;
+                            if (inputGeoPoint.accuracy_radius != 0) {
+                                inputGeoPoint.flags |= 1;
+                            }
+                            i = sharingLocationInfo.lastSentProximityMeters;
+                            i2 = sharingLocationInfo.proximityMeters;
+                            if (i != i2) {
+                                inputMedia.proximity_notification_radius = i2;
+                                inputMedia.flags |= 8;
+                            }
+                            inputMedia.heading = getHeading(this.lastKnownLocation);
+                            tL_messages_editMessage.media.flags |= 4;
+                            int iSendRequest = getConnectionsManager().sendRequest(tL_messages_editMessage, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                    this.f$0.lambda$broadcastLastKnownLocation$7(sharingLocationInfo, iArr, tL_messages_editMessage, tLObject, tL_error);
+                                }
+                            });
+                            final int[] iArr = {iSendRequest};
+                            this.requests.put(iSendRequest, 0);
+                        }
+                    } else {
+                        final TLRPC.TL_messages_editMessage tL_messages_editMessage2 = new TLRPC.TL_messages_editMessage();
+                        tL_messages_editMessage2.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
+                        tL_messages_editMessage2.id = sharingLocationInfo.mid;
+                        tL_messages_editMessage2.flags |= 16384;
+                        TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive2 = new TLRPC.TL_inputMediaGeoLive();
+                        tL_messages_editMessage2.media = tL_inputMediaGeoLive2;
+                        tL_inputMediaGeoLive2.stopped = false;
+                        tL_inputMediaGeoLive2.geo_point = new TLRPC.TL_inputGeoPoint();
+                        tL_messages_editMessage2.media.geo_point.lat = AndroidUtilities.fixLocationCoord(this.lastKnownLocation.getLatitude());
+                        tL_messages_editMessage2.media.geo_point._long = AndroidUtilities.fixLocationCoord(this.lastKnownLocation.getLongitude());
+                        tL_messages_editMessage2.media.geo_point.accuracy_radius = (int) this.lastKnownLocation.getAccuracy();
+                        inputMedia = tL_messages_editMessage2.media;
+                        inputGeoPoint = inputMedia.geo_point;
+                        if (inputGeoPoint.accuracy_radius != 0) {
+                            inputGeoPoint.flags |= 1;
+                        }
+                        i = sharingLocationInfo.lastSentProximityMeters;
+                        i2 = sharingLocationInfo.proximityMeters;
+                        if (i != i2) {
+                            inputMedia.proximity_notification_radius = i2;
+                            inputMedia.flags |= 8;
+                        }
+                        inputMedia.heading = getHeading(this.lastKnownLocation);
+                        tL_messages_editMessage2.media.flags |= 4;
+                        int iSendRequest2 = getConnectionsManager().sendRequest(tL_messages_editMessage2, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                this.f$0.lambda$broadcastLastKnownLocation$7(sharingLocationInfo, iArr, tL_messages_editMessage2, tLObject, tL_error);
+                            }
+                        });
+                        final int[] iArr2 = {iSendRequest2};
+                        this.requests.put(iSendRequest2, 0);
+                    }
+                } else {
+                    final TLRPC.TL_messages_editMessage tL_messages_editMessage3 = new TLRPC.TL_messages_editMessage();
+                    tL_messages_editMessage3.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
+                    tL_messages_editMessage3.id = sharingLocationInfo.mid;
+                    tL_messages_editMessage3.flags |= 16384;
+                    TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive3 = new TLRPC.TL_inputMediaGeoLive();
+                    tL_messages_editMessage3.media = tL_inputMediaGeoLive3;
+                    tL_inputMediaGeoLive3.stopped = false;
+                    tL_inputMediaGeoLive3.geo_point = new TLRPC.TL_inputGeoPoint();
+                    tL_messages_editMessage3.media.geo_point.lat = AndroidUtilities.fixLocationCoord(this.lastKnownLocation.getLatitude());
+                    tL_messages_editMessage3.media.geo_point._long = AndroidUtilities.fixLocationCoord(this.lastKnownLocation.getLongitude());
+                    tL_messages_editMessage3.media.geo_point.accuracy_radius = (int) this.lastKnownLocation.getAccuracy();
+                    inputMedia = tL_messages_editMessage3.media;
+                    inputGeoPoint = inputMedia.geo_point;
+                    if (inputGeoPoint.accuracy_radius != 0) {
+                        inputGeoPoint.flags |= 1;
+                    }
+                    i = sharingLocationInfo.lastSentProximityMeters;
+                    i2 = sharingLocationInfo.proximityMeters;
+                    if (i != i2) {
+                        inputMedia.proximity_notification_radius = i2;
+                        inputMedia.flags |= 8;
+                    }
+                    inputMedia.heading = getHeading(this.lastKnownLocation);
+                    tL_messages_editMessage3.media.flags |= 4;
+                    int iSendRequest3 = getConnectionsManager().sendRequest(tL_messages_editMessage3, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            this.f$0.lambda$broadcastLastKnownLocation$7(sharingLocationInfo, iArr2, tL_messages_editMessage3, tLObject, tL_error);
+                        }
+                    });
+                    final int[] iArr3 = {iSendRequest3};
+                    this.requests.put(iSendRequest3, 0);
+                }
+            }
+        }
+        getConnectionsManager().resumeNetworkMaybe();
+        if (shouldStopGps()) {
+            stop(false);
+        }
     }
 
     public void lambda$broadcastLastKnownLocation$7(final SharingLocationInfo sharingLocationInfo, int[] iArr, TLRPC.TL_messages_editMessage tL_messages_editMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -435,8 +569,10 @@ public class LocationController extends BaseController implements NotificationCe
             TLRPC.Update update = updates.updates.get(i);
             if (update instanceof TL_update.TL_updateEditMessage) {
                 sharingLocationInfo.messageObject.messageOwner = ((TL_update.TL_updateEditMessage) update).message;
-            } else if (update instanceof TL_update.TL_updateEditChannelMessage) {
-                sharingLocationInfo.messageObject.messageOwner = ((TL_update.TL_updateEditChannelMessage) update).message;
+            } else {
+                if (update instanceof TL_update.TL_updateEditChannelMessage) {
+                    sharingLocationInfo.messageObject.messageOwner = ((TL_update.TL_updateEditChannelMessage) update).message;
+                }
             }
             z = true;
         }
@@ -654,7 +790,10 @@ public class LocationController extends BaseController implements NotificationCe
 
     public static int getHeading(Location location) {
         float bearing = location.getBearing();
-        return (bearing <= 0.0f || bearing >= 1.0f) ? (int) bearing : bearing < 0.5f ? 360 : 1;
+        if (bearing <= 0.0f || bearing >= 1.0f) {
+            return (int) bearing;
+        }
+        return bearing < 0.5f ? 360 : 1;
     }
 
     private void loadSharingLocations() {
@@ -1042,8 +1181,51 @@ public class LocationController extends BaseController implements NotificationCe
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(j), Integer.valueOf(this.currentAccount));
     }
 
-    public void markLiveLoactionsAsRead(long r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocationController.markLiveLoactionsAsRead(long):void");
+    public void markLiveLoactionsAsRead(long j) {
+        ArrayList arrayList;
+        ?? tL_messages_readMessageContents;
+        int size;
+        if (DialogObject.isEncryptedDialog(j) || (arrayList = (ArrayList) this.locationsCache.get(j)) == null || arrayList.isEmpty()) {
+            return;
+        }
+        Integer num = (Integer) this.lastReadLocationTime.get(j);
+        int iElapsedRealtime = (int) (SystemClock.elapsedRealtime() / 1000);
+        if (num == null || num.intValue() + 60 <= iElapsedRealtime) {
+            this.lastReadLocationTime.put(j, Integer.valueOf(iElapsedRealtime));
+            int i = 0;
+            if (DialogObject.isChatDialog(j)) {
+                long j2 = -j;
+                if (ChatObject.isChannel(j2, this.currentAccount)) {
+                    tL_messages_readMessageContents = new TLRPC.TL_channels_readMessageContents();
+                    int size2 = arrayList.size();
+                    while (i < size2) {
+                        tL_messages_readMessageContents.id.add(Integer.valueOf(((TLRPC.Message) arrayList.get(i)).id));
+                        i++;
+                    }
+                    tL_messages_readMessageContents.channel = getMessagesController().getInputChannel(j2);
+                } else {
+                    tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
+                    size = arrayList.size();
+                    while (i < size) {
+                        tL_messages_readMessageContents.id.add(Integer.valueOf(((TLRPC.Message) arrayList.get(i)).id));
+                        i++;
+                    }
+                }
+            } else {
+                tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
+                size = arrayList.size();
+                while (i < size) {
+                    tL_messages_readMessageContents.id.add(Integer.valueOf(((TLRPC.Message) arrayList.get(i)).id));
+                    i++;
+                }
+            }
+            getConnectionsManager().sendRequest(tL_messages_readMessageContents, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$markLiveLoactionsAsRead$27(tLObject, tL_error);
+                }
+            });
+        }
     }
 
     public void lambda$markLiveLoactionsAsRead$27(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1089,7 +1271,7 @@ public class LocationController extends BaseController implements NotificationCe
         DispatchQueue dispatchQueue = Utilities.globalQueue;
         Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 LocationController.lambda$fetchLocationAddress$29(locale, location, i, locale2, locationFetchCallback);
             }
         };
@@ -1097,8 +1279,929 @@ public class LocationController extends BaseController implements NotificationCe
         callbacks.put(locationFetchCallback, runnable2);
     }
 
-    public static void lambda$fetchLocationAddress$29(java.util.Locale r24, final android.location.Location r25, int r26, java.util.Locale r27, final org.telegram.messenger.LocationController.LocationFetchCallback r28) throws java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocationController.lambda$fetchLocationAddress$29(java.util.Locale, android.location.Location, int, java.util.Locale, org.telegram.messenger.LocationController$LocationFetchCallback):void");
+    public static void lambda$fetchLocationAddress$29(Locale locale, final Location location, int i, Locale locale2, final LocationFetchCallback locationFetchCallback) {
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue2;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue3;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue4;
+        final String str;
+        final String str2;
+        final TLRPC.TL_messageMediaVenue tL_messageMediaVenue5;
+        final TLRPC.TL_messageMediaVenue tL_messageMediaVenue6;
+        List<Address> fromLocation;
+        TL_stories.TL_geoPointAddress tL_geoPointAddress;
+        String string;
+        String string2;
+        String string3;
+        String str3;
+        String str4;
+        String str5;
+        boolean z;
+        String adminArea;
+        String locality;
+        String subLocality;
+        String locality2;
+        boolean z2;
+        String subThoroughfare;
+        boolean z3;
+        String thoroughfare;
+        String locality3;
+        String countryName;
+        String countryName2;
+        String locality4;
+        String string4;
+        boolean z4;
+        String adminArea2;
+        String subAdminArea;
+        String language;
+        String[] strArrSplit;
+        int i2;
+        String adminArea3;
+        String subAdminArea2;
+        String thoroughfare2;
+        String subLocality2;
+        String locality5;
+        int i3;
+        String[] strArr;
+        String addressLine;
+        StringBuilder sb = new StringBuilder();
+        TL_stories.TL_geoPointAddress tL_geoPointAddress2 = new TL_stories.TL_geoPointAddress();
+        TL_stories.TL_geoPointAddress tL_geoPointAddress3 = new TL_stories.TL_geoPointAddress();
+        String str6 = null;
+        try {
+            List<Address> fromLocation2 = new Geocoder(ApplicationLoader.applicationContext, locale).getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            if (i == 2) {
+                fromLocation = locale2 == locale ? fromLocation2 : new Geocoder(ApplicationLoader.applicationContext, locale2).getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            } else {
+                fromLocation = null;
+            }
+            if (fromLocation2.size() > 0) {
+                Address address = fromLocation2.get(0);
+                Address address2 = (fromLocation == null || fromLocation.size() < 1) ? null : fromLocation.get(0);
+                if (i == 1) {
+                    ArrayList arrayList = new ArrayList();
+                    try {
+                        addressLine = address.getAddressLine(0);
+                    } catch (Exception unused) {
+                        addressLine = null;
+                    }
+                    if (TextUtils.isEmpty(addressLine)) {
+                        try {
+                            arrayList.add(address.getSubThoroughfare());
+                        } catch (Exception unused2) {
+                        }
+                        try {
+                            arrayList.add(address.getThoroughfare());
+                        } catch (Exception unused3) {
+                        }
+                        try {
+                            arrayList.add(address.getAdminArea());
+                        } catch (Exception unused4) {
+                        }
+                        try {
+                            arrayList.add(address.getCountryName());
+                        } catch (Exception unused5) {
+                        }
+                    } else {
+                        arrayList.add(addressLine);
+                    }
+                    int i4 = 0;
+                    while (i4 < arrayList.size()) {
+                        if (arrayList.get(i4) != null) {
+                            String[] strArrSplit2 = ((String) arrayList.get(i4)).split(", ");
+                            if (strArrSplit2.length > 1) {
+                                arrayList.remove(i4);
+                                for (String str7 : strArrSplit2) {
+                                    arrayList.add(i4, str7);
+                                    i4++;
+                                }
+                            }
+                        }
+                        i4++;
+                    }
+                    int i5 = 0;
+                    while (i5 < arrayList.size()) {
+                        if (TextUtils.isEmpty((CharSequence) arrayList.get(i5)) || arrayList.indexOf(arrayList.get(i5)) != i5 || ((String) arrayList.get(i5)).matches("^\\s*\\d{4,}\\s*$")) {
+                            arrayList.remove(i5);
+                            i5--;
+                        }
+                        i5++;
+                    }
+                    string = arrayList.isEmpty() ? null : TextUtils.join(", ", arrayList);
+                    string2 = string;
+                    tL_geoPointAddress = tL_geoPointAddress3;
+                    string3 = null;
+                    str3 = null;
+                    str5 = null;
+                    locality = null;
+                    z4 = true;
+                } else {
+                    StringBuilder sb2 = new StringBuilder();
+                    StringBuilder sb3 = new StringBuilder();
+                    StringBuilder sb4 = new StringBuilder();
+                    StringBuilder sb5 = new StringBuilder();
+                    String locality6 = TextUtils.isEmpty(null) ? address.getLocality() : null;
+                    if (TextUtils.isEmpty(locality6)) {
+                        locality6 = address.getAdminArea();
+                    }
+                    if (TextUtils.isEmpty(locality6)) {
+                        locality6 = address.getSubAdminArea();
+                    }
+                    String str8 = locality6;
+                    if (address2 != null) {
+                        locality = TextUtils.isEmpty(null) ? address2.getLocality() : null;
+                        if (TextUtils.isEmpty(locality)) {
+                            locality = address2.getAdminArea();
+                        }
+                        if (TextUtils.isEmpty(locality)) {
+                            locality = address2.getSubAdminArea();
+                        }
+                        adminArea = address2.getAdminArea();
+                    } else {
+                        adminArea = null;
+                        locality = null;
+                    }
+                    String thoroughfare3 = (!TextUtils.isEmpty(null) || TextUtils.equals(address.getThoroughfare(), str8) || TextUtils.equals(address.getThoroughfare(), address.getCountryName())) ? null : address.getThoroughfare();
+                    if (TextUtils.isEmpty(thoroughfare3) && !TextUtils.equals(address.getSubLocality(), str8)) {
+                        if (!TextUtils.equals(address.getSubLocality(), address.getCountryName())) {
+                            subLocality = address.getSubLocality();
+                        }
+                        if (!TextUtils.isEmpty(subLocality) && !TextUtils.equals(address.getLocality(), str8)) {
+                            if (!TextUtils.equals(address.getLocality(), address.getCountryName())) {
+                                locality2 = address.getLocality();
+                            }
+                            if (!TextUtils.isEmpty(locality2) || TextUtils.equals(locality2, str8) || TextUtils.equals(locality2, address.getCountryName())) {
+                                sb5 = null;
+                            } else {
+                                if (sb5.length() > 0) {
+                                    sb5.append(", ");
+                                }
+                                sb5.append(locality2);
+                            }
+                            if (address2 != null) {
+                                if (TextUtils.isEmpty(null) || TextUtils.equals(address2.getThoroughfare(), str8) || TextUtils.equals(address2.getThoroughfare(), address2.getCountryName())) {
+                                    thoroughfare2 = null;
+                                } else {
+                                    thoroughfare2 = address2.getThoroughfare();
+                                }
+                                if (!TextUtils.isEmpty(thoroughfare2) && !TextUtils.equals(address2.getSubLocality(), str8)) {
+                                    if (!TextUtils.equals(address2.getSubLocality(), address2.getCountryName())) {
+                                        subLocality2 = address2.getSubLocality();
+                                    }
+                                    if (!TextUtils.isEmpty(subLocality2) && !TextUtils.equals(address2.getLocality(), str8)) {
+                                        if (!TextUtils.equals(address2.getLocality(), address2.getCountryName())) {
+                                            locality5 = address2.getLocality();
+                                        }
+                                        if (!TextUtils.isEmpty(locality5) || TextUtils.equals(locality5, adminArea) || TextUtils.equals(locality5, address2.getCountryName())) {
+                                            sb = null;
+                                        } else {
+                                            if (sb.length() > 0) {
+                                                sb.append(", ");
+                                            }
+                                            sb.append(locality5);
+                                        }
+                                        if (!TextUtils.isEmpty(sb)) {
+                                            i3 = 0;
+                                            while (true) {
+                                                strArr = unnamedRoads;
+                                                if (i3 >= strArr.length) {
+                                                    break;
+                                                }
+                                                if (strArr[i3].equalsIgnoreCase(sb.toString())) {
+                                                    sb5 = null;
+                                                    sb = null;
+                                                    break;
+                                                }
+                                                i3++;
+                                            }
+                                        }
+                                    }
+                                    if (TextUtils.isEmpty(locality5)) {
+                                        sb = null;
+                                    } else {
+                                        sb = null;
+                                    }
+                                    if (!TextUtils.isEmpty(sb)) {
+                                        i3 = 0;
+                                        while (true) {
+                                            strArr = unnamedRoads;
+                                            if (i3 >= strArr.length) {
+                                                break;
+                                                break;
+                                            } else {
+                                                if (strArr[i3].equalsIgnoreCase(sb.toString())) {
+                                                    sb5 = null;
+                                                    sb = null;
+                                                    break;
+                                                }
+                                                i3++;
+                                            }
+                                        }
+                                    }
+                                }
+                                locality5 = !TextUtils.isEmpty(subLocality2) ? subLocality2 : subLocality2;
+                                if (TextUtils.isEmpty(locality5)) {
+                                    sb = null;
+                                } else {
+                                    sb = null;
+                                }
+                                if (!TextUtils.isEmpty(sb)) {
+                                    i3 = 0;
+                                    while (true) {
+                                        strArr = unnamedRoads;
+                                        if (i3 >= strArr.length) {
+                                            break;
+                                            break;
+                                        } else {
+                                            if (strArr[i3].equalsIgnoreCase(sb.toString())) {
+                                                sb5 = null;
+                                                sb = null;
+                                                break;
+                                            }
+                                            i3++;
+                                        }
+                                    }
+                                }
+                            }
+                            if (TextUtils.isEmpty(str8)) {
+                                z2 = true;
+                            } else {
+                                if (sb4.length() > 0) {
+                                    sb4.append(", ");
+                                }
+                                sb4.append(str8);
+                                if (sb5 != null) {
+                                    if (sb5.length() > 0) {
+                                        sb5.append(", ");
+                                    }
+                                    sb5.append(str8);
+                                }
+                                z2 = false;
+                            }
+                            subThoroughfare = address.getSubThoroughfare();
+                            if (TextUtils.isEmpty(subThoroughfare)) {
+                                z3 = false;
+                            } else {
+                                sb2.append(subThoroughfare);
+                                z3 = true;
+                            }
+                            thoroughfare = address.getThoroughfare();
+                            boolean z5 = z2;
+                            if (!TextUtils.isEmpty(thoroughfare)) {
+                                if (sb2.length() > 0) {
+                                    sb2.append(" ");
+                                }
+                                sb2.append(thoroughfare);
+                                z3 = true;
+                            }
+                            if (!z3) {
+                                adminArea3 = address.getAdminArea();
+                                if (!TextUtils.isEmpty(adminArea3)) {
+                                    if (sb2.length() > 0) {
+                                        sb2.append(", ");
+                                    }
+                                    sb2.append(adminArea3);
+                                }
+                                subAdminArea2 = address.getSubAdminArea();
+                                if (!TextUtils.isEmpty(subAdminArea2)) {
+                                    if (sb2.length() > 0) {
+                                        sb2.append(", ");
+                                    }
+                                    sb2.append(subAdminArea2);
+                                }
+                            }
+                            locality3 = address.getLocality();
+                            if (!TextUtils.isEmpty(locality3)) {
+                                if (sb2.length() > 0) {
+                                    sb2.append(", ");
+                                }
+                                sb2.append(locality3);
+                            }
+                            String countryCode = address.getCountryCode();
+                            countryName = address.getCountryName();
+                            if (TextUtils.isEmpty(countryName)) {
+                                tL_geoPointAddress = tL_geoPointAddress3;
+                            } else {
+                                if (sb2.length() > 0) {
+                                    sb2.append(", ");
+                                }
+                                sb2.append(countryName);
+                                language = locale.getLanguage();
+                                if ("US".equals(address.getCountryCode())) {
+                                    tL_geoPointAddress = tL_geoPointAddress3;
+                                } else {
+                                    tL_geoPointAddress = tL_geoPointAddress3;
+                                    if (!"AE".equals(address.getCountryCode())) {
+                                        if (!"GB".equals(address.getCountryCode()) && "en".equals(language)) {
+                                            strArrSplit = countryName.split(" ");
+                                            countryName = "";
+                                            for (String str9 : strArrSplit) {
+                                                if (str9.length() > 0) {
+                                                    countryName = countryName + str9.charAt(0);
+                                                }
+                                            }
+                                        } else if ("US".equals(address.getCountryCode())) {
+                                            countryName = "USA";
+                                        }
+                                    }
+                                    if (sb4.length() > 0) {
+                                        sb4.append(", ");
+                                    }
+                                    sb4.append(countryName);
+                                }
+                                if (!"en".equals(language) || "uk".equals(language) || "ru".equals(language)) {
+                                    strArrSplit = countryName.split(" ");
+                                    countryName = "";
+                                    while (i2 < r5) {
+                                        if (str9.length() > 0) {
+                                            countryName = countryName + str9.charAt(0);
+                                        }
+                                    }
+                                } else {
+                                    if (!"GB".equals(address.getCountryCode())) {
+                                    }
+                                    if ("US".equals(address.getCountryCode())) {
+                                        countryName = "USA";
+                                    }
+                                }
+                                if (sb4.length() > 0) {
+                                    sb4.append(", ");
+                                }
+                                sb4.append(countryName);
+                            }
+                            countryName2 = address.getCountryName();
+                            if (!TextUtils.isEmpty(countryName2)) {
+                                if (sb3.length() > 0) {
+                                    sb3.append(", ");
+                                }
+                                sb3.append(countryName2);
+                            }
+                            locality4 = address.getLocality();
+                            if (!TextUtils.isEmpty(locality4)) {
+                                if (sb3.length() > 0) {
+                                    sb3.append(", ");
+                                }
+                                sb3.append(locality4);
+                            }
+                            if (!z3) {
+                                adminArea2 = address.getAdminArea();
+                                if (!TextUtils.isEmpty(adminArea2)) {
+                                    if (sb3.length() > 0) {
+                                        sb3.append(", ");
+                                    }
+                                    sb3.append(adminArea2);
+                                }
+                                subAdminArea = address.getSubAdminArea();
+                                if (!TextUtils.isEmpty(subAdminArea)) {
+                                    if (sb3.length() > 0) {
+                                        sb3.append(", ");
+                                    }
+                                    sb3.append(subAdminArea);
+                                }
+                            }
+                            string = sb2.toString();
+                            string2 = sb3.toString();
+                            string3 = sb4.toString();
+                            if (sb5 == null) {
+                                string4 = null;
+                            } else {
+                                string4 = sb5.toString();
+                            }
+                            z4 = z5;
+                            str6 = string4;
+                            str5 = adminArea;
+                            sb = sb;
+                            str3 = countryCode;
+                        }
+                        if (TextUtils.isEmpty(locality2)) {
+                            sb5 = null;
+                        } else {
+                            sb5 = null;
+                        }
+                        if (address2 != null) {
+                            if (TextUtils.isEmpty(null)) {
+                                thoroughfare2 = null;
+                            } else {
+                                thoroughfare2 = null;
+                            }
+                            subLocality2 = !TextUtils.isEmpty(thoroughfare2) ? thoroughfare2 : thoroughfare2;
+                            if (!TextUtils.isEmpty(subLocality2)) {
+                            }
+                            if (TextUtils.isEmpty(locality5)) {
+                                sb = null;
+                            } else {
+                                sb = null;
+                            }
+                            if (!TextUtils.isEmpty(sb)) {
+                                i3 = 0;
+                                while (true) {
+                                    strArr = unnamedRoads;
+                                    if (i3 >= strArr.length) {
+                                        break;
+                                        break;
+                                    } else {
+                                        if (strArr[i3].equalsIgnoreCase(sb.toString())) {
+                                            sb5 = null;
+                                            sb = null;
+                                            break;
+                                        }
+                                        i3++;
+                                    }
+                                }
+                            }
+                        }
+                        if (TextUtils.isEmpty(str8)) {
+                            if (sb4.length() > 0) {
+                                sb4.append(", ");
+                            }
+                            sb4.append(str8);
+                            if (sb5 != null) {
+                                if (sb5.length() > 0) {
+                                    sb5.append(", ");
+                                }
+                                sb5.append(str8);
+                            }
+                            z2 = false;
+                        } else {
+                            z2 = true;
+                        }
+                        subThoroughfare = address.getSubThoroughfare();
+                        if (TextUtils.isEmpty(subThoroughfare)) {
+                            sb2.append(subThoroughfare);
+                            z3 = true;
+                        } else {
+                            z3 = false;
+                        }
+                        thoroughfare = address.getThoroughfare();
+                        boolean z6 = z2;
+                        if (!TextUtils.isEmpty(thoroughfare)) {
+                            if (sb2.length() > 0) {
+                                sb2.append(" ");
+                            }
+                            sb2.append(thoroughfare);
+                            z3 = true;
+                        }
+                        if (!z3) {
+                            adminArea3 = address.getAdminArea();
+                            if (!TextUtils.isEmpty(adminArea3)) {
+                                if (sb2.length() > 0) {
+                                    sb2.append(", ");
+                                }
+                                sb2.append(adminArea3);
+                            }
+                            subAdminArea2 = address.getSubAdminArea();
+                            if (!TextUtils.isEmpty(subAdminArea2)) {
+                                if (sb2.length() > 0) {
+                                    sb2.append(", ");
+                                }
+                                sb2.append(subAdminArea2);
+                            }
+                        }
+                        locality3 = address.getLocality();
+                        if (!TextUtils.isEmpty(locality3)) {
+                            if (sb2.length() > 0) {
+                                sb2.append(", ");
+                            }
+                            sb2.append(locality3);
+                        }
+                        String countryCode2 = address.getCountryCode();
+                        countryName = address.getCountryName();
+                        if (TextUtils.isEmpty(countryName)) {
+                            if (sb2.length() > 0) {
+                                sb2.append(", ");
+                            }
+                            sb2.append(countryName);
+                            language = locale.getLanguage();
+                            if ("US".equals(address.getCountryCode())) {
+                                tL_geoPointAddress = tL_geoPointAddress3;
+                                if (!"AE".equals(address.getCountryCode())) {
+                                    if (!"GB".equals(address.getCountryCode())) {
+                                    }
+                                    if ("US".equals(address.getCountryCode())) {
+                                        countryName = "USA";
+                                    }
+                                }
+                                if (sb4.length() > 0) {
+                                    sb4.append(", ");
+                                }
+                                sb4.append(countryName);
+                            } else {
+                                tL_geoPointAddress = tL_geoPointAddress3;
+                            }
+                            if (!"en".equals(language)) {
+                            }
+                            strArrSplit = countryName.split(" ");
+                            countryName = "";
+                            while (i2 < r5) {
+                                if (str9.length() > 0) {
+                                    countryName = countryName + str9.charAt(0);
+                                }
+                            }
+                            if (sb4.length() > 0) {
+                                sb4.append(", ");
+                            }
+                            sb4.append(countryName);
+                        } else {
+                            tL_geoPointAddress = tL_geoPointAddress3;
+                        }
+                        countryName2 = address.getCountryName();
+                        if (!TextUtils.isEmpty(countryName2)) {
+                            if (sb3.length() > 0) {
+                                sb3.append(", ");
+                            }
+                            sb3.append(countryName2);
+                        }
+                        locality4 = address.getLocality();
+                        if (!TextUtils.isEmpty(locality4)) {
+                            if (sb3.length() > 0) {
+                                sb3.append(", ");
+                            }
+                            sb3.append(locality4);
+                        }
+                        if (!z3) {
+                            adminArea2 = address.getAdminArea();
+                            if (!TextUtils.isEmpty(adminArea2)) {
+                                if (sb3.length() > 0) {
+                                    sb3.append(", ");
+                                }
+                                sb3.append(adminArea2);
+                            }
+                            subAdminArea = address.getSubAdminArea();
+                            if (!TextUtils.isEmpty(subAdminArea)) {
+                                if (sb3.length() > 0) {
+                                    sb3.append(", ");
+                                }
+                                sb3.append(subAdminArea);
+                            }
+                        }
+                        string = sb2.toString();
+                        string2 = sb3.toString();
+                        string3 = sb4.toString();
+                        if (sb5 == null) {
+                            string4 = null;
+                        } else {
+                            string4 = sb5.toString();
+                        }
+                        z4 = z6;
+                        str6 = string4;
+                        str5 = adminArea;
+                        sb = sb;
+                        str3 = countryCode2;
+                    }
+                    subLocality = thoroughfare3;
+                    locality2 = !TextUtils.isEmpty(subLocality) ? subLocality : subLocality;
+                    if (TextUtils.isEmpty(locality2)) {
+                        sb5 = null;
+                    } else {
+                        sb5 = null;
+                    }
+                    if (address2 != null) {
+                        if (TextUtils.isEmpty(null)) {
+                            thoroughfare2 = null;
+                        } else {
+                            thoroughfare2 = null;
+                        }
+                        if (!TextUtils.isEmpty(thoroughfare2)) {
+                        }
+                        if (!TextUtils.isEmpty(subLocality2)) {
+                        }
+                        if (TextUtils.isEmpty(locality5)) {
+                            sb = null;
+                        } else {
+                            sb = null;
+                        }
+                        if (!TextUtils.isEmpty(sb)) {
+                            i3 = 0;
+                            while (true) {
+                                strArr = unnamedRoads;
+                                if (i3 >= strArr.length) {
+                                    break;
+                                    break;
+                                } else {
+                                    if (strArr[i3].equalsIgnoreCase(sb.toString())) {
+                                        sb5 = null;
+                                        sb = null;
+                                        break;
+                                    }
+                                    i3++;
+                                }
+                            }
+                        }
+                    }
+                    if (TextUtils.isEmpty(str8)) {
+                        if (sb4.length() > 0) {
+                            sb4.append(", ");
+                        }
+                        sb4.append(str8);
+                        if (sb5 != null) {
+                            if (sb5.length() > 0) {
+                                sb5.append(", ");
+                            }
+                            sb5.append(str8);
+                        }
+                        z2 = false;
+                    } else {
+                        z2 = true;
+                    }
+                    subThoroughfare = address.getSubThoroughfare();
+                    if (TextUtils.isEmpty(subThoroughfare)) {
+                        sb2.append(subThoroughfare);
+                        z3 = true;
+                    } else {
+                        z3 = false;
+                    }
+                    thoroughfare = address.getThoroughfare();
+                    boolean z7 = z2;
+                    if (!TextUtils.isEmpty(thoroughfare)) {
+                        if (sb2.length() > 0) {
+                            sb2.append(" ");
+                        }
+                        sb2.append(thoroughfare);
+                        z3 = true;
+                    }
+                    if (!z3) {
+                        adminArea3 = address.getAdminArea();
+                        if (!TextUtils.isEmpty(adminArea3)) {
+                            if (sb2.length() > 0) {
+                                sb2.append(", ");
+                            }
+                            sb2.append(adminArea3);
+                        }
+                        subAdminArea2 = address.getSubAdminArea();
+                        if (!TextUtils.isEmpty(subAdminArea2)) {
+                            if (sb2.length() > 0) {
+                                sb2.append(", ");
+                            }
+                            sb2.append(subAdminArea2);
+                        }
+                    }
+                    locality3 = address.getLocality();
+                    if (!TextUtils.isEmpty(locality3)) {
+                        if (sb2.length() > 0) {
+                            sb2.append(", ");
+                        }
+                        sb2.append(locality3);
+                    }
+                    String countryCode3 = address.getCountryCode();
+                    countryName = address.getCountryName();
+                    if (TextUtils.isEmpty(countryName)) {
+                        if (sb2.length() > 0) {
+                            sb2.append(", ");
+                        }
+                        sb2.append(countryName);
+                        language = locale.getLanguage();
+                        if ("US".equals(address.getCountryCode())) {
+                            tL_geoPointAddress = tL_geoPointAddress3;
+                            if (!"AE".equals(address.getCountryCode())) {
+                                if (!"GB".equals(address.getCountryCode())) {
+                                }
+                                if ("US".equals(address.getCountryCode())) {
+                                    countryName = "USA";
+                                }
+                            }
+                            if (sb4.length() > 0) {
+                                sb4.append(", ");
+                            }
+                            sb4.append(countryName);
+                        } else {
+                            tL_geoPointAddress = tL_geoPointAddress3;
+                        }
+                        if (!"en".equals(language)) {
+                        }
+                        strArrSplit = countryName.split(" ");
+                        countryName = "";
+                        while (i2 < r5) {
+                            if (str9.length() > 0) {
+                                countryName = countryName + str9.charAt(0);
+                            }
+                        }
+                        if (sb4.length() > 0) {
+                            sb4.append(", ");
+                        }
+                        sb4.append(countryName);
+                    } else {
+                        tL_geoPointAddress = tL_geoPointAddress3;
+                    }
+                    countryName2 = address.getCountryName();
+                    if (!TextUtils.isEmpty(countryName2)) {
+                        if (sb3.length() > 0) {
+                            sb3.append(", ");
+                        }
+                        sb3.append(countryName2);
+                    }
+                    locality4 = address.getLocality();
+                    if (!TextUtils.isEmpty(locality4)) {
+                        if (sb3.length() > 0) {
+                            sb3.append(", ");
+                        }
+                        sb3.append(locality4);
+                    }
+                    if (!z3) {
+                        adminArea2 = address.getAdminArea();
+                        if (!TextUtils.isEmpty(adminArea2)) {
+                            if (sb3.length() > 0) {
+                                sb3.append(", ");
+                            }
+                            sb3.append(adminArea2);
+                        }
+                        subAdminArea = address.getSubAdminArea();
+                        if (!TextUtils.isEmpty(subAdminArea)) {
+                            if (sb3.length() > 0) {
+                                sb3.append(", ");
+                            }
+                            sb3.append(subAdminArea);
+                        }
+                    }
+                    string = sb2.toString();
+                    string2 = sb3.toString();
+                    string3 = sb4.toString();
+                    if (sb5 == null) {
+                        string4 = null;
+                    } else {
+                        string4 = sb5.toString();
+                    }
+                    z4 = z7;
+                    str6 = string4;
+                    str5 = adminArea;
+                    sb = sb;
+                    str3 = countryCode3;
+                }
+                z = z4;
+                str4 = locality;
+            } else {
+                tL_geoPointAddress = tL_geoPointAddress3;
+                string = i == 1 ? null : String.format(Locale.US, "Unknown address (%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(location.getLongitude()));
+                string2 = string;
+                string3 = null;
+                str3 = null;
+                str4 = null;
+                str5 = null;
+                z = true;
+                str6 = null;
+            }
+            if (TextUtils.isEmpty(string3)) {
+                tL_messageMediaVenue3 = null;
+            } else {
+                tL_messageMediaVenue3 = new TLRPC.TL_messageMediaVenue();
+                try {
+                    TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+                    tL_messageMediaVenue3.geo = tL_geoPoint;
+                    tL_geoPoint.lat = location.getLatitude();
+                    tL_messageMediaVenue3.geo._long = location.getLongitude();
+                    tL_messageMediaVenue3.query_id = -1L;
+                    tL_messageMediaVenue3.title = string3;
+                    tL_messageMediaVenue3.icon = z ? "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png" : "https://ss3.4sqi.net/img/categories_v2/travel/hotel_64.png";
+                    tL_messageMediaVenue3.emoji = countryCodeToEmoji(str3);
+                    tL_messageMediaVenue3.address = LocaleController.getString(z ? R.string.Country : R.string.PassportCity);
+                    tL_messageMediaVenue3.geoAddress = tL_geoPointAddress2;
+                    tL_geoPointAddress2.country_iso2 = str3;
+                    if (!z) {
+                        if (!TextUtils.isEmpty(str5)) {
+                            tL_geoPointAddress2.flags |= 1;
+                            tL_geoPointAddress2.state = str5;
+                        }
+                        if (!TextUtils.isEmpty(str4)) {
+                            tL_geoPointAddress2.flags |= 2;
+                            tL_geoPointAddress2.city = str4;
+                        }
+                    }
+                } catch (Exception unused6) {
+                    tL_messageMediaVenue4 = null;
+                    str2 = String.format(Locale.US, "Unknown address (%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(location.getLongitude()));
+                    str = str2;
+                    tL_messageMediaVenue5 = tL_messageMediaVenue3;
+                    tL_messageMediaVenue6 = tL_messageMediaVenue4;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            LocationController.lambda$fetchLocationAddress$28(locationFetchCallback, str2, str, tL_messageMediaVenue5, tL_messageMediaVenue6, location);
+                        }
+                    });
+                }
+            }
+            try {
+                if (TextUtils.isEmpty(str6)) {
+                    tL_messageMediaVenue4 = null;
+                } else {
+                    TLRPC.TL_messageMediaVenue tL_messageMediaVenue7 = new TLRPC.TL_messageMediaVenue();
+                    try {
+                        TLRPC.TL_geoPoint tL_geoPoint2 = new TLRPC.TL_geoPoint();
+                        tL_messageMediaVenue7.geo = tL_geoPoint2;
+                        tL_geoPoint2.lat = location.getLatitude();
+                        tL_messageMediaVenue7.geo._long = location.getLongitude();
+                        tL_messageMediaVenue7.query_id = -1L;
+                        tL_messageMediaVenue7.title = str6;
+                        tL_messageMediaVenue7.icon = "pin";
+                        tL_messageMediaVenue7.address = LocaleController.getString(R.string.PassportStreet1);
+                        TL_stories.TL_geoPointAddress tL_geoPointAddress4 = tL_geoPointAddress;
+                        tL_messageMediaVenue7.geoAddress = tL_geoPointAddress4;
+                        tL_geoPointAddress4.country_iso2 = str3;
+                        if (!TextUtils.isEmpty(str5)) {
+                            tL_geoPointAddress4.flags |= 1;
+                            tL_geoPointAddress4.state = str5;
+                        }
+                        if (!TextUtils.isEmpty(str4)) {
+                            tL_geoPointAddress4.flags |= 2;
+                            tL_geoPointAddress4.city = str4;
+                        }
+                        if (!TextUtils.isEmpty(sb)) {
+                            tL_geoPointAddress4.flags |= 4;
+                            tL_geoPointAddress4.street = sb.toString();
+                        }
+                        tL_messageMediaVenue4 = tL_messageMediaVenue7;
+                    } catch (Exception unused7) {
+                        tL_messageMediaVenue4 = tL_messageMediaVenue7;
+                        str2 = String.format(Locale.US, "Unknown address (%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(location.getLongitude()));
+                        str = str2;
+                        tL_messageMediaVenue5 = tL_messageMediaVenue3;
+                        tL_messageMediaVenue6 = tL_messageMediaVenue4;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                LocationController.lambda$fetchLocationAddress$28(locationFetchCallback, str2, str, tL_messageMediaVenue5, tL_messageMediaVenue6, location);
+                            }
+                        });
+                    }
+                }
+                if (tL_messageMediaVenue3 == null && tL_messageMediaVenue4 == null) {
+                    try {
+                        String strDetectOcean = detectOcean(location.getLongitude(), location.getLatitude());
+                        if (strDetectOcean != null) {
+                            TLRPC.TL_messageMediaVenue tL_messageMediaVenue8 = new TLRPC.TL_messageMediaVenue();
+                            try {
+                                TLRPC.TL_geoPoint tL_geoPoint3 = new TLRPC.TL_geoPoint();
+                                tL_messageMediaVenue8.geo = tL_geoPoint3;
+                                tL_geoPoint3.lat = location.getLatitude();
+                                tL_messageMediaVenue8.geo._long = location.getLongitude();
+                                tL_messageMediaVenue8.query_id = -1L;
+                                tL_messageMediaVenue8.title = strDetectOcean;
+                                tL_messageMediaVenue8.icon = "pin";
+                                tL_messageMediaVenue8.emoji = "🌊";
+                                tL_messageMediaVenue8.address = "Ocean";
+                                str = string2;
+                                tL_messageMediaVenue5 = tL_messageMediaVenue8;
+                                tL_messageMediaVenue6 = tL_messageMediaVenue4;
+                                str2 = string;
+                            } catch (Exception unused8) {
+                                tL_messageMediaVenue3 = tL_messageMediaVenue8;
+                                str2 = String.format(Locale.US, "Unknown address (%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(location.getLongitude()));
+                                str = str2;
+                                tL_messageMediaVenue5 = tL_messageMediaVenue3;
+                                tL_messageMediaVenue6 = tL_messageMediaVenue4;
+                            }
+                        }
+                    } catch (Exception unused9) {
+                        tL_messageMediaVenue2 = tL_messageMediaVenue4;
+                        tL_messageMediaVenue = tL_messageMediaVenue3;
+                        tL_messageMediaVenue3 = tL_messageMediaVenue;
+                        tL_messageMediaVenue4 = tL_messageMediaVenue2;
+                        str2 = String.format(Locale.US, "Unknown address (%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(location.getLongitude()));
+                        str = str2;
+                        tL_messageMediaVenue5 = tL_messageMediaVenue3;
+                        tL_messageMediaVenue6 = tL_messageMediaVenue4;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                LocationController.lambda$fetchLocationAddress$28(locationFetchCallback, str2, str, tL_messageMediaVenue5, tL_messageMediaVenue6, location);
+                            }
+                        });
+                    }
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            LocationController.lambda$fetchLocationAddress$28(locationFetchCallback, str2, str, tL_messageMediaVenue5, tL_messageMediaVenue6, location);
+                        }
+                    });
+                }
+                str2 = string;
+                str = string2;
+            } catch (Exception unused10) {
+                tL_messageMediaVenue = tL_messageMediaVenue3;
+                tL_messageMediaVenue2 = null;
+                tL_messageMediaVenue3 = tL_messageMediaVenue;
+                tL_messageMediaVenue4 = tL_messageMediaVenue2;
+                str2 = String.format(Locale.US, "Unknown address (%f,%f)", Double.valueOf(location.getLatitude()), Double.valueOf(location.getLongitude()));
+                str = str2;
+                tL_messageMediaVenue5 = tL_messageMediaVenue3;
+                tL_messageMediaVenue6 = tL_messageMediaVenue4;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        LocationController.lambda$fetchLocationAddress$28(locationFetchCallback, str2, str, tL_messageMediaVenue5, tL_messageMediaVenue6, location);
+                    }
+                });
+            }
+        } catch (Exception unused11) {
+            tL_messageMediaVenue = null;
+        }
+        tL_messageMediaVenue5 = tL_messageMediaVenue3;
+        tL_messageMediaVenue6 = tL_messageMediaVenue4;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                LocationController.lambda$fetchLocationAddress$28(locationFetchCallback, str2, str, tL_messageMediaVenue5, tL_messageMediaVenue6, location);
+            }
+        });
     }
 
     public static void lambda$fetchLocationAddress$28(LocationFetchCallback locationFetchCallback, String str, String str2, TLRPC.TL_messageMediaVenue tL_messageMediaVenue, TLRPC.TL_messageMediaVenue tL_messageMediaVenue2, Location location) {

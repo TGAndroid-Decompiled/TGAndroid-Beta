@@ -155,7 +155,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                 boostTypeCell = new SliderCell(context, this.resourcesProvider);
                 break;
             case 6:
-                View headerCell = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, this.resourcesProvider);
+                org.telegram.ui.Cells.HeaderCell headerCell = new org.telegram.ui.Cells.HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 3, false, this.resourcesProvider);
                 headerCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
                 boostTypeCell = headerCell;
                 break;
@@ -178,7 +178,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                 boostTypeCell = new DurationCell(context, this.resourcesProvider);
                 break;
             case 13:
-                View subtitleWithCounterCell = new SubtitleWithCounterCell(context, this.resourcesProvider);
+                SubtitleWithCounterCell subtitleWithCounterCell = new SubtitleWithCounterCell(context, this.resourcesProvider);
                 subtitleWithCounterCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
                 boostTypeCell = subtitleWithCounterCell;
                 break;
@@ -496,10 +496,19 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             if (this == item) {
                 return true;
             }
-            if (item != null && getClass() == item.getClass() && (i = (item2 = (Item) item).viewType) == (i2 = this.viewType)) {
-                return i2 == 0 ? this.boolValue == item2.boolValue : i == 17 ? this.intValue == item2.intValue && this.longValue == item2.longValue && this.object == item2.object && this.boolValue == item2.boolValue && this.selectable == item2.selectable : i2 == 5 ? this.intValue == item2.intValue && eq(this.values, item2.values) : i2 == 13 && this.intValue == item2.intValue && TextUtils.equals(this.text, item2.text);
+            if (item == null || getClass() != item.getClass() || (i = (item2 = (Item) item).viewType) != (i2 = this.viewType)) {
+                return false;
             }
-            return false;
+            if (i2 == 0) {
+                return this.boolValue == item2.boolValue;
+            }
+            if (i == 17) {
+                return this.intValue == item2.intValue && this.longValue == item2.longValue && this.object == item2.object && this.boolValue == item2.boolValue && this.selectable == item2.selectable;
+            }
+            if (i2 == 5) {
+                return this.intValue == item2.intValue && eq(this.values, item2.values);
+            }
+            return i2 == 13 && this.intValue == item2.intValue && TextUtils.equals(this.text, item2.text);
         }
     }
 }

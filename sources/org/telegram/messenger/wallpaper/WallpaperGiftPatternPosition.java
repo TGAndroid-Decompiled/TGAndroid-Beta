@@ -17,7 +17,7 @@ public class WallpaperGiftPatternPosition {
         this.matrix = matrix;
     }
 
-    public static WallpaperGiftPatternPosition create(Attributes attributes, float f) throws NumberFormatException {
+    public static WallpaperGiftPatternPosition create(Attributes attributes, float f) {
         try {
             float f2 = Float.parseFloat(attributes.getValue("x"));
             float f3 = Float.parseFloat(attributes.getValue("y"));

@@ -251,7 +251,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         }
         return new Disposable() {
             @Override
-            public final void dispose() throws InterruptedException {
+            public final void dispose() {
                 this.f$0.lambda$startDitheringInternal$3(listenerArr, runnableArr, intSizeArr);
             }
         };
@@ -260,13 +260,13 @@ public class BackgroundGradientDrawable extends GradientDrawable {
     public void lambda$startDitheringInternal$2(final IntSize intSize, final Runnable[] runnableArr, final int i, final Listener[] listenerArr) {
         try {
             final Bitmap bitmapCreateDitheredGradientBitmap = createDitheredGradientBitmap(getOrientation(), this.colors, intSize.width, intSize.height);
-            AndroidUtilities.runOnUIThread(new Runnable() {
+            Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$startDitheringInternal$1(runnableArr, bitmapCreateDitheredGradientBitmap, intSize, i, listenerArr);
                 }
-            });
-        } catch (Throwable th) {
+            };
+        } finally {
             final Bitmap bitmap = null;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -274,7 +274,6 @@ public class BackgroundGradientDrawable extends GradientDrawable {
                     this.f$0.lambda$startDitheringInternal$1(runnableArr, bitmap, intSize, i, listenerArr);
                 }
             });
-            throw th;
         }
     }
 
@@ -294,15 +293,20 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         }
         runnableArr[i] = null;
         boolean z = true;
-        if (runnableArr.length > 1) {
-            for (Runnable runnable : runnableArr) {
-                if (runnable != null) {
-                    break;
-                }
+        if (runnableArr.length <= 1) {
+            z = false;
+            break;
+        }
+        int i2 = 0;
+        while (true) {
+            if (i2 >= runnableArr.length) {
+                z = false;
+                break;
+            } else if (runnableArr[i2] != null) {
+                break;
+            } else {
+                i2++;
             }
-            z = false;
-        } else {
-            z = false;
         }
         if (!z) {
             this.ditheringRunnables.remove(runnableArr);
@@ -318,7 +322,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         }
     }
 
-    public void lambda$startDitheringInternal$3(Listener[] listenerArr, Runnable[] runnableArr, IntSize[] intSizeArr) throws InterruptedException {
+    public void lambda$startDitheringInternal$3(Listener[] listenerArr, Runnable[] runnableArr, IntSize[] intSizeArr) {
         listenerArr[0] = null;
         if (this.ditheringRunnables.contains(runnableArr)) {
             Utilities.globalQueue.cancelRunnables(runnableArr);
@@ -333,7 +337,7 @@ public class BackgroundGradientDrawable extends GradientDrawable {
         }
     }
 
-    public void dispose() throws InterruptedException {
+    public void dispose() {
         if (this.disposed) {
             return;
         }

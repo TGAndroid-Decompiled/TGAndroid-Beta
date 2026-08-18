@@ -2,6 +2,7 @@ package org.webrtc;
 
 import android.graphics.Point;
 import android.opengl.Matrix;
+import android.view.View;
 
 public class RendererCommon {
     private static float BALANCED_VISIBLE_FRACTION = 0.5625f;
@@ -52,8 +53,34 @@ public class RendererCommon {
             this.visibleFractionMismatchOrientation = f2;
         }
 
-        public android.graphics.Point measure(boolean r8, int r9, int r10, int r11, int r12) {
-            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.RendererCommon.VideoLayoutMeasure.measure(boolean, int, int, int, int):android.graphics.Point");
+        public Point measure(boolean z, int i, int i2, int i3, int i4) {
+            float f;
+            int defaultSize = View.getDefaultSize(Integer.MAX_VALUE, i);
+            int defaultSize2 = View.getDefaultSize(Integer.MAX_VALUE, i2);
+            if (i3 == 0 || i4 == 0 || defaultSize == 0 || defaultSize2 == 0) {
+                return new Point(defaultSize, defaultSize2);
+            }
+            float f2 = i3 / i4;
+            float f3 = defaultSize / defaultSize2;
+            if ((f2 > 1.0f) == (f3 > 1.0f)) {
+                f = this.visibleFractionMatchOrientation;
+            } else {
+                f = this.visibleFractionMismatchOrientation;
+            }
+            Point displaySize = RendererCommon.getDisplaySize(f, f2, defaultSize, defaultSize2);
+            if (!z) {
+                if (View.MeasureSpec.getMode(i) == 1073741824) {
+                    displaySize.x = defaultSize;
+                }
+                if (View.MeasureSpec.getMode(i2) == 1073741824) {
+                    displaySize.y = defaultSize2;
+                } else {
+                    if ((f2 > 1.0f) == (f3 > 1.0f)) {
+                        displaySize.y = defaultSize2;
+                    }
+                }
+            }
+            return displaySize;
         }
     }
 

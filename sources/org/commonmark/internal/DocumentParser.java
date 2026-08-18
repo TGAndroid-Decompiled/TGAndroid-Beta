@@ -10,13 +10,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.commonmark.internal.BlockQuoteParser;
-import org.commonmark.internal.FencedCodeBlockParser;
-import org.commonmark.internal.HeadingParser;
-import org.commonmark.internal.HtmlBlockParser;
-import org.commonmark.internal.IndentedCodeBlockParser;
-import org.commonmark.internal.ListBlockParser;
-import org.commonmark.internal.ThematicBreakParser;
 import org.commonmark.internal.util.Parsing;
 import org.commonmark.node.BlockQuote;
 import org.commonmark.node.Document;
@@ -26,9 +19,11 @@ import org.commonmark.node.HtmlBlock;
 import org.commonmark.node.IndentedCodeBlock;
 import org.commonmark.node.LinkReferenceDefinition;
 import org.commonmark.node.ListBlock;
+import org.commonmark.node.Paragraph;
 import org.commonmark.node.ThematicBreak;
 import org.commonmark.parser.InlineParser;
 import org.commonmark.parser.InlineParserFactory;
+import org.commonmark.parser.block.BlockContinue;
 import org.commonmark.parser.block.BlockParser;
 import org.commonmark.parser.block.BlockParserFactory;
 import org.commonmark.parser.block.BlockStart;
@@ -140,11 +135,90 @@ public class DocumentParser implements ParserState {
 
     @Override
     public BlockParser getActiveBlockParser() {
-        return (BlockParser) this.activeBlockParsers.get(r0.size() - 1);
+        List list = this.activeBlockParsers;
+        return (BlockParser) list.get(list.size() - 1);
     }
 
-    private void incorporateLine(java.lang.CharSequence r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.commonmark.internal.DocumentParser.incorporateLine(java.lang.CharSequence):void");
+    private void incorporateLine(CharSequence charSequence) {
+        this.line = Parsing.prepareLine(charSequence);
+        this.index = 0;
+        this.column = 0;
+        this.columnIsInTab = false;
+        List list = this.activeBlockParsers;
+        int i = 1;
+        for (BlockParser blockParser : list.subList(1, list.size())) {
+            findNextNonSpace();
+            BlockContinue blockContinueTryContinue = blockParser.tryContinue(this);
+            if (!(blockContinueTryContinue instanceof BlockContinueImpl)) {
+                break;
+            }
+            BlockContinueImpl blockContinueImpl = (BlockContinueImpl) blockContinueTryContinue;
+            if (blockContinueImpl.isFinalize()) {
+                finalize(blockParser);
+                return;
+            }
+            if (blockContinueImpl.getNewIndex() != -1) {
+                setNewIndex(blockContinueImpl.getNewIndex());
+            } else if (blockContinueImpl.getNewColumn() != -1) {
+                setNewColumn(blockContinueImpl.getNewColumn());
+            }
+            i++;
+        }
+        List list2 = this.activeBlockParsers;
+        ArrayList arrayList = new ArrayList(list2.subList(i, list2.size()));
+        BlockParser blockParser2 = (BlockParser) this.activeBlockParsers.get(i - 1);
+        boolean zIsEmpty = arrayList.isEmpty();
+        boolean zIsContainer = (blockParser2.getBlock() instanceof Paragraph) || blockParser2.isContainer();
+        while (zIsContainer) {
+            findNextNonSpace();
+            if (isBlank() || (this.indent < Parsing.CODE_BLOCK_INDENT && Parsing.isLetter(this.line, this.nextNonSpace))) {
+                setNewIndex(this.nextNonSpace);
+                break;
+            }
+            BlockStartImpl blockStartImplFindBlockStart = findBlockStart(blockParser2);
+            if (blockStartImplFindBlockStart == null) {
+                setNewIndex(this.nextNonSpace);
+                break;
+            }
+            if (!zIsEmpty) {
+                finalizeBlocks(arrayList);
+                zIsEmpty = true;
+            }
+            if (blockStartImplFindBlockStart.getNewIndex() != -1) {
+                setNewIndex(blockStartImplFindBlockStart.getNewIndex());
+            } else if (blockStartImplFindBlockStart.getNewColumn() != -1) {
+                setNewColumn(blockStartImplFindBlockStart.getNewColumn());
+            }
+            if (blockStartImplFindBlockStart.isReplaceActiveBlockParser()) {
+                prepareActiveBlockParserForReplacement();
+            }
+            BlockParser[] blockParsers = blockStartImplFindBlockStart.getBlockParsers();
+            int length = blockParsers.length;
+            int i2 = 0;
+            while (i2 < length) {
+                BlockParser blockParser3 = blockParsers[i2];
+                BlockParser blockParserAddChild = addChild(blockParser3);
+                i2++;
+                zIsContainer = blockParser3.isContainer();
+                blockParser2 = blockParserAddChild;
+            }
+        }
+        if (!zIsEmpty && !isBlank() && getActiveBlockParser().canHaveLazyContinuationLines()) {
+            addLine();
+            return;
+        }
+        if (!zIsEmpty) {
+            finalizeBlocks(arrayList);
+        }
+        if (!blockParser2.isContainer()) {
+            addLine();
+        } else {
+            if (isBlank()) {
+                return;
+            }
+            addChild(new ParagraphParser());
+            addLine();
+        }
     }
 
     private void findNextNonSpace() {
@@ -152,10 +226,7 @@ public class DocumentParser implements ParserState {
         int i2 = this.column;
         this.blank = true;
         int length = this.line.length();
-        while (true) {
-            if (i >= length) {
-                break;
-            }
+        while (i < length) {
             char cCharAt = this.line.charAt(i);
             if (cCharAt == '\t') {
                 i++;
@@ -302,7 +373,8 @@ public class DocumentParser implements ParserState {
     }
 
     private void deactivateBlockParser() {
-        this.activeBlockParsers.remove(r0.size() - 1);
+        List list = this.activeBlockParsers;
+        list.remove(list.size() - 1);
     }
 
     private void prepareActiveBlockParserForReplacement() {

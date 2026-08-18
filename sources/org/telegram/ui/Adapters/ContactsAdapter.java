@@ -75,16 +75,11 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 this.onlineContacts = new ArrayList(ContactsController.getInstance(this.currentAccount).contacts);
                 long j = UserConfig.getInstance(this.currentAccount).clientUserId;
                 int size = this.onlineContacts.size();
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= size) {
-                        break;
-                    }
+                for (int i2 = 0; i2 < size; i2++) {
                     if (((TLRPC.TL_contact) this.onlineContacts.get(i2)).user_id == j) {
                         this.onlineContacts.remove(i2);
                         break;
                     }
-                    i2++;
                 }
             }
             sortOnlineContacts();
@@ -116,14 +111,57 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         }
     }
 
-    public static int lambda$sortOnlineContacts$0(org.telegram.messenger.MessagesController r2, int r3, org.telegram.tgnet.TLRPC.TL_contact r4, org.telegram.tgnet.TLRPC.TL_contact r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.ContactsAdapter.lambda$sortOnlineContacts$0(org.telegram.messenger.MessagesController, int, org.telegram.tgnet.TLRPC$TL_contact, org.telegram.tgnet.TLRPC$TL_contact):int");
+    public static int lambda$sortOnlineContacts$0(MessagesController messagesController, int i, TLRPC.TL_contact tL_contact, TLRPC.TL_contact tL_contact2) {
+        int i2;
+        int i3;
+        TLRPC.User user = messagesController.getUser(Long.valueOf(tL_contact2.user_id));
+        TLRPC.User user2 = messagesController.getUser(Long.valueOf(tL_contact.user_id));
+        if (user == null) {
+            i2 = 0;
+        } else if (user.self) {
+            i2 = i + 50000;
+        } else {
+            TLRPC.UserStatus userStatus = user.status;
+            if (userStatus != null) {
+                i2 = userStatus.expires;
+            } else {
+                i2 = 0;
+            }
+        }
+        if (user2 == null) {
+            i3 = 0;
+        } else if (user2.self) {
+            i3 = i + 50000;
+        } else {
+            TLRPC.UserStatus userStatus2 = user2.status;
+            if (userStatus2 != null) {
+                i3 = userStatus2.expires;
+            } else {
+                i3 = 0;
+            }
+        }
+        if (i2 > 0 && i3 > 0) {
+            if (i2 > i3) {
+                return 1;
+            }
+            return i2 < i3 ? -1 : 0;
+        }
+        if (i2 < 0 && i3 < 0) {
+            if (i2 > i3) {
+                return 1;
+            }
+            return i2 < i3 ? -1 : 0;
+        }
+        if ((i2 >= 0 || i3 <= 0) && (i2 != 0 || i3 == 0)) {
+            return ((i3 >= 0 || i2 <= 0) && (i3 != 0 || i2 == 0)) ? 0 : 1;
+        }
+        return -1;
     }
 
     @Override
     public Object getItem(int i, int i2) {
         int i3;
-        if (this.isEmptyWithMainTabs && i == 1 && i2 > 1 && i2 - 2 < ContactsController.getInstance(this.currentAccount).phoneBookContacts.size()) {
+        if (this.isEmptyWithMainTabs && i == 1 && i2 > 1 && (i3 = i2 - 2) < ContactsController.getInstance(this.currentAccount).phoneBookContacts.size()) {
             return ContactsController.getInstance(this.currentAccount).phoneBookContacts.get(i3);
         }
         if (getItemViewType(i, i2) == 2) {
@@ -180,7 +218,13 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             return !this.isEmpty && i2 < map.get(arrayList.get(i)).size();
         }
         if (i == 0) {
-            return this.isAdmin ? i2 < 1 : this.needPhonebook ? i2 < 2 : i2 < 3;
+            if (this.isAdmin) {
+                return i2 < 1;
+            }
+            if (this.needPhonebook) {
+                return i2 < 2;
+            }
+            return i2 < 3;
         }
         if (this.isEmpty) {
             return false;
@@ -195,7 +239,63 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
 
     @Override
     public int getSectionCount() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.ContactsAdapter.getSectionCount():int");
+        ArrayList<String> arrayList;
+        int size;
+        boolean zIsEmpty;
+        boolean z = false;
+        this.isEmpty = false;
+        if (this.sortType == 2) {
+            this.isEmpty = this.onlineContacts.isEmpty();
+        } else {
+            if (this.onlyUsers == 2) {
+                arrayList = ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray;
+            } else {
+                arrayList = ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
+            }
+            size = arrayList.size();
+            if (size == 0) {
+                this.isEmpty = true;
+            }
+            if (this.onlyUsers == 0) {
+                size++;
+            }
+            if (this.isAdmin) {
+                size++;
+            }
+            zIsEmpty = ContactsController.getInstance(this.currentAccount).phoneBookContacts.isEmpty();
+            this.hasPhonebook = !zIsEmpty;
+            if (this.isEmpty && this.needPhonebook && !this.isAdmin && this.onlyUsers == 0) {
+                z = true;
+            }
+            this.isEmptyWithMainTabs = z;
+            if (z) {
+                return size;
+            }
+            if (zIsEmpty) {
+                return 1;
+            }
+            return 2;
+        }
+        size = 1;
+        if (this.onlyUsers == 0) {
+            size++;
+        }
+        if (this.isAdmin) {
+            size++;
+        }
+        zIsEmpty = ContactsController.getInstance(this.currentAccount).phoneBookContacts.isEmpty();
+        this.hasPhonebook = !zIsEmpty;
+        if (this.isEmpty) {
+            z = true;
+        }
+        this.isEmptyWithMainTabs = z;
+        if (z) {
+            return size;
+        }
+        if (zIsEmpty) {
+            return 2;
+        }
+        return 1;
     }
 
     @Override
@@ -217,7 +317,13 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
         if (this.onlyUsers == 0 || this.isAdmin) {
             if (i == 0) {
-                return this.isEmpty ? (this.includeSearch ? 1 : 0) + 2 : this.isAdmin ? (this.includeSearch ? 1 : 0) + 3 : this.needPhonebook ? (this.includeSearch ? 1 : 0) + 4 : (this.includeSearch ? 1 : 0) + 4;
+                if (this.isEmpty) {
+                    return (this.includeSearch ? 1 : 0) + 2;
+                }
+                if (this.isAdmin) {
+                    return (this.includeSearch ? 1 : 0) + 3;
+                }
+                return this.needPhonebook ? (this.includeSearch ? 1 : 0) + 4 : (this.includeSearch ? 1 : 0) + 4;
             }
             if (this.isEmpty) {
                 return 1;
@@ -271,7 +377,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             } else {
                 letterSectionCell.setLetter("");
             }
-        } else if (i != 0 && i - 1 < arrayList.size()) {
+        } else if (i != 0 && (i2 = i - 1) < arrayList.size()) {
             letterSectionCell.setLetter(arrayList.get(i2));
         } else {
             letterSectionCell.setLetter("");
@@ -340,7 +446,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             }
             textCell = view;
         } else {
-            View dividerCell = new DividerCell(this.mContext);
+            DividerCell dividerCell = new DividerCell(this.mContext);
             dividerCell.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 28.0f : 72.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(LocaleController.isRTL ? 72.0f : 28.0f), AndroidUtilities.dp(8.0f));
             textCell = dividerCell;
         }

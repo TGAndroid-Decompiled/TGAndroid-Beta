@@ -14,7 +14,7 @@ public class TStrokeAtom extends Atom {
         CharBox charBox = new CharBox(teXEnvironment.getTeXFont().getChar(this.upper ? 'T' : 't', "mathnormal", teXEnvironment.getStyle()));
         Box charBox2 = new CharBox(r0);
         if (Math.abs(italic) > 1.0E-7f) {
-            Box horizontalBox = new HorizontalBox(new StrutBox(-italic, 0.0f, 0.0f, 0.0f));
+            HorizontalBox horizontalBox = new HorizontalBox(new StrutBox(-italic, 0.0f, 0.0f, 0.0f));
             horizontalBox.add(charBox2);
             charBox2 = horizontalBox;
         }

@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.nio.ByteBuffer;
-import org.webrtc.VideoFrame;
 
 public class NV12Buffer implements VideoFrame.Buffer {
     private final ByteBuffer buffer;

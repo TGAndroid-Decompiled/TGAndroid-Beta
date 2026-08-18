@@ -56,7 +56,7 @@ public abstract class SlidingWindowKt {
         }
 
         @Override
-        public final java.lang.Object invokeSuspend(java.lang.Object r11) throws java.lang.Throwable {
+        public final java.lang.Object invokeSuspend(java.lang.Object r11) {
             throw new UnsupportedOperationException("Method not decompiled: kotlin.collections.SlidingWindowKt.AnonymousClass1.invokeSuspend(java.lang.Object):java.lang.Object");
         }
     }

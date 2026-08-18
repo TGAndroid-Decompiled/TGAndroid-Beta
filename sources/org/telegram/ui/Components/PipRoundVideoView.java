@@ -22,6 +22,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Bitmaps;
@@ -102,8 +103,10 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
                             this.startDragging = false;
                         }
                     } else if (this.dragging) {
-                        PipRoundVideoView.this.windowLayoutParams.x = (int) (r6.x + f);
-                        PipRoundVideoView.this.windowLayoutParams.y = (int) (r10.y + f2);
+                        WindowManager.LayoutParams layoutParams = PipRoundVideoView.this.windowLayoutParams;
+                        layoutParams.x = (int) (layoutParams.x + f);
+                        WindowManager.LayoutParams layoutParams2 = PipRoundVideoView.this.windowLayoutParams;
+                        layoutParams2.y = (int) (layoutParams2.y + f2);
                         int i = PipRoundVideoView.this.videoWidth / 2;
                         int i2 = -i;
                         if (PipRoundVideoView.this.windowLayoutParams.x < i2) {
@@ -368,7 +371,138 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
     }
 
     public void animateToBoundsMaybe() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PipRoundVideoView.animateToBoundsMaybe():void");
+        ArrayList arrayList;
+        boolean z;
+        AnimatorSet animatorSet;
+        int i;
+        int sideCoord = getSideCoord(true, 0, 0.0f, this.videoWidth);
+        int sideCoord2 = getSideCoord(true, 1, 0.0f, this.videoWidth);
+        int sideCoord3 = getSideCoord(false, 0, 0.0f, this.videoHeight);
+        int sideCoord4 = getSideCoord(false, 1, 0.0f, this.videoHeight);
+        SharedPreferences.Editor editorEdit = this.preferences.edit();
+        int iDp = AndroidUtilities.dp(20.0f);
+        if (Math.abs(sideCoord - this.windowLayoutParams.x) <= iDp || ((i = this.windowLayoutParams.x) < 0 && i > (-this.videoWidth) / 4)) {
+            ArrayList arrayList2 = new ArrayList();
+            editorEdit.putInt("sidex", 0);
+            if (this.windowView.getAlpha() != 1.0f) {
+                arrayList2.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
+            }
+            arrayList2.add(ObjectAnimator.ofInt(this, "x", sideCoord));
+            arrayList = arrayList2;
+        } else {
+            if (Math.abs(sideCoord2 - i) > iDp) {
+                int i2 = this.windowLayoutParams.x;
+                int i3 = AndroidUtilities.displaySize.x;
+                int i4 = this.videoWidth;
+                if (i2 > i3 - i4 && i2 < i3 - ((i4 / 4) * 3)) {
+                    arrayList = new ArrayList();
+                    editorEdit.putInt("sidex", 1);
+                    if (this.windowView.getAlpha() != 1.0f) {
+                        arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
+                    }
+                    arrayList.add(ObjectAnimator.ofInt(this, "x", sideCoord2));
+                } else if (this.windowView.getAlpha() != 1.0f) {
+                    arrayList = new ArrayList();
+                    if (this.windowLayoutParams.x < 0) {
+                        arrayList.add(ObjectAnimator.ofInt(this, "x", -this.videoWidth));
+                    } else {
+                        arrayList.add(ObjectAnimator.ofInt(this, "x", AndroidUtilities.displaySize.x));
+                    }
+                    z = true;
+                } else {
+                    editorEdit.putFloat("px", (this.windowLayoutParams.x - sideCoord) / (sideCoord2 - sideCoord));
+                    editorEdit.putInt("sidex", 2);
+                    arrayList = null;
+                }
+            } else {
+                arrayList = new ArrayList();
+                editorEdit.putInt("sidex", 1);
+                if (this.windowView.getAlpha() != 1.0f) {
+                    arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
+                }
+                arrayList.add(ObjectAnimator.ofInt(this, "x", sideCoord2));
+            }
+            if (!z) {
+                if (Math.abs(sideCoord3 - this.windowLayoutParams.y) > iDp || this.windowLayoutParams.y <= ActionBar.getCurrentActionBarHeight()) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                    }
+                    editorEdit.putInt("sidey", 0);
+                    arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord3));
+                } else if (Math.abs(sideCoord4 - this.windowLayoutParams.y) <= iDp) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                    }
+                    editorEdit.putInt("sidey", 1);
+                    arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord4));
+                } else {
+                    editorEdit.putFloat("py", (this.windowLayoutParams.y - sideCoord3) / (sideCoord4 - sideCoord3));
+                    editorEdit.putInt("sidey", 2);
+                }
+                editorEdit.commit();
+            }
+            if (arrayList != null) {
+                if (this.decelerateInterpolator == null) {
+                    this.decelerateInterpolator = new DecelerateInterpolator();
+                }
+                animatorSet = new AnimatorSet();
+                animatorSet.setInterpolator(this.decelerateInterpolator);
+                animatorSet.setDuration(150L);
+                if (z) {
+                    arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
+                    animatorSet.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            PipRoundVideoView.this.close(false);
+                            if (PipRoundVideoView.this.onCloseRunnable != null) {
+                                PipRoundVideoView.this.onCloseRunnable.run();
+                            }
+                        }
+                    });
+                }
+                animatorSet.playTogether(arrayList);
+                animatorSet.start();
+            }
+        }
+        z = false;
+        if (!z) {
+            if (Math.abs(sideCoord3 - this.windowLayoutParams.y) > iDp) {
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                }
+                editorEdit.putInt("sidey", 0);
+                arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord3));
+            } else {
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                }
+                editorEdit.putInt("sidey", 0);
+                arrayList.add(ObjectAnimator.ofInt(this, "y", sideCoord3));
+            }
+            editorEdit.commit();
+        }
+        if (arrayList != null) {
+            if (this.decelerateInterpolator == null) {
+                this.decelerateInterpolator = new DecelerateInterpolator();
+            }
+            animatorSet = new AnimatorSet();
+            animatorSet.setInterpolator(this.decelerateInterpolator);
+            animatorSet.setDuration(150L);
+            if (z) {
+                arrayList.add(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
+                animatorSet.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        PipRoundVideoView.this.close(false);
+                        if (PipRoundVideoView.this.onCloseRunnable != null) {
+                            PipRoundVideoView.this.onCloseRunnable.run();
+                        }
+                    }
+                });
+            }
+            animatorSet.playTogether(arrayList);
+            animatorSet.start();
+        }
     }
 
     public static PipRoundVideoView getInstance() {

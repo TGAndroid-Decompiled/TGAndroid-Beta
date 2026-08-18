@@ -583,16 +583,11 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             if (!tL_updates.chats.isEmpty()) {
                 MessagesController.getInstance(this.currentAccount).loadFullChat(tL_updates.chats.get(0).id, 0, true);
             }
-            int i = 0;
-            while (true) {
-                if (i >= this.allImporters.size()) {
-                    break;
-                }
+            for (int i = 0; i < this.allImporters.size(); i++) {
                 if (((TLRPC.TL_chatInviteImporter) this.allImporters.get(i)).user_id == tL_chatInviteImporter.user_id) {
                     this.allImporters.remove(i);
                     break;
                 }
-                i++;
             }
             this.adapter.removeItem(tL_chatInviteImporter);
             onImportersChanged(this.query, false, true);
@@ -738,17 +733,12 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             int i = 0;
             while (i < list.size()) {
                 long j = ((TLRPC.TL_chatInviteImporter) list.get(i)).user_id;
-                int i2 = i + 1;
-                while (true) {
-                    if (i2 >= list.size()) {
-                        break;
-                    }
+                for (int i2 = i + 1; i2 < list.size(); i2++) {
                     if (((TLRPC.TL_chatInviteImporter) list.get(i2)).user_id == j) {
                         list.remove(i);
                         i--;
                         break;
                     }
-                    i2++;
                 }
                 i++;
             }
@@ -765,17 +755,12 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             int i = 0;
             while (i < list.size()) {
                 long j = ((TLRPC.TL_chatInviteImporter) list.get(i)).user_id;
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= MemberRequestsDelegate.this.currentImporters.size()) {
-                        break;
-                    }
+                for (int i2 = 0; i2 < MemberRequestsDelegate.this.currentImporters.size(); i2++) {
                     if (((TLRPC.TL_chatInviteImporter) MemberRequestsDelegate.this.currentImporters.get(i2)).user_id == j) {
                         list.remove(i);
                         i--;
                         break;
                     }
-                    i2++;
                 }
                 i++;
             }
@@ -865,7 +850,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                 protected void onMeasure(int i, int i2) {
                     setWillNotDraw(false);
                     super.onMeasure(i, i2);
-                    int iMin = Math.min(Math.min(getMeasuredWidth(), getMeasuredHeight()), (int) (getMeasuredHeight() * 0.66d)) - (AndroidUtilities.dp(12.0f) * 2);
+                    int iMin = Math.min(Math.min(getMeasuredWidth(), getMeasuredHeight()), (int) (((double) getMeasuredHeight()) * 0.66d)) - (AndroidUtilities.dp(12.0f) * 2);
                     int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(iMin, Integer.MIN_VALUE);
                     PreviewDialog.this.viewPager.measure(iMakeMeasureSpec, iMakeMeasureSpec);
                     PreviewDialog.this.pagerIndicator.measure(iMakeMeasureSpec, iMakeMeasureSpec);

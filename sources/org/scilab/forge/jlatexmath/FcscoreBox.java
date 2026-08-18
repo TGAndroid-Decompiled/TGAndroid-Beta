@@ -47,19 +47,19 @@ public class FcscoreBox extends Box {
             scaleX = 1.0d;
         }
         int i = 0;
-        graphics2D.setStroke(new BasicStroke((float) (this.thickness * scaleX), 0, 0));
+        graphics2D.setStroke(new BasicStroke((float) (((double) this.thickness) * scaleX), 0, 0));
         float f3 = this.thickness / 2.0f;
         Line2D.Float r15 = new Line2D.Float();
         float f4 = this.space;
-        int iRound = (int) Math.round((f4 + this.thickness) * scaleX);
-        float f5 = (float) (((f + f4) * scaleX) + ((f4 / 2.0f) * scaleX));
+        int iRound = (int) Math.round(((double) (f4 + this.thickness)) * scaleX);
+        float f5 = (float) ((((double) (f + f4)) * scaleX) + (((double) (f4 / 2.0f)) * scaleX));
         while (i < this.N) {
-            double d = (f3 * scaleX) + f5;
+            double d = (((double) f3) * scaleX) + ((double) f5);
             float f6 = f3;
             int i2 = iRound;
             AffineTransform affineTransform = transform;
             Line2D.Float r3 = r15;
-            r15.setLine(d, (f2 - this.height) * scaleX, d, f2 * scaleX);
+            r15.setLine(d, ((double) (f2 - this.height)) * scaleX, d, ((double) f2) * scaleX);
             graphics2D.draw(r3);
             f5 += i2;
             i++;
@@ -72,13 +72,13 @@ public class FcscoreBox extends Box {
         AffineTransform affineTransform2 = transform;
         Stroke stroke2 = stroke;
         float f7 = f5;
-        Line2D.Float r32 = r15;
+        Line2D.Float r4 = r15;
         if (this.strike) {
             float f8 = this.space;
             float f9 = this.height;
-            r32.setLine((f + f8) * scaleX, (f2 - (f9 / 2.0f)) * scaleX, f7 - ((f8 * scaleX) / 2.0d), (f2 - (f9 / 2.0f)) * scaleX);
+            r4.setLine(((double) (f + f8)) * scaleX, ((double) (f2 - (f9 / 2.0f))) * scaleX, ((double) f7) - ((((double) f8) * scaleX) / 2.0d), ((double) (f2 - (f9 / 2.0f))) * scaleX);
             graphics2D2 = graphics2D;
-            graphics2D2.draw(r32);
+            graphics2D2.draw(r4);
         } else {
             graphics2D2 = graphics2D;
         }

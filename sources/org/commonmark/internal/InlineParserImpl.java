@@ -18,7 +18,9 @@ import org.commonmark.internal.util.Parsing;
 import org.commonmark.node.Code;
 import org.commonmark.node.HardLineBreak;
 import org.commonmark.node.HtmlInline;
+import org.commonmark.node.Image;
 import org.commonmark.node.Link;
+import org.commonmark.node.LinkReferenceDefinition;
 import org.commonmark.node.Node;
 import org.commonmark.node.SoftLineBreak;
 import org.commonmark.node.Text;
@@ -160,39 +162,46 @@ public class InlineParserImpl implements InlineParser {
         if (cPeek == 0) {
             return null;
         }
-        if (cPeek == '\n') {
-            newline = parseNewline(node);
-        } else if (cPeek == '!') {
-            newline = parseBang();
-        } else if (cPeek == '&') {
-            newline = parseEntity();
-        } else if (cPeek == '<') {
-            newline = parseAutolink();
-            if (newline == null) {
-                newline = parseHtmlInline();
-            }
-        } else if (cPeek == '`') {
-            newline = parseBackticks();
-        } else {
-            switch (cPeek) {
-                case '[':
-                    newline = parseOpenBracket();
-                    break;
-                case '\\':
-                    newline = parseBackslash();
-                    break;
-                case ']':
-                    newline = parseCloseBracket();
-                    break;
-                default:
-                    if (this.delimiterCharacters.get(cPeek)) {
-                        newline = parseDelimiters((DelimiterProcessor) this.delimiterProcessors.get(Character.valueOf(cPeek)), cPeek);
-                        break;
+        if (cPeek != '\n') {
+            if (cPeek != '!') {
+                if (cPeek != '&') {
+                    if (cPeek != '<') {
+                        if (cPeek == '`') {
+                            newline = parseBackticks();
+                        } else {
+                            switch (cPeek) {
+                                case '[':
+                                    newline = parseOpenBracket();
+                                    break;
+                                case '\\':
+                                    newline = parseBackslash();
+                                    break;
+                                case ']':
+                                    newline = parseCloseBracket();
+                                    break;
+                                default:
+                                    if (this.delimiterCharacters.get(cPeek)) {
+                                        newline = parseDelimiters((DelimiterProcessor) this.delimiterProcessors.get(Character.valueOf(cPeek)), cPeek);
+                                    } else {
+                                        newline = parseString();
+                                    }
+                                    break;
+                            }
+                        }
                     } else {
-                        newline = parseString();
-                        break;
+                        newline = parseAutolink();
+                        if (newline == null) {
+                            newline = parseHtmlInline();
+                        }
                     }
+                } else {
+                    newline = parseEntity();
+                }
+            } else {
+                newline = parseBang();
             }
+        } else {
+            newline = parseNewline(node);
         }
         if (newline != null) {
             return newline;
@@ -331,8 +340,158 @@ public class InlineParserImpl implements InlineParser {
         return text("!");
     }
 
-    private org.commonmark.node.Node parseCloseBracket() {
-        throw new UnsupportedOperationException("Method not decompiled: org.commonmark.internal.InlineParserImpl.parseCloseBracket():org.commonmark.node.Node");
+    private Node parseCloseBracket() {
+        String destination;
+        String title;
+        boolean z;
+        Node link;
+        Node next;
+        Bracket bracket;
+        int i;
+        int i2;
+        LinkReferenceDefinition linkReferenceDefinition;
+        boolean z2 = true;
+        int i3 = this.index + 1;
+        this.index = i3;
+        Bracket bracket2 = this.lastBracket;
+        if (bracket2 == null) {
+            return text("]");
+        }
+        if (!bracket2.allowed) {
+            removeLastBracket();
+            return text("]");
+        }
+        String strSubstring = null;
+        if (peek() == '(') {
+            this.index++;
+            spnl();
+            destination = parseLinkDestination();
+            if (destination != null) {
+                spnl();
+                Pattern pattern = WHITESPACE;
+                String str = this.input;
+                int i4 = this.index;
+                if (pattern.matcher(str.substring(i4 - 1, i4)).matches()) {
+                    title = parseLinkTitle();
+                    spnl();
+                } else {
+                    title = null;
+                }
+                if (peek() == ')') {
+                    this.index++;
+                    z = true;
+                } else {
+                    this.index = i3;
+                }
+                if (z) {
+                    z2 = z;
+                } else {
+                    i = this.index;
+                    parseLinkLabel();
+                    i2 = this.index - i;
+                    if (i2 > 2) {
+                        strSubstring = this.input.substring(i, i2 + i);
+                    } else if (!bracket2.bracketAfter) {
+                        strSubstring = this.input.substring(bracket2.index, i3);
+                    }
+                    if (strSubstring != null) {
+                        linkReferenceDefinition = this.context.getLinkReferenceDefinition(Escaping.normalizeReference(strSubstring));
+                        if (linkReferenceDefinition != null) {
+                            destination = linkReferenceDefinition.getDestination();
+                            title = linkReferenceDefinition.getTitle();
+                        } else {
+                            z2 = z;
+                        }
+                    } else {
+                        z2 = z;
+                    }
+                }
+                if (z2) {
+                    if (bracket2.image) {
+                        link = new Image(destination, title);
+                    } else {
+                        link = new Link(destination, title);
+                    }
+                    next = bracket2.node.getNext();
+                    while (next != null) {
+                        Node next2 = next.getNext();
+                        link.appendChild(next);
+                        next = next2;
+                    }
+                    processDelimiters(bracket2.previousDelimiter);
+                    mergeChildTextNodes(link);
+                    bracket2.node.unlink();
+                    removeLastBracket();
+                    if (!bracket2.image) {
+                        for (bracket = this.lastBracket; bracket != null; bracket = bracket.previous) {
+                            if (!bracket.image) {
+                                bracket.allowed = false;
+                            }
+                        }
+                    }
+                    return link;
+                }
+                this.index = i3;
+                removeLastBracket();
+                return text("]");
+            }
+            title = null;
+        } else {
+            destination = null;
+            title = null;
+        }
+        z = false;
+        if (z) {
+            i = this.index;
+            parseLinkLabel();
+            i2 = this.index - i;
+            if (i2 > 2) {
+                strSubstring = this.input.substring(i, i2 + i);
+            } else if (!bracket2.bracketAfter) {
+                strSubstring = this.input.substring(bracket2.index, i3);
+            }
+            if (strSubstring != null) {
+                linkReferenceDefinition = this.context.getLinkReferenceDefinition(Escaping.normalizeReference(strSubstring));
+                if (linkReferenceDefinition != null) {
+                    destination = linkReferenceDefinition.getDestination();
+                    title = linkReferenceDefinition.getTitle();
+                } else {
+                    z2 = z;
+                }
+            } else {
+                z2 = z;
+            }
+        } else {
+            z2 = z;
+        }
+        if (z2) {
+            if (bracket2.image) {
+                link = new Image(destination, title);
+            } else {
+                link = new Link(destination, title);
+            }
+            next = bracket2.node.getNext();
+            while (next != null) {
+                Node next3 = next.getNext();
+                link.appendChild(next);
+                next = next3;
+            }
+            processDelimiters(bracket2.previousDelimiter);
+            mergeChildTextNodes(link);
+            bracket2.node.unlink();
+            removeLastBracket();
+            if (!bracket2.image) {
+                while (bracket != null) {
+                    if (!bracket.image) {
+                        bracket.allowed = false;
+                    }
+                }
+            }
+            return link;
+        }
+        this.index = i3;
+        removeLastBracket();
+        return text("]");
     }
 
     private void addBracket(Bracket bracket) {
@@ -508,7 +667,12 @@ public class InlineParserImpl implements InlineParser {
                 Delimiter delimiter4 = delimiter2.previous;
                 int delimiterUse = 0;
                 boolean z2 = false;
-                while (delimiter4 != null && delimiter4 != delimiter && delimiter4 != map.get(Character.valueOf(c))) {
+                while (true) {
+                    if (delimiter4 == null || delimiter4 == delimiter || delimiter4 == map.get(Character.valueOf(c))) {
+                        z = z2;
+                        z2 = false;
+                        break;
+                    }
                     if (delimiter4.canOpen && delimiter4.delimiterChar == openingCharacter) {
                         delimiterUse = delimiterProcessor.getDelimiterUse(delimiter4, delimiter2);
                         z2 = true;
@@ -519,8 +683,6 @@ public class InlineParserImpl implements InlineParser {
                     }
                     delimiter4 = delimiter4.previous;
                 }
-                z = z2;
-                z2 = false;
                 if (!z2) {
                     if (!z) {
                         map.put(Character.valueOf(c), delimiter2.previous);

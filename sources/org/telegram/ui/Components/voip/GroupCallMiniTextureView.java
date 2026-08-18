@@ -15,6 +15,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.text.Layout;
@@ -23,6 +24,7 @@ import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,12 +36,14 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
@@ -56,7 +60,7 @@ import org.telegram.ui.Components.GroupCallFullscreenAdapter;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RLottieImageView;
-import org.telegram.ui.Components.voip.GroupCallStatusIcon;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.GroupCallActivity;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.RendererCommon;
@@ -265,9 +269,11 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                     if (videoParticipant == call.videoNotAvailableParticipant) {
                         if (groupCallMiniTextureView4.showingInFullscreen || !groupCallRenderersContainer.inFullscreenMode) {
                             float fDp2 = AndroidUtilities.dp(48.0f);
+                            float measuredWidth = (getMeasuredWidth() - fDp2) / 2.0f;
+                            float measuredHeight = (getMeasuredHeight() / 2) - fDp2;
                             textPaint.setAlpha(255);
                             canvas.save();
-                            canvas.translate((((getMeasuredWidth() - fDp2) / 2.0f) - (AndroidUtilities.dp(400.0f) / 2.0f)) + (fDp2 / 2.0f), ((getMeasuredHeight() / 2) - fDp2) + fDp2 + AndroidUtilities.dp(10.0f));
+                            canvas.translate((measuredWidth - (AndroidUtilities.dp(400.0f) / 2.0f)) + (fDp2 / 2.0f), measuredHeight + fDp2 + AndroidUtilities.dp(10.0f));
                             staticLayout2.draw(canvas);
                             canvas.restore();
                         }
@@ -296,7 +302,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                             fDp = AndroidUtilities.dp(10.0f) * Math.max(1.0f - groupCallRenderersContainer.progressToFullscreenMode, (GroupCallMiniTextureView.this.showingAsScrimView || GroupCallMiniTextureView.this.animateToScrimView) ? groupCallRenderersContainer.progressToScrimView : 0.0f);
                         }
                         int i = (int) (f + fDp);
-                        int measuredWidth = (getMeasuredWidth() - i) / 2;
+                        int measuredWidth2 = (getMeasuredWidth() - i) / 2;
                         float f6 = (GroupCallMiniTextureView.this.showingAsScrimView || GroupCallMiniTextureView.this.animateToScrimView) ? groupCallRenderersContainer.progressToScrimView : 0.0f;
                         GroupCallMiniTextureView groupCallMiniTextureView6 = GroupCallMiniTextureView.this;
                         if (groupCallMiniTextureView6.showingInFullscreen) {
@@ -305,12 +311,13 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                             f5 = groupCallMiniTextureView6.animateToFullscreen ? groupCallRenderersContainer.progressToFullscreenMode : f6;
                             f2 = (groupCallMiniTextureView6.showingAsScrimView || GroupCallMiniTextureView.this.animateToScrimView) ? groupCallRenderersContainer.progressToScrimView : groupCallRenderersContainer.progressToFullscreenMode;
                         }
-                        float measuredHeight = ((getMeasuredHeight() - i) / 2) - AndroidUtilities.dp(28.0f);
+                        float measuredHeight2 = ((getMeasuredHeight() - i) / 2) - AndroidUtilities.dp(28.0f);
                         float fDp3 = AndroidUtilities.dp(17.0f);
                         float fDp4 = AndroidUtilities.dp(74.0f);
                         GroupCallMiniTextureView groupCallMiniTextureView7 = GroupCallMiniTextureView.this;
-                        int iDp3 = (int) ((measuredHeight - ((fDp3 + (fDp4 * ((groupCallMiniTextureView7.showingInFullscreen || groupCallMiniTextureView7.animateToFullscreen) ? groupCallRenderersContainer.progressToFullscreenMode : 0.0f))) * f5)) + (AndroidUtilities.dp(17.0f) * f2));
-                        GroupCallMiniTextureView.this.castingScreenDrawable.setBounds(measuredWidth, iDp3, measuredWidth + i, iDp3 + i);
+                        int iDp3 = (int) ((measuredHeight2 - ((fDp3 + (fDp4 * ((groupCallMiniTextureView7.showingInFullscreen || groupCallMiniTextureView7.animateToFullscreen) ? groupCallRenderersContainer.progressToFullscreenMode : 0.0f))) * f5)) + (AndroidUtilities.dp(17.0f) * f2));
+                        int i2 = iDp3 + i;
+                        GroupCallMiniTextureView.this.castingScreenDrawable.setBounds(measuredWidth2, iDp3, measuredWidth2 + i, i2);
                         GroupCallMiniTextureView.this.castingScreenDrawable.draw(canvas);
                         float f7 = groupCallRenderersContainer.progressToFullscreenMode;
                         if (f7 <= 0.0f && f6 <= 0.0f) {
@@ -324,14 +331,15 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                             } else {
                                 groupCallMiniTextureView8.stopSharingTextView.setAlpha(0.0f);
                             }
-                            canvas.drawText(string3, (measuredWidth - (fMeasureText2 / 2.0f)) + (i / 2.0f), AndroidUtilities.dp(32.0f) + r12, textPaint2);
+                            canvas.drawText(string3, (measuredWidth2 - (fMeasureText2 / 2.0f)) + (i / 2.0f), AndroidUtilities.dp(32.0f) + i2, textPaint2);
                         }
-                        GroupCallMiniTextureView.this.stopSharingTextView.setTranslationY(((AndroidUtilities.dp(72.0f) + r12) + GroupCallMiniTextureView.this.swipeToBackDy) - this.currentClipVertical);
+                        GroupCallMiniTextureView.this.stopSharingTextView.setTranslationY(((AndroidUtilities.dp(72.0f) + i2) + GroupCallMiniTextureView.this.swipeToBackDy) - this.currentClipVertical);
                         GroupCallMiniTextureView.this.stopSharingTextView.setTranslationX(((getMeasuredWidth() - GroupCallMiniTextureView.this.stopSharingTextView.getMeasuredWidth()) / 2.0f) - this.currentClipHorizontal);
-                        if (groupCallRenderersContainer.progressToFullscreenMode < 1.0f && f6 < 1.0f) {
-                            textPaint.setAlpha((int) ((1.0d - Math.max(r2, f6)) * 255.0d));
+                        float f8 = groupCallRenderersContainer.progressToFullscreenMode;
+                        if (f8 < 1.0f && f6 < 1.0f) {
+                            textPaint.setAlpha((int) ((1.0d - ((double) Math.max(f8, f6))) * 255.0d));
                             canvas.save();
-                            canvas.translate((measuredWidth - (AndroidUtilities.dp(400.0f) / 2.0f)) + (i / 2.0f), r12 + AndroidUtilities.dp(10.0f));
+                            canvas.translate((measuredWidth2 - (AndroidUtilities.dp(400.0f) / 2.0f)) + (i / 2.0f), i2 + AndroidUtilities.dp(10.0f));
                             staticLayout.draw(canvas);
                             canvas.restore();
                         }
@@ -348,16 +356,16 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                     groupCallMiniTextureView10.blurredFlippingStub.setScaleY(groupCallMiniTextureView10.textureView.renderer.getScaleY());
                 }
                 super.dispatchDraw(canvas);
-                float measuredHeight2 = (getMeasuredHeight() - this.currentClipVertical) - AndroidUtilities.dp(80.0f);
+                float measuredHeight3 = (getMeasuredHeight() - this.currentClipVertical) - AndroidUtilities.dp(80.0f);
                 if (GroupCallMiniTextureView.this.participant != call.videoNotAvailableParticipant) {
                     canvas.save();
                     GroupCallMiniTextureView groupCallMiniTextureView11 = GroupCallMiniTextureView.this;
                     if ((groupCallMiniTextureView11.showingInFullscreen || groupCallMiniTextureView11.animateToFullscreen) && !GroupCallActivity.isLandscapeMode && !GroupCallActivity.isTabletMode) {
                         float fDp5 = AndroidUtilities.dp(90.0f);
                         GroupCallRenderersContainer groupCallRenderersContainer2 = groupCallRenderersContainer;
-                        measuredHeight2 -= (fDp5 * groupCallRenderersContainer2.progressToFullscreenMode) * (1.0f - groupCallRenderersContainer2.progressToHideUi);
+                        measuredHeight3 -= (fDp5 * groupCallRenderersContainer2.progressToFullscreenMode) * (1.0f - groupCallRenderersContainer2.progressToHideUi);
                     }
-                    canvas.translate(0.0f, measuredHeight2);
+                    canvas.translate(0.0f, measuredHeight3);
                     canvas.drawPaint(GroupCallMiniTextureView.this.gradientPaint);
                     canvas.restore();
                 }
@@ -379,39 +387,39 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
                             invalidate();
                         }
                     }
-                    float f8 = GroupCallMiniTextureView.this.videoIsPausedProgress;
+                    float f9 = GroupCallMiniTextureView.this.videoIsPausedProgress;
                     if (isInAnimation()) {
-                        float f9 = this.overlayIconAlphaFrom;
-                        float f10 = this.animationProgress;
-                        f3 = (f9 * (1.0f - f10)) + (GroupCallMiniTextureView.this.overlayIconAlpha * f10);
+                        float f10 = this.overlayIconAlphaFrom;
+                        float f11 = this.animationProgress;
+                        f3 = (f10 * (1.0f - f11)) + (GroupCallMiniTextureView.this.overlayIconAlpha * f11);
                     } else {
                         f3 = GroupCallMiniTextureView.this.overlayIconAlpha;
                     }
-                    float f11 = f8 * f3;
-                    if (f11 > 0.0f) {
+                    float f12 = f9 * f3;
+                    if (f12 > 0.0f) {
                         float fDp6 = AndroidUtilities.dp(48.0f);
-                        float measuredWidth2 = (getMeasuredWidth() - fDp6) / 2.0f;
-                        float measuredHeight3 = (getMeasuredHeight() - fDp6) / 2.0f;
+                        float measuredWidth3 = (getMeasuredWidth() - fDp6) / 2.0f;
+                        float measuredHeight4 = (getMeasuredHeight() - fDp6) / 2.0f;
                         if (GroupCallMiniTextureView.this.participant == call.videoNotAvailableParticipant) {
-                            measuredHeight3 -= fDp6 / 2.5f;
+                            measuredHeight4 -= fDp6 / 2.5f;
                         }
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f12 = measuredHeight3 + fDp6;
-                        rectF.set((int) measuredWidth2, (int) measuredHeight3, (int) (measuredWidth2 + fDp6), (int) f12);
-                        if (f11 != 1.0f) {
-                            canvas.saveLayerAlpha(rectF, (int) (f11 * 255.0f), 31);
+                        float f13 = measuredHeight4 + fDp6;
+                        rectF.set((int) measuredWidth3, (int) measuredHeight4, (int) (measuredWidth3 + fDp6), (int) f13);
+                        if (f12 != 1.0f) {
+                            canvas.saveLayerAlpha(rectF, (int) (f12 * 255.0f), 31);
                         } else {
                             canvas.save();
                         }
                         GroupCallMiniTextureView.this.pausedVideoDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                         GroupCallMiniTextureView.this.pausedVideoDrawable.draw(canvas);
                         canvas.restore();
-                        float f13 = f11 * groupCallRenderersContainer.progressToFullscreenMode;
-                        if (f13 <= 0.0f || GroupCallMiniTextureView.this.participant == call.videoNotAvailableParticipant) {
+                        float f14 = f12 * groupCallRenderersContainer.progressToFullscreenMode;
+                        if (f14 <= 0.0f || GroupCallMiniTextureView.this.participant == call.videoNotAvailableParticipant) {
                             return;
                         }
-                        textPaint.setAlpha((int) (f13 * 255.0f));
-                        canvas.drawText(string, (measuredWidth2 - (fMeasureText / 2.0f)) + (fDp6 / 2.0f), f12 + AndroidUtilities.dp(16.0f), textPaint);
+                        textPaint.setAlpha((int) (f14 * 255.0f));
+                        canvas.drawText(string, (measuredWidth3 - (fMeasureText / 2.0f)) + (fDp6 / 2.0f), f13 + AndroidUtilities.dp(16.0f), textPaint);
                     }
                 }
             }
@@ -631,8 +639,110 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.GroupCallMiniTextureView.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        float f;
+        float f2;
+        if (this.attached) {
+            float y = (((this.textureView.getY() + this.textureView.getMeasuredHeight()) - this.textureView.currentClipVertical) - this.infoContainer.getMeasuredHeight()) + this.swipeToBackDy;
+            if (this.showingAsScrimView || this.animateToScrimView) {
+                this.infoContainer.setAlpha(1.0f - this.parentContainer.progressToScrimView);
+                this.micIconView.setAlpha(1.0f - this.parentContainer.progressToScrimView);
+            } else if (this.showingInFullscreen || this.animateToFullscreen) {
+                if (!GroupCallActivity.isLandscapeMode && !GroupCallActivity.isTabletMode) {
+                    float fDp = AndroidUtilities.dp(90.0f);
+                    GroupCallRenderersContainer groupCallRenderersContainer = this.parentContainer;
+                    y -= (fDp * groupCallRenderersContainer.progressToFullscreenMode) * (1.0f - groupCallRenderersContainer.progressToHideUi);
+                }
+                this.infoContainer.setAlpha(1.0f);
+                this.micIconView.setAlpha(1.0f);
+            } else if (this.secondaryView != null) {
+                this.infoContainer.setAlpha(1.0f - this.parentContainer.progressToFullscreenMode);
+                this.micIconView.setAlpha(1.0f - this.parentContainer.progressToFullscreenMode);
+            } else {
+                this.infoContainer.setAlpha(1.0f);
+                this.micIconView.setAlpha(1.0f);
+            }
+            if (this.showingInFullscreen || this.animateToFullscreen) {
+                this.nameView.setFullAlpha(this.parentContainer.progressToFullscreenMode);
+            } else {
+                this.nameView.setFullAlpha(0.0f);
+            }
+            this.micIconView.setTranslationX(this.infoContainer.getX());
+            this.micIconView.setTranslationY(y - AndroidUtilities.dp(2.0f));
+            if (this.screencastIcon.getVisibility() == 0) {
+                this.screencastIcon.setTranslationX((this.textureView.getMeasuredWidth() - (this.textureView.currentClipHorizontal * 2.0f)) - AndroidUtilities.dp(32.0f));
+                this.screencastIcon.setTranslationY(y - AndroidUtilities.dp(2.0f));
+                ImageView imageView = this.screencastIcon;
+                GroupCallRenderersContainer groupCallRenderersContainer2 = this.parentContainer;
+                imageView.setAlpha(Math.min(1.0f - groupCallRenderersContainer2.progressToFullscreenMode, 1.0f - groupCallRenderersContainer2.progressToScrimView));
+            }
+            this.infoContainer.setTranslationY(y);
+            this.infoContainer.setTranslationX(this.drawFirst ? 0.0f : AndroidUtilities.dp(6.0f) * this.parentContainer.progressToFullscreenMode);
+        }
+        super.dispatchDraw(canvas);
+        if (this.attached) {
+            GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
+            if (groupCallStatusIcon != null) {
+                boolean z = groupCallStatusIcon.isSpeaking;
+                if (z) {
+                    float f3 = this.progressToSpeaking;
+                    if (f3 != 1.0f) {
+                        float f4 = f3 + 0.053333335f;
+                        this.progressToSpeaking = f4;
+                        if (f4 > 1.0f) {
+                            this.progressToSpeaking = 1.0f;
+                        } else {
+                            invalidate();
+                        }
+                    } else if (!z) {
+                        f = this.progressToSpeaking;
+                        if (f != 0.0f) {
+                            f2 = f - 0.053333335f;
+                            this.progressToSpeaking = f2;
+                            if (f2 < 0.0f) {
+                                this.progressToSpeaking = 0.0f;
+                            } else {
+                                invalidate();
+                            }
+                        }
+                    }
+                } else if (!z) {
+                    f = this.progressToSpeaking;
+                    if (f != 0.0f) {
+                        f2 = f - 0.053333335f;
+                        this.progressToSpeaking = f2;
+                        if (f2 < 0.0f) {
+                            this.progressToSpeaking = 0.0f;
+                        } else {
+                            invalidate();
+                        }
+                    }
+                }
+            }
+            float f5 = this.progressToSpeaking;
+            GroupCallRenderersContainer groupCallRenderersContainer3 = this.parentContainer;
+            float f6 = (1.0f - groupCallRenderersContainer3.progressToFullscreenMode) * f5 * (1.0f - groupCallRenderersContainer3.progressToScrimView);
+            if (f5 > 0.0f) {
+                this.speakingPaint.setAlpha((int) (f6 * 255.0f));
+                float fMax = (Math.max(0.0f, 1.0f - (Math.abs(this.swipeToBackDy) / AndroidUtilities.dp(300.0f))) * 0.1f) + 0.9f;
+                canvas.save();
+                RectF rectF = AndroidUtilities.rectTmp;
+                float x = this.textureView.getX();
+                VoIPTextureView voIPTextureView = this.textureView;
+                float f7 = x + voIPTextureView.currentClipHorizontal;
+                float y2 = voIPTextureView.getY();
+                VoIPTextureView voIPTextureView2 = this.textureView;
+                float f8 = y2 + voIPTextureView2.currentClipVertical;
+                float x2 = voIPTextureView2.getX() + this.textureView.getMeasuredWidth();
+                VoIPTextureView voIPTextureView3 = this.textureView;
+                rectF.set(f7, f8, x2 - voIPTextureView3.currentClipHorizontal, (voIPTextureView3.getY() + this.textureView.getMeasuredHeight()) - this.textureView.currentClipVertical);
+                canvas.scale(fMax, fMax, rectF.centerX(), rectF.centerY());
+                canvas.translate(0.0f, this.swipeToBackDy);
+                float f9 = this.textureView.roundRadius;
+                canvas.drawRoundRect(rectF, f9, f9, this.speakingPaint);
+                canvas.restore();
+            }
+        }
     }
 
     public void getRenderBufferBitmap(GlGenericDrawer.TextureCallback textureCallback) {
@@ -654,8 +764,145 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
     }
 
     @Override
-    protected void onMeasure(int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.GroupCallMiniTextureView.onMeasure(int, int):void");
+    protected void onMeasure(int i, int i2) {
+        float size;
+        int iDp;
+        GroupCallGridCell groupCallGridCell;
+        int i3;
+        float itemHeight;
+        int iDp2;
+        float f;
+        float fDp;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.infoContainer.getLayoutParams();
+        int i4 = layoutParams.leftMargin;
+        float f2 = this.call.call.rtmp_stream ? 0.0f : 1.0f;
+        boolean z = this.lastLandscapeMode;
+        boolean z2 = GroupCallActivity.isLandscapeMode;
+        if (z != z2) {
+            this.checkScale = true;
+            this.lastLandscapeMode = z2;
+        }
+        int iDp3 = AndroidUtilities.dp(2.0f);
+        layoutParams.rightMargin = iDp3;
+        layoutParams.leftMargin = iDp3;
+        if (this.updateNextLayoutAnimated) {
+            this.nameView.animate().scaleX(f2).scaleY(f2).start();
+            this.micIconView.animate().scaleX(f2).scaleY(f2).start();
+        } else {
+            this.nameView.animate().cancel();
+            this.nameView.setScaleX(f2);
+            this.nameView.setScaleY(f2);
+            this.micIconView.animate().cancel();
+            this.micIconView.setScaleX(f2);
+            this.micIconView.setScaleY(f2);
+            this.infoContainer.animate().cancel();
+        }
+        this.updateNextLayoutAnimated = false;
+        if (this.showingInFullscreen) {
+            updateSize(0);
+            this.overlayIconAlpha = 1.0f;
+            if (GroupCallActivity.isTabletMode) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i) - AndroidUtilities.dp(328.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) - AndroidUtilities.dp(4.0f), 1073741824));
+            } else if (!GroupCallActivity.isLandscapeMode) {
+                int size2 = View.MeasureSpec.getSize(i2);
+                if (!this.call.call.rtmp_stream) {
+                    size2 -= AndroidUtilities.dp(92.0f);
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            } else {
+                int size3 = View.MeasureSpec.getSize(i);
+                if (!this.call.call.rtmp_stream) {
+                    size3 -= AndroidUtilities.dp(92.0f);
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
+            }
+        } else if (this.showingAsScrimView) {
+            this.overlayIconAlpha = 1.0f;
+            int iMin = Math.min(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2)) - (AndroidUtilities.dp(14.0f) * 2);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(iMin, 1073741824), View.MeasureSpec.makeMeasureSpec(iMin + getPaddingBottom(), 1073741824));
+        } else if (this.useSpanSize) {
+            this.overlayIconAlpha = 1.0f;
+            int i5 = ((!GroupCallActivity.isTabletMode || this.tabletGridView == null) && !GroupCallActivity.isLandscapeMode) ? 2 : 6;
+            if (this.tabletGridView != null) {
+                iDp = View.MeasureSpec.getSize(i) - AndroidUtilities.dp(344.0f);
+            } else {
+                if (GroupCallActivity.isTabletMode) {
+                    iDp = AndroidUtilities.dp(320.0f);
+                } else {
+                    size = (View.MeasureSpec.getSize(i) - (AndroidUtilities.dp(14.0f) * 2)) + (GroupCallActivity.isLandscapeMode ? -AndroidUtilities.dp(90.0f) : 0);
+                }
+                float f3 = (this.spanCount / i5) * size;
+                groupCallGridCell = this.tabletGridView;
+                if (groupCallGridCell != null) {
+                    itemHeight = groupCallGridCell.getItemHeight() - AndroidUtilities.dp(4.0f);
+                    iDp2 = AndroidUtilities.dp(4.0f);
+                } else {
+                    if (GroupCallActivity.isTabletMode) {
+                        itemHeight = size / 2.0f;
+                    } else {
+                        if (GroupCallActivity.isLandscapeMode) {
+                            i3 = 3;
+                        } else {
+                            i3 = 2;
+                        }
+                        itemHeight = size / i3;
+                    }
+                    iDp2 = AndroidUtilities.dp(2.0f);
+                }
+                f = f3 - iDp2;
+                FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.infoContainer.getLayoutParams();
+                if (this.screencastIcon.getVisibility() == 0) {
+                    fDp = f - AndroidUtilities.dp(28.0f);
+                } else {
+                    fDp = f;
+                }
+                updateSize((int) fDp);
+                layoutParams2.width = (int) (fDp - (layoutParams2.leftMargin * 2));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) f, 1073741824), View.MeasureSpec.makeMeasureSpec((int) itemHeight, 1073741824));
+            }
+            size = iDp;
+            float f4 = (this.spanCount / i5) * size;
+            groupCallGridCell = this.tabletGridView;
+            if (groupCallGridCell != null) {
+                itemHeight = groupCallGridCell.getItemHeight() - AndroidUtilities.dp(4.0f);
+                iDp2 = AndroidUtilities.dp(4.0f);
+            } else {
+                if (GroupCallActivity.isTabletMode) {
+                    itemHeight = size / 2.0f;
+                } else {
+                    if (GroupCallActivity.isLandscapeMode) {
+                        i3 = 3;
+                    } else {
+                        i3 = 2;
+                    }
+                    itemHeight = size / i3;
+                }
+                iDp2 = AndroidUtilities.dp(2.0f);
+            }
+            f = f4 - iDp2;
+            FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.infoContainer.getLayoutParams();
+            if (this.screencastIcon.getVisibility() == 0) {
+                fDp = f - AndroidUtilities.dp(28.0f);
+            } else {
+                fDp = f;
+            }
+            updateSize((int) fDp);
+            layoutParams3.width = (int) (fDp - (layoutParams3.leftMargin * 2));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) f, 1073741824), View.MeasureSpec.makeMeasureSpec((int) itemHeight, 1073741824));
+        } else {
+            this.overlayIconAlpha = 0.0f;
+            super.onMeasure(i, i2);
+        }
+        int size4 = View.MeasureSpec.getSize(i2) + (View.MeasureSpec.getSize(i) << 16);
+        if (this.lastSize != size4) {
+            this.lastSize = size4;
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(120.0f), 0, ColorUtils.setAlphaComponent(-16777216, 120), Shader.TileMode.CLAMP);
+            this.gradientShader = linearGradient;
+            this.gradientPaint.setShader(linearGradient);
+        }
+        this.nameView.setPivotX(0.0f);
+        SimpleTextView simpleTextView = this.nameView;
+        simpleTextView.setPivotY(simpleTextView.getMeasuredHeight() / 2.0f);
     }
 
     @Override
@@ -739,8 +986,873 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         }
     }
 
-    public void updateAttachState(boolean r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.GroupCallMiniTextureView.updateAttachState(boolean):void");
+    public void updateAttachState(boolean z) {
+        boolean z2;
+        boolean z3;
+        boolean z4;
+        boolean z5;
+        int iDp;
+        boolean z6;
+        int itemCount;
+        float f;
+        ViewGroup.MarginLayoutParams marginLayoutParams;
+        ChatObject.VideoParticipant videoParticipant;
+        ChatObject.VideoParticipant videoParticipant2;
+        long peerId;
+        ImageLocation forChat;
+        ImageLocation forChat2;
+        Object obj;
+        AvatarDrawable avatarDrawable;
+        Drawable drawable;
+        boolean z7;
+        BitmapDrawable imageFromMemory;
+        boolean z8;
+        ChatObject.VideoParticipant videoParticipant3;
+        TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo;
+        TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo2;
+        ValueAnimator valueAnimator;
+        boolean z9;
+        float f2;
+        int i;
+        float f3;
+        ChatObject.Call call;
+        GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell;
+        GroupCallGridCell groupCallGridCell;
+        GroupCallGridCell groupCallGridCell2;
+        ChatObject.VideoParticipant videoParticipant4;
+        GroupCallGridCell groupCallGridCell3;
+        boolean z10 = false;
+        if (this.forceDetached) {
+            return;
+        }
+        if (this.call.call.rtmp_stream) {
+            int iDp2 = AndroidUtilities.dp(this.showingInFullscreen ? 36.0f : 21.0f);
+            this.noRtmpStreamTextView.setPadding(iDp2, 0, iDp2, 0);
+        }
+        if (this.participant == null && ((groupCallGridCell3 = this.primaryView) != null || this.secondaryView != null || this.tabletGridView != null)) {
+            if (groupCallGridCell3 != null) {
+                this.participant = groupCallGridCell3.getParticipant();
+            } else {
+                GroupCallGridCell groupCallGridCell4 = this.tabletGridView;
+                if (groupCallGridCell4 != null) {
+                    this.participant = groupCallGridCell4.getParticipant();
+                } else {
+                    this.participant = this.secondaryView.getVideoParticipant();
+                }
+            }
+        }
+        boolean z11 = this.attached;
+        if (z11 && !this.showingInFullscreen) {
+            boolean z12 = VoIPService.getSharedInstance() == null;
+            if (GroupCallActivity.paused || (videoParticipant4 = this.participant) == null) {
+                z12 = true;
+            } else if (this.secondaryView == null) {
+                if (ChatObject.Call.videoIsActive(videoParticipant4.participant, videoParticipant4.presentation, this.call)) {
+                    ChatObject.Call call2 = this.call;
+                    if (!call2.canStreamVideo && this.participant != call2.videoNotAvailableParticipant) {
+                        z12 = true;
+                    }
+                } else {
+                    z12 = true;
+                }
+            }
+            if (z12 || (this.primaryView == null && this.secondaryView == null && this.tabletGridView == null && !this.showingAsScrimView && !this.animateToScrimView)) {
+                this.attached = false;
+                saveThumb();
+                final boolean z13 = SharedConfig.getDevicePerformanceClass() <= 0;
+                if (this.textureView.currentAnimation == null && z12) {
+                    if (z13) {
+                        this.parentContainer.detach(this);
+                    }
+                    animate().scaleX(0.5f).scaleY(0.5f).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            this.setScaleX(1.0f);
+                            this.setScaleY(1.0f);
+                            this.setAlpha(1.0f);
+                            if (z13) {
+                                GroupCallMiniTextureView.this.parentContainer.removeView(this);
+                                GroupCallMiniTextureView.this.release();
+                            }
+                            this.setVisibility(8);
+                        }
+                    }).setDuration(150L).start();
+                } else {
+                    GroupCallRenderersContainer groupCallRenderersContainer = this.parentContainer;
+                    if (groupCallRenderersContainer.inLayout) {
+                        Runnable runnable = this.hideRunnable;
+                        if (runnable != null) {
+                            AndroidUtilities.cancelRunOnUIThread(runnable);
+                            this.hideRunnable = null;
+                        }
+                        Runnable runnable2 = new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$updateAttachState$2(z13, this);
+                            }
+                        };
+                        this.hideRunnable = runnable2;
+                        AndroidUtilities.runOnUIThread(runnable2);
+                    } else {
+                        if (z13) {
+                            groupCallRenderersContainer.removeView(this);
+                        }
+                        setVisibility(8);
+                    }
+                    if (z13) {
+                        this.parentContainer.detach(this);
+                        release();
+                    }
+                }
+                if (this.participant.participant.self) {
+                    if (VoIPService.getSharedInstance() != null) {
+                        VoIPService.getSharedInstance().setLocalSink(null, this.participant.presentation);
+                    }
+                } else if (VoIPService.getSharedInstance() != null) {
+                    VoIPService sharedInstance = VoIPService.getSharedInstance();
+                    ChatObject.VideoParticipant videoParticipant5 = this.participant;
+                    sharedInstance.removeRemoteSink(videoParticipant5.participant, videoParticipant5.presentation);
+                }
+                invalidate();
+                ValueAnimator valueAnimator2 = this.noVideoStubAnimator;
+                if (valueAnimator2 != null) {
+                    valueAnimator2.removeAllListeners();
+                    this.noVideoStubAnimator.cancel();
+                }
+            }
+        } else {
+            if (!z11) {
+                if (VoIPService.getSharedInstance() == null) {
+                    return;
+                }
+                GroupCallGridCell groupCallGridCell5 = this.primaryView;
+                if (groupCallGridCell5 != null || this.secondaryView != null || this.tabletGridView != null || this.showingInFullscreen) {
+                    if (groupCallGridCell5 != null) {
+                        this.participant = groupCallGridCell5.getParticipant();
+                    } else {
+                        GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell2 = this.secondaryView;
+                        if (groupCallUserCell2 != null) {
+                            this.participant = groupCallUserCell2.getVideoParticipant();
+                        } else {
+                            GroupCallGridCell groupCallGridCell6 = this.tabletGridView;
+                            if (groupCallGridCell6 != null) {
+                                this.participant = groupCallGridCell6.getParticipant();
+                            }
+                        }
+                    }
+                    ChatObject.VideoParticipant videoParticipant6 = this.participant;
+                    TLRPC.GroupCallParticipant groupCallParticipant = videoParticipant6.participant;
+                    if (groupCallParticipant.self) {
+                        if (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().getVideoState(this.participant.presentation) != 2) {
+                            z2 = false;
+                        } else {
+                            z2 = true;
+                        }
+                    } else {
+                        ChatObject.Call call3 = this.call;
+                        if ((call3.canStreamVideo || videoParticipant6 == call3.videoNotAvailableParticipant) && ChatObject.Call.videoIsActive(groupCallParticipant, videoParticipant6.presentation, call3)) {
+                            z2 = true;
+                        } else {
+                            z2 = false;
+                        }
+                    }
+                    if (!this.showingInFullscreen) {
+                        VoIPService sharedInstance2 = VoIPService.getSharedInstance();
+                        ChatObject.VideoParticipant videoParticipant7 = this.participant;
+                        if (!sharedInstance2.isFullscreen(videoParticipant7.participant, videoParticipant7.presentation)) {
+                            VoIPService sharedInstance3 = VoIPService.getSharedInstance();
+                            ChatObject.VideoParticipant videoParticipant8 = this.participant;
+                            if (sharedInstance3.isFullscreen(videoParticipant8.participant, videoParticipant8.presentation) || !z2) {
+                            }
+                        }
+                    }
+                    this.attached = true;
+                    if (this.activity.statusIconPool.size() > 0) {
+                        ArrayList arrayList = this.activity.statusIconPool;
+                        this.statusIcon = (GroupCallStatusIcon) arrayList.remove(arrayList.size() - 1);
+                    } else {
+                        this.statusIcon = new GroupCallStatusIcon();
+                    }
+                    this.statusIcon.setCallback(this);
+                    this.statusIcon.setImageView(this.micIconView);
+                    updateIconColor(false);
+                    Runnable runnable3 = this.hideRunnable;
+                    if (runnable3 != null) {
+                        AndroidUtilities.cancelRunOnUIThread(runnable3);
+                        this.hideRunnable = null;
+                    }
+                    if (getParent() == null) {
+                        this.parentContainer.addView(this, LayoutHelper.createFrame(46, 46, 51));
+                        this.parentContainer.attach(this);
+                        setVisibility(0);
+                    } else if (getVisibility() == 8) {
+                        setVisibility(0);
+                    }
+                    this.checkScale = true;
+                    this.animateEnter = false;
+                    animate().setListener(null).cancel();
+                    if (this.textureView.currentAnimation == null && this.secondaryView != null && this.primaryView == null && !hasImage()) {
+                        setScaleX(0.5f);
+                        setScaleY(0.5f);
+                        setAlpha(0.0f);
+                        this.animateEnter = true;
+                        invalidate();
+                        animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
+                                groupCallMiniTextureView.animateEnter = false;
+                                groupCallMiniTextureView.invalidate();
+                            }
+                        }).setDuration(100L).start();
+                        invalidate();
+                    } else {
+                        setScaleY(1.0f);
+                        setScaleX(1.0f);
+                        setAlpha(1.0f);
+                    }
+                    loadThumb();
+                    this.screencastIcon.setVisibility((!this.participant.presentation || this.call.call.rtmp_stream) ? 8 : 0);
+                    z3 = false;
+                    z4 = true;
+                }
+            }
+            if (this.participant == this.call.videoNotAvailableParticipant) {
+                if (this.nameView.getVisibility() != 4) {
+                    this.nameView.setVisibility(4);
+                    this.micIconView.setVisibility(4);
+                }
+            } else if (this.nameView.getVisibility() != 0) {
+                this.nameView.setVisibility(0);
+                this.micIconView.setVisibility(0);
+            }
+            if (this.attached) {
+                if (GroupCallActivity.isTabletMode || (this.parentContainer.inFullscreenMode && !(this.secondaryView == null && this.primaryView == null))) {
+                    z5 = false;
+                } else {
+                    z5 = true;
+                }
+                if (this.showingInFullscreen) {
+                    iDp = -1;
+                    f = 1.0f;
+                    itemCount = 0;
+                    z6 = false;
+                } else {
+                    groupCallUserCell = this.secondaryView;
+                    if (groupCallUserCell == null && this.primaryView == null && !this.parentContainer.inFullscreenMode) {
+                        iDp = 0;
+                        f = 1.0f;
+                        itemCount = 0;
+                        z6 = false;
+                    } else {
+                        if (this.showingAsScrimView) {
+                            iDp = -1;
+                        } else if (groupCallUserCell == null && this.primaryView == null) {
+                            iDp = AndroidUtilities.dp(80.0f);
+                        } else {
+                            groupCallGridCell = this.tabletGridView;
+                            if (groupCallGridCell == null && z5) {
+                                float f4 = groupCallGridCell.spanCount;
+                                itemCount = groupCallGridCell.gridAdapter.getItemCount();
+                                z6 = true;
+                                f = f4;
+                                iDp = -1;
+                            } else {
+                                groupCallGridCell2 = this.primaryView;
+                                if (!(groupCallGridCell2 == null && groupCallUserCell == null) && this.isFullscreenMode) {
+                                    if (groupCallGridCell2 != null) {
+                                        iDp = AndroidUtilities.dp(80.0f);
+                                    } else {
+                                        iDp = 0;
+                                    }
+                                } else if (groupCallGridCell2 != null) {
+                                    f = groupCallGridCell2.spanCount;
+                                    iDp = -1;
+                                    itemCount = 0;
+                                    z6 = true;
+                                } else {
+                                    iDp = AndroidUtilities.dp(46.0f);
+                                }
+                            }
+                        }
+                        f = 1.0f;
+                        itemCount = 0;
+                        z6 = false;
+                    }
+                }
+                marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
+                if (iDp != 0 && (marginLayoutParams.height != iDp || z4 || this.useSpanSize != z6 || ((z6 && this.spanCount != f) || this.gridItemsCount != itemCount))) {
+                    marginLayoutParams.height = iDp;
+                    marginLayoutParams.width = z6 ? -1 : iDp;
+                    this.useSpanSize = z6;
+                    this.spanCount = f;
+                    this.checkScale = true;
+                    if (z3) {
+                        this.textureView.animateToLayout();
+                        this.updateNextLayoutAnimated = true;
+                    } else {
+                        this.textureView.requestLayout();
+                    }
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.requestLayout();
+                        }
+                    });
+                    this.parentContainer.requestLayout();
+                    invalidate();
+                }
+                videoParticipant = this.participant;
+                if (!videoParticipant.participant.self && !videoParticipant.presentation && VoIPService.getSharedInstance() != null) {
+                    this.textureView.renderer.setMirror(VoIPService.getSharedInstance().isFrontFaceCamera());
+                    this.textureView.renderer.setRotateTextureWithScreen(true);
+                    this.textureView.renderer.setUseCameraRotation(true);
+                } else {
+                    this.textureView.renderer.setMirror(false);
+                    this.textureView.renderer.setRotateTextureWithScreen(true);
+                    this.textureView.renderer.setUseCameraRotation(false);
+                }
+                this.textureView.updateRotation();
+                if (this.participant.participant.self) {
+                    this.textureView.renderer.setMaxTextureSize(720);
+                } else {
+                    this.textureView.renderer.setMaxTextureSize(0);
+                }
+                videoParticipant2 = this.participant;
+                if (ChatObject.Call.videoIsActive(videoParticipant2.participant, videoParticipant2.presentation, this.call)) {
+                    call = this.call;
+                    if (!call.canStreamVideo || this.participant == call.videoNotAvailableParticipant) {
+                        z7 = true;
+                    } else {
+                        this.noVideoStubLayout.avatarImageReceiver.setCurrentAccount(this.currentAccount);
+                        peerId = MessageObject.getPeerId(this.participant.participant.peer);
+                        if (DialogObject.isUserDialog(peerId)) {
+                            TLRPC.User user = AccountInstance.getInstance(this.currentAccount).getMessagesController().getUser(Long.valueOf(peerId));
+                            this.noVideoStubLayout.avatarDrawable.setInfo(this.currentAccount, user);
+                            forChat = ImageLocation.getForUser(this.currentAccount, user, 0);
+                            forChat2 = ImageLocation.getForUser(this.currentAccount, user, 1);
+                            obj = user;
+                        } else {
+                            TLRPC.Chat chat = AccountInstance.getInstance(UserConfig.selectedAccount).getMessagesController().getChat(Long.valueOf(-peerId));
+                            this.noVideoStubLayout.avatarDrawable.setInfo(this.currentAccount, chat);
+                            forChat = ImageLocation.getForChat(this.currentAccount, chat, 0);
+                            forChat2 = ImageLocation.getForChat(this.currentAccount, chat, 1);
+                            obj = chat;
+                        }
+                        avatarDrawable = this.noVideoStubLayout.avatarDrawable;
+                        if (forChat2 != null || (imageFromMemory = ImageLoader.getInstance().getImageFromMemory(forChat2.location, null, "50_50")) == null) {
+                            drawable = avatarDrawable;
+                        } else {
+                            drawable = imageFromMemory;
+                        }
+                        ImageLocation imageLocation = forChat;
+                        Object obj2 = obj;
+                        this.noVideoStubLayout.avatarImageReceiver.setImage(imageLocation, null, drawable, null, obj2, 0);
+                        this.noVideoStubLayout.backgroundImageReceiver.setImage(imageLocation, "50_50_b", new ColorDrawable(Theme.getColor(Theme.key_voipgroup_listViewBackground)), null, obj2, 0);
+                        z7 = false;
+                    }
+                } else {
+                    this.noVideoStubLayout.avatarImageReceiver.setCurrentAccount(this.currentAccount);
+                    peerId = MessageObject.getPeerId(this.participant.participant.peer);
+                    if (DialogObject.isUserDialog(peerId)) {
+                        TLRPC.User user2 = AccountInstance.getInstance(this.currentAccount).getMessagesController().getUser(Long.valueOf(peerId));
+                        this.noVideoStubLayout.avatarDrawable.setInfo(this.currentAccount, user2);
+                        forChat = ImageLocation.getForUser(this.currentAccount, user2, 0);
+                        forChat2 = ImageLocation.getForUser(this.currentAccount, user2, 1);
+                        obj = user2;
+                    } else {
+                        TLRPC.Chat chat2 = AccountInstance.getInstance(UserConfig.selectedAccount).getMessagesController().getChat(Long.valueOf(-peerId));
+                        this.noVideoStubLayout.avatarDrawable.setInfo(this.currentAccount, chat2);
+                        forChat = ImageLocation.getForChat(this.currentAccount, chat2, 0);
+                        forChat2 = ImageLocation.getForChat(this.currentAccount, chat2, 1);
+                        obj = chat2;
+                    }
+                    avatarDrawable = this.noVideoStubLayout.avatarDrawable;
+                    if (forChat2 != null) {
+                        drawable = avatarDrawable;
+                    } else {
+                        drawable = avatarDrawable;
+                    }
+                    ImageLocation imageLocation2 = forChat;
+                    Object obj3 = obj;
+                    this.noVideoStubLayout.avatarImageReceiver.setImage(imageLocation2, null, drawable, null, obj3, 0);
+                    this.noVideoStubLayout.backgroundImageReceiver.setImage(imageLocation2, "50_50_b", new ColorDrawable(Theme.getColor(Theme.key_voipgroup_listViewBackground)), null, obj3, 0);
+                    z7 = false;
+                }
+                if (z3 || this.secondaryView == null || this.showingInFullscreen || z7) {
+                    z8 = false;
+                } else {
+                    z8 = true;
+                }
+                if (z7 != this.hasVideo && !z8) {
+                    this.hasVideo = z7;
+                    valueAnimator = this.noVideoStubAnimator;
+                    if (valueAnimator != null) {
+                        valueAnimator.removeAllListeners();
+                        this.noVideoStubAnimator.cancel();
+                    }
+                    if (z3) {
+                        if (!this.hasVideo && this.noVideoStubLayout.getVisibility() != 0) {
+                            this.noVideoStubLayout.setVisibility(0);
+                            this.noVideoStubLayout.setAlpha(0.0f);
+                        }
+                        float f5 = this.progressToNoVideoStub;
+                        if (this.hasVideo) {
+                            f3 = 0.0f;
+                        } else {
+                            f3 = 1.0f;
+                        }
+                        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f5, f3);
+                        this.noVideoStubAnimator = valueAnimatorOfFloat;
+                        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                                this.f$0.lambda$updateAttachState$3(valueAnimator3);
+                            }
+                        });
+                        this.noVideoStubAnimator.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
+                                groupCallMiniTextureView.progressToNoVideoStub = groupCallMiniTextureView.hasVideo ? 0.0f : 1.0f;
+                                groupCallMiniTextureView.noVideoStubLayout.setAlpha(GroupCallMiniTextureView.this.progressToNoVideoStub);
+                                GroupCallMiniTextureView.this.noVideoStubLayout.setVisibility(GroupCallMiniTextureView.this.hasVideo ? 8 : 0);
+                                GroupCallMiniTextureView.this.textureView.invalidate();
+                            }
+                        });
+                        this.noVideoStubAnimator.start();
+                    } else {
+                        z9 = this.hasVideo;
+                        if (z9) {
+                            f2 = 0.0f;
+                        } else {
+                            f2 = 1.0f;
+                        }
+                        this.progressToNoVideoStub = f2;
+                        NoVideoStubLayout noVideoStubLayout = this.noVideoStubLayout;
+                        if (z9) {
+                            i = 8;
+                        } else {
+                            i = 0;
+                        }
+                        noVideoStubLayout.setVisibility(i);
+                        this.noVideoStubLayout.setAlpha(this.progressToNoVideoStub);
+                        this.textureView.invalidate();
+                    }
+                    if (this.hasVideo) {
+                        this.noVideoStubLayout.updateMuteButtonState(false);
+                    }
+                }
+                if (this.participant.participant.self && VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().setLocalSink(this.textureView.renderer, this.participant.presentation);
+                }
+                this.statusIcon.setParticipant(this.participant.participant, z3);
+                if (this.noVideoStubLayout.getVisibility() == 0) {
+                    this.noVideoStubLayout.updateMuteButtonState(true);
+                }
+                videoParticipant3 = this.participant;
+                if (videoParticipant3.presentation ? !((tL_groupCallParticipantVideo = videoParticipant3.participant.video) == null || !tL_groupCallParticipantVideo.paused) : !((tL_groupCallParticipantVideo2 = videoParticipant3.participant.presentation) == null || !tL_groupCallParticipantVideo2.paused)) {
+                    z10 = true;
+                }
+                if (this.videoIsPaused != z10) {
+                    this.videoIsPaused = z10;
+                    this.textureView.renderer.animate().alpha(this.videoIsPaused ? 0.0f : 1.0f).setDuration(250L).start();
+                    this.textureView.invalidate();
+                }
+                if (!GroupCallActivity.paused || !this.hasVideo) {
+                    if (this.participant.participant.self) {
+                        if (VoIPService.getSharedInstance() != null) {
+                            VoIPService.getSharedInstance().setLocalSink(null, this.participant.presentation);
+                        }
+                    } else if (VoIPService.getSharedInstance() != null) {
+                        VoIPService sharedInstance4 = VoIPService.getSharedInstance();
+                        ChatObject.VideoParticipant videoParticipant9 = this.participant;
+                        sharedInstance4.removeRemoteSink(videoParticipant9.participant, videoParticipant9.presentation);
+                        VoIPService sharedInstance5 = VoIPService.getSharedInstance();
+                        ChatObject.VideoParticipant videoParticipant10 = this.participant;
+                        sharedInstance5.removeRemoteSink(videoParticipant10.participant, videoParticipant10.presentation);
+                    }
+                    if (GroupCallActivity.paused && this.textureView.renderer.isFirstFrameRendered()) {
+                        saveThumb();
+                        this.textureView.renderer.clearFirstFrame();
+                        this.textureView.renderer.setAlpha(0.0f);
+                        this.textureView.blurRenderer.setAlpha(0.0f);
+                    }
+                } else {
+                    if (!this.textureView.renderer.isFirstFrameRendered()) {
+                        loadThumb();
+                    }
+                    if (this.participant.participant.self) {
+                        if (VoIPService.getSharedInstance() != null) {
+                            VoIPService.getSharedInstance().setLocalSink(this.textureView.renderer, this.participant.presentation);
+                        }
+                    } else if (VoIPService.getSharedInstance() != null) {
+                        VoIPService sharedInstance6 = VoIPService.getSharedInstance();
+                        ChatObject.VideoParticipant videoParticipant11 = this.participant;
+                        sharedInstance6.addRemoteSink(videoParticipant11.participant, videoParticipant11.presentation, this.textureView.renderer, null);
+                        VoIPService sharedInstance7 = VoIPService.getSharedInstance();
+                        ChatObject.VideoParticipant videoParticipant12 = this.participant;
+                        sharedInstance7.addRemoteSink(videoParticipant12.participant, videoParticipant12.presentation, this.textureView.renderer, null);
+                        ChatObject.Call call4 = this.call;
+                        if (call4 != null && call4.call.rtmp_stream && !this.textureView.renderer.isFirstFrameRendered() && !this.postedNoRtmpStreamCallback) {
+                            AndroidUtilities.runOnUIThread(this.noRtmpStreamCallback, 15000L);
+                            this.postedNoRtmpStreamCallback = true;
+                        }
+                    }
+                }
+                updateIconColor(true);
+            }
+            updateInfo();
+        }
+        z3 = z;
+        z4 = false;
+        if (this.participant == this.call.videoNotAvailableParticipant) {
+            if (this.nameView.getVisibility() != 4) {
+                this.nameView.setVisibility(4);
+                this.micIconView.setVisibility(4);
+            }
+        } else if (this.nameView.getVisibility() != 0) {
+            this.nameView.setVisibility(0);
+            this.micIconView.setVisibility(0);
+        }
+        if (this.attached) {
+            if (GroupCallActivity.isTabletMode) {
+                z5 = false;
+            } else {
+                z5 = false;
+            }
+            if (this.showingInFullscreen) {
+                groupCallUserCell = this.secondaryView;
+                if (groupCallUserCell == null) {
+                    if (this.showingAsScrimView) {
+                        iDp = -1;
+                    } else if (groupCallUserCell == null) {
+                        groupCallGridCell = this.tabletGridView;
+                        if (groupCallGridCell == null) {
+                            groupCallGridCell2 = this.primaryView;
+                            if (groupCallGridCell2 == null) {
+                                if (groupCallGridCell2 != null) {
+                                    iDp = AndroidUtilities.dp(80.0f);
+                                } else {
+                                    iDp = 0;
+                                }
+                            } else if (groupCallGridCell2 != null) {
+                                iDp = AndroidUtilities.dp(80.0f);
+                            } else {
+                                iDp = 0;
+                            }
+                        } else {
+                            groupCallGridCell2 = this.primaryView;
+                            if (groupCallGridCell2 == null) {
+                                if (groupCallGridCell2 != null) {
+                                    iDp = AndroidUtilities.dp(80.0f);
+                                } else {
+                                    iDp = 0;
+                                }
+                            } else if (groupCallGridCell2 != null) {
+                                iDp = AndroidUtilities.dp(80.0f);
+                            } else {
+                                iDp = 0;
+                            }
+                        }
+                    } else {
+                        groupCallGridCell = this.tabletGridView;
+                        if (groupCallGridCell == null) {
+                            groupCallGridCell2 = this.primaryView;
+                            if (groupCallGridCell2 == null) {
+                                if (groupCallGridCell2 != null) {
+                                    iDp = AndroidUtilities.dp(80.0f);
+                                } else {
+                                    iDp = 0;
+                                }
+                            } else if (groupCallGridCell2 != null) {
+                                iDp = AndroidUtilities.dp(80.0f);
+                            } else {
+                                iDp = 0;
+                            }
+                        } else {
+                            groupCallGridCell2 = this.primaryView;
+                            if (groupCallGridCell2 == null) {
+                                if (groupCallGridCell2 != null) {
+                                    iDp = AndroidUtilities.dp(80.0f);
+                                } else {
+                                    iDp = 0;
+                                }
+                            } else if (groupCallGridCell2 != null) {
+                                iDp = AndroidUtilities.dp(80.0f);
+                            } else {
+                                iDp = 0;
+                            }
+                        }
+                    }
+                    f = 1.0f;
+                    itemCount = 0;
+                    z6 = false;
+                } else {
+                    if (this.showingAsScrimView) {
+                        iDp = -1;
+                    } else if (groupCallUserCell == null) {
+                        groupCallGridCell = this.tabletGridView;
+                        if (groupCallGridCell == null) {
+                            groupCallGridCell2 = this.primaryView;
+                            if (groupCallGridCell2 == null) {
+                                if (groupCallGridCell2 != null) {
+                                    iDp = AndroidUtilities.dp(80.0f);
+                                } else {
+                                    iDp = 0;
+                                }
+                            } else if (groupCallGridCell2 != null) {
+                                iDp = AndroidUtilities.dp(80.0f);
+                            } else {
+                                iDp = 0;
+                            }
+                        } else {
+                            groupCallGridCell2 = this.primaryView;
+                            if (groupCallGridCell2 == null) {
+                                if (groupCallGridCell2 != null) {
+                                    iDp = AndroidUtilities.dp(80.0f);
+                                } else {
+                                    iDp = 0;
+                                }
+                            } else if (groupCallGridCell2 != null) {
+                                iDp = AndroidUtilities.dp(80.0f);
+                            } else {
+                                iDp = 0;
+                            }
+                        }
+                    } else {
+                        groupCallGridCell = this.tabletGridView;
+                        if (groupCallGridCell == null) {
+                            groupCallGridCell2 = this.primaryView;
+                            if (groupCallGridCell2 == null) {
+                                if (groupCallGridCell2 != null) {
+                                    iDp = AndroidUtilities.dp(80.0f);
+                                } else {
+                                    iDp = 0;
+                                }
+                            } else if (groupCallGridCell2 != null) {
+                                iDp = AndroidUtilities.dp(80.0f);
+                            } else {
+                                iDp = 0;
+                            }
+                        } else {
+                            groupCallGridCell2 = this.primaryView;
+                            if (groupCallGridCell2 == null) {
+                                if (groupCallGridCell2 != null) {
+                                    iDp = AndroidUtilities.dp(80.0f);
+                                } else {
+                                    iDp = 0;
+                                }
+                            } else if (groupCallGridCell2 != null) {
+                                iDp = AndroidUtilities.dp(80.0f);
+                            } else {
+                                iDp = 0;
+                            }
+                        }
+                    }
+                    f = 1.0f;
+                    itemCount = 0;
+                    z6 = false;
+                }
+            } else {
+                iDp = -1;
+                f = 1.0f;
+                itemCount = 0;
+                z6 = false;
+            }
+            marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
+            if (iDp != 0) {
+                marginLayoutParams.height = iDp;
+                marginLayoutParams.width = z6 ? -1 : iDp;
+                this.useSpanSize = z6;
+                this.spanCount = f;
+                this.checkScale = true;
+                if (z3) {
+                    this.textureView.animateToLayout();
+                    this.updateNextLayoutAnimated = true;
+                } else {
+                    this.textureView.requestLayout();
+                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.requestLayout();
+                    }
+                });
+                this.parentContainer.requestLayout();
+                invalidate();
+            }
+            videoParticipant = this.participant;
+            if (!videoParticipant.participant.self) {
+                this.textureView.renderer.setMirror(false);
+                this.textureView.renderer.setRotateTextureWithScreen(true);
+                this.textureView.renderer.setUseCameraRotation(false);
+            } else {
+                this.textureView.renderer.setMirror(false);
+                this.textureView.renderer.setRotateTextureWithScreen(true);
+                this.textureView.renderer.setUseCameraRotation(false);
+            }
+            this.textureView.updateRotation();
+            if (this.participant.participant.self) {
+                this.textureView.renderer.setMaxTextureSize(720);
+            } else {
+                this.textureView.renderer.setMaxTextureSize(0);
+            }
+            videoParticipant2 = this.participant;
+            if (ChatObject.Call.videoIsActive(videoParticipant2.participant, videoParticipant2.presentation, this.call)) {
+                call = this.call;
+                if (call.canStreamVideo) {
+                }
+                z7 = true;
+            } else {
+                this.noVideoStubLayout.avatarImageReceiver.setCurrentAccount(this.currentAccount);
+                peerId = MessageObject.getPeerId(this.participant.participant.peer);
+                if (DialogObject.isUserDialog(peerId)) {
+                    TLRPC.User user3 = AccountInstance.getInstance(this.currentAccount).getMessagesController().getUser(Long.valueOf(peerId));
+                    this.noVideoStubLayout.avatarDrawable.setInfo(this.currentAccount, user3);
+                    forChat = ImageLocation.getForUser(this.currentAccount, user3, 0);
+                    forChat2 = ImageLocation.getForUser(this.currentAccount, user3, 1);
+                    obj = user3;
+                } else {
+                    TLRPC.Chat chat3 = AccountInstance.getInstance(UserConfig.selectedAccount).getMessagesController().getChat(Long.valueOf(-peerId));
+                    this.noVideoStubLayout.avatarDrawable.setInfo(this.currentAccount, chat3);
+                    forChat = ImageLocation.getForChat(this.currentAccount, chat3, 0);
+                    forChat2 = ImageLocation.getForChat(this.currentAccount, chat3, 1);
+                    obj = chat3;
+                }
+                avatarDrawable = this.noVideoStubLayout.avatarDrawable;
+                if (forChat2 != null) {
+                    drawable = avatarDrawable;
+                } else {
+                    drawable = avatarDrawable;
+                }
+                ImageLocation imageLocation3 = forChat;
+                Object obj4 = obj;
+                this.noVideoStubLayout.avatarImageReceiver.setImage(imageLocation3, null, drawable, null, obj4, 0);
+                this.noVideoStubLayout.backgroundImageReceiver.setImage(imageLocation3, "50_50_b", new ColorDrawable(Theme.getColor(Theme.key_voipgroup_listViewBackground)), null, obj4, 0);
+                z7 = false;
+            }
+            if (z3) {
+                z8 = false;
+            } else {
+                z8 = false;
+            }
+            if (z7 != this.hasVideo) {
+                this.hasVideo = z7;
+                valueAnimator = this.noVideoStubAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.removeAllListeners();
+                    this.noVideoStubAnimator.cancel();
+                }
+                if (z3) {
+                    if (!this.hasVideo) {
+                        this.noVideoStubLayout.setVisibility(0);
+                        this.noVideoStubLayout.setAlpha(0.0f);
+                    }
+                    float f6 = this.progressToNoVideoStub;
+                    if (this.hasVideo) {
+                        f3 = 0.0f;
+                    } else {
+                        f3 = 1.0f;
+                    }
+                    ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(f6, f3);
+                    this.noVideoStubAnimator = valueAnimatorOfFloat2;
+                    valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                            this.f$0.lambda$updateAttachState$3(valueAnimator3);
+                        }
+                    });
+                    this.noVideoStubAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
+                            groupCallMiniTextureView.progressToNoVideoStub = groupCallMiniTextureView.hasVideo ? 0.0f : 1.0f;
+                            groupCallMiniTextureView.noVideoStubLayout.setAlpha(GroupCallMiniTextureView.this.progressToNoVideoStub);
+                            GroupCallMiniTextureView.this.noVideoStubLayout.setVisibility(GroupCallMiniTextureView.this.hasVideo ? 8 : 0);
+                            GroupCallMiniTextureView.this.textureView.invalidate();
+                        }
+                    });
+                    this.noVideoStubAnimator.start();
+                } else {
+                    z9 = this.hasVideo;
+                    if (z9) {
+                        f2 = 0.0f;
+                    } else {
+                        f2 = 1.0f;
+                    }
+                    this.progressToNoVideoStub = f2;
+                    NoVideoStubLayout noVideoStubLayout2 = this.noVideoStubLayout;
+                    if (z9) {
+                        i = 8;
+                    } else {
+                        i = 0;
+                    }
+                    noVideoStubLayout2.setVisibility(i);
+                    this.noVideoStubLayout.setAlpha(this.progressToNoVideoStub);
+                    this.textureView.invalidate();
+                }
+                if (this.hasVideo) {
+                    this.noVideoStubLayout.updateMuteButtonState(false);
+                }
+            }
+            if (this.participant.participant.self) {
+                VoIPService.getSharedInstance().setLocalSink(this.textureView.renderer, this.participant.presentation);
+            }
+            this.statusIcon.setParticipant(this.participant.participant, z3);
+            if (this.noVideoStubLayout.getVisibility() == 0) {
+                this.noVideoStubLayout.updateMuteButtonState(true);
+            }
+            videoParticipant3 = this.participant;
+            if (videoParticipant3.presentation) {
+            }
+            if (this.videoIsPaused != z10) {
+                this.videoIsPaused = z10;
+                this.textureView.renderer.animate().alpha(this.videoIsPaused ? 0.0f : 1.0f).setDuration(250L).start();
+                this.textureView.invalidate();
+            }
+            if (!GroupCallActivity.paused) {
+                if (this.participant.participant.self) {
+                    if (VoIPService.getSharedInstance() != null) {
+                        VoIPService.getSharedInstance().setLocalSink(null, this.participant.presentation);
+                    }
+                } else if (VoIPService.getSharedInstance() != null) {
+                    VoIPService sharedInstance8 = VoIPService.getSharedInstance();
+                    ChatObject.VideoParticipant videoParticipant13 = this.participant;
+                    sharedInstance8.removeRemoteSink(videoParticipant13.participant, videoParticipant13.presentation);
+                    VoIPService sharedInstance9 = VoIPService.getSharedInstance();
+                    ChatObject.VideoParticipant videoParticipant14 = this.participant;
+                    sharedInstance9.removeRemoteSink(videoParticipant14.participant, videoParticipant14.presentation);
+                }
+                if (GroupCallActivity.paused) {
+                    saveThumb();
+                    this.textureView.renderer.clearFirstFrame();
+                    this.textureView.renderer.setAlpha(0.0f);
+                    this.textureView.blurRenderer.setAlpha(0.0f);
+                }
+            } else {
+                if (this.participant.participant.self) {
+                    if (VoIPService.getSharedInstance() != null) {
+                        VoIPService.getSharedInstance().setLocalSink(null, this.participant.presentation);
+                    }
+                } else if (VoIPService.getSharedInstance() != null) {
+                    VoIPService sharedInstance10 = VoIPService.getSharedInstance();
+                    ChatObject.VideoParticipant videoParticipant15 = this.participant;
+                    sharedInstance10.removeRemoteSink(videoParticipant15.participant, videoParticipant15.presentation);
+                    VoIPService sharedInstance11 = VoIPService.getSharedInstance();
+                    ChatObject.VideoParticipant videoParticipant16 = this.participant;
+                    sharedInstance11.removeRemoteSink(videoParticipant16.participant, videoParticipant16.presentation);
+                }
+                if (GroupCallActivity.paused) {
+                    saveThumb();
+                    this.textureView.renderer.clearFirstFrame();
+                    this.textureView.renderer.setAlpha(0.0f);
+                    this.textureView.blurRenderer.setAlpha(0.0f);
+                }
+            }
+            updateIconColor(true);
+        }
+        updateInfo();
     }
 
     public void lambda$updateAttachState$2(boolean z, View view) {
@@ -808,8 +1920,109 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         return this.textureView.stubVisibleProgress == 1.0f;
     }
 
-    public void updatePosition(android.view.ViewGroup r9, android.view.ViewGroup r10, org.telegram.ui.Components.RecyclerListView r11, org.telegram.ui.Components.voip.GroupCallRenderersContainer r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.GroupCallMiniTextureView.updatePosition(android.view.ViewGroup, android.view.ViewGroup, org.telegram.ui.Components.RecyclerListView, org.telegram.ui.Components.voip.GroupCallRenderersContainer):void");
+    public void updatePosition(ViewGroup viewGroup, ViewGroup viewGroup2, RecyclerListView recyclerListView, GroupCallRenderersContainer groupCallRenderersContainer) {
+        if (this.showingAsScrimView || this.animateToScrimView || this.forceDetached) {
+            return;
+        }
+        boolean z = false;
+        this.drawFirst = false;
+        float f = groupCallRenderersContainer.progressToFullscreenMode;
+        if (this.animateToFullscreen || this.showingInFullscreen) {
+            GroupCallGridCell groupCallGridCell = this.primaryView;
+            if (groupCallGridCell != null || this.tabletGridView != null) {
+                GroupCallGridCell groupCallGridCell2 = this.tabletGridView;
+                if (groupCallGridCell2 != null) {
+                    groupCallGridCell = groupCallGridCell2;
+                }
+                if (groupCallGridCell2 != null) {
+                    viewGroup = viewGroup2;
+                }
+                float x = ((groupCallGridCell.getX() + viewGroup.getX()) - getLeft()) - groupCallRenderersContainer.getLeft();
+                float y = (((groupCallGridCell.getY() + AndroidUtilities.dp(2.0f)) + viewGroup.getY()) - getTop()) - groupCallRenderersContainer.getTop();
+                float f2 = 1.0f - f;
+                float f3 = 0.0f * f;
+                setTranslationX((x * f2) + f3);
+                setTranslationY((y * f2) + f3);
+            } else {
+                setTranslationX(0.0f);
+                setTranslationY(0.0f);
+            }
+            this.textureView.setRoundCorners(AndroidUtilities.dp(8.0f));
+            GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell = this.secondaryView;
+            if (groupCallUserCell != null) {
+                groupCallUserCell.setAlpha(f);
+            }
+            if (!this.showingInFullscreen && this.primaryView == null && this.tabletGridView == null) {
+                setAlpha(f);
+                return;
+            } else {
+                if (this.animateEnter) {
+                    return;
+                }
+                setAlpha(1.0f);
+                return;
+            }
+        }
+        GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell2 = this.secondaryView;
+        if (groupCallUserCell2 != null) {
+            if (groupCallUserCell2.isRemoving(recyclerListView)) {
+                setAlpha(this.secondaryView.getAlpha());
+            } else if (this.primaryView == null) {
+                if (this.attached && !this.animateEnter) {
+                    setAlpha(f);
+                }
+                this.secondaryView.setAlpha(f);
+                f = 1.0f;
+            } else {
+                this.secondaryView.setAlpha(1.0f);
+                if (this.attached && !this.animateEnter) {
+                    setAlpha(1.0f);
+                }
+            }
+            setTranslationX((this.secondaryView.getX() + recyclerListView.getX()) - getLeft());
+            float f4 = 1.0f - f;
+            setTranslationY((((AndroidUtilities.dp(2.0f) * f4) + this.secondaryView.getY()) + recyclerListView.getY()) - getTop());
+            this.textureView.setRoundCorners((AndroidUtilities.dp(13.0f) * f) + (AndroidUtilities.dp(8.0f) * f4));
+            return;
+        }
+        GroupCallGridCell groupCallGridCell3 = this.primaryView;
+        if (groupCallGridCell3 == null && this.tabletGridView == null) {
+            return;
+        }
+        GroupCallGridCell groupCallGridCell4 = this.tabletGridView;
+        if (groupCallGridCell4 == null || groupCallGridCell3 == null) {
+            if (groupCallGridCell4 != null) {
+                groupCallGridCell3 = groupCallGridCell4;
+            }
+            if (groupCallGridCell4 != null) {
+                viewGroup = viewGroup2;
+            }
+        } else {
+            if (GroupCallActivity.isTabletMode && !this.parentContainer.inFullscreenMode) {
+                z = true;
+            }
+            if (z) {
+                groupCallGridCell3 = groupCallGridCell4;
+            }
+            if (z) {
+                viewGroup = viewGroup2;
+            }
+        }
+        setTranslationX(((groupCallGridCell3.getX() + viewGroup.getX()) - getLeft()) - groupCallRenderersContainer.getLeft());
+        setTranslationY((((groupCallGridCell3.getY() + AndroidUtilities.dp(2.0f)) + viewGroup.getY()) - getTop()) - groupCallRenderersContainer.getTop());
+        this.textureView.setRoundCorners(AndroidUtilities.dp(8.0f));
+        if (!this.attached || this.animateEnter) {
+            return;
+        }
+        if (!GroupCallActivity.isTabletMode) {
+            this.drawFirst = true;
+            setAlpha((1.0f - f) * groupCallGridCell3.getAlpha());
+        } else {
+            if (this.primaryView == null || this.tabletGridView != null) {
+                return;
+            }
+            setAlpha(f * groupCallGridCell3.getAlpha());
+        }
     }
 
     public boolean isAttached() {
@@ -965,8 +2178,113 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         }
     }
 
-    private void updateIconColor(boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.GroupCallMiniTextureView.updateIconColor(boolean):void");
+    private void updateIconColor(boolean z) {
+        final int color;
+        final int color2;
+        ValueAnimator valueAnimator;
+        GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
+        if (groupCallStatusIcon == null) {
+            return;
+        }
+        if (groupCallStatusIcon.isMutedByMe()) {
+            color2 = Theme.getColor(Theme.key_voipgroup_mutedByAdminIcon);
+        } else {
+            if (this.statusIcon.isSpeaking()) {
+                color2 = Theme.getColor(Theme.key_voipgroup_speakingText);
+            } else {
+                color = Theme.getColor(Theme.key_voipgroup_speakingText);
+                color2 = -1;
+            }
+            if (this.animateToColor == color2) {
+                return;
+            }
+            valueAnimator = this.colorAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.colorAnimator.cancel();
+            }
+            if (!z) {
+                Paint paint = this.speakingPaint;
+                this.lastSpeakingFrameColor = color;
+                paint.setColor(color);
+                return;
+            }
+            final int i = this.lastIconColor;
+            final int i2 = this.lastSpeakingFrameColor;
+            this.animateToColor = color2;
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.colorAnimator = valueAnimatorOfFloat;
+            final int i3 = color2;
+            final int i4 = color;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    this.f$0.lambda$updateIconColor$6(i, i3, i2, i4, valueAnimator2);
+                }
+            });
+            this.colorAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
+                    int i5 = color2;
+                    groupCallMiniTextureView.lastIconColor = i5;
+                    groupCallMiniTextureView.animateToColor = i5;
+                    int i6 = color;
+                    groupCallMiniTextureView.lastSpeakingFrameColor = i6;
+                    groupCallMiniTextureView.speakingPaint.setColor(i6);
+                    GroupCallMiniTextureView groupCallMiniTextureView2 = GroupCallMiniTextureView.this;
+                    if (groupCallMiniTextureView2.progressToSpeaking > 0.0f) {
+                        groupCallMiniTextureView2.invalidate();
+                    }
+                }
+            });
+            this.colorAnimator.start();
+        }
+        color = color2;
+        if (this.animateToColor == color2) {
+            return;
+        }
+        valueAnimator = this.colorAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.colorAnimator.cancel();
+        }
+        if (!z) {
+            Paint paint2 = this.speakingPaint;
+            this.lastSpeakingFrameColor = color;
+            paint2.setColor(color);
+            return;
+        }
+        final int i5 = this.lastIconColor;
+        final int i6 = this.lastSpeakingFrameColor;
+        this.animateToColor = color2;
+        ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.colorAnimator = valueAnimatorOfFloat2;
+        final int i7 = color2;
+        final int i8 = color;
+        valueAnimatorOfFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                this.f$0.lambda$updateIconColor$6(i5, i7, i6, i8, valueAnimator2);
+            }
+        });
+        this.colorAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
+                int i9 = color2;
+                groupCallMiniTextureView.lastIconColor = i9;
+                groupCallMiniTextureView.animateToColor = i9;
+                int i10 = color;
+                groupCallMiniTextureView.lastSpeakingFrameColor = i10;
+                groupCallMiniTextureView.speakingPaint.setColor(i10);
+                GroupCallMiniTextureView groupCallMiniTextureView2 = GroupCallMiniTextureView.this;
+                if (groupCallMiniTextureView2.progressToSpeaking > 0.0f) {
+                    groupCallMiniTextureView2.invalidate();
+                }
+            }
+        });
+        this.colorAnimator.start();
     }
 
     public void lambda$updateIconColor$6(int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
@@ -1112,12 +2430,14 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             this.bigWaveDrawable.update(this.amplitude, 1.0f);
             this.tinyWaveDrawable.update(this.amplitude, 1.0f);
             for (int i = 0; i < 2; i++) {
-                if (i == 0 && (weavingState2 = this.prevState) != null) {
+                if (i != 0 || (weavingState2 = this.prevState) == null) {
+                    if (i == 1 && (weavingState = this.currentState) != null) {
+                        this.paint.setShader(weavingState.shader);
+                        f = this.switchProgress;
+                    }
+                } else {
                     this.paint.setShader(weavingState2.shader);
                     f = 1.0f - this.switchProgress;
-                } else if (i == 1 && (weavingState = this.currentState) != null) {
-                    this.paint.setShader(weavingState.shader);
-                    f = this.switchProgress;
                 }
                 this.paint.setAlpha((int) (f * 76.0f));
                 this.bigWaveDrawable.draw(this.cx, this.cy, canvas, this.paint);

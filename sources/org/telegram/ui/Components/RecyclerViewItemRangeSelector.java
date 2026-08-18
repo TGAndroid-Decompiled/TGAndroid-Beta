@@ -101,7 +101,8 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
                     AndroidUtilities.runOnUIThread(this.autoScrollRunnable);
                 }
                 int i = this.hotspotTopBoundEnd;
-                this.autoScrollVelocity = ((int) ((i - r5) - (y - this.hotspotTopBoundStart))) / 2;
+                int i2 = this.hotspotTopBoundStart;
+                this.autoScrollVelocity = ((int) ((i - i2) - (y - i2))) / 2;
             } else if (y >= this.hotspotBottomBoundStart && y <= this.hotspotBottomBoundEnd) {
                 this.inTopHotspot = false;
                 if (!this.inBottomHotspot) {
@@ -109,7 +110,8 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
                     AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
                     AndroidUtilities.runOnUIThread(this.autoScrollRunnable);
                 }
-                this.autoScrollVelocity = ((int) ((y + this.hotspotBottomBoundEnd) - (this.hotspotBottomBoundStart + r8))) / 2;
+                int i3 = this.hotspotBottomBoundEnd;
+                this.autoScrollVelocity = ((int) ((y + i3) - (this.hotspotBottomBoundStart + i3))) / 2;
             } else if (this.inTopHotspot || this.inBottomHotspot) {
                 AndroidUtilities.cancelRunOnUIThread(this.autoScrollRunnable);
                 this.inTopHotspot = false;
@@ -120,7 +122,8 @@ public class RecyclerViewItemRangeSelector implements RecyclerView.OnItemTouchLi
             return;
         }
         this.lastDraggedIndex = childAdapterPosition;
-        this.delegate.setSelected(viewFindChildViewUnder, childAdapterPosition, !r8.isSelected(childAdapterPosition));
+        RecyclerViewItemRangeSelectorDelegate recyclerViewItemRangeSelectorDelegate = this.delegate;
+        recyclerViewItemRangeSelectorDelegate.setSelected(viewFindChildViewUnder, childAdapterPosition, !recyclerViewItemRangeSelectorDelegate.isSelected(childAdapterPosition));
     }
 
     public boolean setIsActive(View view, boolean z, int i, boolean z2) {

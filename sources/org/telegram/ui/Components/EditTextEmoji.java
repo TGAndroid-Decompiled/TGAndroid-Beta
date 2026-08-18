@@ -42,9 +42,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
-import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
 public class EditTextEmoji extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate {
     AdjustPanLayoutHelper adjustPanLayoutHelper;
@@ -1108,10 +1106,8 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
+            } finally {
                 EditTextEmoji.this.innerTextChange = 0;
-            } catch (Throwable th) {
-                EditTextEmoji.this.innerTextChange = 0;
-                throw th;
             }
         }
 

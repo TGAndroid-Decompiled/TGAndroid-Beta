@@ -124,7 +124,7 @@ public class MP3Frame {
         }
 
         public long getTotalDuration(long j) {
-            long sampleCount = ((getSampleCount() * j) * 1000) / (getFrameSize() * getFrequency());
+            long sampleCount = ((((long) getSampleCount()) * j) * 1000) / ((long) (getFrameSize() * getFrequency()));
             return (getVersion() == 3 || getChannelMode() != 3) ? sampleCount : sampleCount / 2;
         }
 

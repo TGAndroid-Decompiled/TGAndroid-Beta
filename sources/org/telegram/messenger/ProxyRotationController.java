@@ -7,8 +7,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestTimeDelegate;
 
@@ -139,7 +137,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
                     if (this.isCurrentlyChecking) {
                         return;
                     }
-                    AndroidUtilities.runOnUIThread(this.checkProxyAndSwitchRunnable, ROTATION_TIMEOUTS.get(SharedConfig.proxyRotationTimeout).intValue() * 1000);
+                    AndroidUtilities.runOnUIThread(this.checkProxyAndSwitchRunnable, ((long) ROTATION_TIMEOUTS.get(SharedConfig.proxyRotationTimeout).intValue()) * 1000);
                     return;
                 }
                 AndroidUtilities.cancelRunOnUIThread(this.checkProxyAndSwitchRunnable);

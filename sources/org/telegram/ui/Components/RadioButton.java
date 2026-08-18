@@ -143,8 +143,13 @@ public class RadioButton extends View {
             f = this.progress / 0.5f;
         } else {
             f = 2.0f - (f2 / 0.5f);
+            int iRed = Color.red(this.color);
             float f3 = 1.0f - f;
-            int iRgb = Color.rgb(Color.red(this.color) + ((int) ((Color.red(this.checkedColor) - r4) * f3)), Color.green(this.color) + ((int) ((Color.green(this.checkedColor) - r7) * f3)), Color.blue(this.color) + ((int) ((Color.blue(this.checkedColor) - r9) * f3)));
+            int iRed2 = (int) ((Color.red(this.checkedColor) - iRed) * f3);
+            int iGreen = Color.green(this.color);
+            int iGreen2 = (int) ((Color.green(this.checkedColor) - iGreen) * f3);
+            int iBlue = Color.blue(this.color);
+            int iRgb = Color.rgb(iRed + iRed2, iGreen + iGreen2, iBlue + ((int) ((Color.blue(this.checkedColor) - iBlue) * f3)));
             paint.setColor(iRgb);
             checkedPaint.setColor(iRgb);
         }

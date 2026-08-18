@@ -41,7 +41,6 @@ public class SQLiteDatabase {
             if (sQLiteCursorQueryFinalized.next()) {
                 return Integer.valueOf(sQLiteCursorQueryFinalized.intValue(0));
             }
-            sQLiteCursorQueryFinalized.dispose();
             return null;
         } finally {
             sQLiteCursorQueryFinalized.dispose();

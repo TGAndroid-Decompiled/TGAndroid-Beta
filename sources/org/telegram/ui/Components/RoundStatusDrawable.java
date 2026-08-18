@@ -55,7 +55,7 @@ public class RoundStatusDrawable extends StatusDrawable {
         }
         float f = this.progress;
         int i = this.progressDirection;
-        float f2 = f + ((i * j) / 400.0f);
+        float f2 = f + ((((long) i) * j) / 400.0f);
         this.progress = f2;
         if (i > 0 && f2 >= 1.0f) {
             this.progressDirection = -1;

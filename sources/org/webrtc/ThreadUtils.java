@@ -51,7 +51,7 @@ public class ThreadUtils {
         }
     }
 
-    public static boolean joinUninterruptibly(Thread thread, long j) throws InterruptedException {
+    public static boolean joinUninterruptibly(Thread thread, long j) {
         long jElapsedRealtime = SystemClock.elapsedRealtime();
         boolean z = false;
         long jElapsedRealtime2 = j;
@@ -88,7 +88,7 @@ public class ThreadUtils {
         });
     }
 
-    public static boolean awaitUninterruptibly(CountDownLatch countDownLatch, long j) throws InterruptedException {
+    public static boolean awaitUninterruptibly(CountDownLatch countDownLatch, long j) {
         long jElapsedRealtime = SystemClock.elapsedRealtime();
         boolean zAwait = false;
         long jElapsedRealtime2 = j;

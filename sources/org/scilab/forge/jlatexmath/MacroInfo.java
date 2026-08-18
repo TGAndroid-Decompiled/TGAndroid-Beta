@@ -37,7 +37,7 @@ public class MacroInfo {
         this((Object) null, (Method) null, i);
     }
 
-    public MacroInfo(String str, String str2, float f) throws IllegalAccessException, InstantiationException, IllegalArgumentException, InvocationTargetException {
+    public MacroInfo(String str, String str2, float f) {
         this.hasOptions = false;
         int i = (int) f;
         Class<?>[] clsArr = {TeXParser.class, String[].class};
@@ -57,7 +57,7 @@ public class MacroInfo {
         }
     }
 
-    public MacroInfo(String str, String str2, float f, float f2) throws IllegalAccessException, InstantiationException, IllegalArgumentException, InvocationTargetException {
+    public MacroInfo(String str, String str2, float f, float f2) {
         this.hasOptions = false;
         int i = (int) f;
         Class<?>[] clsArr = {TeXParser.class, String[].class};

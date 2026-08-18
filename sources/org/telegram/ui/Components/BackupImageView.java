@@ -169,16 +169,7 @@ public class BackupImageView extends View {
     }
 
     public void setImageMedia(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Bitmap bitmap, int i, int i2, Object obj) {
-        BackupImageView backupImageView;
-        BitmapDrawable bitmapDrawable;
-        if (bitmap != null) {
-            backupImageView = this;
-            bitmapDrawable = new BitmapDrawable((Resources) null, bitmap);
-        } else {
-            backupImageView = this;
-            bitmapDrawable = null;
-        }
-        backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, null, null, bitmapDrawable, i, null, obj, i2);
+        this.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, null, null, bitmap != null ? new BitmapDrawable((Resources) null, bitmap) : null, i, null, obj, i2);
         onNewImageSet();
     }
 
@@ -195,16 +186,7 @@ public class BackupImageView extends View {
     }
 
     public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, Bitmap bitmap, String str3, int i, Object obj) {
-        BackupImageView backupImageView;
-        Drawable bitmapDrawable;
-        if (bitmap != null) {
-            backupImageView = this;
-            bitmapDrawable = new BitmapDrawable((Resources) null, bitmap);
-        } else {
-            backupImageView = this;
-            bitmapDrawable = drawable;
-        }
-        backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, bitmapDrawable, i, str3, obj, 0);
+        this.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, bitmap != null ? new BitmapDrawable((Resources) null, bitmap) : drawable, i, str3, obj, 0);
         onNewImageSet();
     }
 
@@ -343,12 +325,14 @@ public class BackupImageView extends View {
             } else {
                 float width = (getWidth() - this.width) / 2;
                 int height = getHeight();
-                imageReceiver.setImageCoords(width, (height - r3) / 2, this.width, this.height);
+                int i3 = this.height;
+                imageReceiver.setImageCoords(width, (height - i3) / 2, this.width, i3);
                 if (this.blurAllowed) {
                     ImageReceiver imageReceiver2 = this.blurImageReceiver;
                     float width2 = (getWidth() - this.width) / 2;
                     int height2 = getHeight();
-                    imageReceiver2.setImageCoords(width2, (height2 - r4) / 2, this.width, this.height);
+                    int i4 = this.height;
+                    imageReceiver2.setImageCoords(width2, (height2 - i4) / 2, this.width, i4);
                 }
             }
         } else {

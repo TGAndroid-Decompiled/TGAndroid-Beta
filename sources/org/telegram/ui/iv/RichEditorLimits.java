@@ -124,11 +124,9 @@ public class RichEditorLimits {
         if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
             ArrayList<TL_keyboard.PageButton> arrayList2 = ((TL_iv.pageBlockButtonRow) pageBlock).buttons;
             if (arrayList2 != null) {
-                Iterator<TL_keyboard.PageButton> it = arrayList2.iterator();
-                while (it.hasNext()) {
-                    TL_keyboard.PageButton next = it.next();
-                    if (next != null) {
-                        addText(next.text, i + 1, richEditorLimits);
+                for (TL_keyboard.PageButton pageButton : arrayList2) {
+                    if (pageButton != null) {
+                        addText(pageButton.text, i + 1, richEditorLimits);
                     }
                 }
                 return;

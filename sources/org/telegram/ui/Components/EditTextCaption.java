@@ -43,9 +43,6 @@ import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper$$ExternalSyntheticApiModelOutline6;
-import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.QuoteSpan;
-import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.LaunchActivity;
 
 public class EditTextCaption extends EditTextBoldCursor implements FloatingToolbar.StyleDelegate {
@@ -866,15 +863,16 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
             return;
         }
         TextPaint paint = getPaint();
-        CharSequence charSequenceSubSequence = text.subSequence(0, iIndexOf + 1);
-        int iCeil = (int) Math.ceil(paint.measureText(text, 0, r13));
+        int i3 = iIndexOf + 1;
+        CharSequence charSequenceSubSequence = text.subSequence(0, i3);
+        int iCeil = (int) Math.ceil(paint.measureText(text, 0, i3));
         int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
         this.userNameLength = charSequenceSubSequence.length();
-        int i3 = measuredWidth - iCeil;
-        CharSequence charSequenceEllipsize = TextUtils.ellipsize(this.caption, paint, i3, TextUtils.TruncateAt.END);
+        int i4 = measuredWidth - iCeil;
+        CharSequence charSequenceEllipsize = TextUtils.ellipsize(this.caption, paint, i4, TextUtils.TruncateAt.END);
         this.xOffset = iCeil;
         try {
-            StaticLayout staticLayout = new StaticLayout(charSequenceEllipsize, getPaint(), i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(charSequenceEllipsize, getPaint(), i4, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.captionLayout = staticLayout;
             if (staticLayout.getLineCount() > 0) {
                 this.xOffset = (int) (this.xOffset + (-this.captionLayout.getLineLeft(0)));
@@ -943,17 +941,12 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         }
         List actionList = accessibilityNodeInfoCompatWrap.getActionList();
         int size = actionList.size();
-        int i = 0;
-        while (true) {
-            if (i >= size) {
-                break;
-            }
+        for (int i = 0; i < size; i++) {
             AccessibilityNodeInfoCompat.AccessibilityActionCompat accessibilityActionCompat = (AccessibilityNodeInfoCompat.AccessibilityActionCompat) actionList.get(i);
             if (accessibilityActionCompat.getId() == 268435456) {
                 accessibilityNodeInfoCompatWrap.removeAction(accessibilityActionCompat);
                 break;
             }
-            i++;
         }
         if (hasSelection()) {
             accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_spoiler, LocaleController.getString(R.string.Spoiler)));

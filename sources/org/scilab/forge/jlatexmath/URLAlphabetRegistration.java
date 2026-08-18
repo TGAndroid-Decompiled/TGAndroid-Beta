@@ -1,6 +1,5 @@
 package org.scilab.forge.jlatexmath;
 
-import java.lang.Character;
 import java.net.URL;
 import java.net.URLClassLoader;
 

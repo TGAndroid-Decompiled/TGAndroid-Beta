@@ -254,7 +254,8 @@ public class NotificationsCheckCell extends FrameLayout {
         }
         if (this.drawLine) {
             int iDp2 = LocaleController.isRTL ? AndroidUtilities.dp(76.0f) : (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - 1;
-            canvas.drawRect(iDp2, (getMeasuredHeight() - AndroidUtilities.dp(22.0f)) / 2, iDp2 + 2, r1 + AndroidUtilities.dp(22.0f), Theme.dividerPaint);
+            int measuredHeight2 = (getMeasuredHeight() - AndroidUtilities.dp(22.0f)) / 2;
+            canvas.drawRect(iDp2, measuredHeight2, iDp2 + 2, measuredHeight2 + AndroidUtilities.dp(22.0f), Theme.dividerPaint);
         }
     }
 

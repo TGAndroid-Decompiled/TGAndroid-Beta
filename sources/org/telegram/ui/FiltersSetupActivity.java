@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.text.Spannable;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,8 +23,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -57,7 +59,6 @@ import org.telegram.ui.Components.ProgressButton;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.FilterCreateActivity;
 
 public class FiltersSetupActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ListAdapter adapter;
@@ -412,8 +413,120 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         }
 
-        public void setFilter(org.telegram.messenger.MessagesController.DialogFilter r16, boolean r17, int r18) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.FiltersSetupActivity.FilterCell.setFilter(org.telegram.messenger.MessagesController$DialogFilter, boolean, int):void");
+        public void setFilter(MessagesController.DialogFilter dialogFilter, boolean z, int i) {
+            MessagesController.DialogFilter dialogFilter2 = this.currentFilter;
+            int i2 = dialogFilter2 == null ? -1 : dialogFilter2.id;
+            this.currentFilter = dialogFilter;
+            int i3 = dialogFilter == null ? -1 : dialogFilter.id;
+            boolean z2 = i2 != i3;
+            int i4 = FiltersSetupActivity.this.getMessagesController().folderTags ? dialogFilter.color : -1;
+            if (i4 >= 0 && dialogFilter.color != this.lastAppliedColor) {
+                View view = this.colorImageView;
+                int iDp = AndroidUtilities.dp(22.0f);
+                FiltersSetupActivity filtersSetupActivity = FiltersSetupActivity.this;
+                int[] iArr = Theme.keys_avatar_nameInMessage;
+                this.lastAppliedColor = i4;
+                view.setBackground(Theme.createCircleDrawable(iDp, filtersSetupActivity.getThemedColor(iArr[i4 % iArr.length])));
+            }
+            if (i4 != this.lastColor) {
+                ValueAnimator valueAnimator = this.moveImageViewAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                if (i2 == i3) {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.moveImageView.getAlpha(), i4 >= 0 ? 0.0f : 1.0f);
+                    this.moveImageViewAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                            this.f$0.lambda$setFilter$2(valueAnimator2);
+                        }
+                    });
+                    this.moveImageViewAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                    this.moveImageViewAnimator.setDuration(340L);
+                    ValueAnimator valueAnimator2 = this.moveImageViewAnimator;
+                    FiltersSetupActivity filtersSetupActivity2 = FiltersSetupActivity.this;
+                    valueAnimator2.setStartDelay(((long) Math.max(0, i4 >= 0 ? filtersSetupActivity2.filtersSectionEnd - i : i - filtersSetupActivity2.filtersSectionStart)) * 27);
+                    this.moveImageViewAnimator.start();
+                } else {
+                    this.moveImageView.setScaleX(i4 >= 0 ? 0.5f : 1.0f);
+                    this.moveImageView.setScaleY(i4 >= 0 ? 0.5f : 1.0f);
+                    this.moveImageView.setAlpha(i4 >= 0 ? 0.0f : 1.0f);
+                    this.colorImageView.setScaleX(i4 >= 0 ? 1.0f : 0.5f);
+                    this.colorImageView.setScaleY(i4 >= 0 ? 1.0f : 0.5f);
+                    this.colorImageView.setAlpha(i4 >= 0 ? 1.0f : 0.0f);
+                }
+                this.lastColor = i4;
+            }
+            this.shareImageView.setVisibility(dialogFilter.isChatlist() ? 0 : 8);
+            StringBuilder sb = new StringBuilder();
+            if (dialogFilter.isDefault()) {
+                sb.append(LocaleController.getString(R.string.FilterAllChats));
+            } else {
+                int i5 = dialogFilter.flags;
+                int i6 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
+                if ((i5 & i6) == i6) {
+                    sb.append(LocaleController.getString(R.string.FilterAllChats));
+                } else {
+                    if ((i5 & MessagesController.DIALOG_FILTER_FLAG_CONTACTS) != 0) {
+                        if (sb.length() != 0) {
+                            sb.append(", ");
+                        }
+                        sb.append(LocaleController.getString(R.string.FilterContacts));
+                    }
+                    if ((dialogFilter.flags & MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS) != 0) {
+                        if (sb.length() != 0) {
+                            sb.append(", ");
+                        }
+                        sb.append(LocaleController.getString(R.string.FilterNonContacts));
+                    }
+                    if ((dialogFilter.flags & MessagesController.DIALOG_FILTER_FLAG_GROUPS) != 0) {
+                        if (sb.length() != 0) {
+                            sb.append(", ");
+                        }
+                        sb.append(LocaleController.getString(R.string.FilterGroups));
+                    }
+                    if ((dialogFilter.flags & MessagesController.DIALOG_FILTER_FLAG_CHANNELS) != 0) {
+                        if (sb.length() != 0) {
+                            sb.append(", ");
+                        }
+                        sb.append(LocaleController.getString(R.string.FilterChannels));
+                    }
+                    if ((dialogFilter.flags & MessagesController.DIALOG_FILTER_FLAG_BOTS) != 0) {
+                        if (sb.length() != 0) {
+                            sb.append(", ");
+                        }
+                        sb.append(LocaleController.getString(R.string.FilterBots));
+                    }
+                }
+            }
+            if (!dialogFilter.alwaysShow.isEmpty() || !dialogFilter.neverShow.isEmpty()) {
+                if (sb.length() != 0) {
+                    sb.append(", ");
+                }
+                sb.append(LocaleController.formatPluralString("Exception", dialogFilter.alwaysShow.size() + dialogFilter.neverShow.size(), new Object[0]));
+            }
+            if (sb.length() == 0) {
+                sb.append(LocaleController.getString(R.string.FilterNoChats));
+            }
+            String string = dialogFilter.name;
+            if (dialogFilter.isDefault()) {
+                string = LocaleController.getString(R.string.FilterAllChats);
+            }
+            if (!z2) {
+                this.progressToLock = this.currentFilter.locked ? 1.0f : 0.0f;
+            }
+            Spannable spannableReplaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(string, this.textView.getPaint().getFontMetricsInt(), false), dialogFilter.entities, this.textView.getPaint().getFontMetricsInt());
+            this.textView.setEmojiCacheType(dialogFilter.title_noanimate ? 26 : 0);
+            this.textView.setText(spannableReplaceAnimatedEmoji);
+            this.valueTextView.setText(sb);
+            this.needDivider = z;
+            if (dialogFilter.isDefault()) {
+                this.optionsImageView.setVisibility(8);
+            } else {
+                this.optionsImageView.setVisibility(0);
+            }
+            invalidate();
         }
 
         public void lambda$setFilter$2(ValueAnimator valueAnimator) {
@@ -438,8 +551,38 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r10) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.FiltersSetupActivity.FilterCell.onDraw(android.graphics.Canvas):void");
+        protected void onDraw(Canvas canvas) {
+            float f;
+            if (this.needDivider) {
+                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(62.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            }
+            MessagesController.DialogFilter dialogFilter = this.currentFilter;
+            if (dialogFilter != null) {
+                boolean z = dialogFilter.locked;
+                if (z) {
+                    float f2 = this.progressToLock;
+                    if (f2 != 1.0f) {
+                        this.progressToLock = f2 + 0.10666667f;
+                        invalidate();
+                    } else if (!z) {
+                        f = this.progressToLock;
+                        if (f != 0.0f) {
+                            this.progressToLock = f - 0.10666667f;
+                            invalidate();
+                        }
+                    }
+                } else if (!z) {
+                    f = this.progressToLock;
+                    if (f != 0.0f) {
+                        this.progressToLock = f - 0.10666667f;
+                        invalidate();
+                    }
+                }
+            }
+            float fClamp = Utilities.clamp(this.progressToLock, 1.0f, 0.0f);
+            this.progressToLock = fClamp;
+            this.textView.setRightDrawableScale(fClamp);
+            this.textView.invalidate();
         }
 
         public void setOnReorderButtonTouchListener(View.OnTouchListener onTouchListener) {
@@ -998,7 +1141,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout headerCell;
+            View headerCell;
             if (i == 0) {
                 headerCell = new HeaderCell(this.mContext);
             } else if (i == 1) {
@@ -1106,7 +1249,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             ItemInner itemInner = (ItemInner) FiltersSetupActivity.this.items.get(i);
             if (itemInner == null) {
                 return;

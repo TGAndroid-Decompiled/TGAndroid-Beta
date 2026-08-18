@@ -99,9 +99,12 @@ public class GradientProtectionDrawable extends Drawable {
         if (!bounds.isEmpty()) {
             int i5 = this.mSide;
             if (i5 == 1 && (i4 = this.mInsets.left) > 0) {
-                canvas.drawRect(bounds.left, bounds.top, Math.min(bounds.right, r1 + i4), bounds.bottom, this.mPaint);
+                int i6 = bounds.left;
+                canvas.drawRect(i6, bounds.top, Math.min(bounds.right, i6 + i4), bounds.bottom, this.mPaint);
             } else if (i5 == 2 && (i3 = this.mInsets.top) > 0) {
-                canvas.drawRect(bounds.left, bounds.top, bounds.right, Math.min(bounds.bottom, r1 + i3), this.mPaint);
+                float f = bounds.left;
+                int i7 = bounds.top;
+                canvas.drawRect(f, i7, bounds.right, Math.min(bounds.bottom, i7 + i3), this.mPaint);
             } else if (i5 == 4 && (i2 = this.mInsets.right) > 0) {
                 canvas.drawRect(Math.max(bounds.left, bounds.right - i2), bounds.top, bounds.right, bounds.bottom, this.mPaint);
             } else if (i5 == 8 && (i = this.mInsets.bottom) > 0) {

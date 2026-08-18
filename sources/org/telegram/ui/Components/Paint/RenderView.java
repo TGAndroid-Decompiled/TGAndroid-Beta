@@ -24,8 +24,6 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.BlurringShader;
-import org.telegram.ui.Components.Paint.Brush;
-import org.telegram.ui.Components.Paint.Painting;
 import org.telegram.ui.Components.Size;
 
 public class RenderView extends TextureView {
@@ -641,7 +639,7 @@ public class RenderView extends TextureView {
             }
         }
 
-        public Bitmap getTexture(final boolean z, final boolean z2) throws InterruptedException {
+        public Bitmap getTexture(final boolean z, final boolean z2) {
             if (!this.initialized) {
                 return null;
             }

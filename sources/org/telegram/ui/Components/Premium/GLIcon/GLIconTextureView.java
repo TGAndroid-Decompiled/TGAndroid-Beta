@@ -321,7 +321,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         }
 
         @Override
-        public void run() throws InterruptedException {
+        public void run() {
             GLIconTextureView gLIconTextureView;
             GLIconTextureView gLIconTextureView2 = GLIconTextureView.this;
             gLIconTextureView2.isRunning = true;

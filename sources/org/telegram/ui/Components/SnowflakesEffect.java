@@ -10,7 +10,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.BatchParticlesDrawHelper;
 
 public class SnowflakesEffect {
     private final BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer;
@@ -193,7 +192,7 @@ public class SnowflakesEffect {
                     } else {
                         measuredHeight = view.getMeasuredHeight() * Utilities.random.nextFloat();
                     }
-                    double dNextInt = (Utilities.random.nextInt(40) + 70) * 0.017453292519943295d;
+                    double dNextInt = ((double) (Utilities.random.nextInt(40) + 70)) * 0.017453292519943295d;
                     float fCos = (float) Math.cos(dNextInt);
                     float fSin = (float) Math.sin(dNextInt);
                     if (!this.freeParticles.isEmpty()) {
@@ -236,7 +235,7 @@ public class SnowflakesEffect {
         Canvas canvas = new Canvas(bitmapCreateBitmap);
         float fDpf2 = AndroidUtilities.dpf2(2.0f) * 2.0f;
         float f = (-AndroidUtilities.dpf2(0.57f)) * 2.0f;
-        float fDpf22 = AndroidUtilities.dpf2(1.55f) * 2.0f;
+        float fDpf3 = AndroidUtilities.dpf2(1.55f) * 2.0f;
         float fDp = AndroidUtilities.dp(5.0f);
         float fDp2 = AndroidUtilities.dp(5.0f);
         int i = 0;
@@ -253,7 +252,7 @@ public class SnowflakesEffect {
             canvas.drawLine(fDp, fDp2, fDp + fCos, f4, paint);
             double d2 = (float) (d - 1.5707963267948966d);
             double d3 = f;
-            double d4 = fDpf22;
+            double d4 = fDpf3;
             float f7 = fDp + (fCos * 0.66f);
             float f8 = f6 + f3;
             canvas.drawLine(f7, f8, fDp + ((float) ((Math.cos(d2) * d3) - (Math.sin(d2) * d4))), f6 + ((float) ((Math.sin(d2) * d3) + (Math.cos(d2) * d4))), paint);

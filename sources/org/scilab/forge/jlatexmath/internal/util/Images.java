@@ -27,6 +27,6 @@ public final class Images {
                 dSqr += sqr(color.getRed() - color2.getRed()) + sqr(color.getBlue() - color2.getBlue()) + sqr(color.getGreen() - color2.getGreen()) + sqr(color.getAlpha() - color2.getAlpha());
             }
         }
-        return Math.sqrt((dSqr / height) / width);
+        return Math.sqrt((dSqr / ((double) height)) / ((double) width));
     }
 }

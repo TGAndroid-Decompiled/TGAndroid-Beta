@@ -24,7 +24,6 @@ import android.view.ViewConfiguration;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -33,7 +32,6 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
 
 public class LinkSpanDrawable {
     private static final ArrayList pathCache = new ArrayList();
@@ -191,11 +189,12 @@ public class LinkSpanDrawable {
             this.mStart = jElapsedRealtime;
         }
         float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(Math.min(1.0f, (jElapsedRealtime - this.mStart) / this.mDuration));
-        float fMin = this.mReleaseStart < 0 ? 0.0f : Math.min(1.0f, Math.max(0.0f, ((jElapsedRealtime - 75) - r12) / 100.0f));
+        long j = this.mReleaseStart;
+        float fMin = j < 0 ? 0.0f : Math.min(1.0f, Math.max(0.0f, ((jElapsedRealtime - 75) - j) / 100.0f));
         if (this.mSupportsLongPress) {
-            long j = jElapsedRealtime - this.mStart;
-            long j2 = this.mDuration * 2;
-            float fMax = Math.max(0.0f, (j - j2) / (this.mLongPressDuration - j2));
+            long j2 = jElapsedRealtime - this.mStart;
+            long j3 = this.mDuration * 2;
+            float fMax = Math.max(0.0f, (j2 - j3) / (this.mLongPressDuration - j3));
             f = (fMax > 1.0f ? 1.0f - (((jElapsedRealtime - this.mStart) - this.mLongPressDuration) / this.mDuration) : fMax * 0.5f) * (1.0f - fMin);
         } else {
             f = 1.0f;
@@ -645,7 +644,7 @@ public class LinkSpanDrawable {
         }
 
         @Override
-        public void invalidate() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        public void invalidate() {
             if (!this.triedGetInvalidate) {
                 this.triedGetInvalidate = true;
                 try {
@@ -741,8 +740,67 @@ public class LinkSpanDrawable {
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r16) throws java.lang.IllegalAccessException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LinkSpanDrawable.LinksTextView.onDraw(android.graphics.Canvas):void");
+        protected void onDraw(Canvas canvas) {
+            boolean z;
+            boolean z2 = false;
+            if (!this.isCustomLinkCollector) {
+                canvas.save();
+                if (!this.disablePaddingsOffset) {
+                    canvas.translate(this.disablePaddingsOffsetX ? 0.0f : getPaddingLeft(), this.disablePaddingsOffsetY ? 0.0f : getTextPaddingTop());
+                }
+                LinkCollector linkCollector = this.links;
+                if (linkCollector != null && linkCollector.draw(canvas)) {
+                    invalidate();
+                }
+                canvas.restore();
+            }
+            super.onDraw(canvas);
+            try {
+                Layout layout = getLayout();
+                float paddingTop = ((getGravity() & 16) == 0 || layout == null) ? 0.0f : getPaddingTop() + ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - layout.getHeight()) / 2.0f);
+                if (paddingTop == 0.0f && getPaddingLeft() == 0) {
+                    z = false;
+                } else {
+                    canvas.save();
+                    try {
+                        canvas.translate(getPaddingLeft(), paddingTop);
+                        z = true;
+                    } catch (Exception e) {
+                        e = e;
+                        z2 = true;
+                        if (!this.loggedError) {
+                            FileLog.e((Throwable) e, true);
+                        }
+                        this.loggedError = true;
+                        z = z2;
+                        if (z) {
+                            canvas.restore();
+                        }
+                    }
+                }
+                try {
+                    this.stack = AnimatedEmojiSpan.update(emojiCacheType(), this, this.stack, getLayout());
+                    if (this.emojiColorIsLink && (this.emojiColorFilter == null || this.emojiColorFilterColor != getPaint().linkColor)) {
+                        int i = getPaint().linkColor;
+                        this.emojiColorFilterColor = i;
+                        this.emojiColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
+                    }
+                    AnimatedEmojiSpan.drawAnimatedEmojis(canvas, layout, this.stack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.emojiColorFilter);
+                } catch (Exception e2) {
+                    e = e2;
+                    z2 = z;
+                    if (!this.loggedError) {
+                        FileLog.e((Throwable) e, true);
+                    }
+                    this.loggedError = true;
+                    z = z2;
+                }
+            } catch (Exception e3) {
+                e = e3;
+            }
+            if (z) {
+                canvas.restore();
+            }
         }
 
         public void resetEmojiColor() {

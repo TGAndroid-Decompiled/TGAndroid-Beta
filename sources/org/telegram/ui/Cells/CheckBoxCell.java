@@ -14,7 +14,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
@@ -117,7 +116,7 @@ public class CheckBoxCell extends FrameLayout {
         } else {
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
                 @Override
-                protected void onDraw(Canvas canvas) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+                protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
                     CheckBoxCell.this.updateCollapseArrowTranslation();
                 }

@@ -198,8 +198,253 @@ public class MediaCodecVideoConvertor {
         }
     }
 
-    private long readAndWriteTracks(android.media.MediaExtractor r30, org.telegram.messenger.video.MediaCodecVideoConvertor.Muxer r31, android.media.MediaCodec.BufferInfo r32, long r33, long r35, long r37, java.io.File r39, boolean r40) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.readAndWriteTracks(android.media.MediaExtractor, org.telegram.messenger.video.MediaCodecVideoConvertor$Muxer, android.media.MediaCodec$BufferInfo, long, long, long, java.io.File, boolean):long");
+    private long readAndWriteTracks(MediaExtractor mediaExtractor, Muxer muxer, MediaCodec.BufferInfo bufferInfo, long j, long j2, long j3, File file, boolean z) {
+        int iMax;
+        int iAddTrack;
+        int iAddTrack2;
+        int i;
+        int i2;
+        int i3;
+        boolean z2;
+        boolean z3;
+        byte[] bArrArray;
+        int i4;
+        int i5;
+        int integer;
+        int iFindTrack = MediaController.findTrack(mediaExtractor, false);
+        int iFindTrack2 = z ? MediaController.findTrack(mediaExtractor, true) : -1;
+        float f = j3 / 1000.0f;
+        if (iFindTrack >= 0) {
+            mediaExtractor.selectTrack(iFindTrack);
+            MediaFormat trackFormat = mediaExtractor.getTrackFormat(iFindTrack);
+            iAddTrack = muxer.addTrack(trackFormat, false);
+            try {
+                integer = trackFormat.getInteger("max-input-size");
+            } catch (Exception e) {
+                FileLog.e(e);
+                integer = 0;
+            }
+            if (j > 0) {
+                mediaExtractor.seekTo(j, 0);
+            } else {
+                mediaExtractor.seekTo(0L, 0);
+            }
+            iMax = integer;
+        } else {
+            iMax = 0;
+            iAddTrack = -1;
+        }
+        if (iFindTrack2 >= 0) {
+            mediaExtractor.selectTrack(iFindTrack2);
+            MediaFormat trackFormat2 = mediaExtractor.getTrackFormat(iFindTrack2);
+            if (trackFormat2.getString("mime").equals("audio/unknown")) {
+                iAddTrack2 = -1;
+                iFindTrack2 = -1;
+            } else {
+                iAddTrack2 = muxer.addTrack(trackFormat2, true);
+                try {
+                    iMax = Math.max(trackFormat2.getInteger("max-input-size"), iMax);
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                }
+                if (j > 0) {
+                    mediaExtractor.seekTo(j, 0);
+                } else {
+                    mediaExtractor.seekTo(0L, 0);
+                }
+            }
+        } else {
+            iAddTrack2 = -1;
+        }
+        if (iMax <= 0) {
+            iMax = 65536;
+        }
+        ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(iMax);
+        if (iFindTrack2 < 0 && iFindTrack < 0) {
+            return -1L;
+        }
+        checkConversionCanceled();
+        long j4 = 0;
+        long j5 = -1;
+        boolean z4 = false;
+        while (!z4) {
+            checkConversionCanceled();
+            if (Build.VERSION.SDK_INT >= 28) {
+                long sampleSize = mediaExtractor.getSampleSize();
+                i = iFindTrack2;
+                if (sampleSize > iMax) {
+                    int i6 = (int) (sampleSize + 1024);
+                    iMax = i6;
+                    byteBufferAllocateDirect = ByteBuffer.allocateDirect(i6);
+                }
+            } else {
+                i = iFindTrack2;
+            }
+            bufferInfo.size = mediaExtractor.readSampleData(byteBufferAllocateDirect, 0);
+            int sampleTrackIndex = mediaExtractor.getSampleTrackIndex();
+            int i7 = i;
+            if (sampleTrackIndex == iFindTrack) {
+                i3 = iAddTrack;
+            } else {
+                if (sampleTrackIndex == i7) {
+                    i3 = iAddTrack2;
+                } else {
+                    i2 = -1;
+                    i3 = -1;
+                }
+                if (i3 != i2) {
+                    if (sampleTrackIndex == i7 && (bArrArray = byteBufferAllocateDirect.array()) != null) {
+                        int iArrayOffset = byteBufferAllocateDirect.arrayOffset();
+                        int iLimit = iArrayOffset + byteBufferAllocateDirect.limit();
+                        int i8 = iArrayOffset;
+                        int i9 = -1;
+                        while (true) {
+                            z2 = z4;
+                            int i10 = iLimit - 4;
+                            if (i8 > i10) {
+                                break;
+                            }
+                            if (bArrArray[i8] == 0 && bArrArray[i8 + 1] == 0 && bArrArray[i8 + 2] == 0) {
+                                i5 = iMax;
+                                i4 = i7;
+                                if (bArrArray[i8 + 3] == 1) {
+                                    if (i9 != -1) {
+                                        int i11 = (i8 - i9) - (i8 == i10 ? 0 : 4);
+                                        bArrArray[i9] = (byte) (i11 >> 24);
+                                        bArrArray[i9 + 1] = (byte) (i11 >> 16);
+                                        bArrArray[i9 + 2] = (byte) (i11 >> 8);
+                                        bArrArray[i9 + 3] = (byte) i11;
+                                    }
+                                    i9 = i8;
+                                }
+                                i8++;
+                                z4 = z2;
+                                i7 = i4;
+                                iMax = i5;
+                            } else {
+                                i4 = i7;
+                                i5 = iMax;
+                            }
+                            if (i8 == i10) {
+                                if (i9 != -1) {
+                                    int i12 = (i8 - i9) - (i8 == i10 ? 0 : 4);
+                                    bArrArray[i9] = (byte) (i12 >> 24);
+                                    bArrArray[i9 + 1] = (byte) (i12 >> 16);
+                                    bArrArray[i9 + 2] = (byte) (i12 >> 8);
+                                    bArrArray[i9 + 3] = (byte) i12;
+                                }
+                                i9 = i8;
+                            }
+                            i8++;
+                            z4 = z2;
+                            i7 = i4;
+                            iMax = i5;
+                        }
+                    } else {
+                        z2 = z4;
+                    }
+                    iFindTrack2 = i7;
+                    iMax = iMax;
+                    if (bufferInfo.size >= 0) {
+                        bufferInfo.presentationTimeUs = mediaExtractor.getSampleTime();
+                        z3 = false;
+                    } else {
+                        bufferInfo.size = 0;
+                        z3 = true;
+                    }
+                    if (bufferInfo.size <= 0 && !z3) {
+                        if (sampleTrackIndex == iFindTrack && j > 0 && j5 == -1) {
+                            j5 = bufferInfo.presentationTimeUs;
+                        }
+                        if (j2 < 0 || bufferInfo.presentationTimeUs < j2) {
+                            bufferInfo.offset = 0;
+                            bufferInfo.flags = mediaExtractor.getSampleFlags();
+                            long jWriteSampleData = muxer.writeSampleData(i3, byteBufferAllocateDirect, bufferInfo, false);
+                            if (jWriteSampleData != 0) {
+                                MediaController.VideoConvertorListener videoConvertorListener = this.callback;
+                                if (videoConvertorListener != null) {
+                                    long j6 = bufferInfo.presentationTimeUs - j5;
+                                    if (j6 <= j4) {
+                                        j6 = j4;
+                                    }
+                                    videoConvertorListener.didWriteData(jWriteSampleData, (j6 / 1000.0f) / f);
+                                    j4 = j6;
+                                }
+                            }
+                        } else {
+                            z3 = true;
+                        }
+                    }
+                    if (!z3) {
+                        mediaExtractor.advance();
+                    }
+                } else {
+                    iAddTrack2 = iAddTrack2;
+                    z2 = z4;
+                    iFindTrack2 = i7;
+                    iMax = iMax;
+                    if (sampleTrackIndex == -1) {
+                        z3 = true;
+                    } else {
+                        mediaExtractor.advance();
+                        z3 = false;
+                    }
+                }
+                iAddTrack2 = iAddTrack2;
+                if (z3) {
+                    z4 = true;
+                } else {
+                    z4 = z2;
+                }
+            }
+            i2 = -1;
+            if (i3 != i2) {
+                if (sampleTrackIndex == i7) {
+                    z2 = z4;
+                } else {
+                    z2 = z4;
+                }
+                iFindTrack2 = i7;
+                iMax = iMax;
+                if (bufferInfo.size >= 0) {
+                    bufferInfo.presentationTimeUs = mediaExtractor.getSampleTime();
+                    z3 = false;
+                } else {
+                    bufferInfo.size = 0;
+                    z3 = true;
+                }
+                if (bufferInfo.size <= 0) {
+                }
+                if (!z3) {
+                    mediaExtractor.advance();
+                }
+            } else {
+                iAddTrack2 = iAddTrack2;
+                z2 = z4;
+                iFindTrack2 = i7;
+                iMax = iMax;
+                if (sampleTrackIndex == -1) {
+                    z3 = true;
+                } else {
+                    mediaExtractor.advance();
+                    z3 = false;
+                }
+            }
+            iAddTrack2 = iAddTrack2;
+            if (z3) {
+                z4 = true;
+            } else {
+                z4 = z2;
+            }
+        }
+        int i13 = iFindTrack2;
+        if (iFindTrack >= 0) {
+            mediaExtractor.unselectTrack(iFindTrack);
+        }
+        if (i13 >= 0) {
+            mediaExtractor.unselectTrack(i13);
+        }
+        return j5;
     }
 
     private void checkConversionCanceled() {

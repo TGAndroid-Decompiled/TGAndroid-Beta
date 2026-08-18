@@ -268,7 +268,53 @@ public class CameraSession {
     }
 
     public void updateRotation() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraSession.updateRotation():void");
+        int i;
+        if (this.cameraInfo == null) {
+            return;
+        }
+        try {
+            updateCameraInfo();
+            Camera camera = this.destroyed ? null : this.cameraInfo.camera;
+            this.displayOrientation = getDisplayOrientation(this.info, true);
+            int i2 = 0;
+            if (!"samsung".equals(Build.MANUFACTURER) || !"sf2wifixx".equals(Build.PRODUCT)) {
+                int i3 = this.displayOrientation;
+                if (i3 == 0) {
+                    i = 0;
+                } else if (i3 == 1) {
+                    i = 90;
+                } else if (i3 == 2) {
+                    i = 180;
+                } else if (i3 != 3) {
+                    i = 0;
+                } else {
+                    i = 270;
+                }
+                Camera.CameraInfo cameraInfo = this.info;
+                if (cameraInfo.orientation % 90 != 0) {
+                    cameraInfo.orientation = 0;
+                }
+                if (cameraInfo.facing == 1) {
+                    i2 = (360 - ((cameraInfo.orientation + i) % 360)) % 360;
+                } else {
+                    i2 = ((cameraInfo.orientation - i) + 360) % 360;
+                }
+            }
+            this.currentOrientation = i2;
+            if (camera != null) {
+                try {
+                    camera.setDisplayOrientation(i2);
+                } catch (Throwable unused) {
+                }
+            }
+            int i4 = this.currentOrientation - this.displayOrientation;
+            this.diffOrientation = i4;
+            if (i4 < 0) {
+                this.diffOrientation = i4 + 360;
+            }
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
     }
 
     protected void configurePhotoCamera() {

@@ -48,7 +48,7 @@ public class FileVideoCapturer implements VideoCapturer {
         private final FileChannel mediaFileChannel;
         private final long videoStart;
 
-        public VideoReaderY4M(String str) throws IOException, NumberFormatException {
+        public VideoReaderY4M(String str) throws IOException {
             RandomAccessFile randomAccessFile = new RandomAccessFile(str, "r");
             this.mediaFile = randomAccessFile;
             this.mediaFileChannel = randomAccessFile.getChannel();
@@ -91,7 +91,7 @@ public class FileVideoCapturer implements VideoCapturer {
         }
 
         @Override
-        public VideoFrame getNextFrame() throws IOException {
+        public VideoFrame getNextFrame() {
             long nanos = TimeUnit.MILLISECONDS.toNanos(SystemClock.elapsedRealtime());
             JavaI420Buffer javaI420BufferAllocate = JavaI420Buffer.allocate(this.frameWidth, this.frameHeight);
             ByteBuffer dataY = javaI420BufferAllocate.getDataY();
@@ -123,7 +123,7 @@ public class FileVideoCapturer implements VideoCapturer {
         }
 
         @Override
-        public void close() throws IOException {
+        public void close() {
             try {
                 this.mediaFile.close();
             } catch (IOException e) {

@@ -12,14 +12,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.telephony.TelephonyManager;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.util.Property;
 import android.view.KeyEvent;
@@ -27,11 +33,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -59,10 +67,16 @@ import com.stripe.android.model.Token;
 import com.stripe.android.net.TokenParser;
 import j$.util.Objects;
 import j$.util.Optional;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -76,6 +90,8 @@ import org.json.JSONObject;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -96,6 +112,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -119,8 +136,11 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ContextProgressView;
 import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.HintEditText;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.CountrySelectActivity;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda24;
+import org.telegram.ui.Components.TypefaceSpan;
+import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class PaymentFormActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -516,8 +536,2455 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     @Override
-    public android.view.View createView(android.content.Context r43) throws org.json.JSONException, java.lang.NoSuchFieldException, java.lang.SecurityException, java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.createView(android.content.Context):android.view.View");
+    public View createView(Context context) {
+        ?? r13;
+        char c;
+        char c2;
+        String str;
+        char c3;
+        final String name;
+        char c4;
+        TLRPC.PaymentForm paymentForm;
+        ?? r0;
+        ?? r2;
+        ?? spannableStringBuilder;
+        TLRPC.PaymentForm paymentForm2;
+        TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo;
+        final long jLongValue;
+        int i;
+        FrameLayout frameLayout;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo2;
+        String upperCase;
+        String str2;
+        ?? frameLayout2;
+        String str3;
+        TLRPC.TL_postAddress tL_postAddress;
+        TLRPC.TL_postAddress tL_postAddress2;
+        TLRPC.TL_postAddress tL_postAddress3;
+        TLRPC.TL_postAddress tL_postAddress4;
+        TLRPC.TL_postAddress tL_postAddress5;
+        TLRPC.TL_postAddress tL_postAddress6;
+        String str4;
+        String str5;
+        switch (this.currentStep) {
+            case 0:
+                this.actionBar.setTitle(LocaleController.getString(R.string.PaymentShippingInfo));
+                break;
+            case 1:
+                this.actionBar.setTitle(LocaleController.getString(R.string.PaymentShippingMethod));
+                break;
+            case 2:
+            case 3:
+                TLRPC.TL_paymentFormMethod tL_paymentFormMethod = this.paymentFormMethod;
+                if (tL_paymentFormMethod != null && !TextUtils.isEmpty(tL_paymentFormMethod.title)) {
+                    this.actionBar.setTitle(this.paymentFormMethod.title);
+                } else {
+                    this.actionBar.setTitle(LocaleController.getString(R.string.PaymentCardInfo));
+                }
+                break;
+            case 4:
+                if (this.paymentForm.invoice.test) {
+                    this.actionBar.setTitle("Test " + LocaleController.getString(R.string.PaymentCheckout));
+                } else {
+                    this.actionBar.setTitle(LocaleController.getString(R.string.PaymentCheckout));
+                }
+                break;
+            case 5:
+                if (this.paymentForm.invoice.test) {
+                    this.actionBar.setTitle("Test " + LocaleController.getString(R.string.PaymentReceipt));
+                } else {
+                    this.actionBar.setTitle(LocaleController.getString(R.string.PaymentReceipt));
+                }
+                break;
+            case 6:
+                this.actionBar.setTitle(LocaleController.getString(R.string.PaymentPassword));
+                break;
+        }
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i8) {
+                if (i8 == -1) {
+                    if (PaymentFormActivity.this.donePressed) {
+                        return;
+                    }
+                    PaymentFormActivity.this.finishFragment();
+                    return;
+                }
+                if (i8 != 1 || PaymentFormActivity.this.donePressed) {
+                    return;
+                }
+                if (PaymentFormActivity.this.currentStep != 3) {
+                    AndroidUtilities.hideKeyboard(PaymentFormActivity.this.getParentActivity().getCurrentFocus());
+                }
+                int i9 = PaymentFormActivity.this.currentStep;
+                if (i9 == 0) {
+                    PaymentFormActivity.this.setDonePressed(true);
+                    PaymentFormActivity.this.sendForm();
+                    return;
+                }
+                if (i9 == 1) {
+                    for (int i10 = 0; i10 < PaymentFormActivity.this.radioCells.length; i10++) {
+                        if (PaymentFormActivity.this.radioCells[i10].isChecked()) {
+                            PaymentFormActivity paymentFormActivity = PaymentFormActivity.this;
+                            paymentFormActivity.shippingOption = paymentFormActivity.requestedInfo.shipping_options.get(i10);
+                            break;
+                        }
+                    }
+                    PaymentFormActivity.this.goToNextStep();
+                    return;
+                }
+                if (i9 == 2) {
+                    PaymentFormActivity.this.sendCardData();
+                } else if (i9 == 3) {
+                    PaymentFormActivity.this.checkPassword();
+                } else {
+                    if (i9 != 6) {
+                        return;
+                    }
+                    PaymentFormActivity.this.sendSavePassword(false);
+                }
+            }
+        });
+        ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
+        int i8 = this.currentStep;
+        int i9 = 3;
+        int i10 = -1;
+        if (i8 == 0 || i8 == 1 || i8 == 2 || i8 == 3 || i8 == 4 || i8 == 6) {
+            this.doneItem = actionBarMenuCreateMenu.addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
+            ContextProgressView contextProgressView = new ContextProgressView(context, 1);
+            this.progressView = contextProgressView;
+            contextProgressView.setAlpha(0.0f);
+            this.progressView.setScaleX(0.1f);
+            this.progressView.setScaleY(0.1f);
+            this.progressView.setVisibility(4);
+            this.doneItem.addView(this.progressView, LayoutHelper.createFrame(-1, -1.0f));
+        }
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.fragmentView = frameLayout3;
+        frameLayout3.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
+        ScrollView scrollView = new ScrollView(context);
+        this.scrollView = scrollView;
+        scrollView.setFillViewport(true);
+        AndroidUtilities.setScrollViewEdgeEffectColor(this.scrollView, getThemedColor(Theme.key_actionBarDefault));
+        frameLayout3.addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, this.currentStep == 4 ? 48.0f : 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.linearLayout2 = linearLayout;
+        linearLayout.setOrientation(1);
+        this.linearLayout2.setClipChildren(false);
+        this.scrollView.addView(this.linearLayout2, new FrameLayout.LayoutParams(-1, -2));
+        int i11 = this.currentStep;
+        String str6 = "";
+        if (i11 == 0) {
+            HashMap map = new HashMap();
+            HashMap map2 = new HashMap();
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.getResources().getAssets().open("countries.txt")));
+                while (true) {
+                    String line = bufferedReader.readLine();
+                    if (line != null) {
+                        String[] strArrSplit = line.split(";");
+                        this.countriesArray.add(0, strArrSplit[2]);
+                        this.countriesMap.put(strArrSplit[2], strArrSplit[0]);
+                        this.codesMap.put(strArrSplit[0], strArrSplit[2]);
+                        map2.put(strArrSplit[1], strArrSplit[2]);
+                        if (strArrSplit.length > 3) {
+                            this.phoneFormatMap.put(strArrSplit[0], strArrSplit[3]);
+                        }
+                        map.put(strArrSplit[1], strArrSplit[2]);
+                    } else {
+                        bufferedReader.close();
+                    }
+                    Collections.sort(this.countriesArray, new BoostRepository$$ExternalSyntheticLambda24());
+                    int i12 = 10;
+                    this.inputFields = new EditTextBoldCursor[10];
+                    int i13 = 0;
+                    while (i13 < i12) {
+                        if (i13 == 0) {
+                            this.headerCell[0] = new HeaderCell(context, this.resourcesProvider);
+                            this.headerCell[0].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                            this.headerCell[0].setText(LocaleController.getString(R.string.PaymentShippingAddress));
+                            this.linearLayout2.addView(this.headerCell[0], LayoutHelper.createLinear(i10, -2));
+                        } else if (i13 == 6) {
+                            this.sectionCell[0] = new ShadowSectionCell(context, this.resourcesProvider);
+                            this.linearLayout2.addView(this.sectionCell[0], LayoutHelper.createLinear(i10, -2));
+                            this.headerCell[1] = new HeaderCell(context, this.resourcesProvider);
+                            this.headerCell[1].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                            this.headerCell[1].setText(LocaleController.getString(R.string.PaymentShippingReceiver));
+                            this.linearLayout2.addView(this.headerCell[1], LayoutHelper.createLinear(i10, -2));
+                        }
+                        if (i13 == 8) {
+                            frameLayout2 = new LinearLayout(context);
+                            frameLayout2.setClipChildren(false);
+                            frameLayout2.setOrientation(0);
+                            this.linearLayout2.addView(frameLayout2, LayoutHelper.createLinear(i10, 50));
+                            frameLayout2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                        } else if (i13 == 9) {
+                            frameLayout2 = (ViewGroup) this.inputFields[8].getParent();
+                        } else {
+                            frameLayout2 = new FrameLayout(context);
+                            frameLayout2.setClipChildren(false);
+                            this.linearLayout2.addView(frameLayout2, LayoutHelper.createLinear(i10, 50));
+                            int i14 = Theme.key_windowBackgroundWhite;
+                            frameLayout2.setBackgroundColor(getThemedColor(i14));
+                            boolean z = i13 != 5;
+                            if (z) {
+                                if (i13 == 7 && !this.paymentForm.invoice.phone_requested) {
+                                    z = false;
+                                } else if (i13 == 6) {
+                                    TLRPC.TL_invoice tL_invoice = this.paymentForm.invoice;
+                                    if (!tL_invoice.phone_requested && !tL_invoice.email_requested) {
+                                        z = false;
+                                    }
+                                }
+                            }
+                            if (z) {
+                                View view = new View(context) {
+                                    @Override
+                                    protected void onDraw(Canvas canvas) {
+                                        canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                                    }
+                                };
+                                view.setBackgroundColor(getThemedColor(i14));
+                                this.dividers.add(view);
+                                frameLayout2.addView(view, new FrameLayout.LayoutParams(i10, 1, 83));
+                            }
+                        }
+                        if (i13 == 9) {
+                            this.inputFields[i13] = new HintEditText(context);
+                        } else {
+                            this.inputFields[i13] = new EditTextBoldCursor(context);
+                        }
+                        this.inputFields[i13].setTag(Integer.valueOf(i13));
+                        this.inputFields[i13].setTextSize(1, 16.0f);
+                        this.inputFields[i13].setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
+                        EditTextBoldCursor editTextBoldCursor = this.inputFields[i13];
+                        int i15 = Theme.key_windowBackgroundWhiteBlackText;
+                        editTextBoldCursor.setTextColor(getThemedColor(i15));
+                        this.inputFields[i13].setBackgroundDrawable(null);
+                        this.inputFields[i13].setCursorColor(getThemedColor(i15));
+                        this.inputFields[i13].setCursorSize(AndroidUtilities.dp(20.0f));
+                        this.inputFields[i13].setCursorWidth(1.5f);
+                        if (i13 == 4) {
+                            this.inputFields[i13].setOnTouchListener(new View.OnTouchListener() {
+                                @Override
+                                public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                                    return this.f$0.lambda$createView$1(view2, motionEvent);
+                                }
+                            });
+                            this.inputFields[i13].setInputType(0);
+                        }
+                        if (i13 == 9 || i13 == 8) {
+                            this.inputFields[i13].setInputType(i9);
+                        } else if (i13 == 7) {
+                            this.inputFields[i13].setInputType(1);
+                        } else {
+                            this.inputFields[i13].setInputType(16385);
+                        }
+                        this.inputFields[i13].setImeOptions(268435461);
+                        switch (i13) {
+                            case 0:
+                                this.inputFields[i13].setHint(LocaleController.getString(R.string.PaymentShippingAddress1Placeholder));
+                                TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo3 = this.paymentForm.saved_info;
+                                if (tL_paymentRequestedInfo3 != null && (tL_postAddress = tL_paymentRequestedInfo3.shipping_address) != null) {
+                                    this.inputFields[i13].setText(tL_postAddress.street_line1);
+                                }
+                                break;
+                            case 1:
+                                this.inputFields[i13].setHint(LocaleController.getString(R.string.PaymentShippingAddress2Placeholder));
+                                TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo4 = this.paymentForm.saved_info;
+                                if (tL_paymentRequestedInfo4 != null && (tL_postAddress2 = tL_paymentRequestedInfo4.shipping_address) != null) {
+                                    this.inputFields[i13].setText(tL_postAddress2.street_line2);
+                                }
+                                break;
+                            case 2:
+                                this.inputFields[i13].setHint(LocaleController.getString(R.string.PaymentShippingCityPlaceholder));
+                                TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo5 = this.paymentForm.saved_info;
+                                if (tL_paymentRequestedInfo5 != null && (tL_postAddress3 = tL_paymentRequestedInfo5.shipping_address) != null) {
+                                    this.inputFields[i13].setText(tL_postAddress3.city);
+                                }
+                                break;
+                            case 3:
+                                this.inputFields[i13].setHint(LocaleController.getString(R.string.PaymentShippingStatePlaceholder));
+                                TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo6 = this.paymentForm.saved_info;
+                                if (tL_paymentRequestedInfo6 != null && (tL_postAddress4 = tL_paymentRequestedInfo6.shipping_address) != null) {
+                                    this.inputFields[i13].setText(tL_postAddress4.state);
+                                }
+                                break;
+                            case 4:
+                                this.inputFields[i13].setHint(LocaleController.getString(R.string.PaymentShippingCountry));
+                                TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo7 = this.paymentForm.saved_info;
+                                if (tL_paymentRequestedInfo7 != null && (tL_postAddress5 = tL_paymentRequestedInfo7.shipping_address) != null) {
+                                    String str7 = (String) map2.get(tL_postAddress5.country_iso2);
+                                    String str8 = this.paymentForm.saved_info.shipping_address.country_iso2;
+                                    this.countryName = str8;
+                                    EditTextBoldCursor editTextBoldCursor2 = this.inputFields[i13];
+                                    if (str7 == null) {
+                                        str7 = str8;
+                                    }
+                                    editTextBoldCursor2.setText(str7);
+                                }
+                                break;
+                            case 5:
+                                this.inputFields[i13].setHint(LocaleController.getString(R.string.PaymentShippingZipPlaceholder));
+                                TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo8 = this.paymentForm.saved_info;
+                                if (tL_paymentRequestedInfo8 != null && (tL_postAddress6 = tL_paymentRequestedInfo8.shipping_address) != null) {
+                                    this.inputFields[i13].setText(tL_postAddress6.post_code);
+                                }
+                                break;
+                            case 6:
+                                this.inputFields[i13].setHint(LocaleController.getString(R.string.PaymentShippingName));
+                                TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo9 = this.paymentForm.saved_info;
+                                if (tL_paymentRequestedInfo9 != null && (str4 = tL_paymentRequestedInfo9.name) != null) {
+                                    this.inputFields[i13].setText(str4);
+                                }
+                                break;
+                            case 7:
+                                this.inputFields[i13].setHint(LocaleController.getString(R.string.PaymentShippingEmailPlaceholder));
+                                TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo10 = this.paymentForm.saved_info;
+                                if (tL_paymentRequestedInfo10 != null && (str5 = tL_paymentRequestedInfo10.email) != null) {
+                                    this.inputFields[i13].setText(str5);
+                                }
+                                break;
+                        }
+                        EditTextBoldCursor editTextBoldCursor3 = this.inputFields[i13];
+                        editTextBoldCursor3.setSelection(editTextBoldCursor3.length());
+                        if (i13 == 8) {
+                            TextView textView = new TextView(context);
+                            this.textView = textView;
+                            textView.setText("+");
+                            this.textView.setTextColor(getThemedColor(i15));
+                            this.textView.setTextSize(1, 16.0f);
+                            frameLayout2.addView(this.textView, LayoutHelper.createLinear(-2, -2, 21.0f, 12.0f, 0.0f, 6.0f));
+                            this.inputFields[i13].setPadding(AndroidUtilities.dp(10.0f), 0, 0, 0);
+                            this.inputFields[i13].setGravity(19);
+                            this.inputFields[i13].setFilters(new InputFilter[]{new InputFilter.LengthFilter(5)});
+                            frameLayout2.addView(this.inputFields[i13], LayoutHelper.createLinear(55, -2, 0.0f, 12.0f, 21.0f, 6.0f));
+                            this.inputFields[i13].addTextChangedListener(new TextWatcher() {
+                                @Override
+                                public void beforeTextChanged(CharSequence charSequence, int i16, int i17, int i18) {
+                                }
+
+                                @Override
+                                public void onTextChanged(CharSequence charSequence, int i16, int i17, int i18) {
+                                }
+
+                                @Override
+                                public void afterTextChanged(Editable editable) {
+                                    String str9;
+                                    boolean z2;
+                                    String str10;
+                                    if (PaymentFormActivity.this.ignoreOnTextChange) {
+                                        return;
+                                    }
+                                    PaymentFormActivity.this.ignoreOnTextChange = true;
+                                    String strStripExceptNumbers = PhoneFormat.stripExceptNumbers(PaymentFormActivity.this.inputFields[8].getText().toString());
+                                    PaymentFormActivity.this.inputFields[8].setText(strStripExceptNumbers);
+                                    HintEditText hintEditText = (HintEditText) PaymentFormActivity.this.inputFields[9];
+                                    if (strStripExceptNumbers.length() == 0) {
+                                        hintEditText.setHintText((String) null);
+                                        hintEditText.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+                                    } else {
+                                        int i16 = 4;
+                                        if (strStripExceptNumbers.length() > 4) {
+                                            while (true) {
+                                                if (i16 < 1) {
+                                                    str9 = null;
+                                                    z2 = false;
+                                                    break;
+                                                }
+                                                String strSubstring = strStripExceptNumbers.substring(0, i16);
+                                                if (((String) PaymentFormActivity.this.codesMap.get(strSubstring)) != null) {
+                                                    String str11 = strStripExceptNumbers.substring(i16) + PaymentFormActivity.this.inputFields[9].getText().toString();
+                                                    PaymentFormActivity.this.inputFields[8].setText(strSubstring);
+                                                    z2 = true;
+                                                    str9 = str11;
+                                                    strStripExceptNumbers = strSubstring;
+                                                    break;
+                                                }
+                                                i16--;
+                                            }
+                                            if (!z2) {
+                                                str9 = strStripExceptNumbers.substring(1) + PaymentFormActivity.this.inputFields[9].getText().toString();
+                                                EditTextBoldCursor editTextBoldCursor4 = PaymentFormActivity.this.inputFields[8];
+                                                strStripExceptNumbers = strStripExceptNumbers.substring(0, 1);
+                                                editTextBoldCursor4.setText(strStripExceptNumbers);
+                                            }
+                                        } else {
+                                            str9 = null;
+                                            z2 = false;
+                                        }
+                                        String str12 = (String) PaymentFormActivity.this.codesMap.get(strStripExceptNumbers);
+                                        if (str12 != null && PaymentFormActivity.this.countriesArray.indexOf(str12) != -1 && (str10 = (String) PaymentFormActivity.this.phoneFormatMap.get(strStripExceptNumbers)) != null) {
+                                            hintEditText.setHintText(str10.replace('X', (char) 8211));
+                                            hintEditText.setHint((CharSequence) null);
+                                        } else {
+                                            hintEditText.setHintText((String) null);
+                                            hintEditText.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+                                        }
+                                        if (!z2) {
+                                            PaymentFormActivity.this.inputFields[8].setSelection(PaymentFormActivity.this.inputFields[8].getText().length());
+                                        }
+                                        if (str9 != null) {
+                                            hintEditText.requestFocus();
+                                            hintEditText.setText(str9);
+                                            hintEditText.setSelection(hintEditText.length());
+                                        }
+                                    }
+                                    PaymentFormActivity.this.ignoreOnTextChange = false;
+                                }
+                            });
+                        } else if (i13 == 9) {
+                            this.inputFields[i13].setPadding(0, 0, 0, 0);
+                            this.inputFields[i13].setGravity(19);
+                            frameLayout2.addView(this.inputFields[i13], LayoutHelper.createLinear(-1, -2, 0.0f, 12.0f, 21.0f, 6.0f));
+                            this.inputFields[i13].addTextChangedListener(new TextWatcher() {
+                                private int actionPosition;
+                                private int characterAction = -1;
+
+                                @Override
+                                public void onTextChanged(CharSequence charSequence, int i16, int i17, int i18) {
+                                }
+
+                                @Override
+                                public void beforeTextChanged(CharSequence charSequence, int i16, int i17, int i18) {
+                                    if (i17 == 0 && i18 == 1) {
+                                        this.characterAction = 1;
+                                        return;
+                                    }
+                                    if (i17 == 1 && i18 == 0) {
+                                        if (charSequence.charAt(i16) == ' ' && i16 > 0) {
+                                            this.characterAction = 3;
+                                            this.actionPosition = i16 - 1;
+                                            return;
+                                        } else {
+                                            this.characterAction = 2;
+                                            return;
+                                        }
+                                    }
+                                    this.characterAction = -1;
+                                }
+
+                                @Override
+                                public void afterTextChanged(Editable editable) {
+                                    int i16;
+                                    int i17;
+                                    if (PaymentFormActivity.this.ignoreOnPhoneChange) {
+                                        return;
+                                    }
+                                    HintEditText hintEditText = (HintEditText) PaymentFormActivity.this.inputFields[9];
+                                    int selectionStart = hintEditText.getSelectionStart();
+                                    String string = hintEditText.getText().toString();
+                                    if (this.characterAction == 3) {
+                                        string = string.substring(0, this.actionPosition) + string.substring(this.actionPosition + 1);
+                                        selectionStart--;
+                                    }
+                                    StringBuilder sb = new StringBuilder(string.length());
+                                    int i18 = 0;
+                                    while (i18 < string.length()) {
+                                        int i19 = i18 + 1;
+                                        String strSubstring = string.substring(i18, i19);
+                                        if ("0123456789".contains(strSubstring)) {
+                                            sb.append(strSubstring);
+                                        }
+                                        i18 = i19;
+                                    }
+                                    PaymentFormActivity.this.ignoreOnPhoneChange = true;
+                                    String hintText = hintEditText.getHintText();
+                                    if (hintText != null) {
+                                        int i20 = 0;
+                                        while (i20 < sb.length()) {
+                                            if (i20 < hintText.length()) {
+                                                if (hintText.charAt(i20) == ' ') {
+                                                    sb.insert(i20, ' ');
+                                                    i20++;
+                                                    if (selectionStart == i20 && (i17 = this.characterAction) != 2 && i17 != 3) {
+                                                        selectionStart++;
+                                                    }
+                                                }
+                                                i20++;
+                                            } else {
+                                                sb.insert(i20, ' ');
+                                                if (selectionStart == i20 + 1 && (i16 = this.characterAction) != 2 && i16 != 3) {
+                                                    selectionStart++;
+                                                    break;
+                                                } else {
+                                                    break;
+                                                    break;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    hintEditText.setText(sb);
+                                    if (selectionStart >= 0) {
+                                        hintEditText.setSelection(Math.min(selectionStart, hintEditText.length()));
+                                    }
+                                    hintEditText.onTextChange();
+                                    PaymentFormActivity.this.ignoreOnPhoneChange = false;
+                                }
+                            });
+                        } else {
+                            this.inputFields[i13].setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+                            this.inputFields[i13].setGravity(LocaleController.isRTL ? 5 : 3);
+                            frameLayout2.addView(this.inputFields[i13], LayoutHelper.createFrame(-1, -2.0f, 51, 21.0f, 12.0f, 21.0f, 6.0f));
+                        }
+                        this.inputFields[i13].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                            @Override
+                            public final boolean onEditorAction(TextView textView2, int i16, KeyEvent keyEvent) {
+                                return this.f$0.lambda$createView$2(textView2, i16, keyEvent);
+                            }
+                        });
+                        if (i13 == 9) {
+                            TLRPC.TL_invoice tL_invoice2 = this.paymentForm.invoice;
+                            if (tL_invoice2.email_to_provider || tL_invoice2.phone_to_provider) {
+                                TLRPC.User user = null;
+                                int i16 = 0;
+                                while (i16 < this.paymentForm.users.size()) {
+                                    TLRPC.User user2 = this.paymentForm.users.get(i16);
+                                    String str9 = str6;
+                                    if (user2.id == this.paymentForm.provider_id) {
+                                        user = user2;
+                                    }
+                                    i16++;
+                                    str6 = str9;
+                                }
+                                str3 = str6;
+                                String name2 = user != null ? ContactsController.formatName(user.first_name, user.last_name) : str3;
+                                this.bottomCell[1] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                                this.bottomCell[1].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                                this.linearLayout2.addView(this.bottomCell[1], LayoutHelper.createLinear(-1, -2));
+                                TLRPC.TL_invoice tL_invoice3 = this.paymentForm.invoice;
+                                boolean z2 = tL_invoice3.email_to_provider;
+                                if (z2 && tL_invoice3.phone_to_provider) {
+                                    this.bottomCell[1].setText(LocaleController.formatString("PaymentPhoneEmailToProvider", R.string.PaymentPhoneEmailToProvider, name2));
+                                } else if (z2) {
+                                    this.bottomCell[1].setText(LocaleController.formatString("PaymentEmailToProvider", R.string.PaymentEmailToProvider, name2));
+                                } else {
+                                    this.bottomCell[1].setText(LocaleController.formatString("PaymentPhoneToProvider", R.string.PaymentPhoneToProvider, name2));
+                                }
+                            } else {
+                                this.sectionCell[1] = new ShadowSectionCell(context, this.resourcesProvider);
+                                this.linearLayout2.addView(this.sectionCell[1], LayoutHelper.createLinear(i10, -2));
+                                str3 = str6;
+                            }
+                            TextCheckCell textCheckCell = new TextCheckCell(context, this.resourcesProvider);
+                            this.checkCell1 = textCheckCell;
+                            textCheckCell.setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                            this.checkCell1.setTextAndCheck(LocaleController.getString(R.string.PaymentShippingSave), this.saveShippingInfo, false);
+                            this.linearLayout2.addView(this.checkCell1, LayoutHelper.createLinear(-1, -2));
+                            this.checkCell1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view2) {
+                                    this.f$0.lambda$createView$3(view2);
+                                }
+                            });
+                            this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                            this.bottomCell[0].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                            this.bottomCell[0].setText(LocaleController.getString(R.string.PaymentShippingSaveInfo));
+                            this.linearLayout2.addView(this.bottomCell[0], LayoutHelper.createLinear(-1, -2));
+                        } else {
+                            str3 = str6;
+                        }
+                        i13++;
+                        str6 = str3;
+                        i12 = 10;
+                        i10 = -1;
+                        i9 = 3;
+                    }
+                    if (this.paymentForm.invoice.name_requested) {
+                        i7 = 8;
+                    } else {
+                        i7 = 8;
+                        ((ViewGroup) this.inputFields[6].getParent()).setVisibility(8);
+                    }
+                    if (!this.paymentForm.invoice.phone_requested) {
+                        ((ViewGroup) this.inputFields[i7].getParent()).setVisibility(i7);
+                    }
+                    if (!this.paymentForm.invoice.email_requested) {
+                        ((ViewGroup) this.inputFields[7].getParent()).setVisibility(i7);
+                    }
+                    TLRPC.TL_invoice tL_invoice4 = this.paymentForm.invoice;
+                    if (tL_invoice4.phone_requested) {
+                        this.inputFields[9].setImeOptions(268435462);
+                    } else if (tL_invoice4.email_requested) {
+                        this.inputFields[7].setImeOptions(268435462);
+                    } else if (tL_invoice4.name_requested) {
+                        this.inputFields[6].setImeOptions(268435462);
+                    } else {
+                        this.inputFields[5].setImeOptions(268435462);
+                    }
+                    ShadowSectionCell shadowSectionCell = this.sectionCell[1];
+                    if (shadowSectionCell != null) {
+                        TLRPC.TL_invoice tL_invoice5 = this.paymentForm.invoice;
+                        shadowSectionCell.setVisibility((tL_invoice5.name_requested || tL_invoice5.phone_requested || tL_invoice5.email_requested) ? 0 : 8);
+                    } else {
+                        TextInfoPrivacyCell textInfoPrivacyCell = this.bottomCell[1];
+                        if (textInfoPrivacyCell != null) {
+                            TLRPC.TL_invoice tL_invoice6 = this.paymentForm.invoice;
+                            textInfoPrivacyCell.setVisibility((tL_invoice6.name_requested || tL_invoice6.phone_requested || tL_invoice6.email_requested) ? 0 : 8);
+                        }
+                    }
+                    HeaderCell headerCell = this.headerCell[1];
+                    TLRPC.TL_invoice tL_invoice7 = this.paymentForm.invoice;
+                    headerCell.setVisibility((tL_invoice7.name_requested || tL_invoice7.phone_requested || tL_invoice7.email_requested) ? 0 : 8);
+                    if (!this.paymentForm.invoice.shipping_address_requested) {
+                        this.headerCell[0].setVisibility(8);
+                        this.sectionCell[0].setVisibility(8);
+                        ((ViewGroup) this.inputFields[0].getParent()).setVisibility(8);
+                        ((ViewGroup) this.inputFields[1].getParent()).setVisibility(8);
+                        ((ViewGroup) this.inputFields[2].getParent()).setVisibility(8);
+                        ((ViewGroup) this.inputFields[3].getParent()).setVisibility(8);
+                        ((ViewGroup) this.inputFields[4].getParent()).setVisibility(8);
+                        ((ViewGroup) this.inputFields[5].getParent()).setVisibility(8);
+                    }
+                    TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo11 = this.paymentForm.saved_info;
+                    if (tL_paymentRequestedInfo11 != null && !TextUtils.isEmpty(tL_paymentRequestedInfo11.phone)) {
+                        fillNumber(this.paymentForm.saved_info.phone);
+                    } else {
+                        fillNumber(null);
+                    }
+                    if (this.inputFields[8].length() == 0) {
+                        TLRPC.PaymentForm paymentForm3 = this.paymentForm;
+                        if (paymentForm3.invoice.phone_requested && ((tL_paymentRequestedInfo2 = paymentForm3.saved_info) == null || TextUtils.isEmpty(tL_paymentRequestedInfo2.phone))) {
+                            try {
+                                TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
+                                upperCase = telephonyManager != null ? telephonyManager.getSimCountryIso().toUpperCase() : null;
+                            } catch (Exception e) {
+                                FileLog.e(e);
+                            }
+                            if (upperCase != null && (str2 = (String) map.get(upperCase)) != null && this.countriesArray.indexOf(str2) != -1) {
+                                this.inputFields[8].setText((CharSequence) this.countriesMap.get(str2));
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e2) {
+                FileLog.e(e2);
+            }
+        } else if (i11 == 2) {
+            if (this.paymentForm.native_params != null) {
+                try {
+                    JSONObject jSONObject = new JSONObject(this.paymentForm.native_params.data);
+                    String strOptString = jSONObject.optString("google_pay_public_key");
+                    if (!TextUtils.isEmpty(strOptString)) {
+                        this.googlePayPublicKey = strOptString;
+                    }
+                    this.googlePayCountryCode = jSONObject.optString("acquirer_bank_country");
+                    this.googlePayParameters = jSONObject.optJSONObject("gpay_parameters");
+                } catch (Exception e3) {
+                    FileLog.e(e3);
+                }
+            }
+            if (this.isWebView || this.paymentFormMethod != null) {
+                if (this.googlePayPublicKey != null || this.googlePayParameters != null) {
+                    initGooglePay(context);
+                }
+                createGooglePayButton(context);
+                this.linearLayout2.addView(this.googlePayContainer, LayoutHelper.createLinear(-1, 50));
+                this.webviewLoading = true;
+                showEditDoneProgress(true, true);
+                this.progressView.setVisibility(0);
+                this.doneItem.setEnabled(false);
+                this.doneItem.getContentView().setVisibility(4);
+                AndroidUtilities.checkAndroidTheme(context, true);
+                WebView webView = new WebView(context) {
+                    @Override
+                    public boolean onTouchEvent(MotionEvent motionEvent) {
+                        ((ViewGroup) PaymentFormActivity.this.fragmentView).requestDisallowInterceptTouchEvent(true);
+                        return super.onTouchEvent(motionEvent);
+                    }
+
+                    @Override
+                    protected void onMeasure(int i17, int i18) {
+                        super.onMeasure(i17, i18);
+                    }
+                };
+                this.webView = webView;
+                webView.getSettings().setJavaScriptEnabled(true);
+                this.webView.getSettings().setDomStorageEnabled(true);
+                this.webView.getSettings().setSupportZoom(true);
+                this.webView.getSettings().setBuiltInZoomControls(true);
+                this.webView.getSettings().setDisplayZoomControls(false);
+                this.webView.getSettings().setUseWideViewPort(true);
+                this.webView.getSettings().setMixedContentMode(0);
+                CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
+                this.webView.addJavascriptInterface(new TelegramWebviewProxy(), "TelegramWebviewProxy");
+                this.webView.setWebViewClient(new AnonymousClass6(context));
+                this.linearLayout2.addView(this.webView, LayoutHelper.createFrame(-1, -2.0f));
+                this.sectionCell[2] = new ShadowSectionCell(context, this.resourcesProvider);
+                this.linearLayout2.addView(this.sectionCell[2], LayoutHelper.createLinear(-1, -2));
+                TextCheckCell textCheckCell2 = new TextCheckCell(context, this.resourcesProvider);
+                this.checkCell1 = textCheckCell2;
+                textCheckCell2.setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                this.checkCell1.setTextAndCheck(LocaleController.getString(R.string.PaymentCardSavePaymentInformation), this.saveCardInfo, false);
+                this.linearLayout2.addView(this.checkCell1, LayoutHelper.createLinear(-1, -2));
+                this.checkCell1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        this.f$0.lambda$createView$4(view2);
+                    }
+                });
+                this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                this.bottomCell[0].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                updateSavePaymentField();
+                this.linearLayout2.addView(this.bottomCell[0], LayoutHelper.createLinear(-1, -2));
+            } else {
+                if (this.paymentForm.native_params != null) {
+                    try {
+                        JSONObject jSONObject2 = new JSONObject(this.paymentForm.native_params.data);
+                        try {
+                            this.need_card_country = jSONObject2.getBoolean("need_country");
+                        } catch (Exception unused) {
+                            this.need_card_country = false;
+                        }
+                        try {
+                            this.need_card_postcode = jSONObject2.getBoolean("need_zip");
+                        } catch (Exception unused2) {
+                            this.need_card_postcode = false;
+                        }
+                        try {
+                            this.need_card_name = jSONObject2.getBoolean("need_cardholder_name");
+                        } catch (Exception unused3) {
+                            this.need_card_name = false;
+                        }
+                        if (jSONObject2.has("public_token")) {
+                            this.providerApiKey = jSONObject2.getString("public_token");
+                        } else {
+                            try {
+                                this.providerApiKey = jSONObject2.getString("publishable_key");
+                            } catch (Exception unused4) {
+                                this.providerApiKey = "";
+                            }
+                        }
+                        this.initGooglePay = !jSONObject2.optBoolean("google_pay_hidden", false);
+                    } catch (Exception e4) {
+                        FileLog.e(e4);
+                    }
+                }
+                if (this.initGooglePay && ((!TextUtils.isEmpty(this.providerApiKey) && "stripe".equals(this.paymentForm.native_provider)) || this.googlePayParameters != null)) {
+                    initGooglePay(context);
+                }
+                this.inputFields = new EditTextBoldCursor[6];
+                int i17 = 0;
+                for (int i18 = 6; i17 < i18; i18 = 6) {
+                    if (i17 == 0) {
+                        this.headerCell[0] = new HeaderCell(context, this.resourcesProvider);
+                        this.headerCell[0].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                        this.headerCell[0].setText(LocaleController.getString(R.string.PaymentCardTitle));
+                        this.linearLayout2.addView(this.headerCell[0], LayoutHelper.createLinear(-1, -2));
+                    } else if (i17 == 4) {
+                        this.headerCell[1] = new HeaderCell(context, this.resourcesProvider);
+                        this.headerCell[1].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                        this.headerCell[1].setText(LocaleController.getString(R.string.PaymentBillingAddress));
+                        this.linearLayout2.addView(this.headerCell[1], LayoutHelper.createLinear(-1, -2));
+                    }
+                    boolean z3 = (i17 == 3 || i17 == 5 || (i17 == 4 && !this.need_card_postcode)) ? false : true;
+                    FrameLayout frameLayout4 = new FrameLayout(context);
+                    frameLayout4.setClipChildren(false);
+                    int i19 = Theme.key_windowBackgroundWhite;
+                    frameLayout4.setBackgroundColor(getThemedColor(i19));
+                    this.linearLayout2.addView(frameLayout4, LayoutHelper.createLinear(-1, 50));
+                    this.inputFields[i17] = new EditTextBoldCursor(context);
+                    this.inputFields[i17].setTag(Integer.valueOf(i17));
+                    this.inputFields[i17].setTextSize(1, 16.0f);
+                    this.inputFields[i17].setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
+                    EditTextBoldCursor editTextBoldCursor4 = this.inputFields[i17];
+                    int i20 = Theme.key_windowBackgroundWhiteBlackText;
+                    editTextBoldCursor4.setTextColor(getThemedColor(i20));
+                    this.inputFields[i17].setBackgroundDrawable(null);
+                    this.inputFields[i17].setCursorColor(getThemedColor(i20));
+                    this.inputFields[i17].setCursorSize(AndroidUtilities.dp(20.0f));
+                    this.inputFields[i17].setCursorWidth(1.5f);
+                    if (i17 == 3) {
+                        this.inputFields[i17].setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+                        this.inputFields[i17].setInputType(130);
+                        this.inputFields[i17].setTypeface(Typeface.DEFAULT);
+                        this.inputFields[i17].setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    } else if (i17 == 0) {
+                        this.inputFields[i17].setInputType(3);
+                    } else if (i17 == 4) {
+                        this.inputFields[i17].setOnTouchListener(new View.OnTouchListener() {
+                            @Override
+                            public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                                return this.f$0.lambda$createView$6(view2, motionEvent);
+                            }
+                        });
+                        this.inputFields[i17].setInputType(0);
+                    } else if (i17 == 1) {
+                        this.inputFields[i17].setInputType(16386);
+                    } else {
+                        if (i17 == 2) {
+                            this.inputFields[i17].setInputType(4097);
+                        } else {
+                            this.inputFields[i17].setInputType(16385);
+                        }
+                        this.inputFields[i17].setImeOptions(268435461);
+                        if (i17 != 0) {
+                            this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentCardNumber));
+                        } else if (i17 != 1) {
+                            this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentCardExpireDate));
+                        } else if (i17 != 2) {
+                            this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentCardName));
+                        } else if (i17 != 3) {
+                            this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentCardCvv));
+                        } else if (i17 != 4) {
+                            this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentShippingCountry));
+                        } else if (i17 == 5) {
+                            this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentShippingZipPlaceholder));
+                        }
+                        if (i17 == 0) {
+                            this.inputFields[i17].addTextChangedListener(new TextWatcher() {
+                                private int actionPosition;
+                                public final String[] PREFIXES_15 = {"34", "37"};
+                                public final String[] PREFIXES_14 = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+                                public final String[] PREFIXES_16 = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
+                                private int characterAction = -1;
+
+                                @Override
+                                public void onTextChanged(CharSequence charSequence, int i21, int i22, int i23) {
+                                }
+
+                                @Override
+                                public void beforeTextChanged(CharSequence charSequence, int i21, int i22, int i23) {
+                                    if (i22 == 0 && i23 == 1) {
+                                        this.characterAction = 1;
+                                        return;
+                                    }
+                                    if (i22 == 1 && i23 == 0) {
+                                        if (charSequence.charAt(i21) == ' ' && i21 > 0) {
+                                            this.characterAction = 3;
+                                            this.actionPosition = i21 - 1;
+                                            return;
+                                        } else {
+                                            this.characterAction = 2;
+                                            return;
+                                        }
+                                    }
+                                    this.characterAction = -1;
+                                }
+
+                                @Override
+                                public void afterTextChanged(Editable editable) {
+                                    boolean z4;
+                                    int i21;
+                                    int i22;
+                                    String[] strArr;
+                                    int i23;
+                                    String str10;
+                                    if (PaymentFormActivity.this.ignoreOnCardChange) {
+                                        return;
+                                    }
+                                    EditTextBoldCursor editTextBoldCursor5 = PaymentFormActivity.this.inputFields[0];
+                                    int selectionStart = editTextBoldCursor5.getSelectionStart();
+                                    String string = editTextBoldCursor5.getText().toString();
+                                    if (this.characterAction == 3) {
+                                        string = string.substring(0, this.actionPosition) + string.substring(this.actionPosition + 1);
+                                        selectionStart--;
+                                    }
+                                    StringBuilder sb = new StringBuilder(string.length());
+                                    int i24 = 0;
+                                    while (i24 < string.length()) {
+                                        int i25 = i24 + 1;
+                                        String strSubstring = string.substring(i24, i25);
+                                        if ("0123456789".contains(strSubstring)) {
+                                            sb.append(strSubstring);
+                                        }
+                                        i24 = i25;
+                                    }
+                                    PaymentFormActivity.this.ignoreOnCardChange = true;
+                                    String str11 = null;
+                                    int i26 = 100;
+                                    if (sb.length() > 0) {
+                                        String string2 = sb.toString();
+                                        int i27 = 0;
+                                        for (int i28 = 3; i27 < i28; i28 = 3) {
+                                            if (i27 == 0) {
+                                                strArr = this.PREFIXES_16;
+                                                i23 = 16;
+                                                str10 = "xxxx xxxx xxxx xxxx";
+                                            } else if (i27 == 1) {
+                                                strArr = this.PREFIXES_15;
+                                                i23 = 15;
+                                                str10 = "xxxx xxxx xxxx xxx";
+                                            } else {
+                                                strArr = this.PREFIXES_14;
+                                                i23 = 14;
+                                                str10 = "xxxx xxxx xxxx xx";
+                                            }
+                                            for (String str12 : strArr) {
+                                                if (string2.length() <= str12.length()) {
+                                                    if (str12.startsWith(string2)) {
+                                                        i26 = i23;
+                                                        str11 = str10;
+                                                        break;
+                                                    }
+                                                } else {
+                                                    if (string2.startsWith(str12)) {
+                                                        i26 = i23;
+                                                        str11 = str10;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            if (str11 != null) {
+                                                break;
+                                            }
+                                            i27++;
+                                        }
+                                        if (sb.length() > i26) {
+                                            sb.setLength(i26);
+                                        }
+                                    }
+                                    if (str11 != null) {
+                                        if (sb.length() == i26) {
+                                            PaymentFormActivity.this.inputFields[1].requestFocus();
+                                        }
+                                        editTextBoldCursor5.setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                                        int i29 = 0;
+                                        while (i29 < sb.length()) {
+                                            if (i29 < str11.length()) {
+                                                if (str11.charAt(i29) == ' ') {
+                                                    sb.insert(i29, ' ');
+                                                    i29++;
+                                                    if (selectionStart == i29 && (i22 = this.characterAction) != 2 && i22 != 3) {
+                                                        selectionStart++;
+                                                    }
+                                                }
+                                                i29++;
+                                            } else {
+                                                sb.insert(i29, ' ');
+                                                if (selectionStart == i29 + 1 && (i21 = this.characterAction) != 2 && i21 != 3) {
+                                                    selectionStart++;
+                                                    break;
+                                                } else {
+                                                    break;
+                                                    break;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (sb.toString().equals(editable.toString())) {
+                                        z4 = false;
+                                    } else {
+                                        z4 = false;
+                                        editable.replace(0, editable.length(), sb);
+                                    }
+                                    if (selectionStart >= 0) {
+                                        editTextBoldCursor5.setSelection(Math.min(selectionStart, editTextBoldCursor5.length()));
+                                    }
+                                    PaymentFormActivity.this.ignoreOnCardChange = z4;
+                                }
+                            });
+                        } else if (i17 == 1) {
+                            this.inputFields[i17].addTextChangedListener(new TextWatcher() {
+                                private int actionPosition;
+                                private int characterAction = -1;
+                                private boolean isYear;
+
+                                @Override
+                                public void onTextChanged(CharSequence charSequence, int i21, int i22, int i23) {
+                                }
+
+                                @Override
+                                public void beforeTextChanged(CharSequence charSequence, int i21, int i22, int i23) {
+                                    if (i22 == 0 && i23 == 1) {
+                                        this.isYear = TextUtils.indexOf((CharSequence) PaymentFormActivity.this.inputFields[1].getText(), '/') != -1;
+                                        this.characterAction = 1;
+                                        return;
+                                    }
+                                    if (i22 == 1 && i23 == 0) {
+                                        if (charSequence.charAt(i21) == '/' && i21 > 0) {
+                                            this.isYear = false;
+                                            this.characterAction = 3;
+                                            this.actionPosition = i21 - 1;
+                                            return;
+                                        }
+                                        this.characterAction = 2;
+                                        return;
+                                    }
+                                    this.characterAction = -1;
+                                }
+
+                                @Override
+                                public void afterTextChanged(Editable editable) {
+                                    if (PaymentFormActivity.this.ignoreOnCardChange) {
+                                        return;
+                                    }
+                                    boolean z4 = true;
+                                    EditTextBoldCursor editTextBoldCursor5 = PaymentFormActivity.this.inputFields[1];
+                                    int selectionStart = editTextBoldCursor5.getSelectionStart();
+                                    String string = editTextBoldCursor5.getText().toString();
+                                    if (this.characterAction == 3) {
+                                        string = string.substring(0, this.actionPosition) + string.substring(this.actionPosition + 1);
+                                        selectionStart--;
+                                    }
+                                    StringBuilder sb = new StringBuilder(string.length());
+                                    int i21 = 0;
+                                    while (i21 < string.length()) {
+                                        int i22 = i21 + 1;
+                                        String strSubstring = string.substring(i21, i22);
+                                        if ("0123456789".contains(strSubstring)) {
+                                            sb.append(strSubstring);
+                                        }
+                                        i21 = i22;
+                                    }
+                                    PaymentFormActivity.this.ignoreOnCardChange = true;
+                                    PaymentFormActivity.this.inputFields[1].setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                                    if (sb.length() > 4) {
+                                        sb.setLength(4);
+                                    }
+                                    if (sb.length() < 2) {
+                                        this.isYear = false;
+                                    }
+                                    if (this.isYear) {
+                                        int i23 = sb.length() > 2 ? 2 : 1;
+                                        String[] strArr = new String[i23];
+                                        strArr[0] = sb.substring(0, 2);
+                                        if (i23 == 2) {
+                                            strArr[1] = sb.substring(2);
+                                        }
+                                        if (sb.length() == 4 && i23 == 2) {
+                                            int iIntValue = Utilities.parseInt((CharSequence) strArr[0]).intValue();
+                                            int iIntValue2 = Utilities.parseInt((CharSequence) strArr[1]).intValue() + 2000;
+                                            Calendar calendar = Calendar.getInstance();
+                                            boolean z5 = UserConfig.getInstance(((BaseFragment) PaymentFormActivity.this).currentAccount).getClientPhone().startsWith("7") || (PaymentFormActivity.this.country != null && PaymentFormActivity.this.country.code.equals("7"));
+                                            int i24 = z5 ? 2022 : calendar.get(1);
+                                            int i25 = z5 ? 1 : calendar.get(2) + 1;
+                                            if (iIntValue2 < i24 || (iIntValue2 == i24 && iIntValue < i25)) {
+                                                PaymentFormActivity.this.inputFields[1].setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_text_RedRegular));
+                                            } else {
+                                                z4 = false;
+                                            }
+                                        } else {
+                                            int iIntValue3 = Utilities.parseInt((CharSequence) strArr[0]).intValue();
+                                            if (iIntValue3 > 12 || iIntValue3 == 0) {
+                                                PaymentFormActivity.this.inputFields[1].setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_text_RedRegular));
+                                            } else {
+                                                z4 = false;
+                                            }
+                                        }
+                                    } else {
+                                        if (sb.length() == 1) {
+                                            int iIntValue4 = Utilities.parseInt((CharSequence) sb.toString()).intValue();
+                                            if (iIntValue4 != 1 && iIntValue4 != 0) {
+                                                sb.insert(0, "0");
+                                                selectionStart++;
+                                            }
+                                        } else if (sb.length() == 2) {
+                                            int iIntValue5 = Utilities.parseInt((CharSequence) sb.toString()).intValue();
+                                            if (iIntValue5 > 12 || iIntValue5 == 0) {
+                                                PaymentFormActivity.this.inputFields[1].setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_text_RedRegular));
+                                            } else {
+                                                z4 = false;
+                                            }
+                                            selectionStart++;
+                                        }
+                                        z4 = false;
+                                    }
+                                    if (!z4 && sb.length() == 4) {
+                                        PaymentFormActivity.this.inputFields[PaymentFormActivity.this.need_card_name ? (char) 2 : (char) 3].requestFocus();
+                                    }
+                                    if (sb.length() == 2) {
+                                        sb.append('/');
+                                    } else {
+                                        if (sb.length() > 2 && sb.charAt(2) != '/') {
+                                            sb.insert(2, '/');
+                                        }
+                                        editTextBoldCursor5.setText(sb);
+                                        if (selectionStart >= 0) {
+                                            editTextBoldCursor5.setSelection(Math.min(selectionStart, editTextBoldCursor5.length()));
+                                        }
+                                        PaymentFormActivity.this.ignoreOnCardChange = false;
+                                    }
+                                    selectionStart++;
+                                    editTextBoldCursor5.setText(sb);
+                                    if (selectionStart >= 0) {
+                                        editTextBoldCursor5.setSelection(Math.min(selectionStart, editTextBoldCursor5.length()));
+                                    }
+                                    PaymentFormActivity.this.ignoreOnCardChange = false;
+                                }
+                            });
+                        }
+                        this.inputFields[i17].setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+                        EditTextBoldCursor editTextBoldCursor5 = this.inputFields[i17];
+                        if (LocaleController.isRTL) {
+                            i5 = 5;
+                        } else {
+                            i5 = 3;
+                        }
+                        editTextBoldCursor5.setGravity(i5);
+                        frameLayout4.addView(this.inputFields[i17], LayoutHelper.createFrame(-1, -2.0f, 51, 21.0f, 12.0f, 21.0f, 6.0f));
+                        this.inputFields[i17].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                            @Override
+                            public final boolean onEditorAction(TextView textView2, int i21, KeyEvent keyEvent) {
+                                return this.f$0.lambda$createView$7(textView2, i21, keyEvent);
+                            }
+                        });
+                        if (i17 == 3) {
+                            this.sectionCell[0] = new ShadowSectionCell(context, this.resourcesProvider);
+                            this.linearLayout2.addView(this.sectionCell[0], LayoutHelper.createLinear(-1, -2));
+                        } else if (i17 == 5) {
+                            this.sectionCell[2] = new ShadowSectionCell(context, this.resourcesProvider);
+                            this.linearLayout2.addView(this.sectionCell[2], LayoutHelper.createLinear(-1, -2));
+                            TextCheckCell textCheckCell3 = new TextCheckCell(context, this.resourcesProvider);
+                            this.checkCell1 = textCheckCell3;
+                            textCheckCell3.setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                            this.checkCell1.setTextAndCheck(LocaleController.getString(R.string.PaymentCardSavePaymentInformation), this.saveCardInfo, false);
+                            this.linearLayout2.addView(this.checkCell1, LayoutHelper.createLinear(-1, -2));
+                            this.checkCell1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view2) {
+                                    this.f$0.lambda$createView$8(view2);
+                                }
+                            });
+                            this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                            this.bottomCell[0].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                            updateSavePaymentField();
+                            this.linearLayout2.addView(this.bottomCell[0], LayoutHelper.createLinear(-1, -2));
+                        } else if (i17 == 0) {
+                            createGooglePayButton(context);
+                            FrameLayout frameLayout5 = this.googlePayContainer;
+                            if (LocaleController.isRTL) {
+                                i6 = 3;
+                            } else {
+                                i6 = 5;
+                            }
+                            frameLayout4.addView(frameLayout5, LayoutHelper.createFrame(-2, -2.0f, i6 | 16, 0.0f, 0.0f, 4.0f, 0.0f));
+                        }
+                        if (z3) {
+                            View view2 = new View(context) {
+                                @Override
+                                protected void onDraw(Canvas canvas) {
+                                    canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                                }
+                            };
+                            view2.setBackgroundColor(getThemedColor(i19));
+                            this.dividers.add(view2);
+                            frameLayout4.addView(view2, new FrameLayout.LayoutParams(-1, 1, 83));
+                        }
+                        if ((i17 != 4 && !this.need_card_country) || ((i17 == 5 && !this.need_card_postcode) || (i17 == 2 && !this.need_card_name))) {
+                            frameLayout4.setVisibility(8);
+                        }
+                        i17++;
+                    }
+                    this.inputFields[i17].setImeOptions(268435461);
+                    if (i17 != 0) {
+                        this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentCardNumber));
+                    } else if (i17 != 1) {
+                        this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentCardExpireDate));
+                    } else if (i17 != 2) {
+                        this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentCardName));
+                    } else if (i17 != 3) {
+                        this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentCardCvv));
+                    } else if (i17 != 4) {
+                        this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentShippingCountry));
+                    } else if (i17 == 5) {
+                        this.inputFields[i17].setHint(LocaleController.getString(R.string.PaymentShippingZipPlaceholder));
+                    }
+                    if (i17 == 0) {
+                        this.inputFields[i17].addTextChangedListener(new TextWatcher() {
+                            private int actionPosition;
+                            public final String[] PREFIXES_15 = {"34", "37"};
+                            public final String[] PREFIXES_14 = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+                            public final String[] PREFIXES_16 = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
+                            private int characterAction = -1;
+
+                            @Override
+                            public void onTextChanged(CharSequence charSequence, int i21, int i22, int i23) {
+                            }
+
+                            @Override
+                            public void beforeTextChanged(CharSequence charSequence, int i21, int i22, int i23) {
+                                if (i22 == 0 && i23 == 1) {
+                                    this.characterAction = 1;
+                                    return;
+                                }
+                                if (i22 == 1 && i23 == 0) {
+                                    if (charSequence.charAt(i21) == ' ' && i21 > 0) {
+                                        this.characterAction = 3;
+                                        this.actionPosition = i21 - 1;
+                                        return;
+                                    } else {
+                                        this.characterAction = 2;
+                                        return;
+                                    }
+                                }
+                                this.characterAction = -1;
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable editable) {
+                                boolean z4;
+                                int i21;
+                                int i22;
+                                String[] strArr;
+                                int i23;
+                                String str10;
+                                if (PaymentFormActivity.this.ignoreOnCardChange) {
+                                    return;
+                                }
+                                EditTextBoldCursor editTextBoldCursor6 = PaymentFormActivity.this.inputFields[0];
+                                int selectionStart = editTextBoldCursor6.getSelectionStart();
+                                String string = editTextBoldCursor6.getText().toString();
+                                if (this.characterAction == 3) {
+                                    string = string.substring(0, this.actionPosition) + string.substring(this.actionPosition + 1);
+                                    selectionStart--;
+                                }
+                                StringBuilder sb = new StringBuilder(string.length());
+                                int i24 = 0;
+                                while (i24 < string.length()) {
+                                    int i25 = i24 + 1;
+                                    String strSubstring = string.substring(i24, i25);
+                                    if ("0123456789".contains(strSubstring)) {
+                                        sb.append(strSubstring);
+                                    }
+                                    i24 = i25;
+                                }
+                                PaymentFormActivity.this.ignoreOnCardChange = true;
+                                String str11 = null;
+                                int i26 = 100;
+                                if (sb.length() > 0) {
+                                    String string2 = sb.toString();
+                                    int i27 = 0;
+                                    for (int i28 = 3; i27 < i28; i28 = 3) {
+                                        if (i27 == 0) {
+                                            strArr = this.PREFIXES_16;
+                                            i23 = 16;
+                                            str10 = "xxxx xxxx xxxx xxxx";
+                                        } else if (i27 == 1) {
+                                            strArr = this.PREFIXES_15;
+                                            i23 = 15;
+                                            str10 = "xxxx xxxx xxxx xxx";
+                                        } else {
+                                            strArr = this.PREFIXES_14;
+                                            i23 = 14;
+                                            str10 = "xxxx xxxx xxxx xx";
+                                        }
+                                        for (String str12 : strArr) {
+                                            if (string2.length() <= str12.length()) {
+                                                if (str12.startsWith(string2)) {
+                                                    i26 = i23;
+                                                    str11 = str10;
+                                                    break;
+                                                }
+                                            } else {
+                                                if (string2.startsWith(str12)) {
+                                                    i26 = i23;
+                                                    str11 = str10;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (str11 != null) {
+                                            break;
+                                        }
+                                        i27++;
+                                    }
+                                    if (sb.length() > i26) {
+                                        sb.setLength(i26);
+                                    }
+                                }
+                                if (str11 != null) {
+                                    if (sb.length() == i26) {
+                                        PaymentFormActivity.this.inputFields[1].requestFocus();
+                                    }
+                                    editTextBoldCursor6.setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                                    int i29 = 0;
+                                    while (i29 < sb.length()) {
+                                        if (i29 < str11.length()) {
+                                            if (str11.charAt(i29) == ' ') {
+                                                sb.insert(i29, ' ');
+                                                i29++;
+                                                if (selectionStart == i29 && (i22 = this.characterAction) != 2 && i22 != 3) {
+                                                    selectionStart++;
+                                                }
+                                            }
+                                            i29++;
+                                        } else {
+                                            sb.insert(i29, ' ');
+                                            if (selectionStart == i29 + 1 && (i21 = this.characterAction) != 2 && i21 != 3) {
+                                                selectionStart++;
+                                                break;
+                                            } else {
+                                                break;
+                                                break;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                if (sb.toString().equals(editable.toString())) {
+                                    z4 = false;
+                                } else {
+                                    z4 = false;
+                                    editable.replace(0, editable.length(), sb);
+                                }
+                                if (selectionStart >= 0) {
+                                    editTextBoldCursor6.setSelection(Math.min(selectionStart, editTextBoldCursor6.length()));
+                                }
+                                PaymentFormActivity.this.ignoreOnCardChange = z4;
+                            }
+                        });
+                    } else if (i17 == 1) {
+                        this.inputFields[i17].addTextChangedListener(new TextWatcher() {
+                            private int actionPosition;
+                            private int characterAction = -1;
+                            private boolean isYear;
+
+                            @Override
+                            public void onTextChanged(CharSequence charSequence, int i21, int i22, int i23) {
+                            }
+
+                            @Override
+                            public void beforeTextChanged(CharSequence charSequence, int i21, int i22, int i23) {
+                                if (i22 == 0 && i23 == 1) {
+                                    this.isYear = TextUtils.indexOf((CharSequence) PaymentFormActivity.this.inputFields[1].getText(), '/') != -1;
+                                    this.characterAction = 1;
+                                    return;
+                                }
+                                if (i22 == 1 && i23 == 0) {
+                                    if (charSequence.charAt(i21) == '/' && i21 > 0) {
+                                        this.isYear = false;
+                                        this.characterAction = 3;
+                                        this.actionPosition = i21 - 1;
+                                        return;
+                                    }
+                                    this.characterAction = 2;
+                                    return;
+                                }
+                                this.characterAction = -1;
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable editable) {
+                                if (PaymentFormActivity.this.ignoreOnCardChange) {
+                                    return;
+                                }
+                                boolean z4 = true;
+                                EditTextBoldCursor editTextBoldCursor6 = PaymentFormActivity.this.inputFields[1];
+                                int selectionStart = editTextBoldCursor6.getSelectionStart();
+                                String string = editTextBoldCursor6.getText().toString();
+                                if (this.characterAction == 3) {
+                                    string = string.substring(0, this.actionPosition) + string.substring(this.actionPosition + 1);
+                                    selectionStart--;
+                                }
+                                StringBuilder sb = new StringBuilder(string.length());
+                                int i21 = 0;
+                                while (i21 < string.length()) {
+                                    int i22 = i21 + 1;
+                                    String strSubstring = string.substring(i21, i22);
+                                    if ("0123456789".contains(strSubstring)) {
+                                        sb.append(strSubstring);
+                                    }
+                                    i21 = i22;
+                                }
+                                PaymentFormActivity.this.ignoreOnCardChange = true;
+                                PaymentFormActivity.this.inputFields[1].setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                                if (sb.length() > 4) {
+                                    sb.setLength(4);
+                                }
+                                if (sb.length() < 2) {
+                                    this.isYear = false;
+                                }
+                                if (this.isYear) {
+                                    int i23 = sb.length() > 2 ? 2 : 1;
+                                    String[] strArr = new String[i23];
+                                    strArr[0] = sb.substring(0, 2);
+                                    if (i23 == 2) {
+                                        strArr[1] = sb.substring(2);
+                                    }
+                                    if (sb.length() == 4 && i23 == 2) {
+                                        int iIntValue = Utilities.parseInt((CharSequence) strArr[0]).intValue();
+                                        int iIntValue2 = Utilities.parseInt((CharSequence) strArr[1]).intValue() + 2000;
+                                        Calendar calendar = Calendar.getInstance();
+                                        boolean z5 = UserConfig.getInstance(((BaseFragment) PaymentFormActivity.this).currentAccount).getClientPhone().startsWith("7") || (PaymentFormActivity.this.country != null && PaymentFormActivity.this.country.code.equals("7"));
+                                        int i24 = z5 ? 2022 : calendar.get(1);
+                                        int i25 = z5 ? 1 : calendar.get(2) + 1;
+                                        if (iIntValue2 < i24 || (iIntValue2 == i24 && iIntValue < i25)) {
+                                            PaymentFormActivity.this.inputFields[1].setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_text_RedRegular));
+                                        } else {
+                                            z4 = false;
+                                        }
+                                    } else {
+                                        int iIntValue3 = Utilities.parseInt((CharSequence) strArr[0]).intValue();
+                                        if (iIntValue3 > 12 || iIntValue3 == 0) {
+                                            PaymentFormActivity.this.inputFields[1].setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_text_RedRegular));
+                                        } else {
+                                            z4 = false;
+                                        }
+                                    }
+                                } else {
+                                    if (sb.length() == 1) {
+                                        int iIntValue4 = Utilities.parseInt((CharSequence) sb.toString()).intValue();
+                                        if (iIntValue4 != 1 && iIntValue4 != 0) {
+                                            sb.insert(0, "0");
+                                            selectionStart++;
+                                        }
+                                    } else if (sb.length() == 2) {
+                                        int iIntValue5 = Utilities.parseInt((CharSequence) sb.toString()).intValue();
+                                        if (iIntValue5 > 12 || iIntValue5 == 0) {
+                                            PaymentFormActivity.this.inputFields[1].setTextColor(PaymentFormActivity.this.getThemedColor(Theme.key_text_RedRegular));
+                                        } else {
+                                            z4 = false;
+                                        }
+                                        selectionStart++;
+                                    }
+                                    z4 = false;
+                                }
+                                if (!z4 && sb.length() == 4) {
+                                    PaymentFormActivity.this.inputFields[PaymentFormActivity.this.need_card_name ? (char) 2 : (char) 3].requestFocus();
+                                }
+                                if (sb.length() == 2) {
+                                    sb.append('/');
+                                } else {
+                                    if (sb.length() > 2 && sb.charAt(2) != '/') {
+                                        sb.insert(2, '/');
+                                    }
+                                    editTextBoldCursor6.setText(sb);
+                                    if (selectionStart >= 0) {
+                                        editTextBoldCursor6.setSelection(Math.min(selectionStart, editTextBoldCursor6.length()));
+                                    }
+                                    PaymentFormActivity.this.ignoreOnCardChange = false;
+                                }
+                                selectionStart++;
+                                editTextBoldCursor6.setText(sb);
+                                if (selectionStart >= 0) {
+                                    editTextBoldCursor6.setSelection(Math.min(selectionStart, editTextBoldCursor6.length()));
+                                }
+                                PaymentFormActivity.this.ignoreOnCardChange = false;
+                            }
+                        });
+                    }
+                    this.inputFields[i17].setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+                    EditTextBoldCursor editTextBoldCursor6 = this.inputFields[i17];
+                    if (LocaleController.isRTL) {
+                        i5 = 5;
+                    } else {
+                        i5 = 3;
+                    }
+                    editTextBoldCursor6.setGravity(i5);
+                    frameLayout4.addView(this.inputFields[i17], LayoutHelper.createFrame(-1, -2.0f, 51, 21.0f, 12.0f, 21.0f, 6.0f));
+                    this.inputFields[i17].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        @Override
+                        public final boolean onEditorAction(TextView textView2, int i21, KeyEvent keyEvent) {
+                            return this.f$0.lambda$createView$7(textView2, i21, keyEvent);
+                        }
+                    });
+                    if (i17 == 3) {
+                        this.sectionCell[0] = new ShadowSectionCell(context, this.resourcesProvider);
+                        this.linearLayout2.addView(this.sectionCell[0], LayoutHelper.createLinear(-1, -2));
+                    } else if (i17 == 5) {
+                        this.sectionCell[2] = new ShadowSectionCell(context, this.resourcesProvider);
+                        this.linearLayout2.addView(this.sectionCell[2], LayoutHelper.createLinear(-1, -2));
+                        TextCheckCell textCheckCell4 = new TextCheckCell(context, this.resourcesProvider);
+                        this.checkCell1 = textCheckCell4;
+                        textCheckCell4.setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                        this.checkCell1.setTextAndCheck(LocaleController.getString(R.string.PaymentCardSavePaymentInformation), this.saveCardInfo, false);
+                        this.linearLayout2.addView(this.checkCell1, LayoutHelper.createLinear(-1, -2));
+                        this.checkCell1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view3) {
+                                this.f$0.lambda$createView$8(view3);
+                            }
+                        });
+                        this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                        this.bottomCell[0].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                        updateSavePaymentField();
+                        this.linearLayout2.addView(this.bottomCell[0], LayoutHelper.createLinear(-1, -2));
+                    } else if (i17 == 0) {
+                        createGooglePayButton(context);
+                        FrameLayout frameLayout6 = this.googlePayContainer;
+                        if (LocaleController.isRTL) {
+                            i6 = 3;
+                        } else {
+                            i6 = 5;
+                        }
+                        frameLayout4.addView(frameLayout6, LayoutHelper.createFrame(-2, -2.0f, i6 | 16, 0.0f, 0.0f, 4.0f, 0.0f));
+                    }
+                    if (z3) {
+                        View view3 = new View(context) {
+                            @Override
+                            protected void onDraw(Canvas canvas) {
+                                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                            }
+                        };
+                        view3.setBackgroundColor(getThemedColor(i19));
+                        this.dividers.add(view3);
+                        frameLayout4.addView(view3, new FrameLayout.LayoutParams(-1, 1, 83));
+                    }
+                    if (i17 != 4) {
+                    }
+                    i17++;
+                }
+                if (!this.need_card_country && !this.need_card_postcode) {
+                    this.headerCell[1].setVisibility(8);
+                    this.sectionCell[0].setVisibility(8);
+                }
+                if (this.need_card_postcode) {
+                    this.inputFields[5].setImeOptions(268435462);
+                } else {
+                    this.inputFields[3].setImeOptions(268435462);
+                }
+            }
+        } else if (i11 == 1) {
+            ArrayList<TLRPC.TL_shippingOption> arrayList = this.requestedInfo.shipping_options;
+            int size = arrayList == null ? 0 : arrayList.size();
+            this.radioCells = new RadioCell[size];
+            int i21 = 0;
+            while (i21 < size) {
+                TLRPC.TL_shippingOption tL_shippingOption = this.requestedInfo.shipping_options.get(i21);
+                this.radioCells[i21] = new RadioCell(context);
+                this.radioCells[i21].setTag(Integer.valueOf(i21));
+                this.radioCells[i21].setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                this.radioCells[i21].setText(String.format("%s - %s", getTotalPriceString(tL_shippingOption.prices), tL_shippingOption.title), i21 == 0, i21 != size + (-1));
+                this.radioCells[i21].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view4) {
+                        this.f$0.lambda$createView$9(view4);
+                    }
+                });
+                this.linearLayout2.addView(this.radioCells[i21]);
+                i21++;
+            }
+            this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+            this.bottomCell[0].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+            this.linearLayout2.addView(this.bottomCell[0], LayoutHelper.createLinear(-1, -2));
+        } else if (i11 == 3) {
+            this.inputFields = new EditTextBoldCursor[2];
+            int i22 = 0;
+            for (int i23 = 2; i22 < i23; i23 = 2) {
+                if (i22 == 0) {
+                    this.headerCell[0] = new HeaderCell(context, this.resourcesProvider);
+                    this.headerCell[0].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                    this.headerCell[0].setText(LocaleController.getString(R.string.PaymentCardTitle));
+                    i4 = -1;
+                    this.linearLayout2.addView(this.headerCell[0], LayoutHelper.createLinear(-1, -2));
+                } else {
+                    i4 = -1;
+                }
+                FrameLayout frameLayout7 = new FrameLayout(context);
+                frameLayout7.setClipChildren(false);
+                this.linearLayout2.addView(frameLayout7, LayoutHelper.createLinear(i4, 50));
+                int i24 = Theme.key_windowBackgroundWhite;
+                frameLayout7.setBackgroundColor(getThemedColor(i24));
+                boolean z4 = i22 != 1;
+                if (z4) {
+                    if (i22 == 7 && !this.paymentForm.invoice.phone_requested) {
+                        z4 = false;
+                    } else if (i22 == 6) {
+                        TLRPC.TL_invoice tL_invoice8 = this.paymentForm.invoice;
+                        if (!tL_invoice8.phone_requested && !tL_invoice8.email_requested) {
+                            z4 = false;
+                        }
+                    }
+                }
+                if (z4) {
+                    View view4 = new View(context) {
+                        @Override
+                        protected void onDraw(Canvas canvas) {
+                            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                        }
+                    };
+                    view4.setBackgroundColor(getThemedColor(i24));
+                    this.dividers.add(view4);
+                    frameLayout7.addView(view4, new FrameLayout.LayoutParams(-1, 1, 83));
+                }
+                this.inputFields[i22] = new EditTextBoldCursor(context);
+                this.inputFields[i22].setTag(Integer.valueOf(i22));
+                this.inputFields[i22].setTextSize(1, 16.0f);
+                this.inputFields[i22].setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
+                EditTextBoldCursor editTextBoldCursor7 = this.inputFields[i22];
+                int i25 = Theme.key_windowBackgroundWhiteBlackText;
+                editTextBoldCursor7.setTextColor(getThemedColor(i25));
+                this.inputFields[i22].setBackgroundDrawable(null);
+                this.inputFields[i22].setCursorColor(getThemedColor(i25));
+                this.inputFields[i22].setCursorSize(AndroidUtilities.dp(20.0f));
+                this.inputFields[i22].setCursorWidth(1.5f);
+                if (i22 == 0) {
+                    this.inputFields[i22].setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public final boolean onTouch(View view5, MotionEvent motionEvent) {
+                            return PaymentFormActivity.lambda$createView$10(view5, motionEvent);
+                        }
+                    });
+                    this.inputFields[i22].setInputType(0);
+                } else {
+                    this.inputFields[i22].setInputType(129);
+                    this.inputFields[i22].setTypeface(Typeface.DEFAULT);
+                }
+                this.inputFields[i22].setImeOptions(268435462);
+                if (i22 == 0) {
+                    EditTextBoldCursor editTextBoldCursor8 = this.inputFields[i22];
+                    TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard = this.savedCredentialsCard;
+                    editTextBoldCursor8.setText(tL_paymentSavedCredentialsCard == null ? "" : tL_paymentSavedCredentialsCard.title);
+                } else if (i22 == 1) {
+                    this.inputFields[i22].setHint(LocaleController.getString(R.string.LoginPassword));
+                    this.inputFields[i22].requestFocus();
+                }
+                this.inputFields[i22].setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+                this.inputFields[i22].setGravity(LocaleController.isRTL ? 5 : 3);
+                frameLayout7.addView(this.inputFields[i22], LayoutHelper.createFrame(-1, -2.0f, 51, 21.0f, 12.0f, 21.0f, 6.0f));
+                this.inputFields[i22].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    @Override
+                    public final boolean onEditorAction(TextView textView2, int i26, KeyEvent keyEvent) {
+                        return this.f$0.lambda$createView$11(textView2, i26, keyEvent);
+                    }
+                });
+                if (i22 == 1) {
+                    this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                    TextInfoPrivacyCell textInfoPrivacyCell2 = this.bottomCell[0];
+                    int i26 = R.string.PaymentConfirmationMessage;
+                    TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard2 = this.savedCredentialsCard;
+                    textInfoPrivacyCell2.setText(LocaleController.formatString("PaymentConfirmationMessage", i26, tL_paymentSavedCredentialsCard2 == null ? "" : tL_paymentSavedCredentialsCard2.title));
+                    TextInfoPrivacyCell textInfoPrivacyCell3 = this.bottomCell[0];
+                    int i27 = R.drawable.greydivider;
+                    int i28 = Theme.key_windowBackgroundGrayShadow;
+                    textInfoPrivacyCell3.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, i27, i28));
+                    this.linearLayout2.addView(this.bottomCell[0], LayoutHelper.createLinear(-1, -2));
+                    this.settingsCell[0] = new TextSettingsCell(context, this.resourcesProvider);
+                    this.settingsCell[0].setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                    this.settingsCell[0].setText(LocaleController.getString(R.string.PaymentConfirmationNewCard), false);
+                    this.linearLayout2.addView(this.settingsCell[0], LayoutHelper.createLinear(-1, -2));
+                    this.settingsCell[0].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view5) {
+                            this.f$0.lambda$createView$12(view5);
+                        }
+                    });
+                    this.bottomCell[1] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                    this.bottomCell[1].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, i28));
+                    this.linearLayout2.addView(this.bottomCell[1], LayoutHelper.createLinear(-1, -2));
+                }
+                i22++;
+            }
+        } else if (i11 == 4 || i11 == 5) {
+            PaymentInfoCell paymentInfoCell = new PaymentInfoCell(context);
+            this.paymentInfoCell = paymentInfoCell;
+            paymentInfoCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+            MessageObject messageObject = this.messageObject;
+            if (messageObject != null) {
+                this.paymentInfoCell.setInvoice((TLRPC.TL_messageMediaInvoice) messageObject.messageOwner.media, this.currentBotName);
+            } else {
+                TLRPC.PaymentReceipt paymentReceipt = this.paymentReceipt;
+                if (paymentReceipt != null) {
+                    this.paymentInfoCell.setReceipt(paymentReceipt, this.currentBotName);
+                } else if (this.invoiceSlug != null || this.invoiceInput != null) {
+                    PaymentInfoCell paymentInfoCell2 = this.paymentInfoCell;
+                    TLRPC.PaymentForm paymentForm4 = this.paymentForm;
+                    paymentInfoCell2.setInfo(paymentForm4.title, paymentForm4.description, paymentForm4.photo, this.currentBotName, paymentForm4);
+                }
+            }
+            this.linearLayout2.addView(this.paymentInfoCell, LayoutHelper.createLinear(-1, -2));
+            this.sectionCell[0] = new ShadowSectionCell(context, this.resourcesProvider);
+            this.linearLayout2.addView(this.sectionCell[0], LayoutHelper.createLinear(-1, -2));
+            ArrayList arrayList2 = new ArrayList(this.paymentForm.invoice.prices);
+            this.prices = arrayList2;
+            TLRPC.TL_shippingOption tL_shippingOption2 = this.shippingOption;
+            if (tL_shippingOption2 != null) {
+                arrayList2.addAll(tL_shippingOption2.prices);
+            }
+            this.totalPrice = new String[1];
+            for (int i29 = 0; i29 < this.prices.size(); i29++) {
+                TLRPC.TL_labeledPrice tL_labeledPrice = (TLRPC.TL_labeledPrice) this.prices.get(i29);
+                TextPriceCell textPriceCell = new TextPriceCell(context);
+                textPriceCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                textPriceCell.setTextAndValue(tL_labeledPrice.label, LocaleController.getInstance().formatCurrencyString(tL_labeledPrice.amount, this.paymentForm.invoice.currency), false);
+                this.linearLayout2.addView(textPriceCell);
+            }
+            if (this.currentStep == 5 && this.tipAmount != null) {
+                TextPriceCell textPriceCell2 = new TextPriceCell(context);
+                textPriceCell2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                textPriceCell2.setTextAndValue(LocaleController.getString(R.string.PaymentTip), LocaleController.getInstance().formatCurrencyString(this.tipAmount.longValue(), this.paymentForm.invoice.currency), false);
+                this.linearLayout2.addView(textPriceCell2);
+            }
+            TextPriceCell textPriceCell3 = new TextPriceCell(context);
+            this.totalCell = textPriceCell3;
+            int i30 = Theme.key_windowBackgroundWhite;
+            textPriceCell3.setBackgroundColor(getThemedColor(i30));
+            this.totalPrice[0] = getTotalPriceString(this.prices);
+            this.totalCell.setTextAndValue(LocaleController.getString(R.string.PaymentTransactionTotal), this.totalPrice[0], true);
+            if (this.currentStep != 4 || (this.paymentForm.invoice.flags & 256) == 0) {
+                r13 = 0;
+                c = 5;
+                c2 = 6;
+            } else {
+                FrameLayout frameLayout8 = new FrameLayout(context);
+                frameLayout8.setClipChildren(false);
+                frameLayout8.setBackgroundColor(getThemedColor(i30));
+                this.linearLayout2.addView(frameLayout8, LayoutHelper.createLinear(-1, this.paymentForm.invoice.suggested_tip_amounts.isEmpty() ? 40 : 78));
+                frameLayout8.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view5) {
+                        this.f$0.lambda$createView$13(view5);
+                    }
+                });
+                TextPriceCell textPriceCell4 = new TextPriceCell(context);
+                textPriceCell4.setBackgroundColor(getThemedColor(i30));
+                textPriceCell4.setTextAndValue(LocaleController.getString(R.string.PaymentTipOptional), "", false);
+                frameLayout8.addView(textPriceCell4);
+                this.inputFields = new EditTextBoldCursor[]{new EditTextBoldCursor(context)};
+                this.inputFields[0].setTag(0);
+                this.inputFields[0].setTextSize(1, 16.0f);
+                EditTextBoldCursor editTextBoldCursor9 = this.inputFields[0];
+                int i31 = Theme.key_windowBackgroundWhiteGrayText2;
+                editTextBoldCursor9.setHintTextColor(getThemedColor(i31));
+                this.inputFields[0].setTextColor(getThemedColor(i31));
+                this.inputFields[0].setBackgroundDrawable(null);
+                this.inputFields[0].setCursorColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+                this.inputFields[0].setCursorSize(AndroidUtilities.dp(20.0f));
+                this.inputFields[0].setCursorWidth(1.5f);
+                this.inputFields[0].setInputType(3);
+                this.inputFields[0].setImeOptions(268435462);
+                this.inputFields[0].setHint(LocaleController.getInstance().formatCurrencyString(0L, this.paymentForm.invoice.currency));
+                this.inputFields[0].setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+                this.inputFields[0].setGravity(LocaleController.isRTL ? 3 : 5);
+                frameLayout8.addView(this.inputFields[0], LayoutHelper.createFrame(-1, -2.0f, 51, 21.0f, 9.0f, 21.0f, 1.0f));
+                this.inputFields[0].addTextChangedListener(new TextWatcher() {
+                    private boolean anyBefore;
+                    private int beforeTextLength;
+                    char[] commas = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
+                    private int enteredCharacterStart;
+                    private boolean isDeletedChar;
+                    private boolean lastDotEntered;
+                    private String overrideText;
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i32, int i33, int i34) {
+                    }
+
+                    private int indexOfComma(String str10) {
+                        int i32 = 0;
+                        while (true) {
+                            char[] cArr = this.commas;
+                            if (i32 >= cArr.length) {
+                                return -1;
+                            }
+                            int iIndexOf = str10.indexOf(cArr[i32]);
+                            if (iIndexOf >= 0) {
+                                return iIndexOf;
+                            }
+                            i32++;
+                        }
+                    }
+
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i32, int i33, int i34) {
+                        if (PaymentFormActivity.this.ignoreOnTextChange) {
+                            return;
+                        }
+                        this.anyBefore = !TextUtils.isEmpty(charSequence);
+                        this.overrideText = null;
+                        this.beforeTextLength = charSequence == null ? 0 : charSequence.length();
+                        this.enteredCharacterStart = i32;
+                        boolean z5 = i33 == 1 && i34 == 0;
+                        this.isDeletedChar = z5;
+                        if (!z5) {
+                            return;
+                        }
+                        String strFixNumbers = LocaleController.fixNumbers(charSequence);
+                        char cCharAt = strFixNumbers.charAt(i32);
+                        int iIndexOfComma = indexOfComma(strFixNumbers);
+                        String strSubstring = iIndexOfComma >= 0 ? strFixNumbers.substring(iIndexOfComma + 1) : "";
+                        long jLongValue2 = Utilities.parseLong(PhoneFormat.stripExceptNumbers(strSubstring)).longValue();
+                        if ((cCharAt >= '0' && cCharAt <= '9') || (strSubstring.length() != 0 && jLongValue2 == 0)) {
+                            if (iIndexOfComma <= 0 || i32 <= iIndexOfComma || jLongValue2 != 0) {
+                                return;
+                            }
+                            this.overrideText = strFixNumbers.substring(0, iIndexOfComma - 1);
+                            return;
+                        }
+                        while (true) {
+                            int i35 = i32 - 1;
+                            if (i35 < 0) {
+                                return;
+                            }
+                            char cCharAt2 = strFixNumbers.charAt(i35);
+                            if (cCharAt2 >= '0' && cCharAt2 <= '9') {
+                                this.overrideText = strFixNumbers.substring(0, i35) + strFixNumbers.substring(i32);
+                                return;
+                            }
+                            i32 = i35;
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+                        int iIndexOfComma;
+                        String strSubstring;
+                        if (PaymentFormActivity.this.ignoreOnTextChange) {
+                            return;
+                        }
+                        long jLongValue2 = PaymentFormActivity.this.tipAmount != null ? PaymentFormActivity.this.tipAmount.longValue() : 0L;
+                        String strFixNumbers = this.overrideText;
+                        if (strFixNumbers == null) {
+                            strFixNumbers = LocaleController.fixNumbers(editable.toString());
+                        }
+                        int iIndexOfComma2 = indexOfComma(strFixNumbers);
+                        boolean z5 = iIndexOfComma2 >= 0;
+                        int currencyExpDivider = LocaleController.getCurrencyExpDivider(PaymentFormActivity.this.paymentForm.invoice.currency);
+                        String strSubstring2 = iIndexOfComma2 >= 0 ? strFixNumbers.substring(0, iIndexOfComma2) : strFixNumbers;
+                        String currencyString = "";
+                        String strSubstring3 = iIndexOfComma2 >= 0 ? strFixNumbers.substring(iIndexOfComma2 + 1) : "";
+                        long jLongValue3 = Utilities.parseLong(PhoneFormat.stripExceptNumbers(strSubstring2)).longValue() * ((long) currencyExpDivider);
+                        long jLongValue4 = Utilities.parseLong(PhoneFormat.stripExceptNumbers(strSubstring3)).longValue();
+                        String str10 = "" + jLongValue4;
+                        String str11 = "" + (currencyExpDivider - 1);
+                        if (iIndexOfComma2 > 0 && str10.length() > str11.length()) {
+                            if (this.enteredCharacterStart - iIndexOfComma2 < str10.length()) {
+                                strSubstring = str10.substring(0, str11.length());
+                            } else {
+                                strSubstring = str10.substring(str10.length() - str11.length());
+                            }
+                            jLongValue4 = Utilities.parseLong(strSubstring).longValue();
+                        }
+                        PaymentFormActivity.this.tipAmount = Long.valueOf(jLongValue3 + jLongValue4);
+                        if (PaymentFormActivity.this.paymentForm.invoice.max_tip_amount != 0 && PaymentFormActivity.this.tipAmount.longValue() > PaymentFormActivity.this.paymentForm.invoice.max_tip_amount) {
+                            PaymentFormActivity paymentFormActivity = PaymentFormActivity.this;
+                            paymentFormActivity.tipAmount = Long.valueOf(paymentFormActivity.paymentForm.invoice.max_tip_amount);
+                        }
+                        int selectionStart = PaymentFormActivity.this.inputFields[0].getSelectionStart();
+                        PaymentFormActivity.this.ignoreOnTextChange = true;
+                        if (PaymentFormActivity.this.tipAmount.longValue() == 0) {
+                            PaymentFormActivity.this.inputFields[0].setText("");
+                        } else {
+                            EditTextBoldCursor editTextBoldCursor10 = PaymentFormActivity.this.inputFields[0];
+                            currencyString = LocaleController.getInstance().formatCurrencyString(PaymentFormActivity.this.tipAmount.longValue(), false, z5, true, PaymentFormActivity.this.paymentForm.invoice.currency);
+                            editTextBoldCursor10.setText(currencyString);
+                        }
+                        if (jLongValue2 < PaymentFormActivity.this.tipAmount.longValue() && jLongValue2 != 0 && this.anyBefore && selectionStart >= 0) {
+                            PaymentFormActivity.this.inputFields[0].setSelection(Math.min(selectionStart, PaymentFormActivity.this.inputFields[0].length()));
+                        } else if (this.isDeletedChar && this.beforeTextLength != PaymentFormActivity.this.inputFields[0].length()) {
+                            PaymentFormActivity.this.inputFields[0].setSelection(Math.max(0, Math.min(selectionStart, PaymentFormActivity.this.inputFields[0].length())));
+                        } else if (this.lastDotEntered || z5 == 0 || iIndexOfComma2 < 0 || (iIndexOfComma = indexOfComma(currencyString)) <= 0) {
+                            PaymentFormActivity.this.inputFields[0].setSelection(PaymentFormActivity.this.inputFields[0].length());
+                        } else {
+                            PaymentFormActivity.this.inputFields[0].setSelection(iIndexOfComma + 1);
+                        }
+                        this.lastDotEntered = z5;
+                        PaymentFormActivity.this.updateTotalPrice();
+                        this.overrideText = null;
+                        PaymentFormActivity.this.ignoreOnTextChange = false;
+                    }
+                });
+                this.inputFields[0].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    @Override
+                    public final boolean onEditorAction(TextView textView2, int i32, KeyEvent keyEvent) {
+                        return PaymentFormActivity.lambda$createView$14(textView2, i32, keyEvent);
+                    }
+                });
+                this.inputFields[0].requestFocus();
+                if (this.paymentForm.invoice.suggested_tip_amounts.isEmpty()) {
+                    r13 = 0;
+                    c = 5;
+                    c2 = 6;
+                } else {
+                    HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
+                    horizontalScrollView.setHorizontalScrollBarEnabled(false);
+                    horizontalScrollView.setVerticalScrollBarEnabled(false);
+                    horizontalScrollView.setClipToPadding(false);
+                    horizontalScrollView.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+                    horizontalScrollView.setFillViewport(true);
+                    frameLayout8.addView(horizontalScrollView, LayoutHelper.createFrame(-1, 30.0f, 51, 0.0f, 44.0f, 0.0f, 0.0f));
+                    final int[] iArr = new int[1];
+                    final int[] iArr2 = new int[1];
+                    final int size2 = this.paymentForm.invoice.suggested_tip_amounts.size();
+                    c = 5;
+                    r13 = 0;
+                    c2 = 6;
+                    LinearLayout linearLayout2 = new LinearLayout(context) {
+                        boolean ignoreLayout;
+
+                        @Override
+                        protected void onMeasure(int i32, int i33) {
+                            int size3 = View.MeasureSpec.getSize(i32);
+                            this.ignoreLayout = true;
+                            int iDp = AndroidUtilities.dp(9.0f);
+                            int i34 = size2;
+                            int i35 = iDp * (i34 - 1);
+                            int i36 = (iArr[0] * i34) + i35;
+                            float f = 1.0f;
+                            if (i36 <= size3) {
+                                setWeightSum(1.0f);
+                                int childCount = getChildCount();
+                                for (int i37 = 0; i37 < childCount; i37++) {
+                                    getChildAt(i37).getLayoutParams().width = 0;
+                                    ((LinearLayout.LayoutParams) getChildAt(i37).getLayoutParams()).weight = 1.0f / childCount;
+                                }
+                            } else if (iArr2[0] + i35 <= size3) {
+                                setWeightSum(1.0f);
+                                int i38 = size3 - i35;
+                                int childCount2 = getChildCount();
+                                for (int i39 = 0; i39 < childCount2; i39++) {
+                                    View childAt = getChildAt(i39);
+                                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
+                                    layoutParams.width = 0;
+                                    float fIntValue = ((Integer) childAt.getTag(R.id.width_tag)).intValue() / i38;
+                                    layoutParams.weight = fIntValue;
+                                    f -= fIntValue;
+                                }
+                                float f2 = f / (size2 - 1);
+                                if (f2 > 0.0f) {
+                                    int childCount3 = getChildCount();
+                                    for (int i40 = 0; i40 < childCount3; i40++) {
+                                        View childAt2 = getChildAt(i40);
+                                        LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
+                                        if (((Integer) childAt2.getTag(R.id.width_tag)).intValue() != iArr[0]) {
+                                            layoutParams2.weight += f2;
+                                        }
+                                    }
+                                }
+                            } else {
+                                setWeightSum(0.0f);
+                                int childCount4 = getChildCount();
+                                for (int i41 = 0; i41 < childCount4; i41++) {
+                                    getChildAt(i41).getLayoutParams().width = -2;
+                                    ((LinearLayout.LayoutParams) getChildAt(i41).getLayoutParams()).weight = 0.0f;
+                                }
+                            }
+                            this.ignoreLayout = false;
+                            super.onMeasure(i32, i33);
+                        }
+
+                        @Override
+                        public void requestLayout() {
+                            if (this.ignoreLayout) {
+                                return;
+                            }
+                            super.requestLayout();
+                        }
+                    };
+                    this.tipLayout = linearLayout2;
+                    linearLayout2.setOrientation(0);
+                    horizontalScrollView.addView(this.tipLayout, LayoutHelper.createScroll(-1, 30, 51));
+                    int themedColor = getThemedColor(Theme.key_contacts_inviteBackground);
+                    int i32 = 0;
+                    while (i32 < size2) {
+                        if (LocaleController.isRTL) {
+                            jLongValue = this.paymentForm.invoice.suggested_tip_amounts.get((size2 - i32) - 1).longValue();
+                        } else {
+                            jLongValue = this.paymentForm.invoice.suggested_tip_amounts.get(i32).longValue();
+                        }
+                        String currencyString = LocaleController.getInstance().formatCurrencyString(jLongValue, this.paymentForm.invoice.currency);
+                        final TextView textView2 = new TextView(context);
+                        textView2.setTextSize(1, 14.0f);
+                        textView2.setTypeface(AndroidUtilities.bold());
+                        textView2.setLines(1);
+                        textView2.setTag(Long.valueOf(jLongValue));
+                        textView2.setMaxLines(1);
+                        textView2.setText(currencyString);
+                        textView2.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
+                        textView2.setTextColor(getThemedColor(Theme.key_chats_secretName));
+                        textView2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(15.0f), 536870911 & themedColor));
+                        textView2.setSingleLine(true);
+                        textView2.setGravity(17);
+                        this.tipLayout.addView(textView2, LayoutHelper.createLinear(-2, -1, 19, 0, 0, i32 != size2 + (-1) ? 9 : 0, 0));
+                        textView2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view5) {
+                                this.f$0.lambda$createView$15(textView2, jLongValue, view5);
+                            }
+                        });
+                        int iCeil = ((int) Math.ceil(textView2.getPaint().measureText(currencyString))) + AndroidUtilities.dp(30.0f);
+                        textView2.setTag(R.id.width_tag, Integer.valueOf(iCeil));
+                        iArr[0] = Math.max(iArr[0], iCeil);
+                        iArr2[0] = iArr2[0] + iCeil;
+                        i32++;
+                    }
+                }
+            }
+            this.linearLayout2.addView(this.totalCell);
+            this.sectionCell[2] = new ShadowSectionCell(context, this.resourcesProvider);
+            this.sectionCell[2].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+            this.linearLayout2.addView(this.sectionCell[2], LayoutHelper.createLinear(-1, -2));
+            this.detailSettingsCell[r13] = new TextDetailSettingsCell(context) {
+                @Override
+                public void setVisibility(int i33) {
+                    super.setVisibility(i33);
+                }
+            };
+            this.detailSettingsCell[r13].setBackground(Theme.getSelectorDrawable(true));
+            TextDetailSettingsCell textDetailSettingsCell = this.detailSettingsCell[r13];
+            String str10 = this.cardName;
+            textDetailSettingsCell.setTextAndValueAndIcon((str10 == null || str10.length() <= 1) ? this.cardName : this.cardName.substring(r13, 1).toUpperCase() + this.cardName.substring(1), LocaleController.getString(R.string.PaymentCheckoutMethod), R.drawable.msg_payment_card, true);
+            int i33 = ((this.isCheckoutPreview || this.allowUnregistered) && ((str = this.cardName) == null || str.length() <= 1)) ? 8 : 0;
+            this.detailSettingsCell[r13].setVisibility(i33);
+            this.linearLayout2.addView(this.detailSettingsCell[r13]);
+            if (this.currentStep == 4) {
+                this.detailSettingsCell[r13].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view5) {
+                        this.f$0.lambda$createView$16(view5);
+                    }
+                });
+            }
+            TLRPC.User user3 = null;
+            for (int i34 = 0; i34 < this.paymentForm.users.size(); i34++) {
+                TLRPC.User user4 = this.paymentForm.users.get(i34);
+                if (user4.id == this.paymentForm.provider_id) {
+                    user3 = user4;
+                }
+            }
+            this.detailSettingsCell[1] = new TextDetailSettingsCell(context);
+            this.detailSettingsCell[1].setBackground(Theme.getSelectorDrawable(true));
+            if (user3 != null) {
+                TextDetailSettingsCell textDetailSettingsCell2 = this.detailSettingsCell[1];
+                name = ContactsController.formatName(user3.first_name, user3.last_name);
+                String string = LocaleController.getString(R.string.PaymentCheckoutProvider);
+                int i35 = R.drawable.msg_payment_provider;
+                TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo = this.validateRequest;
+                textDetailSettingsCell2.setTextAndValueAndIcon(name, string, i35, ((tL_payments_validateRequestedInfo == null || (tL_payments_validateRequestedInfo.info.shipping_address == null && this.shippingOption == null)) && ((tL_paymentRequestedInfo = this.paymentForm.saved_info) == null || tL_paymentRequestedInfo.shipping_address == null)) ? false : true);
+                c3 = 1;
+                this.linearLayout2.addView(this.detailSettingsCell[1]);
+            } else {
+                c3 = 1;
+                name = "";
+            }
+            this.detailSettingsCell[c3].setVisibility(user3 != null ? i33 : 8);
+            TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo2 = this.validateRequest;
+            if (tL_payments_validateRequestedInfo2 != null || (this.isCheckoutPreview && (paymentForm2 = this.paymentForm) != null && paymentForm2.saved_info != null)) {
+                TLRPC.TL_paymentRequestedInfo tL_paymentRequestedInfo12 = tL_payments_validateRequestedInfo2 != null ? tL_payments_validateRequestedInfo2.info : this.paymentForm.saved_info;
+                this.detailSettingsCell[2] = new TextDetailSettingsCell(context);
+                this.detailSettingsCell[2].setVisibility(8);
+                this.linearLayout2.addView(this.detailSettingsCell[2]);
+                if (tL_paymentRequestedInfo12.shipping_address != null) {
+                    this.detailSettingsCell[2].setVisibility(r13);
+                    if (this.currentStep == 4) {
+                        this.detailSettingsCell[2].setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                        this.detailSettingsCell[2].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view5) {
+                                this.f$0.lambda$createView$17(view5);
+                            }
+                        });
+                    } else {
+                        this.detailSettingsCell[2].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                    }
+                }
+                this.detailSettingsCell[3] = new TextDetailSettingsCell(context);
+                this.detailSettingsCell[3].setVisibility(8);
+                this.linearLayout2.addView(this.detailSettingsCell[3]);
+                if (tL_paymentRequestedInfo12.name != null) {
+                    this.detailSettingsCell[3].setVisibility(r13);
+                    if (this.currentStep == 4) {
+                        this.detailSettingsCell[3].setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                        this.detailSettingsCell[3].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view5) {
+                                this.f$0.lambda$createView$18(view5);
+                            }
+                        });
+                    } else {
+                        this.detailSettingsCell[3].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                    }
+                }
+                this.detailSettingsCell[4] = new TextDetailSettingsCell(context);
+                this.detailSettingsCell[4].setVisibility(8);
+                this.linearLayout2.addView(this.detailSettingsCell[4]);
+                if (tL_paymentRequestedInfo12.phone != null) {
+                    this.detailSettingsCell[4].setVisibility(r13);
+                    if (this.currentStep == 4) {
+                        this.detailSettingsCell[4].setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                        this.detailSettingsCell[4].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view5) {
+                                this.f$0.lambda$createView$19(view5);
+                            }
+                        });
+                    } else {
+                        this.detailSettingsCell[4].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                    }
+                }
+                this.detailSettingsCell[c] = new TextDetailSettingsCell(context);
+                this.detailSettingsCell[c].setVisibility(8);
+                this.linearLayout2.addView(this.detailSettingsCell[c]);
+                if (tL_paymentRequestedInfo12.email != null) {
+                    this.detailSettingsCell[c].setVisibility(r13);
+                    if (this.currentStep == 4) {
+                        this.detailSettingsCell[c].setBackgroundDrawable(Theme.getSelectorDrawable(true));
+                        this.detailSettingsCell[c].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view5) {
+                                this.f$0.lambda$createView$20(view5);
+                            }
+                        });
+                    } else {
+                        this.detailSettingsCell[c].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                    }
+                }
+                if (this.shippingOption != null) {
+                    this.detailSettingsCell[c2] = new TextDetailSettingsCell(context);
+                    this.detailSettingsCell[c2].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                    this.detailSettingsCell[c2].setTextAndValueAndIcon(this.shippingOption.title, LocaleController.getString(R.string.PaymentCheckoutShippingMethod), R.drawable.msg_payment_delivery, r13);
+                    this.linearLayout2.addView(this.detailSettingsCell[c2]);
+                }
+                setAddressFields(tL_paymentRequestedInfo12);
+            }
+            if (this.currentStep == 4) {
+                this.recurrentAccepted = !this.isCheckoutPreview;
+                if (this.invoiceInput instanceof TLRPC.TL_inputInvoiceStars) {
+                    this.recurrentAccepted = true;
+                }
+                this.bottomLayout = new BottomFrameLayout(context, this.paymentForm);
+                View view5 = new View(context);
+                view5.setBackground(Theme.getSelectorDrawable(getThemedColor(Theme.key_listSelector), (boolean) r13));
+                this.bottomLayout.addView(view5, LayoutHelper.createFrame(-1, -1.0f));
+                frameLayout3.addView(this.bottomLayout, LayoutHelper.createFrame(-1, 48, 80));
+                this.bottomLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view6) {
+                        this.f$0.lambda$createView$23(name, view6);
+                    }
+                });
+                TextView textView3 = new TextView(context);
+                this.payTextView = textView3;
+                int i36 = Theme.key_contacts_inviteText;
+                textView3.setTextColor(getThemedColor(i36));
+                TextView textView4 = this.payTextView;
+                int i37 = R.string.PaymentCheckoutPay;
+                Object[] objArr = new Object[1];
+                objArr[r13] = this.totalPrice[r13];
+                textView4.setText(LocaleController.formatString(i37, objArr));
+                this.payTextView.setTextSize(1, 14.0f);
+                this.payTextView.setGravity(17);
+                this.payTextView.setTypeface(AndroidUtilities.bold());
+                this.bottomLayout.addView(this.payTextView, LayoutHelper.createFrame(-1, -1.0f));
+                ContextProgressView contextProgressView2 = new ContextProgressView(context, r13);
+                this.progressViewButton = contextProgressView2;
+                contextProgressView2.setVisibility(4);
+                int themedColor2 = getThemedColor(i36);
+                this.progressViewButton.setColors(805306367 & themedColor2, themedColor2);
+                this.bottomLayout.addView(this.progressViewButton, LayoutHelper.createFrame(-1, -1.0f));
+                this.bottomLayout.setChecked(this.recurrentAccepted, r13);
+                this.payTextView.setAlpha(!this.recurrentAccepted ? 0.8f : 1.0f);
+                this.doneItem.setEnabled(r13);
+                this.doneItem.getContentView().setVisibility(4);
+                AndroidUtilities.checkAndroidTheme(context, true);
+                try {
+                    WebView webView2 = new WebView(context) {
+                        @Override
+                        public boolean onTouchEvent(MotionEvent motionEvent) {
+                            getParent().requestDisallowInterceptTouchEvent(true);
+                            return super.onTouchEvent(motionEvent);
+                        }
+                    };
+                    this.webView = webView2;
+                    webView2.setBackgroundColor(-1);
+                    this.webView.getSettings().setJavaScriptEnabled(true);
+                    this.webView.getSettings().setDomStorageEnabled(true);
+                    this.webView.getSettings().setSupportZoom(true);
+                    this.webView.getSettings().setBuiltInZoomControls(true);
+                    this.webView.getSettings().setDisplayZoomControls(r13);
+                    this.webView.getSettings().setUseWideViewPort(true);
+                    this.webView.getSettings().setMixedContentMode(r13);
+                    CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
+                    this.webView.setWebViewClient(new AnonymousClass19(context));
+                } catch (Exception e5) {
+                    FileLog.e(e5);
+                }
+                this.recurrentAcceptCell = null;
+                if (this.paymentForm.invoice.terms_url != null) {
+                    RecurrentPaymentsAcceptCell recurrentPaymentsAcceptCell = new RecurrentPaymentsAcceptCell(context, getResourceProvider());
+                    this.recurrentAcceptCell = recurrentPaymentsAcceptCell;
+                    recurrentPaymentsAcceptCell.setChecked(this.recurrentAccepted);
+                    if (TextUtils.isEmpty(this.currentBotName)) {
+                        ?? string2 = LocaleController.getString(R.string.PaymentCheckoutAcceptRecurrentFee);
+                        spannableStringBuilder = new SpannableStringBuilder(string2);
+                        int iIndexOf = string2.indexOf(42);
+                        int iLastIndexOf = string2.lastIndexOf(42);
+                        if (iIndexOf != -1 && iLastIndexOf != -1) {
+                            ?? spannableString = new SpannableString(string2.substring(iIndexOf + 1, iLastIndexOf));
+                            spannableString.setSpan(new URLSpanNoUnderline(this.paymentForm.invoice.terms_url), r13, spannableString.length(), 33);
+                            int i38 = iLastIndexOf + 1;
+                            spannableStringBuilder.replace(iIndexOf, i38, spannableString);
+                            string2.substring(r13, iIndexOf);
+                            spannableString.toString();
+                            string2.substring(i38);
+                            r2 = spannableStringBuilder;
+                        }
+                    } else {
+                        ?? string3 = LocaleController.getString(R.string.PaymentCheckoutAcceptRecurrent);
+                        ?? spannableStringBuilder2 = new SpannableStringBuilder(string3);
+                        int iIndexOf2 = string3.indexOf(42);
+                        int iLastIndexOf2 = string3.lastIndexOf(42);
+                        if (iIndexOf2 != -1 && iLastIndexOf2 != -1) {
+                            ?? spannableString2 = new SpannableString(string3.substring(iIndexOf2 + 1, iLastIndexOf2));
+                            spannableString2.setSpan(new URLSpanNoUnderline(this.paymentForm.invoice.terms_url), r13, spannableString2.length(), 33);
+                            int i39 = iLastIndexOf2 + 1;
+                            spannableStringBuilder2.replace(iIndexOf2, i39, spannableString2);
+                            r0 = string3.substring(r13, iIndexOf2) + spannableString2 + string3.substring(i39);
+                        }
+                        r0 = string3;
+                        r0 = string3;
+                        int iIndexOf3 = r0.indexOf("%1$s");
+                        r2 = spannableStringBuilder2;
+                        if (iIndexOf3 != -1) {
+                            spannableStringBuilder2.replace(iIndexOf3, iIndexOf3 + 4, this.currentBotName);
+                            spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), iIndexOf3, this.currentBotName.length() + iIndexOf3, 33);
+                            r2 = spannableStringBuilder2;
+                        }
+                    }
+                    r2 = spannableStringBuilder;
+                    r2 = spannableStringBuilder;
+                    this.recurrentAcceptCell.setText(r2);
+                    this.recurrentAcceptCell.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor(Theme.key_windowBackgroundWhite), getThemedColor(Theme.key_listSelector)));
+                    this.recurrentAcceptCell.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view6) {
+                            this.f$0.lambda$createView$24(view6);
+                        }
+                    });
+                    frameLayout3.addView(this.recurrentAcceptCell, LayoutHelper.createFrame(-1, -2.0f, 80, 0.0f, 0.0f, 0.0f, 48.0f));
+                }
+                WebView webView3 = this.webView;
+                if (webView3 != null) {
+                    frameLayout3.addView(webView3, LayoutHelper.createFrame(-1, -1.0f));
+                    this.webView.setVisibility(8);
+                }
+            }
+            this.sectionCell[1] = new ShadowSectionCell(context, this.resourcesProvider);
+            this.sectionCell[1].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+            if (i33 != 0 && this.currentStep == 4 && this.validateRequest == null && ((paymentForm = this.paymentForm) == null || paymentForm.saved_info == null)) {
+                c4 = 1;
+                this.sectionCell[1].setVisibility(i33);
+            } else {
+                c4 = 1;
+            }
+            this.linearLayout2.addView(this.sectionCell[c4], LayoutHelper.createLinear(-1, -2));
+        } else if (i11 == 6) {
+            EditTextSettingsCell editTextSettingsCell = new EditTextSettingsCell(context);
+            this.codeFieldCell = editTextSettingsCell;
+            editTextSettingsCell.setTextAndHint("", LocaleController.getString(R.string.PasswordCode), false);
+            this.codeFieldCell.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+            EditTextBoldCursor textView5 = this.codeFieldCell.getTextView();
+            textView5.setInputType(3);
+            textView5.setImeOptions(6);
+            textView5.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public final boolean onEditorAction(TextView textView6, int i40, KeyEvent keyEvent) {
+                    return this.f$0.lambda$createView$25(textView6, i40, keyEvent);
+                }
+            });
+            textView5.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i40, int i41, int i42) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i40, int i41, int i42) {
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if (PaymentFormActivity.this.emailCodeLength == 0 || editable.length() != PaymentFormActivity.this.emailCodeLength) {
+                        return;
+                    }
+                    PaymentFormActivity.this.sendSavePassword(false);
+                }
+            });
+            this.linearLayout2.addView(this.codeFieldCell, LayoutHelper.createLinear(-1, -2));
+            this.bottomCell[2] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+            this.bottomCell[2].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+            this.linearLayout2.addView(this.bottomCell[2], LayoutHelper.createLinear(-1, -2));
+            this.settingsCell[1] = new TextSettingsCell(context, this.resourcesProvider);
+            this.settingsCell[1].setBackgroundDrawable(Theme.getSelectorDrawable(true));
+            TextSettingsCell textSettingsCell = this.settingsCell[1];
+            int i40 = Theme.key_windowBackgroundWhiteBlackText;
+            textSettingsCell.setTag(Integer.valueOf(i40));
+            this.settingsCell[1].setTextColor(getThemedColor(i40));
+            this.settingsCell[1].setText(LocaleController.getString(R.string.ResendCode), true);
+            this.linearLayout2.addView(this.settingsCell[1], LayoutHelper.createLinear(-1, -2));
+            this.settingsCell[1].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view6) {
+                    this.f$0.lambda$createView$27(view6);
+                }
+            });
+            this.settingsCell[0] = new TextSettingsCell(context, this.resourcesProvider);
+            this.settingsCell[0].setBackgroundDrawable(Theme.getSelectorDrawable(true));
+            TextSettingsCell textSettingsCell2 = this.settingsCell[0];
+            int i41 = Theme.key_text_RedRegular;
+            textSettingsCell2.setTag(Integer.valueOf(i41));
+            this.settingsCell[0].setTextColor(getThemedColor(i41));
+            this.settingsCell[0].setText(LocaleController.getString(R.string.AbortPassword), false);
+            this.linearLayout2.addView(this.settingsCell[0], LayoutHelper.createLinear(-1, -2));
+            this.settingsCell[0].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view6) {
+                    this.f$0.lambda$createView$29(view6);
+                }
+            });
+            this.inputFields = new EditTextBoldCursor[3];
+            int i42 = 0;
+            for (int i43 = 3; i42 < i43; i43 = 3) {
+                if (i42 == 0) {
+                    this.headerCell[0] = new HeaderCell(context, this.resourcesProvider);
+                    this.headerCell[0].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                    this.headerCell[0].setText(LocaleController.getString(R.string.PaymentPasswordTitle));
+                    this.linearLayout2.addView(this.headerCell[0], LayoutHelper.createLinear(-1, -2));
+                } else {
+                    if (i42 == 2) {
+                        this.headerCell[1] = new HeaderCell(context, this.resourcesProvider);
+                        this.headerCell[1].setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                        this.headerCell[1].setText(LocaleController.getString(R.string.PaymentPasswordEmailTitle));
+                        i = -1;
+                        this.linearLayout2.addView(this.headerCell[1], LayoutHelper.createLinear(-1, -2));
+                    }
+                    frameLayout = new FrameLayout(context);
+                    frameLayout.setClipChildren(false);
+                    this.linearLayout2.addView(frameLayout, LayoutHelper.createLinear(i, 50));
+                    i2 = Theme.key_windowBackgroundWhite;
+                    frameLayout.setBackgroundColor(getThemedColor(i2));
+                    if (i42 == 0) {
+                        View view6 = new View(context) {
+                            @Override
+                            protected void onDraw(Canvas canvas) {
+                                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                            }
+                        };
+                        view6.setBackgroundColor(getThemedColor(i2));
+                        this.dividers.add(view6);
+                        frameLayout.addView(view6, new FrameLayout.LayoutParams(-1, 1, 83));
+                    }
+                    this.inputFields[i42] = new EditTextBoldCursor(context);
+                    this.inputFields[i42].setTag(Integer.valueOf(i42));
+                    this.inputFields[i42].setTextSize(1, 16.0f);
+                    this.inputFields[i42].setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
+                    EditTextBoldCursor editTextBoldCursor10 = this.inputFields[i42];
+                    int i44 = Theme.key_windowBackgroundWhiteBlackText;
+                    editTextBoldCursor10.setTextColor(getThemedColor(i44));
+                    this.inputFields[i42].setBackgroundDrawable(null);
+                    this.inputFields[i42].setCursorColor(getThemedColor(i44));
+                    this.inputFields[i42].setCursorSize(AndroidUtilities.dp(20.0f));
+                    this.inputFields[i42].setCursorWidth(1.5f);
+                    if (i42 != 0 || i42 == 1) {
+                        this.inputFields[i42].setInputType(129);
+                        this.inputFields[i42].setTypeface(Typeface.DEFAULT);
+                        this.inputFields[i42].setImeOptions(268435461);
+                    } else {
+                        this.inputFields[i42].setInputType(33);
+                        this.inputFields[i42].setImeOptions(268435462);
+                    }
+                    if (i42 != 0) {
+                        this.inputFields[i42].setHint(LocaleController.getString(R.string.PaymentPasswordEnter));
+                        this.inputFields[i42].requestFocus();
+                    } else if (i42 != 1) {
+                        this.inputFields[i42].setHint(LocaleController.getString(R.string.PaymentPasswordReEnter));
+                    } else if (i42 == 2) {
+                        this.inputFields[i42].setHint(LocaleController.getString(R.string.PaymentPasswordEmail));
+                    }
+                    this.inputFields[i42].setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+                    EditTextBoldCursor editTextBoldCursor11 = this.inputFields[i42];
+                    if (LocaleController.isRTL) {
+                        i3 = 5;
+                    } else {
+                        i3 = 3;
+                    }
+                    editTextBoldCursor11.setGravity(i3);
+                    frameLayout.addView(this.inputFields[i42], LayoutHelper.createFrame(-1, -2.0f, 51, 21.0f, 12.0f, 21.0f, 6.0f));
+                    this.inputFields[i42].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        @Override
+                        public final boolean onEditorAction(TextView textView6, int i45, KeyEvent keyEvent) {
+                            return this.f$0.lambda$createView$30(textView6, i45, keyEvent);
+                        }
+                    });
+                    if (i42 == 1) {
+                        this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                        this.bottomCell[0].setText(LocaleController.getString(R.string.PaymentPasswordInfo));
+                        this.bottomCell[0].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                        this.linearLayout2.addView(this.bottomCell[0], LayoutHelper.createLinear(-1, -2));
+                    } else if (i42 == 2) {
+                        this.bottomCell[1] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                        this.bottomCell[1].setText(LocaleController.getString(R.string.PaymentPasswordEmailInfo));
+                        this.bottomCell[1].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                        this.linearLayout2.addView(this.bottomCell[1], LayoutHelper.createLinear(-1, -2));
+                    }
+                    i42++;
+                }
+                i = -1;
+                frameLayout = new FrameLayout(context);
+                frameLayout.setClipChildren(false);
+                this.linearLayout2.addView(frameLayout, LayoutHelper.createLinear(i, 50));
+                i2 = Theme.key_windowBackgroundWhite;
+                frameLayout.setBackgroundColor(getThemedColor(i2));
+                if (i42 == 0) {
+                    View view7 = new View(context) {
+                        @Override
+                        protected void onDraw(Canvas canvas) {
+                            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+                        }
+                    };
+                    view7.setBackgroundColor(getThemedColor(i2));
+                    this.dividers.add(view7);
+                    frameLayout.addView(view7, new FrameLayout.LayoutParams(-1, 1, 83));
+                }
+                this.inputFields[i42] = new EditTextBoldCursor(context);
+                this.inputFields[i42].setTag(Integer.valueOf(i42));
+                this.inputFields[i42].setTextSize(1, 16.0f);
+                this.inputFields[i42].setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
+                EditTextBoldCursor editTextBoldCursor12 = this.inputFields[i42];
+                int i45 = Theme.key_windowBackgroundWhiteBlackText;
+                editTextBoldCursor12.setTextColor(getThemedColor(i45));
+                this.inputFields[i42].setBackgroundDrawable(null);
+                this.inputFields[i42].setCursorColor(getThemedColor(i45));
+                this.inputFields[i42].setCursorSize(AndroidUtilities.dp(20.0f));
+                this.inputFields[i42].setCursorWidth(1.5f);
+                if (i42 != 0) {
+                    this.inputFields[i42].setInputType(129);
+                    this.inputFields[i42].setTypeface(Typeface.DEFAULT);
+                    this.inputFields[i42].setImeOptions(268435461);
+                } else {
+                    this.inputFields[i42].setInputType(129);
+                    this.inputFields[i42].setTypeface(Typeface.DEFAULT);
+                    this.inputFields[i42].setImeOptions(268435461);
+                }
+                if (i42 != 0) {
+                    this.inputFields[i42].setHint(LocaleController.getString(R.string.PaymentPasswordEnter));
+                    this.inputFields[i42].requestFocus();
+                } else if (i42 != 1) {
+                    this.inputFields[i42].setHint(LocaleController.getString(R.string.PaymentPasswordReEnter));
+                } else if (i42 == 2) {
+                    this.inputFields[i42].setHint(LocaleController.getString(R.string.PaymentPasswordEmail));
+                }
+                this.inputFields[i42].setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+                EditTextBoldCursor editTextBoldCursor13 = this.inputFields[i42];
+                if (LocaleController.isRTL) {
+                    i3 = 5;
+                } else {
+                    i3 = 3;
+                }
+                editTextBoldCursor13.setGravity(i3);
+                frameLayout.addView(this.inputFields[i42], LayoutHelper.createFrame(-1, -2.0f, 51, 21.0f, 12.0f, 21.0f, 6.0f));
+                this.inputFields[i42].setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    @Override
+                    public final boolean onEditorAction(TextView textView6, int i46, KeyEvent keyEvent) {
+                        return this.f$0.lambda$createView$30(textView6, i46, keyEvent);
+                    }
+                });
+                if (i42 == 1) {
+                    this.bottomCell[0] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                    this.bottomCell[0].setText(LocaleController.getString(R.string.PaymentPasswordInfo));
+                    this.bottomCell[0].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                    this.linearLayout2.addView(this.bottomCell[0], LayoutHelper.createLinear(-1, -2));
+                } else if (i42 == 2) {
+                    this.bottomCell[1] = new TextInfoPrivacyCell(context, this.resourcesProvider);
+                    this.bottomCell[1].setText(LocaleController.getString(R.string.PaymentPasswordEmailInfo));
+                    this.bottomCell[1].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    this.linearLayout2.addView(this.bottomCell[1], LayoutHelper.createLinear(-1, -2));
+                }
+                i42++;
+            }
+            updatePasswordFields();
+        }
+        return this.fragmentView;
     }
 
     public boolean lambda$createView$1(View view, MotionEvent motionEvent) {
@@ -611,28 +3078,28 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-            Uri uri;
-            PaymentFormActivity.this.shouldNavigateBack = !str.equals(r0.webViewUrl);
+            PaymentFormActivity paymentFormActivity = PaymentFormActivity.this;
+            paymentFormActivity.shouldNavigateBack = !str.equals(paymentFormActivity.webViewUrl);
             try {
-                uri = Uri.parse(str);
-            } catch (Exception unused) {
-            }
-            if ("t.me".equals(uri.getHost())) {
-                PaymentFormActivity.this.goToNextStep();
-                return true;
-            }
-            if (PaymentFormActivity.BLACKLISTED_PROTOCOLS.contains(uri.getScheme())) {
-                return true;
-            }
-            if (!PaymentFormActivity.WEBVIEW_PROTOCOLS.contains(uri.getScheme())) {
-                try {
-                    if (PaymentFormActivity.this.getContext() instanceof Activity) {
-                        ((Activity) PaymentFormActivity.this.getContext()).startActivityForResult(new Intent("android.intent.action.VIEW", uri), 210);
-                    }
-                } catch (ActivityNotFoundException unused2) {
-                    new AlertDialog.Builder(this.val$context).setTitle(PaymentFormActivity.this.currentBotName).setMessage(LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+                Uri uri = Uri.parse(str);
+                if ("t.me".equals(uri.getHost())) {
+                    PaymentFormActivity.this.goToNextStep();
+                    return true;
                 }
-                return true;
+                if (PaymentFormActivity.BLACKLISTED_PROTOCOLS.contains(uri.getScheme())) {
+                    return true;
+                }
+                if (!PaymentFormActivity.WEBVIEW_PROTOCOLS.contains(uri.getScheme())) {
+                    try {
+                        if (PaymentFormActivity.this.getContext() instanceof Activity) {
+                            ((Activity) PaymentFormActivity.this.getContext()).startActivityForResult(new Intent("android.intent.action.VIEW", uri), 210);
+                        }
+                    } catch (ActivityNotFoundException unused) {
+                        new AlertDialog.Builder(this.val$context).setTitle(PaymentFormActivity.this.currentBotName).setMessage(LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+                    }
+                    return true;
+                }
+            } catch (Exception unused2) {
             }
             return super.shouldOverrideUrlLoading(webView, str);
         }
@@ -676,6 +3143,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     public boolean lambda$createView$7(TextView textView, int i, KeyEvent keyEvent) {
+        EditTextBoldCursor[] editTextBoldCursorArr;
         if (i != 5) {
             if (i != 6) {
                 return false;
@@ -684,18 +3152,15 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             return true;
         }
         int iIntValue = ((Integer) textView.getTag()).intValue();
-        while (true) {
+        do {
             int i2 = iIntValue + 1;
-            EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
-            if (i2 >= editTextBoldCursorArr.length) {
-                break;
+            editTextBoldCursorArr = this.inputFields;
+            if (i2 < editTextBoldCursorArr.length) {
+                iIntValue = i2 == 4 ? iIntValue + 2 : i2;
             }
-            iIntValue = i2 == 4 ? iIntValue + 2 : i2;
-            if (((View) editTextBoldCursorArr[iIntValue].getParent()).getVisibility() == 0) {
-                this.inputFields[iIntValue].requestFocus();
-                break;
-            }
-        }
+            return true;
+        } while (((View) editTextBoldCursorArr[iIntValue].getParent()).getVisibility() != 0);
+        this.inputFields[iIntValue].requestFocus();
         return true;
     }
 
@@ -1065,19 +3530,17 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
         }
         final ArrayList arrayList3 = new ArrayList();
-        Iterator<TLRPC.TL_paymentSavedCredentialsCard> it = this.paymentForm.saved_credentials.iterator();
-        while (it.hasNext()) {
-            TLRPC.TL_paymentSavedCredentialsCard next = it.next();
-            TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard2 = this.savedCredentialsCard;
-            if (tL_paymentSavedCredentialsCard2 == null || !Objects.equals(next.id, tL_paymentSavedCredentialsCard2.id)) {
-                arrayList.add(next.title);
+        for (TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard2 : this.paymentForm.saved_credentials) {
+            TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard3 = this.savedCredentialsCard;
+            if (tL_paymentSavedCredentialsCard3 == null || !Objects.equals(tL_paymentSavedCredentialsCard2.id, tL_paymentSavedCredentialsCard3.id)) {
+                arrayList.add(tL_paymentSavedCredentialsCard2.title);
                 arrayList2.add(Integer.valueOf(R.drawable.msg_payment_card));
-                arrayList3.add(next);
+                arrayList3.add(tL_paymentSavedCredentialsCard2);
             }
         }
-        Iterator<TLRPC.TL_paymentFormMethod> it2 = this.paymentForm.additional_methods.iterator();
-        while (it2.hasNext()) {
-            arrayList.add(it2.next().title);
+        Iterator<TLRPC.TL_paymentFormMethod> it = this.paymentForm.additional_methods.iterator();
+        while (it.hasNext()) {
+            arrayList.add(it.next().title);
             arrayList2.add(Integer.valueOf(R.drawable.msg_payment_provider));
         }
         arrayList.add(LocaleController.getString(R.string.PaymentCheckoutMethodNewCard));
@@ -1238,7 +3701,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.googlePayContainer.addView(this.googlePayButton, LayoutHelper.createFrame(-1, 48.0f));
         this.googlePayButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws JSONException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createGooglePayButton$32(view);
             }
         });
@@ -1260,7 +3723,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.googlePayButton.addView(imageView2, LayoutHelper.createFrame(-1, -1.0f));
     }
 
-    public void lambda$createGooglePayButton$32(View view) throws JSONException {
+    public void lambda$createGooglePayButton$32(View view) {
         this.googlePayButton.setClickable(false);
         try {
             JSONObject baseRequest = getBaseRequest();
@@ -1498,7 +3961,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         return jSONObject;
     }
 
-    public Optional getIsReadyToPayRequest() throws JSONException {
+    public Optional getIsReadyToPayRequest() {
         try {
             JSONObject baseRequest = getBaseRequest();
             baseRequest.put("allowedPaymentMethods", new JSONArray().put(getBaseCardPaymentMethod()));
@@ -1508,7 +3971,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    private void initGooglePay(Context context) throws JSONException {
+    private void initGooglePay(Context context) {
         IsReadyToPayRequest isReadyToPayRequestFromJson;
         if (getParentActivity() == null) {
             return;
@@ -1577,16 +4040,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (iIndexOf == -1) {
             iIndexOf = this.parentLayout.getFragmentStack().size();
         }
-        while (true) {
-            if (i >= this.parentLayout.getFragmentStack().size()) {
-                i = iIndexOf;
-                break;
-            }
+        while (i < this.parentLayout.getFragmentStack().size()) {
             if (((BaseFragment) this.parentLayout.getFragmentStack().get(i)) instanceof PaymentFormActivity) {
-                break;
+                return i - iIndexOf;
             }
             i++;
         }
+        i = iIndexOf;
         return i - iIndexOf;
     }
 
@@ -1731,14 +4191,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (i == 991) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws JSONException {
+                public final void run() {
                     this.f$0.lambda$onActivityResultFragment$39(i2, intent);
                 }
             });
         }
     }
 
-    public void lambda$onActivityResultFragment$39(int i, Intent intent) throws JSONException {
+    public void lambda$onActivityResultFragment$39(int i, Intent intent) {
         String json;
         if (i == -1) {
             PaymentData fromIntent = PaymentData.getFromIntent(intent);
@@ -1787,7 +4247,151 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     public void goToNextStep() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.goToNextStep():void");
+        int i;
+        int i2;
+        boolean z;
+        int i3 = this.currentStep;
+        if (i3 == 0) {
+            PaymentFormActivityDelegate paymentFormActivityDelegate = this.delegate;
+            if (paymentFormActivityDelegate != null) {
+                paymentFormActivityDelegate.didSelectNewAddress(this.validateRequest);
+                finishFragment();
+                return;
+            }
+            if (this.paymentForm.invoice.flexible) {
+                i = 1;
+            } else if (this.savedCredentialsCard == null && this.paymentJson == null) {
+                i = 2;
+            } else {
+                if (UserConfig.getInstance(this.currentAccount).tmpPassword != null && UserConfig.getInstance(this.currentAccount).tmpPassword.valid_until < ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + 60) {
+                    UserConfig.getInstance(this.currentAccount).tmpPassword = null;
+                    UserConfig.getInstance(this.currentAccount).saveConfig(false);
+                }
+                i = UserConfig.getInstance(this.currentAccount).tmpPassword != null ? 4 : 3;
+            }
+            if (i == 2 && this.savedCredentialsCard == null && this.paymentJson == null && !this.paymentForm.additional_methods.isEmpty()) {
+                showChoosePaymentMethod(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.goToNextStep();
+                    }
+                });
+                return;
+            } else {
+                presentFragment(new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, i, this.requestedInfo, null, null, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment, this.allowUnregistered).setCustomResultReceiver(this.customResultReceiver).setCustomAnyResultReceiver(this.customAnyResultReceiver), this.isWebView);
+                return;
+            }
+        }
+        if (i3 == 1) {
+            if (this.paymentJson != null || this.cardName != null) {
+                i2 = 4;
+            } else if (this.savedCredentialsCard != null) {
+                if (UserConfig.getInstance(this.currentAccount).tmpPassword != null && UserConfig.getInstance(this.currentAccount).tmpPassword.valid_until < ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() + 60) {
+                    UserConfig.getInstance(this.currentAccount).tmpPassword = null;
+                    UserConfig.getInstance(this.currentAccount).saveConfig(false);
+                }
+                if (UserConfig.getInstance(this.currentAccount).tmpPassword != null) {
+                    i2 = 4;
+                } else {
+                    i2 = 3;
+                }
+            } else {
+                i2 = 2;
+            }
+            if (i2 == 2 && this.cardName == null && this.savedCredentialsCard == null && this.paymentJson == null && !this.paymentForm.additional_methods.isEmpty()) {
+                showChoosePaymentMethod(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.goToNextStep();
+                    }
+                });
+                return;
+            } else {
+                presentFragment(new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, i2, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment, this.allowUnregistered).setCustomResultReceiver(this.customResultReceiver).setCustomAnyResultReceiver(this.customAnyResultReceiver), this.isWebView);
+                return;
+            }
+        }
+        if (i3 == 2) {
+            TLRPC.PaymentForm paymentForm = this.paymentForm;
+            if (paymentForm.password_missing && (z = this.saveCardInfo)) {
+                PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.invoiceInput, paymentForm, this.messageObject, this.invoiceSlug, 6, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, z, this.googlePayCredentials, this.parentFragment, this.allowUnregistered);
+                this.passwordFragment = paymentFormActivity;
+                paymentFormActivity.setCustomResultReceiver(this.customResultReceiver);
+                this.passwordFragment.setCustomAnyResultReceiver(this.customAnyResultReceiver);
+                this.passwordFragment.setCurrentPassword(this.currentPassword);
+                this.passwordFragment.setDelegate(new PaymentFormActivityDelegate() {
+                    @Override
+                    public void didSelectNewAddress(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+                        PaymentFormActivityDelegate.CC.$default$didSelectNewAddress(this, tL_payments_validateRequestedInfo);
+                    }
+
+                    @Override
+                    public boolean didSelectNewCard(String str, String str2, boolean z2, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+                        if (PaymentFormActivity.this.delegate != null) {
+                            PaymentFormActivity.this.delegate.didSelectNewCard(str, str2, z2, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);
+                        }
+                        if (PaymentFormActivity.this.isWebView) {
+                            PaymentFormActivity.this.removeSelfFromStack();
+                        }
+                        return PaymentFormActivity.this.delegate != null;
+                    }
+
+                    @Override
+                    public void onFragmentDestroyed() {
+                        PaymentFormActivity.this.passwordFragment = null;
+                    }
+
+                    @Override
+                    public void currentPasswordUpdated(TL_account.Password password) {
+                        PaymentFormActivity.this.currentPassword = password;
+                    }
+                });
+                presentFragment(this.passwordFragment, this.isWebView);
+                return;
+            }
+            PaymentFormActivityDelegate paymentFormActivityDelegate2 = this.delegate;
+            if (paymentFormActivityDelegate2 != null) {
+                paymentFormActivityDelegate2.didSelectNewCard(this.paymentJson, this.cardName, this.saveCardInfo, this.googlePayCredentials, null);
+                finishFragment();
+                return;
+            } else {
+                presentFragment(new PaymentFormActivity(this.invoiceInput, paymentForm, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment, this.allowUnregistered).setCustomResultReceiver(this.customResultReceiver).setCustomAnyResultReceiver(this.customAnyResultReceiver), this.isWebView);
+                return;
+            }
+        }
+        if (i3 == 3) {
+            presentFragment(new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, this.passwordOk ? 4 : 2, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment, this.allowUnregistered).setCustomResultReceiver(this.customResultReceiver).setCustomAnyResultReceiver(this.customAnyResultReceiver), true);
+            return;
+        }
+        if (i3 != 4) {
+            if (i3 != 6) {
+                return;
+            }
+            if (!this.delegate.didSelectNewCard(this.paymentJson, this.cardName, this.saveCardInfo, this.googlePayCredentials, this.savedCredentialsCard)) {
+                presentFragment(new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 4, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, this.googlePayCredentials, this.parentFragment, false).setCustomResultReceiver(this.customResultReceiver).setCustomAnyResultReceiver(this.customAnyResultReceiver), true);
+                return;
+            } else {
+                finishFragment();
+                return;
+            }
+        }
+        if (this.isCheckoutPreview) {
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.paymentFinished);
+        }
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.paymentFinished, new Object[0]);
+        if (getMessagesController().newMessageCallback == null) {
+            if (onCheckoutSuccess(getParentLayout(), getParentActivity()) || isFinishing()) {
+                return;
+            }
+            finishFragment();
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$goToNextStep$40();
+            }
+        }, 500L);
     }
 
     public void lambda$goToNextStep$40() {
@@ -1813,9 +4417,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (iNavigationLayout == null) {
                 return false;
             }
-            Iterator it = new ArrayList(iNavigationLayout.getFragmentStack()).iterator();
-            while (it.hasNext()) {
-                BaseFragment baseFragment = (BaseFragment) it.next();
+            for (BaseFragment baseFragment : new ArrayList(iNavigationLayout.getFragmentStack())) {
                 if (baseFragment instanceof PaymentFormActivity) {
                     baseFragment.removeSelfFromStack();
                 }
@@ -1826,9 +4428,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if ((!(str != null && str.equalsIgnoreCase(getMessagesController().premiumBotUsername) && this.invoiceSlug == null) && (this.invoiceSlug == null || getMessagesController().premiumInvoiceSlug == null || !Objects.equals(this.invoiceSlug, getMessagesController().premiumInvoiceSlug))) || iNavigationLayout == null) {
             return false;
         }
-        Iterator it2 = new ArrayList(iNavigationLayout.getFragmentStack()).iterator();
-        while (it2.hasNext()) {
-            BaseFragment baseFragment2 = (BaseFragment) it2.next();
+        for (BaseFragment baseFragment2 : new ArrayList(iNavigationLayout.getFragmentStack())) {
             if ((baseFragment2 instanceof ChatActivity) || (baseFragment2 instanceof PremiumPreviewFragment)) {
                 baseFragment2.removeSelfFromStack();
             }
@@ -2220,8 +4820,106 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             } else if ("smartglocal".equals(this.paymentForm.native_provider)) {
                 new AsyncTask() {
                     @Override
-                    public java.lang.String doInBackground(java.lang.Object... r13) throws java.lang.Throwable {
-                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.AnonymousClass27.doInBackground(java.lang.Object[]):java.lang.String");
+                    public String doInBackground(Object... objArr) throws Throwable {
+                        HttpURLConnection httpURLConnection;
+                        HttpURLConnection httpURLConnection2;
+                        String string;
+                        URL url;
+                        HttpURLConnection httpURLConnection3 = null;
+                        try {
+                            try {
+                                try {
+                                    JSONObject jSONObject = new JSONObject();
+                                    JSONObject jSONObject2 = new JSONObject();
+                                    jSONObject2.put("number", card.getNumber());
+                                    jSONObject2.put("expiration_month", String.format(Locale.US, "%02d", card.getExpMonth()));
+                                    jSONObject2.put("expiration_year", "" + card.getExpYear());
+                                    jSONObject2.put("security_code", "" + card.getCVC());
+                                    jSONObject.put("card", jSONObject2);
+                                    if (PaymentFormActivity.this.paymentForm.native_params != null) {
+                                        try {
+                                            string = new JSONObject(PaymentFormActivity.this.paymentForm.native_params.data).getString("tokenize_url");
+                                            if (string != null) {
+                                                try {
+                                                    if (!string.startsWith("https://") || !string.endsWith(".smart-glocal.com/cds/v1/tokenize/card")) {
+                                                        string = null;
+                                                    }
+                                                } catch (Exception unused) {
+                                                }
+                                            }
+                                        } catch (Exception unused2) {
+                                        }
+                                    } else {
+                                        string = null;
+                                    }
+                                    if (string == null) {
+                                        if (PaymentFormActivity.this.paymentForm.invoice.test) {
+                                            url = new URL("https://tgb-playground.smart-glocal.com/cds/v1/tokenize/card");
+                                        } else {
+                                            url = new URL("https://tgb.smart-glocal.com/cds/v1/tokenize/card");
+                                        }
+                                    } else {
+                                        url = new URL(string);
+                                    }
+                                    httpURLConnection2 = (HttpURLConnection) url.openConnection();
+                                    try {
+                                        httpURLConnection2.setConnectTimeout(30000);
+                                        httpURLConnection2.setReadTimeout(80000);
+                                        httpURLConnection2.setUseCaches(false);
+                                        httpURLConnection2.setDoOutput(true);
+                                        httpURLConnection2.setRequestMethod("POST");
+                                        httpURLConnection2.setRequestProperty("Content-Type", "application/json");
+                                        httpURLConnection2.setRequestProperty("X-PUBLIC-TOKEN", PaymentFormActivity.this.providerApiKey);
+                                        OutputStream outputStream = httpURLConnection2.getOutputStream();
+                                        try {
+                                            outputStream.write(jSONObject.toString().getBytes("UTF-8"));
+                                            outputStream.close();
+                                            int responseCode = httpURLConnection2.getResponseCode();
+                                            if (responseCode >= 200 && responseCode < 300) {
+                                                JSONObject jSONObject3 = new JSONObject();
+                                                jSONObject3.put("token", new JSONObject(PaymentFormActivity.getResponseBody(httpURLConnection2.getInputStream())).getJSONObject("data").getString("token"));
+                                                jSONObject3.put("type", "card");
+                                                String string2 = jSONObject3.toString();
+                                                httpURLConnection2.disconnect();
+                                                return string2;
+                                            }
+                                            if (BuildVars.DEBUG_VERSION) {
+                                                FileLog.e("" + PaymentFormActivity.getResponseBody(httpURLConnection2.getErrorStream()));
+                                            }
+                                            httpURLConnection2.disconnect();
+                                            return null;
+                                        } catch (Throwable th) {
+                                            if (outputStream != null) {
+                                                try {
+                                                    outputStream.close();
+                                                } catch (Throwable th2) {
+                                                    th.addSuppressed(th2);
+                                                }
+                                            }
+                                            throw th;
+                                        }
+                                    } catch (Exception e) {
+                                        e = e;
+                                        FileLog.e(e);
+                                        if (httpURLConnection2 != null) {
+                                        }
+                                        return null;
+                                    }
+                                } catch (Exception e2) {
+                                    e = e2;
+                                    httpURLConnection2 = null;
+                                }
+                            } catch (Throwable th3) {
+                                th = th3;
+                                if (httpURLConnection3 != null) {
+                                    httpURLConnection3.disconnect();
+                                }
+                                throw th;
+                            }
+                        } catch (Throwable th4) {
+                            th = th4;
+                            httpURLConnection3 = httpURLConnection;
+                        }
                     }
 
                     @Override
@@ -2577,11 +5275,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 TLRPC.Updates updates = ((TLRPC.TL_payments_paymentResult) tLObject).updates;
                 final TLRPC.Message[] messageArr = new TLRPC.Message[1];
                 int size = updates.updates.size();
-                int i = 0;
-                while (true) {
-                    if (i >= size) {
-                        break;
-                    }
+                for (int i = 0; i < size; i++) {
                     TLRPC.Update update = updates.updates.get(i);
                     if (update instanceof TL_update.TL_updateNewMessage) {
                         messageArr[0] = ((TL_update.TL_updateNewMessage) update).message;
@@ -2591,7 +5285,6 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                             messageArr[0] = ((TL_update.TL_updateNewChannelMessage) update).message;
                             break;
                         }
-                        i++;
                     }
                 }
                 getMessagesController().processUpdates(updates, false);

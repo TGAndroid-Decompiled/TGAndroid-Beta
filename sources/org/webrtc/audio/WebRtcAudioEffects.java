@@ -68,7 +68,7 @@ class WebRtcAudioEffects {
         return this.ns.setEnabled(z) == 0;
     }
 
-    public void enable(int i) throws IllegalStateException {
+    public void enable(int i) {
         Logging.d("WebRtcAudioEffectsExternal", "enable(audioSession=" + i + ")");
         boolean z = false;
         assertTrue(this.aec == null);
@@ -160,7 +160,7 @@ class WebRtcAudioEffects {
         }
         for (AudioEffect.Descriptor descriptor : availableEffects) {
             if (descriptor.type.equals(uuid)) {
-                return !r4.uuid.equals(uuid2);
+                return !descriptor.uuid.equals(uuid2);
             }
         }
         return false;

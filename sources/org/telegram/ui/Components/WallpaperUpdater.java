@@ -180,7 +180,79 @@ public class WallpaperUpdater {
         this.currentPicturePath = str;
     }
 
-    public void onActivityResult(int r8, int r9, android.content.Intent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.WallpaperUpdater.onActivityResult(int, int, android.content.Intent):void");
+    public void onActivityResult(int i, int i2, Intent intent) {
+        FileOutputStream fileOutputStream;
+        if (i2 == -1) {
+            FileOutputStream fileOutputStream2 = null;
+            if (i == 10) {
+                AndroidUtilities.addMediaToGallery(this.currentPicturePath);
+                try {
+                    this.currentWallpaperPath = new File(FileLoader.getDirectory(4), Utilities.random.nextInt() + ".jpg");
+                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                    Bitmap bitmapLoadBitmap = ImageLoader.loadBitmap(this.currentPicturePath, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+                    fileOutputStream = new FileOutputStream(this.currentWallpaperPath);
+                    try {
+                        bitmapLoadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
+                        this.delegate.didSelectWallpaper(this.currentWallpaperPath, bitmapLoadBitmap, false);
+                    } catch (Exception e) {
+                        e = e;
+                        try {
+                            FileLog.e(e);
+                            if (fileOutputStream != null) {
+                            }
+                            this.currentPicturePath = null;
+                            return;
+                        } catch (Throwable th) {
+                            th = th;
+                            fileOutputStream2 = fileOutputStream;
+                            fileOutputStream = fileOutputStream2;
+                            if (fileOutputStream != null) {
+                                try {
+                                    fileOutputStream.close();
+                                } catch (Exception e2) {
+                                    FileLog.e(e2);
+                                }
+                            }
+                            throw th;
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                        if (fileOutputStream != null) {
+                            fileOutputStream.close();
+                        }
+                        throw th;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                    fileOutputStream = null;
+                } catch (Throwable th3) {
+                    th = th3;
+                    fileOutputStream = fileOutputStream2;
+                    if (fileOutputStream != null) {
+                        fileOutputStream.close();
+                    }
+                    throw th;
+                }
+                try {
+                    fileOutputStream.close();
+                } catch (Exception e4) {
+                    FileLog.e(e4);
+                }
+                this.currentPicturePath = null;
+                return;
+            }
+            if (i != 11 || intent == null || intent.getData() == null) {
+                return;
+            }
+            try {
+                this.currentWallpaperPath = new File(FileLoader.getDirectory(4), Utilities.random.nextInt() + ".jpg");
+                Point realScreenSize2 = AndroidUtilities.getRealScreenSize();
+                Bitmap bitmapLoadBitmap2 = ImageLoader.loadBitmap(null, intent.getData(), (float) realScreenSize2.x, (float) realScreenSize2.y, true);
+                bitmapLoadBitmap2.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(this.currentWallpaperPath));
+                this.delegate.didSelectWallpaper(this.currentWallpaperPath, bitmapLoadBitmap2, false);
+            } catch (Exception e5) {
+                FileLog.e(e5);
+            }
+        }
     }
 }

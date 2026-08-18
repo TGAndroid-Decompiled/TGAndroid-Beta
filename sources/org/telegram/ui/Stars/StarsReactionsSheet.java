@@ -90,9 +90,6 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.Stars.StarsController;
-import org.telegram.ui.Stars.StarsIntroActivity;
-import org.telegram.ui.Stars.StarsReactionsSheet;
 import org.telegram.ui.Stories.HighlightMessageSheet;
 import org.telegram.ui.Stories.LiveCommentsView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -156,16 +153,12 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
 
     public StarsReactionsSheet(final Context context, final int i, final long j, final ChatActivity chatActivity, final MessageObject messageObject, ArrayList arrayList, boolean z, final boolean z2, long j2, final Theme.ResourcesProvider resourcesProvider) {
         TLRPC.MessageReactor messageReactor;
-        FrameLayout frameLayout;
         boolean z3;
         String string;
         Theme.ResourcesProvider resourcesProvider2;
-        TLRPC.MessageReactor messageReactor2;
-        FrameLayout frameLayout2;
         long j3;
         int i2;
         super(context, false, resourcesProvider);
-        int i3 = 9;
         this.starRef = new ColoredImageSpan[1];
         this.checkedVisiblity = false;
         this.resourcesProvider = resourcesProvider;
@@ -190,33 +183,28 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         long clientUserId = UserConfig.getInstance(i).getClientUserId();
         if (arrayList != null) {
             Iterator it = arrayList.iterator();
-            TLRPC.MessageReactor messageReactor3 = null;
+            TLRPC.MessageReactor messageReactor2 = null;
             while (it.hasNext()) {
-                TLRPC.MessageReactor messageReactor4 = (TLRPC.MessageReactor) it.next();
-                long peerDialogId = DialogObject.getPeerDialogId(messageReactor4.peer_id);
-                if (messageReactor4.anonymous && messageReactor4.my) {
+                TLRPC.MessageReactor messageReactor3 = (TLRPC.MessageReactor) it.next();
+                long peerDialogId = DialogObject.getPeerDialogId(messageReactor3.peer_id);
+                if (messageReactor3.anonymous && messageReactor3.my) {
                     peerDialogId = clientUserId;
                 }
-                if (messageReactor4.my || peerDialogId == clientUserId) {
-                    messageReactor3 = messageReactor4;
+                if (messageReactor3.my || peerDialogId == clientUserId) {
+                    messageReactor2 = messageReactor3;
                 }
             }
-            messageReactor = messageReactor3;
+            messageReactor = messageReactor2;
         } else {
             messageReactor = null;
         }
         boolean z4 = (arrayList == null || arrayList.isEmpty()) ? false : true;
         if (z2) {
             if (arrayList != null) {
-                int i4 = 0;
-                while (true) {
-                    if (i4 >= arrayList.size()) {
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    if (((TLRPC.MessageReactor) arrayList.get(i3)).my) {
                         break;
                     }
-                    if (((TLRPC.MessageReactor) arrayList.get(i4)).my) {
-                        break;
-                    }
-                    i4++;
                 }
             }
             this.peer = j2;
@@ -229,14 +217,14 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         LinearLayout linearLayout = new LinearLayout(context);
         this.layout = linearLayout;
         linearLayout.setOrientation(1);
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.topLayout = frameLayout3;
-        linearLayout.addView(frameLayout3, LayoutHelper.createLinear(-1, -2));
-        TLRPC.MessageReactor messageReactor5 = messageReactor;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.topLayout = frameLayout;
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2));
+        TLRPC.MessageReactor messageReactor4 = messageReactor;
         this.slider = new StarsSlider(context, resourcesProvider) {
             @Override
-            public void onValueChanged(int i5) {
-                long j5 = i5;
+            public void onValueChanged(int i4) {
+                long j5 = i4;
                 StarsReactionsSheet.this.updateSenders(j5);
                 if (StarsReactionsSheet.this.buttonView != null) {
                     StarsReactionsSheet.this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j5, ',')), StarsReactionsSheet.this.starRef), true);
@@ -244,37 +232,33 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 if (z2) {
                     StarsReactionsSheet.this.commentMessage.stars = j5;
                     StarsReactionsSheet.this.commentView.set(StarsReactionsSheet.this.commentMessage);
-                    setColor(HighlightMessageSheet.getTierOption(i, i5, HighlightMessageSheet.TIER_COLOR1), HighlightMessageSheet.getTierOption(i, i5, HighlightMessageSheet.TIER_COLOR2), true);
+                    setColor(HighlightMessageSheet.getTierOption(i, i4, HighlightMessageSheet.TIER_COLOR1), HighlightMessageSheet.getTierOption(i, i4, HighlightMessageSheet.TIER_COLOR2), true);
                 }
             }
 
             @Override
-            public void setValue(int i5) {
-                super.setValue(i5);
+            public void setValue(int i4) {
+                super.setValue(i4);
                 if (z2) {
-                    setColor(HighlightMessageSheet.getTierOption(i, i5, HighlightMessageSheet.TIER_COLOR1), HighlightMessageSheet.getTierOption(i, i5, HighlightMessageSheet.TIER_COLOR2), true);
+                    setColor(HighlightMessageSheet.getTierOption(i, i4, HighlightMessageSheet.TIER_COLOR1), HighlightMessageSheet.getTierOption(i, i4, HighlightMessageSheet.TIER_COLOR2), true);
                 }
             }
         };
         int[] iArr = {1, 50, 100, 500, 1000, 2000, 5000, 7500, 10000};
         long j5 = MessagesController.getInstance(i).starsPaidReactionAmountMax;
         ArrayList arrayList2 = new ArrayList();
-        int i5 = 0;
-        while (true) {
-            if (i5 >= i3) {
-                break;
-            }
-            int i6 = iArr[i5];
+        int i4 = 0;
+        for (int i5 = 9; i4 < i5; i5 = 9) {
+            int i6 = iArr[i4];
             if (i6 > j5) {
                 arrayList2.add(Integer.valueOf((int) j5));
                 break;
             }
             arrayList2.add(Integer.valueOf(i6));
-            if (iArr[i5] == j5) {
+            if (iArr[i4] == j5) {
                 break;
             }
-            i5++;
-            i3 = 9;
+            i4++;
         }
         int[] iArr2 = new int[arrayList2.size()];
         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
@@ -293,17 +277,17 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         if (!z2) {
             this.topLayout.addView(linearLayout2, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
         }
-        FrameLayout frameLayout4 = new FrameLayout(context);
-        this.dialogSelectorLayout = frameLayout4;
-        FrameLayout frameLayout5 = new FrameLayout(context);
-        this.dialogSelectorInnerLayout = frameLayout5;
-        frameLayout5.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(14.0f), Theme.getColor(Theme.key_dialogBackgroundGray, resourcesProvider)));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.dialogSelectorLayout = frameLayout2;
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.dialogSelectorInnerLayout = frameLayout3;
+        frameLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(14.0f), Theme.getColor(Theme.key_dialogBackgroundGray, resourcesProvider)));
         BackupImageView backupImageView = new BackupImageView(context);
         this.dialogImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(14.0f));
         backupImageView.getImageReceiver().setCrossfadeWithOldImage(true);
         updatePeerDialog();
-        frameLayout5.addView(backupImageView, LayoutHelper.createFrame(28, 28, 115));
+        frameLayout3.addView(backupImageView, LayoutHelper.createFrame(28, 28, 115));
         ImageView imageView = new ImageView(context);
         this.dialogSelectorIconView = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
@@ -312,11 +296,11 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
         imageView.setImageResource(R.drawable.arrows_select);
-        frameLayout5.addView(imageView, LayoutHelper.createFrame(18, 18.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
-        frameLayout4.addView(frameLayout5, LayoutHelper.createFrame(52, 28, 17));
-        frameLayout4.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), 0);
-        linearLayout2.addView(frameLayout4, LayoutHelper.createLinear(-2, -1, 0.0f, 115, 6, 4, 6, 0));
-        ScaleStateListAnimator.apply(frameLayout4);
+        frameLayout3.addView(imageView, LayoutHelper.createFrame(18, 18.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
+        frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(52, 28, 17));
+        frameLayout2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), 0);
+        linearLayout2.addView(frameLayout2, LayoutHelper.createLinear(-2, -1, 0.0f, 115, 6, 4, 6, 0));
+        ScaleStateListAnimator.apply(frameLayout2);
         BotStarsController.getInstance(i).loadAdminedChannels();
         TextView textView = new TextView(context) {
             @Override
@@ -358,12 +342,10 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         textView2.setGravity(17);
         textView2.setSingleLine(false);
         textView2.setMaxLines(3);
-        if (messageReactor5 != null) {
-            string = LocaleController.formatPluralStringComma("StarsReactionTextSent", messageReactor5.count);
-            frameLayout = frameLayout4;
+        if (messageReactor4 != null) {
+            string = LocaleController.formatPluralStringComma("StarsReactionTextSent", messageReactor4.count);
             z3 = false;
         } else {
-            frameLayout = frameLayout4;
             z3 = false;
             string = LocaleController.formatString(R.string.StarsReactionText, chat == null ? "" : chat.title);
         }
@@ -414,7 +396,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             View view2 = new View(context);
             this.checkSeparatorView = view2;
             view2.setBackgroundColor(Theme.getColor(Theme.key_divider, resourcesProvider));
-            if (!z2 && (z || messageReactor5 != null)) {
+            if (!z2 && (z || messageReactor4 != null)) {
                 this.layout.addView(view2, LayoutHelper.createLinear(-1, 1.0f / AndroidUtilities.density, 7, 24, 0, 24, 0));
             }
         } else {
@@ -478,7 +460,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         });
         ScaleStateListAnimator.apply(linearLayout4, 0.05f, 1.2f);
         linearLayout4.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 6, 6));
-        if (!z2 && (z || messageReactor5 != null)) {
+        if (!z2 && (z || messageReactor4 != null)) {
             this.layout.addView(linearLayout4, LayoutHelper.createLinear(-2, -2, 1, 0, z4 ? 10 : 4, 0, 10));
         }
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
@@ -495,9 +477,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         buttonWithCounterView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(50L, ',')), this.starRef), true);
         if (z) {
             j3 = 0;
-            frameLayout2 = frameLayout;
             resourcesProvider2 = resourcesProvider;
-            messageReactor2 = messageReactor5;
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view3) {
@@ -506,8 +486,6 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             });
         } else {
             resourcesProvider2 = resourcesProvider;
-            messageReactor2 = messageReactor5;
-            frameLayout2 = frameLayout;
             j3 = 0;
         }
         frameLayout2.setOnClickListener(new View.OnClickListener() {
@@ -559,7 +537,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                     j6 = j7;
                 }
             }
-            j6 = messageReactor2 != null ? j6 - r1.count : j6;
+            j6 = messageReactor4 != null ? j6 - ((long) messageReactor4.count) : j6;
             if (j6 > j3) {
                 this.slider.setStarsTop(j6 + 1);
             }
@@ -614,7 +592,8 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
     }
 
     public void lambda$new$3(View view) {
-        this.checkBox.setChecked(!r3.isChecked(), true);
+        CheckBox2 checkBox2 = this.checkBox;
+        checkBox2.setChecked(!checkBox2.isChecked(), true);
         this.peer = this.checkBox.isChecked() ? this.lastSelectedPeer : 2666000L;
         updatePeerDialog();
         TopSendersView topSendersView = this.topSendersView;
@@ -700,12 +679,10 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
 
     public void lambda$new$9(int i, Theme.ResourcesProvider resourcesProvider, long j, final boolean z, View view) {
         final long j2;
-        ArrayList adminedChannels = BotStarsController.getInstance(i).getAdminedChannels();
+        ArrayList<TLObject> adminedChannels = BotStarsController.getInstance(i).getAdminedChannels();
         adminedChannels.add(0, UserConfig.getInstance(i).getCurrentUser());
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.containerView, resourcesProvider, this.dialogSelectorInnerLayout);
-        Iterator it = adminedChannels.iterator();
-        while (it.hasNext()) {
-            TLObject tLObject = (TLObject) it.next();
+        for (TLObject tLObject : adminedChannels) {
             if (tLObject instanceof TLRPC.User) {
                 j2 = ((TLRPC.User) tLObject).id;
             } else if (tLObject instanceof TLRPC.Chat) {
@@ -802,10 +779,8 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         if (this.liveStories) {
             return false;
         }
-        Iterator it = BotStarsController.getInstance(this.currentAccount).getAdminedChannels().iterator();
-        while (it.hasNext()) {
-            Object next = it.next();
-            if ((next instanceof TLRPC.Chat) && ChatObject.isChannelAndNotMegaGroup((TLRPC.Chat) next)) {
+        for (Object obj : BotStarsController.getInstance(this.currentAccount).getAdminedChannels()) {
+            if ((obj instanceof TLRPC.Chat) && ChatObject.isChannelAndNotMegaGroup((TLRPC.Chat) obj)) {
                 return true;
             }
         }
@@ -960,17 +935,12 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             if (reactionButton2 == null && reactionsLayoutInBubble2 != null) {
                 MessageObject.GroupedMessages validGroupedMessage = this.chatActivity.getValidGroupedMessage(this.messageObject);
                 if (validGroupedMessage != null && !validGroupedMessage.posArray.isEmpty()) {
-                    Iterator<MessageObject> it = validGroupedMessage.messages.iterator();
-                    while (true) {
-                        if (!it.hasNext()) {
-                            break;
-                        }
-                        MessageObject next = it.next();
-                        MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(next);
+                    for (MessageObject messageObject2 : validGroupedMessage.messages) {
+                        MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(messageObject2);
                         if (position != null) {
                             int i = position.flags;
                             if ((i & 1) != 0 && (i & 8) != 0) {
-                                messageObject = next;
+                                messageObject = messageObject2;
                                 break;
                             }
                         }
@@ -1129,7 +1099,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         AndroidUtilities.lerp(rectF, rectF2, fFloatValue, rectF3);
         this.icon3dView.setTranslationX(rectF3.centerX() - (AndroidUtilities.dp(150.0f) / 2.0f));
         this.icon3dView.setTranslationY(rectF3.centerY() - (AndroidUtilities.dp(150.0f) / 2.0f));
-        float fLerp = AndroidUtilities.lerp(Math.max(rectF3.width() / AndroidUtilities.dp(150.0f), rectF3.height() / AndroidUtilities.dp(150.0f)), 1.0f, (float) Math.sin(fFloatValue * 3.141592653589793d));
+        float fLerp = AndroidUtilities.lerp(Math.max(rectF3.width() / AndroidUtilities.dp(150.0f), rectF3.height() / AndroidUtilities.dp(150.0f)), 1.0f, (float) Math.sin(((double) fFloatValue) * 3.141592653589793d));
         this.icon3dView.setScaleX(fLerp);
         this.icon3dView.setScaleY(fLerp);
         GLIconRenderer gLIconRenderer = this.icon3dView.mRenderer;
@@ -1324,18 +1294,20 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 return this.stops[0];
             }
             if (f >= 1.0f) {
-                return this.stops[r7.length - 1];
+                int[] iArr = this.stops;
+                return iArr[iArr.length - 1];
             }
-            int[] iArr = this.stops;
-            float length = f * (iArr.length - 1);
+            int[] iArr2 = this.stops;
+            float length = f * (iArr2.length - 1);
             int i = (int) length;
             float f2 = length - i;
-            float f3 = iArr[i];
-            int i2 = i + 1;
-            if (i2 < iArr.length) {
-                i = i2;
+            int i2 = iArr2[i];
+            float f3 = i2;
+            int i3 = i + 1;
+            if (i3 < iArr2.length) {
+                i = i3;
             }
-            return Math.round(f3 + (f2 * (iArr[i] - r2)));
+            return Math.round(f3 + (f2 * (iArr2[i] - i2)));
         }
 
         public float getProgress(int i) {
@@ -1345,10 +1317,11 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 if (i2 >= iArr.length) {
                     return 1.0f;
                 }
-                if (i <= iArr[i2]) {
-                    int i3 = i2 - 1;
-                    int i4 = iArr[i3];
-                    return (i3 + ((i - i4) / (r3 - i4))) / (iArr.length - 1);
+                int i3 = iArr[i2];
+                if (i <= i3) {
+                    int i4 = i2 - 1;
+                    int i5 = iArr[i4];
+                    return (i4 + ((i - i5) / (i3 - i5))) / (iArr.length - 1);
                 }
                 i2++;
             }
@@ -1416,7 +1389,9 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(220.0f));
             int measuredWidth = getMeasuredWidth();
             getMeasuredHeight();
-            this.sliderInnerRect.set(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(135.0f), measuredWidth - r6, r0 + AndroidUtilities.dp(24.0f));
+            int iDp = AndroidUtilities.dp(14.0f);
+            int iDp2 = AndroidUtilities.dp(135.0f);
+            this.sliderInnerRect.set(iDp, iDp2, measuredWidth - iDp, iDp2 + AndroidUtilities.dp(24.0f));
             this.sliderPaint.setColor(-1069811);
             this.sliderCirclePaint.setColor(-1);
         }
@@ -1424,7 +1399,6 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         @Override
         protected void dispatchDraw(Canvas canvas) {
             float f;
-            float f2;
             super.dispatchDraw(canvas);
             this.gradientMatrix.reset();
             this.gradientMatrix.postTranslate(this.sliderInnerRect.left, 0.0f);
@@ -1457,15 +1431,15 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             long j = this.currentTop;
             if (j != -1 && getProgress((int) j) < 1.0f && getProgress((int) this.currentTop) > 0.0f) {
                 float fDp3 = this.sliderInnerRect.left + AndroidUtilities.dp(12.0f) + ((this.sliderInnerRect.width() - AndroidUtilities.dp(24.0f)) * Utilities.clamp01(getProgress((int) this.currentTop)));
-                float f3 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - fDp3) < ((float) AndroidUtilities.dp(14.0f)));
+                float f2 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - fDp3) < ((float) AndroidUtilities.dp(14.0f)));
                 float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), this.overTopText.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - fDp3) < ((float) AndroidUtilities.dp(12.0f))));
                 float currentWidth = (this.topText.getCurrentWidth() + fDp3) + ((float) (AndroidUtilities.dp(16.0f) * 2)) > this.sliderInnerRect.right ? (fDp3 - fLerp) - this.topText.getCurrentWidth() : fLerp + fDp3;
                 this.topPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
                 this.topPaint.setColor(Theme.multAlpha(iBlendARGB, 0.6f));
                 RectF rectF3 = this.sliderInnerRect;
-                float fLerp2 = AndroidUtilities.lerp(rectF3.top, rectF3.centerY(), f3);
+                float fLerp2 = AndroidUtilities.lerp(rectF3.top, rectF3.centerY(), f2);
                 RectF rectF4 = this.sliderInnerRect;
-                canvas.drawLine(fDp3, fLerp2, fDp3, AndroidUtilities.lerp(rectF4.bottom, rectF4.centerY(), f3), this.topPaint);
+                canvas.drawLine(fDp3, fLerp2, fDp3, AndroidUtilities.lerp(rectF4.bottom, rectF4.centerY(), f2), this.topPaint);
                 this.topText.draw(canvas, currentWidth, this.sliderInnerRect.centerY(), iBlendARGB, 0.6f);
             }
             canvas.drawPath(this.sliderPath, this.sliderPaint);
@@ -1474,15 +1448,15 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             long j2 = this.currentTop;
             if (j2 != -1 && getProgress((int) j2) < 1.0f && getProgress((int) this.currentTop) > 0.0f) {
                 float fDp4 = this.sliderInnerRect.left + AndroidUtilities.dp(12.0f) + ((this.sliderInnerRect.width() - AndroidUtilities.dp(24.0f)) * Utilities.clamp01(getProgress((int) this.currentTop)));
-                float f4 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - fDp4) < ((float) AndroidUtilities.dp(14.0f)));
+                float f3 = this.overTop.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - fDp4) < ((float) AndroidUtilities.dp(14.0f)));
                 float fLerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), this.overTopText.set(Math.abs((this.sliderRect.right - ((float) AndroidUtilities.dp(10.0f))) - fDp4) < ((float) AndroidUtilities.dp(12.0f))));
                 float currentWidth2 = (this.topText.getCurrentWidth() + fDp4) + ((float) (AndroidUtilities.dp(16.0f) * 2)) > this.sliderInnerRect.right ? (fDp4 - fLerp3) - this.topText.getCurrentWidth() : fLerp3 + fDp4;
                 this.topPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
                 this.topPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider), 0.4f));
                 RectF rectF5 = this.sliderInnerRect;
-                float fLerp4 = AndroidUtilities.lerp(rectF5.top, rectF5.centerY(), f4);
+                float fLerp4 = AndroidUtilities.lerp(rectF5.top, rectF5.centerY(), f3);
                 RectF rectF6 = this.sliderInnerRect;
-                canvas.drawLine(fDp4, fLerp4, fDp4, AndroidUtilities.lerp(rectF6.bottom, rectF6.centerY(), f4), this.topPaint);
+                canvas.drawLine(fDp4, fLerp4, fDp4, AndroidUtilities.lerp(rectF6.bottom, rectF6.centerY(), f3), this.topPaint);
                 this.topText.draw(canvas, currentWidth2, this.sliderInnerRect.centerY(), -1, 0.75f);
             }
             canvas.restore();
@@ -1493,73 +1467,71 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 float fCenterY = this.sliderInnerRect.centerY();
                 this.plusPaint.setColor(ColorUtils.blendARGB(this.sliderInnerPaint.getColor(), this.gradientColor2, 0.5f));
                 this.plusPath.rewind();
-                f = progress;
                 this.plusPath.addRoundRect(fHeight - AndroidUtilities.dp(1.0f), fCenterY - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + fHeight, fCenterY + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), direction);
                 this.plusPath.addRoundRect(fHeight - AndroidUtilities.dp(6.0f), fCenterY - AndroidUtilities.dp(1.0f), fHeight + AndroidUtilities.dp(6.0f), fCenterY + AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), direction);
                 canvas.drawPath(this.plusPath, this.plusPaint);
-            } else {
-                f = progress;
             }
             this.sliderCircleRect.set((this.sliderRect.right - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(4.0f), this.sliderRect.centerY() - (AndroidUtilities.dp(16.0f) / 2.0f), this.sliderRect.right - AndroidUtilities.dp(4.0f), this.sliderRect.centerY() + (AndroidUtilities.dp(16.0f) / 2.0f));
             canvas.drawRoundRect(this.sliderCircleRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.sliderCirclePaint);
             float fDp5 = AndroidUtilities.dp(9.0f) / this.sliderInnerRect.width();
             RectF rectF8 = this.sliderCircleRect;
-            float f5 = f;
-            float fLerp5 = AndroidUtilities.lerp(AndroidUtilities.lerp(rectF8.left, rectF8.right, f5), AndroidUtilities.lerp(this.sliderCircleRect.left + AndroidUtilities.dp(9.0f), this.sliderCircleRect.right - AndroidUtilities.dp(9.0f), f5), Math.min(Utilities.clamp01(f5 / fDp5), Utilities.clamp01((1.0f - f5) / fDp5)));
+            float fLerp5 = AndroidUtilities.lerp(AndroidUtilities.lerp(rectF8.left, rectF8.right, progress), AndroidUtilities.lerp(this.sliderCircleRect.left + AndroidUtilities.dp(9.0f), this.sliderCircleRect.right - AndroidUtilities.dp(9.0f), progress), Math.min(Utilities.clamp01(progress / fDp5), Utilities.clamp01((1.0f - progress) / fDp5)));
             float fMax = Math.max(this.counterSubText.getCurrentWidth() + AndroidUtilities.dp(20.0f), this.counterText.getCurrentWidth() + AndroidUtilities.dp(50.0f));
             float fDp6 = AndroidUtilities.dp(44.0f);
             float fClamp = Utilities.clamp(fLerp5 - (fMax / 2.0f), (this.sliderInnerRect.right - fMax) - AndroidUtilities.dp(4.0f), this.sliderInnerRect.left + AndroidUtilities.dp(4.0f));
             this.textRect.set(fClamp, (this.sliderInnerRect.top - AndroidUtilities.dp(21.0f)) - fDp6, fMax + fClamp, this.sliderInnerRect.top - AndroidUtilities.dp(21.0f));
             float fHeight2 = this.textRect.height();
-            float f6 = fHeight2 / 2.0f;
+            float f4 = fHeight2 / 2.0f;
             RectF rectF9 = this.textRect;
             float fClamp2 = Utilities.clamp(fLerp5, rectF9.right, rectF9.left);
+            float fDp7 = fClamp2 - AndroidUtilities.dp(9.0f);
             RectF rectF10 = this.textRect;
-            float fClamp3 = Utilities.clamp(fClamp2 - AndroidUtilities.dp(9.0f), rectF10.right, rectF10.left);
+            float fClamp3 = Utilities.clamp(fDp7, rectF10.right, rectF10.left);
+            float fDp8 = AndroidUtilities.dp(9.0f) + fClamp2;
             RectF rectF11 = this.textRect;
-            float fClamp4 = Utilities.clamp(AndroidUtilities.dp(9.0f) + fClamp2, rectF11.right, rectF11.left);
+            float fClamp4 = Utilities.clamp(fDp8, rectF11.right, rectF11.left);
             float fClamp5 = Utilities.clamp(this.progress - this.aprogress, 1.0f, -1.0f) * 60.0f;
-            float fDp7 = this.textRect.bottom + AndroidUtilities.dp(8.0f);
+            float fDp9 = this.textRect.bottom + AndroidUtilities.dp(8.0f);
             this.textPath.rewind();
             RectF rectF12 = this.arc;
             RectF rectF13 = this.textRect;
-            float f7 = rectF13.left;
-            float f8 = rectF13.top;
-            rectF12.set(f7, f8, f7 + fHeight2, f8 + fHeight2);
+            float f5 = rectF13.left;
+            float f6 = rectF13.top;
+            rectF12.set(f5, f6, f5 + fHeight2, f6 + fHeight2);
             this.textPath.arcTo(this.arc, -180.0f, 90.0f);
             RectF rectF14 = this.arc;
             RectF rectF15 = this.textRect;
-            float f9 = rectF15.right;
-            float f10 = rectF15.top;
-            rectF14.set(f9 - fHeight2, f10, f9, f10 + fHeight2);
+            float f7 = rectF15.right;
+            float f8 = rectF15.top;
+            rectF14.set(f7 - fHeight2, f8, f7, f8 + fHeight2);
             this.textPath.arcTo(this.arc, -90.0f, 90.0f);
             RectF rectF16 = this.arc;
             RectF rectF17 = this.textRect;
-            float f11 = rectF17.right;
-            float f12 = rectF17.bottom;
-            rectF16.set(f11 - fHeight2, f12 - fHeight2, f11, f12);
-            this.textPath.arcTo(this.arc, 0.0f, (float) Utilities.clamp(((Math.acos(Utilities.clamp01((fClamp4 - this.arc.centerX()) / f6)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d));
+            float f9 = rectF17.right;
+            float f10 = rectF17.bottom;
+            rectF16.set(f9 - fHeight2, f10 - fHeight2, f9, f10);
+            this.textPath.arcTo(this.arc, 0.0f, (float) Utilities.clamp(((Math.acos(Utilities.clamp01((fClamp4 - this.arc.centerX()) / f4)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d));
             RectF rectF18 = this.textRect;
-            float f13 = 0.7f * fHeight2;
-            if (fClamp3 < rectF18.right - f13) {
+            float f11 = 0.7f * fHeight2;
+            if (fClamp3 < rectF18.right - f11) {
                 this.textPath.lineTo(fClamp4, rectF18.bottom);
-                f2 = 8.0f;
+                f = 8.0f;
                 this.textPath.lineTo(fClamp2 + 2.0f, this.textRect.bottom + AndroidUtilities.dp(8.0f));
             } else {
-                f2 = 8.0f;
+                f = 8.0f;
             }
-            this.textPath.lineTo(fClamp2, this.textRect.bottom + AndroidUtilities.dp(f2) + 1.0f);
+            this.textPath.lineTo(fClamp2, this.textRect.bottom + AndroidUtilities.dp(f) + 1.0f);
             RectF rectF19 = this.textRect;
-            if (fClamp4 > rectF19.left + f13) {
+            if (fClamp4 > rectF19.left + f11) {
                 this.textPath.lineTo(fClamp2 - 2.0f, rectF19.bottom + AndroidUtilities.dp(8.0f));
                 this.textPath.lineTo(fClamp3, this.textRect.bottom);
             }
             RectF rectF20 = this.arc;
             RectF rectF21 = this.textRect;
-            float f14 = rectF21.left;
-            float f15 = rectF21.bottom;
-            rectF20.set(f14, f15 - fHeight2, fHeight2 + f14, f15);
-            float fClamp6 = ((float) Utilities.clamp(((Math.acos(Utilities.clamp01((fClamp3 - this.arc.left) / f6)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d)) + 90.0f;
+            float f12 = rectF21.left;
+            float f13 = rectF21.bottom;
+            rectF20.set(f12, f13 - fHeight2, fHeight2 + f12, f13);
+            float fClamp6 = ((float) Utilities.clamp(((Math.acos(Utilities.clamp01((fClamp3 - this.arc.left) / f4)) * 0.8500000238418579d) / 3.141592653589793d) * 180.0d, 90.0d, 0.0d)) + 90.0f;
             this.textPath.arcTo(this.arc, fClamp6, 180.0f - fClamp6);
             Path path2 = this.textPath;
             RectF rectF22 = this.textRect;
@@ -1575,7 +1547,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             this.textParticles.draw(canvas, iBlendARGB);
             canvas.restore();
             canvas.save();
-            canvas.rotate(fClamp5, fClamp2, fDp7);
+            canvas.rotate(fClamp5, fClamp2, fDp9);
             if (Math.abs(this.progress - this.aprogress) > 0.001f) {
                 this.aprogress = AndroidUtilities.lerp(this.aprogress, this.progress, 0.1f);
                 invalidate();
@@ -1584,7 +1556,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             canvas.drawPath(this.textPath, this.textBackgroundPaint);
             canvas.save();
             canvas.clipPath(this.textPath);
-            canvas.rotate(-fClamp5, fClamp2, fDp7);
+            canvas.rotate(-fClamp5, fClamp2, fDp9);
             this.textParticles.draw(canvas, -1);
             canvas.restore();
             canvas.save();
@@ -1597,17 +1569,17 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                 this.counterImage.draw(canvas);
             }
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.counterText;
-            float fDp8 = this.textRect.left + AndroidUtilities.dp(24.0f);
+            float fDp10 = this.textRect.left + AndroidUtilities.dp(24.0f);
             RectF rectF25 = this.textRect;
-            animatedTextDrawable.setBounds(fDp8, rectF25.top, rectF25.right, rectF25.bottom);
+            animatedTextDrawable.setBounds(fDp10, rectF25.top, rectF25.right, rectF25.bottom);
             this.counterText.draw(canvas);
             canvas.restore();
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.counterSubText;
             RectF rectF26 = this.textRect;
-            float f16 = rectF26.left;
-            float fDp9 = rectF26.top + AndroidUtilities.dp(10.0f);
+            float f14 = rectF26.left;
+            float fDp11 = rectF26.top + AndroidUtilities.dp(10.0f);
             RectF rectF27 = this.textRect;
-            animatedTextDrawable2.setBounds(f16, fDp9, rectF27.right, rectF27.bottom + AndroidUtilities.dp(10.0f));
+            animatedTextDrawable2.setBounds(f14, fDp11, rectF27.right, rectF27.bottom + AndroidUtilities.dp(10.0f));
             this.counterSubText.setAlpha((int) (this.subTextVisible.getFloatValue() * 255.0f));
             this.counterSubText.draw(canvas);
             canvas.restore();
@@ -1896,7 +1868,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             ArrayList arrayList2 = new ArrayList();
             int i4 = 0;
             PointF pointF = new PointF(AndroidUtilities.lerp(0, i, Utilities.fastRandom.nextFloat()), AndroidUtilities.lerp(0, i2, Utilities.fastRandom.nextFloat()));
-            float fFloor = (float) Math.floor(f2 / Math.sqrt(2));
+            float fFloor = (float) Math.floor(((double) f2) / Math.sqrt(2));
             int i5 = 1;
             int iCeil = ((int) Math.ceil(i / fFloor)) + 1;
             int iCeil2 = ((int) Math.ceil(i2 / fFloor)) + 1;
@@ -1912,36 +1884,34 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             while (!arrayList2.isEmpty()) {
                 int iNextInt = arrayList2.size() > i5 ? Utilities.fastRandom.nextInt(arrayList2.size() - i5) : 0;
                 PointF pointF2 = (PointF) arrayList2.get(iNextInt);
-                int i8 = i3;
-                int i9 = 0;
+                int i8 = 0;
                 while (true) {
-                    if (i9 < i8) {
+                    if (i8 < i3) {
                         float fLerp = AndroidUtilities.lerp(i4, 360, Utilities.fastRandom.nextFloat());
-                        int i10 = i9;
+                        int i9 = i8;
                         double dLerp = AndroidUtilities.lerp(1, 2, Utilities.fastRandom.nextFloat()) * f2;
                         double d = fLerp;
                         PointF pointF3 = pointF2;
-                        PointF pointF4 = new PointF((float) (pointF2.x + (Math.cos(Math.toRadians(d)) * dLerp)), (float) (pointF2.y + (dLerp * Math.sin(Math.toRadians(d)))));
-                        int i11 = iNextInt;
+                        PointF pointF4 = new PointF((float) (((double) pointF2.x) + (Math.cos(Math.toRadians(d)) * dLerp)), (float) (((double) pointF2.y) + (dLerp * Math.sin(Math.toRadians(d)))));
+                        int i10 = iNextInt;
                         PointF[][] pointFArr2 = pointFArr;
-                        int i12 = iCeil2;
-                        int i13 = iCeil;
+                        int i11 = iCeil2;
+                        int i12 = iCeil;
                         if (isValidPoint(pointFArr, i, i2, fFloor, iCeil, iCeil2, pointF4, f)) {
                             arrayList.add(pointF4);
                             insertPoint(pointFArr2, fFloor, pointF4);
                             arrayList2.add(pointF4);
                             pointFArr = pointFArr2;
-                            iCeil2 = i12;
-                            iCeil = i13;
+                            iCeil2 = i11;
+                            iCeil = i12;
                             break;
                         }
-                        i9 = i10 + 1;
-                        i8 = i3;
+                        i8 = i9 + 1;
                         pointFArr = pointFArr2;
                         pointF2 = pointF3;
-                        iNextInt = i11;
-                        iCeil2 = i12;
-                        iCeil = i13;
+                        iNextInt = i10;
+                        iCeil2 = i11;
+                        iCeil = i12;
                         i4 = 0;
                         f2 = f;
                     } else {
@@ -2037,9 +2007,10 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
 
             public void draw(Canvas canvas, int i, float f) {
                 Particles.this.bPaint.setAlpha((int) (255.0f * f));
-                Particles.this.rect.set((int) (this.x - ((((r8.b.getWidth() / 2.0f) * this.a) * this.s) * f)), (int) (this.y - ((((Particles.this.b.getHeight() / 2.0f) * this.a) * this.s) * f)), (int) (this.x + ((Particles.this.b.getWidth() / 2.0f) * this.a * this.s * f)), (int) (this.y + ((Particles.this.b.getHeight() / 2.0f) * this.a * this.s * f)));
                 Particles particles = Particles.this;
-                canvas.drawBitmap(particles.b, (Rect) null, particles.rect, particles.bPaint);
+                particles.rect.set((int) (this.x - ((((particles.b.getWidth() / 2.0f) * this.a) * this.s) * f)), (int) (this.y - ((((Particles.this.b.getHeight() / 2.0f) * this.a) * this.s) * f)), (int) (this.x + ((Particles.this.b.getWidth() / 2.0f) * this.a * this.s * f)), (int) (this.y + ((Particles.this.b.getHeight() / 2.0f) * this.a * this.s * f)));
+                Particles particles2 = Particles.this;
+                canvas.drawBitmap(particles2.b, (Rect) null, particles2.rect, particles2.bPaint);
             }
         }
     }
@@ -2120,16 +2091,11 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
                     sender2.bounce.setPressed(false);
                 }
                 this.pressedSender = null;
-                int i = 0;
-                while (true) {
-                    if (i >= this.senders.size()) {
-                        break;
-                    }
+                for (int i = 0; i < this.senders.size(); i++) {
                     if (((Sender) this.senders.get(i)).clickBounds.contains(motionEvent.getX(), motionEvent.getY())) {
                         this.pressedSender = (Sender) this.senders.get(i);
                         break;
                     }
-                    i++;
                 }
                 Sender sender3 = this.pressedSender;
                 if (sender3 != null) {
@@ -2186,15 +2152,20 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             }
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
                 SenderData senderData3 = arrayList.get(i3);
-                for (int i4 = 0; i4 < this.senders.size(); i4++) {
+                int i4 = 0;
+                while (true) {
+                    if (i4 >= this.senders.size()) {
+                        sender = null;
+                        break;
+                    }
                     Sender sender3 = (Sender) this.senders.get(i4);
                     boolean z2 = sender3.my;
                     if ((z2 && senderData3.my) || (!z2 && !senderData3.my && sender3.did == senderData3.did)) {
                         sender = (Sender) this.senders.get(i4);
                         break;
                     }
+                    i4++;
                 }
-                sender = null;
                 if (sender == null) {
                     for (int i5 = 0; i5 < this.oldSenders.size(); i5++) {
                         Sender sender4 = (Sender) this.oldSenders.get(i5);

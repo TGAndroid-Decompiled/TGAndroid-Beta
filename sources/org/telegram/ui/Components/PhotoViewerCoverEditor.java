@@ -10,7 +10,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.GallerySheet;
@@ -209,8 +208,9 @@ public class PhotoViewerCoverEditor extends FrameLayout {
             if (PhotoViewerCoverEditor.this.videoPlayer == null) {
                 return;
             }
-            float fMax = 2.8f / Math.max(60L, r0);
-            PhotoViewerCoverEditor.this.time = (long) ((f + (fMax * (f / (1.0f - fMax)))) * PhotoViewerCoverEditor.this.videoPlayer.getDuration());
+            long duration = PhotoViewerCoverEditor.this.videoPlayer.getDuration();
+            float fMax = 2.8f / Math.max(60L, duration);
+            PhotoViewerCoverEditor.this.time = (long) ((f + (fMax * (f / (1.0f - fMax)))) * duration);
             PhotoViewerCoverEditor.this.videoPlayer.seekTo(PhotoViewerCoverEditor.this.time, !z);
             if (z) {
                 return;

@@ -12,7 +12,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Stories.recorder.FlashViews;
 
 public class VideoTimerView extends View implements FlashViews.Invertable {
     private Paint backgroundPaint;
@@ -84,7 +83,7 @@ public class VideoTimerView extends View implements FlashViews.Invertable {
         rectF.set(((getWidth() - currentWidth) / 2.0f) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), ((getWidth() + currentWidth) / 2.0f) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.backgroundPaint);
         if (f > 0.0f) {
-            this.recordPaint.setAlpha((int) (Utilities.clamp((((float) Math.sin(((System.currentTimeMillis() % 2000) / 1000.0f) * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
+            this.recordPaint.setAlpha((int) (Utilities.clamp((((float) Math.sin(((double) ((System.currentTimeMillis() % 2000) / 1000.0f)) * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
             invalidate();
             canvas.drawCircle(rectF.left + AndroidUtilities.dp(10.66f), rectF.centerY(), AndroidUtilities.dp(4.0f) * f, this.recordPaint);
         }

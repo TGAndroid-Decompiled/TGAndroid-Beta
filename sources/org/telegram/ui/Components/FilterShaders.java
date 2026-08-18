@@ -200,7 +200,7 @@ public class FilterShaders {
             double d = f;
             float fSqrt = (float) ((1.0d / Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d)) * Math.exp((-Math.pow(i3, 2.0d)) / (Math.pow(d, 2.0d) * 2.0d)));
             fArr[i3] = fSqrt;
-            f2 = i3 == 0 ? f2 + fSqrt : (float) (f2 + (fSqrt * 2.0d));
+            f2 = i3 == 0 ? f2 + fSqrt : (float) (((double) f2) + (((double) fSqrt) * 2.0d));
             i3++;
         }
         for (int i4 = 0; i4 < i2; i4++) {
@@ -248,7 +248,7 @@ public class FilterShaders {
             double d = f;
             float fSqrt = (float) ((1.0d / Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d)) * Math.exp((-Math.pow(i3, 2.0d)) / (Math.pow(d, 2.0d) * 2.0d)));
             fArr[i3] = fSqrt;
-            f2 = i3 == 0 ? f2 + fSqrt : (float) (f2 + (fSqrt * 2.0d));
+            f2 = i3 == 0 ? f2 + fSqrt : (float) (((double) f2) + (((double) fSqrt) * 2.0d));
             i3++;
         }
         for (int i4 = 0; i4 < i2; i4++) {
@@ -312,7 +312,7 @@ public class FilterShaders {
                 f2 = Math.round(f);
                 if (f2 >= 1.0f) {
                     double d = f2;
-                    int iFloor = (int) Math.floor(Math.sqrt(Math.pow(d, 2.0d) * (-2.0d) * Math.log(0.00390625f * Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d))));
+                    int iFloor = (int) Math.floor(Math.sqrt(Math.pow(d, 2.0d) * (-2.0d) * Math.log(((double) 0.00390625f) * Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d))));
                     i = iFloor + (iFloor % 2);
                 } else {
                     i = 0;
@@ -440,17 +440,18 @@ public class FilterShaders {
                     float f = pointF2.x;
                     if (i3 < ((int) f)) {
                         float f2 = i3;
+                        float f3 = pointF.x;
                         ArrayList arrayList3 = arrayList2;
-                        double d = f - pointF.x;
-                        double d2 = (f2 - r12) / d;
+                        double d = f - f3;
+                        double d2 = ((double) (f2 - f3)) / d;
                         double d3 = 1.0d - d2;
-                        float f3 = (float) ((pointF.y * d3) + (pointF2.y * d2) + (((d * d) / 6.0d) * (((((d3 * d3) * d3) - d3) * dArrSecondDerivative[i]) + ((((d2 * d2) * d2) - d2) * dArrSecondDerivative[i2]))));
-                        if (f3 > 255.0f) {
-                            f3 = 255.0f;
-                        } else if (f3 < 0.0f) {
-                            f3 = 0.0f;
+                        float f4 = (float) ((((double) pointF.y) * d3) + (((double) pointF2.y) * d2) + (((d * d) / 6.0d) * (((((d3 * d3) * d3) - d3) * dArrSecondDerivative[i]) + ((((d2 * d2) * d2) - d2) * dArrSecondDerivative[i2]))));
+                        if (f4 > 255.0f) {
+                            f4 = 255.0f;
+                        } else if (f4 < 0.0f) {
+                            f4 = 0.0f;
                         }
-                        arrayList3.add(new PointF(f2, f3));
+                        arrayList3.add(new PointF(f2, f4));
                         i3++;
                         arrayList2 = arrayList3;
                     }
@@ -488,15 +489,16 @@ public class FilterShaders {
                 PointF pointF3 = (PointF) arrayList.get(i3);
                 double[] dArr4 = dArr[i2];
                 float f = pointF2.x;
-                double d2 = f - pointF.x;
+                float f2 = pointF.x;
+                double d2 = f - f2;
                 dArr4[c] = d2 / 6.0d;
-                float f2 = pointF3.x;
-                dArr4[1] = (f2 - r9) / 3.0d;
-                double d3 = f2 - f;
+                float f3 = pointF3.x;
+                dArr4[1] = ((double) (f3 - f2)) / 3.0d;
+                double d3 = f3 - f;
                 dArr4[2] = d3 / 6.0d;
-                float f3 = pointF3.y;
-                float f4 = pointF2.y;
-                dArr2[i2] = ((f3 - f4) / d3) - ((f4 - pointF.y) / d2);
+                float f4 = pointF3.y;
+                float f5 = pointF2.y;
+                dArr2[i2] = (((double) (f4 - f5)) / d3) - (((double) (f5 - pointF.y)) / d2);
                 i2 = i3;
                 dArr = dArr;
                 c = 0;

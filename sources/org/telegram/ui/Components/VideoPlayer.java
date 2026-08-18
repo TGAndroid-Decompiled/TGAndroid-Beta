@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.LongSparseArray;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
@@ -1052,7 +1053,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.player.prepare();
     }
 
-    public void preparePlayer(ArrayList arrayList, Quality quality) throws NumberFormatException {
+    public void preparePlayer(ArrayList arrayList, Quality quality) {
         ArrayList arrayList2;
         this.videoQualities = arrayList;
         this.videoQualityToSelect = quality;
@@ -1188,9 +1189,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         ArrayList arrayList = this.videoQualities;
         if (arrayList != null) {
             for (int size = arrayList.size() - 1; size >= 0; size--) {
-                Iterator it = ((Quality) this.videoQualities.get(size)).uris.iterator();
-                while (it.hasNext()) {
-                    VideoUri videoUri = (VideoUri) it.next();
+                for (VideoUri videoUri : ((Quality) this.videoQualities.get(size)).uris) {
                     if (!videoUri.isCached()) {
                         videoUri.updateCached(true);
                     }
@@ -1218,9 +1217,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         if (exoPlayer != null && (videoFormat = exoPlayer.getVideoFormat()) != null && videoFormat.documentId != 0 && (arrayList = this.videoQualities) != null) {
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
-                Iterator it2 = ((Quality) it.next()).uris.iterator();
-                while (it2.hasNext()) {
-                    VideoUri videoUri = (VideoUri) it2.next();
+                for (VideoUri videoUri : ((Quality) it.next()).uris) {
                     if (videoUri.docId == videoFormat.documentId) {
                         return videoUri.document;
                     }
@@ -1259,7 +1256,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         return this.selectedQualityIndex;
     }
 
-    private TrackSelectionOverride getQualityTrackSelection(VideoUri videoUri) throws NumberFormatException {
+    private TrackSelectionOverride getQualityTrackSelection(VideoUri videoUri) {
         int i;
         try {
             int iIndexOf = this.manifestUris.indexOf(videoUri);
@@ -1291,7 +1288,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
     }
 
-    public void setSelectedQuality(int i) throws NumberFormatException {
+    public void setSelectedQuality(int i) {
         if (this.player == null || i == this.selectedQualityIndex) {
             return;
         }
@@ -1300,7 +1297,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         setSelectedQuality(false, (arrayList == null || i < 0 || i >= arrayList.size()) ? null : (Quality) this.videoQualities.get(i));
     }
 
-    private void setSelectedQuality(boolean z, Quality quality) throws NumberFormatException {
+    private void setSelectedQuality(boolean z, Quality quality) {
         ExoPlayer exoPlayer = this.player;
         if (exoPlayer == null) {
             return;
@@ -1403,8 +1400,68 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         return getQualities(i, document, arrayList, i2, z, true);
     }
 
-    public static java.util.ArrayList getQualities(int r9, org.telegram.tgnet.TLRPC.Document r10, java.util.ArrayList r11, int r12, boolean r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.VideoPlayer.getQualities(int, org.telegram.tgnet.TLRPC$Document, java.util.ArrayList, int, boolean, boolean):java.util.ArrayList");
+    public static ArrayList getQualities(int i, TLRPC.Document document, ArrayList arrayList, int i2, boolean z, boolean z2) {
+        String str;
+        ArrayList arrayList2 = new ArrayList();
+        if (document != null) {
+            arrayList2.add(document);
+        }
+        if (!MessagesController.getInstance(i).videoIgnoreAltDocuments && arrayList != null) {
+            arrayList2.addAll(arrayList);
+        }
+        LongSparseArray longSparseArray = new LongSparseArray();
+        int i3 = 0;
+        while (i3 < arrayList2.size()) {
+            TLRPC.Document document2 = (TLRPC.Document) arrayList2.get(i3);
+            if ("application/x-mpegurl".equalsIgnoreCase(document2.mime_type) && (str = document2.file_name_fixed) != null && str.startsWith("mtproto")) {
+                try {
+                    longSparseArray.put(Long.parseLong(document2.file_name_fixed.substring(7)), document2);
+                    arrayList2.remove(i3);
+                    i3--;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            i3++;
+        }
+        ArrayList arrayList3 = new ArrayList();
+        for (int i4 = 0; i4 < arrayList2.size(); i4++) {
+            try {
+                TLRPC.Document document3 = (TLRPC.Document) arrayList2.get(i4);
+                if (!"application/x-mpegurl".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboard".equalsIgnoreCase(document3.mime_type) && !"application/x-tgstoryboardmap".equalsIgnoreCase(document3.mime_type)) {
+                    VideoUri videoUriOf = VideoUri.of(i, document3, (TLRPC.Document) longSparseArray.get(document3.id), i2, z2);
+                    if (videoUriOf.width > 0 && videoUriOf.height > 0) {
+                        if (document3 == document) {
+                            videoUriOf.original = true;
+                        }
+                        arrayList3.add(videoUriOf);
+                    }
+                }
+            } catch (Exception e2) {
+                FileLog.e(e2);
+            }
+        }
+        ArrayList arrayList4 = new ArrayList();
+        for (int i5 = 0; i5 < arrayList3.size(); i5++) {
+            VideoUri videoUri = (VideoUri) arrayList3.get(i5);
+            String str2 = videoUri.codec;
+            if (str2 == null) {
+                arrayList4.add(videoUri);
+            } else if (z) {
+                if ("avc".equals(str2) || "h264".equals(videoUri.codec) || "vp9".equals(videoUri.codec) || "vp8".equals(videoUri.codec) || (("av1".equals(videoUri.codec) || "av01".equals(videoUri.codec)) && supportsHardwareDecoder(videoUri.codec))) {
+                    arrayList4.add(videoUri);
+                }
+            } else if ((!"av1".equals(str2) && !"av01".equals(videoUri.codec) && !"hevc".equals(videoUri.codec) && !"h265".equals(videoUri.codec) && !"vp9".equals(videoUri.codec)) || supportsHardwareDecoder(videoUri.codec)) {
+                arrayList4.add(videoUri);
+            }
+        }
+        ArrayList arrayList5 = new ArrayList();
+        if (arrayList4.isEmpty()) {
+            arrayList5.addAll(arrayList3);
+        } else {
+            arrayList5.addAll(arrayList4);
+        }
+        return Quality.group(arrayList5);
     }
 
     public static ArrayList getQualities(int i, TLRPC.MessageMedia messageMedia, boolean z) {
@@ -1417,20 +1474,16 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     public static VideoUri getQualityForThumb(ArrayList arrayList) {
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            Iterator it2 = ((Quality) it.next()).uris.iterator();
-            while (it2.hasNext()) {
-                VideoUri videoUri = (VideoUri) it2.next();
+            for (VideoUri videoUri : ((Quality) it.next()).uris) {
                 if (videoUri.isCached()) {
                     return videoUri;
                 }
             }
         }
-        Iterator it3 = arrayList.iterator();
+        Iterator it2 = arrayList.iterator();
         VideoUri videoUri2 = null;
-        while (it3.hasNext()) {
-            Iterator it4 = ((Quality) it3.next()).uris.iterator();
-            while (it4.hasNext()) {
-                VideoUri videoUri3 = (VideoUri) it4.next();
+        while (it2.hasNext()) {
+            for (VideoUri videoUri3 : ((Quality) it2.next()).uris) {
                 if (!videoUri3.original && (videoUri2 == null || videoUri2.width * videoUri2.height > videoUri3.width * videoUri3.height || videoUri3.bitrate < videoUri2.bitrate)) {
                     if (videoUri3.width <= 900 && videoUri3.height <= 900) {
                         videoUri2 = videoUri3;
@@ -1439,11 +1492,9 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             }
         }
         if (videoUri2 == null) {
-            Iterator it5 = arrayList.iterator();
-            while (it5.hasNext()) {
-                Iterator it6 = ((Quality) it5.next()).uris.iterator();
-                while (it6.hasNext()) {
-                    VideoUri videoUri4 = (VideoUri) it6.next();
+            Iterator it3 = arrayList.iterator();
+            while (it3.hasNext()) {
+                for (VideoUri videoUri4 : ((Quality) it3.next()).uris) {
                     if (videoUri2 == null || videoUri2.width * videoUri2.height > videoUri4.width * videoUri4.height || videoUri4.bitrate < videoUri2.bitrate) {
                         videoUri2 = videoUri4;
                     }
@@ -1459,9 +1510,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            Iterator it2 = ((Quality) it.next()).uris.iterator();
-            while (it2.hasNext()) {
-                VideoUri videoUri = (VideoUri) it2.next();
+            for (VideoUri videoUri : ((Quality) it.next()).uris) {
                 if (videoUri.isCached()) {
                     return videoUri;
                 }
@@ -1475,31 +1524,25 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         int i2;
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            Iterator it2 = ((Quality) it.next()).uris.iterator();
-            while (it2.hasNext()) {
-                VideoUri videoUri = (VideoUri) it2.next();
+            for (VideoUri videoUri : ((Quality) it.next()).uris) {
                 if (videoUri.original && videoUri.isCached()) {
                     return videoUri;
                 }
             }
         }
-        Iterator it3 = arrayList.iterator();
+        Iterator it2 = arrayList.iterator();
         VideoUri videoUri2 = null;
-        while (it3.hasNext()) {
-            Iterator it4 = ((Quality) it3.next()).uris.iterator();
-            while (it4.hasNext()) {
-                VideoUri videoUri3 = (VideoUri) it4.next();
+        while (it2.hasNext()) {
+            for (VideoUri videoUri3 : ((Quality) it2.next()).uris) {
                 if (!videoUri3.original && supportsHardwareDecoder(videoUri3.codec) && (videoUri2 == null || (i = videoUri3.width * videoUri3.height) > (i2 = videoUri2.width * videoUri2.height) || (i == i2 && videoUri3.bitrate < videoUri2.bitrate))) {
                     videoUri2 = videoUri3;
                 }
             }
         }
         if (videoUri2 == null) {
-            Iterator it5 = arrayList.iterator();
-            while (it5.hasNext()) {
-                Iterator it6 = ((Quality) it5.next()).uris.iterator();
-                while (it6.hasNext()) {
-                    VideoUri videoUri4 = (VideoUri) it6.next();
+            Iterator it3 = arrayList.iterator();
+            while (it3.hasNext()) {
+                for (VideoUri videoUri4 : ((Quality) it3.next()).uris) {
                     if (videoUri2 == null || videoUri2.width * videoUri2.height > videoUri4.width * videoUri4.height || videoUri4.bitrate < videoUri2.bitrate) {
                         videoUri2 = videoUri4;
                     }
@@ -1578,9 +1621,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         Iterator it = arrayList.iterator();
         boolean z = false;
         while (it.hasNext()) {
-            Iterator it2 = ((Quality) it.next()).uris.iterator();
-            while (it2.hasNext()) {
-                VideoUri videoUri = (VideoUri) it2.next();
+            for (VideoUri videoUri : ((Quality) it.next()).uris) {
                 this.mediaDataSourceFactory.putDocumentUri(videoUri.docId, videoUri.uri);
                 this.mediaDataSourceFactory.putDocumentUri(videoUri.manifestDocId, videoUri.m3u8uri);
                 if (videoUri.m3u8uri != null) {
@@ -1766,9 +1807,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             if (this.uris.isEmpty()) {
                 return null;
             }
-            Iterator it = this.uris.iterator();
-            while (it.hasNext()) {
-                VideoUri videoUri2 = (VideoUri) it.next();
+            for (VideoUri videoUri2 : this.uris) {
                 if (videoUri2.isCached()) {
                     return videoUri2.document;
                 }
@@ -1792,9 +1831,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             if (this.uris.isEmpty()) {
                 return null;
             }
-            Iterator it = this.uris.iterator();
-            while (it.hasNext()) {
-                VideoUri videoUri2 = (VideoUri) it.next();
+            for (VideoUri videoUri2 : this.uris) {
                 if (videoUri2.isCached()) {
                     return videoUri2;
                 }
@@ -2295,13 +2332,13 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     public void onPlayerError(final PlaybackException playbackException) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$onPlayerError$2(playbackException);
             }
         });
     }
 
-    public void lambda$onPlayerError$2(PlaybackException playbackException) throws NumberFormatException {
+    public void lambda$onPlayerError$2(PlaybackException playbackException) {
         Throwable cause = playbackException.getCause();
         if ((cause instanceof MediaCodecDecoderException) && (cause.toString().contains("av1") || cause.toString().contains("av01"))) {
             FileLog.e(playbackException);
@@ -2333,7 +2370,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 if (dispatchQueue != null) {
                     dispatchQueue.postRunnable(new Runnable() {
                         @Override
-                        public final void run() throws NumberFormatException {
+                        public final void run() {
                             this.f$0.lambda$onPlayerError$1();
                         }
                     });
@@ -2357,7 +2394,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.delegate.onError(this, playbackException);
     }
 
-    public void lambda$onPlayerError$1() throws NumberFormatException {
+    public void lambda$onPlayerError$1() {
         ExoPlayer exoPlayer = this.player;
         if (exoPlayer != null) {
             exoPlayer.clearVideoTextureView(this.textureView);
@@ -2616,9 +2653,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         ChromecastMediaVariations.Builder builder = new ChromecastMediaVariations.Builder();
         Iterator it = this.videoQualities.iterator();
         while (it.hasNext()) {
-            Iterator it2 = ((Quality) it.next()).uris.iterator();
-            while (it2.hasNext()) {
-                VideoUri videoUri = (VideoUri) it2.next();
+            for (VideoUri videoUri : ((Quality) it.next()).uris) {
                 String str5 = "/mtproto_" + videoUri.docId;
                 TLRPC.Document document = videoUri.document;
                 String str6 = document != null ? document.mime_type : null;

@@ -20,7 +20,6 @@ import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import com.android.billingclient.api.QueryPurchasesParams;
-import j$.util.Map;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -124,7 +123,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     public int getCurrencyExp(String str) {
         BillingUtilities.extractCurrencyExp(this.currencyExpMap);
-        return ((Integer) Map.EL.getOrDefault(this.currencyExpMap, str, 0)).intValue();
+        return ((Integer) j$.util.Map.EL.getOrDefault(this.currencyExpMap, str, 0)).intValue();
     }
 
     public void lambda$onBillingServiceDisconnected$12() {
@@ -235,20 +234,18 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                 final Purchase purchase = (Purchase) it.next();
                 if (purchase.isAcknowledged()) {
                     Iterator it2 = list.iterator();
-                    while (true) {
-                        if (it2.hasNext()) {
-                            final String productId = ((BillingFlowParams.ProductDetailsParams) it2.next()).zza().getProductId();
-                            if (purchase.getProducts().contains(productId)) {
-                                atomicInteger.incrementAndGet();
-                                FileLog.d("BillingController.launchBillingFlow, consuming " + purchase.getPurchaseToken());
-                                this.billingClient.consumeAsync(ConsumeParams.newBuilder().setPurchaseToken(purchase.getPurchaseToken()).build(), new ConsumeResponseListener() {
-                                    @Override
-                                    public final void onConsumeResponse(BillingResult billingResult2, String str) {
-                                        BillingController.lambda$launchBillingFlow$1(purchase, arrayList, productId, atomicInteger, runnable, billingResult2, str);
-                                    }
-                                });
-                                break;
-                            }
+                    while (it2.hasNext()) {
+                        final String productId = ((BillingFlowParams.ProductDetailsParams) it2.next()).zza().getProductId();
+                        if (purchase.getProducts().contains(productId)) {
+                            atomicInteger.incrementAndGet();
+                            FileLog.d("BillingController.launchBillingFlow, consuming " + purchase.getPurchaseToken());
+                            this.billingClient.consumeAsync(ConsumeParams.newBuilder().setPurchaseToken(purchase.getPurchaseToken()).build(), new ConsumeResponseListener() {
+                                @Override
+                                public final void onConsumeResponse(BillingResult billingResult2, String str) {
+                                    BillingController.lambda$launchBillingFlow$1(purchase, arrayList, productId, atomicInteger, runnable, billingResult2, str);
+                                }
+                            });
+                            break;
                         }
                     }
                 } else {
@@ -343,55 +340,56 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             }
             if (billingController2.requestingTokens.contains(purchase.getPurchaseToken())) {
                 FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is already requesting...");
-            } else if (purchase.getPurchaseState() == i) {
-                Pair pairExtractDeveloperPayload = BillingUtilities.extractDeveloperPayload(purchase);
-                if (pairExtractDeveloperPayload == null || pairExtractDeveloperPayload.first == null || pairExtractDeveloperPayload.second == null) {
-                    billingController = billingController2;
-                    runnable2 = runnable3;
-                    FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is purchased, but failed to extract saved payload");
-                } else if (!purchase.isAcknowledged()) {
-                    FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is purchased and not acknowledged: assigning (accountId=" + ((AccountInstance) pairExtractDeveloperPayload.first).getCurrentAccount() + ") (purpose=" + pairExtractDeveloperPayload.second + ")");
-                    billingController2.requestingTokens.add(purchase.getPurchaseToken());
-                    final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction = new TLRPC.TL_payments_assignPlayMarketTransaction();
-                    TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
-                    tL_payments_assignPlayMarketTransaction.receipt = tL_dataJSON;
-                    tL_dataJSON.data = purchase.getOriginalJson();
-                    tL_payments_assignPlayMarketTransaction.purpose = (TLRPC.InputStorePaymentPurpose) pairExtractDeveloperPayload.second;
-                    final AlertDialog[] alertDialogArr = new AlertDialog[i];
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            BillingController.lambda$onPurchasesUpdatedInternal$4(alertDialogArr);
-                        }
-                    });
-                    atomicInteger.incrementAndGet();
-                    final AccountInstance accountInstance = (AccountInstance) pairExtractDeveloperPayload.first;
-                    accountInstance.getConnectionsManager().sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$onPurchasesUpdatedInternal$9(alertDialogArr, purchase, tL_payments_assignPlayMarketTransaction, accountInstance, billingResult, atomicInteger2, atomicInteger, runnable, tLObject, tL_error);
-                        }
-                    }, tL_payments_assignPlayMarketTransaction.purpose instanceof TLRPC.TL_inputStorePaymentAuthCode ? 65608 : 65600);
-                    billingController2 = this;
-                    runnable3 = runnable;
-                    i = 1;
-                } else {
-                    FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is purchased and acknowledged: consuming");
-                    atomicInteger.incrementAndGet();
-                    runnable2 = runnable;
-                    billingController = this;
-                    billingController.consumeGiftPurchase(purchase, (TLRPC.InputStorePaymentPurpose) pairExtractDeveloperPayload.second, new Runnable() {
-                        @Override
-                        public final void run() {
-                            BillingController.lambda$onPurchasesUpdatedInternal$10(atomicInteger2, atomicInteger, runnable2);
-                        }
-                    });
-                }
-                runnable3 = runnable2;
-                billingController2 = billingController;
-                i = 1;
             } else {
-                FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is (state=" + purchase.getPurchaseState() + "), (isAcknowledged=" + purchase.isAcknowledged() + ")");
+                if (purchase.getPurchaseState() == i) {
+                    Pair pairExtractDeveloperPayload = BillingUtilities.extractDeveloperPayload(purchase);
+                    if (pairExtractDeveloperPayload == null || pairExtractDeveloperPayload.first == null || pairExtractDeveloperPayload.second == null) {
+                        billingController = billingController2;
+                        runnable2 = runnable3;
+                        FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is purchased, but failed to extract saved payload");
+                    } else if (!purchase.isAcknowledged()) {
+                        FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is purchased and not acknowledged: assigning (accountId=" + ((AccountInstance) pairExtractDeveloperPayload.first).getCurrentAccount() + ") (purpose=" + pairExtractDeveloperPayload.second + ")");
+                        billingController2.requestingTokens.add(purchase.getPurchaseToken());
+                        final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction = new TLRPC.TL_payments_assignPlayMarketTransaction();
+                        TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
+                        tL_payments_assignPlayMarketTransaction.receipt = tL_dataJSON;
+                        tL_dataJSON.data = purchase.getOriginalJson();
+                        tL_payments_assignPlayMarketTransaction.purpose = (TLRPC.InputStorePaymentPurpose) pairExtractDeveloperPayload.second;
+                        final AlertDialog[] alertDialogArr = new AlertDialog[i];
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                BillingController.lambda$onPurchasesUpdatedInternal$4(alertDialogArr);
+                            }
+                        });
+                        atomicInteger.incrementAndGet();
+                        final AccountInstance accountInstance = (AccountInstance) pairExtractDeveloperPayload.first;
+                        accountInstance.getConnectionsManager().sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                this.f$0.lambda$onPurchasesUpdatedInternal$9(alertDialogArr, purchase, tL_payments_assignPlayMarketTransaction, accountInstance, billingResult, atomicInteger2, atomicInteger, runnable, tLObject, tL_error);
+                            }
+                        }, tL_payments_assignPlayMarketTransaction.purpose instanceof TLRPC.TL_inputStorePaymentAuthCode ? 65608 : 65600);
+                        billingController2 = this;
+                        runnable3 = runnable;
+                    } else {
+                        FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is purchased and acknowledged: consuming");
+                        atomicInteger.incrementAndGet();
+                        runnable2 = runnable;
+                        billingController = this;
+                        billingController.consumeGiftPurchase(purchase, (TLRPC.InputStorePaymentPurpose) pairExtractDeveloperPayload.second, new Runnable() {
+                            @Override
+                            public final void run() {
+                                BillingController.lambda$onPurchasesUpdatedInternal$10(atomicInteger2, atomicInteger, runnable2);
+                            }
+                        });
+                    }
+                    runnable3 = runnable2;
+                    billingController2 = billingController;
+                } else {
+                    FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is (state=" + purchase.getPurchaseState() + "), (isAcknowledged=" + purchase.isAcknowledged() + ")");
+                }
+                i = 1;
             }
             i = 1;
         }
@@ -419,9 +417,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         if (tLObject instanceof TLRPC.Updates) {
             FileLog.d("BillingController.onPurchasesUpdatedInternal: " + purchase.getOrderId() + " purchase is purchased and now assigned");
             if (tL_payments_assignPlayMarketTransaction.purpose instanceof TLRPC.TL_inputStorePaymentAuthCode) {
-                Iterator it = MessagesController.findUpdatesAndRemove((TLRPC.Updates) tLObject, TL_update.TL_updateSentPhoneCode.class).iterator();
-                while (it.hasNext()) {
-                    final TL_update.TL_updateSentPhoneCode tL_updateSentPhoneCode = (TL_update.TL_updateSentPhoneCode) it.next();
+                for (final TL_update.TL_updateSentPhoneCode tL_updateSentPhoneCode : MessagesController.findUpdatesAndRemove((TLRPC.Updates) tLObject, TL_update.TL_updateSentPhoneCode.class)) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -431,9 +427,9 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                 }
             }
             accountInstance.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
-            Iterator it2 = purchase.getProducts().iterator();
-            while (it2.hasNext()) {
-                Consumer consumerRemove = this.resultListeners.remove((String) it2.next());
+            Iterator it = purchase.getProducts().iterator();
+            while (it.hasNext()) {
+                Consumer consumerRemove = this.resultListeners.remove((String) it.next());
                 if (consumerRemove != null) {
                     consumerRemove.accept(billingResult);
                 }

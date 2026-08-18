@@ -46,7 +46,6 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GroupCreateUserCell;
 import org.telegram.ui.Cells.ShareDialogCell;
-import org.telegram.ui.Components.RecyclerListView;
 
 public class JoinCallAlert extends BottomSheet {
     private static ArrayList cachedChats;
@@ -89,16 +88,11 @@ public class JoinCallAlert extends BottomSheet {
             return;
         }
         int size = arrayList.size();
-        int i2 = 0;
-        while (true) {
-            if (i2 >= size) {
-                break;
-            }
+        for (int i2 = 0; i2 < size; i2++) {
             if (MessageObject.getPeerId((TLRPC.Peer) cachedChats.get(i2)) == j) {
                 cachedChats.remove(i2);
                 break;
             }
-            i2++;
         }
         if (cachedChats.isEmpty()) {
             cachedChats = null;
@@ -346,34 +340,24 @@ public class JoinCallAlert extends BottomSheet {
             if (VoIPService.getSharedInstance() != null) {
                 long selfId = VoIPService.getSharedInstance().getSelfId();
                 int size = this.chats.size();
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= size) {
-                        break;
-                    }
+                for (int i2 = 0; i2 < size; i2++) {
                     TLRPC.Peer peer2 = (TLRPC.Peer) this.chats.get(i2);
                     if (MessageObject.getPeerId(peer2) == selfId) {
                         this.currentPeer = peer2;
                         this.selectedPeer = peer2;
                         break;
                     }
-                    i2++;
                 }
             } else if (peer != null) {
                 long peerId = MessageObject.getPeerId(peer);
                 int size2 = this.chats.size();
-                int i3 = 0;
-                while (true) {
-                    if (i3 >= size2) {
-                        break;
-                    }
+                for (int i3 = 0; i3 < size2; i3++) {
                     TLRPC.Peer peer3 = (TLRPC.Peer) this.chats.get(i3);
                     if (MessageObject.getPeerId(peer3) == peerId) {
                         this.currentPeer = peer3;
                         this.selectedPeer = peer3;
                         break;
                     }
-                    i3++;
                 }
             } else {
                 this.selectedPeer = (TLRPC.Peer) this.chats.get(0);
@@ -569,7 +553,12 @@ public class JoinCallAlert extends BottomSheet {
         }
         this.messageTextView.setTextSize(1, 14.0f);
         int size3 = this.chats.size();
-        for (int i5 = 0; i5 < size3; i5++) {
+        int i5 = 0;
+        while (true) {
+            if (i5 >= size3) {
+                z = false;
+                break;
+            }
             long peerId2 = MessageObject.getPeerId((TLRPC.Peer) this.chats.get(i5));
             if (peerId2 < 0) {
                 TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerId2));
@@ -578,8 +567,8 @@ public class JoinCallAlert extends BottomSheet {
                     break;
                 }
             }
+            i5++;
         }
-        z = false;
         this.messageTextView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         this.messageTextView.setLinkTextColor(Theme.getColor(Theme.key_dialogTextLink));
         if (i == 0) {

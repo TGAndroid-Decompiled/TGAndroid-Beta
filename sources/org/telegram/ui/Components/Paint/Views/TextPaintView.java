@@ -15,7 +15,6 @@ import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -27,7 +26,6 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.Paint.Swatch;
-import org.telegram.ui.Components.Paint.Views.EntityView;
 import org.telegram.ui.Components.RectOld;
 
 public class TextPaintView extends EntityView {
@@ -116,9 +114,10 @@ public class TextPaintView extends EntityView {
             public void afterTextChanged(Editable editable) {
                 int iClamp;
                 if (this.pasted && TextPaintView.this.minFontSize > 0 && TextPaintView.this.maxFontSize > 0 && !TextPaintView.this.disableAutoresize && TextPaintView.this.editText.getLayout() != null) {
+                    int height = TextPaintView.this.editText.getLayout().getHeight();
                     float f = AndroidUtilities.displaySize.y / 3.0f;
-                    float height = TextPaintView.this.editText.getLayout().getHeight();
-                    if (height > f && (iClamp = Utilities.clamp((int) ((f / height) * TextPaintView.this.getBaseFontSize()), TextPaintView.this.maxFontSize, TextPaintView.this.minFontSize)) != TextPaintView.this.getBaseFontSize()) {
+                    float f2 = height;
+                    if (f2 > f && (iClamp = Utilities.clamp((int) ((f / f2) * TextPaintView.this.getBaseFontSize()), TextPaintView.this.maxFontSize, TextPaintView.this.minFontSize)) != TextPaintView.this.getBaseFontSize()) {
                         TextPaintView.this.setBaseFontSize(iClamp);
                         if (TextPaintView.this.onFontChange != null) {
                             TextPaintView.this.onFontChange.run();
@@ -243,12 +242,7 @@ public class TextPaintView extends EntityView {
     }
 
     public void setTypeface(String str) {
-        Iterator it = PaintTypeface.get().iterator();
-        while (true) {
-            if (!it.hasNext()) {
-                break;
-            }
-            PaintTypeface paintTypeface = (PaintTypeface) it.next();
+        for (PaintTypeface paintTypeface : PaintTypeface.get()) {
             if (paintTypeface.getKey().equals(str)) {
                 setTypeface(paintTypeface);
                 str = null;

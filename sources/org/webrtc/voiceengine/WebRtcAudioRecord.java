@@ -123,7 +123,7 @@ public class WebRtcAudioRecord {
         }
 
         @Override
-        public void run() throws IllegalStateException, SecurityException, IllegalArgumentException {
+        public void run() {
             Process.setThreadPriority(-19);
             Logging.d("WebRtcAudioRecord", "AudioRecordThread" + WebRtcAudioUtils.getThreadInfo());
             System.nanoTime();
@@ -223,7 +223,7 @@ public class WebRtcAudioRecord {
         return webRtcAudioEffects.setNS(z);
     }
 
-    private int initRecording(int i, int i2) throws IllegalStateException {
+    private int initRecording(int i, int i2) {
         WebRtcAudioEffects webRtcAudioEffects;
         if (this.captureType == 1 && Build.VERSION.SDK_INT < 29) {
             return -1;
@@ -356,7 +356,7 @@ public class WebRtcAudioRecord {
         releaseAudioResources(true);
     }
 
-    private boolean startRecording() throws IllegalStateException {
+    private boolean startRecording() {
         Logging.d("WebRtcAudioRecord", "startRecording");
         assertTrue(this.audioRecord != null);
         assertTrue(this.audioThread == null);

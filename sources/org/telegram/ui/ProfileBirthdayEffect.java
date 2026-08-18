@@ -26,7 +26,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
-import org.telegram.ui.ProfileBirthdayEffect;
 
 public class ProfileBirthdayEffect extends View {
     public static String[] interactions = {"🎉", "🎆", "🎈"};

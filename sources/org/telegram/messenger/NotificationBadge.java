@@ -19,7 +19,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import org.telegram.messenger.NotificationBadge;
 
 public class NotificationBadge {
     private static final List<Class<? extends Badger>> BADGERS;
@@ -330,10 +329,8 @@ public class NotificationBadge {
                         contentResolver.insert(uri, getContentValues(NotificationBadge.componentName, i, true));
                     }
                 }
+            } finally {
                 NotificationBadge.close(cursorQuery);
-            } catch (Throwable th) {
-                NotificationBadge.close(cursorQuery);
-                throw th;
             }
         }
 
@@ -526,7 +523,7 @@ public class NotificationBadge {
         }
     }
 
-    private static boolean initBadger() throws IllegalAccessException, InstantiationException {
+    private static boolean initBadger() {
         Badger badgerNewInstance;
         Badger badgerNewInstance2;
         Context context = ApplicationLoader.applicationContext;
@@ -541,10 +538,7 @@ public class NotificationBadge {
         if (resolveInfoResolveActivity != null) {
             String str = resolveInfoResolveActivity.activityInfo.packageName;
             Iterator<Class<? extends Badger>> it = BADGERS.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
+            while (it.hasNext()) {
                 try {
                     badgerNewInstance2 = it.next().newInstance();
                 } catch (Exception unused) {
@@ -564,10 +558,7 @@ public class NotificationBadge {
             for (int i = 0; i < listQueryIntentActivities.size(); i++) {
                 String str2 = listQueryIntentActivities.get(i).activityInfo.packageName;
                 Iterator<Class<? extends Badger>> it2 = BADGERS.iterator();
-                while (true) {
-                    if (!it2.hasNext()) {
-                        break;
-                    }
+                while (it2.hasNext()) {
                     try {
                         badgerNewInstance = it2.next().newInstance();
                     } catch (Exception unused2) {

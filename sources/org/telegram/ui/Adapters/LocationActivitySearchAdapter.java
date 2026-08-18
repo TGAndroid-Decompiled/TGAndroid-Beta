@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
@@ -70,8 +72,45 @@ public abstract class LocationActivitySearchAdapter extends BaseLocationAdapter 
     }
 
     @Override
-    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.LocationActivitySearchAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
+        int i2;
+        boolean z = true;
+        if (viewHolder.getItemViewType() == 0) {
+            int i3 = !this.locations.isEmpty() ? i - 1 : i;
+            if (i3 >= 0 && i3 < this.locations.size()) {
+                tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) this.locations.get(i3);
+                i2 = 2;
+            } else if (isSearching()) {
+                tL_messageMediaVenue = null;
+                i2 = i;
+            } else {
+                int size = i3 - this.locations.size();
+                if (!this.searchingLocations && !this.locations.isEmpty()) {
+                    size--;
+                }
+                i2 = size;
+                if (i2 < 0 || i2 >= this.places.size()) {
+                    tL_messageMediaVenue = null;
+                    i2 = i;
+                } else {
+                    tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) this.places.get(i2);
+                }
+            }
+            LocationCell locationCell = (LocationCell) viewHolder.itemView;
+            if (i == getItemCount() - 1 || (!this.searchingLocations && !this.locations.isEmpty() && i == this.locations.size())) {
+                z = false;
+            }
+            locationCell.setLocation(tL_messageMediaVenue, i2, z);
+            return;
+        }
+        if (viewHolder.getItemViewType() == 1) {
+            if (i == 0 && !this.locations.isEmpty()) {
+                ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.LocationOnMap));
+            } else {
+                ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.NearbyVenue));
+            }
+        }
     }
 
     @Override

@@ -254,6 +254,7 @@ public abstract class CopyUtilities {
                     return true;
                 }
             } else if (!str.equals("pre")) {
+                int i3 = 3;
                 if (str.equals("blockquote")) {
                     if (z) {
                         String value2 = HTMLTagAttributesHandler.getValue(attributes, "class");
@@ -274,7 +275,7 @@ public abstract class CopyUtilities {
                     }
                 } else if (str.equals("details")) {
                     if (z) {
-                        editable.setSpan(new ParsedSpan(i), editable.length(), editable.length(), 17);
+                        editable.setSpan(new ParsedSpan(i3), editable.length(), editable.length(), 17);
                         return true;
                     }
                     ParsedSpan last2 = getLast(editable, ParsedSpan.class, 3);

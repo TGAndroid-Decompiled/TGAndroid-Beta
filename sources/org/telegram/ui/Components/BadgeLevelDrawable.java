@@ -10,7 +10,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.AnimatedTextView;
 
 public class BadgeLevelDrawable extends Drawable implements Drawable.Callback {
     private static int[] res;

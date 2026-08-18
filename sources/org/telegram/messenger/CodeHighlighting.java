@@ -8,6 +8,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import j$.util.concurrent.ConcurrentHashMap;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
@@ -20,7 +21,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.telegram.messenger.Utilities;
+import java.util.zip.GZIPInputStream;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TextStyleSpan;
 
@@ -397,10 +398,10 @@ public class CodeHighlighting {
                     }
                     if (i5 == -1) {
                         length = stringToken.length();
-                        i += length;
                     } else {
                         arrayList.add(new CachedToSpan(i5, i, stringToken.length() + i));
                     }
+                    i += length;
                 } else if (stringToken.inside != null) {
                     colorize(spannable, i, i + stringToken.length(), stringToken.inside.toArray(), stringToken.group, arrayList);
                 }
@@ -464,7 +465,6 @@ public class CodeHighlighting {
         int i5;
         StringToken stringToken;
         int i6;
-        String str2 = str;
         TokenPattern[] tokenPatternArr2 = tokenPatternArr;
         if (tokenPatternArr2 == null || i2 > 20) {
             return;
@@ -496,7 +496,7 @@ public class CodeHighlighting {
                     i3 = length;
                 } else {
                     if (tokenPattern3.greedy) {
-                        matchMatchPattern = matchPattern(tokenPattern3, length2, str2);
+                        matchMatchPattern = matchPattern(tokenPattern3, length2, str);
                         if (matchMatchPattern == null || matchMatchPattern.index >= str.length()) {
                             break;
                         }
@@ -526,7 +526,7 @@ public class CodeHighlighting {
                                 length4 += node3.value.length();
                                 node3 = node3.next;
                             }
-                            strSubstring = str2.substring(length2, length4);
+                            strSubstring = str.substring(length2, length4);
                             matchMatchPattern.index -= length2;
                             i5 = i10 - 1;
                             node2 = node3;
@@ -535,11 +535,12 @@ public class CodeHighlighting {
                     } else {
                         i4 = 0;
                         matchMatchPattern = matchPattern(tokenPattern3, 0, strSubstring);
-                        if (matchMatchPattern != null) {
+                        if (matchMatchPattern == null) {
+                            tokenPattern2 = tokenPattern3;
+                            i3 = length;
+                        } else {
                             i5 = 1;
                         }
-                        tokenPattern2 = tokenPattern3;
-                        i3 = length;
                     }
                     int i11 = matchMatchPattern.index;
                     String strSubstring2 = strSubstring.substring(i4, i11);
@@ -561,9 +562,9 @@ public class CodeHighlighting {
                         stringToken = new StringToken(tokenPattern3.group, tokenize(matchMatchPattern.string, tokenPatternArr3, tokenPattern3, i2 + 1), matchMatchPattern.length);
                     } else {
                         i3 = length;
-                        String str3 = tokenPattern3.insideLanguage;
-                        if (str3 != null) {
-                            stringToken = new StringToken(tokenPattern3.group, tokenize(matchMatchPattern.string, compiledPatterns.get(str3), tokenPattern3, i2 + 1), matchMatchPattern.length);
+                        String str2 = tokenPattern3.insideLanguage;
+                        if (str2 != null) {
+                            stringToken = new StringToken(tokenPattern3.group, tokenize(matchMatchPattern.string, compiledPatterns.get(str2), tokenPattern3, i2 + 1), matchMatchPattern.length);
                         } else {
                             stringToken = new StringToken(tokenPattern3.group, matchMatchPattern.string);
                         }
@@ -589,12 +590,11 @@ public class CodeHighlighting {
                 }
                 length2 += node2.value.length();
                 node2 = node2.next;
-                str2 = str;
+                str = str;
                 tokenPattern3 = tokenPattern2;
                 length = i3;
             }
             i7++;
-            str2 = str;
             tokenPatternArr2 = tokenPatternArr;
             length = length;
         }
@@ -739,8 +739,176 @@ public class CodeHighlighting {
         }
     }
 
-    private static void parse() throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.CodeHighlighting.parse():void");
+    private static void parse() throws Throwable {
+        GZIPInputStream gZIPInputStream;
+        InputStream inputStreamOpen;
+        BufferedInputStream bufferedInputStream;
+        ?? r6;
+        GZIPInputStream gZIPInputStream2;
+        Throwable th;
+        BufferedInputStream bufferedInputStream2;
+        ?? r1 = 0;
+        gZIPInputStream = null;
+        r1 = 0;
+        GZIPInputStream gZIPInputStream3 = null;
+        try {
+            try {
+                long jCurrentTimeMillis = System.currentTimeMillis();
+                inputStreamOpen = ApplicationLoader.applicationContext.getAssets().open("codelng.gzip");
+                try {
+                    gZIPInputStream2 = new GZIPInputStream(inputStreamOpen, 65536);
+                    try {
+                        BufferedInputStream bufferedInputStream3 = new BufferedInputStream(gZIPInputStream2, 65536);
+                        try {
+                            StreamReader streamReader = new StreamReader(bufferedInputStream3);
+                            HashMap map = new HashMap();
+                            int uint8 = streamReader.readUint8();
+                            for (int i = 0; i < uint8; i++) {
+                                int uint9 = streamReader.readUint8();
+                                int uint10 = streamReader.readUint8();
+                                String[] strArr = new String[uint10];
+                                for (int i2 = 0; i2 < uint10; i2++) {
+                                    strArr[i2] = streamReader.readString();
+                                }
+                                map.put(Integer.valueOf(uint9), strArr);
+                            }
+                            int uint16 = streamReader.readUint16();
+                            ParsedPattern[] parsedPatternArr = new ParsedPattern[uint16];
+                            for (int i3 = 0; i3 < uint16; i3++) {
+                                parsedPatternArr[i3] = new ParsedPattern();
+                                int uint11 = streamReader.readUint8();
+                                ParsedPattern parsedPattern = parsedPatternArr[i3];
+                                parsedPattern.multiline = (uint11 & 1) != 0;
+                                parsedPattern.caseInsensitive = (uint11 & 2) != 0;
+                                parsedPattern.pattern = streamReader.readString();
+                            }
+                            if (compiledPatterns == null) {
+                                compiledPatterns = new HashMap<>();
+                            }
+                            if (languages == null) {
+                                languages = new HashSet<>();
+                            }
+                            int i4 = 0;
+                            while (i4 < uint8) {
+                                int uint12 = streamReader.readUint8();
+                                TokenPattern[] tokens = readTokens(streamReader, parsedPatternArr, map);
+                                String[] strArr2 = (String[]) map.get(Integer.valueOf(uint12));
+                                int length = strArr2.length;
+                                int i5 = 0;
+                                while (i5 < length) {
+                                    compiledPatterns.put(strArr2[i5], tokens);
+                                    i5++;
+                                    streamReader = streamReader;
+                                }
+                                StreamReader streamReader2 = streamReader;
+                                if (strArr2.length > 0 && !"plain".equals(strArr2[0]) && !strArr2[0].endsWith("like") && !strArr2[0].startsWith("markup")) {
+                                    languages.add(strArr2[0]);
+                                }
+                                i4++;
+                                streamReader = streamReader2;
+                            }
+                            FileLog.d("[CodeHighlighter] Successfully read " + uint8 + " languages, " + uint16 + " patterns in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms from codelng.gzip");
+                            gZIPInputStream2.close();
+                            bufferedInputStream3.close();
+                            if (inputStreamOpen != null) {
+                                inputStreamOpen.close();
+                            }
+                        } catch (Exception e) {
+                            e = e;
+                            bufferedInputStream2 = bufferedInputStream3;
+                            gZIPInputStream3 = gZIPInputStream2;
+                            bufferedInputStream = bufferedInputStream2;
+                            try {
+                                FileLog.e(e);
+                                if (gZIPInputStream3 != null) {
+                                    gZIPInputStream3.close();
+                                }
+                                if (bufferedInputStream != null) {
+                                    bufferedInputStream.close();
+                                }
+                                if (inputStreamOpen != null) {
+                                    inputStreamOpen.close();
+                                }
+                            } catch (Throwable th2) {
+                                th = th2;
+                                gZIPInputStream = gZIPInputStream3;
+                                r1 = bufferedInputStream;
+                                r6 = r1;
+                                gZIPInputStream2 = gZIPInputStream;
+                                th = th;
+                                if (gZIPInputStream2 != null) {
+                                    try {
+                                        gZIPInputStream2.close();
+                                    } catch (Exception e2) {
+                                        FileLog.e(e2);
+                                        throw th;
+                                    }
+                                }
+                                if (r6 != 0) {
+                                    r6.close();
+                                }
+                                if (inputStreamOpen != null) {
+                                    inputStreamOpen.close();
+                                    throw th;
+                                }
+                                throw th;
+                            }
+                        } catch (Throwable th3) {
+                            th = th3;
+                            r6 = bufferedInputStream3;
+                            th = th;
+                            if (gZIPInputStream2 != null) {
+                                gZIPInputStream2.close();
+                            }
+                            if (r6 != 0) {
+                                r6.close();
+                            }
+                            if (inputStreamOpen != null) {
+                                inputStreamOpen.close();
+                                throw th;
+                            }
+                            throw th;
+                        }
+                    } catch (Exception e3) {
+                        e = e3;
+                        bufferedInputStream2 = null;
+                    } catch (Throwable th4) {
+                        th = th4;
+                        r6 = 0;
+                    }
+                } catch (Exception e4) {
+                    e = e4;
+                    bufferedInputStream = null;
+                } catch (Throwable th5) {
+                    th = th5;
+                    gZIPInputStream = null;
+                    r6 = r1;
+                    gZIPInputStream2 = gZIPInputStream;
+                    th = th;
+                    if (gZIPInputStream2 != null) {
+                        gZIPInputStream2.close();
+                    }
+                    if (r6 != 0) {
+                        r6.close();
+                    }
+                    if (inputStreamOpen != null) {
+                        inputStreamOpen.close();
+                        throw th;
+                    }
+                    throw th;
+                }
+            } catch (Exception e5) {
+                FileLog.e(e5);
+            }
+        } catch (Exception e6) {
+            e = e6;
+            inputStreamOpen = null;
+            bufferedInputStream = null;
+        } catch (Throwable th6) {
+            th = th6;
+            gZIPInputStream = null;
+            inputStreamOpen = null;
+        }
     }
 
     private static class ParsedPattern {
@@ -768,11 +936,11 @@ public class CodeHighlighting {
         int uint8 = streamReader.readUint8();
         TokenPattern[] tokenPatternArr = new TokenPattern[uint8];
         for (int i = 0; i < uint8; i++) {
-            int uint82 = streamReader.readUint8();
-            int i2 = uint82 & 3;
-            int i3 = (uint82 >> 2) & 7;
-            boolean z = (uint82 & 32) != 0;
-            boolean z2 = (uint82 & 64) != 0;
+            int uint9 = streamReader.readUint8();
+            int i2 = uint9 & 3;
+            int i3 = (uint9 >> 2) & 7;
+            boolean z = (uint9 & 32) != 0;
+            boolean z2 = (uint9 & 64) != 0;
             int uint16 = streamReader.readUint16();
             if (i2 == 0) {
                 tokenPatternArr[i] = new TokenPattern(i3, parsedPatternArr[uint16].getCachedPattern());

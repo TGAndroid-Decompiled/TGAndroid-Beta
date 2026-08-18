@@ -50,7 +50,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
     private ScrollView scrollView;
     private TextView textView;
 
-    public BlockingUpdateView(final Context context) throws NoSuchFieldException, SecurityException {
+    public BlockingUpdateView(final Context context) {
         super(context);
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
         int i = Theme.key_windowBackgroundWhite;

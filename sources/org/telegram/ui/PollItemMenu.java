@@ -27,19 +27,20 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -47,7 +48,9 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
@@ -55,18 +58,25 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.BaseCell;
+import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.Bulletin;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessagePreviewView;
+import org.telegram.ui.Components.MessagePrivateSeenView;
+import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrimOptions;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
@@ -338,21 +348,18 @@ public class PollItemMenu extends Dialog {
     }
 
     public void setCell(final BaseFragment baseFragment, ChatMessageCell chatMessageCell, final byte[] bArr) {
-        ChatActivity chatActivity;
         final TLRPC.PollAnswer pollAnswer;
         boolean z;
         TLRPC.PollAnswerVoters pollAnswerVoters;
-        ArrayList arrayList;
-        boolean z2;
-        ArrayList<TLRPC.PollAnswerVoters> arrayList2;
+        ArrayList<TLRPC.PollAnswerVoters> arrayList;
         this.cell = chatMessageCell;
         this.taskId = bArr;
-        ChatActivity chatActivity2 = baseFragment instanceof ChatActivity ? (ChatActivity) baseFragment : null;
+        ChatActivity chatActivity = baseFragment instanceof ChatActivity ? (ChatActivity) baseFragment : null;
         MessageObject messageObject = chatMessageCell != null ? chatMessageCell.getMessageObject() : null;
         this.messageObject = messageObject;
         this.isOut = messageObject != null && messageObject.isOutOwner();
         if (this.cell != null) {
-            this.clipTop = chatActivity2 == null ? 0.0f : chatActivity2.getChatListViewPadding() - AndroidUtilities.dp(4.0f);
+            this.clipTop = chatActivity == null ? 0.0f : chatActivity.getChatListViewPadding() - AndroidUtilities.dp(4.0f);
             this.clipBottom = chatMessageCell.parentBoundsBottom;
             if (chatMessageCell.getParent() instanceof View) {
                 View view = (View) chatMessageCell.getParent();
@@ -362,17 +369,16 @@ public class PollItemMenu extends Dialog {
             final int width = this.cell.getWidth();
             final int height = this.cell.getHeight();
             this.heightdiff = height - this.cell.getHeight();
-            chatActivity = chatActivity2;
             ChatMessageCell chatMessageCell2 = new ChatMessageCell(getContext(), UserConfig.selectedAccount, false, null, this.cell.getResourcesProvider()) {
                 private final Path clipPath = new Path();
                 private final Paint shadowPaint = new Paint(1);
 
                 @Override
-                public void setPressed(boolean z3) {
+                public void setPressed(boolean z2) {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) throws IOException {
+                protected void onDraw(Canvas canvas) {
                     canvas.save();
                     int pollIndex = getPollIndex(bArr);
                     float pollButtonTop = getPollButtonTop(pollIndex);
@@ -381,9 +387,9 @@ public class PollItemMenu extends Dialog {
                     rectF.set(getPollButtonsLeft(), pollButtonTop, getPollButtonsRight(), pollButtonBottom);
                     rectF.top += AndroidUtilities.lerp(AndroidUtilities.dp(3.0f), PollItemMenu.this.pollVoted ? -AndroidUtilities.dp(3.0f) : 0.0f, PollItemMenu.this.openProgress);
                     float f = rectF.bottom;
-                    boolean z3 = PollItemMenu.this.pollVoted;
+                    boolean z2 = PollItemMenu.this.pollVoted;
                     float fDp = AndroidUtilities.dp(3.0f);
-                    if (!z3) {
+                    if (!z2) {
                         fDp = AndroidUtilities.lerp(fDp, 0.0f, PollItemMenu.this.openProgress);
                     }
                     rectF.bottom = f + fDp;
@@ -403,7 +409,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     this.resultsPollButtonOffset = (-AndroidUtilities.dp(7.0f)) * PollItemMenu.this.openProgress;
@@ -520,13 +526,13 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressChannelAvatar(ChatMessageCell chatMessageCell3, TLRPC.Chat chat, int i, float f, float f2, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell3, chat, i, f, f2, z3);
+                public void didPressChannelAvatar(ChatMessageCell chatMessageCell3, TLRPC.Chat chat, int i, float f, float f2, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell3, chat, i, f, f2, z2);
                 }
 
                 @Override
-                public void didPressChannelRecommendation(ChatMessageCell chatMessageCell3, TLObject tLObject, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell3, tLObject, z3);
+                public void didPressChannelRecommendation(ChatMessageCell chatMessageCell3, TLObject tLObject, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell3, tLObject, z2);
                 }
 
                 @Override
@@ -590,8 +596,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressImage(ChatMessageCell chatMessageCell3, float f, float f2, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressImage(this, chatMessageCell3, f, f2, z3);
+                public void didPressImage(ChatMessageCell chatMessageCell3, float f, float f2, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressImage(this, chatMessageCell3, f, f2, z2);
                 }
 
                 @Override
@@ -615,13 +621,13 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressReaction(ChatMessageCell chatMessageCell3, TLRPC.ReactionCount reactionCount, boolean z3, float f, float f2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell3, reactionCount, z3, f, f2);
+                public void didPressReaction(ChatMessageCell chatMessageCell3, TLRPC.ReactionCount reactionCount, boolean z2, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell3, reactionCount, z2, f, f2);
                 }
 
                 @Override
-                public void didPressReplyMessage(ChatMessageCell chatMessageCell3, int i, float f, float f2, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell3, i, f, f2, z3);
+                public void didPressReplyMessage(ChatMessageCell chatMessageCell3, int i, float f, float f2, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell3, i, f, f2, z2);
                 }
 
                 @Override
@@ -655,8 +661,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressSummarize(ChatMessageCell chatMessageCell3, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell3, z3);
+                public void didPressSummarize(ChatMessageCell chatMessageCell3, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell3, z2);
                 }
 
                 @Override
@@ -665,18 +671,18 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean didPressToDoButton(ChatMessageCell chatMessageCell3, TLRPC.TodoItem todoItem, boolean z3) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell3, todoItem, z3);
+                public boolean didPressToDoButton(ChatMessageCell chatMessageCell3, TLRPC.TodoItem todoItem, boolean z2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell3, todoItem, z2);
                 }
 
                 @Override
-                public void didPressUrl(ChatMessageCell chatMessageCell3, CharacterStyle characterStyle, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUrl(this, chatMessageCell3, characterStyle, z3);
+                public void didPressUrl(ChatMessageCell chatMessageCell3, CharacterStyle characterStyle, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUrl(this, chatMessageCell3, characterStyle, z2);
                 }
 
                 @Override
-                public void didPressUserAvatar(ChatMessageCell chatMessageCell3, TLRPC.User user, float f, float f2, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell3, user, f, f2, z3);
+                public void didPressUserAvatar(ChatMessageCell chatMessageCell3, TLRPC.User user, float f, float f2, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell3, user, f, f2, z2);
                 }
 
                 @Override
@@ -695,12 +701,12 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressVoteButtons(ChatMessageCell chatMessageCell3, ArrayList arrayList3, int i, int i2, int i3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell3, arrayList3, i, i2, i3);
+                public void didPressVoteButtons(ChatMessageCell chatMessageCell3, ArrayList arrayList2, int i, int i2, int i3) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell3, arrayList2, i, i2, i3);
                 }
 
                 @Override
-                public void didPressWebPage(ChatMessageCell chatMessageCell3, TLRPC.WebPage webPage, String str, boolean z3) {
+                public void didPressWebPage(ChatMessageCell chatMessageCell3, TLRPC.WebPage webPage, String str, boolean z2) {
                     Browser.openUrl(chatMessageCell3.getContext(), str);
                 }
 
@@ -730,8 +736,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell3, boolean z3, Runnable runnable) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell3, z3, runnable);
+                public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell3, boolean z2, Runnable runnable) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell3, z2, runnable);
                 }
 
                 @Override
@@ -745,18 +751,18 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void forceUpdate(ChatMessageCell chatMessageCell3, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell3, z3);
+                public void forceUpdate(ChatMessageCell chatMessageCell3, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell3, z2);
                 }
 
                 @Override
-                public void forceUpdate(ChatMessageCell chatMessageCell3, boolean z3, boolean z4) {
-                    forceUpdate(chatMessageCell3, z3);
+                public void forceUpdate(ChatMessageCell chatMessageCell3, boolean z2, boolean z3) {
+                    forceUpdate(chatMessageCell3, z2);
                 }
 
                 @Override
-                public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell3, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell3, z3);
+                public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell3, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell3, z2);
                 }
 
                 @Override
@@ -845,8 +851,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean needPlayMessage(ChatMessageCell chatMessageCell3, MessageObject messageObject2, boolean z3) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell3, messageObject2, z3);
+                public boolean needPlayMessage(ChatMessageCell chatMessageCell3, MessageObject messageObject2, boolean z2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell3, messageObject2, z2);
                 }
 
                 @Override
@@ -880,8 +886,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell3, boolean z3) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell3, z3);
+                public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell3, boolean z2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell3, z2);
                 }
 
                 @Override
@@ -904,7 +910,7 @@ public class PollItemMenu extends Dialog {
             this.containerView.addView(chatMessageCell5, new FrameLayout.LayoutParams(this.cell.getWidth(), height, 51));
             ChatMessageCell chatMessageCell6 = new ChatMessageCell(getContext(), UserConfig.selectedAccount, false, null, this.cell.getResourcesProvider()) {
                 @Override
-                public void setPressed(boolean z3) {
+                public void setPressed(boolean z2) {
                 }
 
                 @Override
@@ -913,7 +919,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -1030,13 +1036,13 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressChannelAvatar(ChatMessageCell chatMessageCell7, TLRPC.Chat chat, int i, float f, float f2, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell7, chat, i, f, f2, z3);
+                public void didPressChannelAvatar(ChatMessageCell chatMessageCell7, TLRPC.Chat chat, int i, float f, float f2, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell7, chat, i, f, f2, z2);
                 }
 
                 @Override
-                public void didPressChannelRecommendation(ChatMessageCell chatMessageCell7, TLObject tLObject, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell7, tLObject, z3);
+                public void didPressChannelRecommendation(ChatMessageCell chatMessageCell7, TLObject tLObject, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell7, tLObject, z2);
                 }
 
                 @Override
@@ -1100,8 +1106,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressImage(ChatMessageCell chatMessageCell7, float f, float f2, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressImage(this, chatMessageCell7, f, f2, z3);
+                public void didPressImage(ChatMessageCell chatMessageCell7, float f, float f2, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressImage(this, chatMessageCell7, f, f2, z2);
                 }
 
                 @Override
@@ -1125,13 +1131,13 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressReaction(ChatMessageCell chatMessageCell7, TLRPC.ReactionCount reactionCount, boolean z3, float f, float f2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell7, reactionCount, z3, f, f2);
+                public void didPressReaction(ChatMessageCell chatMessageCell7, TLRPC.ReactionCount reactionCount, boolean z2, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell7, reactionCount, z2, f, f2);
                 }
 
                 @Override
-                public void didPressReplyMessage(ChatMessageCell chatMessageCell7, int i, float f, float f2, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell7, i, f, f2, z3);
+                public void didPressReplyMessage(ChatMessageCell chatMessageCell7, int i, float f, float f2, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell7, i, f, f2, z2);
                 }
 
                 @Override
@@ -1165,8 +1171,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressSummarize(ChatMessageCell chatMessageCell7, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell7, z3);
+                public void didPressSummarize(ChatMessageCell chatMessageCell7, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell7, z2);
                 }
 
                 @Override
@@ -1175,18 +1181,18 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean didPressToDoButton(ChatMessageCell chatMessageCell7, TLRPC.TodoItem todoItem, boolean z3) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell7, todoItem, z3);
+                public boolean didPressToDoButton(ChatMessageCell chatMessageCell7, TLRPC.TodoItem todoItem, boolean z2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell7, todoItem, z2);
                 }
 
                 @Override
-                public void didPressUrl(ChatMessageCell chatMessageCell7, CharacterStyle characterStyle, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUrl(this, chatMessageCell7, characterStyle, z3);
+                public void didPressUrl(ChatMessageCell chatMessageCell7, CharacterStyle characterStyle, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUrl(this, chatMessageCell7, characterStyle, z2);
                 }
 
                 @Override
-                public void didPressUserAvatar(ChatMessageCell chatMessageCell7, TLRPC.User user, float f, float f2, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell7, user, f, f2, z3);
+                public void didPressUserAvatar(ChatMessageCell chatMessageCell7, TLRPC.User user, float f, float f2, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell7, user, f, f2, z2);
                 }
 
                 @Override
@@ -1205,12 +1211,12 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressVoteButtons(ChatMessageCell chatMessageCell7, ArrayList arrayList3, int i, int i2, int i3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell7, arrayList3, i, i2, i3);
+                public void didPressVoteButtons(ChatMessageCell chatMessageCell7, ArrayList arrayList2, int i, int i2, int i3) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell7, arrayList2, i, i2, i3);
                 }
 
                 @Override
-                public void didPressWebPage(ChatMessageCell chatMessageCell7, TLRPC.WebPage webPage, String str, boolean z3) {
+                public void didPressWebPage(ChatMessageCell chatMessageCell7, TLRPC.WebPage webPage, String str, boolean z2) {
                     Browser.openUrl(chatMessageCell7.getContext(), str);
                 }
 
@@ -1240,8 +1246,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell7, boolean z3, Runnable runnable) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell7, z3, runnable);
+                public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell7, boolean z2, Runnable runnable) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell7, z2, runnable);
                 }
 
                 @Override
@@ -1255,18 +1261,18 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void forceUpdate(ChatMessageCell chatMessageCell7, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell7, z3);
+                public void forceUpdate(ChatMessageCell chatMessageCell7, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell7, z2);
                 }
 
                 @Override
-                public void forceUpdate(ChatMessageCell chatMessageCell7, boolean z3, boolean z4) {
-                    forceUpdate(chatMessageCell7, z3);
+                public void forceUpdate(ChatMessageCell chatMessageCell7, boolean z2, boolean z3) {
+                    forceUpdate(chatMessageCell7, z2);
                 }
 
                 @Override
-                public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell7, boolean z3) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell7, z3);
+                public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell7, boolean z2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell7, z2);
                 }
 
                 @Override
@@ -1355,8 +1361,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean needPlayMessage(ChatMessageCell chatMessageCell7, MessageObject messageObject3, boolean z3) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell7, messageObject3, z3);
+                public boolean needPlayMessage(ChatMessageCell chatMessageCell7, MessageObject messageObject3, boolean z2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell7, messageObject3, z2);
                 }
 
                 @Override
@@ -1390,8 +1396,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell7, boolean z3) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell7, z3);
+                public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell7, boolean z2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell7, z2);
                 }
 
                 @Override
@@ -1410,8 +1416,6 @@ public class PollItemMenu extends Dialog {
             ChatMessageCell chatMessageCell8 = this.cell;
             chatMessageCell7.setMessageObject(messageObject3, currentMessagesGroup2, chatMessageCell8.pinnedBottom, chatMessageCell8.pinnedTop, chatMessageCell8.firstInChat);
             this.containerView.addView(this.myCell, new FrameLayout.LayoutParams(this.cell.getWidth(), height, 51));
-        } else {
-            chatActivity = chatActivity2;
         }
         this.viewPager.bringToFront();
         this.menuContainer.bringToFront();
@@ -1435,51 +1439,42 @@ public class PollItemMenu extends Dialog {
         }
         if (pollAnswer != null) {
             TLRPC.Poll poll = tL_messageMediaPoll.poll;
-            boolean z3 = (poll.closed || poll.revoting_disabled) ? false : true;
-            boolean z4 = poll.multiple_choice;
-            ArrayList arrayList3 = new ArrayList();
+            boolean z2 = (poll.closed || poll.revoting_disabled) ? false : true;
+            final boolean z3 = poll.multiple_choice;
+            final ArrayList arrayList2 = new ArrayList();
             TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
-            if (pollResults == null || (arrayList2 = pollResults.results) == null) {
+            if (pollResults == null || (arrayList = pollResults.results) == null) {
                 z = false;
                 pollAnswerVoters = null;
             } else {
-                Iterator<TLRPC.PollAnswerVoters> it = arrayList2.iterator();
-                boolean z5 = false;
+                boolean z4 = false;
                 TLRPC.PollAnswerVoters pollAnswerVoters2 = null;
-                while (it.hasNext()) {
-                    TLRPC.PollAnswerVoters next = it.next();
-                    boolean zEquals = Arrays.equals(next.option, bArr);
+                for (TLRPC.PollAnswerVoters pollAnswerVoters3 : arrayList) {
+                    boolean zEquals = Arrays.equals(pollAnswerVoters3.option, bArr);
                     if (zEquals) {
-                        pollAnswerVoters2 = next;
+                        pollAnswerVoters2 = pollAnswerVoters3;
                     }
-                    if (next.chosen) {
+                    if (pollAnswerVoters3.chosen) {
                         if (zEquals) {
-                            z5 = true;
+                            z4 = true;
                         }
-                        Iterator<TLRPC.PollAnswer> it2 = tL_messageMediaPoll.poll.answers.iterator();
-                        while (it2.hasNext()) {
-                            TLRPC.PollAnswer next2 = it2.next();
-                            if (Arrays.equals(next2.option, next.option)) {
-                                arrayList3.add(next2);
+                        for (TLRPC.PollAnswer pollAnswer2 : tL_messageMediaPoll.poll.answers) {
+                            if (Arrays.equals(pollAnswer2.option, pollAnswerVoters3.option)) {
+                                arrayList2.add(pollAnswer2);
                             }
                         }
                     }
                 }
-                z = z5;
+                z = z4;
                 pollAnswerVoters = pollAnswerVoters2;
             }
-            if (pollAnswerVoters == null || pollAnswerVoters.voters <= 0 || !MessageObject.canShowVotersList(tL_messageMediaPoll)) {
-                arrayList = arrayList3;
-                z2 = z4;
-            } else {
+            if (pollAnswerVoters != null && pollAnswerVoters.voters > 0 && MessageObject.canShowVotersList(tL_messageMediaPoll)) {
                 RecentVotersCell recentVotersCell = new RecentVotersCell(this.context, baseFragment.getCurrentAccount(), this.resourcesProvider);
                 final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
                 itemOptionsMakeSwipeback.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
                 itemOptionsMakeSwipeback.setBlurBackgroundForSwipeback(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
                 itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda333(itemOptionsMakeOptions));
                 itemOptionsMakeSwipeback.addGap();
-                arrayList = arrayList3;
-                z2 = z4;
                 itemOptionsMakeSwipeback.addView(recentVotersCell.createListView(baseFragment, this.messageObject.getDialogId(), this.messageObject.getId(), bArr, pollAnswerVoters.voters, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
@@ -1500,35 +1495,31 @@ public class PollItemMenu extends Dialog {
                 itemOptionsMakeOptions.addView(recentVotersCell);
                 itemOptionsMakeOptions.addGap();
             }
-            if (z3) {
+            if (z2) {
                 if (z) {
-                    final boolean z6 = z2;
-                    final ArrayList arrayList4 = arrayList;
-                    final TLRPC.PollAnswer pollAnswer2 = pollAnswer;
+                    final TLRPC.PollAnswer pollAnswer3 = pollAnswer;
                     itemOptionsMakeOptions.add(R.drawable.msg_unvote, LocaleController.getString(R.string.Unvote), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$setCell$3(z6, baseFragment, arrayList4, pollAnswer2);
+                            this.f$0.lambda$setCell$3(z3, baseFragment, arrayList2, pollAnswer3);
                         }
                     });
                 } else if (PollUtils.getVoteRestrictedFlags(this.messageObject) == 0) {
-                    final boolean z7 = z2;
-                    final TLRPC.PollAnswer pollAnswer3 = pollAnswer;
-                    final ArrayList arrayList5 = arrayList;
+                    final TLRPC.PollAnswer pollAnswer4 = pollAnswer;
                     itemOptionsMakeOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.PollSubmitVotesNoCaps), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$setCell$4(z7, pollAnswer3, baseFragment, arrayList5);
+                            this.f$0.lambda$setCell$4(z3, pollAnswer4, baseFragment, arrayList2);
                         }
                     });
                 }
             }
-            final ChatActivity chatActivity3 = chatActivity;
-            if (chatActivity3 != null && chatActivity3.canSendMessage()) {
+            final ChatActivity chatActivity2 = chatActivity;
+            if (chatActivity2 != null && chatActivity2.canSendMessage()) {
                 itemOptionsMakeOptions.add(R.drawable.menu_reply, LocaleController.getString(R.string.PollItemQuote), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$setCell$5(chatActivity3, pollAnswer);
+                        this.f$0.lambda$setCell$5(chatActivity2, pollAnswer);
                     }
                 });
             }
@@ -1566,7 +1557,7 @@ public class PollItemMenu extends Dialog {
                 final long peerDialogId = DialogObject.getPeerDialogId(peer);
                 long clientUserId = UserConfig.getInstance(this.messageObject.currentAccount).getClientUserId();
                 long currentTime = ConnectionsManager.getInstance(this.messageObject.currentAccount).getCurrentTime();
-                long j = pollAnswer.date + MessagesController.getInstance(this.messageObject.currentAccount).config.pollAnswerDeletePeriod.get(TimeUnit.SECONDS);
+                long j = ((long) pollAnswer.date) + MessagesController.getInstance(this.messageObject.currentAccount).config.pollAnswerDeletePeriod.get(TimeUnit.SECONDS);
                 if (!this.messageObject.isForwarded()) {
                     TLRPC.Poll poll2 = tL_messageMediaPoll.poll;
                     if (!poll2.closed && (poll2.creator || (peerDialogId == clientUserId && currentTime < j))) {
@@ -1663,8 +1654,235 @@ public class PollItemMenu extends Dialog {
         dismiss(false);
     }
 
-    public void setupMessageOptions(final org.telegram.ui.ChatActivity r23, java.util.ArrayList r24, java.util.ArrayList r25, java.util.ArrayList r26, final org.telegram.messenger.Utilities.Callback r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PollItemMenu.setupMessageOptions(org.telegram.ui.ChatActivity, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, org.telegram.messenger.Utilities$Callback):void");
+    public void setupMessageOptions(final ChatActivity chatActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, final Utilities.Callback callback) {
+        TLRPC.ChatFull chatFull;
+        boolean z;
+        MessageObject messageObject;
+        boolean z2;
+        int i;
+        TLRPC.User user;
+        TLRPC.UserFull userFull;
+        TLRPC.ChatFull chatFull2;
+        TLRPC.ChatFull chatFull3;
+        MessageObject messageObject2 = this.messageObject;
+        List<TLRPC.TL_availableReaction> enabledReactionsList = chatActivity.getMediaDataController().getEnabledReactionsList();
+        boolean z3 = (chatActivity.isSecretChat() || chatActivity.isInScheduleMode() || chatActivity.currentUser != null || !messageObject2.hasReactions() || (ChatObject.isChannel(chatActivity.currentChat) && !chatActivity.currentChat.megagroup) || ChatObject.isMonoForum(chatActivity.currentChat) || enabledReactionsList.isEmpty() || !messageObject2.messageOwner.reactions.can_see_list || messageObject2.isSecretMedia()) ? false : true;
+        boolean z4 = !messageObject2.isForwardedChannelPost() ? messageObject2.isSecretMedia() || chatActivity.getChatMode() == 5 || chatActivity.isSecretChat() || chatActivity.isInScheduleMode() || !messageObject2.isReactionsAvailable() || ((((chatFull = chatActivity.chatInfo) == null || ((chatFull.available_reactions instanceof TLRPC.TL_chatReactionsNone) && !chatFull.paid_reactions_available)) && ((chatFull != null || ChatObject.isChannel(chatActivity.currentChat)) && chatActivity.currentUser == null && !ChatObject.isMonoForum(chatActivity.currentChat))) || enabledReactionsList.isEmpty()) : (chatFull3 = chatActivity.getMessagesController().getChatFull(-messageObject2.getFromChatId())) != null && (chatActivity.isSecretChat() || chatActivity.getChatMode() == 5 || chatActivity.isInScheduleMode() || !messageObject2.isReactionsAvailable() || (((chatFull3.available_reactions instanceof TLRPC.TL_chatReactionsNone) && !chatFull3.paid_reactions_available) || enabledReactionsList.isEmpty()));
+        boolean z5 = (z3 || chatActivity.isInScheduleMode() || chatActivity.currentChat == null || !messageObject2.isOutOwner() || !messageObject2.isSent() || messageObject2.isEditing() || messageObject2.isSending() || messageObject2.isSendError() || messageObject2.isContentUnread() || messageObject2.isUnread() || ConnectionsManager.getInstance(chatActivity.getCurrentAccount()).getCurrentTime() - messageObject2.messageOwner.date >= chatActivity.getMessagesController().chatReadMarkExpirePeriod || (!ChatObject.isMegagroup(chatActivity.currentChat) && ChatObject.isChannel(chatActivity.currentChat)) || (chatFull2 = chatActivity.chatInfo) == null || chatFull2.participants_count > chatActivity.getMessagesController().chatReadMarkSizeThreshold || (messageObject2.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest) || chatActivity.getChatMode() == 3 || !messageObject2.canSetReaction() || ChatObject.isMonoForum(chatActivity.currentChat)) ? false : true;
+        if (chatActivity.currentChat != null && !messageObject2.isOut() && ChatObject.isMonoForum(chatActivity.currentChat) && ChatObject.canManageMonoForum(chatActivity.getCurrentAccount(), chatActivity.currentChat)) {
+            long j = chatActivity.currentChat.linked_monoforum_id;
+            messageObject2.getFromChatId();
+        }
+        if (z3 || chatActivity.currentChat != null || chatActivity.currentEncryptedChat != null || (user = chatActivity.currentUser) == null || UserObject.isUserSelf(user) || UserObject.isReplyUser(chatActivity.currentUser) || UserObject.isAnonymous(chatActivity.currentUser)) {
+            z = false;
+        } else {
+            TLRPC.User user2 = chatActivity.currentUser;
+            if (user2.bot || UserObject.isService(user2.id) || (((userFull = chatActivity.userInfo) != null && userFull.read_dates_private) || chatActivity.isInScheduleMode() || !messageObject2.isOutOwner() || !messageObject2.isSent() || messageObject2.isEditing() || messageObject2.isSending() || messageObject2.isSendError() || messageObject2.isContentUnread() || messageObject2.isUnread() || chatActivity.getConnectionsManager().getCurrentTime() - messageObject2.messageOwner.date >= chatActivity.getMessagesController().pmReadDateExpirePeriod || (messageObject2.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
+                z = false;
+            } else {
+                z = true;
+            }
+        }
+        TLRPC.User user3 = chatActivity.currentUser;
+        boolean z6 = (user3 == null || !(UserObject.isReplyUser(user3) || UserObject.isAnonymous(chatActivity.currentUser))) && !chatActivity.isInScheduleMode() && messageObject2.isEdited() && !(messageObject2.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest);
+        final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.containerView, chatActivity.getResourceProvider(), (View) null, z3 || z5);
+        if (z5) {
+            final MessageSeenView messageSeenView = new MessageSeenView(getContext(), chatActivity.getCurrentAccount(), messageObject2, chatActivity.currentChat);
+            FrameLayout frameLayout = new FrameLayout(getContext());
+            frameLayout.addView(messageSeenView, LayoutHelper.createFrame(-1, 36.0f));
+            final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
+            ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), true, false, this.resourcesProvider);
+            actionBarMenuSubItem.setItemHeight(44);
+            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back);
+            actionBarMenuSubItem.getTextView().setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0);
+            FrameLayout frameLayout2 = new FrameLayout(getContext());
+            final LinearLayout linearLayout = new LinearLayout(getContext());
+            linearLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, this.resourcesProvider));
+            linearLayout.setOrientation(1);
+            final RecyclerListView recyclerListViewCreateListView = messageSeenView.createListView();
+            frameLayout2.addView(actionBarMenuSubItem);
+            linearLayout.addView(frameLayout2);
+            linearLayout.addView(new ActionBarPopupWindow.GapView(getContext(), this.resourcesProvider), LayoutHelper.createLinear(-1, 8));
+            frameLayout2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Bulletin.hideVisible();
+                    itemOptionsMakeOptions.closeSwipeback();
+                }
+            });
+            z2 = z4;
+            messageObject = messageObject2;
+            i = -2;
+            messageSeenView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (messageSeenView.users.isEmpty()) {
+                        return;
+                    }
+                    if (messageSeenView.users.size() == 1 && (messageSeenView.dates.size() <= 0 || ((Integer) messageSeenView.dates.get(0)).intValue() <= 0)) {
+                        TLObject tLObject = (TLObject) messageSeenView.users.get(0);
+                        if (tLObject == null) {
+                            return;
+                        }
+                        Bundle bundle = new Bundle();
+                        if (tLObject instanceof TLRPC.User) {
+                            bundle.putLong("user_id", ((TLRPC.User) tLObject).id);
+                        } else if (tLObject instanceof TLRPC.Chat) {
+                            bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).id);
+                        }
+                        chatActivity.presentFragment(new ProfileActivity(bundle));
+                        PollItemMenu.this.dismiss(false);
+                        return;
+                    }
+                    if (SharedConfig.messageSeenHintCount > 0 && chatActivity.contentView.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
+                        chatActivity.messageSeenPrivacyBulletin = BulletinFactory.of(Bulletin.BulletinWindow.make(PollItemMenu.this.getContext()), PollItemMenu.this.resourcesProvider).createErrorBulletin(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)));
+                        chatActivity.messageSeenPrivacyBulletin.setDuration(4000);
+                        chatActivity.messageSeenPrivacyBulletin.show();
+                        SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
+                    }
+                    recyclerListViewCreateListView.requestLayout();
+                    linearLayout.requestLayout();
+                    recyclerListViewCreateListView.getAdapter().notifyDataSetChanged();
+                    itemOptionsMakeOptions.openSwipeback(itemOptionsMakeSwipeback);
+                }
+            });
+            linearLayout.addView(recyclerListViewCreateListView, LayoutHelper.createLinear(-1, -2));
+            itemOptionsMakeSwipeback.addView(linearLayout);
+            itemOptionsMakeOptions.addView(frameLayout);
+            itemOptionsMakeOptions.addGap();
+        } else {
+            messageObject = messageObject2;
+            z2 = z4;
+            i = -2;
+            if (z) {
+                itemOptionsMakeOptions.addView(new MessagePrivateSeenView(getContext(), 0, messageObject, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$setupMessageOptions$10();
+                    }
+                }, this.resourcesProvider), LayoutHelper.createLinear(-1, 36));
+                itemOptionsMakeOptions.addGap();
+            } else if (z6) {
+                itemOptionsMakeOptions.addView(new MessagePrivateSeenView(getContext(), 1, messageObject, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$setupMessageOptions$11();
+                    }
+                }, this.resourcesProvider), LayoutHelper.createLinear(-1, 36));
+                itemOptionsMakeOptions.addGap();
+            }
+        }
+        int size = arrayList.size();
+        for (int i2 = 0; i2 < size; i2++) {
+            final int iIntValue = ((Integer) arrayList3.get(i2)).intValue();
+            itemOptionsMakeOptions.add(((Integer) arrayList.get(i2)).intValue(), (CharSequence) arrayList2.get(i2), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$setupMessageOptions$12(callback, iIntValue);
+                }
+            });
+        }
+        itemOptionsMakeOptions.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
+        itemOptionsMakeOptions.setBlurBackground(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
+        itemOptionsMakeOptions.setupSelectors();
+        ViewGroup layout = itemOptionsMakeOptions.getLayout();
+        this.messageOptionsView = layout;
+        layout.setPivotX(0.0f);
+        this.messageOptionsView.setPivotY(0.0f);
+        this.menuContainer.addView(this.messageOptionsView, LayoutHelper.createFrame(i, i, 51));
+        View view = this.messageOptionsView;
+        if (view instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+            ((ActionBarPopupWindow.ActionBarPopupWindowLayout) view).setOnSizeChangedListener(new ActionBarPopupWindow.onSizeChangedListener() {
+                @Override
+                public final void onSizeChanged() {
+                    this.f$0.updateTranslation();
+                }
+            });
+            this.messageOptionsView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                    return this.f$0.lambda$setupMessageOptions$13(view2, motionEvent);
+                }
+            });
+        }
+        if (z2) {
+            final ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout((chatActivity.getUserConfig().getClientUserId() > chatActivity.getDialogId() ? 1 : (chatActivity.getUserConfig().getClientUserId() == chatActivity.getDialogId() ? 0 : -1)) == 0 ? 3 : 0, chatActivity, getContext(), chatActivity.getCurrentAccount(), this.resourcesProvider);
+            reactionsContainerLayout.forceAttachToParent = true;
+            float f = 22;
+            reactionsContainerLayout.setPadding(AndroidUtilities.dp(4.0f) + (LocaleController.isRTL ? 0 : 24), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + (LocaleController.isRTL ? 24 : 0), AndroidUtilities.dp(f));
+            final MessageObject messageObject3 = messageObject;
+            reactionsContainerLayout.setDelegate(new ReactionsContainerLayout.ReactionsContainerDelegate() {
+                @Override
+                public boolean allowLongPress() {
+                    return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
+                }
+
+                @Override
+                public boolean drawBackground() {
+                    return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
+                }
+
+                @Override
+                public void drawRoundRect(Canvas canvas, RectF rectF, float f2, float f3, float f4, int i3, boolean z7) {
+                    ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f2, f3, f4, i3, z7);
+                }
+
+                @Override
+                public boolean needEnterText() {
+                    return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$needEnterText(this);
+                }
+
+                @Override
+                public void onEmojiWindowDismissed() {
+                    ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
+                }
+
+                @Override
+                public void onReactionClicked(View view2, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z7, boolean z8) {
+                    float f2;
+                    float f3;
+                    int i3;
+                    float f4;
+                    BaseCell baseCellFindMessageCell = chatActivity.findMessageCell(messageObject3.getId(), true);
+                    if (baseCellFindMessageCell instanceof ChatMessageCell) {
+                        ChatMessageCell chatMessageCell = (ChatMessageCell) baseCellFindMessageCell;
+                        ReactionsLayoutInBubble.ReactionButton reactionButton = chatMessageCell.reactionsLayoutInBubble.getReactionButton(visibleReaction);
+                        if (reactionButton != null) {
+                            ReactionsLayoutInBubble reactionsLayoutInBubble = chatMessageCell.reactionsLayoutInBubble;
+                            f2 = reactionsLayoutInBubble.x + reactionButton.x + (reactionButton.width / 2.0f);
+                            f3 = reactionsLayoutInBubble.y + reactionButton.y;
+                            i3 = reactionButton.height;
+                            f4 = f3 + (i3 / 2.0f);
+                        } else {
+                            f2 = 0.0f;
+                            f4 = 0.0f;
+                        }
+                    } else {
+                        if (baseCellFindMessageCell instanceof ChatActionCell) {
+                            ChatActionCell chatActionCell = (ChatActionCell) baseCellFindMessageCell;
+                            ReactionsLayoutInBubble.ReactionButton reactionButton2 = chatActionCell.reactionsLayoutInBubble.getReactionButton(visibleReaction);
+                            if (reactionButton2 != null) {
+                                ReactionsLayoutInBubble reactionsLayoutInBubble2 = chatActionCell.reactionsLayoutInBubble;
+                                f2 = reactionsLayoutInBubble2.x + reactionButton2.x + (reactionButton2.width / 2.0f);
+                                f3 = reactionsLayoutInBubble2.y + reactionButton2.y;
+                                i3 = reactionButton2.height;
+                                f4 = f3 + (i3 / 2.0f);
+                            }
+                        }
+                        f2 = 0.0f;
+                        f4 = 0.0f;
+                    }
+                    chatActivity.selectReaction(baseCellFindMessageCell, messageObject3, reactionsContainerLayout, view2, f2, f4, visibleReaction, false, (visibleReaction == null || !visibleReaction.isStar) ? z7 : true, z8, false);
+                    PollItemMenu.this.dismiss(false);
+                }
+            });
+            FrameLayout frameLayout3 = this.menuContainer;
+            this.reactionsView = reactionsContainerLayout;
+            frameLayout3.addView(reactionsContainerLayout, LayoutHelper.createFrame(i, (int) ((reactionsContainerLayout.getTopOffset() / AndroidUtilities.density) + 52.0f + f), 51));
+            reactionsContainerLayout.setMessage(messageObject3, chatActivity.chatInfo, true);
+            this.reactionsView.setTransitionProgress(1.0f);
+        }
+        updateTranslation();
     }
 
     public void lambda$setupMessageOptions$10() {
@@ -1732,23 +1950,25 @@ public class PollItemMenu extends Dialog {
                 this.dtx2 = 0.0f;
                 float f2 = this.ty;
                 this.dty2 = f2;
-                float f3 = (int) pollButtonBottom;
+                int i2 = (int) pollButtonBottom;
+                float f3 = i2;
                 float f4 = f2 + f3;
                 int height4 = this.windowView.getHeight();
                 Insets insets4 = this.insets;
                 if (f4 > (((height4 - insets4.top) - insets4.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) {
                     int height5 = this.windowView.getHeight();
                     Insets insets5 = this.insets;
-                    this.dty2 = ((((height5 - insets5.top) - insets5.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - r0;
+                    this.dty2 = ((((height5 - insets5.top) - insets5.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - i2;
                 }
-                if (this.taskOptionsView != null) {
-                    float height6 = this.dty2 + f3 + r2.getHeight();
+                View view = this.taskOptionsView;
+                if (view != null) {
+                    float height6 = this.dty2 + f3 + view.getHeight();
                     int height7 = this.windowView.getHeight();
                     Insets insets6 = this.insets;
                     if (height6 > (((height7 - insets6.top) - insets6.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) {
                         int height8 = this.windowView.getHeight();
                         Insets insets7 = this.insets;
-                        this.dty2 = (((((height8 - insets7.top) - insets7.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - r0) - this.taskOptionsView.getHeight();
+                        this.dty2 = (((((height8 - insets7.top) - insets7.bottom) - AndroidUtilities.dp(78.0f)) - this.hintTextView.getHeight()) - i2) - this.taskOptionsView.getHeight();
                     }
                 }
             }

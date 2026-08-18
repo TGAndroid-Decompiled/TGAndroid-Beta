@@ -20,12 +20,12 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Business.QuickRepliesController;
 
 public class QuickRepliesController {
     private static volatile QuickRepliesController[] Instance = new QuickRepliesController[4];
@@ -68,7 +68,8 @@ public class QuickRepliesController {
                         quickRepliesControllerArr[i] = quickRepliesController2;
                         quickRepliesController = quickRepliesController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -170,10 +171,11 @@ public class QuickRepliesController {
             }
             long jCalcHash2 = MediaDataController.calcHash(jCalcHash, jM);
             tL_messages_getQuickReplies.hash = jCalcHash2;
-            long jCalcHash3 = MediaDataController.calcHash(jCalcHash2, quickReply.topMessage == null ? 0L : r6.getId());
-            tL_messages_getQuickReplies.hash = jCalcHash3;
             MessageObject messageObject = quickReply.topMessage;
-            if (messageObject != null && (message = messageObject.messageOwner) != null && (message.flags & 32768) != 0) {
+            long jCalcHash3 = MediaDataController.calcHash(jCalcHash2, messageObject == null ? 0L : messageObject.getId());
+            tL_messages_getQuickReplies.hash = jCalcHash3;
+            MessageObject messageObject2 = quickReply.topMessage;
+            if (messageObject2 != null && (message = messageObject2.messageOwner) != null && (message.flags & 32768) != 0) {
                 tL_messages_getQuickReplies.hash = MediaDataController.calcHash(jCalcHash3, message.edit_date);
             } else {
                 tL_messages_getQuickReplies.hash = MediaDataController.calcHash(jCalcHash3, 0L);
@@ -187,8 +189,111 @@ public class QuickRepliesController {
         });
     }
 
-    public void lambda$load$1(org.telegram.messenger.MessagesStorage r18, long r19, final java.lang.Runnable r21) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.QuickRepliesController.lambda$load$1(org.telegram.messenger.MessagesStorage, long, java.lang.Runnable):void");
+    public void lambda$load$1(MessagesStorage messagesStorage, long j, final Runnable runnable) throws Throwable {
+        ?? r6;
+        ?? r9;
+        ?? ByteBufferValue;
+        ?? r1 = 0;
+        int i = 1;
+        final ArrayList arrayList = new ArrayList();
+        final ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
+        final ArrayList<TLRPC.Chat> arrayList3 = new ArrayList<>();
+        try {
+            SQLiteDatabase database = messagesStorage.getDatabase();
+            ?? QueryFinalized = database.queryFinalized("SELECT topic_id, name, order_value, count FROM business_replies ORDER BY order_value ASC", new Object[0]);
+            while (QueryFinalized.next()) {
+                try {
+                    QuickReply quickReply = new QuickReply();
+                    quickReply.id = QueryFinalized.intValue(0);
+                    quickReply.name = QueryFinalized.stringValue(1);
+                    quickReply.order = QueryFinalized.intValue(2);
+                    quickReply.messagesCount = QueryFinalized.intValue(3);
+                    arrayList.add(quickReply);
+                } catch (Exception e) {
+                    e = e;
+                    r6 = QueryFinalized;
+                    try {
+                        FileLog.e(e);
+                        if (r6 != 0) {
+                            r9 = r6;
+                        }
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$load$0(arrayList2, arrayList3, arrayList, runnable);
+                            }
+                        });
+                    } catch (Throwable th) {
+                        th = th;
+                        if (r6 != 0) {
+                            r6.dispose();
+                        }
+                        throw th;
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    r6 = QueryFinalized;
+                    if (r6 != 0) {
+                        r6.dispose();
+                    }
+                    throw th;
+                }
+            }
+            QueryFinalized.dispose();
+            ArrayList<Long> arrayList4 = new ArrayList<>();
+            ArrayList arrayList5 = new ArrayList();
+            int i2 = 0;
+            QueryFinalized = QueryFinalized;
+            while (i2 < arrayList.size()) {
+                QuickReply quickReply2 = (QuickReply) arrayList.get(i2);
+                Object[] objArr = new Object[i];
+                objArr[r1] = Integer.valueOf(quickReply2.id);
+                ?? QueryFinalized2 = database.queryFinalized("SELECT data, send_state, mid, date, topic_id, ttl FROM quick_replies_messages WHERE topic_id = ? ORDER BY mid ASC", objArr);
+                if (QueryFinalized2.next() && (ByteBufferValue = QueryFinalized2.byteBufferValue(r1)) != 0) {
+                    ?? TLdeserialize = TLRPC.Message.TLdeserialize(ByteBufferValue, ByteBufferValue.readInt32(r1), r1);
+                    TLdeserialize.send_state = QueryFinalized2.intValue(i);
+                    TLdeserialize.readAttachPath(ByteBufferValue, j);
+                    ByteBufferValue.reuse();
+                    TLdeserialize.id = QueryFinalized2.intValue(2);
+                    TLdeserialize.date = QueryFinalized2.intValue(3);
+                    TLdeserialize.flags |= 1073741824;
+                    TLdeserialize.quick_reply_shortcut_id = QueryFinalized2.intValue(4);
+                    TLdeserialize.ttl = QueryFinalized2.intValue(5);
+                    MessagesStorage.addUsersAndChatsFromMessage(TLdeserialize, arrayList4, arrayList5, null);
+                    MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize, false, true);
+                    quickReply2.topMessage = messageObject;
+                    quickReply2.topMessageId = TLdeserialize.id;
+                    messageObject.generateThumbs(false);
+                    quickReply2.topMessage.applyQuickReply(quickReply2.name, quickReply2.id);
+                }
+                QueryFinalized2.dispose();
+                i2++;
+                r1 = 0;
+                i = 1;
+                QueryFinalized = QueryFinalized2;
+            }
+            if (!arrayList5.isEmpty()) {
+                messagesStorage.getChatsInternal(TextUtils.join(",", arrayList5), arrayList3);
+            }
+            r9 = QueryFinalized;
+            if (!arrayList4.isEmpty()) {
+                messagesStorage.getUsersInternal(arrayList4, arrayList2);
+                r9 = QueryFinalized;
+            }
+        } catch (Exception e2) {
+            e = e2;
+            r6 = 0;
+        } catch (Throwable th3) {
+            th = th3;
+            r6 = 0;
+        }
+        r9.dispose();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$load$0(arrayList2, arrayList3, arrayList, runnable);
+            }
+        });
     }
 
     public void lambda$load$0(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, Runnable runnable) {
@@ -287,34 +392,24 @@ public class QuickRepliesController {
     public void lambda$saveToCache$4(MessagesStorage messagesStorage) {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
-            try {
-                SQLiteDatabase database = messagesStorage.getDatabase();
-                database.executeFast("DELETE FROM business_replies").stepThis().dispose();
-                sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO business_replies VALUES(?, ?, ?, ?)");
-                for (int i = 0; i < this.replies.size(); i++) {
-                    QuickReply quickReply = (QuickReply) this.replies.get(i);
-                    sQLitePreparedStatementExecuteFast.requery();
-                    sQLitePreparedStatementExecuteFast.bindInteger(1, quickReply.id);
-                    sQLitePreparedStatementExecuteFast.bindString(2, quickReply.name);
-                    sQLitePreparedStatementExecuteFast.bindInteger(3, quickReply.order);
-                    sQLitePreparedStatementExecuteFast.bindInteger(4, quickReply.messagesCount);
-                    sQLitePreparedStatementExecuteFast.step();
-                }
-                if (sQLitePreparedStatementExecuteFast == null) {
-                    return;
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-                if (sQLitePreparedStatementExecuteFast == null) {
-                    return;
-                }
+            SQLiteDatabase database = messagesStorage.getDatabase();
+            database.executeFast("DELETE FROM business_replies").stepThis().dispose();
+            sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO business_replies VALUES(?, ?, ?, ?)");
+            for (int i = 0; i < this.replies.size(); i++) {
+                QuickReply quickReply = (QuickReply) this.replies.get(i);
+                sQLitePreparedStatementExecuteFast.requery();
+                sQLitePreparedStatementExecuteFast.bindInteger(1, quickReply.id);
+                sQLitePreparedStatementExecuteFast.bindString(2, quickReply.name);
+                sQLitePreparedStatementExecuteFast.bindInteger(3, quickReply.order);
+                sQLitePreparedStatementExecuteFast.bindInteger(4, quickReply.messagesCount);
+                sQLitePreparedStatementExecuteFast.step();
             }
-            sQLitePreparedStatementExecuteFast.dispose();
-        } catch (Throwable th) {
+        } catch (Exception e) {
+            FileLog.e(e);
+        } finally {
             if (sQLitePreparedStatementExecuteFast != null) {
                 sQLitePreparedStatementExecuteFast.dispose();
             }
-            throw th;
         }
     }
 
@@ -362,9 +457,7 @@ public class QuickRepliesController {
     }
 
     public QuickReply findReply(long j) {
-        Iterator it = this.replies.iterator();
-        while (it.hasNext()) {
-            QuickReply quickReply = (QuickReply) it.next();
+        for (QuickReply quickReply : this.replies) {
             if (quickReply.id == j) {
                 return quickReply;
             }
@@ -373,9 +466,7 @@ public class QuickRepliesController {
     }
 
     public QuickReply findReply(String str) {
-        Iterator it = this.replies.iterator();
-        while (it.hasNext()) {
-            QuickReply quickReply = (QuickReply) it.next();
+        for (QuickReply quickReply : this.replies) {
             if (TextUtils.equals(str, quickReply.name)) {
                 return quickReply;
             }
@@ -384,9 +475,7 @@ public class QuickRepliesController {
     }
 
     public QuickReply findLocalReply(String str) {
-        Iterator it = this.localReplies.iterator();
-        while (it.hasNext()) {
-            QuickReply quickReply = (QuickReply) it.next();
+        for (QuickReply quickReply : this.localReplies) {
             if (TextUtils.equals(str, quickReply.name)) {
                 return quickReply;
             }
@@ -553,8 +642,82 @@ public class QuickRepliesController {
         });
     }
 
-    public void lambda$updateTopMessage$16(org.telegram.messenger.MessagesStorage r15, final org.telegram.ui.Business.QuickRepliesController.QuickReply r16, long r17) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.QuickRepliesController.lambda$updateTopMessage$16(org.telegram.messenger.MessagesStorage, org.telegram.ui.Business.QuickRepliesController$QuickReply, long):void");
+    public void lambda$updateTopMessage$16(MessagesStorage messagesStorage, final QuickReply quickReply, long j) throws Throwable {
+        NativeByteBuffer nativeByteBufferByteBufferValue;
+        SQLiteCursor sQLiteCursor = null;
+        MessageObject messageObject = null;
+        sQLiteCursor = null;
+        try {
+            ArrayList<Long> arrayList = new ArrayList<>();
+            ArrayList arrayList2 = new ArrayList();
+            SQLiteCursor sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, send_state, mid, date, topic_id, ttl FROM quick_replies_messages WHERE topic_id = ? ORDER BY mid ASC", Integer.valueOf(quickReply.id));
+            try {
+                if (sQLiteCursorQueryFinalized.next() && (nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0)) != null) {
+                    TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
+                    messageTLdeserialize.send_state = sQLiteCursorQueryFinalized.intValue(1);
+                    messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue, j);
+                    nativeByteBufferByteBufferValue.reuse();
+                    messageTLdeserialize.id = sQLiteCursorQueryFinalized.intValue(2);
+                    messageTLdeserialize.date = sQLiteCursorQueryFinalized.intValue(3);
+                    messageTLdeserialize.flags |= 1073741824;
+                    messageTLdeserialize.quick_reply_shortcut_id = sQLiteCursorQueryFinalized.intValue(4);
+                    messageTLdeserialize.ttl = sQLiteCursorQueryFinalized.intValue(5);
+                    MessagesStorage.addUsersAndChatsFromMessage(messageTLdeserialize, arrayList, arrayList2, null);
+                    try {
+                        messageObject = new MessageObject(this.currentAccount, messageTLdeserialize, false, true);
+                    } catch (Exception e) {
+                        e = e;
+                        sQLiteCursor = sQLiteCursorQueryFinalized;
+                        try {
+                            FileLog.e(e);
+                            if (sQLiteCursor != null) {
+                                sQLiteCursor.dispose();
+                                return;
+                            }
+                            return;
+                        } catch (Throwable th) {
+                            th = th;
+                            if (sQLiteCursor != null) {
+                                sQLiteCursor.dispose();
+                            }
+                            throw th;
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                        sQLiteCursor = sQLiteCursorQueryFinalized;
+                        if (sQLiteCursor != null) {
+                            sQLiteCursor.dispose();
+                        }
+                        throw th;
+                    }
+                }
+                final MessageObject messageObject2 = messageObject;
+                sQLiteCursorQueryFinalized.dispose();
+                final ArrayList<TLRPC.User> arrayList3 = new ArrayList<>();
+                final ArrayList<TLRPC.Chat> arrayList4 = new ArrayList<>();
+                if (!arrayList2.isEmpty()) {
+                    messagesStorage.getChatsInternal(TextUtils.join(",", arrayList2), arrayList4);
+                }
+                if (!arrayList.isEmpty()) {
+                    messagesStorage.getUsersInternal(arrayList, arrayList3);
+                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$updateTopMessage$15(arrayList3, arrayList4, quickReply, messageObject2);
+                    }
+                });
+                sQLiteCursorQueryFinalized.dispose();
+            } catch (Exception e2) {
+                e = e2;
+            } catch (Throwable th3) {
+                th = th3;
+            }
+        } catch (Exception e3) {
+            e = e3;
+        } catch (Throwable th4) {
+            th = th4;
+        }
     }
 
     public void lambda$updateTopMessage$15(ArrayList arrayList, ArrayList arrayList2, QuickReply quickReply, MessageObject messageObject) {
@@ -874,6 +1037,12 @@ public class QuickRepliesController {
                 FileLog.e(e);
                 if (sQLiteCursorQueryFinalized != null) {
                 }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$sendQuickReplyTo$26(arrayList, quickReply, tL_messages_sendQuickReplyMessages);
+                    }
+                });
             }
             sQLiteCursorQueryFinalized.dispose();
             AndroidUtilities.runOnUIThread(new Runnable() {

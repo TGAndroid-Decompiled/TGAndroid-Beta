@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.LinkSpanDrawable;
 
 public abstract class TextHelper {
     public static TextView makeTextView(Context context, float f, int i, boolean z) {

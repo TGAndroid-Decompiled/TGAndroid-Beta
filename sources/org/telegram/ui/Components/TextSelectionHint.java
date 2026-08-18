@@ -66,7 +66,7 @@ public abstract class TextSelectionHint extends View {
         this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         this.textPaint.setColor(themedColor);
         this.selectionPaint.setColor(themedColor);
-        this.selectionPaint.setAlpha((int) (iAlpha * 0.14d));
+        this.selectionPaint.setAlpha((int) (((double) iAlpha) * 0.14d));
         setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor(Theme.key_undo_background)));
     }
 
@@ -137,9 +137,6 @@ public abstract class TextSelectionHint extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int i;
-        Path.Direction direction;
-        float f;
         if (this.textLayout == null) {
             return;
         }
@@ -154,48 +151,39 @@ public abstract class TextSelectionHint extends View {
         int lineForOffset = this.textLayout.getLineForOffset(this.currentEnd);
         this.textLayout.getPrimaryHorizontal(this.currentEnd);
         int lineBottom = this.textLayout.getLineBottom(lineForOffset);
-        int i2 = this.currentEnd;
-        int i3 = this.animateToEnd;
-        if (i2 == i3) {
-            roundedRect(this.path, this.textLayout.getPrimaryHorizontal(i3), this.textLayout.getLineTop(lineForOffset), this.textLayout.getPrimaryHorizontal(this.animateToEnd) + AndroidUtilities.dpf2(4.0f), this.textLayout.getLineBottom(lineForOffset), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), false, true);
+        int i = this.currentEnd;
+        int i2 = this.animateToEnd;
+        if (i == i2) {
+            roundedRect(this.path, this.textLayout.getPrimaryHorizontal(i2), this.textLayout.getLineTop(lineForOffset), this.textLayout.getPrimaryHorizontal(this.animateToEnd) + AndroidUtilities.dpf2(4.0f), this.textLayout.getLineBottom(lineForOffset), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), false, true);
             canvas.drawPath(this.path, this.selectionPaint);
         }
         float interpolation = this.interpolator.getInterpolation(this.enterValue);
         int primaryHorizontal = (int) (this.textLayout.getPrimaryHorizontal(this.animateToEnd) + (AndroidUtilities.dpf2(4.0f) * (1.0f - this.endOffsetValue)) + ((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue));
         canvas.save();
         canvas.translate(primaryHorizontal, lineBottom);
-        float f2 = iDp;
-        float f3 = f2 / 2.0f;
-        canvas.scale(interpolation, interpolation, f3, f3);
+        float f = iDp;
+        float f2 = f / 2.0f;
+        canvas.scale(interpolation, interpolation, f2, f2);
         this.path.reset();
         Path path = this.path;
-        Path.Direction direction2 = Path.Direction.CCW;
-        path.addCircle(f3, f3, f3, direction2);
-        this.path.addRect(0.0f, 0.0f, f3, f3, direction2);
+        Path.Direction direction = Path.Direction.CCW;
+        path.addCircle(f2, f2, f2, direction);
+        this.path.addRect(0.0f, 0.0f, f2, f2, direction);
         canvas.drawPath(this.path, this.textPaint);
         canvas.restore();
         int lineForOffset2 = this.textLayout.getLineForOffset(this.currentStart);
         this.textLayout.getPrimaryHorizontal(this.currentStart);
         int lineBottom2 = this.textLayout.getLineBottom(lineForOffset2);
         if (this.currentStart == this.animateToStart) {
-            i = lineBottom2;
-            direction = direction2;
-            f = f3;
             roundedRect(this.path, -AndroidUtilities.dp(4.0f), this.textLayout.getLineTop(lineForOffset2), 0.0f, this.textLayout.getLineBottom(lineForOffset2), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), true, false);
             canvas.drawPath(this.path, this.selectionPaint);
-        } else {
-            i = lineBottom2;
-            direction = direction2;
-            f = f3;
         }
         canvas.save();
-        canvas.translate(((int) ((this.textLayout.getPrimaryHorizontal(this.animateToStart) - (AndroidUtilities.dp(4.0f) * (1.0f - this.startOffsetValue))) + ((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(this.animateToStart)) * this.startOffsetValue))) - iDp, i);
-        float f4 = f;
-        canvas.scale(interpolation, interpolation, f4, f4);
+        canvas.translate(((int) ((this.textLayout.getPrimaryHorizontal(this.animateToStart) - (AndroidUtilities.dp(4.0f) * (1.0f - this.startOffsetValue))) + ((this.textLayout.getPrimaryHorizontal(this.start) - this.textLayout.getPrimaryHorizontal(this.animateToStart)) * this.startOffsetValue))) - iDp, lineBottom2);
+        canvas.scale(interpolation, interpolation, f2, f2);
         this.path.reset();
-        Path.Direction direction3 = direction;
-        this.path.addCircle(f4, f4, f4, direction3);
-        this.path.addRect(f4, 0.0f, f2, f4, direction3);
+        this.path.addCircle(f2, f2, f2, direction);
+        this.path.addRect(f2, 0.0f, f, f2, direction);
         canvas.drawPath(this.path, this.textPaint);
         canvas.restore();
         canvas.restore();
@@ -347,13 +335,16 @@ public abstract class TextSelectionHint extends View {
     public void lambda$show$2(ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.startOffsetValue = fFloatValue;
-        this.currentStart = (int) (this.animateToStart + ((this.start - r0) * fFloatValue));
+        int i = this.animateToStart;
+        this.currentStart = (int) (i + ((this.start - i) * fFloatValue));
         invalidate();
     }
 
     public void lambda$show$3(ValueAnimator valueAnimator) {
-        this.endOffsetValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.currentEnd = this.animateToEnd + ((int) Math.ceil((this.end - r0) * r4));
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.endOffsetValue = fFloatValue;
+        int i = this.animateToEnd;
+        this.currentEnd = i + ((int) Math.ceil((this.end - i) * fFloatValue));
         invalidate();
     }
 

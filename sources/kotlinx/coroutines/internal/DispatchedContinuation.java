@@ -160,15 +160,18 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
                 try {
                     this.continuation.resumeWith(obj);
                     Unit unit = Unit.INSTANCE;
+                    ThreadContextKt.restoreThreadContext(context2, objUpdateThreadContext);
                     while (eventLoop$kotlinx_coroutines_core.processUnconfinedEvent()) {
                     }
-                } finally {
+                } catch (Throwable th) {
                     ThreadContextKt.restoreThreadContext(context2, objUpdateThreadContext);
+                    throw th;
                 }
-            } finally {
+            } catch (Throwable th2) {
                 try {
-                    return;
+                    handleFatalException$kotlinx_coroutines_core(th2, null);
                 } finally {
+                    eventLoop$kotlinx_coroutines_core.decrementUseCount(true);
                 }
             }
             return;

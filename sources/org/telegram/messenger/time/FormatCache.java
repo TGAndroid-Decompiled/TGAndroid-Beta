@@ -39,8 +39,8 @@ abstract class FormatCache<F extends Format> {
             return f;
         }
         F f2 = (F) createInstance(str, timeZone, locale);
-        F f3 = (F) this.cInstanceCache.putIfAbsent(multipartKey, f2);
-        return f3 != null ? f3 : f2;
+        F fPutIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, f2);
+        return fPutIfAbsent != null ? fPutIfAbsent : f2;
     }
 
     private F getDateTimeInstance(Integer num, Integer num2, TimeZone timeZone, Locale locale) {

@@ -16,7 +16,7 @@ public class CedillaAtom extends Atom {
         float italic = r2.getItalic();
         Box charBox = new CharBox(r2);
         if (Math.abs(italic) > 1.0E-7f) {
-            Box horizontalBox = new HorizontalBox(new StrutBox(-italic, 0.0f, 0.0f, 0.0f));
+            HorizontalBox horizontalBox = new HorizontalBox(new StrutBox(-italic, 0.0f, 0.0f, 0.0f));
             horizontalBox.add(charBox);
             charBox = horizontalBox;
         }

@@ -14,7 +14,6 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 
 public class OutlineTextContainerView extends FrameLayout {
     private EditText attachedEditText;

@@ -1,6 +1,5 @@
 package org.commonmark.internal;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import org.commonmark.node.Text;
@@ -49,9 +48,7 @@ class StaggeredDelimiterProcessor implements DelimiterProcessor {
     }
 
     private DelimiterProcessor findProcessor(int i) {
-        Iterator it = this.processors.iterator();
-        while (it.hasNext()) {
-            DelimiterProcessor delimiterProcessor = (DelimiterProcessor) it.next();
+        for (DelimiterProcessor delimiterProcessor : this.processors) {
             if (delimiterProcessor.getMinLength() <= i) {
                 return delimiterProcessor;
             }

@@ -3,8 +3,6 @@ package org.webrtc;
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda12;
-import org.webrtc.EglBase;
-import org.webrtc.RendererCommon;
 
 public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Callback {
     private static final String TAG = "SurfaceEglRenderer";

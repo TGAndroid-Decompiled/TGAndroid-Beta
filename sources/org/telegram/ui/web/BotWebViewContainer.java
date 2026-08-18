@@ -8,12 +8,12 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DownloadManager;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -29,6 +29,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.util.Property;
@@ -56,13 +57,12 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.content.FileProvider;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Consumer;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.IDN;
 import java.net.URL;
@@ -81,9 +81,11 @@ import org.json.JSONTokener;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -117,6 +119,8 @@ import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.BottomSheetTabs;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.CameraScanActivity;
@@ -131,25 +135,27 @@ import org.telegram.ui.Components.CreateBotAlert;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
+import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.MultiContactsSelectorBottomSheet;
 import org.telegram.ui.OAuthSheet;
+import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 import org.telegram.ui.TopicsFragment;
+import org.telegram.ui.WrappedResourceProvider;
 import org.telegram.ui.bots.BotBiometry;
 import org.telegram.ui.bots.BotDownloads;
 import org.telegram.ui.bots.BotLocation;
 import org.telegram.ui.bots.BotSensors;
+import org.telegram.ui.bots.BotShareSheet;
 import org.telegram.ui.bots.BotStorage;
 import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
+import org.telegram.ui.bots.SetupEmojiStatusSheet;
 import org.telegram.ui.bots.WebViewRequestProps;
-import org.telegram.ui.web.BotWebViewContainer;
-import org.telegram.ui.web.BrowserHistory;
-import org.telegram.ui.web.WebMetadataCache;
 
 public abstract class BotWebViewContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static boolean firstWebView = true;
@@ -335,8 +341,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     super.onDraw(canvas);
                     return;
                 }
-                if (this.imageReceiver.getDrawable() != null) {
-                    this.imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), r0.getIntrinsicHeight() * (getWidth() / r0.getIntrinsicWidth()));
+                Drawable drawable = this.imageReceiver.getDrawable();
+                if (drawable != null) {
+                    this.imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), drawable.getIntrinsicHeight() * (getWidth() / drawable.getIntrinsicWidth()));
                     this.imageReceiver.draw(canvas);
                 }
             }
@@ -404,7 +411,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void replaceWebView(int i, MyWebView myWebView, Object obj) throws PackageManager.NameNotFoundException {
+    public void replaceWebView(int i, MyWebView myWebView, Object obj) {
         this.currentAccount = i;
         setupWebView(myWebView, obj);
         if (this.bot) {
@@ -412,7 +419,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void setupWebView(MyWebView myWebView) throws PackageManager.NameNotFoundException {
+    private void setupWebView(MyWebView myWebView) {
         setupWebView(myWebView, null);
     }
 
@@ -443,7 +450,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
 
-    private void setupWebView(MyWebView myWebView, Object obj) throws PackageManager.NameNotFoundException {
+    private void setupWebView(MyWebView myWebView, Object obj) {
         MyWebView myWebView2;
         String str;
         TLRPC.User user;
@@ -755,11 +762,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void onInvoiceStatusUpdate(String str, String str2) throws JSONException {
+    public void onInvoiceStatusUpdate(String str, String str2) {
         onInvoiceStatusUpdate(str, str2, false);
     }
 
-    public void onInvoiceStatusUpdate(String str, String str2, boolean z) throws JSONException {
+    public void onInvoiceStatusUpdate(String str, String str2, boolean z) {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("slug", str);
@@ -799,8 +806,28 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.onPermissionsRequestResultCallback = null;
     }
 
-    public void onActivityResult(int r3, int r4, android.content.Intent r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.onActivityResult(int, int, android.content.Intent):void");
+    public void onActivityResult(int i, int i2, Intent intent) {
+        Uri[] uriArr;
+        if (i != 3000 || this.mFilePathCallback == null) {
+            return;
+        }
+        if (i2 != -1 || intent == null) {
+            uriArr = null;
+        } else {
+            if (intent.getClipData() != null) {
+                ClipData clipData = intent.getClipData();
+                uriArr = new Uri[clipData.getItemCount()];
+                for (int i3 = 0; i3 < clipData.getItemCount(); i3++) {
+                    uriArr[i3] = clipData.getItemAt(i3).getUri();
+                }
+            } else if (intent.getData() != null) {
+                uriArr = new Uri[]{intent.getData()};
+            } else {
+                uriArr = null;
+            }
+        }
+        this.mFilePathCallback.onReceiveValue(uriArr);
+        this.mFilePathCallback = null;
     }
 
     @Override
@@ -931,17 +958,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             return;
         }
         Iterator<TLRPC.TL_attachMenuBot> it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();
-        while (true) {
+        do {
             if (!it.hasNext()) {
                 next = null;
                 break;
-            } else {
-                next = it.next();
-                if (next.bot_id == j) {
-                    break;
-                }
             }
-        }
+            next = it.next();
+        } while (next.bot_id != j);
         boolean z = true;
         if (next != null) {
             TLRPC.TL_attachMenuBotIcon placeholderStaticAttachMenuBotIcon = MediaDataController.getPlaceholderStaticAttachMenuBotIcon(next);
@@ -1323,6 +1346,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 } catch (Exception unused) {
                     return;
                 }
+                break;
             case "oauth_request":
                 d("oauth_request " + str2);
                 if (this.webView != null) {
@@ -1343,12 +1367,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                                         this.f$0.lambda$onWebEventReceived$6(tL_messages_requestUrlAuth, strOptString, originHost, tLObject, tL_error);
                                     }
                                 }, 2);
-                                break;
                             }
                         } catch (Exception e) {
                             FileLog.e(e);
                             return;
                         }
+                        break;
                     }
                 }
                 break;
@@ -1367,6 +1391,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     zOptBoolean = jSONArray2.optBoolean(0, true);
                     try {
                         zOptBoolean2 = jSONArray2.optBoolean(1, true);
+                        break;
                     } catch (Exception unused2) {
                     }
                 } catch (Exception unused3) {
@@ -1444,8 +1469,1547 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return null;
     }
 
-    public void onEventReceived(final org.telegram.ui.web.BotWebViewContainer.BotWebViewProxy r40, java.lang.String r41, java.lang.String r42) throws org.json.JSONException, java.lang.NumberFormatException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.onEventReceived(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy, java.lang.String, java.lang.String):void");
+    public void onEventReceived(final BotWebViewProxy botWebViewProxy, String str, String str2) {
+        final String strOptString;
+        TextView textView;
+        TextView textView2;
+        TextView textView3;
+        String string;
+        long j;
+        boolean z;
+        boolean zOptBoolean;
+        boolean zOptBoolean2;
+        byte b;
+        byte b2;
+        BotWebViewVibrationEffect botWebViewVibrationEffect;
+        BotWebViewVibrationEffect botWebViewVibrationEffect2;
+        byte b3;
+        int color;
+        byte b4;
+        int i;
+        int i2;
+        boolean zOptBoolean3;
+        LaunchActivity launchActivity;
+        BottomSheetTabs.WebTabData webTabData;
+        String string2;
+        String string3;
+        BottomSheet bottomSheet;
+        long j2;
+        long j3;
+        int i3;
+        long j4;
+        boolean z2;
+        boolean z3;
+        String strOptString2;
+        String strOptString3;
+        String strOptString4;
+        final String str3;
+        final String str4;
+        String str5;
+        final String strOptString5;
+        boolean zOptBoolean4;
+        String str6;
+        long j5;
+        boolean zOptBoolean5;
+        if (this.bot) {
+            if (this.webView == null || this.delegate == null) {
+                d("onEventReceived " + str + ": no webview or delegate!");
+                return;
+            }
+            if (this.trustedOrigin != null && !TextUtils.equals(getOriginHost(), this.trustedOrigin)) {
+                d("onEventReceived ignore " + str);
+                return;
+            }
+            d("onEventReceived " + str);
+            str.hashCode();
+            long j6 = 1000;
+            switch (str) {
+                case "web_app_invoke_custom_method":
+                    if (this.botUser != null) {
+                        try {
+                            JSONObject jSONObject = new JSONObject(str2);
+                            final String string4 = jSONObject.getString("req_id");
+                            String string5 = jSONObject.getString("method");
+                            String string6 = jSONObject.get("params").toString();
+                            final int i4 = this.currentAccount;
+                            final MyWebView myWebView = this.webView;
+                            TL_bots.invokeWebViewCustomMethod invokewebviewcustommethod = new TL_bots.invokeWebViewCustomMethod();
+                            invokewebviewcustommethod.bot = MessagesController.getInstance(i4).getInputUser(this.botUser.id);
+                            invokewebviewcustommethod.custom_method = string5;
+                            TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
+                            invokewebviewcustommethod.params = tL_dataJSON;
+                            tL_dataJSON.data = string6;
+                            ConnectionsManager.getInstance(i4).sendRequest(invokewebviewcustommethod, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                    this.f$0.lambda$onEventReceived$21(string4, i4, myWebView, tLObject, tL_error);
+                                }
+                            });
+                            break;
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            if (e instanceof JSONException) {
+                                error("JSON Parse error");
+                                return;
+                            } else {
+                                unknownError();
+                                return;
+                            }
+                        }
+                    }
+                    break;
+                case "web_app_close_scan_qr_popup":
+                    if (this.hasQRPending && (bottomSheet = this.cameraBottomSheet) != null) {
+                        bottomSheet.dismiss();
+                        break;
+                    }
+                    break;
+                case "web_app_biometry_get_info":
+                    notifyBiometryReceived();
+                    break;
+                case "web_app_open_link":
+                    try {
+                        JSONObject jSONObject2 = new JSONObject(str2);
+                        Uri uri = Uri.parse(jSONObject2.optString("url"));
+                        String strOptString6 = jSONObject2.optString("try_browser");
+                        if (MessagesController.getInstance(this.currentAccount).webAppAllowedProtocols != null && MessagesController.getInstance(this.currentAccount).webAppAllowedProtocols.contains(uri.getScheme())) {
+                            onOpenUri(uri, strOptString6, jSONObject2.optBoolean("try_instant_view"), true, false);
+                            break;
+                        }
+                    } catch (Exception e2) {
+                        FileLog.e(e2);
+                        return;
+                    }
+                    break;
+                case "web_app_request_file_download":
+                    if (!this.isRequestingPageOpen && this.botUser != null && System.currentTimeMillis() - this.lastClickMs <= 10000) {
+                        if (this.downloads == null) {
+                            this.downloads = BotDownloads.get(getContext(), this.currentAccount, this.botUser.id);
+                        }
+                        try {
+                            JSONObject jSONObject3 = new JSONObject(str2);
+                            final String string7 = jSONObject3.getString("url");
+                            final String string8 = jSONObject3.getString("file_name");
+                            if (this.downloads.getCached(string7) != null) {
+                                this.downloads.download(string7, string8);
+                                notifyEvent("file_download_requested", obj("status", "downloading"));
+                            } else {
+                                TL_bots.checkDownloadFileParams checkdownloadfileparams = new TL_bots.checkDownloadFileParams();
+                                checkdownloadfileparams.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botUser);
+                                checkdownloadfileparams.file_name = string8;
+                                checkdownloadfileparams.url = string7;
+                                ConnectionsManager.getInstance(this.currentAccount).sendRequest(checkdownloadfileparams, new RequestDelegate() {
+                                    @Override
+                                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                        this.f$0.lambda$onEventReceived$45(string7, string8, tLObject, tL_error);
+                                    }
+                                });
+                            }
+                        } catch (Exception e3) {
+                            FileLog.e(e3);
+                            notifyEvent("file_download_requested", obj("status", "cancelled"));
+                            return;
+                        }
+                        break;
+                    }
+                    break;
+                case "web_app_open_popup":
+                    try {
+                        if (this.currentDialog == null) {
+                            if (System.currentTimeMillis() - this.lastDialogClosed <= 150) {
+                                int i5 = this.dialogSequentialOpenTimes + 1;
+                                this.dialogSequentialOpenTimes = i5;
+                                if (i5 >= 3) {
+                                    this.dialogSequentialOpenTimes = 0;
+                                    this.lastDialogCooldownTime = System.currentTimeMillis();
+                                }
+                            }
+                            if (System.currentTimeMillis() - this.lastDialogCooldownTime <= 3000) {
+                                break;
+                            } else {
+                                JSONObject jSONObject4 = new JSONObject(str2);
+                                String strOptString7 = jSONObject4.optString("title", null);
+                                String string9 = jSONObject4.getString("message");
+                                JSONArray jSONArray = jSONObject4.getJSONArray("buttons");
+                                AlertDialog.Builder message = new AlertDialog.Builder(getContext()).setTitle(strOptString7).setMessage(string9);
+                                ArrayList arrayList = new ArrayList();
+                                for (int i6 = 0; i6 < jSONArray.length(); i6++) {
+                                    arrayList.add(new PopupButton(jSONArray.getJSONObject(i6)));
+                                }
+                                if (arrayList.size() > 3) {
+                                    break;
+                                } else {
+                                    final AtomicBoolean atomicBoolean = new AtomicBoolean();
+                                    if (arrayList.size() >= 1) {
+                                        final PopupButton popupButton = (PopupButton) arrayList.get(0);
+                                        message.setPositiveButton(popupButton.text, new AlertDialog.OnButtonClickListener() {
+                                            @Override
+                                            public final void onClick(AlertDialog alertDialog, int i7) {
+                                                this.f$0.lambda$onEventReceived$7(popupButton, atomicBoolean, alertDialog, i7);
+                                            }
+                                        });
+                                    }
+                                    if (arrayList.size() >= 2) {
+                                        final PopupButton popupButton2 = (PopupButton) arrayList.get(1);
+                                        message.setNegativeButton(popupButton2.text, new AlertDialog.OnButtonClickListener() {
+                                            @Override
+                                            public final void onClick(AlertDialog alertDialog, int i7) {
+                                                this.f$0.lambda$onEventReceived$8(popupButton2, atomicBoolean, alertDialog, i7);
+                                            }
+                                        });
+                                    }
+                                    if (arrayList.size() == 3) {
+                                        final PopupButton popupButton3 = (PopupButton) arrayList.get(2);
+                                        message.setNeutralButton(popupButton3.text, new AlertDialog.OnButtonClickListener() {
+                                            @Override
+                                            public final void onClick(AlertDialog alertDialog, int i7) {
+                                                this.f$0.lambda$onEventReceived$9(popupButton3, atomicBoolean, alertDialog, i7);
+                                            }
+                                        });
+                                    }
+                                    message.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public final void onDismiss(DialogInterface dialogInterface) {
+                                            this.f$0.lambda$onEventReceived$10(atomicBoolean, dialogInterface);
+                                        }
+                                    });
+                                    this.currentDialog = message.show();
+                                    if (arrayList.size() >= 1) {
+                                        PopupButton popupButton4 = (PopupButton) arrayList.get(0);
+                                        if (popupButton4.textColorKey >= 0 && (textView3 = (TextView) this.currentDialog.getButton(-1)) != null) {
+                                            textView3.setTextColor(getColor(popupButton4.textColorKey));
+                                        }
+                                    }
+                                    if (arrayList.size() >= 2) {
+                                        PopupButton popupButton5 = (PopupButton) arrayList.get(1);
+                                        if (popupButton5.textColorKey >= 0 && (textView2 = (TextView) this.currentDialog.getButton(-2)) != null) {
+                                            textView2.setTextColor(getColor(popupButton5.textColorKey));
+                                        }
+                                    }
+                                    if (arrayList.size() == 3) {
+                                        PopupButton popupButton6 = (PopupButton) arrayList.get(2);
+                                        if (popupButton6.textColorKey >= 0 && (textView = (TextView) this.currentDialog.getButton(-3)) != null) {
+                                            textView.setTextColor(getColor(popupButton6.textColorKey));
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    } catch (JSONException e4) {
+                        FileLog.e(e4);
+                        return;
+                    }
+                    break;
+                case "web_app_open_invoice":
+                    try {
+                        final String strOptString8 = new JSONObject(str2).optString("slug");
+                        if (this.currentPaymentSlug != null) {
+                            onInvoiceStatusUpdate(strOptString8, "cancelled", true);
+                        } else {
+                            this.currentPaymentSlug = strOptString8;
+                            TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
+                            final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
+                            tL_inputInvoiceSlug.slug = strOptString8;
+                            tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
+                            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getPaymentForm, new RequestDelegate() {
+                                @Override
+                                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                    this.f$0.lambda$onEventReceived$12(strOptString8, tL_inputInvoiceSlug, tLObject, tL_error);
+                                }
+                            });
+                        }
+                        break;
+                    } catch (JSONException e5) {
+                        FileLog.e(e5);
+                        return;
+                    }
+                    break;
+                case "web_app_set_emoji_status":
+                    if (!this.isRequestingPageOpen && this.botUser != null && System.currentTimeMillis() - this.lastClickMs <= 10000) {
+                        try {
+                            JSONObject jSONObject5 = new JSONObject(str2);
+                            j2 = Long.parseLong(jSONObject5.getString("custom_emoji_id"));
+                            try {
+                                i3 = jSONObject5.getInt("duration");
+                                j3 = j2;
+                            } catch (Exception unused) {
+                                j3 = j2;
+                                i3 = 0;
+                            }
+                        } catch (Exception unused2) {
+                            j2 = 0;
+                        }
+                        TLRPC.User user = this.botUser;
+                        if (user == null) {
+                            notifyEvent("emoji_status_failed", obj("error", "UNKNOWN_ERROR"));
+                        } else {
+                            SetupEmojiStatusSheet.show(this.currentAccount, user, j3, i3, new Utilities.Callback2() {
+                                @Override
+                                public final void run(Object obj, Object obj2) {
+                                    this.f$0.lambda$onEventReceived$38((String) obj, (TLRPC.Document) obj2);
+                                }
+                            });
+                        }
+                        break;
+                    }
+                    break;
+                case "web_app_setup_secondary_button":
+                    try {
+                        JSONObject jSONObject6 = new JSONObject(str2);
+                        boolean zOptBoolean6 = jSONObject6.optBoolean("is_active", false);
+                        String strTrim = jSONObject6.optString("text", this.lastSecondaryButtonText).trim();
+                        boolean z4 = jSONObject6.optBoolean("is_visible", false) && !TextUtils.isEmpty(strTrim);
+                        int color2 = jSONObject6.has("color") ? Color.parseColor(jSONObject6.optString("color")) : this.lastSecondaryButtonColor;
+                        int color3 = jSONObject6.has("text_color") ? Color.parseColor(jSONObject6.optString("text_color")) : this.lastSecondaryButtonTextColor;
+                        boolean z5 = jSONObject6.optBoolean("is_progress_visible", false) && z4;
+                        boolean z6 = jSONObject6.optBoolean("has_shine_effect", false) && z4;
+                        String strOptString9 = jSONObject6.has("position") ? jSONObject6.optString("position") : this.lastSecondaryButtonPosition;
+                        if (strOptString9 == null) {
+                            strOptString9 = "left";
+                        }
+                        try {
+                            j4 = Long.parseLong(jSONObject6.getString("icon_custom_emoji_id"));
+                        } catch (Throwable unused3) {
+                            j4 = 0;
+                        }
+                        this.lastSecondaryButtonColor = color2;
+                        this.lastSecondaryButtonTextColor = color3;
+                        this.lastSecondaryButtonText = strTrim;
+                        this.lastSecondaryButtonPosition = strOptString9;
+                        this.secondaryButtonData = str2;
+                        this.delegate.onSetupSecondaryButton(z4, zOptBoolean6, strTrim, j4, color2, color3, z5, z6, strOptString9);
+                        break;
+                    } catch (Exception e6) {
+                        FileLog.e(e6);
+                        return;
+                    }
+                    break;
+                case "web_app_setup_closing_behavior":
+                    try {
+                        this.delegate.onWebAppSetupClosingBehavior(new JSONObject(str2).optBoolean("need_confirmation"));
+                        break;
+                    } catch (JSONException e7) {
+                        FileLog.e(e7);
+                        return;
+                    }
+                    break;
+                case "web_app_open_scan_qr_popup":
+                    try {
+                        if (!this.hasQRPending && this.parentActivity != null) {
+                            this.lastQrText = new JSONObject(str2).optString("text");
+                            this.hasQRPending = true;
+                            if (Build.VERSION.SDK_INT >= 23 && this.parentActivity.checkSelfPermission("android.permission.CAMERA") != 0) {
+                                NotificationCenter.getGlobalInstance().addObserver(new NotificationCenter.NotificationCenterDelegate() {
+                                    @Override
+                                    public void didReceivedNotification(int i7, int i8, Object... objArr) {
+                                        int i9 = NotificationCenter.onRequestPermissionResultReceived;
+                                        if (i7 == i9) {
+                                            int iIntValue = ((Integer) objArr[0]).intValue();
+                                            int[] iArr = (int[]) objArr[2];
+                                            if (iIntValue == 5000) {
+                                                NotificationCenter.getGlobalInstance().removeObserver(this, i9);
+                                                if (iArr[0] == 0) {
+                                                    BotWebViewContainer.this.openQrScanActivity();
+                                                } else {
+                                                    BotWebViewContainer.this.notifyEvent("scan_qr_popup_closed", new JSONObject());
+                                                }
+                                            }
+                                        }
+                                    }
+                                }, NotificationCenter.onRequestPermissionResultReceived);
+                                this.parentActivity.requestPermissions(new String[]{"android.permission.CAMERA"}, 5000);
+                            } else {
+                                openQrScanActivity();
+                            }
+                        }
+                        break;
+                    } catch (JSONException e8) {
+                        FileLog.e(e8);
+                        return;
+                    }
+                    break;
+                case "web_app_request_phone":
+                    if (ignoreDialog(4)) {
+                        try {
+                            JSONObject jSONObject7 = new JSONObject();
+                            jSONObject7.put("status", "cancelled");
+                            notifyEvent("phone_requested", jSONObject7);
+                        } catch (Exception e9) {
+                            FileLog.e(e9);
+                            return;
+                        }
+                        break;
+                    } else {
+                        final int i7 = this.currentAccount;
+                        final MyWebView myWebView2 = this.webView;
+                        final String[] strArr = {"cancelled"};
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
+                        builder.setTitle(LocaleController.getString(R.string.ShareYouPhoneNumberTitle));
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                        String userName = UserObject.getUserName(this.botUser);
+                        if (TextUtils.isEmpty(userName)) {
+                            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString(R.string.AreYouSureShareMyContactInfoBot)));
+                        } else {
+                            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AreYouSureShareMyContactInfoWebapp, userName)));
+                        }
+                        final boolean z7 = MessagesController.getInstance(this.currentAccount).blockePeers.indexOfKey(this.botUser.id) >= 0;
+                        if (z7) {
+                            spannableStringBuilder.append((CharSequence) "\n\n");
+                            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AreYouSureShareMyContactInfoBotUnblock));
+                        }
+                        builder.setMessage(spannableStringBuilder);
+                        builder.setPositiveButton(LocaleController.getString(R.string.ShareContact), new AlertDialog.OnButtonClickListener() {
+                            @Override
+                            public final void onClick(AlertDialog alertDialog, int i8) {
+                                this.f$0.lambda$onEventReceived$23(strArr, z7, i7, myWebView2, alertDialog, i8);
+                            }
+                        });
+                        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
+                            @Override
+                            public final void onClick(AlertDialog alertDialog, int i8) {
+                                alertDialog.dismiss();
+                            }
+                        });
+                        showDialog(4, builder.create(), new Runnable() {
+                            @Override
+                            public final void run() {
+                                BotWebViewContainer.lambda$onEventReceived$25(strArr, i7, myWebView2);
+                            }
+                        });
+                        break;
+                    }
+                    break;
+                case "web_app_request_theme":
+                    notifyThemeChanged();
+                    break;
+                case "web_app_secure_storage_get_key":
+                    if (this.botUser != null) {
+                        if (this.secureStorage == null) {
+                            Context context = getContext();
+                            int i8 = this.currentAccount;
+                            this.secureStorage = new BotStorage(context, i8, UserConfig.getInstance(i8).getClientUserId(), this.botUser.id, true);
+                        }
+                        getStorageKey(this.secureStorage, str2, "secure_storage_key_received", "secure_storage_failed");
+                        break;
+                    }
+                    break;
+                case "web_app_check_location":
+                    if (this.location == null) {
+                        BotLocation botLocation = BotLocation.get(getContext(), this.currentAccount, this.botUser.id);
+                        this.location = botLocation;
+                        botLocation.listen(this.notifyLocationChecked);
+                    }
+                    this.notifyLocationChecked.run();
+                    break;
+                case "web_app_biometry_open_settings":
+                    if (!this.isRequestingPageOpen && this.botUser != null && System.currentTimeMillis() - this.lastClickMs <= 10000) {
+                        this.lastClickMs = 0L;
+                        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                        if (safeLastFragment != null && safeLastFragment.getParentLayout() != null) {
+                            INavigationLayout parentLayout = safeLastFragment.getParentLayout();
+                            safeLastFragment.presentFragment(ProfileActivity.of(this.botUser.id));
+                            AndroidUtilities.scrollToFragmentRow(parentLayout, "botPermissionBiometry");
+                            Delegate delegate = this.delegate;
+                            if (delegate != null) {
+                                delegate.onCloseToTabs();
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                case "web_app_request_viewport":
+                    if ((getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) && ((ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) getParent()).isSwipeInProgress()) {
+                        z2 = true;
+                        z3 = true;
+                    } else {
+                        z2 = true;
+                        z3 = false;
+                    }
+                    invalidateViewPortHeight(!z3, z2);
+                    break;
+                case "web_app_request_emoji_status_access":
+                    if (!this.isRequestingPageOpen && this.botUser != null && System.currentTimeMillis() - this.lastClickMs <= 10000) {
+                        SetupEmojiStatusSheet.askPermission(this.currentAccount, this.botUser.id, new Utilities.Callback2() {
+                            @Override
+                            public final void run(Object obj, Object obj2) {
+                                this.f$0.lambda$onEventReceived$39((Boolean) obj, (String) obj2);
+                            }
+                        });
+                        break;
+                    }
+                    break;
+                case "web_app_stop_device_orientation":
+                    BotSensors botSensors = this.delegate.getBotSensors();
+                    if (botSensors != null && botSensors.stopOrientation()) {
+                        notifyEvent("device_orientation_stopped", null);
+                        break;
+                    } else {
+                        notifyEvent("device_orientation_failed", obj("error", "UNSUPPORTED"));
+                        break;
+                    }
+                    break;
+                case "web_app_device_storage_save_key":
+                    if (this.botUser != null) {
+                        if (this.storage == null) {
+                            Context context2 = getContext();
+                            int i9 = this.currentAccount;
+                            this.storage = new BotStorage(context2, i9, UserConfig.getInstance(i9).getClientUserId(), this.botUser.id, false);
+                        }
+                        setStorageKey(this.storage, str2, "device_storage_key_saved", "device_storage_failed");
+                        break;
+                    }
+                    break;
+                case "web_app_device_storage_get_key":
+                    if (this.botUser != null) {
+                        if (this.storage == null) {
+                            Context context3 = getContext();
+                            int i10 = this.currentAccount;
+                            this.storage = new BotStorage(context3, i10, UserConfig.getInstance(i10).getClientUserId(), this.botUser.id, false);
+                        }
+                        getStorageKey(this.storage, str2, "device_storage_key_received", "device_storage_failed");
+                        break;
+                    }
+                    break;
+                case "web_app_biometry_request_auth":
+                    try {
+                        string3 = new JSONObject(str2).getString("reason");
+                        break;
+                    } catch (Exception unused4) {
+                        string3 = null;
+                    }
+                    createBiometry();
+                    BotBiometry botBiometry = this.biometry;
+                    if (botBiometry != null) {
+                        if (!botBiometry.access_granted) {
+                            try {
+                                JSONObject jSONObject8 = new JSONObject();
+                                jSONObject8.put("status", "failed");
+                                notifyEvent("biometry_auth_requested", jSONObject8);
+                            } catch (Exception e10) {
+                                FileLog.e(e10);
+                                return;
+                            }
+                        } else {
+                            botBiometry.requestToken(string3, new Utilities.Callback2() {
+                                @Override
+                                public final void run(Object obj, Object obj2) {
+                                    this.f$0.lambda$onEventReceived$31((Boolean) obj, (String) obj2);
+                                }
+                            });
+                        }
+                        break;
+                    }
+                    break;
+                case "web_app_toggle_orientation_lock":
+                    try {
+                        z = new JSONObject(str2).getBoolean("locked");
+                        break;
+                    } catch (Exception unused5) {
+                        z = false;
+                    }
+                    Delegate delegate2 = this.delegate;
+                    if (delegate2 != null) {
+                        delegate2.onOrientationLockChanged(z);
+                        break;
+                    }
+                    break;
+                case "web_app_allow_scroll":
+                    try {
+                        JSONArray jSONArray2 = new JSONArray(str2);
+                        zOptBoolean = jSONArray2.optBoolean(0, true);
+                        try {
+                            zOptBoolean2 = jSONArray2.optBoolean(1, true);
+                        } catch (Exception unused6) {
+                            zOptBoolean2 = true;
+                        }
+                        break;
+                    } catch (Exception unused7) {
+                        zOptBoolean = true;
+                    }
+                    d("allowScroll " + zOptBoolean + " " + zOptBoolean2);
+                    if (getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) {
+                        ((ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) getParent()).allowThisScroll(zOptBoolean, zOptBoolean2);
+                        break;
+                    }
+                    break;
+                case "web_app_open_tg_link":
+                    try {
+                        JSONObject jSONObject9 = new JSONObject(str2);
+                        String strOptString10 = jSONObject9.optString("path_full");
+                        boolean zOptBoolean7 = jSONObject9.optBoolean("force_request", false);
+                        if (strOptString10.startsWith("/")) {
+                            strOptString10 = strOptString10.substring(1);
+                        }
+                        onOpenUri(Uri.parse("https://t.me/" + strOptString10), null, false, true, zOptBoolean7);
+                        break;
+                    } catch (JSONException e11) {
+                        FileLog.e(e11);
+                        return;
+                    }
+                    break;
+                case "web_app_secure_storage_restore_key":
+                    if (this.botUser != null) {
+                        if (this.secureStorage == null) {
+                            Context context4 = getContext();
+                            int i11 = this.currentAccount;
+                            this.secureStorage = new BotStorage(context4, i11, UserConfig.getInstance(i11).getClientUserId(), this.botUser.id, true);
+                        }
+                        restoreStorageKey(this.secureStorage, str2, "secure_storage_key_restored", "secure_storage_failed");
+                        break;
+                    }
+                    break;
+                case "web_app_share_to_story":
+                    if (!this.isRequestingPageOpen && System.currentTimeMillis() - this.lastClickMs <= 10000 && System.currentTimeMillis() - this.lastPostStoryMs >= 2000) {
+                        this.lastClickMs = 0L;
+                        this.lastPostStoryMs = System.currentTimeMillis();
+                        try {
+                            JSONObject jSONObject10 = new JSONObject(str2);
+                            strOptString2 = jSONObject10.optString("media_url");
+                            try {
+                                strOptString3 = jSONObject10.optString("text");
+                                try {
+                                    JSONObject jSONObjectOptJSONObject = jSONObject10.optJSONObject("widget_link");
+                                    if (jSONObjectOptJSONObject != null) {
+                                        strOptString4 = jSONObjectOptJSONObject.optString("url");
+                                        try {
+                                            strOptString5 = jSONObjectOptJSONObject.optString("name");
+                                            str5 = strOptString2;
+                                            str4 = strOptString3;
+                                            str3 = strOptString4;
+                                        } catch (Exception e12) {
+                                            e = e12;
+                                            FileLog.e(e);
+                                            str5 = strOptString2;
+                                            str4 = strOptString3;
+                                            str3 = strOptString4;
+                                            strOptString5 = null;
+                                        }
+                                    } else {
+                                        str5 = strOptString2;
+                                        str4 = strOptString3;
+                                        str3 = null;
+                                        strOptString5 = null;
+                                    }
+                                } catch (Exception e13) {
+                                    e = e13;
+                                    strOptString4 = null;
+                                    FileLog.e(e);
+                                    str5 = strOptString2;
+                                    str4 = strOptString3;
+                                    str3 = strOptString4;
+                                    strOptString5 = null;
+                                    if (str5 != null) {
+                                        return;
+                                    }
+                                    if (!MessagesController.getInstance(this.currentAccount).storiesEnabled()) {
+                                        new PremiumFeatureBottomSheet(new BaseFragment() {
+                                            @Override
+                                            public boolean isLightStatusBar() {
+                                                return false;
+                                            }
+
+                                            {
+                                                this.currentAccount = BotWebViewContainer.this.currentAccount;
+                                            }
+
+                                            @Override
+                                            public Dialog showDialog(Dialog dialog) {
+                                                dialog.show();
+                                                return dialog;
+                                            }
+
+                                            @Override
+                                            public Activity getParentActivity() {
+                                                return BotWebViewContainer.this.parentActivity;
+                                            }
+
+                                            @Override
+                                            public Theme.ResourcesProvider getResourceProvider() {
+                                                return new WrappedResourceProvider(BotWebViewContainer.this.resourcesProvider) {
+                                                    @Override
+                                                    public void appendColors() {
+                                                        this.sparseIntArray.append(Theme.key_dialogBackground, -14803426);
+                                                        this.sparseIntArray.append(Theme.key_windowBackgroundGray, -16777216);
+                                                    }
+                                                };
+                                            }
+                                        }, 14, true).show();
+                                        return;
+                                    }
+                                    final AlertDialog alertDialog = new AlertDialog(this.parentActivity, 3);
+                                    new HttpGetFileTask(new Utilities.Callback() {
+                                        @Override
+                                        public final void run(Object obj) {
+                                            this.f$0.lambda$onEventReceived$36(alertDialog, str4, str3, strOptString5, (File) obj);
+                                        }
+                                    }, null).execute(str5);
+                                    alertDialog.showDelayed(250L);
+                                    return;
+                                }
+                            } catch (Exception e14) {
+                                e = e14;
+                                strOptString3 = null;
+                                strOptString4 = null;
+                                FileLog.e(e);
+                                str5 = strOptString2;
+                                str4 = strOptString3;
+                                str3 = strOptString4;
+                                strOptString5 = null;
+                                if (str5 != null) {
+                                    return;
+                                }
+                                if (!MessagesController.getInstance(this.currentAccount).storiesEnabled()) {
+                                    new PremiumFeatureBottomSheet(new BaseFragment() {
+                                        @Override
+                                        public boolean isLightStatusBar() {
+                                            return false;
+                                        }
+
+                                        {
+                                            this.currentAccount = BotWebViewContainer.this.currentAccount;
+                                        }
+
+                                        @Override
+                                        public Dialog showDialog(Dialog dialog) {
+                                            dialog.show();
+                                            return dialog;
+                                        }
+
+                                        @Override
+                                        public Activity getParentActivity() {
+                                            return BotWebViewContainer.this.parentActivity;
+                                        }
+
+                                        @Override
+                                        public Theme.ResourcesProvider getResourceProvider() {
+                                            return new WrappedResourceProvider(BotWebViewContainer.this.resourcesProvider) {
+                                                @Override
+                                                public void appendColors() {
+                                                    this.sparseIntArray.append(Theme.key_dialogBackground, -14803426);
+                                                    this.sparseIntArray.append(Theme.key_windowBackgroundGray, -16777216);
+                                                }
+                                            };
+                                        }
+                                    }, 14, true).show();
+                                    return;
+                                }
+                                final AlertDialog alertDialog2 = new AlertDialog(this.parentActivity, 3);
+                                new HttpGetFileTask(new Utilities.Callback() {
+                                    @Override
+                                    public final void run(Object obj) {
+                                        this.f$0.lambda$onEventReceived$36(alertDialog2, str4, str3, strOptString5, (File) obj);
+                                    }
+                                }, null).execute(str5);
+                                alertDialog2.showDelayed(250L);
+                                return;
+                            }
+                        } catch (Exception e15) {
+                            e = e15;
+                            strOptString2 = null;
+                        }
+                        if (str5 != null) {
+                            if (!MessagesController.getInstance(this.currentAccount).storiesEnabled()) {
+                                new PremiumFeatureBottomSheet(new BaseFragment() {
+                                    @Override
+                                    public boolean isLightStatusBar() {
+                                        return false;
+                                    }
+
+                                    {
+                                        this.currentAccount = BotWebViewContainer.this.currentAccount;
+                                    }
+
+                                    @Override
+                                    public Dialog showDialog(Dialog dialog) {
+                                        dialog.show();
+                                        return dialog;
+                                    }
+
+                                    @Override
+                                    public Activity getParentActivity() {
+                                        return BotWebViewContainer.this.parentActivity;
+                                    }
+
+                                    @Override
+                                    public Theme.ResourcesProvider getResourceProvider() {
+                                        return new WrappedResourceProvider(BotWebViewContainer.this.resourcesProvider) {
+                                            @Override
+                                            public void appendColors() {
+                                                this.sparseIntArray.append(Theme.key_dialogBackground, -14803426);
+                                                this.sparseIntArray.append(Theme.key_windowBackgroundGray, -16777216);
+                                            }
+                                        };
+                                    }
+                                }, 14, true).show();
+                            } else {
+                                final AlertDialog alertDialog3 = new AlertDialog(this.parentActivity, 3);
+                                new HttpGetFileTask(new Utilities.Callback() {
+                                    @Override
+                                    public final void run(Object obj) {
+                                        this.f$0.lambda$onEventReceived$36(alertDialog3, str4, str3, strOptString5, (File) obj);
+                                    }
+                                }, null).execute(str5);
+                                alertDialog3.showDelayed(250L);
+                            }
+                        }
+                    }
+                    break;
+                case "web_app_request_location":
+                    if (!this.isRequestingPageOpen && this.botUser != null) {
+                        if (this.location == null) {
+                            BotLocation botLocation2 = BotLocation.get(getContext(), this.currentAccount, this.botUser.id);
+                            this.location = botLocation2;
+                            botLocation2.listen(this.notifyLocationChecked);
+                        }
+                        if (!this.location.granted()) {
+                            this.location.request(new Utilities.Callback2() {
+                                @Override
+                                public final void run(Object obj, Object obj2) {
+                                    this.f$0.lambda$onEventReceived$41((Boolean) obj, (Boolean) obj2);
+                                }
+                            });
+                        } else {
+                            this.location.requestObject(new Utilities.Callback() {
+                                @Override
+                                public final void run(Object obj) {
+                                    this.f$0.lambda$onEventReceived$42((JSONObject) obj);
+                                }
+                            });
+                        }
+                        break;
+                    }
+                    break;
+                case "web_app_start_gyroscope":
+                    BotSensors botSensors2 = this.delegate.getBotSensors();
+                    try {
+                        j6 = new JSONObject(str2).getLong("refresh_rate");
+                        break;
+                    } catch (Exception unused8) {
+                    }
+                    long jClamp = Utilities.clamp(j6, 1000L, 20L);
+                    if (botSensors2 != null && botSensors2.startGyroscope(jClamp)) {
+                        notifyEvent("gyroscope_started", null);
+                        break;
+                    } else {
+                        notifyEvent("gyroscope_failed", obj("error", "UNSUPPORTED"));
+                        break;
+                    }
+                    break;
+                case "web_app_close":
+                    try {
+                        zOptBoolean3 = new JSONObject(str2).optBoolean("return_back");
+                        break;
+                    } catch (Exception e16) {
+                        FileLog.e(e16);
+                        zOptBoolean3 = false;
+                    }
+                    this.delegate.onCloseRequested(null);
+                    if (zOptBoolean3) {
+                        if (this.wasOpenedByLinkIntent && LaunchActivity.instance != null) {
+                            Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+                            if (activityFindActivity == null) {
+                                activityFindActivity = LaunchActivity.instance;
+                            }
+                            if (activityFindActivity != null && !activityFindActivity.isFinishing()) {
+                                activityFindActivity.moveTaskToBack(true);
+                                break;
+                            }
+                        } else if (this.wasOpenedByBot != null && (launchActivity = LaunchActivity.instance) != null && launchActivity.getBottomSheetTabs() != null) {
+                            BottomSheetTabs bottomSheetTabs = LaunchActivity.instance.getBottomSheetTabs();
+                            ArrayList<BottomSheetTabs.WebTabData> tabs = bottomSheetTabs.getTabs();
+                            int i12 = 0;
+                            while (true) {
+                                if (i12 < tabs.size()) {
+                                    BottomSheetTabs.WebTabData webTabData2 = tabs.get(i12);
+                                    if (!this.wasOpenedByBot.equals(webTabData2.props) || webTabData2.webView == this.webView) {
+                                        i12++;
+                                    } else {
+                                        webTabData = webTabData2;
+                                    }
+                                } else {
+                                    webTabData = null;
+                                }
+                            }
+                            if (webTabData != null) {
+                                bottomSheetTabs.openTab(webTabData);
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                case "web_app_ready":
+                    setPageLoaded(this.webView.getUrl(), true);
+                    break;
+                case "web_app_read_text_from_clipboard":
+                    try {
+                        String string10 = new JSONObject(str2).getString("req_id");
+                        if (this.delegate.isClipboardAvailable() && System.currentTimeMillis() - this.lastClickMs <= 10000) {
+                            CharSequence text = ((ClipboardManager) getContext().getSystemService("clipboard")).getText();
+                            notifyEvent("clipboard_text_received", new JSONObject().put("req_id", string10).put("data", text != null ? text.toString() : ""));
+                            break;
+                        }
+                        notifyEvent("clipboard_text_received", new JSONObject().put("req_id", string10));
+                        break;
+                    } catch (JSONException e17) {
+                        FileLog.e(e17);
+                        return;
+                    }
+                    break;
+                case "web_app_hide_keyboard":
+                    Activity activityFindActivity2 = AndroidUtilities.findActivity(getContext());
+                    if (activityFindActivity2 == null) {
+                        activityFindActivity2 = LaunchActivity.instance;
+                    }
+                    if (activityFindActivity2 != null) {
+                        AndroidUtilities.hideKeyboard(activityFindActivity2.getCurrentFocus());
+                        break;
+                    }
+                    break;
+                case "web_app_stop_gyroscope":
+                    BotSensors botSensors3 = this.delegate.getBotSensors();
+                    if (botSensors3 != null && botSensors3.stopGyroscope()) {
+                        notifyEvent("gyroscope_stopped", null);
+                        break;
+                    } else {
+                        notifyEvent("gyroscope_failed", obj("error", "UNSUPPORTED"));
+                        break;
+                    }
+                    break;
+                case "web_app_secure_storage_clear":
+                    if (this.botUser != null) {
+                        if (this.secureStorage == null) {
+                            Context context5 = getContext();
+                            int i13 = this.currentAccount;
+                            this.secureStorage = new BotStorage(context5, i13, UserConfig.getInstance(i13).getClientUserId(), this.botUser.id, true);
+                        }
+                        clearStorageKey(this.secureStorage, str2, "secure_storage_cleared", "secure_storage_cleared");
+                        break;
+                    }
+                    break;
+                case "web_app_device_storage_clear":
+                    if (this.botUser != null) {
+                        if (this.storage == null) {
+                            Context context6 = getContext();
+                            int i14 = this.currentAccount;
+                            this.storage = new BotStorage(context6, i14, UserConfig.getInstance(i14).getClientUserId(), this.botUser.id, false);
+                        }
+                        clearStorageKey(this.storage, str2, "device_storage_cleared", "device_storage_failed");
+                        break;
+                    }
+                    break;
+                case "web_app_start_accelerometer":
+                    BotSensors botSensors4 = this.delegate.getBotSensors();
+                    try {
+                        j6 = new JSONObject(str2).getLong("refresh_rate");
+                        break;
+                    } catch (Exception unused9) {
+                    }
+                    long jClamp2 = Utilities.clamp(j6, 1000L, 20L);
+                    if (botSensors4 != null && botSensors4.startAccelerometer(jClamp2)) {
+                        notifyEvent("accelerometer_started", null);
+                        break;
+                    } else {
+                        notifyEvent("accelerometer_failed", obj("error", "UNSUPPORTED"));
+                        break;
+                    }
+                    break;
+                case "web_app_stop_accelerometer":
+                    BotSensors botSensors5 = this.delegate.getBotSensors();
+                    if (botSensors5 != null && botSensors5.stopAccelerometer()) {
+                        notifyEvent("accelerometer_stopped", null);
+                        break;
+                    } else {
+                        notifyEvent("accelerometer_failed", obj("error", "UNSUPPORTED"));
+                        break;
+                    }
+                    break;
+                case "web_app_send_prepared_message":
+                    if (!this.isRequestingPageOpen && this.botUser != null && System.currentTimeMillis() - this.lastClickMs <= 10000) {
+                        try {
+                            String string11 = new JSONObject(str2).getString("id");
+                            if (TextUtils.isEmpty(string11)) {
+                                notifyEvent("prepared_message_failed", obj("error", "MESSAGE_EXPIRED"));
+                            } else {
+                                BotShareSheet.share(getContext(), this.currentAccount, this.botUser.id, string11, this.resourcesProvider, new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        this.f$0.lambda$onEventReceived$46();
+                                    }
+                                }, new Utilities.Callback2() {
+                                    @Override
+                                    public final void run(Object obj, Object obj2) {
+                                        this.f$0.lambda$onEventReceived$48(botWebViewProxy, (String) obj, (ArrayList) obj2);
+                                    }
+                                });
+                            }
+                        } catch (Exception e18) {
+                            FileLog.e(e18);
+                            notifyEvent("prepared_message_failed", obj("error", "MESSAGE_EXPIRED"));
+                            return;
+                        }
+                        break;
+                    }
+                    break;
+                case "web_app_data_send":
+                    try {
+                        this.delegate.onSendWebViewData(new JSONObject(str2).optString("data"));
+                        break;
+                    } catch (JSONException e19) {
+                        FileLog.e(e19);
+                        return;
+                    }
+                    break;
+                case "web_app_request_content_safe_area":
+                    reportSafeContentInsets(this.lastInsetsTopMargin, true);
+                    break;
+                case "web_app_add_to_home_screen":
+                    if (!this.isRequestingPageOpen && this.botUser != null && System.currentTimeMillis() - this.lastClickMs <= 10000) {
+                        if (MediaDataController.getInstance(this.currentAccount).isShortcutAdded(this.botUser.id, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT)) {
+                            notifyEvent("home_screen_added", null);
+                        } else {
+                            MediaDataController.getInstance(this.currentAccount).installShortcut(this.botUser.id, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT, new Utilities.Callback() {
+                                @Override
+                                public final void run(Object obj) {
+                                    this.f$0.lambda$onEventReceived$37((Boolean) obj);
+                                }
+                            });
+                        }
+                        break;
+                    }
+                    break;
+                case "web_app_request_fullscreen":
+                    try {
+                        zOptBoolean4 = new JSONObject(str2).optBoolean("blur", true);
+                        break;
+                    } catch (Exception unused10) {
+                        zOptBoolean4 = true;
+                    }
+                    String strOnFullscreenRequested = this.delegate.onFullscreenRequested(true, zOptBoolean4);
+                    if (strOnFullscreenRequested != null) {
+                        notifyEvent("fullscreen_failed", obj("error", strOnFullscreenRequested));
+                        break;
+                    } else {
+                        notifyEvent("fullscreen_changed", obj("is_fullscreen", Boolean.TRUE, "blur_enabled", Boolean.valueOf(zOptBoolean4)));
+                        break;
+                    }
+                    break;
+                case "web_app_switch_inline_query":
+                    try {
+                        JSONObject jSONObject11 = new JSONObject(str2);
+                        ArrayList arrayList2 = new ArrayList();
+                        JSONArray jSONArray3 = jSONObject11.getJSONArray("chat_types");
+                        for (int i15 = 0; i15 < jSONArray3.length(); i15++) {
+                            arrayList2.add(jSONArray3.getString(i15));
+                        }
+                        this.delegate.onWebAppSwitchInlineQuery(this.botUser, jSONObject11.getString("query"), arrayList2);
+                        break;
+                    } catch (JSONException e20) {
+                        FileLog.e(e20);
+                        return;
+                    }
+                    break;
+                case "web_app_secure_storage_save_key":
+                    if (this.botUser != null) {
+                        if (this.secureStorage == null) {
+                            Context context7 = getContext();
+                            int i16 = this.currentAccount;
+                            this.secureStorage = new BotStorage(context7, i16, UserConfig.getInstance(i16).getClientUserId(), this.botUser.id, true);
+                        }
+                        setStorageKey(this.secureStorage, str2, "secure_storage_key_saved", "secure_storage_failed");
+                        break;
+                    }
+                    break;
+                case "web_app_exit_fullscreen":
+                    String strOnFullscreenRequested2 = this.delegate.onFullscreenRequested(false, true);
+                    if (strOnFullscreenRequested2 != null) {
+                        notifyEvent("fullscreen_failed", obj("error", strOnFullscreenRequested2));
+                        break;
+                    } else {
+                        notifyEvent("fullscreen_changed", obj("is_fullscreen", Boolean.FALSE));
+                        break;
+                    }
+                    break;
+                case "web_app_verify_age":
+                    if (this.onVerifiedAge != null) {
+                        try {
+                            JSONObject jSONObject12 = new JSONObject(str2);
+                            final boolean z8 = jSONObject12.getBoolean("passed");
+                            final double d = jSONObject12.getDouble("age");
+                            final String strOptString11 = jSONObject12.optString("gender");
+                            final double dOptDouble = jSONObject12.optDouble("genderProbability");
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$onEventReceived$49(z8, d, strOptString11, dOptDouble);
+                                }
+                            });
+                        } catch (Exception e21) {
+                            FileLog.e(e21);
+                            return;
+                        }
+                        break;
+                    }
+                    break;
+                case "web_app_open_location_settings":
+                    if (!this.isRequestingPageOpen && this.botUser != null && System.currentTimeMillis() - this.lastClickMs <= 10000) {
+                        this.lastClickMs = 0L;
+                        BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
+                        if (safeLastFragment2 != null && safeLastFragment2.getParentLayout() != null) {
+                            INavigationLayout parentLayout2 = safeLastFragment2.getParentLayout();
+                            safeLastFragment2.presentFragment(ProfileActivity.of(this.botUser.id));
+                            AndroidUtilities.scrollToFragmentRow(parentLayout2, "botPermissionLocation");
+                            Delegate delegate3 = this.delegate;
+                            if (delegate3 != null) {
+                                delegate3.onCloseToTabs();
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                case "web_app_setup_back_button":
+                    try {
+                        boolean zOptBoolean8 = new JSONObject(str2).optBoolean("is_visible");
+                        if (zOptBoolean8 != this.isBackButtonVisible) {
+                            this.isBackButtonVisible = zOptBoolean8;
+                            this.delegate.onSetBackButtonVisible(zOptBoolean8);
+                        }
+                        break;
+                    } catch (JSONException e22) {
+                        FileLog.e(e22);
+                        return;
+                    }
+                    break;
+                case "web_app_biometry_request_access":
+                    try {
+                        string = new JSONObject(str2).getString("reason");
+                        break;
+                    } catch (Exception unused11) {
+                        string = null;
+                    }
+                    createBiometry();
+                    BotBiometry botBiometry2 = this.biometry;
+                    if (botBiometry2 != null) {
+                        boolean z9 = botBiometry2.access_requested;
+                        if (z9) {
+                            notifyBiometryReceived();
+                        } else if (!botBiometry2.access_granted) {
+                            final Runnable[] runnableArr = {new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$onEventReceived$26();
+                                }
+                            }};
+                            AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext(), this.resourcesProvider);
+                            if (TextUtils.isEmpty(string)) {
+                                builder2.setTitle(LocaleController.getString(R.string.BotAllowBiometryTitle));
+                                builder2.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotAllowBiometryMessage, UserObject.getUserName(this.botUser))));
+                            } else {
+                                builder2.setTitle(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotAllowBiometryMessage, UserObject.getUserName(this.botUser))));
+                                builder2.setMessage(string);
+                            }
+                            builder2.setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener() {
+                                @Override
+                                public final void onClick(AlertDialog alertDialog4, int i17) {
+                                    this.f$0.lambda$onEventReceived$28(runnableArr, alertDialog4, i17);
+                                }
+                            });
+                            builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
+                                @Override
+                                public final void onClick(AlertDialog alertDialog4, int i17) {
+                                    this.f$0.lambda$onEventReceived$29(runnableArr, alertDialog4, i17);
+                                }
+                            });
+                            builder2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public final void onDismiss(DialogInterface dialogInterface) {
+                                    BotWebViewContainer.lambda$onEventReceived$30(runnableArr, dialogInterface);
+                                }
+                            });
+                            builder2.show();
+                        } else {
+                            if (!z9) {
+                                botBiometry2.access_requested = true;
+                                botBiometry2.save();
+                            }
+                            notifyBiometryReceived();
+                        }
+                        break;
+                    }
+                    break;
+                case "web_app_trigger_haptic_feedback":
+                    try {
+                        JSONObject jSONObject13 = new JSONObject(str2);
+                        String strOptString12 = jSONObject13.optString("type");
+                        int iHashCode = strOptString12.hashCode();
+                        if (iHashCode != -1184809658) {
+                            if (iHashCode != 193071555) {
+                                if (iHashCode == 595233003 && strOptString12.equals("notification")) {
+                                    b = 1;
+                                } else {
+                                    b = -1;
+                                }
+                            } else if (strOptString12.equals("selection_change")) {
+                                b = 2;
+                            } else {
+                                b = -1;
+                            }
+                        } else if (strOptString12.equals("impact")) {
+                            b = 0;
+                        } else {
+                            b = -1;
+                        }
+                        if (b == 0) {
+                            String strOptString13 = jSONObject13.optString("impact_style");
+                            switch (strOptString13.hashCode()) {
+                                case -1078030475:
+                                    if (strOptString13.equals("medium")) {
+                                        b2 = 1;
+                                    } else {
+                                        b2 = -1;
+                                    }
+                                    break;
+                                case 3535914:
+                                    if (strOptString13.equals("soft")) {
+                                        b2 = 4;
+                                    } else {
+                                        b2 = -1;
+                                    }
+                                    break;
+                                case 99152071:
+                                    if (strOptString13.equals("heavy")) {
+                                        b2 = 2;
+                                    } else {
+                                        b2 = -1;
+                                    }
+                                    break;
+                                case 102970646:
+                                    if (strOptString13.equals("light")) {
+                                        b2 = 0;
+                                    } else {
+                                        b2 = -1;
+                                    }
+                                    break;
+                                case 108511787:
+                                    if (strOptString13.equals("rigid")) {
+                                        b2 = 3;
+                                    } else {
+                                        b2 = -1;
+                                    }
+                                    break;
+                                default:
+                                    b2 = -1;
+                                    break;
+                            }
+                            if (b2 == 0) {
+                                botWebViewVibrationEffect = BotWebViewVibrationEffect.IMPACT_LIGHT;
+                            } else if (b2 == 1) {
+                                botWebViewVibrationEffect = BotWebViewVibrationEffect.IMPACT_MEDIUM;
+                            } else if (b2 == 2) {
+                                botWebViewVibrationEffect = BotWebViewVibrationEffect.IMPACT_HEAVY;
+                            } else if (b2 == 3) {
+                                botWebViewVibrationEffect = BotWebViewVibrationEffect.IMPACT_RIGID;
+                            } else if (b2 != 4) {
+                                botWebViewVibrationEffect2 = null;
+                            } else {
+                                botWebViewVibrationEffect = BotWebViewVibrationEffect.IMPACT_SOFT;
+                            }
+                            botWebViewVibrationEffect2 = botWebViewVibrationEffect;
+                        } else if (b == 1) {
+                            String strOptString14 = jSONObject13.optString("notification_type");
+                            int iHashCode2 = strOptString14.hashCode();
+                            if (iHashCode2 != -1867169789) {
+                                if (iHashCode2 != 96784904) {
+                                    if (iHashCode2 == 1124446108 && strOptString14.equals("warning")) {
+                                        b3 = 2;
+                                    } else {
+                                        b3 = -1;
+                                    }
+                                } else if (strOptString14.equals("error")) {
+                                    b3 = 0;
+                                } else {
+                                    b3 = -1;
+                                }
+                            } else if (strOptString14.equals("success")) {
+                                b3 = 1;
+                            } else {
+                                b3 = -1;
+                            }
+                            if (b3 == 0) {
+                                botWebViewVibrationEffect = BotWebViewVibrationEffect.NOTIFICATION_ERROR;
+                            } else if (b3 == 1) {
+                                botWebViewVibrationEffect = BotWebViewVibrationEffect.NOTIFICATION_SUCCESS;
+                            } else if (b3 != 2) {
+                                botWebViewVibrationEffect2 = null;
+                            } else {
+                                botWebViewVibrationEffect = BotWebViewVibrationEffect.NOTIFICATION_WARNING;
+                            }
+                            botWebViewVibrationEffect2 = botWebViewVibrationEffect;
+                        } else if (b != 2) {
+                            botWebViewVibrationEffect2 = null;
+                        } else {
+                            botWebViewVibrationEffect = BotWebViewVibrationEffect.SELECTION_CHANGE;
+                            botWebViewVibrationEffect2 = botWebViewVibrationEffect;
+                        }
+                        if (botWebViewVibrationEffect2 != null) {
+                            botWebViewVibrationEffect2.vibrate();
+                        }
+                        break;
+                    } catch (Exception e23) {
+                        FileLog.e(e23);
+                        return;
+                    }
+                    break;
+                case "web_app_setup_main_button":
+                    try {
+                        JSONObject jSONObject14 = new JSONObject(str2);
+                        boolean zOptBoolean9 = jSONObject14.optBoolean("is_active", false);
+                        String strTrim2 = jSONObject14.optString("text", this.lastButtonText).trim();
+                        boolean z10 = jSONObject14.optBoolean("is_visible", false) && !TextUtils.isEmpty(strTrim2);
+                        int color4 = jSONObject14.has("color") ? Color.parseColor(jSONObject14.optString("color")) : this.lastButtonColor;
+                        int color5 = jSONObject14.has("text_color") ? Color.parseColor(jSONObject14.optString("text_color")) : this.lastButtonTextColor;
+                        boolean z11 = jSONObject14.optBoolean("is_progress_visible", false) && z10;
+                        boolean z12 = jSONObject14.optBoolean("has_shine_effect", false) && z10;
+                        try {
+                            j = Long.parseLong(jSONObject14.getString("icon_custom_emoji_id"));
+                        } catch (Throwable unused12) {
+                            j = 0;
+                        }
+                        this.lastButtonColor = color4;
+                        this.lastButtonTextColor = color5;
+                        this.lastButtonText = strTrim2;
+                        this.buttonData = str2;
+                        this.delegate.onSetupMainButton(z10, zOptBoolean9, strTrim2, j, color4, color5, z11, z12);
+                        break;
+                    } catch (Exception e24) {
+                        FileLog.e(e24);
+                        return;
+                    }
+                    break;
+                case "web_app_setup_swipe_behavior":
+                    try {
+                        this.delegate.onWebAppSwipingBehavior(new JSONObject(str2).optBoolean("allow_vertical_swipe"));
+                        break;
+                    } catch (JSONException e25) {
+                        FileLog.e(e25);
+                        return;
+                    }
+                    break;
+                case "web_app_setup_settings_button":
+                    try {
+                        boolean zOptBoolean10 = new JSONObject(str2).optBoolean("is_visible");
+                        if (zOptBoolean10 != this.isSettingsButtonVisible) {
+                            this.isSettingsButtonVisible = zOptBoolean10;
+                            this.delegate.onSetSettingsButtonVisible(zOptBoolean10);
+                        }
+                        break;
+                    } catch (JSONException e26) {
+                        FileLog.e(e26);
+                        return;
+                    }
+                    break;
+                case "web_app_check_home_screen":
+                    if (this.botUser != null && Build.VERSION.SDK_INT >= 26) {
+                        str6 = MediaDataController.getInstance(this.currentAccount).isShortcutAdded(this.botUser.id, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT) ? "added" : "missed";
+                    } else {
+                        str6 = "unsupported";
+                    }
+                    notifyEvent("home_screen_checked", obj("status", str6));
+                    break;
+                case "web_app_request_chat":
+                    try {
+                        strOptString = new JSONObject(str2).optString("req_id");
+                        break;
+                    } catch (Exception e27) {
+                        FileLog.e(e27);
+                        strOptString = null;
+                    }
+                    if (strOptString != null) {
+                        TL_bots.getRequestedWebViewButton getrequestedwebviewbutton = new TL_bots.getRequestedWebViewButton();
+                        getrequestedwebviewbutton.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botUser);
+                        getrequestedwebviewbutton.webapp_req_id = strOptString;
+                        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(getrequestedwebviewbutton, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
+                            @Override
+                            public final void run(Object obj, Object obj2) {
+                                this.f$0.lambda$onEventReceived$57(strOptString, (TL_keyboard.KeyboardButton) obj, (TLRPC.TL_error) obj2);
+                            }
+                        });
+                        break;
+                    }
+                    break;
+                case "web_app_start_device_orientation":
+                    BotSensors botSensors6 = this.delegate.getBotSensors();
+                    try {
+                        JSONObject jSONObject15 = new JSONObject(str2);
+                        j6 = jSONObject15.getLong("refresh_rate");
+                        zOptBoolean5 = jSONObject15.optBoolean("need_absolute", false);
+                        j5 = j6;
+                    } catch (Exception unused13) {
+                        j5 = j6;
+                        zOptBoolean5 = false;
+                    }
+                    long jClamp3 = Utilities.clamp(j5, 1000L, 20L);
+                    if (botSensors6 != null && botSensors6.startOrientation(zOptBoolean5, jClamp3)) {
+                        notifyEvent("device_orientation_started", null);
+                        break;
+                    } else {
+                        notifyEvent("device_orientation_failed", obj("error", "UNSUPPORTED"));
+                        break;
+                    }
+                    break;
+                case "web_app_biometry_update_token":
+                    try {
+                        JSONObject jSONObject16 = new JSONObject(str2);
+                        final String string12 = jSONObject16.getString("token");
+                        try {
+                            string2 = jSONObject16.getString("reason");
+                        } catch (Exception unused14) {
+                            string2 = null;
+                        }
+                        createBiometry();
+                        BotBiometry botBiometry3 = this.biometry;
+                        if (botBiometry3 != null) {
+                            if (!botBiometry3.access_granted) {
+                                try {
+                                    JSONObject jSONObject17 = new JSONObject();
+                                    jSONObject17.put("status", "failed");
+                                    notifyEvent("biometry_token_updated", jSONObject17);
+                                } catch (Exception e28) {
+                                    FileLog.e(e28);
+                                    return;
+                                }
+                            } else {
+                                botBiometry3.updateToken(string2, string12, new Utilities.Callback() {
+                                    @Override
+                                    public final void run(Object obj) {
+                                        this.f$0.lambda$onEventReceived$32(string12, (Boolean) obj);
+                                    }
+                                });
+                            }
+                            break;
+                        }
+                        break;
+                    } catch (Exception e29) {
+                        FileLog.e(e29);
+                        if (e29 instanceof JSONException) {
+                            error("JSON Parse error");
+                            return;
+                        } else {
+                            unknownError();
+                            return;
+                        }
+                    }
+                    break;
+                case "web_app_set_bottom_bar_color":
+                    try {
+                        String strOptString15 = new JSONObject(str2).optString("color", null);
+                        if (TextUtils.isEmpty(strOptString15)) {
+                            color = Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider);
+                        } else {
+                            color = Color.parseColor(strOptString15);
+                        }
+                        Delegate delegate4 = this.delegate;
+                        if (delegate4 != null) {
+                            delegate4.onWebAppSetNavigationBarColor(color);
+                        }
+                        break;
+                    } catch (Exception e30) {
+                        FileLog.e(e30);
+                        return;
+                    }
+                    break;
+                case "web_app_set_header_color":
+                    try {
+                        JSONObject jSONObject18 = new JSONObject(str2);
+                        String strOptString16 = jSONObject18.optString("color", null);
+                        if (!TextUtils.isEmpty(strOptString16)) {
+                            int color6 = Color.parseColor(strOptString16);
+                            if (color6 != 0) {
+                                this.delegate.onWebAppSetActionBarColor(-1, color6, true);
+                            }
+                        } else {
+                            String strOptString17 = jSONObject18.optString("color_key");
+                            int iHashCode3 = strOptString17.hashCode();
+                            if (iHashCode3 != -1265068311) {
+                                if (iHashCode3 == -210781868 && strOptString17.equals("secondary_bg_color")) {
+                                    b4 = 1;
+                                } else {
+                                    b4 = -1;
+                                }
+                            } else if (strOptString17.equals("bg_color")) {
+                                b4 = 0;
+                            } else {
+                                b4 = -1;
+                            }
+                            if (b4 != 0) {
+                                if (b4 != 1) {
+                                    i2 = -1;
+                                } else {
+                                    i = Theme.key_windowBackgroundGray;
+                                }
+                                if (i2 >= 0) {
+                                    this.delegate.onWebAppSetActionBarColor(i2, Theme.getColor(i2, this.resourcesProvider), false);
+                                }
+                            } else {
+                                i = Theme.key_windowBackgroundWhite;
+                            }
+                            i2 = i;
+                            if (i2 >= 0) {
+                                this.delegate.onWebAppSetActionBarColor(i2, Theme.getColor(i2, this.resourcesProvider), false);
+                            }
+                        }
+                        break;
+                    } catch (Exception e31) {
+                        FileLog.e(e31);
+                        return;
+                    }
+                    break;
+                case "web_app_request_safe_area":
+                    reportSafeInsets(this.lastInsets, true);
+                    break;
+                case "web_app_set_background_color":
+                    try {
+                        this.delegate.onWebAppSetBackgroundColor(Color.parseColor(new JSONObject(str2).optString("color", "#ffffff")) | (-16777216));
+                        break;
+                    } catch (Exception e32) {
+                        FileLog.e(e32);
+                        return;
+                    }
+                    break;
+                case "web_app_request_write_access":
+                    if (ignoreDialog(3)) {
+                        try {
+                            JSONObject jSONObject19 = new JSONObject();
+                            jSONObject19.put("status", "cancelled");
+                            notifyEvent("write_access_requested", jSONObject19);
+                        } catch (Exception e33) {
+                            FileLog.e(e33);
+                            return;
+                        }
+                        break;
+                    } else {
+                        final int i17 = this.currentAccount;
+                        final MyWebView myWebView3 = this.webView;
+                        TL_bots.canSendMessage cansendmessage = new TL_bots.canSendMessage();
+                        cansendmessage.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botUser);
+                        ConnectionsManager.getInstance(this.currentAccount).sendRequest(cansendmessage, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                this.f$0.lambda$onEventReceived$19(i17, myWebView3, tLObject, tL_error);
+                            }
+                        });
+                        break;
+                    }
+                    break;
+                case "web_app_expand":
+                    this.delegate.onWebAppExpand();
+                    break;
+                default:
+                    FileLog.d("unknown webapp event " + str);
+                    break;
+            }
+        }
     }
 
     public void lambda$onEventReceived$7(PopupButton popupButton, AtomicBoolean atomicBoolean, AlertDialog alertDialog, int i) {
@@ -1492,13 +3056,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void lambda$onEventReceived$12(final String str, final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException {
+            public final void run() {
                 this.f$0.lambda$onEventReceived$11(tL_error, str, tL_inputInvoiceSlug, tLObject);
             }
         });
     }
 
-    public void lambda$onEventReceived$11(TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) throws JSONException {
+    public void lambda$onEventReceived$11(TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) {
         if (tL_error != null) {
             onInvoiceStatusUpdate(str, "failed");
         } else {
@@ -1509,13 +3073,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void lambda$onEventReceived$19(final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException {
+            public final void run() {
                 this.f$0.lambda$onEventReceived$18(tLObject, i, myWebView, tL_error);
             }
         });
     }
 
-    public void lambda$onEventReceived$18(TLObject tLObject, final int i, final MyWebView myWebView, TLRPC.TL_error tL_error) throws JSONException {
+    public void lambda$onEventReceived$18(TLObject tLObject, final int i, final MyWebView myWebView, TLRPC.TL_error tL_error) {
         if (!(tLObject instanceof TLRPC.TL_boolTrue)) {
             if (tL_error != null) {
                 unknownError(tL_error.text);
@@ -1534,7 +3098,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     }
                 }).create(), new Runnable() {
                     @Override
-                    public final void run() throws JSONException {
+                    public final void run() {
                         BotWebViewContainer.lambda$onEventReceived$17(strArr, i, myWebView);
                     }
                 });
@@ -1583,7 +3147,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         alertDialog.dismiss();
     }
 
-    public static void lambda$onEventReceived$17(String[] strArr, int i, MyWebView myWebView) throws JSONException {
+    public static void lambda$onEventReceived$17(String[] strArr, int i, MyWebView myWebView) {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("status", strArr[0]);
@@ -1596,13 +3160,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void lambda$onEventReceived$21(final String str, final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException {
+            public final void run() {
                 this.f$0.lambda$onEventReceived$20(str, tLObject, tL_error, i, myWebView);
             }
         });
     }
 
-    public void lambda$onEventReceived$20(String str, TLObject tLObject, TLRPC.TL_error tL_error, int i, MyWebView myWebView) throws JSONException {
+    public void lambda$onEventReceived$20(String str, TLObject tLObject, TLRPC.TL_error tL_error, int i, MyWebView myWebView) {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("req_id", str);
@@ -1618,13 +3182,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$23(String[] strArr, boolean z, final int i, final MyWebView myWebView, AlertDialog alertDialog, int i2) throws JSONException {
+    public void lambda$onEventReceived$23(String[] strArr, boolean z, final int i, final MyWebView myWebView, AlertDialog alertDialog, int i2) {
         strArr[0] = null;
         alertDialog.dismiss();
         if (z) {
             MessagesController.getInstance(this.currentAccount).unblockPeer(this.botUser.id, new Runnable() {
                 @Override
-                public final void run() throws JSONException {
+                public final void run() {
                     this.f$0.lambda$onEventReceived$22(i, myWebView);
                 }
             });
@@ -1640,7 +3204,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$22(int i, MyWebView myWebView) throws JSONException {
+    public void lambda$onEventReceived$22(int i, MyWebView myWebView) {
         SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(this.currentAccount).getCurrentUser(), this.botUser.id, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
         try {
             JSONObject jSONObject = new JSONObject();
@@ -1651,7 +3215,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public static void lambda$onEventReceived$25(String[] strArr, int i, MyWebView myWebView) throws JSONException {
+    public static void lambda$onEventReceived$25(String[] strArr, int i, MyWebView myWebView) {
         if (strArr[0] == null) {
             return;
         }
@@ -1714,7 +3278,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$31(Boolean bool, String str) throws JSONException {
+    public void lambda$onEventReceived$31(Boolean bool, String str) {
         if (bool.booleanValue()) {
             this.biometry.access_granted = true;
         }
@@ -1728,10 +3292,16 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$32(String str, Boolean bool) throws JSONException {
+    public void lambda$onEventReceived$32(String str, Boolean bool) {
+        String str2;
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("status", bool.booleanValue() ? TextUtils.isEmpty(str) ? "removed" : "updated" : "failed");
+            if (bool.booleanValue()) {
+                str2 = TextUtils.isEmpty(str) ? "removed" : "updated";
+            } else {
+                str2 = "failed";
+            }
+            jSONObject.put("status", str2);
             notifyEvent("biometry_token_updated", jSONObject);
         } catch (Exception e) {
             FileLog.e(e);
@@ -2113,7 +3683,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
 
         @Override
-        public void onBecomeFullyVisible() throws Resources.NotFoundException {
+        public void onBecomeFullyVisible() {
             super.onBecomeFullyVisible();
             if (this.shownToast) {
                 return;
@@ -2221,7 +3791,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void setStorageKey(BotStorage botStorage, String str, String str2, String str3) throws JSONException {
+    private void setStorageKey(BotStorage botStorage, String str, String str2, String str3) {
         if (botStorage == null || this.botUser == null) {
             return;
         }
@@ -2256,7 +3826,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void getStorageKey(BotStorage botStorage, String str, String str2, String str3) throws JSONException {
+    private void getStorageKey(BotStorage botStorage, String str, String str2, String str3) {
         Object obj;
         if (botStorage == null || this.botUser == null) {
             return;
@@ -2292,7 +3862,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void restoreStorageKey(final BotStorage botStorage, String str, final String str2, final String str3) throws JSONException {
+    private void restoreStorageKey(final BotStorage botStorage, String str, final String str2, final String str3) {
         if (botStorage == null || this.botUser == null) {
             return;
         }
@@ -2345,7 +3915,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private void clearStorageKey(BotStorage botStorage, String str, String str2, String str3) throws JSONException {
+    private void clearStorageKey(BotStorage botStorage, String str, String str2, String str3) {
         if (botStorage == null || this.botUser == null) {
             return;
         }
@@ -2627,14 +4197,134 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         public void resolveShare(final String str, final byte[] bArr, final String str2, final String str3) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.lambda$resolveShare$2(str, bArr, str2, str3);
                 }
             });
         }
 
-        public void lambda$resolveShare$2(java.lang.String r9, byte[] r10, java.lang.String r11, java.lang.String r12) throws java.io.IOException {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.WebViewProxy.lambda$resolveShare$2(java.lang.String, byte[], java.lang.String, java.lang.String):void");
+        public void lambda$resolveShare$2(String str, byte[] bArr, String str2, String str3) {
+            String strOptString;
+            String strOptString2;
+            String strOptString3;
+            String str4;
+            LaunchActivity launchActivity;
+            if (this.container == null) {
+                return;
+            }
+            if (System.currentTimeMillis() - this.container.lastClickMs <= 10000) {
+                this.container.lastClickMs = 0L;
+                Context context = this.webView.getContext();
+                Activity activityFindActivity = AndroidUtilities.findActivity(context);
+                if (activityFindActivity == null && (launchActivity = LaunchActivity.instance) != null) {
+                    activityFindActivity = launchActivity;
+                }
+                if (context == null || activityFindActivity == null || !(activityFindActivity instanceof LaunchActivity) || activityFindActivity.isFinishing() || !this.webView.isAttachedToWindow()) {
+                    this.webView.evaluateJS("window.navigator.__share__receive(\"security\")");
+                    return;
+                }
+                LaunchActivity launchActivity2 = (LaunchActivity) activityFindActivity;
+                File file = null;
+                try {
+                    JSONObject jSONObject = new JSONObject(str);
+                    strOptString = jSONObject.optString("url", null);
+                    try {
+                        strOptString2 = jSONObject.optString("text", null);
+                        try {
+                            strOptString3 = jSONObject.optString("title", null);
+                        } catch (Exception e) {
+                            e = e;
+                            FileLog.e(e);
+                            strOptString3 = null;
+                        }
+                    } catch (Exception e2) {
+                        e = e2;
+                        strOptString2 = null;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                    strOptString = null;
+                    strOptString2 = null;
+                }
+                StringBuilder sb = new StringBuilder();
+                if (strOptString3 != null) {
+                    sb.append(strOptString3);
+                }
+                if (strOptString2 != null) {
+                    if (sb.length() > 0) {
+                        sb.append("\n");
+                    }
+                    sb.append(strOptString2);
+                }
+                if (strOptString != null) {
+                    if (sb.length() > 0) {
+                        sb.append("\n");
+                    }
+                    sb.append(strOptString);
+                }
+                Intent intent = new Intent("android.intent.action.SEND");
+                intent.putExtra("android.intent.extra.TEXT", sb.toString());
+                if (bArr != null) {
+                    int i = 0;
+                    while (true) {
+                        if (file == null || file.exists()) {
+                            File directory = FileLoader.getDirectory(4);
+                            StringBuilder sb2 = new StringBuilder();
+                            sb2.append(FileLoader.fixFileName(str2 == null ? "file" : str2));
+                            if (i > 0) {
+                                str4 = " (" + i + ")";
+                            } else {
+                                str4 = "";
+                            }
+                            sb2.append(str4);
+                            file = new File(directory, sb2.toString());
+                            i++;
+                        } else {
+                            try {
+                                break;
+                            } catch (Exception e4) {
+                                FileLog.e(e4);
+                            }
+                        }
+                    }
+                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+                    fileOutputStream.write(bArr);
+                    fileOutputStream.close();
+                    try {
+                        if (str3 == null) {
+                            intent.setType("text/plain");
+                        } else {
+                            intent.setType(str3);
+                        }
+                        if (str2 != null) {
+                            intent.putExtra("android.intent.extra.TITLE", str2);
+                        }
+                        if (Build.VERSION.SDK_INT >= 24) {
+                            try {
+                                intent.putExtra("android.intent.extra.STREAM", FileProvider.getUriForFile(launchActivity2, ApplicationLoader.getApplicationId() + ".provider", file));
+                                intent.setFlags(1);
+                            } catch (Exception unused) {
+                                intent.putExtra("android.intent.extra.STREAM", Uri.fromFile(file));
+                            }
+                        } else {
+                            intent.putExtra("android.intent.extra.STREAM", Uri.fromFile(file));
+                        }
+                    } catch (Exception e5) {
+                        FileLog.e(e5);
+                    }
+                } else {
+                    intent.setType("text/plain");
+                }
+                launchActivity2.whenWebviewShareAPIDone(new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        this.f$0.lambda$resolveShare$1((Boolean) obj);
+                    }
+                });
+                launchActivity2.startActivityForResult(Intent.createChooser(intent, LocaleController.getString(R.string.ShareFile)), 521);
+                return;
+            }
+            this.webView.evaluateJS("window.navigator.__share__receive(\"security\")");
         }
 
         public void lambda$resolveShare$1(Boolean bool) {
@@ -2753,54 +4443,49 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         public int textColorKey;
 
         public PopupButton(JSONObject jSONObject) throws JSONException {
-            char c = 65535;
+            byte b = -1;
             this.textColorKey = -1;
             this.id = jSONObject.getString("id");
             String string = jSONObject.getString("type");
             switch (string.hashCode()) {
                 case -1829997182:
                     if (string.equals("destructive")) {
-                        c = 5;
-                        break;
+                        b = 5;
                     }
                     break;
                 case -1367724422:
                     if (string.equals("cancel")) {
-                        c = 4;
-                        break;
+                        b = 4;
                     }
                     break;
                 case 3548:
                     if (string.equals("ok")) {
-                        c = 2;
-                        break;
+                        b = 2;
                     }
                     break;
                 case 94756344:
                     if (string.equals("close")) {
-                        c = 3;
-                        break;
+                        b = 3;
                     }
                     break;
                 case 1544803905:
                     if (string.equals("default")) {
-                        c = 1;
-                        break;
+                        b = 1;
                     }
                     break;
             }
-            if (c == 2) {
+            if (b == 2) {
                 this.text = LocaleController.getString(R.string.OK);
                 return;
             }
-            if (c == 3) {
+            if (b == 3) {
                 this.text = LocaleController.getString(R.string.Close);
             } else {
-                if (c == 4) {
+                if (b == 4) {
                     this.text = LocaleController.getString(R.string.Cancel);
                     return;
                 }
-                if (c == 5) {
+                if (b == 5) {
                     this.textColorKey = Theme.key_text_RedBold;
                 }
                 this.text = jSONObject.getString("text");
@@ -2846,7 +4531,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return sb.toString();
     }
 
-    public static WebResourceResponse proxyTON(String str, String str2, Map map) throws IOException {
+    public static WebResourceResponse proxyTON(String str, String str2, Map map) {
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(Browser.replaceHostname(Uri.parse(str2), rotateTONHost(AndroidUtilities.getHostAuthority(str2)), "https")).openConnection();
             httpURLConnection.setRequestMethod(str);
@@ -2949,7 +4634,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     final String extra = hitTestResult.getExtra();
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
-                        public final void run() throws UnsupportedEncodingException {
+                        public final void run() {
                             this.f$0.lambda$onLongClick$1(extra);
                         }
                     });
@@ -2961,19 +4646,19 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 final String extra2 = hitTestResult.getExtra();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws UnsupportedEncodingException {
+                    public final void run() {
                         this.f$0.lambda$onLongClick$3(extra2);
                     }
                 });
                 return true;
             }
 
-            public void lambda$onLongClick$1(final String str) throws UnsupportedEncodingException {
+            public void lambda$onLongClick$1(final String str) {
                 String strReplaceHostname;
-                Uri uri;
                 BottomSheet.Builder builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
                 try {
-                    uri = Uri.parse(str);
+                    Uri uri = Uri.parse(str);
+                    strReplaceHostname = (uri == null || uri.getScheme().equalsIgnoreCase("data")) ? str : Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
                 } catch (Exception e) {
                     try {
                         FileLog.e((Throwable) e, false);
@@ -2992,21 +4677,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         MyWebView.this.currentSheet = builder.show();
                     }
                 }
-                strReplaceHostname = (uri == null || uri.getScheme().equalsIgnoreCase("data")) ? str : Browser.replaceHostname(uri, Browser.IDN_toUnicode(uri.getHost()), null);
                 try {
                     strReplaceHostname = URLDecoder.decode(strReplaceHostname.replaceAll("\\+", "%2b"), "UTF-8");
                 } catch (Exception e3) {
                     e = e3;
                     FileLog.e(e);
-                    builder.setTitleMultipleLines(true);
-                    builder.setTitle(strReplaceHostname);
-                    builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
-                        @Override
-                        public final void onClick(DialogInterface dialogInterface, int i) {
-                            this.f$0.lambda$onLongClick$0(str, dialogInterface, i);
-                        }
-                    });
-                    MyWebView.this.currentSheet = builder.show();
                 }
                 builder.setTitleMultipleLines(true);
                 builder.setTitle(strReplaceHostname);
@@ -3046,7 +4721,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
             }
 
-            public void lambda$onLongClick$3(final String str) throws UnsupportedEncodingException {
+            public void lambda$onLongClick$3(final String str) {
                 String strDecode;
                 BottomSheet.Builder builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
                 try {
@@ -3076,15 +4751,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 } catch (Exception e3) {
                     e = e3;
                     FileLog.e(e);
-                    builder.setTitleMultipleLines(true);
-                    builder.setTitle(strDecode);
-                    builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
-                        @Override
-                        public final void onClick(DialogInterface dialogInterface, int i) {
-                            this.f$0.lambda$onLongClick$2(str, dialogInterface, i);
-                        }
-                    });
-                    MyWebView.this.currentSheet = builder.show();
                 }
                 builder.setTitleMultipleLines(true);
                 builder.setTitle(strDecode);
@@ -3162,13 +4828,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
 
             @Override
-            public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) throws IOException {
-                HttpURLConnection httpURLConnection;
+            public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
                 int i;
                 MyWebView myWebView = MyWebView.this;
                 StringBuilder sb = new StringBuilder();
                 sb.append("shouldInterceptRequest ");
-                HttpURLConnection httpURLConnection2 = null;
+                HttpURLConnection httpURLConnection = null;
                 sb.append(webResourceRequest == null ? null : webResourceRequest.getUrl());
                 myWebView.d(sb.toString());
                 if (webResourceRequest != null && BotWebViewContainer.isTonsite(webResourceRequest.getUrl())) {
@@ -3178,75 +4843,70 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
                 if (!this.val$bot && MyWebView.this.opener != null && this.firstRequest) {
                     try {
-                        httpURLConnection = (HttpURLConnection) new URL(webResourceRequest.getUrl().toString()).openConnection();
-                    } catch (Exception e) {
-                        e = e;
-                    }
-                    try {
-                        httpURLConnection.setRequestMethod(webResourceRequest.getMethod());
-                        if (webResourceRequest.getRequestHeaders() != null) {
-                            for (Map.Entry<String, String> entry : webResourceRequest.getRequestHeaders().entrySet()) {
-                                httpURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
+                        HttpURLConnection httpURLConnection2 = (HttpURLConnection) new URL(webResourceRequest.getUrl().toString()).openConnection();
+                        try {
+                            httpURLConnection2.setRequestMethod(webResourceRequest.getMethod());
+                            if (webResourceRequest.getRequestHeaders() != null) {
+                                for (Map.Entry<String, String> entry : webResourceRequest.getRequestHeaders().entrySet()) {
+                                    httpURLConnection2.setRequestProperty(entry.getKey(), entry.getValue());
+                                }
                             }
-                        }
-                        httpURLConnection.connect();
-                        HashMap map = new HashMap();
-                        Iterator<Map.Entry<String, List<String>>> it = httpURLConnection.getHeaderFields().entrySet().iterator();
-                        while (true) {
-                            if (!it.hasNext()) {
-                                break;
-                            }
-                            Map.Entry<String, List<String>> next = it.next();
-                            String key = next.getKey();
-                            if (key != null) {
-                                map.put(key, TextUtils.join(", ", next.getValue()));
-                                if (!MyWebView.this.dangerousUrl && ("cross-origin-resource-policy".equals(key.toLowerCase()) || "cross-origin-embedder-policy".equals(key.toLowerCase()))) {
-                                    Iterator<String> it2 = next.getValue().iterator();
-                                    while (true) {
-                                        if (!it2.hasNext()) {
-                                            break;
-                                        }
-                                        String next2 = it2.next();
-                                        if (next2 != null && !"unsafe-none".equals(next2.toLowerCase()) && !"same-site".equals(next2.toLowerCase())) {
-                                            MyWebView.this.d("<!> dangerous header CORS policy: " + key + ": " + next2 + " from " + webResourceRequest.getMethod() + " " + webResourceRequest.getUrl());
-                                            MyWebView.this.dangerousUrl = true;
-                                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                                @Override
-                                                public final void run() {
-                                                    this.f$0.lambda$shouldInterceptRequest$0();
-                                                }
-                                            });
-                                            break;
+                            httpURLConnection2.connect();
+                            HashMap map = new HashMap();
+                            Iterator<Map.Entry<String, List<String>>> it = httpURLConnection2.getHeaderFields().entrySet().iterator();
+                            while (true) {
+                                if (!it.hasNext()) {
+                                    break;
+                                }
+                                Map.Entry<String, List<String>> next = it.next();
+                                String key = next.getKey();
+                                if (key != null) {
+                                    map.put(key, TextUtils.join(", ", next.getValue()));
+                                    if (!MyWebView.this.dangerousUrl && ("cross-origin-resource-policy".equals(key.toLowerCase()) || "cross-origin-embedder-policy".equals(key.toLowerCase()))) {
+                                        for (String str : next.getValue()) {
+                                            if (str != null && !"unsafe-none".equals(str.toLowerCase()) && !"same-site".equals(str.toLowerCase())) {
+                                                MyWebView.this.d("<!> dangerous header CORS policy: " + key + ": " + str + " from " + webResourceRequest.getMethod() + " " + webResourceRequest.getUrl());
+                                                MyWebView.this.dangerousUrl = true;
+                                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                                    @Override
+                                                    public final void run() {
+                                                        this.f$0.lambda$shouldInterceptRequest$0();
+                                                    }
+                                                });
+                                                break;
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                        String contentType = httpURLConnection.getContentType();
-                        String contentEncoding = httpURLConnection.getContentEncoding();
-                        if (contentType.indexOf("; ") >= 0) {
-                            String[] strArrSplit = contentType.split("; ");
-                            if (!TextUtils.isEmpty(strArrSplit[0])) {
-                                contentType = strArrSplit[0];
-                            }
-                            for (i = 1; i < strArrSplit.length; i++) {
-                                if (strArrSplit[i].startsWith("charset=")) {
-                                    contentEncoding = strArrSplit[i].substring(8);
+                            String contentType = httpURLConnection2.getContentType();
+                            String contentEncoding = httpURLConnection2.getContentEncoding();
+                            if (contentType.indexOf("; ") >= 0) {
+                                String[] strArrSplit = contentType.split("; ");
+                                if (!TextUtils.isEmpty(strArrSplit[0])) {
+                                    contentType = strArrSplit[0];
+                                }
+                                for (i = 1; i < strArrSplit.length; i++) {
+                                    if (strArrSplit[i].startsWith("charset=")) {
+                                        contentEncoding = strArrSplit[i].substring(8);
+                                    }
                                 }
                             }
+                            String str2 = contentEncoding;
+                            this.firstRequest = false;
+                            return new WebResourceResponse(contentType, str2, httpURLConnection2.getResponseCode(), httpURLConnection2.getResponseMessage(), map, httpURLConnection2.getInputStream());
+                        } catch (Exception e) {
+                            e = e;
+                            httpURLConnection = httpURLConnection2;
+                            FileLog.e(e);
+                            if (httpURLConnection != null) {
+                                httpURLConnection.disconnect();
+                            }
+                            this.firstRequest = false;
+                            return super.shouldInterceptRequest(webView, webResourceRequest);
                         }
-                        String str = contentEncoding;
-                        this.firstRequest = false;
-                        return new WebResourceResponse(contentType, str, httpURLConnection.getResponseCode(), httpURLConnection.getResponseMessage(), map, httpURLConnection.getInputStream());
                     } catch (Exception e2) {
                         e = e2;
-                        httpURLConnection2 = httpURLConnection;
-                        FileLog.e(e);
-                        if (httpURLConnection2 != null) {
-                            httpURLConnection2.disconnect();
-                        }
-                        this.firstRequest = false;
-                        return super.shouldInterceptRequest(webView, webResourceRequest);
                     }
                 }
                 this.firstRequest = false;
@@ -3255,7 +4915,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             public void lambda$shouldInterceptRequest$0() {
                 if (MyWebView.this.botWebViewContainer != null) {
-                    MyWebView.this.botWebViewContainer.onURLChanged(MyWebView.this.urlFallback, !r1.canGoBack(), !MyWebView.this.canGoForward());
+                    BotWebViewContainer botWebViewContainer = MyWebView.this.botWebViewContainer;
+                    MyWebView myWebView = MyWebView.this;
+                    botWebViewContainer.onURLChanged(myWebView.urlFallback, !myWebView.canGoBack(), !MyWebView.this.canGoForward());
                 }
             }
 
@@ -4215,12 +5877,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             private String getFilename(String str, String str2, String str3) {
                 try {
-                    String str4 = Uri.parse(str).getPathSegments().get(r0.size() - 1);
+                    List<String> pathSegments = Uri.parse(str).getPathSegments();
+                    String str4 = pathSegments.get(pathSegments.size() - 1);
                     int iLastIndexOf = str4.lastIndexOf(".");
-                    if (iLastIndexOf > 0) {
-                        if (!TextUtils.isEmpty(str4.substring(iLastIndexOf + 1))) {
-                            return str4;
-                        }
+                    if (iLastIndexOf > 0 && !TextUtils.isEmpty(str4.substring(iLastIndexOf + 1))) {
+                        return str4;
                     }
                 } catch (Exception unused) {
                 }
@@ -4751,7 +6412,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public static JSONObject obj(String str, Object obj) throws JSONException {
+    public static JSONObject obj(String str, Object obj) {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
@@ -4761,7 +6422,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public static JSONObject obj(String str, Object obj, String str2, Object obj2) throws JSONException {
+    public static JSONObject obj(String str, Object obj, String str2, Object obj2) {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
@@ -4772,7 +6433,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3) throws JSONException {
+    public static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3) {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
@@ -4784,7 +6445,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3, String str4, Object obj4) throws JSONException {
+    public static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3, String str4, Object obj4) {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);

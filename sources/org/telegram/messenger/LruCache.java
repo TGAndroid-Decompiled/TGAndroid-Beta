@@ -116,7 +116,8 @@ public class LruCache<T> {
                         entryRemoved(true, key, value, null);
                     }
                 }
-            } finally {
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

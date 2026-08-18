@@ -44,7 +44,6 @@ import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.GradientClip;
-import org.telegram.ui.web.WebInstantView;
 
 public abstract class WebActionBar extends FrameLayout {
     private ValueAnimator addressAnimator;
@@ -890,6 +889,7 @@ public abstract class WebActionBar extends FrameLayout {
             valueAnimator.cancel();
         }
         this.searching = z;
+        float f = 0.0f;
         if (z2) {
             this.searchEditText.setVisibility(0);
             this.backButtonDrawable.setRotation((this.backButtonShown || z) ? 0.0f : 1.0f, true);
@@ -911,9 +911,9 @@ public abstract class WebActionBar extends FrameLayout {
                     }
                     WebActionBar webActionBar2 = WebActionBar.this;
                     EditTextBoldCursor editTextBoldCursor = webActionBar2.searchEditText;
-                    float f = z ? 1.0f : 0.0f;
-                    webActionBar2.searchingProgress = f;
-                    editTextBoldCursor.setAlpha(f);
+                    float f2 = z ? 1.0f : 0.0f;
+                    webActionBar2.searchingProgress = f2;
+                    editTextBoldCursor.setAlpha(f2);
                     WebActionBar.this.invalidate();
                     WebActionBar webActionBar3 = WebActionBar.this;
                     if (webActionBar3.searching) {
@@ -1015,6 +1015,7 @@ public abstract class WebActionBar extends FrameLayout {
                 this.addressEditText.setHint(LocaleController.formatString(R.string.AddressPlaceholder, SearchEngine.getCurrent().name));
             }
         }
+        float f = 0.0f;
         if (z2) {
             this.addressEditText.setVisibility(0);
             this.backButtonDrawable.setRotation((this.backButtonShown || z) ? 0.0f : 1.0f, true);
@@ -1035,9 +1036,9 @@ public abstract class WebActionBar extends FrameLayout {
                     }
                     WebActionBar webActionBar2 = WebActionBar.this;
                     EditTextBoldCursor editTextBoldCursor = webActionBar2.addressEditText;
-                    float f = z ? 1.0f : 0.0f;
-                    webActionBar2.addressingProgress = f;
-                    editTextBoldCursor.setAlpha(f);
+                    float f2 = z ? 1.0f : 0.0f;
+                    webActionBar2.addressingProgress = f2;
+                    editTextBoldCursor.setAlpha(f2);
                     WebActionBar webActionBar3 = WebActionBar.this;
                     webActionBar3.onAddressingProgress(webActionBar3.addressingProgress);
                     WebActionBar.this.menuButton.setTranslationX(AndroidUtilities.dp(56.0f) * WebActionBar.this.addressingProgress);
@@ -1049,9 +1050,9 @@ public abstract class WebActionBar extends FrameLayout {
             this.addressAnimator.setDuration(360L);
             this.addressAnimator.start();
         } else {
-            float f = z ? 1.0f : 0.0f;
-            this.addressingProgress = f;
-            onAddressingProgress(f);
+            float f2 = z ? 1.0f : 0.0f;
+            this.addressingProgress = f2;
+            onAddressingProgress(f2);
             invalidate();
             this.addressEditText.setAlpha(z ? 1.0f : 0.0f);
             this.addressEditText.setVisibility(z ? 0 : 8);

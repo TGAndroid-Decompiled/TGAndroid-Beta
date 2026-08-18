@@ -230,12 +230,12 @@ public class DialogMeUrlCell extends BaseCell {
                 float lineLeft = this.nameLayout.getLineLeft(0);
                 double dCeil = Math.ceil(this.nameLayout.getLineWidth(0));
                 if (this.drawVerified) {
-                    this.nameMuteLeft = (int) (((this.nameLeft + (iMax - dCeil)) - AndroidUtilities.dp(6.0f)) - Theme.dialogs_verifiedDrawable.getIntrinsicWidth());
+                    this.nameMuteLeft = (int) (((((double) this.nameLeft) + (((double) iMax) - dCeil)) - ((double) AndroidUtilities.dp(6.0f))) - ((double) Theme.dialogs_verifiedDrawable.getIntrinsicWidth()));
                 }
                 if (lineLeft == 0.0f) {
                     double d = iMax;
                     if (dCeil < d) {
-                        this.nameLeft = (int) (this.nameLeft + (d - dCeil));
+                        this.nameLeft = (int) (((double) this.nameLeft) + (d - dCeil));
                     }
                 }
             }
@@ -246,7 +246,7 @@ public class DialogMeUrlCell extends BaseCell {
             double dCeil2 = Math.ceil(this.messageLayout.getLineWidth(0));
             double d2 = iMax2;
             if (dCeil2 < d2) {
-                this.messageLeft = (int) (this.messageLeft + (d2 - dCeil2));
+                this.messageLeft = (int) (((double) this.messageLeft) + (d2 - dCeil2));
                 return;
             }
             return;
@@ -258,7 +258,7 @@ public class DialogMeUrlCell extends BaseCell {
                 double dCeil3 = Math.ceil(this.nameLayout.getLineWidth(0));
                 double d3 = iMax;
                 if (dCeil3 < d3) {
-                    this.nameLeft = (int) (this.nameLeft - (d3 - dCeil3));
+                    this.nameLeft = (int) (((double) this.nameLeft) - (d3 - dCeil3));
                 }
             }
             if (this.drawVerified) {
@@ -272,7 +272,7 @@ public class DialogMeUrlCell extends BaseCell {
         double dCeil4 = Math.ceil(this.messageLayout.getLineWidth(0));
         double d4 = iMax2;
         if (dCeil4 < d4) {
-            this.messageLeft = (int) (this.messageLeft - (d4 - dCeil4));
+            this.messageLeft = (int) (((double) this.messageLeft) - (d4 - dCeil4));
         }
     }
 

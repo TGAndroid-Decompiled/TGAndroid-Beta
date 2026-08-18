@@ -22,16 +22,15 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -119,7 +118,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         }
 
         @JavascriptInterface
-        public void onPlayerError(String str) throws NumberFormatException {
+        public void onPlayerError(String str) {
             final int i = Integer.parseInt(str);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -187,7 +186,7 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         }
 
         @JavascriptInterface
-        public void onPlayerStateChange(String str) throws NumberFormatException {
+        public void onPlayerStateChange(String str) {
             int i = Integer.parseInt(str);
             boolean z = PhotoViewerWebView.this.isPlaying;
             final boolean z2 = false;
@@ -363,14 +362,14 @@ public abstract class PhotoViewerWebView extends FrameLayout {
             }
             Utilities.externalNetworkQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws JSONException, IOException {
+                public final void run() {
                     this.f$0.lambda$shouldInterceptRequest$0(string, webResourceRequest);
                 }
             });
             return null;
         }
 
-        public void lambda$shouldInterceptRequest$0(String str, WebResourceRequest webResourceRequest) throws JSONException, IOException {
+        public void lambda$shouldInterceptRequest$0(String str, WebResourceRequest webResourceRequest) {
             JSONObject jSONObjectOptJSONObject;
             String strOptString;
             try {
@@ -483,8 +482,31 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         return Math.min(25, (((int) dCeil) - ((this.youtubeStoryboards.size() - 1) * 25)) + 1);
     }
 
-    public java.lang.String getYoutubeStoryboard(int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoViewerWebView.getYoutubeStoryboard(int):java.lang.String");
+    public String getYoutubeStoryboard(int i) {
+        float f;
+        int i2;
+        int videoDuration = getVideoDuration() / 1000;
+        if (videoDuration > 100) {
+            if (videoDuration <= 250) {
+                i2 = ((int) (i / 2.0f)) / 25;
+            } else if (videoDuration <= 500) {
+                i2 = ((int) (i / 4.0f)) / 25;
+            } else if (videoDuration <= 1000) {
+                i2 = ((int) (i / 5.0f)) / 25;
+            } else {
+                f = i / 10.0f;
+            }
+            if (i2 < this.youtubeStoryboards.size()) {
+                return (String) this.youtubeStoryboards.get(i2);
+            }
+            return null;
+        }
+        f = i;
+        i2 = (int) (f / 25.0f);
+        if (i2 < this.youtubeStoryboards.size()) {
+            return (String) this.youtubeStoryboards.get(i2);
+        }
+        return null;
     }
 
     public int getYoutubeStoryboardImageIndex(int i) {
@@ -679,8 +701,75 @@ public abstract class PhotoViewerWebView extends FrameLayout {
         this.setPlaybackSpeed = true;
     }
 
-    public void init(int r9, org.telegram.tgnet.TLRPC.WebPage r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoViewerWebView.init(int, org.telegram.tgnet.TLRPC$WebPage):void");
+    public void init(int i, TLRPC.WebPage webPage) {
+        int iIntValue;
+        this.currentWebpage = webPage;
+        this.currentYoutubeId = WebPlayerView.getYouTubeVideoId(webPage.embed_url);
+        String str = webPage.url;
+        requestLayout();
+        try {
+            if (this.currentYoutubeId != null) {
+                this.progressBarBlackBackground.setVisibility(0);
+                this.isYouTube = true;
+                String queryParameter = null;
+                this.webView.addJavascriptInterface(new YoutubeProxy(), "YoutubeProxy");
+                if (str != null) {
+                    try {
+                        Uri uri = Uri.parse(str);
+                        if (i > 0) {
+                            queryParameter = "" + i;
+                        }
+                        if (queryParameter == null && (queryParameter = uri.getQueryParameter("t")) == null) {
+                            queryParameter = uri.getQueryParameter("time_continue");
+                        }
+                        if (queryParameter == null) {
+                            iIntValue = 0;
+                        } else if (queryParameter.contains("m")) {
+                            String[] strArrSplit = queryParameter.split("m");
+                            iIntValue = (Utilities.parseInt((CharSequence) strArrSplit[0]).intValue() * 60) + Utilities.parseInt((CharSequence) strArrSplit[1]).intValue();
+                        } else {
+                            iIntValue = Utilities.parseInt((CharSequence) queryParameter).intValue();
+                        }
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                } else {
+                    iIntValue = 0;
+                }
+                InputStream inputStreamOpen = getContext().getAssets().open("youtube_embed.html");
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                byte[] bArr = new byte[10240];
+                while (true) {
+                    int i2 = inputStreamOpen.read(bArr);
+                    if (i2 == -1) {
+                        break;
+                    } else {
+                        byteArrayOutputStream.write(bArr, 0, i2);
+                    }
+                }
+                byteArrayOutputStream.close();
+                inputStreamOpen.close();
+                this.webView.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, byteArrayOutputStream.toString("UTF-8"), this.currentYoutubeId, Integer.valueOf(iIntValue)), "text/html", "UTF-8", "https://youtube.com");
+            } else {
+                HashMap map = new HashMap();
+                map.put("Referer", "messenger.telegram.org");
+                this.webView.loadUrl(webPage.embed_url, map);
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+        }
+        this.pipItem.setEnabled(false);
+        this.pipItem.setAlpha(0.5f);
+        this.progressBar.setVisibility(0);
+        if (this.currentYoutubeId != null) {
+            this.progressBarBlackBackground.setVisibility(0);
+        }
+        this.webView.setVisibility(0);
+        this.webView.setKeepScreenOn(true);
+        if (this.currentYoutubeId == null || !"disabled".equals(MessagesController.getInstance(this.currentAccount).youtubePipType)) {
+            return;
+        }
+        this.pipItem.setVisibility(8);
     }
 
     public boolean checkInlinePermissions() {

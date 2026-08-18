@@ -25,7 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import java.io.File;
-import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,7 +32,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -102,9 +100,7 @@ public class BotDownloads {
     }
 
     public FileDownload getCached(String str) {
-        Iterator it = this.files.iterator();
-        while (it.hasNext()) {
-            FileDownload fileDownload = (FileDownload) it.next();
+        for (FileDownload fileDownload : this.files) {
             if (TextUtils.equals(fileDownload.url, str) && fileDownload.done) {
                 return fileDownload;
             }
@@ -232,7 +228,7 @@ public class BotDownloads {
             this.file = new File(strOptString);
         }
 
-        public JSONObject toJSON() throws JSONException {
+        public JSONObject toJSON() {
             JSONObject jSONObject = new JSONObject();
             try {
                 jSONObject.put("url", this.url);
@@ -288,6 +284,7 @@ public class BotDownloads {
                     FileLog.e(e);
                     if (0 != 0) {
                     }
+                    BotDownloads.this.postNotify();
                 }
                 cursorQuery.close();
                 BotDownloads.this.postNotify();
@@ -341,7 +338,7 @@ public class BotDownloads {
                 long size;
 
                 @Override
-                public String doInBackground(String... strArr) throws IOException {
+                public String doInBackground(String... strArr) {
                     try {
                         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
                         httpURLConnection.setRequestMethod("GET");
@@ -375,9 +372,9 @@ public class BotDownloads {
                 @Override
                 public void onPostExecute(String str2) {
                     BotDownloads.cachedMimeAndSizes.put(str, new Pair(this.mime, Long.valueOf(this.size)));
-                    Utilities.Callback2 callback22 = callback2;
-                    if (callback22 != null) {
-                        callback22.run(this.mime, Long.valueOf(this.size));
+                    Utilities.Callback2 callback3 = callback2;
+                    if (callback3 != null) {
+                        callback3.run(this.mime, Long.valueOf(this.size));
                     }
                 }
             }.execute(str);
@@ -879,8 +876,9 @@ public class BotDownloads {
                     float fMax = Math.max(0.0f, ((1520.0f * fCurrentTimeMillis) / 5400.0f) - 20.0f);
                     for (int i = 0; i < 4; i++) {
                         FastOutSlowInInterpolator fastOutSlowInInterpolator = CircularProgressDrawable.interpolator;
-                        fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (i * 1350)) / 667.0f);
-                        fMax += fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (r5 + 667)) / 667.0f) * 250.0f;
+                        int i2 = i * 1350;
+                        fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - i2) / 667.0f);
+                        fMax += fastOutSlowInInterpolator.getInterpolation((fCurrentTimeMillis - (i2 + 667)) / 667.0f) * 250.0f;
                     }
                     this.strokePaint.setColor(Theme.multAlpha(-1, f6));
                     canvas.drawArc(this.rect, (-90.0f) - fMax, Math.max(0.02f, this.animatedProgress.set(this.progress)) * (-360.0f) * f7, false, this.strokePaint);

@@ -65,10 +65,11 @@ public abstract class FourierTransform {
                 while (i4 < length) {
                     int i5 = (i3 * length) + i4;
                     float[] fArr2 = this.spectrum;
-                    if (i5 < fArr2.length) {
-                        f3 += fArr2[i5];
-                        i4++;
+                    if (i5 >= fArr2.length) {
+                        break;
                     }
+                    f3 += fArr2[i5];
+                    i4++;
                 }
                 this.averages[i3] = f3 / (i4 + 1);
             }
@@ -79,18 +80,19 @@ public abstract class FourierTransform {
         }
         int i6 = 0;
         while (true) {
-            if (i6 >= this.octaves) {
+            int i7 = this.octaves;
+            if (i6 >= i7) {
                 return;
             }
-            float fPow = i6 == 0 ? 0.0f : (this.sampleRate / 2) / ((float) Math.pow(2.0d, r5 - i6));
+            float fPow = i6 == 0 ? 0.0f : (this.sampleRate / 2) / ((float) Math.pow(2.0d, i7 - i6));
             float fPow2 = (((this.sampleRate / 2) / ((float) Math.pow(2.0d, (this.octaves - i6) - 1))) - fPow) / this.avgPerOctave;
-            int i7 = 0;
+            int i8 = 0;
             while (true) {
-                int i8 = this.avgPerOctave;
-                if (i7 < i8) {
+                int i9 = this.avgPerOctave;
+                if (i8 < i9) {
                     float f4 = fPow + fPow2;
-                    this.averages[(i8 * i6) + i7] = calcAvg(fPow, f4);
-                    i7++;
+                    this.averages[(i9 * i6) + i8] = calcAvg(fPow, f4);
+                    i8++;
                     fPow = f4;
                 }
             }
@@ -162,7 +164,10 @@ public abstract class FourierTransform {
 
     public float indexToFreq(int i) {
         float bandWidth = getBandWidth();
-        return i == 0 ? bandWidth * 0.25f : i == this.spectrum.length + (-1) ? ((this.sampleRate / 2) - (bandWidth / 2.0f)) + (bandWidth * 0.25f) : i * bandWidth;
+        if (i == 0) {
+            return bandWidth * 0.25f;
+        }
+        return i == this.spectrum.length + (-1) ? ((this.sampleRate / 2) - (bandWidth / 2.0f)) + (bandWidth * 0.25f) : i * bandWidth;
     }
 
     public float calcAvg(float f, float f2) {
@@ -348,7 +353,8 @@ public abstract class FourierTransform {
             bitReverseComplex();
             fft();
             for (int i2 = 0; i2 < fArr.length; i2++) {
-                fArr[i2] = this.real[i2] / r1.length;
+                float[] fArr3 = this.real;
+                fArr[i2] = fArr3[i2] / fArr3.length;
             }
         }
 

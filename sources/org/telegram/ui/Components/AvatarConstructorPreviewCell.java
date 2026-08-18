@@ -14,7 +14,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AvatarConstructorFragment;
 
 public abstract class AvatarConstructorPreviewCell extends FrameLayout {
     private AnimatedEmojiDrawable animatedEmojiDrawable;
@@ -171,16 +170,17 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        int top = (int) (this.textView.getTop() * 0.7f);
-        int i3 = (int) ((r3 - top) * 0.7f);
+        int top = this.textView.getTop();
+        int i3 = (int) (top * 0.7f);
+        int i4 = (int) ((top - i3) * 0.7f);
         ViewGroup.LayoutParams layoutParams = this.currentImage.getLayoutParams();
-        this.currentImage.getLayoutParams().height = top;
-        layoutParams.width = top;
+        this.currentImage.getLayoutParams().height = i3;
+        layoutParams.width = i3;
         ViewGroup.LayoutParams layoutParams2 = this.nextImage.getLayoutParams();
-        this.nextImage.getLayoutParams().height = top;
-        layoutParams2.width = top;
-        ((FrameLayout.LayoutParams) this.currentImage.getLayoutParams()).topMargin = i3;
-        ((FrameLayout.LayoutParams) this.nextImage.getLayoutParams()).topMargin = i3;
+        this.nextImage.getLayoutParams().height = i3;
+        layoutParams2.width = i3;
+        ((FrameLayout.LayoutParams) this.currentImage.getLayoutParams()).topMargin = i4;
+        ((FrameLayout.LayoutParams) this.nextImage.getLayoutParams()).topMargin = i4;
     }
 
     @Override
@@ -216,13 +216,14 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
             this.nextImage.setAlpha(interpolation);
             this.nextImage.setScaleX(interpolation);
             this.nextImage.setScaleY(interpolation);
-            this.nextImage.setPivotY(r0.getMeasuredHeight());
+            BackupImageView backupImageView = this.nextImage;
+            backupImageView.setPivotY(backupImageView.getMeasuredHeight());
             if (this.progressToNext > 1.0f) {
                 this.progressToNext = 1.0f;
                 this.currentBackgroundDrawable = this.nextBackgroundDrawable;
-                BackupImageView backupImageView = this.currentImage;
+                BackupImageView backupImageView2 = this.currentImage;
                 this.currentImage = this.nextImage;
-                this.nextImage = backupImageView;
+                this.nextImage = backupImageView2;
             }
             invalidate();
         }

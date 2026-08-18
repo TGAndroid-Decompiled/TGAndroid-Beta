@@ -183,17 +183,12 @@ public class ChangeUsernameActivity extends BaseFragment {
         if (user != null) {
             this.username = null;
             if (user.usernames != null) {
-                int i = 0;
-                while (true) {
-                    if (i >= user.usernames.size()) {
-                        break;
-                    }
+                for (int i = 0; i < user.usernames.size(); i++) {
                     TLRPC.TL_username tL_username = user.usernames.get(i);
                     if (tL_username != null && tL_username.editable) {
                         this.username = tL_username.username;
                         break;
                     }
-                    i++;
                 }
             }
             if (this.username == null && (str = user.username) != null) {
@@ -287,26 +282,26 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
 
         public void lambda$onItemClick$3(final TLRPC.TL_username tL_username, final int i, View view, AlertDialog alertDialog, int i2) {
-            TL_bots.toggleUsername toggleusername;
+            TLObject tLObject;
             final boolean z = tL_username.active;
             final String str = tL_username.username;
             final boolean z2 = !z;
             if (ChangeUsernameActivity.this.botId == 0) {
-                TL_account.toggleUsername toggleusername2 = new TL_account.toggleUsername();
+                TL_account.toggleUsername toggleusername = new TL_account.toggleUsername();
+                toggleusername.username = str;
+                toggleusername.active = z2;
+                tLObject = toggleusername;
+            } else {
+                TL_bots.toggleUsername toggleusername2 = new TL_bots.toggleUsername();
+                toggleusername2.bot = MessagesController.getInstance(((BaseFragment) ChangeUsernameActivity.this).currentAccount).getInputUser(ChangeUsernameActivity.this.botId);
                 toggleusername2.username = str;
                 toggleusername2.active = z2;
-                toggleusername = toggleusername2;
-            } else {
-                TL_bots.toggleUsername toggleusername3 = new TL_bots.toggleUsername();
-                toggleusername3.bot = MessagesController.getInstance(((BaseFragment) ChangeUsernameActivity.this).currentAccount).getInputUser(ChangeUsernameActivity.this.botId);
-                toggleusername3.username = str;
-                toggleusername3.active = z2;
-                toggleusername = toggleusername3;
+                tLObject = toggleusername2;
             }
-            ChangeUsernameActivity.this.getConnectionsManager().sendRequest(toggleusername, new RequestDelegate() {
+            ChangeUsernameActivity.this.getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$onItemClick$2(str, i, z2, tL_username, z, tLObject, tL_error);
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$onItemClick$2(str, i, z2, tL_username, z, tLObject2, tL_error);
                 }
             });
             ChangeUsernameActivity.this.loadingUsernames.add(tL_username.username);
@@ -351,17 +346,13 @@ public class ChangeUsernameActivity extends BaseFragment {
                 }
             }
             Iterator it2 = ChangeUsernameActivity.this.usernames.iterator();
-            while (true) {
+            do {
                 if (!it2.hasNext()) {
                     tL_username2 = null;
                     break;
-                } else {
-                    tL_username2 = (TLRPC.TL_username) it2.next();
-                    if (tL_username2.editable) {
-                        break;
-                    }
                 }
-            }
+                tL_username2 = (TLRPC.TL_username) it2.next();
+            } while (!tL_username2.editable);
             if (tL_username2 != null) {
                 ChangeUsernameActivity.this.toggleUsername(tL_username2, true, false);
                 ChangeUsernameActivity.this.getMessagesController().updateUsernameActiveness(user, tL_username2.username, tL_username2.active);
@@ -404,52 +395,48 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
         tL_username.active = z;
         int i3 = -1;
-        int i4 = 0;
         if (z) {
-            int i5 = 0;
+            int i4 = 0;
             while (true) {
-                if (i5 >= this.usernames.size()) {
-                    i5 = -1;
+                if (i4 >= this.usernames.size()) {
+                    i4 = -1;
                     break;
-                } else if (!((TLRPC.TL_username) this.usernames.get(i5)).active) {
+                } else if (!((TLRPC.TL_username) this.usernames.get(i4)).active) {
                     break;
                 } else {
-                    i5++;
+                    i4++;
                 }
             }
-            if (i5 >= 0) {
-                iMin = Math.max(0, i5 - 1);
+            if (i4 >= 0) {
+                iMin = Math.max(0, i4 - 1);
                 i3 = iMin + 4;
             }
         } else {
-            int i6 = -1;
-            for (int i7 = 0; i7 < this.usernames.size(); i7++) {
-                if (((TLRPC.TL_username) this.usernames.get(i7)).active) {
-                    i6 = i7;
+            int i5 = -1;
+            for (int i6 = 0; i6 < this.usernames.size(); i6++) {
+                if (((TLRPC.TL_username) this.usernames.get(i6)).active) {
+                    i5 = i6;
                 }
             }
-            if (i6 >= 0) {
-                iMin = Math.min(this.usernames.size() - 1, i6 + 1);
+            if (i5 >= 0) {
+                iMin = Math.min(this.usernames.size() - 1, i5 + 1);
                 i3 = iMin + 4;
             }
         }
         if (this.listView != null) {
-            while (true) {
-                if (i4 >= this.listView.getChildCount()) {
-                    break;
-                }
-                View childAt = this.listView.getChildAt(i4);
+            for (int i7 = 0; i7 < this.listView.getChildCount(); i7++) {
+                View childAt = this.listView.getChildAt(i7);
                 if (this.listView.getChildAdapterPosition(childAt) == i) {
                     if (z2) {
                         AndroidUtilities.shakeView(childAt);
                     }
-                    if (childAt instanceof UsernameCell) {
-                        UsernameCell usernameCell = (UsernameCell) childAt;
-                        usernameCell.setLoading(this.loadingUsernames.contains(tL_username.username));
-                        usernameCell.update();
+                    if (!(childAt instanceof UsernameCell)) {
+                        break;
                     }
-                } else {
-                    i4++;
+                    UsernameCell usernameCell = (UsernameCell) childAt;
+                    usernameCell.setLoading(this.loadingUsernames.contains(tL_username.username));
+                    usernameCell.update();
+                    break;
                 }
             }
         }
@@ -512,9 +499,16 @@ public class ChangeUsernameActivity extends BaseFragment {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            int i2;
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
-                ((HeaderCell) viewHolder.itemView).setText(LocaleController.getString(i == 0 ? ChangeUsernameActivity.this.botId != 0 ? R.string.BotSetPublicLinkHeader : R.string.SetUsernameHeader : R.string.UsernamesProfileHeader));
+                HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+                if (i == 0) {
+                    i2 = ChangeUsernameActivity.this.botId != 0 ? R.string.BotSetPublicLinkHeader : R.string.SetUsernameHeader;
+                } else {
+                    i2 = R.string.UsernamesProfileHeader;
+                }
+                headerCell.setText(LocaleController.getString(i2));
                 return;
             }
             if (itemViewType == 2) {
@@ -621,7 +615,7 @@ public class ChangeUsernameActivity extends BaseFragment {
     }
 
     public void sendReorder() {
-        TL_bots.reorderUsernames reorderusernames;
+        TLObject tLObject;
         if (this.needReorder) {
             this.needReorder = false;
             ArrayList<String> arrayList = new ArrayList<>();
@@ -636,19 +630,19 @@ public class ChangeUsernameActivity extends BaseFragment {
                 }
             }
             if (this.botId == 0) {
-                TL_account.reorderUsernames reorderusernames2 = new TL_account.reorderUsernames();
-                reorderusernames2.order = arrayList;
-                reorderusernames = reorderusernames2;
+                TL_account.reorderUsernames reorderusernames = new TL_account.reorderUsernames();
+                reorderusernames.order = arrayList;
+                tLObject = reorderusernames;
             } else {
-                TL_bots.reorderUsernames reorderusernames3 = new TL_bots.reorderUsernames();
-                reorderusernames3.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botId);
-                reorderusernames3.order = arrayList;
-                reorderusernames = reorderusernames3;
+                TL_bots.reorderUsernames reorderusernames2 = new TL_bots.reorderUsernames();
+                reorderusernames2.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botId);
+                reorderusernames2.order = arrayList;
+                tLObject = reorderusernames2;
             }
-            getConnectionsManager().sendRequest(reorderusernames, new RequestDelegate() {
+            getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChangeUsernameActivity.lambda$sendReorder$2(tLObject, tL_error);
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    ChangeUsernameActivity.lambda$sendReorder$2(tLObject2, tL_error);
                 }
             });
             updateUser();
@@ -1008,6 +1002,8 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
 
         public void set(TLRPC.TL_username tL_username, boolean z, boolean z2, long j) {
+            int i;
+            int i2;
             this.currentUsername = tL_username;
             this.useDivider = z;
             this.botId = j;
@@ -1021,9 +1017,21 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.editable = j == 0 && tL_username.editable;
             updateUsername(tL_username.username);
             if (this.isProfile) {
-                this.activeView.setText(LocaleController.getString(this.editable ? R.string.UsernameProfileLinkEditable : this.active ? R.string.UsernameProfileLinkActive : R.string.UsernameProfileLinkInactive), z2, !this.active);
+                AnimatedTextView animatedTextView = this.activeView;
+                if (this.editable) {
+                    i2 = R.string.UsernameProfileLinkEditable;
+                } else {
+                    i2 = this.active ? R.string.UsernameProfileLinkActive : R.string.UsernameProfileLinkInactive;
+                }
+                animatedTextView.setText(LocaleController.getString(i2), z2, !this.active);
             } else {
-                this.activeView.setText(LocaleController.getString(this.editable ? R.string.UsernameLinkEditable : this.active ? R.string.UsernameLinkActive : R.string.UsernameLinkInactive), z2, !this.active);
+                AnimatedTextView animatedTextView2 = this.activeView;
+                if (this.editable) {
+                    i = R.string.UsernameLinkEditable;
+                } else {
+                    i = this.active ? R.string.UsernameLinkActive : R.string.UsernameLinkInactive;
+                }
+                animatedTextView2.setText(LocaleController.getString(i), z2, !this.active);
             }
             animateValueTextColor(this.active || this.editable, z2);
         }

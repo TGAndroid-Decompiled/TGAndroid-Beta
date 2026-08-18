@@ -292,7 +292,8 @@ public abstract class TranscribeButton {
             this.backgroundPaint = new Paint();
         }
         this.backgroundPaint.setColor(this.backgroundColor);
-        this.backgroundPaint.setAlpha((int) (r1.getAlpha() * (1.0f - f)));
+        Paint paint = this.backgroundPaint;
+        paint.setAlpha((int) (paint.getAlpha() * (1.0f - f)));
         if (z2 || this.selectorDrawable == null) {
             Drawable drawableCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, this.rippleColor);
             this.selectorDrawable = drawableCreateSimpleSelectorRoundRectDrawable;
@@ -319,9 +320,9 @@ public abstract class TranscribeButton {
             rLottieDrawable2.setAlpha(iAlpha2);
         }
         if (this.strokePaint == null) {
-            Paint paint = new Paint(1);
-            this.strokePaint = paint;
-            paint.setStyle(Paint.Style.STROKE);
+            Paint paint2 = new Paint(1);
+            this.strokePaint = paint2;
+            paint2.setStyle(Paint.Style.STROKE);
             this.strokePaint.setStrokeCap(Paint.Cap.ROUND);
         }
         this.strokePaint.setColor(i);
@@ -527,9 +528,9 @@ public abstract class TranscribeButton {
         for (int i = 0; i < 4; i++) {
             float[] fArr2 = this.segments;
             int i2 = i * 1350;
-            fArr2[1] = fArr2[1] + (this.interpolator.getInterpolation((j2 - i2) / 667.0f) * 250.0f);
+            fArr2[1] = fArr2[1] + (this.interpolator.getInterpolation((j2 - ((long) i2)) / 667.0f) * 250.0f);
             float[] fArr3 = this.segments;
-            fArr3[0] = fArr3[0] + (this.interpolator.getInterpolation((j2 - (i2 + 667)) / 667.0f) * 250.0f);
+            fArr3[0] = fArr3[0] + (this.interpolator.getInterpolation((j2 - ((long) (i2 + 667))) / 667.0f) * 250.0f);
         }
         return this.segments;
     }
@@ -553,11 +554,12 @@ public abstract class TranscribeButton {
             return;
         }
         float fClamp = MathUtils.clamp(f, 0.0f, 1.0f);
-        if (MathUtils.clamp(f2, 0.0f, 1.0f) - fClamp <= 0.0f) {
+        float fClamp2 = MathUtils.clamp(f2, 0.0f, 1.0f);
+        if (fClamp2 - fClamp <= 0.0f) {
             return;
         }
         path.moveTo(AndroidUtilities.lerp(i, i3, fClamp), AndroidUtilities.lerp(i2, i4, fClamp));
-        path.lineTo(AndroidUtilities.lerp(i, i3, r9), AndroidUtilities.lerp(i2, i4, r9));
+        path.lineTo(AndroidUtilities.lerp(i, i3, fClamp2), AndroidUtilities.lerp(i2, i4, fClamp2));
     }
 
     private void addCorner(Path path, int i, int i2, int i3, int i4, float f, float f2, float f3, float f4) {

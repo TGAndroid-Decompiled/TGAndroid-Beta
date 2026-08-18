@@ -76,9 +76,8 @@ public class PaintToolsView extends LinearLayout {
                             this.f$0.lambda$new$1(i2, brush, view);
                         }
                     });
-                } else {
-                    i++;
                 }
+                i++;
             } else if (i == Brush.BRUSHES_LIST.size() + 1) {
                 this.buttons[i2].setImageResource(R.drawable.msg_add);
                 this.buttons[i2].setOnClickListener(new View.OnClickListener() {

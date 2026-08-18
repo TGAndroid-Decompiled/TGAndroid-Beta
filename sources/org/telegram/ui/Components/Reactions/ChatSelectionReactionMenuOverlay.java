@@ -4,25 +4,26 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
+import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
+import org.telegram.ui.Components.RecyclerListView;
 
 public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     private float currentOffsetY;
@@ -150,20 +151,20 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             ChatSelectionReactionMenuOverlay.this.parentFragment.selectReaction(null, ChatSelectionReactionMenuOverlay.this.currentPrimaryObject, ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout, view, 0.0f, 0.0f, visibleReaction, false, z, z2, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
+                public final void run() {
                     this.f$0.lambda$onReactionClicked$0();
                 }
             });
         }
 
-        public void lambda$onReactionClicked$0() throws Resources.NotFoundException, IOException, NumberFormatException {
+        public void lambda$onReactionClicked$0() {
             if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
                 ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout.dismissParent(true);
             }
             hideMenu();
         }
 
-        public void hideMenu() throws Resources.NotFoundException, IOException, NumberFormatException {
+        public void hideMenu() {
             ChatSelectionReactionMenuOverlay.this.parentFragment.clearSelectionMode(true);
         }
     }
@@ -176,8 +177,227 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         invalidatePosition(true);
     }
 
-    public void invalidatePosition(boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.invalidatePosition(boolean):void");
+    public void invalidatePosition(boolean z) {
+        int height;
+        boolean z2;
+        boolean z3;
+        float interpolation;
+        ReactionsContainerLayout reactionsContainerLayout;
+        FrameLayout.LayoutParams layoutParams;
+        int iMax;
+        int iMax2;
+        int iDp;
+        int i;
+        if (!this.isVisible || this.currentPrimaryObject == null || this.reactionsContainerLayout == null) {
+            return;
+        }
+        long jMin = Math.min(16L, System.currentTimeMillis() - this.lastUpdate);
+        this.lastUpdate = System.currentTimeMillis();
+        float f = this.currentOffsetY;
+        float f2 = this.toOffsetY;
+        if (f != f2) {
+            float f3 = jMin / 220.0f;
+            if (f2 > f) {
+                this.currentOffsetY = Math.min(f + f3, f2);
+            } else if (f2 < f) {
+                this.currentOffsetY = Math.max(f - f3, f2);
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.invalidatePosition();
+                }
+            });
+        }
+        RecyclerListView chatListView = this.parentFragment.getChatListView();
+        chatListView.getLocationInWindow(this.pos);
+        int[] iArr = this.pos;
+        boolean z4 = true;
+        float f4 = iArr[1];
+        getLocationInWindow(iArr);
+        float pullingDownOffset = (f4 - this.pos[1]) - this.parentFragment.getPullingDownOffset();
+        boolean z5 = false;
+        for (int i2 = 0; i2 < chatListView.getChildCount(); i2++) {
+            View childAt = chatListView.getChildAt(i2);
+            if (childAt instanceof ChatMessageCell) {
+                ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
+                MessageObject messageObject = chatMessageCell.getMessageObject();
+                if (messageObject.getId() == this.currentPrimaryObject.getId()) {
+                    boolean zIsOutOwner = messageObject.isOutOwner();
+                    ReactionsContainerLayout reactionsContainerLayout2 = this.reactionsContainerLayout;
+                    if (reactionsContainerLayout2 != null) {
+                        reactionsContainerLayout2.setMirrorX(zIsOutOwner);
+                        this.reactionsContainerLayout.setPadding(AndroidUtilities.dp(4.0f) + ((LocaleController.isRTL || zIsOutOwner) ? 0 : this.mSidePadding), AndroidUtilities.dp(this.mPadding), AndroidUtilities.dp(4.0f) + ((LocaleController.isRTL || zIsOutOwner) ? this.mSidePadding : 0), AndroidUtilities.dp(this.mPadding));
+                    }
+                    int height2 = getHeight() != 0 ? getHeight() : chatListView.getHeight();
+                    if (chatMessageCell.getCurrentMessagesGroup() != null) {
+                        MessageObject.GroupedMessages.TransitionParams transitionParams = chatMessageCell.getCurrentMessagesGroup().transitionParams;
+                        height = transitionParams.bottom - transitionParams.top;
+                    } else {
+                        height = chatMessageCell.getHeight();
+                    }
+                    float y = (chatMessageCell.getY() + pullingDownOffset) - AndroidUtilities.dp(74.0f);
+                    float fDp = AndroidUtilities.dp(14.0f);
+                    float fDp2 = height2 - AndroidUtilities.dp(218.0f);
+                    FragmentContextView fragmentContextView = this.parentFragment.getFragmentContextView();
+                    if (fragmentContextView != null && fragmentContextView.getVisibility() == 0) {
+                        fDp += fragmentContextView.getHeight();
+                    }
+                    float f5 = height;
+                    if (y > fDp - (f5 / 2.0f) && y < fDp2) {
+                        this.toOffsetY = 0.0f;
+                        z2 = false;
+                    } else {
+                        if (y < (fDp - f5) - AndroidUtilities.dp(92.0f) || y > fDp2) {
+                            z2 = false;
+                            z3 = false;
+                        } else {
+                            this.translationOffsetY = height + AndroidUtilities.dp(56.0f);
+                            this.toOffsetY = 1.0f;
+                            z2 = true;
+                        }
+                        if (!z) {
+                            this.currentOffsetY = this.toOffsetY;
+                        }
+                        interpolation = y + (CubicBezierInterpolator.DEFAULT.getInterpolation(this.currentOffsetY) * this.translationOffsetY);
+                        reactionsContainerLayout = this.reactionsContainerLayout;
+                        if (reactionsContainerLayout == null) {
+                            return;
+                        }
+                        if (z2 != reactionsContainerLayout.isFlippedVertically()) {
+                            this.reactionsContainerLayout.setFlippedVertically(z2);
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.invalidatePosition();
+                                }
+                            });
+                        }
+                        if (z3 != this.reactionsContainerLayout.isEnabled()) {
+                            this.reactionsContainerLayout.setEnabled(z3);
+                            this.reactionsContainerLayout.invalidate();
+                            if (z3) {
+                                this.reactionsContainerLayout.setVisibility(0);
+                                if (!this.messageSet) {
+                                    this.messageSet = true;
+                                    this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, this.parentFragment.getCurrentChatInfo(), true);
+                                }
+                            }
+                        }
+                        this.reactionsContainerLayout.setTranslationY(MathUtils.clamp(interpolation, fDp, fDp2));
+                        this.reactionsContainerLayout.setTranslationX(chatMessageCell.getNonAnimationTranslationX(true));
+                        layoutParams = (FrameLayout.LayoutParams) this.reactionsContainerLayout.getLayoutParams();
+                        iMax = Math.max(0, chatMessageCell.getBackgroundDrawableLeft() - AndroidUtilities.dp(32.0f));
+                        iMax2 = Math.max((int) chatMessageCell.getNonAnimationTranslationX(true), (chatMessageCell.getWidth() - chatMessageCell.getBackgroundDrawableRight()) - AndroidUtilities.dp(32.0f));
+                        iDp = AndroidUtilities.dp(40.0f) * 8;
+                        if ((getWidth() - iMax2) - iMax < iDp) {
+                            if (zIsOutOwner) {
+                                iMax = Math.min(iMax, getWidth() - iDp);
+                                iMax2 = 0;
+                            } else {
+                                iMax2 = Math.min(iMax2, getWidth() - iDp);
+                                iMax = 0;
+                            }
+                        }
+                        if (zIsOutOwner) {
+                            i = 5;
+                        } else {
+                            i = 3;
+                        }
+                        if (i != layoutParams.gravity) {
+                            layoutParams.gravity = i;
+                            z5 = true;
+                        }
+                        if (iMax != layoutParams.leftMargin) {
+                            layoutParams.leftMargin = iMax;
+                            z5 = true;
+                        }
+                        if (iMax2 != layoutParams.rightMargin) {
+                            layoutParams.rightMargin = iMax2;
+                        } else {
+                            z4 = z5;
+                        }
+                        if (z4) {
+                            this.reactionsContainerLayout.requestLayout();
+                            return;
+                        }
+                        return;
+                    }
+                    z3 = true;
+                    if (!z) {
+                        this.currentOffsetY = this.toOffsetY;
+                    }
+                    interpolation = y + (CubicBezierInterpolator.DEFAULT.getInterpolation(this.currentOffsetY) * this.translationOffsetY);
+                    reactionsContainerLayout = this.reactionsContainerLayout;
+                    if (reactionsContainerLayout == null) {
+                        return;
+                    }
+                    if (z2 != reactionsContainerLayout.isFlippedVertically()) {
+                        this.reactionsContainerLayout.setFlippedVertically(z2);
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.invalidatePosition();
+                            }
+                        });
+                    }
+                    if (z3 != this.reactionsContainerLayout.isEnabled()) {
+                        this.reactionsContainerLayout.setEnabled(z3);
+                        this.reactionsContainerLayout.invalidate();
+                        if (z3) {
+                            this.reactionsContainerLayout.setVisibility(0);
+                            if (!this.messageSet) {
+                                this.messageSet = true;
+                                this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, this.parentFragment.getCurrentChatInfo(), true);
+                            }
+                        }
+                    }
+                    this.reactionsContainerLayout.setTranslationY(MathUtils.clamp(interpolation, fDp, fDp2));
+                    this.reactionsContainerLayout.setTranslationX(chatMessageCell.getNonAnimationTranslationX(true));
+                    layoutParams = (FrameLayout.LayoutParams) this.reactionsContainerLayout.getLayoutParams();
+                    iMax = Math.max(0, chatMessageCell.getBackgroundDrawableLeft() - AndroidUtilities.dp(32.0f));
+                    iMax2 = Math.max((int) chatMessageCell.getNonAnimationTranslationX(true), (chatMessageCell.getWidth() - chatMessageCell.getBackgroundDrawableRight()) - AndroidUtilities.dp(32.0f));
+                    iDp = AndroidUtilities.dp(40.0f) * 8;
+                    if ((getWidth() - iMax2) - iMax < iDp) {
+                        if (zIsOutOwner) {
+                            iMax = Math.min(iMax, getWidth() - iDp);
+                            iMax2 = 0;
+                        } else {
+                            iMax2 = Math.min(iMax2, getWidth() - iDp);
+                            iMax = 0;
+                        }
+                    }
+                    if (zIsOutOwner) {
+                        i = 5;
+                    } else {
+                        i = 3;
+                    }
+                    if (i != layoutParams.gravity) {
+                        layoutParams.gravity = i;
+                        z5 = true;
+                    }
+                    if (iMax != layoutParams.leftMargin) {
+                        layoutParams.leftMargin = iMax;
+                        z5 = true;
+                    }
+                    if (iMax2 != layoutParams.rightMargin) {
+                        layoutParams.rightMargin = iMax2;
+                    } else {
+                        z4 = z5;
+                    }
+                    if (z4) {
+                        this.reactionsContainerLayout.requestLayout();
+                        return;
+                    }
+                    return;
+                }
+            }
+        }
+        ReactionsContainerLayout reactionsContainerLayout3 = this.reactionsContainerLayout;
+        if (reactionsContainerLayout3 == null || !reactionsContainerLayout3.isEnabled()) {
+            return;
+        }
+        this.reactionsContainerLayout.setEnabled(false);
     }
 
     private MessageObject findPrimaryObject() {
@@ -190,12 +410,10 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         }
         MessageObject messageObject = (MessageObject) this.selectedMessages.get(0);
         if (messageObject.getGroupId() != 0 && (group = this.parentFragment.getGroup(messageObject.getGroupId())) != null && (arrayList = group.messages) != null) {
-            Iterator<MessageObject> it = arrayList.iterator();
-            while (it.hasNext()) {
-                MessageObject next = it.next();
-                TLRPC.Message message = next.messageOwner;
+            for (MessageObject messageObject2 : arrayList) {
+                TLRPC.Message message = messageObject2.messageOwner;
                 if (message != null && (tL_messageReactions = message.reactions) != null && (arrayList2 = tL_messageReactions.results) != null && !arrayList2.isEmpty()) {
-                    return next;
+                    return messageObject2;
                 }
             }
         }

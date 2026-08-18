@@ -34,7 +34,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
-import org.telegram.ui.Stories.recorder.CaptionContainerView;
 
 public abstract class CaptionStory extends CaptionContainerView {
     public static final int[] periods = {21600, 43200, 86400, 172800};
@@ -315,36 +314,29 @@ public abstract class CaptionStory extends CaptionContainerView {
     public void drawOver(Canvas canvas, RectF rectF) {
         Paint paint;
         float f;
-        Paint paint2;
         float f2;
-        float f3;
         if (this.currentRecorder != null) {
-            float f4 = this.cancelT.set(this.cancelling);
-            float f5 = this.lockT.set(this.locked);
+            float f3 = this.cancelT.set(this.cancelling);
+            float f4 = this.lockT.set(this.locked);
             if (this.startTime <= 0) {
                 this.startTime = System.currentTimeMillis();
             }
-            float fSin = (((float) Math.sin(((System.currentTimeMillis() - this.startTime) / 900.0f) * 3.141592653589793d)) + 1.0f) / 2.0f;
+            float fSin = (((float) Math.sin(((double) ((System.currentTimeMillis() - this.startTime) / 900.0f)) * 3.141592653589793d)) + 1.0f) / 2.0f;
             float fDp = rectF.left + AndroidUtilities.dp(21.0f);
             float fDp2 = rectF.bottom - AndroidUtilities.dp(20.0f);
             this.recordPaint.setBounds((int) (fDp - AndroidUtilities.dp(12.0f)), (int) (fDp2 - AndroidUtilities.dp(12.0f)), (int) (fDp + AndroidUtilities.dp(12.0f)), (int) (fDp2 + AndroidUtilities.dp(12.0f)));
             this.recordPaint.draw(canvas);
-            this.timerTextDrawable.setBounds((int) ((rectF.left + AndroidUtilities.dp(33.3f)) - (AndroidUtilities.dp(10.0f) * f4)), (int) ((rectF.bottom - AndroidUtilities.dp(20.0f)) - AndroidUtilities.dp(9.0f)), (int) (rectF.left + AndroidUtilities.dp(133.3f)), (int) ((rectF.bottom - AndroidUtilities.dp(20.0f)) + AndroidUtilities.dp(9.0f)));
+            this.timerTextDrawable.setBounds((int) ((rectF.left + AndroidUtilities.dp(33.3f)) - (AndroidUtilities.dp(10.0f) * f3)), (int) ((rectF.bottom - AndroidUtilities.dp(20.0f)) - AndroidUtilities.dp(9.0f)), (int) (rectF.left + AndroidUtilities.dp(133.3f)), (int) ((rectF.bottom - AndroidUtilities.dp(20.0f)) + AndroidUtilities.dp(9.0f)));
             this.timerTextDrawable.setText(this.currentRecorder.sinceRecordingText());
-            this.timerTextDrawable.setAlpha((int) ((1.0f - f4) * 255.0f));
+            this.timerTextDrawable.setAlpha((int) ((1.0f - f3) * 255.0f));
             this.timerTextDrawable.draw(canvas);
-            float f6 = 1.0f - f5;
-            float f7 = (1.0f - this.slideProgress) * f6;
-            Paint paint3 = this.captionBlur.getPaint(1.0f);
-            if (paint3 != null) {
-                paint = paint3;
-                f = f7;
+            float f5 = 1.0f - f4;
+            float f6 = (1.0f - this.slideProgress) * f5;
+            Paint paint2 = this.captionBlur.getPaint(1.0f);
+            if (paint2 != null) {
                 canvas.saveLayerAlpha(rectF.left, rectF.top, rectF.right, rectF.bottom, 255, 31);
-            } else {
-                paint = paint3;
-                f = f7;
             }
-            if (f > 0.0f) {
+            if (f6 > 0.0f) {
                 if (this.slideToCancelText == null) {
                     this.slideToCancelText = new Text(LocaleController.getString(R.string.SlideToCancel2), 15.0f);
                 }
@@ -354,41 +346,41 @@ public abstract class CaptionStory extends CaptionContainerView {
                     path.moveTo(AndroidUtilities.dp(3.83f), 0.0f);
                     this.slideToCancelArrowPath.lineTo(0.0f, AndroidUtilities.dp(5.0f));
                     this.slideToCancelArrowPath.lineTo(AndroidUtilities.dp(3.83f), AndroidUtilities.dp(10.0f));
-                    Paint paint4 = new Paint(1);
-                    this.slideToCancelArrowPaint = paint4;
-                    paint4.setStyle(Paint.Style.STROKE);
+                    Paint paint3 = new Paint(1);
+                    this.slideToCancelArrowPaint = paint3;
+                    paint3.setStyle(Paint.Style.STROKE);
                     this.slideToCancelArrowPaint.setStrokeCap(Paint.Cap.ROUND);
                     this.slideToCancelArrowPaint.setStrokeJoin(Paint.Join.ROUND);
                 }
                 this.slideToCancelArrowPaint.setStrokeWidth(AndroidUtilities.dp(1.33f));
                 this.slideToCancelText.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - this.timerTextDrawable.getCurrentWidth()));
-                float fCenterX = ((rectF.centerX() - ((AndroidUtilities.dp(11.33f) + this.slideToCancelText.getWidth()) / 2.0f)) - ((rectF.width() / 6.0f) * AndroidUtilities.lerp(this.slideProgress, 1.0f, f5))) - ((fSin * AndroidUtilities.dp(6.0f)) * (1.0f - this.slideProgress));
-                paint2 = paint;
-                int iMultAlpha = Theme.multAlpha(paint2 != null ? -1 : -2130706433, f);
+                float fCenterX = ((rectF.centerX() - ((AndroidUtilities.dp(11.33f) + this.slideToCancelText.getWidth()) / 2.0f)) - ((rectF.width() / 6.0f) * AndroidUtilities.lerp(this.slideProgress, 1.0f, f4))) - ((fSin * AndroidUtilities.dp(6.0f)) * (1.0f - this.slideProgress));
+                paint = paint2;
+                int iMultAlpha = Theme.multAlpha(paint != null ? -1 : -2130706433, f6);
                 canvas.save();
                 canvas.translate(fCenterX, rectF.centerY() - AndroidUtilities.dp(5.0f));
                 this.slideToCancelArrowPaint.setColor(iMultAlpha);
                 canvas.drawPath(this.slideToCancelArrowPath, this.slideToCancelArrowPaint);
                 canvas.restore();
-                f2 = 0.0f;
-                f3 = 15.0f;
+                f = 0.0f;
+                f2 = 15.0f;
                 this.slideToCancelText.draw(canvas, fCenterX + AndroidUtilities.dp(11.33f), rectF.centerY(), iMultAlpha, 1.0f);
             } else {
-                paint2 = paint;
-                f2 = 0.0f;
-                f3 = 15.0f;
+                paint = paint2;
+                f = 0.0f;
+                f2 = 15.0f;
             }
-            if (f5 > f2) {
+            if (f4 > f) {
                 if (this.cancelText == null) {
-                    this.cancelText = new Text(LocaleController.getString(R.string.CancelRound), f3, AndroidUtilities.bold());
+                    this.cancelText = new Text(LocaleController.getString(R.string.CancelRound), f2, AndroidUtilities.bold());
                 }
                 this.cancelText.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - this.timerTextDrawable.getCurrentWidth()));
-                float fCenterX2 = (rectF.centerX() - (this.cancelText.getWidth() / 2.0f)) + ((rectF.width() / 4.0f) * f6);
-                this.cancelText.draw(canvas, fCenterX2, rectF.centerY(), Theme.multAlpha(paint2 != null ? -1 : -2130706433, f5), 1.0f);
+                float fCenterX2 = (rectF.centerX() - (this.cancelText.getWidth() / 2.0f)) + ((rectF.width() / 4.0f) * f5);
+                this.cancelText.draw(canvas, fCenterX2, rectF.centerY(), Theme.multAlpha(paint != null ? -1 : -2130706433, f4), 1.0f);
                 this.cancelBounds.set(fCenterX2 - AndroidUtilities.dp(12.0f), rectF.top, fCenterX2 + this.cancelText.getWidth() + AndroidUtilities.dp(12.0f), rectF.bottom);
             }
-            if (paint2 != null) {
-                canvas.drawRect(rectF, paint2);
+            if (paint != null) {
+                canvas.drawRect(rectF, paint);
                 canvas.restore();
             }
             invalidate();
@@ -444,7 +436,8 @@ public abstract class CaptionStory extends CaptionContainerView {
         Path.Direction direction = Path.Direction.CW;
         path.addCircle(fLerp, fDp2, fMin, direction);
         canvas.clipPath(this.circlePath);
-        this.roundDrawable.setBounds((int) (fLerp - (((r6.getIntrinsicWidth() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (fDp2 - (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (((this.roundDrawable.getIntrinsicWidth() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + fLerp), (int) (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + fDp2));
+        Drawable drawable = this.roundDrawable;
+        drawable.setBounds((int) (fLerp - (((drawable.getIntrinsicWidth() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (fDp2 - (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (((this.roundDrawable.getIntrinsicWidth() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + fLerp), (int) (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + fDp2));
         this.roundDrawable.setAlpha((int) (f5 * 255.0f * (this.stopping ? f : 1.0f)));
         this.roundDrawable.draw(canvas);
         if (f3 > 0.0f) {
@@ -485,12 +478,14 @@ public abstract class CaptionStory extends CaptionContainerView {
         float f2 = this.cancel2T.get();
         float f3 = this.lock2T.get();
         float fLerp = AndroidUtilities.lerp(this.lockCancelledT.set(this.slideProgress < 0.4f), 0.0f, f3) * (1.0f - f2) * f;
-        float fDp = rectF.right - AndroidUtilities.dp(20.0f);
-        float fLerp2 = (AndroidUtilities.lerp(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(36.0f), f3) * fLerp) / 2.0f;
-        float f4 = 1.0f - f3;
-        float fLerp3 = AndroidUtilities.lerp(((rectF.bottom - AndroidUtilities.dp(80.0f)) - fLerp2) - ((AndroidUtilities.dp(120.0f) * this.lockProgress) * f4), rectF.bottom - AndroidUtilities.dp(20.0f), 1.0f - fLerp);
-        float fDp2 = (AndroidUtilities.dp(36.0f) * fLerp) / 2.0f;
-        this.lockBounds.set(fDp - fDp2, fLerp3 - fLerp2, fDp2 + fDp, fLerp2 + fLerp3);
+        float fDp = AndroidUtilities.dp(36.0f) * fLerp;
+        float fLerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(36.0f), f3) * fLerp;
+        float fDp2 = rectF.right - AndroidUtilities.dp(20.0f);
+        float f4 = fLerp2 / 2.0f;
+        float f5 = 1.0f - f3;
+        float fLerp3 = AndroidUtilities.lerp(((rectF.bottom - AndroidUtilities.dp(80.0f)) - f4) - ((AndroidUtilities.dp(120.0f) * this.lockProgress) * f5), rectF.bottom - AndroidUtilities.dp(20.0f), 1.0f - fLerp);
+        float f6 = fDp / 2.0f;
+        this.lockBounds.set(fDp2 - f6, fLerp3 - f4, f6 + fDp2, f4 + fLerp3);
         float fLerp4 = AndroidUtilities.lerp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), f3);
         this.lockShadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(536870912, fLerp));
         this.lockShadowPaint.setColor(0);
@@ -506,34 +501,34 @@ public abstract class CaptionStory extends CaptionContainerView {
             canvas.drawRoundRect(this.lockBounds, fLerp4, fLerp4, this.backgroundPaint);
         }
         canvas.save();
-        canvas.scale(fLerp, fLerp, fDp, fLerp3);
+        canvas.scale(fLerp, fLerp, fDp2, fLerp3);
         this.lockPaint.setColor(Theme.multAlpha(-1, fLerp));
-        this.lockHandlePaint.setColor(Theme.multAlpha(-1, fLerp * f4));
+        this.lockHandlePaint.setColor(Theme.multAlpha(-1, fLerp * f5));
         float fLerp5 = AndroidUtilities.lerp(AndroidUtilities.dp(15.33f), AndroidUtilities.dp(13.0f), f3);
         float fLerp6 = AndroidUtilities.lerp(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(13.0f), f3);
-        float fDp3 = fLerp3 + (AndroidUtilities.dp(4.0f) * f4);
-        canvas.rotate(this.lockProgress * 12.0f * f4, fDp, fDp3);
-        float f5 = fLerp5 / 2.0f;
-        float f6 = fLerp6 / 2.0f;
-        float f7 = fDp3 - f6;
-        this.lockRect.set(fDp - f5, f7, f5 + fDp, fDp3 + f6);
+        float fDp3 = fLerp3 + (AndroidUtilities.dp(4.0f) * f5);
+        canvas.rotate(this.lockProgress * 12.0f * f5, fDp2, fDp3);
+        float f7 = fLerp5 / 2.0f;
+        float f8 = fLerp6 / 2.0f;
+        float f9 = fDp3 - f8;
+        this.lockRect.set(fDp2 - f7, f9, f7 + fDp2, fDp3 + f8);
         canvas.drawRoundRect(this.lockRect, AndroidUtilities.dp(3.66f), AndroidUtilities.dp(3.66f), this.lockPaint);
         if (f3 < 1.0f) {
             canvas.save();
-            canvas.rotate(this.lockProgress * 12.0f * f4, fDp, f7);
-            canvas.translate(0.0f, f6 * f3);
-            canvas.scale(f4, f4, fDp, f7);
+            canvas.rotate(this.lockProgress * 12.0f * f5, fDp2, f9);
+            canvas.translate(0.0f, f8 * f3);
+            canvas.scale(f5, f5, fDp2, f9);
             this.lockHandle.rewind();
             float fDp4 = AndroidUtilities.dp(4.33f);
-            float fDp5 = f7 - AndroidUtilities.dp(3.66f);
-            float f8 = fDp + fDp4;
-            this.lockHandle.moveTo(f8, AndroidUtilities.dp(3.66f) + fDp5);
-            this.lockHandle.lineTo(f8, fDp5);
+            float fDp5 = f9 - AndroidUtilities.dp(3.66f);
+            float f10 = fDp2 + fDp4;
+            this.lockHandle.moveTo(f10, AndroidUtilities.dp(3.66f) + fDp5);
+            this.lockHandle.lineTo(f10, fDp5);
             RectF rectF2 = AndroidUtilities.rectTmp;
-            float f9 = fDp - fDp4;
-            rectF2.set(f9, fDp5 - fDp4, f8, fDp4 + fDp5);
+            float f11 = fDp2 - fDp4;
+            rectF2.set(f11, fDp5 - fDp4, f10, fDp4 + fDp5);
             this.lockHandle.arcTo(rectF2, 0.0f, -180.0f, false);
-            this.lockHandle.lineTo(f9, fDp5 + (AndroidUtilities.dp(3.66f) * AndroidUtilities.lerp(AndroidUtilities.lerp(0.4f, 0.0f, this.lockProgress), 1.0f, f3)));
+            this.lockHandle.lineTo(f11, fDp5 + (AndroidUtilities.dp(3.66f) * AndroidUtilities.lerp(AndroidUtilities.lerp(0.4f, 0.0f, this.lockProgress), 1.0f, f3)));
             this.lockHandlePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             canvas.drawPath(this.lockHandle, this.lockHandlePaint);
             canvas.restore();
@@ -629,11 +624,7 @@ public abstract class CaptionStory extends CaptionContainerView {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(drawable.getBounds());
             rectF.inset(-AndroidUtilities.dp(12.0f), -AndroidUtilities.dp(12.0f));
-            int i = 0;
-            while (true) {
-                if (i >= motionEvent.getPointerCount()) {
-                    break;
-                }
+            for (int i = 0; i < motionEvent.getPointerCount(); i++) {
                 if (AndroidUtilities.rectTmp.contains(motionEvent.getX(i), motionEvent.getY(i))) {
                     if (motionEvent.getAction() == 0 || motionEvent.getActionMasked() == 5) {
                         this.currentRecorder.cameraView.switchCamera();
@@ -642,11 +633,10 @@ public abstract class CaptionStory extends CaptionContainerView {
                             ((AnimatedVectorDrawable) drawable2).start();
                         }
                     }
-                    if (!this.recordTouch) {
-                        return true;
+                    if (this.recordTouch) {
+                        break;
                     }
-                } else {
-                    i++;
+                    return true;
                 }
             }
         }

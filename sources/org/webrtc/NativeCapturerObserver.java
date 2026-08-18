@@ -1,8 +1,5 @@
 package org.webrtc;
 
-import org.webrtc.VideoFrame;
-import org.webrtc.VideoProcessor;
-
 class NativeCapturerObserver implements CapturerObserver {
     private final NativeAndroidVideoTrackSource nativeAndroidVideoTrackSource;
 

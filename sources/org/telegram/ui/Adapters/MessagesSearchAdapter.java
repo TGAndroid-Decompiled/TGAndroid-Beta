@@ -218,20 +218,20 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
             int i5 = messageObject.messageOwner.date;
             if (this.isSavedMessages) {
                 dialogCell.isSavedDialog = true;
-                long savedDialogId = messageObject.getSavedDialogId();
+                dialogId = messageObject.getSavedDialogId();
                 TLRPC.Message message = messageObject.messageOwner;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                 if (messageFwdHeader == null || ((i4 = messageFwdHeader.date) == 0 && messageFwdHeader.saved_date == 0)) {
                     i3 = message.date;
-                } else if (i4 == 0) {
-                    i3 = messageFwdHeader.saved_date;
                 } else {
-                    dialogId = savedDialogId;
-                    i2 = i4;
+                    if (i4 == 0) {
+                        i3 = messageFwdHeader.saved_date;
+                    } else {
+                        i2 = i4;
+                    }
                     z = false;
                 }
                 i2 = i3;
-                dialogId = savedDialogId;
                 z = false;
             } else {
                 if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.currentAccount, dialogId)) {
@@ -280,7 +280,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
 
     @Override
     public int getItemViewType(int i) {
-        if (this.containsStories && i - 1 == -1) {
+        if (this.containsStories && (i = i - 1) == -1) {
             return 2;
         }
         return i < this.searchResultMessages.size() ? 0 : 1;

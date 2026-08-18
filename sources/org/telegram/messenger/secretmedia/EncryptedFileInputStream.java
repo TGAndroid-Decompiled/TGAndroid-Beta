@@ -41,10 +41,11 @@ public class EncryptedFileInputStream extends FileInputStream {
     @Override
     public int read(byte[] bArr, int i, int i2) throws IOException {
         if (this.currentMode == 1 && this.fileOffset == 0) {
-            super.read(new byte[32], 0, 32);
+            byte[] bArr2 = new byte[32];
+            super.read(bArr2, 0, 32);
             Utilities.aesCbcEncryptionByteArraySafe(bArr, this.key, this.iv, i, i2, this.fileOffset, 0);
             this.fileOffset += 32;
-            skip((r11[0] & 255) - 32);
+            skip((bArr2[0] & 255) - 32);
         }
         int i3 = super.read(bArr, i, i2);
         int i4 = this.currentMode;
@@ -59,7 +60,7 @@ public class EncryptedFileInputStream extends FileInputStream {
 
     @Override
     public long skip(long j) {
-        this.fileOffset = (int) (this.fileOffset + j);
+        this.fileOffset = (int) (((long) this.fileOffset) + j);
         return super.skip(j);
     }
 

@@ -42,7 +42,8 @@ public class BirthdayController {
                         birthdayControllerArr[i] = birthdayController2;
                         birthdayController = birthdayController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -307,8 +308,8 @@ public class BirthdayController {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(int32)));
                 }
             } else {
-                int int322 = inputSerializedData.readInt32(z);
-                for (int i = 0; i < int322; i++) {
+                int int33 = inputSerializedData.readInt32(z);
+                for (int i = 0; i < int33; i++) {
                     this.contacts.add(TL_account.TL_contactBirthday.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z));
                 }
             }

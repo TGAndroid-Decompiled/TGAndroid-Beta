@@ -24,7 +24,7 @@ public class CircleBezierDrawable {
 
     public CircleBezierDrawable(int i) {
         this.N = i;
-        this.L = (float) (Math.tan(3.141592653589793d / (i * 2)) * 1.3333333333333333d);
+        this.L = (float) (Math.tan(3.141592653589793d / ((double) (i * 2))) * 1.3333333333333333d);
         this.randomAdditionals = new float[i];
         calculateRandomAdditionals();
     }

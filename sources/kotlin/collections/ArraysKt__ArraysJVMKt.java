@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import kotlin.jvm.internal.Intrinsics;
 
 abstract class ArraysKt__ArraysJVMKt {
-    public static final Object[] arrayOfNulls(Object[] reference, int i) throws NegativeArraySizeException {
+    public static final Object[] arrayOfNulls(Object[] reference, int i) {
         Intrinsics.checkNotNullParameter(reference, "reference");
         Object objNewInstance = Array.newInstance(reference.getClass().getComponentType(), i);
         Intrinsics.checkNotNull(objNewInstance, "null cannot be cast to non-null type kotlin.Array<T of kotlin.collections.ArraysKt__ArraysJVMKt.arrayOfNulls>");

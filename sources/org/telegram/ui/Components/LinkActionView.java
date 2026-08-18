@@ -445,8 +445,10 @@ public class LinkActionView extends LinearLayout {
                 return;
             }
         }
-        fArr[0] = x - frameLayout2.getPaddingLeft();
-        fArr[1] = y - frameLayout2.getPaddingTop();
+        float paddingLeft = x - frameLayout2.getPaddingLeft();
+        float paddingTop = y - frameLayout2.getPaddingTop();
+        fArr[0] = paddingLeft;
+        fArr[1] = paddingTop;
     }
 
     public void setQrText(String str) {
@@ -455,6 +457,7 @@ public class LinkActionView extends LinearLayout {
 
     private void showQrCode() {
         String string;
+        int i;
         String str = this.link;
         boolean z = str != null && str.endsWith("?direct");
         Context context = getContext();
@@ -462,7 +465,12 @@ public class LinkActionView extends LinearLayout {
         String str2 = this.link;
         String str3 = this.qrText;
         if (str3 == null) {
-            string = LocaleController.getString(this.isChannel ? z ? R.string.QRCodeLinkHelpChannelDirect : R.string.QRCodeLinkHelpChannel : R.string.QRCodeLinkHelpGroup);
+            if (this.isChannel) {
+                i = z ? R.string.QRCodeLinkHelpChannelDirect : R.string.QRCodeLinkHelpChannel;
+            } else {
+                i = R.string.QRCodeLinkHelpGroup;
+            }
+            string = LocaleController.getString(i);
         } else {
             string = str3;
         }
@@ -560,7 +568,8 @@ public class LinkActionView extends LinearLayout {
             this.avatarsImageView = new AvatarsImageView(context, false) {
                 @Override
                 protected void onMeasure(int i, int i2) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(Math.min(3, LinkActionView.this.usersCount) == 0 ? 0 : ((r2 - 1) * 20) + 32), 1073741824), i2);
+                    int iMin = Math.min(3, LinkActionView.this.usersCount);
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(iMin == 0 ? 0 : ((iMin - 1) * 20) + 32), 1073741824), i2);
                 }
             };
             LinearLayout linearLayout = new LinearLayout(context);

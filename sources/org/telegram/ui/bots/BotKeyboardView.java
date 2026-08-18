@@ -117,9 +117,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
         int iMax = !this.isFullSize ? 44 : (int) Math.max(44.0f, (((this.panelHeight - AndroidUtilities.dp(16.0f)) - ((this.botButtons.rows.size() - 1) * AndroidUtilities.dp(4.0f))) / this.botButtons.rows.size()) / AndroidUtilities.density);
         this.buttonHeight = iMax;
         int iDp = AndroidUtilities.dp(iMax);
-        Iterator it = this.animator.iterator();
-        while (it.hasNext()) {
-            ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
+        for (ListAnimator.Entry entry : this.animator) {
             int childCount = ((ButtonsLayout) entry.item).getChildCount();
             for (int i2 = 0; i2 < childCount; i2++) {
                 View childAt = ((ButtonsLayout) entry.item).getChildAt(i2);
@@ -269,11 +267,10 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
                 } else if (keyboardButtonStyle.bg_danger) {
                     iMultAlpha = Theme.multAlpha(BotKeyboardView.this.getThemedColor(Theme.key_botKeyboard_button_danger), 0.8f);
                     iCompositeColors = ColorUtils.compositeColors(BotKeyboardView.this.getThemedColor(Theme.key_listSelector), iMultAlpha);
+                } else if (keyboardButtonStyle.bg_success) {
+                    iMultAlpha = Theme.multAlpha(BotKeyboardView.this.getThemedColor(Theme.key_botKeyboard_button_success), 0.8f);
+                    iCompositeColors = ColorUtils.compositeColors(BotKeyboardView.this.getThemedColor(Theme.key_listSelector), iMultAlpha);
                 } else {
-                    if (keyboardButtonStyle.bg_success) {
-                        iMultAlpha = Theme.multAlpha(BotKeyboardView.this.getThemedColor(Theme.key_botKeyboard_button_success), 0.8f);
-                        iCompositeColors = ColorUtils.compositeColors(BotKeyboardView.this.getThemedColor(Theme.key_listSelector), iMultAlpha);
-                    }
                     i = themedColor;
                     i2 = themedColor2;
                 }
@@ -331,9 +328,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
 
     @Override
     public void onItemChanged(ReplaceAnimator replaceAnimator) {
-        Iterator it = this.animator.iterator();
-        while (it.hasNext()) {
-            ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
+        for (ListAnimator.Entry entry : this.animator) {
             float visibility = entry.getVisibility();
             float fLerp = AndroidUtilities.lerp(0.7f, 1.0f, visibility);
             ((ButtonsLayout) entry.item).setAlpha(visibility);

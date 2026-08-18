@@ -101,7 +101,8 @@ public class RoundVideoPlayingDrawable extends Drawable {
         this.paint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_chat_serviceText), this.timeColor, this.colorProgress));
         int i = this.alpha;
         if (i != 255) {
-            this.paint.setAlpha((int) (i * (r2.getAlpha() / 255.0f)));
+            Paint paint = this.paint;
+            paint.setAlpha((int) (i * (paint.getAlpha() / 255.0f)));
         }
         int i2 = getBounds().left;
         int i3 = getBounds().top;

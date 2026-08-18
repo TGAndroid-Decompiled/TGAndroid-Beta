@@ -209,10 +209,10 @@ public class LegendSignatureView extends FrameLayout {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%.1f%s", Float.valueOf(f2 * 100.0f), "%"));
                     } else {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%d%s", Integer.valueOf(Math.round(f2 * 100.0f)), "%"));
-                        i6 = i3 + 1;
-                        j3 = j2;
-                        i4 = 2;
                     }
+                    i6 = i3 + 1;
+                    j3 = j2;
+                    i4 = 2;
                 }
             }
             i6 = i3 + 1;

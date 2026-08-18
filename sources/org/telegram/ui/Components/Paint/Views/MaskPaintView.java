@@ -30,7 +30,6 @@ import org.telegram.ui.Components.Paint.Painting;
 import org.telegram.ui.Components.Paint.PersistColorPalette;
 import org.telegram.ui.Components.Paint.RenderView;
 import org.telegram.ui.Components.Paint.UndoStore;
-import org.telegram.ui.Components.Paint.Views.PaintWeightChooserView;
 import org.telegram.ui.Components.Size;
 
 public abstract class MaskPaintView extends FrameLayout {
@@ -208,14 +207,16 @@ public abstract class MaskPaintView extends FrameLayout {
         if (size != null) {
             return size;
         }
-        Size size2 = new Size(this.bitmapToEdit.getWidth(), this.bitmapToEdit.getHeight());
+        float width = this.bitmapToEdit.getWidth();
+        float height = this.bitmapToEdit.getHeight();
+        Size size2 = new Size(width, height);
         float f = 1280;
         size2.width = f;
-        float fFloor = (float) Math.floor((f * r1) / r0);
+        float fFloor = (float) Math.floor((f * height) / width);
         size2.height = fFloor;
         if (fFloor > f) {
             size2.height = f;
-            size2.width = (float) Math.floor((f * r0) / r1);
+            size2.width = (float) Math.floor((f * width) / height);
         }
         this.paintingSize = size2;
         return size2;
@@ -248,26 +249,29 @@ public abstract class MaskPaintView extends FrameLayout {
             if (measuredWidth == 0 || measuredHeight == 0) {
                 return;
             }
-            int i = this.currentCropState.transformRotation;
+            MediaController.CropState cropState2 = this.currentCropState;
+            int i = cropState2.transformRotation;
             if (i != 90 && i != 270) {
                 measuredHeight = measuredWidth;
                 measuredWidth = measuredHeight;
             }
-            float fMax = Math.max(f5 / ((int) (r5.cropPw * r4)), f6 / ((int) (r5.cropPh * r3)));
+            float f10 = measuredHeight;
+            float f11 = measuredWidth;
+            float fMax = Math.max(f5 / ((int) (cropState2.cropPw * f10)), f6 / ((int) (cropState2.cropPh * f11)));
             f7 = f9 * fMax;
-            MediaController.CropState cropState2 = this.currentCropState;
-            float f10 = cropState2.cropPx * measuredHeight * f * fMax;
-            float f11 = cropState2.cropScale;
-            f2 += f10 * f11;
-            f8 += cropState2.cropPy * measuredWidth * f * fMax * f11;
-            f4 += cropState2.cropRotate + i;
+            MediaController.CropState cropState3 = this.currentCropState;
+            float f12 = cropState3.cropPx * f10 * f * fMax;
+            float f13 = cropState3.cropScale;
+            f2 += f12 * f13;
+            f8 += cropState3.cropPy * f11 * f * fMax * f13;
+            f4 += cropState3.cropRotate + i;
         } else {
             f7 = this.baseScale * 1.0f;
         }
-        float f12 = f * f7;
-        float f13 = Float.isNaN(f12) ? 1.0f : f12;
-        renderView.setScaleX(f13);
-        renderView.setScaleY(f13);
+        float f14 = f * f7;
+        float f15 = Float.isNaN(f14) ? 1.0f : f14;
+        renderView.setScaleX(f15);
+        renderView.setScaleY(f15);
         renderView.setTranslationX(f2);
         renderView.setTranslationY(f8);
         renderView.setRotation(f4);
@@ -349,6 +353,7 @@ public abstract class MaskPaintView extends FrameLayout {
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
+        int i = 0;
         if (view == this.renderView && this.currentCropState != null) {
             canvas.save();
             i = this.inBubbleMode ? 0 : AndroidUtilities.statusBarHeight;
@@ -356,18 +361,18 @@ public abstract class MaskPaintView extends FrameLayout {
             int measuredWidth = view.getMeasuredWidth();
             int measuredHeight = view.getMeasuredHeight();
             MediaController.CropState cropState = this.currentCropState;
-            int i = cropState.transformRotation;
-            if (i != 90 && i != 270) {
+            int i2 = cropState.transformRotation;
+            if (i2 != 90 && i2 != 270) {
                 measuredHeight = measuredWidth;
                 measuredWidth = measuredHeight;
             }
             float scaleX = measuredHeight * cropState.cropPw * view.getScaleX();
             MediaController.CropState cropState2 = this.currentCropState;
-            int i2 = (int) (scaleX / cropState2.cropScale);
+            int i3 = (int) (scaleX / cropState2.cropScale);
             int scaleY = (int) (((measuredWidth * cropState2.cropPh) * view.getScaleY()) / this.currentCropState.cropScale);
-            float fCeil = ((float) Math.ceil((getMeasuredWidth() - i2) / 2.0f)) + this.transformX;
+            float fCeil = ((float) Math.ceil((getMeasuredWidth() - i3) / 2.0f)) + this.transformX;
             float measuredHeight2 = (((((getMeasuredHeight() - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) + getAdditionalBottom()) - scaleY) / 2.0f) + AndroidUtilities.dp(8.0f) + i + this.transformY;
-            canvas.clipRect(Math.max(0.0f, fCeil), Math.max(0.0f, measuredHeight2), Math.min(fCeil + i2, getMeasuredWidth()), Math.min(getMeasuredHeight(), measuredHeight2 + scaleY));
+            canvas.clipRect(Math.max(0.0f, fCeil), Math.max(0.0f, measuredHeight2), Math.min(fCeil + i3, getMeasuredWidth()), Math.min(getMeasuredHeight(), measuredHeight2 + scaleY));
             i = 1;
         }
         boolean zDrawChild = super.drawChild(canvas, view, j);

@@ -12,9 +12,10 @@ import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
 import android.text.TextUtils;
+import android.util.JsonReader;
 import android.view.View;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileReader;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -303,7 +304,148 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     }
 
     protected int loadFrameRunnableImpl() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.loadFrameRunnableImpl():int");
+        boolean z;
+        int frame;
+        BitmapsCache bitmapsCache;
+        if (this.isRecycled) {
+            return 3;
+        }
+        if (!canLoadFrames()) {
+            return 2;
+        }
+        if (this.nativePtr == null && this.pendingNativeInit) {
+            String res = AndroidUtilities.readRes(this.args.resId);
+            if (TextUtils.isEmpty(res)) {
+                return 2;
+            }
+            NativePtrArgs nativePtrArgs = this.args;
+            this.nativePtr = RLottieNative.createFromRawJson(res, nativePtrArgs.name, this.metaData, nativePtrArgs.colorReplacement, this.layerColors);
+            this.pendingNativeInit = false;
+        }
+        if (this.backgroundBitmap == null) {
+            try {
+                this.backgroundBitmap = Bitmap.createBitmap(this.width, this.height, this.isSingleChannel ? Bitmap.Config.ALPHA_8 : Bitmap.Config.ARGB_8888);
+                z = false;
+            } catch (Throwable th) {
+                FileLog.e(th);
+                z = true;
+            }
+        } else {
+            z = true;
+        }
+        if (this.backgroundBitmap != null) {
+            applyPendingColorsUpdates();
+            try {
+                RLottieNative rLottieNative = this.nativePtr;
+                int i = this.shouldLimitFps ? 2 : 1;
+                if (this.precache && (bitmapsCache = this.bitmapsCache) != null) {
+                    try {
+                        frame = bitmapsCache.getFrame(this.currentFrame / i, this.backgroundBitmap);
+                        try {
+                            if (!this.bitmapsCache.needGenCache() && this.allowDrawFramesWhileCacheGenerating && this.nativePtr != null) {
+                                this.nativePtr.recycle();
+                                this.nativePtr = null;
+                            }
+                        } catch (Exception e) {
+                            e = e;
+                            FileLog.e(e);
+                        }
+                    } catch (Exception e2) {
+                        e = e2;
+                        frame = 0;
+                    }
+                } else {
+                    frame = rLottieNative.getFrame(this.currentFrame, this.backgroundBitmap, z);
+                }
+                BitmapsCache bitmapsCache2 = this.bitmapsCache;
+                if (bitmapsCache2 != null && bitmapsCache2.needGenCache()) {
+                    if (!this.genCacheSend) {
+                        this.genCacheSend = true;
+                        AndroidUtilities.runOnUIThread(this.uiRunnableGenerateCache);
+                    }
+                    frame = -1;
+                    if (this.allowDrawFramesWhileCacheGenerating) {
+                        if (this.nativePtr == null) {
+                            String string = this.args.file.toString();
+                            NativePtrArgs nativePtrArgs2 = this.args;
+                            this.nativePtr = RLottieNative.createFromFile(string, nativePtrArgs2.json, this.width, this.height, null, false, nativePtrArgs2.colorReplacement, false, nativePtrArgs2.fitzModifier, this.layerColors);
+                        }
+                        if (this.nativePtr != null) {
+                            frame = this.nativePtr.getFrame(this.currentFrame, this.backgroundBitmap, z);
+                        }
+                    }
+                }
+                if (frame < 0) {
+                    return 2;
+                }
+                this.nextRenderingBitmap = this.backgroundBitmap;
+                int i2 = this.customEndFrame;
+                if (i2 >= 0 && this.playInDirectionOfCustomEndFrame) {
+                    int i3 = this.currentFrame;
+                    if (i3 > i2) {
+                        int i4 = i3 - i;
+                        if (i4 >= i2) {
+                            this.currentFrame = i4;
+                            this.nextFrameIsLast = false;
+                        } else {
+                            this.nextFrameIsLast = true;
+                            checkDispatchOnAnimationEnd();
+                        }
+                    } else {
+                        int i5 = i3 + i;
+                        if (i5 < i2) {
+                            this.currentFrame = i5;
+                            this.nextFrameIsLast = false;
+                        } else {
+                            this.nextFrameIsLast = true;
+                            checkDispatchOnAnimationEnd();
+                        }
+                    }
+                } else {
+                    int i6 = this.currentFrame + i;
+                    if (i2 < 0) {
+                        i2 = this.metaData[0];
+                    }
+                    if (i6 < i2) {
+                        if (this.autoRepeat == 3) {
+                            this.nextFrameIsLast = true;
+                            this.autoRepeatPlayCount++;
+                        } else {
+                            this.currentFrame = i6;
+                            this.nextFrameIsLast = false;
+                        }
+                    } else {
+                        int i7 = this.autoRepeat;
+                        if (i7 == 1) {
+                            this.currentFrame = 0;
+                            this.nextFrameIsLast = false;
+                            if (this.resetVibrationAfterRestart) {
+                                this.vibrationPattern = null;
+                                this.resetVibrationAfterRestart = false;
+                            }
+                            int i8 = this.autoRepeatCount;
+                            if (i8 > 0) {
+                                this.autoRepeatCount = i8 - 1;
+                            }
+                        } else if (i7 == 2) {
+                            this.currentFrame = 0;
+                            this.nextFrameIsLast = true;
+                            this.autoRepeatPlayCount++;
+                            if (this.resetVibrationAfterRestart) {
+                                this.vibrationPattern = null;
+                                this.resetVibrationAfterRestart = false;
+                            }
+                        } else {
+                            this.nextFrameIsLast = true;
+                            checkDispatchOnAnimationEnd();
+                        }
+                    }
+                }
+            } catch (Exception e3) {
+                FileLog.e(e3);
+            }
+        }
+        return 1;
     }
 
     private void applyPendingColorsUpdates() {
@@ -351,7 +493,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         }
     }
 
-    public RLottieDrawable(File file, String str, int i, int i2, BitmapsCache.CacheOptions cacheOptions, boolean z, int[] iArr, int i3, boolean z2) throws IOException {
+    public RLottieDrawable(File file, String str, int i, int i2, BitmapsCache.CacheOptions cacheOptions, boolean z, int[] iArr, int i3, boolean z2) {
         int[] iArr2 = new int[3];
         this.metaData = iArr2;
         this.customEndFrame = -1;
@@ -449,8 +591,69 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         this.shouldLimitFps = false;
     }
 
-    private void parseLottieMetadata(java.io.File r15, java.lang.String r16, int[] r17) throws java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.parseLottieMetadata(java.io.File, java.lang.String, int[]):void");
+    private void parseLottieMetadata(File file, String str, int[] iArr) {
+        byte b;
+        try {
+            JsonReader jsonReader = new JsonReader(new FileReader(file.getAbsoluteFile()));
+            try {
+                jsonReader.beginObject();
+                double dNextDouble = 30.0d;
+                double dNextDouble2 = 0.0d;
+                double dNextDouble3 = 0.0d;
+                while (jsonReader.hasNext()) {
+                    String strNextName = jsonReader.nextName();
+                    int iHashCode = strNextName.hashCode();
+                    if (iHashCode != 3276) {
+                        if (iHashCode != 3367) {
+                            if (iHashCode == 3553 && strNextName.equals("op")) {
+                                b = 1;
+                            } else {
+                                b = -1;
+                            }
+                        } else if (strNextName.equals("ip")) {
+                            b = 0;
+                        } else {
+                            b = -1;
+                        }
+                    } else if (strNextName.equals("fr")) {
+                        b = 2;
+                    } else {
+                        b = -1;
+                    }
+                    if (b == 0) {
+                        dNextDouble3 = jsonReader.nextDouble();
+                    } else if (b == 1) {
+                        dNextDouble2 = jsonReader.nextDouble();
+                    } else if (b == 2) {
+                        dNextDouble = jsonReader.nextDouble();
+                    } else {
+                        jsonReader.skipValue();
+                    }
+                }
+                jsonReader.endObject();
+                jsonReader.close();
+                iArr[0] = (int) (dNextDouble2 - dNextDouble3);
+                iArr[1] = (int) dNextDouble;
+            } catch (Throwable th) {
+                try {
+                    jsonReader.close();
+                    throw th;
+                } catch (Throwable th2) {
+                    th.addSuppressed(th2);
+                    throw th;
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e((Throwable) e, false);
+            String absolutePath = file.getAbsolutePath();
+            int i = this.width;
+            int i2 = this.height;
+            NativePtrArgs nativePtrArgs = this.args;
+            RLottieNative rLottieNativeCreateFromFile = RLottieNative.createFromFile(absolutePath, str, i, i2, iArr, false, nativePtrArgs.colorReplacement, this.shouldLimitFps, nativePtrArgs.fitzModifier, this.layerColors);
+            if (rLottieNativeCreateFromFile != null) {
+                rLottieNativeCreateFromFile.recycle();
+            }
+        }
     }
 
     protected RLottieDrawable(int i, int i2) {
@@ -1037,6 +1240,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         if (!canLoadFrames() || this.destroyWhenDone) {
             return;
         }
+        boolean z2 = false;
         if (!z) {
             updateCurrentFrame(j, false);
         }
@@ -1057,18 +1261,18 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
             fWidth = this.scaleX;
             f = this.scaleY;
-            z = this.needScale;
+            z2 = this.needScale;
         } else {
             fWidth = rectF.width() / this.width;
             float fHeight = rectF.height() / this.height;
             if (Math.abs(rectF.width() - this.width) >= AndroidUtilities.dp(1.0f) || Math.abs(rectF.height() - this.height) >= AndroidUtilities.dp(1.0f)) {
                 f = fHeight;
-                z = true;
+                z2 = true;
             } else {
                 f = fHeight;
             }
         }
-        if (!z) {
+        if (!z2) {
             canvas.drawBitmap(this.renderingBitmap, rectF.left, rectF.top, paint);
             return;
         }
@@ -1224,7 +1428,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     }
 
     private boolean canLoadFrames() {
-        return this.precache ? this.bitmapsCache != null || this.fallbackCache : this.nativePtr != null || this.pendingNativeInit;
+        if (this.precache) {
+            return this.bitmapsCache != null || this.fallbackCache;
+        }
+        return this.nativePtr != null || this.pendingNativeInit;
     }
 
     private static class NativePtrArgs {

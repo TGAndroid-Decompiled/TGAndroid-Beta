@@ -1,14 +1,17 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.Theme;
 
 public class CrossOutDrawable extends Drawable {
     int color;
@@ -65,8 +68,71 @@ public class CrossOutDrawable extends Drawable {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CrossOutDrawable.draw(android.graphics.Canvas):void");
+    public void draw(Canvas canvas) {
+        float f;
+        boolean z = this.cross;
+        if (z) {
+            float f2 = this.progress;
+            if (f2 != 1.0f) {
+                this.progress = f2 + 0.10666667f;
+                invalidateSelf();
+                if (this.progress > 1.0f) {
+                    this.progress = 1.0f;
+                }
+            } else if (!z) {
+                f = this.progress;
+                if (f != 0.0f) {
+                    this.progress = f - 0.10666667f;
+                    invalidateSelf();
+                    if (this.progress < 0.0f) {
+                        this.progress = 0.0f;
+                    }
+                }
+            }
+        } else if (!z) {
+            f = this.progress;
+            if (f != 0.0f) {
+                this.progress = f - 0.10666667f;
+                invalidateSelf();
+                if (this.progress < 0.0f) {
+                    this.progress = 0.0f;
+                }
+            }
+        }
+        int i = this.colorKey;
+        int color = i < 0 ? -1 : Theme.getColor(i);
+        if (this.color != color) {
+            this.color = color;
+            this.paint.setColor(color);
+            this.iconDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+        }
+        if (this.progress == 0.0f) {
+            this.iconDrawable.draw(canvas);
+            return;
+        }
+        this.rectF.set(this.iconDrawable.getBounds());
+        canvas.saveLayerAlpha(this.rectF, 255, 31);
+        this.iconDrawable.draw(canvas);
+        float fDpf2 = this.rectF.left + AndroidUtilities.dpf2(4.5f) + this.xOffset + this.lenOffsetTop;
+        float fDpf3 = ((this.rectF.top + AndroidUtilities.dpf2(4.5f)) - AndroidUtilities.dp(1.0f)) + this.lenOffsetTop;
+        float fDp = ((this.rectF.right - AndroidUtilities.dp(3.0f)) + this.xOffset) - this.lenOffsetBottom;
+        float fDp2 = ((this.rectF.bottom - AndroidUtilities.dp(1.0f)) - AndroidUtilities.dp(3.0f)) - this.lenOffsetBottom;
+        if (this.cross) {
+            float f3 = this.progress;
+            fDp = ((fDp - fDpf2) * f3) + fDpf2;
+            fDp2 = ((fDp2 - fDpf3) * f3) + fDpf3;
+        } else {
+            float f4 = 1.0f - this.progress;
+            fDpf2 += (fDp - fDpf2) * f4;
+            fDpf3 += (fDp2 - fDpf3) * f4;
+        }
+        float f5 = fDpf2;
+        float f6 = fDp;
+        canvas.drawLine(f5, fDpf3 - this.paint.getStrokeWidth(), f6, fDp2 - this.paint.getStrokeWidth(), this.xRefPaint);
+        float strokeWidth = ((this.xRefPaint.getStrokeWidth() - this.paint.getStrokeWidth()) / 2.0f) + 1.0f;
+        canvas.drawLine(f5, fDpf3 - strokeWidth, f6, fDp2 - strokeWidth, this.xRefPaint);
+        canvas.drawLine(f5, fDpf3, f6, fDp2, this.paint);
+        canvas.restore();
     }
 
     @Override

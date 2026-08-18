@@ -1,12 +1,13 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Parcelable;
@@ -20,7 +21,6 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import java.io.IOException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
@@ -29,7 +29,6 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.xml.sax.SAXException;
 
 public abstract class GroupCallRecordAlert extends BottomSheet {
     private int currentPage;
@@ -41,7 +40,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
 
     public abstract void onStartRecord(int i);
 
-    public GroupCallRecordAlert(Context context, TLRPC.Chat chat, boolean z) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
+    public GroupCallRecordAlert(Context context, TLRPC.Chat chat, boolean z) {
         super(context, false);
         int color = Theme.getColor(Theme.key_voipgroup_inviteMembersBackground);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
@@ -155,8 +154,39 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             }
 
             @Override
-            protected void onSizeChanged(int r24, int r25, int r26, int r27) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallRecordAlert.AnonymousClass3.onSizeChanged(int, int, int, int):void");
+            protected void onSizeChanged(int i2, int i3, int i4, int i5) {
+                int i6;
+                int i7;
+                LinearGradient linearGradient;
+                super.onSizeChanged(i2, i3, i4, i5);
+                for (int i8 = 0; i8 < this.gradientPaint.length; i8++) {
+                    int i9 = -9015575;
+                    if (i8 == 0) {
+                        i9 = -11033346;
+                        i6 = -9015575;
+                    } else {
+                        if (i8 == 1) {
+                            i9 = -8919716;
+                            i6 = -11089922;
+                        } else {
+                            i6 = -1026983;
+                            i7 = -1792170;
+                        }
+                        if (i7 != 0) {
+                            linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i9, i6, i7}, (float[]) null, Shader.TileMode.CLAMP);
+                        } else {
+                            linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i9, i6}, (float[]) null, Shader.TileMode.CLAMP);
+                        }
+                        this.gradientPaint[i8].setShader(linearGradient);
+                    }
+                    i7 = 0;
+                    if (i7 != 0) {
+                        linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i9, i6, i7}, (float[]) null, Shader.TileMode.CLAMP);
+                    } else {
+                        linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i9, i6}, (float[]) null, Shader.TileMode.CLAMP);
+                    }
+                    this.gradientPaint[i8].setShader(linearGradient);
+                }
             }
 
             @Override
@@ -303,7 +333,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         }
 
         @Override
-        public Object instantiateItem(ViewGroup viewGroup, final int i) throws SAXException, IOException {
+        public Object instantiateItem(ViewGroup viewGroup, final int i) {
             int i2;
             ImageView imageView = new ImageView(GroupCallRecordAlert.this.getContext()) {
                 @Override

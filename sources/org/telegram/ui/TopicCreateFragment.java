@@ -4,12 +4,12 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -26,10 +26,14 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.TopicsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_forum;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -309,20 +313,157 @@ public class TopicCreateFragment extends BaseFragment {
         }
 
         @Override
-        public void onItemClick(int r12) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicCreateFragment.AnonymousClass1.onItemClick(int):void");
+        public void onItemClick(int i) {
+            final String string;
+            TL_forum.TL_messages_editForumTopic tL_messages_editForumTopic;
+            TLRPC.TL_forumTopic tL_forumTopic;
+            long j;
+            long j2;
+            if (i == -1) {
+                TopicCreateFragment.this.finishFragment();
+                return;
+            }
+            if (i == 1) {
+                string = TopicCreateFragment.this.editTextBoldCursor.getText() != null ? TopicCreateFragment.this.editTextBoldCursor.getText().toString() : null;
+                if (TextUtils.isEmpty(string)) {
+                    Vibrator vibrator = (Vibrator) TopicCreateFragment.this.getParentActivity().getSystemService("vibrator");
+                    if (vibrator != null) {
+                        vibrator.vibrate(200L);
+                    }
+                    AndroidUtilities.shakeView(TopicCreateFragment.this.editTextBoldCursor);
+                    return;
+                }
+                if (TopicCreateFragment.this.created) {
+                    return;
+                }
+                final AlertDialog alertDialog = new AlertDialog(TopicCreateFragment.this.getParentActivity(), 3);
+                alertDialog.showDelayed(500L);
+                TopicCreateFragment.this.created = true;
+                TL_forum.TL_messages_createForumTopic tL_messages_createForumTopic = new TL_forum.TL_messages_createForumTopic();
+                tL_messages_createForumTopic.peer = TopicCreateFragment.this.getMessagesController().getInputPeer(TopicCreateFragment.this.dialogId);
+                tL_messages_createForumTopic.title = string;
+                long j3 = TopicCreateFragment.this.selectedEmojiDocumentId;
+                if (j3 != 0) {
+                    tL_messages_createForumTopic.icon_emoji_id = j3;
+                    tL_messages_createForumTopic.flags |= 8;
+                }
+                tL_messages_createForumTopic.random_id = Utilities.random.nextLong();
+                TopicCreateFragment topicCreateFragment = TopicCreateFragment.this;
+                tL_messages_createForumTopic.icon_color = topicCreateFragment.iconColor;
+                tL_messages_createForumTopic.flags |= 1;
+                ConnectionsManager.getInstance(((BaseFragment) topicCreateFragment).currentAccount).sendRequest(tL_messages_createForumTopic, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        this.f$0.lambda$onItemClick$1(string, alertDialog, tLObject, tL_error);
+                    }
+                });
+                return;
+            }
+            if (i == 2) {
+                string = TopicCreateFragment.this.editTextBoldCursor.getText() != null ? TopicCreateFragment.this.editTextBoldCursor.getText().toString() : null;
+                if (TextUtils.isEmpty(string)) {
+                    Vibrator vibrator2 = (Vibrator) TopicCreateFragment.this.getParentActivity().getSystemService("vibrator");
+                    if (vibrator2 != null) {
+                        vibrator2.vibrate(200L);
+                    }
+                    AndroidUtilities.shakeView(TopicCreateFragment.this.editTextBoldCursor);
+                    return;
+                }
+                if (TopicCreateFragment.this.topicForEdit.title.equals(string)) {
+                    TopicCreateFragment topicCreateFragment2 = TopicCreateFragment.this;
+                    if (topicCreateFragment2.topicForEdit.icon_emoji_id != topicCreateFragment2.selectedEmojiDocumentId) {
+                        tL_messages_editForumTopic = new TL_forum.TL_messages_editForumTopic();
+                        tL_messages_editForumTopic.peer = TopicCreateFragment.this.getMessagesController().getInputPeer(TopicCreateFragment.this.dialogId);
+                        tL_forumTopic = TopicCreateFragment.this.topicForEdit;
+                        tL_messages_editForumTopic.topic_id = tL_forumTopic.id;
+                        if (!tL_forumTopic.title.equals(string)) {
+                            tL_messages_editForumTopic.title = string;
+                            tL_messages_editForumTopic.flags |= 1;
+                        }
+                        TopicCreateFragment topicCreateFragment3 = TopicCreateFragment.this;
+                        j = topicCreateFragment3.topicForEdit.icon_emoji_id;
+                        j2 = topicCreateFragment3.selectedEmojiDocumentId;
+                        if (j != j2) {
+                            tL_messages_editForumTopic.icon_emoji_id = j2;
+                            tL_messages_editForumTopic.flags |= 2;
+                        }
+                        ConnectionsManager.getInstance(((BaseFragment) topicCreateFragment3).currentAccount).sendRequest(tL_messages_editForumTopic, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                TopicCreateFragment.AnonymousClass1.lambda$onItemClick$2(tLObject, tL_error);
+                            }
+                        });
+                    }
+                } else {
+                    tL_messages_editForumTopic = new TL_forum.TL_messages_editForumTopic();
+                    tL_messages_editForumTopic.peer = TopicCreateFragment.this.getMessagesController().getInputPeer(TopicCreateFragment.this.dialogId);
+                    tL_forumTopic = TopicCreateFragment.this.topicForEdit;
+                    tL_messages_editForumTopic.topic_id = tL_forumTopic.id;
+                    if (!tL_forumTopic.title.equals(string)) {
+                        tL_messages_editForumTopic.title = string;
+                        tL_messages_editForumTopic.flags |= 1;
+                    }
+                    TopicCreateFragment topicCreateFragment4 = TopicCreateFragment.this;
+                    j = topicCreateFragment4.topicForEdit.icon_emoji_id;
+                    j2 = topicCreateFragment4.selectedEmojiDocumentId;
+                    if (j != j2) {
+                        tL_messages_editForumTopic.icon_emoji_id = j2;
+                        tL_messages_editForumTopic.flags |= 2;
+                    }
+                    ConnectionsManager.getInstance(((BaseFragment) topicCreateFragment4).currentAccount).sendRequest(tL_messages_editForumTopic, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            TopicCreateFragment.AnonymousClass1.lambda$onItemClick$2(tLObject, tL_error);
+                        }
+                    });
+                }
+                TopicCreateFragment topicCreateFragment5 = TopicCreateFragment.this;
+                TextCheckCell2 textCheckCell2 = topicCreateFragment5.checkBoxCell;
+                if (textCheckCell2 != null && topicCreateFragment5.topicForEdit.id == 1 && (!textCheckCell2.isChecked()) != TopicCreateFragment.this.topicForEdit.hidden) {
+                    TL_forum.TL_messages_editForumTopic tL_messages_editForumTopic2 = new TL_forum.TL_messages_editForumTopic();
+                    tL_messages_editForumTopic2.peer = TopicCreateFragment.this.getMessagesController().getInputPeer(TopicCreateFragment.this.dialogId);
+                    TopicCreateFragment topicCreateFragment6 = TopicCreateFragment.this;
+                    tL_messages_editForumTopic2.topic_id = topicCreateFragment6.topicForEdit.id;
+                    tL_messages_editForumTopic2.hidden = !topicCreateFragment6.checkBoxCell.isChecked();
+                    tL_messages_editForumTopic2.flags |= 8;
+                    ConnectionsManager.getInstance(((BaseFragment) TopicCreateFragment.this).currentAccount).sendRequest(tL_messages_editForumTopic2, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            TopicCreateFragment.AnonymousClass1.lambda$onItemClick$3(tLObject, tL_error);
+                        }
+                    });
+                }
+                TopicCreateFragment topicCreateFragment7 = TopicCreateFragment.this;
+                TLRPC.TL_forumTopic tL_forumTopic2 = topicCreateFragment7.topicForEdit;
+                long j4 = topicCreateFragment7.selectedEmojiDocumentId;
+                tL_forumTopic2.icon_emoji_id = j4;
+                if (j4 != 0) {
+                    tL_forumTopic2.flags |= 1;
+                } else {
+                    tL_forumTopic2.flags &= -2;
+                }
+                tL_forumTopic2.title = string;
+                TextCheckCell2 textCheckCell3 = topicCreateFragment7.checkBoxCell;
+                if (textCheckCell3 != null) {
+                    tL_forumTopic2.hidden = !textCheckCell3.isChecked();
+                }
+                TopicsController topicsController = TopicCreateFragment.this.getMessagesController().getTopicsController();
+                TopicCreateFragment topicCreateFragment8 = TopicCreateFragment.this;
+                topicsController.onTopicEdited(topicCreateFragment8.dialogId, topicCreateFragment8.topicForEdit);
+                TopicCreateFragment.this.finishFragment();
+            }
         }
 
         public void lambda$onItemClick$1(final String str, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() {
                     this.f$0.lambda$onItemClick$0(tLObject, str, alertDialog);
                 }
             });
         }
 
-        public void lambda$onItemClick$0(TLObject tLObject, String str, AlertDialog alertDialog) throws Resources.NotFoundException {
+        public void lambda$onItemClick$0(TLObject tLObject, String str, AlertDialog alertDialog) {
             if (tLObject != null) {
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 for (int i = 0; i < updates.updates.size(); i++) {
@@ -474,7 +615,8 @@ public class TopicCreateFragment extends BaseFragment {
     }
 
     public void lambda$createView$1(View view) {
-        this.checkBoxCell.setChecked(!r2.isChecked());
+        TextCheckCell2 textCheckCell2 = this.checkBoxCell;
+        textCheckCell2.setChecked(!textCheckCell2.isChecked());
     }
 
     public void selectEmoji(Long l, boolean z) {

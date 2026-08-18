@@ -23,7 +23,6 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import java.io.IOException;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatThemeController;
@@ -46,7 +45,6 @@ import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.theme.ITheme;
 import org.telegram.ui.ChatBackgroundDrawable;
-import org.telegram.ui.Components.ChatThemeBottomSheet;
 
 public class ThemeSmallPreviewView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final float BUBBLE_HEIGHT;
@@ -139,8 +137,10 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(iDp, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        this.backupImageView.setPivotY(r4.getMeasuredHeight());
-        this.backupImageView.setPivotX(r4.getMeasuredWidth() / 2.0f);
+        BackupImageView backupImageView = this.backupImageView;
+        backupImageView.setPivotY(backupImageView.getMeasuredHeight());
+        BackupImageView backupImageView2 = this.backupImageView;
+        backupImageView2.setPivotX(backupImageView2.getMeasuredWidth() / 2.0f);
     }
 
     @Override
@@ -507,7 +507,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         paint.setShader(null);
     }
 
-    public void updatePreviewBackground(ThemeDrawable themeDrawable) throws IOException {
+    public void updatePreviewBackground(ThemeDrawable themeDrawable) {
         EmojiThemes emojiThemes;
         int themedColor;
         ChatThemeBottomSheet.ChatThemeItem chatThemeItem = this.chatThemeItem;
@@ -580,7 +580,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         return motionBackgroundDrawable;
     }
 
-    private Drawable getPreviewDrawable(EmojiThemes.ThemeItem themeItem) throws IOException {
+    private Drawable getPreviewDrawable(EmojiThemes.ThemeItem themeItem) {
         Drawable motionBackgroundDrawable = null;
         motionBackgroundDrawable = null;
         if (this.chatThemeItem == null) {
@@ -825,17 +825,18 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
                         ThemeSmallPreviewView.this.messageDrawableIn.draw(canvas, this.inBubblePaint);
                         return;
                     }
-                    if (ThemeSmallPreviewView.this.chatThemeItem.icon != null) {
-                        canvas.drawBitmap(ThemeSmallPreviewView.this.chatThemeItem.icon, (r2.getWidth() - ThemeSmallPreviewView.this.chatThemeItem.icon.getWidth()) * 0.5f, AndroidUtilities.dp(21.0f), (Paint) null);
+                    ThemeSmallPreviewView themeSmallPreviewView6 = ThemeSmallPreviewView.this;
+                    if (themeSmallPreviewView6.chatThemeItem.icon != null) {
+                        canvas.drawBitmap(ThemeSmallPreviewView.this.chatThemeItem.icon, (themeSmallPreviewView6.getWidth() - ThemeSmallPreviewView.this.chatThemeItem.icon.getWidth()) * 0.5f, AndroidUtilities.dp(21.0f), (Paint) null);
                         return;
                     }
                     return;
                 }
                 return;
             }
-            ThemeSmallPreviewView themeSmallPreviewView6 = ThemeSmallPreviewView.this;
-            if (themeSmallPreviewView6.fallbackWallpaper == null) {
-                canvas.drawRoundRect(themeSmallPreviewView6.rectF, ThemeSmallPreviewView.this.INNER_RADIUS, ThemeSmallPreviewView.this.INNER_RADIUS, ThemeSmallPreviewView.this.backgroundFillPaint);
+            ThemeSmallPreviewView themeSmallPreviewView7 = ThemeSmallPreviewView.this;
+            if (themeSmallPreviewView7.fallbackWallpaper == null) {
+                canvas.drawRoundRect(themeSmallPreviewView7.rectF, ThemeSmallPreviewView.this.INNER_RADIUS, ThemeSmallPreviewView.this.INNER_RADIUS, ThemeSmallPreviewView.this.backgroundFillPaint);
                 canvas.save();
                 StaticLayout noThemeStaticLayout = ThemeSmallPreviewView.this.getNoThemeStaticLayout();
                 canvas.translate((ThemeSmallPreviewView.this.getWidth() - noThemeStaticLayout.getWidth()) * 0.5f, AndroidUtilities.dp(18.0f));

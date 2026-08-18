@@ -10,7 +10,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.UnsupportedBlockDrawable;
 
 public class ChatMessageUnsupportedCell extends View implements Theme.Colorable {

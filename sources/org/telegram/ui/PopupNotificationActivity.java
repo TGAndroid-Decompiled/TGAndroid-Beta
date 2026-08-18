@@ -1,11 +1,14 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,15 +22,18 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -36,8 +42,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.WebFile;
 import org.telegram.messenger.utils.tlutils.TLKeyboardHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
@@ -47,7 +55,6 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ChatActivityEnterView;
@@ -127,7 +134,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    protected void onCreate(Bundle bundle) throws Resources.NotFoundException, IOException {
+    protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
@@ -176,8 +183,110 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            protected void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PopupNotificationActivity.AnonymousClass1.onLayout(boolean, int, int, int, int):void");
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                int i6;
+                int i7;
+                int left;
+                int i8;
+                int i9;
+                int top;
+                int childCount = getChildCount();
+                int emojiPadding = measureKeyboardHeight() <= AndroidUtilities.dp(20.0f) ? PopupNotificationActivity.this.chatActivityEnterView.getEmojiPadding() : 0;
+                for (int i10 = 0; i10 < childCount; i10++) {
+                    View childAt = getChildAt(i10);
+                    if (childAt.getVisibility() != 8) {
+                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                        int measuredWidth = childAt.getMeasuredWidth();
+                        int measuredHeight = childAt.getMeasuredHeight();
+                        int i11 = layoutParams.gravity;
+                        if (i11 == -1) {
+                            i11 = 51;
+                        }
+                        int i12 = i11 & 112;
+                        int i13 = i11 & 7;
+                        if (i13 != 1) {
+                            if (i13 == 5) {
+                                i6 = i4 - measuredWidth;
+                                i7 = layoutParams.rightMargin;
+                            } else {
+                                left = layoutParams.leftMargin;
+                            }
+                            if (i12 != 16) {
+                                if (i12 != 80) {
+                                    i8 = ((i5 - emojiPadding) - i3) - measuredHeight;
+                                    i9 = layoutParams.bottomMargin;
+                                } else {
+                                    top = layoutParams.topMargin;
+                                }
+                                if (PopupNotificationActivity.this.chatActivityEnterView.isPopupView(childAt)) {
+                                    if (emojiPadding != 0) {
+                                        top = getMeasuredHeight() - emojiPadding;
+                                    } else {
+                                        top = getMeasuredHeight();
+                                    }
+                                } else if (PopupNotificationActivity.this.chatActivityEnterView.isRecordCircle(childAt)) {
+                                    top = ((PopupNotificationActivity.this.popupContainer.getTop() + PopupNotificationActivity.this.popupContainer.getMeasuredHeight()) - childAt.getMeasuredHeight()) - layoutParams.bottomMargin;
+                                    left = ((PopupNotificationActivity.this.popupContainer.getLeft() + PopupNotificationActivity.this.popupContainer.getMeasuredWidth()) - childAt.getMeasuredWidth()) - layoutParams.rightMargin;
+                                }
+                                childAt.layout(left, top, measuredWidth + left, measuredHeight + top);
+                            } else {
+                                i8 = ((((i5 - emojiPadding) - i3) - measuredHeight) / 2) + layoutParams.topMargin;
+                                i9 = layoutParams.bottomMargin;
+                            }
+                            top = i8 - i9;
+                            if (PopupNotificationActivity.this.chatActivityEnterView.isPopupView(childAt)) {
+                                if (emojiPadding != 0) {
+                                    top = getMeasuredHeight() - emojiPadding;
+                                } else {
+                                    top = getMeasuredHeight();
+                                }
+                            } else if (PopupNotificationActivity.this.chatActivityEnterView.isRecordCircle(childAt)) {
+                                top = ((PopupNotificationActivity.this.popupContainer.getTop() + PopupNotificationActivity.this.popupContainer.getMeasuredHeight()) - childAt.getMeasuredHeight()) - layoutParams.bottomMargin;
+                                left = ((PopupNotificationActivity.this.popupContainer.getLeft() + PopupNotificationActivity.this.popupContainer.getMeasuredWidth()) - childAt.getMeasuredWidth()) - layoutParams.rightMargin;
+                            }
+                            childAt.layout(left, top, measuredWidth + left, measuredHeight + top);
+                        } else {
+                            i6 = (((i4 - i2) - measuredWidth) / 2) + layoutParams.leftMargin;
+                            i7 = layoutParams.rightMargin;
+                        }
+                        left = i6 - i7;
+                        if (i12 != 16) {
+                            if (i12 != 80) {
+                                i8 = ((i5 - emojiPadding) - i3) - measuredHeight;
+                                i9 = layoutParams.bottomMargin;
+                            } else {
+                                top = layoutParams.topMargin;
+                            }
+                            if (PopupNotificationActivity.this.chatActivityEnterView.isPopupView(childAt)) {
+                                if (emojiPadding != 0) {
+                                    top = getMeasuredHeight() - emojiPadding;
+                                } else {
+                                    top = getMeasuredHeight();
+                                }
+                            } else if (PopupNotificationActivity.this.chatActivityEnterView.isRecordCircle(childAt)) {
+                                top = ((PopupNotificationActivity.this.popupContainer.getTop() + PopupNotificationActivity.this.popupContainer.getMeasuredHeight()) - childAt.getMeasuredHeight()) - layoutParams.bottomMargin;
+                                left = ((PopupNotificationActivity.this.popupContainer.getLeft() + PopupNotificationActivity.this.popupContainer.getMeasuredWidth()) - childAt.getMeasuredWidth()) - layoutParams.rightMargin;
+                            }
+                            childAt.layout(left, top, measuredWidth + left, measuredHeight + top);
+                        } else {
+                            i8 = ((((i5 - emojiPadding) - i3) - measuredHeight) / 2) + layoutParams.topMargin;
+                            i9 = layoutParams.bottomMargin;
+                        }
+                        top = i8 - i9;
+                        if (PopupNotificationActivity.this.chatActivityEnterView.isPopupView(childAt)) {
+                            if (emojiPadding != 0) {
+                                top = getMeasuredHeight() - emojiPadding;
+                            } else {
+                                top = getMeasuredHeight();
+                            }
+                        } else if (PopupNotificationActivity.this.chatActivityEnterView.isRecordCircle(childAt)) {
+                            top = ((PopupNotificationActivity.this.popupContainer.getTop() + PopupNotificationActivity.this.popupContainer.getMeasuredHeight()) - childAt.getMeasuredHeight()) - layoutParams.bottomMargin;
+                            left = ((PopupNotificationActivity.this.popupContainer.getLeft() + PopupNotificationActivity.this.popupContainer.getMeasuredWidth()) - childAt.getMeasuredWidth()) - layoutParams.rightMargin;
+                        }
+                        childAt.layout(left, top, measuredWidth + left, measuredHeight + top);
+                    }
+                }
+                notifyHeightChanged();
             }
         };
         setContentView(sizeNotifierFrameLayout);
@@ -422,7 +531,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            public void onMessageSend(CharSequence charSequence, boolean z, int i2, int i3, long j) throws Resources.NotFoundException {
+            public void onMessageSend(CharSequence charSequence, boolean z, int i2, int i3, long j) {
                 if (PopupNotificationActivity.this.currentMessageObject == null) {
                     return;
                 }
@@ -521,7 +630,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         this.onlineTextView.setLayoutParams(layoutParams5);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i3) throws Resources.NotFoundException {
+            public void onItemClick(int i3) {
                 if (i3 == -1) {
                     PopupNotificationActivity.this.onFinish();
                     PopupNotificationActivity.this.finish();
@@ -547,7 +656,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    protected void onNewIntent(Intent intent) throws Resources.NotFoundException {
+    protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         handleIntent(intent);
     }
@@ -581,7 +690,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
     }
 
-    public void switchToNextMessage() throws Resources.NotFoundException {
+    public void switchToNextMessage() {
         if (this.popupMessages.size() > 1) {
             if (this.currentMessageNum < this.popupMessages.size() - 1) {
                 this.currentMessageNum++;
@@ -594,7 +703,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
     }
 
-    private void switchToPreviousMessage() throws Resources.NotFoundException {
+    private void switchToPreviousMessage() {
         if (this.popupMessages.size() > 1) {
             int i = this.currentMessageNum;
             if (i > 0) {
@@ -620,17 +729,151 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         return this.animationInProgress;
     }
 
-    public boolean onTouchEventMy(android.view.MotionEvent r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PopupNotificationActivity.onTouchEventMy(android.view.MotionEvent):boolean");
+    public boolean onTouchEventMy(MotionEvent motionEvent) {
+        char c;
+        float translationX;
+        ViewGroup viewGroup;
+        ViewGroup viewGroup2;
+        if (checkTransitionAnimation()) {
+            return false;
+        }
+        if (motionEvent != null && motionEvent.getAction() == 0) {
+            this.moveStartX = motionEvent.getX();
+        } else if (motionEvent != null && motionEvent.getAction() == 2) {
+            float x = motionEvent.getX();
+            float f = this.moveStartX;
+            int i = (int) (x - f);
+            if (f != -1.0f && !this.startedMoving && Math.abs(i) > AndroidUtilities.dp(10.0f)) {
+                this.startedMoving = true;
+                this.moveStartX = x;
+                AndroidUtilities.lockOrientation(this);
+                VelocityTracker velocityTracker = this.velocityTracker;
+                if (velocityTracker == null) {
+                    this.velocityTracker = VelocityTracker.obtain();
+                } else {
+                    velocityTracker.clear();
+                }
+                i = 0;
+            }
+            if (this.startedMoving) {
+                if (this.leftView == null && i > 0) {
+                    i = 0;
+                }
+                int i2 = (this.rightView != null || i >= 0) ? i : 0;
+                VelocityTracker velocityTracker2 = this.velocityTracker;
+                if (velocityTracker2 != null) {
+                    velocityTracker2.addMovement(motionEvent);
+                }
+                applyViewsLayoutParams(i2);
+            }
+        } else if (motionEvent == null || motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (motionEvent != null && this.startedMoving) {
+                int x2 = (int) (motionEvent.getX() - this.moveStartX);
+                int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(24.0f);
+                VelocityTracker velocityTracker3 = this.velocityTracker;
+                if (velocityTracker3 != null) {
+                    velocityTracker3.computeCurrentVelocity(1000);
+                    if (this.velocityTracker.getXVelocity() >= 3500.0f) {
+                        c = 1;
+                    } else if (this.velocityTracker.getXVelocity() <= -3500.0f) {
+                        c = 2;
+                    } else {
+                        c = 0;
+                    }
+                } else {
+                    c = 0;
+                }
+                if ((c == 1 || x2 > iDp / 3) && this.leftView != null) {
+                    translationX = iDp - this.centerView.getTranslationX();
+                    viewGroup = this.leftView;
+                    viewGroup2 = this.leftButtonsView;
+                    this.onAnimationEndRunnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$onTouchEventMy$1();
+                        }
+                    };
+                } else if ((c == 2 || x2 < (-iDp) / 3) && this.rightView != null) {
+                    translationX = (-iDp) - this.centerView.getTranslationX();
+                    viewGroup = this.rightView;
+                    viewGroup2 = this.rightButtonsView;
+                    this.onAnimationEndRunnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$onTouchEventMy$2();
+                        }
+                    };
+                } else if (this.centerView.getTranslationX() != 0.0f) {
+                    float f2 = -this.centerView.getTranslationX();
+                    ViewGroup viewGroup3 = x2 > 0 ? this.leftView : this.rightView;
+                    ViewGroup viewGroup4 = x2 > 0 ? this.leftButtonsView : this.rightButtonsView;
+                    this.onAnimationEndRunnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$onTouchEventMy$3();
+                        }
+                    };
+                    ViewGroup viewGroup5 = viewGroup3;
+                    viewGroup2 = viewGroup4;
+                    translationX = f2;
+                    viewGroup = viewGroup5;
+                } else {
+                    viewGroup = null;
+                    viewGroup2 = null;
+                    translationX = 0.0f;
+                }
+                if (translationX != 0.0f) {
+                    int iAbs = (int) (Math.abs(translationX / iDp) * 200.0f);
+                    ArrayList arrayList = new ArrayList();
+                    ViewGroup viewGroup6 = this.centerView;
+                    arrayList.add(ObjectAnimator.ofFloat(viewGroup6, "translationX", viewGroup6.getTranslationX() + translationX));
+                    ViewGroup viewGroup7 = this.centerButtonsView;
+                    if (viewGroup7 != null) {
+                        arrayList.add(ObjectAnimator.ofFloat(viewGroup7, "translationX", viewGroup7.getTranslationX() + translationX));
+                    }
+                    if (viewGroup != null) {
+                        arrayList.add(ObjectAnimator.ofFloat(viewGroup, "translationX", viewGroup.getTranslationX() + translationX));
+                    }
+                    if (viewGroup2 != null) {
+                        arrayList.add(ObjectAnimator.ofFloat(viewGroup2, "translationX", viewGroup2.getTranslationX() + translationX));
+                    }
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    animatorSet.playTogether(arrayList);
+                    animatorSet.setDuration(iAbs);
+                    animatorSet.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            if (PopupNotificationActivity.this.onAnimationEndRunnable != null) {
+                                PopupNotificationActivity.this.onAnimationEndRunnable.run();
+                                PopupNotificationActivity.this.onAnimationEndRunnable = null;
+                            }
+                        }
+                    });
+                    animatorSet.start();
+                    this.animationInProgress = true;
+                    this.animationStartTime = System.currentTimeMillis();
+                }
+            } else {
+                applyViewsLayoutParams(0);
+            }
+            VelocityTracker velocityTracker4 = this.velocityTracker;
+            if (velocityTracker4 != null) {
+                velocityTracker4.recycle();
+                this.velocityTracker = null;
+            }
+            this.startedMoving = false;
+            this.moveStartX = -1.0f;
+        }
+        return this.startedMoving;
     }
 
-    public void lambda$onTouchEventMy$1() throws Resources.NotFoundException {
+    public void lambda$onTouchEventMy$1() {
         this.animationInProgress = false;
         switchToPreviousMessage();
         AndroidUtilities.unlockOrientation(this);
     }
 
-    public void lambda$onTouchEventMy$2() throws Resources.NotFoundException {
+    public void lambda$onTouchEventMy$2() {
         this.animationInProgress = false;
         switchToNextMessage();
         AndroidUtilities.unlockOrientation(this);
@@ -689,7 +932,6 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     private LinearLayout getButtonsViewForMessage(int i, boolean z) {
         int i2;
         LinearLayout linearLayout;
-        ArrayList<TL_keyboard.KeyboardInlineButtonRow> arrayList;
         LinearLayout linearLayout2;
         int size = i;
         if (this.popupMessages.size() == 1 && (size < 0 || size >= this.popupMessages.size())) {
@@ -704,11 +946,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         final MessageObject messageObject = (MessageObject) this.popupMessages.get(size);
         TLRPC.ReplyMarkup replyMarkup = messageObject.messageOwner.reply_markup;
         if (messageObject.getDialogId() == 777000 && (replyMarkup instanceof TLRPC.TL_replyInlineMarkup)) {
-            ArrayList<TL_keyboard.KeyboardInlineButtonRow> arrayList2 = ((TLRPC.TL_replyInlineMarkup) replyMarkup).rows;
-            int size2 = arrayList2.size();
+            ArrayList<TL_keyboard.KeyboardInlineButtonRow> arrayList = ((TLRPC.TL_replyInlineMarkup) replyMarkup).rows;
+            int size2 = arrayList.size();
             i2 = 0;
             for (int i4 = 0; i4 < size2; i4++) {
-                TL_keyboard.KeyboardInlineButtonRow keyboardInlineButtonRow = arrayList2.get(i4);
+                TL_keyboard.KeyboardInlineButtonRow keyboardInlineButtonRow = arrayList.get(i4);
                 int size3 = keyboardInlineButtonRow.buttons.size();
                 for (int i5 = 0; i5 < size3; i5++) {
                     if (TLKeyboardHelper.isType(keyboardInlineButtonRow.buttons.get(i5), TL_keyboard.TL_inlineButtonTypeCallback.class)) {
@@ -723,12 +965,12 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         if (i2 <= 0 || !(replyMarkup instanceof TLRPC.TL_replyInlineMarkup)) {
             linearLayout = null;
         } else {
-            ArrayList<TL_keyboard.KeyboardInlineButtonRow> arrayList3 = ((TLRPC.TL_replyInlineMarkup) replyMarkup).rows;
-            int size4 = arrayList3.size();
+            ArrayList<TL_keyboard.KeyboardInlineButtonRow> arrayList2 = ((TLRPC.TL_replyInlineMarkup) replyMarkup).rows;
+            int size4 = arrayList2.size();
             int i7 = 0;
             LinearLayout linearLayout3 = null;
             while (i7 < size4) {
-                TL_keyboard.KeyboardInlineButtonRow keyboardInlineButtonRow2 = arrayList3.get(i7);
+                TL_keyboard.KeyboardInlineButtonRow keyboardInlineButtonRow2 = arrayList2.get(i7);
                 int size5 = keyboardInlineButtonRow2.buttons.size();
                 int i8 = 0;
                 while (i8 < size5) {
@@ -750,7 +992,6 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                             linearLayout2 = linearLayout3;
                         }
                         TextView textView = new TextView(this);
-                        arrayList = arrayList3;
                         textView.setTextSize(1, 16.0f);
                         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
                         textView.setTypeface(AndroidUtilities.bold());
@@ -766,11 +1007,9 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                             }
                         });
                         linearLayout3 = linearLayout2;
-                    } else {
-                        arrayList = arrayList3;
                     }
                     i8++;
-                    arrayList3 = arrayList;
+                    arrayList2 = arrayList2;
                     i3 = 0;
                 }
                 i7++;
@@ -804,8 +1043,203 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
     }
 
-    private android.view.ViewGroup getViewForMessage(int r28, boolean r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PopupNotificationActivity.getViewForMessage(int, boolean):android.view.ViewGroup");
+    private ViewGroup getViewForMessage(int i, boolean z) {
+        ViewGroup frameLayout;
+        ViewGroup viewGroup;
+        int i2;
+        ?? r3;
+        ?? r4;
+        PopupAudioView popupAudioView;
+        ?? r5;
+        int size = i;
+        if (this.popupMessages.size() == 1 && (size < 0 || size >= this.popupMessages.size())) {
+            return null;
+        }
+        if (size == -1) {
+            size = this.popupMessages.size() - 1;
+        } else if (size == this.popupMessages.size()) {
+            size = 0;
+        }
+        MessageObject messageObject = (MessageObject) this.popupMessages.get(size);
+        int i3 = messageObject.type;
+        if ((i3 == 1 || i3 == 4) && !messageObject.isSecretMedia()) {
+            if (this.imageViews.size() > 0) {
+                frameLayout = (ViewGroup) this.imageViews.get(0);
+                this.imageViews.remove(0);
+            } else {
+                frameLayout = new FrameLayout(this);
+                FrameLayout frameLayout2 = new FrameLayout(this);
+                frameLayout2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+                frameLayout2.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f));
+                BackupImageView backupImageView = new BackupImageView(this);
+                backupImageView.setTag(311);
+                frameLayout2.addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f));
+                TextView textView = new TextView(this);
+                textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+                textView.setTextSize(1, 16.0f);
+                textView.setGravity(17);
+                textView.setTag(312);
+                frameLayout2.addView(textView, LayoutHelper.createFrame(-1, -2, 17));
+                frameLayout.setTag(2);
+                frameLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$getViewForMessage$6(view);
+                    }
+                });
+            }
+            viewGroup = frameLayout;
+            TextView textView2 = (TextView) viewGroup.findViewWithTag(312);
+            BackupImageView backupImageView2 = (BackupImageView) viewGroup.findViewWithTag(311);
+            backupImageView2.setAspectFit(true);
+            int i4 = messageObject.type;
+            if (i4 == 1) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 100);
+                if (closestPhotoSizeWithSize != null) {
+                    boolean z2 = messageObject.type != 1 || FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(messageObject.messageOwner).exists();
+                    if (!messageObject.needDrawBluredPreview()) {
+                        if (z2 || DownloadController.getInstance(messageObject.currentAccount).canDownloadMedia(messageObject)) {
+                            i2 = 8;
+                            backupImageView2.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), "100_100", ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject), "100_100_b", closestPhotoSizeWithSize.size, messageObject);
+                        } else if (closestPhotoSizeWithSize2 != null) {
+                            backupImageView2.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject), "100_100_b", (String) null, (Drawable) null, messageObject);
+                            i2 = 8;
+                        } else {
+                            backupImageView2.setVisibility(8);
+                            textView2.setVisibility(0);
+                            textView2.setTextSize(2, SharedConfig.fontSize);
+                            textView2.setText(messageObject.messageText);
+                            r3 = viewGroup;
+                        }
+                        backupImageView2.setVisibility(0);
+                        textView2.setVisibility(i2);
+                        r3 = viewGroup;
+                    } else {
+                        backupImageView2.setVisibility(8);
+                        textView2.setVisibility(0);
+                        textView2.setTextSize(2, SharedConfig.fontSize);
+                        textView2.setText(messageObject.messageText);
+                        r3 = viewGroup;
+                    }
+                } else {
+                    backupImageView2.setVisibility(8);
+                    textView2.setVisibility(0);
+                    textView2.setTextSize(2, SharedConfig.fontSize);
+                    textView2.setText(messageObject.messageText);
+                    r3 = viewGroup;
+                }
+            } else if (i4 == 4) {
+                textView2.setVisibility(8);
+                textView2.setText(messageObject.messageText);
+                backupImageView2.setVisibility(0);
+                TLRPC.GeoPoint geoPoint = messageObject.messageOwner.media.geo;
+                double d = geoPoint.lat;
+                double d2 = geoPoint._long;
+                if (MessagesController.getInstance(messageObject.currentAccount).mapProvider == 2) {
+                    r3 = viewGroup;
+                    backupImageView2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint, 100, 100, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (String) null, (Drawable) null, messageObject);
+                    r3 = viewGroup;
+                } else {
+                    r3 = viewGroup;
+                    backupImageView2.setImage(AndroidUtilities.formapMapUrl(messageObject.currentAccount, d, d2, 100, 100, true, 15, -1), null, null);
+                    r3 = viewGroup;
+                }
+            }
+        } else if (messageObject.type == 2) {
+            if (this.audioViews.size() > 0) {
+                ViewGroup viewGroup2 = (ViewGroup) this.audioViews.get(0);
+                this.audioViews.remove(0);
+                popupAudioView = (PopupAudioView) viewGroup2.findViewWithTag(300);
+                r5 = viewGroup2;
+            } else {
+                ?? frameLayout3 = new FrameLayout(this);
+                FrameLayout frameLayout4 = new FrameLayout(this);
+                frameLayout4.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+                frameLayout4.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                frameLayout3.addView(frameLayout4, LayoutHelper.createFrame(-1, -1.0f));
+                FrameLayout frameLayout5 = new FrameLayout(this);
+                frameLayout4.addView(frameLayout5, LayoutHelper.createFrame(-1, -2.0f, 17, 20.0f, 0.0f, 20.0f, 0.0f));
+                PopupAudioView popupAudioView2 = new PopupAudioView(this);
+                popupAudioView2.setTag(300);
+                frameLayout5.addView(popupAudioView2);
+                frameLayout3.setTag(3);
+                frameLayout3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$getViewForMessage$7(view);
+                    }
+                });
+                popupAudioView = popupAudioView2;
+                r5 = frameLayout3;
+            }
+            popupAudioView.setMessageObject(messageObject);
+            r3 = r5;
+            if (DownloadController.getInstance(messageObject.currentAccount).canDownloadMedia(messageObject)) {
+                popupAudioView.downloadAudioIfNeed();
+                r3 = r5;
+            }
+        } else {
+            if (this.textViews.size() > 0) {
+                ViewGroup viewGroup3 = (ViewGroup) this.textViews.get(0);
+                this.textViews.remove(0);
+                r4 = viewGroup3;
+            } else {
+                ?? frameLayout6 = new FrameLayout(this);
+                ?? scrollView = new ScrollView(this);
+                scrollView.setFillViewport(true);
+                frameLayout6.addView(scrollView, LayoutHelper.createFrame(-1, -1.0f));
+                LinearLayout linearLayout = new LinearLayout(this);
+                linearLayout.setOrientation(0);
+                linearLayout.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                scrollView.addView(linearLayout, LayoutHelper.createScroll(-1, -2, 1));
+                linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+                linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$getViewForMessage$8(view);
+                    }
+                });
+                TextView textView3 = new TextView(this);
+                textView3.setTextSize(1, 16.0f);
+                textView3.setTag(301);
+                int i5 = Theme.key_windowBackgroundWhiteBlackText;
+                textView3.setTextColor(Theme.getColor(i5));
+                textView3.setLinkTextColor(Theme.getColor(i5));
+                textView3.setGravity(17);
+                linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 17));
+                frameLayout6.setTag(1);
+                r4 = frameLayout6;
+            }
+            TextView textView4 = (TextView) r4.findViewWithTag(301);
+            textView4.setTextSize(2, SharedConfig.fontSize);
+            textView4.setText(messageObject.messageText);
+            r3 = r4;
+        }
+        r3 = viewGroup;
+        if (r3.getParent() == null) {
+            this.messageContainer.addView(r3);
+        }
+        r3.setVisibility(0);
+        if (z) {
+            int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(24.0f);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) r3.getLayoutParams();
+            layoutParams.gravity = 51;
+            layoutParams.height = -1;
+            layoutParams.width = iDp;
+            int i6 = this.currentMessageNum;
+            if (size == i6) {
+                r3.setTranslationX(0.0f);
+            } else if (size == i6 - 1) {
+                r3.setTranslationX(-iDp);
+            } else if (size == i6 + 1) {
+                r3.setTranslationX(iDp);
+            }
+            r3.setLayoutParams(layoutParams);
+            r3.invalidate();
+        }
+        return r3;
     }
 
     public void lambda$getViewForMessage$6(View view) {
@@ -992,7 +1426,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
     }
 
-    private void handleIntent(Intent intent) throws Resources.NotFoundException {
+    private void handleIntent(Intent intent) {
         this.isReply = intent != null && intent.getBooleanExtra("force", false);
         this.popupMessages.clear();
         if (this.isReply) {
@@ -1021,7 +1455,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         getNewMessage();
     }
 
-    public void getNewMessage() throws Resources.NotFoundException {
+    public void getNewMessage() {
         if (this.popupMessages.isEmpty()) {
             onFinish();
             finish();
@@ -1074,7 +1508,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         finish();
     }
 
-    private void updateInterfaceForCurrentMessage(int i) throws Resources.NotFoundException {
+    private void updateInterfaceForCurrentMessage(int i) {
         if (this.actionBar == null) {
             return;
         }
@@ -1233,7 +1667,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    public void onBackPressed() throws Resources.NotFoundException {
+    public void onBackPressed() {
         if (this.chatActivityEnterView.isPopupShowing()) {
             this.chatActivityEnterView.hidePopup(true);
         } else {
@@ -1255,7 +1689,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    protected void onPause() throws Resources.NotFoundException {
+    protected void onPause() {
         super.onPause();
         overridePendingTransition(0, 0);
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
@@ -1270,7 +1704,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         TextView textView;
         PopupAudioView popupAudioView;
         MessageObject messageObject;

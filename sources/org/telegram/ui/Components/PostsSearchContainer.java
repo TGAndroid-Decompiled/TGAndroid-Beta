@@ -273,13 +273,13 @@ public class PostsSearchContainer extends FrameLayout {
     public void lambda$load$4(final MessagesController messagesController, final boolean z, final TLRPC.TL_channels_searchPosts tL_channels_searchPosts, final boolean z2, final long j, final ConnectionsManager connectionsManager, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$load$3(tLObject, messagesController, z, tL_channels_searchPosts, z2, j, tL_error, connectionsManager);
             }
         });
     }
 
-    public void lambda$load$3(TLObject tLObject, MessagesController messagesController, final boolean z, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z2, final long j, TLRPC.TL_error tL_error, ConnectionsManager connectionsManager) throws NumberFormatException {
+    public void lambda$load$3(TLObject tLObject, MessagesController messagesController, final boolean z, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z2, final long j, TLRPC.TL_error tL_error, ConnectionsManager connectionsManager) {
         this.reqId = -1;
         this.loading = false;
         this.emptyButton.setLoading(false);
@@ -383,9 +383,15 @@ public class PostsSearchContainer extends FrameLayout {
     }
 
     public void lambda$load$2(long j) {
+        Theme.ResourcesProvider darkThemeResourceProvider;
         Activity activity = AndroidUtilities.getActivity();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        new StarsIntroActivity.StarsNeededSheet(activity, (PhotoViewer.getInstance().isVisible() || (safeLastFragment != null && safeLastFragment.hasShownSheet())) ? new DarkThemeResourceProvider() : safeLastFragment != null ? safeLastFragment.getResourceProvider() : null, j, 15, "", new Runnable() {
+        if (PhotoViewer.getInstance().isVisible() || (safeLastFragment != null && safeLastFragment.hasShownSheet())) {
+            darkThemeResourceProvider = new DarkThemeResourceProvider();
+        } else {
+            darkThemeResourceProvider = safeLastFragment != null ? safeLastFragment.getResourceProvider() : null;
+        }
+        new StarsIntroActivity.StarsNeededSheet(activity, darkThemeResourceProvider, j, 15, "", new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$load$1();

@@ -1,13 +1,16 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
+import android.os.SystemClock;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
@@ -37,8 +40,224 @@ public class FragmentContextViewWavesDrawable {
         }
     }
 
-    public void draw(float r18, float r19, float r20, float r21, android.graphics.Canvas r22, org.telegram.ui.Components.FragmentContextView r23, float r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FragmentContextViewWavesDrawable.draw(float, float, float, float, android.graphics.Canvas, org.telegram.ui.Components.FragmentContextView, float):void");
+    public void draw(float f, float f2, float f3, float f4, Canvas canvas, FragmentContextView fragmentContextView, float f5) {
+        long j;
+        boolean z;
+        long j2;
+        int i;
+        WeavingState weavingState;
+        float f6;
+        float f7;
+        float f8;
+        float f9;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        checkColors();
+        boolean z2 = fragmentContextView != null && this.parents.size() > 0;
+        if (f2 > f4) {
+            return;
+        }
+        WeavingState weavingState2 = this.currentState;
+        boolean z3 = (weavingState2 == null || this.previousState == null || ((weavingState2.currentState != 1 || this.previousState.currentState != 0) && (this.previousState.currentState != 1 || this.currentState.currentState != 0))) ? false : true;
+        if (z2) {
+            long jElapsedRealtime = SystemClock.elapsedRealtime();
+            j = jElapsedRealtime - this.lastUpdateTime;
+            this.lastUpdateTime = jElapsedRealtime;
+            if (j > 20) {
+                j = 17;
+            }
+            if (j < 3) {
+                j2 = j;
+                z = false;
+            }
+            if (z) {
+                f7 = this.animateToAmplitude;
+                f8 = this.amplitude;
+                if (f7 != f8) {
+                    f14 = this.animateAmplitudeDiff;
+                    f15 = f8 + (j2 * f14);
+                    this.amplitude = f15;
+                    if (f14 > 0.0f) {
+                        if (f15 > f7) {
+                            this.amplitude = f7;
+                        }
+                    } else if (f15 < f7) {
+                        this.amplitude = f7;
+                    }
+                    fragmentContextView.invalidate();
+                }
+                f9 = this.animateToAmplitude;
+                f10 = this.amplitude2;
+                if (f9 != f10) {
+                    f12 = this.animateAmplitudeDiff2;
+                    f13 = f10 + (j2 * f12);
+                    this.amplitude2 = f13;
+                    if (f12 > 0.0f) {
+                        if (f13 > f9) {
+                            this.amplitude2 = f9;
+                        }
+                    } else if (f13 < f9) {
+                        this.amplitude2 = f9;
+                    }
+                    fragmentContextView.invalidate();
+                }
+                if (this.previousState != null) {
+                    f11 = this.progressToState + (j2 / 250.0f);
+                    this.progressToState = f11;
+                    if (f11 > 1.0f) {
+                        this.progressToState = 1.0f;
+                        this.previousState = null;
+                    }
+                    fragmentContextView.invalidate();
+                }
+            }
+            for (i = 0; i < 2; i++) {
+                if (i == 0 || this.previousState != null) {
+                    if (i == 0) {
+                        f6 = 1.0f - this.progressToState;
+                        this.previousState.setToPaint(this.paint);
+                    } else {
+                        weavingState = this.currentState;
+                        if (weavingState == null) {
+                            return;
+                        }
+                        if (this.previousState != null) {
+                            f6 = this.progressToState;
+                        } else {
+                            f6 = 1.0f;
+                        }
+                        if (z) {
+                            weavingState.update((int) (f4 - f2), (int) (f3 - f), j2, this.amplitude);
+                        }
+                        this.currentState.setToPaint(this.paint);
+                    }
+                    if ((i == 1 || !z3) && i == 1) {
+                        this.paint.setAlpha((int) (255.0f * f6));
+                    } else {
+                        this.paint.setAlpha(255);
+                    }
+                    if (i != 1 && z3) {
+                        this.path.rewind();
+                        this.path.addCircle(f3 - AndroidUtilities.dp(18.0f), f2 + ((f4 - f2) / 2.0f), (f3 - f) * 1.1f * f6, Path.Direction.CW);
+                        canvas.save();
+                        canvas.clipPath(this.path);
+                        canvas.drawRoundRect(f, f2, f3, f4, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
+                        canvas.restore();
+                    } else {
+                        canvas.drawRoundRect(f, f2, f3, f4, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
+                    }
+                }
+            }
+        }
+        j = 0;
+        z = z2;
+        j2 = j;
+        if (z) {
+            f7 = this.animateToAmplitude;
+            f8 = this.amplitude;
+            if (f7 != f8) {
+                f14 = this.animateAmplitudeDiff;
+                f15 = f8 + (j2 * f14);
+                this.amplitude = f15;
+                if (f14 > 0.0f) {
+                    if (f15 > f7) {
+                        this.amplitude = f7;
+                    }
+                } else if (f15 < f7) {
+                    this.amplitude = f7;
+                }
+                fragmentContextView.invalidate();
+            }
+            f9 = this.animateToAmplitude;
+            f10 = this.amplitude2;
+            if (f9 != f10) {
+                f12 = this.animateAmplitudeDiff2;
+                f13 = f10 + (j2 * f12);
+                this.amplitude2 = f13;
+                if (f12 > 0.0f) {
+                    if (f13 > f9) {
+                        this.amplitude2 = f9;
+                    }
+                } else if (f13 < f9) {
+                    this.amplitude2 = f9;
+                }
+                fragmentContextView.invalidate();
+            }
+            if (this.previousState != null) {
+                f11 = this.progressToState + (j2 / 250.0f);
+                this.progressToState = f11;
+                if (f11 > 1.0f) {
+                    this.progressToState = 1.0f;
+                    this.previousState = null;
+                }
+                fragmentContextView.invalidate();
+            }
+        }
+        while (i < 2) {
+            if (i == 0) {
+                if (i == 0) {
+                    f6 = 1.0f - this.progressToState;
+                    this.previousState.setToPaint(this.paint);
+                } else {
+                    weavingState = this.currentState;
+                    if (weavingState == null) {
+                        return;
+                    }
+                    if (this.previousState != null) {
+                        f6 = this.progressToState;
+                    } else {
+                        f6 = 1.0f;
+                    }
+                    if (z) {
+                        weavingState.update((int) (f4 - f2), (int) (f3 - f), j2, this.amplitude);
+                    }
+                    this.currentState.setToPaint(this.paint);
+                }
+                if (i == 1) {
+                    this.paint.setAlpha((int) (255.0f * f6));
+                } else {
+                    this.paint.setAlpha((int) (255.0f * f6));
+                }
+                if (i != 1) {
+                    canvas.drawRoundRect(f, f2, f3, f4, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
+                } else {
+                    canvas.drawRoundRect(f, f2, f3, f4, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
+                }
+            } else {
+                if (i == 0) {
+                    f6 = 1.0f - this.progressToState;
+                    this.previousState.setToPaint(this.paint);
+                } else {
+                    weavingState = this.currentState;
+                    if (weavingState == null) {
+                        return;
+                    }
+                    if (this.previousState != null) {
+                        f6 = this.progressToState;
+                    } else {
+                        f6 = 1.0f;
+                    }
+                    if (z) {
+                        weavingState.update((int) (f4 - f2), (int) (f3 - f), j2, this.amplitude);
+                    }
+                    this.currentState.setToPaint(this.paint);
+                }
+                if (i == 1) {
+                    this.paint.setAlpha((int) (255.0f * f6));
+                } else {
+                    this.paint.setAlpha((int) (255.0f * f6));
+                }
+                if (i != 1) {
+                    canvas.drawRoundRect(f, f2, f3, f4, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
+                } else {
+                    canvas.drawRoundRect(f, f2, f3, f4, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.paint);
+                }
+            }
+        }
     }
 
     private void checkColors() {

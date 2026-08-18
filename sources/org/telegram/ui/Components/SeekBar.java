@@ -247,17 +247,19 @@ public class SeekBar {
         if (this.bufferedProgress > 0.0f) {
             paint.setColor(this.selected ? this.backgroundSelectedColor : this.cacheColor);
             RectF rectF2 = this.rect;
-            float f2 = thumbWidth / 2;
-            int i4 = this.height / 2;
-            int i5 = this.lineHeight / 2;
-            rectF2.set(f2, i4 - i5, (this.bufferedProgress * (this.width - r1)) + f2, i4 + i5);
+            int i4 = thumbWidth;
+            float f2 = i4 / 2;
+            int i5 = this.height / 2;
+            int i6 = this.lineHeight / 2;
+            rectF2.set(f2, i5 - i6, (this.bufferedProgress * (this.width - i4)) + f2, i5 + i6);
             drawProgressBar(canvas, this.rect, paint);
         }
         RectF rectF3 = this.rect;
-        float f3 = thumbWidth / 2;
-        int i6 = this.height / 2;
-        int i7 = this.lineHeight / 2;
-        rectF3.set(f3, i6 - i7, r1 + (this.pressed ? this.draggingThumbX : this.thumbX), i6 + i7);
+        int i7 = thumbWidth / 2;
+        float f3 = i7;
+        int i8 = this.height / 2;
+        int i9 = this.lineHeight / 2;
+        rectF3.set(f3, i8 - i9, i7 + (this.pressed ? this.draggingThumbX : this.thumbX), i8 + i9);
         paint.setColor(this.progressColor);
         drawProgressBar(canvas, this.rect, paint);
         paint.setColor(this.circleColor);
@@ -359,8 +361,9 @@ public class SeekBar {
             for (URLSpanNoUnderline uRLSpanNoUnderline : uRLSpanNoUnderlineArr) {
                 try {
                     if (uRLSpanNoUnderline != null && uRLSpanNoUnderline.getURL() != null && uRLSpanNoUnderline.label != null && uRLSpanNoUnderline.getURL().startsWith("audio?") && (num = Utilities.parseInt((CharSequence) uRLSpanNoUnderline.getURL().substring(6))) != null && num.intValue() >= 0) {
+                        float fIntValue = (((long) num.intValue()) * 1000) / l.longValue();
                         Emoji.replaceEmoji(new SpannableStringBuilder(uRLSpanNoUnderline.label), this.timestampLabelPaint.getFontMetricsInt(), false);
-                        this.timestamps.add(new Pair(Float.valueOf((num.intValue() * 1000) / l.longValue()), uRLSpanNoUnderline));
+                        this.timestamps.add(new Pair(Float.valueOf(fIntValue), uRLSpanNoUnderline));
                     }
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -427,16 +430,11 @@ public class SeekBar {
             i = 0;
         }
         int i2 = 1;
-        int size2 = seekBar.timestamps.size() - 1;
-        while (true) {
-            if (size2 < 0) {
-                break;
-            }
+        for (int size2 = seekBar.timestamps.size() - 1; size2 >= 0; size2--) {
             if (1.0f - ((Float) ((Pair) seekBar.timestamps.get(size2)).first).floatValue() >= fDp2) {
                 size = size2 + 1;
                 break;
             }
-            size2--;
         }
         if (size < 0) {
             size = seekBar.timestamps.size();

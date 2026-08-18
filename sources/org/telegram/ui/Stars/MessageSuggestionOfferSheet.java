@@ -41,7 +41,6 @@ import org.telegram.ui.Components.HorizontalRoundTabsLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TON.TONIntroActivity;
 
@@ -548,7 +547,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         if (this.inputAmount.currency == AmountUtils$Currency.TON) {
             d = MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get();
         } else {
-            d = MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000 * 1.0E-5d;
+            d = ((double) MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000) * 1.0E-5d;
         }
         sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * d * 100.0d), "USD", 2));
         this.dollarsEqView.setText(sb, z);

@@ -17,7 +17,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 import org.telegram.messenger.AndroidUtilities;
@@ -25,6 +24,7 @@ import org.telegram.messenger.AnimatedFileDrawableStream;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.DispatchQueuePoolBackground;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.SharedConfig;
@@ -305,7 +305,205 @@ public final class AnimatedFileDrawable extends BitmapDrawable implements Animat
     }
 
     public void loadFrameRunnableImpl() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedFileDrawable.loadFrameRunnableImpl():void");
+        int i;
+        AnimatedFileDrawableStream animatedFileDrawableStream;
+        boolean z;
+        if (this.isRecycled) {
+            AndroidUtilities.runOnUIThread(this.uiRunnable);
+            return;
+        }
+        boolean z2 = false;
+        if (!this.decoderCreated && this.mDecoder == null) {
+            this.mDecoder = AnimatedFileNative.createDecoderFrom(this.path.getAbsolutePath(), this.metaData, this.currentAccount, this.streamFileSize, this.stream, false);
+            this.ptrFail = this.mDecoder == null && (!this.isWebmSticker || this.decoderTryCount > 15);
+            if (this.mDecoder != null) {
+                int[] iArr = this.metaData;
+                if (iArr[0] > 3840 || iArr[1] > 3840) {
+                    this.mDecoder.recycle();
+                    this.mDecoder = null;
+                }
+            }
+            adaptRenderingSize();
+            updateScaleFactor();
+            if (this.isWebmSticker && this.mDecoder == null) {
+                int i2 = this.decoderTryCount;
+                this.decoderTryCount = i2 + 1;
+                if (i2 > 15) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+            } else {
+                z = true;
+            }
+            this.decoderCreated = z;
+            AndroidUtilities.runOnUIThread(new AnimatedFileDrawable$$ExternalSyntheticLambda0(this));
+        }
+        try {
+            if (this.bitmapsCache != null) {
+                if (this.backgroundBuffer == null) {
+                    if (!this.unusedBuffers.isEmpty()) {
+                        this.backgroundBuffer = (AnimatedFileBuffer) this.unusedBuffers.remove(0);
+                    } else {
+                        this.backgroundBuffer = AnimatedFileBuffer.of(this.renderingWidth, this.renderingHeight);
+                    }
+                }
+                if (this.cacheMetadata == null) {
+                    this.cacheMetadata = new BitmapsCache.Metadata();
+                }
+                this.lastFrameDecodeTime = System.currentTimeMillis();
+                BitmapsCache.Metadata metadata = this.cacheMetadata;
+                int i3 = metadata.frame;
+                int frame = this.bitmapsCache.getFrame(this.backgroundBuffer.bitmap, metadata);
+                if (frame != -1 && this.cacheMetadata.frame < i3) {
+                    this.isRestarted = true;
+                }
+                int[] iArr2 = this.metaData;
+                AnimatedFileBuffer animatedFileBuffer = this.backgroundBuffer;
+                int iMax = this.cacheMetadata.frame * Math.max(16, iArr2[4] / Math.max(1, this.bitmapsCache.getFrameCount()));
+                animatedFileBuffer.time = iMax;
+                iArr2[3] = iMax;
+                this.backgroundBuffer.opaque = false;
+                if (this.bitmapsCache.needGenCache()) {
+                    AndroidUtilities.runOnUIThread(this.uiRunnableGenerateCache);
+                }
+                if (frame == -1) {
+                    AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
+                    return;
+                } else {
+                    AndroidUtilities.runOnUIThread(this.uiRunnable);
+                    return;
+                }
+            }
+            if (this.mDecoder == null) {
+                int[] iArr3 = this.metaData;
+                if (iArr3[0] != 0 && iArr3[1] != 0) {
+                    AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
+                    return;
+                }
+            }
+            if (this.backgroundBuffer == null) {
+                int[] iArr4 = this.metaData;
+                if (iArr4[0] > 0 && iArr4[1] > 0) {
+                    try {
+                        if (!this.unusedBuffers.isEmpty()) {
+                            this.backgroundBuffer = (AnimatedFileBuffer) this.unusedBuffers.remove(0);
+                        } else {
+                            int[] iArr5 = this.metaData;
+                            float f = iArr5[0];
+                            float f2 = this.scaleFactor;
+                            this.backgroundBuffer = AnimatedFileBuffer.of((int) (f * f2), (int) (iArr5[1] * f2));
+                        }
+                    } catch (Throwable th) {
+                        FileLog.e(th);
+                    }
+                    if (this.pendingSeekTo >= 0) {
+                        this.metaData[3] = (int) this.pendingSeekTo;
+                        long j = this.pendingSeekTo;
+                        synchronized (this.sync) {
+                            this.pendingSeekTo = -1L;
+                            animatedFileDrawableStream = this.stream;
+                            if (animatedFileDrawableStream != null) {
+                                animatedFileDrawableStream.reset();
+                            }
+                            this.mDecoder.seekToMs(j, true);
+                            z2 = true;
+                        }
+                    }
+                    if (this.backgroundBuffer != null) {
+                        this.lastFrameDecodeTime = System.currentTimeMillis();
+                        if (this.mDecoder.getVideoFrame(this.backgroundBuffer.bitmap, false, this.startTime, this.endTime, this.loop) == 0) {
+                            AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
+                            return;
+                        }
+                        if (!this.isStaticVideoDetected) {
+                            this.isStaticVideoDetected = this.mDecoder.isStaticVideoDetected();
+                        }
+                        i = this.metaData[3];
+                        if (i < this.lastTimeStamp) {
+                            this.isRestarted = true;
+                        }
+                        if (z2) {
+                            this.lastTimeStamp = i;
+                        }
+                        AnimatedFileBuffer animatedFileBuffer2 = this.backgroundBuffer;
+                        animatedFileBuffer2.time = i;
+                        animatedFileBuffer2.opaque = this.mDecoder.isLastFrameOpaque();
+                    }
+                } else {
+                    if (this.pendingSeekTo >= 0) {
+                        this.metaData[3] = (int) this.pendingSeekTo;
+                        long j2 = this.pendingSeekTo;
+                        synchronized (this.sync) {
+                            this.pendingSeekTo = -1L;
+                        }
+                        animatedFileDrawableStream = this.stream;
+                        if (animatedFileDrawableStream != null) {
+                            animatedFileDrawableStream.reset();
+                        }
+                        this.mDecoder.seekToMs(j2, true);
+                        z2 = true;
+                    }
+                    if (this.backgroundBuffer != null) {
+                        this.lastFrameDecodeTime = System.currentTimeMillis();
+                        if (this.mDecoder.getVideoFrame(this.backgroundBuffer.bitmap, false, this.startTime, this.endTime, this.loop) == 0) {
+                            AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
+                            return;
+                        }
+                        if (!this.isStaticVideoDetected) {
+                            this.isStaticVideoDetected = this.mDecoder.isStaticVideoDetected();
+                        }
+                        i = this.metaData[3];
+                        if (i < this.lastTimeStamp) {
+                            this.isRestarted = true;
+                        }
+                        if (z2) {
+                            this.lastTimeStamp = i;
+                        }
+                        AnimatedFileBuffer animatedFileBuffer3 = this.backgroundBuffer;
+                        animatedFileBuffer3.time = i;
+                        animatedFileBuffer3.opaque = this.mDecoder.isLastFrameOpaque();
+                    }
+                }
+            } else {
+                if (this.pendingSeekTo >= 0) {
+                    this.metaData[3] = (int) this.pendingSeekTo;
+                    long j3 = this.pendingSeekTo;
+                    synchronized (this.sync) {
+                        this.pendingSeekTo = -1L;
+                        animatedFileDrawableStream = this.stream;
+                        if (animatedFileDrawableStream != null) {
+                            animatedFileDrawableStream.reset();
+                        }
+                        this.mDecoder.seekToMs(j3, true);
+                        z2 = true;
+                    }
+                }
+                if (this.backgroundBuffer != null) {
+                    this.lastFrameDecodeTime = System.currentTimeMillis();
+                    if (this.mDecoder.getVideoFrame(this.backgroundBuffer.bitmap, false, this.startTime, this.endTime, this.loop) == 0) {
+                        AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
+                        return;
+                    }
+                    if (!this.isStaticVideoDetected) {
+                        this.isStaticVideoDetected = this.mDecoder.isStaticVideoDetected();
+                    }
+                    i = this.metaData[3];
+                    if (i < this.lastTimeStamp) {
+                        this.isRestarted = true;
+                    }
+                    if (z2) {
+                        this.lastTimeStamp = i;
+                    }
+                    AnimatedFileBuffer animatedFileBuffer4 = this.backgroundBuffer;
+                    animatedFileBuffer4.time = i;
+                    animatedFileBuffer4.opaque = this.mDecoder.isLastFrameOpaque();
+                }
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+        }
+        AndroidUtilities.runOnUIThread(this.uiRunnable);
     }
 
     private void adaptRenderingSize() {
@@ -362,7 +560,6 @@ public final class AnimatedFileDrawable extends BitmapDrawable implements Animat
 
     public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions, int i5, boolean z3) {
         ?? r8;
-        boolean z4;
         int[] iArr;
         ?? r12;
         int i6;
@@ -432,8 +629,8 @@ public final class AnimatedFileDrawable extends BitmapDrawable implements Animat
         this.renderingHeight = i4;
         this.renderingWidth = i3;
         this.loop = z3;
-        boolean z5 = cacheOptions != null && i3 > 0 && i4 > 0;
-        this.precache = z5;
+        boolean z4 = cacheOptions != null && i3 > 0 && i4 > 0;
+        this.precache = z4;
         this.document = document;
         getPaint().setFlags(3);
         if (j == 0 || (document == null && imageLocation == null)) {
@@ -443,14 +640,12 @@ public final class AnimatedFileDrawable extends BitmapDrawable implements Animat
             this.stream = new AnimatedFileDrawableStream(document, imageLocation, obj, i2, z2, i, i5);
         }
         BitmapsCache bitmapsCache = null;
-        if (!z || z5) {
-            z4 = z5;
+        if (!z || z4) {
             iArr = iArr2;
             r12 = 0;
             i6 = 15;
         } else {
             r12 = 0;
-            z4 = z5;
             iArr = iArr2;
             i6 = 15;
             this.mDecoder = AnimatedFileNative.createDecoderFrom(file.getAbsolutePath(), iArr2, i2, j, this.stream, z2);
@@ -687,9 +882,7 @@ public final class AnimatedFileDrawable extends BitmapDrawable implements Animat
             if (animatedFileBuffer4 != null) {
                 arrayList.add(animatedFileBuffer4.bitmap);
             }
-            Iterator it = this.unusedBuffers.iterator();
-            while (it.hasNext()) {
-                AnimatedFileBuffer animatedFileBuffer5 = (AnimatedFileBuffer) it.next();
+            for (AnimatedFileBuffer animatedFileBuffer5 : this.unusedBuffers) {
                 if (animatedFileBuffer5 != null) {
                     arrayList.add(animatedFileBuffer5.bitmap);
                 }
@@ -1223,9 +1416,10 @@ public final class AnimatedFileDrawable extends BitmapDrawable implements Animat
             if (!this.unusedBuffers.isEmpty()) {
                 this.backgroundBuffer = (AnimatedFileBuffer) this.unusedBuffers.remove(0);
             } else {
-                float f = this.metaData[0];
+                int[] iArr = this.metaData;
+                float f = iArr[0];
                 float f2 = this.scaleFactor;
-                this.backgroundBuffer = AnimatedFileBuffer.of((int) (f * f2), (int) (r0[1] * f2));
+                this.backgroundBuffer = AnimatedFileBuffer.of((int) (f * f2), (int) (iArr[1] * f2));
             }
         }
         this.mDecoder.getVideoFrame(this.backgroundBuffer.bitmap, false, this.startTime, this.endTime, z);
@@ -1315,7 +1509,10 @@ public final class AnimatedFileDrawable extends BitmapDrawable implements Animat
     }
 
     private boolean canLoadFrames() {
-        return this.precache ? this.bitmapsCache != null : (this.mDecoder == null && this.decoderCreated) ? false : true;
+        if (this.precache) {
+            return this.bitmapsCache != null;
+        }
+        return (this.mDecoder == null && this.decoderCreated) ? false : true;
     }
 
     public void updateCurrentFrame(long j, boolean z) {

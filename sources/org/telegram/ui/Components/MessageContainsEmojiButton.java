@@ -136,15 +136,16 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
             while (true) {
                 ArrayList<TLRPC.Document> arrayList3 = stickerSet.documents;
                 if (arrayList3 == null || i4 >= arrayList3.size()) {
+                    document = null;
                     break;
+                } else {
+                    if (stickerSet.documents.get(i4).id == stickerSet.set.thumb_document_id) {
+                        document = stickerSet.documents.get(i4);
+                        break;
+                    }
+                    i4++;
                 }
-                if (stickerSet.documents.get(i4).id == stickerSet.set.thumb_document_id) {
-                    document = stickerSet.documents.get(i4);
-                    break;
-                }
-                i4++;
             }
-            document = null;
             if (document == null && (arrayList2 = stickerSet.documents) != null && arrayList2.size() > 0) {
                 document = stickerSet.documents.get(0);
             }
@@ -194,6 +195,7 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
                     int lineCount = staticLayout.getLineCount() - 1;
                     this.lastLineMargin = ((int) this.mainTextLayout.getPrimaryHorizontal(this.mainText.length())) + AndroidUtilities.dp(2.0f);
                     this.lastLineTop = this.mainTextLayout.getLineTop(lineCount);
+                    int lineBottom = this.mainTextLayout.getLineBottom(lineCount);
                     this.lastLineHeight = lineBottom - this.lastLineTop;
                     float fMin = Math.min(AndroidUtilities.dp(100.0f), this.mainTextLayout.getWidth() - this.lastLineMargin);
                     if (this.loadingBoundsFrom == null) {
@@ -225,8 +227,9 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
         }
         StaticLayout staticLayout2 = this.mainTextLayout;
         int height2 = staticLayout2 != null ? staticLayout2.getHeight() : 0;
-        if (this.secondPartTextLayout != null) {
-            height = (r1.getHeight() - this.lastLineHeight) * (z ? 1.0f : this.loadT);
+        StaticLayout staticLayout3 = this.secondPartTextLayout;
+        if (staticLayout3 != null) {
+            height = (staticLayout3.getHeight() - this.lastLineHeight) * (z ? 1.0f : this.loadT);
         } else {
             height = 0.0f;
         }
@@ -304,15 +307,16 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
             while (true) {
                 ArrayList<TLRPC.Document> arrayList2 = stickerSet.documents;
                 if (arrayList2 == null || i3 >= arrayList2.size()) {
+                    document = null;
                     break;
+                } else {
+                    if (stickerSet.documents.get(i3).id == stickerSet.set.thumb_document_id) {
+                        document = stickerSet.documents.get(i3);
+                        break;
+                    }
+                    i3++;
                 }
-                if (stickerSet.documents.get(i3).id == stickerSet.set.thumb_document_id) {
-                    document = stickerSet.documents.get(i3);
-                    break;
-                }
-                i3++;
             }
-            document = null;
             if (document == null && (arrayList = stickerSet.documents) != null && arrayList.size() > 0) {
                 document = stickerSet.documents.get(0);
             }

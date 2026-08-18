@@ -1,7 +1,6 @@
 package org.telegram.messenger.utils.tlutils;
 
 import android.text.TextUtils;
-import j$.util.List;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -71,11 +70,9 @@ public abstract class TlUtils {
             return ((TL_ephemeral.TL_sendMessage) tLObject).message;
         }
         if (tLObject instanceof TLRPC.TL_messages_sendMultiMedia) {
-            Iterator<TLRPC.TL_inputSingleMedia> it = ((TLRPC.TL_messages_sendMultiMedia) tLObject).multi_media.iterator();
-            while (it.hasNext()) {
-                TLRPC.TL_inputSingleMedia next = it.next();
-                if (!TextUtils.isEmpty(next.message)) {
-                    return next.message;
+            for (TLRPC.TL_inputSingleMedia tL_inputSingleMedia : ((TLRPC.TL_messages_sendMultiMedia) tLObject).multi_media) {
+                if (!TextUtils.isEmpty(tL_inputSingleMedia.message)) {
+                    return tL_inputSingleMedia.message;
                 }
             }
         }
@@ -186,11 +183,9 @@ public abstract class TlUtils {
         if (arrayList == null || document != null) {
             return document;
         }
-        Iterator<TL_stars.StarGiftAttribute> it = arrayList.iterator();
-        while (it.hasNext()) {
-            TL_stars.StarGiftAttribute next = it.next();
-            if (next instanceof TL_stars.starGiftAttributeModel) {
-                return ((TL_stars.starGiftAttributeModel) next).document;
+        for (TL_stars.StarGiftAttribute starGiftAttribute : arrayList) {
+            if (starGiftAttribute instanceof TL_stars.starGiftAttributeModel) {
+                return ((TL_stars.starGiftAttributeModel) starGiftAttribute).document;
             }
         }
         return document;
@@ -202,11 +197,9 @@ public abstract class TlUtils {
         if (arrayList == null || document != null) {
             return document;
         }
-        Iterator<TL_stars.StarGiftAttribute> it = arrayList.iterator();
-        while (it.hasNext()) {
-            TL_stars.StarGiftAttribute next = it.next();
-            if (next instanceof TL_stars.starGiftAttributePattern) {
-                return ((TL_stars.starGiftAttributePattern) next).document;
+        for (TL_stars.StarGiftAttribute starGiftAttribute : arrayList) {
+            if (starGiftAttribute instanceof TL_stars.starGiftAttributePattern) {
+                return ((TL_stars.starGiftAttributePattern) starGiftAttribute).document;
             }
         }
         return document;
@@ -298,7 +291,7 @@ public abstract class TlUtils {
         }
         ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(poll.answers);
         poll.shuffled_answers = arrayList;
-        List.EL.sort(arrayList, new Comparator() {
+        j$.util.List.EL.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
                 return TlUtils.lambda$calculateAnswerShuffleHash$0((TLRPC.PollAnswer) obj, (TLRPC.PollAnswer) obj2);

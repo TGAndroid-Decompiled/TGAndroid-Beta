@@ -99,9 +99,7 @@ public class WindowAnimatedInsetsProvider extends WindowInsetsAnimationCompat.Ca
     }
 
     private void dispatchWindowInsetsAnimationChange(WindowInsetsCompat windowInsetsCompat) {
-        Iterator it = this.listeners.iterator();
-        while (it.hasNext()) {
-            Listener listener = (Listener) it.next();
+        for (Listener listener : this.listeners) {
             View animatedInsetsTargetView = listener.getAnimatedInsetsTargetView();
             WindowInsetsCompat windowInsetsCompatCalculateWindowInsets = calculateWindowInsets(windowInsetsCompat, animatedInsetsTargetView, this.root);
             if (windowInsetsCompatCalculateWindowInsets != null) {

@@ -47,10 +47,10 @@ public class MHTML {
                 break;
             }
             long[] jArr = this.filePos;
-            jArr[0] = jArr[0] + line.getBytes().length + 2;
+            jArr[0] = jArr[0] + ((long) (line.getBytes().length + 2));
             if (line.length() == length && line.substring(2).equals(this.boundary)) {
                 if (entry != null) {
-                    entry.end = (this.filePos[0] - length) - 2;
+                    entry.end = (this.filePos[0] - ((long) length)) - 2;
                     this.entries.add(entry);
                     this.entriesByLocation.put(entry.getLocation(), entry);
                 }
@@ -80,7 +80,7 @@ public class MHTML {
                     break loop0;
                 }
                 long[] jArr = this.filePos;
-                jArr[0] = jArr[0] + line.getBytes().length + 2;
+                jArr[0] = jArr[0] + ((long) (line.getBytes().length + 2));
                 String strTrim = line.trim();
                 if (strTrim.isEmpty()) {
                     break loop0;
@@ -231,21 +231,16 @@ public class MHTML {
         @Override
         public int read(byte[] bArr, int i, int i2) throws IOException {
             int i3 = 0;
-            int i4 = 0;
-            while (true) {
-                if (i3 >= i2) {
-                    break;
-                }
+            for (int i4 = 0; i4 < i2; i4++) {
                 int i5 = read();
                 if (i5 != -1) {
-                    bArr[i + i3] = (byte) i5;
-                    i4++;
+                    bArr[i + i4] = (byte) i5;
                     i3++;
-                } else if (i4 == 0) {
+                } else if (i3 == 0) {
                     return -1;
                 }
             }
-            return i4;
+            return i3;
         }
 
         private int hexToByte(int i, int i2) {

@@ -34,7 +34,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.LivePlayer;
 import org.telegram.ui.Stories.PeerStoriesView;
-import org.telegram.ui.Stories.recorder.LivePlayerView;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.TextureViewRenderer;

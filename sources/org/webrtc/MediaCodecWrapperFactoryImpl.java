@@ -50,7 +50,7 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void queueInputBuffer(int i, int i2, int i3, long j, int i4) throws MediaCodec.CryptoException {
+        public void queueInputBuffer(int i, int i2, int i3, long j, int i4) {
             this.mediaCodec.queueInputBuffer(i, i2, i3, j, i4);
         }
 

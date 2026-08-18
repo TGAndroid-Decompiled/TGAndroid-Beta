@@ -1,7 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -66,11 +65,9 @@ public class HorizontalBox extends Box {
     @Override
     public void draw(Graphics2D graphics2D, float f, float f2) {
         startDraw(graphics2D, f, f2);
-        Iterator<Box> it = this.children.iterator();
-        while (it.hasNext()) {
-            Box next = it.next();
-            next.draw(graphics2D, f, next.shift + f2);
-            f += next.getWidth();
+        for (Box box : this.children) {
+            box.draw(graphics2D, f, box.shift + f2);
+            f += box.getWidth();
         }
         endDraw(graphics2D);
     }

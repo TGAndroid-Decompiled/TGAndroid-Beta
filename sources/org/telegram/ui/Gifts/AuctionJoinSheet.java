@@ -51,11 +51,11 @@ import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.TableView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
-import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.PremiumFeatureCell;
 import org.telegram.ui.Stars.BagRandomizer;
 import org.telegram.ui.Stars.StarGiftPreviewSheet;
 import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
 
@@ -444,29 +444,30 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
                 Spanned spanned = (Spanned) text;
                 ButtonSpan[] buttonSpanArr = (ButtonSpan[]) spanned.getSpans(0, text.length(), ButtonSpan.class);
                 if (buttonSpanArr.length > 0 && (buttonSpan = buttonSpanArr[0]) != null) {
-                    x += layout.getPrimaryHorizontal(spanned.getSpanStart(buttonSpan)) + (buttonSpanArr[0].getSize() / 2);
-                    y += layout.getLineTop(layout.getLineForOffset(r4));
+                    int spanStart = spanned.getSpanStart(buttonSpan);
+                    x += layout.getPrimaryHorizontal(spanStart) + (buttonSpanArr[0].getSize() / 2);
+                    y += layout.getLineTop(layout.getLineForOffset(spanStart));
                 }
             }
         }
-        final HintView2 hintView22 = new HintView2(getContext(), 3);
-        hintView2Arr[0] = hintView22;
-        hintView22.setMultilineText(true);
-        hintView22.setInnerPadding(11.0f, 8.0f, 11.0f, 7.0f);
-        hintView22.setRounding(10.0f);
-        hintView22.setText(charSequenceReplaceTags);
-        hintView22.setOnHiddenListener(new Runnable() {
+        final HintView2 hintView3 = new HintView2(getContext(), 3);
+        hintView2Arr[0] = hintView3;
+        hintView3.setMultilineText(true);
+        hintView3.setInnerPadding(11.0f, 8.0f, 11.0f, 7.0f);
+        hintView3.setRounding(10.0f);
+        hintView3.setText(charSequenceReplaceTags);
+        hintView3.setOnHiddenListener(new Runnable() {
             @Override
             public final void run() {
-                AndroidUtilities.removeFromParent(hintView22);
+                AndroidUtilities.removeFromParent(hintView3);
             }
         });
-        hintView22.setTranslationY((-AndroidUtilities.dp(100.0f)) + y);
-        hintView22.setMaxWidthPx(AndroidUtilities.dp(300.0f));
-        hintView22.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        hintView22.setJointPx(0.0f, x - AndroidUtilities.dp(4.0f));
-        frameLayout.addView(hintView22, LayoutHelper.createFrame(-1, 100, 55));
-        hintView22.show();
+        hintView3.setTranslationY((-AndroidUtilities.dp(100.0f)) + y);
+        hintView3.setMaxWidthPx(AndroidUtilities.dp(300.0f));
+        hintView3.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        hintView3.setJointPx(0.0f, x - AndroidUtilities.dp(4.0f));
+        frameLayout.addView(hintView3, LayoutHelper.createFrame(-1, 100, 55));
+        hintView3.show();
     }
 
     public void lambda$new$3(View view) {
@@ -533,8 +534,71 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
         this.showHint.run(this.auctionRowAveragePriceText, LocaleController.formatString(R.string.Gift2AveragePriceHint, Long.valueOf(tL_starGiftAuctionStateFinished.average_price), this.auction.gift.title));
     }
 
-    private void updateTable(boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.AuctionJoinSheet.updateTable(boolean):void");
+    private void updateTable(boolean z) {
+        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState;
+        int i;
+        TL_stars.TL_starGiftAuctionStateFinished tL_starGiftAuctionStateFinished;
+        GiftAuctionController.Auction auction = this.auction;
+        if (auction != null && (tL_starGiftAuctionStateFinished = auction.auctionStateFinished) != null) {
+            this.auctionRowStartTimeText.setText(LocaleController.formatDateTime(tL_starGiftAuctionStateFinished.start_date, true));
+            this.auctionRowEndTimeText.setText(LocaleController.formatDateTime(this.auction.auctionStateFinished.end_date, true));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(StarsIntroActivity.replaceStarsWithPlain("⭐️ " + LocaleController.formatNumber(this.auction.auctionStateFinished.average_price, ','), 0.8f));
+            spannableStringBuilder.append((CharSequence) " ").append(ButtonSpan.make("?", new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.showAveragePriceHint();
+                }
+            }, this.resourcesProvider));
+            this.auctionRowAveragePriceText.setText(spannableStringBuilder);
+        } else if (auction != null && (tL_starGiftAuctionState = auction.auctionStateActive) != null) {
+            this.auctionRowStartTimeText.setText(LocaleController.formatDateTime(tL_starGiftAuctionState.start_date, true));
+            this.auctionRowEndTimeText.setText(LocaleController.formatDateTime(this.auction.auctionStateActive.end_date, true));
+            int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+            if (this.auction.isUpcoming(currentTime)) {
+                this.buttonView.setSubText(LocaleController.formatString(R.string.Gift2AuctionStartsIn, LocaleController.formatTTLString(this.auction.auctionStateActive.start_date - currentTime)), z);
+            } else {
+                this.buttonView.setSubText(LocaleController.formatString(R.string.Gift2AuctionTimeLeft, LocaleController.formatTTLString(this.auction.auctionStateActive.end_date - currentTime)), z);
+            }
+        }
+        GiftAuctionController.Auction auction2 = this.auction;
+        if (auction2 == null) {
+            i = this.starGift.availability_remains;
+        } else if (auction2.isFinished()) {
+            i = 0;
+        } else {
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.auction.auctionStateActive;
+            if (tL_starGiftAuctionState2 != null) {
+                i = tL_starGiftAuctionState2.gifts_left;
+            } else {
+                i = this.starGift.availability_remains;
+            }
+        }
+        int i2 = this.starGift.availability_total;
+        if (i == i2) {
+            this.auctionRowAvailabilityTitle.setText(LocaleController.getString(R.string.Gift2AuctionTableCurrentQuantity));
+            this.auctionRowAvailabilityText.setText(LocaleController.formatNumber(i2, ','));
+        } else {
+            this.auctionRowAvailabilityTitle.setText(LocaleController.getString(R.string.Gift2AuctionTableCurrentAvailability));
+            this.auctionRowAvailabilityText.setText(LocaleController.formatPluralString("Gift2Availability4Value", i, LocaleController.formatNumber(i2, ',')));
+        }
+        int i3 = this.auction.auctionUserState.acquired_count;
+        if (i3 > 0) {
+            this.itemsBought.setVisibility(0);
+            this.itemsBought.setText(TextUtils.concat(AndroidUtilities.replaceArrows(LocaleController.formatPluralSpannable("Gift2AuctionsItemsBought2", i3, this.emojiGiftText), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
+        } else {
+            this.itemsBought.setVisibility(8);
+        }
+        GiftAuctionController.Auction auction3 = this.auction;
+        if ((auction3 != null && auction3.auctionStateFinished != null) || this.starGift.sold_out) {
+            this.subtitleTextView.setText(LocaleController.getString(R.string.Gift2AuctionEnded));
+            this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_text_RedBold, this.resourcesProvider));
+            this.auctionRowAveragePrice.setVisibility(0);
+            this.buttonView.setText(LocaleController.getString(R.string.OK), z);
+            this.buttonView.setSubText(null, z);
+            return;
+        }
+        this.auctionRowAveragePrice.setVisibility(8);
+        this.buttonView.setText(LocaleController.getString(R.string.Gift2AuctionJoin), z);
     }
 
     @Override

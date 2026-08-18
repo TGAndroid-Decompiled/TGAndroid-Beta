@@ -2,6 +2,7 @@ package org.telegram.ui.Business;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.view.View;
@@ -23,8 +24,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.TextWatcherImpl;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Business.QuickRepliesActivity;
-import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -305,8 +304,25 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    public void onPreMeasure(int r3, int r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout.onPreMeasure(int, int):void");
+    public void onPreMeasure(int i, int i2) {
+        int iDp;
+        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
+            iDp = AndroidUtilities.dp(8.0f);
+            this.parentAlert.setAllowNestedScroll(false);
+        } else {
+            if (AndroidUtilities.isTablet()) {
+                iDp = (i2 / 5) * 2;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    iDp = (int) (i2 / 3.5f);
+                } else {
+                    iDp = (i2 / 5) * 2;
+                }
+            }
+            this.parentAlert.setAllowNestedScroll(true);
+        }
+        this.listView.setPaddingWithoutRequestLayout(0, iDp + AndroidUtilities.statusBarHeight, 0, this.listPaddingBottom);
     }
 
     public int getCurrentTop() {
@@ -340,7 +356,8 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     public void updateEmptyViewPosition() {
         View childAt;
         if (this.emptyView.getVisibility() == 0 && (childAt = this.listView.getChildAt(0)) != null) {
-            this.emptyView.setTranslationY(((r1.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
+            EmptyTextProgressView emptyTextProgressView = this.emptyView;
+            emptyTextProgressView.setTranslationY(((emptyTextProgressView.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
         }
     }
 
@@ -465,8 +482,37 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
             this.mContext = context;
         }
 
-        public void search(java.lang.String r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout.ShareSearchAdapter.search(java.lang.String):void");
+        public void search(String str) {
+            if (this.searchRunnable != null) {
+                Utilities.searchQueue.cancelRunnable(this.searchRunnable);
+                this.searchRunnable = null;
+            }
+            this.searchResult.clear();
+            this.lastQuery = str;
+            if (str != null) {
+                String strTranslitSafe = AndroidUtilities.translitSafe(str);
+                if (strTranslitSafe.startsWith("/")) {
+                    strTranslitSafe = strTranslitSafe.substring(1);
+                }
+                QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(UserConfig.selectedAccount);
+                for (int i = 0; i < quickRepliesController.replies.size(); i++) {
+                    QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) quickRepliesController.replies.get(i);
+                    if (!quickReply.isSpecial()) {
+                        String strTranslitSafe2 = AndroidUtilities.translitSafe(quickReply.name);
+                        if (strTranslitSafe2.startsWith(strTranslitSafe)) {
+                            this.searchResult.add(quickReply);
+                        } else {
+                            if (strTranslitSafe2.contains(" " + strTranslitSafe)) {
+                                this.searchResult.add(quickReply);
+                            }
+                        }
+                    }
+                }
+            }
+            if (ChatAttachAlertQuickRepliesLayout.this.listView.getAdapter() != ChatAttachAlertQuickRepliesLayout.this.searchAdapter) {
+                ChatAttachAlertQuickRepliesLayout.this.listView.setAdapter(ChatAttachAlertQuickRepliesLayout.this.searchAdapter);
+            }
+            notifyDataSetChanged();
         }
 
         @Override

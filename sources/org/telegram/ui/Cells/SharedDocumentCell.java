@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.transition.ChangeBounds;
@@ -32,6 +33,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -394,24 +396,16 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
     }
 
     public void setDocument(MessageObject messageObject, boolean z) {
-        boolean z2;
-        boolean z3;
         String str;
         String str2;
         String str3;
         MessageObject messageObject2 = this.message;
-        if (messageObject2 == null || messageObject == null || messageObject2.getId() == messageObject.getId()) {
-            z2 = z;
-            z3 = false;
-        } else {
-            z2 = z;
-            z3 = true;
-        }
-        this.needDivider = z2;
+        boolean z2 = (messageObject2 == null || messageObject == null || messageObject2.getId() == messageObject.getId()) ? false : true;
+        this.needDivider = z;
         this.message = messageObject;
         this.loaded = false;
         this.loading = false;
-        if (!z3) {
+        if (!z2) {
             this.downloadedSize = 0L;
         }
         TLRPC.Document document = messageObject.getDocument();
@@ -427,7 +421,13 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             }
             String documentFileName = (messageObject.isVideo() || (messageObject.messageOwner.media instanceof TLRPC.TL_messageMediaPhoto) || MessageObject.isGifDocument(document)) ? null : FileLoader.getDocumentFileName(document);
             if (TextUtils.isEmpty(documentFileName) && (str = document.mime_type) != null) {
-                documentFileName = str.startsWith("video") ? MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachVideo) : document.mime_type.startsWith("image") ? MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachPhoto) : document.mime_type.startsWith("audio") ? LocaleController.getString(R.string.AttachAudio) : LocaleController.getString(R.string.AttachDocument);
+                if (str.startsWith("video")) {
+                    documentFileName = MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachVideo);
+                } else if (document.mime_type.startsWith("image")) {
+                    documentFileName = MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachPhoto);
+                } else {
+                    documentFileName = document.mime_type.startsWith("audio") ? LocaleController.getString(R.string.AttachAudio) : LocaleController.getString(R.string.AttachDocument);
+                }
             }
             if (str4 == null) {
                 str4 = documentFileName;
@@ -496,7 +496,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         }
         setWillNotDraw(!this.needDivider);
         this.progressView.setProgress(0.0f, false);
-        updateFileExistIcon(z3);
+        updateFileExistIcon(z2);
     }
 
     private void updateDateView() {
@@ -506,7 +506,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             return;
         }
         MessageObject messageObject2 = this.message;
-        long j = messageObject2.messageOwner.date * 1000;
+        long j = ((long) messageObject2.messageOwner.date) * 1000;
         long j2 = this.downloadedSize;
         if (j2 == 0) {
             fileSize = AndroidUtilities.formatFileSize(messageObject2.getDocument().size);
@@ -709,8 +709,55 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedDocumentCell.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        float f;
+        if (this.enterAlpha != 1.0f && this.globalGradientView != null) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
+            this.globalGradientView.setViewType(3);
+            this.globalGradientView.updateColors();
+            this.globalGradientView.updateGradient();
+            this.globalGradientView.draw(canvas);
+            canvas.restore();
+            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (this.enterAlpha * 255.0f), 31);
+            super.dispatchDraw(canvas);
+            drawDivider(canvas);
+            canvas.restore();
+        } else {
+            super.dispatchDraw(canvas);
+            drawDivider(canvas);
+        }
+        boolean z = this.showReorderIcon;
+        if (z || this.showReorderIconProgress != 0.0f) {
+            if (z) {
+                float f2 = this.showReorderIconProgress;
+                if (f2 != 1.0f) {
+                    this.showReorderIconProgress = f2 + 0.10666667f;
+                    invalidate();
+                } else if (!z) {
+                    f = this.showReorderIconProgress;
+                    if (f != 0.0f) {
+                        this.showReorderIconProgress = f - 0.10666667f;
+                        invalidate();
+                    }
+                }
+            } else if (!z) {
+                f = this.showReorderIconProgress;
+                if (f != 0.0f) {
+                    this.showReorderIconProgress = f - 0.10666667f;
+                    invalidate();
+                }
+            }
+            this.showReorderIconProgress = Utilities.clamp(this.showReorderIconProgress, 1.0f, 0.0f);
+            int measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(12.0f)) - Theme.dialogs_reorderDrawable.getIntrinsicWidth();
+            int measuredHeight = (getMeasuredHeight() - Theme.dialogs_reorderDrawable.getIntrinsicHeight()) >> 1;
+            canvas.save();
+            float f3 = this.showReorderIconProgress;
+            canvas.scale(f3, f3, measuredWidth + (Theme.dialogs_reorderDrawable.getIntrinsicWidth() / 2.0f), measuredHeight + (Theme.dialogs_reorderDrawable.getIntrinsicHeight() / 2.0f));
+            Drawable drawable = Theme.dialogs_reorderDrawable;
+            drawable.setBounds(measuredWidth, measuredHeight, drawable.getIntrinsicWidth() + measuredWidth, Theme.dialogs_reorderDrawable.getIntrinsicHeight() + measuredHeight);
+            Theme.dialogs_reorderDrawable.draw(canvas);
+            canvas.restore();
+        }
     }
 
     private void drawDivider(Canvas canvas) {

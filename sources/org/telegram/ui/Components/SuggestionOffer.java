@@ -9,7 +9,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.View;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
@@ -66,11 +65,9 @@ public class SuggestionOffer {
         if (suggestedPost.schedule_date > 0) {
             this.rows.add(new Row(new Text(LocaleController.getString(R.string.SuggestionOfferInfoTime), textPaint), new Text(LocaleController.bold(LocaleController.formatDateTime(suggestedPost.schedule_date, true)), textPaint)));
         }
-        Iterator it = this.rows.iterator();
         float fMax = 0.0f;
         float fMax2 = 0.0f;
-        while (it.hasNext()) {
-            Row row = (Row) it.next();
+        for (Row row : this.rows) {
             fMax = Math.max(fMax, row.title.getWidth());
             fMax2 = Math.max(fMax2, row.info.getWidth());
             int height = this.height + row.getHeight();
@@ -133,8 +130,9 @@ public class SuggestionOffer {
         int iMax3 = Math.max(iDp, iMax2) + (AndroidUtilities.dp(24.0f) * 2);
         this.width = iMax3;
         this.titleX = (iMax3 - iMax) / 2;
-        this.rowsTitleX = (iMax3 - iDp) / 2;
-        this.rowsInfoX = (int) (r1 + AndroidUtilities.dp(11.0f) + fMax);
+        int i8 = (iMax3 - iDp) / 2;
+        this.rowsTitleX = i8;
+        this.rowsInfoX = (int) (i8 + AndroidUtilities.dp(11.0f) + fMax);
     }
 
     private void updateBuildTitleStep(StringBuilder sb, int i, boolean z) {
@@ -159,9 +157,10 @@ public class SuggestionOffer {
     }
 
     public void draw(Canvas canvas, int i, float f, float f2, float f3, float f4, boolean z) {
-        int i2 = (i - this.width) / 2;
+        int i2 = this.width;
+        int i3 = (i - i2) / 2;
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(i2, 0.0f, r11 + i2, this.height);
+        rectF.set(i3, 0.0f, i2 + i3, this.height);
         canvas.save();
         canvas.translate(f / 2.0f, f2);
         Paint themePaint = Theme.getThemePaint("paintChatActionBackground", this.resourcesProvider);
@@ -180,17 +179,15 @@ public class SuggestionOffer {
         int iDp = AndroidUtilities.dp(14.0f);
         if (this.title != null) {
             canvas.save();
-            canvas.translate(this.titleX + i2, iDp);
+            canvas.translate(this.titleX + i3, iDp);
             this.title.draw(canvas);
             canvas.restore();
             iDp += this.title.getHeight() + AndroidUtilities.dp(12.0f);
         }
-        Iterator it = this.rows.iterator();
-        while (it.hasNext()) {
-            Row row = (Row) it.next();
+        for (Row row : this.rows) {
             float f5 = iDp;
-            row.title.draw(canvas, this.rowsTitleX + i2, (row.getHeight() / 2.0f) + f5, 0.85f);
-            row.info.draw(canvas, this.rowsInfoX + i2, f5 + (row.getHeight() / 2.0f));
+            row.title.draw(canvas, this.rowsTitleX + i3, (row.getHeight() / 2.0f) + f5, 0.85f);
+            row.info.draw(canvas, this.rowsInfoX + i3, f5 + (row.getHeight() / 2.0f));
             iDp += row.getHeight() + AndroidUtilities.dp(7.0f);
         }
         canvas.restore();

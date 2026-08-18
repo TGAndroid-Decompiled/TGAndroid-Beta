@@ -5,16 +5,20 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.DownloadManager;
+import android.bluetooth.BluetoothAdapter;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.SurfaceTexture;
@@ -53,7 +57,6 @@ import androidx.exifinterface.media.ExifInterface;
 import com.google.android.exoplayer2.DeviceInfo;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.MediaMetadata;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
@@ -68,8 +71,11 @@ import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.TrackSelectionParameters;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.video.VideoSize;
+import com.google.android.gms.cast.MediaMetadata;
+import com.google.android.gms.common.images.WebImage;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -78,28 +84,26 @@ import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.messenger.chromecast.ChromecastController;
+import org.telegram.messenger.chromecast.ChromecastFileServer;
+import org.telegram.messenger.chromecast.ChromecastMedia;
+import org.telegram.messenger.chromecast.ChromecastMediaVariations;
+import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -110,6 +114,7 @@ import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.CastSync;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.EmbedBottomSheet;
+import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.PipRoundVideoView;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
@@ -117,6 +122,7 @@ import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
+import org.telegram.ui.Stories.recorder.StoryEntry;
 
 public class MediaController implements AudioManager.OnAudioFocusChangeListener, NotificationCenter.NotificationCenterDelegate, SensorEventListener {
     private static final int AUDIO_FOCUSED = 2;
@@ -943,8 +949,118 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
 
-        public void rebuildPhoto(boolean r19) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.PhotoEntry.rebuildPhoto(boolean):void");
+        public void rebuildPhoto(boolean z) {
+            Bitmap bitmap;
+            Bitmap bitmapCreateBitmap;
+            String str;
+            Bitmap bitmapDecodeFile;
+            int i;
+            String str2 = this.filterPath;
+            if (str2 == null) {
+                str2 = this.path;
+            }
+            Pair<Integer, Integer> imageOrientation = AndroidUtilities.getImageOrientation(str2);
+            Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
+            Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
+                @Override
+                public final Bitmap decode(BitmapFactory.Options options) {
+                    return this.f$0.lambda$rebuildPhoto$0(options);
+                }
+            }, AndroidUtilities.getPhotoSize(z), AndroidUtilities.getPhotoSize(z), false, true);
+            if (this.imagePath != null) {
+                new File(this.imagePath).delete();
+                this.imagePath = null;
+            }
+            CropState cropState = this.cropState;
+            if (cropState != null) {
+                bitmapCreateBitmap = PhotoViewer.createCroppedBitmap(scaledBitmap, cropState, new int[]{((Integer) imageOrientation.first).intValue(), ((Integer) imageOrientation.second).intValue()}, true);
+                scaledBitmap.recycle();
+            } else {
+                if (((Integer) imageOrientation.first).intValue() != 0) {
+                    Matrix matrix = new Matrix();
+                    matrix.postRotate(((Integer) imageOrientation.first).intValue());
+                    if (((Integer) imageOrientation.second).intValue() == 1) {
+                        matrix.postScale(-1.0f, 1.0f);
+                    } else if (((Integer) imageOrientation.second).intValue() == 2) {
+                        matrix.postScale(1.0f, -1.0f);
+                    }
+                    bitmapCreateBitmap = Bitmaps.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
+                    scaledBitmap.recycle();
+                } else {
+                    bitmap = scaledBitmap;
+                }
+                str = this.fullPaintPath;
+                if (str == null) {
+                    float photoSize = AndroidUtilities.getPhotoSize(z);
+                    float photoSize2 = AndroidUtilities.getPhotoSize(z);
+                    if (z) {
+                        i = 99;
+                    } else {
+                        i = 87;
+                    }
+                    this.imagePath = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(ImageLoader.scaleAndSaveImage(bitmap, compressFormat, photoSize, photoSize2, i, false, 101, 101), true).toString();
+                } else {
+                    if (this.cropState != null) {
+                        Bitmap bitmapDecodeFile2 = BitmapFactory.decodeFile(str);
+                        bitmapDecodeFile = PhotoViewer.createCroppedBitmap(bitmapDecodeFile2, this.cropState, null, false);
+                        bitmapDecodeFile2.recycle();
+                    } else {
+                        bitmapDecodeFile = BitmapFactory.decodeFile(str);
+                    }
+                    try {
+                        Paint paint = new Paint(3);
+                        Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                        Canvas canvas = new Canvas(bitmapCreateBitmap2);
+                        canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+                        canvas.scale(bitmap.getWidth() / bitmapDecodeFile.getWidth(), bitmap.getHeight() / bitmapDecodeFile.getHeight());
+                        canvas.drawBitmap(bitmapDecodeFile, 0.0f, 0.0f, paint);
+                        this.imagePath = PhotoViewer.getTempFileAbsolutePath();
+                        bitmapCreateBitmap2.compress(compressFormat, z ? 99 : 87, new FileOutputStream(this.imagePath));
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                    if (bitmapDecodeFile != null) {
+                        bitmapDecodeFile.recycle();
+                    }
+                }
+                if (bitmap != null) {
+                    bitmap.recycle();
+                }
+            }
+            bitmap = bitmapCreateBitmap;
+            str = this.fullPaintPath;
+            if (str == null) {
+                float photoSize3 = AndroidUtilities.getPhotoSize(z);
+                float photoSize4 = AndroidUtilities.getPhotoSize(z);
+                if (z) {
+                    i = 99;
+                } else {
+                    i = 87;
+                }
+                this.imagePath = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(ImageLoader.scaleAndSaveImage(bitmap, compressFormat, photoSize3, photoSize4, i, false, 101, 101), true).toString();
+            } else {
+                if (this.cropState != null) {
+                    Bitmap bitmapDecodeFile3 = BitmapFactory.decodeFile(str);
+                    bitmapDecodeFile = PhotoViewer.createCroppedBitmap(bitmapDecodeFile3, this.cropState, null, false);
+                    bitmapDecodeFile3.recycle();
+                } else {
+                    bitmapDecodeFile = BitmapFactory.decodeFile(str);
+                }
+                Paint paint2 = new Paint(3);
+                Bitmap bitmapCreateBitmap3 = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas2 = new Canvas(bitmapCreateBitmap3);
+                canvas2.drawBitmap(bitmap, 0.0f, 0.0f, paint2);
+                canvas2.scale(bitmap.getWidth() / bitmapDecodeFile.getWidth(), bitmap.getHeight() / bitmapDecodeFile.getHeight());
+                canvas2.drawBitmap(bitmapDecodeFile, 0.0f, 0.0f, paint2);
+                this.imagePath = PhotoViewer.getTempFileAbsolutePath();
+                bitmapCreateBitmap3.compress(compressFormat, z ? 99 : 87, new FileOutputStream(this.imagePath));
+                if (bitmapDecodeFile != null) {
+                    bitmapDecodeFile.recycle();
+                }
+            }
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
         }
 
         public Bitmap lambda$rebuildPhoto$0(BitmapFactory.Options options) {
@@ -1085,27 +1201,28 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 try {
                     MediaController mediaController2 = MediaController.this;
                     long j = mediaController2.samplesCount;
-                    long j2 = (i / 2) + j;
-                    int length = (int) ((j / j2) * r5.length);
-                    int length2 = mediaController2.recordSamples.length - length;
+                    long j2 = ((long) (i / 2)) + j;
+                    short[] sArr = mediaController2.recordSamples;
+                    int length = (int) ((j / j2) * ((double) sArr.length));
+                    int length2 = sArr.length - length;
                     float f = 0.0f;
                     if (length != 0) {
-                        float length3 = r5.length / length;
+                        float length3 = sArr.length / length;
                         float f2 = 0.0f;
                         for (int i2 = 0; i2 < length; i2++) {
-                            short[] sArr = MediaController.this.recordSamples;
-                            sArr[i2] = sArr[(int) f2];
+                            short[] sArr2 = MediaController.this.recordSamples;
+                            sArr2[i2] = sArr2[(int) f2];
                             f2 += length3;
                         }
                     }
                     float f3 = (i / 2.0f) / length2;
                     for (int i3 = 0; i3 < i / 2; i3++) {
                         short s = byteBufferAllocateDirect.getShort();
-                        d += s * s;
+                        d += (double) (s * s);
                         if (i3 == ((int) f)) {
-                            short[] sArr2 = MediaController.this.recordSamples;
-                            if (length < sArr2.length) {
-                                sArr2[length] = s;
+                            short[] sArr3 = MediaController.this.recordSamples;
+                            if (length < sArr3.length) {
+                                sArr3[length] = s;
                                 f += f3;
                                 length++;
                             }
@@ -1116,7 +1233,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     FileLog.e(e);
                 }
                 byteBufferAllocateDirect.position(0);
-                final double dSqrt = Math.sqrt((d / i) / 2.0d);
+                final double dSqrt = Math.sqrt((d / ((double) i)) / 2.0d);
                 final boolean z = i != byteBufferAllocateDirect.capacity();
                 MediaController.this.fileEncodingQueue.postRunnable(new Runnable() {
                     @Override
@@ -1152,7 +1269,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         long j = mediaController2.recordTimeCount;
                         int iLimit2 = mediaController2.fileBuffer.limit() / 2;
                         MediaController mediaController3 = MediaController.this;
-                        mediaController2.recordTimeCount = j + (iLimit2 / (mediaController3.sampleRate / 1000));
+                        mediaController2.recordTimeCount = j + ((long) (iLimit2 / (mediaController3.sampleRate / 1000)));
                         mediaController3.writtenFrame++;
                     } else {
                         FileLog.e("writing frame failed");
@@ -1275,8 +1392,124 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }, 2000L);
     }
 
-    public static void lambda$checkGallery$1(int r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$checkGallery$1(int):void");
+    public static void lambda$checkGallery$1(int i) {
+        Cursor cursorQuery;
+        Cursor cursorQuery2;
+        int i2;
+        int i3;
+        Runnable runnable;
+        Context context;
+        try {
+            Context context2 = ApplicationLoader.applicationContext;
+            if (Build.VERSION.SDK_INT < 33 || (context2.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 && context2.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0 && context2.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0)) {
+                if (context2.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0) {
+                    cursorQuery = MediaStore.Images.Media.query(context2.getContentResolver(), MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
+                    if (cursorQuery != null) {
+                        try {
+                            i3 = cursorQuery.moveToNext() ? cursorQuery.getInt(0) : 0;
+                        } catch (Throwable th) {
+                            th = th;
+                            try {
+                                FileLog.e(th);
+                                if (cursorQuery != null) {
+                                    i3 = 0;
+                                } else {
+                                    cursorQuery2 = cursorQuery;
+                                    i2 = 0;
+                                }
+                                context = ApplicationLoader.applicationContext;
+                                if (Build.VERSION.SDK_INT >= 33) {
+                                    if (context.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0) {
+                                        cursorQuery2 = MediaStore.Images.Media.query(context.getContentResolver(), MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
+                                        if (cursorQuery2 != null) {
+                                            i2 += cursorQuery2.getInt(0);
+                                        }
+                                    }
+                                } else if (context.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0) {
+                                    cursorQuery2 = MediaStore.Images.Media.query(context.getContentResolver(), MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
+                                    if (cursorQuery2 != null) {
+                                        i2 += cursorQuery2.getInt(0);
+                                    }
+                                }
+                                if (cursorQuery2 != null) {
+                                    cursorQuery2.close();
+                                }
+                                if (i != i2) {
+                                    runnable = refreshGalleryRunnable;
+                                    if (runnable != null) {
+                                        AndroidUtilities.cancelRunOnUIThread(runnable);
+                                        refreshGalleryRunnable = null;
+                                    }
+                                    loadGalleryPhotosAlbums(0);
+                                }
+                            } catch (Throwable th2) {
+                                if (cursorQuery != null) {
+                                    cursorQuery.close();
+                                    throw th2;
+                                }
+                                throw th2;
+                            }
+                        }
+                    }
+                } else {
+                    cursorQuery = null;
+                }
+            } else {
+                cursorQuery = MediaStore.Images.Media.query(context2.getContentResolver(), MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
+                if (cursorQuery != null) {
+                    if (cursorQuery.moveToNext()) {
+                    }
+                }
+            }
+            if (cursorQuery != null) {
+                cursorQuery.close();
+            }
+        } catch (Throwable th3) {
+            th = th3;
+            cursorQuery = null;
+        }
+        cursorQuery2 = cursorQuery;
+        i2 = i3;
+        try {
+            context = ApplicationLoader.applicationContext;
+            if (Build.VERSION.SDK_INT >= 33 || (context.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 && context.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0 && context.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0)) {
+                if (context.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0) {
+                    cursorQuery2 = MediaStore.Images.Media.query(context.getContentResolver(), MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
+                    if (cursorQuery2 != null && cursorQuery2.moveToNext()) {
+                        i2 += cursorQuery2.getInt(0);
+                    }
+                }
+            } else {
+                cursorQuery2 = MediaStore.Images.Media.query(context.getContentResolver(), MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"COUNT(_id)"}, null, null, null);
+                if (cursorQuery2 != null) {
+                    i2 += cursorQuery2.getInt(0);
+                }
+            }
+            if (cursorQuery2 != null) {
+                cursorQuery2.close();
+            }
+        } catch (Throwable th4) {
+            try {
+                FileLog.e(th4);
+                if (cursorQuery2 != null) {
+                    cursorQuery2.close();
+                }
+            } catch (Throwable th5) {
+                if (cursorQuery2 != null) {
+                    cursorQuery2.close();
+                    throw th5;
+                }
+                throw th5;
+            }
+        }
+        if (i != i2) {
+            runnable = refreshGalleryRunnable;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                refreshGalleryRunnable = null;
+            }
+            loadGalleryPhotosAlbums(0);
+        }
     }
 
     private final class StopMediaObserverRunnable implements Runnable {
@@ -1319,7 +1552,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         mediaController = new MediaController();
                         Instance = mediaController;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -1577,10 +1811,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 timer2.schedule(new AnonymousClass5(messageObject), 0L, 17L);
             } else {
                 messageObject.getFileName();
-                java.util.Timer timer22 = new java.util.Timer();
-                this.progressTimer = timer22;
-                timer22.schedule(new AnonymousClass5(messageObject), 0L, 17L);
+                java.util.Timer timer3 = new java.util.Timer();
+                this.progressTimer = timer3;
+                timer3.schedule(new AnonymousClass5(messageObject), 0L, 17L);
             }
+            throw th;
         }
     }
 
@@ -1745,75 +1980,61 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void processMediaObserver(Uri uri) {
-        int i;
         Cursor cursorQuery = null;
         try {
-            try {
-                Point realScreenSize = AndroidUtilities.getRealScreenSize();
-                cursorQuery = ApplicationLoader.applicationContext.getContentResolver().query(uri, this.mediaProjections, null, null, "date_added DESC LIMIT 1");
-                final ArrayList arrayList = new ArrayList();
-                if (cursorQuery != null) {
-                    while (cursorQuery.moveToNext()) {
-                        String string = cursorQuery.getString(0);
-                        String string2 = cursorQuery.getString(1);
-                        String string3 = cursorQuery.getString(2);
-                        long j = cursorQuery.getLong(3);
-                        String string4 = cursorQuery.getString(4);
-                        int i2 = cursorQuery.getInt(5);
-                        int i3 = cursorQuery.getInt(6);
-                        if (string == null || !string.toLowerCase().contains("screenshot")) {
-                            if ((string2 == null || !string2.toLowerCase().contains("screenshot")) && ((string3 == null || !string3.toLowerCase().contains("screenshot")) && (string4 == null || !string4.toLowerCase().contains("screenshot")))) {
-                            }
+            Point realScreenSize = AndroidUtilities.getRealScreenSize();
+            cursorQuery = ApplicationLoader.applicationContext.getContentResolver().query(uri, this.mediaProjections, null, null, "date_added DESC LIMIT 1");
+            final ArrayList arrayList = new ArrayList();
+            if (cursorQuery != null) {
+                while (cursorQuery.moveToNext()) {
+                    String string = cursorQuery.getString(0);
+                    String string2 = cursorQuery.getString(1);
+                    String string3 = cursorQuery.getString(2);
+                    long j = cursorQuery.getLong(3);
+                    String string4 = cursorQuery.getString(4);
+                    int i = cursorQuery.getInt(5);
+                    int i2 = cursorQuery.getInt(6);
+                    if (string == null || !string.toLowerCase().contains("screenshot")) {
+                        if ((string2 == null || !string2.toLowerCase().contains("screenshot")) && ((string3 == null || !string3.toLowerCase().contains("screenshot")) && (string4 == null || !string4.toLowerCase().contains("screenshot")))) {
                         }
-                        if (i2 == 0 || i3 == 0) {
-                            BitmapFactory.Options options = new BitmapFactory.Options();
-                            options.inJustDecodeBounds = true;
-                            BitmapFactory.decodeFile(string, options);
-                            i2 = options.outWidth;
-                            i3 = options.outHeight;
-                        }
-                        if (i2 > 0 && i3 > 0) {
-                            try {
-                                i = realScreenSize.x;
-                            } catch (Exception unused) {
-                                arrayList.add(Long.valueOf(j));
-                            }
-                            if ((i2 != i || i3 != realScreenSize.y) && (i3 != i || i2 != realScreenSize.y)) {
-                            }
-                        }
-                        arrayList.add(Long.valueOf(j));
                     }
-                    cursorQuery.close();
-                }
-                if (!arrayList.isEmpty()) {
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$processMediaObserver$6(arrayList);
+                    if (i == 0 || i2 == 0) {
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inJustDecodeBounds = true;
+                        BitmapFactory.decodeFile(string, options);
+                        i = options.outWidth;
+                        i2 = options.outHeight;
+                    }
+                    if (i > 0 && i2 > 0) {
+                        try {
+                            int i3 = realScreenSize.x;
+                            if ((i != i3 || i2 != realScreenSize.y) && (i2 != i3 || i != realScreenSize.y)) {
+                            }
+                        } catch (Exception unused) {
+                            arrayList.add(Long.valueOf(j));
                         }
-                    });
+                    }
+                    arrayList.add(Long.valueOf(j));
                 }
-                if (cursorQuery == null) {
-                    return;
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-                if (cursorQuery == null) {
-                    return;
-                }
-            }
-            try {
                 cursorQuery.close();
-            } catch (Exception unused2) {
             }
-        } catch (Throwable th) {
+            if (!arrayList.isEmpty()) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$processMediaObserver$6(arrayList);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        } finally {
             if (cursorQuery != null) {
                 try {
                     cursorQuery.close();
-                } catch (Exception unused3) {
+                } catch (Exception unused2) {
                 }
             }
-            throw th;
         }
     }
 
@@ -2098,16 +2319,18 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             } else {
                 Sensor sensor = sensorEvent.sensor;
                 if (sensor == this.accelerometerSensor) {
-                    double d = this.lastTimestamp == 0 ? 0.9800000190734863d : 1.0d / (((sensorEvent.timestamp - r2) / 1.0E9d) + 1.0d);
+                    long j = this.lastTimestamp;
+                    double d = j == 0 ? 0.9800000190734863d : 1.0d / (((sensorEvent.timestamp - j) / 1.0E9d) + 1.0d);
                     this.lastTimestamp = sensorEvent.timestamp;
                     float[] fArr = this.gravity;
-                    double d2 = 1.0d - d;
+                    double d2 = ((double) fArr[0]) * d;
+                    double d3 = 1.0d - d;
                     float[] fArr2 = sensorEvent.values;
-                    float f3 = (float) ((fArr[0] * d) + (fArr2[0] * d2));
+                    float f3 = (float) (d2 + (((double) fArr2[0]) * d3));
                     fArr[0] = f3;
-                    float f4 = (float) ((fArr[1] * d) + (fArr2[1] * d2));
+                    float f4 = (float) ((((double) fArr[1]) * d) + (((double) fArr2[1]) * d3));
                     fArr[1] = f4;
-                    float f5 = (float) ((d * fArr[2]) + (d2 * fArr2[2]));
+                    float f5 = (float) ((d * ((double) fArr[2])) + (d3 * ((double) fArr2[2])));
                     fArr[2] = f5;
                     float[] fArr3 = this.gravityFast;
                     fArr3[0] = (f3 * 0.8f) + (fArr2[0] * 0.19999999f);
@@ -2514,8 +2737,162 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         cleanupPlayer(z, z2, false, false);
     }
 
-    public void cleanupPlayer(boolean r11, boolean r12, boolean r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.cleanupPlayer(boolean, boolean, boolean, boolean):void");
+    public void cleanupPlayer(boolean z, boolean z2, boolean z3, boolean z4) {
+        boolean z5;
+        PipRoundVideoView pipRoundVideoView;
+        MessageObject messageObject;
+        if (z2 && restoreMusicPlaylistState()) {
+            return;
+        }
+        if (this.audioPlayer != null) {
+            MusicListenReporter musicListenReporter = this.reporter;
+            if (musicListenReporter != null) {
+                musicListenReporter.destroy();
+                this.reporter = null;
+            }
+            ValueAnimator valueAnimator = this.audioVolumeAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllUpdateListeners();
+                this.audioVolumeAnimator.cancel();
+            }
+            if (!CastSync.isActive() && this.audioPlayer.isPlaying() && (messageObject = this.playingMessageObject) != null && !messageObject.isVoice()) {
+                final VideoPlayer videoPlayer = this.audioPlayer;
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.audioVolume, 0.0f);
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        this.f$0.lambda$cleanupPlayer$10(videoPlayer, valueAnimator2);
+                    }
+                });
+                valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        try {
+                            videoPlayer.releasePlayer(true);
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                    }
+                });
+                valueAnimatorOfFloat.setDuration(300L);
+                valueAnimatorOfFloat.start();
+            } else {
+                try {
+                    this.audioPlayer.releasePlayer(true);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            this.audioPlayer = null;
+            Theme.unrefAudioVisualizeDrawable(this.playingMessageObject);
+        } else {
+            VideoPlayer videoPlayer2 = this.videoPlayer;
+            if (videoPlayer2 != null) {
+                this.currentAspectRatioFrameLayout = null;
+                this.currentTextureViewContainer = null;
+                this.currentAspectRatioFrameLayoutReady = false;
+                this.isDrawingWasReady = false;
+                this.currentTextureView = null;
+                this.goingToShowMessageObject = null;
+                if (z4) {
+                    PhotoViewer.getInstance().injectVideoPlayer(this.videoPlayer);
+                    MessageObject messageObject2 = this.playingMessageObject;
+                    this.goingToShowMessageObject = messageObject2;
+                    NotificationCenter.getInstance(messageObject2.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingGoingToStop, this.playingMessageObject, Boolean.TRUE);
+                } else {
+                    long currentPosition = videoPlayer2.getCurrentPosition();
+                    MessageObject messageObject3 = this.playingMessageObject;
+                    if (messageObject3 != null && messageObject3.isVideo() && currentPosition > 0) {
+                        MessageObject messageObject4 = this.playingMessageObject;
+                        messageObject4.audioProgressMs = (int) currentPosition;
+                        NotificationCenter.getInstance(messageObject4.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingGoingToStop, this.playingMessageObject, Boolean.FALSE);
+                    }
+                    this.videoPlayer.releasePlayer(true);
+                    this.videoPlayer = null;
+                }
+                try {
+                    this.baseActivity.getWindow().clearFlags(128);
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                }
+                if (this.playingMessageObject != null && !z4) {
+                    AndroidUtilities.cancelRunOnUIThread(this.setLoadingRunnable);
+                    FileLoader.getInstance(this.playingMessageObject.currentAccount).removeLoadingVideo(this.playingMessageObject.getDocument(), true, false);
+                }
+            }
+        }
+        stopProgressTimer();
+        this.lastProgress = 0L;
+        this.isPaused = false;
+        MessageObject messageObject5 = this.playingMessageObject;
+        if (messageObject5 != null) {
+            if (this.downloadingCurrentMessage) {
+                FileLoader.getInstance(messageObject5.currentAccount).cancelLoadFile(this.playingMessageObject.getDocument());
+            }
+            MessageObject messageObject6 = this.playingMessageObject;
+            if (z) {
+                messageObject6.resetPlayingProgress();
+                NotificationCenter.getInstance(messageObject6.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingProgressDidChanged, Integer.valueOf(this.playingMessageObject.getId()), 0);
+            }
+            this.playingMessageObject = null;
+            this.downloadingCurrentMessage = false;
+            if (z) {
+                NotificationsController.audioManager.abandonAudioFocus(this);
+                this.hasAudioFocus = 0;
+                ArrayList<MessageObject> arrayList = this.voiceMessagesPlaylist;
+                int iIndexOf = -1;
+                if (arrayList != null) {
+                    if (z3 && (iIndexOf = arrayList.indexOf(messageObject6)) >= 0) {
+                        this.voiceMessagesPlaylist.remove(iIndexOf);
+                        this.voiceMessagesPlaylistMap.remove(messageObject6.getId());
+                        if (this.voiceMessagesPlaylist.isEmpty()) {
+                            this.voiceMessagesPlaylist = null;
+                            this.voiceMessagesPlaylistMap = null;
+                        }
+                    } else {
+                        this.voiceMessagesPlaylist = null;
+                        this.voiceMessagesPlaylistMap = null;
+                    }
+                }
+                ArrayList<MessageObject> arrayList2 = this.voiceMessagesPlaylist;
+                if (arrayList2 != null && iIndexOf < arrayList2.size()) {
+                    MessageObject messageObject7 = this.voiceMessagesPlaylist.get(iIndexOf);
+                    playMessage(messageObject7);
+                    if (!messageObject7.isRoundVideo() && (pipRoundVideoView = this.pipRoundVideoView) != null) {
+                        pipRoundVideoView.close(true);
+                        this.pipRoundVideoView = null;
+                    }
+                    z5 = true;
+                } else {
+                    if ((messageObject6.isVoice() || messageObject6.isRoundVideo()) && messageObject6.getId() != 0) {
+                        startRecordingIfFromSpeaker();
+                    }
+                    NotificationCenter.getInstance(messageObject6.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagePlayingDidReset, Integer.valueOf(messageObject6.getId()), Boolean.valueOf(z2));
+                    this.pipSwitchingState = 0;
+                    PipRoundVideoView pipRoundVideoView2 = this.pipRoundVideoView;
+                    if (pipRoundVideoView2 != null) {
+                        pipRoundVideoView2.close(true);
+                        this.pipRoundVideoView = null;
+                    }
+                    z5 = false;
+                }
+            } else {
+                z5 = false;
+            }
+            if (z2) {
+                ApplicationLoader.applicationContext.stopService(new Intent(ApplicationLoader.applicationContext, (Class<?>) MusicPlayerService.class));
+            }
+        } else {
+            z5 = false;
+        }
+        if (!z5 && z3 && !SharedConfig.enabledRaiseTo(true)) {
+            ChatActivity chatActivity = this.raiseChat;
+            stopRaiseToEarSensors(chatActivity, false, false);
+            this.raiseChat = chatActivity;
+        }
+        if (z2) {
+            CastSync.stop();
+        }
     }
 
     public void lambda$cleanupPlayer$10(VideoPlayer videoPlayer, ValueAnimator valueAnimator) {
@@ -2674,7 +3051,103 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void loadMoreMusic() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.loadMoreMusic():void");
+        MessageObject messageObject;
+        final int i;
+        long j;
+        TLObject tLObject;
+        MessagesController.SavedMusicList savedMusicList = this.currentSavedMusicList;
+        if (savedMusicList != null) {
+            savedMusicList.load();
+            return;
+        }
+        if (this.loadingPlaylist || (messageObject = this.playingMessageObject) == null || messageObject.scheduled || DialogObject.isEncryptedDialog(messageObject.getDialogId()) || (i = this.playlistClassGuid) == 0) {
+            return;
+        }
+        PlaylistGlobalSearchParams playlistGlobalSearchParams = this.playlistGlobalSearchParams;
+        if (playlistGlobalSearchParams != null) {
+            if (playlistGlobalSearchParams.endReached || this.playlist.isEmpty()) {
+                return;
+            }
+            final int i2 = this.playlist.get(0).currentAccount;
+            if (this.playlistGlobalSearchParams.dialogId != 0) {
+                TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
+                PlaylistGlobalSearchParams playlistGlobalSearchParams2 = this.playlistGlobalSearchParams;
+                tL_messages_search.q = playlistGlobalSearchParams2.query;
+                tL_messages_search.limit = 20;
+                FiltersView.MediaFilterData mediaFilterData = playlistGlobalSearchParams2.filter;
+                tL_messages_search.filter = mediaFilterData == null ? new TLRPC.TL_inputMessagesFilterEmpty() : mediaFilterData.filter;
+                tL_messages_search.peer = AccountInstance.getInstance(i2).getMessagesController().getInputPeer(this.playlistGlobalSearchParams.dialogId);
+                ArrayList<MessageObject> arrayList = this.playlist;
+                tL_messages_search.offset_id = arrayList.get(arrayList.size() - 1).getId();
+                PlaylistGlobalSearchParams playlistGlobalSearchParams3 = this.playlistGlobalSearchParams;
+                long j2 = playlistGlobalSearchParams3.minDate;
+                if (j2 > 0) {
+                    tL_messages_search.min_date = (int) (j2 / 1000);
+                }
+                long j3 = playlistGlobalSearchParams3.maxDate;
+                tLObject = tL_messages_search;
+                if (j3 > 0) {
+                    tL_messages_search.min_date = (int) (j3 / 1000);
+                    tLObject = tL_messages_search;
+                }
+            } else {
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
+                tL_messages_searchGlobal.limit = 20;
+                PlaylistGlobalSearchParams playlistGlobalSearchParams4 = this.playlistGlobalSearchParams;
+                tL_messages_searchGlobal.q = playlistGlobalSearchParams4.query;
+                tL_messages_searchGlobal.filter = playlistGlobalSearchParams4.filter.filter;
+                ArrayList<MessageObject> arrayList2 = this.playlist;
+                MessageObject messageObject2 = arrayList2.get(arrayList2.size() - 1);
+                tL_messages_searchGlobal.offset_id = messageObject2.getId();
+                PlaylistGlobalSearchParams playlistGlobalSearchParams5 = this.playlistGlobalSearchParams;
+                tL_messages_searchGlobal.offset_rate = playlistGlobalSearchParams5.nextSearchRate;
+                tL_messages_searchGlobal.flags |= 1;
+                tL_messages_searchGlobal.folder_id = playlistGlobalSearchParams5.folderId;
+                TLRPC.Peer peer = messageObject2.messageOwner.peer_id;
+                long j4 = peer.channel_id;
+                if (j4 != 0) {
+                    j = -j4;
+                } else {
+                    j4 = peer.chat_id;
+                    if (j4 != 0) {
+                        j = -j4;
+                    } else {
+                        j = peer.user_id;
+                    }
+                }
+                tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(i2).getInputPeer(j);
+                PlaylistGlobalSearchParams playlistGlobalSearchParams6 = this.playlistGlobalSearchParams;
+                long j5 = playlistGlobalSearchParams6.minDate;
+                if (j5 > 0) {
+                    tL_messages_searchGlobal.min_date = (int) (j5 / 1000);
+                }
+                long j6 = playlistGlobalSearchParams6.maxDate;
+                tLObject = tL_messages_searchGlobal;
+                if (j6 > 0) {
+                    tL_messages_searchGlobal.min_date = (int) (j6 / 1000);
+                    tLObject = tL_messages_searchGlobal;
+                }
+            }
+            this.loadingPlaylist = true;
+            ConnectionsManager.getInstance(i2).sendRequest(tLObject, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$loadMoreMusic$12(i, i2, tLObject2, tL_error);
+                }
+            });
+            return;
+        }
+        boolean[] zArr = this.playlistEndReached;
+        if (!zArr[0]) {
+            this.loadingPlaylist = true;
+            AccountInstance.getInstance(this.playingMessageObject.currentAccount).getMediaDataController().loadMedia(this.playingMessageObject.getDialogId(), 50, this.playlistMaxId[0], 0, 4, 0L, 1, this.playlistClassGuid, 0, null, null);
+        } else {
+            if (this.playlistMergeDialogId == 0 || zArr[1]) {
+                return;
+            }
+            this.loadingPlaylist = true;
+            AccountInstance.getInstance(this.playingMessageObject.currentAccount).getMediaDataController().loadMedia(this.playlistMergeDialogId, 50, this.playlistMaxId[0], 0, 4, 0L, 1, this.playlistClassGuid, 0, null, null);
+        }
     }
 
     public void lambda$loadMoreMusic$12(final int i, final int i2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -2935,8 +3408,56 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         playMessage(arrayList.get(this.currentPlaylistNum));
     }
 
-    private boolean traversePlaylist(java.util.ArrayList<org.telegram.messenger.MessageObject> r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.traversePlaylist(java.util.ArrayList, int):boolean");
+    private boolean traversePlaylist(ArrayList<MessageObject> arrayList, int i) {
+        MessageObject messageObject;
+        int i2;
+        MessageObject messageObject2;
+        int i3 = this.currentPlaylistNum;
+        boolean z = ConnectionsManager.getInstance(UserConfig.selectedAccount).getConnectionState() == 2;
+        this.currentPlaylistNum += i;
+        if (z) {
+            while (this.currentPlaylistNum < arrayList.size() && (i2 = this.currentPlaylistNum) >= 0 && ((messageObject2 = arrayList.get(i2)) == null || !messageObject2.mediaExists)) {
+                this.currentPlaylistNum += i;
+            }
+        }
+        if (this.currentPlaylistNum < arrayList.size() && this.currentPlaylistNum >= 0) {
+            return false;
+        }
+        this.currentPlaylistNum = this.currentPlaylistNum >= arrayList.size() ? 0 : arrayList.size() - 1;
+        if (!z) {
+            return true;
+        }
+        while (true) {
+            int i4 = this.currentPlaylistNum;
+            if (i4 >= 0 && i4 < arrayList.size()) {
+                int i5 = this.currentPlaylistNum;
+                if (i <= 0) {
+                    if (i5 < i3) {
+                        break;
+                    }
+                    messageObject = arrayList.get(this.currentPlaylistNum);
+                    if (messageObject == null) {
+                    }
+                    this.currentPlaylistNum += i;
+                } else {
+                    if (i5 > i3) {
+                        break;
+                    }
+                    messageObject = arrayList.get(this.currentPlaylistNum);
+                    if (messageObject == null && messageObject.mediaExists) {
+                        break;
+                    }
+                    this.currentPlaylistNum += i;
+                }
+            } else {
+                break;
+            }
+        }
+        if (this.currentPlaylistNum < arrayList.size() && this.currentPlaylistNum >= 0) {
+            return true;
+        }
+        this.currentPlaylistNum = this.currentPlaylistNum < arrayList.size() ? arrayList.size() - 1 : 0;
+        return true;
     }
 
     protected void checkIsNextMediaFileDownloaded() {
@@ -3596,8 +4117,40 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    private void setBluetoothScoOn(boolean r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.setBluetoothScoOn(boolean):void");
+    private void setBluetoothScoOn(boolean z) {
+        AudioManager audioManager = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
+        if (SharedConfig.recordViaSco && !PermissionRequest.hasPermission("android.permission.BLUETOOTH_CONNECT")) {
+            SharedConfig.recordViaSco = false;
+            SharedConfig.saveConfig();
+        }
+        if (!(audioManager.isBluetoothScoAvailableOffCall() && SharedConfig.recordViaSco) && z) {
+            return;
+        }
+        BluetoothAdapter defaultAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (defaultAdapter != null) {
+            try {
+                if (defaultAdapter.getProfileConnectionState(1) != 2) {
+                    if (z) {
+                        return;
+                    }
+                }
+            } catch (SecurityException unused) {
+                return;
+            } catch (Throwable th) {
+                FileLog.e(th);
+                return;
+            }
+        } else if (z) {
+            return;
+        }
+        if (z && !audioManager.isBluetoothScoOn()) {
+            audioManager.startBluetoothSco();
+        } else {
+            if (z || !audioManager.isBluetoothScoOn()) {
+                return;
+            }
+            audioManager.stopBluetoothSco();
+        }
     }
 
     public boolean playMessage(MessageObject messageObject) {
@@ -3611,7 +4164,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         ?? r9;
         PowerManager.WakeLock wakeLock;
         ?? r1;
-        File file2;
         MusicListenReporter musicListenReporter;
         if (messageObject == null) {
             return false;
@@ -3653,10 +4205,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             file = null;
             zExists = false;
         } else {
-            File file3 = new File(messageObject.messageOwner.attachPath);
-            boolean zExists2 = file3.exists();
+            File file2 = new File(messageObject.messageOwner.attachPath);
+            boolean zExists2 = file2.exists();
             if (zExists2) {
-                file = file3;
+                file = file2;
                 zExists = zExists2;
             } else {
                 zExists = zExists2;
@@ -3699,7 +4251,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         boolean zIsVideo = messageObject.isVideo();
         boolean z6 = z2;
         if (messageObject.isRoundVideo() || zIsVideo) {
-            final File file4 = pathToMessage;
+            final File file3 = pathToMessage;
             FileLoader.getInstance(messageObject.currentAccount).setLoadingVideoForPlayer(messageObject.getDocument(), true);
             this.playerWasReady = false;
             boolean z7 = !zIsVideo || (messageObject.messageOwner.peer_id.channel_id == 0 && messageObject.audioProgress <= 0.1f);
@@ -3712,7 +4264,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             videoPlayer.setLooping(z);
             int i = this.playerNum + 1;
             this.playerNum = i;
-            File file5 = file;
+            File file4 = file;
             r9 = 0;
             r9 = 0;
             r9 = 0;
@@ -3744,15 +4296,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
             }
             if (z5) {
-                if (!messageObject.mediaExists && file4 != file5) {
+                if (!messageObject.mediaExists && file3 != file4) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            MediaController.lambda$playMessage$21(messageObject, file4);
+                            MediaController.lambda$playMessage$21(messageObject, file3);
                         }
                     });
                 }
-                this.videoPlayer.preparePlayer(Uri.fromFile(file4), "other");
+                this.videoPlayer.preparePlayer(Uri.fromFile(file3), "other");
             } else {
                 try {
                     int fileReference = FileLoader.getInstance(messageObject.currentAccount).getFileReference(messageObject);
@@ -3901,7 +4453,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                     this.audioPlayer.preparePlayer(Uri.fromFile(pathToMessage), "other");
                     this.isStreamingCurrentAudio = false;
-                    file2 = pathToMessage;
                 } else {
                     int fileReference2 = FileLoader.getInstance(messageObject.currentAccount).getFileReference(messageObject);
                     TLRPC.Document document2 = messageObject.getDocument();
@@ -3909,7 +4460,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     sb2.append("?account=");
                     sb2.append(messageObject.currentAccount);
                     sb2.append("&id=");
-                    file2 = pathToMessage;
                     sb2.append(document2.id);
                     sb2.append("&hash=");
                     sb2.append(document2.access_hash);
@@ -3951,7 +4501,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                 } else {
                     try {
-                        this.audioInfo = AudioInfo.getAudioInfo(file2);
+                        this.audioInfo = AudioInfo.getAudioInfo(pathToMessage);
                     } catch (Exception e2) {
                         FileLog.e(e2);
                     }
@@ -4319,8 +4869,140 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         return getProgressMs(messageObject);
     }
 
-    public org.telegram.messenger.chromecast.ChromecastMediaVariations getCurrentChromecastMedia() throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.getCurrentChromecastMedia():org.telegram.messenger.chromecast.ChromecastMediaVariations");
+    public ChromecastMediaVariations getCurrentChromecastMedia() throws Throwable {
+        FileOutputStream fileOutputStream;
+        Exception e;
+        MessageObject messageObject = this.playingMessageObject;
+        FileOutputStream fileOutputStream2 = null;
+        file = null;
+        File file = null;
+        if (messageObject == null) {
+            return null;
+        }
+        String musicTitle = messageObject.getMusicTitle();
+        String musicAuthor = this.playingMessageObject.getMusicAuthor();
+        TLRPC.Document document = this.playingMessageObject.getDocument();
+        if (this.playingMessageObject.isRoundVideo() || this.playingMessageObject.isVideo() || this.playingMessageObject.isMusic()) {
+            MessageObject messageObject2 = this.playingMessageObject;
+            File file2 = (!messageObject2.attachPathExists || messageObject2.messageOwner == null) ? null : new File(this.playingMessageObject.messageOwner.attachPath);
+            if (file2 == null || !file2.exists()) {
+                file2 = FileLoader.getInstance(this.playingMessageObject.currentAccount).getPathToMessage(this.playingMessageObject.messageOwner);
+            }
+            if (file2 != null && file2.exists()) {
+                String mimeType = this.playingMessageObject.getMimeType();
+                Uri uri = Uri.parse("file://" + file2.getAbsolutePath());
+                MediaMetadata mediaMetadata = new MediaMetadata();
+                AudioInfo audioInfo = this.audioInfo;
+                if (audioInfo != null) {
+                    if (!TextUtils.isEmpty(audioInfo.getTitle())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.TITLE", this.audioInfo.getTitle());
+                    }
+                    if (!TextUtils.isEmpty(this.audioInfo.getArtist())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.ARTIST", this.audioInfo.getArtist());
+                    }
+                    if (!TextUtils.isEmpty(this.audioInfo.getAlbum())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.ALBUM_TITLE", this.audioInfo.getAlbum());
+                    }
+                    if (!TextUtils.isEmpty(this.audioInfo.getAlbumArtist())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.ALBUM_ARTIST", this.audioInfo.getAlbumArtist());
+                    }
+                    if (!TextUtils.isEmpty(this.audioInfo.getComposer())) {
+                        mediaMetadata.putString("com.google.android.gms.cast.metadata.COMPOSER", this.audioInfo.getComposer());
+                    }
+                    if (this.audioInfo.getDisc() != 0) {
+                        mediaMetadata.putInt("com.google.android.gms.cast.metadata.DISC_NUMBER", this.audioInfo.getDisc());
+                    }
+                    if (this.audioInfo.getTrack() != 0) {
+                        mediaMetadata.putInt("com.google.android.gms.cast.metadata.TRACK_NUMBER", this.audioInfo.getTrack());
+                    }
+                    if (this.audioInfo.getCover() != null) {
+                        File coverFile = this.audioInfo.getCoverFile();
+                        if (coverFile == null || !coverFile.exists()) {
+                            File fileMakeCacheFile = StoryEntry.makeCacheFile(UserConfig.selectedAccount, "jpg");
+                            try {
+                                Bitmap cover = this.audioInfo.getCover();
+                                Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.JPEG;
+                                fileOutputStream = new FileOutputStream(fileMakeCacheFile);
+                                try {
+                                    cover.compress(compressFormat, 80, fileOutputStream);
+                                    try {
+                                        fileOutputStream.close();
+                                    } catch (Exception e2) {
+                                        e = e2;
+                                        FileLog.e(e);
+                                    }
+                                    file = fileMakeCacheFile;
+                                } catch (Exception e3) {
+                                    e = e3;
+                                    try {
+                                        FileLog.e(e);
+                                        if (fileOutputStream != null) {
+                                            try {
+                                                fileOutputStream.close();
+                                            } catch (Exception e4) {
+                                                fileMakeCacheFile = null;
+                                                e = e4;
+                                                FileLog.e(e);
+                                                file = fileMakeCacheFile;
+                                            }
+                                        }
+                                    } catch (Throwable th) {
+                                        th = th;
+                                        fileOutputStream2 = fileOutputStream;
+                                        fileOutputStream = fileOutputStream2;
+                                        if (fileOutputStream != null) {
+                                            try {
+                                                fileOutputStream.close();
+                                            } catch (Exception e5) {
+                                                FileLog.e(e5);
+                                            }
+                                        }
+                                        throw th;
+                                    }
+                                } catch (Throwable th2) {
+                                    th = th2;
+                                    if (fileOutputStream != null) {
+                                        fileOutputStream.close();
+                                    }
+                                    throw th;
+                                }
+                            } catch (Exception e6) {
+                                e = e6;
+                                fileOutputStream = null;
+                            } catch (Throwable th3) {
+                                th = th3;
+                                fileOutputStream = fileOutputStream2;
+                                if (fileOutputStream != null) {
+                                    fileOutputStream.close();
+                                }
+                                throw th;
+                            }
+                            this.audioInfo.setCoverFile(file);
+                            coverFile = file;
+                        }
+                        if (coverFile != null && coverFile.exists()) {
+                            mediaMetadata.addImage(new WebImage(Uri.parse(ChromecastFileServer.getUrlToSource(ChromecastFileServer.getHost(), ChromecastController.getInstance().setCover(coverFile)))));
+                        }
+                    }
+                }
+                return ChromecastMediaVariations.of(ChromecastMedia.Builder.fromUri(uri, "/player_" + this.playingMessageObject.getId(), mimeType).setTitle(musicTitle).setSubtitle(musicAuthor).setMetadata(mediaMetadata).build());
+            }
+        }
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(document != null ? document.id : this.playingMessageObject.getId());
+            sb.append("");
+            return videoPlayer.getCurrentChromecastMedia(sb.toString(), musicTitle, musicAuthor);
+        }
+        VideoPlayer videoPlayer2 = this.audioPlayer;
+        if (videoPlayer2 == null) {
+            return null;
+        }
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(document != null ? document.id : this.playingMessageObject.getId());
+        sb2.append("");
+        return videoPlayer2.getCurrentChromecastMedia(sb2.toString(), musicTitle, musicAuthor);
     }
 
     private boolean canStartMusicPlayerService() {
@@ -4395,7 +5077,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             stopProgressTimer();
             try {
                 if (this.audioPlayer != null) {
-                    if (z && !CastSync.isActive() && !this.playingMessageObject.isVoice() && this.playingMessageObject.getDuration() * (1.0f - this.playingMessageObject.audioProgress) > 1.0d && LaunchActivity.isResumed) {
+                    if (z && !CastSync.isActive() && !this.playingMessageObject.isVoice() && this.playingMessageObject.getDuration() * ((double) (1.0f - this.playingMessageObject.audioProgress)) > 1.0d && LaunchActivity.isResumed) {
                         ValueAnimator valueAnimator = this.audioVolumeAnimator;
                         if (valueAnimator != null) {
                             valueAnimator.removeAllUpdateListeners();
@@ -4735,13 +5417,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public void toggleRecordingPause(final boolean z) {
         this.recordQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws IllegalStateException {
+            public final void run() {
                 this.f$0.lambda$toggleRecordingPause$32(z);
             }
         });
     }
 
-    public void lambda$toggleRecordingPause$32(final boolean z) throws IllegalStateException {
+    public void lambda$toggleRecordingPause$32(final boolean z) {
         if (this.recordingAudio == null || this.recordingAudioFile == null) {
             return;
         }
@@ -4840,7 +5522,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IllegalStateException {
+            public final void run() {
                 this.f$0.lambda$toggleRecordingPause$30();
             }
         });
@@ -4851,7 +5533,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         NotificationCenter.getInstance(this.recordingCurrentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(this.recordingGuid));
     }
 
-    public void lambda$toggleRecordingPause$30() throws IllegalStateException {
+    public void lambda$toggleRecordingPause$30() {
         requestRecordAudioFocus(true);
         this.audioRecorder = new AudioRecord(0, this.sampleRate, 16, 2, this.recordBufferSize);
         this.recordStartTime = System.currentTimeMillis();
@@ -4864,17 +5546,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public void startRecording(final int i, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final int i2, boolean z, final SendMessageChatArguments sendMessageChatArguments, final long j2, final MessageSuggestionParams messageSuggestionParams) {
-        boolean z2;
-        boolean z3;
         MessageObject messageObject3 = this.playingMessageObject;
-        if (messageObject3 == null || !isPlayingMessage(messageObject3) || isMessagePaused()) {
-            z2 = z;
-            z3 = false;
-        } else {
-            z2 = z;
-            z3 = true;
-        }
-        this.manualRecording = z2;
+        boolean z2 = (messageObject3 == null || !isPlayingMessage(messageObject3) || isMessagePaused()) ? false : true;
+        this.manualRecording = z;
         requestRecordAudioFocus(true);
         try {
             this.feedbackView.performHapticFeedback(3, 2);
@@ -4883,15 +5557,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         DispatchQueue dispatchQueue = this.recordQueue;
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws IllegalStateException {
+            public final void run() {
                 this.f$0.lambda$startRecording$37(i, i2, j, j2, messageSuggestionParams, messageObject2, messageObject, storyItem, sendMessageChatArguments);
             }
         };
         this.recordStartRunnable = runnable;
-        dispatchQueue.postRunnable(runnable, z3 ? 500L : 50L);
+        dispatchQueue.postRunnable(runnable, z2 ? 500L : 50L);
     }
 
-    public void lambda$startRecording$37(final int i, final int i2, long j, long j2, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) throws IllegalStateException {
+    public void lambda$startRecording$37(final int i, final int i2, long j, long j2, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) {
         if (this.audioRecorder != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -5052,18 +5726,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         if (messageObjectRemove == null || bArr == null || messageObjectRemove.getDocument() == null) {
             return;
         }
-        int i = 0;
-        while (true) {
-            if (i >= messageObjectRemove.getDocument().attributes.size()) {
-                break;
-            }
+        for (int i = 0; i < messageObjectRemove.getDocument().attributes.size(); i++) {
             TLRPC.DocumentAttribute documentAttribute = messageObjectRemove.getDocument().attributes.get(i);
             if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
                 documentAttribute.waveform = bArr;
                 documentAttribute.flags |= 4;
                 break;
             }
-            i++;
         }
         TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
         tL_messages_messages.messages.add(messageObjectRemove.messageOwner);
@@ -5228,13 +5897,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
         this.recordQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws IllegalStateException {
+            public final void run() {
                 this.f$0.lambda$stopRecording$43(i, z, i2, z2, j);
             }
         });
     }
 
-    public void lambda$stopRecording$43(final int i, boolean z, int i2, boolean z2, long j) throws IllegalStateException {
+    public void lambda$stopRecording$43(final int i, boolean z, int i2, boolean z2, long j) {
         if (this.sendAfterDone == 3) {
             this.sendAfterDone = 0;
             stopRecordingInternal(i, z, i2, z2, j);
@@ -5430,10 +6099,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             if (file3.exists()) {
                                 int iLastIndexOf = documentFileName2.lastIndexOf(46);
                                 int i3 = 0;
-                                while (true) {
-                                    if (i3 >= 10) {
-                                        break;
-                                    }
+                                while (i3 < 10) {
                                     File file4 = new File(externalStoragePublicDirectory, iLastIndexOf != -1 ? documentFileName2.substring(0, iLastIndexOf) + "(" + (i3 + 1) + ")" + documentFileName2.substring(iLastIndexOf) : documentFileName2 + "(" + (i3 + 1) + ")");
                                     if (!file4.exists()) {
                                         file3 = file4;
@@ -5580,7 +6246,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         try {
                             MediaController.writeMotionPhoto(file, file2, outputStreamOpenOutputStream, null);
                             z = !this.cancelled;
-                        } finally {
+                        } catch (Throwable th) {
+                            try {
+                                outputStreamOpenOutputStream.close();
+                                throw th;
+                            } catch (Throwable th2) {
+                                th.addSuppressed(th2);
+                                throw th;
+                            }
                         }
                     }
                     if (outputStreamOpenOutputStream != null) {
@@ -5612,7 +6285,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         ((DownloadManager) ApplicationLoader.applicationContext.getSystemService("download")).addCompletedDownload(file4.getName(), file4.getName(), false, mimeTypeFromExtension, file4.getAbsolutePath(), file4.length(), true);
                         this.copiedFiles++;
                     }
-                } finally {
+                } catch (Throwable th3) {
+                    try {
+                        fileOutputStream.close();
+                        throw th3;
+                    } catch (Throwable th4) {
+                        th3.addSuppressed(th4);
+                        throw th3;
+                    }
                 }
             }
             float size = this.finishedProgress + (100.0f / this.messageObjects.size());
@@ -5668,8 +6348,205 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.currentAccount.getFileLoader().loadFile(document, messageObject, 3, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 0);
         }
 
-        private boolean copyFile(java.io.File r32, java.io.File r33, java.lang.String r34) throws java.lang.Throwable {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.MediaLoader.copyFile(java.io.File, java.io.File, java.lang.String):boolean");
+        private boolean copyFile(File file, File file2, String str) throws Throwable {
+            FileInputStream fileInputStream;
+            Throwable th;
+            Throwable th2;
+            String str2;
+            String mimeTypeFromExtension;
+            if (AndroidUtilities.isInternalUri(Uri.fromFile(file))) {
+                return false;
+            }
+            try {
+                try {
+                    FileInputStream fileInputStream2 = new FileInputStream(file);
+                    try {
+                        try {
+                            FileChannel channel = fileInputStream2.getChannel();
+                            try {
+                                try {
+                                    try {
+                                        FileChannel channel2 = new FileOutputStream(file2).getChannel();
+                                        try {
+                                            long size = channel.size();
+                                            try {
+                                                if (AndroidUtilities.isInternalUri(((Integer) FileDescriptor.class.getDeclaredMethod("getInt$", null).invoke(fileInputStream2.getFD(), null)).intValue())) {
+                                                    if (this.progressDialog != null) {
+                                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                                            @Override
+                                                            public final void run() {
+                                                                this.f$0.lambda$copyFile$8();
+                                                            }
+                                                        });
+                                                    }
+                                                    if (channel2 != null) {
+                                                        try {
+                                                            channel2.close();
+                                                        } catch (Throwable th3) {
+                                                            th2 = th3;
+                                                            fileInputStream = fileInputStream2;
+                                                            if (channel == null) {
+                                                                throw th2;
+                                                            }
+                                                            try {
+                                                                channel.close();
+                                                                throw th2;
+                                                            } catch (Throwable th4) {
+                                                                th2.addSuppressed(th4);
+                                                                throw th2;
+                                                            }
+                                                        }
+                                                    }
+                                                    try {
+                                                        channel.close();
+                                                        fileInputStream2.close();
+                                                        return false;
+                                                    } catch (Throwable th5) {
+                                                        th = th5;
+                                                        fileInputStream = fileInputStream2;
+                                                        try {
+                                                            fileInputStream.close();
+                                                            throw th;
+                                                        } catch (Throwable th6) {
+                                                            th.addSuppressed(th6);
+                                                            throw th;
+                                                        }
+                                                    }
+                                                }
+                                            } catch (Throwable th7) {
+                                                FileLog.e(th7);
+                                            }
+                                            long j = 0;
+                                            long j2 = 0;
+                                            while (j < size && !this.cancelled) {
+                                                fileInputStream = fileInputStream2;
+                                                long j3 = j;
+                                                try {
+                                                    channel2.transferFrom(channel, j, Math.min(4096L, size - j));
+                                                    j = j3 + 4096;
+                                                    if (j >= size || j2 <= SystemClock.elapsedRealtime() - 500) {
+                                                        long jElapsedRealtime = SystemClock.elapsedRealtime();
+                                                        final int size2 = (int) (this.finishedProgress + (((100.0f / this.messageObjects.size()) * j3) / size));
+                                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                                            @Override
+                                                            public final void run() {
+                                                                this.f$0.lambda$copyFile$9(size2);
+                                                            }
+                                                        });
+                                                        j2 = jElapsedRealtime;
+                                                    }
+                                                    fileInputStream2 = fileInputStream;
+                                                } catch (Throwable th8) {
+                                                    th = th8;
+                                                    Throwable th9 = th;
+                                                    if (channel2 == null) {
+                                                        throw th9;
+                                                    }
+                                                    try {
+                                                        channel2.close();
+                                                        throw th9;
+                                                    } catch (Throwable th10) {
+                                                        th9.addSuppressed(th10);
+                                                        throw th9;
+                                                    }
+                                                }
+                                            }
+                                            fileInputStream = fileInputStream2;
+                                            if (!this.cancelled) {
+                                                if (this.isMusic) {
+                                                    AndroidUtilities.addMediaToGallery(file2);
+                                                } else {
+                                                    DownloadManager downloadManager = (DownloadManager) ApplicationLoader.applicationContext.getSystemService("download");
+                                                    if (TextUtils.isEmpty(str)) {
+                                                        MimeTypeMap singleton = MimeTypeMap.getSingleton();
+                                                        String name = file2.getName();
+                                                        int iLastIndexOf = name.lastIndexOf(46);
+                                                        if (iLastIndexOf != -1) {
+                                                            mimeTypeFromExtension = singleton.getMimeTypeFromExtension(name.substring(iLastIndexOf + 1).toLowerCase());
+                                                            if (TextUtils.isEmpty(mimeTypeFromExtension)) {
+                                                                mimeTypeFromExtension = "text/plain";
+                                                            }
+                                                        } else {
+                                                            mimeTypeFromExtension = "text/plain";
+                                                        }
+                                                        str2 = mimeTypeFromExtension;
+                                                    } else {
+                                                        str2 = str;
+                                                    }
+                                                    downloadManager.addCompletedDownload(file2.getName(), file2.getName(), false, str2, file2.getAbsolutePath(), file2.length(), true);
+                                                }
+                                                float size3 = this.finishedProgress + (100.0f / this.messageObjects.size());
+                                                this.finishedProgress = size3;
+                                                final int i = (int) size3;
+                                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                                    @Override
+                                                    public final void run() {
+                                                        this.f$0.lambda$copyFile$10(i);
+                                                    }
+                                                });
+                                                if (channel2 != null) {
+                                                    channel2.close();
+                                                }
+                                                channel.close();
+                                                fileInputStream.close();
+                                                return true;
+                                            }
+                                            if (channel2 != null) {
+                                                channel2.close();
+                                            }
+                                            channel.close();
+                                            fileInputStream.close();
+                                            file2.delete();
+                                            return false;
+                                        } catch (Throwable th11) {
+                                            th = th11;
+                                            fileInputStream = fileInputStream2;
+                                        }
+                                    } catch (Throwable th12) {
+                                        th = th12;
+                                        th2 = th;
+                                        if (channel == null) {
+                                            throw th2;
+                                        }
+                                        channel.close();
+                                        throw th2;
+                                    }
+                                } catch (Throwable th13) {
+                                    th = th13;
+                                    fileInputStream = fileInputStream2;
+                                    th2 = th;
+                                    if (channel == null) {
+                                        throw th2;
+                                    }
+                                    channel.close();
+                                    throw th2;
+                                }
+                            } catch (Throwable th14) {
+                                th = th14;
+                            }
+                        } catch (Throwable th15) {
+                            th = th15;
+                            fileInputStream = fileInputStream2;
+                            th = th;
+                            fileInputStream.close();
+                            throw th;
+                        }
+                    } catch (Throwable th16) {
+                        th = th16;
+                        th = th;
+                        fileInputStream.close();
+                        throw th;
+                    }
+                } catch (Exception e) {
+                    e = e;
+                    FileLog.e(e);
+                }
+            } catch (Exception e2) {
+                e = e2;
+                FileLog.e(e);
+                file2.delete();
+                return false;
+            }
         }
 
         public void lambda$copyFile$8() {
@@ -5742,8 +6619,61 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         saveFile(str, context, i, str2, str3, callback, true);
     }
 
-    public static void saveFile(java.lang.String r15, android.content.Context r16, final int r17, final java.lang.String r18, final java.lang.String r19, final org.telegram.messenger.Utilities.Callback<android.net.Uri> r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.saveFile(java.lang.String, android.content.Context, int, java.lang.String, java.lang.String, org.telegram.messenger.Utilities$Callback, boolean):void");
+    public static void saveFile(String str, Context context, final int i, final String str2, final String str3, final Utilities.Callback<Uri> callback, boolean z) {
+        final File file;
+        final AlertDialog alertDialog;
+        if (str == null || context == null) {
+            return;
+        }
+        if (TextUtils.isEmpty(str)) {
+            file = null;
+        } else {
+            File file2 = new File(str);
+            if (!file2.exists() || AndroidUtilities.isInternalUri(Uri.fromFile(file2))) {
+                file = null;
+            } else {
+                file = file2;
+            }
+        }
+        if (file == null) {
+            return;
+        }
+        final boolean[] zArr = {false};
+        if (file.exists()) {
+            final boolean[] zArr2 = new boolean[1];
+            if (i != 0) {
+                try {
+                    final AlertDialog alertDialog2 = new AlertDialog(context, 2);
+                    alertDialog2.setMessage(LocaleController.getString(R.string.Loading));
+                    alertDialog2.setCanceledOnTouchOutside(false);
+                    alertDialog2.setCancelable(true);
+                    alertDialog2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            MediaController.lambda$saveFile$44(zArr, dialogInterface);
+                        }
+                    });
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            MediaController.lambda$saveFile$45(zArr2, alertDialog2);
+                        }
+                    }, 250L);
+                    alertDialog = alertDialog2;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    alertDialog = null;
+                }
+            } else {
+                alertDialog = null;
+            }
+            new Thread(new Runnable() {
+                @Override
+                public final void run() throws Throwable {
+                    MediaController.lambda$saveFile$50(i, file, str2, alertDialog, zArr, str3, callback, zArr2);
+                }
+            }).start();
+        }
     }
 
     public static void lambda$saveFile$44(boolean[] zArr, DialogInterface dialogInterface) {
@@ -5757,8 +6687,279 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         alertDialog.show();
     }
 
-    public static void lambda$saveFile$50(int r24, java.io.File r25, java.lang.String r26, final org.telegram.ui.ActionBar.AlertDialog r27, boolean[] r28, java.lang.String r29, final org.telegram.messenger.Utilities.Callback r30, final boolean[] r31) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$saveFile$50(int, java.io.File, java.lang.String, org.telegram.ui.ActionBar.AlertDialog, boolean[], java.lang.String, org.telegram.messenger.Utilities$Callback, boolean[]):void");
+    public static void lambda$saveFile$50(int i, File file, String str, final AlertDialog alertDialog, boolean[] zArr, String str2, final Utilities.Callback callback, final boolean[] zArr2) throws Throwable {
+        File externalStoragePublicDirectory;
+        File file2;
+        String str3;
+        char c;
+        char c2;
+        ?? r26;
+        final Uri uriFromFile;
+        Throwable th;
+        Throwable th2;
+        Throwable th3;
+        long jCurrentTimeMillis;
+        try {
+            char c3 = 0;
+            if (Build.VERSION.SDK_INT >= 29) {
+                uriFromFile = saveFileInternal(i, file, null);
+                if (uriFromFile != null) {
+                    c3 = 1;
+                }
+            } else {
+                if (i == 0) {
+                    File file3 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Telegram");
+                    file3.mkdirs();
+                    file2 = new File(file3, AndroidUtilities.generateFileName(0, FileLoader.getFileExtension(file)));
+                } else if (i == 1) {
+                    File file4 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), "Telegram");
+                    file4.mkdirs();
+                    file2 = new File(file4, AndroidUtilities.generateFileName(1, FileLoader.getFileExtension(file)));
+                } else {
+                    if (i == 2) {
+                        externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                    } else {
+                        externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+                    }
+                    File file5 = new File(externalStoragePublicDirectory, "Telegram");
+                    file5.mkdirs();
+                    file2 = new File(file5, (String) str);
+                    if (file2.exists()) {
+                        int iLastIndexOf = str.lastIndexOf(46);
+                        int i2 = 0;
+                        while (i2 < 10) {
+                            if (iLastIndexOf != -1) {
+                                str3 = str.substring(0, iLastIndexOf) + "(" + (i2 + 1) + ")" + str.substring(iLastIndexOf);
+                            } else {
+                                str3 = ((String) str) + "(" + (i2 + 1) + ")";
+                            }
+                            File file6 = new File(file5, str3);
+                            if (!file6.exists()) {
+                                file2 = file6;
+                                break;
+                            } else {
+                                i2++;
+                                file2 = file6;
+                            }
+                        }
+                    }
+                }
+                if (!file2.exists()) {
+                    file2.createNewFile();
+                }
+                long jCurrentTimeMillis2 = System.currentTimeMillis() - 500;
+                try {
+                    try {
+                        FileInputStream fileInputStream = new FileInputStream(file);
+                        try {
+                            try {
+                                FileChannel channel = fileInputStream.getChannel();
+                                try {
+                                    try {
+                                        FileChannel channel2 = new FileOutputStream(file2).getChannel();
+                                        try {
+                                            long size = channel.size();
+                                            try {
+                                                if (AndroidUtilities.isInternalUri(((Integer) FileDescriptor.class.getDeclaredMethod("getInt$", null).invoke(fileInputStream.getFD(), null)).intValue())) {
+                                                    if (alertDialog != null) {
+                                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                                            @Override
+                                                            public final void run() {
+                                                                MediaController.lambda$saveFile$46(alertDialog);
+                                                            }
+                                                        });
+                                                    }
+                                                    if (channel2 != null) {
+                                                        try {
+                                                            channel2.close();
+                                                        } catch (Throwable th4) {
+                                                            th2 = th4;
+                                                            str = file2;
+                                                            if (channel == null) {
+                                                                throw th2;
+                                                            }
+                                                            try {
+                                                                channel.close();
+                                                                throw th2;
+                                                            } catch (Throwable th5) {
+                                                                th2.addSuppressed(th5);
+                                                                throw th2;
+                                                            }
+                                                        }
+                                                    }
+                                                    try {
+                                                        channel.close();
+                                                        fileInputStream.close();
+                                                        return;
+                                                    } catch (Throwable th6) {
+                                                        th = th6;
+                                                        str = file2;
+                                                        try {
+                                                            fileInputStream.close();
+                                                            throw th;
+                                                        } catch (Throwable th7) {
+                                                            th.addSuppressed(th7);
+                                                            throw th;
+                                                        }
+                                                    }
+                                                }
+                                            } catch (Throwable th8) {
+                                                FileLog.e(th8);
+                                            }
+                                            str = file2;
+                                            long j = 0;
+                                            while (j < size) {
+                                                try {
+                                                    if (zArr[c3]) {
+                                                        break;
+                                                    }
+                                                    long j2 = jCurrentTimeMillis2;
+                                                    long j3 = size;
+                                                    channel2.transferFrom(channel, j, Math.min(4096L, size - j));
+                                                    if (alertDialog == null || j2 > System.currentTimeMillis() - 500) {
+                                                        jCurrentTimeMillis = j2;
+                                                    } else {
+                                                        jCurrentTimeMillis = System.currentTimeMillis();
+                                                        final int i3 = (int) ((j / j3) * 100.0f);
+                                                        AndroidUtilities.runOnUIThread(new Runnable() {
+                                                            @Override
+                                                            public final void run() {
+                                                                MediaController.lambda$saveFile$47(alertDialog, i3);
+                                                            }
+                                                        });
+                                                    }
+                                                    j += 4096;
+                                                    jCurrentTimeMillis2 = jCurrentTimeMillis;
+                                                    size = j3;
+                                                    c3 = 0;
+                                                } catch (Throwable th9) {
+                                                    th = th9;
+                                                    th3 = th;
+                                                    if (channel2 != null) {
+                                                        throw th3;
+                                                    }
+                                                    try {
+                                                        channel2.close();
+                                                        throw th3;
+                                                    } catch (Throwable th10) {
+                                                        th3.addSuppressed(th10);
+                                                        throw th3;
+                                                    }
+                                                    if (channel == null) {
+                                                        throw th2;
+                                                    }
+                                                    channel.close();
+                                                    throw th2;
+                                                }
+                                            }
+                                            if (channel2 != null) {
+                                                channel2.close();
+                                            }
+                                            channel.close();
+                                            fileInputStream.close();
+                                            c = 0;
+                                            c2 = 1;
+                                            r26 = str;
+                                        } catch (Throwable th11) {
+                                            th = th11;
+                                            str = file2;
+                                            th3 = th;
+                                            if (channel2 != null) {
+                                                throw th3;
+                                            }
+                                            channel2.close();
+                                            throw th3;
+                                            if (channel == null) {
+                                                throw th2;
+                                            }
+                                            channel.close();
+                                            throw th2;
+                                        }
+                                    } catch (Throwable th12) {
+                                        th = th12;
+                                        th2 = th;
+                                        str = str;
+                                        if (channel == null) {
+                                            throw th2;
+                                        }
+                                        channel.close();
+                                        throw th2;
+                                    }
+                                } catch (Throwable th13) {
+                                    th = th13;
+                                    str = file2;
+                                    th2 = th;
+                                    str = str;
+                                    if (channel == null) {
+                                        throw th2;
+                                    }
+                                    channel.close();
+                                    throw th2;
+                                }
+                            } catch (Throwable th14) {
+                                th = th14;
+                                th = th;
+                                str = str;
+                                fileInputStream.close();
+                                throw th;
+                            }
+                        } catch (Throwable th15) {
+                            th = th15;
+                            str = file2;
+                            th = th;
+                            str = str;
+                            fileInputStream.close();
+                            throw th;
+                        }
+                    } catch (Exception e) {
+                        e = e;
+                        FileLog.e(e);
+                        c = 0;
+                        c2 = 0;
+                        r26 = str;
+                    }
+                } catch (Exception e2) {
+                    e = e2;
+                    str = file2;
+                    FileLog.e(e);
+                    c = 0;
+                    c2 = 0;
+                    r26 = str;
+                }
+                if (zArr[c]) {
+                    r26.delete();
+                    c3 = 0;
+                } else {
+                    c3 = c2;
+                }
+                if (c3 != 0) {
+                    if (i == 2) {
+                        ((DownloadManager) ApplicationLoader.applicationContext.getSystemService("download")).addCompletedDownload(r26.getName(), r26.getName(), false, str2, r26.getAbsolutePath(), r26.length(), true);
+                    } else {
+                        AndroidUtilities.addMediaToGallery(r26.getAbsoluteFile());
+                    }
+                }
+                uriFromFile = Uri.fromFile(r26);
+            }
+            if (c3 != 0 && callback != null) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        callback.run(uriFromFile);
+                    }
+                });
+            }
+        } catch (Exception e3) {
+            FileLog.e(e3);
+        }
+        if (alertDialog != null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MediaController.lambda$saveFile$49(alertDialog, zArr2);
+                }
+            });
+        }
     }
 
     public static void lambda$saveFile$46(AlertDialog alertDialog) {
@@ -5829,7 +7030,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
         new Thread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 MediaController.lambda$saveFile$55(file, file2, zArr, callback, alertDialog, zArr2);
             }
         }).start();
@@ -5846,7 +7047,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         alertDialog.show();
     }
 
-    public static void lambda$saveFile$55(File file, File file2, boolean[] zArr, final Utilities.Callback callback, final AlertDialog alertDialog, final boolean[] zArr2) throws IOException {
+    public static void lambda$saveFile$55(File file, File file2, boolean[] zArr, final Utilities.Callback callback, final AlertDialog alertDialog, final boolean[] zArr2) {
         final Uri uriFromFile = null;
         boolean z = false;
         try {
@@ -5865,7 +7066,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         try {
                             writeMotionPhoto(file, file2, outputStreamOpenOutputStream, zArr);
                             z = !zArr[0];
-                        } finally {
+                        } catch (Throwable th) {
+                            try {
+                                outputStreamOpenOutputStream.close();
+                                throw th;
+                            } catch (Throwable th2) {
+                                th.addSuppressed(th2);
+                                throw th;
+                            }
                         }
                     }
                     if (outputStreamOpenOutputStream != null) {
@@ -5898,7 +7106,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                         uriFromFile = Uri.fromFile(file4);
                         z = true;
                     }
-                } finally {
+                } catch (Throwable th3) {
+                    try {
+                        fileOutputStream.close();
+                        throw th3;
+                    } catch (Throwable th4) {
+                        th3.addSuppressed(th4);
+                        throw th3;
+                    }
                 }
             }
         } catch (Exception e) {
@@ -5969,28 +7184,40 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                 } else {
                     fileInputStream.close();
-                    fileInputStream = new FileInputStream(file2);
+                    FileInputStream fileInputStream2 = new FileInputStream(file2);
                     try {
                         byte[] bArr2 = new byte[65536];
                         while (true) {
-                            int i4 = fileInputStream.read(bArr2);
+                            int i4 = fileInputStream2.read(bArr2);
                             if (i4 > 0) {
                                 if (zArr == null || !zArr[0]) {
                                     outputStream.write(bArr2, 0, i4);
                                 } else {
-                                    fileInputStream.close();
+                                    fileInputStream2.close();
                                     return;
                                 }
                             } else {
-                                fileInputStream.close();
+                                fileInputStream2.close();
                                 return;
                             }
                         }
-                    } finally {
+                    } catch (Throwable th) {
+                        try {
+                            fileInputStream2.close();
+                        } catch (Throwable th2) {
+                            th.addSuppressed(th2);
+                        }
+                        throw th;
                     }
                 }
             }
-        } finally {
+        } catch (Throwable th3) {
+            try {
+                fileInputStream.close();
+            } catch (Throwable th4) {
+                th3.addSuppressed(th4);
+            }
+            throw th3;
         }
     }
 
@@ -5998,7 +7225,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         return "<?xpacket begin=\"\ufeff\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?><x:xmpmeta xmlns:x=\"adobe:ns:meta/\"><rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"><rdf:Description rdf:about=\"\" xmlns:GCamera=\"http://ns.google.com/photos/1.0/camera/\" xmlns:Container=\"http://ns.google.com/photos/1.0/container/\" xmlns:Item=\"http://ns.google.com/photos/1.0/container/item/\" GCamera:MotionPhoto=\"1\" GCamera:MotionPhotoVersion=\"1\" GCamera:MotionPhotoPresentationTimestampUs=\"0\"><Container:Directory><rdf:Seq><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"image/jpeg\" Item:Semantic=\"Primary\" Item:Length=\"0\" Item:Padding=\"0\"/></rdf:li><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"video/mp4\" Item:Semantic=\"MotionPhoto\" Item:Length=\"" + j + "\" Item:Padding=\"0\"/></rdf:li></rdf:Seq></Container:Directory></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end=\"w\"?>";
     }
 
-    public static Uri saveFileInternal(int i, File file, String str) throws IOException {
+    public static Uri saveFileInternal(int i, File file, String str) {
         Uri contentUri;
         try {
             ContentValues contentValues = new ContentValues();
@@ -6056,11 +7283,85 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static java.lang.String getStickerExt(android.net.Uri r8) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.getStickerExt(android.net.Uri):java.lang.String");
+    public static String getStickerExt(Uri uri) throws Throwable {
+        InputStream fileInputStream;
+        InputStream inputStream = null;
+        try {
+            fileInputStream = ApplicationLoader.applicationContext.getContentResolver().openInputStream(uri);
+        } catch (Exception unused) {
+            fileInputStream = null;
+        } catch (Throwable th) {
+            th = th;
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            throw th;
+        }
+        if (fileInputStream == null) {
+            try {
+                try {
+                    File file = new File(uri.getPath());
+                    if (file.exists()) {
+                        fileInputStream = new FileInputStream(file);
+                    }
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                    if (fileInputStream != null) {
+                        fileInputStream.close();
+                    }
+                    return null;
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                inputStream = fileInputStream;
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+                throw th;
+            }
+        }
+        byte[] bArr = new byte[12];
+        if (fileInputStream.read(bArr, 0, 12) == 12) {
+            byte b = bArr[0];
+            if (b == -119 && bArr[1] == 80 && bArr[2] == 78 && bArr[3] == 71 && bArr[4] == 13 && bArr[5] == 10 && bArr[6] == 26 && bArr[7] == 10) {
+                try {
+                    fileInputStream.close();
+                } catch (Exception e3) {
+                    FileLog.e(e3);
+                }
+                return "png";
+            }
+            if (b == 31 && bArr[1] == -117) {
+                try {
+                    fileInputStream.close();
+                } catch (Exception e4) {
+                    FileLog.e(e4);
+                }
+                return "tgs";
+            }
+            String lowerCase = new String(bArr).toLowerCase();
+            if (lowerCase.startsWith("riff") && lowerCase.endsWith("webp")) {
+                try {
+                    fileInputStream.close();
+                } catch (Exception e5) {
+                    FileLog.e(e5);
+                }
+                return "webp";
+            }
+        }
+        try {
+            fileInputStream.close();
+        } catch (Exception e6) {
+            FileLog.e(e6);
+        }
+        return null;
     }
 
-    public static boolean isWebp(Uri uri) throws IOException {
+    public static boolean isWebp(Uri uri) {
         InputStream inputStreamOpenInputStream = null;
         try {
             try {
@@ -6068,15 +7369,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 byte[] bArr = new byte[12];
                 if (inputStreamOpenInputStream.read(bArr, 0, 12) == 12) {
                     String lowerCase = new String(bArr).toLowerCase();
-                    if (lowerCase.startsWith("riff")) {
-                        if (lowerCase.endsWith("webp")) {
-                            try {
-                                inputStreamOpenInputStream.close();
-                                return true;
-                            } catch (Exception e) {
-                                FileLog.e(e);
-                                return true;
-                            }
+                    if (lowerCase.startsWith("riff") && lowerCase.endsWith("webp")) {
+                        try {
+                            inputStreamOpenInputStream.close();
+                            return true;
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            return true;
                         }
                     }
                 }
@@ -6084,6 +7383,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 FileLog.e(e2);
                 if (inputStreamOpenInputStream != null) {
                 }
+                return false;
             }
             try {
                 inputStreamOpenInputStream.close();
@@ -6103,27 +7403,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public static boolean isGif(Uri uri) throws IOException {
+    public static boolean isGif(Uri uri) {
         InputStream inputStreamOpenInputStream = null;
         try {
             try {
                 inputStreamOpenInputStream = ApplicationLoader.applicationContext.getContentResolver().openInputStream(uri);
                 byte[] bArr = new byte[3];
-                if (inputStreamOpenInputStream.read(bArr, 0, 3) == 3) {
-                    if (new String(bArr).equalsIgnoreCase("gif")) {
-                        try {
-                            inputStreamOpenInputStream.close();
-                            return true;
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            return true;
-                        }
+                if (inputStreamOpenInputStream.read(bArr, 0, 3) == 3 && new String(bArr).equalsIgnoreCase("gif")) {
+                    try {
+                        inputStreamOpenInputStream.close();
+                        return true;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return true;
                     }
                 }
             } catch (Exception e2) {
                 FileLog.e(e2);
                 if (inputStreamOpenInputStream != null) {
                 }
+                return false;
             }
             try {
                 inputStreamOpenInputStream.close();
@@ -6157,7 +7456,15 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             string = cursorQuery.getString(cursorQuery.getColumnIndex("_display_name"));
                         }
                         cursorQuery.close();
-                    } finally {
+                    } catch (Throwable th) {
+                        if (cursorQuery != null) {
+                            try {
+                                cursorQuery.close();
+                            } catch (Throwable th2) {
+                                th.addSuppressed(th2);
+                            }
+                        }
+                        throw th;
                     }
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -6209,8 +7516,235 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         return copyFileToCache(uri, str, -1L);
     }
 
-    public static java.lang.String copyFileToCache(android.net.Uri r14, java.lang.String r15, long r16) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.copyFileToCache(android.net.Uri, java.lang.String, long):java.lang.String");
+    public static String copyFileToCache(Uri uri, String str, long j) throws Throwable {
+        File sharingDirectory;
+        FileOutputStream fileOutputStream;
+        InputStream inputStreamOpenInputStream;
+        Throwable th;
+        File file;
+        int i = 0;
+        InputStream inputStream = null;
+        try {
+            String strFixFileName = FileLoader.fixFileName(getFileName(uri));
+            if (strFixFileName == null) {
+                int lastLocalId = SharedConfig.getLastLocalId();
+                SharedConfig.saveConfig();
+                strFixFileName = String.format(Locale.US, "%d.%s", Integer.valueOf(lastLocalId), str);
+            }
+            sharingDirectory = AndroidUtilities.getSharingDirectory();
+            try {
+                sharingDirectory.mkdirs();
+                if (AndroidUtilities.isInternalUri(Uri.fromFile(sharingDirectory))) {
+                    if (j > 0 && 0 > j) {
+                        sharingDirectory.delete();
+                    }
+                    return null;
+                }
+                int i2 = 0;
+                do {
+                    File sharingDirectory2 = AndroidUtilities.getSharingDirectory();
+                    if (i2 == 0) {
+                        file = new File(sharingDirectory2, strFixFileName);
+                    } else {
+                        int iLastIndexOf = strFixFileName.lastIndexOf(".");
+                        if (iLastIndexOf > 0) {
+                            sharingDirectory = new File(sharingDirectory2, strFixFileName.substring(0, iLastIndexOf) + " (" + i2 + ")" + strFixFileName.substring(iLastIndexOf));
+                        } else {
+                            file = new File(sharingDirectory2, strFixFileName + " (" + i2 + ")");
+                        }
+                        i2++;
+                    }
+                    sharingDirectory = file;
+                    i2++;
+                } while (sharingDirectory.exists());
+                inputStreamOpenInputStream = ApplicationLoader.applicationContext.getContentResolver().openInputStream(uri);
+                try {
+                    if (inputStreamOpenInputStream instanceof FileInputStream) {
+                        try {
+                            if (AndroidUtilities.isInternalUri(((Integer) FileDescriptor.class.getDeclaredMethod("getInt$", null).invoke(((FileInputStream) inputStreamOpenInputStream).getFD(), null)).intValue())) {
+                                if (inputStreamOpenInputStream != null) {
+                                    try {
+                                        inputStreamOpenInputStream.close();
+                                    } catch (Exception e) {
+                                        FileLog.e(e);
+                                    }
+                                }
+                                if (j > 0 && 0 > j) {
+                                    sharingDirectory.delete();
+                                }
+                                return null;
+                            }
+                        } catch (Throwable th2) {
+                            FileLog.e(th2);
+                        }
+                    }
+                    fileOutputStream = new FileOutputStream(sharingDirectory);
+                    try {
+                        byte[] bArr = new byte[20480];
+                        int i3 = 0;
+                        while (true) {
+                            try {
+                                int i4 = inputStreamOpenInputStream.read(bArr);
+                                if (i4 == -1) {
+                                    String absolutePath = sharingDirectory.getAbsolutePath();
+                                    try {
+                                        inputStreamOpenInputStream.close();
+                                    } catch (Exception e2) {
+                                        FileLog.e(e2);
+                                    }
+                                    try {
+                                        fileOutputStream.close();
+                                    } catch (Exception e3) {
+                                        FileLog.e(e3);
+                                    }
+                                    if (j > 0 && i3 > j) {
+                                        sharingDirectory.delete();
+                                    }
+                                    return absolutePath;
+                                }
+                                fileOutputStream.write(bArr, 0, i4);
+                                i3 += i4;
+                                if (j > 0) {
+                                    long j2 = i3;
+                                    if (j2 > j) {
+                                        try {
+                                            inputStreamOpenInputStream.close();
+                                        } catch (Exception e4) {
+                                            FileLog.e(e4);
+                                        }
+                                        try {
+                                            fileOutputStream.close();
+                                        } catch (Exception e5) {
+                                            FileLog.e(e5);
+                                        }
+                                        if (j > 0 && j2 > j) {
+                                            sharingDirectory.delete();
+                                        }
+                                        return null;
+                                    }
+                                }
+                            } catch (Exception e6) {
+                                e = e6;
+                                i = i3;
+                            } catch (Throwable th3) {
+                                th = th3;
+                                i = i3;
+                                int i5 = i;
+                                th = th;
+                                if (inputStreamOpenInputStream != null) {
+                                    try {
+                                        inputStreamOpenInputStream.close();
+                                    } catch (Exception e7) {
+                                        FileLog.e(e7);
+                                    }
+                                }
+                                if (fileOutputStream != null) {
+                                    try {
+                                        fileOutputStream.close();
+                                    } catch (Exception e8) {
+                                        FileLog.e(e8);
+                                    }
+                                }
+                                if (j > 0) {
+                                    throw th;
+                                }
+                                throw th;
+                            }
+                        }
+                    } catch (Exception e9) {
+                        e = e9;
+                    } catch (Throwable th4) {
+                        th = th4;
+                    }
+                } catch (Exception e10) {
+                    e = e10;
+                    fileOutputStream = null;
+                } catch (Throwable th5) {
+                    th = th5;
+                    fileOutputStream = null;
+                    inputStream = inputStreamOpenInputStream;
+                    inputStreamOpenInputStream = inputStream;
+                    int i6 = i;
+                    th = th;
+                    if (inputStreamOpenInputStream != null) {
+                        inputStreamOpenInputStream.close();
+                    }
+                    if (fileOutputStream != null) {
+                        fileOutputStream.close();
+                    }
+                    if (j > 0) {
+                        throw th;
+                    }
+                    throw th;
+                }
+            } catch (Exception e11) {
+                e = e11;
+                inputStreamOpenInputStream = null;
+            } catch (Throwable th6) {
+                th = th6;
+                fileOutputStream = null;
+                inputStreamOpenInputStream = inputStream;
+                int i7 = i;
+                th = th;
+                if (inputStreamOpenInputStream != null) {
+                    inputStreamOpenInputStream.close();
+                }
+                if (fileOutputStream != null) {
+                    fileOutputStream.close();
+                }
+                if (j > 0) {
+                    throw th;
+                }
+                throw th;
+            }
+        } catch (Exception e12) {
+            e = e12;
+            inputStreamOpenInputStream = null;
+            sharingDirectory = null;
+        } catch (Throwable th7) {
+            th = th7;
+            sharingDirectory = null;
+            fileOutputStream = null;
+        }
+        fileOutputStream = null;
+        try {
+            FileLog.e(e);
+            if (inputStreamOpenInputStream != null) {
+                try {
+                    inputStreamOpenInputStream.close();
+                } catch (Exception e13) {
+                    FileLog.e(e13);
+                }
+            }
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (Exception e14) {
+                    FileLog.e(e14);
+                }
+            }
+            if (j > 0 && i > j) {
+                sharingDirectory.delete();
+            }
+            return null;
+        } catch (Throwable th8) {
+            th = th8;
+            inputStream = inputStreamOpenInputStream;
+            inputStreamOpenInputStream = inputStream;
+            int i8 = i;
+            th = th;
+            if (inputStreamOpenInputStream != null) {
+                inputStreamOpenInputStream.close();
+            }
+            if (fileOutputStream != null) {
+                fileOutputStream.close();
+            }
+            if (j > 0 || i8 <= j) {
+                throw th;
+            }
+            sharingDirectory.delete();
+            throw th;
+        }
     }
 
     public static void loadGalleryPhotosAlbums(final int i) {
@@ -6224,8 +7758,2654 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         thread.start();
     }
 
-    public static void lambda$loadGalleryPhotosAlbums$57(int r55) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$loadGalleryPhotosAlbums$57(int):void");
+    public static void lambda$loadGalleryPhotosAlbums$57(int i) {
+        SparseArray sparseArray;
+        String string;
+        ArrayList arrayList;
+        Cursor cursorQuery;
+        AlbumEntry albumEntry;
+        AlbumEntry albumEntry2;
+        Object objValueOf;
+        AlbumEntry albumEntry3;
+        AlbumEntry albumEntry4;
+        AlbumEntry albumEntry5;
+        int i2;
+        int i3;
+        String str;
+        int columnIndex;
+        int columnIndex2;
+        int columnIndex3;
+        int columnIndex4;
+        String str2;
+        int columnIndex5;
+        int columnIndex6;
+        int columnIndex7;
+        int columnIndex8;
+        int columnIndex9;
+        String string2;
+        int i4;
+        String string3;
+        PhotoEntry photoEntry;
+        AlbumEntry albumEntry6;
+        AlbumEntry albumEntry7;
+        int i5;
+        String str3;
+        int columnIndex10;
+        int columnIndex11;
+        int columnIndex12;
+        int columnIndex13;
+        String str4;
+        int columnIndex14;
+        int columnIndex15;
+        int columnIndex16;
+        int columnIndex17;
+        int columnIndex18;
+        Integer numValueOf;
+        String string4;
+        int i6;
+        String string5;
+        PhotoEntry photoEntry2;
+        AlbumEntry albumEntry8;
+        AlbumEntry albumEntry9;
+        AlbumEntry albumEntry10;
+        AlbumEntry albumEntry11;
+        AlbumEntry albumEntry12;
+        SparseArray sparseArray2;
+        AlbumEntry albumEntry13;
+        String str5 = "_size";
+        String str6 = "height";
+        String str7 = "width";
+        String str8 = "orientation";
+        String str9 = "_data";
+        String str10 = "bucket_display_name";
+        String str11 = "bucket_id";
+        String str12 = "_id";
+        ArrayList arrayList2 = new ArrayList();
+        ArrayList arrayList3 = new ArrayList();
+        ArrayList arrayList4 = arrayList2;
+        SparseArray sparseArray3 = new SparseArray();
+        SparseArray sparseArray4 = new SparseArray();
+        AlbumEntry albumEntry14 = null;
+        try {
+            StringBuilder sb = new StringBuilder();
+            sparseArray = sparseArray4;
+            try {
+                sb.append(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath());
+                sb.append("/Camera/");
+                string = sb.toString();
+            } catch (Exception e) {
+                e = e;
+                FileLog.e(e);
+                string = null;
+            }
+        } catch (Exception e2) {
+            e = e2;
+            sparseArray = sparseArray4;
+        }
+        try {
+            Context context = ApplicationLoader.applicationContext;
+            int i7 = Build.VERSION.SDK_INT;
+            ArrayList arrayList5 = arrayList3;
+            if (i7 < 23) {
+                try {
+                    ContentResolver contentResolver = context.getContentResolver();
+                    Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                    String[] strArr = projectionPhotos;
+                    StringBuilder sb2 = new StringBuilder();
+                    if (i7 > 28) {
+                        str3 = "date_modified";
+                    } else {
+                        str3 = "datetaken";
+                    }
+                    sb2.append(str3);
+                    sb2.append(" DESC");
+                    cursorQuery = MediaStore.Images.Media.query(contentResolver, uri, strArr, null, null, sb2.toString());
+                    if (cursorQuery != null) {
+                        str5 = "_size";
+                        str6 = "height";
+                        str7 = "width";
+                        str8 = "orientation";
+                        str9 = "_data";
+                        str10 = "bucket_display_name";
+                        str11 = "bucket_id";
+                        str12 = "_id";
+                        arrayList4 = arrayList4;
+                        sparseArray3 = sparseArray3;
+                        string = string;
+                        arrayList = arrayList5;
+                        albumEntry = null;
+                        albumEntry2 = null;
+                        objValueOf = null;
+                    } else {
+                        try {
+                            columnIndex10 = cursorQuery.getColumnIndex("_id");
+                            str12 = "_id";
+                            try {
+                                columnIndex11 = cursorQuery.getColumnIndex("bucket_id");
+                                str11 = "bucket_id";
+                                try {
+                                    columnIndex12 = cursorQuery.getColumnIndex("bucket_display_name");
+                                    str10 = "bucket_display_name";
+                                    try {
+                                        columnIndex13 = cursorQuery.getColumnIndex("_data");
+                                        str9 = "_data";
+                                        if (i7 > 28) {
+                                            str4 = "date_modified";
+                                        } else {
+                                            str4 = "datetaken";
+                                        }
+                                        try {
+                                            columnIndex14 = cursorQuery.getColumnIndex(str4);
+                                            columnIndex15 = cursorQuery.getColumnIndex("orientation");
+                                            str8 = "orientation";
+                                            try {
+                                                columnIndex16 = cursorQuery.getColumnIndex("width");
+                                                str7 = "width";
+                                                try {
+                                                    columnIndex17 = cursorQuery.getColumnIndex("height");
+                                                    str6 = "height";
+                                                    try {
+                                                        columnIndex18 = cursorQuery.getColumnIndex("_size");
+                                                        albumEntry = null;
+                                                        albumEntry2 = null;
+                                                        objValueOf = null;
+                                                        numValueOf = null;
+                                                        while (cursorQuery.moveToNext()) {
+                                                            try {
+                                                                str5 = str5;
+                                                                try {
+                                                                    string4 = cursorQuery.getString(columnIndex13);
+                                                                    if (TextUtils.isEmpty(string4)) {
+                                                                        int i8 = cursorQuery.getInt(columnIndex10);
+                                                                        int i9 = columnIndex10;
+                                                                        i6 = cursorQuery.getInt(columnIndex11);
+                                                                        int i10 = columnIndex13;
+                                                                        string5 = cursorQuery.getString(columnIndex12);
+                                                                        int i11 = columnIndex18;
+                                                                        photoEntry2 = new PhotoEntry(i6, i8, cursorQuery.getLong(columnIndex14), string4, cursorQuery.getInt(columnIndex15), 0, false, cursorQuery.getInt(columnIndex16), cursorQuery.getInt(columnIndex17), cursorQuery.getLong(columnIndex18));
+                                                                        if (albumEntry == null) {
+                                                                            try {
+                                                                                albumEntry8 = new AlbumEntry(0, LocaleController.getString(R.string.AllPhotos), photoEntry2);
+                                                                                arrayList = arrayList5;
+                                                                                try {
+                                                                                    arrayList.add(0, albumEntry8);
+                                                                                } catch (Throwable th) {
+                                                                                    th = th;
+                                                                                    albumEntry = albumEntry8;
+                                                                                    arrayList4 = arrayList4;
+                                                                                    sparseArray3 = sparseArray3;
+                                                                                    string = string;
+                                                                                    try {
+                                                                                        FileLog.e(th);
+                                                                                        if (cursorQuery != null) {
+                                                                                            try {
+                                                                                                cursorQuery.close();
+                                                                                            } catch (Exception e3) {
+                                                                                                FileLog.e(e3);
+                                                                                            }
+                                                                                        }
+                                                                                        albumEntry3 = albumEntry;
+                                                                                        Context context2 = ApplicationLoader.applicationContext;
+                                                                                        i3 = Build.VERSION.SDK_INT;
+                                                                                        if (i3 < 23) {
+                                                                                            ContentResolver contentResolver2 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                            Uri uri2 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                            String[] strArr2 = projectionVideo;
+                                                                                            StringBuilder sb3 = new StringBuilder();
+                                                                                            if (i3 > 28) {
+                                                                                                str = "date_modified";
+                                                                                            } else {
+                                                                                                str = "datetaken";
+                                                                                            }
+                                                                                            sb3.append(str);
+                                                                                            sb3.append(" DESC");
+                                                                                            cursorQuery = MediaStore.Images.Media.query(contentResolver2, uri2, strArr2, null, null, sb3.toString());
+                                                                                            if (cursorQuery != null) {
+                                                                                                columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                                columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                                columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                                columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                                if (i3 > 28) {
+                                                                                                    str2 = "date_modified";
+                                                                                                } else {
+                                                                                                    str2 = "datetaken";
+                                                                                                }
+                                                                                                columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                                columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                                columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                                columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                                columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                                cursorQuery.getColumnIndex(str8);
+                                                                                                while (cursorQuery.moveToNext()) {
+                                                                                                    string2 = cursorQuery.getString(columnIndex4);
+                                                                                                    if (TextUtils.isEmpty(string2)) {
+                                                                                                        int i12 = cursorQuery.getInt(columnIndex);
+                                                                                                        i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                        int i13 = columnIndex;
+                                                                                                        string3 = cursorQuery.getString(columnIndex3);
+                                                                                                        int i14 = columnIndex5;
+                                                                                                        int i15 = columnIndex3;
+                                                                                                        int i16 = columnIndex4;
+                                                                                                        photoEntry = new PhotoEntry(i4, i12, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                        if (albumEntry14 == null) {
+                                                                                                            albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                            i5 = 1;
+                                                                                                            try {
+                                                                                                                albumEntry4.videoOnly = true;
+                                                                                                                if (albumEntry2 != null) {
+                                                                                                                    i5 = 0;
+                                                                                                                }
+                                                                                                                if (albumEntry3 != null) {
+                                                                                                                    i5++;
+                                                                                                                }
+                                                                                                                arrayList4.add(i5, albumEntry4);
+                                                                                                            } catch (Throwable th2) {
+                                                                                                                th = th2;
+                                                                                                                try {
+                                                                                                                    FileLog.e(th);
+                                                                                                                    if (cursorQuery != null) {
+                                                                                                                        try {
+                                                                                                                            cursorQuery.close();
+                                                                                                                        } catch (Exception e4) {
+                                                                                                                            e = e4;
+                                                                                                                            albumEntry14 = albumEntry4;
+                                                                                                                            FileLog.e(e);
+                                                                                                                            albumEntry5 = albumEntry14;
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    albumEntry5 = albumEntry4;
+                                                                                                                    AlbumEntry albumEntry15 = albumEntry2;
+                                                                                                                    Integer num = objValueOf;
+                                                                                                                    for (i2 = 0; i2 < arrayList4.size(); i2++) {
+                                                                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                                                            @Override
+                                                                                                                            public final int compare(Object obj, Object obj2) {
+                                                                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                            }
+                                                                                                                        });
+                                                                                                                    }
+                                                                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num, albumEntry15, albumEntry3, albumEntry5, 0);
+                                                                                                                } catch (Throwable th3) {
+                                                                                                                    if (cursorQuery != null) {
+                                                                                                                        try {
+                                                                                                                            cursorQuery.close();
+                                                                                                                            throw th3;
+                                                                                                                        } catch (Exception e5) {
+                                                                                                                            FileLog.e(e5);
+                                                                                                                            throw th3;
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    throw th3;
+                                                                                                                }
+                                                                                                            }
+                                                                                                        } else {
+                                                                                                            albumEntry4 = albumEntry14;
+                                                                                                        }
+                                                                                                        if (albumEntry2 == null) {
+                                                                                                            try {
+                                                                                                                albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                                try {
+                                                                                                                    arrayList4.add(0, albumEntry6);
+                                                                                                                } catch (Throwable th4) {
+                                                                                                                    th = th4;
+                                                                                                                    albumEntry2 = albumEntry6;
+                                                                                                                    FileLog.e(th);
+                                                                                                                    if (cursorQuery != null) {
+                                                                                                                        cursorQuery.close();
+                                                                                                                    }
+                                                                                                                    albumEntry5 = albumEntry4;
+                                                                                                                    AlbumEntry albumEntry16 = albumEntry2;
+                                                                                                                    Integer num2 = objValueOf;
+                                                                                                                    while (i2 < arrayList4.size()) {
+                                                                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                                                            @Override
+                                                                                                                            public final int compare(Object obj, Object obj2) {
+                                                                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                            }
+                                                                                                                        });
+                                                                                                                    }
+                                                                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num2, albumEntry16, albumEntry3, albumEntry5, 0);
+                                                                                                                }
+                                                                                                            } catch (Throwable th5) {
+                                                                                                                th = th5;
+                                                                                                                albumEntry14 = albumEntry4;
+                                                                                                                albumEntry4 = albumEntry14;
+                                                                                                                FileLog.e(th);
+                                                                                                                if (cursorQuery != null) {
+                                                                                                                    cursorQuery.close();
+                                                                                                                }
+                                                                                                                albumEntry5 = albumEntry4;
+                                                                                                                AlbumEntry albumEntry17 = albumEntry2;
+                                                                                                                Integer num3 = objValueOf;
+                                                                                                                while (i2 < arrayList4.size()) {
+                                                                                                                    Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                                                        @Override
+                                                                                                                        public final int compare(Object obj, Object obj2) {
+                                                                                                                            return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                                        }
+                                                                                                                    });
+                                                                                                                }
+                                                                                                                broadcastNewPhotos(i, arrayList4, arrayList, num3, albumEntry17, albumEntry3, albumEntry5, 0);
+                                                                                                            }
+                                                                                                        } else {
+                                                                                                            albumEntry6 = albumEntry2;
+                                                                                                        }
+                                                                                                        try {
+                                                                                                            albumEntry4.addPhoto(photoEntry);
+                                                                                                            albumEntry6.addPhoto(photoEntry);
+                                                                                                            albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                            if (albumEntry7 == null) {
+                                                                                                                albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                                sparseArray3.put(i4, albumEntry7);
+                                                                                                                if (objValueOf != null) {
+                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                } else {
+                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                }
+                                                                                                            }
+                                                                                                            albumEntry7.addPhoto(photoEntry);
+                                                                                                            albumEntry2 = albumEntry6;
+                                                                                                            albumEntry14 = albumEntry4;
+                                                                                                            columnIndex = i13;
+                                                                                                            columnIndex2 = columnIndex2;
+                                                                                                            columnIndex6 = columnIndex6;
+                                                                                                            columnIndex5 = i14;
+                                                                                                            columnIndex3 = i15;
+                                                                                                            columnIndex4 = i16;
+                                                                                                        } catch (Throwable th6) {
+                                                                                                            th = th6;
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        } else {
+                                                                                            ContentResolver contentResolver3 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                            Uri uri3 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                            String[] strArr3 = projectionVideo;
+                                                                                            StringBuilder sb4 = new StringBuilder();
+                                                                                            if (i3 > 28) {
+                                                                                                str = "date_modified";
+                                                                                            } else {
+                                                                                                str = "datetaken";
+                                                                                            }
+                                                                                            sb4.append(str);
+                                                                                            sb4.append(" DESC");
+                                                                                            cursorQuery = MediaStore.Images.Media.query(contentResolver3, uri3, strArr3, null, null, sb4.toString());
+                                                                                            if (cursorQuery != null) {
+                                                                                                columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                                columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                                columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                                columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                                if (i3 > 28) {
+                                                                                                    str2 = "date_modified";
+                                                                                                } else {
+                                                                                                    str2 = "datetaken";
+                                                                                                }
+                                                                                                columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                                columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                                columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                                columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                                columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                                cursorQuery.getColumnIndex(str8);
+                                                                                                while (cursorQuery.moveToNext()) {
+                                                                                                    string2 = cursorQuery.getString(columnIndex4);
+                                                                                                    if (TextUtils.isEmpty(string2)) {
+                                                                                                        int i17 = cursorQuery.getInt(columnIndex);
+                                                                                                        i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                        int i18 = columnIndex;
+                                                                                                        string3 = cursorQuery.getString(columnIndex3);
+                                                                                                        int i19 = columnIndex5;
+                                                                                                        int i110 = columnIndex3;
+                                                                                                        int i111 = columnIndex4;
+                                                                                                        photoEntry = new PhotoEntry(i4, i17, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                        if (albumEntry14 == null) {
+                                                                                                            albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                            i5 = 1;
+                                                                                                            albumEntry4.videoOnly = true;
+                                                                                                            if (albumEntry2 != null) {
+                                                                                                                i5 = 0;
+                                                                                                            }
+                                                                                                            if (albumEntry3 != null) {
+                                                                                                                i5++;
+                                                                                                            }
+                                                                                                            arrayList4.add(i5, albumEntry4);
+                                                                                                        } else {
+                                                                                                            albumEntry4 = albumEntry14;
+                                                                                                        }
+                                                                                                        if (albumEntry2 == null) {
+                                                                                                            albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                            arrayList4.add(0, albumEntry6);
+                                                                                                        } else {
+                                                                                                            albumEntry6 = albumEntry2;
+                                                                                                        }
+                                                                                                        albumEntry4.addPhoto(photoEntry);
+                                                                                                        albumEntry6.addPhoto(photoEntry);
+                                                                                                        albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                        if (albumEntry7 == null) {
+                                                                                                            albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                            sparseArray3.put(i4, albumEntry7);
+                                                                                                            if (objValueOf != null) {
+                                                                                                                arrayList4.add(albumEntry7);
+                                                                                                            } else {
+                                                                                                                arrayList4.add(albumEntry7);
+                                                                                                            }
+                                                                                                        }
+                                                                                                        albumEntry7.addPhoto(photoEntry);
+                                                                                                        albumEntry2 = albumEntry6;
+                                                                                                        albumEntry14 = albumEntry4;
+                                                                                                        columnIndex = i18;
+                                                                                                        columnIndex2 = columnIndex2;
+                                                                                                        columnIndex6 = columnIndex6;
+                                                                                                        columnIndex5 = i19;
+                                                                                                        columnIndex3 = i110;
+                                                                                                        columnIndex4 = i111;
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                        if (cursorQuery != null) {
+                                                                                            try {
+                                                                                                cursorQuery.close();
+                                                                                            } catch (Exception e6) {
+                                                                                                e = e6;
+                                                                                                FileLog.e(e);
+                                                                                            }
+                                                                                        }
+                                                                                        albumEntry5 = albumEntry14;
+                                                                                        AlbumEntry albumEntry18 = albumEntry2;
+                                                                                        Integer num4 = objValueOf;
+                                                                                        while (i2 < arrayList4.size()) {
+                                                                                            Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                                @Override
+                                                                                                public final int compare(Object obj, Object obj2) {
+                                                                                                    return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                }
+                                                                                            });
+                                                                                        }
+                                                                                        broadcastNewPhotos(i, arrayList4, arrayList, num4, albumEntry18, albumEntry3, albumEntry5, 0);
+                                                                                    } catch (Throwable th7) {
+                                                                                        if (cursorQuery != null) {
+                                                                                            try {
+                                                                                                cursorQuery.close();
+                                                                                                throw th7;
+                                                                                            } catch (Exception e7) {
+                                                                                                FileLog.e(e7);
+                                                                                                throw th7;
+                                                                                            }
+                                                                                        }
+                                                                                        throw th7;
+                                                                                    }
+                                                                                }
+                                                                            } catch (Throwable th8) {
+                                                                                th = th8;
+                                                                                arrayList = arrayList5;
+                                                                            }
+                                                                        } else {
+                                                                            arrayList = arrayList5;
+                                                                            albumEntry8 = albumEntry;
+                                                                        }
+                                                                        if (albumEntry2 == null) {
+                                                                            try {
+                                                                                albumEntry9 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry2);
+                                                                                arrayList4 = arrayList4;
+                                                                                try {
+                                                                                    arrayList4.add(0, albumEntry9);
+                                                                                } catch (Throwable th9) {
+                                                                                    th = th9;
+                                                                                    albumEntry = albumEntry8;
+                                                                                    albumEntry2 = albumEntry9;
+                                                                                    sparseArray3 = sparseArray3;
+                                                                                    string = string;
+                                                                                    FileLog.e(th);
+                                                                                    if (cursorQuery != null) {
+                                                                                        cursorQuery.close();
+                                                                                    }
+                                                                                    albumEntry3 = albumEntry;
+                                                                                    Context context3 = ApplicationLoader.applicationContext;
+                                                                                    i3 = Build.VERSION.SDK_INT;
+                                                                                    if (i3 < 23) {
+                                                                                        ContentResolver contentResolver4 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                        Uri uri4 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                        String[] strArr4 = projectionVideo;
+                                                                                        StringBuilder sb5 = new StringBuilder();
+                                                                                        if (i3 > 28) {
+                                                                                            str = "date_modified";
+                                                                                        } else {
+                                                                                            str = "datetaken";
+                                                                                        }
+                                                                                        sb5.append(str);
+                                                                                        sb5.append(" DESC");
+                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver4, uri4, strArr4, null, null, sb5.toString());
+                                                                                        if (cursorQuery != null) {
+                                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                            if (i3 > 28) {
+                                                                                                str2 = "date_modified";
+                                                                                            } else {
+                                                                                                str2 = "datetaken";
+                                                                                            }
+                                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                            cursorQuery.getColumnIndex(str8);
+                                                                                            while (cursorQuery.moveToNext()) {
+                                                                                                string2 = cursorQuery.getString(columnIndex4);
+                                                                                                if (TextUtils.isEmpty(string2)) {
+                                                                                                    int i112 = cursorQuery.getInt(columnIndex);
+                                                                                                    i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                    int i113 = columnIndex;
+                                                                                                    string3 = cursorQuery.getString(columnIndex3);
+                                                                                                    int i114 = columnIndex5;
+                                                                                                    int i115 = columnIndex3;
+                                                                                                    int i116 = columnIndex4;
+                                                                                                    photoEntry = new PhotoEntry(i4, i112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                    if (albumEntry14 == null) {
+                                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                        i5 = 1;
+                                                                                                        albumEntry4.videoOnly = true;
+                                                                                                        if (albumEntry2 != null) {
+                                                                                                            i5 = 0;
+                                                                                                        }
+                                                                                                        if (albumEntry3 != null) {
+                                                                                                            i5++;
+                                                                                                        }
+                                                                                                        arrayList4.add(i5, albumEntry4);
+                                                                                                    } else {
+                                                                                                        albumEntry4 = albumEntry14;
+                                                                                                    }
+                                                                                                    if (albumEntry2 == null) {
+                                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                        arrayList4.add(0, albumEntry6);
+                                                                                                    } else {
+                                                                                                        albumEntry6 = albumEntry2;
+                                                                                                    }
+                                                                                                    albumEntry4.addPhoto(photoEntry);
+                                                                                                    albumEntry6.addPhoto(photoEntry);
+                                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                    if (albumEntry7 == null) {
+                                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                        sparseArray3.put(i4, albumEntry7);
+                                                                                                        if (objValueOf != null) {
+                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                        } else {
+                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                        }
+                                                                                                    }
+                                                                                                    albumEntry7.addPhoto(photoEntry);
+                                                                                                    albumEntry2 = albumEntry6;
+                                                                                                    albumEntry14 = albumEntry4;
+                                                                                                    columnIndex = i113;
+                                                                                                    columnIndex2 = columnIndex2;
+                                                                                                    columnIndex6 = columnIndex6;
+                                                                                                    columnIndex5 = i114;
+                                                                                                    columnIndex3 = i115;
+                                                                                                    columnIndex4 = i116;
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    } else {
+                                                                                        ContentResolver contentResolver5 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                        Uri uri5 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                        String[] strArr5 = projectionVideo;
+                                                                                        StringBuilder sb6 = new StringBuilder();
+                                                                                        if (i3 > 28) {
+                                                                                            str = "date_modified";
+                                                                                        } else {
+                                                                                            str = "datetaken";
+                                                                                        }
+                                                                                        sb6.append(str);
+                                                                                        sb6.append(" DESC");
+                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver5, uri5, strArr5, null, null, sb6.toString());
+                                                                                        if (cursorQuery != null) {
+                                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                            if (i3 > 28) {
+                                                                                                str2 = "date_modified";
+                                                                                            } else {
+                                                                                                str2 = "datetaken";
+                                                                                            }
+                                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                            cursorQuery.getColumnIndex(str8);
+                                                                                            while (cursorQuery.moveToNext()) {
+                                                                                                string2 = cursorQuery.getString(columnIndex4);
+                                                                                                if (TextUtils.isEmpty(string2)) {
+                                                                                                    int i117 = cursorQuery.getInt(columnIndex);
+                                                                                                    i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                    int i118 = columnIndex;
+                                                                                                    string3 = cursorQuery.getString(columnIndex3);
+                                                                                                    int i119 = columnIndex5;
+                                                                                                    int i1110 = columnIndex3;
+                                                                                                    int i1111 = columnIndex4;
+                                                                                                    photoEntry = new PhotoEntry(i4, i117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                    if (albumEntry14 == null) {
+                                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                        i5 = 1;
+                                                                                                        albumEntry4.videoOnly = true;
+                                                                                                        if (albumEntry2 != null) {
+                                                                                                            i5 = 0;
+                                                                                                        }
+                                                                                                        if (albumEntry3 != null) {
+                                                                                                            i5++;
+                                                                                                        }
+                                                                                                        arrayList4.add(i5, albumEntry4);
+                                                                                                    } else {
+                                                                                                        albumEntry4 = albumEntry14;
+                                                                                                    }
+                                                                                                    if (albumEntry2 == null) {
+                                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                        arrayList4.add(0, albumEntry6);
+                                                                                                    } else {
+                                                                                                        albumEntry6 = albumEntry2;
+                                                                                                    }
+                                                                                                    albumEntry4.addPhoto(photoEntry);
+                                                                                                    albumEntry6.addPhoto(photoEntry);
+                                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                    if (albumEntry7 == null) {
+                                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                        sparseArray3.put(i4, albumEntry7);
+                                                                                                        if (objValueOf != null) {
+                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                        } else {
+                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                        }
+                                                                                                    }
+                                                                                                    albumEntry7.addPhoto(photoEntry);
+                                                                                                    albumEntry2 = albumEntry6;
+                                                                                                    albumEntry14 = albumEntry4;
+                                                                                                    columnIndex = i118;
+                                                                                                    columnIndex2 = columnIndex2;
+                                                                                                    columnIndex6 = columnIndex6;
+                                                                                                    columnIndex5 = i119;
+                                                                                                    columnIndex3 = i1110;
+                                                                                                    columnIndex4 = i1111;
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    if (cursorQuery != null) {
+                                                                                        cursorQuery.close();
+                                                                                    }
+                                                                                    albumEntry5 = albumEntry14;
+                                                                                    AlbumEntry albumEntry19 = albumEntry2;
+                                                                                    Integer num5 = objValueOf;
+                                                                                    while (i2 < arrayList4.size()) {
+                                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                            @Override
+                                                                                            public final int compare(Object obj, Object obj2) {
+                                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                            }
+                                                                                        });
+                                                                                    }
+                                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num5, albumEntry19, albumEntry3, albumEntry5, 0);
+                                                                                }
+                                                                            } catch (Throwable th10) {
+                                                                                th = th10;
+                                                                                arrayList4 = arrayList4;
+                                                                                albumEntry = albumEntry8;
+                                                                            }
+                                                                        } else {
+                                                                            arrayList4 = arrayList4;
+                                                                            albumEntry9 = albumEntry2;
+                                                                        }
+                                                                        try {
+                                                                            int i20 = columnIndex15;
+                                                                            if (albumEntry8.photos.size() < 15) {
+                                                                                photoEntry2.isLivePhoto();
+                                                                            }
+                                                                            albumEntry8.addPhoto(photoEntry2);
+                                                                            albumEntry9.addPhoto(photoEntry2);
+                                                                            sparseArray3 = sparseArray3;
+                                                                            try {
+                                                                                albumEntry12 = (AlbumEntry) sparseArray3.get(i6);
+                                                                                if (albumEntry12 == null) {
+                                                                                    albumEntry12 = new AlbumEntry(i6, string5, photoEntry2);
+                                                                                    sparseArray3.put(i6, albumEntry12);
+                                                                                    if (objValueOf == null || string == null || string4 == null) {
+                                                                                        albumEntry10 = albumEntry8;
+                                                                                        string = string;
+                                                                                    } else {
+                                                                                        albumEntry10 = albumEntry8;
+                                                                                        string = string;
+                                                                                        try {
+                                                                                            if (string4.startsWith(string)) {
+                                                                                                albumEntry11 = albumEntry9;
+                                                                                                try {
+                                                                                                    arrayList4.add(0, albumEntry12);
+                                                                                                    objValueOf = Integer.valueOf(i6);
+                                                                                                } catch (Throwable th11) {
+                                                                                                    th = th11;
+                                                                                                    albumEntry = albumEntry10;
+                                                                                                    albumEntry2 = albumEntry11;
+                                                                                                    FileLog.e(th);
+                                                                                                    if (cursorQuery != null) {
+                                                                                                        cursorQuery.close();
+                                                                                                    }
+                                                                                                    albumEntry3 = albumEntry;
+                                                                                                    Context context4 = ApplicationLoader.applicationContext;
+                                                                                                    i3 = Build.VERSION.SDK_INT;
+                                                                                                    if (i3 < 23) {
+                                                                                                        ContentResolver contentResolver6 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                                        Uri uri6 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                                        String[] strArr6 = projectionVideo;
+                                                                                                        StringBuilder sb7 = new StringBuilder();
+                                                                                                        if (i3 > 28) {
+                                                                                                            str = "date_modified";
+                                                                                                        } else {
+                                                                                                            str = "datetaken";
+                                                                                                        }
+                                                                                                        sb7.append(str);
+                                                                                                        sb7.append(" DESC");
+                                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver6, uri6, strArr6, null, null, sb7.toString());
+                                                                                                        if (cursorQuery != null) {
+                                                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                                            if (i3 > 28) {
+                                                                                                                str2 = "date_modified";
+                                                                                                            } else {
+                                                                                                                str2 = "datetaken";
+                                                                                                            }
+                                                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                                            cursorQuery.getColumnIndex(str8);
+                                                                                                            while (cursorQuery.moveToNext()) {
+                                                                                                                string2 = cursorQuery.getString(columnIndex4);
+                                                                                                                if (TextUtils.isEmpty(string2)) {
+                                                                                                                    int i1112 = cursorQuery.getInt(columnIndex);
+                                                                                                                    i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                                    int i1113 = columnIndex;
+                                                                                                                    string3 = cursorQuery.getString(columnIndex3);
+                                                                                                                    int i1114 = columnIndex5;
+                                                                                                                    int i1115 = columnIndex3;
+                                                                                                                    int i1116 = columnIndex4;
+                                                                                                                    photoEntry = new PhotoEntry(i4, i1112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                                    if (albumEntry14 == null) {
+                                                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                                        i5 = 1;
+                                                                                                                        albumEntry4.videoOnly = true;
+                                                                                                                        if (albumEntry2 != null) {
+                                                                                                                            i5 = 0;
+                                                                                                                        }
+                                                                                                                        if (albumEntry3 != null) {
+                                                                                                                            i5++;
+                                                                                                                        }
+                                                                                                                        arrayList4.add(i5, albumEntry4);
+                                                                                                                    } else {
+                                                                                                                        albumEntry4 = albumEntry14;
+                                                                                                                    }
+                                                                                                                    if (albumEntry2 == null) {
+                                                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                                        arrayList4.add(0, albumEntry6);
+                                                                                                                    } else {
+                                                                                                                        albumEntry6 = albumEntry2;
+                                                                                                                    }
+                                                                                                                    albumEntry4.addPhoto(photoEntry);
+                                                                                                                    albumEntry6.addPhoto(photoEntry);
+                                                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                                    if (albumEntry7 == null) {
+                                                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                                        sparseArray3.put(i4, albumEntry7);
+                                                                                                                        if (objValueOf != null) {
+                                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                                        } else {
+                                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    albumEntry7.addPhoto(photoEntry);
+                                                                                                                    albumEntry2 = albumEntry6;
+                                                                                                                    albumEntry14 = albumEntry4;
+                                                                                                                    columnIndex = i1113;
+                                                                                                                    columnIndex2 = columnIndex2;
+                                                                                                                    columnIndex6 = columnIndex6;
+                                                                                                                    columnIndex5 = i1114;
+                                                                                                                    columnIndex3 = i1115;
+                                                                                                                    columnIndex4 = i1116;
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    } else {
+                                                                                                        ContentResolver contentResolver7 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                                        Uri uri7 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                                        String[] strArr7 = projectionVideo;
+                                                                                                        StringBuilder sb8 = new StringBuilder();
+                                                                                                        if (i3 > 28) {
+                                                                                                            str = "date_modified";
+                                                                                                        } else {
+                                                                                                            str = "datetaken";
+                                                                                                        }
+                                                                                                        sb8.append(str);
+                                                                                                        sb8.append(" DESC");
+                                                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver7, uri7, strArr7, null, null, sb8.toString());
+                                                                                                        if (cursorQuery != null) {
+                                                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                                            if (i3 > 28) {
+                                                                                                                str2 = "date_modified";
+                                                                                                            } else {
+                                                                                                                str2 = "datetaken";
+                                                                                                            }
+                                                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                                            cursorQuery.getColumnIndex(str8);
+                                                                                                            while (cursorQuery.moveToNext()) {
+                                                                                                                string2 = cursorQuery.getString(columnIndex4);
+                                                                                                                if (TextUtils.isEmpty(string2)) {
+                                                                                                                    int i1117 = cursorQuery.getInt(columnIndex);
+                                                                                                                    i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                                    int i1118 = columnIndex;
+                                                                                                                    string3 = cursorQuery.getString(columnIndex3);
+                                                                                                                    int i1119 = columnIndex5;
+                                                                                                                    int i11110 = columnIndex3;
+                                                                                                                    int i11111 = columnIndex4;
+                                                                                                                    photoEntry = new PhotoEntry(i4, i1117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                                    if (albumEntry14 == null) {
+                                                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                                        i5 = 1;
+                                                                                                                        albumEntry4.videoOnly = true;
+                                                                                                                        if (albumEntry2 != null) {
+                                                                                                                            i5 = 0;
+                                                                                                                        }
+                                                                                                                        if (albumEntry3 != null) {
+                                                                                                                            i5++;
+                                                                                                                        }
+                                                                                                                        arrayList4.add(i5, albumEntry4);
+                                                                                                                    } else {
+                                                                                                                        albumEntry4 = albumEntry14;
+                                                                                                                    }
+                                                                                                                    if (albumEntry2 == null) {
+                                                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                                        arrayList4.add(0, albumEntry6);
+                                                                                                                    } else {
+                                                                                                                        albumEntry6 = albumEntry2;
+                                                                                                                    }
+                                                                                                                    albumEntry4.addPhoto(photoEntry);
+                                                                                                                    albumEntry6.addPhoto(photoEntry);
+                                                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                                    if (albumEntry7 == null) {
+                                                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                                        sparseArray3.put(i4, albumEntry7);
+                                                                                                                        if (objValueOf != null) {
+                                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                                        } else {
+                                                                                                                            arrayList4.add(albumEntry7);
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    albumEntry7.addPhoto(photoEntry);
+                                                                                                                    albumEntry2 = albumEntry6;
+                                                                                                                    albumEntry14 = albumEntry4;
+                                                                                                                    columnIndex = i1118;
+                                                                                                                    columnIndex2 = columnIndex2;
+                                                                                                                    columnIndex6 = columnIndex6;
+                                                                                                                    columnIndex5 = i1119;
+                                                                                                                    columnIndex3 = i11110;
+                                                                                                                    columnIndex4 = i11111;
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                    if (cursorQuery != null) {
+                                                                                                        cursorQuery.close();
+                                                                                                    }
+                                                                                                    albumEntry5 = albumEntry14;
+                                                                                                    AlbumEntry albumEntry110 = albumEntry2;
+                                                                                                    Integer num6 = objValueOf;
+                                                                                                    while (i2 < arrayList4.size()) {
+                                                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                                            @Override
+                                                                                                            public final int compare(Object obj, Object obj2) {
+                                                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                            }
+                                                                                                        });
+                                                                                                    }
+                                                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num6, albumEntry110, albumEntry3, albumEntry5, 0);
+                                                                                                }
+                                                                                            }
+                                                                                        } catch (Throwable th12) {
+                                                                                            th = th12;
+                                                                                            albumEntry11 = albumEntry9;
+                                                                                            albumEntry = albumEntry10;
+                                                                                            albumEntry2 = albumEntry11;
+                                                                                            FileLog.e(th);
+                                                                                            if (cursorQuery != null) {
+                                                                                                cursorQuery.close();
+                                                                                            }
+                                                                                            albumEntry3 = albumEntry;
+                                                                                            Context context5 = ApplicationLoader.applicationContext;
+                                                                                            i3 = Build.VERSION.SDK_INT;
+                                                                                            if (i3 < 23) {
+                                                                                                ContentResolver contentResolver8 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                                Uri uri8 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                                String[] strArr8 = projectionVideo;
+                                                                                                StringBuilder sb9 = new StringBuilder();
+                                                                                                if (i3 > 28) {
+                                                                                                    str = "date_modified";
+                                                                                                } else {
+                                                                                                    str = "datetaken";
+                                                                                                }
+                                                                                                sb9.append(str);
+                                                                                                sb9.append(" DESC");
+                                                                                                cursorQuery = MediaStore.Images.Media.query(contentResolver8, uri8, strArr8, null, null, sb9.toString());
+                                                                                                if (cursorQuery != null) {
+                                                                                                    columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                                    columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                                    columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                                    columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                                    if (i3 > 28) {
+                                                                                                        str2 = "date_modified";
+                                                                                                    } else {
+                                                                                                        str2 = "datetaken";
+                                                                                                    }
+                                                                                                    columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                                    columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                                    columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                                    columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                                    columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                                    cursorQuery.getColumnIndex(str8);
+                                                                                                    while (cursorQuery.moveToNext()) {
+                                                                                                        string2 = cursorQuery.getString(columnIndex4);
+                                                                                                        if (TextUtils.isEmpty(string2)) {
+                                                                                                            int i11112 = cursorQuery.getInt(columnIndex);
+                                                                                                            i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                            int i11113 = columnIndex;
+                                                                                                            string3 = cursorQuery.getString(columnIndex3);
+                                                                                                            int i11114 = columnIndex5;
+                                                                                                            int i11115 = columnIndex3;
+                                                                                                            int i11116 = columnIndex4;
+                                                                                                            photoEntry = new PhotoEntry(i4, i11112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                            if (albumEntry14 == null) {
+                                                                                                                albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                                i5 = 1;
+                                                                                                                albumEntry4.videoOnly = true;
+                                                                                                                if (albumEntry2 != null) {
+                                                                                                                    i5 = 0;
+                                                                                                                }
+                                                                                                                if (albumEntry3 != null) {
+                                                                                                                    i5++;
+                                                                                                                }
+                                                                                                                arrayList4.add(i5, albumEntry4);
+                                                                                                            } else {
+                                                                                                                albumEntry4 = albumEntry14;
+                                                                                                            }
+                                                                                                            if (albumEntry2 == null) {
+                                                                                                                albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                                arrayList4.add(0, albumEntry6);
+                                                                                                            } else {
+                                                                                                                albumEntry6 = albumEntry2;
+                                                                                                            }
+                                                                                                            albumEntry4.addPhoto(photoEntry);
+                                                                                                            albumEntry6.addPhoto(photoEntry);
+                                                                                                            albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                            if (albumEntry7 == null) {
+                                                                                                                albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                                sparseArray3.put(i4, albumEntry7);
+                                                                                                                if (objValueOf != null) {
+                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                } else {
+                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                }
+                                                                                                            }
+                                                                                                            albumEntry7.addPhoto(photoEntry);
+                                                                                                            albumEntry2 = albumEntry6;
+                                                                                                            albumEntry14 = albumEntry4;
+                                                                                                            columnIndex = i11113;
+                                                                                                            columnIndex2 = columnIndex2;
+                                                                                                            columnIndex6 = columnIndex6;
+                                                                                                            columnIndex5 = i11114;
+                                                                                                            columnIndex3 = i11115;
+                                                                                                            columnIndex4 = i11116;
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            } else {
+                                                                                                ContentResolver contentResolver9 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                                Uri uri9 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                                String[] strArr9 = projectionVideo;
+                                                                                                StringBuilder sb10 = new StringBuilder();
+                                                                                                if (i3 > 28) {
+                                                                                                    str = "date_modified";
+                                                                                                } else {
+                                                                                                    str = "datetaken";
+                                                                                                }
+                                                                                                sb10.append(str);
+                                                                                                sb10.append(" DESC");
+                                                                                                cursorQuery = MediaStore.Images.Media.query(contentResolver9, uri9, strArr9, null, null, sb10.toString());
+                                                                                                if (cursorQuery != null) {
+                                                                                                    columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                                    columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                                    columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                                    columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                                    if (i3 > 28) {
+                                                                                                        str2 = "date_modified";
+                                                                                                    } else {
+                                                                                                        str2 = "datetaken";
+                                                                                                    }
+                                                                                                    columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                                    columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                                    columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                                    columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                                    columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                                    cursorQuery.getColumnIndex(str8);
+                                                                                                    while (cursorQuery.moveToNext()) {
+                                                                                                        string2 = cursorQuery.getString(columnIndex4);
+                                                                                                        if (TextUtils.isEmpty(string2)) {
+                                                                                                            int i11117 = cursorQuery.getInt(columnIndex);
+                                                                                                            i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                            int i11118 = columnIndex;
+                                                                                                            string3 = cursorQuery.getString(columnIndex3);
+                                                                                                            int i11119 = columnIndex5;
+                                                                                                            int i111110 = columnIndex3;
+                                                                                                            int i111111 = columnIndex4;
+                                                                                                            photoEntry = new PhotoEntry(i4, i11117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                            if (albumEntry14 == null) {
+                                                                                                                albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                                i5 = 1;
+                                                                                                                albumEntry4.videoOnly = true;
+                                                                                                                if (albumEntry2 != null) {
+                                                                                                                    i5 = 0;
+                                                                                                                }
+                                                                                                                if (albumEntry3 != null) {
+                                                                                                                    i5++;
+                                                                                                                }
+                                                                                                                arrayList4.add(i5, albumEntry4);
+                                                                                                            } else {
+                                                                                                                albumEntry4 = albumEntry14;
+                                                                                                            }
+                                                                                                            if (albumEntry2 == null) {
+                                                                                                                albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                                arrayList4.add(0, albumEntry6);
+                                                                                                            } else {
+                                                                                                                albumEntry6 = albumEntry2;
+                                                                                                            }
+                                                                                                            albumEntry4.addPhoto(photoEntry);
+                                                                                                            albumEntry6.addPhoto(photoEntry);
+                                                                                                            albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                            if (albumEntry7 == null) {
+                                                                                                                albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                                sparseArray3.put(i4, albumEntry7);
+                                                                                                                if (objValueOf != null) {
+                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                } else {
+                                                                                                                    arrayList4.add(albumEntry7);
+                                                                                                                }
+                                                                                                            }
+                                                                                                            albumEntry7.addPhoto(photoEntry);
+                                                                                                            albumEntry2 = albumEntry6;
+                                                                                                            albumEntry14 = albumEntry4;
+                                                                                                            columnIndex = i11118;
+                                                                                                            columnIndex2 = columnIndex2;
+                                                                                                            columnIndex6 = columnIndex6;
+                                                                                                            columnIndex5 = i11119;
+                                                                                                            columnIndex3 = i111110;
+                                                                                                            columnIndex4 = i111111;
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                            if (cursorQuery != null) {
+                                                                                                cursorQuery.close();
+                                                                                            }
+                                                                                            albumEntry5 = albumEntry14;
+                                                                                            AlbumEntry albumEntry111 = albumEntry2;
+                                                                                            Integer num7 = objValueOf;
+                                                                                            while (i2 < arrayList4.size()) {
+                                                                                                Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                                    @Override
+                                                                                                    public final int compare(Object obj, Object obj2) {
+                                                                                                        return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                                    }
+                                                                                                });
+                                                                                            }
+                                                                                            broadcastNewPhotos(i, arrayList4, arrayList, num7, albumEntry111, albumEntry3, albumEntry5, 0);
+                                                                                        }
+                                                                                    }
+                                                                                    albumEntry11 = albumEntry9;
+                                                                                    arrayList4.add(albumEntry12);
+                                                                                } else {
+                                                                                    albumEntry10 = albumEntry8;
+                                                                                    string = string;
+                                                                                    albumEntry11 = albumEntry9;
+                                                                                }
+                                                                                albumEntry12.addPhoto(photoEntry2);
+                                                                                sparseArray2 = sparseArray;
+                                                                                albumEntry13 = (AlbumEntry) sparseArray2.get(i6);
+                                                                                if (albumEntry13 == null) {
+                                                                                    albumEntry13 = new AlbumEntry(i6, string5, photoEntry2);
+                                                                                    sparseArray2.put(i6, albumEntry13);
+                                                                                    if (numValueOf != null && string != null && string4 != null && string4.startsWith(string)) {
+                                                                                        arrayList.add(0, albumEntry13);
+                                                                                        numValueOf = Integer.valueOf(i6);
+                                                                                    } else {
+                                                                                        arrayList.add(albumEntry13);
+                                                                                    }
+                                                                                }
+                                                                                albumEntry13.addPhoto(photoEntry2);
+                                                                                sparseArray = sparseArray2;
+                                                                                columnIndex15 = i20;
+                                                                                albumEntry = albumEntry10;
+                                                                                albumEntry2 = albumEntry11;
+                                                                                columnIndex14 = columnIndex14;
+                                                                                columnIndex10 = i9;
+                                                                                columnIndex13 = i10;
+                                                                                columnIndex18 = i11;
+                                                                                string = string;
+                                                                                arrayList4 = arrayList4;
+                                                                                sparseArray3 = sparseArray3;
+                                                                                columnIndex11 = columnIndex11;
+                                                                                columnIndex17 = columnIndex17;
+                                                                                columnIndex12 = columnIndex12;
+                                                                                arrayList5 = arrayList;
+                                                                                columnIndex16 = columnIndex16;
+                                                                            } catch (Throwable th13) {
+                                                                                th = th13;
+                                                                                albumEntry10 = albumEntry8;
+                                                                                string = string;
+                                                                                albumEntry11 = albumEntry9;
+                                                                                albumEntry = albumEntry10;
+                                                                                albumEntry2 = albumEntry11;
+                                                                                FileLog.e(th);
+                                                                                if (cursorQuery != null) {
+                                                                                    cursorQuery.close();
+                                                                                }
+                                                                                albumEntry3 = albumEntry;
+                                                                                Context context6 = ApplicationLoader.applicationContext;
+                                                                                i3 = Build.VERSION.SDK_INT;
+                                                                                if (i3 < 23) {
+                                                                                    ContentResolver contentResolver10 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                    Uri uri10 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                    String[] strArr10 = projectionVideo;
+                                                                                    StringBuilder sb11 = new StringBuilder();
+                                                                                    if (i3 > 28) {
+                                                                                        str = "date_modified";
+                                                                                    } else {
+                                                                                        str = "datetaken";
+                                                                                    }
+                                                                                    sb11.append(str);
+                                                                                    sb11.append(" DESC");
+                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver10, uri10, strArr10, null, null, sb11.toString());
+                                                                                    if (cursorQuery != null) {
+                                                                                        columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                        if (i3 > 28) {
+                                                                                            str2 = "date_modified";
+                                                                                        } else {
+                                                                                            str2 = "datetaken";
+                                                                                        }
+                                                                                        columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                        columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                        columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                        cursorQuery.getColumnIndex(str8);
+                                                                                        while (cursorQuery.moveToNext()) {
+                                                                                            string2 = cursorQuery.getString(columnIndex4);
+                                                                                            if (TextUtils.isEmpty(string2)) {
+                                                                                                int i111112 = cursorQuery.getInt(columnIndex);
+                                                                                                i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                int i111113 = columnIndex;
+                                                                                                string3 = cursorQuery.getString(columnIndex3);
+                                                                                                int i111114 = columnIndex5;
+                                                                                                int i111115 = columnIndex3;
+                                                                                                int i111116 = columnIndex4;
+                                                                                                photoEntry = new PhotoEntry(i4, i111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                if (albumEntry14 == null) {
+                                                                                                    albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                    i5 = 1;
+                                                                                                    albumEntry4.videoOnly = true;
+                                                                                                    if (albumEntry2 != null) {
+                                                                                                        i5 = 0;
+                                                                                                    }
+                                                                                                    if (albumEntry3 != null) {
+                                                                                                        i5++;
+                                                                                                    }
+                                                                                                    arrayList4.add(i5, albumEntry4);
+                                                                                                } else {
+                                                                                                    albumEntry4 = albumEntry14;
+                                                                                                }
+                                                                                                if (albumEntry2 == null) {
+                                                                                                    albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                    arrayList4.add(0, albumEntry6);
+                                                                                                } else {
+                                                                                                    albumEntry6 = albumEntry2;
+                                                                                                }
+                                                                                                albumEntry4.addPhoto(photoEntry);
+                                                                                                albumEntry6.addPhoto(photoEntry);
+                                                                                                albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                if (albumEntry7 == null) {
+                                                                                                    albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                    sparseArray3.put(i4, albumEntry7);
+                                                                                                    if (objValueOf != null) {
+                                                                                                        arrayList4.add(albumEntry7);
+                                                                                                    } else {
+                                                                                                        arrayList4.add(albumEntry7);
+                                                                                                    }
+                                                                                                }
+                                                                                                albumEntry7.addPhoto(photoEntry);
+                                                                                                albumEntry2 = albumEntry6;
+                                                                                                albumEntry14 = albumEntry4;
+                                                                                                columnIndex = i111113;
+                                                                                                columnIndex2 = columnIndex2;
+                                                                                                columnIndex6 = columnIndex6;
+                                                                                                columnIndex5 = i111114;
+                                                                                                columnIndex3 = i111115;
+                                                                                                columnIndex4 = i111116;
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                } else {
+                                                                                    ContentResolver contentResolver11 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                                    Uri uri11 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                                    String[] strArr11 = projectionVideo;
+                                                                                    StringBuilder sb12 = new StringBuilder();
+                                                                                    if (i3 > 28) {
+                                                                                        str = "date_modified";
+                                                                                    } else {
+                                                                                        str = "datetaken";
+                                                                                    }
+                                                                                    sb12.append(str);
+                                                                                    sb12.append(" DESC");
+                                                                                    cursorQuery = MediaStore.Images.Media.query(contentResolver11, uri11, strArr11, null, null, sb12.toString());
+                                                                                    if (cursorQuery != null) {
+                                                                                        columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                                        columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                                        columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                                        columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                                        if (i3 > 28) {
+                                                                                            str2 = "date_modified";
+                                                                                        } else {
+                                                                                            str2 = "datetaken";
+                                                                                        }
+                                                                                        columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                                        columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                                        columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                                        columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                                        columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                                        cursorQuery.getColumnIndex(str8);
+                                                                                        while (cursorQuery.moveToNext()) {
+                                                                                            string2 = cursorQuery.getString(columnIndex4);
+                                                                                            if (TextUtils.isEmpty(string2)) {
+                                                                                                int i111117 = cursorQuery.getInt(columnIndex);
+                                                                                                i4 = cursorQuery.getInt(columnIndex2);
+                                                                                                int i111118 = columnIndex;
+                                                                                                string3 = cursorQuery.getString(columnIndex3);
+                                                                                                int i111119 = columnIndex5;
+                                                                                                int i1111110 = columnIndex3;
+                                                                                                int i1111111 = columnIndex4;
+                                                                                                photoEntry = new PhotoEntry(i4, i111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                                if (albumEntry14 == null) {
+                                                                                                    albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                                    i5 = 1;
+                                                                                                    albumEntry4.videoOnly = true;
+                                                                                                    if (albumEntry2 != null) {
+                                                                                                        i5 = 0;
+                                                                                                    }
+                                                                                                    if (albumEntry3 != null) {
+                                                                                                        i5++;
+                                                                                                    }
+                                                                                                    arrayList4.add(i5, albumEntry4);
+                                                                                                } else {
+                                                                                                    albumEntry4 = albumEntry14;
+                                                                                                }
+                                                                                                if (albumEntry2 == null) {
+                                                                                                    albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                                    arrayList4.add(0, albumEntry6);
+                                                                                                } else {
+                                                                                                    albumEntry6 = albumEntry2;
+                                                                                                }
+                                                                                                albumEntry4.addPhoto(photoEntry);
+                                                                                                albumEntry6.addPhoto(photoEntry);
+                                                                                                albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                                if (albumEntry7 == null) {
+                                                                                                    albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                                    sparseArray3.put(i4, albumEntry7);
+                                                                                                    if (objValueOf != null) {
+                                                                                                        arrayList4.add(albumEntry7);
+                                                                                                    } else {
+                                                                                                        arrayList4.add(albumEntry7);
+                                                                                                    }
+                                                                                                }
+                                                                                                albumEntry7.addPhoto(photoEntry);
+                                                                                                albumEntry2 = albumEntry6;
+                                                                                                albumEntry14 = albumEntry4;
+                                                                                                columnIndex = i111118;
+                                                                                                columnIndex2 = columnIndex2;
+                                                                                                columnIndex6 = columnIndex6;
+                                                                                                columnIndex5 = i111119;
+                                                                                                columnIndex3 = i1111110;
+                                                                                                columnIndex4 = i1111111;
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                                if (cursorQuery != null) {
+                                                                                    cursorQuery.close();
+                                                                                }
+                                                                                albumEntry5 = albumEntry14;
+                                                                                AlbumEntry albumEntry112 = albumEntry2;
+                                                                                Integer num8 = objValueOf;
+                                                                                while (i2 < arrayList4.size()) {
+                                                                                    Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                                        @Override
+                                                                                        public final int compare(Object obj, Object obj2) {
+                                                                                            return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                                        }
+                                                                                    });
+                                                                                }
+                                                                                broadcastNewPhotos(i, arrayList4, arrayList, num8, albumEntry112, albumEntry3, albumEntry5, 0);
+                                                                            }
+                                                                        } catch (Throwable th14) {
+                                                                            th = th14;
+                                                                            sparseArray3 = sparseArray3;
+                                                                        }
+                                                                    }
+                                                                } catch (Throwable th15) {
+                                                                    th = th15;
+                                                                    arrayList4 = arrayList4;
+                                                                    sparseArray3 = sparseArray3;
+                                                                    string = string;
+                                                                    arrayList = arrayList5;
+                                                                    FileLog.e(th);
+                                                                    if (cursorQuery != null) {
+                                                                        cursorQuery.close();
+                                                                    }
+                                                                    albumEntry3 = albumEntry;
+                                                                    Context context7 = ApplicationLoader.applicationContext;
+                                                                    i3 = Build.VERSION.SDK_INT;
+                                                                    if (i3 < 23) {
+                                                                        ContentResolver contentResolver12 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                        Uri uri12 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                        String[] strArr12 = projectionVideo;
+                                                                        StringBuilder sb13 = new StringBuilder();
+                                                                        if (i3 > 28) {
+                                                                            str = "date_modified";
+                                                                        } else {
+                                                                            str = "datetaken";
+                                                                        }
+                                                                        sb13.append(str);
+                                                                        sb13.append(" DESC");
+                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver12, uri12, strArr12, null, null, sb13.toString());
+                                                                        if (cursorQuery != null) {
+                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                            if (i3 > 28) {
+                                                                                str2 = "date_modified";
+                                                                            } else {
+                                                                                str2 = "datetaken";
+                                                                            }
+                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                            cursorQuery.getColumnIndex(str8);
+                                                                            while (cursorQuery.moveToNext()) {
+                                                                                string2 = cursorQuery.getString(columnIndex4);
+                                                                                if (TextUtils.isEmpty(string2)) {
+                                                                                    int i1111112 = cursorQuery.getInt(columnIndex);
+                                                                                    i4 = cursorQuery.getInt(columnIndex2);
+                                                                                    int i1111113 = columnIndex;
+                                                                                    string3 = cursorQuery.getString(columnIndex3);
+                                                                                    int i1111114 = columnIndex5;
+                                                                                    int i1111115 = columnIndex3;
+                                                                                    int i1111116 = columnIndex4;
+                                                                                    photoEntry = new PhotoEntry(i4, i1111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                    if (albumEntry14 == null) {
+                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                        i5 = 1;
+                                                                                        albumEntry4.videoOnly = true;
+                                                                                        if (albumEntry2 != null) {
+                                                                                            i5 = 0;
+                                                                                        }
+                                                                                        if (albumEntry3 != null) {
+                                                                                            i5++;
+                                                                                        }
+                                                                                        arrayList4.add(i5, albumEntry4);
+                                                                                    } else {
+                                                                                        albumEntry4 = albumEntry14;
+                                                                                    }
+                                                                                    if (albumEntry2 == null) {
+                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                        arrayList4.add(0, albumEntry6);
+                                                                                    } else {
+                                                                                        albumEntry6 = albumEntry2;
+                                                                                    }
+                                                                                    albumEntry4.addPhoto(photoEntry);
+                                                                                    albumEntry6.addPhoto(photoEntry);
+                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                    if (albumEntry7 == null) {
+                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                        sparseArray3.put(i4, albumEntry7);
+                                                                                        if (objValueOf != null) {
+                                                                                            arrayList4.add(albumEntry7);
+                                                                                        } else {
+                                                                                            arrayList4.add(albumEntry7);
+                                                                                        }
+                                                                                    }
+                                                                                    albumEntry7.addPhoto(photoEntry);
+                                                                                    albumEntry2 = albumEntry6;
+                                                                                    albumEntry14 = albumEntry4;
+                                                                                    columnIndex = i1111113;
+                                                                                    columnIndex2 = columnIndex2;
+                                                                                    columnIndex6 = columnIndex6;
+                                                                                    columnIndex5 = i1111114;
+                                                                                    columnIndex3 = i1111115;
+                                                                                    columnIndex4 = i1111116;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    } else {
+                                                                        ContentResolver contentResolver13 = ApplicationLoader.applicationContext.getContentResolver();
+                                                                        Uri uri13 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                                        String[] strArr13 = projectionVideo;
+                                                                        StringBuilder sb14 = new StringBuilder();
+                                                                        if (i3 > 28) {
+                                                                            str = "date_modified";
+                                                                        } else {
+                                                                            str = "datetaken";
+                                                                        }
+                                                                        sb14.append(str);
+                                                                        sb14.append(" DESC");
+                                                                        cursorQuery = MediaStore.Images.Media.query(contentResolver13, uri13, strArr13, null, null, sb14.toString());
+                                                                        if (cursorQuery != null) {
+                                                                            columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                            if (i3 > 28) {
+                                                                                str2 = "date_modified";
+                                                                            } else {
+                                                                                str2 = "datetaken";
+                                                                            }
+                                                                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                            cursorQuery.getColumnIndex(str8);
+                                                                            while (cursorQuery.moveToNext()) {
+                                                                                string2 = cursorQuery.getString(columnIndex4);
+                                                                                if (TextUtils.isEmpty(string2)) {
+                                                                                    int i1111117 = cursorQuery.getInt(columnIndex);
+                                                                                    i4 = cursorQuery.getInt(columnIndex2);
+                                                                                    int i1111118 = columnIndex;
+                                                                                    string3 = cursorQuery.getString(columnIndex3);
+                                                                                    int i1111119 = columnIndex5;
+                                                                                    int i11111110 = columnIndex3;
+                                                                                    int i11111111 = columnIndex4;
+                                                                                    photoEntry = new PhotoEntry(i4, i1111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                                    if (albumEntry14 == null) {
+                                                                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                                        i5 = 1;
+                                                                                        albumEntry4.videoOnly = true;
+                                                                                        if (albumEntry2 != null) {
+                                                                                            i5 = 0;
+                                                                                        }
+                                                                                        if (albumEntry3 != null) {
+                                                                                            i5++;
+                                                                                        }
+                                                                                        arrayList4.add(i5, albumEntry4);
+                                                                                    } else {
+                                                                                        albumEntry4 = albumEntry14;
+                                                                                    }
+                                                                                    if (albumEntry2 == null) {
+                                                                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                                        arrayList4.add(0, albumEntry6);
+                                                                                    } else {
+                                                                                        albumEntry6 = albumEntry2;
+                                                                                    }
+                                                                                    albumEntry4.addPhoto(photoEntry);
+                                                                                    albumEntry6.addPhoto(photoEntry);
+                                                                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                                    if (albumEntry7 == null) {
+                                                                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                                        sparseArray3.put(i4, albumEntry7);
+                                                                                        if (objValueOf != null) {
+                                                                                            arrayList4.add(albumEntry7);
+                                                                                        } else {
+                                                                                            arrayList4.add(albumEntry7);
+                                                                                        }
+                                                                                    }
+                                                                                    albumEntry7.addPhoto(photoEntry);
+                                                                                    albumEntry2 = albumEntry6;
+                                                                                    albumEntry14 = albumEntry4;
+                                                                                    columnIndex = i1111118;
+                                                                                    columnIndex2 = columnIndex2;
+                                                                                    columnIndex6 = columnIndex6;
+                                                                                    columnIndex5 = i1111119;
+                                                                                    columnIndex3 = i11111110;
+                                                                                    columnIndex4 = i11111111;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    if (cursorQuery != null) {
+                                                                        cursorQuery.close();
+                                                                    }
+                                                                    albumEntry5 = albumEntry14;
+                                                                    AlbumEntry albumEntry113 = albumEntry2;
+                                                                    Integer num9 = objValueOf;
+                                                                    while (i2 < arrayList4.size()) {
+                                                                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                            @Override
+                                                                            public final int compare(Object obj, Object obj2) {
+                                                                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                    broadcastNewPhotos(i, arrayList4, arrayList, num9, albumEntry113, albumEntry3, albumEntry5, 0);
+                                                                }
+                                                            } catch (Throwable th16) {
+                                                                th = th16;
+                                                                str5 = str5;
+                                                            }
+                                                        }
+                                                        str5 = str5;
+                                                        arrayList4 = arrayList4;
+                                                        sparseArray3 = sparseArray3;
+                                                        string = string;
+                                                        arrayList = arrayList5;
+                                                    } catch (Throwable th17) {
+                                                        th = th17;
+                                                        arrayList4 = arrayList4;
+                                                        sparseArray3 = sparseArray3;
+                                                        string = string;
+                                                        arrayList = arrayList5;
+                                                        albumEntry = null;
+                                                        albumEntry2 = albumEntry;
+                                                        objValueOf = albumEntry2;
+                                                        FileLog.e(th);
+                                                        if (cursorQuery != null) {
+                                                            cursorQuery.close();
+                                                        }
+                                                        albumEntry3 = albumEntry;
+                                                        Context context8 = ApplicationLoader.applicationContext;
+                                                        i3 = Build.VERSION.SDK_INT;
+                                                        if (i3 < 23) {
+                                                            ContentResolver contentResolver14 = ApplicationLoader.applicationContext.getContentResolver();
+                                                            Uri uri14 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                            String[] strArr14 = projectionVideo;
+                                                            StringBuilder sb15 = new StringBuilder();
+                                                            if (i3 > 28) {
+                                                                str = "date_modified";
+                                                            } else {
+                                                                str = "datetaken";
+                                                            }
+                                                            sb15.append(str);
+                                                            sb15.append(" DESC");
+                                                            cursorQuery = MediaStore.Images.Media.query(contentResolver14, uri14, strArr14, null, null, sb15.toString());
+                                                            if (cursorQuery != null) {
+                                                                columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                if (i3 > 28) {
+                                                                    str2 = "date_modified";
+                                                                } else {
+                                                                    str2 = "datetaken";
+                                                                }
+                                                                columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                cursorQuery.getColumnIndex(str8);
+                                                                while (cursorQuery.moveToNext()) {
+                                                                    string2 = cursorQuery.getString(columnIndex4);
+                                                                    if (TextUtils.isEmpty(string2)) {
+                                                                        int i11111112 = cursorQuery.getInt(columnIndex);
+                                                                        i4 = cursorQuery.getInt(columnIndex2);
+                                                                        int i11111113 = columnIndex;
+                                                                        string3 = cursorQuery.getString(columnIndex3);
+                                                                        int i11111114 = columnIndex5;
+                                                                        int i11111115 = columnIndex3;
+                                                                        int i11111116 = columnIndex4;
+                                                                        photoEntry = new PhotoEntry(i4, i11111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                        if (albumEntry14 == null) {
+                                                                            albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                            i5 = 1;
+                                                                            albumEntry4.videoOnly = true;
+                                                                            if (albumEntry2 != null) {
+                                                                                i5 = 0;
+                                                                            }
+                                                                            if (albumEntry3 != null) {
+                                                                                i5++;
+                                                                            }
+                                                                            arrayList4.add(i5, albumEntry4);
+                                                                        } else {
+                                                                            albumEntry4 = albumEntry14;
+                                                                        }
+                                                                        if (albumEntry2 == null) {
+                                                                            albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                            arrayList4.add(0, albumEntry6);
+                                                                        } else {
+                                                                            albumEntry6 = albumEntry2;
+                                                                        }
+                                                                        albumEntry4.addPhoto(photoEntry);
+                                                                        albumEntry6.addPhoto(photoEntry);
+                                                                        albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                        if (albumEntry7 == null) {
+                                                                            albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                            sparseArray3.put(i4, albumEntry7);
+                                                                            if (objValueOf != null) {
+                                                                                arrayList4.add(albumEntry7);
+                                                                            } else {
+                                                                                arrayList4.add(albumEntry7);
+                                                                            }
+                                                                        }
+                                                                        albumEntry7.addPhoto(photoEntry);
+                                                                        albumEntry2 = albumEntry6;
+                                                                        albumEntry14 = albumEntry4;
+                                                                        columnIndex = i11111113;
+                                                                        columnIndex2 = columnIndex2;
+                                                                        columnIndex6 = columnIndex6;
+                                                                        columnIndex5 = i11111114;
+                                                                        columnIndex3 = i11111115;
+                                                                        columnIndex4 = i11111116;
+                                                                    }
+                                                                }
+                                                            }
+                                                        } else {
+                                                            ContentResolver contentResolver15 = ApplicationLoader.applicationContext.getContentResolver();
+                                                            Uri uri15 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                                                            String[] strArr15 = projectionVideo;
+                                                            StringBuilder sb16 = new StringBuilder();
+                                                            if (i3 > 28) {
+                                                                str = "date_modified";
+                                                            } else {
+                                                                str = "datetaken";
+                                                            }
+                                                            sb16.append(str);
+                                                            sb16.append(" DESC");
+                                                            cursorQuery = MediaStore.Images.Media.query(contentResolver15, uri15, strArr15, null, null, sb16.toString());
+                                                            if (cursorQuery != null) {
+                                                                columnIndex = cursorQuery.getColumnIndex(str12);
+                                                                columnIndex2 = cursorQuery.getColumnIndex(str11);
+                                                                columnIndex3 = cursorQuery.getColumnIndex(str10);
+                                                                columnIndex4 = cursorQuery.getColumnIndex(str9);
+                                                                if (i3 > 28) {
+                                                                    str2 = "date_modified";
+                                                                } else {
+                                                                    str2 = "datetaken";
+                                                                }
+                                                                columnIndex5 = cursorQuery.getColumnIndex(str2);
+                                                                columnIndex6 = cursorQuery.getColumnIndex("duration");
+                                                                columnIndex7 = cursorQuery.getColumnIndex(str7);
+                                                                columnIndex8 = cursorQuery.getColumnIndex(str6);
+                                                                columnIndex9 = cursorQuery.getColumnIndex(str5);
+                                                                cursorQuery.getColumnIndex(str8);
+                                                                while (cursorQuery.moveToNext()) {
+                                                                    string2 = cursorQuery.getString(columnIndex4);
+                                                                    if (TextUtils.isEmpty(string2)) {
+                                                                        int i11111117 = cursorQuery.getInt(columnIndex);
+                                                                        i4 = cursorQuery.getInt(columnIndex2);
+                                                                        int i11111118 = columnIndex;
+                                                                        string3 = cursorQuery.getString(columnIndex3);
+                                                                        int i11111119 = columnIndex5;
+                                                                        int i111111110 = columnIndex3;
+                                                                        int i111111111 = columnIndex4;
+                                                                        photoEntry = new PhotoEntry(i4, i11111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                                                        if (albumEntry14 == null) {
+                                                                            albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                                                            i5 = 1;
+                                                                            albumEntry4.videoOnly = true;
+                                                                            if (albumEntry2 != null) {
+                                                                                i5 = 0;
+                                                                            }
+                                                                            if (albumEntry3 != null) {
+                                                                                i5++;
+                                                                            }
+                                                                            arrayList4.add(i5, albumEntry4);
+                                                                        } else {
+                                                                            albumEntry4 = albumEntry14;
+                                                                        }
+                                                                        if (albumEntry2 == null) {
+                                                                            albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                                                            arrayList4.add(0, albumEntry6);
+                                                                        } else {
+                                                                            albumEntry6 = albumEntry2;
+                                                                        }
+                                                                        albumEntry4.addPhoto(photoEntry);
+                                                                        albumEntry6.addPhoto(photoEntry);
+                                                                        albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                                                        if (albumEntry7 == null) {
+                                                                            albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                                                            sparseArray3.put(i4, albumEntry7);
+                                                                            if (objValueOf != null) {
+                                                                                arrayList4.add(albumEntry7);
+                                                                            } else {
+                                                                                arrayList4.add(albumEntry7);
+                                                                            }
+                                                                        }
+                                                                        albumEntry7.addPhoto(photoEntry);
+                                                                        albumEntry2 = albumEntry6;
+                                                                        albumEntry14 = albumEntry4;
+                                                                        columnIndex = i11111118;
+                                                                        columnIndex2 = columnIndex2;
+                                                                        columnIndex6 = columnIndex6;
+                                                                        columnIndex5 = i11111119;
+                                                                        columnIndex3 = i111111110;
+                                                                        columnIndex4 = i111111111;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        if (cursorQuery != null) {
+                                                            cursorQuery.close();
+                                                        }
+                                                        albumEntry5 = albumEntry14;
+                                                        AlbumEntry albumEntry114 = albumEntry2;
+                                                        Integer num10 = objValueOf;
+                                                        while (i2 < arrayList4.size()) {
+                                                            Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                                @Override
+                                                                public final int compare(Object obj, Object obj2) {
+                                                                    return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                                }
+                                                            });
+                                                        }
+                                                        broadcastNewPhotos(i, arrayList4, arrayList, num10, albumEntry114, albumEntry3, albumEntry5, 0);
+                                                    }
+                                                } catch (Throwable th18) {
+                                                    th = th18;
+                                                    str6 = "height";
+                                                }
+                                            } catch (Throwable th19) {
+                                                th = th19;
+                                                str6 = "height";
+                                                str7 = "width";
+                                            }
+                                        } catch (Throwable th20) {
+                                            th = th20;
+                                            str6 = "height";
+                                            str7 = "width";
+                                            str8 = "orientation";
+                                        }
+                                    } catch (Throwable th21) {
+                                        th = th21;
+                                        str6 = "height";
+                                        str7 = "width";
+                                        str8 = "orientation";
+                                        str9 = "_data";
+                                    }
+                                } catch (Throwable th22) {
+                                    th = th22;
+                                    str6 = "height";
+                                    str7 = "width";
+                                    str8 = "orientation";
+                                    str9 = "_data";
+                                    str10 = "bucket_display_name";
+                                }
+                            } catch (Throwable th23) {
+                                th = th23;
+                                str6 = "height";
+                                str7 = "width";
+                                str8 = "orientation";
+                                str9 = "_data";
+                                str10 = "bucket_display_name";
+                                str11 = "bucket_id";
+                            }
+                        } catch (Throwable th24) {
+                            th = th24;
+                            str6 = "height";
+                            str7 = "width";
+                            str8 = "orientation";
+                            str9 = "_data";
+                            str10 = "bucket_display_name";
+                            str11 = "bucket_id";
+                            str12 = "_id";
+                        }
+                    }
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
+                    }
+                } catch (Throwable th25) {
+                    th = th25;
+                    arrayList = arrayList5;
+                    cursorQuery = null;
+                    albumEntry = null;
+                    albumEntry2 = albumEntry;
+                    objValueOf = albumEntry2;
+                    FileLog.e(th);
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
+                    }
+                    albumEntry3 = albumEntry;
+                    Context context9 = ApplicationLoader.applicationContext;
+                    i3 = Build.VERSION.SDK_INT;
+                    if (i3 < 23) {
+                        ContentResolver contentResolver16 = ApplicationLoader.applicationContext.getContentResolver();
+                        Uri uri16 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                        String[] strArr16 = projectionVideo;
+                        StringBuilder sb17 = new StringBuilder();
+                        if (i3 > 28) {
+                            str = "date_modified";
+                        } else {
+                            str = "datetaken";
+                        }
+                        sb17.append(str);
+                        sb17.append(" DESC");
+                        cursorQuery = MediaStore.Images.Media.query(contentResolver16, uri16, strArr16, null, null, sb17.toString());
+                        if (cursorQuery != null) {
+                            columnIndex = cursorQuery.getColumnIndex(str12);
+                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                            if (i3 > 28) {
+                                str2 = "date_modified";
+                            } else {
+                                str2 = "datetaken";
+                            }
+                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                            cursorQuery.getColumnIndex(str8);
+                            while (cursorQuery.moveToNext()) {
+                                string2 = cursorQuery.getString(columnIndex4);
+                                if (TextUtils.isEmpty(string2)) {
+                                    int i111111112 = cursorQuery.getInt(columnIndex);
+                                    i4 = cursorQuery.getInt(columnIndex2);
+                                    int i111111113 = columnIndex;
+                                    string3 = cursorQuery.getString(columnIndex3);
+                                    int i111111114 = columnIndex5;
+                                    int i111111115 = columnIndex3;
+                                    int i111111116 = columnIndex4;
+                                    photoEntry = new PhotoEntry(i4, i111111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    if (albumEntry14 == null) {
+                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                        i5 = 1;
+                                        albumEntry4.videoOnly = true;
+                                        if (albumEntry2 != null) {
+                                            i5 = 0;
+                                        }
+                                        if (albumEntry3 != null) {
+                                            i5++;
+                                        }
+                                        arrayList4.add(i5, albumEntry4);
+                                    } else {
+                                        albumEntry4 = albumEntry14;
+                                    }
+                                    if (albumEntry2 == null) {
+                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                        arrayList4.add(0, albumEntry6);
+                                    } else {
+                                        albumEntry6 = albumEntry2;
+                                    }
+                                    albumEntry4.addPhoto(photoEntry);
+                                    albumEntry6.addPhoto(photoEntry);
+                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                    if (albumEntry7 == null) {
+                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                        sparseArray3.put(i4, albumEntry7);
+                                        if (objValueOf != null) {
+                                            arrayList4.add(albumEntry7);
+                                        } else {
+                                            arrayList4.add(albumEntry7);
+                                        }
+                                    }
+                                    albumEntry7.addPhoto(photoEntry);
+                                    albumEntry2 = albumEntry6;
+                                    albumEntry14 = albumEntry4;
+                                    columnIndex = i111111113;
+                                    columnIndex2 = columnIndex2;
+                                    columnIndex6 = columnIndex6;
+                                    columnIndex5 = i111111114;
+                                    columnIndex3 = i111111115;
+                                    columnIndex4 = i111111116;
+                                }
+                            }
+                        }
+                    } else {
+                        ContentResolver contentResolver17 = ApplicationLoader.applicationContext.getContentResolver();
+                        Uri uri17 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                        String[] strArr17 = projectionVideo;
+                        StringBuilder sb18 = new StringBuilder();
+                        if (i3 > 28) {
+                            str = "date_modified";
+                        } else {
+                            str = "datetaken";
+                        }
+                        sb18.append(str);
+                        sb18.append(" DESC");
+                        cursorQuery = MediaStore.Images.Media.query(contentResolver17, uri17, strArr17, null, null, sb18.toString());
+                        if (cursorQuery != null) {
+                            columnIndex = cursorQuery.getColumnIndex(str12);
+                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                            if (i3 > 28) {
+                                str2 = "date_modified";
+                            } else {
+                                str2 = "datetaken";
+                            }
+                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                            cursorQuery.getColumnIndex(str8);
+                            while (cursorQuery.moveToNext()) {
+                                string2 = cursorQuery.getString(columnIndex4);
+                                if (TextUtils.isEmpty(string2)) {
+                                    int i111111117 = cursorQuery.getInt(columnIndex);
+                                    i4 = cursorQuery.getInt(columnIndex2);
+                                    int i111111118 = columnIndex;
+                                    string3 = cursorQuery.getString(columnIndex3);
+                                    int i111111119 = columnIndex5;
+                                    int i1111111110 = columnIndex3;
+                                    int i1111111111 = columnIndex4;
+                                    photoEntry = new PhotoEntry(i4, i111111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    if (albumEntry14 == null) {
+                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                        i5 = 1;
+                                        albumEntry4.videoOnly = true;
+                                        if (albumEntry2 != null) {
+                                            i5 = 0;
+                                        }
+                                        if (albumEntry3 != null) {
+                                            i5++;
+                                        }
+                                        arrayList4.add(i5, albumEntry4);
+                                    } else {
+                                        albumEntry4 = albumEntry14;
+                                    }
+                                    if (albumEntry2 == null) {
+                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                        arrayList4.add(0, albumEntry6);
+                                    } else {
+                                        albumEntry6 = albumEntry2;
+                                    }
+                                    albumEntry4.addPhoto(photoEntry);
+                                    albumEntry6.addPhoto(photoEntry);
+                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                    if (albumEntry7 == null) {
+                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                        sparseArray3.put(i4, albumEntry7);
+                                        if (objValueOf != null) {
+                                            arrayList4.add(albumEntry7);
+                                        } else {
+                                            arrayList4.add(albumEntry7);
+                                        }
+                                    }
+                                    albumEntry7.addPhoto(photoEntry);
+                                    albumEntry2 = albumEntry6;
+                                    albumEntry14 = albumEntry4;
+                                    columnIndex = i111111118;
+                                    columnIndex2 = columnIndex2;
+                                    columnIndex6 = columnIndex6;
+                                    columnIndex5 = i111111119;
+                                    columnIndex3 = i1111111110;
+                                    columnIndex4 = i1111111111;
+                                }
+                            }
+                        }
+                    }
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
+                    }
+                    albumEntry5 = albumEntry14;
+                    AlbumEntry albumEntry115 = albumEntry2;
+                    Integer num11 = objValueOf;
+                    while (i2 < arrayList4.size()) {
+                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                            @Override
+                            public final int compare(Object obj, Object obj2) {
+                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                            }
+                        });
+                    }
+                    broadcastNewPhotos(i, arrayList4, arrayList, num11, albumEntry115, albumEntry3, albumEntry5, 0);
+                }
+            } else if (i7 >= 33) {
+                if (i7 >= 33) {
+                }
+                str5 = "_size";
+                str6 = "height";
+                str7 = "width";
+                str8 = "orientation";
+                str9 = "_data";
+                str10 = "bucket_display_name";
+                str11 = "bucket_id";
+                str12 = "_id";
+                arrayList4 = arrayList4;
+                sparseArray3 = sparseArray3;
+                cursorQuery = null;
+                albumEntry = null;
+                albumEntry2 = null;
+                objValueOf = null;
+                string = string;
+                arrayList = arrayList5;
+                if (cursorQuery != null) {
+                    cursorQuery.close();
+                }
+            } else {
+                try {
+                    if (context.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
+                        if (i7 >= 33 || (context.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 && context.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0 && context.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0)) {
+                            str5 = "_size";
+                            str6 = "height";
+                            str7 = "width";
+                            str8 = "orientation";
+                            str9 = "_data";
+                            str10 = "bucket_display_name";
+                            str11 = "bucket_id";
+                            str12 = "_id";
+                            arrayList4 = arrayList4;
+                            sparseArray3 = sparseArray3;
+                            cursorQuery = null;
+                            albumEntry = null;
+                            albumEntry2 = null;
+                            objValueOf = null;
+                        }
+                        string = string;
+                        arrayList = arrayList5;
+                        if (cursorQuery != null) {
+                            cursorQuery.close();
+                        }
+                    }
+                    ContentResolver contentResolver18 = context.getContentResolver();
+                    Uri uri18 = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                    String[] strArr18 = projectionPhotos;
+                    StringBuilder sb19 = new StringBuilder();
+                    if (i7 > 28) {
+                        str3 = "date_modified";
+                    } else {
+                        str3 = "datetaken";
+                    }
+                    sb19.append(str3);
+                    sb19.append(" DESC");
+                    cursorQuery = MediaStore.Images.Media.query(contentResolver18, uri18, strArr18, null, null, sb19.toString());
+                    if (cursorQuery != null) {
+                        str5 = "_size";
+                        str6 = "height";
+                        str7 = "width";
+                        str8 = "orientation";
+                        str9 = "_data";
+                        str10 = "bucket_display_name";
+                        str11 = "bucket_id";
+                        str12 = "_id";
+                        arrayList4 = arrayList4;
+                        sparseArray3 = sparseArray3;
+                        string = string;
+                        arrayList = arrayList5;
+                        albumEntry = null;
+                        albumEntry2 = null;
+                        objValueOf = null;
+                    } else {
+                        columnIndex10 = cursorQuery.getColumnIndex("_id");
+                        str12 = "_id";
+                        columnIndex11 = cursorQuery.getColumnIndex("bucket_id");
+                        str11 = "bucket_id";
+                        columnIndex12 = cursorQuery.getColumnIndex("bucket_display_name");
+                        str10 = "bucket_display_name";
+                        columnIndex13 = cursorQuery.getColumnIndex("_data");
+                        str9 = "_data";
+                        if (i7 > 28) {
+                            str4 = "date_modified";
+                        } else {
+                            str4 = "datetaken";
+                        }
+                        columnIndex14 = cursorQuery.getColumnIndex(str4);
+                        columnIndex15 = cursorQuery.getColumnIndex("orientation");
+                        str8 = "orientation";
+                        columnIndex16 = cursorQuery.getColumnIndex("width");
+                        str7 = "width";
+                        columnIndex17 = cursorQuery.getColumnIndex("height");
+                        str6 = "height";
+                        columnIndex18 = cursorQuery.getColumnIndex("_size");
+                        albumEntry = null;
+                        albumEntry2 = null;
+                        objValueOf = null;
+                        numValueOf = null;
+                        while (cursorQuery.moveToNext()) {
+                            str5 = str5;
+                            string4 = cursorQuery.getString(columnIndex13);
+                            if (TextUtils.isEmpty(string4)) {
+                                int i21 = cursorQuery.getInt(columnIndex10);
+                                int i22 = columnIndex10;
+                                i6 = cursorQuery.getInt(columnIndex11);
+                                int i120 = columnIndex13;
+                                string5 = cursorQuery.getString(columnIndex12);
+                                int i121 = columnIndex18;
+                                photoEntry2 = new PhotoEntry(i6, i21, cursorQuery.getLong(columnIndex14), string4, cursorQuery.getInt(columnIndex15), 0, false, cursorQuery.getInt(columnIndex16), cursorQuery.getInt(columnIndex17), cursorQuery.getLong(columnIndex18));
+                                if (albumEntry == null) {
+                                    albumEntry8 = new AlbumEntry(0, LocaleController.getString(R.string.AllPhotos), photoEntry2);
+                                    arrayList = arrayList5;
+                                    arrayList.add(0, albumEntry8);
+                                } else {
+                                    arrayList = arrayList5;
+                                    albumEntry8 = albumEntry;
+                                }
+                                if (albumEntry2 == null) {
+                                    albumEntry9 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry2);
+                                    arrayList4 = arrayList4;
+                                    arrayList4.add(0, albumEntry9);
+                                } else {
+                                    arrayList4 = arrayList4;
+                                    albumEntry9 = albumEntry2;
+                                }
+                                int i23 = columnIndex15;
+                                if (albumEntry8.photos.size() < 15) {
+                                    photoEntry2.isLivePhoto();
+                                }
+                                albumEntry8.addPhoto(photoEntry2);
+                                albumEntry9.addPhoto(photoEntry2);
+                                sparseArray3 = sparseArray3;
+                                albumEntry12 = (AlbumEntry) sparseArray3.get(i6);
+                                if (albumEntry12 == null) {
+                                    albumEntry12 = new AlbumEntry(i6, string5, photoEntry2);
+                                    sparseArray3.put(i6, albumEntry12);
+                                    if (objValueOf == null) {
+                                        albumEntry10 = albumEntry8;
+                                        string = string;
+                                        albumEntry11 = albumEntry9;
+                                        arrayList4.add(albumEntry12);
+                                    } else {
+                                        albumEntry10 = albumEntry8;
+                                        string = string;
+                                        albumEntry11 = albumEntry9;
+                                        arrayList4.add(albumEntry12);
+                                    }
+                                } else {
+                                    albumEntry10 = albumEntry8;
+                                    string = string;
+                                    albumEntry11 = albumEntry9;
+                                }
+                                albumEntry12.addPhoto(photoEntry2);
+                                sparseArray2 = sparseArray;
+                                albumEntry13 = (AlbumEntry) sparseArray2.get(i6);
+                                if (albumEntry13 == null) {
+                                    albumEntry13 = new AlbumEntry(i6, string5, photoEntry2);
+                                    sparseArray2.put(i6, albumEntry13);
+                                    if (numValueOf != null) {
+                                        arrayList.add(albumEntry13);
+                                    } else {
+                                        arrayList.add(albumEntry13);
+                                    }
+                                }
+                                albumEntry13.addPhoto(photoEntry2);
+                                sparseArray = sparseArray2;
+                                columnIndex15 = i23;
+                                albumEntry = albumEntry10;
+                                albumEntry2 = albumEntry11;
+                                columnIndex14 = columnIndex14;
+                                columnIndex10 = i22;
+                                columnIndex13 = i120;
+                                columnIndex18 = i121;
+                                string = string;
+                                arrayList4 = arrayList4;
+                                sparseArray3 = sparseArray3;
+                                columnIndex11 = columnIndex11;
+                                columnIndex17 = columnIndex17;
+                                columnIndex12 = columnIndex12;
+                                arrayList5 = arrayList;
+                                columnIndex16 = columnIndex16;
+                            }
+                        }
+                        str5 = str5;
+                        arrayList4 = arrayList4;
+                        sparseArray3 = sparseArray3;
+                        string = string;
+                        arrayList = arrayList5;
+                    }
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
+                    }
+                } catch (Throwable th26) {
+                    th = th26;
+                    str5 = "_size";
+                    str6 = "height";
+                    str7 = "width";
+                    str8 = "orientation";
+                    str9 = "_data";
+                    str10 = "bucket_display_name";
+                    str11 = "bucket_id";
+                    str12 = "_id";
+                    arrayList4 = arrayList4;
+                    sparseArray3 = sparseArray3;
+                    cursorQuery = null;
+                    albumEntry = null;
+                    albumEntry2 = null;
+                    objValueOf = null;
+                    string = string;
+                    arrayList = arrayList5;
+                    FileLog.e(th);
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
+                    }
+                    albumEntry3 = albumEntry;
+                    Context context10 = ApplicationLoader.applicationContext;
+                    i3 = Build.VERSION.SDK_INT;
+                    if (i3 < 23) {
+                        ContentResolver contentResolver19 = ApplicationLoader.applicationContext.getContentResolver();
+                        Uri uri19 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                        String[] strArr19 = projectionVideo;
+                        StringBuilder sb110 = new StringBuilder();
+                        if (i3 > 28) {
+                            str = "date_modified";
+                        } else {
+                            str = "datetaken";
+                        }
+                        sb110.append(str);
+                        sb110.append(" DESC");
+                        cursorQuery = MediaStore.Images.Media.query(contentResolver19, uri19, strArr19, null, null, sb110.toString());
+                        if (cursorQuery != null) {
+                            columnIndex = cursorQuery.getColumnIndex(str12);
+                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                            if (i3 > 28) {
+                                str2 = "date_modified";
+                            } else {
+                                str2 = "datetaken";
+                            }
+                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                            cursorQuery.getColumnIndex(str8);
+                            while (cursorQuery.moveToNext()) {
+                                string2 = cursorQuery.getString(columnIndex4);
+                                if (TextUtils.isEmpty(string2)) {
+                                    int i1111111112 = cursorQuery.getInt(columnIndex);
+                                    i4 = cursorQuery.getInt(columnIndex2);
+                                    int i1111111113 = columnIndex;
+                                    string3 = cursorQuery.getString(columnIndex3);
+                                    int i1111111114 = columnIndex5;
+                                    int i1111111115 = columnIndex3;
+                                    int i1111111116 = columnIndex4;
+                                    photoEntry = new PhotoEntry(i4, i1111111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    if (albumEntry14 == null) {
+                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                        i5 = 1;
+                                        albumEntry4.videoOnly = true;
+                                        if (albumEntry2 != null) {
+                                            i5 = 0;
+                                        }
+                                        if (albumEntry3 != null) {
+                                            i5++;
+                                        }
+                                        arrayList4.add(i5, albumEntry4);
+                                    } else {
+                                        albumEntry4 = albumEntry14;
+                                    }
+                                    if (albumEntry2 == null) {
+                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                        arrayList4.add(0, albumEntry6);
+                                    } else {
+                                        albumEntry6 = albumEntry2;
+                                    }
+                                    albumEntry4.addPhoto(photoEntry);
+                                    albumEntry6.addPhoto(photoEntry);
+                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                    if (albumEntry7 == null) {
+                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                        sparseArray3.put(i4, albumEntry7);
+                                        if (objValueOf != null) {
+                                            arrayList4.add(albumEntry7);
+                                        } else {
+                                            arrayList4.add(albumEntry7);
+                                        }
+                                    }
+                                    albumEntry7.addPhoto(photoEntry);
+                                    albumEntry2 = albumEntry6;
+                                    albumEntry14 = albumEntry4;
+                                    columnIndex = i1111111113;
+                                    columnIndex2 = columnIndex2;
+                                    columnIndex6 = columnIndex6;
+                                    columnIndex5 = i1111111114;
+                                    columnIndex3 = i1111111115;
+                                    columnIndex4 = i1111111116;
+                                }
+                            }
+                        }
+                    } else {
+                        ContentResolver contentResolver110 = ApplicationLoader.applicationContext.getContentResolver();
+                        Uri uri110 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                        String[] strArr110 = projectionVideo;
+                        StringBuilder sb111 = new StringBuilder();
+                        if (i3 > 28) {
+                            str = "date_modified";
+                        } else {
+                            str = "datetaken";
+                        }
+                        sb111.append(str);
+                        sb111.append(" DESC");
+                        cursorQuery = MediaStore.Images.Media.query(contentResolver110, uri110, strArr110, null, null, sb111.toString());
+                        if (cursorQuery != null) {
+                            columnIndex = cursorQuery.getColumnIndex(str12);
+                            columnIndex2 = cursorQuery.getColumnIndex(str11);
+                            columnIndex3 = cursorQuery.getColumnIndex(str10);
+                            columnIndex4 = cursorQuery.getColumnIndex(str9);
+                            if (i3 > 28) {
+                                str2 = "date_modified";
+                            } else {
+                                str2 = "datetaken";
+                            }
+                            columnIndex5 = cursorQuery.getColumnIndex(str2);
+                            columnIndex6 = cursorQuery.getColumnIndex("duration");
+                            columnIndex7 = cursorQuery.getColumnIndex(str7);
+                            columnIndex8 = cursorQuery.getColumnIndex(str6);
+                            columnIndex9 = cursorQuery.getColumnIndex(str5);
+                            cursorQuery.getColumnIndex(str8);
+                            while (cursorQuery.moveToNext()) {
+                                string2 = cursorQuery.getString(columnIndex4);
+                                if (TextUtils.isEmpty(string2)) {
+                                    int i1111111117 = cursorQuery.getInt(columnIndex);
+                                    i4 = cursorQuery.getInt(columnIndex2);
+                                    int i1111111118 = columnIndex;
+                                    string3 = cursorQuery.getString(columnIndex3);
+                                    int i1111111119 = columnIndex5;
+                                    int i11111111110 = columnIndex3;
+                                    int i11111111111 = columnIndex4;
+                                    photoEntry = new PhotoEntry(i4, i1111111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                    if (albumEntry14 == null) {
+                                        albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                        i5 = 1;
+                                        albumEntry4.videoOnly = true;
+                                        if (albumEntry2 != null) {
+                                            i5 = 0;
+                                        }
+                                        if (albumEntry3 != null) {
+                                            i5++;
+                                        }
+                                        arrayList4.add(i5, albumEntry4);
+                                    } else {
+                                        albumEntry4 = albumEntry14;
+                                    }
+                                    if (albumEntry2 == null) {
+                                        albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                        arrayList4.add(0, albumEntry6);
+                                    } else {
+                                        albumEntry6 = albumEntry2;
+                                    }
+                                    albumEntry4.addPhoto(photoEntry);
+                                    albumEntry6.addPhoto(photoEntry);
+                                    albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                    if (albumEntry7 == null) {
+                                        albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                        sparseArray3.put(i4, albumEntry7);
+                                        if (objValueOf != null) {
+                                            arrayList4.add(albumEntry7);
+                                        } else {
+                                            arrayList4.add(albumEntry7);
+                                        }
+                                    }
+                                    albumEntry7.addPhoto(photoEntry);
+                                    albumEntry2 = albumEntry6;
+                                    albumEntry14 = albumEntry4;
+                                    columnIndex = i1111111118;
+                                    columnIndex2 = columnIndex2;
+                                    columnIndex6 = columnIndex6;
+                                    columnIndex5 = i1111111119;
+                                    columnIndex3 = i11111111110;
+                                    columnIndex4 = i11111111111;
+                                }
+                            }
+                        }
+                    }
+                    if (cursorQuery != null) {
+                        cursorQuery.close();
+                    }
+                    albumEntry5 = albumEntry14;
+                    AlbumEntry albumEntry116 = albumEntry2;
+                    Integer num12 = objValueOf;
+                    while (i2 < arrayList4.size()) {
+                        Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                            @Override
+                            public final int compare(Object obj, Object obj2) {
+                                return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                            }
+                        });
+                    }
+                    broadcastNewPhotos(i, arrayList4, arrayList, num12, albumEntry116, albumEntry3, albumEntry5, 0);
+                }
+            }
+        } catch (Throwable th27) {
+            th = th27;
+            arrayList = arrayList3;
+        }
+        albumEntry3 = albumEntry;
+        try {
+            Context context11 = ApplicationLoader.applicationContext;
+            i3 = Build.VERSION.SDK_INT;
+            if (i3 < 23 && (i3 >= 33 || context11.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0)) {
+                if (i3 >= 33 && (context11.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0 || context11.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") == 0 || context11.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") == 0)) {
+                    ContentResolver contentResolver111 = ApplicationLoader.applicationContext.getContentResolver();
+                    Uri uri111 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                    String[] strArr111 = projectionVideo;
+                    StringBuilder sb112 = new StringBuilder();
+                    if (i3 > 28) {
+                        str = "date_modified";
+                    } else {
+                        str = "datetaken";
+                    }
+                    sb112.append(str);
+                    sb112.append(" DESC");
+                    cursorQuery = MediaStore.Images.Media.query(contentResolver111, uri111, strArr111, null, null, sb112.toString());
+                    if (cursorQuery != null) {
+                        columnIndex = cursorQuery.getColumnIndex(str12);
+                        columnIndex2 = cursorQuery.getColumnIndex(str11);
+                        columnIndex3 = cursorQuery.getColumnIndex(str10);
+                        columnIndex4 = cursorQuery.getColumnIndex(str9);
+                        if (i3 > 28) {
+                            str2 = "date_modified";
+                        } else {
+                            str2 = "datetaken";
+                        }
+                        columnIndex5 = cursorQuery.getColumnIndex(str2);
+                        columnIndex6 = cursorQuery.getColumnIndex("duration");
+                        columnIndex7 = cursorQuery.getColumnIndex(str7);
+                        columnIndex8 = cursorQuery.getColumnIndex(str6);
+                        columnIndex9 = cursorQuery.getColumnIndex(str5);
+                        cursorQuery.getColumnIndex(str8);
+                        while (cursorQuery.moveToNext()) {
+                            string2 = cursorQuery.getString(columnIndex4);
+                            if (TextUtils.isEmpty(string2)) {
+                                int i11111111112 = cursorQuery.getInt(columnIndex);
+                                i4 = cursorQuery.getInt(columnIndex2);
+                                int i11111111113 = columnIndex;
+                                string3 = cursorQuery.getString(columnIndex3);
+                                int i11111111114 = columnIndex5;
+                                int i11111111115 = columnIndex3;
+                                int i11111111116 = columnIndex4;
+                                photoEntry = new PhotoEntry(i4, i11111111112, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                                if (albumEntry14 == null) {
+                                    albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                    i5 = 1;
+                                    albumEntry4.videoOnly = true;
+                                    if (albumEntry2 != null) {
+                                        i5 = 0;
+                                    }
+                                    if (albumEntry3 != null) {
+                                        i5++;
+                                    }
+                                    arrayList4.add(i5, albumEntry4);
+                                } else {
+                                    albumEntry4 = albumEntry14;
+                                }
+                                if (albumEntry2 == null) {
+                                    albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                    arrayList4.add(0, albumEntry6);
+                                } else {
+                                    albumEntry6 = albumEntry2;
+                                }
+                                albumEntry4.addPhoto(photoEntry);
+                                albumEntry6.addPhoto(photoEntry);
+                                albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                                if (albumEntry7 == null) {
+                                    albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                    sparseArray3.put(i4, albumEntry7);
+                                    if (objValueOf != null) {
+                                        arrayList4.add(albumEntry7);
+                                    } else {
+                                        arrayList4.add(albumEntry7);
+                                    }
+                                }
+                                albumEntry7.addPhoto(photoEntry);
+                                albumEntry2 = albumEntry6;
+                                albumEntry14 = albumEntry4;
+                                columnIndex = i11111111113;
+                                columnIndex2 = columnIndex2;
+                                columnIndex6 = columnIndex6;
+                                columnIndex5 = i11111111114;
+                                columnIndex3 = i11111111115;
+                                columnIndex4 = i11111111116;
+                            }
+                        }
+                    }
+                }
+            } else {
+                ContentResolver contentResolver112 = ApplicationLoader.applicationContext.getContentResolver();
+                Uri uri112 = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                String[] strArr112 = projectionVideo;
+                StringBuilder sb113 = new StringBuilder();
+                if (i3 > 28) {
+                    str = "date_modified";
+                } else {
+                    str = "datetaken";
+                }
+                sb113.append(str);
+                sb113.append(" DESC");
+                cursorQuery = MediaStore.Images.Media.query(contentResolver112, uri112, strArr112, null, null, sb113.toString());
+                if (cursorQuery != null) {
+                    columnIndex = cursorQuery.getColumnIndex(str12);
+                    columnIndex2 = cursorQuery.getColumnIndex(str11);
+                    columnIndex3 = cursorQuery.getColumnIndex(str10);
+                    columnIndex4 = cursorQuery.getColumnIndex(str9);
+                    if (i3 > 28) {
+                        str2 = "date_modified";
+                    } else {
+                        str2 = "datetaken";
+                    }
+                    columnIndex5 = cursorQuery.getColumnIndex(str2);
+                    columnIndex6 = cursorQuery.getColumnIndex("duration");
+                    columnIndex7 = cursorQuery.getColumnIndex(str7);
+                    columnIndex8 = cursorQuery.getColumnIndex(str6);
+                    columnIndex9 = cursorQuery.getColumnIndex(str5);
+                    cursorQuery.getColumnIndex(str8);
+                    while (cursorQuery.moveToNext()) {
+                        string2 = cursorQuery.getString(columnIndex4);
+                        if (TextUtils.isEmpty(string2)) {
+                            int i11111111117 = cursorQuery.getInt(columnIndex);
+                            i4 = cursorQuery.getInt(columnIndex2);
+                            int i11111111118 = columnIndex;
+                            string3 = cursorQuery.getString(columnIndex3);
+                            int i11111111119 = columnIndex5;
+                            int i111111111110 = columnIndex3;
+                            int i111111111111 = columnIndex4;
+                            photoEntry = new PhotoEntry(i4, i11111111117, cursorQuery.getLong(columnIndex5), string2, 0, (int) (cursorQuery.getLong(columnIndex6) / 1000), true, cursorQuery.getInt(columnIndex7), cursorQuery.getInt(columnIndex8), cursorQuery.getLong(columnIndex9));
+                            if (albumEntry14 == null) {
+                                albumEntry4 = new AlbumEntry(0, LocaleController.getString(R.string.AllVideos), photoEntry);
+                                i5 = 1;
+                                albumEntry4.videoOnly = true;
+                                if (albumEntry2 != null) {
+                                    i5 = 0;
+                                }
+                                if (albumEntry3 != null) {
+                                    i5++;
+                                }
+                                arrayList4.add(i5, albumEntry4);
+                            } else {
+                                albumEntry4 = albumEntry14;
+                            }
+                            if (albumEntry2 == null) {
+                                albumEntry6 = new AlbumEntry(0, LocaleController.getString(R.string.AllMedia), photoEntry);
+                                arrayList4.add(0, albumEntry6);
+                            } else {
+                                albumEntry6 = albumEntry2;
+                            }
+                            albumEntry4.addPhoto(photoEntry);
+                            albumEntry6.addPhoto(photoEntry);
+                            albumEntry7 = (AlbumEntry) sparseArray3.get(i4);
+                            if (albumEntry7 == null) {
+                                albumEntry7 = new AlbumEntry(i4, string3, photoEntry);
+                                sparseArray3.put(i4, albumEntry7);
+                                if (objValueOf != null && string != null && string2 != null && string2.startsWith(string)) {
+                                    try {
+                                        arrayList4.add(0, albumEntry7);
+                                        objValueOf = Integer.valueOf(i4);
+                                    } catch (Throwable th28) {
+                                        th = th28;
+                                        albumEntry2 = albumEntry6;
+                                        albumEntry14 = albumEntry4;
+                                        albumEntry4 = albumEntry14;
+                                        FileLog.e(th);
+                                        if (cursorQuery != null) {
+                                            cursorQuery.close();
+                                        }
+                                        albumEntry5 = albumEntry4;
+                                        AlbumEntry albumEntry117 = albumEntry2;
+                                        Integer num13 = objValueOf;
+                                        while (i2 < arrayList4.size()) {
+                                            Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                                                @Override
+                                                public final int compare(Object obj, Object obj2) {
+                                                    return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                                                }
+                                            });
+                                        }
+                                        broadcastNewPhotos(i, arrayList4, arrayList, num13, albumEntry117, albumEntry3, albumEntry5, 0);
+                                    }
+                                } else {
+                                    arrayList4.add(albumEntry7);
+                                }
+                            }
+                            albumEntry7.addPhoto(photoEntry);
+                            albumEntry2 = albumEntry6;
+                            albumEntry14 = albumEntry4;
+                            columnIndex = i11111111118;
+                            columnIndex2 = columnIndex2;
+                            columnIndex6 = columnIndex6;
+                            columnIndex5 = i11111111119;
+                            columnIndex3 = i111111111110;
+                            columnIndex4 = i111111111111;
+                        }
+                    }
+                }
+            }
+            if (cursorQuery != null) {
+                cursorQuery.close();
+            }
+            albumEntry5 = albumEntry14;
+        } catch (Throwable th29) {
+            th = th29;
+        }
+        AlbumEntry albumEntry118 = albumEntry2;
+        Integer num14 = objValueOf;
+        while (i2 < arrayList4.size()) {
+            Collections.sort(((AlbumEntry) arrayList4.get(i2)).photos, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    return MediaController.lambda$loadGalleryPhotosAlbums$56((MediaController.PhotoEntry) obj, (MediaController.PhotoEntry) obj2);
+                }
+            });
+        }
+        broadcastNewPhotos(i, arrayList4, arrayList, num14, albumEntry118, albumEntry3, albumEntry5, 0);
     }
 
     public static int lambda$loadGalleryPhotosAlbums$56(PhotoEntry photoEntry, PhotoEntry photoEntry2) {
@@ -6373,25 +10553,23 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public static int selectColorFormat(MediaCodecInfo mediaCodecInfo, String str) {
-        int i;
         MediaCodecInfo.CodecCapabilities capabilitiesForType = mediaCodecInfo.getCapabilitiesForType(str);
+        int i = 0;
         int i2 = 0;
-        int i3 = 0;
         while (true) {
             int[] iArr = capabilitiesForType.colorFormats;
-            if (i2 >= iArr.length) {
-                return i3;
+            if (i >= iArr.length) {
+                return i2;
             }
-            i = iArr[i2];
-            if (isRecognizedFormat(i)) {
-                if (!mediaCodecInfo.getName().equals("OMX.SEC.AVC.Encoder") || i != 19) {
-                    break;
+            int i3 = iArr[i];
+            if (isRecognizedFormat(i3)) {
+                if (!mediaCodecInfo.getName().equals("OMX.SEC.AVC.Encoder") || i3 != 19) {
+                    return i3;
                 }
-                i3 = i;
+                i2 = i3;
             }
-            i2++;
+            i++;
         }
-        return i;
     }
 
     public static int findTrack(MediaExtractor mediaExtractor, boolean z) {
@@ -6413,17 +10591,17 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         MediaExtractor mediaExtractor = new MediaExtractor();
         boolean z = false;
         try {
-            mediaExtractor.setDataSource(str);
-            int iFindTrack = findTrack(mediaExtractor, false);
-            if (iFindTrack >= 0) {
-                if (mediaExtractor.getTrackFormat(iFindTrack).getString("mime").equals("video/avc")) {
+            try {
+                mediaExtractor.setDataSource(str);
+                int iFindTrack = findTrack(mediaExtractor, false);
+                if (iFindTrack >= 0 && mediaExtractor.getTrackFormat(iFindTrack).getString("mime").equals("video/avc")) {
                     z = true;
                 }
+                return z;
+            } catch (Exception e) {
+                FileLog.e(e);
+                return false;
             }
-            return z;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
         } finally {
             mediaExtractor.release();
         }
@@ -6500,13 +10678,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public static void runConversion(final VideoConvertMessage videoConvertMessage) {
             new Thread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     MediaController.VideoConvertRunnable.lambda$runConversion$0(videoConvertMessage);
                 }
             }).start();
         }
 
-        public static void lambda$runConversion$0(VideoConvertMessage videoConvertMessage) throws InterruptedException {
+        public static void lambda$runConversion$0(VideoConvertMessage videoConvertMessage) {
             try {
                 Thread thread = new Thread(new VideoConvertRunnable(videoConvertMessage), "VideoConvertRunnable");
                 thread.start();
@@ -6517,8 +10695,258 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public boolean convertVideo(final org.telegram.messenger.MediaController.VideoConvertMessage r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.convertVideo(org.telegram.messenger.MediaController$VideoConvertMessage):boolean");
+    public boolean convertVideo(final VideoConvertMessage videoConvertMessage) {
+        int i;
+        String str;
+        long j;
+        long j2;
+        int i2;
+        int i3;
+        boolean z;
+        long jCurrentTimeMillis;
+        boolean zConvertVideo;
+        boolean z2;
+        boolean z3;
+        MessageObject messageObject = videoConvertMessage.messageObject;
+        final VideoEditedInfo videoEditedInfo = videoConvertMessage.videoEditedInfo;
+        if (messageObject == null || videoEditedInfo == null) {
+            return false;
+        }
+        String str2 = videoEditedInfo.originalPath;
+        long j3 = videoEditedInfo.videoOffset;
+        long j4 = videoEditedInfo.startTime;
+        long j5 = videoEditedInfo.avatarStartTime;
+        long j6 = videoEditedInfo.endTime;
+        int i4 = videoEditedInfo.resultWidth;
+        int i5 = videoEditedInfo.resultHeight;
+        int i6 = videoEditedInfo.rotationValue;
+        int i7 = videoEditedInfo.originalWidth;
+        int i8 = videoEditedInfo.originalHeight;
+        int i9 = videoEditedInfo.framerate;
+        int i10 = videoEditedInfo.bitrate;
+        int i11 = videoEditedInfo.originalBitrate;
+        boolean z4 = DialogObject.isEncryptedDialog(messageObject.getDialogId()) || videoEditedInfo.forceFragmenting;
+        final File file = new File(messageObject.messageOwner.attachPath);
+        if (file.exists()) {
+            file.delete();
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("begin convert " + str2 + " startTime = " + j4 + " avatarStartTime = " + j5 + " endTime " + j6 + " rWidth = " + i4 + " rHeight = " + i5 + " rotation = " + i6 + " oWidth = " + i7 + " oHeight = " + i8 + " framerate = " + i9 + " bitrate = " + i10 + " originalBitrate = " + i);
+        }
+        if (str2 == null) {
+            i = i11;
+            i = i11;
+            str = "";
+        } else {
+            i = i11;
+            i = i11;
+            str = str2;
+        }
+        if (j4 <= 0 || j6 <= 0) {
+            if (j6 > 0) {
+                j2 = j6;
+            } else {
+                if (j4 > 0) {
+                    j = videoEditedInfo.originalDuration - j4;
+                } else {
+                    j = videoEditedInfo.originalDuration;
+                }
+                j2 = j;
+            }
+            if (i9 == 0) {
+                i9 = 25;
+            } else if (i9 > 59) {
+                i9 = 59;
+            }
+            if (i6 != 90 || i6 == 270) {
+                i2 = i4;
+                i4 = i5;
+            } else {
+                i2 = i5;
+            }
+            if (videoEditedInfo.shouldLimitFps && i9 > 40) {
+                if (Math.min(i2, i4) <= 480) {
+                    i3 = 30;
+                }
+                if (j5 != -1 && videoEditedInfo.cropState == null && videoEditedInfo.mediaEntities == null && videoEditedInfo.paintPath == null && videoEditedInfo.filterState == null && i4 == i7 && i2 == i8 && i6 == 0 && !videoEditedInfo.roundVideo && j4 == -1 && videoEditedInfo.mixedSoundInfos.isEmpty()) {
+                    z = false;
+                } else {
+                    z = true;
+                }
+                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("videoconvert", 0);
+                jCurrentTimeMillis = System.currentTimeMillis();
+                VideoConvertorListener videoConvertorListener = new VideoConvertorListener() {
+                    private long lastAvailableSize = 0;
+
+                    @Override
+                    public boolean checkConversionCanceled() {
+                        return videoEditedInfo.canceled;
+                    }
+
+                    @Override
+                    public void didWriteData(long j7, float f) {
+                        if (videoEditedInfo.canceled) {
+                            return;
+                        }
+                        if (j7 < 0) {
+                            j7 = file.length();
+                        }
+                        long j8 = j7;
+                        if (videoEditedInfo.needUpdateProgress || this.lastAvailableSize != j8) {
+                            this.lastAvailableSize = j8;
+                            MediaController.this.didWriteData(videoConvertMessage, file, false, 0L, j8, false, f);
+                        }
+                    }
+                };
+                videoEditedInfo.videoConvertFirstWrite = true;
+                MediaCodecVideoConvertor mediaCodecVideoConvertor = new MediaCodecVideoConvertor();
+                MediaCodecVideoConvertor.ConvertVideoParams convertVideoParamsOf = MediaCodecVideoConvertor.ConvertVideoParams.of(str, file, j3, i6, z4, i7, i8, i4, i2, i3, i10, i, j4, j6, j5, z, j2, videoConvertorListener, videoEditedInfo);
+                convertVideoParamsOf.soundInfos.addAll(videoEditedInfo.mixedSoundInfos);
+                zConvertVideo = mediaCodecVideoConvertor.convertVideo(convertVideoParamsOf);
+                z2 = videoEditedInfo.canceled;
+                if (!z2) {
+                    synchronized (this.videoConvertSync) {
+                        z2 = videoEditedInfo.canceled;
+                    }
+                }
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("time=" + (System.currentTimeMillis() - jCurrentTimeMillis) + " canceled=" + z2);
+                }
+                sharedPreferences.edit().putBoolean("isPreviousOk", true).apply();
+                long lastFrameTimestamp = mediaCodecVideoConvertor.getLastFrameTimestamp();
+                long length = file.length();
+                if (!zConvertVideo || z2) {
+                    z3 = true;
+                } else {
+                    z3 = false;
+                }
+                didWriteData(videoConvertMessage, file, true, lastFrameTimestamp, length, z3, 1.0f);
+                return true;
+            }
+            if (j5 != -1) {
+                z = true;
+            } else {
+                z = true;
+            }
+            SharedPreferences sharedPreferences2 = ApplicationLoader.applicationContext.getSharedPreferences("videoconvert", 0);
+            jCurrentTimeMillis = System.currentTimeMillis();
+            VideoConvertorListener videoConvertorListener2 = new VideoConvertorListener() {
+                private long lastAvailableSize = 0;
+
+                @Override
+                public boolean checkConversionCanceled() {
+                    return videoEditedInfo.canceled;
+                }
+
+                @Override
+                public void didWriteData(long j7, float f) {
+                    if (videoEditedInfo.canceled) {
+                        return;
+                    }
+                    if (j7 < 0) {
+                        j7 = file.length();
+                    }
+                    long j8 = j7;
+                    if (videoEditedInfo.needUpdateProgress || this.lastAvailableSize != j8) {
+                        this.lastAvailableSize = j8;
+                        MediaController.this.didWriteData(videoConvertMessage, file, false, 0L, j8, false, f);
+                    }
+                }
+            };
+            videoEditedInfo.videoConvertFirstWrite = true;
+            MediaCodecVideoConvertor mediaCodecVideoConvertor2 = new MediaCodecVideoConvertor();
+            MediaCodecVideoConvertor.ConvertVideoParams convertVideoParamsOf2 = MediaCodecVideoConvertor.ConvertVideoParams.of(str, file, j3, i6, z4, i7, i8, i4, i2, i3, i10, i, j4, j6, j5, z, j2, videoConvertorListener2, videoEditedInfo);
+            convertVideoParamsOf2.soundInfos.addAll(videoEditedInfo.mixedSoundInfos);
+            zConvertVideo = mediaCodecVideoConvertor2.convertVideo(convertVideoParamsOf2);
+            z2 = videoEditedInfo.canceled;
+            if (!z2) {
+                synchronized (this.videoConvertSync) {
+                    z2 = videoEditedInfo.canceled;
+                }
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("time=" + (System.currentTimeMillis() - jCurrentTimeMillis) + " canceled=" + z2);
+            }
+            sharedPreferences2.edit().putBoolean("isPreviousOk", true).apply();
+            long lastFrameTimestamp2 = mediaCodecVideoConvertor2.getLastFrameTimestamp();
+            long length2 = file.length();
+            if (zConvertVideo) {
+                z3 = true;
+            } else {
+                z3 = true;
+            }
+            didWriteData(videoConvertMessage, file, true, lastFrameTimestamp2, length2, z3, 1.0f);
+            return true;
+        }
+        j2 = j6 - j4;
+        i5 = i5;
+        if (i9 == 0) {
+            i9 = 25;
+        } else if (i9 > 59) {
+            i9 = 59;
+        }
+        if (i6 != 90) {
+            i2 = i4;
+            i4 = i5;
+        } else {
+            i2 = i4;
+            i4 = i5;
+        }
+        i3 = videoEditedInfo.shouldLimitFps ? i9 : i9;
+        if (j5 != -1) {
+            z = true;
+        } else {
+            z = true;
+        }
+        SharedPreferences sharedPreferences3 = ApplicationLoader.applicationContext.getSharedPreferences("videoconvert", 0);
+        jCurrentTimeMillis = System.currentTimeMillis();
+        VideoConvertorListener videoConvertorListener3 = new VideoConvertorListener() {
+            private long lastAvailableSize = 0;
+
+            @Override
+            public boolean checkConversionCanceled() {
+                return videoEditedInfo.canceled;
+            }
+
+            @Override
+            public void didWriteData(long j7, float f) {
+                if (videoEditedInfo.canceled) {
+                    return;
+                }
+                if (j7 < 0) {
+                    j7 = file.length();
+                }
+                long j8 = j7;
+                if (videoEditedInfo.needUpdateProgress || this.lastAvailableSize != j8) {
+                    this.lastAvailableSize = j8;
+                    MediaController.this.didWriteData(videoConvertMessage, file, false, 0L, j8, false, f);
+                }
+            }
+        };
+        videoEditedInfo.videoConvertFirstWrite = true;
+        MediaCodecVideoConvertor mediaCodecVideoConvertor3 = new MediaCodecVideoConvertor();
+        MediaCodecVideoConvertor.ConvertVideoParams convertVideoParamsOf3 = MediaCodecVideoConvertor.ConvertVideoParams.of(str, file, j3, i6, z4, i7, i8, i4, i2, i3, i10, i, j4, j6, j5, z, j2, videoConvertorListener3, videoEditedInfo);
+        convertVideoParamsOf3.soundInfos.addAll(videoEditedInfo.mixedSoundInfos);
+        zConvertVideo = mediaCodecVideoConvertor3.convertVideo(convertVideoParamsOf3);
+        z2 = videoEditedInfo.canceled;
+        if (!z2) {
+            synchronized (this.videoConvertSync) {
+                z2 = videoEditedInfo.canceled;
+            }
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("time=" + (System.currentTimeMillis() - jCurrentTimeMillis) + " canceled=" + z2);
+        }
+        sharedPreferences3.edit().putBoolean("isPreviousOk", true).apply();
+        long lastFrameTimestamp3 = mediaCodecVideoConvertor3.getLastFrameTimestamp();
+        long length3 = file.length();
+        if (zConvertVideo) {
+            z3 = true;
+        } else {
+            z3 = true;
+        }
+        didWriteData(videoConvertMessage, file, true, lastFrameTimestamp3, length3, z3, 1.0f);
+        return true;
     }
 
     public static int getVideoBitrate(String str) {
@@ -6539,8 +10967,45 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         return i;
     }
 
-    public static int makeVideoBitrate(int r5, int r6, int r7, int r8, int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.makeVideoBitrate(int, int, int, int, int):int");
+    public static int makeVideoBitrate(int i, int i2, int i3, int i4, int i5) {
+        int i6;
+        float f;
+        int iMin;
+        int videoBitrateWithFactor;
+        float f2 = 1.0f;
+        if (Math.min(i4, i5) < 1080) {
+            if (Math.min(i4, i5) >= 720) {
+                i6 = 2600000;
+            } else if (Math.min(i4, i5) >= 480) {
+                i6 = 1000000;
+                f = 0.75f;
+                f2 = 0.9f;
+            } else {
+                i6 = 750000;
+                f = 0.6f;
+                f2 = 0.7f;
+            }
+            iMin = (int) (((int) (i3 / Math.min(i / i4, i2 / i5))) * f);
+            videoBitrateWithFactor = (int) (getVideoBitrateWithFactor(f2) / (921600.0f / (i5 * i4)));
+            if (i3 < videoBitrateWithFactor) {
+                return iMin;
+            }
+            if (iMin > i6) {
+                return i6;
+            }
+            return Math.max(iMin, videoBitrateWithFactor);
+        }
+        i6 = 6800000;
+        f = 1.0f;
+        iMin = (int) (((int) (i3 / Math.min(i / i4, i2 / i5))) * f);
+        videoBitrateWithFactor = (int) (getVideoBitrateWithFactor(f2) / (921600.0f / (i5 * i4)));
+        if (i3 < videoBitrateWithFactor) {
+            return iMin;
+        }
+        if (iMin > i6) {
+            return i6;
+        }
+        return Math.max(iMin, videoBitrateWithFactor);
     }
 
     public static int extractRealEncoderBitrate(int i, int i2, int i3, boolean z) {
@@ -6554,6 +11019,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             try {
                 mediaCodecCreateEncoderByType = MediaCodec.createEncoderByType("video/hevc");
             } catch (Exception unused) {
+                mediaCodecCreateEncoderByType = null;
             }
         } else {
             mediaCodecCreateEncoderByType = null;
@@ -6743,7 +11209,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
 
                 @Override
-                public void onMediaMetadataChanged(MediaMetadata mediaMetadata) {
+                public void onMediaMetadataChanged(com.google.android.exoplayer2.MediaMetadata mediaMetadata) {
                     Player.Listener.CC.$default$onMediaMetadataChanged(this, mediaMetadata);
                 }
 
@@ -6788,7 +11254,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     Player.Listener.CC.$default$onPlayerStateChanged(this, z, i);
                 }
 
-                public void onPlaylistMetadataChanged(MediaMetadata mediaMetadata) {
+                public void onPlaylistMetadataChanged(com.google.android.exoplayer2.MediaMetadata mediaMetadata) {
                     Player.Listener.CC.$default$onPlaylistMetadataChanged(this, mediaMetadata);
                 }
 
@@ -6919,11 +11385,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         private long getTotalListened() {
-            Iterator<Pair<Long, Long>> it = this.ranges.iterator();
             long jLongValue = 0;
-            while (it.hasNext()) {
-                Pair<Long, Long> next = it.next();
-                jLongValue += ((Long) next.second).longValue() - ((Long) next.first).longValue();
+            for (Pair<Long, Long> pair : this.ranges) {
+                jLongValue += ((Long) pair.second).longValue() - ((Long) pair.first).longValue();
             }
             return jLongValue;
         }

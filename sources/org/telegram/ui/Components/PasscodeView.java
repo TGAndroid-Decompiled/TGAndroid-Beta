@@ -1347,10 +1347,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         if (Build.VERSION.SDK_INT >= 23 && activityFindActivity != null && SharedConfig.useFingerprintLock) {
             try {
                 FingerprintManagerCompat fingerprintManagerCompatFrom = FingerprintManagerCompat.from(ApplicationLoader.applicationContext);
-                if (fingerprintManagerCompatFrom.isHardwareDetected() && fingerprintManagerCompatFrom.hasEnrolledFingerprints() && FingerprintController.isKeyReady()) {
-                    return !FingerprintController.checkDeviceFingerprintsChanged();
-                }
-                return false;
+                return fingerprintManagerCompatFrom.isHardwareDetected() && fingerprintManagerCompatFrom.hasEnrolledFingerprints() && FingerprintController.isKeyReady() && !FingerprintController.checkDeviceFingerprintsChanged();
             } catch (Throwable th) {
                 FileLog.e(th);
             }
@@ -1359,10 +1356,37 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     private void checkFingerprintButton() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PasscodeView.checkFingerprintButton():void");
+        Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+        boolean z = false;
+        if (Build.VERSION.SDK_INT >= 23 && activityFindActivity != null && SharedConfig.useFingerprintLock) {
+            try {
+                FingerprintManagerCompat fingerprintManagerCompatFrom = FingerprintManagerCompat.from(ApplicationLoader.applicationContext);
+                if (fingerprintManagerCompatFrom.isHardwareDetected() && fingerprintManagerCompatFrom.hasEnrolledFingerprints() && FingerprintController.isKeyReady() && !FingerprintController.checkDeviceFingerprintsChanged()) {
+                    try {
+                        this.fingerprintView.setVisibility(0);
+                        z = true;
+                    } catch (Throwable th) {
+                        th = th;
+                        z = true;
+                        FileLog.e(th);
+                        this.fingerprintView.setVisibility(8);
+                    }
+                } else {
+                    this.fingerprintView.setVisibility(8);
+                }
+            } catch (Throwable th2) {
+                th = th2;
+            }
+        } else {
+            this.fingerprintView.setVisibility(8);
+        }
+        if (SharedConfig.passcodeType == 1) {
+            this.fingerprintImage.setVisibility(this.fingerprintView.getVisibility());
+        }
+        this.subtitleView.setText(LocaleController.getString(z ? R.string.EnterPINorFingerprint : R.string.EnterPIN));
     }
 
-    public void onShow(boolean z, boolean z2, int i, int i2, Runnable runnable, Runnable runnable2) throws InterruptedException {
+    public void onShow(boolean z, boolean z2, int i, int i2, Runnable runnable, Runnable runnable2) {
         View currentFocus;
         boolean z3;
         EditTextBoldCursor editTextBoldCursor;
@@ -1681,7 +1705,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
 
         public void lambda$onGlobalLayout$1(double d, ValueAnimator valueAnimator) {
-            double animatedFraction = d * valueAnimator.getAnimatedFraction();
+            double animatedFraction = d * ((double) valueAnimator.getAnimatedFraction());
             int i = 0;
             while (i < PasscodeView.this.innerAnimators.size()) {
                 InnerAnimator innerAnimator = (InnerAnimator) PasscodeView.this.innerAnimators.get(i);
@@ -1788,7 +1812,11 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         while (i3 < 12) {
             int i7 = 10;
             if (i3 != 0) {
-                i7 = i3 == 10 ? 11 : i3 == 11 ? 9 : i3 - 1;
+                if (i3 == 10) {
+                    i7 = 11;
+                } else {
+                    i7 = i3 == 11 ? 9 : i3 - 1;
+                }
             }
             FrameLayout frameLayout = (FrameLayout) this.numberFrameLayouts.get(i3);
             FrameLayout.LayoutParams layoutParams7 = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();

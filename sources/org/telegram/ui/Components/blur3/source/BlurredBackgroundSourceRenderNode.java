@@ -136,10 +136,8 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
 
     public int getVisiblePositions(List list, int i, int i2) {
         RectF rectF;
-        Iterator it = this.drawables.iterator();
         int i3 = 0;
-        while (it.hasNext()) {
-            BlurredBackgroundDrawableRenderNode blurredBackgroundDrawableRenderNode = (BlurredBackgroundDrawableRenderNode) it.next();
+        for (BlurredBackgroundDrawableRenderNode blurredBackgroundDrawableRenderNode : this.drawables) {
             if (blurredBackgroundDrawableRenderNode.hasDisplayList() && blurredBackgroundDrawableRenderNode.getAlpha() > 0 && !blurredBackgroundDrawableRenderNode.getPaddedBounds().isEmpty()) {
                 if (i < list.size()) {
                     rectF = (RectF) list.get(i);

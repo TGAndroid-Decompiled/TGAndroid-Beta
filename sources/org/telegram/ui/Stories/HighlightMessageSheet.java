@@ -31,7 +31,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet;
-import org.telegram.ui.Stories.LiveCommentsView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public abstract class HighlightMessageSheet {
@@ -46,8 +45,69 @@ public abstract class HighlightMessageSheet {
         return new int[]{10000, 3600, 400, 20, -10787210, -8681059, -14341066, 2000, 1800, 280, 10, -2013375, -1482439, -7666429, 500, 900, 200, 7, -1214690, -1214690, -6606592, 250, 600, 150, 4, -1926647, -1926647, -6668800, 100, 300, 110, 3, -12539616, -12539616, -15244800, 50, 120, 80, 2, -12147733, -12147733, -16756594, 10, 60, 60, 1, -6988581, -6988581, -11991141, 0, 30, 30, 0, -6988581, -6988581, -11991141};
     }
 
-    public static int[] parseTiers(org.telegram.tgnet.TLRPC.TL_jsonArray r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.HighlightMessageSheet.parseTiers(org.telegram.tgnet.TLRPC$TL_jsonArray):int[]");
+    public static int[] parseTiers(TLRPC.TL_jsonArray tL_jsonArray) {
+        int i;
+        int i2;
+        int[] iArr = new int[tL_jsonArray.value.size() * 7];
+        for (int i3 = 0; i3 < tL_jsonArray.value.size(); i3++) {
+            TLRPC.JSONValue jSONValue = tL_jsonArray.value.get(i3);
+            if (jSONValue instanceof TLRPC.TL_jsonObject) {
+                for (TLRPC.TL_jsonObjectValue tL_jsonObjectValue : ((TLRPC.TL_jsonObject) jSONValue).value) {
+                    TLRPC.JSONValue jSONValue2 = tL_jsonObjectValue.value;
+                    if (jSONValue2 instanceof TLRPC.TL_jsonNumber) {
+                        int i4 = (int) ((TLRPC.TL_jsonNumber) jSONValue2).value;
+                        String str = tL_jsonObjectValue.key;
+                        str.hashCode();
+                        switch (str) {
+                            case "text_length_max":
+                                i = 2;
+                                break;
+                            case "pin_period":
+                                i = 1;
+                                break;
+                            case "stars":
+                                i = 0;
+                                break;
+                            case "emoji_max":
+                                i = 3;
+                                break;
+                            default:
+                                i = -1;
+                                break;
+                        }
+                        if (i >= 0) {
+                            iArr[(i3 * 7) + i] = i4;
+                        }
+                    } else if (jSONValue2 instanceof TLRPC.TL_jsonString) {
+                        String str2 = ((TLRPC.TL_jsonString) jSONValue2).value;
+                        String str3 = tL_jsonObjectValue.key;
+                        str3.hashCode();
+                        switch (str3) {
+                            case "color1":
+                                i2 = 4;
+                                break;
+                            case "color2":
+                                i2 = 5;
+                                break;
+                            case "color_bg":
+                                i2 = 6;
+                                break;
+                            default:
+                                i2 = -1;
+                                break;
+                        }
+                        if (i2 >= 0) {
+                            try {
+                                iArr[(i3 * 7) + i2] = (int) Long.parseLong("FF" + str2, 16);
+                            } catch (Exception e) {
+                                FileLog.e(e);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return iArr;
     }
 
     public static boolean tiersEqual(int[] iArr, int[] iArr2) {
@@ -122,11 +182,7 @@ public abstract class HighlightMessageSheet {
             length = 0;
         }
         int iMax = (int) Math.max(j2, j3 <= 0 ? 100L : j3);
-        int length2 = (iArr.length / 7) - 1;
-        while (true) {
-            if (length2 < 0) {
-                break;
-            }
+        for (int length2 = (iArr.length / 7) - 1; length2 >= 0; length2--) {
             int i2 = length2 * 7;
             int i3 = iArr[i2];
             int i4 = i2 + 1;
@@ -135,7 +191,6 @@ public abstract class HighlightMessageSheet {
                 iMax = Math.max(iMax, i3);
                 break;
             }
-            length2--;
         }
         final long[] jArr = {iMax};
         final ColoredImageSpan[] coloredImageSpanArr = new ColoredImageSpan[1];

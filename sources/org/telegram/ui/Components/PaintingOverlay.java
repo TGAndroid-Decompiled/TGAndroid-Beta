@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -180,7 +179,7 @@ public class PaintingOverlay extends FrameLayout {
     }
 
     public void setEntities(ArrayList arrayList, boolean z, boolean z2, boolean z3) {
-        BackupImageView backupImageView;
+        View view;
         int i;
         setClipChildren(z3);
         reset();
@@ -193,10 +192,10 @@ public class PaintingOverlay extends FrameLayout {
             VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) arrayList.get(i2);
             byte b = mediaEntity.type;
             if (b == 0) {
-                BackupImageView backupImageView2 = new BackupImageView(getContext());
-                backupImageView2.setLayerNum(12);
-                backupImageView2.setAspectFit(true);
-                ImageReceiver imageReceiver = backupImageView2.getImageReceiver();
+                BackupImageView backupImageView = new BackupImageView(getContext());
+                backupImageView.setLayerNum(12);
+                backupImageView.setAspectFit(true);
+                ImageReceiver imageReceiver = backupImageView.getImageReceiver();
                 if (z) {
                     imageReceiver.setAllowDecodeSingleFrame(true);
                     imageReceiver.setAllowStartLottieAnimation(false);
@@ -221,10 +220,10 @@ public class PaintingOverlay extends FrameLayout {
                 }
                 imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), null, null, null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), null, null, 0L, "webp", mediaEntity.parentObject, 1);
                 if ((2 & mediaEntity.subType) != 0) {
-                    backupImageView2.setScaleX(-1.0f);
+                    backupImageView.setScaleX(-1.0f);
                 }
-                mediaEntity.view = backupImageView2;
-                backupImageView = backupImageView2;
+                mediaEntity.view = backupImageView;
+                view = backupImageView;
             } else if (b == 1) {
                 EditTextOutline editTextOutline = new EditTextOutline(getContext()) {
                     @Override
@@ -242,12 +241,10 @@ public class PaintingOverlay extends FrameLayout {
                 editTextOutline.setTextSize(0, mediaEntity.fontSize);
                 editTextOutline.setTypeface(mediaEntity.textTypeface.getTypeface());
                 SpannableString spannableString = new SpannableString(Emoji.replaceEmoji(mediaEntity.text, editTextOutline.getPaint().getFontMetricsInt(), false));
-                Iterator<VideoEditedInfo.EmojiEntity> it = mediaEntity.entities.iterator();
-                while (it.hasNext()) {
-                    VideoEditedInfo.EmojiEntity next = it.next();
-                    AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(next.document_id, editTextOutline.getPaint().getFontMetricsInt());
-                    int i3 = next.offset;
-                    spannableString.setSpan(animatedEmojiSpan, i3, next.length + i3, 33);
+                for (VideoEditedInfo.EmojiEntity emojiEntity : mediaEntity.entities) {
+                    AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(emojiEntity.document_id, editTextOutline.getPaint().getFontMetricsInt());
+                    int i3 = emojiEntity.offset;
+                    spannableString.setSpan(animatedEmojiSpan, i3, emojiEntity.length + i3, 33);
                 }
                 Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannableString.getSpans(0, spannableString.length(), Emoji.EmojiSpan.class);
                 if (emojiSpanArr != null) {
@@ -293,14 +290,14 @@ public class PaintingOverlay extends FrameLayout {
                 editTextOutline.setHandlesColor(i7);
                 editTextOutline.setHighlightColor(Theme.multAlpha(i7, 0.4f));
                 mediaEntity.view = editTextOutline;
-                backupImageView = editTextOutline;
+                view = editTextOutline;
             } else {
-                backupImageView = null;
+                view = null;
             }
-            if (backupImageView != null) {
-                addView(backupImageView);
-                backupImageView.setRotation((float) (((-mediaEntity.rotation) / 3.141592653589793d) * 180.0d));
-                this.mediaEntityViews.put(backupImageView, mediaEntity);
+            if (view != null) {
+                addView(view);
+                view.setRotation((float) ((((double) (-mediaEntity.rotation)) / 3.141592653589793d) * 180.0d));
+                this.mediaEntityViews.put(view, mediaEntity);
             }
         }
     }

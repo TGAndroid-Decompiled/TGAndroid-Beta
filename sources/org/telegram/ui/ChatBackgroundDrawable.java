@@ -153,11 +153,10 @@ public class ChatBackgroundDrawable extends Drawable {
         }
         if (wallPaper.document != null) {
             drawableBitmapDrawableOf = null;
-            while (alphaComponent < wallPaper.document.thumbs.size()) {
+            for (int alphaComponent = 0; alphaComponent < wallPaper.document.thumbs.size(); alphaComponent++) {
                 if (wallPaper.document.thumbs.get(alphaComponent) instanceof TLRPC.TL_photoStrippedSize) {
                     drawableBitmapDrawableOf = new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(wallPaper.document.thumbs.get(alphaComponent).bytes, "b"));
                 }
-                alphaComponent++;
             }
         } else {
             TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
@@ -168,13 +167,13 @@ public class ChatBackgroundDrawable extends Drawable {
             } else if (wallPaperSettings.third_background_color == 0) {
                 drawableBitmapDrawableOf = bitmapDrawableOf(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(wallPaper.settings.rotation), new int[]{ColorUtils.setAlphaComponent(wallPaperSettings.background_color, 255), ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255)}));
             } else {
-                int alphaComponent = ColorUtils.setAlphaComponent(wallPaperSettings.background_color, 255);
-                int alphaComponent2 = ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255);
-                int alphaComponent3 = ColorUtils.setAlphaComponent(wallPaper.settings.third_background_color, 255);
+                int alphaComponent2 = ColorUtils.setAlphaComponent(wallPaperSettings.background_color, 255);
+                int alphaComponent3 = ColorUtils.setAlphaComponent(wallPaper.settings.second_background_color, 255);
+                int alphaComponent4 = ColorUtils.setAlphaComponent(wallPaper.settings.third_background_color, 255);
                 int i = wallPaper.settings.fourth_background_color;
                 alphaComponent = i != 0 ? ColorUtils.setAlphaComponent(i, 255) : 0;
                 MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
-                motionBackgroundDrawable.setColors(alphaComponent, alphaComponent2, alphaComponent3, alphaComponent);
+                motionBackgroundDrawable.setColors(alphaComponent2, alphaComponent3, alphaComponent4, alphaComponent);
                 drawableBitmapDrawableOf = new BitmapDrawable(motionBackgroundDrawable.getBitmap());
             }
         }

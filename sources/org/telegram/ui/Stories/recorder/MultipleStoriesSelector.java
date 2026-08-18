@@ -23,7 +23,6 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -321,8 +320,10 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        this.listView.setPivotX(r1.getWidth() - AndroidUtilities.dp(15.0f));
-        this.listView.setPivotY(r1.getHeight());
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        universalRecyclerView.setPivotX(universalRecyclerView.getWidth() - AndroidUtilities.dp(15.0f));
+        UniversalRecyclerView universalRecyclerView2 = this.listView;
+        universalRecyclerView2.setPivotY(universalRecyclerView2.getHeight());
     }
 
     @Override
@@ -645,7 +646,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             return this.checkboxBounce.isPressed() || super.onTouchEvent(motionEvent);
         }
 
-        public void set(int i, int i2, final StoryEntry storyEntry) throws NumberFormatException, IOException {
+        public void set(int i, int i2, final StoryEntry storyEntry) {
             String str;
             Uri uriWithAppendedId;
             if (this.lastId != i) {
@@ -804,7 +805,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             }
 
             @Override
-            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) throws NumberFormatException, IOException {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 EntryView entryView = (EntryView) view;
                 entryView.set(uItem.id, uItem.intValue, (StoryEntry) uItem.object);
                 entryView.setSelected(uItem.checked, false);

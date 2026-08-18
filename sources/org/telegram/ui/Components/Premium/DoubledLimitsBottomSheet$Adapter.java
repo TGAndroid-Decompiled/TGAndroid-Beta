@@ -17,7 +17,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.FixedHeightEmptyCell;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.SelectionAdapter {
@@ -71,11 +70,11 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        FixedHeightEmptyCell fixedHeightEmptyCell;
+        View fixedHeightEmptyCell;
         Context context = viewGroup.getContext();
         if (i != 1) {
             if (i != 2) {
-                ?? doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
+                DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
                 doubledLimitsBottomSheet$LimitCell.previewView.setParentViewForGradien(this.containerView);
                 doubledLimitsBottomSheet$LimitCell.previewView.setStaticGradinet(this.gradientTools);
                 fixedHeightEmptyCell = doubledLimitsBottomSheet$LimitCell;
@@ -83,7 +82,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
                 fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 16);
             }
         } else if (this.drawHeader) {
-            ?? r15 = new FrameLayout(context) {
+            FrameLayout frameLayout = new FrameLayout(context) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
@@ -101,8 +100,8 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
             textView.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView, LayoutHelper.createFrame(-2, -2, 16));
-            r15.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
-            fixedHeightEmptyCell = r15;
+            frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
+            fixedHeightEmptyCell = frameLayout;
         } else {
             fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 64);
         }

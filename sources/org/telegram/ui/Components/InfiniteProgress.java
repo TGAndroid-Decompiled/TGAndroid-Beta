@@ -41,10 +41,11 @@ public class InfiniteProgress {
             j = 17;
         }
         this.lastUpdateTime = jCurrentTimeMillis;
-        this.radOffset = (this.radOffset + ((360 * j) / 2000.0f)) - (((int) (r0 / 360.0f)) * 360);
-        float f = this.currentProgressTime + j;
-        this.currentProgressTime = f;
-        if (f >= 500.0f) {
+        float f = this.radOffset + ((360 * j) / 2000.0f);
+        this.radOffset = f - (((int) (f / 360.0f)) * 360);
+        float f2 = this.currentProgressTime + j;
+        this.currentProgressTime = f2;
+        if (f2 >= 500.0f) {
             this.currentProgressTime = 500.0f;
         }
         if (this.risingCircleLength) {
@@ -64,8 +65,9 @@ public class InfiniteProgress {
     }
 
     public void draw(Canvas canvas, float f, float f2, float f3) {
+        RectF rectF = this.cicleRect;
         float f4 = this.radius * f3;
-        this.cicleRect.set(f - f4, f2 - f4, f + f4, f2 + f4);
+        rectF.set(f - f4, f2 - f4, f + f4, f2 + f4);
         this.progressPaint.setStrokeWidth(AndroidUtilities.dp(2.0f) * f3);
         canvas.drawArc(this.cicleRect, this.radOffset, this.currentCircleLength, false, this.progressPaint);
         updateAnimation();

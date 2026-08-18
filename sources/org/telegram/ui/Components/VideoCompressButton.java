@@ -12,7 +12,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.AnimatedTextView;
 
 public class VideoCompressButton extends View {
     private final Paint clearPaint;

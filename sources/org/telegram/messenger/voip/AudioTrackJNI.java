@@ -40,7 +40,7 @@ public class AudioTrackJNI {
         }
     }
 
-    public void stop() throws IllegalStateException {
+    public void stop() {
         AudioTrack audioTrack = this.audioTrack;
         if (audioTrack != null) {
             try {
@@ -50,7 +50,7 @@ public class AudioTrackJNI {
         }
     }
 
-    public void release() throws InterruptedException {
+    public void release() {
         this.running = false;
         Thread thread = this.thread;
         if (thread != null) {
@@ -68,7 +68,7 @@ public class AudioTrackJNI {
         }
     }
 
-    public void start() throws IllegalStateException {
+    public void start() {
         if (this.thread == null) {
             startThread();
         } else {
@@ -83,7 +83,7 @@ public class AudioTrackJNI {
         this.running = true;
         Thread thread = new Thread(new Runnable() {
             @Override
-            public final void run() throws IllegalStateException {
+            public final void run() {
                 this.f$0.lambda$startThread$0();
             }
         });
@@ -91,7 +91,7 @@ public class AudioTrackJNI {
         thread.start();
     }
 
-    public void lambda$startThread$0() throws IllegalStateException {
+    public void lambda$startThread$0() {
         try {
             this.audioTrack.play();
             ByteBuffer byteBufferAllocateDirect = this.needResampling ? ByteBuffer.allocateDirect(1920) : null;
@@ -110,14 +110,14 @@ public class AudioTrackJNI {
                         nativeCallback(this.buffer);
                         this.audioTrack.write(this.buffer, 0, 1920);
                     }
+                    if (!this.running) {
+                        this.audioTrack.stop();
+                        break;
+                    }
+                    continue;
                 } catch (Exception e) {
                     VLog.e(e);
                 }
-                if (!this.running) {
-                    this.audioTrack.stop();
-                    break;
-                }
-                continue;
             }
             VLog.i("audiotrack thread exits");
         } catch (Exception e2) {

@@ -49,7 +49,7 @@ public class TLJsonBuilder {
         write(str, Boolean.valueOf(z));
     }
 
-    private void write(String str, Object obj) throws JSONException {
+    private void write(String str, Object obj) {
         try {
             this.result2.putOpt(str, obj);
         } catch (JSONException e) {

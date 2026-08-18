@@ -113,7 +113,7 @@ public class AudioRecordJNI {
         return audioRecord2 != null && audioRecord2.getState() == 1;
     }
 
-    public void stop() throws IllegalStateException {
+    public void stop() {
         try {
             AudioRecord audioRecord = this.audioRecord;
             if (audioRecord != null) {
@@ -123,7 +123,7 @@ public class AudioRecordJNI {
         }
     }
 
-    public void release() throws InterruptedException {
+    public void release() {
         this.running = false;
         Thread thread = this.thread;
         if (thread != null) {
@@ -156,7 +156,7 @@ public class AudioRecordJNI {
         }
     }
 
-    public boolean start() throws IllegalStateException {
+    public boolean start() {
         AudioRecord audioRecord = this.audioRecord;
         if (audioRecord != null && audioRecord.getState() == 1) {
             try {
@@ -186,7 +186,7 @@ public class AudioRecordJNI {
         final ByteBuffer byteBufferAllocateDirect = this.needResampling ? ByteBuffer.allocateDirect(1764) : null;
         Thread thread = new Thread(new Runnable() {
             @Override
-            public final void run() throws IllegalStateException {
+            public final void run() {
                 this.f$0.lambda$startThread$0(byteBufferAllocateDirect);
             }
         });
@@ -194,7 +194,7 @@ public class AudioRecordJNI {
         thread.start();
     }
 
-    public void lambda$startThread$0(ByteBuffer byteBuffer) throws IllegalStateException {
+    public void lambda$startThread$0(ByteBuffer byteBuffer) {
         while (this.running) {
             try {
                 if (!this.needResampling) {
@@ -203,14 +203,14 @@ public class AudioRecordJNI {
                     this.audioRecord.read(byteBuffer, 1764);
                     Resampler.convert44to48(byteBuffer, this.buffer);
                 }
+                if (!this.running) {
+                    this.audioRecord.stop();
+                    break;
+                }
+                nativeCallback(this.buffer);
             } catch (Exception e) {
                 VLog.e(e);
             }
-            if (!this.running) {
-                this.audioRecord.stop();
-                break;
-            }
-            nativeCallback(this.buffer);
         }
         VLog.i("audiorecord thread exits");
     }
@@ -235,7 +235,7 @@ public class AudioRecordJNI {
         }
     }
 
-    private static boolean isGoodAudioEffect(AudioEffect audioEffect) throws IllegalStateException {
+    private static boolean isGoodAudioEffect(AudioEffect audioEffect) {
         Pattern patternMakeNonEmptyRegex = makeNonEmptyRegex("adsp_good_impls");
         Pattern patternMakeNonEmptyRegex2 = makeNonEmptyRegex("adsp_good_names");
         AudioEffect.Descriptor descriptor = audioEffect.getDescriptor();

@@ -141,10 +141,12 @@ public class FlatCheckBox extends View {
         }
         int measuredHeight = getMeasuredHeight() >> 1;
         this.outLinePaint.setColor(this.colorInactive);
+        RectF rectF = this.rectF;
         float f3 = this.HEIGHT / 2.0f;
-        canvas.drawRoundRect(this.rectF, f3, f3, this.fillPaint);
+        canvas.drawRoundRect(rectF, f3, f3, this.fillPaint);
+        RectF rectF2 = this.rectF;
         float f4 = this.HEIGHT / 2.0f;
-        canvas.drawRoundRect(this.rectF, f4, f4, this.outLinePaint);
+        canvas.drawRoundRect(rectF2, f4, f4, this.outLinePaint);
         String str = this.text;
         if (str != null) {
             canvas.drawText(str, (getMeasuredWidth() >> 1) + (f * this.TRANSLETE_TEXT), measuredHeight + (this.textPaint.getTextSize() * 0.35f), this.textPaint);

@@ -17,14 +17,13 @@ import java.util.Locale;
 import java.util.Map;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.LaunchActivity;
 
 public class DownloadController extends BaseController implements NotificationCenter.NotificationCenterDelegate {
@@ -258,7 +257,8 @@ public class DownloadController extends BaseController implements NotificationCe
                         downloadControllerArr[i] = downloadController2;
                         downloadController = downloadController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -266,7 +266,6 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public DownloadController(int i) {
-        Object obj;
         super(i);
         this.lastCheckMask = 0;
         this.photoDownloadQueue = new ArrayList<>();
@@ -324,10 +323,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 String str2 = str;
                 sb.append("mobileDataDownloadMask");
                 Object objValueOf = "";
-                if (i2 == 0) {
-                    obj = "";
-                } else {
-                    obj = "";
+                if (i2 != 0) {
                     objValueOf = Integer.valueOf(i2);
                 }
                 sb.append(objValueOf);
@@ -336,11 +332,11 @@ public class DownloadController extends BaseController implements NotificationCe
                     iArr[i2] = mainSettings.getInt(string, 13);
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append("wifiDownloadMask");
-                    sb2.append(i2 == 0 ? obj : Integer.valueOf(i2));
+                    sb2.append(i2 == 0 ? "" : Integer.valueOf(i2));
                     iArr2[i2] = mainSettings.getInt(sb2.toString(), 13);
                     StringBuilder sb3 = new StringBuilder();
                     sb3.append("roamingDownloadMask");
-                    sb3.append(i2 == 0 ? obj : Integer.valueOf(i2));
+                    sb3.append(i2 == 0 ? objValueOf : Integer.valueOf(i2));
                     iArr3[i2] = mainSettings.getInt(sb3.toString(), 1);
                 } else {
                     iArr[i2] = iArr[0];
@@ -735,25 +731,341 @@ public class DownloadController extends BaseController implements NotificationCe
         return canDownloadMediaInternal(messageObject, j);
     }
 
-    private int canDownloadMediaInternal(org.telegram.messenger.MessageObject r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMediaInternal(org.telegram.messenger.MessageObject):int");
+    private int canDownloadMediaInternal(MessageObject messageObject) {
+        TLRPC.Message message;
+        int i;
+        char c;
+        Preset currentMobilePreset;
+        long jMax;
+        long messageSize;
+        if (messageObject == null || (message = messageObject.messageOwner) == null) {
+            return 0;
+        }
+        if (message.media instanceof TLRPC.TL_messageMediaStory) {
+            return canPreloadStories() ? 2 : 0;
+        }
+        boolean zIsVideoMessage = MessageObject.isVideoMessage(message);
+        if (zIsVideoMessage || MessageObject.isGifMessage(message) || MessageObject.isRoundVideoMessage(message) || MessageObject.isGameMessage(message)) {
+            i = 4;
+        } else if (MessageObject.isVoiceMessage(message)) {
+            i = 2;
+        } else if (MessageObject.isPhoto(message) || MessageObject.isStickerMessage(message) || MessageObject.isAnimatedStickerMessage(message)) {
+            i = 1;
+        } else {
+            if (MessageObject.getDocument(message) == null) {
+                return 0;
+            }
+            i = 8;
+        }
+        TLRPC.Peer peer = message.peer_id;
+        if (peer == null) {
+            c = 1;
+        } else {
+            if (peer.user_id != 0) {
+                if (!getContactsController().contactsDict.containsKey(Long.valueOf(peer.user_id))) {
+                    c = 1;
+                }
+            } else if (peer.chat_id != 0) {
+                if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
+                    c = 2;
+                }
+            } else {
+                TLRPC.Chat chat = peer.channel_id != 0 ? getMessagesController().getChat(Long.valueOf(message.peer_id.channel_id)) : null;
+                if (!ChatObject.isChannel(chat) || !chat.megagroup) {
+                    c = 3;
+                } else if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
+                    c = 2;
+                }
+            }
+            c = 0;
+        }
+        int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
+        if (autodownloadNetworkType == 1) {
+            if (!this.wifiPreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentWiFiPreset();
+        } else if (autodownloadNetworkType == 2) {
+            if (!this.roamingPreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentRoamingPreset();
+        } else {
+            if (!this.mobilePreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentMobilePreset();
+        }
+        int i2 = currentMobilePreset.mask[c];
+        if (i == 2) {
+            jMax = Math.max(524288L, currentMobilePreset.sizes[typeToIndex(i)]);
+        } else {
+            jMax = currentMobilePreset.sizes[typeToIndex(i)];
+        }
+        VideoPlayer.VideoUri videoUri = messageObject.highestQuality;
+        if (videoUri != null) {
+            messageSize = videoUri.document.size;
+        } else {
+            VideoPlayer.VideoUri videoUri2 = messageObject.thumbQuality;
+            if (videoUri2 != null) {
+                messageSize = videoUri2.document.size;
+            } else {
+                messageSize = MessageObject.getMessageSize(message);
+            }
+        }
+        if (zIsVideoMessage && currentMobilePreset.preloadVideo && messageSize > jMax && jMax > 2097152) {
+            return (i2 & i) != 0 ? 2 : 0;
+        }
+        if (i == 1 || (messageSize != 0 && messageSize <= jMax)) {
+            return (i == 2 || (i2 & i) != 0) ? 1 : 0;
+        }
+        return 0;
     }
 
-    private int canDownloadMediaInternal(org.telegram.messenger.MessageObject r16, long r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMediaInternal(org.telegram.messenger.MessageObject, long):int");
+    private int canDownloadMediaInternal(MessageObject messageObject, long j) {
+        TLRPC.Message message;
+        int i;
+        char c;
+        Preset currentMobilePreset;
+        long jMax;
+        if (messageObject == null || (message = messageObject.messageOwner) == null) {
+            return 0;
+        }
+        if (message.media instanceof TLRPC.TL_messageMediaStory) {
+            return canPreloadStories() ? 2 : 0;
+        }
+        boolean zIsVideoMessage = MessageObject.isVideoMessage(message);
+        if (zIsVideoMessage || MessageObject.isGifMessage(message) || MessageObject.isRoundVideoMessage(message) || MessageObject.isGameMessage(message)) {
+            i = 4;
+        } else if (MessageObject.isVoiceMessage(message)) {
+            i = 2;
+        } else if (MessageObject.isPhoto(message) || MessageObject.isStickerMessage(message) || MessageObject.isAnimatedStickerMessage(message)) {
+            i = 1;
+        } else {
+            if (MessageObject.getDocument(message) == null) {
+                return 0;
+            }
+            i = 8;
+        }
+        TLRPC.Peer peer = message.peer_id;
+        if (peer == null) {
+            c = 1;
+        } else {
+            if (peer.user_id != 0) {
+                if (!getContactsController().contactsDict.containsKey(Long.valueOf(peer.user_id))) {
+                    c = 1;
+                }
+            } else if (peer.chat_id != 0) {
+                if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
+                    c = 2;
+                }
+            } else {
+                TLRPC.Chat chat = peer.channel_id != 0 ? getMessagesController().getChat(Long.valueOf(message.peer_id.channel_id)) : null;
+                if (!ChatObject.isChannel(chat) || !chat.megagroup) {
+                    c = 3;
+                } else if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
+                    c = 2;
+                }
+            }
+            c = 0;
+        }
+        int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
+        if (autodownloadNetworkType == 1) {
+            if (!this.wifiPreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentWiFiPreset();
+        } else if (autodownloadNetworkType == 2) {
+            if (!this.roamingPreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentRoamingPreset();
+        } else {
+            if (!this.mobilePreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentMobilePreset();
+        }
+        int i2 = currentMobilePreset.mask[c];
+        if (i == 2) {
+            jMax = Math.max(524288L, currentMobilePreset.sizes[typeToIndex(i)]);
+        } else {
+            jMax = currentMobilePreset.sizes[typeToIndex(i)];
+        }
+        if (zIsVideoMessage && currentMobilePreset.preloadVideo && j > jMax && jMax > 2097152) {
+            return (i2 & i) != 0 ? 2 : 0;
+        }
+        if (i == 1 || (j != 0 && j <= jMax)) {
+            return (i == 2 || (i2 & i) != 0) ? 1 : 0;
+        }
+        return 0;
     }
 
-    public int canDownloadMedia(org.telegram.tgnet.TLRPC.Message r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message):int");
+    public int canDownloadMedia(TLRPC.Message message) {
+        int i;
+        char c;
+        Preset currentMobilePreset;
+        long jMax;
+        if (message == null || (message.media instanceof TLRPC.TL_messageMediaStory)) {
+            return canPreloadStories() ? 2 : 0;
+        }
+        boolean zIsVideoMessage = MessageObject.isVideoMessage(message);
+        if (zIsVideoMessage || MessageObject.isGifMessage(message) || MessageObject.isRoundVideoMessage(message) || MessageObject.isGameMessage(message)) {
+            i = 4;
+        } else if (MessageObject.isVoiceMessage(message)) {
+            i = 2;
+        } else if (MessageObject.isPhoto(message) || MessageObject.isStickerMessage(message) || MessageObject.isAnimatedStickerMessage(message)) {
+            i = 1;
+        } else {
+            if (MessageObject.getDocument(message) == null) {
+                return 0;
+            }
+            i = 8;
+        }
+        TLRPC.Peer peer = message.peer_id;
+        if (peer == null) {
+            c = 1;
+        } else {
+            if (peer.user_id != 0) {
+                if (!getContactsController().contactsDict.containsKey(Long.valueOf(peer.user_id))) {
+                    c = 1;
+                }
+            } else if (peer.chat_id != 0) {
+                if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
+                    c = 2;
+                }
+            } else {
+                TLRPC.Chat chat = peer.channel_id != 0 ? getMessagesController().getChat(Long.valueOf(message.peer_id.channel_id)) : null;
+                if (!ChatObject.isChannel(chat) || !chat.megagroup) {
+                    c = 3;
+                } else if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
+                    c = 2;
+                }
+            }
+            c = 0;
+        }
+        int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
+        if (autodownloadNetworkType == 1) {
+            if (!this.wifiPreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentWiFiPreset();
+        } else if (autodownloadNetworkType == 2) {
+            if (!this.roamingPreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentRoamingPreset();
+        } else {
+            if (!this.mobilePreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentMobilePreset();
+        }
+        int i2 = currentMobilePreset.mask[c];
+        if (i == 2) {
+            jMax = Math.max(524288L, currentMobilePreset.sizes[typeToIndex(i)]);
+        } else {
+            jMax = currentMobilePreset.sizes[typeToIndex(i)];
+        }
+        long messageSize = MessageObject.getMessageSize(message);
+        if (zIsVideoMessage && currentMobilePreset.preloadVideo && messageSize > jMax && jMax > 2097152) {
+            return (i2 & i) != 0 ? 2 : 0;
+        }
+        if (i == 1 || (messageSize != 0 && messageSize <= jMax)) {
+            return (i == 2 || (i2 & i) != 0) ? 1 : 0;
+        }
+        return 0;
     }
 
-    public int canDownloadMedia(org.telegram.tgnet.TLRPC.Message r14, org.telegram.tgnet.TLRPC.MessageMedia r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DownloadController.canDownloadMedia(org.telegram.tgnet.TLRPC$Message, org.telegram.tgnet.TLRPC$MessageMedia):int");
+    public int canDownloadMedia(TLRPC.Message message, TLRPC.MessageMedia messageMedia) {
+        int i;
+        boolean z;
+        char c;
+        Preset currentMobilePreset;
+        long jMax;
+        if (message == null || (messageMedia instanceof TLRPC.TL_messageMediaStory)) {
+            return canPreloadStories() ? 2 : 0;
+        }
+        if (MessageObject.isVideoDocument(messageMedia.document)) {
+            i = 4;
+            z = true;
+        } else {
+            if (MessageObject.isVoiceDocument(messageMedia.document)) {
+                i = 2;
+            } else if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
+                i = 1;
+            } else {
+                if (messageMedia.document == null) {
+                    return 0;
+                }
+                i = 8;
+            }
+            z = false;
+        }
+        TLRPC.Peer peer = message.peer_id;
+        if (peer == null) {
+            c = 1;
+        } else {
+            if (peer.user_id != 0) {
+                if (!getContactsController().contactsDict.containsKey(Long.valueOf(peer.user_id))) {
+                    c = 1;
+                }
+            } else if (peer.chat_id != 0) {
+                if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
+                    c = 2;
+                }
+            } else {
+                TLRPC.Chat chat = peer.channel_id != 0 ? getMessagesController().getChat(Long.valueOf(message.peer_id.channel_id)) : null;
+                if (!ChatObject.isChannel(chat) || !chat.megagroup) {
+                    c = 3;
+                } else if (!(message.from_id instanceof TLRPC.TL_peerUser) || !getContactsController().contactsDict.containsKey(Long.valueOf(message.from_id.user_id))) {
+                    c = 2;
+                }
+            }
+            c = 0;
+        }
+        int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
+        if (autodownloadNetworkType == 1) {
+            if (!this.wifiPreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentWiFiPreset();
+        } else if (autodownloadNetworkType == 2) {
+            if (!this.roamingPreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentRoamingPreset();
+        } else {
+            if (!this.mobilePreset.enabled) {
+                return 0;
+            }
+            currentMobilePreset = getCurrentMobilePreset();
+        }
+        int i2 = currentMobilePreset.mask[c];
+        if (i == 2) {
+            jMax = Math.max(524288L, currentMobilePreset.sizes[typeToIndex(i)]);
+        } else {
+            jMax = currentMobilePreset.sizes[typeToIndex(i)];
+        }
+        long mediaSize = MessageObject.getMediaSize(messageMedia);
+        if (z && currentMobilePreset.preloadVideo && mediaSize > jMax && jMax > 2097152) {
+            return (i2 & i) != 0 ? 2 : 0;
+        }
+        if (i == 1 || (mediaSize != 0 && mediaSize <= jMax)) {
+            return (i == 2 || (i2 & i) != 0) ? 1 : 0;
+        }
+        return 0;
     }
 
     protected boolean canDownloadNextTrack() {
         int autodownloadNetworkType = ApplicationLoader.getAutodownloadNetworkType();
-        return autodownloadNetworkType == 1 ? this.wifiPreset.enabled && getCurrentWiFiPreset().preloadMusic : autodownloadNetworkType == 2 ? this.roamingPreset.enabled && getCurrentRoamingPreset().preloadMusic : this.mobilePreset.enabled && getCurrentMobilePreset().preloadMusic;
+        if (autodownloadNetworkType == 1) {
+            return this.wifiPreset.enabled && getCurrentWiFiPreset().preloadMusic;
+        }
+        if (autodownloadNetworkType == 2) {
+            return this.roamingPreset.enabled && getCurrentRoamingPreset().preloadMusic;
+        }
+        return this.mobilePreset.enabled && getCurrentMobilePreset().preloadMusic;
     }
 
     public int getCurrentDownloadMask() {
@@ -869,8 +1181,8 @@ public class DownloadController extends BaseController implements NotificationCe
     protected void processDownloadObjects(int i, ArrayList<DownloadObject> arrayList) {
         ArrayList<DownloadObject> arrayList2;
         TLRPC.PhotoSize photoSize;
+        String attachFileName;
         int i2;
-        TLRPC.PhotoSize attachFileName;
         if (arrayList.isEmpty()) {
             return;
         }
@@ -886,15 +1198,18 @@ public class DownloadController extends BaseController implements NotificationCe
         for (int i3 = 0; i3 < arrayList.size(); i3++) {
             DownloadObject downloadObject = arrayList.get(i3);
             TLObject tLObject = downloadObject.object;
+            String str = null;
             TLRPC.PhotoSize closestPhotoSizeWithSize = null;
             if (tLObject instanceof TLRPC.Document) {
                 attachFileName = FileLoader.getAttachFileName((TLRPC.Document) tLObject);
-            } else if (tLObject instanceof TLRPC.Photo) {
-                closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize());
-                attachFileName = FileLoader.getAttachFileName(closestPhotoSizeWithSize);
             } else {
-                photoSize = null;
-                if (closestPhotoSizeWithSize == null && !this.downloadQueueKeys.containsKey(closestPhotoSizeWithSize)) {
+                if (tLObject instanceof TLRPC.Photo) {
+                    closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, AndroidUtilities.getPhotoSize());
+                    attachFileName = FileLoader.getAttachFileName(closestPhotoSizeWithSize);
+                } else {
+                    photoSize = null;
+                }
+                if (str == null && !this.downloadQueueKeys.containsKey(str)) {
                     if (photoSize != null) {
                         TLRPC.Photo photo = (TLRPC.Photo) downloadObject.object;
                         if (downloadObject.secret) {
@@ -910,14 +1225,14 @@ public class DownloadController extends BaseController implements NotificationCe
                         }
                     }
                     arrayList2.add(downloadObject);
-                    this.downloadQueueKeys.put(closestPhotoSizeWithSize, downloadObject);
+                    this.downloadQueueKeys.put(str, downloadObject);
                     this.downloadQueuePairs.put(new Pair<>(Long.valueOf(downloadObject.id), Integer.valueOf(downloadObject.type)), downloadObject);
                 }
             }
             TLRPC.PhotoSize photoSize2 = closestPhotoSizeWithSize;
-            closestPhotoSizeWithSize = attachFileName;
+            str = attachFileName;
             photoSize = photoSize2;
-            if (closestPhotoSizeWithSize == null) {
+            if (str == null) {
             }
         }
     }
@@ -1235,16 +1550,23 @@ public class DownloadController extends BaseController implements NotificationCe
             }
             i++;
         }
-        if (z2) {
-            z = z2;
-        } else {
-            for (int i2 = 0; i2 < this.downloadingFiles.size(); i2++) {
+        if (!z2) {
+            int i2 = 0;
+            while (true) {
+                if (i2 >= this.downloadingFiles.size()) {
+                    z = z2;
+                    break;
+                }
                 MessageObject messageObject3 = this.downloadingFiles.get(i2);
                 if (messageObject3 != null && (document2 = messageObject3.getDocument()) != null && document2.id == document.id) {
                     break;
+                } else {
+                    i2++;
                 }
             }
+        } else {
             z = z2;
+            break;
         }
         if (!z) {
             this.downloadingFiles.add(0, messageObject);
@@ -1293,20 +1615,20 @@ public class DownloadController extends BaseController implements NotificationCe
         for (int i = 0; i < this.downloadingFiles.size(); i++) {
             if (this.downloadingFiles.get(i).getDocument() != null && this.downloadingFiles.get(i).getDocument().id == document.id) {
                 this.downloadingFiles.remove(i);
-                int i2 = 0;
-                while (true) {
-                    if (i2 < this.recentDownloadingFiles.size()) {
-                        if (this.recentDownloadingFiles.get(i2).getDocument() != null && this.recentDownloadingFiles.get(i2).getDocument().id == document.id) {
-                            break;
-                        } else {
-                            i2++;
-                        }
-                    } else {
-                        this.recentDownloadingFiles.add(0, messageObject);
-                        putToUnviewedDownloads(messageObject);
-                        break;
+                for (int i2 = 0; i2 < this.recentDownloadingFiles.size(); i2++) {
+                    if (this.recentDownloadingFiles.get(i2).getDocument() != null && this.recentDownloadingFiles.get(i2).getDocument().id == document.id) {
+                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
+                        getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$onDownloadComplete$6(messageObject);
+                            }
+                        });
+                        return;
                     }
                 }
+                this.recentDownloadingFiles.add(0, messageObject);
+                putToUnviewedDownloads(messageObject);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
                 getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                     @Override
@@ -1533,24 +1855,20 @@ public class DownloadController extends BaseController implements NotificationCe
         for (int i = 0; i < arrayList.size(); i++) {
             int i2 = 0;
             while (true) {
-                if (i2 >= this.recentDownloadingFiles.size()) {
-                    int i3 = 0;
-                    while (true) {
-                        if (i3 >= this.downloadingFiles.size()) {
-                            break;
-                        }
-                        if (arrayList.get(i).getId() == this.downloadingFiles.get(i3).getId() && this.downloadingFiles.get(i3).getDialogId() == arrayList.get(i).getDialogId()) {
-                            this.downloadingFiles.remove(i3);
-                            break;
-                        }
-                        i3++;
-                    }
-                } else {
+                if (i2 < this.recentDownloadingFiles.size()) {
                     if (arrayList.get(i).getId() == this.recentDownloadingFiles.get(i2).getId() && this.recentDownloadingFiles.get(i2).getDialogId() == arrayList.get(i).getDialogId()) {
                         this.recentDownloadingFiles.remove(i2);
                         break;
                     }
                     i2++;
+                } else {
+                    for (int i3 = 0; i3 < this.downloadingFiles.size(); i3++) {
+                        if (arrayList.get(i).getId() == this.downloadingFiles.get(i3).getId() && this.downloadingFiles.get(i3).getDialogId() == arrayList.get(i).getDialogId()) {
+                            this.downloadingFiles.remove(i3);
+                            break;
+                        }
+                    }
+                    break;
                 }
             }
             arrayList.get(i).putInDownloadsStore = false;

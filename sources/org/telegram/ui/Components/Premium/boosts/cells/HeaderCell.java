@@ -189,8 +189,9 @@ public class HeaderCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
+        float top = this.iconTextureView.getTop() + (this.iconTextureView.getMeasuredHeight() / 2.0f);
         StarParticlesView starParticlesView = this.starParticlesView;
-        starParticlesView.setTranslationY((this.iconTextureView.getTop() + (this.iconTextureView.getMeasuredHeight() / 2.0f)) - (starParticlesView.getMeasuredHeight() / 2.0f));
+        starParticlesView.setTranslationY(top - (starParticlesView.getMeasuredHeight() / 2.0f));
     }
 
     public void setPaused(boolean z) {

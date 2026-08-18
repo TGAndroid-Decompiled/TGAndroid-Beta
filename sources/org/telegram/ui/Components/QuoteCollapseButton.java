@@ -9,8 +9,6 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.QuoteSpan;
 
 public class QuoteCollapseButton {
     private final Paint backgroundPaint = new Paint(1);
@@ -33,8 +31,9 @@ public class QuoteCollapseButton {
         animatedTextDrawable.setCallback(view);
         animatedTextDrawable.setOverrideFullWidth((int) (AndroidUtilities.displaySize.x * 0.3f));
         this.textCollapsed = false;
-        animatedTextDrawable.setText(LocaleController.getString(R.string.QuoteCollapse), false);
-        this.textWidth = (int) Math.ceil(Math.max(animatedTextDrawable.getPaint().measureText(LocaleController.getString(R.string.QuoteExpand)), animatedTextDrawable.getPaint().measureText(LocaleController.getString(r1))));
+        int i = R.string.QuoteCollapse;
+        animatedTextDrawable.setText(LocaleController.getString(i), false);
+        this.textWidth = (int) Math.ceil(Math.max(animatedTextDrawable.getPaint().measureText(LocaleController.getString(R.string.QuoteExpand)), animatedTextDrawable.getPaint().measureText(LocaleController.getString(i))));
     }
 
     public boolean verifyDrawable(Drawable drawable) {

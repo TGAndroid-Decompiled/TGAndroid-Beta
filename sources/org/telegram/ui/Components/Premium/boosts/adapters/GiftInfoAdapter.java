@@ -219,7 +219,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda2(this), this.resourcesProvider));
             return;
         }
-        Date date = new Date(this.giftCode.used_date * 1000);
+        Date date = new Date(((long) this.giftCode.used_date) * 1000);
         textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
     }
 

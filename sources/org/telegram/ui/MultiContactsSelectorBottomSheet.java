@@ -582,11 +582,9 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
             Boolean bool = this.filterBots;
             if (bool != null && bool.booleanValue()) {
                 ArrayList arrayList2 = new ArrayList();
-                Iterator<TLRPC.Dialog> it2 = MessagesController.getInstance(this.currentAccount).getAllDialogs().iterator();
-                while (it2.hasNext()) {
-                    TLRPC.Dialog next = it2.next();
-                    if (next.id >= 0) {
-                        TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(next.id));
+                for (TLRPC.Dialog dialog : MessagesController.getInstance(this.currentAccount).getAllDialogs()) {
+                    if (dialog.id >= 0) {
+                        TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialog.id));
                         if (filter(user3)) {
                             iDp += AndroidUtilities.dp(56.0f);
                             arrayList2.add(SelectorAdapter.Item.asUser(user3, this.selectedIds.contains(Long.valueOf(user3.id))));

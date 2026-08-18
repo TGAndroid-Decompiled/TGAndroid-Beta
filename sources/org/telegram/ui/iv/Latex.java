@@ -31,7 +31,8 @@ public final class Latex {
                     JLatexMathAndroid.init(ApplicationLoader.applicationContext);
                     sInitialized = true;
                 }
-            } finally {
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

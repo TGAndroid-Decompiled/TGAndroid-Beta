@@ -37,6 +37,7 @@ import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+import com.google.zxing.common.detector.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.Emoji;
@@ -369,38 +370,26 @@ public abstract class CaptionContainerView extends FrameLayout {
                 if (captionContainerView.factoryForMentions != null) {
                     if (this.blurredBackgroundDrawable == null) {
                         int i2 = 0;
-                        if (Build.VERSION.SDK_INT >= 31 && (rootWindowInsets = getRootWindowInsets()) != null) {
+                        if (Build.VERSION.SDK_INT < 31 || (rootWindowInsets = getRootWindowInsets()) == null) {
+                            radius = 0;
+                        } else {
                             RoundedCorner roundedCorner = rootWindowInsets.getRoundedCorner(3);
                             RoundedCorner roundedCorner2 = rootWindowInsets.getRoundedCorner(2);
                             int radius2 = roundedCorner == null ? 0 : roundedCorner.getRadius();
-                            if (roundedCorner2 != null) {
-                                radius = roundedCorner2.getRadius();
-                                i2 = radius2;
-                                BlurredBackgroundDrawable colorProvider = CaptionContainerView.this.factoryForMentions.create(view).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(resourcesProvider));
-                                this.blurredBackgroundDrawable = colorProvider;
-                                colorProvider.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i2, true);
-                                this.blurredBackgroundDrawable.enableInAppKeyboardOptimization();
-                                this.blurredBackgroundDrawable.setThickness(AndroidUtilities.dp(32.0f));
-                                this.blurredBackgroundDrawable.setIntensity(0.4f);
-                            } else {
+                            if (roundedCorner2 == null) {
                                 i2 = radius2;
                                 radius = 0;
-                                BlurredBackgroundDrawable colorProvider2 = CaptionContainerView.this.factoryForMentions.create(view).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(resourcesProvider));
-                                this.blurredBackgroundDrawable = colorProvider2;
-                                colorProvider2.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i2, true);
-                                this.blurredBackgroundDrawable.enableInAppKeyboardOptimization();
-                                this.blurredBackgroundDrawable.setThickness(AndroidUtilities.dp(32.0f));
-                                this.blurredBackgroundDrawable.setIntensity(0.4f);
+                            } else {
+                                radius = roundedCorner2.getRadius();
+                                i2 = radius2;
                             }
-                        } else {
-                            radius = 0;
-                            BlurredBackgroundDrawable colorProvider22 = CaptionContainerView.this.factoryForMentions.create(view).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(resourcesProvider));
-                            this.blurredBackgroundDrawable = colorProvider22;
-                            colorProvider22.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i2, true);
-                            this.blurredBackgroundDrawable.enableInAppKeyboardOptimization();
-                            this.blurredBackgroundDrawable.setThickness(AndroidUtilities.dp(32.0f));
-                            this.blurredBackgroundDrawable.setIntensity(0.4f);
                         }
+                        BlurredBackgroundDrawable colorProvider = CaptionContainerView.this.factoryForMentions.create(view).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(resourcesProvider));
+                        this.blurredBackgroundDrawable = colorProvider;
+                        colorProvider.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i2, true);
+                        this.blurredBackgroundDrawable.enableInAppKeyboardOptimization();
+                        this.blurredBackgroundDrawable.setThickness(AndroidUtilities.dp(32.0f));
+                        this.blurredBackgroundDrawable.setIntensity(0.4f);
                     }
                     RectF rectF = CaptionContainerView.this.rectF;
                     Rect rect = AndroidUtilities.rectTmp2;
@@ -583,7 +572,8 @@ public abstract class CaptionContainerView extends FrameLayout {
             CaptionContainerView captionContainerView = CaptionContainerView.this;
             captionContainerView.limitTextView.setTextColor(captionContainerView.codePointCount >= captionLimit ? -1280137 : -1);
             if (CaptionContainerView.this.codePointCount > captionLimit && !UserConfig.getInstance(CaptionContainerView.this.currentAccount).isPremium() && CaptionContainerView.this.codePointCount < CaptionContainerView.this.getCaptionPremiumLimit() && CaptionContainerView.this.codePointCount > this.lastLength && (CaptionContainerView.this.captionLimitToast() || MessagesController.getInstance(CaptionContainerView.this.currentAccount).premiumFeaturesBlocked())) {
-                AndroidUtilities.shakeViewSpring(CaptionContainerView.this.limitTextView, r0.shiftDp = -r0.shiftDp);
+                CaptionContainerView captionContainerView2 = CaptionContainerView.this;
+                AndroidUtilities.shakeViewSpring(captionContainerView2.limitTextView, captionContainerView2.shiftDp = -captionContainerView2.shiftDp);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
             }
             this.lastLength = CaptionContainerView.this.codePointCount;
@@ -1074,8 +1064,9 @@ public abstract class CaptionContainerView extends FrameLayout {
                 iMin = Math.min(AndroidUtilities.dp(82.0f), this.editText.getHeight());
             }
             float f3 = f2 - iMin;
+            float f4 = 1.0f - this.collapsedT.get();
             fDp = f3 - AndroidUtilities.dp(50.0f);
-            f = 1.0f - this.collapsedT.get();
+            f = f4;
         } else {
             fDp = this.bounds.top;
             f = 1.0f;
@@ -1126,8 +1117,8 @@ public abstract class CaptionContainerView extends FrameLayout {
         } else {
             path3.rewind();
         }
-        float f4 = rectF.left;
-        rectF.set(f4, rectF.top, AndroidUtilities.dp(3.0f) + f4, rectF.bottom);
+        float f5 = rectF.left;
+        rectF.set(f5, rectF.top, AndroidUtilities.dp(3.0f) + f5, rectF.bottom);
         this.replyLinePath.addRoundRect(rectF, this.replyLinePathRadii, direction);
         if (this.replyLinePaint == null) {
             Paint paint3 = new Paint();
@@ -1149,8 +1140,185 @@ public abstract class CaptionContainerView extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CaptionContainerView.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        int iMin;
+        float f;
+        int i;
+        float fDp;
+        if (this.ignoreDraw) {
+            return;
+        }
+        int height = this.editText.getHeight();
+        if (this.collapsed) {
+            iMin = AndroidUtilities.dp(44.0f);
+        } else if (this.keyboardShown) {
+            iMin = Math.max(AndroidUtilities.dp(44.0f), height);
+        } else {
+            iMin = Math.min(AndroidUtilities.dp(82.0f), height);
+        }
+        if (!this.collapsed && this.hasReply) {
+            iMin += AndroidUtilities.dp(50.0f);
+        }
+        float f2 = iMin;
+        int i2 = (int) this.heightAnimated.set(f2);
+        if (i2 != this.lastHeight) {
+            onEditHeightChange(i2);
+            Utilities.Callback callback = this.onHeightUpdate;
+            if (callback != null) {
+                callback.run(Integer.valueOf(i2));
+            }
+            this.lastHeight = iMin;
+        }
+        updateMentionsLayoutPosition();
+        int iDp = AndroidUtilities.dp(7.0f);
+        int iDp2 = AndroidUtilities.dp(8.0f);
+        if (isAtTop()) {
+            if (!this.collapsed) {
+                float fLerp = AndroidUtilities.lerp(AndroidUtilities.dpf2(-1.0f), AndroidUtilities.dpf2(1.0f), this.keyboardT);
+                EditTextCaption editText = this.editText.getEditText();
+                this.lastHeightTranslation = fLerp;
+                editText.setTranslationY(fLerp);
+            }
+            float f3 = iDp;
+            float f4 = iDp2;
+            int i3 = iDp2 + i2;
+            this.bounds.set(f3, f4, getWidth() - iDp, i3);
+            this.clickBounds.set(f3, f4, getWidth() - iDp, i3 + AndroidUtilities.dp(24.0f));
+        } else {
+            float fLerp2 = (AndroidUtilities.lerp(AndroidUtilities.dpf2(1.0f), AndroidUtilities.dpf2(-1.0f), this.keyboardT) + f2) - i2;
+            if (Math.abs(this.lastHeightTranslation - fLerp2) >= 1.0f && !this.collapsed) {
+                EditTextCaption editText2 = this.editText.getEditText();
+                this.lastHeightTranslation = fLerp2;
+                editText2.setTranslationY(fLerp2);
+            }
+            this.bounds.set(iDp, (getHeight() - iDp2) - i2, getWidth() - iDp, getHeight() - iDp2);
+            this.clickBounds.set(0.0f, (getHeight() - i2) - AndroidUtilities.dp(24.0f), getWidth(), getHeight());
+        }
+        canvas.save();
+        float scale = this.bounce.getScale(0.018f);
+        canvas.scale(scale, scale, this.bounds.centerX(), this.bounds.centerY());
+        float fLerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(21.0f), 0, this.keyboardT * (1.0f - forceRound()));
+        BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = this.factoryForMentions;
+        if (blurredBackgroundDrawableViewFactory != null) {
+            if (this.backgroundForCaptionField == null) {
+                this.backgroundForCaptionField = blurredBackgroundDrawableViewFactory.create(this).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(this.resourcesProvider)).setPadding(AndroidUtilities.dp(5.0f)).setRadius(AndroidUtilities.dp(22.0f));
+            }
+            RectF rectF = this.bounds;
+            Rect rect = AndroidUtilities.rectTmp2;
+            rectF.round(rect);
+            rect.inset(-AndroidUtilities.lerp(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(5.0f), this.keyboardT), -AndroidUtilities.dp(5.0f));
+            this.backgroundForCaptionField.setBounds(rect);
+            this.backgroundForCaptionField.draw(canvas);
+            f = fLerp3;
+            i = 1;
+        } else if (customBlur()) {
+            i = 1;
+            f = fLerp3;
+            drawBlur(this.backgroundBlur, canvas, this.bounds, fLerp3, false, 0.0f, 0.0f, true, 1.0f);
+            this.backgroundPaint.setAlpha(AndroidUtilities.lerp(38, 64, this.keyboardT));
+            canvas.drawRoundRect(this.bounds, f, f, this.backgroundPaint);
+        } else {
+            f = fLerp3;
+            i = 1;
+            Paint[] paints = this.backgroundBlur.getPaints(1.0f, 0.0f, 0.0f);
+            if (paints == null || paints[1] == null) {
+                this.backgroundPaint.setAlpha(128);
+                canvas.drawRoundRect(this.bounds, f, f, this.backgroundPaint);
+            } else {
+                Paint paint = paints[0];
+                if (paint != null) {
+                    canvas.drawRoundRect(this.bounds, f, f, paint);
+                }
+                Paint paint2 = paints[1];
+                if (paint2 != null) {
+                    canvas.drawRoundRect(this.bounds, f, f, paint2);
+                }
+                this.backgroundPaint.setAlpha(51);
+                canvas.drawRoundRect(this.bounds, f, f, this.backgroundPaint);
+            }
+        }
+        float f5 = this.collapsedT.get();
+        float f6 = this.collapsedT.set(this.collapsed);
+        if (Math.abs(f5 - f6) > 0.001f) {
+            invalidateDrawOver2();
+        } else {
+            if ((f5 <= 0.0f) != (f6 <= 0.0f)) {
+                invalidateDrawOver2();
+            }
+        }
+        if (f6 > 0.0f) {
+            canvas.saveLayerAlpha(this.bounds, 255, 31);
+        }
+        drawReply(canvas);
+        super.dispatchDraw(canvas);
+        if (f6 > 0.0f) {
+            int i4 = this.collapsedFromX;
+            if (i4 == Integer.MAX_VALUE) {
+                fDp = this.bounds.right - AndroidUtilities.dp(20.0f);
+            } else {
+                fDp = i4 == Integer.MIN_VALUE ? this.bounds.left + AndroidUtilities.dp(20.0f) : i4;
+            }
+            float fDp2 = this.bounds.bottom - AndroidUtilities.dp(20.0f);
+            RectF rectF2 = this.bounds;
+            float fDistance = MathUtils.distance(rectF2.left, rectF2.top, fDp, fDp2);
+            RectF rectF3 = this.bounds;
+            float fMax = Math.max(fDistance, MathUtils.distance(rectF3.left, rectF3.bottom, fDp, fDp2));
+            RectF rectF4 = this.bounds;
+            float fDistance2 = MathUtils.distance(rectF4.right, rectF4.top, fDp, fDp2);
+            RectF rectF5 = this.bounds;
+            float fMax2 = Math.max(fMax, Math.max(fDistance2, MathUtils.distance(rectF5.right, rectF5.bottom, fDp, fDp2))) * f6;
+            if (this.collapsePaint == null) {
+                Paint paint3 = new Paint(i);
+                this.collapsePaint = paint3;
+                PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
+                paint3.setXfermode(new PorterDuffXfermode(mode));
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, 32.0f, new int[]{-1, -1, 0}, new float[]{0.0f, 0.6f, 1.0f}, tileMode);
+                this.collapseGradient = radialGradient;
+                this.collapsePaint.setShader(radialGradient);
+                this.collapseGradientMatrix = new Matrix();
+                Paint paint4 = new Paint(i);
+                this.collapseOutPaint = paint4;
+                paint4.setXfermode(new PorterDuffXfermode(mode));
+                RadialGradient radialGradient2 = new RadialGradient(0.0f, 0.0f, 32.0f, new int[]{0, 0, -1}, new float[]{0.0f, 0.5f, 1.0f}, tileMode);
+                this.collapseOutGradient = radialGradient2;
+                this.collapseOutPaint.setShader(radialGradient2);
+            }
+            this.collapseGradientMatrix.reset();
+            this.collapseGradientMatrix.postTranslate(fDp, fDp2);
+            this.collapseGradientMatrix.preScale(Math.max(1.0f, fMax2) / 16.0f, Math.max(1.0f, fMax2) / 16.0f);
+            this.collapseGradient.setLocalMatrix(this.collapseGradientMatrix);
+            canvas.save();
+            canvas.drawRoundRect(this.bounds, f, f, this.collapsePaint);
+            canvas.restore();
+            canvas.restore();
+            canvas.saveLayerAlpha(this.bounds, 255, 31);
+            drawOver(canvas, this.bounds);
+            this.collapseGradientMatrix.reset();
+            this.collapseGradientMatrix.postTranslate(fDp, fDp2);
+            this.collapseGradientMatrix.preScale(Math.max(1.0f, fMax2) / 16.0f, Math.max(1.0f, fMax2) / 16.0f);
+            this.collapseOutGradient.setLocalMatrix(this.collapseGradientMatrix);
+            canvas.save();
+            canvas.drawRoundRect(this.bounds, f, f, this.collapseOutPaint);
+            canvas.restore();
+            canvas.restore();
+            if (!drawOver2FromParent()) {
+                drawOver2(canvas, this.bounds, f6);
+            }
+        }
+        canvas.restore();
+        if (this.factoryForMentions == null) {
+            this.clipPath.rewind();
+            this.clipPath.addRoundRect(this.bounds, f, f, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(this.clipPath);
+            StrokeDrawable strokeDrawable = this.strokeDrawable;
+            strokeDrawable.radius = f;
+            RectF rectF6 = this.bounds;
+            strokeDrawable.setBounds((int) rectF6.left, (int) rectF6.top, (int) rectF6.right, (int) rectF6.bottom);
+            this.strokeDrawable.draw(canvas);
+            canvas.restore();
+        }
     }
 
     public float getOver2Alpha() {
@@ -1173,10 +1341,11 @@ public abstract class CaptionContainerView extends FrameLayout {
                 runnable.run();
                 return;
             }
-            canvas.translate(-this.editText.getEditText().hintLayoutX, 0.0f);
+            EditTextCaption editText = this.editText.getEditText();
+            canvas.translate(-editText.hintLayoutX, 0.0f);
             canvas.saveLayerAlpha(0.0f, 0.0f, this.hintTextBitmap.getWidth(), this.hintTextBitmap.getHeight(), 255, 31);
             this.rectF.set(0.0f, 1.0f, this.hintTextBitmap.getWidth(), this.hintTextBitmap.getHeight() - 1);
-            drawBlur(this.captionBlur, canvas, this.rectF, 0.0f, true, (-this.editText.getX()) - r8.getPaddingLeft(), ((-this.editText.getY()) - r8.getPaddingTop()) - r8.getExtendedPaddingTop(), true, 1.0f);
+            drawBlur(this.captionBlur, canvas, this.rectF, 0.0f, true, (-this.editText.getX()) - editText.getPaddingLeft(), ((-this.editText.getY()) - editText.getPaddingTop()) - editText.getExtendedPaddingTop(), true, 1.0f);
             canvas.save();
             this.hintTextBitmapPaint.setAlpha(165);
             canvas.drawBitmap(this.hintTextBitmap, 0.0f, 0.0f, this.hintTextBitmapPaint);
@@ -1190,10 +1359,10 @@ public abstract class CaptionContainerView extends FrameLayout {
             runnable.run();
             return;
         }
-        EditTextCaption editText = this.editText.getEditText();
-        canvas.saveLayerAlpha(0.0f, 0.0f, editText.getWidth(), editText.getHeight(), 255, 31);
+        EditTextCaption editText2 = this.editText.getEditText();
+        canvas.saveLayerAlpha(0.0f, 0.0f, editText2.getWidth(), editText2.getHeight(), 255, 31);
         runnable.run();
-        canvas.drawRect(0.0f, 0.0f, editText.getWidth(), editText.getHeight(), paint);
+        canvas.drawRect(0.0f, 0.0f, editText2.getWidth(), editText2.getHeight(), paint);
         canvas.restore();
     }
 
@@ -1508,11 +1677,12 @@ public abstract class CaptionContainerView extends FrameLayout {
             float f4 = this.cy;
             rectF.set(f3 - fDpf2, f4 - fDpf2, f3 + fDpf2, f4 + fDpf2);
             canvas.drawArc(rectF, 90.0f, 180.0f, false, this.strokePaint);
-            float f5 = (this.dashes * 1.0f) + ((r1 + 1) * 1.5f);
+            int i = this.dashes;
+            float f5 = (i * 1.0f) + ((i + 1) * 1.5f);
             float f6 = (1.0f / f5) * 180.0f;
             float f7 = (1.5f / f5) * 180.0f;
             float f8 = f7;
-            for (int i = 0; i < this.dashes; i++) {
+            for (int i2 = 0; i2 < this.dashes; i2++) {
                 canvas.drawArc(AndroidUtilities.rectTmp, f8 + 270.0f, f6, false, this.strokePaint);
                 f8 += f6 + f7;
             }

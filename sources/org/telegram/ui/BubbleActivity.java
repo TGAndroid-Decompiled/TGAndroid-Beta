@@ -2,12 +2,10 @@ package org.telegram.ui;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
@@ -78,7 +76,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onCreate(Bundle bundle) throws Resources.NotFoundException, IOException, NumberFormatException {
+    protected void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages);
@@ -121,7 +119,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         instance = this;
     }
 
-    public void showPasscodeActivity() throws NumberFormatException {
+    public void showPasscodeActivity() {
         if (this.passcodeView == null) {
             return;
         }
@@ -137,13 +135,13 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         SharedConfig.isWaitingForPasscodeEnter = true;
         this.passcodeView.setDelegate(new PasscodeView.PasscodeViewDelegate() {
             @Override
-            public final void didAcceptedPassword(PasscodeView passcodeView) throws NumberFormatException {
+            public final void didAcceptedPassword(PasscodeView passcodeView) {
                 this.f$0.lambda$showPasscodeActivity$0(passcodeView);
             }
         });
     }
 
-    public void lambda$showPasscodeActivity$0(PasscodeView passcodeView) throws NumberFormatException {
+    public void lambda$showPasscodeActivity$0(PasscodeView passcodeView) {
         SharedConfig.isWaitingForPasscodeEnter = false;
         Intent intent = this.passcodeSaveIntent;
         if (intent != null) {
@@ -154,7 +152,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, passcodeView);
     }
 
-    private boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) throws NumberFormatException {
+    private boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) {
         ChatActivity chatActivity;
         if (!z3 && (AndroidUtilities.needShowPasscode(true) || SharedConfig.isWaitingForPasscodeEnter)) {
             showPasscodeActivity();
@@ -203,7 +201,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onNewIntent(Intent intent) throws NumberFormatException {
+    protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         handleIntent(intent, true, false, false, UserConfig.selectedAccount, 0);
     }
@@ -271,7 +269,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() throws NumberFormatException {
+    protected void onResume() {
         super.onResume();
         this.actionBarLayout.onResume();
         ApplicationLoader.externalInterfacePaused = false;
@@ -295,7 +293,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             Runnable runnable2 = new Runnable() {
                 @Override
-                public void run() throws NumberFormatException {
+                public void run() {
                     if (BubbleActivity.this.lockRunnable == this) {
                         if (AndroidUtilities.needShowPasscode(true)) {
                             if (BuildVars.LOGS_ENABLED) {
@@ -315,7 +313,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
             } else {
                 int i = SharedConfig.autoLockIn;
                 if (i != 0) {
-                    AndroidUtilities.runOnUIThread(runnable2, (i * 1000) + 1000);
+                    AndroidUtilities.runOnUIThread(runnable2, (((long) i) * 1000) + 1000);
                 }
             }
         } else {
@@ -324,7 +322,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         SharedConfig.saveConfig();
     }
 
-    private void onPasscodeResume() throws NumberFormatException {
+    private void onPasscodeResume() {
         Runnable runnable = this.lockRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -347,7 +345,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onBackPressed() throws NumberFormatException {
+    public void onBackPressed() {
         if (this.mainFragmentsStack.size() == 1) {
             super.onBackPressed();
             return;

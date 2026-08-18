@@ -133,9 +133,10 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
                 } else {
                     canvas2 = canvas;
                 }
+                float fHeight = this.storyReactionWidgetBackground.getBounds().height() * 0.61f;
                 Rect rect = AndroidUtilities.rectTmp2;
-                float fHeight = (this.storyReactionWidgetBackground.getBounds().height() * 0.61f) / 2.0f;
-                rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - fHeight), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - fHeight), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + fHeight), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + fHeight));
+                float f6 = fHeight / 2.0f;
+                rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - f6), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - f6), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + f6), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + f6));
                 this.storyReactionWidgetBackground.updateShadowLayer(1.0f);
                 this.storyReactionWidgetBackground.draw(canvas2);
                 this.imageHolder.setBounds(rect);
@@ -198,13 +199,15 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
             float f5 = (float) ((d4 * mediaAreaCoordinates.h) / 100.0d);
             canvas.save();
             canvas.translate(f2, f3);
-            float fMin = Math.min(f4 / ((this.marker.getWidthInternal() - this.marker.getPaddingLeft()) - this.marker.getPaddingRight()), f5 / ((this.marker.getHeightInternal() - this.marker.getPaddingTop()) - this.marker.getPaddingBottom()));
+            int widthInternal = (this.marker.getWidthInternal() - this.marker.getPaddingLeft()) - this.marker.getPaddingRight();
+            int heightInternal = (this.marker.getHeightInternal() - this.marker.getPaddingTop()) - this.marker.getPaddingBottom();
+            float fMin = Math.min(f4 / widthInternal, f5 / heightInternal);
             canvas.scale(fMin, fMin);
             double d5 = this.mediaArea.coordinates.rotation;
             if (d5 != 0.0d) {
                 canvas.rotate((float) d5);
             }
-            canvas.translate(((-r14) / 2.0f) - this.marker.getPaddingLeft(), ((-r0) / 2.0f) - this.marker.getPaddingTop());
+            canvas.translate(((-widthInternal) / 2.0f) - this.marker.getPaddingLeft(), ((-heightInternal) / 2.0f) - this.marker.getPaddingTop());
             this.marker.drawInternal(canvas);
             canvas.restore();
         }

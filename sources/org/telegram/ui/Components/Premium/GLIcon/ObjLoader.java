@@ -11,7 +11,7 @@ public final class ObjLoader {
     public float[] positions;
     public float[] textureCoordinates;
 
-    public ObjLoader(Context context, String str, float f) throws IOException {
+    public ObjLoader(Context context, String str, float f) {
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();

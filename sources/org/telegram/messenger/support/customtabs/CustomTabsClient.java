@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.text.TextUtils;
-import org.telegram.messenger.support.customtabs.ICustomTabsCallback;
 
 public abstract class CustomTabsClient {
     private final ICustomTabsService mService;

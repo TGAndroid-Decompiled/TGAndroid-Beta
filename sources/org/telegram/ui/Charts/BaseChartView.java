@@ -27,7 +27,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Charts.ChartPickerDelegate;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.view_data.ChartBottomSignatureData;
 import org.telegram.ui.Charts.view_data.ChartHeaderView;
@@ -498,8 +497,72 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         }
     }
 
-    void drawBottomSignature(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.BaseChartView.drawBottomSignature(android.graphics.Canvas):void");
+    void drawBottomSignature(Canvas canvas) {
+        float f;
+        if (this.chartData == null) {
+            return;
+        }
+        this.tmpN = this.bottomSignatureDate.size();
+        int i = this.transitionMode;
+        if (i == 2) {
+            f = 1.0f - this.transitionParams.progress;
+        } else {
+            f = (i == 1 || i == 3) ? this.transitionParams.progress : 1.0f;
+        }
+        this.tmpI = 0;
+        while (true) {
+            int i2 = this.tmpI;
+            if (i2 >= this.tmpN) {
+                return;
+            }
+            int i3 = ((ChartBottomSignatureData) this.bottomSignatureDate.get(i2)).alpha;
+            int i4 = ((ChartBottomSignatureData) this.bottomSignatureDate.get(this.tmpI)).step;
+            if (i4 == 0) {
+                i4 = 1;
+            }
+            int i5 = this.startXIndex - this.bottomSignatureOffset;
+            while (i5 % i4 != 0) {
+                i5--;
+            }
+            int i6 = this.endXIndex - this.bottomSignatureOffset;
+            while (true) {
+                if (i6 % i4 == 0 && i6 >= this.chartData.x.length - 1) {
+                    break;
+                } else {
+                    i6++;
+                }
+            }
+            int i7 = this.bottomSignatureOffset;
+            int i8 = i6 + i7;
+            float f2 = (this.chartFullWidth * this.pickerDelegate.pickerStart) - HORIZONTAL_PADDING;
+            for (int i9 = i5 + i7; i9 < i8; i9 += i4) {
+                if (i9 >= 0) {
+                    long[] jArr = this.chartData.x;
+                    if (i9 < jArr.length - 1) {
+                        long j = jArr[i9];
+                        long j2 = jArr[0];
+                        float f3 = (((j - j2) / (jArr[jArr.length - 1] - j2)) * this.chartFullWidth) - f2;
+                        float f4 = f3 - BOTTOM_SIGNATURE_OFFSET;
+                        if (f4 > 0.0f) {
+                            float f5 = this.chartWidth;
+                            float f6 = HORIZONTAL_PADDING;
+                            if (f4 <= f5 + f6) {
+                                float f7 = BOTTOM_SIGNATURE_START_ALPHA;
+                                if (f4 < f7) {
+                                    this.bottomSignaturePaint.setAlpha((int) (i3 * (1.0f - ((f7 - f4) / f7)) * this.bottomSignaturePaintAlpha * f));
+                                } else if (f4 > f5) {
+                                    this.bottomSignaturePaint.setAlpha((int) (i3 * (1.0f - ((f4 - f5) / f6)) * this.bottomSignaturePaintAlpha * f));
+                                } else {
+                                    this.bottomSignaturePaint.setAlpha((int) (i3 * this.bottomSignaturePaintAlpha * f));
+                                }
+                                canvas.drawText(this.chartData.getDayString(i9), f3, (getMeasuredHeight() - this.chartBottom) + BOTTOM_SIGNATURE_TEXT_HEIGHT + AndroidUtilities.dp(3.0f), this.bottomSignaturePaint);
+                            }
+                        }
+                    }
+                }
+            }
+            this.tmpI++;
+        }
     }
 
     protected void drawBottomLine(Canvas canvas) {
@@ -517,12 +580,13 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         this.signaturePaint.setAlpha((int) (this.signaturePaintAlpha * 255.0f * f));
         this.signaturePaint2.setAlpha((int) (this.signaturePaintAlpha * 255.0f * f));
         int textSize = (int) (SIGNATURE_TEXT_HEIGHT - this.signaturePaint.getTextSize());
-        float measuredHeight = (getMeasuredHeight() - this.chartBottom) - 1;
-        canvas.drawLine(this.chartStart, measuredHeight, this.chartEnd, measuredHeight, this.linePaint);
+        int measuredHeight = (getMeasuredHeight() - this.chartBottom) - 1;
+        float f2 = measuredHeight;
+        canvas.drawLine(this.chartStart, f2, this.chartEnd, f2, this.linePaint);
         if (this.useMinHeight) {
             return;
         }
-        canvas.drawText("0", HORIZONTAL_PADDING, r1 - textSize, this.signaturePaint);
+        canvas.drawText("0", HORIZONTAL_PADDING, measuredHeight - textSize, this.signaturePaint);
     }
 
     protected void drawSelection(Canvas canvas) {
@@ -570,16 +634,411 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
         }
     }
 
-    protected void drawHorizontalLines(android.graphics.Canvas r12, org.telegram.ui.Charts.view_data.ChartHorizontalLinesData r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.BaseChartView.drawHorizontalLines(android.graphics.Canvas, org.telegram.ui.Charts.view_data.ChartHorizontalLinesData):void");
+    protected void drawHorizontalLines(Canvas canvas, ChartHorizontalLinesData chartHorizontalLinesData) {
+        float f;
+        long[] jArr = chartHorizontalLinesData.values;
+        int length = jArr.length;
+        float f2 = 1.0f;
+        if (length > 2) {
+            float f3 = (jArr[1] - jArr[0]) / (this.currentMaxHeight - this.currentMinHeight);
+            if (f3 < 0.1d) {
+                f = f3 / 0.1f;
+            } else {
+                f = 1.0f;
+            }
+        } else {
+            f = 1.0f;
+        }
+        int i = this.transitionMode;
+        if (i == 2) {
+            f2 = 1.0f - this.transitionParams.progress;
+        } else if (i == 1 || i == 3) {
+            f2 = this.transitionParams.progress;
+        }
+        this.linePaint.setAlpha((int) (chartHorizontalLinesData.alpha * (this.hintLinePaintAlpha / 255.0f) * f2 * f));
+        this.signaturePaint.setAlpha((int) (chartHorizontalLinesData.alpha * this.signaturePaintAlpha * f2 * f));
+        this.signaturePaint2.setAlpha((int) (chartHorizontalLinesData.alpha * this.signaturePaintAlpha * f2 * f));
+        int measuredHeight = (getMeasuredHeight() - this.chartBottom) - SIGNATURE_TEXT_HEIGHT;
+        for (int i2 = !this.useMinHeight ? 1 : 0; i2 < length; i2++) {
+            float measuredHeight2 = getMeasuredHeight() - this.chartBottom;
+            float f4 = chartHorizontalLinesData.values[i2];
+            float f5 = this.currentMinHeight;
+            int i3 = (int) (measuredHeight2 - (measuredHeight * ((f4 - f5) / (this.currentMaxHeight - f5))));
+            canvas.drawRect(this.chartStart, i3, this.chartEnd, i3 + 1, this.linePaint);
+        }
     }
 
-    protected void drawSignaturesToHorizontalLines(android.graphics.Canvas r14, org.telegram.ui.Charts.view_data.ChartHorizontalLinesData r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.BaseChartView.drawSignaturesToHorizontalLines(android.graphics.Canvas, org.telegram.ui.Charts.view_data.ChartHorizontalLinesData):void");
+    protected void drawSignaturesToHorizontalLines(Canvas canvas, ChartHorizontalLinesData chartHorizontalLinesData) {
+        float f;
+        long[] jArr = chartHorizontalLinesData.values;
+        int length = jArr.length;
+        float f2 = 1.0f;
+        if (length > 2) {
+            float f3 = (jArr[1] - jArr[0]) / (this.currentMaxHeight - this.currentMinHeight);
+            if (f3 < 0.1d) {
+                f = f3 / 0.1f;
+            } else {
+                f = 1.0f;
+            }
+        } else {
+            f = 1.0f;
+        }
+        int i = this.transitionMode;
+        if (i == 2) {
+            f2 = 1.0f - this.transitionParams.progress;
+        } else if (i == 1 || i == 3) {
+            f2 = this.transitionParams.progress;
+        }
+        this.linePaint.setAlpha((int) (chartHorizontalLinesData.alpha * (this.hintLinePaintAlpha / 255.0f) * f2 * f));
+        this.signaturePaint.setAlpha((int) (chartHorizontalLinesData.alpha * this.signaturePaintAlpha * f2 * f));
+        this.signaturePaint2.setAlpha((int) (chartHorizontalLinesData.alpha * this.signaturePaintAlpha * f2 * f));
+        int measuredHeight = getMeasuredHeight() - this.chartBottom;
+        int i2 = SIGNATURE_TEXT_HEIGHT;
+        int i3 = measuredHeight - i2;
+        int textSize = (int) (i2 - this.signaturePaint.getTextSize());
+        for (int i4 = 1 ^ (this.useMinHeight ? 1 : 0); i4 < length; i4++) {
+            float measuredHeight2 = getMeasuredHeight() - this.chartBottom;
+            float f4 = chartHorizontalLinesData.values[i4];
+            float f5 = this.currentMinHeight;
+            int i5 = (int) (measuredHeight2 - (i3 * ((f4 - f5) / (this.currentMaxHeight - f5))));
+            float f6 = HORIZONTAL_PADDING;
+            float f7 = i5 - textSize;
+            chartHorizontalLinesData.drawText(canvas, 0, i4, f6, f7, this.signaturePaint);
+            if (chartHorizontalLinesData.valuesStr2 != null) {
+                chartHorizontalLinesData.drawText(canvas, 1, i4, getMeasuredWidth() - f6, f7, this.signaturePaint2);
+            }
+        }
     }
 
-    void drawPicker(android.graphics.Canvas r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.BaseChartView.drawPicker(android.graphics.Canvas):void");
+    void drawPicker(Canvas canvas) {
+        float f;
+        int i;
+        int i2;
+        ChartPickerDelegate.CapturesData middleCaptured;
+        int i3;
+        int i4;
+        ChartPickerDelegate.CapturesData leftCaptured;
+        ChartPickerDelegate.CapturesData rightCaptured;
+        boolean z;
+        int i5;
+        float f2;
+        float f3;
+        float f4;
+        int i6;
+        ValueAnimator valueAnimator;
+        ValueAnimator valueAnimator2;
+        if (this.chartData == null) {
+            return;
+        }
+        this.pickerDelegate.pickerWidth = this.pickerWidth;
+        int measuredHeight = getMeasuredHeight();
+        int i7 = PICKER_PADDING;
+        int i8 = measuredHeight - i7;
+        int measuredHeight2 = (getMeasuredHeight() - this.pikerHeight) - i7;
+        float f5 = HORIZONTAL_PADDING;
+        float f6 = this.pickerWidth;
+        ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
+        int i9 = (int) ((chartPickerDelegate.pickerStart * f6) + f5);
+        int i10 = (int) ((chartPickerDelegate.pickerEnd * f6) + f5);
+        int i11 = this.transitionMode;
+        if (i11 == 1) {
+            TransitionParams transitionParams = this.transitionParams;
+            int i12 = (int) ((transitionParams.pickerStartOut * f6) + f5);
+            int i13 = (int) ((f6 * transitionParams.pickerEndOut) + f5);
+            float f7 = 1.0f - transitionParams.progress;
+            i9 = (int) (i9 + ((i12 - i9) * f7));
+            i10 = (int) (i10 + ((i13 - i10) * f7));
+        } else {
+            if (i11 == 3) {
+                f = this.transitionParams.progress;
+                i = i10;
+                i2 = i9;
+            }
+            if (this.chartData != null) {
+                if (i11 == 0) {
+                    i6 = 0;
+                    while (true) {
+                        if (i6 < this.lines.size()) {
+                            LineViewData lineViewData = (LineViewData) this.lines.get(i6);
+                            valueAnimator = lineViewData.animatorIn;
+                            if ((valueAnimator == null && valueAnimator.isRunning()) || ((valueAnimator2 = lineViewData.animatorOut) != null && valueAnimator2.isRunning())) {
+                                z = true;
+                            }
+                        } else {
+                            z = false;
+                        }
+                    }
+                } else {
+                    z = false;
+                }
+                if (z) {
+                    canvas.save();
+                    float f8 = HORIZONTAL_PADDING;
+                    int measuredHeight3 = getMeasuredHeight();
+                    int i14 = PICKER_PADDING;
+                    canvas.clipRect(f8, (measuredHeight3 - i14) - this.pikerHeight, getMeasuredWidth() - f8, getMeasuredHeight() - i14);
+                    canvas.translate(f8, (getMeasuredHeight() - i14) - this.pikerHeight);
+                    drawPickerChart(canvas);
+                    canvas.restore();
+                } else if (this.invalidatePickerChart) {
+                    this.bottomChartBitmap.eraseColor(0);
+                    drawPickerChart(this.bottomChartCanvas);
+                    this.invalidatePickerChart = false;
+                }
+                if (!z) {
+                    i5 = this.transitionMode;
+                    if (i5 == 2) {
+                        float f9 = HORIZONTAL_PADDING;
+                        float f10 = this.pickerWidth;
+                        TransitionParams transitionParams2 = this.transitionParams;
+                        float f11 = (f10 * transitionParams2.xPercentage) + f9;
+                        this.emptyPaint.setAlpha((int) ((1.0f - transitionParams2.progress) * 255.0f));
+                        canvas.save();
+                        canvas.clipRect(f9, measuredHeight2, getMeasuredWidth() - f9, i8);
+                        canvas.scale((this.transitionParams.progress * 2.0f) + 1.0f, 1.0f, f11, ((i8 - measuredHeight2) + measuredHeight2) >> 1);
+                        canvas.drawBitmap(this.bottomChartBitmap, f9, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+                        canvas.restore();
+                    } else if (i5 == 1) {
+                        float f12 = ((i8 - measuredHeight2) + measuredHeight2) >> 1;
+                        float f13 = HORIZONTAL_PADDING;
+                        f2 = this.pickerWidth;
+                        TransitionParams transitionParams3 = this.transitionParams;
+                        f3 = transitionParams3.xPercentage;
+                        f4 = f2 * f3;
+                        float f14 = f13 + f4;
+                        if (f3 <= 0.5f) {
+                            f4 = f2 * (1.0f - f3);
+                        }
+                        float f15 = f4 * transitionParams3.progress;
+                        canvas.save();
+                        canvas.clipRect(f14 - f15, measuredHeight2, f14 + f15, i8);
+                        this.emptyPaint.setAlpha((int) (this.transitionParams.progress * 255.0f));
+                        canvas.scale(this.transitionParams.progress, 1.0f, f14, f12);
+                        canvas.drawBitmap(this.bottomChartBitmap, f13, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+                        canvas.restore();
+                    } else {
+                        this.emptyPaint.setAlpha((int) (f * 255.0f));
+                        canvas.drawBitmap(this.bottomChartBitmap, HORIZONTAL_PADDING, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+                    }
+                }
+                if (this.transitionMode == 2) {
+                    return;
+                }
+                float f16 = HORIZONTAL_PADDING;
+                float f17 = measuredHeight2;
+                int i15 = DP_12;
+                float f18 = i8;
+                canvas.drawRect(f16, f17, i2 + i15, f18, this.unactiveBottomChartPaint);
+                canvas.drawRect(i - i15, f17, getMeasuredWidth() - f16, f18, this.unactiveBottomChartPaint);
+            } else {
+                canvas.drawRect(f5, measuredHeight2, getMeasuredWidth() - f5, i8, this.unactiveBottomChartPaint);
+            }
+            SharedUiComponents sharedUiComponents = this.sharedUiComponents;
+            int i16 = this.pikerHeight;
+            float measuredWidth = getMeasuredWidth();
+            float f19 = HORIZONTAL_PADDING;
+            canvas.drawBitmap(sharedUiComponents.getPickerMaskBitmap(i16, (int) (measuredWidth - (f19 * 2.0f))), f19, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+            if (this.chartData != null) {
+                this.pickerRect.set(i2, measuredHeight2, i, i8);
+                this.pickerDelegate.middlePickerArea.set(this.pickerRect);
+                Path path = this.pathTmp;
+                Rect rect = this.pickerRect;
+                int i17 = rect.left;
+                int i18 = rect.top;
+                int i19 = DP_1;
+                int i20 = DP_12;
+                float f20 = rect.bottom + i19;
+                float f21 = DP_8;
+                canvas.drawPath(RoundedRect(path, i17, i18 - i19, i17 + i20, f20, f21, f21, true, false, false, true), this.pickerSelectorPaint);
+                Path path2 = this.pathTmp;
+                Rect rect2 = this.pickerRect;
+                int i21 = rect2.right;
+                canvas.drawPath(RoundedRect(path2, i21 - i20, rect2.top - i19, i21, rect2.bottom + i19, f21, f21, false, true, true, false), this.pickerSelectorPaint);
+                Rect rect3 = this.pickerRect;
+                float f22 = rect3.left + i20;
+                int i22 = rect3.bottom;
+                canvas.drawRect(f22, i22, rect3.right - i20, i22 + i19, this.pickerSelectorPaint);
+                Rect rect4 = this.pickerRect;
+                float f23 = rect4.left + i20;
+                int i23 = rect4.top;
+                canvas.drawRect(f23, i23 - i19, rect4.right - i20, i23, this.pickerSelectorPaint);
+                Rect rect5 = this.pickerRect;
+                int i24 = rect5.left;
+                int i25 = DP_6;
+                float fCenterY = rect5.centerY() - i25;
+                Rect rect6 = this.pickerRect;
+                canvas.drawLine(i24 + i25, fCenterY, rect6.left + i25, rect6.centerY() + i25, this.whiteLinePaint);
+                Rect rect7 = this.pickerRect;
+                float f24 = rect7.right - i25;
+                float fCenterY2 = rect7.centerY() - i25;
+                Rect rect8 = this.pickerRect;
+                canvas.drawLine(f24, fCenterY2, rect8.right - i25, rect8.centerY() + i25, this.whiteLinePaint);
+                middleCaptured = this.pickerDelegate.getMiddleCaptured();
+                Rect rect9 = this.pickerRect;
+                int i26 = rect9.bottom;
+                int i27 = rect9.top;
+                i3 = (i26 - i27) >> 1;
+                i4 = i27 + i3;
+                if (middleCaptured == null) {
+                    leftCaptured = this.pickerDelegate.getLeftCaptured();
+                    rightCaptured = this.pickerDelegate.getRightCaptured();
+                    if (leftCaptured != null) {
+                        canvas.drawCircle(this.pickerRect.left + DP_5, i4, (i3 * leftCaptured.aValue) - DP_2, this.ripplePaint);
+                    }
+                    if (rightCaptured != null) {
+                        canvas.drawCircle(this.pickerRect.right - DP_5, i4, (i3 * rightCaptured.aValue) - DP_2, this.ripplePaint);
+                    }
+                }
+                Rect rect10 = this.pickerDelegate.leftPickerArea;
+                int i28 = PICKER_CAPTURE_WIDTH;
+                int i29 = i28 >> 1;
+                rect10.set(i2 - i28, measuredHeight2, i2 + i29, i8);
+                this.pickerDelegate.rightPickerArea.set(i - i29, measuredHeight2, i + i28, i8);
+            }
+        }
+        i = i10;
+        i2 = i9;
+        f = 1.0f;
+        if (this.chartData != null) {
+            if (i11 == 0) {
+                i6 = 0;
+                while (true) {
+                    if (i6 < this.lines.size()) {
+                        LineViewData lineViewData2 = (LineViewData) this.lines.get(i6);
+                        valueAnimator = lineViewData2.animatorIn;
+                        i6 = valueAnimator == null ? i6 + 1 : i6 + 1;
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                }
+            } else {
+                z = false;
+            }
+            if (z) {
+                canvas.save();
+                float f25 = HORIZONTAL_PADDING;
+                int measuredHeight4 = getMeasuredHeight();
+                int i110 = PICKER_PADDING;
+                canvas.clipRect(f25, (measuredHeight4 - i110) - this.pikerHeight, getMeasuredWidth() - f25, getMeasuredHeight() - i110);
+                canvas.translate(f25, (getMeasuredHeight() - i110) - this.pikerHeight);
+                drawPickerChart(canvas);
+                canvas.restore();
+            } else if (this.invalidatePickerChart) {
+                this.bottomChartBitmap.eraseColor(0);
+                drawPickerChart(this.bottomChartCanvas);
+                this.invalidatePickerChart = false;
+            }
+            if (!z) {
+                i5 = this.transitionMode;
+                if (i5 == 2) {
+                    float f26 = HORIZONTAL_PADDING;
+                    float f110 = this.pickerWidth;
+                    TransitionParams transitionParams4 = this.transitionParams;
+                    float f111 = (f110 * transitionParams4.xPercentage) + f26;
+                    this.emptyPaint.setAlpha((int) ((1.0f - transitionParams4.progress) * 255.0f));
+                    canvas.save();
+                    canvas.clipRect(f26, measuredHeight2, getMeasuredWidth() - f26, i8);
+                    canvas.scale((this.transitionParams.progress * 2.0f) + 1.0f, 1.0f, f111, ((i8 - measuredHeight2) + measuredHeight2) >> 1);
+                    canvas.drawBitmap(this.bottomChartBitmap, f26, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+                    canvas.restore();
+                } else if (i5 == 1) {
+                    float f112 = ((i8 - measuredHeight2) + measuredHeight2) >> 1;
+                    float f113 = HORIZONTAL_PADDING;
+                    f2 = this.pickerWidth;
+                    TransitionParams transitionParams5 = this.transitionParams;
+                    f3 = transitionParams5.xPercentage;
+                    f4 = f2 * f3;
+                    float f114 = f113 + f4;
+                    if (f3 <= 0.5f) {
+                        f4 = f2 * (1.0f - f3);
+                    }
+                    float f115 = f4 * transitionParams5.progress;
+                    canvas.save();
+                    canvas.clipRect(f114 - f115, measuredHeight2, f114 + f115, i8);
+                    this.emptyPaint.setAlpha((int) (this.transitionParams.progress * 255.0f));
+                    canvas.scale(this.transitionParams.progress, 1.0f, f114, f112);
+                    canvas.drawBitmap(this.bottomChartBitmap, f113, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+                    canvas.restore();
+                } else {
+                    this.emptyPaint.setAlpha((int) (f * 255.0f));
+                    canvas.drawBitmap(this.bottomChartBitmap, HORIZONTAL_PADDING, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+                }
+            }
+            if (this.transitionMode == 2) {
+                return;
+            }
+            float f116 = HORIZONTAL_PADDING;
+            float f117 = measuredHeight2;
+            int i111 = DP_12;
+            float f118 = i8;
+            canvas.drawRect(f116, f117, i2 + i111, f118, this.unactiveBottomChartPaint);
+            canvas.drawRect(i - i111, f117, getMeasuredWidth() - f116, f118, this.unactiveBottomChartPaint);
+        } else {
+            canvas.drawRect(f5, measuredHeight2, getMeasuredWidth() - f5, i8, this.unactiveBottomChartPaint);
+        }
+        SharedUiComponents sharedUiComponents2 = this.sharedUiComponents;
+        int i112 = this.pikerHeight;
+        float measuredWidth2 = getMeasuredWidth();
+        float f119 = HORIZONTAL_PADDING;
+        canvas.drawBitmap(sharedUiComponents2.getPickerMaskBitmap(i112, (int) (measuredWidth2 - (f119 * 2.0f))), f119, (getMeasuredHeight() - PICKER_PADDING) - this.pikerHeight, this.emptyPaint);
+        if (this.chartData != null) {
+            this.pickerRect.set(i2, measuredHeight2, i, i8);
+            this.pickerDelegate.middlePickerArea.set(this.pickerRect);
+            Path path3 = this.pathTmp;
+            Rect rect11 = this.pickerRect;
+            int i113 = rect11.left;
+            int i114 = rect11.top;
+            int i115 = DP_1;
+            int i210 = DP_12;
+            float f27 = rect11.bottom + i115;
+            float f28 = DP_8;
+            canvas.drawPath(RoundedRect(path3, i113, i114 - i115, i113 + i210, f27, f28, f28, true, false, false, true), this.pickerSelectorPaint);
+            Path path4 = this.pathTmp;
+            Rect rect12 = this.pickerRect;
+            int i211 = rect12.right;
+            canvas.drawPath(RoundedRect(path4, i211 - i210, rect12.top - i115, i211, rect12.bottom + i115, f28, f28, false, true, true, false), this.pickerSelectorPaint);
+            Rect rect13 = this.pickerRect;
+            float f29 = rect13.left + i210;
+            int i212 = rect13.bottom;
+            canvas.drawRect(f29, i212, rect13.right - i210, i212 + i115, this.pickerSelectorPaint);
+            Rect rect14 = this.pickerRect;
+            float f210 = rect14.left + i210;
+            int i213 = rect14.top;
+            canvas.drawRect(f210, i213 - i115, rect14.right - i210, i213, this.pickerSelectorPaint);
+            Rect rect15 = this.pickerRect;
+            int i214 = rect15.left;
+            int i215 = DP_6;
+            float fCenterY3 = rect15.centerY() - i215;
+            Rect rect16 = this.pickerRect;
+            canvas.drawLine(i214 + i215, fCenterY3, rect16.left + i215, rect16.centerY() + i215, this.whiteLinePaint);
+            Rect rect17 = this.pickerRect;
+            float f211 = rect17.right - i215;
+            float fCenterY4 = rect17.centerY() - i215;
+            Rect rect18 = this.pickerRect;
+            canvas.drawLine(f211, fCenterY4, rect18.right - i215, rect18.centerY() + i215, this.whiteLinePaint);
+            middleCaptured = this.pickerDelegate.getMiddleCaptured();
+            Rect rect19 = this.pickerRect;
+            int i216 = rect19.bottom;
+            int i217 = rect19.top;
+            i3 = (i216 - i217) >> 1;
+            i4 = i217 + i3;
+            if (middleCaptured == null) {
+                leftCaptured = this.pickerDelegate.getLeftCaptured();
+                rightCaptured = this.pickerDelegate.getRightCaptured();
+                if (leftCaptured != null) {
+                    canvas.drawCircle(this.pickerRect.left + DP_5, i4, (i3 * leftCaptured.aValue) - DP_2, this.ripplePaint);
+                }
+                if (rightCaptured != null) {
+                    canvas.drawCircle(this.pickerRect.right - DP_5, i4, (i3 * rightCaptured.aValue) - DP_2, this.ripplePaint);
+                }
+            }
+            Rect rect110 = this.pickerDelegate.leftPickerArea;
+            int i218 = PICKER_CAPTURE_WIDTH;
+            int i219 = i218 >> 1;
+            rect110.set(i2 - i218, measuredHeight2, i2 + i219, i8);
+            this.pickerDelegate.rightPickerArea.set(i - i219, measuredHeight2, i + i218, i8);
+        }
     }
 
     private void setMaxMinValue(long j, long j2, boolean z) {
@@ -684,9 +1143,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
 
     public void lambda$setMaxMinValue$2(ChartHorizontalLinesData chartHorizontalLinesData, ValueAnimator valueAnimator) {
         chartHorizontalLinesData.alpha = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        Iterator it = this.horizontalLines.iterator();
-        while (it.hasNext()) {
-            ChartHorizontalLinesData chartHorizontalLinesData2 = (ChartHorizontalLinesData) it.next();
+        for (ChartHorizontalLinesData chartHorizontalLinesData2 : this.horizontalLines) {
             if (chartHorizontalLinesData2 != chartHorizontalLinesData) {
                 chartHorizontalLinesData2.alpha = (int) ((chartHorizontalLinesData2.fixedAlpha / 255.0f) * (255 - chartHorizontalLinesData.alpha));
             }
@@ -1015,9 +1472,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
     }
 
     protected void initPickerMaxHeight() {
-        Iterator it = this.lines.iterator();
-        while (it.hasNext()) {
-            LineViewData lineViewData = (LineViewData) it.next();
+        for (LineViewData lineViewData : this.lines) {
             boolean z = lineViewData.enabled;
             if (z) {
                 float f = lineViewData.line.maxValue;
@@ -1163,9 +1618,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
 
     public void lambda$updateDates$3(ChartBottomSignatureData chartBottomSignatureData, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        Iterator it = this.bottomSignatureDate.iterator();
-        while (it.hasNext()) {
-            ChartBottomSignatureData chartBottomSignatureData2 = (ChartBottomSignatureData) it.next();
+        for (ChartBottomSignatureData chartBottomSignatureData2 : this.bottomSignatureDate) {
             if (chartBottomSignatureData2 == chartBottomSignatureData) {
                 chartBottomSignatureData.alpha = (int) (255.0f * fFloatValue);
             } else {
@@ -1244,11 +1697,9 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
 
     protected void updatePickerMinMaxHeight() {
         if (ANIMATE_PICKER_SIZES) {
-            Iterator it = this.lines.iterator();
             long j = Long.MAX_VALUE;
             long j2 = 0;
-            while (it.hasNext()) {
-                LineViewData lineViewData = (LineViewData) it.next();
+            for (LineViewData lineViewData : this.lines) {
                 boolean z = lineViewData.enabled;
                 if (z) {
                     long j3 = lineViewData.line.maxValue;

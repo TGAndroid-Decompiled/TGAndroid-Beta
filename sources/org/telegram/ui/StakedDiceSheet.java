@@ -234,8 +234,57 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
                 }
 
                 @Override
-                public void afterTextChanged(android.text.Editable r12) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.StakedDiceSheet.AnonymousClass2.afterTextChanged(android.text.Editable):void");
+                public void afterTextChanged(Editable editable) {
+                    double d;
+                    if (this.ignore) {
+                        return;
+                    }
+                    try {
+                        d = TextUtils.isEmpty(editable) ? 0.0d : Double.parseDouble(editable.toString());
+                        try {
+                            if (d > MessagesController.getInstance(i).tonStakeddiceStakeAmountMax / 1.0E9d) {
+                                this.ignore = true;
+                                EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
+                                d = MessagesController.getInstance(i).tonStakeddiceStakeAmountMax / 1.0E9d;
+                                editTextBoldCursor2.setText(Double.toString(d));
+                                EditTextBoldCursor editTextBoldCursor3 = editTextBoldCursor;
+                                editTextBoldCursor3.setSelection(editTextBoldCursor3.getText().length());
+                                OutlineTextContainerView outlineTextContainerView2 = outlineTextContainerView;
+                                int[] iArr3 = iArr2;
+                                int i4 = -iArr3[0];
+                                iArr3[0] = i4;
+                                AndroidUtilities.shakeViewSpring(outlineTextContainerView2, i4);
+                            } else if (d > 0.0d && d < MessagesController.getInstance(i).tonStakeddiceStakeAmountMin / 1.0E9d) {
+                                this.ignore = true;
+                                EditTextBoldCursor editTextBoldCursor4 = editTextBoldCursor;
+                                d = MessagesController.getInstance(i).tonStakeddiceStakeAmountMin / 1.0E9d;
+                                editTextBoldCursor4.setText(Double.toString(d));
+                                EditTextBoldCursor editTextBoldCursor5 = editTextBoldCursor;
+                                editTextBoldCursor5.setSelection(editTextBoldCursor5.getText().length());
+                                OutlineTextContainerView outlineTextContainerView3 = outlineTextContainerView;
+                                int[] iArr4 = iArr2;
+                                int i5 = -iArr4[0];
+                                iArr4[0] = i5;
+                                AndroidUtilities.shakeViewSpring(outlineTextContainerView3, i5);
+                            }
+                        } catch (Exception unused) {
+                            this.ignore = true;
+                            editTextBoldCursor.setText(d <= 0.0d ? "" : Double.toString(d));
+                            EditTextBoldCursor editTextBoldCursor6 = editTextBoldCursor;
+                            editTextBoldCursor6.setSelection(editTextBoldCursor6.getText().length());
+                        }
+                    } catch (Exception unused2) {
+                        d = 0.0d;
+                    }
+                    this.ignore = false;
+                    outlineTextContainerView.animateSelection(editTextBoldCursor.isFocused(), true ^ TextUtils.isEmpty(editTextBoldCursor.getText()));
+                    if (d == 0.0d) {
+                        textView.animate().alpha(0.0f).start();
+                        textView.setText("");
+                        return;
+                    }
+                    textView.animate().alpha(1.0f).start();
+                    textView.setText("≈" + BillingController.getInstance().formatCurrency((long) (d * MessagesController.getInstance(i).config.tonUsdRate.get() * 100.0d), "USD", 2));
                 }
             });
             Utilities.CallbackReturn callbackReturn = new Utilities.CallbackReturn() {

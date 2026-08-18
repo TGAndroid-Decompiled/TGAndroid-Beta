@@ -609,7 +609,8 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void lambda$fillItems$10(View view) {
-        this.rights.manage_stories = !r3.manage_stories;
+        TL_account.TL_businessBotRights tL_businessBotRights = this.rights;
+        tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
         this.listView.adapter.update(true);
         checkDone(true);
     }
@@ -860,7 +861,8 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void lambda$onClick$17() {
-        this.rights.manage_stories = !r0.manage_stories;
+        TL_account.TL_businessBotRights tL_businessBotRights = this.rights;
+        tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
         this.listView.adapter.update(true);
         checkDone(true);
     }

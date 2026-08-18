@@ -5,7 +5,6 @@ import android.os.SystemClock;
 import android.util.Base64;
 import android.util.LongSparseArray;
 import java.util.Arrays;
-import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
@@ -91,7 +90,8 @@ public class UserConfig extends BaseController {
                         userConfigArr[i] = userConfig2;
                         userConfig = userConfig2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -276,7 +276,8 @@ public class UserConfig extends BaseController {
                 if (user == null || (str = user.phone) == null) {
                     str = "";
                 }
-            } finally {
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return str;
@@ -493,7 +494,6 @@ public class UserConfig extends BaseController {
 
     public void clearConfig() {
         getPreferences().edit().clear().apply();
-        int i = 0;
         this.sharingMyLocationUntil = 0;
         this.lastMyLocationShareTime = 0;
         this.currentUser = null;
@@ -528,18 +528,12 @@ public class UserConfig extends BaseController {
         this.lastContactsSyncTime = ((int) (System.currentTimeMillis() / 1000)) - 82800;
         this.lastHintsSyncTime = ((int) (System.currentTimeMillis() / 1000)) - 90000;
         resetSavedPassword();
-        while (true) {
-            if (i < 4) {
-                if (AccountInstance.getInstance(i).getUserConfig().isClientActivated()) {
-                    break;
-                } else {
-                    i++;
-                }
-            } else {
-                SharedConfig.clearConfig();
-                break;
+        for (int i = 0; i < 4; i++) {
+            if (AccountInstance.getInstance(i).getUserConfig().isClientActivated()) {
+                saveConfig(true);
             }
         }
+        SharedConfig.clearConfig();
         saveConfig(true);
     }
 

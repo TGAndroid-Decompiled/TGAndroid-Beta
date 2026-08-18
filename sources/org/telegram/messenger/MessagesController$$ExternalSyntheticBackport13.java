@@ -9,6 +9,6 @@ public abstract class MessagesController$$ExternalSyntheticBackport13 {
             return j / j2;
         }
         long j3 = ((j >>> 1) / j2) << 1;
-        return j3 + (((j - (j3 * j2)) ^ Long.MIN_VALUE) < (j2 ^ Long.MIN_VALUE) ? 0 : 1);
+        return j3 + ((long) (((j - (j3 * j2)) ^ Long.MIN_VALUE) < (j2 ^ Long.MIN_VALUE) ? 0 : 1));
     }
 }

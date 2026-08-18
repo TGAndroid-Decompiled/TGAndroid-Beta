@@ -14,7 +14,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedTextView;
 
 public class SeekSpeedDrawable extends Drawable {
     private final AnimatedFloat animatedDirection;
@@ -161,10 +160,10 @@ public class SeekSpeedDrawable extends Drawable {
         canvas.save();
         float f7 = -f2;
         canvas.translate(((this.speedRect.centerX() - f4) + AndroidUtilities.dp(9.0f)) - (AndroidUtilities.dp(30.0f) * (1.0f - Math.max(0.0f, f7))), this.speedRect.centerY());
-        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f7) * f * ((((((float) Math.sin(this.t * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
+        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f7) * f * ((((((float) Math.sin(((double) this.t) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
         canvas.drawPath(this.leftArrow, this.arrowPaint);
         canvas.translate(AndroidUtilities.dp(10.66f), 0.0f);
-        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f7) * f * ((((((float) Math.sin((this.t + 0.17f) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
+        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f7) * f * ((((((float) Math.sin(((double) (this.t + 0.17f)) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
         canvas.drawPath(this.leftArrow, this.arrowPaint);
         canvas.restore();
         canvas.save();
@@ -174,10 +173,10 @@ public class SeekSpeedDrawable extends Drawable {
         canvas.restore();
         canvas.save();
         canvas.translate(((this.speedRect.centerX() + f4) - AndroidUtilities.dp(30.0f)) + (AndroidUtilities.dp(30.0f) * (1.0f - Math.max(0.0f, f2))), this.speedRect.centerY());
-        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f2) * f * ((((((float) Math.sin(this.t * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
+        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f2) * f * ((((((float) Math.sin(((double) this.t) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
         canvas.drawPath(this.rightArrow, this.arrowPaint);
         canvas.translate(AndroidUtilities.dp(10.66f), 0.0f);
-        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f2) * f * ((((((float) Math.sin((this.t - 0.17f) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
+        this.arrowPaint.setColor(Theme.multAlpha(-1, Math.max(0.0f, f2) * f * ((((((float) Math.sin(((double) (this.t - 0.17f)) * 3.141592653589793d)) / 2.0f) + 1.0f) * 0.75f) + 0.2f)));
         canvas.drawPath(this.rightArrow, this.arrowPaint);
         canvas.restore();
         canvas.restore();

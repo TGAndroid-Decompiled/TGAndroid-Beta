@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
@@ -194,9 +193,7 @@ public class RecentVotersCell extends FrameLayout {
 
         public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
             arrayList.clear();
-            Iterator it = this.votes.iterator();
-            while (it.hasNext()) {
-                TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) it.next();
+            for (TLRPC.MessagePeerVote messagePeerVote : this.votes) {
                 final long peerDialogId = DialogObject.getPeerDialogId(messagePeerVote.peer);
                 arrayList.add(Factory.of(MessagesController.getInstance(this.currentAccount).getUserOrChat(peerDialogId), peerDialogId, messagePeerVote.date, new View.OnClickListener() {
                     @Override

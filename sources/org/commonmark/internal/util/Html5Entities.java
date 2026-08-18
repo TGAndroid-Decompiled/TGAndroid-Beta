@@ -13,7 +13,7 @@ public abstract class Html5Entities {
     private static final Map NAMED_CHARACTER_REFERENCES = readEntities();
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("^&#[Xx]?");
 
-    public static String entityToString(String str) throws NumberFormatException {
+    public static String entityToString(String str) {
         Matcher matcher = NUMERIC_PATTERN.matcher(str);
         if (matcher.find()) {
             try {
@@ -30,7 +30,7 @@ public abstract class Html5Entities {
         return str2 != null ? str2 : str;
     }
 
-    private static Map readEntities() throws IOException {
+    private static Map readEntities() {
         HashMap map = new HashMap();
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Html5Entities.class.getResourceAsStream("/org/commonmark/internal/util/entities.properties"), Charset.forName("UTF-8")));
@@ -47,8 +47,19 @@ public abstract class Html5Entities {
                         map.put("NewLine", "\n");
                         return map;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    try {
+                        throw th;
+                    } catch (Throwable th2) {
+                        try {
+                            bufferedReader.close();
+                        } catch (Throwable th3) {
+                            th.addSuppressed(th3);
+                        }
+                        throw th2;
+                    }
                 }
+                throw new IllegalStateException("Failed reading data for HTML named character references", e);
             }
         } catch (IOException e) {
             throw new IllegalStateException("Failed reading data for HTML named character references", e);

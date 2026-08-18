@@ -68,13 +68,14 @@ public class BotAskCellDrawable extends Drawable {
     }
 
     public void set(long j) {
+        int i = (int) (AndroidUtilities.displaySize.x * 0.95f);
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
         this.text.multiline(1);
         this.text.setMaxWidth(9999.0f);
         this.text.setText(LocaleController.formatString(R.string.BotForumAskForStartNewChat, UserObject.getUserName(user)));
         float fCalculateRealWidth = (this.text.calculateRealWidth() / 2.0f) * 1.2f;
         this.text.multiline(4);
-        float f = (int) (AndroidUtilities.displaySize.x * 0.95f);
+        float f = i;
         this.text.setMaxWidth(Math.min(f, fCalculateRealWidth));
         if (this.text.getLineCount() > 2) {
             this.text.setMaxWidth(Math.min(f, fCalculateRealWidth * 1.2f));

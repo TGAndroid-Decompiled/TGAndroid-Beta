@@ -246,7 +246,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
                 setCompleted();
                 return;
             }
-            if (!this.completed && ((180 - this.imageView.getAnimatedDrawable().getCurrentFrame()) * 16.6d) + 3000.0d >= importingHistory.timeUntilFinish) {
+            if (!this.completed && (((double) (180 - this.imageView.getAnimatedDrawable().getCurrentFrame())) * 16.6d) + 3000.0d >= importingHistory.timeUntilFinish) {
                 this.imageView.setAutoRepeat(false);
                 this.completed = true;
             }
@@ -265,7 +265,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
                 setCompleted();
                 return;
             }
-            if (!this.completed && ((180 - this.imageView.getAnimatedDrawable().getCurrentFrame()) * 16.6d) + 3000.0d >= importingStickers.timeUntilFinish) {
+            if (!this.completed && (((double) (180 - this.imageView.getAnimatedDrawable().getCurrentFrame())) * 16.6d) + 3000.0d >= importingStickers.timeUntilFinish) {
                 this.imageView.setAutoRepeat(false);
                 this.completed = true;
             }

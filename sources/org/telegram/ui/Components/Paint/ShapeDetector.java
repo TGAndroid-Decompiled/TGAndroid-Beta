@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.util.Log;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -15,7 +14,6 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.Components.Paint.Brush;
 
 public class ShapeDetector {
     private static final double diagonal;
@@ -178,13 +176,13 @@ public class ShapeDetector {
     private void parseTemplates() {
         queue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$parseTemplates$0();
             }
         });
     }
 
-    public void lambda$parseTemplates$0() throws IOException {
+    public void lambda$parseTemplates$0() {
         AnonymousClass1 anonymousClass1;
         char c;
         String string;
@@ -324,36 +322,30 @@ public class ShapeDetector {
     }
 
     private ArrayList resample(ArrayList arrayList, int i) {
-        double d;
-        int i2;
         ArrayList arrayList2 = new ArrayList();
         arrayList2.add((Point) arrayList.get(0));
-        int i3 = i - 1;
-        double dPathLength = pathLength(arrayList) / i3;
-        int i4 = 1;
-        double d2 = 0.0d;
-        while (i4 < arrayList.size()) {
-            int i5 = i4 - 1;
-            double dDistance = ((Point) arrayList.get(i5)).distance((Point) arrayList.get(i4));
-            double d3 = d2 + dDistance;
-            if (d3 >= dPathLength) {
-                double d4 = (dPathLength - d2) / dDistance;
-                i2 = i3;
-                d = dPathLength;
-                Point point = new Point(((Point) arrayList.get(i5)).x + ((((Point) arrayList.get(i4)).x - ((Point) arrayList.get(i5)).x) * d4), ((Point) arrayList.get(i5)).y + (d4 * (((Point) arrayList.get(i4)).y - ((Point) arrayList.get(i5)).y)));
+        int i2 = i - 1;
+        double dPathLength = pathLength(arrayList) / ((double) i2);
+        int i3 = 1;
+        double d = 0.0d;
+        while (i3 < arrayList.size()) {
+            int i4 = i3 - 1;
+            double dDistance = ((Point) arrayList.get(i4)).distance((Point) arrayList.get(i3));
+            double d2 = d + dDistance;
+            if (d2 >= dPathLength) {
+                double d3 = (dPathLength - d) / dDistance;
+                Point point = new Point(((Point) arrayList.get(i4)).x + ((((Point) arrayList.get(i3)).x - ((Point) arrayList.get(i4)).x) * d3), ((Point) arrayList.get(i4)).y + (d3 * (((Point) arrayList.get(i3)).y - ((Point) arrayList.get(i4)).y)));
                 arrayList2.add(point);
-                arrayList.add(i4, point);
-                d2 = 0.0d;
+                arrayList.add(i3, point);
+                d = 0.0d;
             } else {
-                d = dPathLength;
-                i2 = i3;
-                d2 = d3;
+                d = d2;
             }
-            i4++;
-            i3 = i2;
-            dPathLength = d;
+            i3++;
+            i2 = i2;
+            dPathLength = dPathLength;
         }
-        if (arrayList2.size() == i3) {
+        if (arrayList2.size() == i2) {
             arrayList2.add((Point) arrayList.get(arrayList.size() - 1));
         }
         return arrayList2;
@@ -413,7 +405,7 @@ public class ShapeDetector {
             i = i2 + 1;
             iMin = i3;
         }
-        return dDistance / arrayList.size();
+        return dDistance / ((double) arrayList.size());
     }
 
     private ArrayList fullClone(ArrayList arrayList) {
@@ -488,8 +480,8 @@ public class ShapeDetector {
             point.x += point2.x;
             point.y += point2.y;
         }
-        point.x /= arrayList.size();
-        point.y /= arrayList.size();
+        point.x /= (double) arrayList.size();
+        point.y /= (double) arrayList.size();
         return point;
     }
 
@@ -565,7 +557,7 @@ public class ShapeDetector {
             shape.radiusY = ((float) (rectDBoundingBox.bottom - rectDBoundingBox.top)) / 2.0f;
             if (i == 2 && (iFindAnglePoint = findAnglePoint(arrayList, 1)) > 0) {
                 Point point4 = (Point) arrayList.get(iFindAnglePoint);
-                shape.rotation = (float) Math.atan2(point4.y - shape.centerY, point4.x - shape.centerX);
+                shape.rotation = (float) Math.atan2(point4.y - ((double) shape.centerY), point4.x - ((double) shape.centerX));
             }
         }
         return shape;

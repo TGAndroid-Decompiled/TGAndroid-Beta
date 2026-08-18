@@ -4,13 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.Matrix;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
 import com.google.zxing.common.detector.MathUtils;
+import java.util.List;
 import java.util.Vector;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.Paint.Brush;
 import org.telegram.ui.Components.Size;
 
 public class Input {
@@ -55,7 +57,7 @@ public class Input {
             shape.thickness = currentWeight;
             double d = this.thicknessSum;
             if (d > 0.0d) {
-                shape.thickness = (float) (currentWeight * (d / this.thicknessCount));
+                shape.thickness = (float) (((double) currentWeight) * (d / this.thicknessCount));
             }
             if (shape.getType() == 4) {
                 shape.arrowTriangleLength *= shape.thickness;
@@ -177,8 +179,204 @@ public class Input {
         this.ignore = true;
     }
 
-    public void process(android.view.MotionEvent r22, float r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Input.process(android.view.MotionEvent, float):void");
+    public void process(MotionEvent motionEvent, float f) {
+        boolean z;
+        if (this.fillAnimator == null && this.arrowAnimator == null) {
+            int actionMasked = motionEvent.getActionMasked();
+            float x = motionEvent.getX();
+            float height = this.renderView.getHeight() - motionEvent.getY();
+            float[] fArr = this.tempPoint;
+            fArr[0] = x;
+            fArr[1] = height;
+            this.invertMatrix.mapPoints(fArr);
+            float fCurrentTimeMillis = System.currentTimeMillis() - this.lastVelocityUpdate;
+            this.velocity = androidx.core.math.MathUtils.clamp(this.velocity - (fCurrentTimeMillis / 125.0f), 0.6f, 1.0f);
+            if (this.renderView.getCurrentBrush() != null && (this.renderView.getCurrentBrush() instanceof Brush.Arrow)) {
+                this.velocity = 1.0f - this.velocity;
+            }
+            this.lastScale = f;
+            this.lastVelocityUpdate = System.currentTimeMillis();
+            float fLerp = this.velocity;
+            if (motionEvent.getToolType(motionEvent.getActionIndex()) == 2) {
+                fLerp = Math.max(0.1f, PRESSURE_INTERPOLATOR.getInterpolation(motionEvent.getPressure()));
+                if ((motionEvent.getButtonState() & 32) == 32) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+            } else {
+                z = false;
+            }
+            if (this.renderView.getCurrentBrush() != null) {
+                fLerp = ((fLerp - 1.0f) * AndroidUtilities.lerp(this.renderView.getCurrentBrush().getSmoothThicknessRate(), 1.0f, androidx.core.math.MathUtils.clamp(this.realPointsCount / 16.0f, 0.0f, 1.0f))) + 1.0f;
+            }
+            float[] fArr2 = this.tempPoint;
+            Point point = new Point(fArr2[0], fArr2[1], fLerp);
+            if (actionMasked != 0) {
+                if (actionMasked == 1) {
+                    if (this.ignore) {
+                        this.ignore = false;
+                        return;
+                    }
+                    this.canFill = false;
+                    this.detector.clear();
+                    AndroidUtilities.cancelRunOnUIThread(this.fillWithCurrentBrush);
+                    if (!this.renderView.getPainting().applyHelperShape()) {
+                        if (!this.hasMoved) {
+                            if (this.renderView.shouldDraw()) {
+                                point.edge = true;
+                                paintPath(new Path(point));
+                            }
+                            reset();
+                        } else if (this.pointsCount > 0) {
+                            smoothenAndPaintPoints(true, this.renderView.getCurrentBrush().getSmoothThicknessRate());
+                            if (this.renderView.getCurrentBrush() instanceof Brush.Arrow) {
+                                final float f2 = this.lastAngle;
+                                final Point point2 = this.points[this.pointsCount - 1];
+                                Point point3 = this.lastThickLocation;
+                                final double d = point3 == null ? point.z : point3.z;
+                                final float currentWeight = 12.0f * this.renderView.getCurrentWeight() * ((float) d);
+                                ValueAnimator valueAnimator = this.arrowAnimator;
+                                if (valueAnimator != null) {
+                                    valueAnimator.cancel();
+                                }
+                                final float[] fArr3 = new float[1];
+                                final boolean[] zArr = new boolean[1];
+                                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                                this.arrowAnimator = valueAnimatorOfFloat;
+                                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                    @Override
+                                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                                        this.f$0.lambda$process$2(f2, point2, currentWeight, fArr3, d, zArr, valueAnimator2);
+                                    }
+                                });
+                                this.arrowAnimator.addListener(new AnimatorListenerAdapter() {
+                                    @Override
+                                    public void onAnimationEnd(Animator animator) {
+                                        Input.this.renderView.getPainting().commitPath(null, Input.this.renderView.getCurrentColor());
+                                        Input.this.arrowAnimator = null;
+                                    }
+                                });
+                                this.arrowAnimator.setDuration(240L);
+                                this.arrowAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                                this.arrowAnimator.start();
+                            }
+                        }
+                        this.renderView.getPainting().commitPath(null, this.renderView.getCurrentColor(), true, new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$process$3();
+                            }
+                        });
+                    }
+                    this.pointsCount = 0;
+                    this.realPointsCount = 0;
+                    this.lastAngleSet = false;
+                    this.beganDrawing = false;
+                    this.thicknessSum = 0.0d;
+                    this.thicknessCount = 0.0d;
+                    this.renderView.onFinishedDrawing(this.hasMoved);
+                    return;
+                }
+                if (actionMasked != 2) {
+                    if (actionMasked != 3) {
+                        return;
+                    }
+                    if (this.ignore) {
+                        this.ignore = false;
+                        return;
+                    }
+                    this.canFill = false;
+                    this.detector.clear();
+                    this.renderView.getPainting().setHelperShape(null);
+                    AndroidUtilities.cancelRunOnUIThread(this.fillWithCurrentBrush);
+                    this.renderView.getPainting().clearStroke();
+                    this.pointsCount = 0;
+                    this.realPointsCount = 0;
+                    this.lastAngleSet = false;
+                    this.beganDrawing = false;
+                    this.thicknessSum = 0.0d;
+                    this.thicknessCount = 0.0d;
+                    Brush brush = this.switchedBrushByStylusFrom;
+                    if (brush != null) {
+                        this.renderView.selectBrush(brush);
+                        this.switchedBrushByStylusFrom = null;
+                        return;
+                    }
+                    return;
+                }
+            }
+            if (this.ignore) {
+                return;
+            }
+            if (!this.beganDrawing) {
+                this.beganDrawing = true;
+                this.hasMoved = false;
+                this.isFirst = true;
+                this.lastLocation = point;
+                this.drawingStart = System.currentTimeMillis();
+                this.points[0] = point;
+                this.pointsCount = 1;
+                this.realPointsCount = 1;
+                this.lastAngleSet = false;
+                this.clearBuffer = true;
+                this.canFill = true;
+                AndroidUtilities.runOnUIThread(this.fillWithCurrentBrush, ViewConfiguration.getLongPressTimeout());
+                return;
+            }
+            float distanceTo = point.getDistanceTo(this.lastLocation);
+            if (distanceTo < AndroidUtilities.dp(5.0f) / f) {
+                return;
+            }
+            if (this.canFill && (distanceTo > AndroidUtilities.dp(6.0f) / f || this.pointsCount > 4)) {
+                this.canFill = false;
+                AndroidUtilities.cancelRunOnUIThread(this.fillWithCurrentBrush);
+            }
+            if (!this.hasMoved) {
+                this.renderView.onBeganDrawing();
+                this.hasMoved = true;
+                if (z && (this.renderView.getCurrentBrush() instanceof Brush.Radial)) {
+                    this.switchedBrushByStylusFrom = this.renderView.getCurrentBrush();
+                    RenderView renderView = this.renderView;
+                    List list = Brush.BRUSHES_LIST;
+                    renderView.selectBrush((Brush) list.get(list.size() - 1));
+                }
+            }
+            this.points[this.pointsCount] = point;
+            if (this.renderView.getPainting() == null || !this.renderView.getPainting().masking) {
+                if (System.currentTimeMillis() - this.drawingStart > 3000) {
+                    this.detector.clear();
+                    this.renderView.getPainting().setHelperShape(null);
+                } else if ((this.renderView.getCurrentBrush() instanceof Brush.Radial) || (this.renderView.getCurrentBrush() instanceof Brush.Elliptical)) {
+                    this.detector.append(point.x, point.y, distanceTo > ((float) AndroidUtilities.dp(6.0f)) / f);
+                }
+            }
+            int i = this.pointsCount + 1;
+            this.pointsCount = i;
+            this.realPointsCount++;
+            if (i == 3) {
+                Point[] pointArr = this.points;
+                Point point4 = pointArr[2];
+                double d2 = point4.y;
+                Point point5 = pointArr[1];
+                float fAtan2 = (float) Math.atan2(d2 - point5.y, point4.x - point5.x);
+                if (!this.lastAngleSet) {
+                    this.lastAngle = fAtan2;
+                    this.lastAngleSet = true;
+                } else {
+                    float fClamp = androidx.core.math.MathUtils.clamp(distanceTo / (AndroidUtilities.dp(16.0f) / f), 0.0f, 1.0f);
+                    if (fClamp > 0.4f) {
+                        this.lastAngle = lerpAngle(this.lastAngle, fAtan2, fClamp);
+                    }
+                }
+                smoothenAndPaintPoints(false, this.renderView.getCurrentBrush().getSmoothThicknessRate());
+            }
+            this.lastLocation = point;
+            if (distanceTo > AndroidUtilities.dp(8.0f) / f) {
+                this.lastThickLocation = point;
+            }
+            this.velocity = androidx.core.math.MathUtils.clamp(this.velocity + (fCurrentTimeMillis / 75.0f), 0.6f, 1.0f);
+        }
     }
 
     public void lambda$process$2(float f, Point point, float f2, float[] fArr, double d, boolean[] zArr, ValueAnimator valueAnimator) {
@@ -286,7 +484,7 @@ public class Input {
         double d2 = f * f;
         double d3 = f3 * f3;
         double d4 = f;
-        return new Point((point.x * d3) + (point3.x * 2.0d * d4 * d) + (point2.x * d2), (point.y * d3) + (point3.y * 2.0d * d4 * d) + (point2.y * d2), (((((point.z * Math.pow(d, 2.0d)) + (point3.z * ((2.0f * f3) * f))) + (point2.z * d2)) - 1.0d) * AndroidUtilities.lerp(f2, 1.0f, androidx.core.math.MathUtils.clamp(this.realPointsCount / 16.0f, 0.0f, 1.0f))) + 1.0d);
+        return new Point((point.x * d3) + (point3.x * 2.0d * d4 * d) + (point2.x * d2), (point.y * d3) + (point3.y * 2.0d * d4 * d) + (point2.y * d2), (((((point.z * Math.pow(d, 2.0d)) + (point3.z * ((double) ((2.0f * f3) * f)))) + (point2.z * d2)) - 1.0d) * ((double) AndroidUtilities.lerp(f2, 1.0f, androidx.core.math.MathUtils.clamp(this.realPointsCount / 16.0f, 0.0f, 1.0f)))) + 1.0d);
     }
 
     private void paintPath(final Path path) {

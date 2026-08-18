@@ -61,8 +61,32 @@ public final class LockFreeTaskQueueCore {
         return true;
     }
 
-    public final int addLast(java.lang.Object r13) {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.LockFreeTaskQueueCore.addLast(java.lang.Object):int");
+    public final int addLast(Object obj) {
+        AtomicLongFieldUpdater atomicLongFieldUpdater = _state$volatile$FU;
+        while (true) {
+            long j = atomicLongFieldUpdater.get(this);
+            if ((3458764513820540928L & j) != 0) {
+                return Companion.addFailReason(j);
+            }
+            int i = (int) (1073741823 & j);
+            int i2 = (int) ((1152921503533105152L & j) >> 30);
+            int i3 = this.mask;
+            if (((i2 + 2) & i3) == (i & i3)) {
+                return 1;
+            }
+            if (!this.singleConsumer && getArray().get(i2 & i3) != null) {
+                int i4 = this.capacity;
+                if (i4 < 1024 || ((i2 - i) & 1073741823) > (i4 >> 1)) {
+                    return 1;
+                }
+            } else if (_state$volatile$FU.compareAndSet(this, j, Companion.updateTail(j, (i2 + 1) & 1073741823))) {
+                getArray().set(i2 & i3, obj);
+                LockFreeTaskQueueCore lockFreeTaskQueueCoreFillPlaceholder = this;
+                while ((_state$volatile$FU.get(lockFreeTaskQueueCoreFillPlaceholder) & 1152921504606846976L) != 0 && (lockFreeTaskQueueCoreFillPlaceholder = lockFreeTaskQueueCoreFillPlaceholder.next().fillPlaceholder(i2, obj)) != null) {
+                }
+                return 0;
+            }
+        }
     }
 
     private final LockFreeTaskQueueCore fillPlaceholder(int i, Object obj) {
@@ -201,11 +225,11 @@ public final class LockFreeTaskQueueCore {
         }
 
         public final long updateHead(long j, int i) {
-            return wo(j, 1073741823L) | i;
+            return wo(j, 1073741823L) | ((long) i);
         }
 
         public final long updateTail(long j, int i) {
-            return wo(j, 1152921503533105152L) | (i << 30);
+            return wo(j, 1152921503533105152L) | (((long) i) << 30);
         }
     }
 }

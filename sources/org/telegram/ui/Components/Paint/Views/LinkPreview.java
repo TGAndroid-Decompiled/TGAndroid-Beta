@@ -284,7 +284,8 @@ public class LinkPreview extends View {
             RectF rectF = this.padding;
             float f12 = f11 - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * this.density);
             this.textScale = 1.0f;
-            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, this.layoutPaint, (int) Math.ceil(r10), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(f12), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            double d = f12;
+            this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, this.layoutPaint, (int) Math.ceil(d), TextUtils.TruncateAt.END), this.layoutPaint, (int) Math.ceil(d), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.layoutWidth = 0.0f;
             this.layoutLeft = Float.MAX_VALUE;
             for (int i10 = 0; i10 < this.layout.getLineCount(); i10++) {

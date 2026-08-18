@@ -10,8 +10,7 @@ public class OneUIUtilities {
     private static int oneUIMajorVersion;
     private static float oneUIMinorVersion;
 
-    public static boolean isOneUI() throws NoSuchFieldException, SecurityException {
-        int iIntValue;
+    public static boolean isOneUI() {
         Boolean bool = isOneUI;
         if (bool != null) {
             return bool.booleanValue();
@@ -19,18 +18,18 @@ public class OneUIUtilities {
         try {
             Field declaredField = Build.VERSION.class.getDeclaredField("SEM_PLATFORM_INT");
             declaredField.setAccessible(true);
-            iIntValue = ((Integer) declaredField.get(null)).intValue();
+            int iIntValue = ((Integer) declaredField.get(null)).intValue();
+            if (iIntValue < 100000) {
+                return false;
+            }
+            int i = iIntValue - 90000;
+            oneUIEncodedVersion = i;
+            oneUIMajorVersion = i / 10000;
+            oneUIMinorVersion = (i % 10000) / 100.0f;
+            isOneUI = Boolean.TRUE;
         } catch (Exception unused) {
             isOneUI = Boolean.FALSE;
         }
-        if (iIntValue < 100000) {
-            return false;
-        }
-        int i = iIntValue - 90000;
-        oneUIEncodedVersion = i;
-        oneUIMajorVersion = i / 10000;
-        oneUIMinorVersion = (i % 10000) / 100.0f;
-        isOneUI = Boolean.TRUE;
         return isOneUI.booleanValue();
     }
 

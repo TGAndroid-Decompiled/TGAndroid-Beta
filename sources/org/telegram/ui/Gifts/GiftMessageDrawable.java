@@ -1,6 +1,5 @@
 package org.telegram.ui.Gifts;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -265,7 +264,7 @@ public class GiftMessageDrawable extends Drawable {
         canvas.restore();
     }
 
-    private static NinePatchDrawable createBubbleNinePatch(int i) throws Resources.NotFoundException {
+    private static NinePatchDrawable createBubbleNinePatch(int i) {
         Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(i);
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
@@ -277,7 +276,7 @@ public class GiftMessageDrawable extends Drawable {
         return NinePatchBuilder.createNinePatch(bitmapCreateBitmap, new Rect((intrinsicWidth * 27) / 168, i2, (intrinsicWidth * 5) / 168, i2), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
     }
 
-    private static NinePatchDrawable createBubbleBorderNinePatch(int i) throws Resources.NotFoundException {
+    private static NinePatchDrawable createBubbleBorderNinePatch(int i) {
         Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(i);
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();

@@ -172,6 +172,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         }
         Item item = (Item) list.get(i);
         int itemViewType = viewHolder.getItemViewType();
+        boolean z = true;
         if (itemViewType == 3) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
             Drawable drawable = item.icon;

@@ -75,8 +75,7 @@ public class ChromecastMedia {
         }
 
         public MediaMetadata buildMetadata() {
-            int i;
-            i = 3;
+            int i = 3;
             String str = this.mimeType;
             str.hashCode();
             switch (str) {

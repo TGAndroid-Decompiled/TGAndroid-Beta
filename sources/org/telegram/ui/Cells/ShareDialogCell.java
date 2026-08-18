@@ -11,6 +11,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,6 +34,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -48,6 +50,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class ShareDialogCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final AvatarDrawable avatarDrawable;
@@ -342,8 +345,138 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r32, android.view.View r33, long r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ShareDialogCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        TLRPC.User user;
+        float f;
+        boolean z;
+        TLRPC.UserStatus userStatus;
+        Canvas canvas2 = canvas;
+        boolean zDrawChild = super.drawChild(canvas, view, j);
+        if (view == this.imageView && this.currentType != 2 && (user = this.user) != null && !MessagesController.isSupportUser(user)) {
+            long jElapsedRealtime = SystemClock.elapsedRealtime();
+            long j2 = jElapsedRealtime - this.lastUpdateTime;
+            long j3 = j2 > 17 ? 17L : j2;
+            this.lastUpdateTime = jElapsedRealtime;
+            float f2 = this.starsBlockedT.set(this.starsPriceBlocked > 0);
+            if (f2 > 0.0f) {
+                float left = this.imageView.getLeft() + (this.imageView.getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(18.0f);
+                float top = (this.imageView.getTop() + (this.imageView.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(20.83f);
+                if (this.priceText != null) {
+                    long j4 = this.priceTextValue;
+                    long j5 = this.starsPriceBlocked;
+                    if (j4 != j5 && j5 > 0) {
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("⭐️");
+                        long j6 = this.starsPriceBlocked;
+                        this.priceTextValue = j6;
+                        sb.append(AndroidUtilities.formatWholeNumber((int) j6, 0));
+                        this.priceText = new Text(StarsIntroActivity.replaceStars(sb.toString(), 0.65f), 9.33f, AndroidUtilities.bold());
+                    }
+                } else {
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.append("⭐️");
+                    long j7 = this.starsPriceBlocked;
+                    this.priceTextValue = j7;
+                    sb2.append(AndroidUtilities.formatWholeNumber((int) j7, 0));
+                    this.priceText = new Text(StarsIntroActivity.replaceStars(sb2.toString(), 0.65f), 9.33f, AndroidUtilities.bold());
+                }
+                Text text = this.priceText;
+                float currentWidth = (text == null ? 0.0f : text.getCurrentWidth()) + AndroidUtilities.dp(10.0f);
+                float fDp = AndroidUtilities.dp(14.33f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                float f3 = currentWidth / 2.0f;
+                float f4 = left - f3;
+                float f5 = fDp / 2.0f;
+                rectF.set(f4, top - f5, left + f3, top + f5);
+                rectF.inset(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(-1.33f));
+                this.priceBackgroundPaint.setColor(getThemedColor(Theme.key_dialogBackground));
+                canvas2 = canvas;
+                canvas2.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.priceBackgroundPaint);
+                rectF.inset(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
+                this.priceBackgroundPaint.setColor(getThemedColor(Theme.key_dialogRoundCheckBox));
+                canvas2.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.priceBackgroundPaint);
+                Text text2 = this.priceText;
+                if (text2 != null) {
+                    f = 0.0f;
+                    text2.draw(canvas, f4 + AndroidUtilities.dp(5.0f), top, -1, 1.0f);
+                } else {
+                    f = 0.0f;
+                }
+            } else {
+                f = 0.0f;
+            }
+            float f6 = this.premiumBlockedT.set(this.premiumBlocked);
+            if (f6 > f) {
+                int bottom = this.imageView.getBottom() - AndroidUtilities.dp(9.0f);
+                int right = this.imageView.getRight() - AndroidUtilities.dp(9.33f);
+                canvas.save();
+                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                float f7 = right;
+                float f8 = bottom;
+                canvas2.drawCircle(f7, f8, AndroidUtilities.dp(12.0f) * f6, Theme.dialogs_onlineCirclePaint);
+                if (this.premiumGradient == null) {
+                    this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, -1, this.resourcesProvider);
+                }
+                this.premiumGradient.gradientMatrix(right - AndroidUtilities.dp(10.0f), bottom - AndroidUtilities.dp(10.0f), right + AndroidUtilities.dp(10.0f), bottom + AndroidUtilities.dp(10.0f), 0.0f, 0.0f);
+                canvas2.drawCircle(f7, f8, AndroidUtilities.dp(10.0f) * f6, this.premiumGradient.paint);
+                if (this.lockDrawable == null) {
+                    Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
+                    this.lockDrawable = drawableMutate;
+                    drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                }
+                Drawable drawable = this.lockDrawable;
+                drawable.setBounds((int) (f7 - (((drawable.getIntrinsicWidth() / 2.0f) * 0.875f) * f6)), (int) (f8 - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f6)), (int) (f7 + ((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f6)), (int) (f8 + ((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f6)));
+                this.lockDrawable.setAlpha((int) (255.0f * f6));
+                this.lockDrawable.draw(canvas2);
+                canvas.restore();
+            }
+            if (this.premiumBlocked) {
+                z = false;
+            } else {
+                TLRPC.User user2 = this.user;
+                if (user2.self || user2.bot || (((userStatus = user2.status) == null || userStatus.expires <= ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) && !MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.id)))) {
+                    z = false;
+                } else {
+                    z = true;
+                }
+            }
+            if (z || this.onlineProgress != f) {
+                int bottom2 = this.imageView.getBottom() - AndroidUtilities.dp(6.0f);
+                int right2 = this.imageView.getRight() - AndroidUtilities.dp(10.0f);
+                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
+                float f9 = right2;
+                float f10 = bottom2;
+                float f11 = 1.0f - f6;
+                float f12 = 1.0f - f2;
+                canvas2.drawCircle(f9, f10, AndroidUtilities.dp(7.0f) * this.onlineProgress * f11 * f12, Theme.dialogs_onlineCirclePaint);
+                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_chats_onlineCircle));
+                canvas2.drawCircle(f9, f10, AndroidUtilities.dp(5.0f) * this.onlineProgress * f11 * f12, Theme.dialogs_onlineCirclePaint);
+                if (z) {
+                    float f13 = this.onlineProgress;
+                    if (f13 < 1.0f) {
+                        float f14 = f13 + (j3 / 150.0f);
+                        this.onlineProgress = f14;
+                        if (f14 > 1.0f) {
+                            this.onlineProgress = 1.0f;
+                        }
+                        this.imageView.invalidate();
+                        invalidate();
+                    }
+                } else {
+                    float f15 = this.onlineProgress;
+                    if (f15 > f) {
+                        float f16 = f15 - (j3 / 150.0f);
+                        this.onlineProgress = f16;
+                        if (f16 < f) {
+                            this.onlineProgress = f;
+                        }
+                        this.imageView.invalidate();
+                        invalidate();
+                    }
+                }
+            }
+        }
+        return zDrawChild;
     }
 
     @Override

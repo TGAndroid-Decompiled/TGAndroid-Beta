@@ -66,12 +66,12 @@ public class AnimatedArrowDrawable extends Drawable {
         float f = (this.animProgress * 2.0f) - 1.0f;
         if (this.customWidthDp > 0.0f && this.customHeightDp > 0.0f) {
             float fDpf2 = AndroidUtilities.dpf2(this.customStrokeWidthDp) / 2.0f;
-            float fDpf22 = AndroidUtilities.dpf2(this.customWidthDp) - fDpf2;
-            float fDpf23 = AndroidUtilities.dpf2(this.customHeightDp) - fDpf2;
-            float f2 = fDpf23 - fDpf2;
-            this.path.moveTo(fDpf2, fDpf23 - (this.animProgress * f2));
-            this.path.lineTo((fDpf2 + fDpf22) / 2.0f, fDpf2 + (this.animProgress * f2));
-            this.path.lineTo(fDpf22, fDpf23 - (f2 * this.animProgress));
+            float fDpf3 = AndroidUtilities.dpf2(this.customWidthDp) - fDpf2;
+            float fDpf4 = AndroidUtilities.dpf2(this.customHeightDp) - fDpf2;
+            float f2 = fDpf4 - fDpf2;
+            this.path.moveTo(fDpf2, fDpf4 - (this.animProgress * f2));
+            this.path.lineTo((fDpf2 + fDpf3) / 2.0f, fDpf2 + (this.animProgress * f2));
+            this.path.lineTo(fDpf3, fDpf4 - (f2 * this.animProgress));
             return;
         }
         if (this.isSmall) {

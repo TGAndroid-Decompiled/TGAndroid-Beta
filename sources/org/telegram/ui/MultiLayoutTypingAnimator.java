@@ -132,7 +132,8 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
         recalcSpeed();
         this.finished = isAtAbsoluteEnd();
         while (this.blockAlphas.size() > this.blocks.size()) {
-            this.blockAlphas.remove(r5.size() - 1);
+            ArrayList arrayList = this.blockAlphas;
+            arrayList.remove(arrayList.size() - 1);
         }
         int size2 = this.blockAlphas.size();
         while (size2 < this.blocks.size()) {
@@ -198,8 +199,9 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
     public void doFrame(long j) {
         float f;
         if (this.running) {
-            if (this.lastFrameNs != 0) {
-                f = (j - r0) * 1.0E-9f;
+            long j2 = this.lastFrameNs;
+            if (j2 != 0) {
+                f = (j - j2) * 1.0E-9f;
                 advance(f);
             } else {
                 f = 0.0f;
@@ -228,10 +230,7 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
             return;
         }
         float f2 = this.speedPxPerSec * f;
-        while (true) {
-            if (f2 <= 0.0f) {
-                break;
-            }
+        while (f2 > 0.0f) {
             if (this.curBlockIdx >= this.blocks.size()) {
                 this.finished = true;
                 break;
@@ -301,7 +300,32 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
     }
 
     private float computeRemainingPixels() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MultiLayoutTypingAnimator.computeRemainingPixels():float");
+        float f = 0.0f;
+        if (this.blocks.isEmpty()) {
+            return 0.0f;
+        }
+        int i = this.curBlockIdx;
+        while (i < this.blocks.size()) {
+            Layout layout = ((Block) this.blocks.get(i)).getLayout();
+            if (layout != null) {
+                int iMin = i == this.curBlockIdx ? Math.min(Math.max(this.curLineIdx, 0), Math.max(0, layout.getLineCount() - 1)) : 0;
+                for (int i2 = iMin; i2 < layout.getLineCount(); i2++) {
+                    float fLineWidth = lineWidth(layout, i2);
+                    if (fLineWidth > 0.001f) {
+                        if (i == this.curBlockIdx && i2 == iMin) {
+                            fLineWidth -= this.xPosition;
+                            if (fLineWidth > 0.001f) {
+                                f += fLineWidth;
+                            }
+                        } else {
+                            f += fLineWidth;
+                        }
+                    }
+                }
+            }
+            i++;
+        }
+        return f;
     }
 
     private boolean isAtAbsoluteEnd() {

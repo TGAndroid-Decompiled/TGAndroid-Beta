@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -38,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -49,7 +49,6 @@ import org.telegram.ui.BlurSettingsBottomSheet;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CombinedDrawable;
-import org.telegram.ui.Components.FloatingDebug.FloatingDebugController;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBarView;
@@ -84,7 +83,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         }
     }
 
-    public FloatingDebugView(final Context context) throws Resources.NotFoundException {
+    public FloatingDebugView(final Context context) {
         super(context);
         this.onLongPress = new Runnable() {
             @Override
@@ -360,7 +359,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         this.mPrefs.edit().putFloat("x", this.fabXSpring.getSpring().getFinalPosition()).putFloat("y", this.fabYSpring.getSpring().getFinalPosition()).commit();
     }
 
-    private void updateDrawables() throws Resources.NotFoundException {
+    private void updateDrawables() {
         Drawable drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground));
         Drawable drawableMutate = getResources().getDrawable(R.drawable.floating_shadow).mutate();
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
@@ -381,7 +380,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.didSetNewTheme) {
             updateDrawables();
             this.listView.getAdapter().notifyDataSetChanged();
@@ -552,7 +551,48 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     }
 
     public static void lambda$getBuiltInDebugItems$8() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FloatingDebug.FloatingDebugView.lambda$getBuiltInDebugItems$8():void");
+        final Theme.ThemeInfo theme;
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
+        String str = "Blue";
+        String string = sharedPreferences.getString("lastDayTheme", "Blue");
+        if (Theme.getTheme(string) == null || Theme.getTheme(string).isDark()) {
+            string = "Blue";
+        }
+        String str2 = "Dark Blue";
+        String string2 = sharedPreferences.getString("lastDarkTheme", "Dark Blue");
+        if (Theme.getTheme(string2) == null || !Theme.getTheme(string2).isDark()) {
+            string2 = "Dark Blue";
+        }
+        Theme.ThemeInfo activeTheme = Theme.getActiveTheme();
+        if (string.equals(string2)) {
+            if (activeTheme.isDark() || string.equals("Dark Blue") || string.equals("Night")) {
+                str2 = string2;
+            }
+            if (!Theme.isCurrentThemeDark()) {
+                theme = Theme.getTheme(str2);
+            } else {
+                theme = Theme.getTheme(str);
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    FloatingDebugView.lambda$getBuiltInDebugItems$7(theme);
+                }
+            }, 200L);
+        }
+        str2 = string2;
+        str = string;
+        if (!Theme.isCurrentThemeDark()) {
+            theme = Theme.getTheme(str2);
+        } else {
+            theme = Theme.getTheme(str);
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                FloatingDebugView.lambda$getBuiltInDebugItems$7(theme);
+            }
+        }, 200L);
     }
 
     public static void lambda$getBuiltInDebugItems$7(Theme.ThemeInfo themeInfo) {

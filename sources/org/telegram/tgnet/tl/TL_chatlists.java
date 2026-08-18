@@ -9,7 +9,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_chatlists;
 
 public class TL_chatlists {
 

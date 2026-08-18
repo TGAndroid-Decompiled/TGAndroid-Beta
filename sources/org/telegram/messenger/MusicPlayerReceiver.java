@@ -71,6 +71,7 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
                     MediaController.getInstance().setPlaybackOrderType(2);
                     break;
                 }
+                break;
         }
     }
 }

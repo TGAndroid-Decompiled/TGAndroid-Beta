@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import org.telegram.messenger.Utilities;
 
 public class NotificationCenter {
     private static final long EXPIRE_NOTIFICATIONS_TIME = 5017;
@@ -414,7 +413,8 @@ public class NotificationCenter {
                         notificationCenterArr[i] = notificationCenter2;
                         notificationCenter = notificationCenter2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -431,7 +431,8 @@ public class NotificationCenter {
                         notificationCenter = new NotificationCenter(-1);
                         globalInstance = notificationCenter;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -601,16 +602,11 @@ public class NotificationCenter {
                 if (iArr == null) {
                     break;
                 }
-                int i4 = 0;
-                while (true) {
-                    if (i4 >= iArr.length) {
-                        break;
-                    }
-                    if (iArr[i4] == i) {
+                for (int i4 : iArr) {
+                    if (i4 == i) {
                         i2++;
                         break;
                     }
-                    i4++;
                 }
             }
             if (size != i2) {
@@ -743,10 +739,8 @@ public class NotificationCenter {
         }
 
         public void removeAllObservers() {
-            Iterator<Observer> it = this.observers.iterator();
-            while (it.hasNext()) {
-                Observer next = it.next();
-                this.notificationCenter.removeObserver(next.observer, next.id);
+            for (Observer observer : this.observers) {
+                this.notificationCenter.removeObserver(observer.observer, observer.id);
             }
             this.observers.clear();
             this.notificationCenter = null;

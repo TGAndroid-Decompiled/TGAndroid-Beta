@@ -1,7 +1,6 @@
 package me.vkryl.android.animator;
 
 import android.graphics.RectF;
-import me.vkryl.android.animator.Animatable;
 
 public class VariableRect implements Animatable {
     private final VariableFloat bottom;

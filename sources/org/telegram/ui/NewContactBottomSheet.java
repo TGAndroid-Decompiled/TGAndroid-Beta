@@ -34,7 +34,6 @@ import j$.util.Comparator$CC;
 import j$.util.Objects;
 import j$.util.function.Function$CC;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,6 +46,7 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -66,7 +66,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.CameraScanActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
 import org.telegram.ui.Components.BulletinFactory;
@@ -82,8 +81,6 @@ import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.CountrySelectActivity;
-import org.telegram.ui.NewContactBottomSheet;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class NewContactBottomSheet extends BottomSheet implements AdapterView.OnItemSelectedListener {
@@ -153,10 +150,10 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         setTitle(LocaleController.getString(R.string.NewContactTitle), true);
     }
 
-    public View createView(Context context) throws IOException {
+    public View createView(Context context) {
+        String upperCase;
         String str;
         CountrySelectActivity.Country country;
-        TelephonyManager telephonyManager;
         ContextProgressView contextProgressView = new ContextProgressView(context, 1);
         this.editDoneItemProgress = contextProgressView;
         contextProgressView.setVisibility(4);
@@ -307,12 +304,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                                 String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + strSubstring, null);
                                 country3 = (CountrySelectActivity.Country) list.get(list.size() - 1);
                                 if (string != null) {
-                                    Iterator it = NewContactBottomSheet.this.countriesArray.iterator();
-                                    while (true) {
-                                        if (!it.hasNext()) {
-                                            break;
-                                        }
-                                        CountrySelectActivity.Country country4 = (CountrySelectActivity.Country) it.next();
+                                    for (CountrySelectActivity.Country country4 : NewContactBottomSheet.this.countriesArray) {
                                         if (Objects.equals(country4.shortname, string)) {
                                             country3 = country4;
                                             break;
@@ -342,11 +334,9 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                         str2 = null;
                         z = false;
                     }
-                    Iterator it2 = NewContactBottomSheet.this.countriesArray.iterator();
                     CountrySelectActivity.Country country5 = null;
                     int i5 = 0;
-                    while (it2.hasNext()) {
-                        CountrySelectActivity.Country country6 = (CountrySelectActivity.Country) it2.next();
+                    for (CountrySelectActivity.Country country6 : NewContactBottomSheet.this.countriesArray) {
                         if (country6.code.startsWith(strStripExceptNumbers)) {
                             i5++;
                             if (country6.code.equals(strStripExceptNumbers)) {
@@ -368,12 +358,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                         String string2 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + strStripExceptNumbers, null);
                         country2 = (CountrySelectActivity.Country) list2.get(list2.size() - 1);
                         if (string2 != null) {
-                            Iterator it3 = NewContactBottomSheet.this.countriesArray.iterator();
-                            while (true) {
-                                if (!it3.hasNext()) {
-                                    break;
-                                }
-                                CountrySelectActivity.Country country7 = (CountrySelectActivity.Country) it3.next();
+                            for (CountrySelectActivity.Country country7 : NewContactBottomSheet.this.countriesArray) {
                                 if (Objects.equals(country7.shortname, string2)) {
                                     country2 = country7;
                                     break;
@@ -497,10 +482,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                 String hintText = NewContactBottomSheet.this.phoneField.getHintText();
                 if (hintText != null) {
                     int i8 = 0;
-                    while (true) {
-                        if (i8 >= sb.length()) {
-                            break;
-                        }
+                    while (i8 < sb.length()) {
                         if (i8 < hintText.length()) {
                             if (hintText.charAt(i8) == ' ') {
                                 sb.insert(i8, ' ');
@@ -514,6 +496,11 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                             sb.insert(i8, ' ');
                             if (selectionStart == i8 + 1 && (i4 = this.characterAction) != 2 && i4 != 3) {
                                 selectionStart++;
+                                break;
+                            } else {
+                                break;
+                                break;
+                                break;
                             }
                         }
                     }
@@ -658,28 +645,23 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                 this.codeField.setText(this.initialPhoneNumber);
             } else {
                 String str3 = currentUser.phone;
-                int i4 = 4;
-                while (true) {
-                    if (i4 < 1) {
-                        break;
-                    }
+                for (int i4 = 4; i4 >= 1; i4--) {
                     String strSubstring = str3.substring(0, i4);
                     if (((List) this.codesMap.get(strSubstring)) != null) {
                         this.codeField.setText(strSubstring);
                         break;
                     }
-                    i4--;
                 }
                 this.phoneField.setText(this.initialPhoneNumber);
             }
             this.initialPhoneNumber = null;
         } else {
             try {
-                telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
+                TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
+                upperCase = telephonyManager != null ? telephonyManager.getSimCountryIso().toUpperCase() : null;
             } catch (Exception e2) {
                 FileLog.e(e2);
             }
-            String upperCase = telephonyManager != null ? telephonyManager.getSimCountryIso().toUpperCase() : null;
             if (upperCase != null && (str = (String) map.get(upperCase)) != null) {
                 int i5 = 0;
                 while (true) {
@@ -728,7 +710,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         this.doneButtonContainer.setBackground(Theme.AdaptiveRipple.filledRect(this.parentFragment.getThemedColor(Theme.key_featuredStickers_addButton), 24.0f));
         this.doneButtonContainer.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws RemoteException, OperationApplicationException {
+            public final void onClick(View view2) {
                 this.f$0.lambda$createView$10(view2);
             }
         });
@@ -833,7 +815,8 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     }
 
     public void lambda$createView$6(View view) {
-        this.checkBox.setChecked(!r3.isChecked(), true);
+        CheckBox2 checkBox2 = this.checkBox;
+        checkBox2.setChecked(!checkBox2.isChecked(), true);
         updateQrButtonVisible(true);
     }
 
@@ -921,7 +904,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         return true;
     }
 
-    public void lambda$createView$10(View view) throws RemoteException, OperationApplicationException {
+    public void lambda$createView$10(View view) {
         doOnDone();
     }
 
@@ -998,23 +981,25 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         for (int iMin = Math.min(3, strReplaceAll.length()); iMin >= 0; iMin--) {
             String strSubstring = strReplaceAll.substring(0, iMin);
             List list = (List) this.codesMap.get(strSubstring);
-            if (list != null && !list.isEmpty()) {
+            if (list == null || list.isEmpty()) {
+                if (z) {
+                    break;
+                }
+            } else {
                 List list2 = (List) this.phoneFormatMap.get(strSubstring);
                 if (list2 != null && !list2.isEmpty()) {
                     Iterator it = list2.iterator();
-                    while (true) {
-                        if (!it.hasNext()) {
-                            break;
-                        }
+                    while (it.hasNext()) {
                         if (strReplaceAll.length() - iMin >= ((String) it.next()).replace(" ", "").length()) {
                             z = true;
                             break;
                         }
                     }
+                    if (z) {
+                        break;
+                        break;
+                    }
                 }
-            }
-            if (z) {
-                break;
             }
         }
         if (!z) {
@@ -1140,11 +1125,25 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         });
     }
 
-    public void lambda$updatedPhone$19(org.telegram.tgnet.TLObject r5, org.telegram.messenger.Utilities.Callback r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NewContactBottomSheet.lambda$updatedPhone$19(org.telegram.tgnet.TLObject, org.telegram.messenger.Utilities$Callback):void");
+    public void lambda$updatedPhone$19(TLObject tLObject, Utilities.Callback callback) {
+        TLRPC.User user;
+        if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
+            TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(tL_contacts_resolvedPeer.chats, false);
+            long peerDialogId = DialogObject.getPeerDialogId(tL_contacts_resolvedPeer.peer);
+            if (peerDialogId >= 0) {
+                user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
+            } else {
+                user = null;
+            }
+        } else {
+            user = null;
+        }
+        callback.run(user);
     }
 
-    private void doOnDone() throws RemoteException, OperationApplicationException {
+    private void doOnDone() {
         BaseFragment baseFragment;
         if (this.donePressed || (baseFragment = this.parentFragment) == null || baseFragment.getParentActivity() == null) {
             return;
@@ -1176,7 +1175,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         if (this.checkBox.isChecked()) {
             PermissionRequest.ensurePermission(R.raw.permission_request_contacts, R.string.PermissionNoContactsSaving, "android.permission.WRITE_CONTACTS", new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws RemoteException, OperationApplicationException {
+                public final void run(Object obj) {
                     this.f$0.lambda$doOnDone$21((Boolean) obj);
                 }
             });
@@ -1185,13 +1184,13 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }
     }
 
-    public void lambda$doOnDone$21(Boolean bool) throws RemoteException, OperationApplicationException {
+    public void lambda$doOnDone$21(Boolean bool) {
         if (bool.booleanValue()) {
             done();
         }
     }
 
-    private void done() throws RemoteException, OperationApplicationException {
+    private void done() {
         this.donePressed = true;
         showEditDoneProgress(true, true);
         String str = "+" + this.codeField.getText().toString() + this.phoneField.getText().toString();
@@ -1321,22 +1320,30 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                 while (true) {
                     if (i >= 1) {
                         List list = (List) this.codesMap.get(str2.substring(0, i));
-                        if (list == null || list.size() <= 0) {
-                            i--;
-                        } else {
+                        if (list != null && list.size() > 0) {
                             String str3 = ((CountrySelectActivity.Country) list.get(0)).code;
                             this.codeField.setText(str3);
-                            if (str3.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
-                                this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
+                            if (!str3.endsWith("0") || !this.initialPhoneNumber.startsWith("0")) {
+                                break;
+                                break;
                             }
+                            this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
+                            break;
                         }
-                    } else if (Build.VERSION.SDK_INT >= 23) {
+                        i--;
+                    } else {
+                        if (Build.VERSION.SDK_INT < 23) {
+                            break;
+                        }
                         Context context = ApplicationLoader.applicationContext;
                         String upperCase = context != null ? ((TelephonyManager) context.getSystemService(TelephonyManager.class)).getSimCountryIso().toUpperCase(Locale.US) : Locale.getDefault().getCountry();
                         this.codeField.setText(upperCase);
-                        if (upperCase.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
-                            this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
+                        if (!upperCase.endsWith("0") || !this.initialPhoneNumber.startsWith("0")) {
+                            break;
+                            break;
                         }
+                        this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
+                        break;
                     }
                 }
                 this.phoneField.setText(this.initialPhoneNumber);
@@ -1391,7 +1398,55 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     }
 
     private void invalidateCountryHint() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NewContactBottomSheet.invalidateCountryHint():void");
+        int i;
+        int i2;
+        String str = this.countryCodeForHint;
+        String strReplace = this.phoneField.getText() != null ? this.phoneField.getText().toString().replace(" ", "") : "";
+        if (this.phoneFormatMap.get(str) != null && !((List) this.phoneFormatMap.get(str)).isEmpty()) {
+            List list = (List) this.phoneFormatMap.get(str);
+            if (strReplace.isEmpty()) {
+                i = -1;
+                break;
+            }
+            i = 0;
+            while (true) {
+                if (i >= list.size()) {
+                    i = -1;
+                    break;
+                } else if (strReplace.startsWith(((String) list.get(i)).replace(" ", "").replace("X", "").replace("0", ""))) {
+                    break;
+                } else {
+                    i++;
+                }
+            }
+            if (i == -1) {
+                for (int i3 = 0; i3 < list.size(); i3++) {
+                    String str2 = (String) list.get(i3);
+                    if (str2.startsWith("X") || str2.startsWith("0")) {
+                        i = i3;
+                        break;
+                    }
+                }
+                i2 = i != -1 ? i : 0;
+            }
+            if (this.wasCountryHintIndex != i2) {
+                String str3 = (String) ((List) this.phoneFormatMap.get(str)).get(i2);
+                int selectionStart = this.phoneField.getSelectionStart();
+                int selectionEnd = this.phoneField.getSelectionEnd();
+                this.phoneField.setHintText(str3 != null ? str3.replace('X', '0') : null);
+                this.phoneField.setSelection(selectionStart, selectionEnd);
+                this.wasCountryHintIndex = i2;
+                return;
+            }
+            return;
+        }
+        if (this.wasCountryHintIndex != -1) {
+            int selectionStart2 = this.phoneField.getSelectionStart();
+            int selectionEnd2 = this.phoneField.getSelectionEnd();
+            this.phoneField.setHintText((String) null);
+            this.phoneField.setSelection(selectionStart2, selectionEnd2);
+            this.wasCountryHintIndex = -1;
+        }
     }
 
     @Override
@@ -1463,7 +1518,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         AndroidUtilities.hideKeyboard(this.contentLayout);
     }
 
-    public static boolean saveContact(Context context, String str, String str2, String str3, String str4, AccountInfo accountInfo) throws RemoteException, OperationApplicationException {
+    public static boolean saveContact(Context context, String str, String str2, String str3, String str4, AccountInfo accountInfo) {
         ArrayList<ContentProviderOperation> arrayList = new ArrayList<>();
         ContentProviderOperation.Builder builderNewInsert = ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI);
         builderNewInsert.withValue("account_type", null);

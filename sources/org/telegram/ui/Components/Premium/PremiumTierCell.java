@@ -61,9 +61,9 @@ public class PremiumTierCell extends ViewGroup {
         CheckBox2 checkBox2 = new CheckBox2(context, 24);
         this.checkBox = checkBox2;
         checkBox2.setDrawBackgroundAsArc(10);
-        CheckBox2 checkBox22 = this.checkBox;
+        CheckBox2 checkBox3 = this.checkBox;
         int i = Theme.key_radioBackground;
-        checkBox22.setColor(i, i, Theme.key_checkboxCheck);
+        checkBox3.setColor(i, i, Theme.key_checkboxCheck);
         addView(this.checkBox);
         TextView textView = new TextView(context);
         this.titleView = textView;
@@ -300,7 +300,7 @@ public class PremiumTierCell extends ViewGroup {
             measuredWidth = getMeasuredWidth();
         }
         this.lastUpdateTime = jElapsedRealtime;
-        int i = (int) (this.totalTranslation + ((jAbs * measuredWidth) / 400.0f));
+        int i = (int) (this.totalTranslation + ((jAbs * ((long) measuredWidth)) / 400.0f));
         this.totalTranslation = i;
         if (i >= measuredWidth * 4) {
             this.totalTranslation = (-this.gradientWidth) * 2;

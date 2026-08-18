@@ -189,9 +189,9 @@ public class GestureDetectorFixDoubleTap {
                 this.mDeferConfirmSingleTap = false;
                 if (this.mIsLongpressEnabled) {
                     this.mHandler.removeMessages(2);
-                    this.mHandler.sendEmptyMessageAtTime(2, this.mCurrentDownEvent.getDownTime() + TAP_TIMEOUT + this.mLongpressDuration);
+                    this.mHandler.sendEmptyMessageAtTime(2, this.mCurrentDownEvent.getDownTime() + ((long) TAP_TIMEOUT) + this.mLongpressDuration);
                 }
-                this.mHandler.sendEmptyMessageAtTime(1, this.mCurrentDownEvent.getDownTime() + TAP_TIMEOUT);
+                this.mHandler.sendEmptyMessageAtTime(1, this.mCurrentDownEvent.getDownTime() + ((long) TAP_TIMEOUT));
                 return zOnDoubleTap | this.mListener.onDown(motionEvent);
             }
             if (i != 1) {

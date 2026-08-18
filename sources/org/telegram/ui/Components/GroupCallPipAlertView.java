@@ -2,9 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.os.Build;
 import android.os.Vibrator;
 import android.provider.Settings;
@@ -216,8 +218,142 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallPipAlertView.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        float translationX;
+        float measuredHeight;
+        boolean z = VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().isMicMute() || this.mutedByAdmin;
+        if (z) {
+            float f5 = this.muteProgress;
+            if (f5 != 1.0f) {
+                float f6 = f5 + 0.10666667f;
+                this.muteProgress = f6;
+                if (f6 >= 1.0f) {
+                    this.muteProgress = 1.0f;
+                }
+                this.invalidateGradient = true;
+                invalidate();
+            } else if (!z) {
+                f = this.muteProgress;
+                if (f != 0.0f) {
+                    f2 = f - 0.10666667f;
+                    this.muteProgress = f2;
+                    if (f2 < 0.0f) {
+                        this.muteProgress = 0.0f;
+                    }
+                    this.invalidateGradient = true;
+                    invalidate();
+                }
+            }
+        } else if (!z) {
+            f = this.muteProgress;
+            if (f != 0.0f) {
+                f2 = f - 0.10666667f;
+                this.muteProgress = f2;
+                if (f2 < 0.0f) {
+                    this.muteProgress = 0.0f;
+                }
+                this.invalidateGradient = true;
+                invalidate();
+            }
+        }
+        boolean z2 = this.mutedByAdmin;
+        if (z2) {
+            float f7 = this.mutedByAdminProgress;
+            if (f7 != 1.0f) {
+                float f8 = f7 + 0.10666667f;
+                this.mutedByAdminProgress = f8;
+                if (f8 >= 1.0f) {
+                    this.mutedByAdminProgress = 1.0f;
+                }
+                this.invalidateGradient = true;
+                invalidate();
+            } else if (!z2) {
+                f3 = this.mutedByAdminProgress;
+                if (f3 != 0.0f) {
+                    f4 = f3 - 0.10666667f;
+                    this.mutedByAdminProgress = f4;
+                    if (f4 < 0.0f) {
+                        this.mutedByAdminProgress = 0.0f;
+                    }
+                    this.invalidateGradient = true;
+                    invalidate();
+                }
+            }
+        } else if (!z2) {
+            f3 = this.mutedByAdminProgress;
+            if (f3 != 0.0f) {
+                f4 = f3 - 0.10666667f;
+                this.mutedByAdminProgress = f4;
+                if (f4 < 0.0f) {
+                    this.mutedByAdminProgress = 0.0f;
+                }
+                this.invalidateGradient = true;
+                invalidate();
+            }
+        }
+        if (this.invalidateGradient) {
+            int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_voipgroup_overlayAlertGradientMuted), Theme.getColor(Theme.key_voipgroup_overlayAlertGradientUnmuted), 1.0f - this.muteProgress);
+            int iBlendARGB2 = ColorUtils.blendARGB(Theme.getColor(Theme.key_voipgroup_overlayAlertGradientMuted2), Theme.getColor(Theme.key_voipgroup_overlayAlertGradientUnmuted2), 1.0f - this.muteProgress);
+            int iBlendARGB3 = ColorUtils.blendARGB(iBlendARGB, Theme.getColor(Theme.key_voipgroup_overlayAlertMutedByAdmin), this.mutedByAdminProgress);
+            int iBlendARGB4 = ColorUtils.blendARGB(iBlendARGB2, Theme.getColor(Theme.key_voipgroup_overlayAlertMutedByAdmin2), this.mutedByAdminProgress);
+            this.invalidateGradient = false;
+            int i = this.position;
+            if (i == 0) {
+                this.linearGradient = new LinearGradient(-AndroidUtilities.dp(60.0f), this.cy - getTranslationY(), getMeasuredWidth(), getMeasuredHeight() / 2.0f, new int[]{iBlendARGB3, iBlendARGB4}, (float[]) null, Shader.TileMode.CLAMP);
+            } else if (i == 1) {
+                this.linearGradient = new LinearGradient(0.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() + AndroidUtilities.dp(60.0f), this.cy - getTranslationY(), new int[]{iBlendARGB4, iBlendARGB3}, (float[]) null, Shader.TileMode.CLAMP);
+            } else if (i == 2) {
+                this.linearGradient = new LinearGradient(this.cx - getTranslationX(), -AndroidUtilities.dp(60.0f), getMeasuredWidth() / 2.0f, getMeasuredHeight(), new int[]{iBlendARGB3, iBlendARGB4}, (float[]) null, Shader.TileMode.CLAMP);
+            } else {
+                this.linearGradient = new LinearGradient(getMeasuredWidth() / 2.0f, 0.0f, this.cx - getTranslationX(), getMeasuredHeight() + AndroidUtilities.dp(60.0f), new int[]{iBlendARGB4, iBlendARGB3}, (float[]) null, Shader.TileMode.CLAMP);
+            }
+        }
+        this.rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        this.paint.setShader(this.linearGradient);
+        canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
+        int i2 = this.position;
+        if (i2 == 0) {
+            measuredHeight = this.cy - getTranslationY();
+            translationX = 0.0f;
+        } else if (i2 == 1) {
+            measuredHeight = this.cy - getTranslationY();
+            translationX = getMeasuredWidth();
+        } else if (i2 == 2) {
+            translationX = this.cx - getTranslationX();
+            measuredHeight = 0.0f;
+        } else {
+            translationX = this.cx - getTranslationX();
+            measuredHeight = getMeasuredHeight();
+        }
+        setPivotX(translationX);
+        setPivotY(measuredHeight);
+        canvas.save();
+        int i3 = this.position;
+        if (i3 == 0) {
+            canvas.clipRect(translationX - AndroidUtilities.dp(15.0f), measuredHeight - AndroidUtilities.dp(15.0f), translationX, AndroidUtilities.dp(15.0f) + measuredHeight);
+            canvas.translate(AndroidUtilities.dp(3.0f), 0.0f);
+            canvas.rotate(45.0f, translationX, measuredHeight);
+        } else if (i3 == 1) {
+            canvas.clipRect(translationX, measuredHeight - AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + translationX, AndroidUtilities.dp(15.0f) + measuredHeight);
+            canvas.translate(-AndroidUtilities.dp(3.0f), 0.0f);
+            canvas.rotate(45.0f, translationX, measuredHeight);
+        } else if (i3 == 2) {
+            canvas.clipRect(translationX - AndroidUtilities.dp(15.0f), measuredHeight - AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + translationX, measuredHeight);
+            canvas.rotate(45.0f, translationX, measuredHeight);
+            canvas.translate(0.0f, AndroidUtilities.dp(3.0f));
+        } else {
+            canvas.clipRect(translationX - AndroidUtilities.dp(15.0f), measuredHeight, AndroidUtilities.dp(15.0f) + translationX, AndroidUtilities.dp(15.0f) + measuredHeight);
+            canvas.rotate(45.0f, translationX, measuredHeight);
+            canvas.translate(0.0f, -AndroidUtilities.dp(3.0f));
+        }
+        this.rectF.set(translationX - AndroidUtilities.dp(10.0f), measuredHeight - AndroidUtilities.dp(10.0f), translationX + AndroidUtilities.dp(10.0f), measuredHeight + AndroidUtilities.dp(10.0f));
+        canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.paint);
+        canvas.restore();
+        super.onDraw(canvas);
     }
 
     @Override

@@ -40,12 +40,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Collection;
 import j$.util.Objects;
+import j$.util.function.Predicate$CC;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Predicate;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -74,7 +76,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.CallLogActivity;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.LoadingCell;
@@ -116,7 +117,6 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.voip.VoIPHelper;
-import org.telegram.ui.MainTabsActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
 
@@ -326,26 +326,26 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         Long l;
         UniversalRecyclerView universalRecyclerView;
         CallLogRow callLogRow;
+        int i3 = 0;
         if (i == NotificationCenter.didReceiveNewMessages) {
             if (this.firstLoaded && !((Boolean) objArr[2]).booleanValue()) {
-                Iterator it = ((ArrayList) objArr[1]).iterator();
-                while (it.hasNext()) {
-                    MessageObject messageObject = (MessageObject) it.next();
+                for (MessageObject messageObject : (ArrayList) objArr[1]) {
                     TLRPC.MessageAction messageAction = messageObject.messageOwner.action;
+                    int i4 = 3;
                     if (messageAction instanceof TLRPC.TL_messageActionPhoneCall) {
                         long fromChatId = messageObject.getFromChatId();
                         long j = fromChatId == getUserConfig().getClientUserId() ? messageObject.messageOwner.peer_id.user_id : fromChatId;
-                        int i3 = fromChatId == getUserConfig().getClientUserId() ? 0 : 1;
+                        int i5 = fromChatId == getUserConfig().getClientUserId() ? 0 : 1;
                         TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = messageObject.messageOwner.action.reason;
-                        if (i3 == 1 && ((phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed) || (phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy))) {
-                            i3 = 2;
+                        if (i5 == 1 && ((phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed) || (phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy))) {
+                            i5 = 2;
                         }
-                        if (i3 != 0 || (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy))) {
-                            i = i3;
+                        if (i5 != 0 || (!(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed) && !(phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy))) {
+                            i4 = i5;
                         }
                         if (!this.calls.isEmpty()) {
                             CallLogRow callLogRow2 = (CallLogRow) this.calls.get(0);
-                            if (eq(j, callLogRow2.users) && callLogRow2.type == i) {
+                            if (eq(j, callLogRow2.users) && callLogRow2.type == i4) {
                                 callLogRow2.calls.add(0, messageObject.messageOwner);
                             }
                         }
@@ -357,7 +357,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                         if (user != null) {
                             callLogRow3.users.add(user);
                         }
-                        callLogRow3.type = i;
+                        callLogRow3.type = i4;
                         callLogRow3.video = messageObject.isVideoCall();
                         this.calls.add(0, callLogRow3);
                         this.listView.adapter.update(true);
@@ -366,42 +366,40 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                         long fromChatId2 = messageObject.getFromChatId();
                         Set<Long> set = (Set) Collection.EL.stream(tL_messageActionConferenceCall.other_participants).map(new CallLogActivity$$ExternalSyntheticLambda12()).collect(Collectors.toSet());
                         set.add(Long.valueOf(fromChatId2 == getUserConfig().getClientUserId() ? messageObject.messageOwner.peer_id.user_id : fromChatId2));
-                        int i4 = fromChatId2 == getUserConfig().getClientUserId() ? 0 : 1;
-                        if (i4 == 1 && tL_messageActionConferenceCall.missed) {
-                            i4 = 2;
+                        int i6 = fromChatId2 == getUserConfig().getClientUserId() ? 0 : 1;
+                        if (i6 == 1 && tL_messageActionConferenceCall.missed) {
+                            i6 = 2;
                         }
-                        i = (i4 == 0 && tL_messageActionConferenceCall.missed) ? 3 : i4;
+                        i4 = (i6 == 0 && tL_messageActionConferenceCall.missed) ? 3 : i6;
                         if (!this.calls.isEmpty()) {
-                            int i5 = 0;
+                            int i7 = 0;
                             while (true) {
-                                if (i5 >= this.calls.size()) {
+                                if (i7 >= this.calls.size()) {
                                     callLogRow = null;
                                     break;
                                 }
-                                callLogRow = (CallLogRow) this.calls.get(i5);
+                                callLogRow = (CallLogRow) this.calls.get(i7);
                                 if (callLogRow.call_id == tL_messageActionConferenceCall.call_id) {
                                     break;
                                 } else {
-                                    i5++;
+                                    i7++;
                                 }
                             }
                             if (callLogRow != null) {
                                 callLogRow.calls.add(0, messageObject.messageOwner);
                                 for (Long l2 : set) {
                                     long jLongValue = l2.longValue();
-                                    Iterator it2 = callLogRow.users.iterator();
-                                    while (true) {
-                                        if (it2.hasNext()) {
-                                            if (jLongValue == ((TLRPC.User) it2.next()).id) {
+                                    Iterator it = callLogRow.users.iterator();
+                                    do {
+                                        if (!it.hasNext()) {
+                                            TLRPC.User user2 = getMessagesController().getUser(l2);
+                                            if (user2 == null) {
                                                 break;
                                             }
-                                        } else {
-                                            TLRPC.User user2 = getMessagesController().getUser(l2);
-                                            if (user2 != null) {
-                                                callLogRow.users.add(user2);
-                                            }
+                                            callLogRow.users.add(user2);
+                                            break;
                                         }
-                                    }
+                                    } while (jLongValue != ((TLRPC.User) it.next()).id);
                                 }
                                 this.listView.adapter.update(true);
                             }
@@ -418,7 +416,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                                 callLogRow4.users.add(user3);
                             }
                         }
-                        callLogRow4.type = i;
+                        callLogRow4.type = i4;
                         callLogRow4.video = messageObject.isVideoCall();
                         this.calls.add(0, callLogRow4);
                         this.listView.adapter.update(true);
@@ -436,21 +434,21 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         if (i == NotificationCenter.messagesDeleted) {
             if (this.firstLoaded && !((Boolean) objArr[2]).booleanValue()) {
                 ArrayList arrayList = (ArrayList) objArr[0];
-                Iterator it3 = this.calls.iterator();
-                while (it3.hasNext()) {
-                    CallLogRow callLogRow5 = (CallLogRow) it3.next();
-                    Iterator it4 = callLogRow5.calls.iterator();
-                    while (it4.hasNext()) {
-                        if (arrayList.contains(Integer.valueOf(((TLRPC.Message) it4.next()).id))) {
-                            it4.remove();
-                            i = 1;
+                Iterator it2 = this.calls.iterator();
+                while (it2.hasNext()) {
+                    CallLogRow callLogRow5 = (CallLogRow) it2.next();
+                    Iterator it3 = callLogRow5.calls.iterator();
+                    while (it3.hasNext()) {
+                        if (arrayList.contains(Integer.valueOf(((TLRPC.Message) it3.next()).id))) {
+                            it3.remove();
+                            i3 = 1;
                         }
                     }
                     if (callLogRow5.calls.isEmpty()) {
-                        it3.remove();
+                        it2.remove();
                     }
                 }
-                if (i == 0 || (universalRecyclerView = this.listView) == null) {
+                if (i3 == 0 || (universalRecyclerView = this.listView) == null) {
                     return;
                 }
                 universalRecyclerView.adapter.update(true);
@@ -994,7 +992,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 
             @Override
             public void onBottomOffsetChange(float f2) {
-                CallLogActivity.this.additionalFloatingTranslation = Math.max(0.0f, (f2 - r0.navigationBarHeight) - CallLogActivity.this.additionFloatingButtonOffset);
+                CallLogActivity callLogActivity = CallLogActivity.this;
+                callLogActivity.additionalFloatingTranslation = Math.max(0.0f, (f2 - callLogActivity.navigationBarHeight) - CallLogActivity.this.additionFloatingButtonOffset);
                 CallLogActivity.this.checkUi_floatingButton();
             }
 
@@ -1069,7 +1068,9 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onScrolled$0(CallLogRow callLogRow) {
-            CallLogActivity.this.getCalls(((TLRPC.Message) callLogRow.calls.get(r3.size() - 1)).id, 100);
+            CallLogActivity callLogActivity = CallLogActivity.this;
+            ArrayList arrayList = callLogRow.calls;
+            callLogActivity.getCalls(((TLRPC.Message) arrayList.get(arrayList.size() - 1)).id, 100);
         }
     }
 
@@ -1094,9 +1095,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             arrayList.add(UItem.asShadow(null));
         }
         if (!zIsEmpty) {
-            Iterator it = this.activeGroupCalls.iterator();
-            while (it.hasNext()) {
-                Long l = (Long) it.next();
+            for (Long l : this.activeGroupCalls) {
                 if (l != null && (chat = getMessagesController().getChat(l)) != null) {
                     arrayList.add(GroupCallCell.Factory.of(chat, new View.OnClickListener() {
                         @Override
@@ -1111,9 +1110,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         if (zIsEmpty2) {
             return;
         }
-        Iterator it2 = this.calls.iterator();
-        while (it2.hasNext()) {
-            CallLogRow callLogRow = (CallLogRow) it2.next();
+        for (CallLogRow callLogRow : this.calls) {
             arrayList.add(CallCell.Factory.of(callLogRow, onCallClick(callLogRow)).setChecked(isSelected(callLogRow.calls)));
         }
         if (this.endReached) {
@@ -1595,8 +1592,269 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         });
     }
 
-    public void lambda$getCalls$20(org.telegram.tgnet.TLRPC.TL_error r18, org.telegram.tgnet.TLObject r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.CallLogActivity.lambda$getCalls$20(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject):void");
+    public void lambda$getCalls$20(TLRPC.TL_error tL_error, TLObject tLObject) {
+        CallLogRow callLogRow;
+        TLRPC.messages_Messages messages_messages;
+        int i;
+        TLRPC.User user;
+        int i2;
+        CallLogRow callLogRow2;
+        CallLogRow callLogRow3;
+        TLRPC.MessageAction messageAction;
+        boolean z;
+        TLRPC.User user2;
+        long jLongValue;
+        Iterator it;
+        TLRPC.User user3;
+        boolean z2 = true;
+        if (tL_error == null) {
+            TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(messages_messages2.users, false);
+            MessagesController.getInstance(this.currentAccount).putChats(messages_messages2.chats, false);
+            this.endReached = messages_messages2.messages.isEmpty();
+            if (this.calls.isEmpty()) {
+                callLogRow = null;
+            } else {
+                ArrayList arrayList = this.calls;
+                callLogRow = (CallLogRow) arrayList.get(arrayList.size() - 1);
+            }
+            int i3 = 0;
+            while (i3 < messages_messages2.messages.size()) {
+                TLRPC.Message message = messages_messages2.messages.get(i3);
+                TLRPC.MessageAction messageAction2 = message.action;
+                if (messageAction2 == null || (messageAction2 instanceof TLRPC.TL_messageActionHistoryClear)) {
+                    messages_messages = messages_messages2;
+                    i = i3;
+                } else {
+                    final long fromChatId = MessageObject.getFromChatId(message);
+                    if (fromChatId == getUserConfig().getClientUserId()) {
+                        fromChatId = message.peer_id.user_id;
+                    }
+                    HashSet<Long> hashSet = new HashSet();
+                    int i4 = MessageObject.getFromChatId(message) == getUserConfig().getClientUserId() ? 0 : 1;
+                    TLRPC.MessageAction messageAction3 = message.action;
+                    if (messageAction3 instanceof TLRPC.TL_messageActionConferenceCall) {
+                        TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction3;
+                        hashSet.add(Long.valueOf(fromChatId));
+                        hashSet.addAll((java.util.Collection) Collection.EL.stream(tL_messageActionConferenceCall.other_participants).map(new CallLogActivity$$ExternalSyntheticLambda12()).collect(Collectors.toSet()));
+                        if (i4 == z2 && tL_messageActionConferenceCall.missed) {
+                            i4 = 2;
+                        }
+                        int i5 = (i4 == 0 && tL_messageActionConferenceCall.missed) ? 3 : i4;
+                        messages_messages = messages_messages2;
+                        if (callLogRow != null) {
+                            i2 = i5;
+                            if (callLogRow.call_id == tL_messageActionConferenceCall.call_id) {
+                                callLogRow2 = callLogRow;
+                                i = i3;
+                            }
+                            if (callLogRow2 != null) {
+                                callLogRow2.calls.add(0, message);
+                                for (Long l : hashSet) {
+                                    jLongValue = l.longValue();
+                                    it = callLogRow2.users.iterator();
+                                    do {
+                                        if (it.hasNext()) {
+                                            user3 = getMessagesController().getUser(l);
+                                            if (user3 == null) {
+                                                break;
+                                            }
+                                            callLogRow2.users.add(user3);
+                                            break;
+                                        }
+                                    } while (jLongValue != ((TLRPC.User) it.next()).id);
+                                }
+                            } else {
+                                if (callLogRow != null && !this.calls.contains(callLogRow)) {
+                                    this.calls.add(callLogRow);
+                                }
+                                callLogRow3 = new CallLogRow();
+                                callLogRow3.call_id = tL_messageActionConferenceCall.call_id;
+                                callLogRow3.calls.clear();
+                                callLogRow3.calls.add(message);
+                                for (Long l2 : hashSet) {
+                                    l2.longValue();
+                                    if (!Collection.EL.stream(callLogRow3.users).noneMatch(new Predicate() {
+                                        public Predicate and(Predicate predicate) {
+                                            return Predicate$CC.$default$and(this, predicate);
+                                        }
+
+                                        public Predicate negate() {
+                                            return Predicate$CC.$default$negate(this);
+                                        }
+
+                                        public Predicate or(Predicate predicate) {
+                                            return Predicate$CC.$default$or(this, predicate);
+                                        }
+
+                                        @Override
+                                        public final boolean test(Object obj) {
+                                            return CallLogActivity.lambda$getCalls$18(fromChatId, (TLRPC.User) obj);
+                                        }
+                                    }) && (user2 = getMessagesController().getUser(l2)) != null) {
+                                        callLogRow3.users.add(user2);
+                                    }
+                                }
+                                callLogRow3.type = i2;
+                                messageAction = message.action;
+                                if (messageAction == null && messageAction.video) {
+                                    z = true;
+                                } else {
+                                    z = false;
+                                }
+                                callLogRow3.video = z;
+                                callLogRow = callLogRow3;
+                            }
+                        } else {
+                            i2 = i5;
+                        }
+                        int i6 = 0;
+                        while (true) {
+                            if (i6 >= this.calls.size()) {
+                                i = i3;
+                                callLogRow2 = null;
+                                break;
+                            }
+                            callLogRow2 = (CallLogRow) this.calls.get(i6);
+                            i = i3;
+                            if (callLogRow2.call_id == tL_messageActionConferenceCall.call_id) {
+                                break;
+                            }
+                            i6++;
+                            i3 = i;
+                        }
+                        if (callLogRow2 != null) {
+                            callLogRow2.calls.add(0, message);
+                            while (r2.hasNext()) {
+                                jLongValue = l.longValue();
+                                it = callLogRow2.users.iterator();
+                                do {
+                                    if (it.hasNext()) {
+                                        user3 = getMessagesController().getUser(l);
+                                        if (user3 == null) {
+                                            callLogRow2.users.add(user3);
+                                            break;
+                                            break;
+                                        } else {
+                                            break;
+                                            break;
+                                        }
+                                    }
+                                } while (jLongValue != ((TLRPC.User) it.next()).id);
+                            }
+                        } else {
+                            if (callLogRow != null) {
+                                this.calls.add(callLogRow);
+                            }
+                            callLogRow3 = new CallLogRow();
+                            callLogRow3.call_id = tL_messageActionConferenceCall.call_id;
+                            callLogRow3.calls.clear();
+                            callLogRow3.calls.add(message);
+                            while (r3.hasNext()) {
+                                l2.longValue();
+                                if (!Collection.EL.stream(callLogRow3.users).noneMatch(new Predicate() {
+                                    public Predicate and(Predicate predicate) {
+                                        return Predicate$CC.$default$and(this, predicate);
+                                    }
+
+                                    public Predicate negate() {
+                                        return Predicate$CC.$default$negate(this);
+                                    }
+
+                                    public Predicate or(Predicate predicate) {
+                                        return Predicate$CC.$default$or(this, predicate);
+                                    }
+
+                                    @Override
+                                    public final boolean test(Object obj) {
+                                        return CallLogActivity.lambda$getCalls$18(fromChatId, (TLRPC.User) obj);
+                                    }
+                                })) {
+                                }
+                            }
+                            callLogRow3.type = i2;
+                            messageAction = message.action;
+                            if (messageAction == null) {
+                                z = false;
+                            } else {
+                                z = false;
+                            }
+                            callLogRow3.video = z;
+                            callLogRow = callLogRow3;
+                        }
+                    } else {
+                        messages_messages = messages_messages2;
+                        i = i3;
+                        hashSet.add(Long.valueOf(fromChatId));
+                        TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = message.action.reason;
+                        if (i4 == 1 && ((phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed) || (phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy))) {
+                            i4 = 2;
+                        }
+                        int i7 = (i4 == 0 && ((phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonMissed) || (phoneCallDiscardReason instanceof TLRPC.TL_phoneCallDiscardReasonBusy))) ? 3 : i4;
+                        if (callLogRow == null || !eq(hashSet, callLogRow.users) || callLogRow.type != i7) {
+                            if (callLogRow != null && !this.calls.contains(callLogRow)) {
+                                this.calls.add(callLogRow);
+                            }
+                            callLogRow = new CallLogRow();
+                            callLogRow.calls.clear();
+                            for (Long l3 : hashSet) {
+                                l3.longValue();
+                                if (Collection.EL.stream(callLogRow.users).noneMatch(new Predicate() {
+                                    public Predicate and(Predicate predicate) {
+                                        return Predicate$CC.$default$and(this, predicate);
+                                    }
+
+                                    public Predicate negate() {
+                                        return Predicate$CC.$default$negate(this);
+                                    }
+
+                                    public Predicate or(Predicate predicate) {
+                                        return Predicate$CC.$default$or(this, predicate);
+                                    }
+
+                                    @Override
+                                    public final boolean test(Object obj) {
+                                        return CallLogActivity.lambda$getCalls$19(fromChatId, (TLRPC.User) obj);
+                                    }
+                                }) && (user = getMessagesController().getUser(l3)) != null) {
+                                    callLogRow.users.add(user);
+                                }
+                            }
+                            callLogRow.type = i7;
+                            TLRPC.MessageAction messageAction4 = message.action;
+                            callLogRow.video = messageAction4 != null && messageAction4.video;
+                        }
+                        callLogRow.calls.add(message);
+                    }
+                    i3 = i + 1;
+                    messages_messages2 = messages_messages;
+                    z2 = true;
+                }
+                i3 = i + 1;
+                messages_messages2 = messages_messages;
+                z2 = true;
+            }
+            if (callLogRow != null && !callLogRow.calls.isEmpty() && !this.calls.contains(callLogRow)) {
+                this.calls.add(callLogRow);
+            }
+            z2 = true;
+        } else {
+            this.endReached = true;
+        }
+        this.loading = false;
+        if (!this.firstLoaded) {
+            resumeDelayedFragmentAnimation();
+        }
+        this.firstLoaded = z2;
+        this.otherItem.setVisibility(this.calls.isEmpty() ? 8 : 0);
+        EmptyTextProgressView emptyTextProgressView = this.emptyView;
+        if (emptyTextProgressView != null) {
+            emptyTextProgressView.showTextView();
+        }
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null) {
+            universalRecyclerView.adapter.update(true);
+        }
     }
 
     public static boolean lambda$getCalls$18(long j, TLRPC.User user) {
@@ -1951,7 +2209,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
 
     public static void lambda$showCallLinkSheet$23(String str, int i, BottomSheet[] bottomSheetArr) {
         TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
-        tL_inputGroupCallSlug.slug = Uri.parse(str).getPathSegments().get(r3.getPathSegments().size() - 1);
+        Uri uri = Uri.parse(str);
+        tL_inputGroupCallSlug.slug = uri.getPathSegments().get(uri.getPathSegments().size() - 1);
         VoIPHelper.joinConference(LaunchActivity.instance, i, tL_inputGroupCallSlug, false, null);
         bottomSheetArr[0].lambda$new$0();
     }
@@ -2178,13 +2437,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         public static void lambda$onCallUsersSelected$3(final int i, final boolean z, final HashSet hashSet, final BaseFragment baseFragment, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     CallLogActivity.AnonymousClass9.lambda$onCallUsersSelected$2(tLObject, i, z, hashSet, tL_error, baseFragment);
                 }
             });
         }
 
-        public static void lambda$onCallUsersSelected$2(TLObject tLObject, int i, boolean z, HashSet hashSet, TLRPC.TL_error tL_error, BaseFragment baseFragment) throws InterruptedException {
+        public static void lambda$onCallUsersSelected$2(TLObject tLObject, int i, boolean z, HashSet hashSet, TLRPC.TL_error tL_error, BaseFragment baseFragment) {
             if (tLObject instanceof TLRPC.Updates) {
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 MessagesController.getInstance(i).putUsers(updates.users, false);

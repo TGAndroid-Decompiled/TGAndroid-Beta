@@ -280,11 +280,9 @@ public class EphemeralMessagesHelper extends BaseController {
             while (i < longSparseArray.size()) {
                 TL_bots.BotInfo botInfo = (TL_bots.BotInfo) longSparseArray.valueAt(i);
                 if (UserObject.hasPublicUsername(getMessagesController().getUser(Long.valueOf(botInfo.user_id)), strSubstring2)) {
-                    Iterator<TLRPC.BotCommand> it = botInfo.commands.iterator();
-                    while (it.hasNext()) {
-                        TLRPC.BotCommand next = it.next();
-                        if (next.command.equalsIgnoreCase(strSubstring)) {
-                            if (next.ephemeral) {
+                    for (TLRPC.BotCommand botCommand : botInfo.commands) {
+                        if (botCommand.command.equalsIgnoreCase(strSubstring)) {
+                            if (botCommand.ephemeral) {
                                 return botInfo.user_id;
                             }
                             return 0L;
@@ -299,15 +297,13 @@ public class EphemeralMessagesHelper extends BaseController {
         boolean z = false;
         while (i < longSparseArray.size()) {
             TL_bots.BotInfo botInfo2 = (TL_bots.BotInfo) longSparseArray.valueAt(i);
-            Iterator<TLRPC.BotCommand> it2 = botInfo2.commands.iterator();
-            while (it2.hasNext()) {
-                TLRPC.BotCommand next2 = it2.next();
-                if (next2.command.equalsIgnoreCase(strSubstring)) {
+            for (TLRPC.BotCommand botCommand2 : botInfo2.commands) {
+                if (botCommand2.command.equalsIgnoreCase(strSubstring)) {
                     if (j != 0) {
                         return 0L;
                     }
                     j = botInfo2.user_id;
-                    z = next2.ephemeral;
+                    z = botCommand2.ephemeral;
                 }
             }
             i++;
@@ -462,7 +458,8 @@ public class EphemeralMessagesHelper extends BaseController {
                         ephemeralMessagesHelperArr[i] = ephemeralMessagesHelper2;
                         ephemeralMessagesHelper = ephemeralMessagesHelper2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }

@@ -13,6 +13,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -26,13 +27,13 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ChatObject;
@@ -58,11 +59,10 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.UserCell;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.BlurringShader;
-import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.utils.Blur3Utils;
 import org.telegram.ui.ContactsActivity;
@@ -814,7 +814,8 @@ public class ItemOptions {
 
     public ItemOptions makeMultiline(boolean z) {
         if (this.context != null && this.lastLayout.getItemsCount() > 0) {
-            View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+            View itemAt = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
             if (itemAt instanceof ActionBarMenuSubItem) {
                 ((ActionBarMenuSubItem) itemAt).setMultiline(z);
             }
@@ -824,7 +825,8 @@ public class ItemOptions {
 
     public ItemOptions cutTextInFancyHalf() {
         if (this.context != null && this.lastLayout.getItemsCount() > 0) {
-            View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+            View itemAt = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
             if (itemAt instanceof ActionBarMenuSubItem) {
                 AnimatedEmojiSpan.TextViewEmojis textView = ((ActionBarMenuSubItem) itemAt).getTextView();
                 textView.setMaxWidth(HintView2.cutInFancyHalf(textView.getText(), textView.getPaint()) + textView.getPaddingLeft() + textView.getPaddingRight());
@@ -835,7 +837,8 @@ public class ItemOptions {
 
     public ItemOptions putPremiumLock(final Runnable runnable) {
         if (runnable != null && this.context != null && this.lastLayout.getItemsCount() > 0) {
-            View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+            View itemAt = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
             if (!(itemAt instanceof ActionBarMenuSubItem)) {
                 return this;
             }
@@ -864,7 +867,8 @@ public class ItemOptions {
 
     public ItemOptions putCheck() {
         if (this.context != null && this.lastLayout.getItemsCount() > 0) {
-            View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+            View itemAt = actionBarPopupWindowLayout.getItemAt(actionBarPopupWindowLayout.getItemsCount() - 1);
             if (!(itemAt instanceof ActionBarMenuSubItem)) {
                 return this;
             }
@@ -1159,7 +1163,8 @@ public class ItemOptions {
             if (linearLayout.getChildCount() <= 0) {
                 return null;
             }
-            View childAt = this.linearLayout.getChildAt(r0.getChildCount() - 1);
+            LinearLayout linearLayout2 = this.linearLayout;
+            View childAt = linearLayout2.getChildAt(linearLayout2.getChildCount() - 1);
             if (childAt instanceof ActionBarMenuSubItem) {
                 return (ActionBarMenuSubItem) childAt;
             }
@@ -1169,7 +1174,8 @@ public class ItemOptions {
         if (actionBarPopupWindowLayout == null || actionBarPopupWindowLayout.getItemsCount() <= 0) {
             return null;
         }
-        View itemAt = this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.lastLayout;
+        View itemAt = actionBarPopupWindowLayout2.getItemAt(actionBarPopupWindowLayout2.getItemsCount() - 1);
         if (itemAt instanceof ActionBarMenuSubItem) {
             return (ActionBarMenuSubItem) itemAt;
         }
@@ -1182,13 +1188,15 @@ public class ItemOptions {
             if (linearLayout.getChildCount() <= 0) {
                 return null;
             }
-            return this.linearLayout.getChildAt(r0.getChildCount() - 1);
+            LinearLayout linearLayout2 = this.linearLayout;
+            return linearLayout2.getChildAt(linearLayout2.getChildCount() - 1);
         }
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
         if (actionBarPopupWindowLayout == null || actionBarPopupWindowLayout.getItemsCount() <= 0) {
             return null;
         }
-        return this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.lastLayout;
+        return actionBarPopupWindowLayout2.getItemAt(actionBarPopupWindowLayout2.getItemsCount() - 1);
     }
 
     public ViewGroup getLayout() {
@@ -1313,8 +1321,333 @@ public class ItemOptions {
         return this;
     }
 
-    public org.telegram.ui.Components.ItemOptions show() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ItemOptions.show():org.telegram.ui.Components.ItemOptions");
+    public ItemOptions show() {
+        float f;
+        float f2;
+        int i;
+        int width;
+        int iMax;
+        int height;
+        boolean z;
+        BaseFragment baseFragment;
+        DimView dimView;
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout;
+        float x;
+        float measuredWidth;
+        float x2;
+        DimView dimView2;
+        if (this.actionBarPopupWindow != null || this.linearLayout != null || getItemsCount() <= 0) {
+            return this;
+        }
+        setupSelectors();
+        if (this.fixedWidthDp > 0) {
+            int i2 = 0;
+            while (i2 < this.layout.getChildCount() - 1) {
+                View childAt = i2 == this.layout.getChildCount() - 1 ? this.lastLayout : this.layout.getChildAt(i2);
+                if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt;
+                    for (int i3 = 0; i3 < actionBarPopupWindowLayout2.getItemsCount(); i3++) {
+                        actionBarPopupWindowLayout2.getItemAt(i3).getLayoutParams().width = AndroidUtilities.dp(this.fixedWidthDp);
+                    }
+                }
+                i2++;
+            }
+        } else if (this.minWidthDp > 0) {
+            int i4 = 0;
+            while (i4 < this.layout.getChildCount() - 1) {
+                View childAt2 = i4 == this.layout.getChildCount() - 1 ? this.lastLayout : this.layout.getChildAt(i4);
+                if (childAt2 instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout3 = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt2;
+                    for (int i5 = 0; i5 < actionBarPopupWindowLayout3.getItemsCount(); i5++) {
+                        actionBarPopupWindowLayout3.getItemAt(i5).setMinimumWidth(AndroidUtilities.dp(this.minWidthDp));
+                    }
+                }
+                i4++;
+            }
+        }
+        if ((this.blur || this.blurForMenu) && this.scrimBlur3SourceBitmap == null) {
+            this.scrimBlur3SourceBitmap = new BlurredBackgroundSourceBitmap();
+        }
+        ViewGroup overlayContainerView = this.container;
+        if (overlayContainerView == null) {
+            overlayContainerView = this.fragment.getParentLayout().getOverlayContainerView();
+        }
+        final ViewGroup viewGroup = overlayContainerView;
+        this.pointContainer = viewGroup;
+        if (this.context != null && viewGroup != null) {
+            float f3 = AndroidUtilities.displaySize.y / 2.0f;
+            View view = this.scrimView;
+            if (view != null) {
+                getPointOnScreen(view, viewGroup, this.point);
+                float[] fArr = this.point;
+                f = fArr[1];
+                f2 = fArr[0];
+                if (this.offsetByContainer) {
+                    int[] iArr = new int[2];
+                    viewGroup.getLocationOnScreen(iArr);
+                    f2 += iArr[0];
+                    f += iArr[1];
+                }
+            } else {
+                f = f3;
+                f2 = 0.0f;
+            }
+            RectF rectF = new RectF();
+            View view2 = this.scrimView;
+            if (view2 instanceof ScrimView) {
+                ((ScrimView) view2).getBounds(rectF);
+            } else {
+                int i6 = this.animateToWidth;
+                if (i6 != 0 && (i = this.animateToHeight) != 0) {
+                    rectF.set(0.0f, 0.0f, i6, i);
+                } else {
+                    rectF.set(0.0f, 0.0f, view2.getMeasuredWidth(), this.scrimView.getMeasuredHeight());
+                }
+            }
+            float f4 = f2 + rectF.left;
+            float measuredHeight = f + rectF.top;
+            if (this.ignoreX) {
+                this.point[0] = 0.0f;
+                f4 = 0.0f;
+            }
+            if (this.dimAlpha > 0 || this.blur || this.blurForMenu) {
+                final DimView dimView3 = new DimView(this.context);
+                this.dimView = dimView3;
+                this.preDrawListener = new ViewTreeObserver.OnPreDrawListener() {
+                    @Override
+                    public final boolean onPreDraw() {
+                        return ItemOptions.lambda$show$14(dimView3);
+                    }
+                };
+                viewGroup.getViewTreeObserver().addOnPreDrawListener(this.preDrawListener);
+                viewGroup.addView(this.dimView, LayoutHelper.createFrame(-1, -1.0f));
+                this.dimView.setProgress(0.0f);
+                if (this.hideScrimUnder) {
+                    this.scrimView.setVisibility(4);
+                }
+                ValueAnimator valueAnimator = this.dimAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    this.dimAnimator = null;
+                }
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.dimAnimator = valueAnimatorOfFloat;
+                valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        this.f$0.lambda$show$15(valueAnimator2);
+                    }
+                });
+                this.dimAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        if (ItemOptions.this.dimView != null) {
+                            ItemOptions.this.dimView.setProgress(1.0f);
+                            ItemOptions.this.dimView.invalidate();
+                        }
+                        ItemOptions.this.dimAnimator = null;
+                    }
+                });
+                if (this.allowMoveScrim) {
+                    this.dimAnimator.setDuration(380L);
+                    this.dimAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                } else {
+                    this.dimAnimator.setDuration(150L);
+                }
+                this.dimAnimator.start();
+            }
+            if (this.allowMoveScrim && (dimView2 = this.dimView) != null && this.animateToWidth != 0) {
+                dimView2.moveToX = (viewGroup.getWidth() - this.animateToWidth) / 2.0f;
+                if (this.allowMoveScrimGravity == 3) {
+                    this.dimView.moveToX = AndroidUtilities.dp(36.0f);
+                }
+                f4 += (-this.point[0]) + this.dimView.moveToX;
+            }
+            float paddingLeft = f4;
+            this.layout.measure(View.MeasureSpec.makeMeasureSpec(viewGroup.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(viewGroup.getMeasuredHeight(), Integer.MIN_VALUE));
+            RectF rectF2 = new RectF();
+            Rect padding = this.lastLayout.getPadding();
+            rectF2.set(padding.left, padding.top, this.layout.getMeasuredWidth() - padding.right, this.layout.getMeasuredHeight() - padding.bottom);
+            ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.layout, -2, -2) {
+                @Override
+                public void dismiss() {
+                    super.dismiss();
+                    ItemOptions.this.dismissDim(viewGroup);
+                    if (ItemOptions.this.dismissListener != null) {
+                        ItemOptions.this.dismissListener.run();
+                        ItemOptions.this.dismissListener = null;
+                    }
+                }
+            };
+            this.actionBarPopupWindow = actionBarPopupWindow;
+            actionBarPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                @Override
+                public void onDismiss() {
+                    ItemOptions itemOptions = ItemOptions.this;
+                    itemOptions.actionBarPopupWindow = null;
+                    itemOptions.dismissDim(viewGroup);
+                    ItemOptions.this.clearHoverListener();
+                    ItemOptions.this.removeFollowListeners();
+                    if (ItemOptions.this.dismissListener != null) {
+                        ItemOptions.this.dismissListener.run();
+                        ItemOptions.this.dismissListener = null;
+                    }
+                }
+            });
+            this.actionBarPopupWindow.setOutsideTouchable(true);
+            this.actionBarPopupWindow.setFocusable(!this.dontFocus);
+            this.actionBarPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
+            this.actionBarPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
+            if (this.allowShowingOnTopOfKeyboard) {
+                this.actionBarPopupWindow.setInputMethodMode(2);
+                this.actionBarPopupWindow.setSoftInputMode(0);
+            } else if (this.dontFocus || this.needsFocus) {
+                this.actionBarPopupWindow.setInputMethodMode(1);
+                this.actionBarPopupWindow.setSoftInputMode(32);
+            } else {
+                this.actionBarPopupWindow.setInputMethodMode(2);
+                this.actionBarPopupWindow.setSoftInputMode(0);
+            }
+            if (AndroidUtilities.isTablet()) {
+                measuredHeight += viewGroup.getPaddingTop();
+                paddingLeft -= viewGroup.getPaddingLeft();
+            }
+            if (this.scrimView != null) {
+                int i7 = this.gravity;
+                if (i7 == 3) {
+                    x2 = viewGroup.getX() + paddingLeft;
+                } else {
+                    if (i7 == 5) {
+                        x = viewGroup.getX() + paddingLeft + rectF.width();
+                        measuredWidth = rectF2.right;
+                    } else if (i7 == 1) {
+                        x = viewGroup.getX() + paddingLeft + (rectF.width() / 2.0f);
+                        measuredWidth = this.layout.getMeasuredWidth() / 2.0f;
+                    } else if (paddingLeft + rectF2.width() > viewGroup.getWidth()) {
+                        x = viewGroup.getX() + paddingLeft + rectF.width();
+                        measuredWidth = rectF2.right;
+                    } else {
+                        x = viewGroup.getX() + paddingLeft;
+                        measuredWidth = rectF2.left;
+                    }
+                    x2 = x - measuredWidth;
+                }
+                width = (int) x2;
+            } else {
+                width = (viewGroup.getWidth() - this.layout.getMeasuredWidth()) / 2;
+            }
+            if (this.allowShowingOnTopOfKeyboard) {
+                iMax = 0;
+            } else {
+                Rect rect = new Rect();
+                View rootView = viewGroup.getRootView();
+                viewGroup.getWindowVisibleDisplayFrame(rect);
+                iMax = Math.max(0, ((rootView.getHeight() - (rect.top != 0 ? AndroidUtilities.statusBarHeight : 0)) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top));
+            }
+            int i8 = (AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) - iMax;
+            float fHeight = this.onTopOfScrim ? 0.0f : rectF.height();
+            if (this.forceBottom) {
+                float f5 = measuredHeight + fHeight;
+                height = this.allowMoveScrim ? (int) f5 : (int) ((Math.min(f5, i8) - this.layout.getMeasuredHeight()) + viewGroup.getY());
+            } else {
+                if (this.scrimView != null) {
+                    if (this.forceTop || measuredHeight + fHeight + this.layout.getMeasuredHeight() + AndroidUtilities.dp(16.0f) > i8) {
+                        measuredHeight = (measuredHeight - fHeight) - this.layout.getMeasuredHeight();
+                        if (this.allowCenter && Math.max(0.0f, measuredHeight + fHeight) + this.layout.getMeasuredHeight() > this.point[1] + rectF.top && rectF.height() == this.scrimView.getHeight()) {
+                            measuredHeight = (((viewGroup.getHeight() - this.layout.getMeasuredHeight()) / 2.0f) - fHeight) - viewGroup.getY();
+                            z = false;
+                        } else {
+                            z = true;
+                        }
+                    } else {
+                        z = false;
+                    }
+                    height = (int) (measuredHeight + fHeight + viewGroup.getY());
+                } else {
+                    height = (viewGroup.getHeight() - this.layout.getMeasuredHeight()) / 2;
+                }
+                if (this.swipeback && z && !this.overridenSwipebackGravity && (actionBarPopupWindowLayout = this.lastLayout) != null) {
+                    actionBarPopupWindowLayout.swipeBackGravityBottom = true;
+                }
+                if (this.allowMoveScrim && (dimView = this.dimView) != null) {
+                    dimView.moveToY = (viewGroup.getHeight() - (this.layout.getMeasuredHeight() + rectF.bottom)) / 2.0f;
+                    height = (int) (this.dimView.moveToY + rectF.bottom);
+                    width = (int) (((this.dimView.moveToX + rectF.right) - this.layout.getMeasuredWidth()) + AndroidUtilities.dp(4.0f));
+                    if (this.allowMoveScrimGravity == 3) {
+                        width = (int) (this.dimView.moveToX - AndroidUtilities.dp(8.0f));
+                    }
+                }
+                if (!this.longPressSelectionEnabled) {
+                    baseFragment = this.fragment;
+                    if (baseFragment == null && baseFragment.getFragmentView() != null) {
+                        this.fragment.getFragmentView().getRootView().dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
+                    } else if (this.container != null) {
+                        viewGroup.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
+                    }
+                }
+                if (this.blurForMenu && this.scrimBlur3SourceBitmap != null) {
+                    setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
+                    BlurredBackgroundDrawable radius = new BlurredBackgroundDrawableViewFactory(this.scrimBlur3SourceBitmap).create((View) this.layout, true).setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider)).setPadding(AndroidUtilities.dp(8.0f)).setHasPadding(true).setRadius(AndroidUtilities.dp(12.0f));
+                    radius.setSourceOffset(width + this.translateX, height + this.translateY);
+                    this.layout.setBackground(radius);
+                }
+                this.actionBarPopupWindow.setScaleOut(this.scaleOut);
+                ActionBarPopupWindow actionBarPopupWindow2 = this.actionBarPopupWindow;
+                float f6 = width + this.translateX;
+                this.offsetX = f6;
+                float f7 = height + this.translateY;
+                this.offsetY = f7;
+                actionBarPopupWindow2.showAtLocation(viewGroup, 0, (int) f6, (int) f7);
+                if (this.longPressSelectionEnabled) {
+                    installHoverReleaseListener();
+                }
+                if (this.followScrim) {
+                    installFollowListeners();
+                }
+            }
+            z = false;
+            if (this.swipeback) {
+                actionBarPopupWindowLayout.swipeBackGravityBottom = true;
+            }
+            if (this.allowMoveScrim) {
+                dimView.moveToY = (viewGroup.getHeight() - (this.layout.getMeasuredHeight() + rectF.bottom)) / 2.0f;
+                height = (int) (this.dimView.moveToY + rectF.bottom);
+                width = (int) (((this.dimView.moveToX + rectF.right) - this.layout.getMeasuredWidth()) + AndroidUtilities.dp(4.0f));
+                if (this.allowMoveScrimGravity == 3) {
+                    width = (int) (this.dimView.moveToX - AndroidUtilities.dp(8.0f));
+                }
+            }
+            if (!this.longPressSelectionEnabled) {
+                baseFragment = this.fragment;
+                if (baseFragment == null) {
+                    if (this.container != null) {
+                        viewGroup.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
+                    }
+                } else if (this.container != null) {
+                    viewGroup.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
+                }
+            }
+            if (this.blurForMenu) {
+                setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
+                BlurredBackgroundDrawable radius2 = new BlurredBackgroundDrawableViewFactory(this.scrimBlur3SourceBitmap).create((View) this.layout, true).setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider)).setPadding(AndroidUtilities.dp(8.0f)).setHasPadding(true).setRadius(AndroidUtilities.dp(12.0f));
+                radius2.setSourceOffset(width + this.translateX, height + this.translateY);
+                this.layout.setBackground(radius2);
+            }
+            this.actionBarPopupWindow.setScaleOut(this.scaleOut);
+            ActionBarPopupWindow actionBarPopupWindow3 = this.actionBarPopupWindow;
+            float f8 = width + this.translateX;
+            this.offsetX = f8;
+            float f9 = height + this.translateY;
+            this.offsetY = f9;
+            actionBarPopupWindow3.showAtLocation(viewGroup, 0, (int) f8, (int) f9);
+            if (this.longPressSelectionEnabled) {
+                installHoverReleaseListener();
+            }
+            if (this.followScrim) {
+                installFollowListeners();
+            }
+        }
+        return this;
     }
 
     public static boolean lambda$show$14(DimView dimView) {
@@ -1413,7 +1746,121 @@ public class ItemOptions {
     }
 
     public void reposition() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ItemOptions.reposition():void");
+        View view;
+        ViewGroup viewGroup;
+        int i;
+        float x;
+        float f;
+        float x2;
+        int i2;
+        float fHeight;
+        int y;
+        ActionBarPopupWindow actionBarPopupWindow = this.actionBarPopupWindow;
+        if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing() || (view = this.scrimView) == null || (viewGroup = this.pointContainer) == null || this.layout == null || this.lastLayout == null) {
+            return;
+        }
+        getPointOnScreen(view, viewGroup, this.point);
+        float[] fArr = this.point;
+        float f2 = fArr[1];
+        float f3 = fArr[0];
+        if (this.offsetByContainer) {
+            int[] iArr = new int[2];
+            viewGroup.getLocationOnScreen(iArr);
+            f3 += iArr[0];
+            f2 += iArr[1];
+        }
+        RectF rectF = new RectF();
+        View view2 = this.scrimView;
+        if (view2 instanceof ScrimView) {
+            ((ScrimView) view2).getBounds(rectF);
+        } else {
+            int i3 = this.animateToWidth;
+            if (i3 != 0 && (i = this.animateToHeight) != 0) {
+                rectF.set(0.0f, 0.0f, i3, i);
+            } else {
+                rectF.set(0.0f, 0.0f, view2.getMeasuredWidth(), this.scrimView.getMeasuredHeight());
+            }
+        }
+        float paddingLeft = f3 + rectF.left;
+        float measuredHeight = f2 + rectF.top;
+        if (this.ignoreX) {
+            this.point[0] = 0.0f;
+            paddingLeft = 0.0f;
+        }
+        this.layout.measure(View.MeasureSpec.makeMeasureSpec(viewGroup.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(viewGroup.getMeasuredHeight(), Integer.MIN_VALUE));
+        RectF rectF2 = new RectF();
+        Rect padding = this.lastLayout.getPadding();
+        rectF2.set(padding.left, padding.top, this.layout.getMeasuredWidth() - padding.right, this.layout.getMeasuredHeight() - padding.bottom);
+        if (AndroidUtilities.isTablet()) {
+            measuredHeight += viewGroup.getPaddingTop();
+            paddingLeft -= viewGroup.getPaddingLeft();
+        }
+        int i4 = this.gravity;
+        if (i4 == 3) {
+            x2 = viewGroup.getX() + paddingLeft;
+        } else {
+            if (i4 == 5) {
+                x = viewGroup.getX() + paddingLeft + rectF.width();
+                f = rectF2.right;
+            } else if (i4 == 1) {
+                x2 = ((viewGroup.getX() + paddingLeft) + (rectF.width() / 2.0f)) - (this.layout.getMeasuredWidth() / 2.0f);
+            } else if (rectF2.width() + paddingLeft > viewGroup.getWidth()) {
+                x = viewGroup.getX() + paddingLeft + rectF.width();
+                f = rectF2.right;
+            } else {
+                x = viewGroup.getX() + paddingLeft;
+                f = rectF2.left;
+            }
+            i2 = (int) (x - f);
+            if (this.onTopOfScrim) {
+                fHeight = 0.0f;
+            } else {
+                fHeight = rectF.height();
+            }
+            if (this.forceBottom) {
+                y = (int) ((Math.min(measuredHeight + fHeight, AndroidUtilities.displaySize.y) - this.layout.getMeasuredHeight()) + viewGroup.getY());
+            } else {
+                if (!this.forceTop || measuredHeight + fHeight + this.layout.getMeasuredHeight() + AndroidUtilities.dp(16.0f) > AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) {
+                    measuredHeight = (measuredHeight - fHeight) - this.layout.getMeasuredHeight();
+                    if (this.allowCenter && Math.max(0.0f, measuredHeight + fHeight) + this.layout.getMeasuredHeight() > this.point[1] + rectF.top && rectF.height() == this.scrimView.getHeight()) {
+                        measuredHeight = (((viewGroup.getHeight() - this.layout.getMeasuredHeight()) / 2.0f) - fHeight) - viewGroup.getY();
+                    }
+                }
+                y = (int) (measuredHeight + fHeight + viewGroup.getY());
+            }
+            float f4 = i2 + this.translateX;
+            this.offsetX = f4;
+            float f5 = y + this.translateY;
+            this.offsetY = f5;
+            this.actionBarPopupWindow.update((int) f4, (int) f5, -1, -1);
+        }
+        i2 = (int) x2;
+        if (this.onTopOfScrim) {
+            fHeight = 0.0f;
+        } else {
+            fHeight = rectF.height();
+        }
+        if (this.forceBottom) {
+            y = (int) ((Math.min(measuredHeight + fHeight, AndroidUtilities.displaySize.y) - this.layout.getMeasuredHeight()) + viewGroup.getY());
+        } else {
+            if (!this.forceTop) {
+                measuredHeight = (measuredHeight - fHeight) - this.layout.getMeasuredHeight();
+                if (this.allowCenter) {
+                    measuredHeight = (((viewGroup.getHeight() - this.layout.getMeasuredHeight()) / 2.0f) - fHeight) - viewGroup.getY();
+                }
+            } else {
+                measuredHeight = (measuredHeight - fHeight) - this.layout.getMeasuredHeight();
+                if (this.allowCenter) {
+                    measuredHeight = (((viewGroup.getHeight() - this.layout.getMeasuredHeight()) / 2.0f) - fHeight) - viewGroup.getY();
+                }
+            }
+            y = (int) (measuredHeight + fHeight + viewGroup.getY());
+        }
+        float f6 = i2 + this.translateX;
+        this.offsetX = f6;
+        float f7 = y + this.translateY;
+        this.offsetY = f7;
+        this.actionBarPopupWindow.update((int) f6, (int) f7, -1, -1);
     }
 
     public ItemOptions setBackgroundColor(int i) {
@@ -1724,8 +2171,10 @@ public class ItemOptions {
                 return;
             }
         }
-        fArr[0] = x - viewGroup.getPaddingLeft();
-        fArr[1] = y - viewGroup.getPaddingTop();
+        float paddingLeft = x - viewGroup.getPaddingLeft();
+        float paddingTop = y - viewGroup.getPaddingTop();
+        fArr[0] = paddingLeft;
+        fArr[1] = paddingTop;
     }
 
     public ItemOptions setViewAdditionalOffsets(int i, int i2, int i3, int i4) {
@@ -1993,9 +2442,7 @@ public class ItemOptions {
             });
             linearLayout.addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, -2));
         }
-        Iterator it = storiesCollections.collections.iterator();
-        while (it.hasNext()) {
-            final StoriesController.StoryAlbum storyAlbum = (StoriesController.StoryAlbum) it.next();
+        for (final StoriesController.StoryAlbum storyAlbum : storiesCollections.collections) {
             final int i2 = storyAlbum.album_id;
             final boolean zContains = hashSet.contains(Integer.valueOf(i2));
             ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(itemOptions.getContext(), 2, false, false, itemOptions.resourcesProvider);

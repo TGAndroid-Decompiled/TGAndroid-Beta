@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -45,7 +44,6 @@ import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
-import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stars.StarGiftSheet;
@@ -105,7 +103,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this(baseFragment, context, i, z, i2, z2, subscriptionTier, getResourceProvider(baseFragment));
     }
 
-    public PremiumFeatureBottomSheet(final BaseFragment baseFragment, Context context, int i, boolean z, int i2, final boolean z2, PremiumPreviewFragment.SubscriptionTier subscriptionTier, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
+    public PremiumFeatureBottomSheet(final BaseFragment baseFragment, Context context, int i, boolean z, int i2, final boolean z2, PremiumPreviewFragment.SubscriptionTier subscriptionTier, Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
         this.premiumFeatures = new ArrayList();
         this.gradientAlpha = 255;
@@ -219,7 +217,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             }
 
             @Override
-            protected void onMeasure(int i4, int i5) throws Resources.NotFoundException {
+            protected void onMeasure(int i4, int i5) {
                 int iDp = AndroidUtilities.dp(100.0f);
                 if (getChildCount() > 0) {
                     getChildAt(0).measure(i4, View.MeasureSpec.makeMeasureSpec(0, 0));
@@ -466,7 +464,105 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         }
 
         private void checkPage() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet.AnonymousClass5.checkPage():void");
+            boolean z;
+            boolean z2;
+            float measuredWidth;
+            int i = 0;
+            while (true) {
+                float f = 0.0f;
+                if (i >= PremiumFeatureBottomSheet.this.viewPager.getChildCount()) {
+                    break;
+                }
+                ViewPage viewPage = (ViewPage) PremiumFeatureBottomSheet.this.viewPager.getChildAt(i);
+                PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
+                if (!premiumFeatureBottomSheet.enterAnimationIsRunning || !(viewPage.topView instanceof PremiumAppIconsPreviewView)) {
+                    int i2 = viewPage.position;
+                    if (i2 == premiumFeatureBottomSheet.selectedPosition) {
+                        PagerHeaderView pagerHeaderView = viewPage.topHeader;
+                        measuredWidth = (-viewPage.getMeasuredWidth()) * PremiumFeatureBottomSheet.this.progress;
+                        pagerHeaderView.setOffset(measuredWidth);
+                    } else if (i2 == premiumFeatureBottomSheet.toPosition) {
+                        PagerHeaderView pagerHeaderView2 = viewPage.topHeader;
+                        measuredWidth = ((-viewPage.getMeasuredWidth()) * PremiumFeatureBottomSheet.this.progress) + viewPage.getMeasuredWidth();
+                        pagerHeaderView2.setOffset(measuredWidth);
+                    } else {
+                        viewPage.topHeader.setOffset(viewPage.getMeasuredWidth());
+                    }
+                    f = measuredWidth;
+                }
+                if (viewPage.topView instanceof PremiumAppIconsPreviewView) {
+                    viewPage.setTranslationX(-f);
+                    viewPage.title.setTranslationX(f);
+                    viewPage.description.setTranslationX(f);
+                }
+                i++;
+            }
+            PremiumFeatureBottomSheet premiumFeatureBottomSheet2 = PremiumFeatureBottomSheet.this;
+            premiumFeatureBottomSheet2.containerViewsProgress = premiumFeatureBottomSheet2.progress;
+            int i3 = premiumFeatureBottomSheet2.toPosition;
+            int i4 = premiumFeatureBottomSheet2.selectedPosition;
+            premiumFeatureBottomSheet2.containerViewsForward = i3 > i4;
+            if (i4 < 0 || i4 >= premiumFeatureBottomSheet2.premiumFeatures.size()) {
+                z = false;
+            } else {
+                PremiumFeatureBottomSheet premiumFeatureBottomSheet3 = PremiumFeatureBottomSheet.this;
+                if (premiumFeatureBottomSheet3.isFullscreenType(((PremiumPreviewFragment.PremiumFeatureData) premiumFeatureBottomSheet3.premiumFeatures.get(premiumFeatureBottomSheet3.selectedPosition)).type)) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+            }
+            PremiumFeatureBottomSheet premiumFeatureBottomSheet4 = PremiumFeatureBottomSheet.this;
+            int i5 = premiumFeatureBottomSheet4.toPosition;
+            if (i5 < 0 || i5 >= premiumFeatureBottomSheet4.premiumFeatures.size()) {
+                z2 = false;
+            } else {
+                PremiumFeatureBottomSheet premiumFeatureBottomSheet5 = PremiumFeatureBottomSheet.this;
+                if (premiumFeatureBottomSheet5.isFullscreenType(((PremiumPreviewFragment.PremiumFeatureData) premiumFeatureBottomSheet5.premiumFeatures.get(premiumFeatureBottomSheet5.toPosition)).type)) {
+                    z2 = true;
+                } else {
+                    z2 = false;
+                }
+            }
+            if (z && z2) {
+                PremiumFeatureBottomSheet premiumFeatureBottomSheet6 = PremiumFeatureBottomSheet.this;
+                premiumFeatureBottomSheet6.progressToGradient = 1.0f;
+                float f2 = premiumFeatureBottomSheet6.progress;
+                if (f2 == 0.0f) {
+                    f2 = 1.0f;
+                }
+                premiumFeatureBottomSheet6.progressToFullscreenView = f2;
+                premiumFeatureBottomSheet6.fullscreenNext = true;
+            } else if (z) {
+                PremiumFeatureBottomSheet premiumFeatureBottomSheet7 = PremiumFeatureBottomSheet.this;
+                float f3 = 1.0f - premiumFeatureBottomSheet7.progress;
+                premiumFeatureBottomSheet7.progressToFullscreenView = f3;
+                premiumFeatureBottomSheet7.progressToGradient = f3;
+                premiumFeatureBottomSheet7.fullscreenNext = true;
+            } else if (z2) {
+                PremiumFeatureBottomSheet premiumFeatureBottomSheet8 = PremiumFeatureBottomSheet.this;
+                float f4 = premiumFeatureBottomSheet8.progress;
+                premiumFeatureBottomSheet8.progressToFullscreenView = f4;
+                premiumFeatureBottomSheet8.progressToGradient = f4;
+                premiumFeatureBottomSheet8.fullscreenNext = false;
+            } else {
+                PremiumFeatureBottomSheet premiumFeatureBottomSheet9 = PremiumFeatureBottomSheet.this;
+                premiumFeatureBottomSheet9.progressToFullscreenView = 0.0f;
+                premiumFeatureBottomSheet9.progressToGradient = 0.0f;
+                premiumFeatureBottomSheet9.fullscreenNext = true;
+            }
+            PremiumFeatureBottomSheet premiumFeatureBottomSheet10 = PremiumFeatureBottomSheet.this;
+            int i6 = (int) ((1.0f - premiumFeatureBottomSheet10.progressToFullscreenView) * 255.0f);
+            if (i6 != premiumFeatureBottomSheet10.gradientAlpha) {
+                PremiumFeatureBottomSheet.this.gradientAlpha = i6;
+                PremiumFeatureBottomSheet.this.content.invalidate();
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$checkPage$0();
+                    }
+                });
+            }
         }
 
         public void lambda$checkPage$0() {
@@ -875,11 +971,12 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
     @Override
     protected boolean onCustomOpenAnimation() {
         if (this.viewPager.getChildCount() > 0) {
-            View view = ((ViewPage) this.viewPager.getChildAt(0)).topView;
+            ViewPage viewPage = (ViewPage) this.viewPager.getChildAt(0);
+            View view = viewPage.topView;
             if (view instanceof PremiumAppIconsPreviewView) {
                 final PremiumAppIconsPreviewView premiumAppIconsPreviewView = (PremiumAppIconsPreviewView) view;
-                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(r2.getMeasuredWidth(), 0.0f);
-                premiumAppIconsPreviewView.setOffset(r2.getMeasuredWidth());
+                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(viewPage.getMeasuredWidth(), 0.0f);
+                premiumAppIconsPreviewView.setOffset(viewPage.getMeasuredWidth());
                 this.enterAnimationIsRunning = true;
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -939,7 +1036,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         } else {
             this.closeLayout.setVisibility(0);
         }
-        this.content.setTranslationX((this.fullscreenNext ? r0.getMeasuredWidth() : -r0.getMeasuredWidth()) * this.progressToGradient);
+        FrameLayout frameLayout = this.content;
+        frameLayout.setTranslationX((this.fullscreenNext ? frameLayout.getMeasuredWidth() : -frameLayout.getMeasuredWidth()) * this.progressToGradient);
         if (iMin != this.topCurrentOffset) {
             this.topCurrentOffset = iMin;
             for (int i2 = 0; i2 < this.viewPager.getChildCount(); i2++) {
@@ -975,8 +1073,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         for (int i = 0; i < this.viewPager.getChildCount(); i++) {
             ViewPage viewPage = (ViewPage) this.viewPager.getChildAt(i);
             if (viewPage.position == this.selectedPosition) {
-                if (viewPage.topView instanceof BaseListPageView) {
-                    return !((BaseListPageView) r1).recyclerListView.canScrollVertically(-1);
+                View view = viewPage.topView;
+                if (view instanceof BaseListPageView) {
+                    return !((BaseListPageView) view).recyclerListView.canScrollVertically(-1);
                 }
             }
         }

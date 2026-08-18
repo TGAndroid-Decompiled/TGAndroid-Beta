@@ -2,6 +2,7 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.voip.ConferenceCall;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
@@ -52,8 +54,65 @@ public abstract class GroupCallSheet {
         show(context, i, j, tL_inputGroupCallSlug, progress);
     }
 
-    public static void show(final android.content.Context r12, final int r13, final long r14, final org.telegram.tgnet.TLRPC.InputGroupCall r16, final org.telegram.messenger.browser.Browser.Progress r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCallSheet.show(android.content.Context, int, long, org.telegram.tgnet.TLRPC$InputGroupCall, org.telegram.messenger.browser.Browser$Progress):void");
+    public static void show(final Context context, final int i, final long j, final TLRPC.InputGroupCall inputGroupCall, final Browser.Progress progress) {
+        AlertDialog alertDialog;
+        ConferenceCall conferenceCall;
+        LaunchActivity launchActivity;
+        if (VoIPService.getSharedInstance() != null && (conferenceCall = VoIPService.getSharedInstance().conference) != null) {
+            if (inputGroupCall instanceof TLRPC.TL_inputGroupCall) {
+                TLRPC.GroupCall groupCall = conferenceCall.groupCall;
+                if (groupCall == null || inputGroupCall.id != groupCall.id) {
+                    TLRPC.InputGroupCall inputGroupCall2 = conferenceCall.inputGroupCall;
+                    if ((inputGroupCall2 instanceof TLRPC.TL_inputGroupCall) && inputGroupCall.id == inputGroupCall2.id) {
+                        launchActivity = LaunchActivity.instance;
+                        if (launchActivity != null) {
+                            GroupCallActivity.create(launchActivity, AccountInstance.getInstance(VoIPService.getSharedInstance().getAccount()), null, null, false, null);
+                            return;
+                        }
+                    }
+                } else {
+                    launchActivity = LaunchActivity.instance;
+                    if (launchActivity != null) {
+                        GroupCallActivity.create(launchActivity, AccountInstance.getInstance(VoIPService.getSharedInstance().getAccount()), null, null, false, null);
+                        return;
+                    }
+                }
+            } else if (inputGroupCall instanceof TLRPC.TL_inputGroupCallSlug) {
+                TLRPC.InputGroupCall inputGroupCall3 = conferenceCall.inputGroupCall;
+                if ((inputGroupCall3 instanceof TLRPC.TL_inputGroupCallSlug) && TextUtils.equals(inputGroupCall3.slug, inputGroupCall.slug)) {
+                    launchActivity = LaunchActivity.instance;
+                    if (launchActivity != null) {
+                        GroupCallActivity.create(launchActivity, AccountInstance.getInstance(VoIPService.getSharedInstance().getAccount()), null, null, false, null);
+                        return;
+                    }
+                }
+            }
+        }
+        if (progress == null) {
+            alertDialog = new AlertDialog(context, 3);
+            alertDialog.showDelayed(300L);
+        } else {
+            alertDialog = null;
+        }
+        final AlertDialog alertDialog2 = alertDialog;
+        TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
+        getgroupcall.call = inputGroupCall;
+        getgroupcall.limit = 10;
+        final int iSendRequest = ConnectionsManager.getInstance(i).sendRequest(getgroupcall, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                GroupCallSheet.lambda$show$1(alertDialog2, progress, i, context, j, inputGroupCall, tLObject, tL_error);
+            }
+        });
+        if (progress != null) {
+            progress.onCancel(new Runnable() {
+                @Override
+                public final void run() {
+                    GroupCallSheet.lambda$show$2(i, iSendRequest);
+                }
+            });
+            progress.init();
+        }
     }
 
     public static void lambda$show$1(final AlertDialog alertDialog, final Browser.Progress progress, final int i, final Context context, final long j, final TLRPC.InputGroupCall inputGroupCall, final TLObject tLObject, final TLRPC.TL_error tL_error) {

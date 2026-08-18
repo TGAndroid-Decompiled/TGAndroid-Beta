@@ -373,8 +373,32 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r1, java.lang.CharSequence r2, int r3, int r4, float r5, int r6, int r7, int r8, android.graphics.Paint r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedEmojiSpan.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
+    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        if (this.recordPositions) {
+            this.spanDrawn = true;
+            float f2 = f + (this.measuredSize / 2.0f);
+            float f3 = i3 + ((i5 - i3) / 2.0f);
+            float f4 = this.lastDrawnCy;
+            if (f3 == f4 || f4 == 0.0f) {
+                float f5 = this.lastDrawnCx;
+                if (f2 != f5 && f5 != 0.0f) {
+                    if (animateChanges(f2, f3)) {
+                        return;
+                    }
+                }
+            } else if (animateChanges(f2, f3)) {
+                return;
+            }
+            if (lockPositionChanging) {
+                return;
+            }
+            if (f2 == this.lastDrawnCx && f3 == this.lastDrawnCy) {
+                return;
+            }
+            this.lastDrawnCx = f2;
+            this.lastDrawnCy = f3;
+            this.positionChanged = true;
+        }
     }
 
     public static void drawAnimatedEmojis(Canvas canvas, Layout layout, EmojiGroupedSpans emojiGroupedSpans, float f, List<SpoilerEffect> list, float f2, float f3, float f4, float f5) {
@@ -386,7 +410,6 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         if (canvas == null || layout == null || emojiGroupedSpans == null) {
             return;
         }
-        int i = 0;
         if (Emoji.emojiDrawingYOffset == 0.0f && f == 0.0f) {
             z = false;
         } else {
@@ -395,16 +418,12 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
             z = true;
         }
         long jCurrentTimeMillis = System.currentTimeMillis();
-        while (true) {
-            if (i >= emojiGroupedSpans.backgroundDrawingArray.size()) {
-                break;
-            }
+        for (int i = 0; i < emojiGroupedSpans.backgroundDrawingArray.size(); i++) {
             SpansChunk spansChunk = (SpansChunk) emojiGroupedSpans.backgroundDrawingArray.get(i);
             if (spansChunk.layout == layout) {
                 spansChunk.draw(canvas, list, jCurrentTimeMillis, f2, f3, f4, f5, colorFilter);
                 break;
             }
-            i++;
         }
         if (z) {
             canvas.restore();
@@ -677,13 +696,19 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
                 while (i10 < emojiGroupedSpans2.holders.size()) {
                     if (((AnimatedEmojiHolder) emojiGroupedSpans2.holders.get(i10)).layout == layout) {
                         AnimatedEmojiSpan animatedEmojiSpan = ((AnimatedEmojiHolder) emojiGroupedSpans2.holders.get(i10)).span;
-                        for (int i11 = 0; animatedEmojiSpanArr != null && i11 < animatedEmojiSpanArr.length; i11++) {
-                            if (animatedEmojiSpanArr[i11] == animatedEmojiSpan) {
+                        int i11 = 0;
+                        while (true) {
+                            if (animatedEmojiSpanArr != null && i11 < animatedEmojiSpanArr.length) {
+                                if (animatedEmojiSpanArr[i11] == animatedEmojiSpan) {
+                                    break;
+                                }
+                                i11++;
+                            } else {
+                                emojiGroupedSpans2.remove(i10);
+                                i10--;
                                 break;
                             }
                         }
-                        emojiGroupedSpans2.remove(i10);
-                        i10--;
                     }
                     i10++;
                 }
@@ -721,29 +746,36 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
     public static LongSparseArray<AnimatedEmojiDrawable> update(int i, View view, AnimatedEmojiSpan[] animatedEmojiSpanArr, LongSparseArray<AnimatedEmojiDrawable> longSparseArray) {
         int i2;
         AnimatedEmojiDrawable animatedEmojiDrawableMake;
-        int i3;
         if (animatedEmojiSpanArr == null) {
             return longSparseArray;
         }
         if (longSparseArray == null) {
             longSparseArray = new LongSparseArray<>();
         }
-        int i4 = 0;
-        while (i4 < longSparseArray.size()) {
-            long jKeyAt = longSparseArray.keyAt(i4);
+        int i3 = 0;
+        while (i3 < longSparseArray.size()) {
+            long jKeyAt = longSparseArray.keyAt(i3);
             AnimatedEmojiDrawable animatedEmojiDrawable = longSparseArray.get(jKeyAt);
             if (animatedEmojiDrawable == null) {
                 longSparseArray.remove(jKeyAt);
             } else {
-                while (i3 < animatedEmojiSpanArr.length) {
-                    AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[i3];
-                    i3 = (animatedEmojiSpan == null || animatedEmojiSpan.getDocumentId() != jKeyAt) ? i3 + 1 : 0;
+                int i4 = 0;
+                while (true) {
+                    if (i4 < animatedEmojiSpanArr.length) {
+                        AnimatedEmojiSpan animatedEmojiSpan = animatedEmojiSpanArr[i4];
+                        if (animatedEmojiSpan != null && animatedEmojiSpan.getDocumentId() == jKeyAt) {
+                            break;
+                        }
+                        i4++;
+                    } else {
+                        animatedEmojiDrawable.removeView(view);
+                        longSparseArray.remove(jKeyAt);
+                    }
                 }
-                animatedEmojiDrawable.removeView(view);
-                longSparseArray.remove(jKeyAt);
+                i3++;
             }
-            i4--;
-            i4++;
+            i3--;
+            i3++;
         }
         for (AnimatedEmojiSpan animatedEmojiSpan2 : animatedEmojiSpanArr) {
             if (animatedEmojiSpan2 != null && longSparseArray.get(animatedEmojiSpan2.getDocumentId()) == null) {
@@ -774,28 +806,35 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
 
     public static LongSparseArray<AnimatedEmojiDrawable> update(int i, View view, ArrayList<AnimatedEmojiSpan> arrayList, LongSparseArray<AnimatedEmojiDrawable> longSparseArray) {
         int i2;
-        int i3;
         if (arrayList == null) {
             return longSparseArray;
         }
         if (longSparseArray == null) {
             longSparseArray = new LongSparseArray<>();
         }
-        int i4 = 0;
-        while (i4 < longSparseArray.size()) {
-            long jKeyAt = longSparseArray.keyAt(i4);
+        int i3 = 0;
+        while (i3 < longSparseArray.size()) {
+            long jKeyAt = longSparseArray.keyAt(i3);
             AnimatedEmojiDrawable animatedEmojiDrawable = longSparseArray.get(jKeyAt);
             if (animatedEmojiDrawable == null) {
                 longSparseArray.remove(jKeyAt);
             } else {
-                while (i3 < arrayList.size()) {
-                    i3 = (arrayList.get(i3) == null || arrayList.get(i3).getDocumentId() != jKeyAt) ? i3 + 1 : 0;
+                int i4 = 0;
+                while (true) {
+                    if (i4 < arrayList.size()) {
+                        if (arrayList.get(i4) != null && arrayList.get(i4).getDocumentId() == jKeyAt) {
+                            break;
+                        }
+                        i4++;
+                    } else {
+                        animatedEmojiDrawable.addView(view);
+                        longSparseArray.remove(jKeyAt);
+                    }
                 }
-                animatedEmojiDrawable.addView(view);
-                longSparseArray.remove(jKeyAt);
+                i3++;
             }
-            i4--;
-            i4++;
+            i3--;
+            i3++;
         }
         for (int i5 = 0; i5 < arrayList.size(); i5++) {
             AnimatedEmojiSpan animatedEmojiSpan = arrayList.get(i5);

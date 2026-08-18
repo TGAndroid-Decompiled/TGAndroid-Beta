@@ -45,7 +45,8 @@ public class DialogsActivityStatusLayout extends View {
         int paddingTop = getPaddingTop();
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(paddingTop + currentActionBarHeight, 1073741824));
         this.statusBarRectF.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
-        this.telegramLogoRectF.set(AndroidUtilities.dp(12.0f), (paddingTop + (currentActionBarHeight / 2)) - AndroidUtilities.dp(15.0f), AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(30.0f), r0 + AndroidUtilities.dp(30.0f));
+        int iDp = (paddingTop + (currentActionBarHeight / 2)) - AndroidUtilities.dp(15.0f);
+        this.telegramLogoRectF.set(AndroidUtilities.dp(12.0f), iDp, AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(30.0f), iDp + AndroidUtilities.dp(30.0f));
     }
 
     @Override
@@ -57,7 +58,8 @@ public class DialogsActivityStatusLayout extends View {
     }
 
     public void justForTest() {
-        this.animatorStatusBarVisible.setValue(!r0.getValue(), true);
+        BoolAnimator boolAnimator = this.animatorStatusBarVisible;
+        boolAnimator.setValue(!boolAnimator.getValue(), true);
         AndroidUtilities.runOnUIThread(this.justForTestR, 3000L);
     }
 

@@ -32,7 +32,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.ClickableAnimatedTextView;
@@ -268,6 +267,7 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
             ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
             ArrayList<TLRPC.Chat> arrayList3 = new ArrayList<>();
             SQLiteCursor sQLiteCursor = null;
+            sQLiteCursor = null;
             try {
                 try {
                     if (i <= 0) {
@@ -275,46 +275,57 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
                     } else {
                         sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? AND mid <= ? ORDER BY mid DESC LIMIT 10", Long.valueOf(-j), Integer.valueOf(i));
                     }
-                } catch (Exception e) {
-                    e = e;
-                }
-            } catch (Throwable th) {
-                th = th;
-            }
-            try {
-                ArrayList<Long> arrayList4 = new ArrayList<>();
-                ArrayList arrayList5 = new ArrayList();
-                while (sQLiteCursorQueryFinalized.next()) {
-                    NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(z ? 1 : 0);
-                    if (nativeByteBufferByteBufferValue != null) {
-                        TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(z), z);
-                        messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue, j2);
-                        nativeByteBufferByteBufferValue.reuse();
-                        messageTLdeserialize.id = sQLiteCursorQueryFinalized.intValue(i3);
-                        messageTLdeserialize.dialog_id = -j;
-                        MessagesStorage.addUsersAndChatsFromMessage(messageTLdeserialize, arrayList4, arrayList5, null);
-                        arrayList.add(messageTLdeserialize);
-                        z = false;
-                        i3 = 1;
+                    try {
+                        ArrayList<Long> arrayList4 = new ArrayList<>();
+                        ArrayList arrayList5 = new ArrayList();
+                        while (sQLiteCursorQueryFinalized.next()) {
+                            NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(z ? 1 : 0);
+                            if (nativeByteBufferByteBufferValue != null) {
+                                TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(z), z);
+                                messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue, j2);
+                                nativeByteBufferByteBufferValue.reuse();
+                                messageTLdeserialize.id = sQLiteCursorQueryFinalized.intValue(i3);
+                                messageTLdeserialize.dialog_id = -j;
+                                MessagesStorage.addUsersAndChatsFromMessage(messageTLdeserialize, arrayList4, arrayList5, null);
+                                arrayList.add(messageTLdeserialize);
+                                z = false;
+                                i3 = 1;
+                            }
+                        }
+                        sQLiteCursorQueryFinalized.dispose();
+                        if (!arrayList.isEmpty()) {
+                            if (!arrayList4.isEmpty()) {
+                                messagesStorage.getUsersInternal(arrayList4, arrayList2);
+                            }
+                            if (!arrayList5.isEmpty()) {
+                                messagesStorage.getChatsInternal(TextUtils.join(",", arrayList5), arrayList3);
+                            }
+                        }
+                    } catch (Exception e) {
+                        e = e;
+                        sQLiteCursor = sQLiteCursorQueryFinalized;
+                        FileLog.e(e);
+                        if (sQLiteCursor != null) {
+                            sQLiteCursorQueryFinalized = sQLiteCursor;
+                        }
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$fetch$4(i2, arrayList, j, i, messagesStorage);
+                            }
+                        });
+                    } catch (Throwable th) {
+                        th = th;
+                        sQLiteCursor = sQLiteCursorQueryFinalized;
+                        if (sQLiteCursor != null) {
+                            sQLiteCursor.dispose();
+                        }
+                        throw th;
                     }
+                } catch (Exception e2) {
+                    e = e2;
                 }
                 sQLiteCursorQueryFinalized.dispose();
-                if (!arrayList.isEmpty()) {
-                    if (!arrayList4.isEmpty()) {
-                        messagesStorage.getUsersInternal(arrayList4, arrayList2);
-                    }
-                    if (!arrayList5.isEmpty()) {
-                        messagesStorage.getChatsInternal(TextUtils.join(",", arrayList5), arrayList3);
-                    }
-                }
-            } catch (Exception e2) {
-                e = e2;
-                sQLiteCursor = sQLiteCursorQueryFinalized;
-                FileLog.e(e);
-                if (sQLiteCursor != null) {
-                    sQLiteCursorQueryFinalized = sQLiteCursor;
-                    sQLiteCursorQueryFinalized.dispose();
-                }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -323,19 +334,7 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
                 });
             } catch (Throwable th2) {
                 th = th2;
-                sQLiteCursor = sQLiteCursorQueryFinalized;
-                if (sQLiteCursor != null) {
-                    sQLiteCursor.dispose();
-                }
-                throw th;
             }
-            sQLiteCursorQueryFinalized.dispose();
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$fetch$4(i2, arrayList, j, i, messagesStorage);
-                }
-            });
         }
 
         public void lambda$fetch$4(final int i, final ArrayList arrayList, final long j, int i2, final MessagesStorage messagesStorage) {
@@ -412,11 +411,9 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
                     TLRPC.Message message = arrayList2.get(arrayList2.size() - 1);
                     long j2 = message.grouped_id;
                     if (j2 != 0) {
-                        Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
-                        while (it.hasNext()) {
-                            TLRPC.Message next = it.next();
-                            if (next.grouped_id == j2) {
-                                this.messageObjects.add(new MessageObject(this.currentAccount, next, false, true));
+                        for (TLRPC.Message message2 : messages_messages.messages) {
+                            if (message2.grouped_id == j2) {
+                                this.messageObjects.add(new MessageObject(this.currentAccount, message2, false, true));
                             }
                         }
                     } else {

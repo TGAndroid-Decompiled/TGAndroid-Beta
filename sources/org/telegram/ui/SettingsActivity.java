@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
@@ -55,11 +54,9 @@ import com.google.android.exoplayer2.util.Consumer;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 import me.vkryl.android.animator.BoolAnimator;
@@ -80,6 +77,7 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -132,9 +130,6 @@ import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.voip.VoIPHelper;
-import org.telegram.ui.MainTabsActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -470,7 +465,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         this.topView.addView(frameLayout, LayoutHelper.createFrame(120, 120.0f, 49, 0.0f, 11.0f, 0.0f, 0.0f));
         this.avatarContainer.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws IOException {
+            public final void onClick(View view2) {
                 this.f$0.lambda$createView$3(view2);
             }
         });
@@ -575,7 +570,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         });
     }
 
-    public void lambda$createView$3(View view) throws IOException {
+    public void lambda$createView$3(View view) {
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).getClientUserId()));
         if (user == null) {
             user = UserConfig.getInstance(this.currentAccount).getCurrentUser();
@@ -689,8 +684,38 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         updateActionBarVisible(false, true);
     }
 
-    private void updateActionBarVisible(boolean r5, boolean r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SettingsActivity.updateActionBarVisible(boolean, boolean):void");
+    private void updateActionBarVisible(boolean z, boolean z2) {
+        boolean z3;
+        if (!this.searchItem.isSearchFieldVisible2()) {
+            if (this.listView.getChildCount() > 0) {
+                View childAt = this.listView.getChildAt(0);
+                z3 = this.listView.getChildAdapterPosition(childAt) > 0 || childAt.getY() + ((float) childAt.getHeight()) < ((float) this.actionBar.getHeight());
+            }
+        }
+        if (this.actionBarVisible != z3 || z) {
+            this.actionBarVisible = z3;
+            ValueAnimator valueAnimator = this.actionBarVisibleAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.actionBarVisibleAnimator = null;
+            }
+            if (!z2) {
+                this.actionBar.getTitlesContainer().setAlpha(z3 ? 1.0f : 0.0f);
+                this.actionBarBackground.setAlpha(z3 ? 1.0f : 0.0f);
+                return;
+            }
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.actionBar.getTitlesContainer().getAlpha(), z3 ? 1.0f : 0.0f);
+            this.actionBarVisibleAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    this.f$0.lambda$updateActionBarVisible$5(valueAnimator2);
+                }
+            });
+            this.actionBarVisibleAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.actionBarVisibleAnimator.setDuration(420L);
+            this.actionBarVisibleAnimator.start();
+        }
     }
 
     public void lambda$updateActionBarVisible$5(ValueAnimator valueAnimator) {
@@ -807,12 +832,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
         TLRPC.TL_attachMenuBots attachMenuBots = MediaDataController.getInstance(UserConfig.selectedAccount).getAttachMenuBots();
         if (attachMenuBots != null && (arrayList2 = attachMenuBots.bots) != null && !arrayList2.isEmpty()) {
-            Iterator<TLRPC.TL_attachMenuBot> it = attachMenuBots.bots.iterator();
-            while (it.hasNext()) {
-                TLRPC.TL_attachMenuBot next = it.next();
-                if (next.show_in_side_menu && next.bot_id == 1985737506) {
-                    UItem uItemOfBot = SettingCell.Factory.ofBot(next, -14965523, -15431455, R.drawable.settings_wallet);
-                    uItemOfBot.object = next;
+            for (TLRPC.TL_attachMenuBot tL_attachMenuBot : attachMenuBots.bots) {
+                if (tL_attachMenuBot.show_in_side_menu && tL_attachMenuBot.bot_id == 1985737506) {
+                    UItem uItemOfBot = SettingCell.Factory.ofBot(tL_attachMenuBot, -14965523, -15431455, R.drawable.settings_wallet);
+                    uItemOfBot.object = tL_attachMenuBot;
                     arrayList.add(uItemOfBot);
                 }
             }
@@ -998,11 +1021,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             case 23:
                 if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
                     AccountFrozenAlert.show(this.currentAccount);
-                    break;
                 } else {
                     Browser.openUrl(getContext(), LocaleController.getString(R.string.TelegramFeaturesUrl));
-                    break;
                 }
+                break;
         }
     }
 
@@ -1077,7 +1099,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         BulletinFactory.of(this).createCopyLinkBulletin().show();
     }
 
-    public String getVersionName() throws PackageManager.NameNotFoundException {
+    public String getVersionName() {
         String str;
         try {
             PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
@@ -1184,8 +1206,41 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             this.emojiStatusDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_profile_verifiedBackground, this.resourcesProvider)));
         }
 
-        public void set(int r10) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SettingsActivity.AccountCell.set(int):void");
+        public void set(int i) {
+            TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
+            this.avatarDrawable.setInfo(i, currentUser);
+            this.avatarView.getImageReceiver().setCurrentAccount(i);
+            this.avatarView.setForUserOrChat(currentUser, this.avatarDrawable);
+            this.textView.setText(UserObject.getUserName(currentUser));
+            this.botDrawable.setCurrentAccount(i);
+            this.emojiStatusDrawable.setCurrentAccount(i);
+            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.botDrawable;
+            int i2 = Theme.key_profile_verifiedBackground;
+            swapAnimatedEmojiDrawable.setColor(Integer.valueOf(Theme.getColor(i2, this.resourcesProvider)));
+            if (currentUser != null) {
+                long j = currentUser.bot_verification_icon;
+                if (j != 0) {
+                    this.botDrawable.set(j, false);
+                } else {
+                    this.botDrawable.set((Drawable) null, false);
+                }
+            } else {
+                this.botDrawable.set((Drawable) null, false);
+            }
+            Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
+            this.emojiStatusDrawable.setColor(Integer.valueOf(Theme.getColor(i2, this.resourcesProvider)));
+            if (emojiStatusDocumentId != null) {
+                this.emojiStatusDrawable.set(emojiStatusDocumentId.longValue(), false);
+            } else if (currentUser != null && currentUser.premium) {
+                this.emojiStatusDrawable.set(getContext().getResources().getDrawable(R.drawable.msg_premium_liststar).mutate(), false);
+            } else {
+                this.emojiStatusDrawable.set((Drawable) null, false);
+            }
+            this.textView.setLeftDrawable(!this.botDrawable.isEmpty() ? this.botDrawable : null);
+            this.textView.setRightDrawable(this.emojiStatusDrawable.isEmpty() ? null : this.emojiStatusDrawable);
+            int mainUnreadCount = MessagesStorage.getInstance(i).getMainUnreadCount();
+            this.counterView.setVisibility(mainUnreadCount <= 0 ? 8 : 0);
+            this.counterView.setText(LocaleController.formatNumber(mainUnreadCount, ','));
         }
 
         @Override
@@ -1331,7 +1386,14 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.mini ? 44.0f : this.twoLines ? 60.0f : 50.0f), 1073741824));
+            float f;
+            int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+            if (this.mini) {
+                f = 44.0f;
+            } else {
+                f = this.twoLines ? 60.0f : 50.0f;
+            }
+            super.onMeasure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f), 1073741824));
         }
 
         public static class Background extends Drawable {
@@ -1426,7 +1488,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 uItemOfFactory.text = charSequence;
                 uItemOfFactory.subtext = charSequence2;
                 uItemOfFactory.textValue = charSequence3;
-                uItemOfFactory.longValue = (i2 & 4294967295L) | (i3 << 32);
+                uItemOfFactory.longValue = (((long) i2) & 4294967295L) | (((long) i3) << 32);
                 return uItemOfFactory;
             }
 
@@ -1436,7 +1498,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 uItemOfFactory.object = tL_attachMenuBot;
                 uItemOfFactory.iconResId = i3;
                 uItemOfFactory.text = tL_attachMenuBot.short_name;
-                uItemOfFactory.longValue = (i & 4294967295L) | (i2 << 32);
+                uItemOfFactory.longValue = (((long) i) & 4294967295L) | (((long) i2) << 32);
                 return uItemOfFactory;
             }
         }
@@ -1534,8 +1596,17 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         String string;
         int i2;
         String str2;
+        String str3;
+        String str4;
         String string2;
+        String str5;
+        String str6;
+        String str7;
+        String str8;
         String string3;
+        String str9;
+        String str10;
+        String str11;
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), this.resourceProvider);
         builder.setTitle(LocaleController.getString(R.string.DebugMenu));
         String string4 = LocaleController.getString(R.string.DebugMenuImportContacts);
@@ -1566,41 +1637,82 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         String string10 = LocaleController.getString(R.string.DebugMenuCallSettings);
         String string11 = (BuildVars.DEBUG_PRIVATE_VERSION || ApplicationLoader.isStandaloneBuild() || ApplicationLoader.isBetaBuild()) ? LocaleController.getString("DebugMenuCheckAppUpdate", R.string.DebugMenuCheckAppUpdate) : null;
         String string12 = LocaleController.getString("DebugMenuReadAllDialogs", R.string.DebugMenuReadAllDialogs);
-        String str3 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.disableVoiceAudioEffects ? "Enable voip audio effects" : "Disable voip audio effects" : null;
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            str3 = SharedConfig.disableVoiceAudioEffects ? "Enable voip audio effects" : "Disable voip audio effects";
+        } else {
+            str3 = null;
+        }
         boolean z = BuildVars.DEBUG_PRIVATE_VERSION;
-        String str4 = z ? "Clean app update" : null;
-        String str5 = z ? "Reset suggestions" : null;
+        String str12 = z ? "Clean app update" : null;
+        String str13 = z ? "Reset suggestions" : null;
         String string13 = z ? LocaleController.getString(R.string.DebugMenuClearWebViewCache) : null;
         String string14 = LocaleController.getString(R.string.DebugMenuClearWebViewCookies);
         String string15 = LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug);
-        String str6 = (AndroidUtilities.isTabletInternal() && BuildVars.DEBUG_PRIVATE_VERSION) ? SharedConfig.forceDisableTabletMode ? "Enable tablet mode" : "Disable tablet mode" : null;
+        if (AndroidUtilities.isTabletInternal() && BuildVars.DEBUG_PRIVATE_VERSION) {
+            str4 = SharedConfig.forceDisableTabletMode ? "Enable tablet mode" : "Disable tablet mode";
+        } else {
+            str4 = null;
+        }
         if (BuildVars.DEBUG_PRIVATE_VERSION) {
             string2 = LocaleController.getString(SharedConfig.isFloatingDebugActive ? R.string.FloatingDebugDisable : R.string.FloatingDebugEnable);
         } else {
             string2 = null;
         }
         boolean z2 = BuildVars.DEBUG_PRIVATE_VERSION;
-        String str7 = z2 ? "Force remove premium suggestions" : null;
-        String str8 = z2 ? "Share device info" : null;
-        String str9 = z2 ? "Force performance class" : null;
-        String str10 = (!z2 || InstantCameraView.allowBigSizeCameraDebug()) ? null : !SharedConfig.bigCameraForRound ? "Force big camera for round" : "Disable big camera for round";
+        String str14 = z2 ? "Force remove premium suggestions" : null;
+        String str15 = z2 ? "Share device info" : null;
+        String str16 = z2 ? "Force performance class" : null;
+        if (!z2 || InstantCameraView.allowBigSizeCameraDebug()) {
+            str5 = null;
+        } else {
+            str5 = !SharedConfig.bigCameraForRound ? "Force big camera for round" : "Disable big camera for round";
+        }
         String string16 = LocaleController.getString(DualCameraView.dualAvailableStatic(getContext()) ? "DebugMenuDualOff" : "DebugMenuDualOn");
-        String str11 = BuildVars.DEBUG_VERSION ? SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories" : null;
-        String str12 = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer" : null;
-        String str13 = !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment";
-        String str14 = BuildVars.DEBUG_PRIVATE_VERSION ? "Update Attach Bots" : null;
-        String str15 = !SharedConfig.isUsingCamera2(this.currentAccount) ? "Use Camera 2 API" : "Use old Camera 1 API";
-        String str16 = BuildVars.DEBUG_VERSION ? "Clear Mini Apps Permissions and Files" : null;
-        String str17 = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
-        String str18 = (!SharedConfig.canBlurChat() || Build.VERSION.SDK_INT < 31) ? null : SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
-        String str19 = SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors";
-        String str20 = SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug";
+        if (BuildVars.DEBUG_VERSION) {
+            str6 = SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories";
+        } else {
+            str6 = null;
+        }
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            str7 = SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer";
+        } else {
+            str7 = null;
+        }
+        String str17 = !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment";
+        String str18 = BuildVars.DEBUG_PRIVATE_VERSION ? "Update Attach Bots" : null;
+        String str19 = !SharedConfig.isUsingCamera2(this.currentAccount) ? "Use Camera 2 API" : "Use old Camera 1 API";
+        String str20 = BuildVars.DEBUG_VERSION ? "Clear Mini Apps Permissions and Files" : null;
+        String str21 = BuildVars.DEBUG_PRIVATE_VERSION ? "Clear all login tokens" : null;
+        if (!SharedConfig.canBlurChat() || Build.VERSION.SDK_INT < 31) {
+            str8 = null;
+        } else {
+            str8 = SharedConfig.useNewBlur ? "back to cpu blur" : "use new gpu blur";
+        }
+        String str22 = SharedConfig.adaptableColorInBrowser ? "Disabled adaptive browser colors" : "Enable adaptive browser colors";
+        String str23 = SharedConfig.debugVideoQualities ? "Disable video qualities debug" : "Enable video qualities debug";
         if (Build.VERSION.SDK_INT >= 28) {
             string3 = LocaleController.getString(SharedConfig.useSystemBoldFont ? R.string.DebugMenuDontUseSystemBoldFont : R.string.DebugMenuUseSystemBoldFont);
         } else {
             string3 = null;
         }
-        builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str4, str5, string13, string14, string15, str6, string2, str7, str8, str9, str10, string16, str11, str12, str13, str14, str15, str16, str17, str18, str19, str20, string3, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs", "Make Memory Dump", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader" : null, SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.shadowsInSections ? "disable shadows in settings" : "enable shadows in settings" : null, BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.debugViewMetrics ? "disable debug view metrics" : "enable debug view metrics" : null}, new DialogInterface.OnClickListener() {
+        String str24 = !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs";
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            str9 = SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader";
+        } else {
+            str9 = null;
+        }
+        String str25 = SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics";
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            str10 = SharedConfig.shadowsInSections ? "disable shadows in settings" : "enable shadows in settings";
+        } else {
+            str10 = null;
+        }
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            str11 = SharedConfig.debugViewMetrics ? "disable debug view metrics" : "enable debug view metrics";
+        } else {
+            str11 = null;
+        }
+        builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str12, str13, string13, string14, string15, str4, string2, str14, str15, str16, str5, string16, str6, str7, str17, str18, str19, str20, str21, str8, str22, str23, string3, "Reload app config", str24, "Make Memory Dump", str9, str25, str10, str11}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 this.f$0.lambda$openDebugMenu$21(dialogInterface, i3);
@@ -1611,9 +1723,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$openDebugMenu$21(DialogInterface dialogInterface, int i) {
-        int i2;
-        int i3;
-        int i4 = 0;
+        int i2 = 0;
         if (i == 0) {
             getUserConfig().syncContacts = true;
             getUserConfig().saveConfig(false);
@@ -1797,8 +1907,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     sb3.append(iMeasureDevicePerformanceClass == 0 ? " (measured)" : "");
                     builder.setItems(new CharSequence[]{spannableStringBuilderReplaceTags, spannableStringBuilderReplaceTags2, AndroidUtilities.replaceTags(sb3.toString())}, new DialogInterface.OnClickListener() {
                         @Override
-                        public final void onClick(DialogInterface dialogInterface2, int i5) {
-                            SettingsActivity.lambda$openDebugMenu$20(iMeasureDevicePerformanceClass, dialogInterface2, i5);
+                        public final void onClick(DialogInterface dialogInterface2, int i3) {
+                            SettingsActivity.lambda$openDebugMenu$20(iMeasureDevicePerformanceClass, dialogInterface2, i3);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1817,9 +1927,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 }
                 if (i == 24) {
                     SharedConfig.toggleSurfaceInStories();
-                    while (i4 < getParentLayout().getFragmentStack().size()) {
-                        ((BaseFragment) getParentLayout().getFragmentStack().get(i4)).clearSheets();
-                        i4++;
+                    while (i2 < getParentLayout().getFragmentStack().size()) {
+                        ((BaseFragment) getParentLayout().getFragmentStack().get(i2)).clearSheets();
+                        i2++;
                     }
                     return;
                 }
@@ -1907,7 +2017,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 }
                 return;
             }
-            int i5 = ConnectionsManager.CPU_COUNT;
+            int i3 = ConnectionsManager.CPU_COUNT;
             int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryClass();
             StringBuilder sb4 = new StringBuilder();
             long j = 0;
@@ -1918,25 +2028,20 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             long jLongValue3 = 0;
             long j4 = 0;
             long jLongValue4 = 0;
-            while (i4 < i5) {
-                Long sysInfoLong = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i4 + "/cpufreq/cpuinfo_min_freq");
-                Long sysInfoLong2 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i4 + "/cpufreq/cpuinfo_cur_freq");
-                Long sysInfoLong3 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i4 + "/cpufreq/cpuinfo_max_freq");
-                Long sysInfoLong4 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i4 + "/cpu_capacity");
+            while (i2 < i3) {
+                Long sysInfoLong = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i2 + "/cpufreq/cpuinfo_min_freq");
+                Long sysInfoLong2 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i2 + "/cpufreq/cpuinfo_cur_freq");
+                Long sysInfoLong3 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i2 + "/cpufreq/cpuinfo_max_freq");
+                Long sysInfoLong4 = AndroidUtilities.getSysInfoLong("/sys/devices/system/cpu/cpu" + i2 + "/cpu_capacity");
                 sb4.append("#");
-                sb4.append(i4);
+                sb4.append(i2);
                 sb4.append(" ");
                 if (sysInfoLong != null) {
                     sb4.append("min=");
-                    i2 = i5;
-                    i3 = memoryClass;
                     sb4.append(sysInfoLong.longValue() / 1000);
                     sb4.append(" ");
                     jLongValue += sysInfoLong.longValue() / 1000;
                     j++;
-                } else {
-                    i2 = i5;
-                    i3 = memoryClass;
                 }
                 if (sysInfoLong2 != null) {
                     sb4.append("cur=");
@@ -1960,12 +2065,12 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     j4++;
                 }
                 sb4.append("\n");
-                i4++;
-                i5 = i2;
-                memoryClass = i3;
+                i2++;
+                i3 = i3;
+                memoryClass = memoryClass;
             }
-            int i6 = i5;
-            int i7 = memoryClass;
+            int i4 = i3;
+            int i5 = memoryClass;
             StringBuilder sb5 = new StringBuilder();
             sb5.append(Build.MANUFACTURER);
             sb5.append(", ");
@@ -1976,10 +2081,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             sb5.append(Build.DEVICE);
             sb5.append(") ");
             sb5.append(" (android ");
-            int i8 = Build.VERSION.SDK_INT;
-            sb5.append(i8);
+            int i6 = Build.VERSION.SDK_INT;
+            sb5.append(i6);
             sb5.append(")\n");
-            if (i8 >= 31) {
+            if (i6 >= 31) {
                 sb5.append("SoC: ");
                 sb5.append(Build.SOC_MANUFACTURER);
                 sb5.append(", ");
@@ -2012,7 +2117,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             sb5.append(deviceConfigurationInfo.getGlEsVersion());
             sb5.append("\n");
             sb5.append("Memory: class=");
-            sb5.append(AndroidUtilities.formatFileSize(i7 * 1048576));
+            sb5.append(AndroidUtilities.formatFileSize(((long) i5) * 1048576));
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryInfo(memoryInfo);
             sb5.append(", total=");
@@ -2029,12 +2134,12 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             sb5.append(SharedConfig.performanceClassName(SharedConfig.getDevicePerformanceClass()));
             sb5.append(", measured: ");
             sb5.append(SharedConfig.performanceClassName(SharedConfig.measureDevicePerformanceClass()));
-            if (i8 >= 31) {
+            if (i6 >= 31) {
                 sb5.append(", suggest=");
                 sb5.append(Build.VERSION.MEDIA_PERFORMANCE_CLASS);
             }
             sb5.append("\n");
-            sb5.append(i6);
+            sb5.append(i4);
             sb5.append(" CPUs");
             if (j > 0) {
                 sb5.append(", avgMinFreq=");
@@ -2122,14 +2227,10 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             for (int i = 0; i < codecCount; i++) {
                 MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i);
                 if (codecInfoAt != null && (supportedTypes = codecInfoAt.getSupportedTypes()) != null) {
-                    int i2 = 0;
-                    while (true) {
-                        if (i2 >= supportedTypes.length) {
-                            break;
-                        } else if (supportedTypes[i2].equals(str)) {
+                    for (String str2 : supportedTypes) {
+                        if (str2.equals(str)) {
                             (codecInfoAt.isEncoder() ? arrayList2 : arrayList).add(Integer.valueOf(i));
-                        } else {
-                            i2++;
+                            break;
                         }
                     }
                 }
@@ -2144,11 +2245,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             sb.append(" ");
             sb.append(str.substring(6));
             sb.append(" codecs:\n");
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                if (i3 > 0) {
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                if (i2 > 0) {
                     sb.append("\n");
                 }
-                MediaCodecInfo codecInfoAt2 = MediaCodecList.getCodecInfoAt(((Integer) arrayList.get(i3)).intValue());
+                MediaCodecInfo codecInfoAt2 = MediaCodecList.getCodecInfoAt(((Integer) arrayList.get(i2)).intValue());
                 sb.append("{d} ");
                 sb.append(codecInfoAt2.getName());
                 sb.append(" (");
@@ -2168,11 +2269,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 sb.append(capabilitiesForType.getMaxSupportedInstances());
                 sb.append(")");
             }
-            for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-                if (i4 > 0 || !arrayList.isEmpty()) {
+            for (int i3 = 0; i3 < arrayList2.size(); i3++) {
+                if (i3 > 0 || !arrayList.isEmpty()) {
                     sb.append("\n");
                 }
-                MediaCodecInfo codecInfoAt3 = MediaCodecList.getCodecInfoAt(((Integer) arrayList2.get(i4)).intValue());
+                MediaCodecInfo codecInfoAt3 = MediaCodecList.getCodecInfoAt(((Integer) arrayList2.get(i3)).intValue());
                 sb.append("{e} ");
                 sb.append(codecInfoAt3.getName());
                 sb.append(" (");

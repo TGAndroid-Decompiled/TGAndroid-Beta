@@ -14,7 +14,10 @@ public abstract class AtomicOp extends OpDescriptor {
     private final Object decide(Object obj) {
         Object obj2 = _consensus$volatile$FU.get(this);
         Object obj3 = AtomicKt.NO_DECISION;
-        return obj2 != obj3 ? obj2 : AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_consensus$volatile$FU, this, obj3, obj) ? obj : _consensus$volatile$FU.get(this);
+        if (obj2 != obj3) {
+            return obj2;
+        }
+        return AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_consensus$volatile$FU, this, obj3, obj) ? obj : _consensus$volatile$FU.get(this);
     }
 
     @Override

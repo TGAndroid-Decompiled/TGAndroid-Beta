@@ -1,7 +1,6 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -17,9 +16,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.io.IOException;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -78,7 +75,8 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.invalidateRunnable = new Runnable() {
             @Override
             public void run() {
-                SharingLiveLocationCell.this.invalidate(((int) r0.rect.left) - 5, ((int) SharingLiveLocationCell.this.rect.top) - 5, ((int) SharingLiveLocationCell.this.rect.right) + 5, ((int) SharingLiveLocationCell.this.rect.bottom) + 5);
+                SharingLiveLocationCell sharingLiveLocationCell = SharingLiveLocationCell.this;
+                sharingLiveLocationCell.invalidate(((int) sharingLiveLocationCell.rect.left) - 5, ((int) SharingLiveLocationCell.this.rect.top) - 5, ((int) SharingLiveLocationCell.this.rect.right) + 5, ((int) SharingLiveLocationCell.this.rect.bottom) + 5);
                 AndroidUtilities.runOnUIThread(SharingLiveLocationCell.this.invalidateRunnable, 1000L);
             }
         };
@@ -142,8 +140,39 @@ public class SharingLiveLocationCell extends FrameLayout {
         AndroidUtilities.runOnUIThread(this.invalidateRunnable);
     }
 
-    public void setDialog(long r4, org.telegram.tgnet.TLRPC.TL_channelLocation r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharingLiveLocationCell.setDialog(long, org.telegram.tgnet.TLRPC$TL_channelLocation):void");
+    public void setDialog(long j, TLRPC.TL_channelLocation tL_channelLocation) {
+        String userName;
+        this.currentAccount = UserConfig.selectedAccount;
+        String str = tL_channelLocation.address;
+        this.avatarDrawable = null;
+        if (DialogObject.isUserDialog(j)) {
+            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+            if (user != null) {
+                this.avatarDrawable = new AvatarDrawable(user);
+                userName = UserObject.getUserName(user);
+                this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
+            } else {
+                userName = "";
+            }
+        } else {
+            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+            if (chat != null) {
+                AvatarDrawable avatarDrawable = new AvatarDrawable(chat);
+                this.avatarDrawable = avatarDrawable;
+                String str2 = chat.title;
+                this.avatarImageView.setForUserOrChat(chat, avatarDrawable);
+                userName = str2;
+            } else {
+                userName = "";
+            }
+        }
+        this.nameTextView.setText(userName);
+        this.location.setLatitude(tL_channelLocation.geo_point.lat);
+        this.location.setLongitude(tL_channelLocation.geo_point._long);
+        TextView textView = this.distanceTextView;
+        this.distanceTextViewSingle = true;
+        textView.setSingleLine(true);
+        this.distanceTextView.setText(str);
     }
 
     private CharSequence getName(final double d, final double d2) {
@@ -154,7 +183,7 @@ public class SharingLiveLocationCell extends FrameLayout {
             this.loading = true;
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.lambda$getName$1(d, d2);
                 }
             });
@@ -162,7 +191,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         return this.lastName;
     }
 
-    public void lambda$getName$1(final double d, final double d2) throws IOException {
+    public void lambda$getName$1(final double d, final double d2) {
         try {
             List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocation(d, d2, 1);
             if (fromLocation.isEmpty()) {
@@ -176,14 +205,12 @@ public class SharingLiveLocationCell extends FrameLayout {
             } else {
                 Address address = fromLocation.get(0);
                 StringBuilder sb = new StringBuilder();
-                HashSet hashSet = new HashSet();
+                HashSet<String> hashSet = new HashSet();
                 hashSet.add(address.getSubAdminArea());
                 hashSet.add(address.getAdminArea());
                 hashSet.add(address.getLocality());
                 hashSet.add(address.getCountryName());
-                Iterator it = hashSet.iterator();
-                while (it.hasNext()) {
-                    String str = (String) it.next();
+                for (String str : hashSet) {
                     if (!TextUtils.isEmpty(str)) {
                         if (sb.length() > 0) {
                             sb.append(", ");
@@ -216,7 +243,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.nameTextView.setText(charSequenceReplaceEmoji);
     }
 
-    public void setDialog(MessageObject messageObject, Location location, boolean z) throws Resources.NotFoundException {
+    public void setDialog(MessageObject messageObject, Location location, boolean z) {
         CharSequence name;
         TLRPC.Message message;
         if (messageObject != null && (message = messageObject.messageOwner) != null && message.local_id == -1) {
@@ -339,8 +366,9 @@ public class SharingLiveLocationCell extends FrameLayout {
         IMapsProvider.LatLng position = liveLocation.marker.getPosition();
         this.location.setLatitude(position.latitude);
         this.location.setLongitude(position.longitude);
-        int i = liveLocation.object.edit_date;
-        String locationUpdateDate = LocaleController.formatLocationUpdateDate(i != 0 ? i : r6.date);
+        TLRPC.Message message = liveLocation.object;
+        int i = message.edit_date;
+        String locationUpdateDate = LocaleController.formatLocationUpdateDate(i != 0 ? i : message.date);
         if (location != null) {
             this.distanceTextView.setText(String.format("%s - %s", locationUpdateDate, LocaleController.formatDistance(this.location.distanceTo(location), 0)));
         } else {

@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -58,9 +57,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CloseProgressDrawable2;
@@ -325,11 +321,12 @@ public class ActionBarMenuItem extends FrameLayout {
                 getLocationOnScreen(this.location);
                 float x = motionEvent.getX() + this.location[0];
                 float y = motionEvent.getY();
-                float f = y + r5[1];
-                this.popupLayout.getLocationOnScreen(this.location);
                 int[] iArr = this.location;
-                float f2 = x - iArr[0];
-                float f3 = f - iArr[1];
+                float f = y + iArr[1];
+                this.popupLayout.getLocationOnScreen(iArr);
+                int[] iArr2 = this.location;
+                float f2 = x - iArr2[0];
+                float f3 = f - iArr2[1];
                 this.selectedMenuView = null;
                 for (int i = 0; i < this.popupLayout.getItemsCount(); i++) {
                     View itemAt = this.popupLayout.getItemAt(i);
@@ -824,7 +821,7 @@ public class ActionBarMenuItem extends FrameLayout {
     }
 
     public void toggleSubMenu(final View view, View view2) {
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout;
+        View view3;
         View childAt;
         ActionBar actionBar;
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
@@ -853,7 +850,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 if (this.popupLayout.getParent() != null) {
                     ((ViewGroup) this.popupLayout.getParent()).removeView(this.popupLayout);
                 }
-                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.popupLayout;
+                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.popupLayout;
                 if (view != null) {
                     LinearLayout linearLayout = new LinearLayout(getContext()) {
                         @Override
@@ -888,15 +885,15 @@ public class ActionBarMenuItem extends FrameLayout {
                     linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2));
                     linearLayout.addView(this.popupLayout, LayoutHelper.createLinear(-2, -2, 0, 0, -10, 0, 0));
                     this.popupLayout.setTopView(frameLayout);
-                    actionBarPopupWindowLayout = linearLayout;
+                    view3 = linearLayout;
                 } else {
-                    actionBarPopupWindowLayout2.setTopView(null);
-                    actionBarPopupWindowLayout = actionBarPopupWindowLayout2;
+                    actionBarPopupWindowLayout.setTopView(null);
+                    view3 = actionBarPopupWindowLayout;
                 }
                 if (this.subMenuFactory != null) {
                     ItemOptions.setGapBackgroundColor(this.popupLayout, Theme.multAlpha(getThemedColor(Theme.key_actionBarDefaultSubmenuItem), 0.06f));
                 }
-                ActionBarPopupWindow actionBarPopupWindow3 = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
+                ActionBarPopupWindow actionBarPopupWindow3 = new ActionBarPopupWindow(view3, -2, -2);
                 this.popupWindow = actionBarPopupWindow3;
                 if (this.animationEnabled) {
                     actionBarPopupWindow3.setAnimationStyle(0);
@@ -914,11 +911,11 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
                 this.popupWindow.setInputMethodMode(2);
                 this.popupWindow.setSoftInputMode(0);
-                actionBarPopupWindowLayout.setFocusableInTouchMode(true);
-                actionBarPopupWindowLayout.setOnKeyListener(new View.OnKeyListener() {
+                view3.setFocusableInTouchMode(true);
+                view3.setOnKeyListener(new View.OnKeyListener() {
                     @Override
-                    public final boolean onKey(View view3, int i, KeyEvent keyEvent) {
-                        return this.f$0.lambda$toggleSubMenu$9(view3, i, keyEvent);
+                    public final boolean onKey(View view4, int i, KeyEvent keyEvent) {
+                        return this.f$0.lambda$toggleSubMenu$9(view4, i, keyEvent);
                     }
                 });
                 this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -927,14 +924,14 @@ public class ActionBarMenuItem extends FrameLayout {
                         this.f$0.lambda$toggleSubMenu$10();
                     }
                 });
-                actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x - AndroidUtilities.dp(40.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
+                view3.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x - AndroidUtilities.dp(40.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
                 if (frameLayout != null && frameLayout.getLayoutParams() != null && this.popupLayout.getSwipeBack() != null && (childAt = this.popupLayout.getSwipeBack().getChildAt(0)) != null && childAt.getMeasuredWidth() > 0) {
                     frameLayout.getLayoutParams().width = childAt.getMeasuredWidth() + AndroidUtilities.dp(16.0f);
                 }
                 this.measurePopup = false;
                 this.processedPopupClick = false;
                 this.popupWindow.setFocusable(true);
-                updateOrShowPopup(true, actionBarPopupWindowLayout.getMeasuredWidth() == 0);
+                updateOrShowPopup(true, view3.getMeasuredWidth() == 0);
                 this.popupLayout.updateRadialSelectors();
                 if (this.popupLayout.getSwipeBack() != null) {
                     this.popupLayout.getSwipeBack().closeForeground(false);
@@ -1122,7 +1119,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return true;
     }
 
-    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) throws Resources.NotFoundException {
+    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
         if (mediaFilterData.removable) {
             this.currentSearchFilters.remove(mediaFilterData);
             int i = this.selectedFilterIndex;
@@ -1142,7 +1139,7 @@ public class ActionBarMenuItem extends FrameLayout {
         onFiltersChanged();
     }
 
-    public void clearSearchFilters() throws Resources.NotFoundException {
+    public void clearSearchFilters() {
         int i = 0;
         while (i < this.currentSearchFilters.size()) {
             if (((FiltersView.MediaFilterData) this.currentSearchFilters.get(i)).removable) {
@@ -1154,7 +1151,7 @@ public class ActionBarMenuItem extends FrameLayout {
         onFiltersChanged();
     }
 
-    public void onFiltersChanged() throws Resources.NotFoundException {
+    public void onFiltersChanged() {
         final SearchFilterView searchFilterView;
         boolean zIsEmpty = this.currentSearchFilters.isEmpty();
         ArrayList arrayList = new ArrayList(this.currentSearchFilters);
@@ -1234,7 +1231,7 @@ public class ActionBarMenuItem extends FrameLayout {
             searchFilterView.setData(mediaFilterData);
             searchFilterView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws Resources.NotFoundException {
+                public final void onClick(View view) {
                     this.f$0.lambda$onFiltersChanged$12(searchFilterView, view);
                 }
             });
@@ -1268,7 +1265,7 @@ public class ActionBarMenuItem extends FrameLayout {
         checkClearButton();
     }
 
-    public void lambda$onFiltersChanged$12(SearchFilterView searchFilterView, View view) throws Resources.NotFoundException {
+    public void lambda$onFiltersChanged$12(SearchFilterView searchFilterView, View view) {
         int iIndexOf = this.currentSearchFilters.indexOf(searchFilterView.getFilter());
         if (this.selectedFilterIndex != iIndexOf) {
             this.selectedFilterIndex = iIndexOf;
@@ -1572,7 +1569,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
 
                 @Override
-                public boolean onKeyDown(int i2, KeyEvent keyEvent) throws Resources.NotFoundException {
+                public boolean onKeyDown(int i2, KeyEvent keyEvent) {
                     if (i2 == 67 && ActionBarMenuItem.this.searchField.length() == 0 && ((ActionBarMenuItem.this.searchFieldCaption.getVisibility() == 0 && ActionBarMenuItem.this.searchFieldCaption.length() > 0) || ActionBarMenuItem.this.hasRemovableFilters())) {
                         if (ActionBarMenuItem.this.hasRemovableFilters()) {
                             FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) ActionBarMenuItem.this.currentSearchFilters.get(ActionBarMenuItem.this.currentSearchFilters.size() - 1);
@@ -1648,7 +1645,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) throws Resources.NotFoundException {
+                public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     if (ActionBarMenuItem.this.ignoreOnTextChange) {
                         ActionBarMenuItem.this.ignoreOnTextChange = false;
                         return;
@@ -1735,7 +1732,7 @@ public class ActionBarMenuItem extends FrameLayout {
             this.clearButton.setScaleY(0.0f);
             this.clearButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws Resources.NotFoundException {
+                public final void onClick(View view) {
                     this.f$0.lambda$checkCreateSearchField$14(view);
                 }
             });
@@ -1764,7 +1761,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return false;
     }
 
-    public void lambda$checkCreateSearchField$14(View view) throws Resources.NotFoundException {
+    public void lambda$checkCreateSearchField$14(View view) {
         ActionBarMenuItemSearchListener actionBarMenuItemSearchListener;
         if (this.searchField.length() != 0) {
             this.searchField.setText("");
@@ -2334,7 +2331,7 @@ public class ActionBarMenuItem extends FrameLayout {
             setSelectedForDelete(false);
         }
 
-        public SearchFilterView(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) throws Resources.NotFoundException {
+        public SearchFilterView(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
             super(context);
             this.animatorIsSelected = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
             this.removeSelectionRunnable = new Runnable() {
@@ -2362,7 +2359,7 @@ public class ActionBarMenuItem extends FrameLayout {
             updateColors();
         }
 
-        public void setGlass() throws Resources.NotFoundException {
+        public void setGlass() {
             this.glass = true;
             updateColors();
         }
@@ -2385,7 +2382,7 @@ public class ActionBarMenuItem extends FrameLayout {
             super.dispatchDraw(canvas);
         }
 
-        public void updateColors() throws Resources.NotFoundException {
+        public void updateColors() {
             int themedColor;
             float floatValue = this.animatorIsSelected.getFloatValue();
             if (this.glass) {
@@ -2422,7 +2419,7 @@ public class ActionBarMenuItem extends FrameLayout {
             return this.animatorIsSelected.getValue();
         }
 
-        public void setData(FiltersView.MediaFilterData mediaFilterData) throws Resources.NotFoundException {
+        public void setData(FiltersView.MediaFilterData mediaFilterData) {
             this.data = mediaFilterData;
             this.isCommunity = false;
             this.titleView.setText(mediaFilterData.getTitle());
@@ -2501,7 +2498,7 @@ public class ActionBarMenuItem extends FrameLayout {
         }
 
         @Override
-        public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) throws Resources.NotFoundException {
+        public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
             if (i == 0) {
                 updateColors();
                 invalidate();

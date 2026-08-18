@@ -174,6 +174,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
     }
 
     public void lambda$createView$4(Context context, View view) {
+        String pluralString;
         if (this.button.isEnabled()) {
             FrameLayout frameLayout = new FrameLayout(context);
             TableView tableView = new TableView(context, this.resourceProvider);
@@ -186,7 +187,12 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             tableView.addRow(LocaleController.getString(R.string.AffiliateProgramCommission), percents(this.program.commission_permille));
             String string = LocaleController.getString(R.string.AffiliateProgramDuration);
             int i = this.program.duration_months;
-            tableView.addRow(string, i <= 0 ? LocaleController.getString(R.string.Infinity) : (i < 12 || i % 12 != 0) ? LocaleController.formatPluralString("Months", i, new Object[0]) : LocaleController.formatPluralString("Years", i / 12, new Object[0]));
+            if (i <= 0) {
+                pluralString = LocaleController.getString(R.string.Infinity);
+            } else {
+                pluralString = (i < 12 || i % 12 != 0) ? LocaleController.formatPluralString("Months", i, new Object[0]) : LocaleController.formatPluralString("Years", i / 12, new Object[0]);
+            }
+            tableView.addRow(string, pluralString);
             frameLayout.addView(tableView, LayoutHelper.createFrame(-1, -2.0f, 119, 24.0f, 0.0f, 24.0f, 0.0f));
             new AlertDialog.Builder(context, this.resourceProvider).setTitle(LocaleController.getString(R.string.AffiliateProgramAlert)).setMessage(LocaleController.getString(this.new_program ? R.string.AffiliateProgramStartAlertText : R.string.AffiliateProgramUpdateAlertText)).setView(frameLayout).setPositiveButton(LocaleController.getString(this.new_program ? R.string.AffiliateProgramStartAlertButton : R.string.AffiliateProgramUpdateAlertButton), new AlertDialog.OnButtonClickListener() {
                 @Override
@@ -323,7 +329,9 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
     }
 
     public void lambda$new$7() {
-        this.button.setSubText(this.program.end_date == 0 ? null : SelectorUserCell.buildCountDownTime((r1 - getConnectionsManager().getCurrentTime()) * 1000), true);
+        ButtonWithCounterView buttonWithCounterView = this.button;
+        int i = this.program.end_date;
+        buttonWithCounterView.setSubText(i == 0 ? null : SelectorUserCell.buildCountDownTime(((long) (i - getConnectionsManager().getCurrentTime())) * 1000), true);
         if (this.program.end_date == 0 || !this.attached) {
             return;
         }
@@ -486,16 +494,11 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             if (starrefprogram2.duration_months <= 0) {
                 uItemAsSlideView.setMinSliderValue(this.durationValues.size() - 1);
             } else {
-                int size = this.durationValues.size() - 1;
-                while (true) {
-                    if (size < 0) {
-                        break;
-                    }
+                for (int size = this.durationValues.size() - 1; size >= 0; size--) {
                     if (((Integer) this.durationValues.get(size)).intValue() > 0 && ((Integer) this.durationValues.get(size)).intValue() <= this.initialProgram.duration_months) {
                         uItemAsSlideView.setMinSliderValue(size);
                         break;
                     }
-                    size--;
                 }
             }
         }

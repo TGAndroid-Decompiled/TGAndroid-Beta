@@ -148,9 +148,10 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
             return null;
         }
         MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
-        getLocationInWindow(new int[2]);
-        sendAnimationData.x = imageReceiver.getCenterX() + r2[0];
-        sendAnimationData.y = imageReceiver.getCenterY() + r2[1];
+        int[] iArr = new int[2];
+        getLocationInWindow(iArr);
+        sendAnimationData.x = imageReceiver.getCenterX() + iArr[0];
+        sendAnimationData.y = imageReceiver.getCenterY() + iArr[1];
         sendAnimationData.width = imageReceiver.getImageWidth();
         sendAnimationData.height = imageReceiver.getImageHeight();
         return sendAnimationData;
@@ -254,22 +255,22 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
                 } else if (z) {
                     int i = 0;
                     while (true) {
-                        if (i >= document.attributes.size()) {
-                            break;
-                        }
-                        TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
-                        if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
-                            String str3 = documentAttribute.alt;
-                            if (str3 == null || str3.length() <= 0) {
+                        if (i < document.attributes.size()) {
+                            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
+                            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                                String str3 = documentAttribute.alt;
+                                if (str3 != null && str3.length() > 0) {
+                                    TextView textView3 = this.emojiTextView;
+                                    textView3.setText(Emoji.replaceEmoji(documentAttribute.alt, textView3.getPaint().getFontMetricsInt(), false));
+                                    break;
+                                }
                                 break;
                             }
-                            TextView textView3 = this.emojiTextView;
-                            textView3.setText(Emoji.replaceEmoji(documentAttribute.alt, textView3.getPaint().getFontMetricsInt(), false));
-                        } else {
                             i++;
                         }
+                        this.emojiTextView.setText(Emoji.replaceEmoji(MediaDataController.getInstance(this.currentAccount).getEmojiForSticker(this.sticker.id), this.emojiTextView.getPaint().getFontMetricsInt(), false));
+                        break;
                     }
-                    this.emojiTextView.setText(Emoji.replaceEmoji(MediaDataController.getInstance(this.currentAccount).getEmojiForSticker(this.sticker.id), this.emojiTextView.getPaint().getFontMetricsInt(), false));
                     this.emojiTextView.setVisibility(0);
                 } else {
                     this.emojiTextView.setVisibility(4);
@@ -357,21 +358,18 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         String string = LocaleController.getString(R.string.AttachSticker);
         if (this.sticker != null) {
-            int i = 0;
-            while (true) {
-                if (i >= this.sticker.attributes.size()) {
-                    break;
-                }
+            for (int i = 0; i < this.sticker.attributes.size(); i++) {
                 TLRPC.DocumentAttribute documentAttribute = this.sticker.attributes.get(i);
                 if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                     String str = documentAttribute.alt;
-                    if (str != null && str.length() > 0) {
-                        TextView textView = this.emojiTextView;
-                        textView.setText(Emoji.replaceEmoji(documentAttribute.alt, textView.getPaint().getFontMetricsInt(), false));
-                        string = documentAttribute.alt + " " + string;
+                    if (str == null || str.length() <= 0) {
+                        break;
+                        break;
                     }
-                } else {
-                    i++;
+                    TextView textView = this.emojiTextView;
+                    textView.setText(Emoji.replaceEmoji(documentAttribute.alt, textView.getPaint().getFontMetricsInt(), false));
+                    string = documentAttribute.alt + " " + string;
+                    break;
                 }
             }
         }
@@ -421,7 +419,65 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         }
     }
 
-    private void drawInternal(android.view.View r8, android.graphics.Canvas r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.StickerEmojiCell.drawInternal(android.view.View, android.graphics.Canvas):void");
+    private void drawInternal(View view, Canvas canvas) {
+        float f;
+        boolean z;
+        if (this.changingAlpha || (((z = this.scaled) && this.scale != 0.8f) || (!z && this.scale != 1.0f))) {
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long j = jCurrentTimeMillis - this.lastUpdateTime;
+            this.lastUpdateTime = jCurrentTimeMillis;
+            if (this.changingAlpha) {
+                long j2 = this.time + j;
+                this.time = j2;
+                if (j2 > 1050) {
+                    this.time = 1050L;
+                }
+                float interpolation = (interpolator.getInterpolation(this.time / 150.0f) * 0.5f) + 0.5f;
+                this.alpha = interpolation;
+                if (interpolation >= 1.0f) {
+                    this.changingAlpha = false;
+                    this.alpha = 1.0f;
+                }
+                this.imageView.setAlpha(this.alpha * this.premiumAlpha);
+            } else if (this.scaled) {
+                float f2 = this.scale;
+                if (f2 != 0.8f) {
+                    float f3 = f2 - (j / 400.0f);
+                    this.scale = f3;
+                    if (f3 < 0.8f) {
+                        this.scale = 0.8f;
+                    }
+                } else {
+                    f = this.scale + (j / 400.0f);
+                    this.scale = f;
+                    if (f > 1.0f) {
+                        this.scale = 1.0f;
+                    }
+                }
+            } else {
+                f = this.scale + (j / 400.0f);
+                this.scale = f;
+                if (f > 1.0f) {
+                    this.scale = 1.0f;
+                }
+            }
+            view.invalidate();
+        }
+        int iMin = Math.min(AndroidUtilities.dp(66.0f), Math.min(getMeasuredHeight(), getMeasuredWidth()));
+        float measuredWidth = getMeasuredWidth() >> 1;
+        float f4 = iMin;
+        float f5 = f4 / 2.0f;
+        float measuredHeight = getMeasuredHeight() >> 1;
+        this.imageView.setImageCoords(measuredWidth - f5, measuredHeight - f5, f4, f4);
+        this.imageView.setAlpha(this.alpha * this.premiumAlpha);
+        if (this.scale != 1.0f) {
+            canvas.save();
+            float f6 = this.scale;
+            canvas.scale(f6, f6, measuredWidth, measuredHeight);
+            this.imageView.draw(canvas);
+            canvas.restore();
+            return;
+        }
+        this.imageView.draw(canvas);
     }
 }

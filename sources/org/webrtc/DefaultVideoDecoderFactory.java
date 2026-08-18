@@ -2,7 +2,6 @@ package org.webrtc;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import org.webrtc.EglBase;
 
 public class DefaultVideoDecoderFactory implements VideoDecoderFactory {
     private final VideoDecoderFactory hardwareVideoDecoderFactory;

@@ -1,22 +1,29 @@
 package org.telegram.ui.Adapters;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.text.TextUtils;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.LocationController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 
 public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
@@ -207,30 +214,18 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
                     final Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
                     if (!this.stories) {
                         locale = locale2;
-                        Utilities.globalQueue.postRunnable(new Runnable() {
-                            @Override
-                            public final void run() throws IOException {
-                                this.f$0.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
-                            }
-                        });
                     } else if (currentLocale.getLanguage().contains("en")) {
                         locale = currentLocale;
-                        Utilities.globalQueue.postRunnable(new Runnable() {
-                            @Override
-                            public final void run() throws IOException {
-                                this.f$0.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
-                            }
-                        });
                     } else {
                         locale2 = Locale.US;
                         locale = locale2;
-                        Utilities.globalQueue.postRunnable(new Runnable() {
-                            @Override
-                            public final void run() throws IOException {
-                                this.f$0.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
-                            }
-                        });
                     }
+                    Utilities.globalQueue.postRunnable(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
+                        }
+                    });
                 } else {
                     this.searchingLocations = false;
                 }
@@ -248,8 +243,1176 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         }
     }
 
-    public void lambda$searchPlacesWithQuery$5(java.util.Locale r30, java.lang.String r31, java.util.Locale r32, final android.location.Location r33, final java.lang.String r34) throws java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.BaseLocationAdapter.lambda$searchPlacesWithQuery$5(java.util.Locale, java.lang.String, java.util.Locale, android.location.Location, java.lang.String):void");
+    public void lambda$searchPlacesWithQuery$5(Locale locale, String str, Locale locale2, final Location location, final String str2) {
+        List<Address> list;
+        List<Address> list2;
+        HashSet hashSet;
+        int i;
+        HashSet hashSet2;
+        HashSet hashSet3;
+        boolean z;
+        boolean z2;
+        String countryName;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
+        String string;
+        TLRPC.TL_messageMediaVenue tL_messageMediaVenue2;
+        String subAdminArea;
+        String adminArea;
+        boolean z3;
+        String str3;
+        String locality;
+        int i2;
+        String[] strArr;
+        StringBuilder sb;
+        String addressLine;
+        String[] strArrSplit;
+        int length;
+        String str4;
+        int i3;
+        String str5;
+        BaseLocationAdapter baseLocationAdapter = this;
+        final ArrayList arrayList = new ArrayList();
+        try {
+            int i4 = baseLocationAdapter.biz ? 10 : 5;
+            List<Address> fromLocationName = baseLocationAdapter.stories ? new Geocoder(ApplicationLoader.applicationContext, locale2).getFromLocationName(str, 5) : null;
+            HashSet hashSet4 = new HashSet();
+            HashSet hashSet5 = new HashSet();
+            int i5 = 0;
+            for (List<Address> fromLocationName2 = new Geocoder(ApplicationLoader.applicationContext, locale).getFromLocationName(str, 5); i5 < fromLocationName2.size(); fromLocationName2 = list2) {
+                Address address = fromLocationName2.get(i5);
+                Address address2 = (fromLocationName == null || i5 >= fromLocationName.size()) ? null : fromLocationName.get(i5);
+                if (address.hasLatitude() && address.hasLongitude()) {
+                    double latitude = address.getLatitude();
+                    double longitude = address.getLongitude();
+                    StringBuilder sb2 = new StringBuilder();
+                    list = fromLocationName;
+                    StringBuilder sb3 = new StringBuilder();
+                    list2 = fromLocationName2;
+                    StringBuilder sb4 = new StringBuilder();
+                    String locality2 = address.getLocality();
+                    if (TextUtils.isEmpty(locality2)) {
+                        locality2 = address.getAdminArea();
+                    }
+                    String str6 = locality2;
+                    if (address2 != null && TextUtils.isEmpty(address2.getLocality())) {
+                        address2.getAdminArea();
+                    }
+                    i = i5;
+                    String thoroughfare = address.getThoroughfare();
+                    HashSet hashSet6 = hashSet4;
+                    if (TextUtils.isEmpty(thoroughfare)) {
+                        hashSet3 = hashSet5;
+                    } else {
+                        hashSet3 = hashSet5;
+                        if (!TextUtils.equals(thoroughfare, address.getAdminArea())) {
+                            if (sb4.length() > 0) {
+                                sb4.append(", ");
+                            }
+                            sb4.append(thoroughfare);
+                        }
+                        z = false;
+                        if (TextUtils.isEmpty(str6)) {
+                            z2 = true;
+                        } else {
+                            if (sb3.length() > 0) {
+                                sb3.append(", ");
+                            }
+                            sb3.append(str6);
+                            if (sb4 != null) {
+                                if (sb4.length() > 0) {
+                                    sb4.append(", ");
+                                }
+                                sb4.append(str6);
+                            }
+                            z2 = false;
+                        }
+                        countryName = address.getCountryName();
+                        if (TextUtils.isEmpty(countryName)) {
+                            z = z;
+                            address2 = address2;
+                        } else {
+                            if (!"US".equals(address.getCountryCode()) || "AE".equals(address.getCountryCode()) || ("GB".equals(address.getCountryCode()) && "en".equals(locale.getLanguage()))) {
+                                strArrSplit = countryName.split(" ");
+                                length = strArrSplit.length;
+                                str4 = "";
+                                i3 = 0;
+                                while (i3 < length) {
+                                    int i6 = length;
+                                    str5 = strArrSplit[i3];
+                                    if (str5.length() > 0) {
+                                        str4 = str4 + str5.charAt(0);
+                                    }
+                                    i3++;
+                                    length = i6;
+                                    strArrSplit = strArrSplit;
+                                }
+                            } else {
+                                str4 = countryName;
+                            }
+                            if (sb3.length() > 0) {
+                                sb3.append(", ");
+                            }
+                            sb3.append(str4);
+                            if (sb2.length() > 0) {
+                                sb2.append(", ");
+                            }
+                            sb2.append(countryName);
+                        }
+                        if (baseLocationAdapter.biz) {
+                            sb = new StringBuilder();
+                            try {
+                                addressLine = address.getAddressLine(0);
+                                if (!TextUtils.isEmpty(addressLine)) {
+                                    sb.append(addressLine);
+                                }
+                            } catch (Exception unused) {
+                            }
+                            if (sb.length() > 0) {
+                                TLRPC.TL_messageMediaVenue tL_messageMediaVenue3 = new TLRPC.TL_messageMediaVenue();
+                                TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
+                                tL_messageMediaVenue3.geo = tL_geoPoint;
+                                tL_geoPoint.lat = latitude;
+                                tL_geoPoint._long = longitude;
+                                tL_messageMediaVenue3.query_id = -1L;
+                                tL_messageMediaVenue3.title = sb.toString();
+                                tL_messageMediaVenue3.icon = "pin";
+                                tL_messageMediaVenue3.address = LocaleController.getString(R.string.PassportAddress);
+                                arrayList.add(tL_messageMediaVenue3);
+                            }
+                            hashSet = hashSet3;
+                            hashSet2 = hashSet6;
+                            i4 = i4;
+                        } else if (sb4 == null && sb4.length() > 0) {
+                            TLRPC.TL_messageMediaVenue tL_messageMediaVenue4 = new TLRPC.TL_messageMediaVenue();
+                            TLRPC.TL_geoPoint tL_geoPoint2 = new TLRPC.TL_geoPoint();
+                            tL_messageMediaVenue4.geo = tL_geoPoint2;
+                            tL_geoPoint2.lat = latitude;
+                            tL_geoPoint2._long = longitude;
+                            tL_messageMediaVenue4.query_id = -1L;
+                            tL_messageMediaVenue4.title = sb4.toString();
+                            tL_messageMediaVenue4.icon = "pin";
+                            tL_messageMediaVenue4.address = LocaleController.getString(z ? R.string.PassportCity : R.string.PassportStreet1);
+                            if (address2 != null) {
+                                TL_stories.TL_geoPointAddress tL_geoPointAddress = new TL_stories.TL_geoPointAddress();
+                                tL_messageMediaVenue4.geoAddress = tL_geoPointAddress;
+                                tL_geoPointAddress.country_iso2 = address2.getCountryCode();
+                                String locality3 = TextUtils.isEmpty(null) ? address2.getLocality() : null;
+                                if (TextUtils.isEmpty(locality3)) {
+                                    locality3 = address2.getAdminArea();
+                                }
+                                if (TextUtils.isEmpty(locality3)) {
+                                    locality3 = address2.getSubAdminArea();
+                                }
+                                String adminArea2 = address2.getAdminArea();
+                                StringBuilder sb5 = new StringBuilder();
+                                if (!TextUtils.isEmpty(adminArea2)) {
+                                    TL_stories.TL_geoPointAddress tL_geoPointAddress2 = tL_messageMediaVenue4.geoAddress;
+                                    tL_geoPointAddress2.state = adminArea2;
+                                    tL_geoPointAddress2.flags |= 1;
+                                }
+                                if (!TextUtils.isEmpty(locality3)) {
+                                    TL_stories.TL_geoPointAddress tL_geoPointAddress3 = tL_messageMediaVenue4.geoAddress;
+                                    tL_geoPointAddress3.city = locality3;
+                                    tL_geoPointAddress3.flags |= 2;
+                                }
+                                if (z) {
+                                    z3 = false;
+                                } else {
+                                    if (TextUtils.isEmpty(null)) {
+                                        str3 = str6;
+                                        if (!TextUtils.equals(address2.getThoroughfare(), str3) && !TextUtils.equals(address2.getThoroughfare(), address2.getCountryName())) {
+                                            locality = address2.getThoroughfare();
+                                        }
+                                        if (TextUtils.isEmpty(locality) && !TextUtils.equals(address2.getSubLocality(), str3) && !TextUtils.equals(address2.getSubLocality(), address2.getCountryName())) {
+                                            locality = address2.getSubLocality();
+                                        }
+                                        if (TextUtils.isEmpty(locality) && !TextUtils.equals(address2.getLocality(), str3) && !TextUtils.equals(address2.getLocality(), address2.getCountryName())) {
+                                            locality = address2.getLocality();
+                                        }
+                                        if (!TextUtils.isEmpty(locality) || TextUtils.equals(locality, adminArea2) || TextUtils.equals(locality, address2.getCountryName())) {
+                                            sb5 = null;
+                                        } else {
+                                            if (sb5.length() > 0) {
+                                                sb5.append(", ");
+                                            }
+                                            sb5.append(locality);
+                                        }
+                                        if (!TextUtils.isEmpty(sb5)) {
+                                            z3 = false;
+                                            break;
+                                        }
+                                        i2 = 0;
+                                        while (true) {
+                                            strArr = LocationController.unnamedRoads;
+                                            if (i2 < strArr.length) {
+                                                z3 = false;
+                                                break;
+                                            } else {
+                                                if (strArr[i2].equalsIgnoreCase(sb5.toString())) {
+                                                    z3 = true;
+                                                    break;
+                                                }
+                                                i2++;
+                                            }
+                                        }
+                                        if (!TextUtils.isEmpty(sb5)) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress4 = tL_messageMediaVenue4.geoAddress;
+                                            tL_geoPointAddress4.flags |= 4;
+                                            tL_geoPointAddress4.street = sb5.toString();
+                                        }
+                                    } else {
+                                        str3 = str6;
+                                    }
+                                    locality = null;
+                                    if (TextUtils.isEmpty(locality)) {
+                                        locality = address2.getSubLocality();
+                                    }
+                                    if (TextUtils.isEmpty(locality)) {
+                                        locality = address2.getLocality();
+                                    }
+                                    if (TextUtils.isEmpty(locality)) {
+                                        sb5 = null;
+                                    } else {
+                                        sb5 = null;
+                                    }
+                                    if (!TextUtils.isEmpty(sb5)) {
+                                        z3 = false;
+                                        break;
+                                    }
+                                    i2 = 0;
+                                    while (true) {
+                                        strArr = LocationController.unnamedRoads;
+                                        if (i2 < strArr.length) {
+                                            z3 = false;
+                                            break;
+                                        } else {
+                                            if (strArr[i2].equalsIgnoreCase(sb5.toString())) {
+                                                z3 = true;
+                                                break;
+                                            }
+                                            i2++;
+                                        }
+                                    }
+                                    if (!TextUtils.isEmpty(sb5)) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress5 = tL_messageMediaVenue4.geoAddress;
+                                        tL_geoPointAddress5.flags |= 4;
+                                        tL_geoPointAddress5.street = sb5.toString();
+                                    }
+                                }
+                            } else {
+                                z3 = false;
+                            }
+                            if (!z3) {
+                                arrayList.add(tL_messageMediaVenue4);
+                                if (arrayList.size() >= i4) {
+                                    i4 = i4;
+                                    break;
+                                }
+                            } else {
+                                i4 = i4;
+                            }
+                            if (z2) {
+                                hashSet = hashSet3;
+                            } else {
+                                string = sb3.toString();
+                                hashSet = hashSet3;
+                                if (!hashSet.contains(string)) {
+                                    tL_messageMediaVenue2 = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint3 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue2.geo = tL_geoPoint3;
+                                    tL_geoPoint3.lat = latitude;
+                                    tL_geoPoint3._long = longitude;
+                                    tL_messageMediaVenue2.query_id = -1L;
+                                    tL_messageMediaVenue2.title = sb3.toString();
+                                    tL_messageMediaVenue2.icon = "https://ss3.4sqi.net/img/categories_v2/travel/hotel_64.png";
+                                    tL_messageMediaVenue2.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet.add(tL_messageMediaVenue2.title);
+                                    tL_messageMediaVenue2.address = LocaleController.getString(R.string.PassportCity);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress6 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue2.geoAddress = tL_geoPointAddress6;
+                                        tL_geoPointAddress6.country_iso2 = address2.getCountryCode();
+                                        if (TextUtils.isEmpty(null)) {
+                                            subAdminArea = address2.getLocality();
+                                        } else {
+                                            subAdminArea = null;
+                                        }
+                                        if (TextUtils.isEmpty(subAdminArea)) {
+                                            subAdminArea = address2.getAdminArea();
+                                        }
+                                        if (TextUtils.isEmpty(subAdminArea)) {
+                                            subAdminArea = address2.getSubAdminArea();
+                                        }
+                                        adminArea = address2.getAdminArea();
+                                        if (!TextUtils.isEmpty(adminArea)) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress7 = tL_messageMediaVenue2.geoAddress;
+                                            tL_geoPointAddress7.state = adminArea;
+                                            tL_geoPointAddress7.flags |= 1;
+                                        }
+                                        if (!TextUtils.isEmpty(subAdminArea)) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress8 = tL_messageMediaVenue2.geoAddress;
+                                            tL_geoPointAddress8.city = subAdminArea;
+                                            tL_geoPointAddress8.flags |= 2;
+                                        }
+                                    }
+                                    arrayList.add(tL_messageMediaVenue2);
+                                    if (arrayList.size() < i4) {
+                                        break;
+                                    }
+                                    break;
+                                    break;
+                                }
+                                if (sb2.length() > 0) {
+                                    hashSet2 = hashSet6;
+                                    if (!hashSet2.contains(sb2.toString())) {
+                                        tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                        TLRPC.TL_geoPoint tL_geoPoint4 = new TLRPC.TL_geoPoint();
+                                        tL_messageMediaVenue.geo = tL_geoPoint4;
+                                        tL_geoPoint4.lat = latitude;
+                                        tL_geoPoint4._long = longitude;
+                                        tL_messageMediaVenue.query_id = -1L;
+                                        tL_messageMediaVenue.title = sb2.toString();
+                                        tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                        tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                        hashSet2.add(tL_messageMediaVenue.title);
+                                        tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                        if (address2 != null) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress9 = new TL_stories.TL_geoPointAddress();
+                                            tL_messageMediaVenue.geoAddress = tL_geoPointAddress9;
+                                            tL_geoPointAddress9.country_iso2 = address2.getCountryCode();
+                                        }
+                                        arrayList.add(tL_messageMediaVenue);
+                                        if (arrayList.size() >= i4) {
+                                            break;
+                                            break;
+                                        }
+                                    } else {
+                                        continue;
+                                    }
+                                } else {
+                                    hashSet2 = hashSet6;
+                                }
+                            }
+                            if (sb2.length() > 0) {
+                                hashSet2 = hashSet6;
+                                if (!hashSet2.contains(sb2.toString())) {
+                                    tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint5 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue.geo = tL_geoPoint5;
+                                    tL_geoPoint5.lat = latitude;
+                                    tL_geoPoint5._long = longitude;
+                                    tL_messageMediaVenue.query_id = -1L;
+                                    tL_messageMediaVenue.title = sb2.toString();
+                                    tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                    tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet2.add(tL_messageMediaVenue.title);
+                                    tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress10 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue.geoAddress = tL_geoPointAddress10;
+                                        tL_geoPointAddress10.country_iso2 = address2.getCountryCode();
+                                    }
+                                    arrayList.add(tL_messageMediaVenue);
+                                    if (arrayList.size() >= i4) {
+                                        break;
+                                        break;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            } else {
+                                hashSet2 = hashSet6;
+                            }
+                        } else {
+                            i4 = i4;
+                            if (z2) {
+                                string = sb3.toString();
+                                hashSet = hashSet3;
+                                if (!hashSet.contains(string)) {
+                                    tL_messageMediaVenue2 = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint6 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue2.geo = tL_geoPoint6;
+                                    tL_geoPoint6.lat = latitude;
+                                    tL_geoPoint6._long = longitude;
+                                    tL_messageMediaVenue2.query_id = -1L;
+                                    tL_messageMediaVenue2.title = sb3.toString();
+                                    tL_messageMediaVenue2.icon = "https://ss3.4sqi.net/img/categories_v2/travel/hotel_64.png";
+                                    tL_messageMediaVenue2.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet.add(tL_messageMediaVenue2.title);
+                                    tL_messageMediaVenue2.address = LocaleController.getString(R.string.PassportCity);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress11 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue2.geoAddress = tL_geoPointAddress11;
+                                        tL_geoPointAddress11.country_iso2 = address2.getCountryCode();
+                                        if (TextUtils.isEmpty(null)) {
+                                            subAdminArea = address2.getLocality();
+                                        } else {
+                                            subAdminArea = null;
+                                        }
+                                        if (TextUtils.isEmpty(subAdminArea)) {
+                                            subAdminArea = address2.getAdminArea();
+                                        }
+                                        if (TextUtils.isEmpty(subAdminArea)) {
+                                            subAdminArea = address2.getSubAdminArea();
+                                        }
+                                        adminArea = address2.getAdminArea();
+                                        if (!TextUtils.isEmpty(adminArea)) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress12 = tL_messageMediaVenue2.geoAddress;
+                                            tL_geoPointAddress12.state = adminArea;
+                                            tL_geoPointAddress12.flags |= 1;
+                                        }
+                                        if (!TextUtils.isEmpty(subAdminArea)) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress13 = tL_messageMediaVenue2.geoAddress;
+                                            tL_geoPointAddress13.city = subAdminArea;
+                                            tL_geoPointAddress13.flags |= 2;
+                                        }
+                                    }
+                                    arrayList.add(tL_messageMediaVenue2);
+                                    if (arrayList.size() < i4) {
+                                        break;
+                                    } else {
+                                        break;
+                                    }
+                                }
+                                if (sb2.length() > 0) {
+                                    hashSet2 = hashSet6;
+                                    if (!hashSet2.contains(sb2.toString())) {
+                                        tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                        TLRPC.TL_geoPoint tL_geoPoint7 = new TLRPC.TL_geoPoint();
+                                        tL_messageMediaVenue.geo = tL_geoPoint7;
+                                        tL_geoPoint7.lat = latitude;
+                                        tL_geoPoint7._long = longitude;
+                                        tL_messageMediaVenue.query_id = -1L;
+                                        tL_messageMediaVenue.title = sb2.toString();
+                                        tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                        tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                        hashSet2.add(tL_messageMediaVenue.title);
+                                        tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                        if (address2 != null) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress14 = new TL_stories.TL_geoPointAddress();
+                                            tL_messageMediaVenue.geoAddress = tL_geoPointAddress14;
+                                            tL_geoPointAddress14.country_iso2 = address2.getCountryCode();
+                                        }
+                                        arrayList.add(tL_messageMediaVenue);
+                                        if (arrayList.size() >= i4) {
+                                            break;
+                                        }
+                                    } else {
+                                        continue;
+                                    }
+                                } else {
+                                    hashSet2 = hashSet6;
+                                }
+                            } else {
+                                hashSet = hashSet3;
+                            }
+                            if (sb2.length() > 0) {
+                                hashSet2 = hashSet6;
+                                if (!hashSet2.contains(sb2.toString())) {
+                                    tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint8 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue.geo = tL_geoPoint8;
+                                    tL_geoPoint8.lat = latitude;
+                                    tL_geoPoint8._long = longitude;
+                                    tL_messageMediaVenue.query_id = -1L;
+                                    tL_messageMediaVenue.title = sb2.toString();
+                                    tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                    tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet2.add(tL_messageMediaVenue.title);
+                                    tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress15 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue.geoAddress = tL_geoPointAddress15;
+                                        tL_geoPointAddress15.country_iso2 = address2.getCountryCode();
+                                    }
+                                    arrayList.add(tL_messageMediaVenue);
+                                    if (arrayList.size() >= i4) {
+                                        break;
+                                        break;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            } else {
+                                hashSet2 = hashSet6;
+                            }
+                        }
+                        i5 = i + 1;
+                        baseLocationAdapter = this;
+                        hashSet5 = hashSet;
+                        hashSet4 = hashSet2;
+                        fromLocationName = list;
+                    }
+                    String subLocality = address.getSubLocality();
+                    if (!TextUtils.isEmpty(subLocality)) {
+                        if (sb4.length() > 0) {
+                            sb4.append(", ");
+                        }
+                        sb4.append(subLocality);
+                    } else {
+                        String locality4 = address.getLocality();
+                        if (TextUtils.isEmpty(locality4) || TextUtils.equals(locality4, str6)) {
+                            sb4 = null;
+                            z = true;
+                        } else {
+                            if (sb4.length() > 0) {
+                                sb4.append(", ");
+                            }
+                            sb4.append(locality4);
+                        }
+                        if (TextUtils.isEmpty(str6)) {
+                            if (sb3.length() > 0) {
+                                sb3.append(", ");
+                            }
+                            sb3.append(str6);
+                            if (sb4 != null) {
+                                if (sb4.length() > 0) {
+                                    sb4.append(", ");
+                                }
+                                sb4.append(str6);
+                            }
+                            z2 = false;
+                        } else {
+                            z2 = true;
+                        }
+                        countryName = address.getCountryName();
+                        if (TextUtils.isEmpty(countryName)) {
+                            if ("US".equals(address.getCountryCode())) {
+                                strArrSplit = countryName.split(" ");
+                                length = strArrSplit.length;
+                                str4 = "";
+                                i3 = 0;
+                                while (i3 < length) {
+                                    int i7 = length;
+                                    str5 = strArrSplit[i3];
+                                    if (str5.length() > 0) {
+                                        str4 = str4 + str5.charAt(0);
+                                    }
+                                    i3++;
+                                    length = i7;
+                                    strArrSplit = strArrSplit;
+                                }
+                            } else {
+                                strArrSplit = countryName.split(" ");
+                                length = strArrSplit.length;
+                                str4 = "";
+                                i3 = 0;
+                                while (i3 < length) {
+                                    int i8 = length;
+                                    str5 = strArrSplit[i3];
+                                    if (str5.length() > 0) {
+                                        str4 = str4 + str5.charAt(0);
+                                    }
+                                    i3++;
+                                    length = i8;
+                                    strArrSplit = strArrSplit;
+                                }
+                            }
+                            if (sb3.length() > 0) {
+                                sb3.append(", ");
+                            }
+                            sb3.append(str4);
+                            if (sb2.length() > 0) {
+                                sb2.append(", ");
+                            }
+                            sb2.append(countryName);
+                        } else {
+                            z = z;
+                            address2 = address2;
+                        }
+                        if (baseLocationAdapter.biz) {
+                            sb = new StringBuilder();
+                            addressLine = address.getAddressLine(0);
+                            if (!TextUtils.isEmpty(addressLine)) {
+                                sb.append(addressLine);
+                            }
+                            if (sb.length() > 0) {
+                                TLRPC.TL_messageMediaVenue tL_messageMediaVenue5 = new TLRPC.TL_messageMediaVenue();
+                                TLRPC.TL_geoPoint tL_geoPoint9 = new TLRPC.TL_geoPoint();
+                                tL_messageMediaVenue5.geo = tL_geoPoint9;
+                                tL_geoPoint9.lat = latitude;
+                                tL_geoPoint9._long = longitude;
+                                tL_messageMediaVenue5.query_id = -1L;
+                                tL_messageMediaVenue5.title = sb.toString();
+                                tL_messageMediaVenue5.icon = "pin";
+                                tL_messageMediaVenue5.address = LocaleController.getString(R.string.PassportAddress);
+                                arrayList.add(tL_messageMediaVenue5);
+                            }
+                            hashSet = hashSet3;
+                            hashSet2 = hashSet6;
+                            i4 = i4;
+                        } else if (sb4 == null) {
+                            i4 = i4;
+                            if (z2) {
+                                string = sb3.toString();
+                                hashSet = hashSet3;
+                                if (!hashSet.contains(string)) {
+                                    tL_messageMediaVenue2 = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint10 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue2.geo = tL_geoPoint10;
+                                    tL_geoPoint10.lat = latitude;
+                                    tL_geoPoint10._long = longitude;
+                                    tL_messageMediaVenue2.query_id = -1L;
+                                    tL_messageMediaVenue2.title = sb3.toString();
+                                    tL_messageMediaVenue2.icon = "https://ss3.4sqi.net/img/categories_v2/travel/hotel_64.png";
+                                    tL_messageMediaVenue2.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet.add(tL_messageMediaVenue2.title);
+                                    tL_messageMediaVenue2.address = LocaleController.getString(R.string.PassportCity);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress16 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue2.geoAddress = tL_geoPointAddress16;
+                                        tL_geoPointAddress16.country_iso2 = address2.getCountryCode();
+                                        if (TextUtils.isEmpty(null)) {
+                                            subAdminArea = address2.getLocality();
+                                        } else {
+                                            subAdminArea = null;
+                                        }
+                                        if (TextUtils.isEmpty(subAdminArea)) {
+                                            subAdminArea = address2.getAdminArea();
+                                        }
+                                        if (TextUtils.isEmpty(subAdminArea)) {
+                                            subAdminArea = address2.getSubAdminArea();
+                                        }
+                                        adminArea = address2.getAdminArea();
+                                        if (!TextUtils.isEmpty(adminArea)) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress17 = tL_messageMediaVenue2.geoAddress;
+                                            tL_geoPointAddress17.state = adminArea;
+                                            tL_geoPointAddress17.flags |= 1;
+                                        }
+                                        if (!TextUtils.isEmpty(subAdminArea)) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress18 = tL_messageMediaVenue2.geoAddress;
+                                            tL_geoPointAddress18.city = subAdminArea;
+                                            tL_geoPointAddress18.flags |= 2;
+                                        }
+                                    }
+                                    arrayList.add(tL_messageMediaVenue2);
+                                    if (arrayList.size() < i4) {
+                                        break;
+                                    }
+                                    break;
+                                    break;
+                                }
+                                if (sb2.length() > 0) {
+                                    hashSet2 = hashSet6;
+                                    if (!hashSet2.contains(sb2.toString())) {
+                                        tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                        TLRPC.TL_geoPoint tL_geoPoint11 = new TLRPC.TL_geoPoint();
+                                        tL_messageMediaVenue.geo = tL_geoPoint11;
+                                        tL_geoPoint11.lat = latitude;
+                                        tL_geoPoint11._long = longitude;
+                                        tL_messageMediaVenue.query_id = -1L;
+                                        tL_messageMediaVenue.title = sb2.toString();
+                                        tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                        tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                        hashSet2.add(tL_messageMediaVenue.title);
+                                        tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                        if (address2 != null) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress19 = new TL_stories.TL_geoPointAddress();
+                                            tL_messageMediaVenue.geoAddress = tL_geoPointAddress19;
+                                            tL_geoPointAddress19.country_iso2 = address2.getCountryCode();
+                                        }
+                                        arrayList.add(tL_messageMediaVenue);
+                                        if (arrayList.size() >= i4) {
+                                            break;
+                                            break;
+                                        }
+                                    } else {
+                                        continue;
+                                    }
+                                } else {
+                                    hashSet2 = hashSet6;
+                                }
+                            } else {
+                                hashSet = hashSet3;
+                            }
+                            if (sb2.length() > 0) {
+                                hashSet2 = hashSet6;
+                                if (!hashSet2.contains(sb2.toString())) {
+                                    tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint12 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue.geo = tL_geoPoint12;
+                                    tL_geoPoint12.lat = latitude;
+                                    tL_geoPoint12._long = longitude;
+                                    tL_messageMediaVenue.query_id = -1L;
+                                    tL_messageMediaVenue.title = sb2.toString();
+                                    tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                    tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet2.add(tL_messageMediaVenue.title);
+                                    tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress110 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue.geoAddress = tL_geoPointAddress110;
+                                        tL_geoPointAddress110.country_iso2 = address2.getCountryCode();
+                                    }
+                                    arrayList.add(tL_messageMediaVenue);
+                                    if (arrayList.size() >= i4) {
+                                        break;
+                                        break;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            } else {
+                                hashSet2 = hashSet6;
+                            }
+                        } else {
+                            i4 = i4;
+                            if (z2) {
+                                string = sb3.toString();
+                                hashSet = hashSet3;
+                                if (!hashSet.contains(string)) {
+                                    tL_messageMediaVenue2 = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint13 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue2.geo = tL_geoPoint13;
+                                    tL_geoPoint13.lat = latitude;
+                                    tL_geoPoint13._long = longitude;
+                                    tL_messageMediaVenue2.query_id = -1L;
+                                    tL_messageMediaVenue2.title = sb3.toString();
+                                    tL_messageMediaVenue2.icon = "https://ss3.4sqi.net/img/categories_v2/travel/hotel_64.png";
+                                    tL_messageMediaVenue2.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet.add(tL_messageMediaVenue2.title);
+                                    tL_messageMediaVenue2.address = LocaleController.getString(R.string.PassportCity);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress111 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue2.geoAddress = tL_geoPointAddress111;
+                                        tL_geoPointAddress111.country_iso2 = address2.getCountryCode();
+                                        if (TextUtils.isEmpty(null)) {
+                                            subAdminArea = address2.getLocality();
+                                        } else {
+                                            subAdminArea = null;
+                                        }
+                                        if (TextUtils.isEmpty(subAdminArea)) {
+                                            subAdminArea = address2.getAdminArea();
+                                        }
+                                        if (TextUtils.isEmpty(subAdminArea)) {
+                                            subAdminArea = address2.getSubAdminArea();
+                                        }
+                                        adminArea = address2.getAdminArea();
+                                        if (!TextUtils.isEmpty(adminArea)) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress112 = tL_messageMediaVenue2.geoAddress;
+                                            tL_geoPointAddress112.state = adminArea;
+                                            tL_geoPointAddress112.flags |= 1;
+                                        }
+                                        if (!TextUtils.isEmpty(subAdminArea)) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress113 = tL_messageMediaVenue2.geoAddress;
+                                            tL_geoPointAddress113.city = subAdminArea;
+                                            tL_geoPointAddress113.flags |= 2;
+                                        }
+                                    }
+                                    arrayList.add(tL_messageMediaVenue2);
+                                    if (arrayList.size() < i4) {
+                                        break;
+                                    }
+                                    break;
+                                    break;
+                                }
+                                if (sb2.length() > 0) {
+                                    hashSet2 = hashSet6;
+                                    if (!hashSet2.contains(sb2.toString())) {
+                                        tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                        TLRPC.TL_geoPoint tL_geoPoint14 = new TLRPC.TL_geoPoint();
+                                        tL_messageMediaVenue.geo = tL_geoPoint14;
+                                        tL_geoPoint14.lat = latitude;
+                                        tL_geoPoint14._long = longitude;
+                                        tL_messageMediaVenue.query_id = -1L;
+                                        tL_messageMediaVenue.title = sb2.toString();
+                                        tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                        tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                        hashSet2.add(tL_messageMediaVenue.title);
+                                        tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                        if (address2 != null) {
+                                            TL_stories.TL_geoPointAddress tL_geoPointAddress114 = new TL_stories.TL_geoPointAddress();
+                                            tL_messageMediaVenue.geoAddress = tL_geoPointAddress114;
+                                            tL_geoPointAddress114.country_iso2 = address2.getCountryCode();
+                                        }
+                                        arrayList.add(tL_messageMediaVenue);
+                                        if (arrayList.size() >= i4) {
+                                            break;
+                                            break;
+                                        }
+                                    } else {
+                                        continue;
+                                    }
+                                } else {
+                                    hashSet2 = hashSet6;
+                                }
+                            } else {
+                                hashSet = hashSet3;
+                            }
+                            if (sb2.length() > 0) {
+                                hashSet2 = hashSet6;
+                                if (!hashSet2.contains(sb2.toString())) {
+                                    tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint15 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue.geo = tL_geoPoint15;
+                                    tL_geoPoint15.lat = latitude;
+                                    tL_geoPoint15._long = longitude;
+                                    tL_messageMediaVenue.query_id = -1L;
+                                    tL_messageMediaVenue.title = sb2.toString();
+                                    tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                    tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet2.add(tL_messageMediaVenue.title);
+                                    tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress115 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue.geoAddress = tL_geoPointAddress115;
+                                        tL_geoPointAddress115.country_iso2 = address2.getCountryCode();
+                                    }
+                                    arrayList.add(tL_messageMediaVenue);
+                                    if (arrayList.size() >= i4) {
+                                        break;
+                                        break;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            } else {
+                                hashSet2 = hashSet6;
+                            }
+                        }
+                        i5 = i + 1;
+                        baseLocationAdapter = this;
+                        hashSet5 = hashSet;
+                        hashSet4 = hashSet2;
+                        fromLocationName = list;
+                    }
+                    z = false;
+                    if (TextUtils.isEmpty(str6)) {
+                        if (sb3.length() > 0) {
+                            sb3.append(", ");
+                        }
+                        sb3.append(str6);
+                        if (sb4 != null) {
+                            if (sb4.length() > 0) {
+                                sb4.append(", ");
+                            }
+                            sb4.append(str6);
+                        }
+                        z2 = false;
+                    } else {
+                        z2 = true;
+                    }
+                    countryName = address.getCountryName();
+                    if (TextUtils.isEmpty(countryName)) {
+                        if ("US".equals(address.getCountryCode())) {
+                            strArrSplit = countryName.split(" ");
+                            length = strArrSplit.length;
+                            str4 = "";
+                            i3 = 0;
+                            while (i3 < length) {
+                                int i9 = length;
+                                str5 = strArrSplit[i3];
+                                if (str5.length() > 0) {
+                                    str4 = str4 + str5.charAt(0);
+                                }
+                                i3++;
+                                length = i9;
+                                strArrSplit = strArrSplit;
+                            }
+                        } else {
+                            strArrSplit = countryName.split(" ");
+                            length = strArrSplit.length;
+                            str4 = "";
+                            i3 = 0;
+                            while (i3 < length) {
+                                int i10 = length;
+                                str5 = strArrSplit[i3];
+                                if (str5.length() > 0) {
+                                    str4 = str4 + str5.charAt(0);
+                                }
+                                i3++;
+                                length = i10;
+                                strArrSplit = strArrSplit;
+                            }
+                        }
+                        if (sb3.length() > 0) {
+                            sb3.append(", ");
+                        }
+                        sb3.append(str4);
+                        if (sb2.length() > 0) {
+                            sb2.append(", ");
+                        }
+                        sb2.append(countryName);
+                    } else {
+                        z = z;
+                        address2 = address2;
+                    }
+                    if (baseLocationAdapter.biz) {
+                        sb = new StringBuilder();
+                        addressLine = address.getAddressLine(0);
+                        if (!TextUtils.isEmpty(addressLine)) {
+                            sb.append(addressLine);
+                        }
+                        if (sb.length() > 0) {
+                            TLRPC.TL_messageMediaVenue tL_messageMediaVenue6 = new TLRPC.TL_messageMediaVenue();
+                            TLRPC.TL_geoPoint tL_geoPoint16 = new TLRPC.TL_geoPoint();
+                            tL_messageMediaVenue6.geo = tL_geoPoint16;
+                            tL_geoPoint16.lat = latitude;
+                            tL_geoPoint16._long = longitude;
+                            tL_messageMediaVenue6.query_id = -1L;
+                            tL_messageMediaVenue6.title = sb.toString();
+                            tL_messageMediaVenue6.icon = "pin";
+                            tL_messageMediaVenue6.address = LocaleController.getString(R.string.PassportAddress);
+                            arrayList.add(tL_messageMediaVenue6);
+                        }
+                        hashSet = hashSet3;
+                        hashSet2 = hashSet6;
+                        i4 = i4;
+                    } else if (sb4 == null) {
+                        i4 = i4;
+                        if (z2) {
+                            string = sb3.toString();
+                            hashSet = hashSet3;
+                            if (!hashSet.contains(string)) {
+                                tL_messageMediaVenue2 = new TLRPC.TL_messageMediaVenue();
+                                TLRPC.TL_geoPoint tL_geoPoint17 = new TLRPC.TL_geoPoint();
+                                tL_messageMediaVenue2.geo = tL_geoPoint17;
+                                tL_geoPoint17.lat = latitude;
+                                tL_geoPoint17._long = longitude;
+                                tL_messageMediaVenue2.query_id = -1L;
+                                tL_messageMediaVenue2.title = sb3.toString();
+                                tL_messageMediaVenue2.icon = "https://ss3.4sqi.net/img/categories_v2/travel/hotel_64.png";
+                                tL_messageMediaVenue2.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                hashSet.add(tL_messageMediaVenue2.title);
+                                tL_messageMediaVenue2.address = LocaleController.getString(R.string.PassportCity);
+                                if (address2 != null) {
+                                    TL_stories.TL_geoPointAddress tL_geoPointAddress116 = new TL_stories.TL_geoPointAddress();
+                                    tL_messageMediaVenue2.geoAddress = tL_geoPointAddress116;
+                                    tL_geoPointAddress116.country_iso2 = address2.getCountryCode();
+                                    if (TextUtils.isEmpty(null)) {
+                                        subAdminArea = address2.getLocality();
+                                    } else {
+                                        subAdminArea = null;
+                                    }
+                                    if (TextUtils.isEmpty(subAdminArea)) {
+                                        subAdminArea = address2.getAdminArea();
+                                    }
+                                    if (TextUtils.isEmpty(subAdminArea)) {
+                                        subAdminArea = address2.getSubAdminArea();
+                                    }
+                                    adminArea = address2.getAdminArea();
+                                    if (!TextUtils.isEmpty(adminArea)) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress117 = tL_messageMediaVenue2.geoAddress;
+                                        tL_geoPointAddress117.state = adminArea;
+                                        tL_geoPointAddress117.flags |= 1;
+                                    }
+                                    if (!TextUtils.isEmpty(subAdminArea)) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress118 = tL_messageMediaVenue2.geoAddress;
+                                        tL_geoPointAddress118.city = subAdminArea;
+                                        tL_geoPointAddress118.flags |= 2;
+                                    }
+                                }
+                                arrayList.add(tL_messageMediaVenue2);
+                                if (arrayList.size() < i4) {
+                                    break;
+                                }
+                                break;
+                                break;
+                            }
+                            if (sb2.length() > 0) {
+                                hashSet2 = hashSet6;
+                                if (!hashSet2.contains(sb2.toString())) {
+                                    tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint18 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue.geo = tL_geoPoint18;
+                                    tL_geoPoint18.lat = latitude;
+                                    tL_geoPoint18._long = longitude;
+                                    tL_messageMediaVenue.query_id = -1L;
+                                    tL_messageMediaVenue.title = sb2.toString();
+                                    tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                    tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet2.add(tL_messageMediaVenue.title);
+                                    tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress119 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue.geoAddress = tL_geoPointAddress119;
+                                        tL_geoPointAddress119.country_iso2 = address2.getCountryCode();
+                                    }
+                                    arrayList.add(tL_messageMediaVenue);
+                                    if (arrayList.size() >= i4) {
+                                        break;
+                                        break;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            } else {
+                                hashSet2 = hashSet6;
+                            }
+                        } else {
+                            hashSet = hashSet3;
+                        }
+                        if (sb2.length() > 0) {
+                            hashSet2 = hashSet6;
+                            if (!hashSet2.contains(sb2.toString())) {
+                                tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                TLRPC.TL_geoPoint tL_geoPoint19 = new TLRPC.TL_geoPoint();
+                                tL_messageMediaVenue.geo = tL_geoPoint19;
+                                tL_geoPoint19.lat = latitude;
+                                tL_geoPoint19._long = longitude;
+                                tL_messageMediaVenue.query_id = -1L;
+                                tL_messageMediaVenue.title = sb2.toString();
+                                tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                hashSet2.add(tL_messageMediaVenue.title);
+                                tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                if (address2 != null) {
+                                    TL_stories.TL_geoPointAddress tL_geoPointAddress1110 = new TL_stories.TL_geoPointAddress();
+                                    tL_messageMediaVenue.geoAddress = tL_geoPointAddress1110;
+                                    tL_geoPointAddress1110.country_iso2 = address2.getCountryCode();
+                                }
+                                arrayList.add(tL_messageMediaVenue);
+                                if (arrayList.size() >= i4) {
+                                    break;
+                                    break;
+                                }
+                            } else {
+                                continue;
+                            }
+                        } else {
+                            hashSet2 = hashSet6;
+                        }
+                    } else {
+                        i4 = i4;
+                        if (z2) {
+                            string = sb3.toString();
+                            hashSet = hashSet3;
+                            if (!hashSet.contains(string)) {
+                                tL_messageMediaVenue2 = new TLRPC.TL_messageMediaVenue();
+                                TLRPC.TL_geoPoint tL_geoPoint110 = new TLRPC.TL_geoPoint();
+                                tL_messageMediaVenue2.geo = tL_geoPoint110;
+                                tL_geoPoint110.lat = latitude;
+                                tL_geoPoint110._long = longitude;
+                                tL_messageMediaVenue2.query_id = -1L;
+                                tL_messageMediaVenue2.title = sb3.toString();
+                                tL_messageMediaVenue2.icon = "https://ss3.4sqi.net/img/categories_v2/travel/hotel_64.png";
+                                tL_messageMediaVenue2.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                hashSet.add(tL_messageMediaVenue2.title);
+                                tL_messageMediaVenue2.address = LocaleController.getString(R.string.PassportCity);
+                                if (address2 != null) {
+                                    TL_stories.TL_geoPointAddress tL_geoPointAddress1111 = new TL_stories.TL_geoPointAddress();
+                                    tL_messageMediaVenue2.geoAddress = tL_geoPointAddress1111;
+                                    tL_geoPointAddress1111.country_iso2 = address2.getCountryCode();
+                                    if (TextUtils.isEmpty(null)) {
+                                        subAdminArea = address2.getLocality();
+                                    } else {
+                                        subAdminArea = null;
+                                    }
+                                    if (TextUtils.isEmpty(subAdminArea)) {
+                                        subAdminArea = address2.getAdminArea();
+                                    }
+                                    if (TextUtils.isEmpty(subAdminArea)) {
+                                        subAdminArea = address2.getSubAdminArea();
+                                    }
+                                    adminArea = address2.getAdminArea();
+                                    if (!TextUtils.isEmpty(adminArea)) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress1112 = tL_messageMediaVenue2.geoAddress;
+                                        tL_geoPointAddress1112.state = adminArea;
+                                        tL_geoPointAddress1112.flags |= 1;
+                                    }
+                                    if (!TextUtils.isEmpty(subAdminArea)) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress1113 = tL_messageMediaVenue2.geoAddress;
+                                        tL_geoPointAddress1113.city = subAdminArea;
+                                        tL_geoPointAddress1113.flags |= 2;
+                                    }
+                                }
+                                arrayList.add(tL_messageMediaVenue2);
+                                if (arrayList.size() < i4) {
+                                    break;
+                                }
+                                break;
+                                break;
+                            }
+                            if (sb2.length() > 0) {
+                                hashSet2 = hashSet6;
+                                if (!hashSet2.contains(sb2.toString())) {
+                                    tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                    TLRPC.TL_geoPoint tL_geoPoint111 = new TLRPC.TL_geoPoint();
+                                    tL_messageMediaVenue.geo = tL_geoPoint111;
+                                    tL_geoPoint111.lat = latitude;
+                                    tL_geoPoint111._long = longitude;
+                                    tL_messageMediaVenue.query_id = -1L;
+                                    tL_messageMediaVenue.title = sb2.toString();
+                                    tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                    tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                    hashSet2.add(tL_messageMediaVenue.title);
+                                    tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                    if (address2 != null) {
+                                        TL_stories.TL_geoPointAddress tL_geoPointAddress1114 = new TL_stories.TL_geoPointAddress();
+                                        tL_messageMediaVenue.geoAddress = tL_geoPointAddress1114;
+                                        tL_geoPointAddress1114.country_iso2 = address2.getCountryCode();
+                                    }
+                                    arrayList.add(tL_messageMediaVenue);
+                                    if (arrayList.size() >= i4) {
+                                        break;
+                                        break;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            } else {
+                                hashSet2 = hashSet6;
+                            }
+                        } else {
+                            hashSet = hashSet3;
+                        }
+                        if (sb2.length() > 0) {
+                            hashSet2 = hashSet6;
+                            if (!hashSet2.contains(sb2.toString())) {
+                                tL_messageMediaVenue = new TLRPC.TL_messageMediaVenue();
+                                TLRPC.TL_geoPoint tL_geoPoint112 = new TLRPC.TL_geoPoint();
+                                tL_messageMediaVenue.geo = tL_geoPoint112;
+                                tL_geoPoint112.lat = latitude;
+                                tL_geoPoint112._long = longitude;
+                                tL_messageMediaVenue.query_id = -1L;
+                                tL_messageMediaVenue.title = sb2.toString();
+                                tL_messageMediaVenue.icon = "https://ss3.4sqi.net/img/categories_v2/building/government_capitolbuilding_64.png";
+                                tL_messageMediaVenue.emoji = LocationController.countryCodeToEmoji(address.getCountryCode());
+                                hashSet2.add(tL_messageMediaVenue.title);
+                                tL_messageMediaVenue.address = LocaleController.getString(R.string.Country);
+                                if (address2 != null) {
+                                    TL_stories.TL_geoPointAddress tL_geoPointAddress1115 = new TL_stories.TL_geoPointAddress();
+                                    tL_messageMediaVenue.geoAddress = tL_geoPointAddress1115;
+                                    tL_geoPointAddress1115.country_iso2 = address2.getCountryCode();
+                                }
+                                arrayList.add(tL_messageMediaVenue);
+                                if (arrayList.size() >= i4) {
+                                    break;
+                                    break;
+                                }
+                            } else {
+                                continue;
+                            }
+                        } else {
+                            hashSet2 = hashSet6;
+                        }
+                    }
+                    i5 = i + 1;
+                    baseLocationAdapter = this;
+                    hashSet5 = hashSet;
+                    hashSet4 = hashSet2;
+                    fromLocationName = list;
+                } else {
+                    list = fromLocationName;
+                    list2 = fromLocationName2;
+                    hashSet = hashSet5;
+                    i = i5;
+                    hashSet2 = hashSet4;
+                }
+                i5 = i + 1;
+                baseLocationAdapter = this;
+                hashSet5 = hashSet;
+                hashSet4 = hashSet2;
+                fromLocationName = list;
+            }
+        } catch (Exception unused2) {
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$searchPlacesWithQuery$4(location, str2, arrayList);
+            }
+        });
     }
 
     public void lambda$searchPlacesWithQuery$4(Location location, String str, ArrayList arrayList) {

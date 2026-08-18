@@ -332,18 +332,18 @@ public class Icon3D {
         GLES20.glDrawArrays(4, 0, this.trianglesCount[i] / 3);
     }
 
-    private String preprocessShader(String str) throws NumberFormatException {
+    private String preprocessShader(String str) {
         Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
         StringBuffer stringBuffer = new StringBuffer();
         while (matcher.find()) {
             String strGroup = matcher.group(1);
-            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(Integer.parseInt(strGroup.substring(0, 2), 16) / 255.0d), Double.valueOf(Integer.parseInt(strGroup.substring(2, 4), 16) / 255.0d), Double.valueOf(Integer.parseInt(strGroup.substring(4, 6), 16) / 255.0d)));
+            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(((double) Integer.parseInt(strGroup.substring(0, 2), 16)) / 255.0d), Double.valueOf(((double) Integer.parseInt(strGroup.substring(2, 4), 16)) / 255.0d), Double.valueOf(((double) Integer.parseInt(strGroup.substring(4, 6), 16)) / 255.0d)));
         }
         matcher.appendTail(stringBuffer);
         return stringBuffer.toString();
     }
 
-    public String loadFromAsset(Context context, String str) throws IOException {
+    public String loadFromAsset(Context context, String str) {
         StringBuilder sb = new StringBuilder();
         try {
             InputStream inputStreamOpen = context.getAssets().open(str);

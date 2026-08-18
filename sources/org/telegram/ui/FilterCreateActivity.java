@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -24,6 +23,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import android.text.style.ReplacementSpan;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
@@ -97,9 +97,6 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
-import org.telegram.ui.FilterCreateActivity;
-import org.telegram.ui.PeerColorActivity;
-import org.telegram.ui.UsersSelectActivity;
 
 public class FilterCreateActivity extends BaseFragment {
     private ListAdapter adapter;
@@ -506,8 +503,104 @@ public class FilterCreateActivity extends BaseFragment {
             }
 
             @Override
-            protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.FilterCreateActivity.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                int i5;
+                int i6;
+                int i7;
+                int i8;
+                int i9;
+                int i10;
+                int i11;
+                int childCount = getChildCount();
+                int iMeasureKeyboardHeight = measureKeyboardHeight();
+                int paddingLeft = getPaddingLeft();
+                int paddingRight = (i3 - i) - getPaddingRight();
+                int paddingTop = getPaddingTop();
+                int i12 = i4 - i2;
+                int paddingBottom = i12 - getPaddingBottom();
+                for (int i13 = 0; i13 < childCount; i13++) {
+                    View childAt = getChildAt(i13);
+                    if (childAt.getVisibility() != 8) {
+                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                        int measuredWidth = childAt.getMeasuredWidth();
+                        int measuredHeight = childAt.getMeasuredHeight();
+                        int i14 = layoutParams.gravity;
+                        if (i14 == -1) {
+                            i14 = 51;
+                        }
+                        int absoluteGravity = Gravity.getAbsoluteGravity(i14, getLayoutDirection());
+                        int i15 = i14 & 112;
+                        int i16 = absoluteGravity & 7;
+                        if (i16 == 1) {
+                            i5 = (((paddingRight - paddingLeft) - measuredWidth) / 2) + paddingLeft + layoutParams.leftMargin;
+                            i6 = layoutParams.rightMargin;
+                        } else {
+                            if (i16 == 5) {
+                                i5 = paddingRight - measuredWidth;
+                                i6 = layoutParams.rightMargin;
+                            } else {
+                                i7 = layoutParams.leftMargin + paddingLeft;
+                            }
+                            if (i15 != 16) {
+                                i8 = (((paddingBottom - paddingTop) - measuredHeight) / 2) + paddingTop + layoutParams.topMargin;
+                                i9 = layoutParams.bottomMargin;
+                            } else if (i15 != 48 && i15 == 80) {
+                                i8 = paddingBottom - measuredHeight;
+                                i9 = layoutParams.bottomMargin;
+                            } else {
+                                i11 = layoutParams.topMargin;
+                                i10 = i11 + paddingTop;
+                                if (childAt instanceof EmojiView) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        i10 = i12 - measuredHeight;
+                                    } else {
+                                        i10 = (i12 + iMeasureKeyboardHeight) - measuredHeight;
+                                    }
+                                }
+                                childAt.layout(i7, i10, measuredWidth + i7, measuredHeight + i10);
+                            }
+                            i10 = i8 - i9;
+                            if (childAt instanceof EmojiView) {
+                                if (AndroidUtilities.isTablet()) {
+                                    i10 = i12 - measuredHeight;
+                                } else {
+                                    i10 = (i12 + iMeasureKeyboardHeight) - measuredHeight;
+                                }
+                            }
+                            childAt.layout(i7, i10, measuredWidth + i7, measuredHeight + i10);
+                        }
+                        i7 = i5 - i6;
+                        if (i15 != 16) {
+                            i8 = (((paddingBottom - paddingTop) - measuredHeight) / 2) + paddingTop + layoutParams.topMargin;
+                            i9 = layoutParams.bottomMargin;
+                        } else {
+                            if (i15 != 48) {
+                                i11 = layoutParams.topMargin;
+                            } else {
+                                i11 = layoutParams.topMargin;
+                            }
+                            i10 = i11 + paddingTop;
+                            if (childAt instanceof EmojiView) {
+                                if (AndroidUtilities.isTablet()) {
+                                    i10 = i12 - measuredHeight;
+                                } else {
+                                    i10 = (i12 + iMeasureKeyboardHeight) - measuredHeight;
+                                }
+                            }
+                            childAt.layout(i7, i10, measuredWidth + i7, measuredHeight + i10);
+                        }
+                        i10 = i8 - i9;
+                        if (childAt instanceof EmojiView) {
+                            if (AndroidUtilities.isTablet()) {
+                                i10 = i12 - measuredHeight;
+                            } else {
+                                i10 = (i12 + iMeasureKeyboardHeight) - measuredHeight;
+                            }
+                        }
+                        childAt.layout(i7, i10, measuredWidth + i7, measuredHeight + i10);
+                    }
+                }
+                super.notifyHeightChanged();
             }
         };
         this.fragmentView = sizeNotifierFrameLayout;
@@ -1005,7 +1098,68 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     private void fillFilterName() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.FilterCreateActivity.fillFilterName():void");
+        String string;
+        if (this.creatingNew) {
+            if (TextUtils.isEmpty(this.newFilterName) || !this.nameChangedManually) {
+                int i = this.newFilterFlags;
+                int i2 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
+                int i3 = i & i2;
+                if ((i3 & i2) == i2) {
+                    if ((MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ & i) != 0) {
+                        string = LocaleController.getString(R.string.FilterNameUnread);
+                    } else if ((i & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) == 0) {
+                        string = "";
+                    } else {
+                        string = LocaleController.getString(R.string.FilterNameNonMuted);
+                    }
+                } else {
+                    int i4 = MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
+                    if ((i3 & i4) == 0) {
+                        int i5 = MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
+                        if ((i3 & i5) == 0) {
+                            int i6 = MessagesController.DIALOG_FILTER_FLAG_GROUPS;
+                            if ((i3 & i6) == 0) {
+                                int i7 = MessagesController.DIALOG_FILTER_FLAG_BOTS;
+                                if ((i3 & i7) == 0) {
+                                    int i8 = MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
+                                    if ((i3 & i8) == 0 || ((~i8) & i3) != 0) {
+                                        string = "";
+                                    } else {
+                                        string = LocaleController.getString(R.string.FilterChannels);
+                                    }
+                                } else if (((~i7) & i3) != 0) {
+                                    string = "";
+                                } else {
+                                    string = LocaleController.getString(R.string.FilterBots);
+                                }
+                            } else if (((~i6) & i3) != 0) {
+                                string = "";
+                            } else {
+                                string = LocaleController.getString(R.string.FilterGroups);
+                            }
+                        } else if (((~i5) & i3) != 0) {
+                            string = "";
+                        } else {
+                            string = LocaleController.getString(R.string.FilterNonContacts);
+                        }
+                    } else if (((~i4) & i3) != 0) {
+                        string = "";
+                    } else {
+                        string = LocaleController.getString(R.string.FilterContacts);
+                    }
+                }
+                String str = (string == null || string.length() <= 12) ? string : "";
+                this.newFilterName = str;
+                HeaderCellColorPreview headerCellColorPreview = this.folderTagsHeader;
+                if (headerCellColorPreview != null) {
+                    headerCellColorPreview.setPreviewText(AnimatedEmojiSpan.cloneSpans(str, -1, headerCellColorPreview.getPreviewTextPaint().getFontMetricsInt(), 0.5f), false);
+                }
+                RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.nameRow);
+                if (viewHolderFindViewHolderForAdapterPosition != null) {
+                    this.adapter.onViewAttachedToWindow(viewHolderFindViewHolderForAdapterPosition);
+                }
+            }
+        }
     }
 
     public boolean checkDiscard(boolean z) {
@@ -1558,17 +1712,17 @@ public class FilterCreateActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view;
             View headerCell;
-            UserCell userCell;
             switch (i) {
                 case 0:
                     headerCell = new HeaderCell(this.mContext, 22);
                     break;
                 case 1:
-                    UserCell userCell2 = new UserCell(this.mContext, 6, 0, false);
-                    userCell2.setSelfAsSavedMessages(true);
-                    userCell = userCell2;
-                    headerCell = userCell;
+                    UserCell userCell = new UserCell(this.mContext, 6, 0, false);
+                    userCell.setSelfAsSavedMessages(true);
+                    view = userCell;
+                    headerCell = view;
                     break;
                 case 2:
                     boolean z = false;
@@ -1620,8 +1774,8 @@ public class FilterCreateActivity extends BaseFragment {
                     });
                     editText.setPadding(AndroidUtilities.dp(7.0f), editText.getPaddingTop(), editText.getPaddingRight(), editText.getPaddingBottom());
                     editEmojiTextCell.editTextEmoji.getEditText().setImeOptions(268435462);
-                    userCell = editEmojiTextCell;
-                    headerCell = userCell;
+                    view = editEmojiTextCell;
+                    headerCell = view;
                     break;
                 case 3:
                     headerCell = new ShadowSectionCell(this.mContext);
@@ -1958,7 +2112,7 @@ public class FilterCreateActivity extends BaseFragment {
         boolean needDivider;
         TextView textView;
 
-        public CreateLinkCell(Context context) throws Resources.NotFoundException {
+        public CreateLinkCell(Context context) {
             super(context);
             TextView textView = new TextView(context);
             this.textView = textView;
@@ -2448,8 +2602,10 @@ public class FilterCreateActivity extends BaseFragment {
             } else {
                 this.textPaint.setColor(AndroidUtilities.computePerceivedBrightness(color) > 0.721f ? -16777216 : -1);
             }
-            this.bgPaint.setAlpha((int) (r4.getAlpha() * alpha));
-            this.textPaint.setAlpha((int) (r4.getAlpha() * alpha));
+            Paint paint2 = this.bgPaint;
+            paint2.setAlpha((int) (paint2.getAlpha() * alpha));
+            TextPaint textPaint = this.textPaint;
+            textPaint.setAlpha((int) (textPaint.getAlpha() * alpha));
             float fDp2 = f + AndroidUtilities.dp(2.0f);
             float fDp3 = (i4 - this.height) + AndroidUtilities.dp(1.0f);
             RectF rectF = AndroidUtilities.rectTmp;

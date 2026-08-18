@@ -50,7 +50,6 @@ public abstract class BlurredFrameLayout extends FrameLayout {
                     }
                 } else {
                     sizeNotifierFrameLayout.drawBlurRect(canvas, y, this.blurBounds, this.backgroundPaint, this.isTopView);
-                    break;
                 }
             }
         }

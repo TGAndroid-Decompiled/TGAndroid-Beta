@@ -1,6 +1,5 @@
 package org.telegram.messenger.video.audio_input;
 
-import android.media.MediaCodec;
 import java.nio.ShortBuffer;
 import org.telegram.messenger.video.AudioBufferConverter;
 import org.telegram.messenger.video.AudioConversions;
@@ -71,7 +70,7 @@ public class GeneralAudioInput extends AudioInput {
     }
 
     @Override
-    public short getNext() throws MediaCodec.CryptoException {
+    public short getNext() {
         if (!hasRemaining()) {
             throw new RuntimeException("Audio input has no remaining value.");
         }
@@ -91,7 +90,7 @@ public class GeneralAudioInput extends AudioInput {
         return s;
     }
 
-    private void decode() throws MediaCodec.CryptoException {
+    private void decode() {
         ShortBuffer shortBuffer = this.buffer;
         if (shortBuffer == null || shortBuffer.remaining() <= 0) {
             AudioDecoder.DecodedBufferData decodedBufferDataDecode = this.decoder.decode();

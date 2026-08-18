@@ -86,16 +86,19 @@ public abstract class StringsKt__IndentKt extends StringsKt__AppendableKt {
     private static final int indentWidth$StringsKt__IndentKt(String str) {
         int length = str.length();
         int i = 0;
-        while (true) {
-            if (i >= length) {
-                i = -1;
-                break;
-            }
+        while (i < length) {
             if (!CharsKt__CharJVMKt.isWhitespace(str.charAt(i))) {
-                break;
+                if (i == -1) {
+                    return str.length();
+                }
+                return i;
             }
             i++;
         }
-        return i == -1 ? str.length() : i;
+        i = -1;
+        if (i == -1) {
+            return str.length();
+        }
+        return i;
     }
 }

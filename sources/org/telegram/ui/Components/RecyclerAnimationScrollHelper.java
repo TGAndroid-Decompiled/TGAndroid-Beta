@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.MessagesController;
 import org.telegram.ui.Cells.IMessageCell;
-import org.telegram.ui.Components.RecyclerListView;
 
 public class RecyclerAnimationScrollHelper {
     private AnimationCallback animationCallback;
@@ -55,8 +54,79 @@ public class RecyclerAnimationScrollHelper {
         scrollToPosition(i, i2, z, z2, false);
     }
 
-    public void scrollToPosition(final int r10, final int r11, final boolean r12, final boolean r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerAnimationScrollHelper.scrollToPosition(int, int, boolean, boolean, boolean):void");
+    public void scrollToPosition(final int i, final int i2, final boolean z, final boolean z2, boolean z3) {
+        long itemId;
+        RecyclerListView recyclerListView = this.recyclerView;
+        if (recyclerListView.fastScrollAnimationRunning) {
+            return;
+        }
+        if (recyclerListView.getItemAnimator() != null) {
+            if (z3) {
+                if (this.recyclerView.getItemAnimator().isRunning(new RecyclerView.ItemAnimator.ItemAnimatorFinishedListener() {
+                    @Override
+                    public final void onAnimationsFinished() {
+                        this.f$0.lambda$scrollToPosition$0(i, i2, z, z2);
+                    }
+                })) {
+                    return;
+                }
+            } else if (this.recyclerView.getItemAnimator().isRunning()) {
+                return;
+            }
+        }
+        if (!z2 || this.scrollDirection == -1) {
+            this.layoutManager.scrollToPositionWithOffset(i, i2, z);
+            return;
+        }
+        int childCount = this.recyclerView.getChildCount();
+        if (childCount == 0 || !MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)) {
+            this.layoutManager.scrollToPositionWithOffset(i, i2, z);
+            return;
+        }
+        boolean z4 = this.scrollDirection == 0;
+        this.recyclerView.setScrollEnabled(false);
+        ArrayList arrayList = new ArrayList();
+        this.positionToOldView.clear();
+        RecyclerView.Adapter adapter = this.recyclerView.getAdapter();
+        this.oldStableIds.clear();
+        for (int i3 = 0; i3 < childCount; i3++) {
+            View childAt = this.recyclerView.getChildAt(i3);
+            arrayList.add(childAt);
+            this.positionToOldView.put(this.layoutManager.getPosition(childAt), childAt);
+            if (adapter != null && (adapter.hasStableIds() || this.forceUseStableId)) {
+                if (this.forceUseStableId) {
+                    int adapterPosition = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getAdapterPosition();
+                    if (adapterPosition >= 0) {
+                        itemId = adapter.getItemId(adapterPosition);
+                    }
+                } else {
+                    itemId = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getItemId();
+                }
+                this.oldStableIds.put(Long.valueOf(itemId), childAt);
+                if (childAt instanceof IMessageCell) {
+                    ((IMessageCell) childAt).setAnimationRunning(true, true);
+                }
+            } else if (childAt instanceof IMessageCell) {
+                ((IMessageCell) childAt).setAnimationRunning(true, true);
+            }
+        }
+        this.recyclerView.prepareForFastScroll();
+        AnimatableAdapter animatableAdapter = adapter instanceof AnimatableAdapter ? (AnimatableAdapter) adapter : null;
+        this.layoutManager.scrollToPositionWithOffset(i, i2, z);
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
+        this.recyclerView.stopScroll();
+        this.recyclerView.setVerticalScrollBarEnabled(false);
+        AnimationCallback animationCallback = this.animationCallback;
+        if (animationCallback != null) {
+            animationCallback.onStartAnimation();
+        }
+        this.recyclerView.fastScrollAnimationRunning = true;
+        if (animatableAdapter != null) {
+            animatableAdapter.onAnimationStart();
+        }
+        this.recyclerView.addOnLayoutChangeListener(new AnonymousClass1(adapter, arrayList, z4, animatableAdapter));
     }
 
     public void lambda$scrollToPosition$0(int i, int i2, boolean z, boolean z2) {
@@ -121,11 +191,9 @@ public class RecyclerAnimationScrollHelper {
                 }
             }
             RecyclerAnimationScrollHelper.this.oldStableIds.clear();
-            Iterator it = this.val$oldViews.iterator();
             int i11 = Integer.MAX_VALUE;
             int height2 = 0;
-            while (it.hasNext()) {
-                View view3 = (View) it.next();
+            for (View view3 : this.val$oldViews) {
                 int bottom2 = view3.getBottom();
                 int top3 = view3.getTop();
                 if (bottom2 > height2) {
@@ -180,9 +248,7 @@ public class RecyclerAnimationScrollHelper {
                         return;
                     }
                     RecyclerAnimationScrollHelper.this.recyclerView.fastScrollAnimationRunning = false;
-                    Iterator it2 = AnonymousClass1.this.val$oldViews.iterator();
-                    while (it2.hasNext()) {
-                        View view4 = (View) it2.next();
+                    for (View view4 : AnonymousClass1.this.val$oldViews) {
                         if (view4 instanceof IMessageCell) {
                             ((IMessageCell) view4).setAnimationRunning(false, true);
                         }
@@ -213,9 +279,7 @@ public class RecyclerAnimationScrollHelper {
                         }
                         childAt2.setTranslationY(0.0f);
                     }
-                    Iterator it3 = arrayList.iterator();
-                    while (it3.hasNext()) {
-                        View view5 = (View) it3.next();
+                    for (View view5 : arrayList) {
                         if (view5 instanceof IMessageCell) {
                             ((IMessageCell) view5).setAnimationRunning(false, false);
                         }

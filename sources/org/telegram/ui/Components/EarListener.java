@@ -150,16 +150,18 @@ public class EarListener implements SensorEventListener {
             } else {
                 Sensor sensor = sensorEvent.sensor;
                 if (sensor == this.accelerometerSensor) {
-                    double d = this.lastTimestamp == 0 ? 0.9800000190734863d : 1.0d / (((sensorEvent.timestamp - r2) / 1.0E9d) + 1.0d);
+                    long j = this.lastTimestamp;
+                    double d = j == 0 ? 0.9800000190734863d : 1.0d / (((sensorEvent.timestamp - j) / 1.0E9d) + 1.0d);
                     this.lastTimestamp = sensorEvent.timestamp;
                     float[] fArr = this.gravity;
-                    double d2 = 1.0d - d;
+                    double d2 = ((double) fArr[0]) * d;
+                    double d3 = 1.0d - d;
                     float[] fArr2 = sensorEvent.values;
-                    float f3 = (float) ((fArr[0] * d) + (fArr2[0] * d2));
+                    float f3 = (float) (d2 + (((double) fArr2[0]) * d3));
                     fArr[0] = f3;
-                    float f4 = (float) ((fArr[1] * d) + (fArr2[1] * d2));
+                    float f4 = (float) ((((double) fArr[1]) * d) + (((double) fArr2[1]) * d3));
                     fArr[1] = f4;
-                    float f5 = (float) ((d * fArr[2]) + (d2 * fArr2[2]));
+                    float f5 = (float) ((d * ((double) fArr[2])) + (d3 * ((double) fArr2[2])));
                     fArr[2] = f5;
                     float[] fArr3 = this.gravityFast;
                     fArr3[0] = (f3 * 0.8f) + (fArr2[0] * 0.19999999f);

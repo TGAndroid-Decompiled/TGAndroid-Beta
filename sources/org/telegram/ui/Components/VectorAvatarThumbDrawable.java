@@ -9,12 +9,14 @@ import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import java.util.HashSet;
 import java.util.Iterator;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.AttachableDrawable;
+import org.telegram.ui.ActionBar.Theme;
 
 public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmojiSpan.InvalidateHolder, AttachableDrawable, NotificationCenter.NotificationCenterDelegate {
     AnimatedEmojiDrawable animatedEmojiDrawable;
@@ -77,14 +79,53 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
     }
 
     private void setImage() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.VectorAvatarThumbDrawable.setImage():void");
+        TLRPC.Document document;
+        String str;
+        String str2;
+        String str3;
+        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSet(this.sizeStickerMarkup.stickerset, false);
+        if (stickerSet != null) {
+            this.imageSeted = true;
+            for (int i = 0; i < stickerSet.documents.size(); i++) {
+                if (stickerSet.documents.get(i).id == this.sizeStickerMarkup.sticker_id) {
+                    TLRPC.Document document2 = stickerSet.documents.get(i);
+                    if (this.isPremium && this.type == 1) {
+                        str3 = "50_50";
+                    } else {
+                        if (this.type == 2) {
+                            str3 = "100_100";
+                        } else {
+                            document = null;
+                            str = null;
+                            str2 = "50_50_firstframe";
+                        }
+                        this.imageReceiver.setImage(ImageLocation.getForDocument(document2), str2, ImageLocation.getForDocument(document), str, null, null, DocumentObject.getSvgThumb(document2, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f), 0L, "tgs", document2, 0);
+                        if (this.type == 3) {
+                            this.stickerPreloadImageReceiver.setImage(ImageLocation.getForDocument(document2), "100_100", null, null, null, 0L, "tgs", document2, 0);
+                            return;
+                        }
+                        return;
+                    }
+                    str2 = str3;
+                    str = "50_50_firstframe";
+                    document = document2;
+                    this.imageReceiver.setImage(ImageLocation.getForDocument(document2), str2, ImageLocation.getForDocument(document), str, null, null, DocumentObject.getSvgThumb(document2, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f), 0L, "tgs", document2, 0);
+                    if (this.type == 3) {
+                        this.stickerPreloadImageReceiver.setImage(ImageLocation.getForDocument(document2), "100_100", null, null, null, 0L, "tgs", document2, 0);
+                        return;
+                    }
+                    return;
+                }
+            }
+        }
     }
 
     @Override
     public void draw(Canvas canvas) {
         this.gradientTools.setBounds(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom);
-        if (this.currentParent != null) {
-            this.roundRadius = r0.getRoundRadius()[0];
+        ImageReceiver imageReceiver = this.currentParent;
+        if (imageReceiver != null) {
+            this.roundRadius = imageReceiver.getRoundRadius()[0];
         }
         float f = this.roundRadius;
         if (f == 0.0f) {
@@ -104,10 +145,10 @@ public class VectorAvatarThumbDrawable extends Drawable implements AnimatedEmoji
             this.animatedEmojiDrawable.setBounds(iCenterX - iWidth, iCenterY - iWidth, iCenterX + iWidth, iCenterY + iWidth);
             this.animatedEmojiDrawable.draw(canvas);
         }
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (imageReceiver != null) {
+        ImageReceiver imageReceiver2 = this.imageReceiver;
+        if (imageReceiver2 != null) {
             float f2 = iWidth * 2;
-            imageReceiver.setRoundRadius((int) (0.13f * f2));
+            imageReceiver2.setRoundRadius((int) (0.13f * f2));
             this.imageReceiver.setImageCoords(iCenterX - iWidth, iCenterY - iWidth, f2, f2);
             this.imageReceiver.draw(canvas);
         }

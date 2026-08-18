@@ -818,8 +818,9 @@ public class RichEditText extends EditTextCaption {
                 if ((65536 & styleFlags) != 0) {
                     int spanStart = spanned.getSpanStart(textStyleSpan);
                     int spanEnd = spanned.getSpanEnd(textStyleSpan);
-                    linkPath = linkPath;
-                    if (spanStart >= 0 && spanEnd > spanStart) {
+                    if (spanStart < 0) {
+                        linkPath = linkPath;
+                    } else if (spanEnd > spanStart) {
                         if (linkPath == null) {
                             LinkPath linkPath2 = new LinkPath(true);
                             linkPath2.setAllowReset(false);

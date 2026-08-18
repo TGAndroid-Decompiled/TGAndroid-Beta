@@ -72,44 +72,44 @@ public class TLJsonParser {
 
     private boolean parseBoolean(Object obj, boolean z) {
         try {
+            if (obj instanceof Boolean) {
+                return ((Boolean) obj).booleanValue();
+            }
+            if (obj instanceof String) {
+                return Boolean.parseBoolean((String) obj);
+            }
+            return z;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (obj instanceof Boolean) {
-            return ((Boolean) obj).booleanValue();
-        }
-        if (obj instanceof String) {
-            return Boolean.parseBoolean((String) obj);
-        }
-        return z;
     }
 
     private long parseInt64(Object obj, long j) {
         try {
+            if (obj instanceof Number) {
+                return ((Number) obj).intValue();
+            }
+            if (obj instanceof String) {
+                return Long.parseLong((String) obj, 10);
+            }
+            return j;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (obj instanceof Number) {
-            return ((Number) obj).intValue();
-        }
-        if (obj instanceof String) {
-            return Long.parseLong((String) obj, 10);
-        }
-        return j;
     }
 
     private int parseInt32(Object obj, int i) {
         try {
+            if (obj instanceof Number) {
+                return ((Number) obj).intValue();
+            }
+            if (obj instanceof String) {
+                return Integer.parseInt((String) obj, 10);
+            }
+            return i;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (obj instanceof Number) {
-            return ((Number) obj).intValue();
-        }
-        if (obj instanceof String) {
-            return Integer.parseInt((String) obj, 10);
-        }
-        return i;
     }
 
     private static <T extends Deserializable> T parse(TLJsonParser tLJsonParser, Utilities.CallbackReturn<TLJsonParser, T> callbackReturn) {

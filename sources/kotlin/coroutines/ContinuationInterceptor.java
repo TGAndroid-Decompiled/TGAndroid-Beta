@@ -1,6 +1,5 @@
 package kotlin.coroutines;
 
-import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
 
 public interface ContinuationInterceptor extends CoroutineContext.Element {

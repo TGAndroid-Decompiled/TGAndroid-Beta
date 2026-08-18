@@ -5,7 +5,6 @@ import android.os.Build;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.webrtc.NetworkChangeDetector;
 
 public class NetworkMonitor {
     private static final String TAG = "NetworkMonitor";
@@ -137,7 +136,8 @@ public class NetworkMonitor {
             try {
                 NetworkChangeDetector networkChangeDetector = this.networkChangeDetector;
                 z = networkChangeDetector != null && networkChangeDetector.supportNetworkCallback();
-            } finally {
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return z;

@@ -69,7 +69,13 @@ public abstract class FilesKt__FileReadWriteKt extends FilesKt__FilePathComponen
             fileOutputStream.write(array);
             Unit unit = Unit.INSTANCE;
             CloseableKt.closeFinally(fileOutputStream, null);
-        } finally {
+        } catch (Throwable th) {
+            try {
+                throw th;
+            } catch (Throwable th2) {
+                CloseableKt.closeFinally(fileOutputStream, th);
+                throw th2;
+            }
         }
     }
 }

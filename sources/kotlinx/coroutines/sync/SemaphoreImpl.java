@@ -124,7 +124,7 @@ public class SemaphoreImpl {
         long andIncrement = enqIdx$volatile$FU.getAndIncrement(this);
         SemaphoreImpl$addAcquireToQueue$createNewSegment$1 semaphoreImpl$addAcquireToQueue$createNewSegment$1 = SemaphoreImpl$addAcquireToQueue$createNewSegment$1.INSTANCE;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = tail$volatile$FU;
-        long j = andIncrement / SemaphoreKt.SEGMENT_SIZE;
+        long j = andIncrement / ((long) SemaphoreKt.SEGMENT_SIZE);
         loop0: while (true) {
             objFindSegmentInternal = ConcurrentLinkedListKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$addAcquireToQueue$createNewSegment$1);
             if (!SegmentOrClosed.m342isClosedimpl(objFindSegmentInternal)) {
@@ -138,10 +138,13 @@ public class SemaphoreImpl {
                         break;
                     }
                     if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, segment, segmentM341getSegmentimpl)) {
-                        if (segment.decPointers$kotlinx_coroutines_core()) {
-                            segment.remove();
+                        if (!segment.decPointers$kotlinx_coroutines_core()) {
+                            break loop0;
                         }
-                    } else if (segmentM341getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
+                        segment.remove();
+                        break loop0;
+                    }
+                    if (segmentM341getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
                         segmentM341getSegmentimpl.remove();
                     }
                 }
@@ -150,7 +153,7 @@ public class SemaphoreImpl {
             }
         }
         SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) SegmentOrClosed.m341getSegmentimpl(objFindSegmentInternal);
-        int i = (int) (andIncrement % SemaphoreKt.SEGMENT_SIZE);
+        int i = (int) (andIncrement % ((long) SemaphoreKt.SEGMENT_SIZE));
         if (!ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i, null, waiter)) {
             if (!ChannelSegment$$ExternalSyntheticBackportWithForwarding0.m(semaphoreSegment2.getAcquirers(), i, SemaphoreKt.PERMIT, SemaphoreKt.TAKEN)) {
                 return false;
@@ -170,7 +173,7 @@ public class SemaphoreImpl {
         Object objFindSegmentInternal;
         SemaphoreSegment semaphoreSegment = (SemaphoreSegment) head$volatile$FU.get(this);
         long andIncrement = deqIdx$volatile$FU.getAndIncrement(this);
-        long j = andIncrement / SemaphoreKt.SEGMENT_SIZE;
+        long j = andIncrement / ((long) SemaphoreKt.SEGMENT_SIZE);
         SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 semaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 = SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1.INSTANCE;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = head$volatile$FU;
         loop0: while (true) {
@@ -188,10 +191,13 @@ public class SemaphoreImpl {
                     break;
                 }
                 if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, segment, segmentM341getSegmentimpl)) {
-                    if (segment.decPointers$kotlinx_coroutines_core()) {
-                        segment.remove();
+                    if (!segment.decPointers$kotlinx_coroutines_core()) {
+                        break loop0;
                     }
-                } else if (segmentM341getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
+                    segment.remove();
+                    break loop0;
+                }
+                if (segmentM341getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
                     segmentM341getSegmentimpl.remove();
                 }
             }
@@ -201,7 +207,7 @@ public class SemaphoreImpl {
         if (semaphoreSegment2.id > j) {
             return false;
         }
-        int i = (int) (andIncrement % SemaphoreKt.SEGMENT_SIZE);
+        int i = (int) (andIncrement % ((long) SemaphoreKt.SEGMENT_SIZE));
         Object andSet = semaphoreSegment2.getAcquirers().getAndSet(i, SemaphoreKt.PERMIT);
         if (andSet == null) {
             int i2 = SemaphoreKt.MAX_SPIN_CYCLES;

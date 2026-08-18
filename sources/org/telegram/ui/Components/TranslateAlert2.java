@@ -31,10 +31,17 @@ import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
+import com.google.common.base.Charsets;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+import org.json.JSONArray;
+import org.json.JSONTokener;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -60,9 +67,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
-import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.LinkSpanDrawable;
-import org.telegram.ui.Components.RecyclerListView;
 
 public abstract class TranslateAlert2 extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private static HashMap localesByCode;
@@ -289,8 +293,9 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     public boolean hasEnoughHeight() {
         float height = 0.0f;
         for (int i = 0; i < this.listView.getChildCount(); i++) {
-            if (this.listView.getChildAdapterPosition(this.listView.getChildAt(i)) == 1) {
-                height += r3.getHeight();
+            View childAt = this.listView.getChildAt(i);
+            if (this.listView.getChildAdapterPosition(childAt) == 1) {
+                height += childAt.getHeight();
             }
         }
         return height >= ((float) ((this.listView.getHeight() - this.listView.getPaddingTop()) - this.listView.getPaddingBottom()));
@@ -614,8 +619,109 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         }
 
         @Override
-        public void run() throws org.json.JSONException, java.io.IOException {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TranslateAlert2.AnonymousClass5.run():void");
+        public void run() {
+            HttpURLConnection httpURLConnection;
+            String string;
+            final boolean z = true;
+            try {
+                httpURLConnection = (HttpURLConnection) new URI((((("https://translate.googleapis.com/transl") + "ate_a") + "/singl") + "e?client=gtx&sl=" + Uri.encode(this.val$fromLng) + "&tl=" + Uri.encode(this.val$toLng) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + this.val$text).toURL().openConnection();
+                try {
+                    httpURLConnection.setRequestMethod("GET");
+                    String[] strArr = TranslateAlert2.userAgents;
+                    httpURLConnection.setRequestProperty("User-Agent", strArr[(int) Math.round(Math.random() * ((double) (strArr.length - 1)))]);
+                    httpURLConnection.setRequestProperty("Content-Type", "application/json");
+                    StringBuilder sb = new StringBuilder();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), Charsets.UTF_8));
+                    while (true) {
+                        try {
+                            int i = bufferedReader.read();
+                            if (i == -1) {
+                                break;
+                            } else {
+                                sb.append((char) i);
+                            }
+                        } catch (Throwable th) {
+                            try {
+                                bufferedReader.close();
+                            } catch (Throwable th2) {
+                                th.addSuppressed(th2);
+                            }
+                            throw th;
+                        }
+                        e = e;
+                        try {
+                            StringBuilder sb2 = new StringBuilder();
+                            sb2.append("failed to translate a text ");
+                            sb2.append(httpURLConnection != null ? Integer.valueOf(httpURLConnection.getResponseCode()) : null);
+                            sb2.append(" ");
+                            sb2.append(httpURLConnection != null ? httpURLConnection.getResponseMessage() : null);
+                            Log.e("translate", sb2.toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        e.printStackTrace();
+                        if (httpURLConnection != null) {
+                            try {
+                                if (httpURLConnection.getResponseCode() != 429) {
+                                    z = false;
+                                }
+                            } catch (Exception unused) {
+                                final Utilities.Callback2 callback2 = this.val$done;
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        TranslateAlert2.AnonymousClass5.lambda$run$2(callback2);
+                                    }
+                                });
+                                return;
+                            }
+                        } else {
+                            z = false;
+                        }
+                        final Utilities.Callback2 callback3 = this.val$done;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                TranslateAlert2.AnonymousClass5.lambda$run$1(callback3, z);
+                            }
+                        });
+                        return;
+                    }
+                    bufferedReader.close();
+                    JSONArray jSONArray = new JSONArray(new JSONTokener(sb.toString()));
+                    JSONArray jSONArray2 = jSONArray.getJSONArray(0);
+                    try {
+                        string = jSONArray.getString(2);
+                    } catch (Exception unused2) {
+                        string = null;
+                    }
+                    if (string != null && string.contains("-")) {
+                        string.substring(0, string.indexOf("-"));
+                    }
+                    final String str = "";
+                    for (int i2 = 0; i2 < jSONArray2.length(); i2++) {
+                        String string2 = jSONArray2.getJSONArray(i2).getString(0);
+                        if (string2 != null && !string2.equals("null")) {
+                            str = str + string2;
+                        }
+                    }
+                    if (this.val$text.length() > 0 && this.val$text.charAt(0) == '\n') {
+                        str = "\n" + str;
+                    }
+                    final Utilities.Callback2 callback4 = this.val$done;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            TranslateAlert2.AnonymousClass5.lambda$run$0(callback4, str);
+                        }
+                    });
+                } catch (Exception e2) {
+                    e = e2;
+                }
+            } catch (Exception e3) {
+                e = e3;
+                httpURLConnection = null;
+            }
         }
 
         public static void lambda$run$0(Utilities.Callback2 callback2, String str) {
@@ -1262,7 +1368,8 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             float fLerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(12.0f), MathUtils.clamp(sheetTop / AndroidUtilities.dpf2(24.0f), 0.0f, 1.0f));
             TranslateAlert2.this.headerView.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, sheetTop));
             updateLightStatusBar(sheetTop <= ((float) AndroidUtilities.statusBarHeight) / 2.0f);
-            TranslateAlert2.this.topBulletinContainer.setTranslationY(((-r2.getTop()) - TranslateAlert2.this.topBulletinContainer.getHeight()) + getTranslationY() + Math.max(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f) + TranslateAlert2.this.topBulletinContainer.getHeight(), sheetTop));
+            FrameLayout frameLayout = TranslateAlert2.this.topBulletinContainer;
+            frameLayout.setTranslationY(((-frameLayout.getTop()) - TranslateAlert2.this.topBulletinContainer.getHeight()) + getTranslationY() + Math.max(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f) + TranslateAlert2.this.topBulletinContainer.getHeight(), sheetTop));
             this.bgPath.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, sheetTop, getWidth(), getHeight() + fLerp);
@@ -1274,7 +1381,8 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         @Override
         public void setTranslationY(float f) {
             super.setTranslationY(f);
-            TranslateAlert2.this.topBulletinContainer.setTranslationY(((-r0.getTop()) - TranslateAlert2.this.topBulletinContainer.getHeight()) + f + Math.max(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f) + TranslateAlert2.this.topBulletinContainer.getHeight(), TranslateAlert2.this.getSheetTop()));
+            FrameLayout frameLayout = TranslateAlert2.this.topBulletinContainer;
+            frameLayout.setTranslationY(((-frameLayout.getTop()) - TranslateAlert2.this.topBulletinContainer.getHeight()) + f + Math.max(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(56.0f) + TranslateAlert2.this.topBulletinContainer.getHeight(), TranslateAlert2.this.getSheetTop()));
         }
 
         private void updateLightStatusBar(boolean z) {
@@ -1485,7 +1593,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.emojiLoaded) {
             this.loadingTextView.invalidate();
             this.textView.invalidate();

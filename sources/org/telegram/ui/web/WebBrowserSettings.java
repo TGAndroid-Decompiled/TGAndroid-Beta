@@ -50,7 +50,6 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.web.BrowserHistory;
 
 public class WebBrowserSettings extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     private Drawable addIcon;
@@ -104,13 +103,14 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     private void loadSizes() {
-        if (BrowserHistory.getHistory(new Utilities.Callback() {
+        ArrayList history = BrowserHistory.getHistory(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 this.f$0.lambda$loadSizes$0((ArrayList) obj);
             }
-        }) != null) {
-            this.historySize = r0.size();
+        });
+        if (history != null) {
+            this.historySize = history.size();
             UniversalRecyclerView universalRecyclerView = this.listView;
             if (universalRecyclerView != null && universalRecyclerView.adapter != null && universalRecyclerView.isAttachedToWindow()) {
                 this.listView.adapter.update(true);

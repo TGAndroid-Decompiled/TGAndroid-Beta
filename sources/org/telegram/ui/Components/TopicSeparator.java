@@ -219,8 +219,33 @@ public class TopicSeparator {
         }
     }
 
-    public boolean onTouchEvent(android.view.MotionEvent r6, boolean r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TopicSeparator.onTouchEvent(android.view.MotionEvent, boolean):boolean");
+    public boolean onTouchEvent(MotionEvent motionEvent, boolean z) {
+        boolean z2;
+        Runnable runnable;
+        if (this.text != null) {
+            if (this.clickBounds.contains(motionEvent.getX(), motionEvent.getY() - (z ? this.cell.getPaddingTop() : 0))) {
+                z2 = true;
+            } else {
+                z2 = false;
+            }
+        } else {
+            z2 = false;
+        }
+        if (motionEvent.getAction() == 0) {
+            this.bounce.setPressed(z2);
+        } else if (motionEvent.getAction() == 2) {
+            if (this.bounce.isPressed() && !z2) {
+                this.bounce.setPressed(false);
+            }
+        } else if (motionEvent.getAction() == 1) {
+            if (this.bounce.isPressed() && (runnable = this.onClickListener) != null) {
+                runnable.run();
+            }
+            this.bounce.setPressed(false);
+        } else if (motionEvent.getAction() == 3) {
+            this.bounce.setPressed(false);
+        }
+        return this.bounce.isPressed();
     }
 
     public static class Cell extends View {

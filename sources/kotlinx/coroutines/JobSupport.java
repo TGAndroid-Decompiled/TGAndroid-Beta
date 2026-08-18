@@ -23,8 +23,6 @@ import kotlin.jvm.internal.Ref$ObjectRef;
 import kotlin.jvm.internal.TypeIntrinsics;
 import kotlin.sequences.Sequence;
 import kotlin.sequences.SequencesKt;
-import kotlinx.coroutines.InternalCompletionHandler;
-import kotlinx.coroutines.Job;
 import kotlinx.coroutines.internal.LockFreeLinkedListKt;
 import kotlinx.coroutines.internal.LockFreeLinkedListNode;
 import kotlinx.coroutines.internal.OpDescriptor;
@@ -351,31 +349,23 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         }
         List list2 = list;
         Iterator it = list2.iterator();
-        while (true) {
+        do {
             if (!it.hasNext()) {
                 next = null;
                 break;
             }
             next = it.next();
-            if (!(((Throwable) next) instanceof CancellationException)) {
-                break;
-            }
-        }
+        } while (((Throwable) next) instanceof CancellationException);
         Throwable th = (Throwable) next;
         if (th != null) {
             return th;
         }
         Throwable th2 = (Throwable) list.get(0);
         if (th2 instanceof TimeoutCancellationException) {
-            Iterator it2 = list2.iterator();
-            while (true) {
-                if (!it2.hasNext()) {
-                    break;
-                }
-                Object next2 = it2.next();
-                Throwable th3 = (Throwable) next2;
+            for (Object obj2 : list2) {
+                Throwable th3 = (Throwable) obj2;
                 if (th3 != th2 && (th3 instanceof TimeoutCancellationException)) {
-                    obj = next2;
+                    obj = obj2;
                     break;
                 }
             }
@@ -501,7 +491,10 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         }
         boolean z = th instanceof CancellationException;
         ChildHandle parentHandle$kotlinx_coroutines_core = getParentHandle$kotlinx_coroutines_core();
-        return (parentHandle$kotlinx_coroutines_core == null || parentHandle$kotlinx_coroutines_core == NonDisposableHandle.INSTANCE) ? z : parentHandle$kotlinx_coroutines_core.childCancelled(th) || z;
+        if (parentHandle$kotlinx_coroutines_core == null || parentHandle$kotlinx_coroutines_core == NonDisposableHandle.INSTANCE) {
+            return z;
+        }
+        return parentHandle$kotlinx_coroutines_core.childCancelled(th) || z;
     }
 
     private final int startInternal(Object obj) {
@@ -592,6 +585,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                     promoteEmptyToNodeList(empty);
                 }
             } else {
+                Throwable rootCause = null;
                 if (state$kotlinx_coroutines_core instanceof Incomplete) {
                     NodeList list = ((Incomplete) state$kotlinx_coroutines_core).getList();
                     if (list == null) {
@@ -657,10 +651,11 @@ public class JobSupport implements Job, ChildJob, ParentJob {
 
     private final void promoteEmptyToNodeList(Empty empty) {
         NodeList nodeList = new NodeList();
+        Object inactiveNodeList = nodeList;
         if (!empty.isActive()) {
-            nodeList = new InactiveNodeList(nodeList);
+            inactiveNodeList = new InactiveNodeList(nodeList);
         }
-        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, empty, nodeList);
+        AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_state$volatile$FU, this, empty, inactiveNodeList);
     }
 
     private final void promoteSingleToNodeList(JobNode jobNode) {
@@ -766,7 +761,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
 
     @Override
     public CancellationException getChildJobCancellationCause() {
-        CancellationException rootCause;
+        Throwable rootCause;
         Object state$kotlinx_coroutines_core = getState$kotlinx_coroutines_core();
         if (state$kotlinx_coroutines_core instanceof Finishing) {
             rootCause = ((Finishing) state$kotlinx_coroutines_core).getRootCause();
@@ -778,7 +773,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
             }
             rootCause = null;
         }
-        CancellationException cancellationException = rootCause instanceof CancellationException ? rootCause : null;
+        CancellationException cancellationException = rootCause instanceof CancellationException ? (CancellationException) rootCause : null;
         if (cancellationException != null) {
             return cancellationException;
         }
@@ -951,11 +946,17 @@ public class JobSupport implements Job, ChildJob, ParentJob {
     }
 
     private final String stateString(Object obj) {
-        if (!(obj instanceof Finishing)) {
-            return obj instanceof Incomplete ? ((Incomplete) obj).isActive() ? "Active" : "New" : obj instanceof CompletedExceptionally ? "Cancelled" : "Completed";
+        if (obj instanceof Finishing) {
+            Finishing finishing = (Finishing) obj;
+            if (finishing.isCancelling()) {
+                return "Cancelling";
+            }
+            return finishing.isCompleting() ? "Completing" : "Active";
         }
-        Finishing finishing = (Finishing) obj;
-        return finishing.isCancelling() ? "Cancelling" : finishing.isCompleting() ? "Completing" : "Active";
+        if (obj instanceof Incomplete) {
+            return ((Incomplete) obj).isActive() ? "Active" : "New";
+        }
+        return obj instanceof CompletedExceptionally ? "Cancelled" : "Completed";
     }
 
     private static final class Finishing implements Incomplete {
@@ -1112,7 +1113,10 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         public Throwable getContinuationCancellationCause(Job job) {
             Throwable rootCause;
             Object state$kotlinx_coroutines_core = this.job.getState$kotlinx_coroutines_core();
-            return (!(state$kotlinx_coroutines_core instanceof Finishing) || (rootCause = ((Finishing) state$kotlinx_coroutines_core).getRootCause()) == null) ? state$kotlinx_coroutines_core instanceof CompletedExceptionally ? ((CompletedExceptionally) state$kotlinx_coroutines_core).cause : job.getCancellationException() : rootCause;
+            if (!(state$kotlinx_coroutines_core instanceof Finishing) || (rootCause = ((Finishing) state$kotlinx_coroutines_core).getRootCause()) == null) {
+                return state$kotlinx_coroutines_core instanceof CompletedExceptionally ? ((CompletedExceptionally) state$kotlinx_coroutines_core).cause : job.getCancellationException();
+            }
+            return rootCause;
         }
 
         @Override

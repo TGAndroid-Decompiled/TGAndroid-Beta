@@ -17,7 +17,7 @@ public final class EmuInputDevicesDetector {
     private EmuInputDevicesDetector() {
     }
 
-    public static boolean detect() throws IOException {
+    public static boolean detect() {
         List<String> inputDevicesNames = getInputDevicesNames();
         if (inputDevicesNames != null) {
             for (String str : inputDevicesNames) {
@@ -31,7 +31,7 @@ public final class EmuInputDevicesDetector {
         return false;
     }
 
-    private static List<String> getInputDevicesNames() throws IOException {
+    private static List<String> getInputDevicesNames() {
         File file = new File("/proc/bus/input/devices");
         if (!file.canRead()) {
             return null;

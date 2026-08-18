@@ -102,11 +102,12 @@ public class RichMediaConverter implements NotificationCenter.NotificationCenter
             videoEditedInfo.endTime = 3000L;
         }
         long j2 = videoEditedInfo.endTime;
-        videoEditedInfo.end = j2;
+        float f = j2;
+        videoEditedInfo.end = f;
         videoEditedInfo.compressQuality = 1;
         videoEditedInfo.rotationValue = 0;
         videoEditedInfo.originalPath = photoEntry.path;
-        videoEditedInfo.estimatedSize = (int) ((r12 / 1000.0f) * 115200.0f);
+        videoEditedInfo.estimatedSize = (int) ((f / 1000.0f) * 115200.0f);
         videoEditedInfo.estimatedDuration = j2;
         videoEditedInfo.framerate = 30;
         videoEditedInfo.originalDuration = j2;
@@ -137,14 +138,14 @@ public class RichMediaConverter implements NotificationCenter.NotificationCenter
             i = i7;
             i2 = i8;
         }
-        float f = i;
-        float f2 = i2;
-        float fMax = Math.max(f / 854.0f, f2 / 854.0f);
+        float f2 = i;
+        float f3 = i2;
+        float fMax = Math.max(f2 / 854.0f, f3 / 854.0f);
         if (fMax < 1.0f) {
             fMax = 1.0f;
         }
-        int iMax = (int) (f / fMax);
-        int iMax2 = (int) (f2 / fMax);
+        int iMax = (int) (f2 / fMax);
+        int iMax2 = (int) (f3 / fMax);
         if (iMax % 16 != 0) {
             iMax = Math.max(1, Math.round(iMax / 16.0f)) * 16;
         }

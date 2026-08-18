@@ -47,17 +47,19 @@ public abstract class RichBlockChrome {
     }
 
     public static int quoteInset(BlockRow blockRow) {
-        if (quoteDepth(blockRow) <= 0) {
+        int iQuoteDepth = quoteDepth(blockRow);
+        if (iQuoteDepth <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(((r0 - 1) * 16) + 12);
+        return AndroidUtilities.dp(((iQuoteDepth - 1) * 16) + 12);
     }
 
     public static int quoteInsetEnd(BlockRow blockRow) {
-        if (quoteDepth(blockRow) <= 0) {
+        int iQuoteDepth = quoteDepth(blockRow);
+        if (iQuoteDepth <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(((r0 - 1) * 16) + 8);
+        return AndroidUtilities.dp(((iQuoteDepth - 1) * 16) + 8);
     }
 
     public static int insetFor(BlockRow blockRow) {

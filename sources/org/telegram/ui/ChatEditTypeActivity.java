@@ -56,8 +56,6 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
-import org.telegram.ui.ChangeUsernameActivity;
-import org.telegram.ui.ChatEditTypeActivity;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -981,54 +979,50 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 return;
             }
             int i3 = -1;
-            int i4 = 0;
             if (tL_username.active != z) {
                 tL_username.active = z;
                 if (z) {
-                    int i5 = 0;
+                    int i4 = 0;
                     while (true) {
-                        if (i5 >= ChatEditTypeActivity.this.usernames.size()) {
-                            i5 = -1;
+                        if (i4 >= ChatEditTypeActivity.this.usernames.size()) {
+                            i4 = -1;
                             break;
-                        } else if (!((TLRPC.TL_username) ChatEditTypeActivity.this.usernames.get(i5)).active) {
+                        } else if (!((TLRPC.TL_username) ChatEditTypeActivity.this.usernames.get(i4)).active) {
                             break;
                         } else {
-                            i5++;
+                            i4++;
                         }
                     }
-                    if (i5 >= 0) {
-                        iMin = Math.max(0, i5 - 1);
+                    if (i4 >= 0) {
+                        iMin = Math.max(0, i4 - 1);
                         i3 = iMin + 1;
                     }
                 } else {
-                    int i6 = -1;
-                    for (int i7 = 0; i7 < ChatEditTypeActivity.this.usernames.size(); i7++) {
-                        if (((TLRPC.TL_username) ChatEditTypeActivity.this.usernames.get(i7)).active) {
-                            i6 = i7;
+                    int i5 = -1;
+                    for (int i6 = 0; i6 < ChatEditTypeActivity.this.usernames.size(); i6++) {
+                        if (((TLRPC.TL_username) ChatEditTypeActivity.this.usernames.get(i6)).active) {
+                            i5 = i6;
                         }
                     }
-                    if (i6 >= 0) {
-                        iMin = Math.min(ChatEditTypeActivity.this.usernames.size() - 1, i6 + 1);
+                    if (i5 >= 0) {
+                        iMin = Math.min(ChatEditTypeActivity.this.usernames.size() - 1, i5 + 1);
                         i3 = iMin + 1;
                     }
                 }
             }
-            while (true) {
-                if (i4 >= getChildCount()) {
-                    break;
-                }
-                View childAt = getChildAt(i4);
+            for (int i7 = 0; i7 < getChildCount(); i7++) {
+                View childAt = getChildAt(i7);
                 if (getChildAdapterPosition(childAt) == i) {
                     if (z2) {
                         AndroidUtilities.shakeView(childAt);
                     }
-                    if (childAt instanceof ChangeUsernameActivity.UsernameCell) {
-                        ChangeUsernameActivity.UsernameCell usernameCell = (ChangeUsernameActivity.UsernameCell) childAt;
-                        usernameCell.setLoading(ChatEditTypeActivity.this.loadingUsernames.contains(tL_username.username));
-                        usernameCell.update();
+                    if (!(childAt instanceof ChangeUsernameActivity.UsernameCell)) {
+                        break;
                     }
-                } else {
-                    i4++;
+                    ChangeUsernameActivity.UsernameCell usernameCell = (ChangeUsernameActivity.UsernameCell) childAt;
+                    usernameCell.setLoading(ChatEditTypeActivity.this.loadingUsernames.contains(tL_username.username));
+                    usernameCell.update();
+                    break;
                 }
             }
             if (i3 < 0 || i == i3) {

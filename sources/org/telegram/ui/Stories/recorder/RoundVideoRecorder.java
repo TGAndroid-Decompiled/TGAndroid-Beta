@@ -219,7 +219,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
     public String sinceRecordingText() {
         long jSinceRecording = sinceRecording();
         int i = (int) (jSinceRecording / 1000);
-        int i2 = (int) ((jSinceRecording - (i * 1000)) / 100);
+        int i2 = (int) ((jSinceRecording - ((long) (i * 1000))) / 100);
         int i3 = i / 60;
         int i4 = i % 60;
         StringBuilder sb = new StringBuilder();

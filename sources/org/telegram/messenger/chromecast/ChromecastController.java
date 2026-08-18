@@ -13,7 +13,6 @@ import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import j$.util.Objects;
 import java.io.File;
-import java.net.SocketException;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.CastSync;
 import org.telegram.ui.PhotoViewer;
@@ -108,7 +107,8 @@ public class ChromecastController implements SessionManagerListener {
                         chromecastController = new ChromecastController();
                         Instance = chromecastController;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -150,7 +150,7 @@ public class ChromecastController implements SessionManagerListener {
             this.manager.endCurrentSession(true);
         }
 
-        private void loadNext(boolean z) throws SocketException {
+        private void loadNext(boolean z) {
             if (z) {
                 this.index++;
             } else {
@@ -165,7 +165,7 @@ public class ChromecastController implements SessionManagerListener {
             loadImpl();
         }
 
-        private void loadImpl() throws SocketException {
+        private void loadImpl() {
             this.lastMediaErrorCode = -1;
             if (this.media == null) {
                 this.media = null;
@@ -209,7 +209,7 @@ public class ChromecastController implements SessionManagerListener {
         }
 
         @Override
-        public void onStatusUpdated() throws SocketException {
+        public void onStatusUpdated() {
             Log.d("CAST_CLIENT", "onStatusUpdated " + this.session.getSessionId());
             int idleReason = this.client.getIdleReason();
             if (idleReason != this.lastIdleReason) {

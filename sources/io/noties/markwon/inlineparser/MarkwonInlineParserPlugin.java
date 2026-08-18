@@ -1,7 +1,6 @@
 package io.noties.markwon.inlineparser;
 
 import io.noties.markwon.AbstractMarkwonPlugin;
-import io.noties.markwon.inlineparser.MarkwonInlineParser;
 import org.commonmark.parser.Parser;
 
 public class MarkwonInlineParserPlugin extends AbstractMarkwonPlugin {

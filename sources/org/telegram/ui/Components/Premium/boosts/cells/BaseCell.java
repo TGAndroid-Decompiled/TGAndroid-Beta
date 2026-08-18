@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -148,7 +147,7 @@ public abstract class BaseCell extends FrameLayout {
         }
     }
 
-    protected CharSequence withArrow(CharSequence charSequence) throws Resources.NotFoundException {
+    protected CharSequence withArrow(CharSequence charSequence) {
         SpannableString spannableString = new SpannableString(">");
         Drawable drawable = getContext().getResources().getDrawable(R.drawable.attach_arrow_right);
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(drawable, 2);

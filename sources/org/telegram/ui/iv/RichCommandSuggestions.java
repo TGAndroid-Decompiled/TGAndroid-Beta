@@ -8,7 +8,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.iv.RichCommand;
 
 public class RichCommandSuggestions {
     private RichTextCell backgroundCell;

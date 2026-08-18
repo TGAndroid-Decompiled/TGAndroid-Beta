@@ -1,7 +1,6 @@
 package org.telegram.ui.Charts.data;
 
 import org.json.JSONObject;
-import org.telegram.ui.Charts.data.ChartData;
 
 public class DoubleLinearChartData extends ChartData {
     public float[] linesK;
@@ -23,10 +22,11 @@ public class DoubleLinearChartData extends ChartData {
         }
         this.linesK = new float[size];
         for (int i2 = 0; i2 < size; i2++) {
-            if (j == ((ChartData.Line) this.lines.get(i2)).maxValue) {
+            long j3 = ((ChartData.Line) this.lines.get(i2)).maxValue;
+            if (j == j3) {
                 this.linesK[i2] = 1.0f;
             } else {
-                this.linesK[i2] = j / r4;
+                this.linesK[i2] = j / j3;
             }
         }
     }

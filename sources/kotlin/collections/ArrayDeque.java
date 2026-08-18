@@ -321,22 +321,20 @@ public final class ArrayDeque extends AbstractMutableList {
             return -1;
         }
         int length2 = this.elementData.length;
-        while (true) {
-            if (length >= length2) {
-                for (int i2 = 0; i2 < iPositiveMod; i2++) {
-                    if (Intrinsics.areEqual(obj, this.elementData[i2])) {
-                        length = i2 + this.elementData.length;
-                        i = this.head;
-                    }
-                }
-                return -1;
-            }
+        while (length < length2) {
             if (Intrinsics.areEqual(obj, this.elementData[length])) {
                 i = this.head;
-                break;
+            } else {
+                length++;
             }
-            length++;
         }
+        for (int i2 = 0; i2 < iPositiveMod; i2++) {
+            if (Intrinsics.areEqual(obj, this.elementData[i2])) {
+                length = i2 + this.elementData.length;
+                i = this.head;
+            }
+        }
+        return -1;
         return length - i;
     }
 
@@ -360,27 +358,23 @@ public final class ArrayDeque extends AbstractMutableList {
             return -1;
         }
         if (i2 > iPositiveMod) {
-            int i3 = iPositiveMod - 1;
-            while (true) {
-                if (-1 < i3) {
-                    if (Intrinsics.areEqual(obj, this.elementData[i3])) {
-                        lastIndex = i3 + this.elementData.length;
-                        i = this.head;
-                        break;
-                    }
-                    i3--;
-                } else {
-                    lastIndex = ArraysKt___ArraysKt.getLastIndex(this.elementData);
-                    int i4 = this.head;
-                    if (i4 <= lastIndex) {
-                        while (!Intrinsics.areEqual(obj, this.elementData[lastIndex])) {
-                            if (lastIndex != i4) {
-                                lastIndex--;
-                            }
-                        }
-                        i = this.head;
+            for (int i3 = iPositiveMod - 1; -1 < i3; i3--) {
+                if (Intrinsics.areEqual(obj, this.elementData[i3])) {
+                    lastIndex = i3 + this.elementData.length;
+                    i = this.head;
+                    return lastIndex - i;
+                }
+            }
+            lastIndex = ArraysKt___ArraysKt.getLastIndex(this.elementData);
+            int i4 = this.head;
+            if (i4 <= lastIndex) {
+                while (!Intrinsics.areEqual(obj, this.elementData[lastIndex])) {
+                    if (lastIndex != i4) {
+                        lastIndex--;
                     }
                 }
+                i = this.head;
+                return lastIndex - i;
             }
         }
         return -1;
@@ -576,7 +570,7 @@ public final class ArrayDeque extends AbstractMutableList {
     }
 
     @Override
-    public Object[] toArray(Object[] array) throws NegativeArraySizeException {
+    public Object[] toArray(Object[] array) {
         Intrinsics.checkNotNullParameter(array, "array");
         if (array.length < size()) {
             array = ArraysKt__ArraysJVMKt.arrayOfNulls(array, size());

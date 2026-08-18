@@ -15,11 +15,6 @@ import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.FileLog;
-import org.webrtc.EglBase;
-import org.webrtc.GlGenericDrawer;
-import org.webrtc.GlUtil;
-import org.webrtc.RendererCommon;
-import org.webrtc.VideoSink;
 
 public class EglRenderer implements VideoSink {
     private static final long LOG_INTERVAL_SEC = 4;
@@ -98,7 +93,62 @@ public class EglRenderer implements VideoSink {
 
         @Override
         public synchronized void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.webrtc.EglRenderer.EglSurfaceCreation.run():void");
+            Object obj;
+            try {
+                if (this.surface != null && EglRenderer.this.eglBase != null) {
+                    if (this.background) {
+                        if (!EglRenderer.this.eglBase.hasBackgroundSurface()) {
+                            obj = this.surface;
+                            if (obj instanceof Surface) {
+                                EglRenderer.this.eglBase.createSurface((Surface) this.surface);
+                            } else if (obj instanceof SurfaceTexture) {
+                                if (this.background) {
+                                    EglRenderer.this.eglBase.createBackgroundSurface((SurfaceTexture) this.surface);
+                                } else {
+                                    EglRenderer.this.eglBase.createSurface((SurfaceTexture) this.surface);
+                                }
+                            } else {
+                                throw new IllegalStateException("Invalid surface: " + this.surface);
+                            }
+                            if (!this.background) {
+                                EglRenderer.this.eglBase.makeCurrent();
+                                GLES20.glPixelStorei(3317, 1);
+                            } else {
+                                EglRenderer.this.eglBase.makeBackgroundCurrent();
+                                GLES20.glPixelStorei(3317, 1);
+                                if (EglRenderer.this.eglBase.hasSurface()) {
+                                    EglRenderer.this.eglBase.makeCurrent();
+                                }
+                            }
+                        }
+                    } else if (!EglRenderer.this.eglBase.hasSurface()) {
+                        obj = this.surface;
+                        if (obj instanceof Surface) {
+                            EglRenderer.this.eglBase.createSurface((Surface) this.surface);
+                        } else if (obj instanceof SurfaceTexture) {
+                            if (this.background) {
+                                EglRenderer.this.eglBase.createBackgroundSurface((SurfaceTexture) this.surface);
+                            } else {
+                                EglRenderer.this.eglBase.createSurface((SurfaceTexture) this.surface);
+                            }
+                        } else {
+                            throw new IllegalStateException("Invalid surface: " + this.surface);
+                        }
+                        if (!this.background) {
+                            EglRenderer.this.eglBase.makeCurrent();
+                            GLES20.glPixelStorei(3317, 1);
+                        } else {
+                            EglRenderer.this.eglBase.makeBackgroundCurrent();
+                            GLES20.glPixelStorei(3317, 1);
+                            if (EglRenderer.this.eglBase.hasSurface()) {
+                                EglRenderer.this.eglBase.makeCurrent();
+                            }
+                        }
+                    }
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
         }
     }
 
@@ -211,7 +261,8 @@ public class EglRenderer implements VideoSink {
                     } else {
                         FileLog.d("can't create background surface. render thread is null");
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
             return;
@@ -252,11 +303,13 @@ public class EglRenderer implements VideoSink {
                             videoFrame.release();
                             this.pendingFrame = null;
                         }
-                    } finally {
+                    } catch (Throwable th) {
+                        throw th;
                     }
                 }
                 logD("Releasing done.");
-            } finally {
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }
@@ -301,7 +354,8 @@ public class EglRenderer implements VideoSink {
                         }
                     }
                 }
-            } finally {
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }
@@ -438,11 +492,12 @@ public class EglRenderer implements VideoSink {
                                 this.f$0.renderFrameOnRenderThread();
                             }
                         });
-                    } finally {
+                    } catch (Throwable th) {
+                        throw th;
                     }
                 }
-            } catch (Throwable th) {
-                throw th;
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
     }
@@ -544,20 +599,19 @@ public class EglRenderer implements VideoSink {
     }
 
     public void getTexture(final GlGenericDrawer.TextureCallback textureCallback) {
-        Handler handler;
         synchronized (this.handlerLock) {
             try {
-                handler = this.renderThreadHandler;
+                Handler handler = this.renderThreadHandler;
+                if (handler != null) {
+                    handler.post(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$getTexture$7(textureCallback);
+                        }
+                    });
+                }
             } catch (Exception e) {
                 FileLog.e(e);
-            }
-            if (handler != null) {
-                handler.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$getTexture$7(textureCallback);
-                    }
-                });
             }
         }
     }
@@ -658,12 +712,11 @@ public class EglRenderer implements VideoSink {
                         }
                     }
                     notifyCallbacks(videoFrame, z);
+                } finally {
                     videoFrame.release();
-                } catch (Throwable th) {
-                    videoFrame.release();
-                    throw th;
                 }
-            } finally {
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

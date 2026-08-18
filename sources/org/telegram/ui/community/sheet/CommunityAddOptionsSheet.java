@@ -3,11 +3,15 @@ package org.telegram.ui.community.sheet;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
@@ -15,9 +19,11 @@ import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.RadioButtonCell;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
     private UniversalAdapter adapter;
@@ -30,8 +36,100 @@ public class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
     private final TLRPC.User user;
     private int visibleRow;
 
-    public CommunityAddOptionsSheet(android.content.Context r21, final org.telegram.tgnet.TLRPC.Chat r22, long r23, final org.telegram.messenger.Utilities.Callback r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.community.sheet.CommunityAddOptionsSheet.<init>(android.content.Context, org.telegram.tgnet.TLRPC$Chat, long, org.telegram.messenger.Utilities$Callback):void");
+    public CommunityAddOptionsSheet(Context context, final TLRPC.Chat chat, long j, final Utilities.Callback callback) {
+        int i;
+        ButtonWithCounterView buttonWithCounterView;
+        int i2;
+        super(context, null, false, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
+        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+        this.user = user;
+        TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+        this.chat = chat2;
+        this.isBot = UserObject.isBot(user);
+        this.isChannel = ChatObject.isChannelAndNotMegaGroup(chat2);
+        this.ignoreTouchActionBar = false;
+        this.headerMoveTop = AndroidUtilities.dp(12.0f);
+        this.actionBar.setTitle(getTitle());
+        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.cell = frameLayout;
+        frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
+        frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+        ProfileSearchCell profileSearchCell = new ProfileSearchCell(context);
+        this.searchCell = profileSearchCell;
+        if (chat2 != null) {
+            profileSearchCell.setData(chat2, null, chat2.title, LocaleController.formatPluralStringSpaced("Members", chat2.participants_count), false, false);
+        } else {
+            if (user != null) {
+                i = -1;
+                profileSearchCell.setData(user, null, DialogObject.getName(user), LocaleController.getString(R.string.Bot), false, false);
+            }
+            frameLayout.addView(profileSearchCell, LayoutHelper.createFrame(i, -2.0f));
+            RecyclerListView recyclerListView = this.recyclerListView;
+            int i3 = this.backgroundPaddingLeft;
+            recyclerListView.setPadding(i3, 0, i3, AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(64.0f));
+            this.recyclerListView.setSections();
+            this.recyclerListView.setClipToPadding(false);
+            this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                @Override
+                public final void onItemClick(View view, int i4) {
+                    this.f$0.lambda$new$0(view, i4);
+                }
+            });
+            buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider);
+            if (chat != null) {
+                if (ChatObject.canAddChatToCommunity(chat)) {
+                    i2 = R.string.CommunityAddToCommunityButton;
+                } else {
+                    i2 = R.string.CommunityAddToCommunityRequestButton;
+                }
+                buttonWithCounterView.setText(LocaleController.getString(i2));
+            } else {
+                buttonWithCounterView.setText(LocaleController.getString(R.string.CommunityCreateCommunity));
+            }
+            buttonWithCounterView.setRound();
+            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$new$1(callback, chat, view);
+                }
+            });
+            this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+            this.adapter.update(false);
+        }
+        i = -1;
+        frameLayout.addView(profileSearchCell, LayoutHelper.createFrame(i, -2.0f));
+        RecyclerListView recyclerListView2 = this.recyclerListView;
+        int i4 = this.backgroundPaddingLeft;
+        recyclerListView2.setPadding(i4, 0, i4, AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(64.0f));
+        this.recyclerListView.setSections();
+        this.recyclerListView.setClipToPadding(false);
+        this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+            @Override
+            public final void onItemClick(View view, int i5) {
+                this.f$0.lambda$new$0(view, i5);
+            }
+        });
+        buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider);
+        if (chat != null) {
+            if (ChatObject.canAddChatToCommunity(chat)) {
+                i2 = R.string.CommunityAddToCommunityButton;
+            } else {
+                i2 = R.string.CommunityAddToCommunityRequestButton;
+            }
+            buttonWithCounterView.setText(LocaleController.getString(i2));
+        } else {
+            buttonWithCounterView.setText(LocaleController.getString(R.string.CommunityCreateCommunity));
+        }
+        buttonWithCounterView.setRound();
+        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$new$1(callback, chat, view);
+            }
+        });
+        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        this.adapter.update(false);
     }
 
     public void lambda$new$0(View view, int i) {

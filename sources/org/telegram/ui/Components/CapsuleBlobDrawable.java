@@ -224,16 +224,17 @@ public class CapsuleBlobDrawable extends Drawable {
     }
 
     private void rebuildGeometry() {
-        if (getBounds().isEmpty()) {
+        Rect bounds = getBounds();
+        if (bounds.isEmpty()) {
             return;
         }
         float fMaxOutwardExcursion = maxOutwardExcursion() + AndroidUtilities.dp(1.0f);
-        float fMin = (Math.min(r0.width(), r0.height()) / 2.0f) - AndroidUtilities.dp(2.0f);
+        float fMin = (Math.min(bounds.width(), bounds.height()) / 2.0f) - AndroidUtilities.dp(2.0f);
         if (fMaxOutwardExcursion > fMin) {
             fMaxOutwardExcursion = Math.max(0.0f, fMin);
         }
-        this.halfWidth = (r0.width() / 2.0f) - fMaxOutwardExcursion;
-        float fHeight = (r0.height() / 2.0f) - fMaxOutwardExcursion;
+        this.halfWidth = (bounds.width() / 2.0f) - fMaxOutwardExcursion;
+        float fHeight = (bounds.height() / 2.0f) - fMaxOutwardExcursion;
         this.halfHeight = fHeight;
         float f = this.halfWidth;
         if (f < 1.0f || fHeight < 1.0f) {
@@ -290,7 +291,9 @@ public class CapsuleBlobDrawable extends Drawable {
         float fExactCenterY = bounds.exactCenterY();
         float f3 = 1.0f - (this.amplitude * 0.7f);
         float fSin = this.breathDepth * this.big.breathScale * f3 * ((((float) Math.sin(this.breathPhase)) * 0.5f) + 0.5f);
-        float fSin2 = this.breathDepth * this.small.breathScale * f3 * ((((float) Math.sin(this.breathPhase + r5.phaseOffset)) * 0.5f) + 0.5f);
+        float f4 = this.breathDepth;
+        Layer layer = this.small;
+        float fSin2 = f4 * layer.breathScale * f3 * ((((float) Math.sin(this.breathPhase + layer.phaseOffset)) * 0.5f) + 0.5f);
         drawLayer(canvas, this.big, fExactCenterX, fExactCenterY, fSin);
         drawLayer(canvas, this.small, fExactCenterX, fExactCenterY, fSin2);
         if (this.colorProgress < 1.0f) {
@@ -507,7 +510,10 @@ public class CapsuleBlobDrawable extends Drawable {
         float waveScale;
 
         static float clamp(float f, float f2, float f3) {
-            return f < f2 ? f2 : f > f3 ? f3 : f;
+            if (f < f2) {
+                return f2;
+            }
+            return f > f3 ? f3 : f;
         }
 
         private Layer() {

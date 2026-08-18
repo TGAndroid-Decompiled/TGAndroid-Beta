@@ -86,23 +86,23 @@ public abstract class MaxFileSizeCell extends FrameLayout {
                     f4 = 536576.0f;
                 } else {
                     float f5 = f - 0.25f;
-                    if (f5 < 0.25f) {
-                        f2 = 1048576;
-                        f3 = f5 / 0.25f;
-                        f4 = 9437184.0f;
-                    } else {
+                    if (f5 >= 0.25f) {
                         float f6 = f5 - 0.25f;
-                        if (f6 > 0.25f) {
-                            i = (int) (104857600 + ((2097152000 - 104857600) * ((f6 - 0.25f) / 0.25f)));
-                            long j = i;
-                            MaxFileSizeCell.this.sizeTextView.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j)));
-                            MaxFileSizeCell.this.currentSize = j;
-                            MaxFileSizeCell.this.didChangedSizeValue(i);
+                        if (f6 <= 0.25f) {
+                            f2 = 10485760;
+                            f3 = f6 / 0.25f;
+                            f4 = 9.437184E7f;
+                        } else {
+                            i = (int) (104857600 + ((2097152000 - ((long) 104857600)) * ((f6 - 0.25f) / 0.25f)));
                         }
-                        f2 = 10485760;
-                        f3 = f6 / 0.25f;
-                        f4 = 9.437184E7f;
+                        long j = i;
+                        MaxFileSizeCell.this.sizeTextView.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j)));
+                        MaxFileSizeCell.this.currentSize = j;
+                        MaxFileSizeCell.this.didChangedSizeValue(i);
                     }
+                    f2 = 1048576;
+                    f3 = f5 / 0.25f;
+                    f4 = 9437184.0f;
                 }
                 i = (int) (f2 + (f3 * f4));
                 long j2 = i;

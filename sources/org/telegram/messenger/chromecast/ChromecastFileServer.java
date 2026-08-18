@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.chromecast.ChromecastMedia;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 
 public class ChromecastFileServer extends NanoHTTPD {
@@ -269,7 +268,7 @@ public class ChromecastFileServer extends NanoHTTPD {
         return str.replaceAll("mtproto:", getUrlToSource(str2, "/mtproto_"));
     }
 
-    private static Range parseRangeHeader(String str, long j) throws NumberFormatException {
+    private static Range parseRangeHeader(String str, long j) {
         long j2;
         long j3;
         if (TextUtils.isEmpty(str)) {
@@ -305,7 +304,7 @@ public class ChromecastFileServer extends NanoHTTPD {
         return "http://" + str + str2;
     }
 
-    public static String getHost() throws SocketException {
+    public static String getHost() {
         return formatIp4(getMyLocalIp()) + ":61578";
     }
 
@@ -313,7 +312,7 @@ public class ChromecastFileServer extends NanoHTTPD {
         return String.valueOf(i & 255) + '.' + ((i >> 8) & 255) + '.' + ((i >> 16) & 255) + '.' + ((i >> 24) & 255);
     }
 
-    private static int getMyLocalIp() throws SocketException {
+    private static int getMyLocalIp() {
         int ipAddress = ((WifiManager) ApplicationLoader.applicationContext.getSystemService("wifi")).getConnectionInfo().getIpAddress();
         if (ipAddress == 0) {
             try {
@@ -370,7 +369,7 @@ public class ChromecastFileServer extends NanoHTTPD {
                 return 0;
             }
             int i3 = this.dataSource.read(bArr, i, i2);
-            this.availableBytes -= i3;
+            this.availableBytes -= (long) i3;
             return i3;
         }
 

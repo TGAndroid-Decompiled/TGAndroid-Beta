@@ -2,7 +2,6 @@ package io.noties.markwon.html.jsoup.parser;
 
 import io.noties.markwon.html.jsoup.helper.Validate;
 import io.noties.markwon.html.jsoup.nodes.CommonMarkEntities;
-import io.noties.markwon.html.jsoup.parser.Token;
 import java.util.Arrays;
 
 public final class Tokeniser {

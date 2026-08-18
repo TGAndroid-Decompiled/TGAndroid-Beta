@@ -57,7 +57,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.TwoStepVerificationActivity;
 
 public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
     private UniversalAdapter adapter;
@@ -321,17 +320,12 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
 
     public void updateSearchY() {
         float y = -AndroidUtilities.dp(64.0f);
-        int i = 0;
-        while (true) {
-            if (i >= this.recyclerListView.getChildCount()) {
-                break;
-            }
+        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
             View childAt = this.recyclerListView.getChildAt(i);
             if (childAt.getId() == 3) {
                 y = childAt.getY();
                 break;
             }
-            i++;
         }
         this.searchContainer.setTranslationY(y);
     }
@@ -376,9 +370,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         arrayList.add(UItem.asSpace(3, AndroidUtilities.dp(64.0f)));
         ParticipantsList participantsList = this.search;
         if (participantsList != null && !TextUtils.isEmpty(participantsList.filter.q)) {
-            Iterator it = this.search.users.iterator();
-            while (it.hasNext()) {
-                TLObject tLObject = (TLObject) it.next();
+            for (TLObject tLObject : this.search.users) {
                 if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject)))) {
                     hashSet.add(Long.valueOf(DialogObject.getDialogId(tLObject)));
                     arrayList.add(UItem.asProfileCell(tLObject).setChecked(DialogObject.getDialogId(tLObject) == DialogObject.getDialogId(this.selectedOwner)));
@@ -403,9 +395,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
             arrayList.add(UItem.asProfileCell(this.initialOwner).setChecked(DialogObject.getDialogId(this.initialOwner) == DialogObject.getDialogId(this.selectedOwner)));
             z = false;
         }
-        Iterator it2 = this.admins.users.iterator();
-        while (it2.hasNext()) {
-            TLObject tLObject2 = (TLObject) it2.next();
+        for (TLObject tLObject2 : this.admins.users) {
             if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject2)))) {
                 if (z) {
                     arrayList.add(UItem.asGraySection(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.ChannelAdmins : R.string.GroupAdmins)));
@@ -429,9 +419,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
             arrayList.add(UItem.asProfileCell(this.initialOwner).setChecked(DialogObject.getDialogId(this.initialOwner) == DialogObject.getDialogId(this.selectedOwner)));
             z2 = false;
         }
-        Iterator it3 = this.members.users.iterator();
-        while (it3.hasNext()) {
-            TLObject tLObject4 = (TLObject) it3.next();
+        for (TLObject tLObject4 : this.members.users) {
             if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject4)))) {
                 if (z2) {
                     arrayList.add(UItem.asGraySection(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.ChannelSubscribers2 : R.string.GroupMembers2)));

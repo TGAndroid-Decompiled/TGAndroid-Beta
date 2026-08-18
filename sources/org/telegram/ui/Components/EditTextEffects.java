@@ -21,9 +21,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilersClickDetector;
 
@@ -220,8 +219,33 @@ public abstract class EditTextEffects extends EditText {
     }
 
     @Override
-    protected void onTextChanged(java.lang.CharSequence r4, int r5, int r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EditTextEffects.onTextChanged(java.lang.CharSequence, int, int, int):void");
+    protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        super.onTextChanged(charSequence, i, i2, i3);
+        if (!this.suppressOnTextChanged) {
+            invalidateEffects();
+            try {
+                Layout layout = getLayout();
+                if ((charSequence instanceof Spannable) && layout != null) {
+                    int lineForOffset = layout.getLineForOffset(i);
+                    int primaryHorizontal = (int) layout.getPrimaryHorizontal(i);
+                    int lineTop = (int) ((layout.getLineTop(lineForOffset) + layout.getLineBottom(lineForOffset)) / 2.0f);
+                    for (SpoilerEffect spoilerEffect : this.spoilers) {
+                        if (spoilerEffect.getBounds().contains(primaryHorizontal, lineTop)) {
+                            int i4 = i3 - i2;
+                            this.selStart += i4;
+                            this.selEnd += i4;
+                            onSpoilerClicked(spoilerEffect, primaryHorizontal, lineTop);
+                            break;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        updateAnimatedEmoji(true);
+        invalidateQuotes(true);
+        invalidate();
     }
 
     @Override

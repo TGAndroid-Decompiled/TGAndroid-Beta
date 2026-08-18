@@ -11,7 +11,6 @@ import kotlin.coroutines.intrinsics.IntrinsicsKt;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.Intrinsics;
-import kotlinx.coroutines.CancelHandler;
 import kotlinx.coroutines.internal.DispatchedContinuation;
 import kotlinx.coroutines.internal.Segment;
 import kotlinx.coroutines.internal.Symbol;
@@ -64,7 +63,10 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
 
     private final String getStateDebugRepresentation() {
         Object state$kotlinx_coroutines_core = getState$kotlinx_coroutines_core();
-        return state$kotlinx_coroutines_core instanceof NotCompleted ? "Active" : state$kotlinx_coroutines_core instanceof CancelledContinuation ? "Cancelled" : "Completed";
+        if (state$kotlinx_coroutines_core instanceof NotCompleted) {
+            return "Active";
+        }
+        return state$kotlinx_coroutines_core instanceof CancelledContinuation ? "Cancelled" : "Completed";
     }
 
     public void initCancellability() {

@@ -9,7 +9,7 @@ public class EncryptionKeyEmojifier {
     }
 
     private static long bytesToLong(byte[] bArr, int i) {
-        return (bArr[i + 7] & 255) | ((bArr[i] & 127) << 56) | ((bArr[i + 1] & 255) << 48) | ((bArr[i + 2] & 255) << 40) | ((bArr[i + 3] & 255) << 32) | ((bArr[i + 4] & 255) << 24) | ((bArr[i + 5] & 255) << 16) | ((bArr[i + 6] & 255) << 8);
+        return (((long) bArr[i + 7]) & 255) | ((((long) bArr[i]) & 127) << 56) | ((((long) bArr[i + 1]) & 255) << 48) | ((((long) bArr[i + 2]) & 255) << 40) | ((((long) bArr[i + 3]) & 255) << 32) | ((((long) bArr[i + 4]) & 255) << 24) | ((((long) bArr[i + 5]) & 255) << 16) | ((((long) bArr[i + 6]) & 255) << 8);
     }
 
     public static String[] emojify(byte[] bArr) {
@@ -27,7 +27,8 @@ public class EncryptionKeyEmojifier {
     public static String[] emojifyForCall(byte[] bArr) {
         String[] strArr = new String[4];
         for (int i = 0; i < 4; i++) {
-            strArr[i] = emojis[(int) (bytesToLong(bArr, i * 8) % r3.length)];
+            String[] strArr2 = emojis;
+            strArr[i] = strArr2[(int) (bytesToLong(bArr, i * 8) % ((long) strArr2.length))];
         }
         return strArr;
     }

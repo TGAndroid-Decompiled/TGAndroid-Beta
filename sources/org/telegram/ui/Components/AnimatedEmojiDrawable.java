@@ -24,6 +24,7 @@ import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
+import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DocumentObject;
@@ -48,7 +49,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 
@@ -403,8 +403,38 @@ public class AnimatedEmojiDrawable extends Drawable {
             });
         }
 
-        public void lambda$putToStorage$7(java.util.ArrayList r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedEmojiDrawable.EmojiDocumentFetcher.lambda$putToStorage$7(java.util.ArrayList):void");
+        public void lambda$putToStorage$7(ArrayList arrayList) {
+            NativeByteBuffer nativeByteBuffer;
+            try {
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast = MessagesStorage.getInstance(this.currentAccount).getDatabase().executeFast("REPLACE INTO animated_emoji VALUES(?, ?)");
+                for (int i = 0; i < arrayList.size(); i++) {
+                    if (arrayList.get(i) instanceof TLRPC.Document) {
+                        TLRPC.Document document = (TLRPC.Document) arrayList.get(i);
+                        try {
+                            nativeByteBuffer = new NativeByteBuffer(document.getObjectSize());
+                            try {
+                                document.serializeToStream(nativeByteBuffer);
+                                sQLitePreparedStatementExecuteFast.requery();
+                                sQLitePreparedStatementExecuteFast.bindLong(1, document.id);
+                                sQLitePreparedStatementExecuteFast.bindByteBuffer(2, nativeByteBuffer);
+                                sQLitePreparedStatementExecuteFast.step();
+                            } catch (Exception e) {
+                                e = e;
+                                e.printStackTrace();
+                            }
+                        } catch (Exception e2) {
+                            e = e2;
+                            nativeByteBuffer = null;
+                        }
+                        if (nativeByteBuffer != null) {
+                            nativeByteBuffer.reuse();
+                        }
+                    }
+                }
+                sQLitePreparedStatementExecuteFast.dispose();
+            } catch (SQLiteException e3) {
+                FileLog.e(e3);
+            }
         }
 
         public void processDocuments(ArrayList arrayList) {
@@ -1087,7 +1117,25 @@ public class AnimatedEmojiDrawable extends Drawable {
     }
 
     public boolean isDefaultStatusEmoji() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedEmojiDrawable.isDefaultStatusEmoji():boolean");
+        Boolean bool = this.isDefaultStatusEmojiCached;
+        if (bool != null) {
+            return bool.booleanValue();
+        }
+        TLRPC.Document document = this.document;
+        boolean z = false;
+        if (document != null) {
+            TLRPC.InputStickerSet inputStickerSet = MessageObject.getInputStickerSet(document);
+            if (inputStickerSet instanceof TLRPC.TL_inputStickerSetEmojiDefaultStatuses) {
+                z = true;
+            } else if (inputStickerSet instanceof TLRPC.TL_inputStickerSetID) {
+                long j = inputStickerSet.id;
+                if (j == 773947703670341676L || j == 2964141614563343L) {
+                    z = true;
+                }
+            }
+            this.isDefaultStatusEmojiCached = Boolean.valueOf(z);
+        }
+        return z;
     }
 
     public static boolean isDefaultStatusEmoji(AnimatedEmojiDrawable animatedEmojiDrawable) {

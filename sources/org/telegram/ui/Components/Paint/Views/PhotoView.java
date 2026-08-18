@@ -39,7 +39,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Paint.Views.EntityView;
 import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Components.Size;
 import org.telegram.ui.Stories.recorder.StoryEntry;
@@ -387,7 +386,8 @@ public class PhotoView extends EntityView {
                     canvas.scale(f7, f7);
                     MediaController.CropState cropState2 = this.crop;
                     canvas.translate(cropState2.cropPx * f5, cropState2.cropPy * f6);
-                    canvas.rotate(this.crop.cropRotate + r2.transformRotation);
+                    MediaController.CropState cropState3 = this.crop;
+                    canvas.rotate(cropState3.cropRotate + cropState3.transformRotation);
                     if (this.crop.mirrored) {
                         canvas.scale(-1.0f, 1.0f);
                     }

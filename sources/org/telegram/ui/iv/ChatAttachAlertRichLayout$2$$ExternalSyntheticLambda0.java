@@ -2,7 +2,6 @@ package org.telegram.ui.iv;
 
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.iv.RichEditorListView;
 
 public final class ChatAttachAlertRichLayout$2$$ExternalSyntheticLambda0 implements Utilities.Callback {
     public final RichEditorListView.SelectionEdit f$0;

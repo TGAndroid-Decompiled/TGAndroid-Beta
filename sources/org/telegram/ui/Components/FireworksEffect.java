@@ -86,22 +86,31 @@ public class FireworksEffect {
     }
 
     public void onDraw(View view, Canvas canvas) {
+        int i;
         Particle particle;
         if (view == null || canvas == null) {
             return;
         }
         int size = this.particles.size();
-        for (int i = 0; i < size; i++) {
-            ((Particle) this.particles.get(i)).draw(canvas);
+        for (int i2 = 0; i2 < size; i2++) {
+            ((Particle) this.particles.get(i2)).draw(canvas);
         }
         if (Utilities.random.nextBoolean() && this.particles.size() + 8 < 150) {
-            int i2 = AndroidUtilities.statusBarHeight;
+            int i3 = AndroidUtilities.statusBarHeight;
             float fNextFloat = Utilities.random.nextFloat() * view.getMeasuredWidth();
-            float fNextFloat2 = i2 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i2));
+            float fNextFloat2 = i3 + (Utilities.random.nextFloat() * ((view.getMeasuredHeight() - AndroidUtilities.dp(20.0f)) - i3));
             int iNextInt = Utilities.random.nextInt(4);
-            int i3 = iNextInt != 0 ? iNextInt != 1 ? iNextInt != 2 ? iNextInt != 3 ? -5752 : -15088582 : -207021 : -843755 : -13357350;
+            if (iNextInt == 0) {
+                i = -13357350;
+            } else if (iNextInt == 1) {
+                i = -843755;
+            } else if (iNextInt != 2) {
+                i = iNextInt != 3 ? -5752 : -15088582;
+            } else {
+                i = -207021;
+            }
             for (int i4 = 0; i4 < 8; i4++) {
-                double dNextInt = (Utilities.random.nextInt(270) - 225) * 0.017453292519943295d;
+                double dNextInt = ((double) (Utilities.random.nextInt(270) - 225)) * 0.017453292519943295d;
                 float fCos = (float) Math.cos(dNextInt);
                 float fSin = (float) Math.sin(dNextInt);
                 if (!this.freeParticles.isEmpty()) {
@@ -114,7 +123,7 @@ public class FireworksEffect {
                 particle.y = fNextFloat2;
                 particle.vx = fCos * 1.5f;
                 particle.vy = fSin;
-                particle.color = i3;
+                particle.color = i;
                 particle.alpha = 1.0f;
                 particle.currentTime = 0.0f;
                 particle.scale = Math.max(1.0f, Utilities.random.nextFloat() * 1.5f);

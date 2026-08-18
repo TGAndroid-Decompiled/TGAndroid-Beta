@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentValues;
@@ -11,13 +12,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Property;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -43,9 +49,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.ChatAttachAlertContactsLayout;
 
 public class PhonebookShareAlert extends BottomSheet {
     private ActionBar actionBar;
@@ -266,8 +269,314 @@ public class PhonebookShareAlert extends BottomSheet {
         this(baseFragment, contact, user, uri, file, null, str, str2, resourcesProvider);
     }
 
-    public PhonebookShareAlert(org.telegram.ui.ActionBar.BaseFragment r16, org.telegram.messenger.ContactsController.Contact r17, org.telegram.tgnet.TLRPC.User r18, android.net.Uri r19, java.io.File r20, java.lang.String r21, java.lang.String r22, java.lang.String r23, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhonebookShareAlert.<init>(org.telegram.ui.ActionBar.BaseFragment, org.telegram.messenger.ContactsController$Contact, org.telegram.tgnet.TLRPC$User, android.net.Uri, java.io.File, java.lang.String, java.lang.String, java.lang.String, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    public PhonebookShareAlert(BaseFragment baseFragment, ContactsController.Contact contact, TLRPC.User user, Uri uri, File file, String str, String str2, String str3, final Theme.ResourcesProvider resourcesProvider) {
+        ArrayList<TLRPC.User> arrayListLoadVCardFromStream;
+        String str4;
+        String str5;
+        ArrayList<TLRPC.RestrictionReason> arrayList;
+        super(baseFragment.getParentActivity(), false, resourcesProvider);
+        this.backgroundPaint = new Paint(1);
+        this.other = new ArrayList();
+        this.phones = new ArrayList();
+        String name = ContactsController.formatName(str2, str3);
+        ArrayList arrayList2 = new ArrayList();
+        if (uri != null) {
+            arrayListLoadVCardFromStream = AndroidUtilities.loadVCardFromStream(uri, this.currentAccount, false, arrayList2, name);
+        } else if (file != null) {
+            arrayListLoadVCardFromStream = AndroidUtilities.loadVCardFromStream(Uri.fromFile(file), this.currentAccount, false, arrayList2, name);
+            file.delete();
+            this.isImport = true;
+        } else {
+            if (str != null) {
+                AndroidUtilities.VcardItem vcardItem = new AndroidUtilities.VcardItem();
+                vcardItem.type = 0;
+                ArrayList<String> arrayList3 = vcardItem.vcardData;
+                String str6 = "TEL;MOBILE:+" + str;
+                vcardItem.fullData = str6;
+                arrayList3.add(str6);
+                this.phones.add(vcardItem);
+                this.isImport = true;
+            } else {
+                String str7 = contact.key;
+                if (str7 != null) {
+                    arrayListLoadVCardFromStream = AndroidUtilities.loadVCardFromStream(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_VCARD_URI, str7), this.currentAccount, true, arrayList2, name);
+                } else {
+                    AndroidUtilities.VcardItem vcardItem2 = new AndroidUtilities.VcardItem();
+                    vcardItem2.type = 0;
+                    ArrayList<String> arrayList4 = vcardItem2.vcardData;
+                    String str8 = "TEL;MOBILE:+" + contact.user.phone;
+                    vcardItem2.fullData = str8;
+                    arrayList4.add(str8);
+                    this.phones.add(vcardItem2);
+                }
+            }
+            arrayListLoadVCardFromStream = null;
+        }
+        TLRPC.User user2 = (user != null || contact == null) ? user : contact.user;
+        if (arrayListLoadVCardFromStream != null) {
+            for (int i = 0; i < arrayList2.size(); i++) {
+                AndroidUtilities.VcardItem vcardItem3 = (AndroidUtilities.VcardItem) arrayList2.get(i);
+                if (vcardItem3.type == 0) {
+                    int i2 = 0;
+                    while (true) {
+                        if (i2 < this.phones.size()) {
+                            if (((AndroidUtilities.VcardItem) this.phones.get(i2)).getValue(false).equals(vcardItem3.getValue(false))) {
+                                vcardItem3.checked = false;
+                                break;
+                            }
+                            i2++;
+                        } else {
+                            this.phones.add(vcardItem3);
+                            break;
+                        }
+                    }
+                } else {
+                    this.other.add(vcardItem3);
+                }
+            }
+            if (arrayListLoadVCardFromStream.isEmpty()) {
+                str4 = str2;
+                str5 = str3;
+                arrayList = null;
+            } else {
+                TLRPC.User user3 = arrayListLoadVCardFromStream.get(0);
+                arrayList = user3.restriction_reason;
+                if (TextUtils.isEmpty(str2)) {
+                    str4 = user3.first_name;
+                    str5 = user3.last_name;
+                } else {
+                    str4 = str2;
+                    str5 = str3;
+                }
+            }
+        } else {
+            str4 = str2;
+            str5 = str3;
+            arrayList = null;
+        }
+        TLRPC.TL_userContact_old2 tL_userContact_old2 = new TLRPC.TL_userContact_old2();
+        this.currentUser = tL_userContact_old2;
+        if (user2 != null) {
+            tL_userContact_old2.id = user2.id;
+            tL_userContact_old2.access_hash = user2.access_hash;
+            tL_userContact_old2.photo = user2.photo;
+            tL_userContact_old2.status = user2.status;
+            tL_userContact_old2.first_name = user2.first_name;
+            tL_userContact_old2.last_name = user2.last_name;
+            tL_userContact_old2.phone = user2.phone;
+            if (arrayList != null) {
+                tL_userContact_old2.restriction_reason = arrayList;
+            }
+        } else {
+            tL_userContact_old2.first_name = str4;
+            tL_userContact_old2.last_name = str5;
+        }
+        this.parentFragment = baseFragment;
+        final Activity parentActivity = baseFragment.getParentActivity();
+        updateRows();
+        FrameLayout frameLayout = new FrameLayout(parentActivity) {
+            private boolean ignoreLayout;
+            private RectF rect = new RectF();
+
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() == 0 && PhonebookShareAlert.this.scrollOffsetY != 0 && motionEvent.getY() < PhonebookShareAlert.this.scrollOffsetY && PhonebookShareAlert.this.actionBar.getAlpha() == 0.0f) {
+                    PhonebookShareAlert.this.lambda$new$0();
+                    return true;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                return !PhonebookShareAlert.this.isDismissed() && super.onTouchEvent(motionEvent);
+            }
+
+            @Override
+            protected void onMeasure(int i3, int i4) {
+                int size = View.MeasureSpec.getSize(i4);
+                this.ignoreLayout = true;
+                setPadding(((BottomSheet) PhonebookShareAlert.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight, ((BottomSheet) PhonebookShareAlert.this).backgroundPaddingLeft, 0);
+                this.ignoreLayout = false;
+                int paddingTop = size - getPaddingTop();
+                View.MeasureSpec.getSize(i3);
+                int unused = ((BottomSheet) PhonebookShareAlert.this).backgroundPaddingLeft;
+                ((FrameLayout.LayoutParams) PhonebookShareAlert.this.actionBarShadow.getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight();
+                this.ignoreLayout = true;
+                int iDp = AndroidUtilities.dp(80.0f);
+                int itemCount = PhonebookShareAlert.this.listAdapter.getItemCount();
+                for (int i5 = 0; i5 < itemCount; i5++) {
+                    View viewCreateView = PhonebookShareAlert.this.listAdapter.createView(parentActivity, i5);
+                    viewCreateView.measure(i3, View.MeasureSpec.makeMeasureSpec(0, 0));
+                    iDp += viewCreateView.getMeasuredHeight();
+                }
+                int i6 = iDp < paddingTop ? paddingTop - iDp : paddingTop / 5;
+                if (PhonebookShareAlert.this.scrollView.getPaddingTop() != i6) {
+                    PhonebookShareAlert.this.scrollView.getPaddingTop();
+                    PhonebookShareAlert.this.scrollView.setPadding(0, i6, 0, 0);
+                }
+                this.ignoreLayout = false;
+                super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+            }
+
+            @Override
+            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                PhonebookShareAlert.this.inLayout = true;
+                super.onLayout(z, i3, i4, i5, i6);
+                PhonebookShareAlert.this.inLayout = false;
+                PhonebookShareAlert.this.updateLayout(false);
+            }
+
+            @Override
+            public void requestLayout() {
+                if (this.ignoreLayout) {
+                    return;
+                }
+                super.requestLayout();
+            }
+
+            @Override
+            protected void onDraw(Canvas canvas) {
+                int i3 = PhonebookShareAlert.this.scrollOffsetY - ((BottomSheet) PhonebookShareAlert.this).backgroundPaddingTop;
+                int measuredHeight = getMeasuredHeight() + AndroidUtilities.dp(30.0f) + ((BottomSheet) PhonebookShareAlert.this).backgroundPaddingTop;
+                float fDp = AndroidUtilities.dp(12.0f);
+                float fMin = ((float) (((BottomSheet) PhonebookShareAlert.this).backgroundPaddingTop + i3)) < fDp ? 1.0f - Math.min(1.0f, ((fDp - i3) - ((BottomSheet) PhonebookShareAlert.this).backgroundPaddingTop) / fDp) : 1.0f;
+                int i4 = AndroidUtilities.statusBarHeight;
+                int i5 = i3 + i4;
+                ((BottomSheet) PhonebookShareAlert.this).shadowDrawable.setBounds(0, i5, getMeasuredWidth(), measuredHeight - i4);
+                ((BottomSheet) PhonebookShareAlert.this).shadowDrawable.draw(canvas);
+                if (fMin != 1.0f) {
+                    PhonebookShareAlert.this.backgroundPaint.setColor(PhonebookShareAlert.this.getThemedColor(Theme.key_dialogBackground));
+                    this.rect.set(((BottomSheet) PhonebookShareAlert.this).backgroundPaddingLeft, ((BottomSheet) PhonebookShareAlert.this).backgroundPaddingTop + i5, getMeasuredWidth() - ((BottomSheet) PhonebookShareAlert.this).backgroundPaddingLeft, ((BottomSheet) PhonebookShareAlert.this).backgroundPaddingTop + i5 + AndroidUtilities.dp(24.0f));
+                    float f = fDp * fMin;
+                    canvas.drawRoundRect(this.rect, f, f, PhonebookShareAlert.this.backgroundPaint);
+                }
+                int themedColor = PhonebookShareAlert.this.getThemedColor(Theme.key_dialogBackground);
+                PhonebookShareAlert.this.backgroundPaint.setColor(Color.argb((int) (PhonebookShareAlert.this.actionBar.getAlpha() * 255.0f), (int) (Color.red(themedColor) * 0.8f), (int) (Color.green(themedColor) * 0.8f), (int) (Color.blue(themedColor) * 0.8f)));
+                canvas.drawRect(((BottomSheet) PhonebookShareAlert.this).backgroundPaddingLeft, 0.0f, getMeasuredWidth() - ((BottomSheet) PhonebookShareAlert.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight, PhonebookShareAlert.this.backgroundPaint);
+            }
+        };
+        frameLayout.setWillNotDraw(false);
+        this.containerView = frameLayout;
+        setApplyTopPadding(false);
+        setApplyBottomPadding(false);
+        this.listAdapter = new ListAdapter();
+        NestedScrollView nestedScrollView = new NestedScrollView(parentActivity) {
+            private View focusingView;
+
+            @Override
+            public void requestChildFocus(View view, View view2) {
+                this.focusingView = view2;
+                super.requestChildFocus(view, view2);
+            }
+
+            @Override
+            protected int computeScrollDeltaToGetChildRectOnScreen(Rect rect) {
+                if (this.focusingView == null || PhonebookShareAlert.this.linearLayout.getTop() != getPaddingTop()) {
+                    return 0;
+                }
+                int iComputeScrollDeltaToGetChildRectOnScreen = super.computeScrollDeltaToGetChildRectOnScreen(rect);
+                int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() - (((this.focusingView.getTop() - getScrollY()) + rect.top) + iComputeScrollDeltaToGetChildRectOnScreen);
+                return currentActionBarHeight > 0 ? iComputeScrollDeltaToGetChildRectOnScreen - (currentActionBarHeight + AndroidUtilities.dp(10.0f)) : iComputeScrollDeltaToGetChildRectOnScreen;
+            }
+        };
+        this.scrollView = nestedScrollView;
+        nestedScrollView.setClipToPadding(false);
+        this.scrollView.setVerticalScrollBarEnabled(false);
+        frameLayout.addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 77.0f));
+        LinearLayout linearLayout = new LinearLayout(parentActivity);
+        this.linearLayout = linearLayout;
+        linearLayout.setOrientation(1);
+        this.scrollView.addView(this.linearLayout, LayoutHelper.createScroll(-1, -1, 51));
+        this.scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public final void onScrollChange(NestedScrollView nestedScrollView2, int i3, int i4, int i5, int i6) {
+                this.f$0.lambda$new$0(nestedScrollView2, i3, i4, i5, i6);
+            }
+        });
+        int itemCount = this.listAdapter.getItemCount();
+        for (final int i3 = 0; i3 < itemCount; i3++) {
+            final View viewCreateView = this.listAdapter.createView(parentActivity, i3);
+            this.linearLayout.addView(viewCreateView, LayoutHelper.createLinear(-1, -2));
+            if ((i3 >= this.phoneStartRow && i3 < this.phoneEndRow) || (i3 >= this.vcardStartRow && i3 < this.vcardEndRow)) {
+                viewCreateView.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                viewCreateView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$new$2(i3, viewCreateView, view);
+                    }
+                });
+                viewCreateView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public final boolean onLongClick(View view) {
+                        return this.f$0.lambda$new$3(i3, resourcesProvider, parentActivity, view);
+                    }
+                });
+            }
+        }
+        ActionBar actionBar = new ActionBar(parentActivity) {
+            @Override
+            public void setAlpha(float f) {
+                super.setAlpha(f);
+                ((BottomSheet) PhonebookShareAlert.this).containerView.invalidate();
+            }
+        };
+        this.actionBar = actionBar;
+        actionBar.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        ActionBar actionBar2 = this.actionBar;
+        int i4 = Theme.key_dialogTextBlack;
+        actionBar2.setItemsColor(getThemedColor(i4), false);
+        this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_dialogButtonSelector), false);
+        this.actionBar.setTitleColor(getThemedColor(i4));
+        this.actionBar.setOccupyStatusBar(false);
+        this.actionBar.setAlpha(0.0f);
+        if (this.isImport) {
+            this.actionBar.setTitle(LocaleController.getString(R.string.AddContactPhonebookTitle));
+        } else {
+            this.actionBar.setTitle(LocaleController.getString(R.string.ShareContactTitle));
+        }
+        this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i5) {
+                if (i5 == -1) {
+                    PhonebookShareAlert.this.lambda$new$0();
+                }
+            }
+        });
+        View view = new View(parentActivity);
+        this.actionBarShadow = view;
+        view.setAlpha(0.0f);
+        View view2 = this.actionBarShadow;
+        int i5 = Theme.key_dialogShadowLine;
+        view2.setBackgroundColor(getThemedColor(i5));
+        this.containerView.addView(this.actionBarShadow, LayoutHelper.createFrame(-1, 1.0f));
+        View view3 = new View(parentActivity);
+        this.shadow = view3;
+        view3.setBackgroundColor(getThemedColor(i5));
+        this.shadow.setAlpha(0.0f);
+        this.containerView.addView(this.shadow, LayoutHelper.createFrame(-1, 1.0f, 83, 0.0f, 0.0f, 0.0f, 77.0f));
+        TextView textView = new TextView(parentActivity);
+        this.buttonTextView = textView;
+        textView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        this.buttonTextView.setGravity(17);
+        this.buttonTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
+        this.buttonTextView.setTextSize(1, 14.0f);
+        if (this.isImport) {
+            this.buttonTextView.setText(LocaleController.getString(R.string.AddContactPhonebookTitle));
+        } else {
+            this.buttonTextView.setText(LocaleController.getString(R.string.ShareContactTitle));
+        }
+        this.buttonTextView.setTypeface(AndroidUtilities.bold());
+        this.buttonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), getThemedColor(Theme.key_featuredStickers_addButton), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
+        frameLayout.addView(this.buttonTextView, LayoutHelper.createFrame(-1, 48.0f, 83, 14.0f, 14.0f, 14.0f, 14.0f));
+        this.buttonTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view4) {
+                this.f$0.lambda$new$6(resourcesProvider, view4);
+            }
+        });
     }
 
     public void lambda$new$0(NestedScrollView nestedScrollView, int i, int i2, int i3, int i4) {
@@ -324,16 +633,11 @@ public class PhonebookShareAlert extends BottomSheet {
         }
         vcardItem.checked = !vcardItem.checked;
         if (i >= this.phoneStartRow && i < this.phoneEndRow) {
-            int i5 = 0;
-            while (true) {
-                if (i5 >= this.phones.size()) {
-                    break;
-                }
+            for (int i5 = 0; i5 < this.phones.size(); i5++) {
                 if (((AndroidUtilities.VcardItem) this.phones.get(i5)).checked) {
                     z = true;
                     break;
                 }
-                i5++;
             }
             int themedColor = getThemedColor(Theme.key_featuredStickers_buttonText);
             this.buttonTextView.setEnabled(z);
@@ -545,127 +849,125 @@ public class PhonebookShareAlert extends BottomSheet {
                             contentValues4.put("mimetype", "vnd.android.cursor.item/note");
                             contentValues4.put("data1", vcardItem2.getValue(z2));
                             arrayList.add(contentValues4);
-                        } else if (i6 == 5) {
-                            ContentValues contentValues5 = new ContentValues();
-                            contentValues5.put("mimetype", "vnd.android.cursor.item/contact_event");
-                            contentValues5.put("data1", vcardItem2.getValue(z2));
-                            contentValues5.put("data2", (Integer) 3);
-                            arrayList.add(contentValues5);
                         } else {
-                            intent2 = intent;
-                            i2 = i5;
-                            if (i6 == 2) {
-                                ContentValues contentValues6 = new ContentValues();
-                                contentValues6.put("mimetype", "vnd.android.cursor.item/postal-address_v2");
-                                String[] rawValue = vcardItem2.getRawValue();
-                                z = z3;
-                                if (rawValue.length > 0) {
-                                    contentValues6.put("data5", rawValue[0]);
-                                }
-                                if (rawValue.length > 1) {
-                                    contentValues6.put("data6", rawValue[1]);
-                                }
-                                if (rawValue.length > 2) {
-                                    contentValues6.put("data4", rawValue[2]);
-                                }
-                                if (rawValue.length > 3) {
-                                    contentValues6.put("data7", rawValue[3]);
-                                }
-                                if (rawValue.length > 4) {
-                                    contentValues6.put("data8", rawValue[4]);
-                                }
-                                if (rawValue.length > 5) {
-                                    contentValues6.put("data9", rawValue[5]);
-                                }
-                                if (rawValue.length > 6) {
-                                    contentValues6.put("data10", rawValue[6]);
-                                }
-                                String rawType = vcardItem2.getRawType(false);
-                                if ("HOME".equalsIgnoreCase(rawType)) {
-                                    contentValues6.put("data2", (Integer) 1);
-                                } else if ("WORK".equalsIgnoreCase(rawType)) {
-                                    contentValues6.put("data2", (Integer) 2);
-                                } else if ("OTHER".equalsIgnoreCase(rawType)) {
-                                    contentValues6.put("data2", (Integer) 3);
-                                }
-                                arrayList.add(contentValues6);
+                            if (i6 == 5) {
+                                ContentValues contentValues5 = new ContentValues();
+                                contentValues5.put("mimetype", "vnd.android.cursor.item/contact_event");
+                                contentValues5.put("data1", vcardItem2.getValue(z2));
+                                contentValues5.put("data2", (Integer) 3);
+                                arrayList.add(contentValues5);
                             } else {
-                                z = z3;
-                                if (i6 == 20) {
-                                    ContentValues contentValues7 = new ContentValues();
-                                    contentValues7.put("mimetype", "vnd.android.cursor.item/im");
-                                    String rawType2 = vcardItem2.getRawType(true);
-                                    String rawType3 = vcardItem2.getRawType(false);
-                                    contentValues7.put("data1", vcardItem2.getValue(false));
-                                    if ("AIM".equalsIgnoreCase(rawType2)) {
-                                        contentValues7.put("data5", (Integer) 0);
-                                    } else if ("MSN".equalsIgnoreCase(rawType2)) {
-                                        contentValues7.put("data5", (Integer) 1);
-                                    } else if ("YAHOO".equalsIgnoreCase(rawType2)) {
-                                        contentValues7.put("data5", (Integer) 2);
-                                    } else if ("SKYPE".equalsIgnoreCase(rawType2)) {
-                                        contentValues7.put("data5", (Integer) 3);
-                                    } else if ("QQ".equalsIgnoreCase(rawType2)) {
-                                        contentValues7.put("data5", (Integer) 4);
-                                    } else if ("GOOGLE-TALK".equalsIgnoreCase(rawType2)) {
-                                        contentValues7.put("data5", (Integer) 5);
-                                    } else if ("ICQ".equalsIgnoreCase(rawType2)) {
-                                        contentValues7.put("data5", (Integer) 6);
-                                    } else if ("JABBER".equalsIgnoreCase(rawType2)) {
-                                        contentValues7.put("data5", (Integer) 7);
-                                    } else if ("NETMEETING".equalsIgnoreCase(rawType2)) {
-                                        contentValues7.put("data5", (Integer) 8);
-                                    } else {
-                                        contentValues7.put("data5", (Integer) (-1));
-                                        contentValues7.put("data6", vcardItem2.getRawType(true));
+                                intent2 = intent;
+                                i2 = i5;
+                                if (i6 == 2) {
+                                    ContentValues contentValues6 = new ContentValues();
+                                    contentValues6.put("mimetype", "vnd.android.cursor.item/postal-address_v2");
+                                    String[] rawValue = vcardItem2.getRawValue();
+                                    z = z3;
+                                    if (rawValue.length > 0) {
+                                        contentValues6.put("data5", rawValue[0]);
                                     }
-                                    if ("HOME".equalsIgnoreCase(rawType3)) {
-                                        contentValues7.put("data2", (Integer) 1);
-                                    } else if ("WORK".equalsIgnoreCase(rawType3)) {
-                                        contentValues7.put("data2", (Integer) 2);
-                                    } else if ("OTHER".equalsIgnoreCase(rawType3)) {
-                                        contentValues7.put("data2", (Integer) 3);
+                                    if (rawValue.length > 1) {
+                                        contentValues6.put("data6", rawValue[1]);
                                     }
-                                    arrayList.add(contentValues7);
-                                } else if (i6 == 6 && !z) {
-                                    ContentValues contentValues8 = new ContentValues();
-                                    contentValues8.put("mimetype", "vnd.android.cursor.item/organization");
-                                    anonymousClass5 = this;
-                                    for (int i7 = i2; i7 < PhonebookShareAlert.this.other.size(); i7++) {
-                                        AndroidUtilities.VcardItem vcardItem3 = (AndroidUtilities.VcardItem) PhonebookShareAlert.this.other.get(i7);
-                                        if (vcardItem3.type == 6) {
-                                            String rawType4 = vcardItem3.getRawType(true);
-                                            if ("ORG".equalsIgnoreCase(rawType4)) {
-                                                String[] rawValue2 = vcardItem3.getRawValue();
-                                                if (rawValue2.length != 0) {
-                                                    if (rawValue2.length >= 1) {
-                                                        contentValues8.put("data1", rawValue2[0]);
+                                    if (rawValue.length > 2) {
+                                        contentValues6.put("data4", rawValue[2]);
+                                    }
+                                    if (rawValue.length > 3) {
+                                        contentValues6.put("data7", rawValue[3]);
+                                    }
+                                    if (rawValue.length > 4) {
+                                        contentValues6.put("data8", rawValue[4]);
+                                    }
+                                    if (rawValue.length > 5) {
+                                        contentValues6.put("data9", rawValue[5]);
+                                    }
+                                    if (rawValue.length > 6) {
+                                        contentValues6.put("data10", rawValue[6]);
+                                    }
+                                    String rawType = vcardItem2.getRawType(false);
+                                    if ("HOME".equalsIgnoreCase(rawType)) {
+                                        contentValues6.put("data2", (Integer) 1);
+                                    } else if ("WORK".equalsIgnoreCase(rawType)) {
+                                        contentValues6.put("data2", (Integer) 2);
+                                    } else if ("OTHER".equalsIgnoreCase(rawType)) {
+                                        contentValues6.put("data2", (Integer) 3);
+                                    }
+                                    arrayList.add(contentValues6);
+                                } else {
+                                    z = z3;
+                                    if (i6 == 20) {
+                                        ContentValues contentValues7 = new ContentValues();
+                                        contentValues7.put("mimetype", "vnd.android.cursor.item/im");
+                                        String rawType2 = vcardItem2.getRawType(true);
+                                        String rawType3 = vcardItem2.getRawType(false);
+                                        contentValues7.put("data1", vcardItem2.getValue(false));
+                                        if ("AIM".equalsIgnoreCase(rawType2)) {
+                                            contentValues7.put("data5", (Integer) 0);
+                                        } else if ("MSN".equalsIgnoreCase(rawType2)) {
+                                            contentValues7.put("data5", (Integer) 1);
+                                        } else if ("YAHOO".equalsIgnoreCase(rawType2)) {
+                                            contentValues7.put("data5", (Integer) 2);
+                                        } else if ("SKYPE".equalsIgnoreCase(rawType2)) {
+                                            contentValues7.put("data5", (Integer) 3);
+                                        } else if ("QQ".equalsIgnoreCase(rawType2)) {
+                                            contentValues7.put("data5", (Integer) 4);
+                                        } else if ("GOOGLE-TALK".equalsIgnoreCase(rawType2)) {
+                                            contentValues7.put("data5", (Integer) 5);
+                                        } else if ("ICQ".equalsIgnoreCase(rawType2)) {
+                                            contentValues7.put("data5", (Integer) 6);
+                                        } else if ("JABBER".equalsIgnoreCase(rawType2)) {
+                                            contentValues7.put("data5", (Integer) 7);
+                                        } else if ("NETMEETING".equalsIgnoreCase(rawType2)) {
+                                            contentValues7.put("data5", (Integer) 8);
+                                        } else {
+                                            contentValues7.put("data5", (Integer) (-1));
+                                            contentValues7.put("data6", vcardItem2.getRawType(true));
+                                        }
+                                        if ("HOME".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data2", (Integer) 1);
+                                        } else if ("WORK".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data2", (Integer) 2);
+                                        } else if ("OTHER".equalsIgnoreCase(rawType3)) {
+                                            contentValues7.put("data2", (Integer) 3);
+                                        }
+                                        arrayList.add(contentValues7);
+                                    } else if (i6 == 6 && !z) {
+                                        ContentValues contentValues8 = new ContentValues();
+                                        contentValues8.put("mimetype", "vnd.android.cursor.item/organization");
+                                        anonymousClass5 = this;
+                                        for (int i7 = i2; i7 < PhonebookShareAlert.this.other.size(); i7++) {
+                                            AndroidUtilities.VcardItem vcardItem3 = (AndroidUtilities.VcardItem) PhonebookShareAlert.this.other.get(i7);
+                                            if (vcardItem3.type == 6) {
+                                                String rawType4 = vcardItem3.getRawType(true);
+                                                if ("ORG".equalsIgnoreCase(rawType4)) {
+                                                    String[] rawValue2 = vcardItem3.getRawValue();
+                                                    if (rawValue2.length != 0) {
+                                                        if (rawValue2.length >= 1) {
+                                                            contentValues8.put("data1", rawValue2[0]);
+                                                        }
+                                                        if (rawValue2.length >= 2) {
+                                                            contentValues8.put("data5", rawValue2[1]);
+                                                        }
                                                     }
-                                                    if (rawValue2.length >= 2) {
-                                                        contentValues8.put("data5", rawValue2[1]);
-                                                    }
+                                                } else if ("TITLE".equalsIgnoreCase(rawType4) || "ROLE".equalsIgnoreCase(rawType4)) {
+                                                    contentValues8.put("data4", vcardItem3.getValue(false));
                                                 }
-                                            } else if ("TITLE".equalsIgnoreCase(rawType4) || "ROLE".equalsIgnoreCase(rawType4)) {
-                                                contentValues8.put("data4", vcardItem3.getValue(false));
-                                            }
-                                            String rawType5 = vcardItem3.getRawType(true);
-                                            if ("WORK".equalsIgnoreCase(rawType5)) {
-                                                contentValues8.put("data2", (Integer) 1);
-                                            } else if ("OTHER".equalsIgnoreCase(rawType5)) {
-                                                contentValues8.put("data2", (Integer) 2);
+                                                String rawType5 = vcardItem3.getRawType(true);
+                                                if ("WORK".equalsIgnoreCase(rawType5)) {
+                                                    contentValues8.put("data2", (Integer) 1);
+                                                } else if ("OTHER".equalsIgnoreCase(rawType5)) {
+                                                    contentValues8.put("data2", (Integer) 2);
+                                                }
                                             }
                                         }
+                                        arrayList.add(contentValues8);
+                                        z3 = true;
                                     }
-                                    arrayList.add(contentValues8);
-                                    z3 = true;
-                                    i5 = i2 + 1;
-                                    intent = intent2;
-                                    i3 = 1;
-                                    z2 = false;
                                 }
+                                anonymousClass5 = this;
+                                z3 = z;
                             }
-                            anonymousClass5 = this;
-                            z3 = z;
                             i5 = i2 + 1;
                             intent = intent2;
                             i3 = 1;

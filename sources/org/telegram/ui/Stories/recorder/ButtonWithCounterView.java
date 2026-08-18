@@ -222,22 +222,36 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     }
 
     public void updateColors() {
+        int i;
+        int i2;
         if (!this.customBackgroundColor) {
             this.backgroundColor = Theme.getColor(this.neutral ? Theme.key_buttonNeutral : Theme.key_featuredStickers_addButton, this.resourcesProvider);
         }
-        this.text.setTextColor(Theme.getColor(this.filled ? this.neutral ? Theme.key_buttonNeutralText : Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text;
+        if (this.filled) {
+            i = this.neutral ? Theme.key_buttonNeutralText : Theme.key_featuredStickers_buttonText;
+        } else {
+            i = Theme.key_featuredStickers_addButton;
+        }
+        animatedTextDrawable.setTextColor(Theme.getColor(i, this.resourcesProvider));
         if (this.filled) {
             View view = this.rippleView;
             int color = Theme.getColor(Theme.key_listSelector, this.resourcesProvider);
-            int i = this.radiusDp;
-            view.setBackground(Theme.createRadSelectorDrawable(color, i, i));
+            int i3 = this.radiusDp;
+            view.setBackground(Theme.createRadSelectorDrawable(color, i3, i3));
         } else {
             View view2 = this.rippleView;
             int iMultAlpha = Theme.multAlpha(this.text.getTextColor(), 0.1f);
-            int i2 = this.radiusDp;
-            view2.setBackground(Theme.createRadSelectorDrawable(iMultAlpha, i2, i2));
+            int i4 = this.radiusDp;
+            view2.setBackground(Theme.createRadSelectorDrawable(iMultAlpha, i4, i4));
         }
-        this.subText.setTextColor(Theme.getColor(this.filled ? this.neutral ? Theme.key_buttonNeutralText : Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.subText;
+        if (this.filled) {
+            i2 = this.neutral ? Theme.key_buttonNeutralText : Theme.key_featuredStickers_buttonText;
+        } else {
+            i2 = Theme.key_featuredStickers_addButton;
+        }
+        animatedTextDrawable2.setTextColor(Theme.getColor(i2, this.resourcesProvider));
         this.countText.setTextColor(this.backgroundColor);
         this.paint.setColor(Theme.getColor(Theme.key_featuredStickers_buttonText, this.resourcesProvider));
     }

@@ -8,7 +8,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
@@ -35,6 +33,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
@@ -51,6 +50,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.RadioButtonCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatUsersActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -187,7 +187,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
 
             @Override
-            public void openPhotoForEdit(String str, String str2, boolean z) throws Resources.NotFoundException, IOException {
+            public void openPhotoForEdit(String str, String str2, boolean z) {
                 CommunityEditActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
             }
         };
@@ -339,7 +339,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
         }, new Utilities.Callback5() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws Resources.NotFoundException, IOException {
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                 this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
@@ -420,8 +420,90 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         }
     }
 
-    public void onClick(org.telegram.ui.Components.UItem r10, android.view.View r11, int r12, float r13, float r14) throws android.content.res.Resources.NotFoundException, java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.community.CommunityEditActivity.onClick(org.telegram.ui.Components.UItem, android.view.View, int, float, float):void");
+    public void onClick(UItem uItem, View view, int i, float f, float f2) {
+        TLRPC.Chat chat;
+        TLRPC.ChatPhoto chatPhoto;
+        ImageLocation forPhoto;
+        int i2 = uItem.id;
+        if (i2 == 140) {
+            if (this.imageUpdater.isUploadingImage() || (chatPhoto = (chat = getMessagesController().getChat(Long.valueOf(this.communityId))).photo) == null || chatPhoto.photo_big == null) {
+                return;
+            }
+            PhotoViewer.getInstance().setParentActivity(this);
+            TLRPC.ChatPhoto chatPhoto2 = chat.photo;
+            int i3 = chatPhoto2.dc_id;
+            if (i3 != 0) {
+                chatPhoto2.photo_big.dc_id = i3;
+            }
+            TLRPC.ChatFull chatFull = this.info;
+            if (chatFull != null) {
+                TLRPC.Photo photo = chatFull.chat_photo;
+                if (!(photo instanceof TLRPC.TL_photo) || photo.video_sizes.isEmpty()) {
+                    forPhoto = null;
+                } else {
+                    forPhoto = ImageLocation.getForPhoto(this.info.chat_photo.video_sizes.get(0), this.info.chat_photo);
+                }
+            } else {
+                forPhoto = null;
+            }
+            PhotoViewer.getInstance().openPhotoWithVideo(chat.photo.photo_big, forPhoto, this.provider);
+            return;
+        }
+        if (i2 == 141) {
+            openSetPhotoAlert();
+            return;
+        }
+        if (i2 == 142) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", this.communityId);
+            bundle.putInt("type", 1);
+            ChatUsersActivity chatUsersActivity = new ChatUsersActivity(bundle);
+            chatUsersActivity.setInfo(this.info);
+            presentFragment(chatUsersActivity);
+            return;
+        }
+        if (i2 == 144) {
+            Bundle bundle2 = new Bundle();
+            bundle2.putLong("chat_id", this.communityId);
+            bundle2.putInt("type", 0);
+            ChatUsersActivity chatUsersActivity2 = new ChatUsersActivity(bundle2);
+            chatUsersActivity2.setInfo(this.info);
+            presentFragment(chatUsersActivity2);
+            return;
+        }
+        if (i2 == 143) {
+            Bundle bundle3 = new Bundle();
+            bundle3.putLong("community_id", this.communityId);
+            presentFragment(new CommunityPendingRequestsActivity(bundle3));
+            return;
+        }
+        if (i2 == 150) {
+            setAllowedManageLinkedPeers(true);
+            return;
+        }
+        if (i2 == 151) {
+            setAllowedManageLinkedPeers(false);
+            return;
+        }
+        if (i2 == 145) {
+            AlertsCreator.createClearOrDeleteDialogAlert(this, false, this.currentChat, null, false, true, true, false, new MessagesStorage.BooleanCallback() {
+                @Override
+                public final void run(boolean z) {
+                    this.f$0.lambda$onClick$1(z);
+                }
+            });
+            return;
+        }
+        if (i2 == 146) {
+            CommunityUtils.showChatsToAddToCommunity(this.progressDialog, this, this.currentAccount, this.currentChat);
+            return;
+        }
+        Object obj = uItem.object;
+        if (obj instanceof TLRPC.Chat) {
+            presentFragment(ChatActivity.of(-((TLRPC.Chat) obj).id));
+        } else if (obj instanceof TLRPC.User) {
+            presentFragment(ChatActivity.of(((TLRPC.User) obj).id));
+        }
     }
 
     public void lambda$onClick$1(boolean z) {
@@ -612,7 +694,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 
@@ -641,7 +723,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         }
     }
 
-    public void openSetPhotoAlert() throws IOException {
+    public void openSetPhotoAlert() {
         this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
             @Override
             public final void run() {

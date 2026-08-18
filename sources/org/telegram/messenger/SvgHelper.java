@@ -20,7 +20,6 @@ import android.util.SparseArray;
 import androidx.core.graphics.ColorUtils;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.lang.ref.WeakReference;
@@ -31,12 +30,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.xml.parsers.SAXParserFactory;
-import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.wallpaper.WallpaperGiftPatternPosition;
 import org.telegram.ui.ActionBar.Theme;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -472,7 +469,15 @@ public class SvgHelper {
                     inputStreamOpenRawResource.close();
                 }
                 return bitmap;
-            } finally {
+            } catch (Throwable th) {
+                if (inputStreamOpenRawResource != null) {
+                    try {
+                        inputStreamOpenRawResource.close();
+                    } catch (Throwable th2) {
+                        th.addSuppressed(th2);
+                    }
+                }
+                throw th;
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -480,7 +485,7 @@ public class SvgHelper {
         }
     }
 
-    public static Bitmap getBitmap(InputStream inputStream, int i, int i2, boolean z) throws SAXException, IOException {
+    public static Bitmap getBitmap(InputStream inputStream, int i, int i2, boolean z) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f);
@@ -511,7 +516,13 @@ public class SvgHelper {
                 Bitmap bitmap = sVGHandler.getBitmap();
                 fileInputStream.close();
                 return bitmap;
-            } finally {
+            } catch (Throwable th) {
+                try {
+                    fileInputStream.close();
+                } catch (Throwable th2) {
+                    th.addSuppressed(th2);
+                }
+                throw th;
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -519,7 +530,7 @@ public class SvgHelper {
         }
     }
 
-    public static SvgResult getSvgBitmap(File file, int i, int i2, boolean z) throws IOException {
+    public static SvgResult getSvgBitmap(File file, int i, int i2, boolean z) {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             try {
@@ -532,7 +543,13 @@ public class SvgHelper {
                 xMLReader.parse(new InputSource(fileInputStream));
                 fileInputStream.close();
                 return sVGHandler;
-            } finally {
+            } catch (Throwable th) {
+                try {
+                    fileInputStream.close();
+                } catch (Throwable th2) {
+                    th.addSuppressed(th2);
+                }
+                throw th;
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -540,7 +557,7 @@ public class SvgHelper {
         }
     }
 
-    public static Bitmap getBitmap(String str, int i, int i2, boolean z) throws SAXException, IOException {
+    public static Bitmap getBitmap(String str, int i, int i2, boolean z) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f);
@@ -553,7 +570,7 @@ public class SvgHelper {
         }
     }
 
-    public static SvgDrawable getDrawable(String str) throws SAXException, IOException {
+    public static SvgDrawable getDrawable(String str) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             SVGHandler sVGHandler = new SVGHandler(0, 0, (Integer) null, true, 1.0f);
@@ -566,7 +583,7 @@ public class SvgHelper {
         }
     }
 
-    public static SvgDrawable getDrawable(int i, Integer num) throws SAXException, IOException {
+    public static SvgDrawable getDrawable(int i, Integer num) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             SVGHandler sVGHandler = new SVGHandler(0, 0, num, true, 1.0f);
@@ -646,19 +663,15 @@ public class SvgHelper {
                                 arrayList.add(Float.valueOf(Float.parseFloat(strSubstring)));
                                 if (cCharAt == '-') {
                                     length2 = i;
-                                    break;
                                 } else {
                                     length2 = i + 1;
                                     z = true;
-                                    break;
                                 }
                             } else {
                                 length2++;
-                                break;
                             }
-                        } else {
-                            break;
                         }
+                        break;
                     case ')':
                     case 'A':
                     case 'C':
@@ -799,8 +812,8 @@ public class SvgHelper {
         float f3 = 0.0f;
         float f4 = 0.0f;
         float f5 = 0.0f;
-        float f6 = 0.0f;
-        float f7 = 0.0f;
+        f5 = 0.0f;
+        f4 = 0.0f;
         while (true) {
             int i = parserHelper.pos;
             if (i >= length) {
@@ -831,7 +844,6 @@ public class SvgHelper {
                         c2 = (char) (c2 - 1);
                         break;
                     }
-                    break;
                 case ',':
                 case '/':
                 default:
@@ -855,17 +867,15 @@ public class SvgHelper {
                         fNextFloat6 += f2;
                         fNextFloat7 += f3;
                     }
-                    float f8 = fNextFloat6;
-                    float f9 = fNextFloat7;
-                    float f10 = f4;
+                    float f6 = fNextFloat6;
+                    float f7 = fNextFloat7;
+                    float f8 = f4;
                     boolean z4 = z2;
                     f = f5;
-                    drawArc(path, f2, f3, f8, f9, fNextFloat3, fNextFloat4, fNextFloat5, z4, z3);
-                    f2 = f8;
-                    f5 = f6;
-                    f4 = f7;
-                    f3 = f9;
-                    fNextFloat = f10;
+                    drawArc(path, f2, f3, f6, f7, fNextFloat3, fNextFloat4, fNextFloat5, z4, z3);
+                    f2 = f6;
+                    f3 = f7;
+                    fNextFloat = f8;
                     z = false;
                     break;
                 case 'C':
@@ -884,16 +894,16 @@ public class SvgHelper {
                         fNextFloat11 += f3;
                         fNextFloat13 += f3;
                     }
-                    float f11 = fNextFloat11;
-                    float f12 = fNextFloat10;
-                    path.cubicTo(fNextFloat8, fNextFloat9, f12, f11, fNextFloat12, fNextFloat13);
+                    float f9 = fNextFloat11;
+                    float f10 = fNextFloat10;
+                    path.cubicTo(fNextFloat8, fNextFloat9, f10, f9, fNextFloat12, fNextFloat13);
                     fNextFloat = f4;
                     f2 = fNextFloat12;
                     f3 = fNextFloat13;
-                    f4 = f11;
+                    f4 = f9;
                     z = true;
                     f = f5;
-                    f5 = f12;
+                    f5 = f10;
                     break;
                 case 'H':
                 case 'h':
@@ -907,8 +917,6 @@ public class SvgHelper {
                     }
                     fNextFloat = f4;
                     f = f5;
-                    f5 = f6;
-                    f4 = f7;
                     z = false;
                     break;
                 case 'L':
@@ -921,20 +929,16 @@ public class SvgHelper {
                         f3 += fNextFloat;
                         fNextFloat = f4;
                         f = f5;
-                        f5 = f6;
-                        f4 = f7;
                         z = false;
-                        break;
                     } else {
                         path.lineTo(fNextFloat2, fNextFloat);
                         f2 = fNextFloat2;
                         f3 = fNextFloat;
                         fNextFloat = f4;
                         f = f5;
-                        f5 = f6;
-                        f4 = f7;
                         z = false;
                     }
+                    break;
                 case 'M':
                 case 'm':
                     fNextFloat2 = parserHelper.nextFloat();
@@ -947,19 +951,14 @@ public class SvgHelper {
                         f3 += fNextFloat;
                         fNextFloat = f4;
                         f = f5;
-                        f5 = f6;
-                        f4 = f7;
-                        z = false;
-                        break;
                     } else {
                         path.moveTo(fNextFloat2, fNextFloat);
                         f2 = fNextFloat2;
                         f = f2;
                         f3 = fNextFloat;
-                        f5 = f6;
-                        f4 = f7;
-                        z = false;
                     }
+                    z = false;
+                    break;
                 case 'Q':
                 case 'q':
                     float fNextFloat15 = parserHelper.nextFloat();
@@ -993,17 +992,17 @@ public class SvgHelper {
                         fNextFloat20 += f3;
                         fNextFloat22 += f3;
                     }
-                    float f13 = fNextFloat21;
-                    float f14 = fNextFloat22;
-                    float f15 = fNextFloat20;
-                    path.cubicTo((f2 * 2.0f) - f6, (f3 * 2.0f) - f7, fNextFloat19, f15, f13, f14);
-                    f2 = f13;
-                    f3 = f14;
+                    float f11 = fNextFloat21;
+                    float f12 = fNextFloat22;
+                    float f13 = fNextFloat20;
+                    path.cubicTo((f2 * 2.0f) - f5, (f3 * 2.0f) - f4, fNextFloat19, f13, f11, f12);
+                    f2 = f11;
+                    f3 = f12;
                     z = true;
                     f = f5;
                     f5 = fNextFloat19;
                     fNextFloat = f4;
-                    f4 = f15;
+                    f4 = f13;
                     break;
                 case 'T':
                 case 't':
@@ -1013,14 +1012,14 @@ public class SvgHelper {
                         fNextFloat23 += f2;
                         fNextFloat24 += f3;
                     }
-                    float f16 = (f2 * 2.0f) - f6;
-                    float f17 = (f3 * 2.0f) - f7;
-                    path.quadTo(f16, f17, fNextFloat23, fNextFloat24);
+                    float f14 = (f2 * 2.0f) - f5;
+                    float f15 = (f3 * 2.0f) - f4;
+                    path.quadTo(f14, f15, fNextFloat23, fNextFloat24);
                     f = f5;
-                    f5 = f16;
+                    f5 = f14;
                     f2 = fNextFloat23;
                     fNextFloat = f4;
-                    f4 = f17;
+                    f4 = f15;
                     f3 = fNextFloat24;
                     break;
                 case 'V':
@@ -1031,19 +1030,15 @@ public class SvgHelper {
                         f3 += fNextFloat;
                         fNextFloat = f4;
                         f = f5;
-                        f5 = f6;
-                        f4 = f7;
                         z = false;
-                        break;
                     } else {
                         path.lineTo(f2, fNextFloat);
                         f3 = fNextFloat;
                         fNextFloat = f4;
                         f = f5;
-                        f5 = f6;
-                        f4 = f7;
                         z = false;
                     }
+                    break;
                 case 'Z':
                 case 'z':
                     path.close();
@@ -1056,17 +1051,15 @@ public class SvgHelper {
                 default:
                     fNextFloat = f4;
                     f = f5;
-                    f5 = f6;
-                    f4 = f7;
                     z = false;
                     break;
             }
             if (z) {
-                f7 = f4;
-                f6 = f5;
+                f4 = f4;
+                f5 = f5;
             } else {
-                f6 = f2;
-                f7 = f3;
+                f5 = f2;
+                f4 = f3;
             }
             parserHelper.skipWhitespace();
             str2 = str;
@@ -1086,11 +1079,11 @@ public class SvgHelper {
         }
         float fAbs = Math.abs(f5);
         float fAbs2 = Math.abs(f6);
-        double radians = Math.toRadians(f7 % 360.0d);
+        double radians = Math.toRadians(((double) f7) % 360.0d);
         double dCos = Math.cos(radians);
         double dSin = Math.sin(radians);
-        double d = (f - f3) / 2.0d;
-        double d2 = (f2 - f4) / 2.0d;
+        double d = ((double) (f - f3)) / 2.0d;
+        double d2 = ((double) (f2 - f4)) / 2.0d;
         double d3 = (dCos * d) + (dSin * d2);
         double d4 = ((-dSin) * d) + (d2 * dCos);
         double d5 = fAbs * fAbs;
@@ -1100,8 +1093,8 @@ public class SvgHelper {
         double d9 = (d7 / d5) + (d8 / d6);
         if (d9 > 0.99999d) {
             double dSqrt = Math.sqrt(d9) * 1.00001d;
-            fAbs = (float) (fAbs * dSqrt);
-            fAbs2 = (float) (dSqrt * fAbs2);
+            fAbs = (float) (((double) fAbs) * dSqrt);
+            fAbs2 = (float) (dSqrt * ((double) fAbs2));
             d5 = fAbs * fAbs;
             d6 = fAbs2 * fAbs2;
         }
@@ -1120,8 +1113,8 @@ public class SvgHelper {
         float f8 = fAbs;
         float f9 = fAbs2;
         double d18 = dSqrt2 * (-((d16 * d3) / d15));
-        double d19 = ((f + f3) / 2.0d) + ((dCos * d17) - (dSin * d18));
-        double d20 = ((f2 + f4) / 2.0d) + (dSin * d17) + (dCos * d18);
+        double d19 = (((double) (f + f3)) / 2.0d) + ((dCos * d17) - (dSin * d18));
+        double d20 = (((double) (f2 + f4)) / 2.0d) + (dSin * d17) + (dCos * d18);
         double d21 = (d3 - d17) / d15;
         double d22 = (d4 - d18) / d16;
         double d23 = ((-d3) - d17) / d15;
@@ -1153,14 +1146,14 @@ public class SvgHelper {
 
     private static float[] arcToBeziers(double d, double d2) {
         int iCeil = (int) Math.ceil((Math.abs(d2) * 2.0d) / 3.141592653589793d);
-        double d3 = d2 / iCeil;
+        double d3 = d2 / ((double) iCeil);
         double d4 = d3 / 2.0d;
         double dSin = (Math.sin(d4) * 1.3333333333333333d) / (Math.cos(d4) + 1.0d);
         float[] fArr = new float[iCeil * 6];
         int i = 0;
         int i2 = 0;
         while (i < iCeil) {
-            double d5 = d + (i * d3);
+            double d5 = d + (((double) i) * d3);
             double dCos = Math.cos(d5);
             double dSin2 = Math.sin(d5);
             double d6 = d3;
@@ -1240,8 +1233,31 @@ public class SvgHelper {
         }
     }
 
-    public static java.lang.Integer getColorByName(java.lang.String r2) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SvgHelper.getColorByName(java.lang.String):java.lang.Integer");
+    public static Integer getColorByName(String str) {
+        String lowerCase = str.toLowerCase();
+        lowerCase.hashCode();
+        switch (lowerCase) {
+            case "yellow":
+                return -256;
+            case "red":
+                return -65536;
+            case "blue":
+                return -16776961;
+            case "cyan":
+                return -16711681;
+            case "gray":
+                return -7829368;
+            case "black":
+                return -16777216;
+            case "green":
+                return -16711936;
+            case "white":
+                return -1;
+            case "magenta":
+                return -65281;
+            default:
+                return null;
+        }
     }
 
     private static class NumberParse {
@@ -1631,8 +1647,8 @@ public class SvgHelper {
                                     }
                                 }
                                 popTransform();
-                                break;
                             }
+                            break;
                         }
                         break;
                     case "g":
@@ -1683,8 +1699,8 @@ public class SvgHelper {
                             if (f2 != 0.0f) {
                                 float f3 = this.globalScale * f2;
                                 canvas.scale(f3, f3);
-                                break;
                             }
+                            break;
                         } else {
                             svgDrawable7.width = iCeil;
                             svgDrawable7.height = iCeil2;
@@ -1828,8 +1844,8 @@ public class SvgHelper {
                                 i2++;
                             } else {
                                 this.styles = null;
-                                break;
                             }
+                            break;
                         }
                     }
                     break;
@@ -1923,7 +1939,2605 @@ public class SvgHelper {
         }
 
         public float parseFloat() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SvgHelper.ParserHelper.parseFloat():float");
+            boolean z;
+            int i;
+            int i2;
+            int i3;
+            boolean z2;
+            char c;
+            char c2;
+            char c3;
+            char c4;
+            int i4;
+            char c5;
+            char c6;
+            char c7;
+            char c8;
+            char c9;
+            char c10;
+            char c11 = this.current;
+            int i5 = 0;
+            boolean z3 = true;
+            if (c11 != '+') {
+                if (c11 != '-') {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                switch (this.current) {
+                    case '.':
+                        i = 0;
+                        i2 = 0;
+                        i3 = 0;
+                        z2 = false;
+                        if (this.current == '.') {
+                            c7 = read();
+                            this.current = c7;
+                            switch (c7) {
+                                case '0':
+                                    if (i == 0) {
+                                        while (true) {
+                                            c9 = read();
+                                            this.current = c9;
+                                            i2--;
+                                            switch (c9) {
+                                                case '0':
+                                                    break;
+                                                case '1':
+                                                case '2':
+                                                case '3':
+                                                case '4':
+                                                case '5':
+                                                case '6':
+                                                case '7':
+                                                case '8':
+                                                case '9':
+                                                    break;
+                                                default:
+                                                    if (!z2) {
+                                                        return 0.0f;
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    while (true) {
+                                        if (i < 9) {
+                                            i++;
+                                            i3 = (i3 * 10) + (this.current - '0');
+                                            i2--;
+                                        }
+                                        c8 = read();
+                                        this.current = c8;
+                                        switch (c8) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    if (!z2) {
+                                        reportUnexpectedCharacterError(c7);
+                                        return 0.0f;
+                                    }
+                                    break;
+                            }
+                        }
+                        c2 = this.current;
+                        if (c2 != 'E' || c2 == 'e') {
+                            c3 = read();
+                            this.current = c3;
+                            if (c3 == '+') {
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            } else if (c3 != '-') {
+                                switch (c3) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c3);
+                                        return 0.0f;
+                                }
+                            } else {
+                                z3 = false;
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            }
+                            switch (this.current) {
+                                case '0':
+                                    while (true) {
+                                        c6 = read();
+                                        this.current = c6;
+                                        switch (c6) {
+                                            case '0':
+                                                break;
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                i4 = 0;
+                                                while (true) {
+                                                    if (i5 < 3) {
+                                                        i5++;
+                                                        i4 = (i4 * 10) + (this.current - '0');
+                                                    }
+                                                    c5 = read();
+                                                    this.current = c5;
+                                                    switch (c5) {
+                                                        case '0':
+                                                        case '1':
+                                                        case '2':
+                                                        case '3':
+                                                        case '4':
+                                                        case '5':
+                                                        case '6':
+                                                        case '7':
+                                                        case '8':
+                                                        case '9':
+                                                            break;
+                                                        default:
+                                                            i5 = i4;
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    i4 = 0;
+                                    while (true) {
+                                        if (i5 < 3) {
+                                            i5++;
+                                            i4 = (i4 * 10) + (this.current - '0');
+                                        }
+                                        c5 = read();
+                                        this.current = c5;
+                                        switch (c5) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                i5 = i4;
+                                                break;
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
+                        if (!z3) {
+                            i5 = -i5;
+                        }
+                        int i6 = i5 + i2;
+                        if (!z) {
+                            i3 = -i3;
+                        }
+                        return buildFloat(i3, i6);
+                    case '/':
+                    default:
+                        return Float.NaN;
+                    case '0':
+                        while (true) {
+                            c10 = read();
+                            this.current = c10;
+                            if (c10 != '.' || c10 == 'E' || c10 == 'e') {
+                                i = 0;
+                                i2 = 0;
+                                i3 = 0;
+                                z2 = true;
+                                if (this.current == '.') {
+                                    c7 = read();
+                                    this.current = c7;
+                                    switch (c7) {
+                                        case '0':
+                                            if (i == 0) {
+                                                while (true) {
+                                                    c9 = read();
+                                                    this.current = c9;
+                                                    i2--;
+                                                    switch (c9) {
+                                                        case '0':
+                                                            break;
+                                                        case '1':
+                                                        case '2':
+                                                        case '3':
+                                                        case '4':
+                                                        case '5':
+                                                        case '6':
+                                                        case '7':
+                                                        case '8':
+                                                        case '9':
+                                                            break;
+                                                        default:
+                                                            if (!z2) {
+                                                                return 0.0f;
+                                                            }
+                                                            break;
+                                                    }
+                                                }
+                                            }
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            while (true) {
+                                                if (i < 9) {
+                                                    i++;
+                                                    i3 = (i3 * 10) + (this.current - '0');
+                                                    i2--;
+                                                }
+                                                c8 = read();
+                                                this.current = c8;
+                                                switch (c8) {
+                                                    case '0':
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                        default:
+                                            if (!z2) {
+                                                reportUnexpectedCharacterError(c7);
+                                                return 0.0f;
+                                            }
+                                            break;
+                                    }
+                                }
+                                c2 = this.current;
+                                if (c2 != 'E') {
+                                    c3 = read();
+                                    this.current = c3;
+                                    if (c3 == '+') {
+                                        c4 = read();
+                                        this.current = c4;
+                                        switch (c4) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c4);
+                                                return 0.0f;
+                                        }
+                                    } else if (c3 != '-') {
+                                        switch (c3) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c3);
+                                                return 0.0f;
+                                        }
+                                    } else {
+                                        z3 = false;
+                                        c4 = read();
+                                        this.current = c4;
+                                        switch (c4) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c4);
+                                                return 0.0f;
+                                        }
+                                    }
+                                    switch (this.current) {
+                                        case '0':
+                                            while (true) {
+                                                c6 = read();
+                                                this.current = c6;
+                                                switch (c6) {
+                                                    case '0':
+                                                        break;
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        i4 = 0;
+                                                        while (true) {
+                                                            if (i5 < 3) {
+                                                                i5++;
+                                                                i4 = (i4 * 10) + (this.current - '0');
+                                                            }
+                                                            c5 = read();
+                                                            this.current = c5;
+                                                            switch (c5) {
+                                                                case '0':
+                                                                case '1':
+                                                                case '2':
+                                                                case '3':
+                                                                case '4':
+                                                                case '5':
+                                                                case '6':
+                                                                case '7':
+                                                                case '8':
+                                                                case '9':
+                                                                    break;
+                                                                default:
+                                                                    i5 = i4;
+                                                                    break;
+                                                            }
+                                                        }
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            i4 = 0;
+                                            while (true) {
+                                                if (i5 < 3) {
+                                                    i5++;
+                                                    i4 = (i4 * 10) + (this.current - '0');
+                                                }
+                                                c5 = read();
+                                                this.current = c5;
+                                                switch (c5) {
+                                                    case '0':
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        break;
+                                                    default:
+                                                        i5 = i4;
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                    }
+                                } else {
+                                    c3 = read();
+                                    this.current = c3;
+                                    if (c3 == '+') {
+                                        c4 = read();
+                                        this.current = c4;
+                                        switch (c4) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c4);
+                                                return 0.0f;
+                                        }
+                                    } else if (c3 != '-') {
+                                        switch (c3) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c3);
+                                                return 0.0f;
+                                        }
+                                    } else {
+                                        z3 = false;
+                                        c4 = read();
+                                        this.current = c4;
+                                        switch (c4) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c4);
+                                                return 0.0f;
+                                        }
+                                    }
+                                    switch (this.current) {
+                                        case '0':
+                                            while (true) {
+                                                c6 = read();
+                                                this.current = c6;
+                                                switch (c6) {
+                                                    case '0':
+                                                        break;
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        i4 = 0;
+                                                        while (true) {
+                                                            if (i5 < 3) {
+                                                                i5++;
+                                                                i4 = (i4 * 10) + (this.current - '0');
+                                                            }
+                                                            c5 = read();
+                                                            this.current = c5;
+                                                            switch (c5) {
+                                                                case '0':
+                                                                case '1':
+                                                                case '2':
+                                                                case '3':
+                                                                case '4':
+                                                                case '5':
+                                                                case '6':
+                                                                case '7':
+                                                                case '8':
+                                                                case '9':
+                                                                    break;
+                                                                default:
+                                                                    i5 = i4;
+                                                                    break;
+                                                            }
+                                                        }
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            i4 = 0;
+                                            while (true) {
+                                                if (i5 < 3) {
+                                                    i5++;
+                                                    i4 = (i4 * 10) + (this.current - '0');
+                                                }
+                                                c5 = read();
+                                                this.current = c5;
+                                                switch (c5) {
+                                                    case '0':
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        break;
+                                                    default:
+                                                        i5 = i4;
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                    }
+                                }
+                                if (!z3) {
+                                    i5 = -i5;
+                                }
+                                int i7 = i5 + i2;
+                                if (!z) {
+                                    i3 = -i3;
+                                }
+                                return buildFloat(i3, i7);
+                            }
+                            switch (c10) {
+                                case '0':
+                                    break;
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    break;
+                                default:
+                                    return 0.0f;
+                            }
+                            i = 0;
+                            i2 = 0;
+                            i3 = 0;
+                            while (true) {
+                                if (i < 9) {
+                                    i++;
+                                    i3 = (i3 * 10) + (this.current - '0');
+                                } else {
+                                    i2++;
+                                }
+                                c = read();
+                                this.current = c;
+                                switch (c) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                }
+                                z2 = true;
+                                if (this.current == '.') {
+                                    c7 = read();
+                                    this.current = c7;
+                                    switch (c7) {
+                                        case '0':
+                                            if (i == 0) {
+                                                while (true) {
+                                                    c9 = read();
+                                                    this.current = c9;
+                                                    i2--;
+                                                    switch (c9) {
+                                                        case '0':
+                                                            break;
+                                                        case '1':
+                                                        case '2':
+                                                        case '3':
+                                                        case '4':
+                                                        case '5':
+                                                        case '6':
+                                                        case '7':
+                                                        case '8':
+                                                        case '9':
+                                                            break;
+                                                        default:
+                                                            if (!z2) {
+                                                                return 0.0f;
+                                                            }
+                                                            break;
+                                                    }
+                                                }
+                                            }
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            while (true) {
+                                                if (i < 9) {
+                                                    i++;
+                                                    i3 = (i3 * 10) + (this.current - '0');
+                                                    i2--;
+                                                }
+                                                c8 = read();
+                                                this.current = c8;
+                                                switch (c8) {
+                                                    case '0':
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                        default:
+                                            if (!z2) {
+                                                reportUnexpectedCharacterError(c7);
+                                                return 0.0f;
+                                            }
+                                            break;
+                                    }
+                                }
+                                c2 = this.current;
+                                if (c2 != 'E') {
+                                    c3 = read();
+                                    this.current = c3;
+                                    if (c3 == '+') {
+                                        c4 = read();
+                                        this.current = c4;
+                                        switch (c4) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c4);
+                                                return 0.0f;
+                                        }
+                                    } else if (c3 != '-') {
+                                        switch (c3) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c3);
+                                                return 0.0f;
+                                        }
+                                    } else {
+                                        z3 = false;
+                                        c4 = read();
+                                        this.current = c4;
+                                        switch (c4) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c4);
+                                                return 0.0f;
+                                        }
+                                    }
+                                    switch (this.current) {
+                                        case '0':
+                                            while (true) {
+                                                c6 = read();
+                                                this.current = c6;
+                                                switch (c6) {
+                                                    case '0':
+                                                        break;
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        i4 = 0;
+                                                        while (true) {
+                                                            if (i5 < 3) {
+                                                                i5++;
+                                                                i4 = (i4 * 10) + (this.current - '0');
+                                                            }
+                                                            c5 = read();
+                                                            this.current = c5;
+                                                            switch (c5) {
+                                                                case '0':
+                                                                case '1':
+                                                                case '2':
+                                                                case '3':
+                                                                case '4':
+                                                                case '5':
+                                                                case '6':
+                                                                case '7':
+                                                                case '8':
+                                                                case '9':
+                                                                    break;
+                                                                default:
+                                                                    i5 = i4;
+                                                                    break;
+                                                            }
+                                                        }
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            i4 = 0;
+                                            while (true) {
+                                                if (i5 < 3) {
+                                                    i5++;
+                                                    i4 = (i4 * 10) + (this.current - '0');
+                                                }
+                                                c5 = read();
+                                                this.current = c5;
+                                                switch (c5) {
+                                                    case '0':
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        break;
+                                                    default:
+                                                        i5 = i4;
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                    }
+                                } else {
+                                    c3 = read();
+                                    this.current = c3;
+                                    if (c3 == '+') {
+                                        c4 = read();
+                                        this.current = c4;
+                                        switch (c4) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c4);
+                                                return 0.0f;
+                                        }
+                                    } else if (c3 != '-') {
+                                        switch (c3) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c3);
+                                                return 0.0f;
+                                        }
+                                    } else {
+                                        z3 = false;
+                                        c4 = read();
+                                        this.current = c4;
+                                        switch (c4) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                reportUnexpectedCharacterError(c4);
+                                                return 0.0f;
+                                        }
+                                    }
+                                    switch (this.current) {
+                                        case '0':
+                                            while (true) {
+                                                c6 = read();
+                                                this.current = c6;
+                                                switch (c6) {
+                                                    case '0':
+                                                        break;
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        i4 = 0;
+                                                        while (true) {
+                                                            if (i5 < 3) {
+                                                                i5++;
+                                                                i4 = (i4 * 10) + (this.current - '0');
+                                                            }
+                                                            c5 = read();
+                                                            this.current = c5;
+                                                            switch (c5) {
+                                                                case '0':
+                                                                case '1':
+                                                                case '2':
+                                                                case '3':
+                                                                case '4':
+                                                                case '5':
+                                                                case '6':
+                                                                case '7':
+                                                                case '8':
+                                                                case '9':
+                                                                    break;
+                                                                default:
+                                                                    i5 = i4;
+                                                                    break;
+                                                            }
+                                                        }
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            i4 = 0;
+                                            while (true) {
+                                                if (i5 < 3) {
+                                                    i5++;
+                                                    i4 = (i4 * 10) + (this.current - '0');
+                                                }
+                                                c5 = read();
+                                                this.current = c5;
+                                                switch (c5) {
+                                                    case '0':
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        break;
+                                                    default:
+                                                        i5 = i4;
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                    }
+                                }
+                                if (!z3) {
+                                    i5 = -i5;
+                                }
+                                int i8 = i5 + i2;
+                                if (!z) {
+                                    i3 = -i3;
+                                }
+                                return buildFloat(i3, i8);
+                            }
+                        }
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                        i = 0;
+                        i2 = 0;
+                        i3 = 0;
+                        while (true) {
+                            if (i < 9) {
+                                i++;
+                                i3 = (i3 * 10) + (this.current - '0');
+                            } else {
+                                i2++;
+                            }
+                            c = read();
+                            this.current = c;
+                            switch (c) {
+                                case '0':
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    break;
+                            }
+                            z2 = true;
+                            if (this.current == '.') {
+                                c7 = read();
+                                this.current = c7;
+                                switch (c7) {
+                                    case '0':
+                                        if (i == 0) {
+                                            while (true) {
+                                                c9 = read();
+                                                this.current = c9;
+                                                i2--;
+                                                switch (c9) {
+                                                    case '0':
+                                                        break;
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        break;
+                                                    default:
+                                                        if (!z2) {
+                                                            return 0.0f;
+                                                        }
+                                                        break;
+                                                }
+                                            }
+                                        }
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        while (true) {
+                                            if (i < 9) {
+                                                i++;
+                                                i3 = (i3 * 10) + (this.current - '0');
+                                                i2--;
+                                            }
+                                            c8 = read();
+                                            this.current = c8;
+                                            switch (c8) {
+                                                case '0':
+                                                case '1':
+                                                case '2':
+                                                case '3':
+                                                case '4':
+                                                case '5':
+                                                case '6':
+                                                case '7':
+                                                case '8':
+                                                case '9':
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                    default:
+                                        if (!z2) {
+                                            reportUnexpectedCharacterError(c7);
+                                            return 0.0f;
+                                        }
+                                        break;
+                                }
+                            }
+                            c2 = this.current;
+                            if (c2 != 'E') {
+                                c3 = read();
+                                this.current = c3;
+                                if (c3 == '+') {
+                                    c4 = read();
+                                    this.current = c4;
+                                    switch (c4) {
+                                        case '0':
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            break;
+                                        default:
+                                            reportUnexpectedCharacterError(c4);
+                                            return 0.0f;
+                                    }
+                                } else if (c3 != '-') {
+                                    switch (c3) {
+                                        case '0':
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            break;
+                                        default:
+                                            reportUnexpectedCharacterError(c3);
+                                            return 0.0f;
+                                    }
+                                } else {
+                                    z3 = false;
+                                    c4 = read();
+                                    this.current = c4;
+                                    switch (c4) {
+                                        case '0':
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            break;
+                                        default:
+                                            reportUnexpectedCharacterError(c4);
+                                            return 0.0f;
+                                    }
+                                }
+                                switch (this.current) {
+                                    case '0':
+                                        while (true) {
+                                            c6 = read();
+                                            this.current = c6;
+                                            switch (c6) {
+                                                case '0':
+                                                    break;
+                                                case '1':
+                                                case '2':
+                                                case '3':
+                                                case '4':
+                                                case '5':
+                                                case '6':
+                                                case '7':
+                                                case '8':
+                                                case '9':
+                                                    i4 = 0;
+                                                    while (true) {
+                                                        if (i5 < 3) {
+                                                            i5++;
+                                                            i4 = (i4 * 10) + (this.current - '0');
+                                                        }
+                                                        c5 = read();
+                                                        this.current = c5;
+                                                        switch (c5) {
+                                                            case '0':
+                                                            case '1':
+                                                            case '2':
+                                                            case '3':
+                                                            case '4':
+                                                            case '5':
+                                                            case '6':
+                                                            case '7':
+                                                            case '8':
+                                                            case '9':
+                                                                break;
+                                                            default:
+                                                                i5 = i4;
+                                                                break;
+                                                        }
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        i4 = 0;
+                                        while (true) {
+                                            if (i5 < 3) {
+                                                i5++;
+                                                i4 = (i4 * 10) + (this.current - '0');
+                                            }
+                                            c5 = read();
+                                            this.current = c5;
+                                            switch (c5) {
+                                                case '0':
+                                                case '1':
+                                                case '2':
+                                                case '3':
+                                                case '4':
+                                                case '5':
+                                                case '6':
+                                                case '7':
+                                                case '8':
+                                                case '9':
+                                                    break;
+                                                default:
+                                                    i5 = i4;
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                }
+                            } else {
+                                c3 = read();
+                                this.current = c3;
+                                if (c3 == '+') {
+                                    c4 = read();
+                                    this.current = c4;
+                                    switch (c4) {
+                                        case '0':
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            break;
+                                        default:
+                                            reportUnexpectedCharacterError(c4);
+                                            return 0.0f;
+                                    }
+                                } else if (c3 != '-') {
+                                    switch (c3) {
+                                        case '0':
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            break;
+                                        default:
+                                            reportUnexpectedCharacterError(c3);
+                                            return 0.0f;
+                                    }
+                                } else {
+                                    z3 = false;
+                                    c4 = read();
+                                    this.current = c4;
+                                    switch (c4) {
+                                        case '0':
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            break;
+                                        default:
+                                            reportUnexpectedCharacterError(c4);
+                                            return 0.0f;
+                                    }
+                                }
+                                switch (this.current) {
+                                    case '0':
+                                        while (true) {
+                                            c6 = read();
+                                            this.current = c6;
+                                            switch (c6) {
+                                                case '0':
+                                                    break;
+                                                case '1':
+                                                case '2':
+                                                case '3':
+                                                case '4':
+                                                case '5':
+                                                case '6':
+                                                case '7':
+                                                case '8':
+                                                case '9':
+                                                    i4 = 0;
+                                                    while (true) {
+                                                        if (i5 < 3) {
+                                                            i5++;
+                                                            i4 = (i4 * 10) + (this.current - '0');
+                                                        }
+                                                        c5 = read();
+                                                        this.current = c5;
+                                                        switch (c5) {
+                                                            case '0':
+                                                            case '1':
+                                                            case '2':
+                                                            case '3':
+                                                            case '4':
+                                                            case '5':
+                                                            case '6':
+                                                            case '7':
+                                                            case '8':
+                                                            case '9':
+                                                                break;
+                                                            default:
+                                                                i5 = i4;
+                                                                break;
+                                                        }
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        i4 = 0;
+                                        while (true) {
+                                            if (i5 < 3) {
+                                                i5++;
+                                                i4 = (i4 * 10) + (this.current - '0');
+                                            }
+                                            c5 = read();
+                                            this.current = c5;
+                                            switch (c5) {
+                                                case '0':
+                                                case '1':
+                                                case '2':
+                                                case '3':
+                                                case '4':
+                                                case '5':
+                                                case '6':
+                                                case '7':
+                                                case '8':
+                                                case '9':
+                                                    break;
+                                                default:
+                                                    i5 = i4;
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                }
+                            }
+                            if (!z3) {
+                                i5 = -i5;
+                            }
+                            int i9 = i5 + i2;
+                            if (!z) {
+                                i3 = -i3;
+                            }
+                            return buildFloat(i3, i9);
+                        }
+                }
+            }
+            z = true;
+            this.current = read();
+            switch (this.current) {
+                case '.':
+                    i = 0;
+                    i2 = 0;
+                    i3 = 0;
+                    z2 = false;
+                    if (this.current == '.') {
+                        c7 = read();
+                        this.current = c7;
+                        switch (c7) {
+                            case '0':
+                                if (i == 0) {
+                                    while (true) {
+                                        c9 = read();
+                                        this.current = c9;
+                                        i2--;
+                                        switch (c9) {
+                                            case '0':
+                                                break;
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                if (!z2) {
+                                                    return 0.0f;
+                                                }
+                                                break;
+                                        }
+                                    }
+                                }
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                while (true) {
+                                    if (i < 9) {
+                                        i++;
+                                        i3 = (i3 * 10) + (this.current - '0');
+                                        i2--;
+                                    }
+                                    c8 = read();
+                                    this.current = c8;
+                                    switch (c8) {
+                                        case '0':
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            break;
+                                    }
+                                }
+                                break;
+                            default:
+                                if (!z2) {
+                                    reportUnexpectedCharacterError(c7);
+                                    return 0.0f;
+                                }
+                                break;
+                        }
+                    }
+                    c2 = this.current;
+                    if (c2 != 'E') {
+                        c3 = read();
+                        this.current = c3;
+                        if (c3 == '+') {
+                            c4 = read();
+                            this.current = c4;
+                            switch (c4) {
+                                case '0':
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    break;
+                                default:
+                                    reportUnexpectedCharacterError(c4);
+                                    return 0.0f;
+                            }
+                        } else if (c3 != '-') {
+                            switch (c3) {
+                                case '0':
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    break;
+                                default:
+                                    reportUnexpectedCharacterError(c3);
+                                    return 0.0f;
+                            }
+                        } else {
+                            z3 = false;
+                            c4 = read();
+                            this.current = c4;
+                            switch (c4) {
+                                case '0':
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    break;
+                                default:
+                                    reportUnexpectedCharacterError(c4);
+                                    return 0.0f;
+                            }
+                        }
+                        switch (this.current) {
+                            case '0':
+                                while (true) {
+                                    c6 = read();
+                                    this.current = c6;
+                                    switch (c6) {
+                                        case '0':
+                                            break;
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            i4 = 0;
+                                            while (true) {
+                                                if (i5 < 3) {
+                                                    i5++;
+                                                    i4 = (i4 * 10) + (this.current - '0');
+                                                }
+                                                c5 = read();
+                                                this.current = c5;
+                                                switch (c5) {
+                                                    case '0':
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        break;
+                                                    default:
+                                                        i5 = i4;
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                    }
+                                }
+                                break;
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                i4 = 0;
+                                while (true) {
+                                    if (i5 < 3) {
+                                        i5++;
+                                        i4 = (i4 * 10) + (this.current - '0');
+                                    }
+                                    c5 = read();
+                                    this.current = c5;
+                                    switch (c5) {
+                                        case '0':
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            break;
+                                        default:
+                                            i5 = i4;
+                                            break;
+                                    }
+                                }
+                                break;
+                        }
+                    } else {
+                        c3 = read();
+                        this.current = c3;
+                        if (c3 == '+') {
+                            c4 = read();
+                            this.current = c4;
+                            switch (c4) {
+                                case '0':
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    break;
+                                default:
+                                    reportUnexpectedCharacterError(c4);
+                                    return 0.0f;
+                            }
+                        } else if (c3 != '-') {
+                            switch (c3) {
+                                case '0':
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    break;
+                                default:
+                                    reportUnexpectedCharacterError(c3);
+                                    return 0.0f;
+                            }
+                        } else {
+                            z3 = false;
+                            c4 = read();
+                            this.current = c4;
+                            switch (c4) {
+                                case '0':
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    break;
+                                default:
+                                    reportUnexpectedCharacterError(c4);
+                                    return 0.0f;
+                            }
+                        }
+                        switch (this.current) {
+                            case '0':
+                                while (true) {
+                                    c6 = read();
+                                    this.current = c6;
+                                    switch (c6) {
+                                        case '0':
+                                            break;
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            i4 = 0;
+                                            while (true) {
+                                                if (i5 < 3) {
+                                                    i5++;
+                                                    i4 = (i4 * 10) + (this.current - '0');
+                                                }
+                                                c5 = read();
+                                                this.current = c5;
+                                                switch (c5) {
+                                                    case '0':
+                                                    case '1':
+                                                    case '2':
+                                                    case '3':
+                                                    case '4':
+                                                    case '5':
+                                                    case '6':
+                                                    case '7':
+                                                    case '8':
+                                                    case '9':
+                                                        break;
+                                                    default:
+                                                        i5 = i4;
+                                                        break;
+                                                }
+                                            }
+                                            break;
+                                    }
+                                }
+                                break;
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                i4 = 0;
+                                while (true) {
+                                    if (i5 < 3) {
+                                        i5++;
+                                        i4 = (i4 * 10) + (this.current - '0');
+                                    }
+                                    c5 = read();
+                                    this.current = c5;
+                                    switch (c5) {
+                                        case '0':
+                                        case '1':
+                                        case '2':
+                                        case '3':
+                                        case '4':
+                                        case '5':
+                                        case '6':
+                                        case '7':
+                                        case '8':
+                                        case '9':
+                                            break;
+                                        default:
+                                            i5 = i4;
+                                            break;
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    if (!z3) {
+                        i5 = -i5;
+                    }
+                    int i10 = i5 + i2;
+                    if (!z) {
+                        i3 = -i3;
+                    }
+                    return buildFloat(i3, i10);
+                case '/':
+                default:
+                    return Float.NaN;
+                case '0':
+                    while (true) {
+                        c10 = read();
+                        this.current = c10;
+                        if (c10 != '.') {
+                        }
+                        i = 0;
+                        i2 = 0;
+                        i3 = 0;
+                        z2 = true;
+                        if (this.current == '.') {
+                            c7 = read();
+                            this.current = c7;
+                            switch (c7) {
+                                case '0':
+                                    if (i == 0) {
+                                        while (true) {
+                                            c9 = read();
+                                            this.current = c9;
+                                            i2--;
+                                            switch (c9) {
+                                                case '0':
+                                                    break;
+                                                case '1':
+                                                case '2':
+                                                case '3':
+                                                case '4':
+                                                case '5':
+                                                case '6':
+                                                case '7':
+                                                case '8':
+                                                case '9':
+                                                    break;
+                                                default:
+                                                    if (!z2) {
+                                                        return 0.0f;
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    while (true) {
+                                        if (i < 9) {
+                                            i++;
+                                            i3 = (i3 * 10) + (this.current - '0');
+                                            i2--;
+                                        }
+                                        c8 = read();
+                                        this.current = c8;
+                                        switch (c8) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    if (!z2) {
+                                        reportUnexpectedCharacterError(c7);
+                                        return 0.0f;
+                                    }
+                                    break;
+                            }
+                        }
+                        c2 = this.current;
+                        if (c2 != 'E') {
+                            c3 = read();
+                            this.current = c3;
+                            if (c3 == '+') {
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            } else if (c3 != '-') {
+                                switch (c3) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c3);
+                                        return 0.0f;
+                                }
+                            } else {
+                                z3 = false;
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            }
+                            switch (this.current) {
+                                case '0':
+                                    while (true) {
+                                        c6 = read();
+                                        this.current = c6;
+                                        switch (c6) {
+                                            case '0':
+                                                break;
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                i4 = 0;
+                                                while (true) {
+                                                    if (i5 < 3) {
+                                                        i5++;
+                                                        i4 = (i4 * 10) + (this.current - '0');
+                                                    }
+                                                    c5 = read();
+                                                    this.current = c5;
+                                                    switch (c5) {
+                                                        case '0':
+                                                        case '1':
+                                                        case '2':
+                                                        case '3':
+                                                        case '4':
+                                                        case '5':
+                                                        case '6':
+                                                        case '7':
+                                                        case '8':
+                                                        case '9':
+                                                            break;
+                                                        default:
+                                                            i5 = i4;
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    i4 = 0;
+                                    while (true) {
+                                        if (i5 < 3) {
+                                            i5++;
+                                            i4 = (i4 * 10) + (this.current - '0');
+                                        }
+                                        c5 = read();
+                                        this.current = c5;
+                                        switch (c5) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                i5 = i4;
+                                                break;
+                                        }
+                                    }
+                                    break;
+                            }
+                        } else {
+                            c3 = read();
+                            this.current = c3;
+                            if (c3 == '+') {
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            } else if (c3 != '-') {
+                                switch (c3) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c3);
+                                        return 0.0f;
+                                }
+                            } else {
+                                z3 = false;
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            }
+                            switch (this.current) {
+                                case '0':
+                                    while (true) {
+                                        c6 = read();
+                                        this.current = c6;
+                                        switch (c6) {
+                                            case '0':
+                                                break;
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                i4 = 0;
+                                                while (true) {
+                                                    if (i5 < 3) {
+                                                        i5++;
+                                                        i4 = (i4 * 10) + (this.current - '0');
+                                                    }
+                                                    c5 = read();
+                                                    this.current = c5;
+                                                    switch (c5) {
+                                                        case '0':
+                                                        case '1':
+                                                        case '2':
+                                                        case '3':
+                                                        case '4':
+                                                        case '5':
+                                                        case '6':
+                                                        case '7':
+                                                        case '8':
+                                                        case '9':
+                                                            break;
+                                                        default:
+                                                            i5 = i4;
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    i4 = 0;
+                                    while (true) {
+                                        if (i5 < 3) {
+                                            i5++;
+                                            i4 = (i4 * 10) + (this.current - '0');
+                                        }
+                                        c5 = read();
+                                        this.current = c5;
+                                        switch (c5) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                i5 = i4;
+                                                break;
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
+                        if (!z3) {
+                            i5 = -i5;
+                        }
+                        int i11 = i5 + i2;
+                        if (!z) {
+                            i3 = -i3;
+                        }
+                        return buildFloat(i3, i11);
+                    }
+                    break;
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    i = 0;
+                    i2 = 0;
+                    i3 = 0;
+                    while (true) {
+                        if (i < 9) {
+                            i++;
+                            i3 = (i3 * 10) + (this.current - '0');
+                        } else {
+                            i2++;
+                        }
+                        c = read();
+                        this.current = c;
+                        switch (c) {
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                break;
+                        }
+                        z2 = true;
+                        if (this.current == '.') {
+                            c7 = read();
+                            this.current = c7;
+                            switch (c7) {
+                                case '0':
+                                    if (i == 0) {
+                                        while (true) {
+                                            c9 = read();
+                                            this.current = c9;
+                                            i2--;
+                                            switch (c9) {
+                                                case '0':
+                                                    break;
+                                                case '1':
+                                                case '2':
+                                                case '3':
+                                                case '4':
+                                                case '5':
+                                                case '6':
+                                                case '7':
+                                                case '8':
+                                                case '9':
+                                                    break;
+                                                default:
+                                                    if (!z2) {
+                                                        return 0.0f;
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    while (true) {
+                                        if (i < 9) {
+                                            i++;
+                                            i3 = (i3 * 10) + (this.current - '0');
+                                            i2--;
+                                        }
+                                        c8 = read();
+                                        this.current = c8;
+                                        switch (c8) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    if (!z2) {
+                                        reportUnexpectedCharacterError(c7);
+                                        return 0.0f;
+                                    }
+                                    break;
+                            }
+                        }
+                        c2 = this.current;
+                        if (c2 != 'E') {
+                            c3 = read();
+                            this.current = c3;
+                            if (c3 == '+') {
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            } else if (c3 != '-') {
+                                switch (c3) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c3);
+                                        return 0.0f;
+                                }
+                            } else {
+                                z3 = false;
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            }
+                            switch (this.current) {
+                                case '0':
+                                    while (true) {
+                                        c6 = read();
+                                        this.current = c6;
+                                        switch (c6) {
+                                            case '0':
+                                                break;
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                i4 = 0;
+                                                while (true) {
+                                                    if (i5 < 3) {
+                                                        i5++;
+                                                        i4 = (i4 * 10) + (this.current - '0');
+                                                    }
+                                                    c5 = read();
+                                                    this.current = c5;
+                                                    switch (c5) {
+                                                        case '0':
+                                                        case '1':
+                                                        case '2':
+                                                        case '3':
+                                                        case '4':
+                                                        case '5':
+                                                        case '6':
+                                                        case '7':
+                                                        case '8':
+                                                        case '9':
+                                                            break;
+                                                        default:
+                                                            i5 = i4;
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    i4 = 0;
+                                    while (true) {
+                                        if (i5 < 3) {
+                                            i5++;
+                                            i4 = (i4 * 10) + (this.current - '0');
+                                        }
+                                        c5 = read();
+                                        this.current = c5;
+                                        switch (c5) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                i5 = i4;
+                                                break;
+                                        }
+                                    }
+                                    break;
+                            }
+                        } else {
+                            c3 = read();
+                            this.current = c3;
+                            if (c3 == '+') {
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            } else if (c3 != '-') {
+                                switch (c3) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c3);
+                                        return 0.0f;
+                                }
+                            } else {
+                                z3 = false;
+                                c4 = read();
+                                this.current = c4;
+                                switch (c4) {
+                                    case '0':
+                                    case '1':
+                                    case '2':
+                                    case '3':
+                                    case '4':
+                                    case '5':
+                                    case '6':
+                                    case '7':
+                                    case '8':
+                                    case '9':
+                                        break;
+                                    default:
+                                        reportUnexpectedCharacterError(c4);
+                                        return 0.0f;
+                                }
+                            }
+                            switch (this.current) {
+                                case '0':
+                                    while (true) {
+                                        c6 = read();
+                                        this.current = c6;
+                                        switch (c6) {
+                                            case '0':
+                                                break;
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                i4 = 0;
+                                                while (true) {
+                                                    if (i5 < 3) {
+                                                        i5++;
+                                                        i4 = (i4 * 10) + (this.current - '0');
+                                                    }
+                                                    c5 = read();
+                                                    this.current = c5;
+                                                    switch (c5) {
+                                                        case '0':
+                                                        case '1':
+                                                        case '2':
+                                                        case '3':
+                                                        case '4':
+                                                        case '5':
+                                                        case '6':
+                                                        case '7':
+                                                        case '8':
+                                                        case '9':
+                                                            break;
+                                                        default:
+                                                            i5 = i4;
+                                                            break;
+                                                    }
+                                                }
+                                                break;
+                                        }
+                                    }
+                                    break;
+                                case '1':
+                                case '2':
+                                case '3':
+                                case '4':
+                                case '5':
+                                case '6':
+                                case '7':
+                                case '8':
+                                case '9':
+                                    i4 = 0;
+                                    while (true) {
+                                        if (i5 < 3) {
+                                            i5++;
+                                            i4 = (i4 * 10) + (this.current - '0');
+                                        }
+                                        c5 = read();
+                                        this.current = c5;
+                                        switch (c5) {
+                                            case '0':
+                                            case '1':
+                                            case '2':
+                                            case '3':
+                                            case '4':
+                                            case '5':
+                                            case '6':
+                                            case '7':
+                                            case '8':
+                                            case '9':
+                                                break;
+                                            default:
+                                                i5 = i4;
+                                                break;
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
+                        if (!z3) {
+                            i5 = -i5;
+                        }
+                        int i12 = i5 + i2;
+                        if (!z) {
+                            i3 = -i3;
+                        }
+                        return buildFloat(i3, i12);
+                    }
+            }
         }
 
         private void reportUnexpectedCharacterError(char c) {
@@ -1943,7 +4557,7 @@ public class SvgHelper {
             if (i >= 67108864) {
                 i++;
             }
-            return (float) (i2 > 0 ? i * SvgHelper.pow10[i2] : i / SvgHelper.pow10[-i2]);
+            return (float) (i2 > 0 ? ((double) i) * SvgHelper.pow10[i2] : ((double) i) / SvgHelper.pow10[-i2]);
         }
 
         public float nextFloat() {

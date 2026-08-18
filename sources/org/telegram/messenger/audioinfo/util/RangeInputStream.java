@@ -24,7 +24,7 @@ public class RangeInputStream extends PositionInputStream {
 
     @Override
     public int read(byte[] bArr, int i, int i2) {
-        long position = getPosition() + i2;
+        long position = getPosition() + ((long) i2);
         long j = this.endPosition;
         if (position <= j || (i2 = (int) (j - getPosition())) != 0) {
             return super.read(bArr, i, i2);

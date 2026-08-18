@@ -6,7 +6,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
-import org.telegram.ui.Components.PopupSwipeBackLayout;
 
 public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
     private View bottomView;
@@ -37,6 +36,7 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsLayout;
         if (reactionsContainerLayout != null && this.popupWindowLayout != null) {
             reactionsContainerLayout.getLayoutParams().width = -2;
+            int i4 = 0;
             ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = 0;
             this.popupLayoutLeftOffset = 0.0f;
             super.onMeasure(iMakeMeasureSpec, iMakeMeasureSpec2);
@@ -82,16 +82,17 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
                 if (this.reactionsLayout.getLayoutParams().width != -2 && this.reactionsLayout.getLayoutParams().width + measuredWidth3 > measuredWidth) {
                     measuredWidth3 = (measuredWidth - this.reactionsLayout.getLayoutParams().width) + AndroidUtilities.dp(8.0f);
                 }
-                i = measuredWidth3 >= 0 ? measuredWidth3 : 0;
-                ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = i;
+                i4 = measuredWidth3 >= 0 ? measuredWidth3 : 0;
+                ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = i4;
                 this.popupLayoutLeftOffset = 0.0f;
                 updatePopupTranslation();
             } else {
                 float measuredWidth4 = (measuredWidth - childAt.getMeasuredWidth()) * 0.25f;
                 this.popupLayoutLeftOffset = measuredWidth4;
-                int i4 = (int) (r6.bigCircleOffset - measuredWidth4);
-                this.reactionsLayout.bigCircleOffset = i4;
-                if (i4 < AndroidUtilities.dp(36.0f)) {
+                ReactionsContainerLayout reactionsContainerLayout2 = this.reactionsLayout;
+                int i5 = (int) (reactionsContainerLayout2.bigCircleOffset - measuredWidth4);
+                reactionsContainerLayout2.bigCircleOffset = i5;
+                if (i5 < AndroidUtilities.dp(36.0f)) {
                     this.popupLayoutLeftOffset = 0.0f;
                     this.reactionsLayout.bigCircleOffset = AndroidUtilities.dp(36.0f);
                 }
@@ -105,7 +106,7 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
                     this.bottomView.getLayoutParams().width = -1;
                 }
                 if (this.popupWindowLayout.getSwipeBack() != null) {
-                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = i + AndroidUtilities.dp(36.0f);
+                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = i4 + AndroidUtilities.dp(36.0f);
                 } else {
                     ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = AndroidUtilities.dp(36.0f);
                 }
@@ -202,7 +203,8 @@ public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
         if (view != null) {
             view.setAlpha(f);
             float f2 = (f * 0.5f) + 0.5f;
-            this.bottomView.setPivotX(r0.getMeasuredWidth());
+            View view2 = this.bottomView;
+            view2.setPivotX(view2.getMeasuredWidth());
             this.bottomView.setPivotY(0.0f);
             this.bottomViewReactionsOffset = (-this.popupWindowLayout.getMeasuredHeight()) * (1.0f - f);
             updateBottomViewPosition();

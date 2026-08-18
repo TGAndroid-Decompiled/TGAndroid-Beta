@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import org.telegram.messenger.support.LongSparseLongArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -70,11 +69,9 @@ public class BotGuardHelper extends BaseController {
 
     public void closeGuardBotWebApp(long j, long j2, TLRPC.JoinChatBotResult joinChatBotResult) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.guardBotDecisionResult, new GuardBotDecisionResultNotification(j, this.queryIdToBotId.get(j2, 0L), j2, joinChatBotResult));
-        HashSet hashSet = BotWebViewSheet.activeSheets;
+        HashSet<BotWebViewSheet> hashSet = BotWebViewSheet.activeSheets;
         if (hashSet != null) {
-            Iterator it = hashSet.iterator();
-            while (it.hasNext()) {
-                BotWebViewSheet botWebViewSheet = (BotWebViewSheet) it.next();
+            for (BotWebViewSheet botWebViewSheet : hashSet) {
                 if (botWebViewSheet.isGuardBotTab(j, j2)) {
                     botWebViewSheet.lambda$openOptions$42();
                     return;
@@ -109,7 +106,8 @@ public class BotGuardHelper extends BaseController {
                         botGuardHelperArr[i] = botGuardHelper2;
                         botGuardHelper = botGuardHelper2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }

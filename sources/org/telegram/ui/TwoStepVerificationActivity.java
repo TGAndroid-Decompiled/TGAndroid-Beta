@@ -4,20 +4,29 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Property;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -45,11 +54,13 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.FragmentFloatingButton;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TransformableLoginButtonView;
+import org.telegram.ui.Components.VerticalPositionAutoAnimator;
 
 public class TwoStepVerificationActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private SimpleTextView bottomButton;
@@ -173,8 +184,264 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     @Override
-    public android.view.View createView(android.content.Context r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TwoStepVerificationActivity.createView(android.content.Context):android.view.View");
+    public View createView(Context context) {
+        int i;
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(false);
+        if (!this.passwordEntered || this.delegate != null) {
+            this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            ActionBar actionBar = this.actionBar;
+            int i2 = Theme.key_windowBackgroundWhiteBlackText;
+            actionBar.setTitleColor(Theme.getColor(i2));
+            this.actionBar.setItemsColor(Theme.getColor(i2), false);
+            this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarWhiteSelector), false);
+            this.actionBar.setCastShadows(false);
+        }
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i3) {
+                if (i3 == -1) {
+                    TwoStepVerificationActivity twoStepVerificationActivity = TwoStepVerificationActivity.this;
+                    if (twoStepVerificationActivity.otherwiseReloginDays >= 0) {
+                        twoStepVerificationActivity.showSetForcePasswordAlert();
+                    } else {
+                        twoStepVerificationActivity.finishFragment();
+                    }
+                }
+            }
+        });
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        int i3 = Theme.key_windowBackgroundWhite;
+        frameLayout.setBackgroundColor(Theme.getColor(i3));
+        ScrollView scrollView = new ScrollView(context);
+        this.scrollView = scrollView;
+        scrollView.setFillViewport(true);
+        frameLayout.addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(1);
+        this.scrollView.addView(linearLayout, LayoutHelper.createScroll(-1, -2, 51));
+        RLottieImageView rLottieImageView = new RLottieImageView(context);
+        this.lockImageView = rLottieImageView;
+        rLottieImageView.setAnimation(R.raw.tsv_setup_intro, 100, 100);
+        this.lockImageView.playAnimation();
+        RLottieImageView rLottieImageView2 = this.lockImageView;
+        if (AndroidUtilities.isSmallScreen()) {
+            i = 8;
+        } else {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x <= point.y || AndroidUtilities.isTablet()) {
+                i = 0;
+            } else {
+                i = 8;
+            }
+        }
+        rLottieImageView2.setVisibility(i);
+        linearLayout.addView(this.lockImageView, LayoutHelper.createLinear(100, 100, 1));
+        TextView textView = new TextView(context);
+        this.titleTextView = textView;
+        int i4 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i4));
+        this.titleTextView.setTextSize(1, 18.0f);
+        this.titleTextView.setGravity(1);
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 1, 24, 8, 24, 0));
+        TextView textView2 = new TextView(context);
+        this.subtitleTextView = textView2;
+        int i5 = Theme.key_windowBackgroundWhiteGrayText6;
+        textView2.setTextColor(Theme.getColor(i5));
+        this.subtitleTextView.setTextSize(1, 15.0f);
+        this.subtitleTextView.setGravity(1);
+        this.subtitleTextView.setVisibility(8);
+        linearLayout.addView(this.subtitleTextView, LayoutHelper.createLinear(-2, -2, 1, 42, 8, 42, 0));
+        OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
+        this.passwordOutlineView = outlineTextContainerView;
+        int i6 = R.string.EnterPassword;
+        outlineTextContainerView.setText(LocaleController.getString(i6));
+        this.passwordOutlineView.animateSelection(1.0f, false);
+        linearLayout.addView(this.passwordOutlineView, LayoutHelper.createLinear(-1, -2, 1, 24, 24, 24, 0));
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        this.passwordEditText = editTextBoldCursor;
+        editTextBoldCursor.setTextSize(1, 18.0f);
+        this.passwordEditText.setTextColor(Theme.getColor(i4));
+        this.passwordEditText.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
+        this.passwordEditText.setBackground(null);
+        this.passwordEditText.setSingleLine(true);
+        this.passwordEditText.setInputType(129);
+        this.passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        this.passwordEditText.setTypeface(Typeface.DEFAULT);
+        EditTextBoldCursor editTextBoldCursor2 = this.passwordEditText;
+        int i7 = Theme.key_windowBackgroundWhiteInputFieldActivated;
+        editTextBoldCursor2.setCursorColor(Theme.getColor(i7));
+        this.passwordEditText.setCursorWidth(1.5f);
+        this.passwordEditText.setContentDescription(LocaleController.getString(i6));
+        int iDp = AndroidUtilities.dp(16.0f);
+        this.passwordEditText.setPadding(iDp, iDp, iDp, iDp);
+        this.passwordOutlineView.addView(this.passwordEditText, LayoutHelper.createFrame(-1, -2.0f));
+        this.passwordOutlineView.attachEditText(this.passwordEditText);
+        this.passwordEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public final void onFocusChange(View view, boolean z) {
+                this.f$0.lambda$createView$1(view, z);
+            }
+        });
+        this.passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public final boolean onEditorAction(TextView textView3, int i8, KeyEvent keyEvent) {
+                return this.f$0.lambda$createView$2(textView3, i8, keyEvent);
+            }
+        });
+        this.passwordEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (TwoStepVerificationActivity.this.postedErrorColorTimeout) {
+                    AndroidUtilities.cancelRunOnUIThread(TwoStepVerificationActivity.this.errorColorTimeout);
+                    TwoStepVerificationActivity.this.errorColorTimeout.run();
+                }
+            }
+        });
+        TextView textView3 = new TextView(context);
+        this.bottomTextView = textView3;
+        textView3.setTextColor(Theme.getColor(i5));
+        this.bottomTextView.setTextSize(1, 14.0f);
+        this.bottomTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        this.bottomTextView.setText(LocaleController.getString(R.string.YourEmailInfo));
+        linearLayout.addView(this.bottomTextView, LayoutHelper.createLinear(-2, -2, (LocaleController.isRTL ? 5 : 3) | 48, 40, 30, 40, 0));
+        TextView textView4 = new TextView(context);
+        this.resetWaitView = textView4;
+        textView4.setTextColor(Theme.getColor(i5));
+        this.resetWaitView.setTextSize(1, 12.0f);
+        this.resetWaitView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        linearLayout.addView(this.resetWaitView, LayoutHelper.createLinear(-1, -2, 40.0f, 8.0f, 40.0f, 0.0f));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        linearLayout2.setGravity(80);
+        linearLayout2.setClipChildren(false);
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, 0, 1.0f));
+        SimpleTextView simpleTextView = new SimpleTextView(context);
+        this.bottomButton = simpleTextView;
+        simpleTextView.setTextSize(15);
+        this.bottomButton.setGravity(19);
+        this.bottomButton.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
+        frameLayout.addView(this.bottomButton, LayoutHelper.createFrame(-1, 56.0f, 80, 0.0f, 0.0f, 0.0f, 16.0f));
+        this.bottomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$3(view);
+            }
+        });
+        VerticalPositionAutoAnimator.attach(this.bottomButton);
+        TextView textView5 = new TextView(context);
+        this.cancelResetButton = textView5;
+        textView5.setTextSize(1, 15.0f);
+        this.cancelResetButton.setGravity(19);
+        this.cancelResetButton.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
+        this.cancelResetButton.setText(LocaleController.getString(R.string.CancelReset));
+        this.cancelResetButton.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
+        this.cancelResetButton.setVisibility(8);
+        frameLayout.addView(this.cancelResetButton, LayoutHelper.createFrame(-1, 56.0f, 80, 0.0f, 0.0f, 0.0f, 16.0f));
+        this.cancelResetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$4(view);
+            }
+        });
+        VerticalPositionAutoAnimator.attach(this.cancelResetButton);
+        FragmentFloatingButton fragmentFloatingButton = new FragmentFloatingButton(context, this.resourceProvider);
+        this.floatingButton = fragmentFloatingButton;
+        VerticalPositionAutoAnimator.attach(fragmentFloatingButton);
+        this.floatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$5(view);
+            }
+        });
+        TransformableLoginButtonView transformableLoginButtonView = new TransformableLoginButtonView(context);
+        this.floatingButtonIcon = transformableLoginButtonView;
+        transformableLoginButtonView.setTransformType(1);
+        this.floatingButtonIcon.setProgress(0.0f);
+        this.floatingButtonIcon.setColor(Theme.getColor(Theme.key_chats_actionIcon));
+        this.floatingButtonIcon.setDrawBackground(false);
+        this.floatingButton.setContentDescription(LocaleController.getString(R.string.Next));
+        this.floatingButton.addView(this.floatingButtonIcon, LayoutHelper.createFrame(56, 56, 17));
+        this.floatingButton.addAdditionalView(this.floatingButtonIcon);
+        frameLayout.addView(this.floatingButton, FragmentFloatingButton.createDefaultLayoutParams());
+        EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
+        this.emptyView = emptyTextProgressView;
+        emptyTextProgressView.showProgress();
+        frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
+        RecyclerListView recyclerListView = new RecyclerListView(context);
+        this.listView = recyclerListView;
+        recyclerListView.setSections(true);
+        this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
+        this.listView.setEmptyView(this.emptyView);
+        this.listView.setVerticalScrollBarEnabled(false);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        RecyclerListView recyclerListView2 = this.listView;
+        ListAdapter listAdapter = new ListAdapter(context);
+        this.listAdapter = listAdapter;
+        recyclerListView2.setAdapter(listAdapter);
+        this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+            @Override
+            public final void onItemClick(View view, int i8) {
+                this.f$0.lambda$createView$7(view, i8);
+            }
+        });
+        RadialProgressView radialProgressView = new RadialProgressView(context) {
+            @Override
+            protected void onMeasure(int i8, int i9) {
+                super.onMeasure(i8, i9);
+                ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight / 2;
+            }
+        };
+        this.radialProgressView = radialProgressView;
+        radialProgressView.setSize(AndroidUtilities.dp(20.0f));
+        this.radialProgressView.setAlpha(0.0f);
+        this.radialProgressView.setScaleX(0.1f);
+        this.radialProgressView.setScaleY(0.1f);
+        this.radialProgressView.setProgressColor(Theme.getColor(i7));
+        this.actionBar.addView(this.radialProgressView, LayoutHelper.createFrame(32, 32.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+        updateRows();
+        if (this.passwordEntered && this.delegate == null) {
+            this.actionBar.setTitle(LocaleController.getString(R.string.TwoStepVerificationTitle));
+        } else {
+            this.actionBar.setTitle(null);
+        }
+        if (this.delegate != null) {
+            this.titleTextView.setText(LocaleController.getString(R.string.YourPassword));
+            int i8 = this.delegateType;
+            if (i8 == 1) {
+                this.subtitleTextView.setText(LocaleController.getString(R.string.PleaseEnterCurrentPasswordWithdraw));
+            } else if (i8 == 2) {
+                this.subtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PleaseEnterCurrentPasswordGiftTransfer, this.delegateTypeString)));
+            } else {
+                this.subtitleTextView.setText(LocaleController.getString(R.string.PleaseEnterCurrentPasswordTransfer));
+            }
+            this.subtitleTextView.setVisibility(0);
+        } else {
+            this.titleTextView.setText(LocaleController.getString(R.string.YourPassword));
+            this.subtitleTextView.setVisibility(0);
+            this.subtitleTextView.setText(LocaleController.getString(R.string.LoginPasswordTextShort));
+        }
+        if (this.passwordEntered) {
+            View view = this.fragmentView;
+            int i9 = Theme.key_windowBackgroundGray;
+            view.setBackgroundColor(Theme.getColor(i9));
+            this.fragmentView.setTag(Integer.valueOf(i9));
+        } else {
+            this.fragmentView.setBackgroundColor(Theme.getColor(i3));
+            this.fragmentView.setTag(Integer.valueOf(i3));
+        }
+        return this.fragmentView;
     }
 
     public void lambda$createView$1(View view, boolean z) {
@@ -247,8 +514,21 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     @Override
-    public void onConfigurationChanged(android.content.res.Configuration r3) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TwoStepVerificationActivity.onConfigurationChanged(android.content.res.Configuration):void");
+    public void onConfigurationChanged(Configuration configuration) {
+        int i;
+        super.onConfigurationChanged(configuration);
+        RLottieImageView rLottieImageView = this.lockImageView;
+        if (AndroidUtilities.isSmallScreen()) {
+            i = 8;
+        } else {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x <= point.y || AndroidUtilities.isTablet()) {
+                i = 0;
+            } else {
+                i = 8;
+            }
+        }
+        rLottieImageView.setVisibility(i);
     }
 
     private void cancelPasswordReset() {
@@ -358,7 +638,72 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     public void updateBottomButton() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TwoStepVerificationActivity.updateBottomButton():void");
+        String pluralString;
+        if (this.passwordEntered) {
+            return;
+        }
+        if (this.currentPassword.pending_reset_date != 0) {
+            int currentTime = getConnectionsManager().getCurrentTime();
+            int i = this.currentPassword.pending_reset_date;
+            if (currentTime > i) {
+                if (this.resetWaitView.getVisibility() != 8) {
+                    this.resetWaitView.setVisibility(8);
+                }
+                if (this.currentPassword.pending_reset_date == 0) {
+                    this.bottomButton.setText(LocaleController.getString(R.string.ForgotPassword));
+                    this.cancelResetButton.setVisibility(8);
+                    this.bottomButton.setVisibility(0);
+                } else {
+                    this.bottomButton.setText(LocaleController.getString(R.string.ResetPassword));
+                    this.cancelResetButton.setVisibility(0);
+                    this.bottomButton.setVisibility(0);
+                }
+                this.bottomButton.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
+                AndroidUtilities.cancelRunOnUIThread(this.updateTimeRunnable);
+            } else {
+                int iMax = Math.max(1, i - getConnectionsManager().getCurrentTime());
+                if (iMax > 86400) {
+                    pluralString = LocaleController.formatPluralString("Days", iMax / 86400, new Object[0]);
+                } else if (iMax >= 3600) {
+                    pluralString = LocaleController.formatPluralString("Hours", iMax / 3600, new Object[0]);
+                } else {
+                    pluralString = String.format(Locale.US, "%02d:%02d", Integer.valueOf(iMax / 60), Integer.valueOf(iMax % 60));
+                }
+                this.resetWaitView.setText(LocaleController.formatString("RestorePasswordResetIn", R.string.RestorePasswordResetIn, pluralString));
+                this.resetWaitView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
+                if (this.bottomButton.getVisibility() != 8) {
+                    this.bottomButton.setVisibility(8);
+                }
+                if (this.resetWaitView.getVisibility() != 0) {
+                    this.resetWaitView.setVisibility(0);
+                }
+                this.cancelResetButton.setVisibility(0);
+                AndroidUtilities.cancelRunOnUIThread(this.updateTimeRunnable);
+                AndroidUtilities.runOnUIThread(this.updateTimeRunnable, 1000L);
+            }
+        } else {
+            if (this.resetWaitView.getVisibility() != 8) {
+                this.resetWaitView.setVisibility(8);
+            }
+            if (this.currentPassword.pending_reset_date == 0) {
+                this.bottomButton.setText(LocaleController.getString(R.string.ForgotPassword));
+                this.cancelResetButton.setVisibility(8);
+                this.bottomButton.setVisibility(0);
+            } else {
+                this.bottomButton.setText(LocaleController.getString(R.string.ResetPassword));
+                this.cancelResetButton.setVisibility(0);
+                this.bottomButton.setVisibility(0);
+            }
+            this.bottomButton.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
+            AndroidUtilities.cancelRunOnUIThread(this.updateTimeRunnable);
+        }
+        if (this.currentPassword == null || this.bottomButton == null || this.resetWaitView.getVisibility() != 0) {
+            AndroidUtilities.cancelRunOnUIThread(this.updateTimeRunnable);
+            TextView textView = this.cancelResetButton;
+            if (textView != null) {
+                textView.setVisibility(8);
+            }
+        }
     }
 
     private void onPasswordForgot() {
@@ -502,7 +847,10 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     public static boolean canHandleCurrentPassword(TL_account.Password password, boolean z) {
-        return z ? !(password.current_algo instanceof TLRPC.TL_passwordKdfAlgoUnknown) : ((password.new_algo instanceof TLRPC.TL_passwordKdfAlgoUnknown) || (password.current_algo instanceof TLRPC.TL_passwordKdfAlgoUnknown) || (password.new_secure_algo instanceof TLRPC.TL_securePasswordKdfAlgoUnknown)) ? false : true;
+        if (z) {
+            return !(password.current_algo instanceof TLRPC.TL_passwordKdfAlgoUnknown);
+        }
+        return ((password.new_algo instanceof TLRPC.TL_passwordKdfAlgoUnknown) || (password.current_algo instanceof TLRPC.TL_passwordKdfAlgoUnknown) || (password.new_secure_algo instanceof TLRPC.TL_securePasswordKdfAlgoUnknown)) ? false : true;
     }
 
     public static void initPasswordNewAlgo(TL_account.Password password) {
@@ -897,7 +1245,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         return SRPHelper.startCheck(this.currentPasswordHash, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
     }
 
-    private boolean checkSecretValues(byte[] bArr, TL_account.passwordSettings passwordsettings) throws NoSuchAlgorithmException {
+    private boolean checkSecretValues(byte[] bArr, TL_account.passwordSettings passwordsettings) {
         byte[] bArrComputeSHA512;
         TLRPC.TL_secureSecretSettings tL_secureSecretSettings = passwordsettings.secure_settings;
         if (tL_secureSecretSettings != null) {
@@ -1001,7 +1349,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         if (tL_error == null) {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws NoSuchAlgorithmException {
+                public final void run() {
                     this.f$0.lambda$processDone$30(bArr, tLObject, bArr2);
                 }
             });
@@ -1015,7 +1363,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         }
     }
 
-    public void lambda$processDone$30(byte[] bArr, TLObject tLObject, final byte[] bArr2) throws NoSuchAlgorithmException {
+    public void lambda$processDone$30(byte[] bArr, TLObject tLObject, final byte[] bArr2) {
         final boolean zCheckSecretValues = checkSecretValues(bArr, (TL_account.passwordSettings) tLObject);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

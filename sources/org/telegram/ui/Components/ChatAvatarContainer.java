@@ -6,10 +6,13 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Property;
@@ -30,6 +33,7 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -47,13 +51,12 @@ import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessLinksController;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
-import org.telegram.ui.Components.AutoDeletePopupWrapper;
 import org.telegram.ui.Components.Forum.ForumUtilities;
-import org.telegram.ui.Components.SharedMediaLayout;
+import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.TopicsFragment;
+import org.telegram.ui.community.CommunityArrowDrawable;
 
 public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.Target, NotificationCenter.NotificationCenterDelegate {
     private ActionBar actionBar;
@@ -177,8 +180,211 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
         this(context, baseFragment, z, null);
     }
 
-    public ChatAvatarContainer(android.content.Context r25, org.telegram.ui.ActionBar.BaseFragment r26, boolean r27, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAvatarContainer.<init>(android.content.Context, org.telegram.ui.ActionBar.BaseFragment, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    public ChatAvatarContainer(Context context, BaseFragment baseFragment, boolean z, final Theme.ResourcesProvider resourcesProvider) {
+        ?? r2;
+        int i;
+        ?? r8;
+        super(context);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.animatorTimeVisible = new BoolAnimator(0, this, cubicBezierInterpolator, 320L);
+        this.avatarSizeInDp = 42;
+        this.titleTextLargerCopyView = new AtomicReference();
+        this.subtitleTextLargerCopyView = new AtomicReference();
+        this.statusDrawables = new StatusDrawable[6];
+        this.avatarDrawable = new AvatarDrawable();
+        this.currentAccount = UserConfig.selectedAccount;
+        this.occupyStatusBar = true;
+        this.leftPadding = AndroidUtilities.dp(8.0f);
+        this.rightAvatarPadding = 0;
+        this.lastWidth = -1;
+        this.largerWidth = -1;
+        this.isOnline = new boolean[1];
+        this.statusMadeShorter = new boolean[1];
+        this.onlineCount = -1;
+        this.lastSubtitleColorKey = -1;
+        this.allowShorterStatus = false;
+        this.premiumIconHiddable = false;
+        this.bounce = new ButtonBounce(this);
+        this.onLongClick = new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$new$3();
+            }
+        };
+        this.rightDrawableIsScamOrVerified = false;
+        this.rightDrawableIsScam = false;
+        this.rightDrawableContentDescription = null;
+        this.rightDrawable2ContentDescription = null;
+        this.resourcesProvider = resourcesProvider;
+        boolean z2 = baseFragment instanceof ChatActivity;
+        if (z2) {
+            this.parentFragment = (ChatActivity) baseFragment;
+        }
+        ChatActivity chatActivity = this.parentFragment;
+        boolean z3 = chatActivity != null && (chatActivity.getChatMode() == 0 || this.parentFragment.getChatMode() == 8) && !UserObject.isReplyUser(this.parentFragment.getCurrentUser()) && (this.parentFragment.getCurrentUser() == null || this.parentFragment.getCurrentUser().id != 489000);
+        this.avatarImageView = new AnonymousClass1(context, baseFragment, z3, resourcesProvider);
+        if (z2 || (baseFragment instanceof TopicsFragment)) {
+            ChatActivity chatActivity2 = this.parentFragment;
+            if (chatActivity2 == null || (chatActivity2.getChatMode() != 5 && this.parentFragment.getChatMode() != 9 && this.parentFragment.getChatMode() != 6 && this.parentFragment.getChatMode() != 8 && !this.parentFragment.isInBotForumMode())) {
+                this.sharedMediaPreloader = new SharedMediaLayout.SharedMediaPreloader(baseFragment);
+            }
+            ChatActivity chatActivity3 = this.parentFragment;
+            boolean z4 = chatActivity3 != null && (chatActivity3.isThreadChat() || this.parentFragment.getChatMode() == 2 || this.parentFragment.getChatMode() == 5 || this.parentFragment.getChatMode() == 9 || this.parentFragment.getChatMode() == 6);
+            this.avatarImageIsHidden = z4;
+            if (z4) {
+                this.avatarImageView.setVisibility(8);
+            }
+        }
+        this.avatarImageView.setContentDescription(LocaleController.getString(R.string.AccDescrProfilePicture));
+        this.avatarImageView.setRoundRadius(AndroidUtilities.dp(21.0f));
+        addView(this.avatarImageView);
+        if (z3) {
+            ChatActivity chatActivity4 = this.parentFragment;
+            TLRPC.Chat currentChat = chatActivity4 != null ? chatActivity4.getCurrentChat() : null;
+            if (currentChat != null && currentChat.linked_community_id != 0) {
+                ScaleStateListAnimator.apply(this.avatarImageView, 0.05f, 1.2f);
+            }
+            this.avatarImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$new$0(view);
+                }
+            });
+        }
+        SimpleTextConnectedView simpleTextConnectedView = new SimpleTextConnectedView(context, this.titleTextLargerCopyView);
+        this.titleTextView = simpleTextConnectedView;
+        simpleTextConnectedView.setEllipsizeByGradient(true);
+        this.titleTextView.setTextColor(getThemedColor(Theme.key_actionBarDefaultTitle));
+        this.titleTextView.setTextSize(18);
+        this.titleTextView.setGravity(3);
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
+        this.titleTextView.setLeftDrawableTopPadding(-AndroidUtilities.dp(1.3f));
+        this.titleTextView.setCanHideRightDrawable(false);
+        this.titleTextView.setRightDrawableOutside(true);
+        this.titleTextView.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(12.0f));
+        addView(this.titleTextView);
+        if (useAnimatedSubtitle()) {
+            AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
+            this.animatedSubtitleTextView = animatedTextView;
+            r2 = 0;
+            i = 8;
+            r8 = 1;
+            animatedTextView.setAnimationProperties(0.3f, 0L, 320L, cubicBezierInterpolator);
+            this.animatedSubtitleTextView.setEllipsizeByGradient(true);
+            AnimatedTextView animatedTextView2 = this.animatedSubtitleTextView;
+            int i2 = Theme.key_actionBarDefaultSubtitle;
+            animatedTextView2.setTextColor(getThemedColor(i2));
+            this.animatedSubtitleTextView.setTag(Integer.valueOf(i2));
+            this.animatedSubtitleTextView.setTextSize(AndroidUtilities.dp(14.0f));
+            this.animatedSubtitleTextView.setGravity(3);
+            this.animatedSubtitleTextView.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);
+            this.animatedSubtitleTextView.setTranslationY(-AndroidUtilities.dp(1.0f));
+            addView(this.animatedSubtitleTextView);
+        } else {
+            r2 = 0;
+            i = 8;
+            r8 = 1;
+            SimpleTextConnectedView simpleTextConnectedView2 = new SimpleTextConnectedView(context, this.subtitleTextLargerCopyView);
+            this.subtitleTextView = simpleTextConnectedView2;
+            simpleTextConnectedView2.setEllipsizeByGradient(true);
+            SimpleTextView simpleTextView = this.subtitleTextView;
+            int i3 = Theme.key_actionBarDefaultSubtitle;
+            simpleTextView.setTextColor(getThemedColor(i3));
+            this.subtitleTextView.setTag(Integer.valueOf(i3));
+            this.subtitleTextView.setTextSize(14);
+            this.subtitleTextView.setGravity(3);
+            this.subtitleTextView.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);
+            addView(this.subtitleTextView);
+        }
+        if (this.parentFragment != null) {
+            ImageView imageView = new ImageView(context);
+            this.communityItem = imageView;
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView.setScaleType(scaleType);
+            this.communityItem.setVisibility(i);
+            this.communityItem.setImageDrawable(new CommunityArrowDrawable());
+            addView(this.communityItem);
+            ImageView imageView2 = new ImageView(context);
+            this.timeItem = imageView2;
+            imageView2.setScaleType(scaleType);
+            this.timeItem.setVisibility(i);
+            ImageView imageView3 = this.timeItem;
+            TimerDrawable timerDrawable = new TimerDrawable(context, resourcesProvider);
+            this.timerDrawable = timerDrawable;
+            imageView3.setImageDrawable(timerDrawable);
+            this.timerDrawable.setBackgroundColor(r2);
+            addView(this.timeItem);
+            this.secretChatTimer = z;
+            this.timeItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$new$1(resourcesProvider, view);
+                }
+            });
+            if (this.secretChatTimer) {
+                this.timeItem.setContentDescription(LocaleController.getString(R.string.SetTimer));
+            } else {
+                this.timeItem.setContentDescription(LocaleController.getString(R.string.AccAutoDeleteTimer));
+            }
+            ImageView imageView4 = new ImageView(context);
+            this.starBgItem = imageView4;
+            imageView4.setImageResource(R.drawable.star_small_outline);
+            this.starBgItem.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefault), PorterDuff.Mode.SRC_IN));
+            this.starBgItem.setAlpha(0.0f);
+            this.starBgItem.setVisibility(4);
+            this.starBgItem.setScaleY(0.0f);
+            this.starBgItem.setScaleX(0.0f);
+            addView(this.starBgItem);
+            ImageView imageView5 = new ImageView(context);
+            this.starFgItem = imageView5;
+            imageView5.setImageResource(R.drawable.star_small_inner);
+            this.starFgItem.setAlpha(0.0f);
+            this.starFgItem.setVisibility(4);
+            this.starFgItem.setScaleY(0.0f);
+            this.starFgItem.setScaleX(0.0f);
+            addView(this.starFgItem);
+        }
+        ChatActivity chatActivity5 = this.parentFragment;
+        if (chatActivity5 != null && (chatActivity5.getChatMode() == 0 || this.parentFragment.getChatMode() == i || this.parentFragment.getChatMode() == 3)) {
+            if (this.parentFragment.isThreadChat()) {
+                ChatActivity chatActivity6 = this.parentFragment;
+                if (chatActivity6.isTopic || chatActivity6.isComments) {
+                    if (!UserObject.isReplyUser(this.parentFragment.getCurrentUser()) && (this.parentFragment.getCurrentUser() == null || this.parentFragment.getCurrentUser().id != 489000)) {
+                        setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                this.f$0.lambda$new$2(view);
+                            }
+                        });
+                    }
+                }
+            } else if (!UserObject.isReplyUser(this.parentFragment.getCurrentUser())) {
+                setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$new$2(view);
+                    }
+                });
+            }
+            TLRPC.Chat currentChat2 = this.parentFragment.getCurrentChat();
+            this.statusDrawables[r2] = new TypingDotsDrawable(r8);
+            this.statusDrawables[r8] = new RecordStatusDrawable(r8);
+            this.statusDrawables[2] = new SendingFileDrawable(r8);
+            this.statusDrawables[3] = new PlayingGameDrawable(r2, resourcesProvider);
+            this.statusDrawables[4] = new RoundStatusDrawable(r8);
+            this.statusDrawables[5] = new ChoosingStickerStatusDrawable(r8);
+            int i4 = 0;
+            while (true) {
+                StatusDrawable[] statusDrawableArr = this.statusDrawables;
+                if (i4 >= statusDrawableArr.length) {
+                    break;
+                }
+                statusDrawableArr[i4].setIsChat(currentChat2 != null);
+                i4++;
+            }
+        }
+        this.emojiStatusDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.titleTextView, AndroidUtilities.dp(24.0f));
+        this.botVerificationDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.titleTextView, AndroidUtilities.dp(17.0f));
     }
 
     class AnonymousClass1 extends BackupImageView {
@@ -465,8 +671,120 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
         openProfile(z, true, false);
     }
 
-    public void openProfile(boolean r18, boolean r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAvatarContainer.openProfile(boolean, boolean, boolean):void");
+    public void openProfile(boolean z, boolean z2, boolean z3) {
+        boolean z4;
+        TLRPC.User user;
+        if (z) {
+            if (!AndroidUtilities.isTablet()) {
+                Point point = AndroidUtilities.displaySize;
+                if (point.x <= point.y && this.avatarImageView.getImageReceiver().hasNotThumb()) {
+                    z4 = z;
+                }
+            }
+            z4 = false;
+        } else {
+            z4 = z;
+        }
+        TLRPC.User currentUser = this.parentFragment.getCurrentUser();
+        TLRPC.Chat currentChat = this.parentFragment.getCurrentChat();
+        boolean z5 = currentChat != null && currentChat.monoforum;
+        if (currentChat != null && currentChat.monoforum) {
+            currentChat = this.parentFragment.getMessagesController().getChat(Long.valueOf(currentChat.linked_monoforum_id));
+            if (currentChat == null) {
+                return;
+            }
+            if (this.parentFragment.getSendMonoForumPeerId() != 0 && (user = this.parentFragment.getMessagesController().getUser(Long.valueOf(this.parentFragment.getSendMonoForumPeerId()))) != null) {
+                currentChat = null;
+                currentUser = user;
+            }
+        }
+        ImageReceiver imageReceiver = this.avatarImageView.getImageReceiver();
+        String imageKey = imageReceiver.getImageKey();
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        if (imageKey != null && !imageLoader.isInMemCache(imageKey, false)) {
+            Drawable drawable = imageReceiver.getDrawable();
+            if ((drawable instanceof BitmapDrawable) && !(drawable instanceof AnimatedFileDrawable)) {
+                imageLoader.putImageToCache((BitmapDrawable) drawable, imageKey, false);
+            }
+        }
+        ChatActivity chatActivity = this.parentFragment;
+        if (chatActivity.isComments) {
+            if (currentChat == null) {
+                return;
+            }
+            chatActivity.presentFragment(ProfileActivity.of(-currentChat.id), z3);
+            return;
+        }
+        if (currentUser == null) {
+            if (currentChat != null) {
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", currentChat.id);
+                if (this.parentFragment.getChatMode() == 3) {
+                    bundle.putLong("topic_id", this.parentFragment.getSavedDialogId());
+                } else {
+                    ChatActivity chatActivity2 = this.parentFragment;
+                    if (chatActivity2.isTopic) {
+                        bundle.putLong("topic_id", chatActivity2.getThreadMessage().getId());
+                    }
+                }
+                ProfileActivity profileActivity = new ProfileActivity(bundle, this.sharedMediaPreloader);
+                if (!z5) {
+                    profileActivity.setChatInfo(this.parentFragment.getCurrentChatInfo());
+                }
+                if (z2) {
+                    profileActivity.setPlayProfileAnimation(z4 ? 2 : 1);
+                }
+                this.parentFragment.presentFragment(profileActivity, z3);
+                return;
+            }
+            return;
+        }
+        if (currentUser.id == 489000) {
+            return;
+        }
+        Bundle bundle2 = new Bundle();
+        if (UserObject.isUserSelf(currentUser)) {
+            if (this.sharedMediaPreloader.hasSharedMedia()) {
+                bundle2.putLong("dialog_id", this.parentFragment.getDialogId());
+                if (this.parentFragment.getChatMode() == 3) {
+                    bundle2.putLong("topic_id", this.parentFragment.getSavedDialogId());
+                }
+                MediaActivity mediaActivity = new MediaActivity(bundle2, this.sharedMediaPreloader);
+                mediaActivity.setChatInfo(this.parentFragment.getCurrentChatInfo());
+                this.parentFragment.presentFragment(mediaActivity, z3);
+                return;
+            }
+            return;
+        }
+        if (this.parentFragment.getChatMode() == 3) {
+            long savedDialogId = this.parentFragment.getSavedDialogId();
+            bundle2.putBoolean("saved", true);
+            if (savedDialogId >= 0) {
+                bundle2.putLong("user_id", savedDialogId);
+            } else {
+                bundle2.putLong("chat_id", -savedDialogId);
+            }
+        } else {
+            bundle2.putLong("user_id", currentUser.id);
+            if (this.timeItem != null && !z5) {
+                bundle2.putLong("dialog_id", this.parentFragment.getDialogId());
+            }
+        }
+        if (UserObject.isBotForum(currentUser)) {
+            bundle2.putLong("topic_id", this.parentFragment.getTopicId());
+        }
+        bundle2.putBoolean("reportSpam", this.parentFragment.hasReportSpam());
+        bundle2.putInt("actionBarColor", getThemedColor(Theme.key_actionBarDefault));
+        ProfileActivity profileActivity2 = new ProfileActivity(bundle2, this.sharedMediaPreloader);
+        if (!z5) {
+            TLRPC.UserFull currentUserInfo = this.parentFragment.getCurrentUserInfo();
+            ChatActivity chatActivity3 = this.parentFragment;
+            profileActivity2.setUserInfo(currentUserInfo, chatActivity3.profileChannelMessageFetcher, chatActivity3.birthdayAssetsFetcher);
+        }
+        if (z2) {
+            profileActivity2.setPlayProfileAnimation(z4 ? 2 : 1);
+        }
+        this.parentFragment.presentFragment(profileActivity2, z3);
     }
 
     public void setOccupyStatusBar(boolean z) {
@@ -613,13 +931,20 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        float f;
         int currentActionBarHeight = (((ActionBar.getCurrentActionBarHeight() - this.avatarImageView.getMeasuredHeight()) - 2) / 2) + (this.occupyStatusBar ? AndroidUtilities.statusBarHeight : 0);
         int iDp = AndroidUtilities.dp(this.glassMode ? 23.66f : 24.0f) + currentActionBarHeight;
         BackupImageView backupImageView = this.avatarImageView;
         int i5 = this.leftPadding + 1;
         int i6 = currentActionBarHeight + 1;
         backupImageView.layout(i5, i6, backupImageView.getMeasuredWidth() + i5, this.avatarImageView.getMeasuredHeight() + i6);
-        int iDp2 = this.leftPadding + AndroidUtilities.dp(this.avatarImageView.getVisibility() == 0 ? this.glassMode ? 49.66f : 55.0f : this.glassMode ? 13.0f : 1.0f) + this.rightAvatarPadding;
+        int i7 = this.leftPadding;
+        if (this.avatarImageView.getVisibility() == 0) {
+            f = this.glassMode ? 49.66f : 55.0f;
+        } else {
+            f = this.glassMode ? 13.0f : 1.0f;
+        }
+        int iDp2 = i7 + AndroidUtilities.dp(f) + this.rightAvatarPadding;
         SimpleTextView simpleTextView = (SimpleTextView) this.titleTextLargerCopyView.get();
         if (getSubtitleTextView().getVisibility() != 8) {
             this.titleTextView.layout(iDp2, (AndroidUtilities.dp(1.66f) + currentActionBarHeight) - this.titleTextView.getPaddingTop(), this.titleTextView.getMeasuredWidth() + iDp2, (((this.titleTextView.getTextHeight() + currentActionBarHeight) + AndroidUtilities.dp(1.66f)) - this.titleTextView.getPaddingTop()) + this.titleTextView.getPaddingBottom());
@@ -1222,11 +1547,18 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
     }
 
     public void setChatAvatar(TLRPC.Chat chat) {
+        float f;
         this.avatarDrawable.setInfo(this.currentAccount, chat);
         BackupImageView backupImageView = this.avatarImageView;
         if (backupImageView != null) {
             backupImageView.setForUserOrChat(chat, this.avatarDrawable);
-            this.avatarImageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(chat) ? ChatObject.hasStories(chat) ? 11.0f : 16.0f : 21.0f));
+            BackupImageView backupImageView2 = this.avatarImageView;
+            if (ChatObject.isForum(chat)) {
+                f = ChatObject.hasStories(chat) ? 11.0f : 16.0f;
+            } else {
+                f = 21.0f;
+            }
+            backupImageView2.setRoundRadius(AndroidUtilities.dp(f));
         }
     }
 

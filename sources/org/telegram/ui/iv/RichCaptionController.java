@@ -15,7 +15,6 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.EditTextCaption;
-import org.telegram.ui.iv.RichEditText;
 
 class RichCaptionController {
     final RichEditText editText;

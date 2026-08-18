@@ -12,7 +12,6 @@ import javax.microedition.khronos.egl.EGL10;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
 public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {

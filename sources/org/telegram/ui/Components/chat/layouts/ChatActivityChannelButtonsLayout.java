@@ -317,9 +317,10 @@ public class ChatActivityChannelButtonsLayout extends FrameLayout implements Fac
         if (floatValue4 > 0.0f && getMeasuredWidth() > 0) {
             float measuredWidth = getMeasuredWidth();
             for (int i5 = 0; i5 < getContainer().getChildCount(); i5++) {
-                if (this.wrapContentButtons.contains(getContainer().getChildAt(i5))) {
-                    measuredWidth = Math.min(measuredWidth, r4.getLeft());
-                    fMax = Math.max(fMax, r4.getRight());
+                View childAt = getContainer().getChildAt(i5);
+                if (this.wrapContentButtons.contains(childAt)) {
+                    measuredWidth = Math.min(measuredWidth, childAt.getLeft());
+                    fMax = Math.max(fMax, childAt.getRight());
                 }
             }
             if (measuredWidth > fMax) {

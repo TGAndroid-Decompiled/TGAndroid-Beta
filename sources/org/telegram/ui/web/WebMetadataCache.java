@@ -8,7 +8,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -20,7 +19,6 @@ import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.web.BotWebViewContainer;
 
 public class WebMetadataCache {
     private static WebMetadataCache instance;
@@ -70,7 +68,7 @@ public class WebMetadataCache {
         }
 
         @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) throws IOException {
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt64(this.time);
             String str = this.domain;
             if (str == null) {
@@ -137,7 +135,7 @@ public class WebMetadataCache {
         }
 
         @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) throws IOException {
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(this.array.size());
             for (int i = 0; i < this.array.size(); i++) {
                 ((WebMetadata) this.array.get(i)).serializeToStream(outputSerializedData);
@@ -271,13 +269,13 @@ public class WebMetadataCache {
         }
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$save$3(arrayList);
             }
         });
     }
 
-    public void lambda$save$3(ArrayList arrayList) throws IOException {
+    public void lambda$save$3(ArrayList arrayList) {
         File cacheFile = getCacheFile();
         if (!cacheFile.exists()) {
             try {

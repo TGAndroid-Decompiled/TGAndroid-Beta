@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.Semaphore;
-import me.vkryl.core.reference.ReferenceCreator;
 
 public final class ReferenceList implements Iterable, ReferenceCreator {
     private final boolean cacheIterator;
@@ -49,7 +48,7 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
 
     private void checkFull() {
         boolean z;
-        if (this.fullnessListener == null || this.isFull == (!this.items.isEmpty())) {
+        if (this.fullnessListener == null || this.isFull == (z = !this.items.isEmpty())) {
             return;
         }
         this.isFull = z;
@@ -163,7 +162,8 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
                 }
                 ReferenceUtils.gcReferenceList(this.items);
                 return this.items.isEmpty();
-            } finally {
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }
@@ -214,18 +214,14 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
             synchronized (ReferenceList.this.items) {
                 try {
                     this.nextItem = null;
-                    while (true) {
-                        if (this.nextItem == null && this.index > 0) {
-                            List list = ReferenceList.this.items;
-                            int i = this.index - 1;
-                            this.index = i;
-                            Reference reference = (Reference) list.get(i);
-                            Object obj = reference.get();
-                            if (obj != null && !ReferenceList.this.itemsToRemove.contains(reference)) {
-                                this.nextItem = obj;
-                                break;
-                            }
-                        } else {
+                    while (this.nextItem == null && this.index > 0) {
+                        List list = ReferenceList.this.items;
+                        int i = this.index - 1;
+                        this.index = i;
+                        Reference reference = (Reference) list.get(i);
+                        Object obj = reference.get();
+                        if (obj != null && !ReferenceList.this.itemsToRemove.contains(reference)) {
+                            this.nextItem = obj;
                             break;
                         }
                     }

@@ -80,18 +80,12 @@ public abstract class PermissionRequest {
     }
 
     public static void lambda$ensureEitherPermission$1(String[] strArr, Activity activity, Utilities.Callback callback, int[] iArr) {
-        int length = strArr.length;
         boolean z = false;
-        int i = 0;
-        while (true) {
-            if (i >= length) {
-                break;
-            }
-            if (activity.checkSelfPermission(strArr[i]) == 0) {
+        for (String str : strArr) {
+            if (activity.checkSelfPermission(str) == 0) {
                 z = true;
                 break;
             }
-            i++;
         }
         if (callback != null) {
             callback.run(Boolean.valueOf(z));

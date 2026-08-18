@@ -117,10 +117,11 @@ public class SlideChooseView extends View {
         this.optionsSizes = new int[strArr.length];
         int i2 = 0;
         while (true) {
-            if (i2 >= this.optionsStr.length) {
+            String[] strArr2 = this.optionsStr;
+            if (i2 >= strArr2.length) {
                 break;
             }
-            this.optionsSizes[i2] = (int) Math.ceil(this.textPaint.measureText(r7[i2]));
+            this.optionsSizes[i2] = (int) Math.ceil(this.textPaint.measureText(strArr2[i2]));
             i2++;
         }
         Drawable[] drawableArr2 = this.leftDrawables;
@@ -154,14 +155,16 @@ public class SlideChooseView extends View {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         float x = motionEvent.getX();
         float y = motionEvent.getY();
-        float fClamp = MathUtils.clamp(((x - this.sideSide) + (this.circleSize / 2.0f)) / ((this.lineSize + (this.gapSize * 2)) + r3), 0.0f, this.optionsStr.length - 1);
+        float f = x - this.sideSide;
+        int i = this.circleSize;
+        float fClamp = MathUtils.clamp((f + (i / 2.0f)) / ((this.lineSize + (this.gapSize * 2)) + i), 0.0f, this.optionsStr.length - 1);
         boolean z = Math.abs(fClamp - ((float) Math.round(fClamp))) < 0.35f;
         if (z) {
             fClamp = Math.round(fClamp);
         }
-        int i = this.minIndex;
-        if (i != Integer.MIN_VALUE) {
-            fClamp = Math.max(fClamp, i);
+        int i2 = this.minIndex;
+        if (i2 != Integer.MIN_VALUE) {
+            fClamp = Math.max(fClamp, i2);
         }
         if (motionEvent.getAction() == 0) {
             this.xTouchDown = x;
@@ -193,9 +196,9 @@ public class SlideChooseView extends View {
                     setOption(Math.round(this.selectedIndexTouch));
                 }
             } else {
-                int i2 = this.selectedIndex;
-                if (i2 != this.startMovingPreset) {
-                    setOption(i2);
+                int i3 = this.selectedIndex;
+                if (i3 != this.startMovingPreset) {
+                    setOption(i3);
                 }
             }
             Callback callback = this.callback;
@@ -236,81 +239,63 @@ public class SlideChooseView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        float f;
-        int i;
-        int i2;
-        float f2;
-        int i3;
-        int i4 = 2;
-        float f3 = this.selectedIndexAnimatedHolder.set(this.selectedIndex);
-        float f4 = 0.0f;
-        float f5 = 1.0f;
-        float f6 = this.movingAnimatedHolder.set(this.moving ? 1.0f : 0.0f);
+        int i = 2;
+        float f = this.selectedIndexAnimatedHolder.set(this.selectedIndex);
+        float f2 = 0.0f;
+        float f3 = 1.0f;
+        float f4 = this.movingAnimatedHolder.set(this.moving ? 1.0f : 0.0f);
         int measuredHeight = (getMeasuredHeight() / 2) + AndroidUtilities.dp(11.0f);
-        int i5 = 0;
-        while (i5 < this.optionsStr.length) {
-            int i6 = this.sideSide;
-            int i7 = this.lineSize + (this.gapSize * 2);
-            int i8 = this.circleSize;
-            int i9 = i6 + ((i7 + i8) * i5) + (i8 / i4);
-            float f7 = i5;
-            float f8 = f7 - f3;
-            float fMax = Math.max(f4, f5 - Math.abs(f8));
-            float fClamp = MathUtils.clamp((f3 - f7) + f5, f4, f5);
+        int i2 = 0;
+        while (i2 < this.optionsStr.length) {
+            int i3 = this.sideSide;
+            int i4 = this.lineSize + (this.gapSize * 2);
+            int i5 = this.circleSize;
+            int i6 = i3 + ((i4 + i5) * i2) + (i5 / i);
+            float f5 = i2;
+            float f6 = f5 - f;
+            float fMax = Math.max(f2, f3 - Math.abs(f6));
+            float fClamp = MathUtils.clamp((f - f5) + f3, f2, f3);
             int themedColor = getThemedColor(Theme.key_switchTrack);
             int themedColor2 = getThemedColor(Theme.key_switchTrackChecked);
-            int i10 = this.minIndex;
-            int iBlendARGB = ColorUtils.blendARGB(themedColor, Theme.multAlpha(themedColor2, (i10 == Integer.MIN_VALUE || i5 > i10) ? 1.0f : 0.5f), fClamp);
+            int i7 = this.minIndex;
+            int iBlendARGB = ColorUtils.blendARGB(themedColor, Theme.multAlpha(themedColor2, (i7 == Integer.MIN_VALUE || i2 > i7) ? 1.0f : 0.5f), fClamp);
             this.paint.setColor(iBlendARGB);
             this.linePaint.setColor(iBlendARGB);
-            float f9 = measuredHeight;
-            canvas.drawCircle(i9, f9, AndroidUtilities.lerp(this.circleSize / i4, AndroidUtilities.dp(6.0f), fMax), this.paint);
-            if (i5 != 0) {
-                int i11 = (i9 - (this.circleSize / i4)) - this.gapSize;
-                int i12 = this.lineSize;
-                int i13 = i11 - i12;
-                int i14 = this.dashedFrom;
-                if (i14 != -1 && i5 - 1 >= i14) {
-                    int iDp = i13 + AndroidUtilities.dp(3.0f);
-                    int iDp2 = (i12 - AndroidUtilities.dp(3.0f)) / AndroidUtilities.dp(13.0f);
-                    if (this.lastDash != iDp2) {
-                        f2 = fMax;
-                        i3 = i9;
-                        this.linePaint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(6.0f), (r12 - (AndroidUtilities.dp(8.0f) * iDp2)) / (iDp2 - 1)}, 0.0f));
-                        this.lastDash = iDp2;
-                    } else {
-                        f2 = fMax;
-                        i3 = i9;
+            float f7 = measuredHeight;
+            canvas.drawCircle(i6, f7, AndroidUtilities.lerp(this.circleSize / i, AndroidUtilities.dp(6.0f), fMax), this.paint);
+            if (i2 != 0) {
+                int i8 = (i6 - (this.circleSize / i)) - this.gapSize;
+                int i9 = this.lineSize;
+                int i10 = i8 - i9;
+                int i11 = this.dashedFrom;
+                if (i11 != -1 && i2 - 1 >= i11) {
+                    int iDp = i10 + AndroidUtilities.dp(3.0f);
+                    int iDp2 = i9 - AndroidUtilities.dp(3.0f);
+                    int iDp3 = iDp2 / AndroidUtilities.dp(13.0f);
+                    if (this.lastDash != iDp3) {
+                        this.linePaint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(6.0f), (iDp2 - (AndroidUtilities.dp(8.0f) * iDp3)) / (iDp3 - 1)}, 0.0f));
+                        this.lastDash = iDp3;
                     }
-                    f = f2;
-                    i = i3;
-                    i2 = i5;
-                    canvas.drawLine(AndroidUtilities.dp(1.0f) + iDp, f9, (iDp + r12) - AndroidUtilities.dp(1.0f), f9, this.linePaint);
+                    canvas.drawLine(AndroidUtilities.dp(1.0f) + iDp, f7, (iDp + iDp2) - AndroidUtilities.dp(1.0f), f7, this.linePaint);
                 } else {
-                    f = fMax;
-                    i = i9;
-                    i2 = i5;
-                    float f10 = f8 - 1.0f;
-                    float fClamp2 = MathUtils.clamp(1.0f - Math.abs(f10), 0.0f, 1.0f);
-                    int iDp3 = (int) (i12 - (AndroidUtilities.dp(3.0f) * MathUtils.clamp(1.0f - Math.min(Math.abs(f8), Math.abs(f10)), 0.0f, 1.0f)));
-                    canvas.drawRect((int) (i13 + (AndroidUtilities.dp(3.0f) * fClamp2)), measuredHeight - AndroidUtilities.dp(1.0f), r1 + iDp3, AndroidUtilities.dp(1.0f) + measuredHeight, this.paint);
+                    float f8 = f6 - 1.0f;
+                    float fClamp2 = MathUtils.clamp(1.0f - Math.abs(f8), 0.0f, 1.0f);
+                    int iDp4 = (int) (i9 - (AndroidUtilities.dp(3.0f) * MathUtils.clamp(1.0f - Math.min(Math.abs(f6), Math.abs(f8)), 0.0f, 1.0f)));
+                    int iDp5 = (int) (i10 + (AndroidUtilities.dp(3.0f) * fClamp2));
+                    canvas.drawRect(iDp5, measuredHeight - AndroidUtilities.dp(1.0f), iDp5 + iDp4, AndroidUtilities.dp(1.0f) + measuredHeight, this.paint);
                 }
-            } else {
-                f = fMax;
-                i = i9;
-                i2 = i5;
             }
-            int i15 = this.optionsSizes[i2];
+            int i12 = this.optionsSizes[i2];
             String str = this.optionsStr[i2];
-            this.textPaint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_windowBackgroundWhiteGrayText), getThemedColor(Theme.key_windowBackgroundWhiteBlueText), f));
+            this.textPaint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_windowBackgroundWhiteGrayText), getThemedColor(Theme.key_windowBackgroundWhiteBlueText), fMax));
             if (this.leftDrawables != null) {
                 canvas.save();
                 if (i2 == 0) {
                     canvas.translate(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(15.5f));
                 } else if (i2 == this.optionsStr.length - 1) {
-                    canvas.translate(((getMeasuredWidth() - i15) - AndroidUtilities.dp(22.0f)) - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(28.0f) - AndroidUtilities.dp(12.5f));
+                    canvas.translate(((getMeasuredWidth() - i12) - AndroidUtilities.dp(22.0f)) - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(28.0f) - AndroidUtilities.dp(12.5f));
                 } else {
-                    canvas.translate((i - (i15 / 2)) - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(28.0f) - AndroidUtilities.dp(12.5f));
+                    canvas.translate((i6 - (i12 / 2)) - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(28.0f) - AndroidUtilities.dp(12.5f));
                 }
                 this.leftDrawables[i2].setColorFilter(this.textPaint.getColor(), PorterDuff.Mode.MULTIPLY);
                 this.leftDrawables[i2].draw(canvas);
@@ -321,29 +306,29 @@ public class SlideChooseView extends View {
             if (i2 == 0) {
                 canvas.drawText(str, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
             } else if (i2 == this.optionsStr.length - 1) {
-                canvas.drawText(str, (getMeasuredWidth() - i15) - AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
+                canvas.drawText(str, (getMeasuredWidth() - i12) - AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
             } else {
-                canvas.drawText(str, i - (i15 / 2), AndroidUtilities.dp(28.0f), this.textPaint);
+                canvas.drawText(str, i6 - (i12 / 2), AndroidUtilities.dp(28.0f), this.textPaint);
             }
             if (this.leftDrawables != null) {
                 canvas.restore();
             }
-            i5 = i2 + 1;
-            i4 = 2;
-            f4 = 0.0f;
-            f5 = 1.0f;
+            i2++;
+            i = 2;
+            f2 = 0.0f;
+            f3 = 1.0f;
         }
-        float f11 = this.sideSide;
-        int i16 = this.lineSize + (this.gapSize * 2);
-        int i17 = this.circleSize;
-        float f12 = f11 + ((i16 + i17) * f3) + (i17 / 2);
+        float f9 = this.sideSide;
+        int i13 = this.lineSize + (this.gapSize * 2);
+        int i14 = this.circleSize;
+        float f10 = f9 + ((i13 + i14) * f) + (i14 / 2);
         Paint paint = this.paint;
-        int i18 = Theme.key_switchTrackChecked;
-        paint.setColor(ColorUtils.setAlphaComponent(getThemedColor(i18), 80));
-        float f13 = measuredHeight;
-        canvas.drawCircle(f12, f13, AndroidUtilities.dp(f6 * 12.0f), this.paint);
-        this.paint.setColor(getThemedColor(i18));
-        canvas.drawCircle(f12, f13, AndroidUtilities.dp(6.0f), this.paint);
+        int i15 = Theme.key_switchTrackChecked;
+        paint.setColor(ColorUtils.setAlphaComponent(getThemedColor(i15), 80));
+        float f11 = measuredHeight;
+        canvas.drawCircle(f10, f11, AndroidUtilities.dp(f4 * 12.0f), this.paint);
+        this.paint.setColor(getThemedColor(i15));
+        canvas.drawCircle(f10, f11, AndroidUtilities.dp(6.0f), this.paint);
     }
 
     @Override

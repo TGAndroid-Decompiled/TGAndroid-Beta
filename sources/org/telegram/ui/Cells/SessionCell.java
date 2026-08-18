@@ -1,5 +1,6 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
@@ -21,6 +22,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -32,6 +34,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.DotDividerSpan;
 import org.telegram.ui.Components.FlickerLoadingView;
+import org.telegram.ui.Components.LayoutHelper;
 
 public class SessionCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
@@ -49,8 +52,202 @@ public class SessionCell extends FrameLayout {
     private boolean showStub;
     private AnimatedFloat showStubValue;
 
-    public SessionCell(android.content.Context r24, int r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SessionCell.<init>(android.content.Context, int):void");
+    public SessionCell(Context context, int i) {
+        float f;
+        int i2;
+        int i3;
+        float f2;
+        int i4;
+        float f3;
+        super(context);
+        this.showStubValue = new AnimatedFloat(this);
+        this.currentAccount = UserConfig.selectedAccount;
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.linearLayout = linearLayout;
+        linearLayout.setOrientation(0);
+        this.linearLayout.setWeightSum(1.0f);
+        this.currentType = i;
+        int i5 = 72;
+        int i6 = 21;
+        if (i == 1) {
+            LinearLayout linearLayout2 = this.linearLayout;
+            boolean z = LocaleController.isRTL;
+            addView(linearLayout2, LayoutHelper.createFrame(-1, 30.0f, (z ? 5 : 3) | 48, z ? 15 : 49, 11.0f, z ? 49 : 15, 0.0f));
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
+            this.avatarDrawable = avatarDrawable;
+            avatarDrawable.setTextSize(AndroidUtilities.dp(10.0f));
+            BackupImageView backupImageView = new BackupImageView(context);
+            this.imageView = backupImageView;
+            backupImageView.setRoundRadius(AndroidUtilities.dp(10.0f));
+            BackupImageView backupImageView2 = this.imageView;
+            boolean z2 = LocaleController.isRTL;
+            addView(backupImageView2, LayoutHelper.createFrame(20, 20.0f, (z2 ? 5 : 3) | 48, z2 ? 0 : 21, 13.0f, z2 ? 21 : 0, 0.0f));
+        } else {
+            BackupImageView backupImageView3 = new BackupImageView(context);
+            this.placeholderImageView = backupImageView3;
+            backupImageView3.setRoundRadius(AndroidUtilities.dp(10.0f));
+            BackupImageView backupImageView4 = this.placeholderImageView;
+            boolean z3 = LocaleController.isRTL;
+            addView(backupImageView4, LayoutHelper.createFrame(42, 42.0f, (z3 ? 5 : 3) | 48, z3 ? 0 : 16, 9.0f, z3 ? 16 : 0, 0.0f));
+            this.avatarDrawable = new AvatarDrawable();
+            BackupImageView backupImageView5 = new BackupImageView(context);
+            this.imageView = backupImageView5;
+            backupImageView5.setRoundRadius(AndroidUtilities.dp(10.0f));
+            BackupImageView backupImageView6 = this.imageView;
+            boolean z4 = LocaleController.isRTL;
+            addView(backupImageView6, LayoutHelper.createFrame(42, 42.0f, (z4 ? 5 : 3) | 48, z4 ? 0 : 16, 9.0f, z4 ? 16 : 0, 0.0f));
+            LinearLayout linearLayout3 = this.linearLayout;
+            boolean z5 = LocaleController.isRTL;
+            addView(linearLayout3, LayoutHelper.createFrame(-1, 30.0f, (z5 ? 5 : 3) | 48, z5 ? 15 : 72, 6.333f, z5 ? 72 : 15, 0.0f));
+        }
+        TextView textView = new TextView(context);
+        this.nameTextView = textView;
+        int i7 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i7));
+        this.nameTextView.setTextSize(1, i == 0 ? 15.0f : 16.0f);
+        this.nameTextView.setLines(1);
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
+        this.nameTextView.setMaxLines(1);
+        this.nameTextView.setSingleLine(true);
+        TextView textView2 = this.nameTextView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
+        this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        TextView textView3 = new TextView(context);
+        this.onlineTextView = textView3;
+        textView3.setTextSize(1, i == 0 ? 12.0f : 13.0f);
+        this.onlineTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
+        if (LocaleController.isRTL) {
+            this.linearLayout.addView(this.onlineTextView, LayoutHelper.createLinear(-2, -1, 51, 0, 2, 0, 0));
+            this.linearLayout.addView(this.nameTextView, LayoutHelper.createLinear(0, -1, 1.0f, 53, 10, 0, 0, 0));
+        } else {
+            this.linearLayout.addView(this.nameTextView, LayoutHelper.createLinear(0, -1, 1.0f, 51, 0, 0, 10, 0));
+            this.linearLayout.addView(this.onlineTextView, LayoutHelper.createLinear(-2, -1, 53, 0, 2, 0, 0));
+        }
+        if (LocaleController.isRTL) {
+            if (i != 0) {
+            }
+            TextView textView4 = new TextView(context);
+            this.detailTextView = textView4;
+            textView4.setTextColor(Theme.getColor(i7));
+            TextView textView5 = this.detailTextView;
+            if (i == 0) {
+                f = 13.0f;
+            } else {
+                f = 14.0f;
+            }
+            textView5.setTextSize(1, f);
+            this.detailTextView.setLines(1);
+            this.detailTextView.setMaxLines(1);
+            this.detailTextView.setSingleLine(true);
+            this.detailTextView.setEllipsize(truncateAt);
+            TextView textView6 = this.detailTextView;
+            if (LocaleController.isRTL) {
+                i2 = 5;
+            } else {
+                i2 = 3;
+            }
+            textView6.setGravity(i2 | 48);
+            TextView textView7 = this.detailTextView;
+            if (LocaleController.isRTL) {
+                i3 = 5;
+            } else {
+                i3 = 3;
+            }
+            int i8 = i3 | 48;
+            float f4 = i6;
+            if (i == 0) {
+                f2 = 28.0f;
+            } else {
+                f2 = 36.0f;
+            }
+            float f5 = i5;
+            addView(textView7, LayoutHelper.createFrame(-1, -2.0f, i8, f4, f2, f5, 0.0f));
+            TextView textView8 = new TextView(context);
+            this.detailExTextView = textView8;
+            textView8.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3));
+            this.detailExTextView.setTextSize(1, i != 0 ? 14.0f : 13.0f);
+            this.detailExTextView.setLines(1);
+            this.detailExTextView.setMaxLines(1);
+            this.detailExTextView.setSingleLine(true);
+            this.detailExTextView.setEllipsize(truncateAt);
+            TextView textView9 = this.detailExTextView;
+            if (LocaleController.isRTL) {
+                i4 = 5;
+            } else {
+                i4 = 3;
+            }
+            textView9.setGravity(i4 | 48);
+            TextView textView10 = this.detailExTextView;
+            int i9 = (LocaleController.isRTL ? 5 : 3) | 48;
+            if (i == 0) {
+                f3 = 46.0f;
+            } else {
+                f3 = 59.0f;
+            }
+            addView(textView10, LayoutHelper.createFrame(-1, -2.0f, i9, f4, f3, f5, 0.0f));
+        }
+        i6 = i != 0 ? 21 : 72;
+        i5 = 21;
+        TextView textView11 = new TextView(context);
+        this.detailTextView = textView11;
+        textView11.setTextColor(Theme.getColor(i7));
+        TextView textView12 = this.detailTextView;
+        if (i == 0) {
+            f = 13.0f;
+        } else {
+            f = 14.0f;
+        }
+        textView12.setTextSize(1, f);
+        this.detailTextView.setLines(1);
+        this.detailTextView.setMaxLines(1);
+        this.detailTextView.setSingleLine(true);
+        this.detailTextView.setEllipsize(truncateAt);
+        TextView textView13 = this.detailTextView;
+        if (LocaleController.isRTL) {
+            i2 = 5;
+        } else {
+            i2 = 3;
+        }
+        textView13.setGravity(i2 | 48);
+        TextView textView14 = this.detailTextView;
+        if (LocaleController.isRTL) {
+            i3 = 5;
+        } else {
+            i3 = 3;
+        }
+        int i10 = i3 | 48;
+        float f6 = i6;
+        if (i == 0) {
+            f2 = 28.0f;
+        } else {
+            f2 = 36.0f;
+        }
+        float f7 = i5;
+        addView(textView14, LayoutHelper.createFrame(-1, -2.0f, i10, f6, f2, f7, 0.0f));
+        TextView textView15 = new TextView(context);
+        this.detailExTextView = textView15;
+        textView15.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3));
+        this.detailExTextView.setTextSize(1, i != 0 ? 14.0f : 13.0f);
+        this.detailExTextView.setLines(1);
+        this.detailExTextView.setMaxLines(1);
+        this.detailExTextView.setSingleLine(true);
+        this.detailExTextView.setEllipsize(truncateAt);
+        TextView textView16 = this.detailExTextView;
+        if (LocaleController.isRTL) {
+            i4 = 5;
+        } else {
+            i4 = 3;
+        }
+        textView16.setGravity(i4 | 48);
+        TextView textView17 = this.detailExTextView;
+        int i11 = (LocaleController.isRTL ? 5 : 3) | 48;
+        if (i == 0) {
+            f3 = 46.0f;
+        } else {
+            f3 = 59.0f;
+        }
+        addView(textView17, LayoutHelper.createFrame(-1, -2.0f, i11, f6, f3, f7, 0.0f));
     }
 
     private void setContentAlpha(float f) {

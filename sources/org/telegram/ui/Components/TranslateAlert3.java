@@ -24,7 +24,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -45,11 +44,7 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
-import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.LaunchActivity;
@@ -266,14 +261,12 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         if (!TextUtils.isEmpty(this.to_lang)) {
             addChecked(itemOptionsMakeOptions, linearLayout, true, TranslateAlert2.capitalFirst(TranslateAlert2.languageName(this.to_lang)), null);
         }
-        Iterator<TranslateController.Language> it = suggestedLanguages.iterator();
-        while (it.hasNext()) {
-            final TranslateController.Language next = it.next();
-            if (!TextUtils.equals(next.code, this.to_lang)) {
-                addChecked(itemOptionsMakeOptions, linearLayout, false, next.displayName, new Runnable() {
+        for (final TranslateController.Language language : suggestedLanguages) {
+            if (!TextUtils.equals(language.code, this.to_lang)) {
+                addChecked(itemOptionsMakeOptions, linearLayout, false, language.displayName, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onToLangMenu$5(next);
+                        this.f$0.lambda$onToLangMenu$5(language);
                     }
                 });
             }
@@ -281,13 +274,11 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
         View gapView2 = new ActionBarPopupWindow.GapView(getContext(), this.resourcesProvider);
         gapView2.setTag(R.id.fit_width_tag, 1);
         linearLayout.addView(gapView2, LayoutHelper.createLinear(-1, 8));
-        Iterator<TranslateController.Language> it2 = languages.iterator();
-        while (it2.hasNext()) {
-            final TranslateController.Language next2 = it2.next();
-            addChecked(itemOptionsMakeOptions, linearLayout, TextUtils.equals(next2.code, this.to_lang), next2.displayName, new Runnable() {
+        for (final TranslateController.Language language2 : languages) {
+            addChecked(itemOptionsMakeOptions, linearLayout, TextUtils.equals(language2.code, this.to_lang), language2.displayName, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onToLangMenu$6(next2);
+                    this.f$0.lambda$onToLangMenu$6(language2);
                 }
             });
         }

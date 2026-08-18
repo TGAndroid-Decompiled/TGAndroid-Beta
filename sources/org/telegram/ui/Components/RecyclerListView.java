@@ -61,9 +61,6 @@ import org.telegram.ui.Cells.CollapseTextCell;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
-import org.telegram.ui.Components.EdgeEffectTrackerFactory;
-import org.telegram.ui.Components.GestureDetectorFixDoubleTap;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
@@ -731,8 +728,327 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r19) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.FastScroll.onDraw(android.graphics.Canvas):void");
+        protected void onDraw(Canvas canvas) {
+            int iDp;
+            float fDp;
+            float fDp2;
+            float fDp3;
+            float[] fArr;
+            float fDp4;
+            float f;
+            int paddingTop = this.usePadding ? getPaddingTop() : 0;
+            int iCeil = paddingTop + ((int) Math.ceil(((getMeasuredHeight() - paddingTop) - AndroidUtilities.dp(54.0f)) * this.progress));
+            this.rect.set(this.scrollX, AndroidUtilities.dp(12.0f) + iCeil, this.scrollX + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(42.0f) + iCeil);
+            if (this.type == 0) {
+                this.paint.setColor(ColorUtils.blendARGB(this.inactiveColor, this.activeColor, this.bubbleProgress));
+                canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.paint);
+            } else {
+                this.paint.setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite, RecyclerListView.this.resourcesProvider), -1, 0.1f));
+                float fDp5 = AndroidUtilities.dp(27.0f) + iCeil;
+                BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredCircleDrawable;
+                if (blurredBackgroundDrawable != null) {
+                    blurredBackgroundDrawable.setBounds(this.scrollX + AndroidUtilities.dp(-20.0f), AndroidUtilities.dp(-1.0f) + iCeil, this.scrollX + AndroidUtilities.dp(36.0f), iCeil + AndroidUtilities.dp(55.0f));
+                    this.blurredCircleDrawable.draw(canvas);
+                } else {
+                    this.fastScrollShadowDrawable.setBounds(getMeasuredWidth() - this.fastScrollShadowDrawable.getIntrinsicWidth(), (int) (fDp5 - (this.fastScrollShadowDrawable.getIntrinsicHeight() / 2)), getMeasuredWidth(), (int) (fDp5 + (this.fastScrollShadowDrawable.getIntrinsicHeight() / 2)));
+                    this.fastScrollShadowDrawable.draw(canvas);
+                    canvas.drawCircle(this.scrollX + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(27.0f) + iCeil, AndroidUtilities.dp(24.0f), this.paint);
+                }
+                this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, RecyclerListView.this.resourcesProvider));
+                canvas.save();
+                canvas.translate(this.scrollX + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(34.0f) + iCeil + (AndroidUtilities.dp(2.0f) * this.bubbleProgress));
+                canvas.drawPath(this.arrowPath, this.paint);
+                canvas.restore();
+                canvas.save();
+                canvas.translate(this.scrollX + AndroidUtilities.dp(4.0f), (AndroidUtilities.dp(24.0f) + iCeil) - (AndroidUtilities.dp(2.0f) * this.bubbleProgress));
+                canvas.rotate(180.0f, 0.0f, -AndroidUtilities.dp(2.0f));
+                canvas.drawPath(this.arrowPath, this.paint);
+                canvas.restore();
+            }
+            int i = this.type;
+            if (i == 0) {
+                if (this.isMoving || this.bubbleProgress != 0.0f) {
+                    this.paint.setAlpha((int) (this.bubbleProgress * 255.0f));
+                    int iDp2 = AndroidUtilities.dp(30.0f) + iCeil;
+                    int iDp3 = iCeil - AndroidUtilities.dp(46.0f);
+                    if (iDp3 <= AndroidUtilities.dp(12.0f)) {
+                        fDp = AndroidUtilities.dp(12.0f) - iDp3;
+                        iDp = AndroidUtilities.dp(12.0f);
+                    } else {
+                        iDp = iDp3;
+                        fDp = 0.0f;
+                    }
+                    canvas.translate(AndroidUtilities.dp(10.0f), iDp);
+                    if (fDp <= AndroidUtilities.dp(29.0f)) {
+                        fDp3 = AndroidUtilities.dp(44.0f);
+                        fDp2 = AndroidUtilities.dp(4.0f) + ((fDp / AndroidUtilities.dp(29.0f)) * AndroidUtilities.dp(40.0f));
+                    } else {
+                        float fDp6 = fDp - AndroidUtilities.dp(29.0f);
+                        fDp2 = AndroidUtilities.dp(44.0f);
+                        fDp3 = ((1.0f - (fDp6 / AndroidUtilities.dp(29.0f))) * AndroidUtilities.dp(40.0f)) + AndroidUtilities.dp(4.0f);
+                    }
+                    boolean z = this.isRtl;
+                    if (z) {
+                        float[] fArr2 = this.radii;
+                        if (fArr2[0] != fDp3 || fArr2[6] != fDp2) {
+                            if (z) {
+                                float[] fArr3 = this.radii;
+                                fArr3[1] = fDp3;
+                                fArr3[0] = fDp3;
+                                fArr3[7] = fDp2;
+                                fArr3[6] = fDp2;
+                            } else {
+                                float[] fArr4 = this.radii;
+                                fArr4[3] = fDp3;
+                                fArr4[2] = fDp3;
+                                fArr4[5] = fDp2;
+                                fArr4[4] = fDp2;
+                            }
+                            this.path.reset();
+                            RectF rectF = this.rect;
+                            if (this.isRtl) {
+                                fDp4 = AndroidUtilities.dp(10.0f);
+                            } else {
+                                fDp4 = 0.0f;
+                            }
+                            if (this.isRtl) {
+                                f = 98.0f;
+                            } else {
+                                f = 88.0f;
+                            }
+                            rectF.set(fDp4, 0.0f, AndroidUtilities.dp(f), AndroidUtilities.dp(88.0f));
+                            this.path.addRoundRect(this.rect, this.radii, Path.Direction.CW);
+                            this.path.close();
+                        } else if (!z) {
+                            fArr = this.radii;
+                            if (fArr[2] == fDp3 || fArr[4] != fDp2) {
+                                if (z) {
+                                    float[] fArr5 = this.radii;
+                                    fArr5[1] = fDp3;
+                                    fArr5[0] = fDp3;
+                                    fArr5[7] = fDp2;
+                                    fArr5[6] = fDp2;
+                                } else {
+                                    float[] fArr6 = this.radii;
+                                    fArr6[3] = fDp3;
+                                    fArr6[2] = fDp3;
+                                    fArr6[5] = fDp2;
+                                    fArr6[4] = fDp2;
+                                }
+                                this.path.reset();
+                                RectF rectF2 = this.rect;
+                                if (this.isRtl) {
+                                    fDp4 = AndroidUtilities.dp(10.0f);
+                                } else {
+                                    fDp4 = 0.0f;
+                                }
+                                if (this.isRtl) {
+                                    f = 98.0f;
+                                } else {
+                                    f = 88.0f;
+                                }
+                                rectF2.set(fDp4, 0.0f, AndroidUtilities.dp(f), AndroidUtilities.dp(88.0f));
+                                this.path.addRoundRect(this.rect, this.radii, Path.Direction.CW);
+                                this.path.close();
+                            }
+                        }
+                    } else if (!z) {
+                        fArr = this.radii;
+                        if (fArr[2] == fDp3) {
+                            if (z) {
+                                float[] fArr7 = this.radii;
+                                fArr7[1] = fDp3;
+                                fArr7[0] = fDp3;
+                                fArr7[7] = fDp2;
+                                fArr7[6] = fDp2;
+                            } else {
+                                float[] fArr8 = this.radii;
+                                fArr8[3] = fDp3;
+                                fArr8[2] = fDp3;
+                                fArr8[5] = fDp2;
+                                fArr8[4] = fDp2;
+                            }
+                            this.path.reset();
+                            RectF rectF3 = this.rect;
+                            if (this.isRtl) {
+                                fDp4 = AndroidUtilities.dp(10.0f);
+                            } else {
+                                fDp4 = 0.0f;
+                            }
+                            if (this.isRtl) {
+                                f = 98.0f;
+                            } else {
+                                f = 88.0f;
+                            }
+                            rectF3.set(fDp4, 0.0f, AndroidUtilities.dp(f), AndroidUtilities.dp(88.0f));
+                            this.path.addRoundRect(this.rect, this.radii, Path.Direction.CW);
+                            this.path.close();
+                        } else {
+                            if (z) {
+                                float[] fArr9 = this.radii;
+                                fArr9[1] = fDp3;
+                                fArr9[0] = fDp3;
+                                fArr9[7] = fDp2;
+                                fArr9[6] = fDp2;
+                            } else {
+                                float[] fArr10 = this.radii;
+                                fArr10[3] = fDp3;
+                                fArr10[2] = fDp3;
+                                fArr10[5] = fDp2;
+                                fArr10[4] = fDp2;
+                            }
+                            this.path.reset();
+                            RectF rectF4 = this.rect;
+                            if (this.isRtl) {
+                                fDp4 = AndroidUtilities.dp(10.0f);
+                            } else {
+                                fDp4 = 0.0f;
+                            }
+                            if (this.isRtl) {
+                                f = 98.0f;
+                            } else {
+                                f = 88.0f;
+                            }
+                            rectF4.set(fDp4, 0.0f, AndroidUtilities.dp(f), AndroidUtilities.dp(88.0f));
+                            this.path.addRoundRect(this.rect, this.radii, Path.Direction.CW);
+                            this.path.close();
+                        }
+                    }
+                    StaticLayout staticLayout = this.letterLayout;
+                    if (staticLayout == null) {
+                        staticLayout = this.oldLetterLayout;
+                    }
+                    if (staticLayout != null) {
+                        canvas.save();
+                        float f2 = this.bubbleProgress;
+                        canvas.scale(f2, f2, this.scrollX, iDp2 - iDp);
+                        canvas.drawPath(this.path, this.paint);
+                        canvas.translate(this.textX, this.textY);
+                        staticLayout.draw(canvas);
+                        canvas.restore();
+                    }
+                }
+            } else if (i == 1 && this.letterLayout != null && this.floatingDateProgress != 0.0f) {
+                canvas.save();
+                float f3 = (this.floatingDateProgress * 0.3f) + 0.7f;
+                canvas.scale(f3, f3, this.rect.right - AndroidUtilities.dp(12.0f), this.rect.centerY());
+                float fCenterY = this.rect.centerY();
+                float fDp7 = (this.rect.left - (AndroidUtilities.dp(30.0f) * this.bubbleProgress)) - AndroidUtilities.dp(8.0f);
+                this.letterLayout.getHeight();
+                AndroidUtilities.dp(6.0f);
+                this.rect.set((fDp7 - ((this.replaceLayoutProgress * this.letterLayout.getWidth()) + (this.fromWidth * (1.0f - this.replaceLayoutProgress)))) - AndroidUtilities.dp(36.0f), (fCenterY - (this.letterLayout.getHeight() / 2.0f)) - AndroidUtilities.dp(8.0f), fDp7 - AndroidUtilities.dp(12.0f), (this.letterLayout.getHeight() / 2.0f) + fCenterY + AndroidUtilities.dp(8.0f));
+                int alpha = this.paint2.getAlpha();
+                int alpha2 = this.letterPaint.getAlpha();
+                this.paint2.setAlpha((int) (alpha * this.floatingDateProgress));
+                if (this.blurredTagDrawable != null) {
+                    RectF rectF5 = this.rect;
+                    Rect rect = AndroidUtilities.rectTmp2;
+                    rectF5.round(rect);
+                    rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+                    this.blurredTagDrawable.setBounds(rect);
+                    this.blurredTagDrawable.draw(canvas);
+                } else {
+                    Drawable drawable = this.fastScrollBackgroundDrawable;
+                    RectF rectF6 = this.rect;
+                    drawable.setBounds((int) rectF6.left, (int) rectF6.top, (int) rectF6.right, (int) rectF6.bottom);
+                    this.fastScrollBackgroundDrawable.setAlpha((int) (this.floatingDateProgress * 255.0f));
+                    this.fastScrollBackgroundDrawable.draw(canvas);
+                }
+                float f4 = this.replaceLayoutProgress;
+                if (f4 != 1.0f) {
+                    float f5 = f4 + 0.10666667f;
+                    this.replaceLayoutProgress = f5;
+                    if (f5 > 1.0f) {
+                        this.replaceLayoutProgress = 1.0f;
+                    } else {
+                        invalidate();
+                    }
+                }
+                if (this.replaceLayoutProgress != 1.0f) {
+                    canvas.save();
+                    this.rect.inset(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
+                    canvas.clipRect(this.rect);
+                    if (this.outLetterLayout != null) {
+                        this.letterPaint.setAlpha((int) (alpha2 * this.floatingDateProgress * (1.0f - this.replaceLayoutProgress)));
+                        canvas.save();
+                        canvas.translate((fDp7 - this.outLetterLayout.getWidth()) - AndroidUtilities.dp(24.0f), (fCenterY - (this.outLetterLayout.getHeight() / 2.0f)) + ((this.fromTop ? -1 : 1) * AndroidUtilities.dp(15.0f) * this.replaceLayoutProgress));
+                        this.outLetterLayout.draw(canvas);
+                        canvas.restore();
+                    }
+                    if (this.inLetterLayout != null) {
+                        this.letterPaint.setAlpha((int) (alpha2 * this.floatingDateProgress * this.replaceLayoutProgress));
+                        canvas.save();
+                        canvas.translate((fDp7 - this.inLetterLayout.getWidth()) - AndroidUtilities.dp(24.0f), (fCenterY - (this.inLetterLayout.getHeight() / 2.0f)) + (AndroidUtilities.dp(15.0f) * (this.fromTop ? 1 : -1) * (1.0f - this.replaceLayoutProgress)));
+                        this.inLetterLayout.draw(canvas);
+                        canvas.restore();
+                    }
+                    if (this.stableLetterLayout != null) {
+                        this.letterPaint.setAlpha((int) (alpha2 * this.floatingDateProgress));
+                        canvas.save();
+                        canvas.translate((fDp7 - this.stableLetterLayout.getWidth()) - AndroidUtilities.dp(24.0f), fCenterY - (this.stableLetterLayout.getHeight() / 2.0f));
+                        this.stableLetterLayout.draw(canvas);
+                        canvas.restore();
+                    }
+                    canvas.restore();
+                } else {
+                    this.letterPaint.setAlpha((int) (alpha2 * this.floatingDateProgress));
+                    canvas.save();
+                    canvas.translate((fDp7 - this.letterLayout.getWidth()) - AndroidUtilities.dp(24.0f), (fCenterY - (this.letterLayout.getHeight() / 2.0f)) + (AndroidUtilities.dp(15.0f) * (1.0f - this.replaceLayoutProgress)));
+                    this.letterLayout.draw(canvas);
+                    canvas.restore();
+                }
+                this.paint2.setAlpha(alpha);
+                this.letterPaint.setAlpha(alpha2);
+                canvas.restore();
+            }
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long j = jCurrentTimeMillis - this.lastUpdateTime;
+            if (j < 0 || j > 17) {
+                j = 17;
+            }
+            boolean z2 = this.isMoving;
+            if ((z2 && this.letterLayout != null && this.bubbleProgress < 1.0f) || ((!z2 || this.letterLayout == null) && this.bubbleProgress > 0.0f)) {
+                this.lastUpdateTime = jCurrentTimeMillis;
+                invalidate();
+                if (this.isMoving && this.letterLayout != null) {
+                    float f6 = this.bubbleProgress + (j / 120.0f);
+                    this.bubbleProgress = f6;
+                    if (f6 > 1.0f) {
+                        this.bubbleProgress = 1.0f;
+                    }
+                } else {
+                    float f7 = this.bubbleProgress - (j / 120.0f);
+                    this.bubbleProgress = f7;
+                    if (f7 < 0.0f) {
+                        this.bubbleProgress = 0.0f;
+                    }
+                }
+            }
+            boolean z3 = this.floatingDateVisible;
+            if (z3) {
+                float f8 = this.floatingDateProgress;
+                if (f8 != 1.0f) {
+                    float f9 = f8 + (j / 120.0f);
+                    this.floatingDateProgress = f9;
+                    if (f9 > 1.0f) {
+                        this.floatingDateProgress = 1.0f;
+                    }
+                    invalidate();
+                    return;
+                }
+            }
+            if (z3) {
+                return;
+            }
+            float f10 = this.floatingDateProgress;
+            if (f10 != 0.0f) {
+                float f11 = f10 - (j / 120.0f);
+                this.floatingDateProgress = f11;
+                if (f11 < 0.0f) {
+                    this.floatingDateProgress = 0.0f;
+                }
+                invalidate();
+            }
         }
 
         @Override
@@ -970,8 +1286,107 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
 
         @Override
-        public boolean onInterceptTouchEvent(androidx.recyclerview.widget.RecyclerView r19, android.view.MotionEvent r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.RecyclerListViewItemClickListener.onInterceptTouchEvent(androidx.recyclerview.widget.RecyclerView, android.view.MotionEvent):boolean");
+        public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
+            View viewFindChildViewUnder;
+            int actionMasked = motionEvent.getActionMasked();
+            boolean z = RecyclerListView.this.getScrollState() == 0;
+            if ((actionMasked == 0 || actionMasked == 5) && RecyclerListView.this.currentChildView == null && z) {
+                float x = motionEvent.getX();
+                float y = motionEvent.getY();
+                RecyclerListView.this.longPressCalled = false;
+                RecyclerView.ItemAnimator itemAnimator = RecyclerListView.this.getItemAnimator();
+                if ((RecyclerListView.this.allowItemsInteractionDuringAnimation || itemAnimator == null || !itemAnimator.isRunning()) && RecyclerListView.this.allowSelectChildAtPosition(x, y) && (viewFindChildViewUnder = RecyclerListView.this.findChildViewUnder(x, y)) != null && RecyclerListView.this.allowSelectChildAtPosition(viewFindChildViewUnder)) {
+                    RecyclerListView.this.currentChildView = viewFindChildViewUnder;
+                }
+                if (RecyclerListView.this.currentChildView instanceof ViewGroup) {
+                    float x2 = motionEvent.getX() - RecyclerListView.this.currentChildView.getLeft();
+                    float y2 = motionEvent.getY() - RecyclerListView.this.currentChildView.getTop();
+                    ViewGroup viewGroup = (ViewGroup) RecyclerListView.this.currentChildView;
+                    for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
+                        View childAt = viewGroup.getChildAt(childCount);
+                        if (x2 >= childAt.getLeft() && x2 <= childAt.getRight() && y2 >= childAt.getTop() && y2 <= childAt.getBottom() && childAt.isClickable()) {
+                            RecyclerListView.this.currentChildView = null;
+                            break;
+                        }
+                    }
+                }
+                RecyclerListView.this.currentChildPosition = -1;
+                if (RecyclerListView.this.currentChildView != null) {
+                    RecyclerListView recyclerListView = RecyclerListView.this;
+                    if (recyclerListView.useLayoutPositionOnClick) {
+                        recyclerListView.currentChildPosition = recyclerView.getChildLayoutPosition(recyclerListView.currentChildView);
+                    } else {
+                        recyclerListView.currentChildPosition = recyclerView.getChildAdapterPosition(recyclerListView.currentChildView);
+                    }
+                    MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, motionEvent.getActionMasked(), motionEvent.getX() - RecyclerListView.this.currentChildView.getLeft(), motionEvent.getY() - RecyclerListView.this.currentChildView.getTop(), 0);
+                    if (RecyclerListView.this.currentChildView.onTouchEvent(motionEventObtain)) {
+                        RecyclerListView.this.interceptedByChild = true;
+                    }
+                    motionEventObtain.recycle();
+                }
+            }
+            if (RecyclerListView.this.currentChildView != null && !RecyclerListView.this.interceptedByChild) {
+                try {
+                    RecyclerListView.this.gestureDetector.onTouchEvent(motionEvent);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            if (actionMasked == 0 || actionMasked == 5) {
+                if (!RecyclerListView.this.interceptedByChild && RecyclerListView.this.currentChildView != null) {
+                    final float x3 = motionEvent.getX();
+                    final float y3 = motionEvent.getY();
+                    RecyclerListView.this.selectChildRunnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$onInterceptTouchEvent$0(x3, y3);
+                        }
+                    };
+                    AndroidUtilities.runOnUIThread(RecyclerListView.this.selectChildRunnable, ViewConfiguration.getTapTimeout());
+                    if (RecyclerListView.this.currentChildView.isEnabled()) {
+                        RecyclerListView recyclerListView2 = RecyclerListView.this;
+                        if (recyclerListView2.canHighlightChildAt(recyclerListView2.currentChildView, x3 - RecyclerListView.this.currentChildView.getX(), y3 - RecyclerListView.this.currentChildView.getY())) {
+                            RecyclerListView recyclerListView3 = RecyclerListView.this;
+                            recyclerListView3.positionSelector(recyclerListView3.currentChildPosition, RecyclerListView.this.currentChildView);
+                            Drawable drawable = RecyclerListView.this.selectorDrawable;
+                            if (drawable != null) {
+                                Drawable current = drawable.getCurrent();
+                                if (current instanceof TransitionDrawable) {
+                                    if (RecyclerListView.this.onItemLongClickListener != null || RecyclerListView.this.onItemClickListenerExtended != null) {
+                                        ((TransitionDrawable) current).startTransition(ViewConfiguration.getLongPressTimeout());
+                                    } else {
+                                        ((TransitionDrawable) current).resetTransition();
+                                    }
+                                }
+                                RecyclerListView.this.selectorDrawable.setHotspot(motionEvent.getX(), motionEvent.getY());
+                            }
+                            RecyclerListView.this.updateSelectorState();
+                        } else {
+                            RecyclerListView.this.selectorRect.setEmpty();
+                        }
+                    } else {
+                        RecyclerListView.this.selectorRect.setEmpty();
+                    }
+                } else {
+                    RecyclerListView.this.selectorRect.setEmpty();
+                }
+            } else if ((actionMasked == 1 || actionMasked == 6 || actionMasked == 3 || !z) && RecyclerListView.this.currentChildView != null) {
+                if (RecyclerListView.this.selectChildRunnable != null) {
+                    AndroidUtilities.cancelRunOnUIThread(RecyclerListView.this.selectChildRunnable);
+                    RecyclerListView.this.selectChildRunnable = null;
+                }
+                View view = RecyclerListView.this.currentChildView;
+                RecyclerListView recyclerListView4 = RecyclerListView.this;
+                recyclerListView4.onChildPressed(recyclerListView4.currentChildView, 0.0f, 0.0f, false);
+                RecyclerListView.this.currentChildView = null;
+                RecyclerListView.this.interceptedByChild = false;
+                RecyclerListView.this.removeSelection(view, motionEvent);
+                if ((actionMasked == 1 || actionMasked == 6 || actionMasked == 3) && RecyclerListView.this.onItemLongClickListenerExtended != null && RecyclerListView.this.longPressCalled) {
+                    RecyclerListView.this.onItemLongClickListenerExtended.onLongClickRelease();
+                    RecyclerListView.this.longPressCalled = false;
+                }
+            }
+            return false;
         }
 
         public void lambda$onInterceptTouchEvent$0(float f, float f2) {
@@ -1149,15 +1564,17 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                 recyclerListView.multiSelectionListener.getPaddings(recyclerListView.listPaddings);
                 if (RecyclerListView.this.multiselectScrollToTop) {
                     iDp = -AndroidUtilities.dp(12.0f);
-                    RecyclerListView.this.chekMultiselect(0.0f, r2.listPaddings[0]);
+                    RecyclerListView recyclerListView2 = RecyclerListView.this;
+                    recyclerListView2.chekMultiselect(0.0f, recyclerListView2.listPaddings[0]);
                 } else {
                     iDp = AndroidUtilities.dp(12.0f);
-                    RecyclerListView.this.chekMultiselect(0.0f, r2.getMeasuredHeight() - RecyclerListView.this.listPaddings[1]);
+                    RecyclerListView recyclerListView3 = RecyclerListView.this;
+                    recyclerListView3.chekMultiselect(0.0f, recyclerListView3.getMeasuredHeight() - RecyclerListView.this.listPaddings[1]);
                 }
                 RecyclerListView.this.multiSelectionListener.scrollBy(iDp);
-                RecyclerListView recyclerListView2 = RecyclerListView.this;
-                if (recyclerListView2.multiselectScrollRunning) {
-                    AndroidUtilities.runOnUIThread(recyclerListView2.scroller);
+                RecyclerListView recyclerListView4 = RecyclerListView.this;
+                if (recyclerListView4.multiselectScrollRunning) {
+                    AndroidUtilities.runOnUIThread(recyclerListView4.scroller);
                 }
             }
         };
@@ -2625,11 +3042,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         int[] iArr = this.listPaddings;
         float fMin = Math.min(measuredHeight - iArr[1], Math.max(f2, iArr[0]));
         float fMin2 = Math.min(getMeasuredWidth(), Math.max(f, 0.0f));
-        int i = 0;
-        while (true) {
-            if (i >= getChildCount()) {
-                break;
-            }
+        for (int i = 0; i < getChildCount(); i++) {
             this.multiSelectionListener.getPaddings(this.listPaddings);
             if (!this.useRelativePositions) {
                 View childAt = getChildAt(i);
@@ -2678,10 +3091,11 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                     }
                     if (!this.multiSelectionListener.limitReached()) {
                         this.currentSelectedPosition = childLayoutPosition;
+                        break;
                     }
+                    break;
                 }
             }
-            i++;
         }
         return true;
     }
@@ -3044,8 +3458,115 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         return false;
     }
 
-    public void drawSectionsBackgrounds(final android.graphics.Canvas r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.drawSectionsBackgrounds(android.graphics.Canvas):void");
+    public void drawSectionsBackgrounds(final Canvas canvas) {
+        int i;
+        View childAt;
+        if (this.drawSectionBackground == null) {
+            return;
+        }
+        if (isAnimating()) {
+            if (this.sections == null) {
+                this.sections = new ArrayList();
+            }
+            for (int i2 = 0; i2 < getChildCount(); i2++) {
+                View childAt2 = getChildAt(i2);
+                if (childAt2 != this.emptyView && childAt2.getVisibility() == 0 && childAt2.getAlpha() > 0.0f && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(childAt2)).booleanValue()) {
+                    float pVar = top(childAt2);
+                    float fBottom = bottom(childAt2);
+                    RecyclerView.ViewHolder childViewHolder = getChildViewHolder(childAt2);
+                    if (childViewHolder.isRemoved() && childAt2.getAlpha() < 1.0f) {
+                        if (childViewHolder.isRemoved() && (i = childViewHolder.mOldCompoundPosition) >= 0) {
+                            int iCeil = ((int) Math.ceil(((double) i) / 1000.0d)) + 1;
+                            int i3 = 0;
+                            while (true) {
+                                if (i3 >= getChildCount()) {
+                                    childAt = null;
+                                    break;
+                                }
+                                childAt = getChildAt(i3);
+                                if (childAt != null && childAt != childAt2 && getChildAdapterPosition(childAt) == iCeil) {
+                                    break;
+                                } else {
+                                    i3++;
+                                }
+                            }
+                            if (childAt != null && fBottom > childAt.getY() && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(childAt)).booleanValue() && !getChildViewHolder(childAt).isRemoved()) {
+                                pVar -= 1.0f;
+                                fBottom = childAt.getY();
+                                if (fBottom >= pVar) {
+                                    this.sections.add(new SectionsDrawer.Section(pVar, fBottom, childAt2.getAlpha()));
+                                }
+                            } else {
+                                this.sections.add(new SectionsDrawer.Section(pVar, fBottom, childAt2.getAlpha()));
+                            }
+                        } else {
+                            this.sections.add(new SectionsDrawer.Section(pVar, fBottom, childAt2.getAlpha()));
+                        }
+                    } else if (!isInsideForcedSection(childViewHolder.getAdapterPosition())) {
+                        this.sections.add(new SectionsDrawer.Section(pVar, fBottom, childAt2.getAlpha()));
+                    }
+                }
+            }
+            SectionsDrawer.draw(this.sections, this.sectionRadius, new Utilities.Callback5() {
+                @Override
+                public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                    this.f$0.lambda$drawSectionsBackgrounds$5(canvas, (Float) obj, (Float) obj2, (Float) obj3, (Float) obj4, (Float) obj5);
+                }
+            });
+            this.sections.clear();
+        } else {
+            View view = null;
+            View view2 = null;
+            int i4 = -1;
+            int i5 = -1;
+            for (int i6 = 0; i6 < getChildCount(); i6++) {
+                View childAt3 = getChildAt(i6);
+                if (childAt3 == this.emptyView || childAt3.getVisibility() != 0 || childAt3.getAlpha() <= 0.0f || !((Boolean) this.sectionsItemDecoration.isSectionItem.run(childAt3)).booleanValue() || isInsideForcedSection(getChildAdapterPosition(childAt3))) {
+                    drawSectionBackground(canvas, view, view2, hasAbove(view, i4), hasBelow(view2, i5));
+                    view = null;
+                    view2 = null;
+                    i4 = -1;
+                    i5 = -1;
+                } else {
+                    if (view != null && Math.abs(view2.getAlpha() - childAt3.getAlpha()) > 0.1f) {
+                        drawSectionBackground(canvas, view, view2, hasAbove(view, i4), hasBelow(view2, i5));
+                        view = null;
+                        i4 = -1;
+                    }
+                    if (view == null) {
+                        i4 = i6;
+                        view = childAt3;
+                    }
+                    i5 = i6;
+                    view2 = childAt3;
+                }
+            }
+            drawSectionBackground(canvas, view, view2, hasAbove(view, i4), hasBelow(view2, i5));
+        }
+        if (this.forcedSections != null) {
+            for (int i7 = 0; i7 < this.forcedSections.size(); i7++) {
+                long jLongValue = ((Long) this.forcedSections.get(i7)).longValue();
+                int iUnpackA = AndroidUtilities.unpackA(jLongValue);
+                int iUnpackB = AndroidUtilities.unpackB(jLongValue);
+                float height = getHeight();
+                float f = this.sectionRadius;
+                float fMin = height + f;
+                float fMax = -f;
+                for (int i8 = 0; i8 < getChildCount(); i8++) {
+                    View childAt4 = getChildAt(i8);
+                    int childAdapterPosition = getChildAdapterPosition(childAt4);
+                    if (childAdapterPosition >= iUnpackA && childAdapterPosition <= iUnpackB) {
+                        fMin = Math.min(fMin, top(childAt4));
+                        fMax = Math.max(fMax, bottom(childAt4));
+                    }
+                }
+                if (fMin < fMax) {
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(getPaddingLeft() + this.sectionsItemDecoration.padding, fMin, (getWidth() - getPaddingRight()) - this.sectionsItemDecoration.padding, fMax);
+                    this.drawSectionBackground.run(canvas, rectF, Float.valueOf(this.sectionRadius), Float.valueOf(this.sectionRadius), Float.valueOf(1.0f));
+                }
+            }
+        }
     }
 
     public void lambda$drawSectionsBackgrounds$5(Canvas canvas, Float f, Float f2, Float f3, Float f4, Float f5) {
@@ -3302,8 +3823,104 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             return Float.compare(section.from, section2.from);
         }
 
-        private static float[] calculateGroup(java.util.List r18, int r19, int r20, float r21) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.SectionsDrawer.calculateGroup(java.util.List, int, int, float):float[]");
+        private static float[] calculateGroup(List list, int i, int i2, float f) {
+            float f2;
+            float fLerp;
+            float fLerp2 = f;
+            float fMin = Float.MAX_VALUE;
+            float fMax = Float.MIN_VALUE;
+            int i3 = i;
+            float fMin2 = Float.MAX_VALUE;
+            float fMax2 = Float.MIN_VALUE;
+            while (true) {
+                f2 = 0.99f;
+                if (i3 >= i2) {
+                    break;
+                }
+                Section section = (Section) list.get(i3);
+                if (section.alpha >= 0.99f) {
+                    fMin2 = Math.min(fMin2, section.from);
+                    fMax2 = Math.max(fMax2, section.to);
+                }
+                i3++;
+            }
+            boolean z = fMin2 != Float.MAX_VALUE;
+            float fMax3 = 0.0f;
+            for (int i4 = i; i4 < i2; i4++) {
+                Section section2 = (Section) list.get(i4);
+                fMin = Math.min(fMin, section2.from);
+                fMax = Math.max(fMax, section2.to);
+                fMax3 = Math.max(fMax3, section2.alpha);
+            }
+            if (fMax3 < 0.001f) {
+                return null;
+            }
+            if (z) {
+                Section section3 = null;
+                float f3 = 0.0f;
+                for (int i5 = i; i5 < i2; i5++) {
+                    Section section4 = (Section) list.get(i5);
+                    float f4 = section4.alpha;
+                    if (f4 < 0.99f) {
+                        float f5 = section4.from;
+                        if (f5 < fMin2) {
+                            float f6 = (fMin2 - f5) * f4;
+                            if (f6 > f3) {
+                                f3 = f6;
+                                section3 = section4;
+                            }
+                        }
+                    }
+                }
+                int i6 = i;
+                Section section5 = null;
+                float f7 = 0.0f;
+                while (i6 < i2) {
+                    Section section6 = (Section) list.get(i6);
+                    float f8 = section6.alpha;
+                    if (f8 < f2) {
+                        float f9 = section6.to;
+                        if (f9 > fMax2) {
+                            float f10 = (f9 - fMax2) * f8;
+                            if (f10 > f7) {
+                                f7 = f10;
+                                section5 = section6;
+                            }
+                        }
+                    }
+                    i6++;
+                    f2 = 0.99f;
+                }
+                if (section3 != null) {
+                    float f11 = section3.alpha;
+                    if (f11 > 0.001f) {
+                        float fLerp3 = AndroidUtilities.lerp(fMin2, section3.from, f11);
+                        fLerp = AndroidUtilities.lerp(fLerp2, section3.alpha * fLerp2, (fMin2 - fLerp3) / ((fMin2 - section3.from) + 0.001f));
+                        fMin2 = fLerp3;
+                    } else {
+                        fLerp = fLerp2;
+                    }
+                } else {
+                    fLerp = fLerp2;
+                }
+                fMax3 = 1.0f;
+                if (section5 != null) {
+                    float f12 = section5.alpha;
+                    if (f12 > 0.001f) {
+                        float fLerp4 = AndroidUtilities.lerp(fMax2, section5.to, f12);
+                        fLerp2 = AndroidUtilities.lerp(fLerp2, section5.alpha * fLerp2, (fLerp4 - fMax2) / ((section5.to - fMax2) + 0.001f));
+                        fMax2 = fLerp4;
+                    }
+                }
+                fMin = fMin2;
+            } else {
+                fLerp = fLerp2;
+                fMax2 = fMax;
+            }
+            if (fMax2 <= fMin) {
+                return null;
+            }
+            return new float[]{fMin, fMax2, fLerp, fLerp2, fMax3};
         }
     }
 }

@@ -52,7 +52,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.Stories.recorder.LivePlayerView;
 
 public class LiveStoryPipOverlay implements NotificationCenter.NotificationCenterDelegate, IPipSourceDelegate {
@@ -342,9 +341,10 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
                     AndroidUtilities.cancelRunOnUIThread(LiveStoryPipOverlay.this.dismissControlsCallback);
                     LiveStoryPipOverlay.this.postedDismissControls = false;
                 }
-                LiveStoryPipOverlay.this.isShowingControls = !r4.isShowingControls;
                 LiveStoryPipOverlay liveStoryPipOverlay = LiveStoryPipOverlay.this;
-                liveStoryPipOverlay.toggleControls(liveStoryPipOverlay.isShowingControls);
+                liveStoryPipOverlay.isShowingControls = !liveStoryPipOverlay.isShowingControls;
+                LiveStoryPipOverlay liveStoryPipOverlay2 = LiveStoryPipOverlay.this;
+                liveStoryPipOverlay2.toggleControls(liveStoryPipOverlay2.isShowingControls);
                 if (LiveStoryPipOverlay.this.isShowingControls && !LiveStoryPipOverlay.this.postedDismissControls) {
                     AndroidUtilities.runOnUIThread(LiveStoryPipOverlay.this.dismissControlsCallback, 2500L);
                     LiveStoryPipOverlay.this.postedDismissControls = true;
@@ -357,7 +357,10 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
                 if (!LiveStoryPipOverlay.this.isScrolling || LiveStoryPipOverlay.this.isScrollDisallowed) {
                     return false;
                 }
-                ((SpringAnimation) ((SpringAnimation) LiveStoryPipOverlay.this.pipXSpring.setStartVelocity(f)).setStartValue(LiveStoryPipOverlay.this.pipX)).getSpring().setFinalPosition((LiveStoryPipOverlay.this.pipX + (LiveStoryPipOverlay.this.pipWidth / 2.0f)) + (f / 7.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r0 - LiveStoryPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+                SpringForce spring = ((SpringAnimation) ((SpringAnimation) LiveStoryPipOverlay.this.pipXSpring.setStartVelocity(f)).setStartValue(LiveStoryPipOverlay.this.pipX)).getSpring();
+                float f3 = LiveStoryPipOverlay.this.pipX + (LiveStoryPipOverlay.this.pipWidth / 2.0f) + (f / 7.0f);
+                int i3 = AndroidUtilities.displaySize.x;
+                spring.setFinalPosition(f3 >= ((float) i3) / 2.0f ? (i3 - LiveStoryPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
                 LiveStoryPipOverlay.this.pipXSpring.start();
                 ((SpringAnimation) ((SpringAnimation) LiveStoryPipOverlay.this.pipYSpring.setStartVelocity(f)).setStartValue(LiveStoryPipOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(LiveStoryPipOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - LiveStoryPipOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
                 LiveStoryPipOverlay.this.pipYSpring.start();
@@ -406,7 +409,10 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
                     LiveStoryPipOverlay.this.isScrolling = false;
                     LiveStoryPipOverlay.this.isScrollDisallowed = false;
                     if (!LiveStoryPipOverlay.this.pipXSpring.isRunning()) {
-                        ((SpringAnimation) LiveStoryPipOverlay.this.pipXSpring.setStartValue(LiveStoryPipOverlay.this.pipX)).getSpring().setFinalPosition(LiveStoryPipOverlay.this.pipX + (LiveStoryPipOverlay.this.pipWidth / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r6 - LiveStoryPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+                        SpringForce spring = ((SpringAnimation) LiveStoryPipOverlay.this.pipXSpring.setStartValue(LiveStoryPipOverlay.this.pipX)).getSpring();
+                        float f = LiveStoryPipOverlay.this.pipX + (LiveStoryPipOverlay.this.pipWidth / 2.0f);
+                        int i3 = AndroidUtilities.displaySize.x;
+                        spring.setFinalPosition(f >= ((float) i3) / 2.0f ? (i3 - LiveStoryPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
                         LiveStoryPipOverlay.this.pipXSpring.start();
                     }
                     if (!LiveStoryPipOverlay.this.pipYSpring.isRunning()) {
@@ -590,15 +596,20 @@ public class LiveStoryPipOverlay implements NotificationCenter.NotificationCente
         public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
             LiveStoryPipOverlay liveStoryPipOverlay = LiveStoryPipOverlay.this;
             liveStoryPipOverlay.scaleFactor = MathUtils.clamp(liveStoryPipOverlay.scaleFactor * scaleGestureDetector.getScaleFactor(), LiveStoryPipOverlay.this.minScaleFactor, LiveStoryPipOverlay.this.maxScaleFactor);
-            LiveStoryPipOverlay.this.pipWidth = (int) (r0.getSuggestedWidth() * LiveStoryPipOverlay.this.scaleFactor);
-            LiveStoryPipOverlay.this.pipHeight = (int) (r0.getSuggestedHeight() * LiveStoryPipOverlay.this.scaleFactor);
+            LiveStoryPipOverlay liveStoryPipOverlay2 = LiveStoryPipOverlay.this;
+            liveStoryPipOverlay2.pipWidth = (int) (liveStoryPipOverlay2.getSuggestedWidth() * LiveStoryPipOverlay.this.scaleFactor);
+            LiveStoryPipOverlay liveStoryPipOverlay3 = LiveStoryPipOverlay.this;
+            liveStoryPipOverlay3.pipHeight = (int) (liveStoryPipOverlay3.getSuggestedHeight() * LiveStoryPipOverlay.this.scaleFactor);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$onScale$0();
                 }
             });
-            ((SpringAnimation) LiveStoryPipOverlay.this.pipXSpring.setStartValue(LiveStoryPipOverlay.this.pipX)).getSpring().setFinalPosition(scaleGestureDetector.getFocusX() >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r2 - LiveStoryPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+            SpringForce spring = ((SpringAnimation) LiveStoryPipOverlay.this.pipXSpring.setStartValue(LiveStoryPipOverlay.this.pipX)).getSpring();
+            float focusX = scaleGestureDetector.getFocusX();
+            int i = AndroidUtilities.displaySize.x;
+            spring.setFinalPosition(focusX >= ((float) i) / 2.0f ? (i - LiveStoryPipOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
             if (!LiveStoryPipOverlay.this.pipXSpring.isRunning()) {
                 LiveStoryPipOverlay.this.pipXSpring.start();
             }

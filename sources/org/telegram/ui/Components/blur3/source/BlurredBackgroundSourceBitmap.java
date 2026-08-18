@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableSource;
-import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 
 public class BlurredBackgroundSourceBitmap implements BlurredBackgroundSource {
     protected int actionBarHeight;

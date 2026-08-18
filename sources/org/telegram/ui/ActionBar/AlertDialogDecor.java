@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.os.Build;
@@ -22,8 +21,6 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.Theme;
 
 public class AlertDialogDecor extends AlertDialog {
     private static final int[] ATTRS = {16842932, 16842933};
@@ -73,7 +70,7 @@ public class AlertDialogDecor extends AlertDialog {
         return (ViewGroup) getActivity(getContext()).getWindow().getDecorView();
     }
 
-    private void extractAnimations() throws Resources.NotFoundException {
+    private void extractAnimations() {
         TypedValue typedValue = new TypedValue();
         getContext().getTheme().resolveAttribute(16842926, typedValue, true);
         TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, ATTRS);
@@ -83,7 +80,7 @@ public class AlertDialogDecor extends AlertDialog {
     }
 
     @Override
-    public void show() throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
+    public void show() {
         extractAnimations();
         setDismissDialogByButtons(true);
         View viewInflateContent = inflateContent(false);
@@ -93,7 +90,7 @@ public class AlertDialogDecor extends AlertDialog {
         FrameLayout frameLayout = new FrameLayout(getContext());
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws Resources.NotFoundException {
+            public final void onClick(View view) {
                 this.f$0.lambda$show$1(view);
             }
         });
@@ -122,7 +119,7 @@ public class AlertDialogDecor extends AlertDialog {
         }
     }
 
-    public void lambda$show$1(View view) throws Resources.NotFoundException {
+    public void lambda$show$1(View view) {
         dismiss();
     }
 
@@ -140,7 +137,7 @@ public class AlertDialogDecor extends AlertDialog {
     }
 
     @Override
-    public void showDelayed(long j) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
+    public void showDelayed(long j) {
         if (isShowing()) {
             return;
         }
@@ -164,7 +161,7 @@ public class AlertDialogDecor extends AlertDialog {
     }
 
     @Override
-    public void dismiss() throws Resources.NotFoundException {
+    public void dismiss() {
         if (isShowing() && !this.isDismissed) {
             this.isDismissed = true;
             AndroidUtilities.cancelRunOnUIThread(this.showRunnable);

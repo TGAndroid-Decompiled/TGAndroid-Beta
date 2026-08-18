@@ -14,8 +14,6 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import androidx.core.util.Supplier;
 import java.util.List;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
-import org.telegram.ui.ActionBar.Theme;
 
 public interface INavigationLayout {
 

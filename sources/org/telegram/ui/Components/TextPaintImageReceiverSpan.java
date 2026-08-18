@@ -150,12 +150,14 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         canvas.save();
         if (this.baselineMode) {
-            this.imageReceiver.setImageCoords((int) f, i4 - (r4 - this.depth), this.width, this.height);
+            int i6 = this.height;
+            this.imageReceiver.setImageCoords((int) f, i4 - (i6 - this.depth), this.width, i6);
         } else if (this.alignTop) {
             this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
         } else {
             int iDp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
-            this.imageReceiver.setImageCoords((int) f, i3 + ((iDp - r4) / 2), this.width, this.height);
+            int i7 = this.height;
+            this.imageReceiver.setImageCoords((int) f, i3 + ((iDp - i7) / 2), this.width, i7);
         }
         this.imageReceiver.draw(canvas);
         canvas.restore();

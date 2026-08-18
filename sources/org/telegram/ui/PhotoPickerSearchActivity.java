@@ -39,7 +39,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-import org.telegram.ui.PhotoPickerActivity;
 
 public class PhotoPickerSearchActivity extends BaseFragment {
     private static final Interpolator interpolator = new Interpolator() {
@@ -289,8 +288,117 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             }
 
             @Override
-            protected void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoPickerSearchActivity.AnonymousClass4.onLayout(boolean, int, int, int, int):void");
+            protected void onLayout(boolean z, int i4, int i5, int i6, int i7) {
+                int i8;
+                int paddingRight;
+                int paddingLeft;
+                int i9;
+                int i10;
+                int paddingTop;
+                int measuredHeight;
+                int measuredHeight2;
+                int childCount = getChildCount();
+                int emojiPadding = (AndroidUtilities.dp(20.0f) < 0 || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) ? 0 : PhotoPickerSearchActivity.this.commentTextView.getEmojiPadding();
+                setBottomClip(emojiPadding);
+                for (int i11 = 0; i11 < childCount; i11++) {
+                    View childAt = getChildAt(i11);
+                    if (childAt.getVisibility() != 8) {
+                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                        int measuredWidth = childAt.getMeasuredWidth();
+                        int measuredHeight3 = childAt.getMeasuredHeight();
+                        int i12 = layoutParams.gravity;
+                        if (i12 == -1) {
+                            i12 = 51;
+                        }
+                        int i13 = i12 & 112;
+                        int i14 = i12 & 7;
+                        if (i14 != 1) {
+                            if (i14 == 5) {
+                                i8 = ((i6 - i4) - measuredWidth) - layoutParams.rightMargin;
+                                paddingRight = getPaddingRight();
+                            } else {
+                                paddingLeft = layoutParams.leftMargin + getPaddingLeft();
+                            }
+                            if (i13 != 16) {
+                                if (i13 != 48) {
+                                    paddingTop = layoutParams.topMargin + getPaddingTop();
+                                } else if (i13 != 80) {
+                                    i9 = ((i7 - emojiPadding) - i5) - measuredHeight3;
+                                    i10 = layoutParams.bottomMargin;
+                                } else {
+                                    paddingTop = layoutParams.topMargin;
+                                }
+                                if (PhotoPickerSearchActivity.this.commentTextView != null && PhotoPickerSearchActivity.this.commentTextView.isPopupView(childAt)) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    } else {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    }
+                                    paddingTop = measuredHeight - measuredHeight2;
+                                }
+                                childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                            } else {
+                                i9 = ((((i7 - emojiPadding) - i5) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                i10 = layoutParams.bottomMargin;
+                            }
+                            paddingTop = i9 - i10;
+                            if (PhotoPickerSearchActivity.this.commentTextView != null) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                        } else {
+                            i8 = (((i6 - i4) - measuredWidth) / 2) + layoutParams.leftMargin;
+                            paddingRight = layoutParams.rightMargin;
+                        }
+                        paddingLeft = i8 - paddingRight;
+                        if (i13 != 16) {
+                            if (i13 != 48) {
+                                paddingTop = layoutParams.topMargin + getPaddingTop();
+                            } else if (i13 != 80) {
+                                i9 = ((i7 - emojiPadding) - i5) - measuredHeight3;
+                                i10 = layoutParams.bottomMargin;
+                            } else {
+                                paddingTop = layoutParams.topMargin;
+                            }
+                            if (PhotoPickerSearchActivity.this.commentTextView != null) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                        } else {
+                            i9 = ((((i7 - emojiPadding) - i5) - measuredHeight3) / 2) + layoutParams.topMargin;
+                            i10 = layoutParams.bottomMargin;
+                        }
+                        paddingTop = i9 - i10;
+                        if (PhotoPickerSearchActivity.this.commentTextView != null) {
+                            if (AndroidUtilities.isTablet()) {
+                                measuredHeight = getMeasuredHeight();
+                                measuredHeight2 = childAt.getMeasuredHeight();
+                            } else {
+                                measuredHeight = getMeasuredHeight();
+                                measuredHeight2 = childAt.getMeasuredHeight();
+                            }
+                            paddingTop = measuredHeight - measuredHeight2;
+                        }
+                        childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                    }
+                }
+                notifyHeightChanged();
             }
 
             @Override
@@ -309,7 +417,29 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             }
 
             public boolean checkTabsAnimationInProgress() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoPickerSearchActivity.AnonymousClass4.checkTabsAnimationInProgress():boolean");
+                if (!PhotoPickerSearchActivity.this.tabsAnimationInProgress) {
+                    return false;
+                }
+                if (PhotoPickerSearchActivity.this.backAnimation) {
+                    if (Math.abs(PhotoPickerSearchActivity.this.viewPages[0].getTranslationX()) < 1.0f) {
+                        PhotoPickerSearchActivity.this.viewPages[0].setTranslationX(0.0f);
+                        PhotoPickerSearchActivity.this.viewPages[1].setTranslationX(PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth() * (PhotoPickerSearchActivity.this.animatingForward ? 1 : -1));
+                        if (PhotoPickerSearchActivity.this.tabsAnimation != null) {
+                            PhotoPickerSearchActivity.this.tabsAnimation.cancel();
+                            PhotoPickerSearchActivity.this.tabsAnimation = null;
+                        }
+                        PhotoPickerSearchActivity.this.tabsAnimationInProgress = false;
+                    }
+                } else if (Math.abs(PhotoPickerSearchActivity.this.viewPages[1].getTranslationX()) < 1.0f) {
+                    PhotoPickerSearchActivity.this.viewPages[0].setTranslationX(PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth() * (PhotoPickerSearchActivity.this.animatingForward ? -1 : 1));
+                    PhotoPickerSearchActivity.this.viewPages[1].setTranslationX(0.0f);
+                    if (PhotoPickerSearchActivity.this.tabsAnimation != null) {
+                        PhotoPickerSearchActivity.this.tabsAnimation.cancel();
+                        PhotoPickerSearchActivity.this.tabsAnimation = null;
+                    }
+                    PhotoPickerSearchActivity.this.tabsAnimationInProgress = false;
+                }
+                return PhotoPickerSearchActivity.this.tabsAnimationInProgress;
             }
 
             @Override

@@ -2,7 +2,6 @@ package kotlinx.coroutines.flow;
 
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.jvm.internal.ContinuationImpl;
-import kotlinx.coroutines.flow.FlowKt__ErrorsKt;
 
 final class FlowKt__ErrorsKt$catchImpl$2$emit$1 extends ContinuationImpl {
     Object L$0;

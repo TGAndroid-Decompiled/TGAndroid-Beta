@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.chat;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import me.vkryl.android.AnimatorUtils;
 import me.vkryl.android.animator.ListAnimator;
 import me.vkryl.android.animator.ReplaceAnimator;
@@ -66,9 +65,7 @@ public class ChatActivityBottomViewsVisibilityController implements ReplaceAnima
 
     private void onItemChanged() {
         Arrays.fill(this.visibilityValues, 0.0f);
-        Iterator it = this.replaceAnimator.iterator();
-        while (it.hasNext()) {
-            ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
+        for (ListAnimator.Entry entry : this.replaceAnimator) {
             this.visibilityValues[((Integer) entry.item).intValue()] = entry.getVisibility();
         }
         this.onValuesChanged.run();

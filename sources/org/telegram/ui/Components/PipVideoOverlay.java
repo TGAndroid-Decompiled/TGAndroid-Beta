@@ -46,9 +46,6 @@ import org.telegram.messenger.pip.source.IPipSourceDelegate;
 import org.telegram.messenger.pip.utils.PipUtils;
 import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.GestureDetectorFixDoubleTap;
-import org.telegram.ui.Components.SimpleFloatPropertyCompat;
-import org.telegram.ui.Components.VideoForwardDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 
@@ -179,16 +176,18 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         if (photoViewer == null) {
             return;
         }
-        if (this.photoViewerWebView != null) {
-            this.videoProgress = r1.getCurrentPosition() / this.photoViewerWebView.getVideoDuration();
+        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
+        if (photoViewerWebView != null) {
+            this.videoProgress = photoViewerWebView.getCurrentPosition() / this.photoViewerWebView.getVideoDuration();
             this.bufferProgress = this.photoViewerWebView.getBufferedPosition();
         } else {
-            if (photoViewer.getVideoPlayer() == null) {
+            VideoPlayer videoPlayer = photoViewer.getVideoPlayer();
+            if (videoPlayer == null) {
                 return;
             }
             float duration = getDuration();
-            this.videoProgress = r0.getCurrentPosition() / duration;
-            this.bufferProgress = r0.getBufferedPosition() / duration;
+            this.videoProgress = videoPlayer.getCurrentPosition() / duration;
+            this.bufferProgress = videoPlayer.getBufferedPosition() / duration;
         }
         this.videoProgressView.invalidate();
         AndroidUtilities.runOnUIThread(this.progressRunnable, 500L);
@@ -251,8 +250,9 @@ public class PipVideoOverlay implements IPipSourceDelegate {
     }
 
     public long getCurrentPosition() {
-        if (this.photoViewerWebView != null) {
-            return r0.getCurrentPosition();
+        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
+        if (photoViewerWebView != null) {
+            return photoViewerWebView.getCurrentPosition();
         }
         VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
         if (videoPlayer == null) {
@@ -275,8 +275,9 @@ public class PipVideoOverlay implements IPipSourceDelegate {
     }
 
     public long getDuration() {
-        if (this.photoViewerWebView != null) {
-            return r0.getVideoDuration();
+        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
+        if (photoViewerWebView != null) {
+            return photoViewerWebView.getVideoDuration();
         }
         VideoPlayer videoPlayer = this.photoViewer.getVideoPlayer();
         if (videoPlayer == null) {
@@ -727,7 +728,10 @@ public class PipVideoOverlay implements IPipSourceDelegate {
                         PipVideoOverlay.dismissAndDestroy();
                     } else {
                         if (!PipVideoOverlay.this.pipXSpring.isRunning()) {
-                            ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX)).getSpring().setFinalPosition(PipVideoOverlay.this.pipX + (PipVideoOverlay.this.pipWidth / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r5 - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+                            SpringForce spring = ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX)).getSpring();
+                            float f = PipVideoOverlay.this.pipX + (PipVideoOverlay.this.pipWidth / 2.0f);
+                            int i3 = AndroidUtilities.displaySize.x;
+                            spring.setFinalPosition(f >= ((float) i3) / 2.0f ? (i3 - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
                             PipVideoOverlay.this.pipXSpring.start();
                         }
                         if (!PipVideoOverlay.this.pipYSpring.isRunning()) {
@@ -747,8 +751,12 @@ public class PipVideoOverlay implements IPipSourceDelegate {
                 if (PipVideoOverlay.this.pipWidth == PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor && PipVideoOverlay.this.pipHeight == PipVideoOverlay.this.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor) {
                     return;
                 }
-                PipVideoOverlay.this.windowLayoutParams.width = PipVideoOverlay.this.pipWidth = (int) (r0.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor);
-                PipVideoOverlay.this.windowLayoutParams.height = PipVideoOverlay.this.pipHeight = (int) (r0.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor);
+                WindowManager.LayoutParams layoutParams = PipVideoOverlay.this.windowLayoutParams;
+                PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
+                layoutParams.width = pipVideoOverlay.pipWidth = (int) (pipVideoOverlay.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor);
+                WindowManager.LayoutParams layoutParams2 = PipVideoOverlay.this.windowLayoutParams;
+                PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.this;
+                layoutParams2.height = pipVideoOverlay2.pipHeight = (int) (pipVideoOverlay2.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor);
                 AndroidUtilities.updateViewLayout(PipVideoOverlay.this.windowManager, PipVideoOverlay.this.contentView, PipVideoOverlay.this.windowLayoutParams);
                 SpringForce spring = ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX)).getSpring();
                 float suggestedWidth = PipVideoOverlay.this.pipX + ((PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor) / 2.0f);
@@ -870,7 +878,7 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         imageView2.setPadding(iDp, iDp, iDp, iDp);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view4) throws NumberFormatException {
+            public final void onClick(View view4) {
                 this.f$0.lambda$showInternal$10(z3, view4);
             }
         });
@@ -901,7 +909,9 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         layoutParamsCreateWindowLayoutParams.width = i5;
         layoutParamsCreateWindowLayoutParams.height = this.pipHeight;
         if (pipX != -1.0f) {
-            float fDp = pipX + (i5 / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r6 - i5) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+            float f3 = pipX + (i5 / 2.0f);
+            int i6 = AndroidUtilities.displaySize.x;
+            float fDp = f3 >= ((float) i6) / 2.0f ? (i6 - i5) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
             this.pipX = fDp;
             layoutParamsCreateWindowLayoutParams.x = (int) fDp;
         } else {
@@ -956,15 +966,19 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
             PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
             pipVideoOverlay.scaleFactor = MathUtils.clamp(pipVideoOverlay.scaleFactor * scaleGestureDetector.getScaleFactor(), PipVideoOverlay.this.minScaleFactor, PipVideoOverlay.this.maxScaleFactor);
-            PipVideoOverlay.this.pipWidth = (int) (r0.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor);
-            PipVideoOverlay.this.pipHeight = (int) (r0.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor);
+            PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.this;
+            pipVideoOverlay2.pipWidth = (int) (pipVideoOverlay2.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor);
+            PipVideoOverlay pipVideoOverlay3 = PipVideoOverlay.this;
+            pipVideoOverlay3.pipHeight = (int) (pipVideoOverlay3.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$onScale$0();
                 }
             });
-            float fDp = scaleGestureDetector.getFocusX() >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r1 - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+            float focusX = scaleGestureDetector.getFocusX();
+            int i = AndroidUtilities.displaySize.x;
+            float fDp = focusX >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
             if (PipVideoOverlay.this.pipXSpring.isRunning()) {
                 PipVideoOverlay.this.pipXSpring.getSpring().setFinalPosition(fDp);
             } else {
@@ -1083,9 +1097,10 @@ public class PipVideoOverlay implements IPipSourceDelegate {
                 AndroidUtilities.cancelRunOnUIThread(PipVideoOverlay.this.dismissControlsCallback);
                 PipVideoOverlay.this.postedDismissControls = false;
             }
-            PipVideoOverlay.this.isShowingControls = !r4.isShowingControls;
             PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
-            pipVideoOverlay.toggleControls(pipVideoOverlay.isShowingControls);
+            pipVideoOverlay.isShowingControls = !pipVideoOverlay.isShowingControls;
+            PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.this;
+            pipVideoOverlay2.toggleControls(pipVideoOverlay2.isShowingControls);
             if (PipVideoOverlay.this.isShowingControls && !PipVideoOverlay.this.postedDismissControls) {
                 AndroidUtilities.runOnUIThread(PipVideoOverlay.this.dismissControlsCallback, 2500L);
                 PipVideoOverlay.this.postedDismissControls = true;
@@ -1094,8 +1109,60 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         }
 
         @Override
-        public boolean onDoubleTap(android.view.MotionEvent r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PipVideoOverlay.AnonymousClass4.onDoubleTap(android.view.MotionEvent):boolean");
+        public boolean onDoubleTap(MotionEvent motionEvent) {
+            boolean z;
+            if (PipVideoOverlay.this.photoViewer != null && ((PipVideoOverlay.this.photoViewer.getVideoPlayer() != null || PipVideoOverlay.this.photoViewerWebView != null) && !PipVideoOverlay.this.isDismissing && !PipVideoOverlay.this.isVideoCompleted && !PipVideoOverlay.this.isScrolling && !PipVideoOverlay.this.scaleGestureDetector.isInProgress() && PipVideoOverlay.this.canLongClick)) {
+                PipVideoOverlay.this.photoViewer.getVideoPlayer();
+                boolean z2 = motionEvent.getX() >= (((float) PipVideoOverlay.this.getSuggestedWidth()) * PipVideoOverlay.this.scaleFactor) * 0.5f;
+                long currentPosition = PipVideoOverlay.this.getCurrentPosition();
+                long duration = PipVideoOverlay.this.getDuration();
+                if (currentPosition != -9223372036854775807L && duration >= 15000) {
+                    long j = z2 ? currentPosition + 10000 : currentPosition - 10000;
+                    if (currentPosition != j) {
+                        if (j <= duration) {
+                            if (j < 0) {
+                                z = j >= -9000;
+                                j = 0;
+                            }
+                            if (z) {
+                                PipVideoOverlay.this.videoForwardDrawable.setOneShootAnimation(true);
+                                PipVideoOverlay.this.videoForwardDrawable.setLeftSide(!z2);
+                                PipVideoOverlay.this.videoForwardDrawable.addTime(10000L);
+                                PipVideoOverlay.this.seekTo(j);
+                                PipVideoOverlay.this.onUpdateRewindProgressUiInternal(z2 ? 10000L : -10000L, j / duration, true);
+                                if (!PipVideoOverlay.this.isShowingControls) {
+                                    PipVideoOverlay pipVideoOverlay = PipVideoOverlay.this;
+                                    pipVideoOverlay.toggleControls(pipVideoOverlay.isShowingControls = true);
+                                    if (!PipVideoOverlay.this.postedDismissControls) {
+                                        PipVideoOverlay.this.postedDismissControls = true;
+                                        AndroidUtilities.runOnUIThread(PipVideoOverlay.this.dismissControlsCallback, 2500L);
+                                    }
+                                }
+                            }
+                            return true;
+                        }
+                        j = duration;
+                        z = true;
+                        if (z) {
+                            PipVideoOverlay.this.videoForwardDrawable.setOneShootAnimation(true);
+                            PipVideoOverlay.this.videoForwardDrawable.setLeftSide(!z2);
+                            PipVideoOverlay.this.videoForwardDrawable.addTime(10000L);
+                            PipVideoOverlay.this.seekTo(j);
+                            PipVideoOverlay.this.onUpdateRewindProgressUiInternal(z2 ? 10000L : -10000L, j / duration, true);
+                            if (!PipVideoOverlay.this.isShowingControls) {
+                                PipVideoOverlay pipVideoOverlay2 = PipVideoOverlay.this;
+                                pipVideoOverlay2.toggleControls(pipVideoOverlay2.isShowingControls = true);
+                                if (!PipVideoOverlay.this.postedDismissControls) {
+                                    PipVideoOverlay.this.postedDismissControls = true;
+                                    AndroidUtilities.runOnUIThread(PipVideoOverlay.this.dismissControlsCallback, 2500L);
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         @Override
@@ -1122,7 +1189,10 @@ public class PipVideoOverlay implements IPipSourceDelegate {
             if (!PipVideoOverlay.this.isScrolling || PipVideoOverlay.this.isScrollDisallowed) {
                 return false;
             }
-            ((SpringAnimation) ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartVelocity(f)).setStartValue(PipVideoOverlay.this.pipX)).getSpring().setFinalPosition((PipVideoOverlay.this.pipX + (PipVideoOverlay.this.pipWidth / 2.0f)) + (f / 7.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r0 - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+            SpringForce spring = ((SpringAnimation) ((SpringAnimation) PipVideoOverlay.this.pipXSpring.setStartVelocity(f)).setStartValue(PipVideoOverlay.this.pipX)).getSpring();
+            float f3 = PipVideoOverlay.this.pipX + (PipVideoOverlay.this.pipWidth / 2.0f) + (f / 7.0f);
+            int i = AndroidUtilities.displaySize.x;
+            spring.setFinalPosition(f3 >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
             PipVideoOverlay.this.pipXSpring.start();
             ((SpringAnimation) ((SpringAnimation) PipVideoOverlay.this.pipYSpring.setStartVelocity(f)).setStartValue(PipVideoOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY + (f2 / 10.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - PipVideoOverlay.this.pipHeight) - AndroidUtilities.dp(16.0f)));
             PipVideoOverlay.this.pipYSpring.start();
@@ -1190,11 +1260,14 @@ public class PipVideoOverlay implements IPipSourceDelegate {
             if (z) {
                 return;
             }
-            PipVideoOverlay.this.pipXSpring.getSpring().setFinalPosition(f + (PipVideoOverlay.this.pipWidth / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r3 - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+            SpringForce spring = PipVideoOverlay.this.pipXSpring.getSpring();
+            float f4 = f + (PipVideoOverlay.this.pipWidth / 2.0f);
+            int i = AndroidUtilities.displaySize.x;
+            spring.setFinalPosition(f4 >= ((float) i) / 2.0f ? (i - PipVideoOverlay.this.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
         }
     }
 
-    public void lambda$showInternal$10(boolean z, View view) throws NumberFormatException {
+    public void lambda$showInternal$10(boolean z, View view) {
         List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) view.getContext().getSystemService("activity")).getRunningAppProcesses();
         boolean z2 = true;
         if (runningAppProcesses != null && !runningAppProcesses.isEmpty() && runningAppProcesses.get(0).importance != 100) {

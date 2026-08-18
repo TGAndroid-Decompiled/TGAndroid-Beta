@@ -5,6 +5,7 @@ import android.graphics.fonts.Font;
 import android.graphics.fonts.SystemFonts;
 import android.os.Build;
 import android.text.TextUtils;
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
@@ -342,7 +344,94 @@ public class PaintTypeface {
         return nameRecord.read(randomAccessFile, i);
     }
 
-    public static org.telegram.ui.Components.Paint.PaintTypeface.FontData parseFont(android.graphics.fonts.Font r9) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.PaintTypeface.parseFont(android.graphics.fonts.Font):org.telegram.ui.Components.Paint.PaintTypeface$FontData");
+    public static FontData parseFont(Font font) throws Throwable {
+        File file;
+        RandomAccessFile randomAccessFile;
+        RandomAccessFile randomAccessFile2 = null;
+        if (font == null || (file = font.getFile()) == null) {
+            return null;
+        }
+        try {
+            try {
+                randomAccessFile = new RandomAccessFile(file, "r");
+                try {
+                    int i = randomAccessFile.readInt();
+                    if (i == 65536 || i == 1330926671) {
+                        int unsignedShort = randomAccessFile.readUnsignedShort();
+                        randomAccessFile.skipBytes(6);
+                        for (int i2 = 0; i2 < unsignedShort; i2++) {
+                            int i3 = randomAccessFile.readInt();
+                            randomAccessFile.skipBytes(4);
+                            int i4 = randomAccessFile.readInt();
+                            randomAccessFile.readInt();
+                            if (i3 == 1851878757) {
+                                randomAccessFile.seek(i4 + 2);
+                                int unsignedShort2 = randomAccessFile.readUnsignedShort();
+                                int unsignedShort3 = randomAccessFile.readUnsignedShort();
+                                HashMap map = new HashMap();
+                                for (int i5 = 0; i5 < unsignedShort2; i5++) {
+                                    NameRecord nameRecord = new NameRecord(randomAccessFile);
+                                    map.put(Integer.valueOf(nameRecord.nameID), nameRecord);
+                                }
+                                FontData fontData = new FontData();
+                                fontData.font = font;
+                                int i6 = i4 + unsignedShort3;
+                                fontData.family = parseString(randomAccessFile, i6, (NameRecord) map.get(1));
+                                fontData.subfamily = parseString(randomAccessFile, i6, (NameRecord) map.get(2));
+                                try {
+                                    randomAccessFile.close();
+                                } catch (Exception unused) {
+                                }
+                                return fontData;
+                            }
+                        }
+                    } else {
+                        try {
+                            randomAccessFile.close();
+                        } catch (Exception unused2) {
+                        }
+                        return null;
+                    }
+                } catch (Exception e) {
+                    e = e;
+                    try {
+                        FileLog.e(e);
+                        if (randomAccessFile != null) {
+                        }
+                        return null;
+                    } catch (Throwable th) {
+                        th = th;
+                        randomAccessFile2 = randomAccessFile;
+                        randomAccessFile = randomAccessFile2;
+                        if (randomAccessFile != null) {
+                            try {
+                                randomAccessFile.close();
+                            } catch (Exception unused3) {
+                            }
+                        }
+                        throw th;
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (randomAccessFile != null) {
+                        randomAccessFile.close();
+                    }
+                    throw th;
+                }
+            } catch (Exception e2) {
+                e = e2;
+                randomAccessFile = null;
+            } catch (Throwable th3) {
+                th = th3;
+                randomAccessFile = randomAccessFile2;
+                if (randomAccessFile != null) {
+                    randomAccessFile.close();
+                }
+                throw th;
+            }
+            randomAccessFile.close();
+        } catch (Exception unused4) {
+        }
+        return null;
     }
 }

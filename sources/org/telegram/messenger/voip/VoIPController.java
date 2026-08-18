@@ -1,14 +1,16 @@
 package org.telegram.messenger.voip;
 
+import android.media.audiofx.AcousticEchoCanceler;
+import android.media.audiofx.NoiseSuppressor;
 import android.os.SystemClock;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.Locale;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.MessagesController;
 import org.telegram.ui.Components.voip.VoIPHelper;
 
 public class VoIPController {
@@ -172,8 +174,31 @@ public class VoIPController {
         nativeSetMicMute(this.nativeInst, z);
     }
 
-    public void setConfig(double r17, double r19, int r21, long r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPController.setConfig(double, double, int, long):void");
+    public void setConfig(double d, double d2, int i, long j) {
+        boolean zIsAvailable;
+        boolean zIsAvailable2;
+        String logFilePath;
+        ensureNativeInstance();
+        try {
+            zIsAvailable = AcousticEchoCanceler.isAvailable();
+            try {
+                zIsAvailable2 = NoiseSuppressor.isAvailable();
+            } catch (Throwable unused) {
+                zIsAvailable2 = false;
+            }
+        } catch (Throwable unused2) {
+            zIsAvailable = false;
+        }
+        boolean z = MessagesController.getGlobalMainSettings().getBoolean("dbg_dump_call_stats", false);
+        long j2 = this.nativeInst;
+        boolean z2 = (zIsAvailable && VoIPServerConfig.getBoolean("use_system_aec", true)) ? false : true;
+        boolean z3 = (zIsAvailable2 && VoIPServerConfig.getBoolean("use_system_ns", true)) ? false : true;
+        if (BuildVars.DEBUG_VERSION) {
+            logFilePath = getLogFilePath("voip" + j);
+        } else {
+            logFilePath = getLogFilePath(j);
+        }
+        nativeSetConfig(j2, d, d2, i, z2, z3, true, logFilePath, (BuildVars.DEBUG_VERSION && z) ? getLogFilePath("voipStats") : null, BuildVars.DEBUG_VERSION);
     }
 
     public void debugCtl(int i, int i2) {
@@ -211,12 +236,10 @@ public class VoIPController {
     private String getLogFilePath(long j) {
         File logsDir = VoIPHelper.getLogsDir();
         if (!BuildVars.DEBUG_VERSION) {
-            ArrayList arrayList = new ArrayList(Arrays.asList(logsDir.listFiles()));
+            ArrayList<File> arrayList = new ArrayList(Arrays.asList(logsDir.listFiles()));
             while (arrayList.size() > 20) {
                 File file = (File) arrayList.get(0);
-                Iterator it = arrayList.iterator();
-                while (it.hasNext()) {
-                    File file2 = (File) it.next();
+                for (File file2 : arrayList) {
                     if (file2.getName().endsWith(".log") && file2.lastModified() < file.lastModified()) {
                         file = file2;
                     }

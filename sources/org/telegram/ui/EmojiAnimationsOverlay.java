@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
@@ -187,7 +188,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws JSONException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         Integer printingStringType;
         if (i == NotificationCenter.diceStickersDidLoad) {
             if ("EmojiAnimations".equals((String) objArr[0])) {
@@ -307,9 +308,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                         messageObject = null;
                         photoImage = null;
                     }
-                    if (messageObject == null || messageObject.getId() != drawingObject.messageId) {
-                        i2++;
-                    } else {
+                    if (messageObject != null && messageObject.getId() == drawingObject.messageId) {
                         drawingObject.viewFound = true;
                         float x = this.listView.getX() + childAt.getX();
                         float y2 = this.listView.getY() + childAt.getY();
@@ -325,23 +324,27 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                             float f2 = filterWidth / 2.0f;
                             drawingObject.lastX = Utilities.clamp((x + chatMessageCell2.getTimeX()) - f2, AndroidUtilities.displaySize.x - filterWidth, 0.0f);
                             drawingObject.lastY = (y2 + chatMessageCell2.getTimeY()) - f2;
-                        } else if (drawingObject.isPremiumSticker) {
+                            break;
+                        }
+                        if (drawingObject.isPremiumSticker) {
                             drawingObject.lastX = x + photoImage.getImageX();
                             drawingObject.lastY = y2 + photoImage.getImageY();
-                        } else {
-                            float imageX = x + photoImage.getImageX();
-                            float imageY = y2 + photoImage.getImageY();
-                            if (drawingObject.isOut) {
-                                fDp = ((-photoImage.getImageWidth()) * 2.0f) + AndroidUtilities.dp(24.0f);
-                            } else {
-                                fDp = -AndroidUtilities.dp(24.0f);
-                            }
-                            float f3 = imageX + fDp;
-                            float imageWidth = imageY - photoImage.getImageWidth();
-                            drawingObject.lastX = f3;
-                            drawingObject.lastY = imageWidth;
+                            break;
                         }
+                        float imageX = x + photoImage.getImageX();
+                        float imageY = y2 + photoImage.getImageY();
+                        if (drawingObject.isOut) {
+                            fDp = ((-photoImage.getImageWidth()) * 2.0f) + AndroidUtilities.dp(24.0f);
+                        } else {
+                            fDp = -AndroidUtilities.dp(24.0f);
+                        }
+                        float f3 = imageX + fDp;
+                        float imageWidth = imageY - photoImage.getImageWidth();
+                        drawingObject.lastX = f3;
+                        drawingObject.lastY = imageWidth;
+                        break;
                     }
+                    i2++;
                 }
                 if (!drawingObject.viewFound || drawingObject.lastH + y < this.chatActivity.getChatListViewPadding() || y > this.listView.getMeasuredHeight() - this.chatActivity.blurredViewBottomOffset) {
                     drawingObject.removing = true;
@@ -623,7 +626,6 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         int iIntValue;
         TLRPC.VideoSize premiumStickerAnimation;
         Runnable runnable;
-        int i3 = i;
         int iAbs = i2;
         boolean z4 = false;
         boolean z5 = messageObject != null && messageObject.isPremiumSticker();
@@ -631,24 +633,23 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         if (z6 || z5 || supportedEmoji.contains(str)) {
             ArrayList arrayList = (ArrayList) this.emojiInteractionsStickersMap.get(str);
             if (z6 || ((arrayList != null && !arrayList.isEmpty()) || z5)) {
+                int i3 = 0;
                 int i4 = 0;
                 int i5 = 0;
-                int i6 = 0;
-                while (i4 < this.drawingObjects.size()) {
-                    if (((DrawingObject) this.drawingObjects.get(i4)).messageId == i3) {
-                        i5++;
-                        if (!z6 && (((DrawingObject) this.drawingObjects.get(i4)).imageReceiver.getLottieAnimation() == null || ((DrawingObject) this.drawingObjects.get(i4)).imageReceiver.getLottieAnimation().isGeneratingCache())) {
+                while (i3 < this.drawingObjects.size()) {
+                    if (((DrawingObject) this.drawingObjects.get(i3)).messageId == i) {
+                        i4++;
+                        if (!z6 && (((DrawingObject) this.drawingObjects.get(i3)).imageReceiver.getLottieAnimation() == null || ((DrawingObject) this.drawingObjects.get(i3)).imageReceiver.getLottieAnimation().isGeneratingCache())) {
                             return z4;
                         }
                     }
-                    if (((DrawingObject) this.drawingObjects.get(i4)).document != null && document != null && ((DrawingObject) this.drawingObjects.get(i4)).document.id == document.id) {
-                        i6++;
+                    if (((DrawingObject) this.drawingObjects.get(i3)).document != null && document != null && ((DrawingObject) this.drawingObjects.get(i3)).document.id == document.id) {
+                        i5++;
                     }
-                    i4++;
-                    i3 = i;
+                    i3++;
                     z4 = false;
                 }
-                if (z && z5 && i5 > 0) {
+                if (z && z5 && i4 > 0) {
                     if (Bulletin.getVisibleBulletin() != null && Bulletin.getVisibleBulletin().hash == messageObject.getId()) {
                         return false;
                     }
@@ -671,7 +672,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                     lambda$createDrawingObject$0(stickerSetByName, messageObject);
                     return false;
                 }
-                if (i5 >= 4) {
+                if (i4 >= 4) {
                     return false;
                 }
                 if (z6) {
@@ -684,17 +685,17 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                     if (j == 0) {
                         j = effect.effect_sticker_id;
                     }
-                    int i7 = 0;
+                    int i6 = 0;
                     while (true) {
-                        if (i7 >= availableEffects.documents.size()) {
+                        if (i6 >= availableEffects.documents.size()) {
                             document2 = null;
                             break;
                         }
-                        document2 = availableEffects.documents.get(i7);
+                        document2 = availableEffects.documents.get(i6);
                         if (document2 != null && document2.id == j) {
                             break;
                         }
-                        i7++;
+                        i6++;
                     }
                     if (document2 == null) {
                         return false;
@@ -717,13 +718,13 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                     if (messageObject2 != null && messageObject.isAnimatedAnimatedEmoji()) {
                         if (iAbs < 0 || iAbs > arrayList.size() - 1) {
                             ArrayList arrayList2 = new ArrayList();
-                            for (int i8 = 0; i8 < arrayList.size(); i8++) {
-                                TLRPC.Document document3 = (TLRPC.Document) arrayList.get(i8);
+                            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                                TLRPC.Document document3 = (TLRPC.Document) arrayList.get(i7);
                                 if (document3 != null) {
                                     HashMap map = this.preloaded;
                                     Boolean bool = map != null ? (Boolean) map.get(Long.valueOf(document3.id)) : null;
                                     if (bool != null && bool.booleanValue()) {
-                                        arrayList2.add(Integer.valueOf(i8));
+                                        arrayList2.add(Integer.valueOf(i7));
                                     }
                                 }
                             }
@@ -777,8 +778,8 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                     imageReceiver.setImage(forDocument, sb.toString(), null, "tgs", this.set, 1);
                     drawingObject.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                         @Override
-                        public void didSetImageBitmap(int i9, String str2, Drawable drawable) {
-                            ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i9, str2, drawable);
+                        public void didSetImageBitmap(int i8, String str2, Drawable drawable) {
+                            ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i8, str2, drawable);
                         }
 
                         @Override
@@ -805,7 +806,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                     }
                 } else {
                     int filterWidth2 = getFilterWidth();
-                    if (i6 > 0) {
+                    if (i5 > 0) {
                         Integer num2 = (Integer) this.lastAnimationIndex.get(Long.valueOf(document2.id));
                         int iIntValue3 = num2 == null ? 0 : num2.intValue();
                         this.lastAnimationIndex.put(Long.valueOf(document2.id), Integer.valueOf((iIntValue3 + 1) % 4));
@@ -834,8 +835,8 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                 drawingObject.imageReceiver.setParentView(this.contentLayout);
                 this.contentLayout.invalidate();
                 if (z && !z5 && UserConfig.getInstance(this.currentAccount).clientUserId != this.dialogId) {
-                    int i9 = this.lastTappedMsgId;
-                    if (i9 != 0 && i9 != i && (runnable = this.sentInteractionsRunnable) != null) {
+                    int i8 = this.lastTappedMsgId;
+                    if (i8 != 0 && i8 != i && (runnable = this.sentInteractionsRunnable) != null) {
                         AndroidUtilities.cancelRunOnUIThread(runnable);
                         this.sentInteractionsRunnable.run();
                     }
@@ -858,7 +859,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                     }
                     Runnable runnable3 = new Runnable() {
                         @Override
-                        public final void run() throws JSONException {
+                        public final void run() {
                             this.f$0.lambda$createDrawingObject$2();
                         }
                     };
@@ -884,7 +885,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         });
     }
 
-    public void lambda$createDrawingObject$2() throws JSONException {
+    public void lambda$createDrawingObject$2() {
         sendCurrentTaps();
         this.sentInteractionsRunnable = null;
     }
@@ -934,11 +935,75 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         this.chatActivity.showDialog(stickersAlert);
     }
 
-    public static java.lang.String unwrapEmoji(java.lang.String r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.EmojiAnimationsOverlay.unwrapEmoji(java.lang.String):java.lang.String");
+    public static String unwrapEmoji(String str) {
+        CharSequence charSequenceConcat;
+        int i;
+        if (str == null) {
+            return null;
+        }
+        int length = str.length();
+        int i2 = 0;
+        while (i2 < length) {
+            if (i2 < length - 1) {
+                if (charSequenceConcat.charAt(i2) == 55356) {
+                    int i3 = i2 + 1;
+                    if (charSequenceConcat.charAt(i3) < 57339 || charSequenceConcat.charAt(i3) > 57343) {
+                        charSequenceConcat = str;
+                        charSequenceConcat = str;
+                        charSequenceConcat = str;
+                        if (charSequenceConcat.charAt(i2) == 8205) {
+                            i = i2 + 1;
+                            if (charSequenceConcat.charAt(i) != 9792 || charSequenceConcat.charAt(i) == 9794) {
+                            }
+                            i2--;
+                        }
+                        charSequenceConcat = str;
+                        if (charSequenceConcat.charAt(i2) == 65039) {
+                            length--;
+                            charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 1, charSequenceConcat.length()));
+                            i2--;
+                        }
+                    }
+                    charSequenceConcat = str;
+                    length -= 2;
+                    charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 2, charSequenceConcat.length()));
+                    i2--;
+                } else {
+                    charSequenceConcat = str;
+                    charSequenceConcat = str;
+                    charSequenceConcat = str;
+                    if (charSequenceConcat.charAt(i2) == 8205) {
+                        i = i2 + 1;
+                        if (charSequenceConcat.charAt(i) != 9792) {
+                        }
+                        charSequenceConcat = str;
+                        length -= 2;
+                        charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 2, charSequenceConcat.length()));
+                        i2--;
+                    }
+                    charSequenceConcat = str;
+                    if (charSequenceConcat.charAt(i2) == 65039) {
+                        length--;
+                        charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 1, charSequenceConcat.length()));
+                        i2--;
+                    }
+                }
+            } else {
+                charSequenceConcat = str;
+                if (charSequenceConcat.charAt(i2) == 65039) {
+                    length--;
+                    charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i2), charSequenceConcat.subSequence(i2 + 1, charSequenceConcat.length()));
+                    i2--;
+                }
+            }
+            i2++;
+            charSequenceConcat = charSequenceConcat;
+        }
+        charSequenceConcat = str;
+        return charSequenceConcat.toString();
     }
 
-    private void sendCurrentTaps() throws JSONException {
+    private void sendCurrentTaps() {
         if (this.lastTappedMsgId == 0) {
             return;
         }
@@ -1009,7 +1074,6 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         float f;
         float width;
         boolean z;
-        int i;
         float f2;
         boolean z2;
         if (this.drawingObjects.size() > 12) {
@@ -1036,7 +1100,6 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         if (visibleReactionFromTL.emojicon != null) {
             z = z3;
             z2 = true;
-            i = iHashCode;
             float f3 = width;
             if (createDrawingObject(strUnwrapEmoji, iHashCode, null, null, -1, false, false, width, f, z)) {
                 if (!this.drawingObjects.isEmpty()) {
@@ -1060,20 +1123,19 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             f2 = f3;
         } else {
             z = z3;
-            i = iHashCode;
             f2 = width;
             z2 = true;
         }
         if (visibleReactionFromTL.documentId == 0 || storyReactionWidgetView.getAnimatedEmojiDrawable() == null) {
             return false;
         }
-        int i2 = 0;
-        for (int i3 = 0; i3 < this.drawingObjects.size(); i3++) {
-            if (((DrawingObject) this.drawingObjects.get(i3)).documentId == visibleReactionFromTL.documentId) {
-                i2++;
+        int i = 0;
+        for (int i2 = 0; i2 < this.drawingObjects.size(); i2++) {
+            if (((DrawingObject) this.drawingObjects.get(i2)).documentId == visibleReactionFromTL.documentId) {
+                i++;
             }
         }
-        if (i2 >= 4) {
+        if (i >= 4) {
             return false;
         }
         DrawingObject drawingObject2 = new DrawingObject();
@@ -1082,7 +1144,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
             drawingObject2.randomOffsetX = (f2 / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
             drawingObject2.randomOffsetY = (f / 4.0f) * ((this.random.nextInt() % 101) / 100.0f);
         }
-        drawingObject2.messageId = i;
+        drawingObject2.messageId = iHashCode;
         drawingObject2.document = null;
         drawingObject2.documentId = visibleReactionFromTL.documentId;
         drawingObject2.isOut = z;
@@ -1183,6 +1245,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         if (this.drawingObjects.isEmpty()) {
             return -1.0f;
         }
-        return ((DrawingObject) this.drawingObjects.get(r0.size() - 1)).getProgress();
+        ArrayList arrayList = this.drawingObjects;
+        return ((DrawingObject) arrayList.get(arrayList.size() - 1)).getProgress();
     }
 }

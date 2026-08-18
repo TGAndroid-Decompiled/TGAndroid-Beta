@@ -179,7 +179,10 @@ public class PersistColorPalette {
     public int getCurrentColor() {
         Integer numValueOf = (Integer) this.brushColor.get(Integer.valueOf(this.currentBrush));
         if (numValueOf == null) {
-            numValueOf = Integer.valueOf((int) this.mConfig.getLong("brush_color_" + this.currentBrush, this.currentBrush == -1 ? -1L : ((Brush) Brush.BRUSHES_LIST.get(r2)).getDefaultColor()));
+            SharedPreferences sharedPreferences = this.mConfig;
+            String str = "brush_color_" + this.currentBrush;
+            int i = this.currentBrush;
+            numValueOf = Integer.valueOf((int) sharedPreferences.getLong(str, i == -1 ? -1L : ((Brush) Brush.BRUSHES_LIST.get(i)).getDefaultColor()));
             this.brushColor.put(Integer.valueOf(this.currentBrush), numValueOf);
         }
         return numValueOf.intValue();
@@ -275,8 +278,9 @@ public class PersistColorPalette {
                 this.pendingChange.clear();
             }
             if (this.needSaveBrushColor) {
-                if (((Integer) this.brushColor.get(Integer.valueOf(this.currentBrush))) != null) {
-                    editorEdit.putLong("brush_color_" + this.currentBrush, r1.intValue());
+                Integer num = (Integer) this.brushColor.get(Integer.valueOf(this.currentBrush));
+                if (num != null) {
+                    editorEdit.putLong("brush_color_" + this.currentBrush, num.intValue());
                 }
                 this.needSaveBrushColor = false;
             }

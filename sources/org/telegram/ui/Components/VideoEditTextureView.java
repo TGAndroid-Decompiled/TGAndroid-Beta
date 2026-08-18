@@ -6,8 +6,6 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import android.view.TextureView;
-import org.telegram.ui.Components.BlurringShader;
-import org.telegram.ui.Components.FilterGLThread;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
 public class VideoEditTextureView extends TextureView implements TextureView.SurfaceTextureListener {

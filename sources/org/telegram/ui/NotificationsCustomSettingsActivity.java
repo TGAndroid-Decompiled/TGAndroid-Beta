@@ -6,7 +6,6 @@ import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -16,13 +15,16 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import androidx.collection.LongSparseArray;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,12 +33,17 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.function.ToDoubleFunction;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
@@ -44,6 +51,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -64,13 +72,15 @@ import org.telegram.ui.Cells.TextColorCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Cells.UserCell;
+import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.ChatNotificationsPopupWrapper;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmptyTextProgressView;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.NotificationsSettingsActivity;
-import org.telegram.ui.ProfileNotificationsActivity;
 
 public class NotificationsCustomSettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ListAdapter adapter;
@@ -469,7 +479,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             }
 
             @Override
-            public final void onItemClick(View view, int i, float f, float f2) throws Resources.NotFoundException {
+            public final void onItemClick(View view, int i, float f, float f2) {
                 this.f$0.lambda$createView$17(context, view, i, f, f2);
             }
         });
@@ -504,8 +514,738 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         return this.fragmentView;
     }
 
-    public void lambda$createView$17(android.content.Context r29, final android.view.View r30, final int r31, float r32, float r33) throws android.content.res.Resources.NotFoundException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsCustomSettingsActivity.lambda$createView$17(android.content.Context, android.view.View, int, float, float):void");
+    public void lambda$createView$17(Context context, final View view, final int i, float f, float f2) {
+        final NotificationsSettingsActivity.NotificationException notificationException;
+        final ArrayList arrayList;
+        final boolean z;
+        long j;
+        NotificationsSettingsActivity.NotificationException notificationException2;
+        boolean z2;
+        boolean z3;
+        boolean z4;
+        String str;
+        long j2;
+        final NotificationsSettingsActivity.NotificationException notificationException3;
+        final boolean z5;
+        boolean z6;
+        boolean z7;
+        boolean z8;
+        final NotificationsSettingsActivity.NotificationException notificationException4;
+        if (getParentActivity() == null) {
+            return;
+        }
+        ItemInner itemInner = (this.listView.getAdapter() != this.adapter || i < 0 || i >= this.items.size()) ? null : (ItemInner) this.items.get(i);
+        if (itemInner != null && itemInner.viewType == 8) {
+            this.expanded = !this.expanded;
+            updateRows(true);
+            return;
+        }
+        int i2 = this.currentType;
+        if (i2 == 3 && itemInner != null && (notificationException4 = itemInner.exception) != null) {
+            ItemOptions.makeOptions(this, view).setGravity(3).addIf(notificationException4.notify <= 0 || notificationException4.auto, R.drawable.msg_mute, (CharSequence) LocaleController.getString(R.string.NotificationsStoryMute), false, new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$createView$1(notificationException4, view, i);
+                }
+            }).addIf(notificationException4.notify > 0 || notificationException4.auto, R.drawable.msg_unmute, (CharSequence) LocaleController.getString(R.string.NotificationsStoryUnmute), false, new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$createView$2(notificationException4, view, i);
+                }
+            }).addIf(!notificationException4.auto, R.drawable.msg_delete, (CharSequence) LocaleController.getString("DeleteException", R.string.DeleteException), true, new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$createView$3(notificationException4, view, i);
+                }
+            }).setScrimViewBackground(this.listView.getClipBackground(view)).show();
+            return;
+        }
+        if (i2 == 3) {
+            RecyclerView.Adapter adapter = this.listView.getAdapter();
+            SearchAdapter searchAdapter = this.searchAdapter;
+            if (adapter == searchAdapter) {
+                Object object = searchAdapter.getObject(i);
+                if (object instanceof NotificationsSettingsActivity.NotificationException) {
+                    notificationException3 = (NotificationsSettingsActivity.NotificationException) object;
+                } else {
+                    boolean z9 = object instanceof TLRPC.User;
+                    if (z9) {
+                        j2 = ((TLRPC.User) object).id;
+                    } else {
+                        j2 = -((TLRPC.Chat) object).id;
+                    }
+                    if (this.exceptionsDict.containsKey(Long.valueOf(j2))) {
+                        notificationException3 = (NotificationsSettingsActivity.NotificationException) this.exceptionsDict.get(Long.valueOf(j2));
+                    } else {
+                        NotificationsSettingsActivity.NotificationException notificationException5 = new NotificationsSettingsActivity.NotificationException();
+                        notificationException5.story = true;
+                        notificationException5.did = j2;
+                        if (z9) {
+                            notificationException5.did = ((TLRPC.User) object).id;
+                        } else {
+                            notificationException5.did = -((TLRPC.Chat) object).id;
+                        }
+                        notificationException3 = notificationException5;
+                        z5 = true;
+                    }
+                    if (notificationException3 == null) {
+                        return;
+                    }
+                    ItemOptions gravity = ItemOptions.makeOptions(this, view).setGravity(3);
+                    if (notificationException3.notify > 0 || notificationException3.auto) {
+                        z6 = true;
+                    } else {
+                        z6 = false;
+                    }
+                    ItemOptions itemOptionsAddIf = gravity.addIf(z6, R.drawable.msg_mute, (CharSequence) LocaleController.getString(R.string.NotificationsStoryMute), false, new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$createView$4(notificationException3, view, z5);
+                        }
+                    });
+                    if (notificationException3.notify <= 0 || notificationException3.auto) {
+                        z7 = true;
+                    } else {
+                        z7 = false;
+                    }
+                    ItemOptions itemOptionsAddIf2 = itemOptionsAddIf.addIf(z7, R.drawable.msg_unmute, (CharSequence) LocaleController.getString(R.string.NotificationsStoryUnmute), false, new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$createView$5(notificationException3, view, z5);
+                        }
+                    });
+                    if (!z5 || notificationException3.auto) {
+                        z8 = false;
+                    } else {
+                        z8 = true;
+                    }
+                    itemOptionsAddIf2.addIf(z8, R.drawable.msg_delete, (CharSequence) LocaleController.getString("DeleteException", R.string.DeleteException), true, new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$createView$6(notificationException3, view, i);
+                        }
+                    }).setScrimViewBackground(this.listView.getClipBackground(view)).show();
+                    return;
+                }
+                z5 = false;
+                if (notificationException3 == null) {
+                    return;
+                }
+                ItemOptions gravity2 = ItemOptions.makeOptions(this, view).setGravity(3);
+                if (notificationException3.notify > 0) {
+                    z6 = true;
+                } else {
+                    z6 = true;
+                }
+                ItemOptions itemOptionsAddIf3 = gravity2.addIf(z6, R.drawable.msg_mute, (CharSequence) LocaleController.getString(R.string.NotificationsStoryMute), false, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$createView$4(notificationException3, view, z5);
+                    }
+                });
+                if (notificationException3.notify <= 0) {
+                    z7 = true;
+                } else {
+                    z7 = true;
+                }
+                ItemOptions itemOptionsAddIf4 = itemOptionsAddIf3.addIf(z7, R.drawable.msg_unmute, (CharSequence) LocaleController.getString(R.string.NotificationsStoryUnmute), false, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$createView$5(notificationException3, view, z5);
+                    }
+                });
+                if (z5) {
+                    z8 = false;
+                } else {
+                    z8 = false;
+                }
+                itemOptionsAddIf4.addIf(z8, R.drawable.msg_delete, (CharSequence) LocaleController.getString("DeleteException", R.string.DeleteException), true, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$createView$6(notificationException3, view, i);
+                    }
+                }).setScrimViewBackground(this.listView.getClipBackground(view)).show();
+                return;
+            }
+        }
+        if (this.listView.getAdapter() == this.searchAdapter || !(itemInner == null || itemInner.exception == null)) {
+            RecyclerView.Adapter adapter2 = this.listView.getAdapter();
+            SearchAdapter searchAdapter2 = this.searchAdapter;
+            if (adapter2 == searchAdapter2) {
+                Object object2 = searchAdapter2.getObject(i);
+                if (!(object2 instanceof NotificationsSettingsActivity.NotificationException)) {
+                    boolean z10 = object2 instanceof TLRPC.User;
+                    if (z10) {
+                        j = ((TLRPC.User) object2).id;
+                    } else {
+                        j = -((TLRPC.Chat) object2).id;
+                    }
+                    if (this.exceptionsDict.containsKey(Long.valueOf(j))) {
+                        notificationException2 = (NotificationsSettingsActivity.NotificationException) this.exceptionsDict.get(Long.valueOf(j));
+                        z2 = false;
+                    } else {
+                        NotificationsSettingsActivity.NotificationException notificationException6 = new NotificationsSettingsActivity.NotificationException();
+                        notificationException6.did = j;
+                        if (z10) {
+                            notificationException6.did = ((TLRPC.User) object2).id;
+                        } else {
+                            notificationException6.did = -((TLRPC.Chat) object2).id;
+                        }
+                        notificationException2 = notificationException6;
+                        z2 = true;
+                    }
+                    notificationException = notificationException2;
+                    z = z2;
+                    arrayList = this.exceptions;
+                } else {
+                    arrayList = this.searchAdapter.searchResult;
+                    notificationException = (NotificationsSettingsActivity.NotificationException) object2;
+                }
+                if (notificationException == null) {
+                    return;
+                }
+                final long j3 = notificationException.did;
+                final boolean zIsGlobalNotificationsEnabled = NotificationsController.getInstance(this.currentAccount).isGlobalNotificationsEnabled(j3, false, false);
+                ChatNotificationsPopupWrapper chatNotificationsPopupWrapper = new ChatNotificationsPopupWrapper(context, this.currentAccount, null, true, true, new ChatNotificationsPopupWrapper.Callback() {
+                    @Override
+                    public void dismiss() {
+                        ChatNotificationsPopupWrapper.Callback.CC.$default$dismiss(this);
+                    }
+
+                    @Override
+                    public void openExceptions() {
+                        ChatNotificationsPopupWrapper.Callback.CC.$default$openExceptions(this);
+                    }
+
+                    @Override
+                    public void toggleSound() {
+                        String sharedPrefKey = NotificationsController.getSharedPrefKey(j3, NotificationsCustomSettingsActivity.this.topicId);
+                        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) NotificationsCustomSettingsActivity.this).currentAccount);
+                        boolean z11 = notificationsSettings.getBoolean("sound_enabled_" + sharedPrefKey, true);
+                        boolean z12 = !z11;
+                        notificationsSettings.edit().putBoolean("sound_enabled_" + sharedPrefKey, z12).apply();
+                        if (BulletinFactory.canShowBulletin(NotificationsCustomSettingsActivity.this)) {
+                            NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = NotificationsCustomSettingsActivity.this;
+                            BulletinFactory.createSoundEnabledBulletin(notificationsCustomSettingsActivity, z11 ? 1 : 0, notificationsCustomSettingsActivity.getResourceProvider()).show();
+                        }
+                    }
+
+                    @Override
+                    public void muteFor(int i3) {
+                        if (i3 != 0) {
+                            NotificationsCustomSettingsActivity.this.getNotificationsController().muteUntil(j3, NotificationsCustomSettingsActivity.this.topicId, i3);
+                            if (BulletinFactory.canShowBulletin(NotificationsCustomSettingsActivity.this)) {
+                                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = NotificationsCustomSettingsActivity.this;
+                                BulletinFactory.createMuteBulletin(notificationsCustomSettingsActivity, 5, i3, notificationsCustomSettingsActivity.getResourceProvider()).show();
+                            }
+                        } else {
+                            if (NotificationsCustomSettingsActivity.this.getMessagesController().isDialogMuted(j3, NotificationsCustomSettingsActivity.this.topicId)) {
+                                toggleMute();
+                            }
+                            if (BulletinFactory.canShowBulletin(NotificationsCustomSettingsActivity.this)) {
+                                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity2 = NotificationsCustomSettingsActivity.this;
+                                BulletinFactory.createMuteBulletin(notificationsCustomSettingsActivity2, 4, i3, notificationsCustomSettingsActivity2.getResourceProvider()).show();
+                            }
+                        }
+                        update();
+                    }
+
+                    @Override
+                    public void showCustomize() {
+                        if (j3 != 0) {
+                            Bundle bundle = new Bundle();
+                            bundle.putLong("dialog_id", j3);
+                            ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle);
+                            profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
+                                @Override
+                                public void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException7) {
+                                }
+
+                                @Override
+                                public void didRemoveException(long j4) {
+                                    setDefault();
+                                }
+                            });
+                            NotificationsCustomSettingsActivity.this.presentFragment(profileNotificationsActivity);
+                        }
+                    }
+
+                    @Override
+                    public void toggleMute() {
+                        NotificationsCustomSettingsActivity.this.getNotificationsController().muteDialog(j3, NotificationsCustomSettingsActivity.this.topicId, !NotificationsCustomSettingsActivity.this.getMessagesController().isDialogMuted(j3, NotificationsCustomSettingsActivity.this.topicId));
+                        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = NotificationsCustomSettingsActivity.this;
+                        BulletinFactory.createMuteBulletin(notificationsCustomSettingsActivity, notificationsCustomSettingsActivity.getMessagesController().isDialogMuted(j3, NotificationsCustomSettingsActivity.this.topicId), null).show();
+                        update();
+                    }
+
+                    private void update() {
+                        if (NotificationsCustomSettingsActivity.this.getMessagesController().isDialogMuted(j3, NotificationsCustomSettingsActivity.this.topicId) != zIsGlobalNotificationsEnabled) {
+                            setDefault();
+                        } else {
+                            setNotDefault();
+                        }
+                    }
+
+                    private void setNotDefault() {
+                        SharedPreferences notificationsSettings = NotificationsCustomSettingsActivity.this.getNotificationsSettings();
+                        notificationException.hasCustom = notificationsSettings.getBoolean("custom_" + notificationException.did, false);
+                        notificationException.notify = notificationsSettings.getInt("notify2_" + notificationException.did, 0);
+                        if (notificationException.notify != 0) {
+                            int i3 = notificationsSettings.getInt("notifyuntil_" + notificationException.did, -1);
+                            if (i3 != -1) {
+                                notificationException.muteUntil = i3;
+                            }
+                        }
+                        if (z) {
+                            NotificationsCustomSettingsActivity.this.exceptions.add(notificationException);
+                            NotificationsCustomSettingsActivity.this.exceptionsDict.put(Long.valueOf(notificationException.did), notificationException);
+                            NotificationsCustomSettingsActivity.this.updateRows(true);
+                        } else {
+                            NotificationsCustomSettingsActivity.this.listView.getAdapter().notifyItemChanged(i);
+                        }
+                        ((BaseFragment) NotificationsCustomSettingsActivity.this).actionBar.closeSearchField();
+                    }
+
+                    public void setDefault() {
+                        int iIndexOf;
+                        if (z) {
+                            return;
+                        }
+                        if (arrayList != NotificationsCustomSettingsActivity.this.exceptions && (iIndexOf = NotificationsCustomSettingsActivity.this.exceptions.indexOf(notificationException)) >= 0) {
+                            NotificationsCustomSettingsActivity.this.exceptions.remove(iIndexOf);
+                            NotificationsCustomSettingsActivity.this.exceptionsDict.remove(Long.valueOf(notificationException.did));
+                        }
+                        arrayList.remove(notificationException);
+                        if (arrayList == NotificationsCustomSettingsActivity.this.exceptions) {
+                            NotificationsCustomSettingsActivity.this.updateRows(true);
+                            NotificationsCustomSettingsActivity.this.checkRowsEnabled();
+                        } else {
+                            NotificationsCustomSettingsActivity.this.updateRows(true);
+                            NotificationsCustomSettingsActivity.this.searchAdapter.notifyItemChanged(i);
+                        }
+                        ((BaseFragment) NotificationsCustomSettingsActivity.this).actionBar.closeSearchField();
+                    }
+                }, getResourceProvider());
+                chatNotificationsPopupWrapper.lambda$update$11(j3, this.topicId, null);
+                chatNotificationsPopupWrapper.showAsOptions(this, view, f, f2, false);
+                return;
+            }
+            NotificationsSettingsActivity.NotificationException notificationException7 = itemInner.exception;
+            if (notificationException7.auto) {
+                return;
+            }
+            notificationException = notificationException7;
+            arrayList = this.exceptions;
+            z = false;
+            if (notificationException == null) {
+                return;
+            }
+            final long j4 = notificationException.did;
+            final boolean zIsGlobalNotificationsEnabled2 = NotificationsController.getInstance(this.currentAccount).isGlobalNotificationsEnabled(j4, false, false);
+            ChatNotificationsPopupWrapper chatNotificationsPopupWrapper2 = new ChatNotificationsPopupWrapper(context, this.currentAccount, null, true, true, new ChatNotificationsPopupWrapper.Callback() {
+                @Override
+                public void dismiss() {
+                    ChatNotificationsPopupWrapper.Callback.CC.$default$dismiss(this);
+                }
+
+                @Override
+                public void openExceptions() {
+                    ChatNotificationsPopupWrapper.Callback.CC.$default$openExceptions(this);
+                }
+
+                @Override
+                public void toggleSound() {
+                    String sharedPrefKey = NotificationsController.getSharedPrefKey(j4, NotificationsCustomSettingsActivity.this.topicId);
+                    SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) NotificationsCustomSettingsActivity.this).currentAccount);
+                    boolean z11 = notificationsSettings.getBoolean("sound_enabled_" + sharedPrefKey, true);
+                    boolean z12 = !z11;
+                    notificationsSettings.edit().putBoolean("sound_enabled_" + sharedPrefKey, z12).apply();
+                    if (BulletinFactory.canShowBulletin(NotificationsCustomSettingsActivity.this)) {
+                        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = NotificationsCustomSettingsActivity.this;
+                        BulletinFactory.createSoundEnabledBulletin(notificationsCustomSettingsActivity, z11 ? 1 : 0, notificationsCustomSettingsActivity.getResourceProvider()).show();
+                    }
+                }
+
+                @Override
+                public void muteFor(int i3) {
+                    if (i3 != 0) {
+                        NotificationsCustomSettingsActivity.this.getNotificationsController().muteUntil(j4, NotificationsCustomSettingsActivity.this.topicId, i3);
+                        if (BulletinFactory.canShowBulletin(NotificationsCustomSettingsActivity.this)) {
+                            NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = NotificationsCustomSettingsActivity.this;
+                            BulletinFactory.createMuteBulletin(notificationsCustomSettingsActivity, 5, i3, notificationsCustomSettingsActivity.getResourceProvider()).show();
+                        }
+                    } else {
+                        if (NotificationsCustomSettingsActivity.this.getMessagesController().isDialogMuted(j4, NotificationsCustomSettingsActivity.this.topicId)) {
+                            toggleMute();
+                        }
+                        if (BulletinFactory.canShowBulletin(NotificationsCustomSettingsActivity.this)) {
+                            NotificationsCustomSettingsActivity notificationsCustomSettingsActivity2 = NotificationsCustomSettingsActivity.this;
+                            BulletinFactory.createMuteBulletin(notificationsCustomSettingsActivity2, 4, i3, notificationsCustomSettingsActivity2.getResourceProvider()).show();
+                        }
+                    }
+                    update();
+                }
+
+                @Override
+                public void showCustomize() {
+                    if (j4 != 0) {
+                        Bundle bundle = new Bundle();
+                        bundle.putLong("dialog_id", j4);
+                        ProfileNotificationsActivity profileNotificationsActivity = new ProfileNotificationsActivity(bundle);
+                        profileNotificationsActivity.setDelegate(new ProfileNotificationsActivity.ProfileNotificationsActivityDelegate() {
+                            @Override
+                            public void didCreateNewException(NotificationsSettingsActivity.NotificationException notificationException8) {
+                            }
+
+                            @Override
+                            public void didRemoveException(long j5) {
+                                setDefault();
+                            }
+                        });
+                        NotificationsCustomSettingsActivity.this.presentFragment(profileNotificationsActivity);
+                    }
+                }
+
+                @Override
+                public void toggleMute() {
+                    NotificationsCustomSettingsActivity.this.getNotificationsController().muteDialog(j4, NotificationsCustomSettingsActivity.this.topicId, !NotificationsCustomSettingsActivity.this.getMessagesController().isDialogMuted(j4, NotificationsCustomSettingsActivity.this.topicId));
+                    NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = NotificationsCustomSettingsActivity.this;
+                    BulletinFactory.createMuteBulletin(notificationsCustomSettingsActivity, notificationsCustomSettingsActivity.getMessagesController().isDialogMuted(j4, NotificationsCustomSettingsActivity.this.topicId), null).show();
+                    update();
+                }
+
+                private void update() {
+                    if (NotificationsCustomSettingsActivity.this.getMessagesController().isDialogMuted(j4, NotificationsCustomSettingsActivity.this.topicId) != zIsGlobalNotificationsEnabled2) {
+                        setDefault();
+                    } else {
+                        setNotDefault();
+                    }
+                }
+
+                private void setNotDefault() {
+                    SharedPreferences notificationsSettings = NotificationsCustomSettingsActivity.this.getNotificationsSettings();
+                    notificationException.hasCustom = notificationsSettings.getBoolean("custom_" + notificationException.did, false);
+                    notificationException.notify = notificationsSettings.getInt("notify2_" + notificationException.did, 0);
+                    if (notificationException.notify != 0) {
+                        int i3 = notificationsSettings.getInt("notifyuntil_" + notificationException.did, -1);
+                        if (i3 != -1) {
+                            notificationException.muteUntil = i3;
+                        }
+                    }
+                    if (z) {
+                        NotificationsCustomSettingsActivity.this.exceptions.add(notificationException);
+                        NotificationsCustomSettingsActivity.this.exceptionsDict.put(Long.valueOf(notificationException.did), notificationException);
+                        NotificationsCustomSettingsActivity.this.updateRows(true);
+                    } else {
+                        NotificationsCustomSettingsActivity.this.listView.getAdapter().notifyItemChanged(i);
+                    }
+                    ((BaseFragment) NotificationsCustomSettingsActivity.this).actionBar.closeSearchField();
+                }
+
+                public void setDefault() {
+                    int iIndexOf;
+                    if (z) {
+                        return;
+                    }
+                    if (arrayList != NotificationsCustomSettingsActivity.this.exceptions && (iIndexOf = NotificationsCustomSettingsActivity.this.exceptions.indexOf(notificationException)) >= 0) {
+                        NotificationsCustomSettingsActivity.this.exceptions.remove(iIndexOf);
+                        NotificationsCustomSettingsActivity.this.exceptionsDict.remove(Long.valueOf(notificationException.did));
+                    }
+                    arrayList.remove(notificationException);
+                    if (arrayList == NotificationsCustomSettingsActivity.this.exceptions) {
+                        NotificationsCustomSettingsActivity.this.updateRows(true);
+                        NotificationsCustomSettingsActivity.this.checkRowsEnabled();
+                    } else {
+                        NotificationsCustomSettingsActivity.this.updateRows(true);
+                        NotificationsCustomSettingsActivity.this.searchAdapter.notifyItemChanged(i);
+                    }
+                    ((BaseFragment) NotificationsCustomSettingsActivity.this).actionBar.closeSearchField();
+                }
+            }, getResourceProvider());
+            chatNotificationsPopupWrapper2.lambda$update$11(j4, this.topicId, null);
+            chatNotificationsPopupWrapper2.showAsOptions(this, view, f, f2, false);
+            return;
+        }
+        if (itemInner == null) {
+            return;
+        }
+        int i3 = itemInner.id;
+        if (i3 == 6) {
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("onlySelect", true);
+            bundle.putBoolean("checkCanWrite", false);
+            int i4 = this.currentType;
+            if (i4 == 0) {
+                bundle.putInt("dialogsType", 6);
+            } else if (i4 == 2) {
+                bundle.putInt("dialogsType", 5);
+            } else {
+                bundle.putInt("dialogsType", 4);
+            }
+            DialogsActivity dialogsActivity = new DialogsActivity(bundle);
+            dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
+                @Override
+                public boolean canSelectStories() {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                }
+
+                @Override
+                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList2, CharSequence charSequence, boolean z11, boolean z12, int i5, int i6, TopicsFragment topicsFragment) {
+                    return this.f$0.lambda$createView$8(dialogsActivity2, arrayList2, charSequence, z11, z12, i5, i6, topicsFragment);
+                }
+
+                @Override
+                public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                    return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
+                }
+            });
+            presentFragment(dialogsActivity);
+            return;
+        }
+        if (i3 == 7) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            builder.setTitle(LocaleController.getString("NotificationsDeleteAllExceptionTitle", R.string.NotificationsDeleteAllExceptionTitle));
+            builder.setMessage(LocaleController.getString("NotificationsDeleteAllExceptionAlert", R.string.NotificationsDeleteAllExceptionAlert));
+            builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i5) {
+                    this.f$0.lambda$createView$9(alertDialog, i5);
+                }
+            });
+            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+            AlertDialog alertDialogCreate = builder.create();
+            showDialog(alertDialogCreate);
+            TextView textView = (TextView) alertDialogCreate.getButton(-1);
+            if (textView != null) {
+                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+                return;
+            }
+            return;
+        }
+        if (i3 == 100 || i3 == 101) {
+            boolean zIsGlobalNotificationsEnabled3 = getNotificationsController().isGlobalNotificationsEnabled(this.currentType);
+            this.listView.findViewHolderForAdapterPosition(i);
+            int i5 = this.currentType;
+            if (i5 != 3) {
+                if (!zIsGlobalNotificationsEnabled3) {
+                    getNotificationsController().setGlobalNotificationsEnabled(this.currentType, 0);
+                    updateRows(true);
+                    return;
+                } else {
+                    AlertsCreator.showCustomNotificationsDialog(this, 0L, 0, i5, this.exceptions, this.autoExceptions, this.currentAccount, new MessagesStorage.IntCallback() {
+                        @Override
+                        public final void run(int i6) {
+                            this.f$0.lambda$createView$10(i6);
+                        }
+                    });
+                    return;
+                }
+            }
+            SharedPreferences.Editor editorEdit = getNotificationsSettings().edit();
+            Boolean bool = this.storiesEnabled;
+            boolean z11 = bool != null && bool.booleanValue();
+            if (this.storiesAuto && z11) {
+                editorEdit.remove("EnableAllStories");
+                this.storiesEnabled = null;
+            } else {
+                boolean z12 = !z11;
+                editorEdit.putBoolean("EnableAllStories", z12);
+                this.storiesEnabled = Boolean.valueOf(z12);
+            }
+            editorEdit.apply();
+            getNotificationsController().updateServerNotificationsSettings(this.currentType);
+            updateRows(true);
+            if (this.showAutoExceptions != (this.storiesEnabled == null)) {
+                toggleShowAutoExceptions();
+            }
+            checkRowsEnabled();
+            return;
+        }
+        if (i3 == 3) {
+            if (view.isEnabled()) {
+                try {
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putInt("type", this.currentType);
+                    presentFragment(new NotificationsSoundActivity(bundle2, getResourceProvider()));
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            }
+            return;
+        }
+        if (itemInner.viewType == 3) {
+            if (view.isEnabled()) {
+                showDialog(AlertsCreator.createColorSelectDialog(getParentActivity(), 0L, 0, this.currentType, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$createView$11(view, i);
+                    }
+                }));
+                return;
+            }
+            return;
+        }
+        if (i3 == 2) {
+            if (view.isEnabled()) {
+                showDialog(AlertsCreator.createPopupSelectDialog(getParentActivity(), this.currentType, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$createView$12(view, i);
+                    }
+                }));
+                return;
+            }
+            return;
+        }
+        if (i3 == 1) {
+            if (view.isEnabled()) {
+                int i6 = this.currentType;
+                if (i6 == 1) {
+                    str = "vibrate_messages";
+                } else if (i6 == 0) {
+                    str = "vibrate_group";
+                } else if (i6 == 3) {
+                    str = "vibrate_stories";
+                } else if (i6 == 4 || i6 == 5) {
+                    str = "vibrate_react";
+                } else {
+                    str = "vibrate_channel";
+                }
+                final String str2 = str;
+                showDialog(AlertsCreator.createVibrationSelectDialog(getParentActivity(), 0L, 0L, str2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$createView$13(view, str2, i);
+                    }
+                }));
+                return;
+            }
+            return;
+        }
+        if (i3 == 4) {
+            if (view.isEnabled()) {
+                showDialog(AlertsCreator.createPrioritySelectDialog(getParentActivity(), 0L, 0, this.currentType, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$createView$14(view, i);
+                    }
+                }));
+                return;
+            }
+            return;
+        }
+        if (i3 == 102) {
+            if (view.isEnabled()) {
+                SharedPreferences notificationsSettings = getNotificationsSettings();
+                if (notificationsSettings.getBoolean("EnableAllStories", false)) {
+                    return;
+                }
+                SharedPreferences.Editor editorEdit2 = notificationsSettings.edit();
+                if (this.storiesEnabled != null) {
+                    editorEdit2.remove("EnableAllStories");
+                    this.storiesEnabled = null;
+                    this.storiesAuto = true;
+                    itemInner.checked = true;
+                } else {
+                    editorEdit2.putBoolean("EnableAllStories", false);
+                    this.storiesEnabled = Boolean.FALSE;
+                    this.storiesAuto = false;
+                    itemInner.checked = false;
+                }
+                if (view instanceof TextCheckCell) {
+                    ((TextCheckCell) view).setChecked(this.storiesAuto);
+                }
+                editorEdit2.commit();
+                if (this.storiesAuto != this.showAutoExceptions) {
+                    toggleShowAutoExceptions();
+                }
+                getNotificationsController().updateServerNotificationsSettings(this.currentType);
+                checkRowsEnabled();
+                return;
+            }
+            return;
+        }
+        if (i3 == 0) {
+            if (view.isEnabled()) {
+                SharedPreferences notificationsSettings2 = getNotificationsSettings();
+                SharedPreferences.Editor editorEdit3 = notificationsSettings2.edit();
+                int i7 = this.currentType;
+                if (i7 == 1) {
+                    z4 = notificationsSettings2.getBoolean("EnablePreviewAll", true);
+                    editorEdit3.putBoolean("EnablePreviewAll", !z4);
+                } else if (i7 == 0) {
+                    z4 = notificationsSettings2.getBoolean("EnablePreviewGroup", true);
+                    editorEdit3.putBoolean("EnablePreviewGroup", !z4);
+                } else if (i7 == 3) {
+                    z4 = !notificationsSettings2.getBoolean("EnableHideStoriesSenders", false);
+                    editorEdit3.putBoolean("EnableHideStoriesSenders", z4);
+                } else if (i7 == 4 || i7 == 5) {
+                    z4 = notificationsSettings2.getBoolean("EnableReactionsPreview", true);
+                    editorEdit3.putBoolean("EnableReactionsPreview", !z4);
+                } else {
+                    z4 = notificationsSettings2.getBoolean("EnablePreviewChannel", true);
+                    editorEdit3.putBoolean("EnablePreviewChannel", !z4);
+                }
+                editorEdit3.commit();
+                getNotificationsController().updateServerNotificationsSettings(this.currentType);
+                if (view instanceof TextCheckCell) {
+                    ((TextCheckCell) view).setChecked(!z4);
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        if (i3 == 103 || i3 == 104) {
+            boolean z13 = !LocaleController.isRTL ? f <= ((float) (view.getMeasuredWidth() - AndroidUtilities.dp(76.0f))) : f >= ((float) AndroidUtilities.dp(76.0f));
+            final SharedPreferences notificationsSettings3 = getNotificationsSettings();
+            if (z13) {
+                String str3 = itemInner.id == 103 ? "EnableReactionsMessages" : "EnableReactionsStories";
+                SharedPreferences.Editor editorEdit4 = notificationsSettings3.edit();
+                editorEdit4.putBoolean(str3, !notificationsSettings3.getBoolean(str3, true));
+                editorEdit4.apply();
+                updateRows(true);
+                getNotificationsController().updateServerNotificationsSettings(this.currentType);
+                return;
+            }
+            final String str4 = itemInner.id == 103 ? "EnableReactionsMessagesContacts" : "EnableReactionsStoriesContacts";
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(1);
+            final boolean[] zArr = {notificationsSettings3.getBoolean(str4, false)};
+            final RadioColorCell[] radioColorCellArr = new RadioColorCell[2];
+            final int i8 = 0;
+            while (i8 < 2) {
+                RadioColorCell radioColorCell = new RadioColorCell(context, getResourceProvider());
+                radioColorCellArr[i8] = radioColorCell;
+                radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+                radioColorCellArr[i8].setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
+                RadioColorCell radioColorCell2 = radioColorCellArr[i8];
+                String string = LocaleController.getString(i8 == 0 ? R.string.NotifyAboutReactionsFromEveryone : R.string.NotifyAboutReactionsFromContacts);
+                if (i8 == 0) {
+                    z3 = !zArr[0];
+                } else {
+                    z3 = zArr[0];
+                }
+                radioColorCell2.setTextAndValue(string, z3);
+                radioColorCellArr[i8].setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
+                linearLayout.addView(radioColorCellArr[i8]);
+                radioColorCellArr[i8].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view2) {
+                        NotificationsCustomSettingsActivity.lambda$createView$15(zArr, i8, radioColorCellArr, view2);
+                    }
+                });
+                i8++;
+            }
+            showDialog(new AlertDialog.Builder(getContext(), this.resourceProvider).setTitle(LocaleController.getString(R.string.NotifyAboutReactionsFrom)).setView(linearLayout).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i9) {
+                    this.f$0.lambda$createView$16(notificationsSettings3, str4, zArr, alertDialog, i9);
+                }
+            }).create());
+        }
     }
 
     public void lambda$createView$1(NotificationsSettingsActivity.NotificationException notificationException, View view, int i) {
@@ -745,14 +1485,497 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         }
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$loadExceptions$20(arrayList);
             }
         });
     }
 
-    public void lambda$loadExceptions$20(java.util.ArrayList r28) throws java.lang.NumberFormatException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsCustomSettingsActivity.lambda$loadExceptions$20(java.util.ArrayList):void");
+    public void lambda$loadExceptions$20(ArrayList arrayList) {
+        boolean z;
+        final ArrayList<TLRPC.Chat> arrayList2;
+        ArrayList<TLRPC.User> arrayList3;
+        ArrayList<TLRPC.EncryptedChat> arrayList4;
+        int size;
+        int i;
+        ArrayList arrayList5;
+        int size2;
+        int i2;
+        int size3;
+        int i3;
+        int size4;
+        int i4;
+        TLRPC.User user;
+        TLRPC.Chat chat;
+        ArrayList arrayList6;
+        ArrayList arrayList7;
+        ArrayList arrayList8;
+        final ArrayList arrayList9 = new ArrayList();
+        ArrayList arrayList10 = new ArrayList();
+        ArrayList arrayList11 = new ArrayList();
+        ArrayList arrayList12 = new ArrayList();
+        ArrayList arrayList13 = new ArrayList();
+        LongSparseArray longSparseArray = new LongSparseArray();
+        ArrayList<Long> arrayList14 = new ArrayList<>();
+        ArrayList arrayList15 = new ArrayList();
+        ArrayList arrayList16 = new ArrayList();
+        ArrayList<TLRPC.User> arrayList17 = new ArrayList<>();
+        ArrayList<TLRPC.Chat> arrayList18 = new ArrayList<>();
+        ArrayList<TLRPC.EncryptedChat> arrayList19 = new ArrayList<>();
+        long j = getUserConfig().clientUserId;
+        SharedPreferences notificationsSettings = getNotificationsSettings();
+        Map<String, ?> all = notificationsSettings.getAll();
+        Iterator<Map.Entry<String, ?>> it = all.entrySet().iterator();
+        while (true) {
+            arrayList17 = arrayList17;
+            if (!it.hasNext()) {
+                break;
+            }
+            Map.Entry<String, ?> next = it.next();
+            String key = next.getKey();
+            arrayList19 = arrayList19;
+            if (key.startsWith("notify2_")) {
+                ArrayList arrayList20 = arrayList12;
+                String strReplace = key.replace("notify2_", "");
+                Long l = Utilities.parseLong(strReplace);
+                ArrayList arrayList21 = arrayList10;
+                ArrayList arrayList22 = arrayList11;
+                long jLongValue = l.longValue();
+                if (jLongValue == 0 || jLongValue == j) {
+                    arrayList10 = arrayList21;
+                    arrayList12 = arrayList20;
+                    arrayList11 = arrayList22;
+                } else {
+                    NotificationsSettingsActivity.NotificationException notificationException = new NotificationsSettingsActivity.NotificationException();
+                    notificationException.did = jLongValue;
+                    long j2 = j;
+                    notificationException.hasCustom = notificationsSettings.getBoolean("custom_" + jLongValue, false);
+                    int iIntValue = ((Integer) next.getValue()).intValue();
+                    notificationException.notify = iIntValue;
+                    if (iIntValue != 0) {
+                        Integer num = (Integer) all.get("notifyuntil_" + strReplace);
+                        if (num != null) {
+                            notificationException.muteUntil = num.intValue();
+                        }
+                    }
+                    if (DialogObject.isEncryptedDialog(jLongValue)) {
+                        int encryptedChatId = DialogObject.getEncryptedChatId(jLongValue);
+                        TLRPC.EncryptedChat encryptedChat = getMessagesController().getEncryptedChat(Integer.valueOf(encryptedChatId));
+                        if (encryptedChat == null) {
+                            arrayList16.add(Integer.valueOf(encryptedChatId));
+                            longSparseArray.put(jLongValue, notificationException);
+                        } else {
+                            TLRPC.User user2 = getMessagesController().getUser(Long.valueOf(encryptedChat.user_id));
+                            if (user2 == null) {
+                                arrayList14.add(Long.valueOf(encryptedChat.user_id));
+                                longSparseArray.put(encryptedChat.user_id, notificationException);
+                            } else if (!user2.deleted) {
+                            }
+                        }
+                        arrayList9.add(notificationException);
+                    } else if (DialogObject.isUserDialog(jLongValue)) {
+                        TLRPC.User user3 = getMessagesController().getUser(l);
+                        if (user3 == null) {
+                            arrayList14.add(l);
+                            longSparseArray.put(jLongValue, notificationException);
+                        } else if (!user3.deleted) {
+                        }
+                        arrayList9.add(notificationException);
+                    } else {
+                        long j3 = -jLongValue;
+                        TLRPC.Chat chat2 = getMessagesController().getChat(Long.valueOf(j3));
+                        if (chat2 == null) {
+                            arrayList15.add(Long.valueOf(j3));
+                            longSparseArray.put(jLongValue, notificationException);
+                        } else if (!chat2.left && !chat2.kicked && chat2.migrated_to == null) {
+                            if (ChatObject.isChannel(chat2) && !chat2.megagroup) {
+                                arrayList13.add(notificationException);
+                            } else {
+                                arrayList21.add(notificationException);
+                            }
+                        }
+                    }
+                    arrayList10 = arrayList21;
+                    arrayList12 = arrayList20;
+                    arrayList11 = arrayList22;
+                    j = j2;
+                }
+            }
+        }
+        ArrayList arrayList23 = arrayList11;
+        ArrayList arrayList24 = arrayList12;
+        ArrayList<TLRPC.EncryptedChat> arrayList25 = arrayList19;
+        long j4 = j;
+        final ArrayList arrayList26 = arrayList10;
+        HashSet hashSet = new HashSet();
+        Iterator<Map.Entry<String, ?>> it2 = all.entrySet().iterator();
+        while (true) {
+            z = true;
+            if (!it2.hasNext()) {
+                break;
+            }
+            Map.Entry<String, ?> next2 = it2.next();
+            String key2 = next2.getKey();
+            if (key2.startsWith("stories_")) {
+                try {
+                    Long l2 = Utilities.parseLong(key2.substring(8));
+                    long jLongValue2 = l2.longValue();
+                    if (jLongValue2 != 0 && jLongValue2 != j4) {
+                        NotificationsSettingsActivity.NotificationException notificationException2 = new NotificationsSettingsActivity.NotificationException();
+                        notificationException2.did = jLongValue2;
+                        notificationException2.story = true;
+                        notificationException2.notify = ((Boolean) next2.getValue()).booleanValue() ? 0 : Integer.MAX_VALUE;
+                        if (DialogObject.isUserDialog(jLongValue2)) {
+                            TLRPC.User user4 = getMessagesController().getUser(l2);
+                            if (user4 == null) {
+                                try {
+                                    arrayList14.add(l2);
+                                    longSparseArray.put(jLongValue2, notificationException2);
+                                } catch (Exception unused) {
+                                    arrayList8 = arrayList23;
+                                }
+                            } else if (user4.deleted) {
+                            }
+                            arrayList8 = arrayList23;
+                            try {
+                                arrayList8.add(notificationException2);
+                                hashSet.add(l2);
+                            } catch (Exception unused2) {
+                            }
+                            arrayList23 = arrayList8;
+                        }
+                    }
+                } catch (Exception unused3) {
+                    arrayList8 = arrayList23;
+                }
+            }
+        }
+        final ArrayList arrayList27 = arrayList23;
+        if (arrayList != null) {
+            Collections.sort(arrayList, Comparator$CC.comparingDouble(new ToDoubleFunction() {
+                @Override
+                public final double applyAsDouble(Object obj) {
+                    return ((TLRPC.TL_topPeer) obj).rating;
+                }
+            }));
+            int iMax = Math.max(0, arrayList.size() - 6);
+            while (iMax < arrayList.size()) {
+                long peerDialogId = DialogObject.getPeerDialogId(((TLRPC.TL_topPeer) arrayList.get(iMax)).peer);
+                if (hashSet.contains(Long.valueOf(peerDialogId))) {
+                    arrayList7 = arrayList24;
+                } else {
+                    NotificationsSettingsActivity.NotificationException notificationException3 = new NotificationsSettingsActivity.NotificationException();
+                    notificationException3.did = peerDialogId;
+                    notificationException3.story = z;
+                    notificationException3.notify = 0;
+                    notificationException3.auto = z;
+                    if (DialogObject.isUserDialog(peerDialogId)) {
+                        TLRPC.User user5 = getMessagesController().getUser(Long.valueOf(peerDialogId));
+                        if (user5 == null) {
+                            arrayList14.add(Long.valueOf(peerDialogId));
+                            longSparseArray.put(peerDialogId, notificationException3);
+                        } else if (user5.deleted) {
+                            arrayList7 = arrayList24;
+                        }
+                        arrayList7 = arrayList24;
+                        arrayList7.add(0, notificationException3);
+                        hashSet.add(Long.valueOf(peerDialogId));
+                    } else {
+                        arrayList7 = arrayList24;
+                    }
+                }
+                iMax++;
+                arrayList24 = arrayList7;
+                z = true;
+            }
+        }
+        final ArrayList arrayList28 = arrayList24;
+        if (longSparseArray.size() != 0) {
+            try {
+                if (arrayList16.isEmpty()) {
+                    arrayList4 = arrayList25;
+                } else {
+                    try {
+                        arrayList4 = arrayList25;
+                        try {
+                            getMessagesStorage().getEncryptedChatsInternal(TextUtils.join(",", arrayList16), arrayList4, arrayList14);
+                        } catch (Exception e) {
+                            e = e;
+                            arrayList2 = arrayList18;
+                            arrayList3 = arrayList17;
+                            FileLog.e(e);
+                            size = arrayList2.size();
+                            i = 0;
+                            while (i < size) {
+                                chat = arrayList2.get(i);
+                                if (chat.left) {
+                                    arrayList6 = arrayList13;
+                                } else {
+                                    arrayList6 = arrayList13;
+                                }
+                                i++;
+                                arrayList13 = arrayList6;
+                            }
+                            arrayList5 = arrayList13;
+                            size2 = arrayList3.size();
+                            for (i2 = 0; i2 < size2; i2++) {
+                                user = arrayList3.get(i2);
+                                if (!user.deleted) {
+                                    longSparseArray.remove(user.id);
+                                }
+                            }
+                            size3 = arrayList4.size();
+                            for (i3 = 0; i3 < size3; i3++) {
+                                longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+                            }
+                            size4 = longSparseArray.size();
+                            for (i4 = 0; i4 < size4; i4++) {
+                                if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                                    arrayList26.remove(longSparseArray.valueAt(i4));
+                                    arrayList5.remove(longSparseArray.valueAt(i4));
+                                } else {
+                                    arrayList9.remove(longSparseArray.valueAt(i4));
+                                }
+                            }
+                            final ArrayList<TLRPC.User> arrayList29 = arrayList3;
+                            final ArrayList<TLRPC.EncryptedChat> arrayList30 = arrayList4;
+                            final ArrayList arrayList31 = arrayList5;
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$loadExceptions$19(arrayList29, arrayList2, arrayList30, arrayList9, arrayList26, arrayList27, arrayList28, arrayList31);
+                                }
+                            });
+                        }
+                    } catch (Exception e2) {
+                        e = e2;
+                        arrayList4 = arrayList25;
+                        arrayList2 = arrayList18;
+                        arrayList3 = arrayList17;
+                        FileLog.e(e);
+                        size = arrayList2.size();
+                        i = 0;
+                        while (i < size) {
+                            chat = arrayList2.get(i);
+                            if (chat.left) {
+                                arrayList6 = arrayList13;
+                            } else {
+                                arrayList6 = arrayList13;
+                            }
+                            i++;
+                            arrayList13 = arrayList6;
+                        }
+                        arrayList5 = arrayList13;
+                        size2 = arrayList3.size();
+                        while (i2 < size2) {
+                            user = arrayList3.get(i2);
+                            if (!user.deleted) {
+                                longSparseArray.remove(user.id);
+                            }
+                        }
+                        size3 = arrayList4.size();
+                        while (i3 < size3) {
+                            longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+                        }
+                        size4 = longSparseArray.size();
+                        while (i4 < size4) {
+                            if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                                arrayList26.remove(longSparseArray.valueAt(i4));
+                                arrayList5.remove(longSparseArray.valueAt(i4));
+                            } else {
+                                arrayList9.remove(longSparseArray.valueAt(i4));
+                            }
+                        }
+                        final ArrayList arrayList210 = arrayList3;
+                        final ArrayList arrayList32 = arrayList4;
+                        final ArrayList arrayList33 = arrayList5;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$loadExceptions$19(arrayList210, arrayList2, arrayList32, arrayList9, arrayList26, arrayList27, arrayList28, arrayList33);
+                            }
+                        });
+                    }
+                }
+                if (arrayList14.isEmpty()) {
+                    arrayList3 = arrayList17;
+                } else {
+                    try {
+                        arrayList3 = arrayList17;
+                        try {
+                            getMessagesStorage().getUsersInternal(arrayList14, arrayList3);
+                        } catch (Exception e3) {
+                            e = e3;
+                            arrayList2 = arrayList18;
+                            FileLog.e(e);
+                            size = arrayList2.size();
+                            i = 0;
+                            while (i < size) {
+                                chat = arrayList2.get(i);
+                                if (chat.left) {
+                                    arrayList6 = arrayList13;
+                                } else {
+                                    arrayList6 = arrayList13;
+                                }
+                                i++;
+                                arrayList13 = arrayList6;
+                            }
+                            arrayList5 = arrayList13;
+                            size2 = arrayList3.size();
+                            while (i2 < size2) {
+                                user = arrayList3.get(i2);
+                                if (!user.deleted) {
+                                    longSparseArray.remove(user.id);
+                                }
+                            }
+                            size3 = arrayList4.size();
+                            while (i3 < size3) {
+                                longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+                            }
+                            size4 = longSparseArray.size();
+                            while (i4 < size4) {
+                                if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                                    arrayList26.remove(longSparseArray.valueAt(i4));
+                                    arrayList5.remove(longSparseArray.valueAt(i4));
+                                } else {
+                                    arrayList9.remove(longSparseArray.valueAt(i4));
+                                }
+                            }
+                            final ArrayList arrayList211 = arrayList3;
+                            final ArrayList arrayList34 = arrayList4;
+                            final ArrayList arrayList35 = arrayList5;
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$loadExceptions$19(arrayList211, arrayList2, arrayList34, arrayList9, arrayList26, arrayList27, arrayList28, arrayList35);
+                                }
+                            });
+                        }
+                    } catch (Exception e4) {
+                        e = e4;
+                        arrayList3 = arrayList17;
+                        arrayList2 = arrayList18;
+                        FileLog.e(e);
+                        size = arrayList2.size();
+                        i = 0;
+                        while (i < size) {
+                            chat = arrayList2.get(i);
+                            if (chat.left) {
+                                arrayList6 = arrayList13;
+                            } else {
+                                arrayList6 = arrayList13;
+                            }
+                            i++;
+                            arrayList13 = arrayList6;
+                        }
+                        arrayList5 = arrayList13;
+                        size2 = arrayList3.size();
+                        while (i2 < size2) {
+                            user = arrayList3.get(i2);
+                            if (!user.deleted) {
+                                longSparseArray.remove(user.id);
+                            }
+                        }
+                        size3 = arrayList4.size();
+                        while (i3 < size3) {
+                            longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+                        }
+                        size4 = longSparseArray.size();
+                        while (i4 < size4) {
+                            if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                                arrayList26.remove(longSparseArray.valueAt(i4));
+                                arrayList5.remove(longSparseArray.valueAt(i4));
+                            } else {
+                                arrayList9.remove(longSparseArray.valueAt(i4));
+                            }
+                        }
+                        final ArrayList arrayList212 = arrayList3;
+                        final ArrayList arrayList36 = arrayList4;
+                        final ArrayList arrayList37 = arrayList5;
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$loadExceptions$19(arrayList212, arrayList2, arrayList36, arrayList9, arrayList26, arrayList27, arrayList28, arrayList37);
+                            }
+                        });
+                    }
+                }
+                if (arrayList15.isEmpty()) {
+                    arrayList2 = arrayList18;
+                } else {
+                    MessagesStorage messagesStorage = getMessagesStorage();
+                    String strJoin = TextUtils.join(",", arrayList15);
+                    arrayList2 = arrayList18;
+                    try {
+                        messagesStorage.getChatsInternal(strJoin, arrayList2);
+                    } catch (Exception e5) {
+                        e = e5;
+                        FileLog.e(e);
+                    }
+                }
+            } catch (Exception e6) {
+                e = e6;
+                arrayList2 = arrayList18;
+                arrayList3 = arrayList17;
+                arrayList4 = arrayList25;
+            }
+            size = arrayList2.size();
+            i = 0;
+            while (i < size) {
+                chat = arrayList2.get(i);
+                if (chat.left || chat.kicked || chat.migrated_to != null) {
+                    arrayList6 = arrayList13;
+                } else {
+                    arrayList6 = arrayList13;
+                    NotificationsSettingsActivity.NotificationException notificationException4 = (NotificationsSettingsActivity.NotificationException) longSparseArray.get(-chat.id);
+                    longSparseArray.remove(-chat.id);
+                    if (notificationException4 != null) {
+                        if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                            arrayList6.add(notificationException4);
+                        } else {
+                            arrayList26.add(notificationException4);
+                        }
+                    }
+                }
+                i++;
+                arrayList13 = arrayList6;
+            }
+            arrayList5 = arrayList13;
+            size2 = arrayList3.size();
+            while (i2 < size2) {
+                user = arrayList3.get(i2);
+                if (!user.deleted) {
+                    longSparseArray.remove(user.id);
+                }
+            }
+            size3 = arrayList4.size();
+            while (i3 < size3) {
+                longSparseArray.remove(DialogObject.makeEncryptedDialogId(arrayList4.get(i3).id));
+            }
+            size4 = longSparseArray.size();
+            while (i4 < size4) {
+                if (DialogObject.isChatDialog(longSparseArray.keyAt(i4))) {
+                    arrayList26.remove(longSparseArray.valueAt(i4));
+                    arrayList5.remove(longSparseArray.valueAt(i4));
+                } else {
+                    arrayList9.remove(longSparseArray.valueAt(i4));
+                }
+            }
+        } else {
+            arrayList5 = arrayList13;
+            arrayList2 = arrayList18;
+            arrayList3 = arrayList17;
+            arrayList4 = arrayList25;
+        }
+        final ArrayList arrayList213 = arrayList3;
+        final ArrayList arrayList38 = arrayList4;
+        final ArrayList arrayList39 = arrayList5;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$loadExceptions$19(arrayList213, arrayList2, arrayList38, arrayList9, arrayList26, arrayList27, arrayList28, arrayList39);
+            }
+        });
     }
 
     public void lambda$loadExceptions$19(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8) {
@@ -1067,12 +2290,12 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 }
 
                 @Override
-                public LongSparseArray getExcludeCallParticipants() {
+                public androidx.collection.LongSparseArray getExcludeCallParticipants() {
                     return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$getExcludeCallParticipants(this);
                 }
 
                 @Override
-                public LongSparseArray getExcludeUsers() {
+                public androidx.collection.LongSparseArray getExcludeUsers() {
                     return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$getExcludeUsers(this);
                 }
 
@@ -1139,8 +2362,709 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             });
         }
 
-        public void lambda$processSearch$2(java.lang.String r20, java.util.ArrayList r21) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsCustomSettingsActivity.SearchAdapter.lambda$processSearch$2(java.lang.String, java.util.ArrayList):void");
+        public void lambda$processSearch$2(String str, ArrayList arrayList) {
+            int i;
+            String[] strArr;
+            int i2;
+            Object obj;
+            String str2;
+            String translitString;
+            String str3;
+            int i3;
+            int i4;
+            char c;
+            String str4;
+            String str5;
+            char c2;
+            char c3;
+            String str6;
+            String lowerCase = str.trim().toLowerCase();
+            if (lowerCase.length() == 0) {
+                updateSearchResults(new ArrayList(), new ArrayList(), new ArrayList());
+                return;
+            }
+            String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase);
+            if (lowerCase.equals(translitString2) || translitString2.length() == 0) {
+                translitString2 = null;
+            }
+            char c4 = 0;
+            int i5 = (translitString2 != null ? 1 : 0) + 1;
+            String[] strArr2 = new String[i5];
+            strArr2[0] = lowerCase;
+            if (translitString2 != null) {
+                strArr2[1] = translitString2;
+            }
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList3 = new ArrayList();
+            ArrayList arrayList4 = new ArrayList();
+            String[] strArr3 = new String[2];
+            int i6 = 0;
+            while (i6 < arrayList.size()) {
+                NotificationsSettingsActivity.NotificationException notificationException = (NotificationsSettingsActivity.NotificationException) arrayList.get(i6);
+                if (DialogObject.isEncryptedDialog(notificationException.did)) {
+                    TLRPC.EncryptedChat encryptedChat = NotificationsCustomSettingsActivity.this.getMessagesController().getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(notificationException.did)));
+                    if (encryptedChat != null) {
+                        i = i5;
+                        TLRPC.User user = NotificationsCustomSettingsActivity.this.getMessagesController().getUser(Long.valueOf(encryptedChat.user_id));
+                        if (user != null) {
+                            strArr3[0] = ContactsController.formatName(user.first_name, user.last_name);
+                            strArr3[1] = UserObject.getPublicUsername(user);
+                        }
+                    } else {
+                        i = i5;
+                    }
+                    obj = null;
+                    str2 = strArr3[c4];
+                    strArr3[c4] = str2.toLowerCase();
+                    translitString = LocaleController.getInstance().getTranslitString(strArr3[c4]);
+                    str3 = strArr3[c4];
+                    if (str3 != null && str3.equals(translitString)) {
+                        translitString = null;
+                    }
+                    i3 = i;
+                    i4 = 0;
+                    c = 0;
+                    while (true) {
+                        if (i4 >= i3) {
+                            strArr = strArr2;
+                            i2 = i3;
+                            break;
+                        }
+                        str4 = strArr2[i4];
+                        strArr = strArr2;
+                        str5 = strArr3[c4];
+                        if (str5 != null) {
+                            i2 = i3;
+                            if (!str5.startsWith(str4)) {
+                                if (!strArr3[0].contains(" " + str4)) {
+                                }
+                                if (c3 != 0) {
+                                    if (c3 == c2) {
+                                        arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                    } else {
+                                        arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                    }
+                                    arrayList3.add(notificationException);
+                                    if (obj != null) {
+                                        break;
+                                    }
+                                    arrayList2.add(obj);
+                                    break;
+                                }
+                                i4++;
+                                c = c3;
+                                strArr2 = strArr;
+                                i3 = i2;
+                                c4 = 0;
+                            }
+                            c2 = 1;
+                            c3 = 1;
+                            if (c3 != 0) {
+                                if (c3 == c2) {
+                                    arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                } else {
+                                    arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                }
+                                arrayList3.add(notificationException);
+                                if (obj != null) {
+                                    break;
+                                    break;
+                                } else {
+                                    arrayList2.add(obj);
+                                    break;
+                                    break;
+                                }
+                            }
+                            i4++;
+                            c = c3;
+                            strArr2 = strArr;
+                            i3 = i2;
+                            c4 = 0;
+                        } else {
+                            i2 = i3;
+                        }
+                        if (translitString != null) {
+                            if (!translitString.startsWith(str4)) {
+                                if (translitString.contains(" " + str4)) {
+                                }
+                                if (c3 != 0) {
+                                    if (c3 == c2) {
+                                        arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                    } else {
+                                        arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                    }
+                                    arrayList3.add(notificationException);
+                                    if (obj != null) {
+                                        break;
+                                        break;
+                                    } else {
+                                        arrayList2.add(obj);
+                                        break;
+                                        break;
+                                    }
+                                }
+                                i4++;
+                                c = c3;
+                                strArr2 = strArr;
+                                i3 = i2;
+                                c4 = 0;
+                            }
+                            c2 = 1;
+                            c3 = 1;
+                            if (c3 != 0) {
+                                if (c3 == c2) {
+                                    arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                } else {
+                                    arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                }
+                                arrayList3.add(notificationException);
+                                if (obj != null) {
+                                    break;
+                                    break;
+                                } else {
+                                    arrayList2.add(obj);
+                                    break;
+                                    break;
+                                }
+                            }
+                            i4++;
+                            c = c3;
+                            strArr2 = strArr;
+                            i3 = i2;
+                            c4 = 0;
+                        }
+                        c2 = 1;
+                        str6 = strArr3[1];
+                        if (str6 == null && str6.startsWith(str4)) {
+                            c3 = 2;
+                        } else {
+                            c3 = c;
+                        }
+                        if (c3 != 0) {
+                            if (c3 == c2) {
+                                arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                            } else {
+                                arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                            }
+                            arrayList3.add(notificationException);
+                            if (obj != null) {
+                                break;
+                                break;
+                            } else {
+                                arrayList2.add(obj);
+                                break;
+                                break;
+                            }
+                        }
+                        i4++;
+                        c = c3;
+                        strArr2 = strArr;
+                        i3 = i2;
+                        c4 = 0;
+                    }
+                    i6++;
+                    strArr2 = strArr;
+                    i5 = i2;
+                    c4 = 0;
+                } else {
+                    i = i5;
+                    if (DialogObject.isUserDialog(notificationException.did)) {
+                        TLRPC.User user2 = NotificationsCustomSettingsActivity.this.getMessagesController().getUser(Long.valueOf(notificationException.did));
+                        if (user2 == null || user2.deleted) {
+                            strArr = strArr2;
+                            i2 = i;
+                        } else {
+                            strArr3[0] = ContactsController.formatName(user2.first_name, user2.last_name);
+                            strArr3[1] = UserObject.getPublicUsername(user2);
+                            c4 = 0;
+                            obj = user2;
+                            str2 = strArr3[c4];
+                            strArr3[c4] = str2.toLowerCase();
+                            translitString = LocaleController.getInstance().getTranslitString(strArr3[c4]);
+                            str3 = strArr3[c4];
+                            if (str3 != null) {
+                                translitString = null;
+                            }
+                            i3 = i;
+                            i4 = 0;
+                            c = 0;
+                            while (true) {
+                                if (i4 >= i3) {
+                                    str4 = strArr2[i4];
+                                    strArr = strArr2;
+                                    str5 = strArr3[c4];
+                                    if (str5 != null) {
+                                        i2 = i3;
+                                        if (!str5.startsWith(str4)) {
+                                            if (!strArr3[0].contains(" " + str4)) {
+                                            }
+                                            if (c3 != 0) {
+                                                if (c3 == c2) {
+                                                    arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                                } else {
+                                                    arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                                }
+                                                arrayList3.add(notificationException);
+                                                if (obj != null) {
+                                                    break;
+                                                    break;
+                                                } else {
+                                                    arrayList2.add(obj);
+                                                    break;
+                                                    break;
+                                                }
+                                            }
+                                            i4++;
+                                            c = c3;
+                                            strArr2 = strArr;
+                                            i3 = i2;
+                                            c4 = 0;
+                                        }
+                                        c2 = 1;
+                                        c3 = 1;
+                                        if (c3 != 0) {
+                                            if (c3 == c2) {
+                                                arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                            } else {
+                                                arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                            }
+                                            arrayList3.add(notificationException);
+                                            if (obj != null) {
+                                                break;
+                                                break;
+                                            } else {
+                                                arrayList2.add(obj);
+                                                break;
+                                                break;
+                                            }
+                                        }
+                                        i4++;
+                                        c = c3;
+                                        strArr2 = strArr;
+                                        i3 = i2;
+                                        c4 = 0;
+                                    } else {
+                                        i2 = i3;
+                                    }
+                                    if (translitString != null) {
+                                        if (!translitString.startsWith(str4)) {
+                                            if (translitString.contains(" " + str4)) {
+                                            }
+                                            if (c3 != 0) {
+                                                if (c3 == c2) {
+                                                    arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                                } else {
+                                                    arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                                }
+                                                arrayList3.add(notificationException);
+                                                if (obj != null) {
+                                                    break;
+                                                    break;
+                                                } else {
+                                                    arrayList2.add(obj);
+                                                    break;
+                                                    break;
+                                                }
+                                            }
+                                            i4++;
+                                            c = c3;
+                                            strArr2 = strArr;
+                                            i3 = i2;
+                                            c4 = 0;
+                                        }
+                                        c2 = 1;
+                                        c3 = 1;
+                                        if (c3 != 0) {
+                                            if (c3 == c2) {
+                                                arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                            } else {
+                                                arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                            }
+                                            arrayList3.add(notificationException);
+                                            if (obj != null) {
+                                                break;
+                                                break;
+                                            } else {
+                                                arrayList2.add(obj);
+                                                break;
+                                                break;
+                                            }
+                                        }
+                                        i4++;
+                                        c = c3;
+                                        strArr2 = strArr;
+                                        i3 = i2;
+                                        c4 = 0;
+                                    }
+                                    c2 = 1;
+                                    str6 = strArr3[1];
+                                    if (str6 == null) {
+                                        c3 = c;
+                                    } else {
+                                        c3 = c;
+                                    }
+                                    if (c3 != 0) {
+                                        if (c3 == c2) {
+                                            arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                        } else {
+                                            arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                        }
+                                        arrayList3.add(notificationException);
+                                        if (obj != null) {
+                                            break;
+                                            break;
+                                        } else {
+                                            arrayList2.add(obj);
+                                            break;
+                                            break;
+                                        }
+                                    }
+                                    i4++;
+                                    c = c3;
+                                    strArr2 = strArr;
+                                    i3 = i2;
+                                    c4 = 0;
+                                } else {
+                                    strArr = strArr2;
+                                    i2 = i3;
+                                }
+                            }
+                        }
+                        break;
+                        break;
+                    } else {
+                        TLRPC.Chat chat = NotificationsCustomSettingsActivity.this.getMessagesController().getChat(Long.valueOf(-notificationException.did));
+                        if (chat != null) {
+                            if (chat.left || chat.kicked || chat.migrated_to != null) {
+                                strArr = strArr2;
+                                i2 = i;
+                            } else {
+                                c4 = 0;
+                                strArr3[0] = chat.title;
+                                strArr3[1] = ChatObject.getPublicUsername(chat);
+                                obj = chat;
+                            }
+                            break;
+                            break;
+                        }
+                        str2 = strArr3[c4];
+                        strArr3[c4] = str2.toLowerCase();
+                        translitString = LocaleController.getInstance().getTranslitString(strArr3[c4]);
+                        str3 = strArr3[c4];
+                        if (str3 != null) {
+                            translitString = null;
+                        }
+                        i3 = i;
+                        i4 = 0;
+                        c = 0;
+                        while (true) {
+                            if (i4 >= i3) {
+                                strArr = strArr2;
+                                i2 = i3;
+                                break;
+                                break;
+                            }
+                            str4 = strArr2[i4];
+                            strArr = strArr2;
+                            str5 = strArr3[c4];
+                            if (str5 != null) {
+                                i2 = i3;
+                                if (!str5.startsWith(str4)) {
+                                    if (!strArr3[0].contains(" " + str4)) {
+                                    }
+                                    if (c3 != 0) {
+                                        if (c3 == c2) {
+                                            arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                        } else {
+                                            arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                        }
+                                        arrayList3.add(notificationException);
+                                        if (obj != null) {
+                                            break;
+                                            break;
+                                        } else {
+                                            arrayList2.add(obj);
+                                            break;
+                                            break;
+                                        }
+                                    }
+                                    i4++;
+                                    c = c3;
+                                    strArr2 = strArr;
+                                    i3 = i2;
+                                    c4 = 0;
+                                }
+                                c2 = 1;
+                                c3 = 1;
+                                if (c3 != 0) {
+                                    if (c3 == c2) {
+                                        arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                    } else {
+                                        arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                    }
+                                    arrayList3.add(notificationException);
+                                    if (obj != null) {
+                                        break;
+                                        break;
+                                    } else {
+                                        arrayList2.add(obj);
+                                        break;
+                                        break;
+                                    }
+                                }
+                                i4++;
+                                c = c3;
+                                strArr2 = strArr;
+                                i3 = i2;
+                                c4 = 0;
+                            } else {
+                                i2 = i3;
+                            }
+                            if (translitString != null) {
+                                if (!translitString.startsWith(str4)) {
+                                    if (translitString.contains(" " + str4)) {
+                                    }
+                                    if (c3 != 0) {
+                                        if (c3 == c2) {
+                                            arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                        } else {
+                                            arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                        }
+                                        arrayList3.add(notificationException);
+                                        if (obj != null) {
+                                            break;
+                                            break;
+                                        } else {
+                                            arrayList2.add(obj);
+                                            break;
+                                            break;
+                                        }
+                                    }
+                                    i4++;
+                                    c = c3;
+                                    strArr2 = strArr;
+                                    i3 = i2;
+                                    c4 = 0;
+                                }
+                                c2 = 1;
+                                c3 = 1;
+                                if (c3 != 0) {
+                                    if (c3 == c2) {
+                                        arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                    } else {
+                                        arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                    }
+                                    arrayList3.add(notificationException);
+                                    if (obj != null) {
+                                        break;
+                                        break;
+                                    } else {
+                                        arrayList2.add(obj);
+                                        break;
+                                        break;
+                                    }
+                                }
+                                i4++;
+                                c = c3;
+                                strArr2 = strArr;
+                                i3 = i2;
+                                c4 = 0;
+                            }
+                            c2 = 1;
+                            str6 = strArr3[1];
+                            if (str6 == null) {
+                                c3 = c;
+                            } else {
+                                c3 = c;
+                            }
+                            if (c3 != 0) {
+                                if (c3 == c2) {
+                                    arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                } else {
+                                    arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                }
+                                arrayList3.add(notificationException);
+                                if (obj != null) {
+                                    break;
+                                    break;
+                                } else {
+                                    arrayList2.add(obj);
+                                    break;
+                                    break;
+                                }
+                            }
+                            i4++;
+                            c = c3;
+                            strArr2 = strArr;
+                            i3 = i2;
+                            c4 = 0;
+                        }
+                    }
+                    i6++;
+                    strArr2 = strArr;
+                    i5 = i2;
+                    c4 = 0;
+                }
+                c4 = 0;
+                obj = null;
+                str2 = strArr3[c4];
+                strArr3[c4] = str2.toLowerCase();
+                translitString = LocaleController.getInstance().getTranslitString(strArr3[c4]);
+                str3 = strArr3[c4];
+                if (str3 != null) {
+                    translitString = null;
+                }
+                i3 = i;
+                i4 = 0;
+                c = 0;
+                while (true) {
+                    if (i4 >= i3) {
+                        strArr = strArr2;
+                        i2 = i3;
+                        break;
+                        break;
+                    }
+                    str4 = strArr2[i4];
+                    strArr = strArr2;
+                    str5 = strArr3[c4];
+                    if (str5 != null) {
+                        i2 = i3;
+                        if (!str5.startsWith(str4)) {
+                            if (!strArr3[0].contains(" " + str4)) {
+                            }
+                            if (c3 != 0) {
+                                if (c3 == c2) {
+                                    arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                } else {
+                                    arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                }
+                                arrayList3.add(notificationException);
+                                if (obj != null) {
+                                    break;
+                                    break;
+                                } else {
+                                    arrayList2.add(obj);
+                                    break;
+                                    break;
+                                }
+                            }
+                            i4++;
+                            c = c3;
+                            strArr2 = strArr;
+                            i3 = i2;
+                            c4 = 0;
+                        }
+                        c2 = 1;
+                        c3 = 1;
+                        if (c3 != 0) {
+                            if (c3 == c2) {
+                                arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                            } else {
+                                arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                            }
+                            arrayList3.add(notificationException);
+                            if (obj != null) {
+                                break;
+                                break;
+                            } else {
+                                arrayList2.add(obj);
+                                break;
+                                break;
+                            }
+                        }
+                        i4++;
+                        c = c3;
+                        strArr2 = strArr;
+                        i3 = i2;
+                        c4 = 0;
+                    } else {
+                        i2 = i3;
+                    }
+                    if (translitString != null) {
+                        if (!translitString.startsWith(str4)) {
+                            if (translitString.contains(" " + str4)) {
+                            }
+                            if (c3 != 0) {
+                                if (c3 == c2) {
+                                    arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                                } else {
+                                    arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                                }
+                                arrayList3.add(notificationException);
+                                if (obj != null) {
+                                    break;
+                                    break;
+                                } else {
+                                    arrayList2.add(obj);
+                                    break;
+                                    break;
+                                }
+                            }
+                            i4++;
+                            c = c3;
+                            strArr2 = strArr;
+                            i3 = i2;
+                            c4 = 0;
+                        }
+                        c2 = 1;
+                        c3 = 1;
+                        if (c3 != 0) {
+                            if (c3 == c2) {
+                                arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                            } else {
+                                arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                            }
+                            arrayList3.add(notificationException);
+                            if (obj != null) {
+                                break;
+                                break;
+                            } else {
+                                arrayList2.add(obj);
+                                break;
+                                break;
+                            }
+                        }
+                        i4++;
+                        c = c3;
+                        strArr2 = strArr;
+                        i3 = i2;
+                        c4 = 0;
+                    }
+                    c2 = 1;
+                    str6 = strArr3[1];
+                    if (str6 == null) {
+                        c3 = c;
+                    } else {
+                        c3 = c;
+                    }
+                    if (c3 != 0) {
+                        if (c3 == c2) {
+                            arrayList4.add(AndroidUtilities.generateSearchName(str2, null, str4));
+                        } else {
+                            arrayList4.add(AndroidUtilities.generateSearchName("@" + strArr3[c2], null, "@" + str4));
+                        }
+                        arrayList3.add(notificationException);
+                        if (obj != null) {
+                            break;
+                            break;
+                        } else {
+                            arrayList2.add(obj);
+                            break;
+                            break;
+                        }
+                    }
+                    i4++;
+                    c = c3;
+                    strArr2 = strArr;
+                    i3 = i2;
+                    c4 = 0;
+                }
+                i6++;
+                strArr2 = strArr;
+                i5 = i2;
+                c4 = 0;
+            }
+            updateSearchResults(arrayList2, arrayList3, arrayList4);
         }
 
         private void updateSearchResults(final ArrayList arrayList, final ArrayList arrayList2, final ArrayList arrayList3) {
@@ -1409,12 +3333,11 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     if (itemInner.text == null) {
                         textInfoPrivacyCell.setFixedSize(12);
                         textInfoPrivacyCell.setText(null);
-                        break;
                     } else {
                         textInfoPrivacyCell.setFixedSize(0);
                         textInfoPrivacyCell.setText(itemInner.text);
-                        break;
                     }
+                    break;
                 case 5:
                     ((TextSettingsCell) viewHolder.itemView).setTextAndValue(itemInner.text, itemInner.text2, z);
                     break;
@@ -1429,12 +3352,11 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     if (itemInner.resId == 0) {
                         textCell.setColors(-1, Theme.key_text_RedRegular);
                         textCell.setText("" + ((Object) itemInner.text), z);
-                        break;
                     } else {
                         textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                         textCell.setTextAndIcon("" + ((Object) itemInner.text), itemInner.resId, z);
-                        break;
                     }
+                    break;
                 case 8:
                     ExpandView expandView = (ExpandView) viewHolder.itemView;
                     expandView.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
@@ -1445,8 +3367,13 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
 
         @Override
         public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+            boolean zIsGlobalNotificationsEnabled;
             if (NotificationsCustomSettingsActivity.this.currentType == 3 || (NotificationsCustomSettingsActivity.this.exceptions != null && NotificationsCustomSettingsActivity.this.exceptions.isEmpty())) {
-                boolean zIsGlobalNotificationsEnabled = NotificationsCustomSettingsActivity.this.currentType == 3 ? NotificationsCustomSettingsActivity.this.storiesEnabled == null || NotificationsCustomSettingsActivity.this.storiesEnabled.booleanValue() || !(NotificationsCustomSettingsActivity.this.exceptions == null || NotificationsCustomSettingsActivity.this.exceptions.isEmpty()) : NotificationsCustomSettingsActivity.this.getNotificationsController().isGlobalNotificationsEnabled(NotificationsCustomSettingsActivity.this.currentType);
+                if (NotificationsCustomSettingsActivity.this.currentType == 3) {
+                    zIsGlobalNotificationsEnabled = NotificationsCustomSettingsActivity.this.storiesEnabled == null || NotificationsCustomSettingsActivity.this.storiesEnabled.booleanValue() || !(NotificationsCustomSettingsActivity.this.exceptions == null || NotificationsCustomSettingsActivity.this.exceptions.isEmpty());
+                } else {
+                    zIsGlobalNotificationsEnabled = NotificationsCustomSettingsActivity.this.getNotificationsController().isGlobalNotificationsEnabled(NotificationsCustomSettingsActivity.this.currentType);
+                }
                 int adapterPosition = viewHolder.getAdapterPosition();
                 ItemInner itemInner = (adapterPosition < 0 || adapterPosition >= NotificationsCustomSettingsActivity.this.items.size()) ? null : (ItemInner) NotificationsCustomSettingsActivity.this.items.get(adapterPosition);
                 if (itemInner == null || itemInner.id != 102) {

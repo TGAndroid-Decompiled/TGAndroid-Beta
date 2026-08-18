@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -303,7 +302,8 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     public void updateGreetingScale() {
         if (this.previewContainer.getParent() instanceof View) {
             int top = ((View) this.previewContainer.getParent()).getTop();
-            float fClamp = Utilities.clamp((top + r1) / (this.previewContainer.getMeasuredHeight() - AndroidUtilities.dp(36.0f)), 1.0f, 0.65f);
+            int measuredHeight = this.previewContainer.getMeasuredHeight() - AndroidUtilities.dp(36.0f);
+            float fClamp = Utilities.clamp((top + measuredHeight) / measuredHeight, 1.0f, 0.65f);
             this.greetingsView.setScaleX(fClamp);
             this.greetingsView.setScaleY(fClamp);
             this.greetingsView.setAlpha(Utilities.clamp(fClamp * 2.0f, 1.0f, 0.0f));
@@ -410,7 +410,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             });
             emojiBottomSheet.whenPlusSelected(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.openCustomStickerEditor();
                 }
             });
@@ -595,7 +595,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         finishFragment();
     }
 
-    public void openCustomStickerEditor() throws IOException {
+    public void openCustomStickerEditor() {
         ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(null);
         if (getParentActivity() == null) {
             return;

@@ -8,15 +8,14 @@ import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
-import java.util.Iterator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -26,6 +25,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -40,7 +42,6 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.Gifts.GiftMessageDrawable;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Stars.StarsReactionsSheet;
 
 public class StarGiftUniqueActionLayout {
     TLRPC.TL_messageActionStarGiftUnique action;
@@ -136,12 +137,224 @@ public class StarGiftUniqueActionLayout {
         return this.messageDrawable;
     }
 
-    public void set(org.telegram.messenger.MessageObject r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftUniqueActionLayout.set(org.telegram.messenger.MessageObject, boolean):void");
+    public void set(MessageObject messageObject, boolean z) {
+        TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique;
+        float fDp;
+        TLRPC.Message message;
+        this.widthExpanded = false;
+        this.currentMessageObject = messageObject;
+        if (messageObject == null || (message = messageObject.messageOwner) == null) {
+            tL_messageActionStarGiftUnique = null;
+        } else {
+            TLRPC.MessageAction messageAction = message.action;
+            if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
+                tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
+            } else {
+                tL_messageActionStarGiftUnique = null;
+            }
+        }
+        if (tL_messageActionStarGiftUnique == null || tL_messageActionStarGiftUnique.refunded || !(tL_messageActionStarGiftUnique.gift instanceof TL_stars.TL_starGiftUnique)) {
+            tL_messageActionStarGiftUnique = null;
+        }
+        if (this.attached && tL_messageActionStarGiftUnique != null && this.action == null) {
+            this.imageReceiver.onAttachedToWindow();
+            this.emoji.attach();
+            this.messageDrawable.attach();
+        }
+        this.action = tL_messageActionStarGiftUnique;
+        this.repost = messageObject != null && messageObject.isRepostPreview;
+        if (tL_messageActionStarGiftUnique == null) {
+            return;
+        }
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) tL_messageActionStarGiftUnique.gift;
+        this.backdrop = (TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        this.pattern = (TL_stars.starGiftAttributePattern) StarsController.findAttribute(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
+        TL_stars.starGiftAttributeModel stargiftattributemodel = this.model;
+        this.model = (TL_stars.starGiftAttributeModel) StarsController.findAttribute(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class);
+        Paint paint = this.backgroundPaint;
+        this.gradient = null;
+        paint.setShader(null);
+        TL_stars.starGiftAttributePattern stargiftattributepattern = this.pattern;
+        if (stargiftattributepattern != null) {
+            this.emoji.set(stargiftattributepattern.document, z);
+        } else {
+            this.emoji.set((Drawable) null, z);
+        }
+        TL_stars.starGiftAttributeModel stargiftattributemodel2 = this.model;
+        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.id != stargiftattributemodel2.document.id)) {
+            if (this.repost) {
+                this.imageReceiver.setAllowStartLottieAnimation(true);
+                this.imageReceiver.setAllowStartAnimation(true);
+                this.imageReceiver.setAutoRepeat(1);
+            } else {
+                this.imageReceiver.setAutoRepeatCount(0);
+                this.imageReceiver.clearDecorators();
+                this.imageReceiver.setAutoRepeat(0);
+            }
+            StarsIntroActivity.setGiftImage(this.imageReceiver, this.model.document, 110);
+        }
+        boolean z2 = tL_starGiftUnique.burned;
+        this.burned = z2;
+        if (z2) {
+            this.ribbon.setColor(Theme.getColor(Theme.key_text_RedBold, this.resourcesProvider));
+            this.ribbon.setText(11, LocaleController.getString(R.string.Gift2UniqueRibbonBurned), true);
+        } else {
+            this.ribbon.setBackdrop(this.backdrop, true, false);
+            this.ribbon.setText(11, LocaleController.getString(R.string.Gift2UniqueRibbon), true);
+        }
+        if (this.repost) {
+            this.width = AndroidUtilities.dp(200.0f);
+        } else {
+            if (AndroidUtilities.isTablet()) {
+                fDp = AndroidUtilities.getMinTabletSide() * 0.6f;
+            } else {
+                fDp = (AndroidUtilities.displaySize.x * 0.62f) - AndroidUtilities.dp(34.0f);
+            }
+            this.width = Math.min((int) fDp, ((AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(64.0f));
+            if (!AndroidUtilities.isTablet()) {
+                this.width = (int) (this.width * 1.2f);
+            }
+            this.width -= AndroidUtilities.dp(8.0f);
+        }
+        setInternal(messageObject, tL_messageActionStarGiftUnique, tL_starGiftUnique, z);
+        checkAnimatedWidth(z);
     }
 
-    private void setInternal(org.telegram.messenger.MessageObject r23, org.telegram.tgnet.TLRPC.TL_messageActionStarGiftUnique r24, org.telegram.tgnet.tl.TL_stars.TL_starGiftUnique r25, boolean r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftUniqueActionLayout.setInternal(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$TL_messageActionStarGiftUnique, org.telegram.tgnet.tl.TL_stars$TL_starGiftUnique, boolean):void");
+    private void setInternal(MessageObject messageObject, TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique, TL_stars.TL_starGiftUnique tL_starGiftUnique, boolean z) {
+        float height;
+        float fDp;
+        int iDp;
+        float f = this.width;
+        long clientUserId = (tL_messageActionStarGiftUnique.upgrade ^ true) == messageObject.isOutOwner() ? UserConfig.getInstance(this.currentAccount).getClientUserId() : messageObject.getDialogId();
+        TLRPC.Peer peer = tL_messageActionStarGiftUnique.from_id;
+        if (peer != null) {
+            clientUserId = DialogObject.getPeerDialogId(peer);
+        }
+        String shortName = DialogObject.getShortName(clientUserId);
+        float fDp2 = AndroidUtilities.dp(10.0f) + 0.0f + AndroidUtilities.dp(110.0f) + AndroidUtilities.dp(9.33f);
+        if (this.repost) {
+            this.title = new Text(tL_starGiftUnique.title, 14.0f, AndroidUtilities.bold());
+        } else if (tL_messageActionStarGiftUnique.peer != null || UserObject.isService(messageObject.getDialogId())) {
+            this.title = new Text(LocaleController.getString(R.string.Gift2UniqueTitle2), 14.0f, AndroidUtilities.bold());
+        } else if (messageObject.getDialogId() == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+            if (tL_starGiftUnique.crafted) {
+                this.title = new Text(LocaleController.getString(R.string.Gift2ActionCraftedTitle), 14.0f, AndroidUtilities.bold());
+            } else if (tL_messageActionStarGiftUnique.resale_amount != null) {
+                this.title = new Text(LocaleController.getString(R.string.Gift2ActionPurchasedTitle), 14.0f, AndroidUtilities.bold());
+            } else {
+                this.title = new Text(LocaleController.getString(R.string.Gift2ActionUpgradedTitle), 14.0f, AndroidUtilities.bold());
+            }
+        } else {
+            this.title = new Text(LocaleController.formatString(R.string.Gift2UniqueTitle, shortName), 14.0f, AndroidUtilities.bold());
+        }
+        this.titleY = (this.title.getHeight() / 2.0f) + fDp2;
+        float height2 = fDp2 + this.title.getHeight() + AndroidUtilities.dp(3.0f);
+        if (this.repost) {
+            this.subtitle = new Text(LocaleController.formatPluralStringComma("Gift2CollectionNumber", tL_starGiftUnique.num), 12.0f, AndroidUtilities.bold());
+        } else {
+            this.subtitle = new Text(tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','), 12.0f);
+        }
+        this.subtitleY = (this.subtitle.getHeight() / 2.0f) + height2;
+        float height3 = height2 + this.subtitle.getHeight() + AndroidUtilities.dp(this.repost ? 14.0f : 11.0f);
+        this.table.clear();
+        this.nameWidth = 0.0f;
+        this.valueWidth = 0.0f;
+        TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageActionStarGiftUnique.message;
+        TLObject userOrChat = null;
+        if (tL_textWithEntities != null) {
+            TextPaint textPaint = this.messageDrawable.getTextPaint();
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
+            MessageObject.addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false);
+            Spannable spannableReplaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
+            if (!tL_messageActionStarGiftUnique.name_hidden) {
+                if (tL_messageActionStarGiftUnique.from_id != null) {
+                    userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(DialogObject.getPeerDialogId(tL_messageActionStarGiftUnique.from_id));
+                } else {
+                    userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(messageObject.getFromChatId());
+                }
+            }
+            this.messageDrawable.setUser(userOrChat);
+            this.messageDrawable.setMessage(spannableReplaceAnimatedEmoji);
+            this.messageDrawable.measure(((int) f) - AndroidUtilities.dp(24.0f));
+            if (!this.widthExpanded && this.messageDrawable.getLineCount() > 3) {
+                this.widthExpanded = true;
+                this.width = (int) (this.width * (Math.min(0.4f, (this.messageDrawable.getLineCount() - 3) * 0.1f) + 1.0f));
+                setInternal(messageObject, tL_messageActionStarGiftUnique, tL_starGiftUnique, z);
+                return;
+            } else {
+                float fDp3 = height3 + AndroidUtilities.dp(4.0f);
+                this.messageY = fDp3;
+                height3 = fDp3 + this.messageDrawable.getMinimumHeight();
+                height = AndroidUtilities.dp(3.0f);
+            }
+        } else {
+            this.messageDrawable.setUser(null);
+            this.messageDrawable.setMessage(null);
+            if (this.model != null) {
+                if (!this.table.isEmpty()) {
+                    height3 += AndroidUtilities.dp(6.0f);
+                }
+                Row row = new Row(height3, LocaleController.getString(R.string.Gift2AttributeModel), this.model.name);
+                this.table.add(row);
+                float f2 = f * 0.5f;
+                row.name.ellipsize(f2);
+                this.nameWidth = Math.max(this.nameWidth, row.name.getCurrentWidth());
+                row.value.ellipsize(f2);
+                this.valueWidth = Math.max(this.valueWidth, row.value.getCurrentWidth());
+                height3 += row.getHeight();
+            }
+            if (this.backdrop != null) {
+                if (!this.table.isEmpty()) {
+                    height3 += AndroidUtilities.dp(6.0f);
+                }
+                Row row2 = new Row(height3, LocaleController.getString(R.string.Gift2AttributeBackdrop), this.backdrop.name);
+                this.table.add(row2);
+                float f3 = f * 0.5f;
+                row2.name.ellipsize(f3);
+                this.nameWidth = Math.max(this.nameWidth, row2.name.getCurrentWidth());
+                row2.value.ellipsize(f3);
+                this.valueWidth = Math.max(this.valueWidth, row2.value.getCurrentWidth());
+                height3 += row2.getHeight();
+            }
+            if (this.pattern != null) {
+                if (!this.table.isEmpty()) {
+                    height3 += AndroidUtilities.dp(6.0f);
+                }
+                Row row3 = new Row(height3, LocaleController.getString(R.string.Gift2AttributeSymbol), this.pattern.name);
+                this.table.add(row3);
+                float f4 = f * 0.5f;
+                row3.name.ellipsize(f4);
+                this.nameWidth = Math.max(this.nameWidth, row3.name.getCurrentWidth());
+                row3.value.ellipsize(f4);
+                this.valueWidth = Math.max(this.valueWidth, row3.value.getCurrentWidth());
+                height = row3.getHeight();
+            }
+            fDp = height3 + AndroidUtilities.dp(11.66f);
+            if (!this.repost) {
+                this.buttonY = fDp;
+                this.buttonText = new Text(LocaleController.getString(R.string.Gift2UniqueView), 14.0f, AndroidUtilities.bold());
+                float fDp4 = AndroidUtilities.dp(30.0f);
+                this.buttonHeight = fDp4;
+                fDp += fDp4;
+                iDp = AndroidUtilities.dp(11.0f);
+            } else {
+                iDp = AndroidUtilities.dp(10.0f);
+            }
+            this.height = (int) (fDp + iDp);
+        }
+        height3 += height;
+        fDp = height3 + AndroidUtilities.dp(11.66f);
+        if (!this.repost) {
+            this.buttonY = fDp;
+            this.buttonText = new Text(LocaleController.getString(R.string.Gift2UniqueView), 14.0f, AndroidUtilities.bold());
+            float fDp5 = AndroidUtilities.dp(30.0f);
+            this.buttonHeight = fDp5;
+            fDp += fDp5;
+            iDp = AndroidUtilities.dp(11.0f);
+        } else {
+            iDp = AndroidUtilities.dp(10.0f);
+        }
+        this.height = (int) (fDp + iDp);
     }
 
     public void set(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z) {
@@ -196,7 +409,7 @@ public class StarGiftUniqueActionLayout {
     }
 
     private void setInternal2(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, TLRPC.TL_textWithEntities tL_textWithEntities, String str) {
-        Spanned spannedReplaceAnimatedEmoji;
+        Spannable spannableReplaceAnimatedEmoji;
         float f = this.width;
         float fDp = AndroidUtilities.dp(10.0f) + 0.0f + AndroidUtilities.dp(110.0f) + AndroidUtilities.dp(9.33f);
         Text text = new Text(LocaleController.formatString(R.string.Gift2UniqueTitle, DialogObject.getShortName(j)), 14.0f, AndroidUtilities.bold());
@@ -214,14 +427,14 @@ public class StarGiftUniqueActionLayout {
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
             MessageObject.addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false);
-            spannedReplaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
+            spannableReplaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
         } else {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.GiftMessageHint));
             spannableStringBuilder2.setSpan(new ForegroundColorSpan(-1593835521), 0, spannableStringBuilder2.length(), 33);
-            spannedReplaceAnimatedEmoji = spannableStringBuilder2;
+            spannableReplaceAnimatedEmoji = spannableStringBuilder2;
         }
         this.messageDrawable.setUser(j != 0 ? MessagesController.getInstance(this.currentAccount).getUserOrChat(j) : null);
-        this.messageDrawable.setMessage(spannedReplaceAnimatedEmoji);
+        this.messageDrawable.setMessage(spannableReplaceAnimatedEmoji);
         this.messageDrawable.measure(((int) f) - AndroidUtilities.dp(24.0f));
         if (!this.widthExpanded && this.messageDrawable.getLineCount() > 3) {
             this.widthExpanded = true;
@@ -323,9 +536,7 @@ public class StarGiftUniqueActionLayout {
             this.messageDrawable.draw(canvas);
         } else {
             float fDp = this.nameWidth + AndroidUtilities.dp(9.0f) + this.valueWidth;
-            Iterator it = this.table.iterator();
-            while (it.hasNext()) {
-                Row row = (Row) it.next();
+            for (Row row : this.table) {
                 Text text3 = row.name;
                 float f2 = width - (fDp / 2.0f);
                 text3.draw(canvas, (f2 + this.nameWidth) - text3.getCurrentWidth(), row.y, i, 1.0f);

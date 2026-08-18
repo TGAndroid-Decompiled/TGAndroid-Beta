@@ -24,10 +24,7 @@ import kotlin.Result;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.EmptyCoroutineContext;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.messenger.PasskeysController;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -58,7 +55,7 @@ public class PasskeysController {
             try {
                 credentialManager.createCredential(context, new CreatePublicKeyCredentialRequest(new JSONObject(passkeyregistrationoptions.options.data).getJSONObject("publicKey").toString()), ktxCallback(new Utilities.Callback2() {
                     @Override
-                    public final void run(Object obj, Object obj2) throws JSONException {
+                    public final void run(Object obj, Object obj2) {
                         PasskeysController.lambda$create$7(callback2, context, i, (CreateCredentialResponse) obj, (Throwable) obj2);
                     }
                 }));
@@ -77,7 +74,7 @@ public class PasskeysController {
         }
     }
 
-    public static void lambda$create$7(final Utilities.Callback2 callback2, final Context context, final int i, CreateCredentialResponse createCredentialResponse, final Throwable th) throws JSONException {
+    public static void lambda$create$7(final Utilities.Callback2 callback2, final Context context, final int i, CreateCredentialResponse createCredentialResponse, final Throwable th) {
         if ((th instanceof CreateCredentialCancellationException) || (th instanceof CreateCredentialInterruptedException)) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -250,7 +247,7 @@ public class PasskeysController {
         }
 
         @Override
-        public void onResult(GetCredentialResponse getCredentialResponse) throws JSONException, NumberFormatException {
+        public void onResult(GetCredentialResponse getCredentialResponse) {
             Credential credential = getCredentialResponse.getCredential();
             TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
             finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
@@ -290,11 +287,11 @@ public class PasskeysController {
                     }
                 }, i, 72);
                 final int i2 = this.val$currentAccount;
-                final Utilities.Callback3 callback32 = this.val$done;
+                final Utilities.Callback3 callback4 = this.val$done;
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public final void onCancel(DialogInterface dialogInterface) {
-                        PasskeysController.AnonymousClass1.lambda$onResult$1(i2, iSendRequestTyped, callback32, j, dialogInterface);
+                        PasskeysController.AnonymousClass1.lambda$onResult$1(i2, iSendRequestTyped, callback4, j, dialogInterface);
                     }
                 });
             } catch (Exception e) {

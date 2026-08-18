@@ -59,7 +59,7 @@ public abstract class OKLCH {
     }
 
     public static double[] rgb(int i) {
-        return new double[]{Color.red(i) / 255.0d, Color.green(i) / 255.0d, Color.blue(i) / 255.0d};
+        return new double[]{((double) Color.red(i)) / 255.0d, ((double) Color.green(i)) / 255.0d, ((double) Color.blue(i)) / 255.0d};
     }
 
     public static int rgb(double[] dArr) {

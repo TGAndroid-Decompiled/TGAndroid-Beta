@@ -108,7 +108,7 @@ public class SpeedLineParticles$Drawable {
         }
 
         public void genPosition(long j, boolean z) {
-            this.lifeTime = j + SpeedLineParticles$Drawable.this.minLifeTime + Utilities.fastRandom.nextInt(1000);
+            this.lifeTime = j + SpeedLineParticles$Drawable.this.minLifeTime + ((long) Utilities.fastRandom.nextInt(1000));
             RectF rectF = z ? SpeedLineParticles$Drawable.this.screenRect : SpeedLineParticles$Drawable.this.rect;
             float fAbs = rectF.left + Math.abs(Utilities.fastRandom.nextInt() % rectF.width());
             float fAbs2 = rectF.top + Math.abs(Utilities.fastRandom.nextInt() % rectF.height());

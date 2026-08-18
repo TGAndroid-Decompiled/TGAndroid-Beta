@@ -4,7 +4,6 @@ import android.text.TextUtils;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -39,7 +38,7 @@ public class SearchEngine {
         return this.autocomplete_url + URLEncoder.encode(str);
     }
 
-    public ArrayList extractSuggestions(String str) throws JSONException {
+    public ArrayList extractSuggestions(String str) {
         ArrayList arrayList = new ArrayList();
         try {
             JSONArray jSONArray = new JSONArray(str).getJSONArray(1);

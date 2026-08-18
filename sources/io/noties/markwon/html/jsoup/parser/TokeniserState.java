@@ -1,12 +1,9 @@
 package io.noties.markwon.html.jsoup.parser;
 
-import io.noties.markwon.html.jsoup.parser.Token;
-import java.io.IOException;
-
 enum TokeniserState {
     Data {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
@@ -34,7 +31,7 @@ enum TokeniserState {
     },
     Rcdata {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
@@ -63,19 +60,19 @@ enum TokeniserState {
     },
     Rawtext {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             TokeniserState.readData(tokeniser, characterReader, this, TokeniserState.RawtextLessthanSign);
         }
     },
     ScriptData {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             TokeniserState.readData(tokeniser, characterReader, this, TokeniserState.ScriptDataLessthanSign);
         }
     },
     PLAINTEXT {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
@@ -90,7 +87,7 @@ enum TokeniserState {
     },
     TagOpen {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == '!') {
                 tokeniser.advanceTransition(TokeniserState.MarkupDeclarationOpen);
@@ -135,7 +132,7 @@ enum TokeniserState {
     },
     TagName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             tokeniser.tagPending.appendTagName(characterReader.consumeTagName());
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
@@ -200,7 +197,7 @@ enum TokeniserState {
     },
     RCDATAEndTagName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.matchesLetter()) {
                 String strConsumeLetterSequence = characterReader.consumeLetterSequence();
                 tokeniser.tagPending.appendTagName(strConsumeLetterSequence);
@@ -265,13 +262,13 @@ enum TokeniserState {
     },
     RawtextEndTagName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             TokeniserState.handleDataEndTag(tokeniser, characterReader, TokeniserState.Rawtext);
         }
     },
     ScriptDataLessthanSign {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '!') {
                 tokeniser.emit("<!");
@@ -294,7 +291,7 @@ enum TokeniserState {
     },
     ScriptDataEndTagName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             TokeniserState.handleDataEndTag(tokeniser, characterReader, TokeniserState.ScriptData);
         }
     },
@@ -322,7 +319,7 @@ enum TokeniserState {
     },
     ScriptDataEscaped {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.isEmpty()) {
                 tokeniser.eofError(this);
                 tokeniser.transition(TokeniserState.Data);
@@ -345,7 +342,7 @@ enum TokeniserState {
     },
     ScriptDataEscapedDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.isEmpty()) {
                 tokeniser.eofError(this);
                 tokeniser.transition(TokeniserState.Data);
@@ -369,7 +366,7 @@ enum TokeniserState {
     },
     ScriptDataEscapedDashDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.isEmpty()) {
                 tokeniser.eofError(this);
                 tokeniser.transition(TokeniserState.Data);
@@ -432,19 +429,19 @@ enum TokeniserState {
     },
     ScriptDataEscapedEndTagName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             TokeniserState.handleDataEndTag(tokeniser, characterReader, TokeniserState.ScriptDataEscaped);
         }
     },
     ScriptDataDoubleEscapeStart {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             TokeniserState.handleDataDoubleEscapeTag(tokeniser, characterReader, TokeniserState.ScriptDataDoubleEscaped, TokeniserState.ScriptDataEscaped);
         }
     },
     ScriptDataDoubleEscaped {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
@@ -466,7 +463,7 @@ enum TokeniserState {
     },
     ScriptDataDoubleEscapedDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -489,7 +486,7 @@ enum TokeniserState {
     },
     ScriptDataDoubleEscapedDashDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -530,13 +527,13 @@ enum TokeniserState {
     },
     ScriptDataDoubleEscapeEnd {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             TokeniserState.handleDataDoubleEscapeTag(tokeniser, characterReader, TokeniserState.ScriptDataEscaped, TokeniserState.ScriptDataDoubleEscaped);
         }
     },
     BeforeAttributeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -584,7 +581,7 @@ enum TokeniserState {
     },
     AttributeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             tokeniser.tagPending.appendAttributeName(characterReader.consumeToAnySorted(TokeniserState.attributeNameCharsSorted));
             char cConsume = characterReader.consume();
             if (cConsume != 0) {
@@ -629,7 +626,7 @@ enum TokeniserState {
     },
     AfterAttributeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -678,7 +675,7 @@ enum TokeniserState {
     },
     BeforeAttributeValue {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -734,7 +731,7 @@ enum TokeniserState {
     },
     AttributeValue_doubleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             String strConsumeToAny = characterReader.consumeToAny(TokeniserState.attributeDoubleValueCharsSorted);
             if (strConsumeToAny.length() > 0) {
                 tokeniser.tagPending.appendAttributeValue(strConsumeToAny);
@@ -771,7 +768,7 @@ enum TokeniserState {
     },
     AttributeValue_singleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             String strConsumeToAny = characterReader.consumeToAny(TokeniserState.attributeSingleValueCharsSorted);
             if (strConsumeToAny.length() > 0) {
                 tokeniser.tagPending.appendAttributeValue(strConsumeToAny);
@@ -808,7 +805,7 @@ enum TokeniserState {
     },
     AttributeValue_unquoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             String strConsumeToAnySorted = characterReader.consumeToAnySorted(TokeniserState.attributeValueUnquoted);
             if (strConsumeToAnySorted.length() > 0) {
                 tokeniser.tagPending.appendAttributeValue(strConsumeToAnySorted);
@@ -862,7 +859,7 @@ enum TokeniserState {
     },
     AfterAttributeValue_quoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 tokeniser.transition(TokeniserState.BeforeAttributeName);
@@ -887,7 +884,7 @@ enum TokeniserState {
     },
     SelfClosingStartTag {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '>') {
                 tokeniser.tagPending.selfClosing = true;
@@ -933,7 +930,7 @@ enum TokeniserState {
     },
     CommentStart {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -961,7 +958,7 @@ enum TokeniserState {
     },
     CommentStartDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -989,7 +986,7 @@ enum TokeniserState {
     },
     Comment {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cCurrent = characterReader.current();
             if (cCurrent == 0) {
                 tokeniser.error(this);
@@ -1010,7 +1007,7 @@ enum TokeniserState {
     },
     CommentEndDash {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1038,7 +1035,7 @@ enum TokeniserState {
     },
     CommentEnd {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1076,7 +1073,7 @@ enum TokeniserState {
     },
     CommentEndBang {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1108,7 +1105,7 @@ enum TokeniserState {
     },
     Doctype {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 tokeniser.transition(TokeniserState.BeforeDoctypeName);
@@ -1132,7 +1129,7 @@ enum TokeniserState {
     },
     BeforeDoctypeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.matchesLetter()) {
                 tokeniser.createDoctypePending();
                 tokeniser.transition(TokeniserState.DoctypeName);
@@ -1166,7 +1163,7 @@ enum TokeniserState {
     },
     DoctypeName {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             if (characterReader.matchesLetter()) {
                 tokeniser.doctypePending.name.append(characterReader.consumeLetterSequence());
                 return;
@@ -1232,7 +1229,7 @@ enum TokeniserState {
     },
     AfterDoctypePublicKeyword {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 tokeniser.transition(TokeniserState.BeforeDoctypePublicIdentifier);
@@ -1269,7 +1266,7 @@ enum TokeniserState {
     },
     BeforeDoctypePublicIdentifier {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 return;
@@ -1303,7 +1300,7 @@ enum TokeniserState {
     },
     DoctypePublicIdentifier_doubleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1333,7 +1330,7 @@ enum TokeniserState {
     },
     DoctypePublicIdentifier_singleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1363,7 +1360,7 @@ enum TokeniserState {
     },
     AfterDoctypePublicIdentifier {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 tokeniser.transition(TokeniserState.BetweenDoctypePublicAndSystemIdentifiers);
@@ -1398,7 +1395,7 @@ enum TokeniserState {
     },
     BetweenDoctypePublicAndSystemIdentifiers {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 return;
@@ -1432,7 +1429,7 @@ enum TokeniserState {
     },
     AfterDoctypeSystemKeyword {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 tokeniser.transition(TokeniserState.BeforeDoctypeSystemIdentifier);
@@ -1469,7 +1466,7 @@ enum TokeniserState {
     },
     BeforeDoctypeSystemIdentifier {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 return;
@@ -1503,7 +1500,7 @@ enum TokeniserState {
     },
     DoctypeSystemIdentifier_doubleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1533,7 +1530,7 @@ enum TokeniserState {
     },
     DoctypeSystemIdentifier_singleQuoted {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == 0) {
                 tokeniser.error(this);
@@ -1563,7 +1560,7 @@ enum TokeniserState {
     },
     AfterDoctypeSystemIdentifier {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '\t' || cConsume == '\n' || cConsume == '\f' || cConsume == '\r' || cConsume == ' ') {
                 return;
@@ -1586,7 +1583,7 @@ enum TokeniserState {
     },
     BogusDoctype {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             char cConsume = characterReader.consume();
             if (cConsume == '>') {
                 tokeniser.emitDoctypePending();
@@ -1602,7 +1599,7 @@ enum TokeniserState {
     },
     CdataSection {
         @Override
-        void read(Tokeniser tokeniser, CharacterReader characterReader) throws IOException {
+        void read(Tokeniser tokeniser, CharacterReader characterReader) {
             tokeniser.dataBuffer.append(characterReader.consumeTo("]]>"));
             if (characterReader.matchConsume("]]>") || characterReader.isEmpty()) {
                 tokeniser.emit(new Token.CData(tokeniser.dataBuffer.toString()));
@@ -1619,7 +1616,7 @@ enum TokeniserState {
 
     abstract void read(Tokeniser tokeniser, CharacterReader characterReader);
 
-    public static void handleDataEndTag(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState) throws IOException {
+    public static void handleDataEndTag(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState) {
         if (characterReader.matchesLetter()) {
             String strConsumeLetterSequence = characterReader.consumeLetterSequence();
             tokeniser.tagPending.appendTagName(strConsumeLetterSequence);
@@ -1648,7 +1645,7 @@ enum TokeniserState {
         tokeniser.transition(tokeniserState);
     }
 
-    public static void readData(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState, TokeniserState tokeniserState2) throws IOException {
+    public static void readData(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState, TokeniserState tokeniserState2) {
         char cCurrent = characterReader.current();
         if (cCurrent == 0) {
             tokeniser.error(tokeniserState);
@@ -1683,7 +1680,7 @@ enum TokeniserState {
         }
     }
 
-    public static void handleDataDoubleEscapeTag(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState, TokeniserState tokeniserState2) throws IOException {
+    public static void handleDataDoubleEscapeTag(Tokeniser tokeniser, CharacterReader characterReader, TokeniserState tokeniserState, TokeniserState tokeniserState2) {
         if (characterReader.matchesLetter()) {
             String strConsumeLetterSequence = characterReader.consumeLetterSequence();
             tokeniser.dataBuffer.append(strConsumeLetterSequence);

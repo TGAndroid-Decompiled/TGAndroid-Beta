@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,7 +15,6 @@ import android.util.Pair;
 import androidx.core.content.FileProvider;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -43,7 +41,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoAlbumPickerActivity;
 import org.telegram.ui.PhotoCropActivity;
@@ -215,7 +212,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         this.delegate = imageUpdaterDelegate;
     }
 
-    public void openMenu(boolean z, final Runnable runnable, DialogInterface.OnDismissListener onDismissListener, int i) throws IOException {
+    public void openMenu(boolean z, final Runnable runnable, DialogInterface.OnDismissListener onDismissListener, int i) {
         BaseFragment baseFragment = this.parentFragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
@@ -327,7 +324,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    public void updateColors() throws IOException {
+    public void updateColors() {
         ChatAttachAlert chatAttachAlert = this.chatAttachAlert;
         if (chatAttachAlert != null) {
             chatAttachAlert.checkColors();
@@ -417,7 +414,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    private void openAttachMenu(DialogInterface.OnDismissListener onDismissListener) throws IOException {
+    private void openAttachMenu(DialogInterface.OnDismissListener onDismissListener) {
         BaseFragment baseFragment = this.parentFragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
@@ -597,7 +594,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
 
     public void didSelectPhotos(boolean z, ArrayList arrayList) {
         MessageObject messageObject;
-        boolean z2;
         Bitmap bitmapLoadBitmap;
         if (arrayList.isEmpty()) {
             return;
@@ -656,17 +652,15 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                             this.imageReceiver.setImage(sendingMediaInfo.searchImage.imageUrl, null, null, "jpg", 1L);
                         }
                     }
-                    processBitmap(z2, bitmapLoadBitmap2, messageObject);
+                    processBitmap(z, bitmapLoadBitmap2, messageObject);
                 }
-                z2 = z;
                 messageObject = null;
-                processBitmap(z2, bitmapLoadBitmap2, messageObject);
+                processBitmap(z, bitmapLoadBitmap2, messageObject);
             }
             messageObject = null;
             bitmapLoadBitmap2 = bitmapLoadBitmap;
         }
-        z2 = z;
-        processBitmap(z2, bitmapLoadBitmap2, messageObject);
+        processBitmap(z, bitmapLoadBitmap2, messageObject);
     }
 
     public void openCamera() {
@@ -811,11 +805,11 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    public void openPhotoForEdit(String str, String str2, int i, boolean z) throws Resources.NotFoundException, IOException {
+    public void openPhotoForEdit(String str, String str2, int i, boolean z) {
         openPhotoForEdit(str, str2, new Pair(Integer.valueOf(i), 0), z);
     }
 
-    public void openPhotoForEdit(String str, String str2, Pair pair, boolean z) throws Resources.NotFoundException, IOException {
+    public void openPhotoForEdit(String str, String str2, Pair pair, boolean z) {
         final ArrayList arrayList = new ArrayList();
         MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, 0, 0L, str, ((Integer) pair.first).intValue(), false, 0, 0, 0L).setOrientation(pair);
         orientation.isVideo = z;
@@ -849,7 +843,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         PhotoViewer.getInstance().closePhotoAfterSelectWithAnimation = true;
     }
 
-    public void onActivityResult(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
+    public void onActivityResult(int i, int i2, Intent intent) {
         if (i2 == -1) {
             if (i == 0 || i == 2) {
                 createChatAttachView();

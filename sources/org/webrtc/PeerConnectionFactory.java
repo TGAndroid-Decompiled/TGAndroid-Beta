@@ -3,10 +3,6 @@ package org.webrtc;
 import android.content.Context;
 import android.os.Process;
 import java.util.List;
-import org.webrtc.Logging;
-import org.webrtc.MediaStreamTrack;
-import org.webrtc.NativeLibrary;
-import org.webrtc.PeerConnection;
 import org.webrtc.audio.AudioDeviceModule;
 import org.webrtc.audio.JavaAudioDeviceModule;
 

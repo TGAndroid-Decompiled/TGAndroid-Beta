@@ -70,8 +70,6 @@ public abstract class OAuthSheet {
         String string;
         int i2;
         boolean z3;
-        ArrayList arrayList;
-        boolean z4;
         TextCheckCell textCheckCell;
         BaseFragment safeLastFragment;
         String string2;
@@ -92,8 +90,8 @@ public abstract class OAuthSheet {
                     Browser.openUrlInSystemBrowser(safeLastFragment3.getContext(), tL_urlAuthResultAccepted.url);
                     return;
                 }
-                boolean z5 = urlAuthResult2 instanceof TLRPC.TL_urlAuthResultRequest;
-                if (z5) {
+                boolean z4 = urlAuthResult2 instanceof TLRPC.TL_urlAuthResultRequest;
+                if (z4) {
                     TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) urlAuthResult2;
                     if (tL_urlAuthResultRequest.is_app) {
                         string2 = !TextUtils.isEmpty(tL_urlAuthResultRequest.verified_app_name) ? tL_urlAuthResultRequest.verified_app_name : LocaleController.getString(R.string.UnverifiedApp);
@@ -104,7 +102,7 @@ public abstract class OAuthSheet {
                     string2 = null;
                 }
                 if (!TextUtils.isEmpty(string2)) {
-                    getBulletinFactory().createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.BotAuthLoggedInSuccessTitle), AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(z5 && ((TLRPC.TL_urlAuthResultRequest) urlAuthResult2).request_phone_number && !z2 ? R.string.BotAuthLoggedInSuccessWithoutPhoneNumber : R.string.BotAuthLoggedInSuccess, string2), Theme.getColor(Theme.key_undo_cancelColor))).show();
+                    getBulletinFactory().createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.BotAuthLoggedInSuccessTitle), AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(z4 && ((TLRPC.TL_urlAuthResultRequest) urlAuthResult2).request_phone_number && !z2 ? R.string.BotAuthLoggedInSuccessWithoutPhoneNumber : R.string.BotAuthLoggedInSuccess, string2), Theme.getColor(Theme.key_undo_cancelColor))).show();
                 }
                 if (botWebViewContainer != null) {
                     botWebViewContainer.notifyEvent("oauth_result_confirmed", BotWebViewContainer.obj("result_url", null));
@@ -152,22 +150,22 @@ public abstract class OAuthSheet {
             BottomSheet.Builder builder = new BottomSheet.Builder(context, false, safeLastFragment5.getResourceProvider());
             FrameLayout frameLayout = new FrameLayout(context);
             builder.setCustomView(frameLayout);
-            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList = new ArrayList();
             boolean zIsTestBackend = ConnectionsManager.getInstance(i).isTestBackend();
-            arrayList2.clear();
+            arrayList.clear();
             for (int i3 = 0; i3 < 4; i3++) {
                 if (UserConfig.getInstance(i3).isClientActivated() && ConnectionsManager.getInstance(i3).isTestBackend() == zIsTestBackend) {
-                    arrayList2.add(Integer.valueOf(i3));
+                    arrayList.add(Integer.valueOf(i3));
                 }
             }
-            Collections.sort(arrayList2, new Comparator() {
+            Collections.sort(arrayList, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
                     return OAuthSheet.lambda$handle$1((Integer) obj, (Integer) obj2);
                 }
             });
-            boolean z6 = tL_messages_requestUrlAuth.peer != null;
-            boolean z7 = tL_urlAuthResultRequest2.is_app;
+            boolean z5 = tL_messages_requestUrlAuth.peer != null;
+            boolean z6 = tL_urlAuthResultRequest2.is_app;
             FrameLayout frameLayout2 = new FrameLayout(context);
             final FrameLayout frameLayout3 = new FrameLayout(context);
             frameLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(14.0f), safeLastFragment5.getThemedColor(Theme.key_dialogBackgroundGray)));
@@ -191,7 +189,7 @@ public abstract class OAuthSheet {
             frameLayout2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), 0);
             frameLayout.addView(frameLayout2, LayoutHelper.createLinear(-2, -2, 0.0f, 51, 6, 4, 6, 0));
             ScaleStateListAnimator.apply(frameLayout2);
-            if (arrayList2.size() <= 1 || tL_messages_requestUrlAuth.peer != null) {
+            if (arrayList.size() <= 1 || tL_messages_requestUrlAuth.peer != null) {
                 frameLayout2.setVisibility(8);
             }
             LinearLayout linearLayout = new LinearLayout(context);
@@ -216,16 +214,16 @@ public abstract class OAuthSheet {
             linearLayout.addView(textViewMakeTextView, LayoutHelper.createLinear(-1, -2, 49, 32.0f, 0.0f, 32.0f, 9.66f));
             TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, i4, false);
             textViewMakeTextView2.setGravity(17);
-            if (z7) {
+            if (z6) {
                 i2 = R.string.BotAuthAppSubtitle;
             } else {
-                i2 = z6 ? R.string.BotAuthBotSubtitle : R.string.BotAuthSiteSubtitle;
+                i2 = z5 ? R.string.BotAuthBotSubtitle : R.string.BotAuthSiteSubtitle;
             }
             textViewMakeTextView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(i2)));
             linearLayout.addView(textViewMakeTextView2, LayoutHelper.createLinear(-1, -2, 49, 32, 0, 32, 24));
             if (TextUtils.isEmpty(tL_urlAuthResultRequest2.platform) && TextUtils.isEmpty(tL_urlAuthResultRequest2.browser) && TextUtils.isEmpty(tL_urlAuthResultRequest2.region) && TextUtils.isEmpty(tL_urlAuthResultRequest2.ip)) {
-                z3 = z7;
-                arrayList = arrayList2;
+                z6 = z6;
+                arrayList = arrayList;
             } else {
                 LinearLayout linearLayout2 = new LinearLayout(context);
                 linearLayout2.setClipToPadding(false);
@@ -233,21 +231,16 @@ public abstract class OAuthSheet {
                 linearLayout2.setOrientation(1);
                 linearLayout2.setBackground(Theme.createRoundRectDrawableShadowed(AndroidUtilities.dp(16.0f), safeLastFragment5.getThemedColor(Theme.key_windowBackgroundWhite)));
                 linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 55, 9, -3, 9, -3));
-                if (TextUtils.isEmpty(tL_urlAuthResultRequest2.platform) && TextUtils.isEmpty(tL_urlAuthResultRequest2.browser)) {
-                    z3 = z7;
-                    arrayList = arrayList2;
-                } else {
+                if (!TextUtils.isEmpty(tL_urlAuthResultRequest2.platform) || !TextUtils.isEmpty(tL_urlAuthResultRequest2.browser)) {
                     LinearLayout linearLayout3 = new LinearLayout(context);
                     linearLayout3.setOrientation(0);
                     ImageView imageView2 = new ImageView(context);
                     imageView2.setImageResource(R.drawable.msg2_devices);
-                    z3 = z7;
                     imageView2.setColorFilter(new PorterDuffColorFilter(safeLastFragment5.getThemedColor(i4), mode));
                     linearLayout3.addView(imageView2, LayoutHelper.createLinear(24, 24, 19, 17, 0, 20, 0));
                     LinearLayout linearLayout4 = new LinearLayout(context);
                     linearLayout4.setOrientation(1);
                     linearLayout3.addView(linearLayout4, LayoutHelper.createLinear(-1, -2, 55, 0.0f, 10.66f, 20.0f, 11.0f));
-                    arrayList = arrayList2;
                     TextView textViewMakeTextView3 = TextHelper.makeTextView(context, 16.0f, i4, false);
                     textViewMakeTextView3.setText(TextUtils.isEmpty(tL_urlAuthResultRequest2.platform) ? "—" : tL_urlAuthResultRequest2.platform);
                     linearLayout4.addView(textViewMakeTextView3, LayoutHelper.createLinear(-1, -2, 55, 0.0f, 0.0f, 0.0f, 4.33f));
@@ -257,7 +250,7 @@ public abstract class OAuthSheet {
                     linearLayout2.addView(linearLayout3, LayoutHelper.createLinear(-1, -2));
                 }
                 if (TextUtils.isEmpty(tL_urlAuthResultRequest2.region) && TextUtils.isEmpty(tL_urlAuthResultRequest2.ip)) {
-                    z4 = false;
+                    z3 = false;
                 } else {
                     LinearLayout linearLayout5 = new LinearLayout(context);
                     linearLayout5.setOrientation(0);
@@ -271,13 +264,13 @@ public abstract class OAuthSheet {
                     TextView textViewMakeTextView5 = TextHelper.makeTextView(context, 16.0f, i4, false);
                     textViewMakeTextView5.setText(TextUtils.isEmpty(tL_urlAuthResultRequest2.region) ? "—" : tL_urlAuthResultRequest2.region);
                     linearLayout6.addView(textViewMakeTextView5, LayoutHelper.createLinear(-1, -2, 55, 0.0f, 0.0f, 0.0f, 4.33f));
-                    z4 = false;
+                    z3 = false;
                     TextView textViewMakeTextView6 = TextHelper.makeTextView(context, 13.0f, Theme.key_windowBackgroundWhiteGrayText, false);
                     textViewMakeTextView6.setText(TextUtils.isEmpty(tL_urlAuthResultRequest2.ip) ? "—" : LocaleController.formatString(R.string.BotAuthBasedOnIP, tL_urlAuthResultRequest2.ip));
                     linearLayout6.addView(textViewMakeTextView6, LayoutHelper.createLinear(-1, -2, 55));
                     linearLayout2.addView(linearLayout5, LayoutHelper.createLinear(-1, -2));
                 }
-                TextView textViewMakeTextView7 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, z4);
+                TextView textViewMakeTextView7 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, z3);
                 textViewMakeTextView7.setText(LocaleController.getString(R.string.BotAuthInfo));
                 linearLayout.addView(textViewMakeTextView7, LayoutHelper.createLinear(-1, -2, 55, 22, 5, 22, 20));
             }
@@ -317,8 +310,8 @@ public abstract class OAuthSheet {
             final BottomSheet bottomSheetCreate = builder.create();
             bottomSheetCreate.setBackgroundColor(safeLastFragment5.getThemedColor(Theme.key_windowBackgroundGray));
             final String[] strArr = {str2};
-            final boolean z8 = z3;
-            final ArrayList arrayList3 = arrayList;
+            final boolean z7 = z6;
+            final ArrayList<Integer> arrayList2 = arrayList;
             final TextCheckCell textCheckCell3 = textCheckCell;
             final Utilities.Callback callback = new Utilities.Callback() {
                 @Override
@@ -327,12 +320,7 @@ public abstract class OAuthSheet {
                 }
             };
             if (tL_urlAuthResultRequest2.user_id_hint != 0 && UserConfig.getInstance(i).getClientUserId() != tL_urlAuthResultRequest2.user_id_hint) {
-                Iterator it = arrayList3.iterator();
-                while (true) {
-                    if (!it.hasNext()) {
-                        break;
-                    }
-                    Integer num = (Integer) it.next();
+                for (Integer num : arrayList2) {
                     if (UserConfig.getInstance(num.intValue()).getClientUserId() == tL_urlAuthResultRequest2.user_id_hint) {
                         callback.run(num);
                         break;
@@ -342,7 +330,7 @@ public abstract class OAuthSheet {
             frameLayout2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    OAuthSheet.lambda$handle$6(bottomSheetCreate, frameLayout3, arrayList3, iArr, callback, view);
+                    OAuthSheet.lambda$handle$6(bottomSheetCreate, frameLayout3, arrayList2, iArr, callback, view);
                 }
             });
             final boolean[] zArr = new boolean[1];
@@ -366,11 +354,11 @@ public abstract class OAuthSheet {
                     OAuthSheet.lambda$handle$13(tL_urlAuthResultRequest2, strArr, context, i, runnable, safeLastFragment5);
                 }
             };
-            final boolean z9 = z6;
+            final boolean z8 = z5;
             round2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    OAuthSheet.lambda$handle$16(round2, round, tL_urlAuthResultRequest2, iArr, context, safeLastFragment5, z9, z8, str3, zArr2, runnable2, view);
+                    OAuthSheet.lambda$handle$16(round2, round, tL_urlAuthResultRequest2, iArr, context, safeLastFragment5, z8, z7, str3, zArr2, runnable2, view);
                 }
             });
             bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -674,8 +662,8 @@ public abstract class OAuthSheet {
         int i2;
         Drawable drawable;
         final BottomSheet[] bottomSheetArr = new BottomSheet[1];
-        BottomSheet.Builder builder = new BottomSheet.Builder(context);
-        LinearLayout linearLayout = new LinearLayout(context);
+        ?? builder = new BottomSheet.Builder(context);
+        ?? linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         builder.setCustomView(linearLayout);
         TextView textView = new TextView(context);
@@ -689,26 +677,29 @@ public abstract class OAuthSheet {
         linearLayout2.setGravity(17);
         linearLayout2.setPadding(0, AndroidUtilities.dp(19.0f), 0, AndroidUtilities.dp(19.0f));
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 1, 0, 0, 0, 0));
-        if (ConnectionsManager.getInstance(i).isTestBackend()) {
-            i2 = 0;
-            while (i2 < 4) {
-                if (UserConfig.getInstance(i2).isClientActivated() && !ConnectionsManager.getInstance(i2).isTestBackend()) {
-                    break;
-                }
-                i2++;
+        if (!ConnectionsManager.getInstance(i).isTestBackend()) {
+            i2 = i;
+            break;
+        }
+        i2 = 0;
+        while (true) {
+            if (i2 >= 4) {
+                i2 = i;
+                break;
             }
-            i2 = i;
-        } else {
-            i2 = i;
+            if (UserConfig.getInstance(i2).isClientActivated() && !ConnectionsManager.getInstance(i2).isTestBackend()) {
+                break;
+            }
+            i2++;
         }
         final BackupImageView[] backupImageViewArr = new BackupImageView[arrayList.size()];
         int i3 = 0;
         boolean z2 = true;
-        BottomSheet.Builder builder2 = builder;
+        ?? r5 = builder;
         while (i3 < arrayList.size()) {
             final String str2 = (String) arrayList.get(i3);
             FrameLayout frameLayout = new FrameLayout(context);
-            BottomSheet.Builder builder3 = builder2;
+            ?? r19 = r5;
             frameLayout.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(70.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), 0.05f)));
             Drawable emojiBigDrawable = Emoji.getEmojiBigDrawable(str2);
             if (emojiBigDrawable == null) {
@@ -751,9 +742,9 @@ public abstract class OAuthSheet {
                 }
             });
             i3++;
-            builder2 = builder3;
+            r5 = r19;
         }
-        BottomSheet.Builder builder4 = builder2;
+        ?? r110 = r5;
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
         tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
         MediaDataController.getInstance(i2).getStickerSet(tL_inputStickerSetShortName, null, false, new Utilities.Callback() {
@@ -784,7 +775,7 @@ public abstract class OAuthSheet {
                 OAuthSheet.lambda$showMatchCodeSheet$23(round, bottomSheetArr, runnable, view);
             }
         });
-        BottomSheet bottomSheetShow = builder4.show();
+        BottomSheet bottomSheetShow = r110.show();
         bottomSheetArr[0] = bottomSheetShow;
         return bottomSheetShow;
     }
@@ -807,22 +798,26 @@ public abstract class OAuthSheet {
             String str = (String) arrayList.get(i);
             int i2 = 0;
             while (true) {
-                if (i2 >= tL_messages_stickerSet.packs.size()) {
-                    break;
-                }
-                if (tL_messages_stickerSet.packs.get(i2).documents.isEmpty() || !TextUtils.equals(tL_messages_stickerSet.packs.get(i2).emoticon, str)) {
-                    i2++;
-                } else {
-                    long jLongValue = tL_messages_stickerSet.packs.get(i2).documents.get(0).longValue();
-                    for (int i3 = 0; i3 < tL_messages_stickerSet.documents.size(); i3++) {
-                        if (tL_messages_stickerSet.documents.get(i3).id == jLongValue) {
-                            document = tL_messages_stickerSet.documents.get(i3);
-                            break;
+                if (i2 < tL_messages_stickerSet.packs.size()) {
+                    if (tL_messages_stickerSet.packs.get(i2).documents.isEmpty() || !TextUtils.equals(tL_messages_stickerSet.packs.get(i2).emoticon, str)) {
+                        i2++;
+                    } else {
+                        long jLongValue = tL_messages_stickerSet.packs.get(i2).documents.get(0).longValue();
+                        int i3 = 0;
+                        while (true) {
+                            if (i3 < tL_messages_stickerSet.documents.size()) {
+                                if (tL_messages_stickerSet.documents.get(i3).id == jLongValue) {
+                                    document = tL_messages_stickerSet.documents.get(i3);
+                                    break;
+                                }
+                                i3++;
+                            }
                         }
                     }
                 }
+                document = null;
+                break;
             }
-            document = null;
             if (document != null) {
                 backupImageViewArr[i].setImage(ImageLocation.getForDocument(document), "40_40", ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 40), document), "40_40", Emoji.getEmojiBigDrawable(str), (Object) null);
             }
@@ -844,10 +839,8 @@ public abstract class OAuthSheet {
         Context parentActivity2;
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!BotWebViewSheet.activeSheets.isEmpty()) {
-            Iterator it = BotWebViewSheet.activeSheets.iterator();
             BotWebViewSheet botWebViewSheet = null;
-            while (it.hasNext()) {
-                BotWebViewSheet botWebViewSheet2 = (BotWebViewSheet) it.next();
+            for (BotWebViewSheet botWebViewSheet2 : BotWebViewSheet.activeSheets) {
                 if (botWebViewSheet2.attached) {
                     botWebViewSheet = botWebViewSheet2;
                 }
@@ -865,10 +858,8 @@ public abstract class OAuthSheet {
             }
         }
         if (!ArticleViewer.activeSheets.isEmpty()) {
-            Iterator it2 = ArticleViewer.activeSheets.iterator();
             ArticleViewer articleViewer = null;
-            while (it2.hasNext()) {
-                ArticleViewer articleViewer2 = (ArticleViewer) it2.next();
+            for (ArticleViewer articleViewer2 : ArticleViewer.activeSheets) {
                 if (articleViewer2.isVisible()) {
                     articleViewer = articleViewer2;
                 }

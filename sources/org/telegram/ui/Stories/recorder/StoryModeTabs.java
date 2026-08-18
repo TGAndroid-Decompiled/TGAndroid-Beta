@@ -19,7 +19,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.Stories.recorder.FlashViews;
 
 public abstract class StoryModeTabs extends FrameLayout implements FlashViews.Invertable {
     private ValueAnimator animator;
@@ -47,7 +46,12 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
             private final Paint backgroundPaint = new Paint(1);
 
             private void setRect(int i, RectF rectF) {
-                FrameLayout frameLayout = i <= -1 ? StoryModeTabs.this.liveLayout : i >= 1 ? StoryModeTabs.this.videoLayout : StoryModeTabs.this.photoLayout;
+                FrameLayout frameLayout;
+                if (i <= -1) {
+                    frameLayout = StoryModeTabs.this.liveLayout;
+                } else {
+                    frameLayout = i >= 1 ? StoryModeTabs.this.videoLayout : StoryModeTabs.this.photoLayout;
+                }
                 rectF.set(frameLayout.getLeft(), frameLayout.getBottom() - AndroidUtilities.dp(30.0f), frameLayout.getRight(), frameLayout.getBottom());
             }
 

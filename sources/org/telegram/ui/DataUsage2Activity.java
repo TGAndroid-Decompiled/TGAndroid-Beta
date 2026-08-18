@@ -47,8 +47,6 @@ import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.ViewPagerFixed;
-import org.telegram.ui.DataUsage2Activity;
-import org.telegram.ui.SettingsActivity;
 
 public class DataUsage2Activity extends BaseFragment {
     private boolean changeStatusBar;
@@ -234,7 +232,8 @@ public class DataUsage2Activity extends BaseFragment {
                 if (itemInner != null) {
                     int i2 = itemInner.index;
                     if (i2 >= 0) {
-                        this.collapsed[i2] = !r0[i2];
+                        boolean[] zArr = this.collapsed;
+                        zArr[i2] = !zArr[i2];
                         updateRows(true);
                         return;
                     } else {
@@ -549,16 +548,10 @@ public class DataUsage2Activity extends BaseFragment {
                                 i3++;
                             }
                         }
-                        int i4 = 0;
-                        while (true) {
-                            if (i4 < ListView.this.itemInners.size()) {
-                                ItemInner itemInner = (ItemInner) ListView.this.itemInners.get(i4);
-                                if (itemInner != null && itemInner.viewType == 2 && itemInner.index == i3) {
-                                    i2 = i4;
-                                    break;
-                                }
-                                i4++;
-                            } else {
+                        for (int i4 = 0; i4 < ListView.this.itemInners.size(); i4++) {
+                            ItemInner itemInner = (ItemInner) ListView.this.itemInners.get(i4);
+                            if (itemInner != null && itemInner.viewType == 2 && itemInner.index == i3) {
+                                i2 = i4;
                                 break;
                             }
                         }
@@ -588,12 +581,12 @@ public class DataUsage2Activity extends BaseFragment {
                     ListView.this.chart.setInterceptTouch(false);
                     subtitleCell = ListView.this.chart;
                     subtitleCell.setTag(-33024);
-                } else if (i == 1) {
-                    ListView listView = ListView.this;
-                    subtitleCell = DataUsage2Activity.this.new SubtitleCell(listView.getContext());
-                    subtitleCell.setTag(-33024);
                 } else {
-                    if (i == 3) {
+                    if (i == 1) {
+                        ListView listView = ListView.this;
+                        subtitleCell = DataUsage2Activity.this.new SubtitleCell(listView.getContext());
+                        subtitleCell.setTag(-33024);
+                    } else if (i == 3) {
                         textInfoPrivacyCell = new TextInfoPrivacyCell(ListView.this.getContext());
                     } else if (i == 4) {
                         HeaderCell headerCell = new HeaderCell(ListView.this.getContext());
@@ -796,7 +789,10 @@ public class DataUsage2Activity extends BaseFragment {
             if (i2 == 1 || i2 == 4 || i2 == 3 || i2 == 5) {
                 return TextUtils.equals(this.text, itemInner.text);
             }
-            return i2 == 2 ? itemInner.index == this.index && TextUtils.equals(this.text, itemInner.text) && itemInner.imageColorTop == this.imageColorTop && itemInner.imageColorBottom == this.imageColorBottom && itemInner.imageResId == this.imageResId : itemInner.key == this.key;
+            if (i2 == 2) {
+                return itemInner.index == this.index && TextUtils.equals(this.text, itemInner.text) && itemInner.imageColorTop == this.imageColorTop && itemInner.imageColorBottom == this.imageColorBottom && itemInner.imageResId == this.imageResId;
+            }
+            return itemInner.key == this.key;
         }
     }
 
@@ -988,12 +984,12 @@ public class DataUsage2Activity extends BaseFragment {
 
         @Override
         public void updateDrawState(TextPaint textPaint) {
-            textPaint.baselineShift += (int) (textPaint.ascent() * this.ratio);
+            textPaint.baselineShift += (int) (((double) textPaint.ascent()) * this.ratio);
         }
 
         @Override
         public void updateMeasureState(TextPaint textPaint) {
-            textPaint.baselineShift += (int) (textPaint.ascent() * this.ratio);
+            textPaint.baselineShift += (int) (((double) textPaint.ascent()) * this.ratio);
         }
     }
 

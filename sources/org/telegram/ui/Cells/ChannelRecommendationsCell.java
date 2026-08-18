@@ -1,5 +1,6 @@
 package org.telegram.ui.Cells;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -7,18 +8,22 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -94,8 +99,9 @@ public class ChannelRecommendationsCell {
         this.serviceTextPaint.setTypeface(AndroidUtilities.bold());
         this.serviceTextPaint.setTextSize(AndroidUtilities.dp(14.0f));
         this.serviceTextPaint.setColor(this.cell.getThemedColor(Theme.key_chat_serviceText));
-        this.serviceText = new StaticLayout(LocaleController.getString(R.string.ChannelJoined), this.serviceTextPaint, this.msg.getMaxMessageTextWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        this.serviceTextLeft = r14.getWidth();
+        StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.ChannelJoined), this.serviceTextPaint, this.msg.getMaxMessageTextWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.serviceText = staticLayout;
+        this.serviceTextLeft = staticLayout.getWidth();
         this.serviceTextRight = 0.0f;
         for (int i3 = 0; i3 < this.serviceText.getLineCount(); i3++) {
             this.serviceTextLeft = Math.min(this.serviceTextLeft, this.serviceText.getLineLeft(i3));
@@ -212,8 +218,9 @@ public class ChannelRecommendationsCell {
         float fClamp = Utilities.clamp((f - 0.3f) / 0.7f, 1.0f, 0.0f);
         if (fClamp > 0.0f) {
             int width2 = this.cell.getWidth() - AndroidUtilities.dp(18.0f);
-            this.blockWidth = (int) (width2 > AndroidUtilities.dp(441.0f) ? AndroidUtilities.dp(66.0f) : Math.max((width2 / 4.5f) - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(66.0f)));
-            this.channelsScrollWidth = (r4 * this.channels.size()) + (AndroidUtilities.dp(9.0f) * (this.channels.size() - 1));
+            int iDp = (int) (width2 > AndroidUtilities.dp(441.0f) ? AndroidUtilities.dp(66.0f) : Math.max((width2 / 4.5f) - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(66.0f)));
+            this.blockWidth = iDp;
+            this.channelsScrollWidth = (iDp * this.channels.size()) + (AndroidUtilities.dp(9.0f) * (this.channels.size() - 1));
             int iMin = (int) Math.min(width2, this.blockWidth * 6.5f);
             this.backgroundBounds.set((this.cell.getWidth() - iMin) / 2.0f, AndroidUtilities.dp(10.0f) + fDp, (this.cell.getWidth() + iMin) / 2.0f, fDp + AndroidUtilities.dp(138.0f));
             this.scrollX = Utilities.clamp(this.scrollX, this.channelsScrollWidth - (this.backgroundBounds.width() - AndroidUtilities.dp(14.0f)), 0.0f);
@@ -499,7 +506,8 @@ public class ChannelRecommendationsCell {
                 } else {
                     this.nameTextPaint.setColor(this.cell.getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
                 }
-                this.nameTextPaint.setAlpha((int) (r0.getAlpha() * f));
+                TextPaint textPaint = this.nameTextPaint;
+                textPaint.setAlpha((int) (textPaint.getAlpha() * f));
                 this.nameText.draw(canvas);
                 canvas.restore();
             }
@@ -518,14 +526,113 @@ public class ChannelRecommendationsCell {
             canvas.restore();
         }
 
-        public void draw(android.graphics.Canvas r12, int r13, float r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChannelRecommendationsCell.ChannelBlock.draw(android.graphics.Canvas, int, float):void");
+        public void draw(Canvas canvas, int i, float f) {
+            float f2;
+            canvas.save();
+            float scale = this.bounce.getScale(0.075f);
+            float f3 = i;
+            float f4 = f3 / 2.0f;
+            canvas.scale(scale, scale, f4, height() / 2.0f);
+            this.subscribersStrokePaint.setStrokeWidth(AndroidUtilities.dp(2.66f));
+            this.subscribersStrokePaint.setColor(this.cell.getThemedColor(Theme.key_chat_inBubble));
+            for (int length = this.avatarImageReceiver.length - 1; length >= 0; length--) {
+                float fDp = (f4 - ((AndroidUtilities.dp(7.0f) * (this.avatarImageReceiver.length - 1)) / 2.0f)) + (AndroidUtilities.dp(7.0f) * length);
+                float fDp2 = AndroidUtilities.dp(10.0f) + (avatarSize() / 2.0f);
+                if (this.avatarImageReceiver.length > 1) {
+                    canvas.drawCircle(fDp, fDp2, avatarSize() / 2.0f, this.subscribersStrokePaint);
+                }
+                this.avatarImageReceiver[length].setImageCoords(fDp - (avatarSize() / 2.0f), fDp2 - (avatarSize() / 2.0f), avatarSize(), avatarSize());
+                this.avatarImageReceiver[length].setAlpha(f);
+                this.avatarImageReceiver[length].draw(canvas);
+            }
+            Text text = this.subscribersText;
+            if (text != null) {
+                text.ellipsize(i - AndroidUtilities.dp(32.0f));
+                float fDp3 = AndroidUtilities.dp(this.subscribersDrawable != null ? 17.0f : 8.0f) + this.subscribersText.getWidth();
+                float fDp4 = AndroidUtilities.dp(10.0f) + avatarSize() + AndroidUtilities.dp(1.0f);
+                AndroidUtilities.rectTmp.set((f3 - fDp3) / 2.0f, fDp4 - AndroidUtilities.dp(14.33f), (f3 + fDp3) / 2.0f, fDp4);
+                boolean z = this.subscribersColorSet;
+                if (!z && this.isLock) {
+                    this.subscribersBackgroundPaint.setColor(Theme.blendOver(this.cell.getThemedColor(Theme.key_chat_inBubble), Theme.multAlpha(this.cell.getThemedColor(Theme.key_windowBackgroundWhiteGrayText), 0.85f)));
+                    this.subscribersColorSet = true;
+                } else if (!z && (this.avatarImageReceiver[0].getStaticThumb() instanceof BitmapDrawable)) {
+                    Bitmap bitmap = ((BitmapDrawable) this.avatarImageReceiver[0].getStaticThumb()).getBitmap();
+                    try {
+                        float[] fArr = new float[3];
+                        ColorUtils.colorToHSL(bitmap.getPixel(bitmap.getWidth() / 2, bitmap.getHeight() - 2), fArr);
+                        float f5 = fArr[1];
+                        if (f5 <= 0.05f || f5 >= 0.95f) {
+                            fArr[1] = 0.0f;
+                            if (Theme.isCurrentThemeDark()) {
+                                f2 = 0.38f;
+                            } else {
+                                f2 = 0.7f;
+                            }
+                            fArr[2] = f2;
+                        } else {
+                            float f6 = fArr[2];
+                            if (f6 <= 0.02f || f6 >= 0.98f) {
+                                fArr[1] = 0.0f;
+                                if (Theme.isCurrentThemeDark()) {
+                                    f2 = 0.38f;
+                                } else {
+                                    f2 = 0.7f;
+                                }
+                                fArr[2] = f2;
+                            } else {
+                                fArr[1] = 0.25f;
+                                fArr[2] = Theme.isCurrentThemeDark() ? 0.35f : 0.65f;
+                            }
+                        }
+                        this.subscribersBackgroundPaint.setColor(ColorUtils.HSLToColor(fArr));
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                    this.subscribersColorSet = true;
+                } else if (!this.subscribersColorSet && !this.subscribersColorSetFromThumb) {
+                    try {
+                        float[] fArr2 = new float[3];
+                        ColorUtils.colorToHSL(ColorUtils.blendARGB(this.avatarDrawable[0].getColor(), this.avatarDrawable[0].getColor2(), 0.5f), fArr2);
+                        float f7 = fArr2[1];
+                        if (f7 <= 0.05f || f7 >= 0.95f) {
+                            fArr2[2] = Utilities.clamp(fArr2[2] - 0.1f, 0.6f, 0.3f);
+                        } else {
+                            fArr2[1] = Utilities.clamp(f7 - 0.06f, 0.4f, 0.0f);
+                            fArr2[2] = Utilities.clamp(fArr2[2] - 0.08f, 0.5f, 0.2f);
+                        }
+                        this.subscribersBackgroundPaint.setColor(ColorUtils.HSLToColor(fArr2));
+                    } catch (Exception e2) {
+                        FileLog.e(e2);
+                    }
+                    this.subscribersColorSetFromThumb = true;
+                }
+                if (this.subscribersBackgroundPaintShader != null) {
+                    this.subscribersBackgroundPaintMatrix.reset();
+                    this.subscribersBackgroundPaintMatrix.postScale(avatarSize() / this.subscribersBackgroundPaintBitmapWidth, avatarSize() / this.subscribersBackgroundPaintBitmapHeight);
+                    Matrix matrix = this.subscribersBackgroundPaintMatrix;
+                    float fAvatarSize = f4 - (avatarSize() / 2.0f);
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    matrix.postTranslate(fAvatarSize, rectF.bottom - avatarSize());
+                    this.subscribersBackgroundPaintShader.setLocalMatrix(this.subscribersBackgroundPaintMatrix);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersBackgroundPaint);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersBackgroundDimPaint);
+                } else {
+                    canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersBackgroundPaint);
+                }
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.inset((-AndroidUtilities.dp(1.0f)) / 2.0f, (-AndroidUtilities.dp(1.0f)) / 2.0f);
+                this.subscribersStrokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.subscribersStrokePaint);
+            }
+            canvas.restore();
         }
 
         public static void fillPath(Path path, int i, float f) {
             float f2 = i;
+            float fDp = AndroidUtilities.dp(10.0f) + (avatarSize() / 2.0f);
+            float fAvatarSize = avatarSize() / 2.0f;
             Path.Direction direction = Path.Direction.CW;
-            path.addCircle((f2 / 2.0f) + f, AndroidUtilities.dp(10.0f) + (avatarSize() / 2.0f), avatarSize() / 2.0f, direction);
+            path.addCircle((f2 / 2.0f) + f, fDp, fAvatarSize, direction);
             float f3 = 0.4f * f2;
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(((f2 - f3) / 2.0f) + f, AndroidUtilities.dp(69.0f), ((f3 + f2) / 2.0f) + f, AndroidUtilities.dp(79.0f));
@@ -560,8 +667,136 @@ public class ChannelRecommendationsCell {
         }
     }
 
-    public boolean checkTouchEvent(android.view.MotionEvent r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChannelRecommendationsCell.checkTouchEvent(android.view.MotionEvent):boolean");
+    public boolean checkTouchEvent(MotionEvent motionEvent) {
+        final ChannelBlock channelBlock;
+        VelocityTracker velocityTracker;
+        boolean z;
+        if (this.msg == null || this.cell == null) {
+            return false;
+        }
+        int action = motionEvent.getAction();
+        float fDp = (this.backgroundBounds.left + AndroidUtilities.dp(7.0f)) - this.scrollX;
+        int i = 0;
+        while (true) {
+            if (i >= this.channels.size()) {
+                channelBlock = null;
+                break;
+            }
+            channelBlock = (ChannelBlock) this.channels.get(i);
+            if (motionEvent.getX() >= fDp && motionEvent.getX() <= this.blockWidth + fDp && motionEvent.getY() >= this.backgroundBounds.bottom - ChannelBlock.height() && motionEvent.getY() < this.backgroundBounds.bottom) {
+                break;
+            }
+            fDp += this.blockWidth + AndroidUtilities.dp(9.0f);
+            i++;
+        }
+        boolean zContains = this.closeBounds.contains(motionEvent.getX(), motionEvent.getY());
+        if (action == 0) {
+            this.scroller.abortAnimation();
+            if (this.loading) {
+                z = false;
+            } else {
+                RectF rectF = this.backgroundBounds;
+                float x = motionEvent.getX();
+                this.lx = x;
+                float y = motionEvent.getY();
+                this.ly = y;
+                if (rectF.contains(x, y)) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+            }
+            this.maybeScrolling = z;
+            if (z && this.cell.getParent() != null) {
+                this.cell.getParent().requestDisallowInterceptTouchEvent(true);
+            }
+            this.scrolling = false;
+            VelocityTracker velocityTracker2 = this.velocityTracker;
+            if (velocityTracker2 != null) {
+                velocityTracker2.recycle();
+                this.velocityTracker = null;
+            }
+            this.velocityTracker = VelocityTracker.obtain();
+            if (channelBlock != null) {
+                channelBlock.bounce.setPressed(true);
+            }
+            if (zContains) {
+                this.closeBounce.setPressed(true);
+            }
+            Runnable runnable = this.longPressRunnable;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                this.longPressRunnable = null;
+            }
+            this.longPressedBlock = channelBlock;
+            if (channelBlock != null) {
+                Runnable runnable2 = new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$checkTouchEvent$0(channelBlock);
+                    }
+                };
+                this.longPressRunnable = runnable2;
+                AndroidUtilities.runOnUIThread(runnable2, ViewConfiguration.getLongPressTimeout());
+            }
+            return this.maybeScrolling;
+        }
+        if (action == 2) {
+            VelocityTracker velocityTracker3 = this.velocityTracker;
+            if (velocityTracker3 != null) {
+                velocityTracker3.addMovement(motionEvent);
+            }
+            if ((this.maybeScrolling && Math.abs(motionEvent.getX() - this.lx) >= AndroidUtilities.touchSlop) || this.scrolling) {
+                Runnable runnable3 = this.longPressRunnable;
+                if (runnable3 != null) {
+                    AndroidUtilities.cancelRunOnUIThread(runnable3);
+                    this.longPressRunnable = null;
+                }
+                this.scrolling = true;
+                scroll(this.lx - motionEvent.getX());
+                this.lx = motionEvent.getX();
+                unselectBlocks();
+                return true;
+            }
+        } else if (action == 1 || action == 3) {
+            Runnable runnable4 = this.longPressRunnable;
+            if (runnable4 != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable4);
+                this.longPressRunnable = null;
+            }
+            VelocityTracker velocityTracker4 = this.velocityTracker;
+            if (velocityTracker4 != null) {
+                velocityTracker4.addMovement(motionEvent);
+            }
+            boolean z2 = this.scrolling;
+            this.scrolling = false;
+            if (action == 1) {
+                if (z2 || channelBlock == null || !channelBlock.bounce.isPressed()) {
+                    if (z2 && (velocityTracker = this.velocityTracker) != null) {
+                        velocityTracker.computeCurrentVelocity(500);
+                        this.scroller.fling((int) this.scrollX, 0, (int) (-this.velocityTracker.getXVelocity()), 0, -2147483647, Integer.MAX_VALUE, 0, 0);
+                    } else if (this.closeBounce.isPressed()) {
+                        didClickClose();
+                    }
+                } else if (channelBlock.isLock) {
+                    if (this.cell.getDelegate() != null) {
+                        this.cell.getDelegate().didPressMoreChannelRecommendations(this.cell);
+                    }
+                } else {
+                    didClickChannel(channelBlock.chat, false);
+                }
+            }
+            this.closeBounce.setPressed(false);
+            this.maybeScrolling = false;
+            VelocityTracker velocityTracker5 = this.velocityTracker;
+            if (velocityTracker5 != null) {
+                velocityTracker5.recycle();
+                this.velocityTracker = null;
+            }
+            unselectBlocks();
+            return z2;
+        }
+        return false;
     }
 
     public void lambda$checkTouchEvent$0(ChannelBlock channelBlock) {

@@ -38,7 +38,7 @@ public class JavaFontRenderingBox extends Box {
         drawDebug(graphics2D, f, f2);
         graphics2D.translate(f, f2);
         float f3 = this.size;
-        graphics2D.scale(f3 * 0.1d, f3 * 0.1d);
+        graphics2D.scale(((double) f3) * 0.1d, ((double) f3) * 0.1d);
         this.text.draw(graphics2D, 0, 0);
         float f4 = this.size;
         graphics2D.scale(10.0f / f4, 10.0f / f4);

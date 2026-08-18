@@ -120,16 +120,11 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         } else if (arrayList != null && arrayList.size() > 1) {
             this.titleTextView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
             String str3 = arrayList.get(0).location;
-            int i2 = 1;
-            while (true) {
-                if (i2 >= arrayList.size()) {
-                    break;
-                }
+            for (int i2 = 1; i2 < arrayList.size(); i2++) {
                 if (!TextUtils.equals(str3, arrayList.get(i2).location)) {
                     str3 = null;
                     break;
                 }
-                i2++;
             }
             if (str3 == null) {
                 this.messageTextView.setText(LocaleController.formatPluralString("UnconfirmedAuthMultiple", arrayList.size(), new Object[0]));

@@ -237,11 +237,8 @@ public class Utilities {
         }
         int i2 = -1;
         int i3 = 0;
-        while (true) {
+        while (i3 < charSequence.length()) {
             try {
-                if (i3 >= charSequence.length()) {
-                    break;
-                }
                 char cCharAt = charSequence.charAt(i3);
                 boolean z = cCharAt == '-' || (cCharAt >= '0' && cCharAt <= '9');
                 if (z && i2 < 0) {
@@ -277,7 +274,7 @@ public class Utilities {
         return z ? -iCharAt : iCharAt;
     }
 
-    public static Long parseLong(String str) throws NumberFormatException {
+    public static Long parseLong(String str) {
         long j = 0;
         if (str == null) {
             return 0L;
@@ -348,7 +345,7 @@ public class Utilities {
         return z;
     }
 
-    public static byte[] computeSHA1(byte[] bArr, int i, int i2) throws NoSuchAlgorithmException {
+    public static byte[] computeSHA1(byte[] bArr, int i, int i2) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
             messageDigest.update(bArr, i, i2);
@@ -363,18 +360,14 @@ public class Utilities {
         int iPosition = byteBuffer.position();
         int iLimit = byteBuffer.limit();
         try {
-            try {
-                MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
-                byteBuffer.position(i);
-                byteBuffer.limit(i2);
-                messageDigest.update(byteBuffer);
-                return messageDigest.digest();
-            } catch (Exception e) {
-                FileLog.e(e);
-                byteBuffer.limit(iLimit);
-                byteBuffer.position(iPosition);
-                return new byte[20];
-            }
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
+            byteBuffer.position(i);
+            byteBuffer.limit(i2);
+            messageDigest.update(byteBuffer);
+            return messageDigest.digest();
+        } catch (Exception e) {
+            FileLog.e(e);
+            return new byte[20];
         } finally {
             byteBuffer.limit(iLimit);
             byteBuffer.position(iPosition);
@@ -393,7 +386,7 @@ public class Utilities {
         return computeSHA256(bArr, 0, bArr.length);
     }
 
-    public static byte[] computeSHA256(byte[] bArr, int i, long j) throws NoSuchAlgorithmException {
+    public static byte[] computeSHA256(byte[] bArr, int i, long j) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(bArr, i, (int) j);
@@ -404,7 +397,7 @@ public class Utilities {
         }
     }
 
-    public static byte[] computeSHA256(byte[]... bArr) throws NoSuchAlgorithmException {
+    public static byte[] computeSHA256(byte[]... bArr) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             for (byte[] bArr2 : bArr) {
@@ -417,7 +410,7 @@ public class Utilities {
         }
     }
 
-    public static byte[] computeSHA512(byte[] bArr) throws NoSuchAlgorithmException {
+    public static byte[] computeSHA512(byte[] bArr) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
             messageDigest.update(bArr, 0, bArr.length);
@@ -428,7 +421,7 @@ public class Utilities {
         }
     }
 
-    public static byte[] computeSHA512(byte[] bArr, byte[] bArr2) throws NoSuchAlgorithmException {
+    public static byte[] computeSHA512(byte[] bArr, byte[] bArr2) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
             messageDigest.update(bArr, 0, bArr.length);
@@ -446,7 +439,7 @@ public class Utilities {
         return bArr3;
     }
 
-    public static byte[] computeSHA512(byte[] bArr, byte[] bArr2, byte[] bArr3) throws NoSuchAlgorithmException {
+    public static byte[] computeSHA512(byte[] bArr, byte[] bArr2, byte[] bArr3) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
             messageDigest.update(bArr, 0, bArr.length);
@@ -463,19 +456,15 @@ public class Utilities {
         int iPosition = byteBuffer.position();
         int iLimit = byteBuffer.limit();
         try {
-            try {
-                MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-                messageDigest.update(bArr, i, i2);
-                byteBuffer.position(i3);
-                byteBuffer.limit(i4);
-                messageDigest.update(byteBuffer);
-                return messageDigest.digest();
-            } catch (Exception e) {
-                FileLog.e(e);
-                byteBuffer.limit(iLimit);
-                byteBuffer.position(iPosition);
-                return new byte[32];
-            }
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            messageDigest.update(bArr, i, i2);
+            byteBuffer.position(i3);
+            byteBuffer.limit(i4);
+            messageDigest.update(byteBuffer);
+            return messageDigest.digest();
+        } catch (Exception e) {
+            FileLog.e(e);
+            return new byte[32];
         } finally {
             byteBuffer.limit(iLimit);
             byteBuffer.position(iPosition);
@@ -483,7 +472,7 @@ public class Utilities {
     }
 
     public static long bytesToLong(byte[] bArr) {
-        return (bArr[7] << 56) + ((bArr[6] & 255) << 48) + ((bArr[5] & 255) << 40) + ((bArr[4] & 255) << 32) + ((bArr[3] & 255) << 24) + ((bArr[2] & 255) << 16) + ((bArr[1] & 255) << 8) + (bArr[0] & 255);
+        return (((long) bArr[7]) << 56) + ((((long) bArr[6]) & 255) << 48) + ((((long) bArr[5]) & 255) << 40) + ((((long) bArr[4]) & 255) << 32) + ((((long) bArr[3]) & 255) << 24) + ((((long) bArr[2]) & 255) << 16) + ((((long) bArr[1]) & 255) << 8) + (((long) bArr[0]) & 255);
     }
 
     public static int bytesToInt(byte[] bArr) {
@@ -537,7 +526,10 @@ public class Utilities {
     }
 
     public static float clamp(float f, float f2, float f3) {
-        return Float.isNaN(f) ? f3 : Float.isInfinite(f) ? f2 : Math.max(Math.min(f, f2), f3);
+        if (Float.isNaN(f)) {
+            return f3;
+        }
+        return Float.isInfinite(f) ? f2 : Math.max(Math.min(f, f2), f3);
     }
 
     public static float clamp01(float f) {
@@ -545,7 +537,10 @@ public class Utilities {
     }
 
     public static double clamp(double d, double d2, double d3) {
-        return Double.isNaN(d) ? d3 : Double.isInfinite(d) ? d2 : Math.max(Math.min(d, d2), d3);
+        if (Double.isNaN(d)) {
+            return d3;
+        }
+        return Double.isInfinite(d) ? d2 : Math.max(Math.min(d, d2), d3);
     }
 
     public static float dist(float f, float f2, float f3, float f4) {

@@ -4,6 +4,7 @@ import android.net.Uri;
 import com.google.android.exoplayer2.upstream.BaseDataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
+import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
 import j$.util.concurrent.ConcurrentMap$EL;
 import java.io.File;
@@ -59,7 +60,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public long open(DataSpec dataSpec) throws InterruptedException {
+    public long open(DataSpec dataSpec) {
         this.uri = dataSpec.uri;
         transferInitializing(dataSpec);
         int iIntValue = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("account")).intValue();
@@ -130,8 +131,109 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public int read(byte[] r13, int r14, int r15) throws java.lang.InterruptedException, java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
+    public int read(byte[] bArr, int i, int i2) throws IOException {
+        RandomAccessFile randomAccessFile;
+        if (i2 == 0) {
+            return 0;
+        }
+        long j = this.bytesRemaining;
+        if (j == 0) {
+            return -1;
+        }
+        if (j < i2) {
+            i2 = (int) j;
+        }
+        int i3 = 0;
+        while (true) {
+            if (i3 != 0) {
+                randomAccessFile = this.file;
+                if (randomAccessFile != null) {
+                    break;
+                    break;
+                }
+            } else {
+                try {
+                    if (!this.opened) {
+                        randomAccessFile = this.file;
+                        if (randomAccessFile != null) {
+                            break;
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    FileLog.e(e);
+                    return -3;
+                } catch (Exception e2) {
+                    throw new IOException(e2);
+                }
+            }
+            i3 = (int) this.loadOperation.getDownloadedLengthFromOffset(this.currentOffset, i2)[0];
+            if (i3 == 0) {
+                this.countDownLatch = new CountDownLatch(1);
+                FileLoadOperation fileLoadOperationLoadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
+                FileLoadOperation fileLoadOperation = this.loadOperation;
+                if (fileLoadOperation != fileLoadOperationLoadStreamFile) {
+                    fileLoadOperation.removeStreamListener(this);
+                    this.loadOperation = fileLoadOperationLoadStreamFile;
+                }
+                CountDownLatch countDownLatch = this.countDownLatch;
+                if (countDownLatch != null) {
+                    countDownLatch.await();
+                    this.countDownLatch = null;
+                }
+            }
+            File currentFileFast = this.loadOperation.getCurrentFileFast();
+            if (this.file == null || !Objects.equals(this.currentFile, currentFileFast)) {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("check stream file " + currentFileFast);
+                }
+                RandomAccessFile randomAccessFile2 = this.file;
+                if (randomAccessFile2 != null) {
+                    try {
+                        randomAccessFile2.close();
+                    } catch (Exception unused) {
+                    }
+                }
+                this.currentFile = currentFileFast;
+                if (currentFileFast != null) {
+                    try {
+                        RandomAccessFile randomAccessFile3 = new RandomAccessFile(this.currentFile, "r");
+                        this.file = randomAccessFile3;
+                        randomAccessFile3.seek(this.currentOffset);
+                        if (this.loadOperation.isFinished()) {
+                            this.isNetwork = false;
+                            long length = this.currentFile.length() - this.currentOffset;
+                            this.bytesRemaining = length;
+                            long j2 = this.requestedLength;
+                            if (j2 != -1) {
+                                this.bytesRemaining = Math.min(length, j2 - this.bytesTransferred);
+                            }
+                        }
+                    } catch (Throwable unused2) {
+                        if (this.loadOperation.isFinished() && !this.currentFile.exists()) {
+                            FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.loadOperation.getFileName());
+                            FileLoadOperation fileLoadOperationLoadStreamFile2 = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, getCurrentPriority());
+                            FileLoadOperation fileLoadOperation2 = this.loadOperation;
+                            if (fileLoadOperation2 != fileLoadOperationLoadStreamFile2) {
+                                fileLoadOperation2.removeStreamListener(this);
+                                this.loadOperation = fileLoadOperationLoadStreamFile2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (!this.opened) {
+            return 0;
+        }
+        int i4 = randomAccessFile.read(bArr, i, i3);
+        if (i4 > 0) {
+            long j3 = i4;
+            this.currentOffset += j3;
+            this.bytesRemaining -= j3;
+            this.bytesTransferred += j3;
+            bytesTransferred(i4);
+        }
+        return i4;
     }
 
     @Override
@@ -140,7 +242,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         FileLog.e("FileStreamLoadOperation " + this.document.id + " close me=" + this);
         FileLoadOperation fileLoadOperation = this.loadOperation;
         if (fileLoadOperation != null) {

@@ -39,8 +39,13 @@ public class ID3v2Info extends AudioInfo {
         }
     }
 
-    public static boolean isID3v2StartPosition(java.io.InputStream r2) throws java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.mp3.ID3v2Info.isID3v2StartPosition(java.io.InputStream):boolean");
+    public static boolean isID3v2StartPosition(InputStream inputStream) throws IOException {
+        inputStream.mark(3);
+        try {
+            return inputStream.read() == 73 && inputStream.read() == 68 && inputStream.read() == 51;
+        } finally {
+            inputStream.reset();
+        }
     }
 
     public ID3v2Info(InputStream inputStream, Level level) throws IOException, ID3v2Exception {
@@ -51,21 +56,21 @@ public class ID3v2Info extends AudioInfo {
             this.brand = "ID3";
             this.version = String.format("2.%d.%d", Integer.valueOf(iD3v2TagHeader.getVersion()), Integer.valueOf(iD3v2TagHeader.getRevision()));
             ID3v2TagBody iD3v2TagBodyTagBody = iD3v2TagHeader.tagBody(inputStream);
-            while (true) {
+            while (iD3v2TagBodyTagBody.getRemainingLength() > 10) {
                 try {
-                    if (iD3v2TagBodyTagBody.getRemainingLength() <= 10) {
-                        break;
-                    }
                     ID3v2FrameHeader iD3v2FrameHeader = new ID3v2FrameHeader(iD3v2TagBodyTagBody);
                     if (iD3v2FrameHeader.isPadding()) {
                         break;
                     }
                     if (iD3v2FrameHeader.getBodySize() > iD3v2TagBodyTagBody.getRemainingLength()) {
                         Logger logger = LOGGER;
-                        if (logger.isLoggable(level)) {
-                            logger.log(level, "ID3 frame claims to extend frames area");
+                        if (!logger.isLoggable(level)) {
+                            break;
                         }
-                    } else if (iD3v2FrameHeader.isValid() && !iD3v2FrameHeader.isEncryption()) {
+                        logger.log(level, "ID3 frame claims to extend frames area");
+                        break;
+                    }
+                    if (iD3v2FrameHeader.isValid() && !iD3v2FrameHeader.isEncryption()) {
                         ID3v2FrameBody iD3v2FrameBodyFrameBody = iD3v2TagBodyTagBody.frameBody(iD3v2FrameHeader);
                         try {
                             try {
@@ -142,7 +147,8 @@ public class ID3v2Info extends AudioInfo {
                             if (bitmapDecodeByteArray != null) {
                                 float fMax = Math.max(bitmapDecodeByteArray.getWidth(), this.cover.getHeight()) / 120.0f;
                                 if (fMax > 0.0f) {
-                                    this.smallCover = Bitmap.createScaledBitmap(this.cover, (int) (r1.getWidth() / fMax), (int) (this.cover.getHeight() / fMax), true);
+                                    Bitmap bitmap = this.cover;
+                                    this.smallCover = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() / fMax), (int) (this.cover.getHeight() / fMax), true);
                                 } else {
                                     this.smallCover = this.cover;
                                 }
@@ -154,8 +160,8 @@ public class ID3v2Info extends AudioInfo {
                             th.printStackTrace();
                         }
                         this.coverPictureType = attachedPictureFrame.type;
-                        break;
                     }
+                    break;
                 }
                 break;
             case "TAL":
@@ -187,11 +193,11 @@ public class ID3v2Info extends AudioInfo {
                         }
                         if (genre != null) {
                             this.genre = genre.getDescription();
-                            break;
                         }
                     } catch (NumberFormatException unused) {
                         return;
                     }
+                    break;
                 }
                 break;
             case "TCP":
@@ -216,6 +222,7 @@ public class ID3v2Info extends AudioInfo {
                     }
                     return;
                 }
+                break;
             case "TP1":
             case "TPE1":
                 this.artist = parseTextFrame(iD3v2FrameBody);
@@ -232,7 +239,6 @@ public class ID3v2Info extends AudioInfo {
                     if (iIndexOf2 < 0) {
                         try {
                             this.disc = Short.valueOf(textFrame3).shortValue();
-                            break;
                         } catch (NumberFormatException unused3) {
                             Logger logger3 = LOGGER;
                             if (logger3.isLoggable(this.debugLevel)) {
@@ -252,7 +258,6 @@ public class ID3v2Info extends AudioInfo {
                         }
                         try {
                             this.discs = Short.valueOf(textFrame3.substring(iIndexOf2 + 1)).shortValue();
-                            break;
                         } catch (NumberFormatException unused5) {
                             Logger logger5 = LOGGER;
                             if (logger5.isLoggable(this.debugLevel)) {
@@ -262,6 +267,7 @@ public class ID3v2Info extends AudioInfo {
                             return;
                         }
                     }
+                    break;
                 }
                 break;
             case "TRK":
@@ -272,7 +278,6 @@ public class ID3v2Info extends AudioInfo {
                     if (iIndexOf3 < 0) {
                         try {
                             this.track = Short.valueOf(textFrame4).shortValue();
-                            break;
                         } catch (NumberFormatException unused6) {
                             Logger logger6 = LOGGER;
                             if (logger6.isLoggable(this.debugLevel)) {
@@ -292,7 +297,6 @@ public class ID3v2Info extends AudioInfo {
                         }
                         try {
                             this.tracks = Short.valueOf(textFrame4.substring(iIndexOf3 + 1)).shortValue();
-                            break;
                         } catch (NumberFormatException unused8) {
                             Logger logger8 = LOGGER;
                             if (logger8.isLoggable(this.debugLevel)) {
@@ -302,6 +306,7 @@ public class ID3v2Info extends AudioInfo {
                             return;
                         }
                     }
+                    break;
                 }
                 break;
             case "TT1":
@@ -318,7 +323,6 @@ public class ID3v2Info extends AudioInfo {
                 if (textFrame5.length() > 0) {
                     try {
                         this.year = Short.valueOf(textFrame5).shortValue();
-                        break;
                     } catch (NumberFormatException unused9) {
                         Logger logger9 = LOGGER;
                         if (logger9.isLoggable(this.debugLevel)) {
@@ -327,6 +331,7 @@ public class ID3v2Info extends AudioInfo {
                         }
                         return;
                     }
+                    break;
                 }
                 break;
             case "ULT":
@@ -341,7 +346,6 @@ public class ID3v2Info extends AudioInfo {
                 if (textFrame6.length() >= 4) {
                     try {
                         this.year = Short.valueOf(textFrame6.substring(0, 4)).shortValue();
-                        break;
                     } catch (NumberFormatException unused10) {
                         Logger logger10 = LOGGER;
                         if (logger10.isLoggable(this.debugLevel)) {
@@ -350,6 +354,7 @@ public class ID3v2Info extends AudioInfo {
                         }
                         return;
                     }
+                    break;
                 }
                 break;
         }

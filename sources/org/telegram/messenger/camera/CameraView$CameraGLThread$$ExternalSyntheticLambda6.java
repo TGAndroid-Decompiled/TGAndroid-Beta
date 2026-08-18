@@ -1,7 +1,6 @@
 package org.telegram.messenger.camera;
 
 import android.graphics.SurfaceTexture;
-import org.telegram.messenger.camera.CameraView;
 
 public final class CameraView$CameraGLThread$$ExternalSyntheticLambda6 implements SurfaceTexture.OnFrameAvailableListener {
     public final CameraView.CameraGLThread f$0;

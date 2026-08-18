@@ -793,11 +793,9 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         this.willLoadGlobalAudio = false;
         if (messages_botresults != null) {
             MessagesController.getInstance(this.currentAccount).putUsers(messages_botresults.users, false);
-            Iterator<TLRPC.BotInlineResult> it = messages_botresults.results.iterator();
-            while (it.hasNext()) {
-                TLRPC.BotInlineResult next = it.next();
-                if (next instanceof TLRPC.TL_botInlineMediaResult) {
-                    TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) next;
+            for (TLRPC.BotInlineResult botInlineResult : messages_botresults.results) {
+                if (botInlineResult instanceof TLRPC.TL_botInlineMediaResult) {
+                    TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) botInlineResult;
                     if (tL_botInlineMediaResult.document != null) {
                         TLRPC.TL_message tL_message = new TLRPC.TL_message();
                         tL_message.out = true;
@@ -907,7 +905,15 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
                     audioEntry.messageObject = messageObject;
                     arrayList.add(messageObject);
                     i--;
-                } finally {
+                } catch (Throwable th) {
+                    if (cursorQuery != null) {
+                        try {
+                            cursorQuery.close();
+                        } catch (Throwable th2) {
+                            th.addSuppressed(th2);
+                        }
+                    }
+                    throw th;
                 }
             }
             cursorQuery.close();

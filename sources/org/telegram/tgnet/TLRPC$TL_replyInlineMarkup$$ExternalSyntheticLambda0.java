@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 
-import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_keyboard;
 
 public final class TLRPC$TL_replyInlineMarkup$$ExternalSyntheticLambda0 implements Vector.TLDeserializer {

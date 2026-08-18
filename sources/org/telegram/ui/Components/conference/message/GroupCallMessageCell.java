@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import me.vkryl.android.animator.BoolAnimator;
@@ -79,7 +80,7 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
 
     @Override
     public long getLongPressDuration() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.conference.message.GroupCallMessageCell.getLongPressDuration():long");
+        return ViewConfiguration.getLongPressTimeout();
     }
 
     @Override
@@ -220,7 +221,7 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
     }
 
     public void set(GroupCallMessage groupCallMessage) {
-        SpannableStringBuilder spannableStringBuilderConcat;
+        CharSequence charSequenceConcat;
         GroupCallMessage groupCallMessage2;
         GroupCallMessage groupCallMessage3;
         if (isAttachedToWindow() && (groupCallMessage3 = this.groupCallMessage) != null) {
@@ -246,30 +247,32 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
         spannableStringBuilder.setSpan(this.senderNameSpan, 0, spannableStringBuilder.length(), 33);
         ReactionsLayoutInBubble.VisibleReaction visibleReaction = groupCallMessage.visibleReaction;
         if (visibleReaction == null) {
-            spannableStringBuilderConcat = concat(spannableStringBuilder, MessageObject.formatTextWithEntities(groupCallMessage.message, false, true, this.messageTextView.getPaint()));
+            charSequenceConcat = concat(spannableStringBuilder, MessageObject.formatTextWithEntities(groupCallMessage.message, false, true, this.messageTextView.getPaint()));
         } else if (visibleReaction.emojicon != null) {
             TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.emojicon);
-            spannableStringBuilderConcat = spannableStringBuilder;
             if (tL_availableReaction != null) {
+                charSequenceConcat = spannableStringBuilder;
                 this.animatedReactionReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
-                spannableStringBuilderConcat = spannableStringBuilder;
+                charSequenceConcat = spannableStringBuilder;
             }
-        } else {
-            spannableStringBuilderConcat = spannableStringBuilder;
-            if (visibleReaction.documentId != 0) {
-                AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.documentId);
-                this.animatedReactionDrawable = animatedEmojiDrawable;
-                animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-                spannableStringBuilderConcat = spannableStringBuilder;
-                if (isAttachedToWindow()) {
-                    this.animatedReactionDrawable.addView(this);
-                    spannableStringBuilderConcat = spannableStringBuilder;
-                }
+        } else if (visibleReaction.documentId != 0) {
+            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.documentId);
+            this.animatedReactionDrawable = animatedEmojiDrawable;
+            animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            if (isAttachedToWindow()) {
+                charSequenceConcat = spannableStringBuilder;
+                charSequenceConcat = spannableStringBuilder;
+                this.animatedReactionDrawable.addView(this);
+                charSequenceConcat = spannableStringBuilder;
             }
         }
+        charSequenceConcat = spannableStringBuilder;
+        charSequenceConcat = spannableStringBuilder;
+        charSequenceConcat = spannableStringBuilder;
+        charSequenceConcat = spannableStringBuilder;
         this.messageReaction = groupCallMessage.visibleReaction;
         this.layoutInvalidated = true;
-        this.messageTextView.setText(spannableStringBuilderConcat);
+        this.messageTextView.setText(charSequenceConcat);
         requestLayout();
     }
 

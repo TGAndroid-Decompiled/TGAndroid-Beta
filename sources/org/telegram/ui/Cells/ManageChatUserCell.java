@@ -4,14 +4,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -74,8 +81,9 @@ public class ManageChatUserCell extends FrameLayout {
             @Override
             protected void onDraw(Canvas canvas) {
                 if (ManageChatUserCell.this.storyItem != null) {
-                    float fDp = AndroidUtilities.dp(1.0f);
-                    ManageChatUserCell.this.storyAvatarParams.originalAvatarRect.set(fDp, fDp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
+                    int iDp = AndroidUtilities.dp(1.0f);
+                    float f = iDp;
+                    ManageChatUserCell.this.storyAvatarParams.originalAvatarRect.set(f, f, getMeasuredWidth() - iDp, getMeasuredHeight() - iDp);
                     ManageChatUserCell.this.storyAvatarParams.drawSegments = false;
                     ManageChatUserCell.this.storyAvatarParams.animate = false;
                     ManageChatUserCell.this.storyAvatarParams.drawInside = true;
@@ -165,7 +173,13 @@ public class ManageChatUserCell extends FrameLayout {
     }
 
     public void setData(Object obj, CharSequence charSequence, CharSequence charSequence2, boolean z) {
+        int i;
+        int i2;
+        int i3;
         float f;
+        int i4;
+        int i5;
+        int i6;
         float f2;
         if (obj == null) {
             this.currentStatus = null;
@@ -184,34 +198,70 @@ public class ManageChatUserCell extends FrameLayout {
             this.optionsButton.setVisibility(zOnOptionsButtonCheck ? 0 : 4);
             SimpleTextView simpleTextView = this.nameTextView;
             boolean z2 = LocaleController.isRTL;
-            simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? zOnOptionsButtonCheck ? 46 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : zOnOptionsButtonCheck ? 46 : 28, 0.0f));
+            int i7 = (z2 ? 5 : 3) | 48;
+            if (z2) {
+                i4 = zOnOptionsButtonCheck ? 46 : 28;
+            } else {
+                i4 = this.namePadding + 68;
+            }
+            float f3 = i4;
+            float f4 = (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f;
+            if (LocaleController.isRTL) {
+                i5 = this.namePadding + 68;
+            } else {
+                i5 = zOnOptionsButtonCheck ? 46 : 28;
+            }
+            simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i7, f3, f4, i5, 0.0f));
             SimpleTextView simpleTextView2 = this.statusTextView;
             boolean z3 = LocaleController.isRTL;
-            int i = (z3 ? 5 : 3) | 48;
-            float f3 = z3 ? zOnOptionsButtonCheck ? 46 : 28 : this.namePadding + 68;
+            int i8 = (z3 ? 5 : 3) | 48;
+            if (z3) {
+                i6 = zOnOptionsButtonCheck ? 46 : 28;
+            } else {
+                i6 = this.namePadding + 68;
+            }
+            float f5 = i6;
             if (z3) {
                 f2 = this.namePadding + 68;
             } else {
                 f2 = zOnOptionsButtonCheck ? 46 : 28;
             }
-            simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i, f3, 34.5f, f2, 0.0f));
+            simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i8, f5, 34.5f, f2, 0.0f));
         } else {
             ImageView imageView = this.customImageView;
             if (imageView != null) {
                 boolean z4 = imageView.getVisibility() == 0;
                 SimpleTextView simpleTextView3 = this.nameTextView;
                 boolean z5 = LocaleController.isRTL;
-                simpleTextView3.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z5 ? 5 : 3) | 48, z5 ? z4 ? 54 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : z4 ? 54 : 28, 0.0f));
+                int i9 = (z5 ? 5 : 3) | 48;
+                if (z5) {
+                    i = z4 ? 54 : 28;
+                } else {
+                    i = this.namePadding + 68;
+                }
+                float f6 = i;
+                float f7 = (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f;
+                if (LocaleController.isRTL) {
+                    i2 = this.namePadding + 68;
+                } else {
+                    i2 = z4 ? 54 : 28;
+                }
+                simpleTextView3.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i9, f6, f7, i2, 0.0f));
                 SimpleTextView simpleTextView4 = this.statusTextView;
                 boolean z6 = LocaleController.isRTL;
-                int i2 = (z6 ? 5 : 3) | 48;
-                float f4 = z6 ? z4 ? 54 : 28 : this.namePadding + 68;
+                int i10 = (z6 ? 5 : 3) | 48;
+                if (z6) {
+                    i3 = z4 ? 54 : 28;
+                } else {
+                    i3 = this.namePadding + 68;
+                }
+                float f8 = i3;
                 if (z6) {
                     f = this.namePadding + 68;
                 } else {
                     f = z4 ? 54 : 28;
                 }
-                simpleTextView4.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i2, f4, 34.5f, f, 0.0f));
+                simpleTextView4.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i10, f8, 34.5f, f, 0.0f));
             }
         }
         this.needDivider = z;
@@ -253,8 +303,160 @@ public class ManageChatUserCell extends FrameLayout {
         this.dividerColor = i;
     }
 
-    public void update(int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ManageChatUserCell.update(int):void");
+    public void update(int i) {
+        String str;
+        String str2;
+        TLRPC.FileLocation fileLocation;
+        String userName;
+        TLRPC.UserStatus userStatus;
+        TLRPC.FileLocation fileLocation2;
+        Object obj = this.currentObject;
+        if (obj == null) {
+            return;
+        }
+        boolean z = true;
+        if (obj instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) obj;
+            TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
+            TLRPC.FileLocation fileLocation3 = userProfilePhoto != null ? userProfilePhoto.photo_small : null;
+            if (i != 0) {
+                boolean z2 = (MessagesController.UPDATE_MASK_AVATAR & i) != 0 && (((fileLocation2 = this.lastAvatar) != null && fileLocation3 == null) || ((fileLocation2 == null && fileLocation3 != null) || !(fileLocation2 == null || (fileLocation2.volume_id == fileLocation3.volume_id && fileLocation2.local_id == fileLocation3.local_id))));
+                if (!z2 && (MessagesController.UPDATE_MASK_STATUS & i) != 0) {
+                    TLRPC.UserStatus userStatus2 = user.status;
+                    if ((userStatus2 != null ? userStatus2.expires : 0) != this.lastStatus) {
+                        z2 = true;
+                    }
+                }
+                if (z2 || this.currentName != null || this.lastName == null || (i & MessagesController.UPDATE_MASK_NAME) == 0) {
+                    userName = null;
+                } else {
+                    userName = UserObject.getUserName(user);
+                    if (userName.equals(this.lastName)) {
+                    }
+                    if (!z) {
+                        return;
+                    }
+                }
+                z = z2;
+                if (!z) {
+                    return;
+                }
+            } else {
+                userName = null;
+            }
+            this.avatarDrawable.setInfo(this.currentAccount, user);
+            TLRPC.UserStatus userStatus3 = user.status;
+            if (userStatus3 != null) {
+                this.lastStatus = userStatus3.expires;
+            } else {
+                this.lastStatus = 0;
+            }
+            CharSequence charSequence = this.currentName;
+            if (charSequence != null) {
+                this.lastName = null;
+                this.nameTextView.setText(charSequence);
+            } else {
+                if (userName == null) {
+                    userName = UserObject.getUserName(user);
+                }
+                this.lastName = userName;
+                SimpleTextView simpleTextView = this.nameTextView;
+                simpleTextView.setText(Emoji.replaceEmoji(userName, simpleTextView.getPaint().getFontMetricsInt(), false));
+            }
+            if (this.currentStatus != null) {
+                this.statusTextView.setTextColor(this.statusColor);
+                this.statusTextView.setText(this.currentStatus);
+            } else {
+                String publicUsername = DialogObject.getPublicUsername(user);
+                if (user.bot) {
+                    this.statusTextView.setTextColor(this.statusColor);
+                    if (this.subtitleUsername && !TextUtils.isEmpty(publicUsername)) {
+                        this.statusTextView.setText(publicUsername);
+                    } else if (user.bot_chat_history || this.isAdmin) {
+                        this.statusTextView.setText(LocaleController.getString(R.string.BotStatusRead));
+                    } else {
+                        this.statusTextView.setText(LocaleController.getString(R.string.BotStatusCantRead));
+                    }
+                } else if (this.subtitleUsername && !TextUtils.isEmpty(publicUsername)) {
+                    this.statusTextView.setText(publicUsername);
+                    this.statusTextView.setTextColor(this.statusColor);
+                } else if (user.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || (((userStatus = user.status) != null && userStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) || MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(user.id)))) {
+                    this.statusTextView.setTextColor(this.statusOnlineColor);
+                    this.statusTextView.setText(LocaleController.getString(R.string.Online));
+                } else {
+                    this.statusTextView.setTextColor(this.statusColor);
+                    this.statusTextView.setText(LocaleController.formatUserStatus(this.currentAccount, user));
+                }
+            }
+            this.lastAvatar = fileLocation3;
+            this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
+            return;
+        }
+        if (obj instanceof TLRPC.Chat) {
+            TLRPC.Chat chat = (TLRPC.Chat) obj;
+            TLRPC.ChatPhoto chatPhoto = chat.photo;
+            TLRPC.FileLocation fileLocation4 = chatPhoto != null ? chatPhoto.photo_small : null;
+            if (i != 0) {
+                boolean z3 = (MessagesController.UPDATE_MASK_AVATAR & i) != 0 && (((fileLocation = this.lastAvatar) != null && fileLocation4 == null) || ((fileLocation == null && fileLocation4 != null) || !(fileLocation == null || (fileLocation.volume_id == fileLocation4.volume_id && fileLocation.local_id == fileLocation4.local_id))));
+                if (z3 || this.currentName != null || (str2 = this.lastName) == null || (i & MessagesController.UPDATE_MASK_NAME) == 0) {
+                    str = null;
+                } else {
+                    str = chat.title;
+                    if (str.equals(str2)) {
+                    }
+                    if (!z) {
+                        return;
+                    }
+                }
+                z = z3;
+                if (!z) {
+                    return;
+                }
+            } else {
+                str = null;
+            }
+            this.avatarDrawable.setInfo(this.currentAccount, chat);
+            CharSequence charSequence2 = this.currentName;
+            if (charSequence2 != null) {
+                this.lastName = null;
+                this.nameTextView.setText(charSequence2);
+            } else {
+                if (str == null) {
+                    str = chat.title;
+                }
+                this.lastName = str;
+                this.nameTextView.setText(str);
+            }
+            if (this.currentStatus != null) {
+                this.statusTextView.setTextColor(this.statusColor);
+                this.statusTextView.setText(this.currentStatus);
+            } else {
+                this.statusTextView.setTextColor(this.statusColor);
+                if (chat.participants_count != 0) {
+                    if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                        this.statusTextView.setText(LocaleController.formatPluralString("Subscribers", chat.participants_count, new Object[0]));
+                    } else {
+                        this.statusTextView.setText(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
+                    }
+                } else if (chat.has_geo) {
+                    this.statusTextView.setText(LocaleController.getString(R.string.MegaLocation));
+                } else if (!ChatObject.isPublic(chat)) {
+                    this.statusTextView.setText(LocaleController.getString(R.string.MegaPrivate));
+                } else {
+                    this.statusTextView.setText(LocaleController.getString(R.string.MegaPublic));
+                }
+            }
+            this.lastAvatar = fileLocation4;
+            this.avatarImageView.setForUserOrChat(chat, this.avatarDrawable);
+            return;
+        }
+        if (obj instanceof Integer) {
+            this.nameTextView.setText(this.currentName);
+            this.statusTextView.setTextColor(this.statusColor);
+            this.statusTextView.setText(this.currentStatus);
+            this.avatarDrawable.setAvatarType(3);
+            this.avatarImageView.setImage(null, "50_50", this.avatarDrawable);
+        }
     }
 
     public void recycle() {

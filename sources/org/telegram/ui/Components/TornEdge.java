@@ -34,7 +34,7 @@ public abstract class TornEdge {
     }
 
     private static double rand01(int i, int i2) {
-        return (hash(i, i2) >>> 8) / 1.6777216E7d;
+        return ((double) (hash(i, i2) >>> 8)) / 1.6777216E7d;
     }
 
     public static float[] profile(Params params, int i, int i2) {
@@ -43,7 +43,7 @@ public abstract class TornEdge {
         int iCeil = ((int) Math.ceil(i / fMax)) + 1;
         float[] fArr = new float[iCeil];
         for (int i3 = 0; i3 < iCeil; i3++) {
-            fArr[i3] = (float) ((rand01(i3, 40503 ^ i2) - 0.5d) * 2.0d * fPx);
+            fArr[i3] = (float) ((rand01(i3, 40503 ^ i2) - 0.5d) * 2.0d * ((double) fPx));
         }
         return fArr;
     }

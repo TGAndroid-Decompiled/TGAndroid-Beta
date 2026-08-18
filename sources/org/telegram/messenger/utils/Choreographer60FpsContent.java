@@ -4,6 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Looper;
 import android.util.SparseArray;
 import android.view.Choreographer;
+import android.view.View;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import me.vkryl.core.reference.ReferenceList;
@@ -132,8 +134,81 @@ public final class Choreographer60FpsContent implements Choreographer.FrameCallb
         this.mChoreographer.postFrameCallback(this);
     }
 
-    private void dispatchFrame(long r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.utils.Choreographer60FpsContent.dispatchFrame(long):void");
+    private void dispatchFrame(long j) {
+        ReferenceList referenceList;
+        Iterator it;
+        Iterator it2;
+        Iterator it3;
+        for (int i = 0; i < this.mGroups.size(); i++) {
+            CallbackGroup callbackGroup = (CallbackGroup) this.mGroups.valueAt(i);
+            int i2 = callbackGroup.stride;
+            if (i2 > 0) {
+                if (this.mCounter % i2 == 0) {
+                    referenceList = callbackGroup.runnableCallbacksOnce;
+                    if (referenceList != null) {
+                        callbackGroup.runnableCallbacksOnce = null;
+                        it3 = referenceList.iterator();
+                        while (it3.hasNext()) {
+                            ((Runnable) it3.next()).run();
+                        }
+                    }
+                    it = callbackGroup.callbacks.iterator();
+                    while (it.hasNext()) {
+                        ((FrameCallback) it.next()).doFrame(j);
+                    }
+                    it2 = callbackGroup.runnableCallbacks.iterator();
+                    while (it2.hasNext()) {
+                        ((Runnable) it2.next()).run();
+                    }
+                }
+            } else {
+                long j2 = callbackGroup.accumulatedNs + 16666666;
+                callbackGroup.accumulatedNs = j2;
+                long j3 = callbackGroup.intervalNs;
+                if (j2 >= j3) {
+                    callbackGroup.accumulatedNs = j2 % j3;
+                    referenceList = callbackGroup.runnableCallbacksOnce;
+                    if (referenceList != null) {
+                        callbackGroup.runnableCallbacksOnce = null;
+                        it3 = referenceList.iterator();
+                        while (it3.hasNext()) {
+                            ((Runnable) it3.next()).run();
+                        }
+                    }
+                    it = callbackGroup.callbacks.iterator();
+                    while (it.hasNext()) {
+                        ((FrameCallback) it.next()).doFrame(j);
+                    }
+                    it2 = callbackGroup.runnableCallbacks.iterator();
+                    while (it2.hasNext()) {
+                        ((Runnable) it2.next()).run();
+                    }
+                }
+            }
+        }
+        Iterator it4 = this.mOneShot.iterator();
+        while (it4.hasNext()) {
+            ((FrameCallback) it4.next()).doFrame(j);
+        }
+        Iterator it5 = this.mViewsToInvalidate.iterator();
+        while (it5.hasNext()) {
+            ((View) it5.next()).invalidate();
+        }
+        Iterator it6 = this.mDrawablesToInvalidate.iterator();
+        while (it6.hasNext()) {
+            ((Drawable) it6.next()).invalidateSelf();
+        }
+        this.mViewsToInvalidate.clear();
+        this.mDrawablesToInvalidate.clear();
+        this.mOneShot.clear();
+        if (this.mCounter % 2 == 0) {
+            Iterator it7 = this.mDrawablesToInvalidate30fps.iterator();
+            while (it7.hasNext()) {
+                ((Drawable) it7.next()).invalidateSelf();
+            }
+            this.mDrawablesToInvalidate30fps.clear();
+        }
+        this.mCounter++;
     }
 
     private CallbackGroup getOrCreateGroup(int i) {
@@ -141,7 +216,7 @@ public final class Choreographer60FpsContent implements Choreographer.FrameCallb
         if (callbackGroup != null) {
             return callbackGroup;
         }
-        CallbackGroup callbackGroup2 = new CallbackGroup(1000000000 / i, 60 % i == 0 ? 60 / i : 0);
+        CallbackGroup callbackGroup2 = new CallbackGroup(1000000000 / ((long) i), 60 % i == 0 ? 60 / i : 0);
         this.mGroups.put(i, callbackGroup2);
         return callbackGroup2;
     }

@@ -176,32 +176,32 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         if (floatValue2 > 0.0f) {
             canvas.save();
             float fDpf2 = AndroidUtilities.dpf2(1.33f);
-            float fDpf22 = (width / 2.0f) + AndroidUtilities.dpf2(11.0f);
-            float fDpf23 = AndroidUtilities.dpf2(10.0f);
-            float fDpf24 = AndroidUtilities.dpf2(16.0f);
-            float fMax = Math.max(fDpf24, this.counter.getCurrentWidth() + AndroidUtilities.dp(8.0f));
-            float fDpf25 = AndroidUtilities.dpf2(9.333f);
-            float fDpf26 = AndroidUtilities.dpf2(8.0f);
+            float fDpf3 = (width / 2.0f) + AndroidUtilities.dpf2(11.0f);
+            float fDpf4 = AndroidUtilities.dpf2(10.0f);
+            float fDpf5 = AndroidUtilities.dpf2(16.0f);
+            float fMax = Math.max(fDpf5, this.counter.getCurrentWidth() + AndroidUtilities.dp(8.0f));
+            float fDpf6 = AndroidUtilities.dpf2(9.333f);
+            float fDpf7 = AndroidUtilities.dpf2(8.0f);
             RectF rectF2 = tmpRectF;
             float f = fMax / 2.0f;
-            float f2 = fDpf24 / 2.0f;
-            rectF2.set((fDpf22 - f) - fDpf2, (fDpf23 - f2) - fDpf2, f + fDpf22 + fDpf2, f2 + fDpf23 + fDpf2);
-            canvas.scale(floatValue2, floatValue2, fDpf22, fDpf23);
-            canvas.drawRoundRect(rectF2, fDpf25, fDpf25, Theme.PAINT_CLEAR);
+            float f2 = fDpf5 / 2.0f;
+            rectF2.set((fDpf3 - f) - fDpf2, (fDpf4 - f2) - fDpf2, f + fDpf3 + fDpf2, f2 + fDpf4 + fDpf2);
+            canvas.scale(floatValue2, floatValue2, fDpf3, fDpf4);
+            canvas.drawRoundRect(rectF2, fDpf6, fDpf6, Theme.PAINT_CLEAR);
             rectF2.inset(fDpf2, fDpf2);
             if (this.usePremiumCounter) {
                 if (this.premiumStarDrawable == null) {
                     this.premiumStarDrawable = getContext().getResources().getDrawable(R.drawable.star).mutate();
                 }
                 PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(16.0f), 0.0f, 0.0f);
-                canvas.drawRoundRect(rectF2, fDpf26, fDpf26, PremiumGradient.getInstance().getMainGradientPaint());
-                int iDpf2 = (int) (fDpf22 - AndroidUtilities.dpf2(7.0f));
-                int iDpf22 = (int) (fDpf23 - AndroidUtilities.dpf2(7.0f));
-                this.premiumStarDrawable.setBounds(iDpf2, iDpf22, AndroidUtilities.dp(14.0f) + iDpf2, AndroidUtilities.dp(14.0f) + iDpf22);
+                canvas.drawRoundRect(rectF2, fDpf7, fDpf7, PremiumGradient.getInstance().getMainGradientPaint());
+                int iDpf2 = (int) (fDpf3 - AndroidUtilities.dpf2(7.0f));
+                int iDpf3 = (int) (fDpf4 - AndroidUtilities.dpf2(7.0f));
+                this.premiumStarDrawable.setBounds(iDpf2, iDpf3, AndroidUtilities.dp(14.0f) + iDpf2, AndroidUtilities.dp(14.0f) + iDpf3);
                 this.premiumStarDrawable.draw(canvas);
             } else {
                 this.paintCounterBackground.setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_telegram_color), Theme.getColor(Theme.key_fill_RedNormal), this.isHasCounterErrorAnimator.getFloatValue()));
-                canvas.drawRoundRect(rectF2, fDpf26, fDpf26, this.paintCounterBackground);
+                canvas.drawRoundRect(rectF2, fDpf7, fDpf7, this.paintCounterBackground);
                 this.counter.setBounds(rectF2);
                 this.counter.draw(canvas);
             }

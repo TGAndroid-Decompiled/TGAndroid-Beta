@@ -32,9 +32,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.iv.RichEditText;
-import org.telegram.ui.iv.RichEditor;
-import org.telegram.ui.iv.RichTableCellGrid;
 
 public class RichTableCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
     private boolean blockRtl;
@@ -372,7 +369,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
     public TL_iv.pageTableCell anchorForChildPos(int i) {
         int i2;
         TableModel tableModel = this.model;
-        if (tableModel == null || i <= 0 || i - 1 >= tableModel.anchors().size()) {
+        if (tableModel == null || i <= 0 || (i2 = i - 1) >= tableModel.anchors().size()) {
             return null;
         }
         return (TL_iv.pageTableCell) this.model.anchors().get(i2);
@@ -607,12 +604,46 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         return this.grid.colHandleEnd(i);
     }
 
-    public boolean selectionContainsWholeRows(int r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTableCell.selectionContainsWholeRows(int, int):boolean");
+    public boolean selectionContainsWholeRows(int i, int i2) {
+        TableModel tableModel = this.model;
+        if (tableModel == null || i < 0 || i2 < i || i2 >= tableModel.rowCount || this.selectedCells.isEmpty()) {
+            return false;
+        }
+        while (i <= i2) {
+            int i3 = 0;
+            while (true) {
+                TableModel tableModel2 = this.model;
+                if (i3 < tableModel2.colCount) {
+                    if (!this.selectedCells.contains(tableModel2.grid[i][i3])) {
+                        return false;
+                    }
+                    i3++;
+                }
+            }
+            i++;
+        }
+        return true;
     }
 
-    public boolean selectionContainsWholeColumns(int r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTableCell.selectionContainsWholeColumns(int, int):boolean");
+    public boolean selectionContainsWholeColumns(int i, int i2) {
+        TableModel tableModel = this.model;
+        if (tableModel == null || i < 0 || i2 < i || i2 >= tableModel.colCount || this.selectedCells.isEmpty()) {
+            return false;
+        }
+        while (i <= i2) {
+            int i3 = 0;
+            while (true) {
+                TableModel tableModel2 = this.model;
+                if (i3 < tableModel2.rowCount) {
+                    if (!this.selectedCells.contains(tableModel2.grid[i3][i])) {
+                        return false;
+                    }
+                    i3++;
+                }
+            }
+            i++;
+        }
+        return true;
     }
 
     public void selectWholeRows(int i, int i2) {
@@ -743,9 +774,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
 
     public void applyHeaderToggle(boolean z) {
         BlockRow blockRow;
-        Iterator it = this.selectedCells.iterator();
-        while (it.hasNext()) {
-            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
+        for (TL_iv.pageTableCell pagetablecell : this.selectedCells) {
             RichTableCellHost richTableCellHostHostForAnchor = this.grid.hostForAnchor(pagetablecell);
             if (richTableCellHostHostForAnchor != null) {
                 richTableCellHostHostForAnchor.applyHeaderWithDefaultBold(z);
@@ -771,9 +800,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
 
     public void applyHorizontalAlign(int i) {
         BlockRow blockRow;
-        Iterator it = this.selectedCells.iterator();
-        while (it.hasNext()) {
-            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
+        for (TL_iv.pageTableCell pagetablecell : this.selectedCells) {
             TableModel.setAlign(pagetablecell, i);
             RichTableCellHost richTableCellHostHostForAnchor = this.grid.hostForAnchor(pagetablecell);
             if (richTableCellHostHostForAnchor != null) {
@@ -790,9 +817,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
 
     public void applyVerticalAlign(int i) {
         BlockRow blockRow;
-        Iterator it = this.selectedCells.iterator();
-        while (it.hasNext()) {
-            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
+        for (TL_iv.pageTableCell pagetablecell : this.selectedCells) {
             TableModel.setVAlign(pagetablecell, i);
             RichTableCellHost richTableCellHostHostForAnchor = this.grid.hostForAnchor(pagetablecell);
             if (richTableCellHostHostForAnchor != null) {
@@ -888,12 +913,10 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         if (this.model == null || this.selectedCells.size() < 2) {
             return false;
         }
-        HashSet hashSet = new HashSet(this.selectedCells);
-        Iterator it = hashSet.iterator();
+        HashSet<TL_iv.pageTableCell> hashSet = new HashSet(this.selectedCells);
         int iMin = Integer.MAX_VALUE;
         int iMin2 = Integer.MAX_VALUE;
-        while (it.hasNext()) {
-            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
+        for (TL_iv.pageTableCell pagetablecell : hashSet) {
             iMin2 = Math.min(iMin2, this.model.anchorRowOf(pagetablecell));
             iMin = Math.min(iMin, this.model.anchorColOf(pagetablecell));
         }
@@ -987,10 +1010,8 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
                 iMax = Math.min(iMax, this.model.anchorRowOf((TL_iv.pageTableCell) it.next()));
             }
         } else {
-            Iterator it2 = this.selectedCells.iterator();
             iMax = 0;
-            while (it2.hasNext()) {
-                TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it2.next();
+            for (TL_iv.pageTableCell pagetablecell : this.selectedCells) {
                 iMax = Math.max(iMax, this.model.anchorRowOf(pagetablecell) + TableModel.spanRow(pagetablecell));
             }
         }
@@ -1016,10 +1037,8 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
                 iMax = Math.min(iMax, this.model.anchorColOf((TL_iv.pageTableCell) it.next()));
             }
         } else {
-            Iterator it2 = this.selectedCells.iterator();
             iMax = 0;
-            while (it2.hasNext()) {
-                TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it2.next();
+            for (TL_iv.pageTableCell pagetablecell : this.selectedCells) {
                 iMax = Math.max(iMax, this.model.anchorColOf(pagetablecell) + TableModel.spanCol(pagetablecell));
             }
         }

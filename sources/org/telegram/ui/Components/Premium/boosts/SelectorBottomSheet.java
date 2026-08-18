@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Map;
 import j$.util.function.BiConsumer$CC;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -231,14 +230,15 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public void lambda$new$5(View view, int i, float f, float f2) {
+        TLRPC.Chat chat;
         if (view instanceof TextCell) {
             this.allSelectedObjects.clear();
             save(true);
         } else if (view instanceof SelectorUserCell) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) view;
             TLRPC.User user = selectorUserCell.getUser();
-            TLRPC.Chat chat = selectorUserCell.getChat();
-            final long j = user != null ? user.id : -chat.id;
+            TLRPC.Chat chat2 = selectorUserCell.getChat();
+            final long j = user != null ? user.id : -chat2.id;
             if (this.selectedIds.contains(Long.valueOf(j))) {
                 this.selectedIds.remove(Long.valueOf(j));
             } else {
@@ -246,9 +246,11 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 HashMap map = this.allSelectedObjects;
                 Long lValueOf = Long.valueOf(j);
                 if (user == null) {
-                    user = chat;
+                    chat = user;
+                    chat = chat2;
                 }
-                map.put(lValueOf, user);
+                chat = user;
+                map.put(lValueOf, chat);
             }
             if ((this.selectedIds.size() == 11 && this.type == 1) || (this.selectedIds.size() == BoostRepository.giveawayAddPeersMax() + 1 && this.type == 2)) {
                 this.selectedIds.remove(Long.valueOf(j));
@@ -262,8 +264,8 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 }
             }, null);
             updateList(true, false);
-            if (chat != null && !ChatObject.isPublic(chat) && this.selectedIds.contains(Long.valueOf(j))) {
-                BoostDialogs.showPrivateChannelAlert(chat, getBaseFragment().getContext(), this.resourcesProvider, new Runnable() {
+            if (chat2 != null && !ChatObject.isPublic(chat2) && this.selectedIds.contains(Long.valueOf(j))) {
+                BoostDialogs.showPrivateChannelAlert(chat2, getBaseFragment().getContext(), this.resourcesProvider, new Runnable() {
                     @Override
                     public final void run() {
                         this.f$0.lambda$new$3(j);
@@ -274,7 +276,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                         this.f$0.clearSearchAfterSelectChannel();
                     }
                 });
-            } else if (chat != null) {
+            } else if (chat2 != null) {
                 clearSearchAfterSelectChannel();
             }
         }
@@ -459,7 +461,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         if (z) {
             this.countriesMap.putAll((Map) pair.first);
             this.countriesLetters.addAll((Collection) pair.second);
-            Map.EL.forEach(this.countriesMap, new BiConsumer() {
+            j$.util.Map.EL.forEach(this.countriesMap, new BiConsumer() {
                 @Override
                 public final void accept(Object obj, Object obj2) {
                     this.f$0.lambda$loadData$8((String) obj, (List) obj2);
@@ -627,8 +629,31 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         updateActionButton(z);
     }
 
-    private void updateCheckboxes(boolean r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet.updateCheckboxes(boolean):void");
+    private void updateCheckboxes(boolean z) {
+        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+            View childAt = this.recyclerListView.getChildAt(i);
+            if (childAt instanceof SelectorUserCell) {
+                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt) - 1;
+                if (childAdapterPosition >= 0 && childAdapterPosition < this.items.size()) {
+                    SelectorAdapter.Item item = (SelectorAdapter.Item) this.items.get(childAdapterPosition);
+                    SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
+                    selectorUserCell.setChecked(item.checked, z);
+                    TLRPC.Chat chat = item.chat;
+                    if (chat != null) {
+                        selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount(chat) > 200 ? 0.3f : 1.0f, z);
+                    } else {
+                        selectorUserCell.setCheckboxAlpha(1.0f, z);
+                    }
+                    if (childAt instanceof SelectorCountryCell) {
+                        SelectorCountryCell selectorCountryCell = (SelectorCountryCell) childAt;
+                        selectorCountryCell.setChecked(this.selectedIds.contains(Long.valueOf(selectorCountryCell.getCountry().default_name.hashCode())), true);
+                    }
+                }
+            } else if (childAt instanceof SelectorCountryCell) {
+                SelectorCountryCell selectorCountryCell2 = (SelectorCountryCell) childAt;
+                selectorCountryCell2.setChecked(this.selectedIds.contains(Long.valueOf(selectorCountryCell2.getCountry().default_name.hashCode())), true);
+            }
+        }
     }
 
     @Override
@@ -748,9 +773,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else {
             iDp = 0;
         }
-        Iterator it = this.peers.iterator();
-        while (it.hasNext()) {
-            TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) it.next();
+        for (TLRPC.InputPeer inputPeer : this.peers) {
             iDp += AndroidUtilities.dp(56.0f);
             this.items.add(SelectorAdapter.Item.asPeer(inputPeer, this.selectedIds.contains(Long.valueOf(DialogObject.getPeerDialogId(inputPeer)))));
         }

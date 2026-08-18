@@ -2,6 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -19,6 +20,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -29,9 +31,9 @@ import org.telegram.ui.Cells.ThemePreviewMessagesCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
+import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SimpleThemeDescription;
-import org.telegram.ui.SelectAnimatedEmojiDialog;
 
 public class ReactionsDoubleTapManageActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private LinearLayout contentView;
@@ -85,7 +87,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             }
 
             @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) throws NumberFormatException {
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View availableReactionCell;
                 if (i == 0) {
                     ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) ReactionsDoubleTapManageActivity.this).parentLayout, 2);
@@ -194,7 +196,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(24.0f));
         }
 
-        public void update(boolean z) throws NumberFormatException {
+        public void update(boolean z) {
             String doubleTapReaction = MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).getDoubleTapReaction();
             if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
                 try {
@@ -238,8 +240,158 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         }
     }
 
-    public void showSelectStatusDialog(final org.telegram.ui.ReactionsDoubleTapManageActivity.SetDefaultReactionCell r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ReactionsDoubleTapManageActivity.showSelectStatusDialog(org.telegram.ui.ReactionsDoubleTapManageActivity$SetDefaultReactionCell):void");
+    public void showSelectStatusDialog(final SetDefaultReactionCell setDefaultReactionCell) {
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable;
+        SetDefaultReactionCell setDefaultReactionCell2;
+        int iCenterX;
+        int i;
+        SelectAnimatedEmojiDialog selectAnimatedEmojiDialog;
+        String doubleTapReaction;
+        List availableReactions;
+        ArrayList arrayList;
+        int i2;
+        if (this.selectAnimatedEmojiDialog != null) {
+            return;
+        }
+        final SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[1];
+        if (setDefaultReactionCell != null) {
+            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable2 = setDefaultReactionCell.imageDrawable;
+            if (setDefaultReactionCell.imageDrawable != null) {
+                setDefaultReactionCell.imageDrawable.play();
+                setDefaultReactionCell.updateImageBounds();
+                Rect rect = AndroidUtilities.rectTmp2;
+                rect.set(setDefaultReactionCell.imageDrawable.getBounds());
+                int iDp = (-(setDefaultReactionCell.getHeight() - rect.centerY())) - AndroidUtilities.dp(16.0f);
+                iCenterX = rect.centerX() - ((AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) - ((int) Math.min(AndroidUtilities.dp(324.0f), AndroidUtilities.displaySize.x * 0.95f)));
+                swapAnimatedEmojiDrawable = swapAnimatedEmojiDrawable2;
+                i = iDp;
+                setDefaultReactionCell2 = setDefaultReactionCell;
+            } else {
+                swapAnimatedEmojiDrawable = swapAnimatedEmojiDrawable2;
+                setDefaultReactionCell2 = setDefaultReactionCell;
+            }
+            int i3 = i;
+            selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(this, getContext(), false, Integer.valueOf(iCenterX), 2, null) {
+                @Override
+                protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+                    if (l == null) {
+                        return;
+                    }
+                    MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).setDoubleTapReaction("animated_" + l);
+                    SetDefaultReactionCell setDefaultReactionCell3 = setDefaultReactionCell;
+                    if (setDefaultReactionCell3 != null) {
+                        setDefaultReactionCell3.update(true);
+                    }
+                    if (selectAnimatedEmojiDialogWindowArr[0] != null) {
+                        ReactionsDoubleTapManageActivity.this.selectAnimatedEmojiDialog = null;
+                        selectAnimatedEmojiDialogWindowArr[0].dismiss();
+                    }
+                }
+
+                @Override
+                protected void onReactionClick(SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+                    MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).setDoubleTapReaction(visibleReaction.emojicon);
+                    SetDefaultReactionCell setDefaultReactionCell3 = setDefaultReactionCell;
+                    if (setDefaultReactionCell3 != null) {
+                        setDefaultReactionCell3.update(true);
+                    }
+                    if (selectAnimatedEmojiDialogWindowArr[0] != null) {
+                        ReactionsDoubleTapManageActivity.this.selectAnimatedEmojiDialog = null;
+                        selectAnimatedEmojiDialogWindowArr[0].dismiss();
+                    }
+                }
+            };
+            doubleTapReaction = getMediaDataController().getDoubleTapReaction();
+            if (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")) {
+                try {
+                    selectAnimatedEmojiDialog.setSelected(Long.valueOf(Long.parseLong(doubleTapReaction.substring(9))));
+                } catch (Exception unused) {
+                }
+            }
+            availableReactions = getAvailableReactions();
+            arrayList = new ArrayList(20);
+            for (i2 = 0; i2 < availableReactions.size(); i2++) {
+                ReactionsLayoutInBubble.VisibleReaction visibleReaction = new ReactionsLayoutInBubble.VisibleReaction();
+                visibleReaction.emojicon = ((TLRPC.TL_availableReaction) availableReactions.get(i2)).reaction;
+                arrayList.add(visibleReaction);
+            }
+            selectAnimatedEmojiDialog.setRecentReactions(arrayList);
+            selectAnimatedEmojiDialog.setSaveState(3);
+            selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, setDefaultReactionCell2);
+            int i4 = -2;
+            SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, i4, i4) {
+                @Override
+                public void dismiss() {
+                    super.dismiss();
+                    ReactionsDoubleTapManageActivity.this.selectAnimatedEmojiDialog = null;
+                }
+            };
+            this.selectAnimatedEmojiDialog = selectAnimatedEmojiDialogWindow;
+            selectAnimatedEmojiDialogWindowArr[0] = selectAnimatedEmojiDialogWindow;
+            selectAnimatedEmojiDialogWindow.showAsDropDown(setDefaultReactionCell, 0, i3, 53);
+            selectAnimatedEmojiDialogWindowArr[0].dimBehind();
+        }
+        swapAnimatedEmojiDrawable = null;
+        setDefaultReactionCell2 = null;
+        iCenterX = 0;
+        i = 0;
+        int i5 = i;
+        selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(this, getContext(), false, Integer.valueOf(iCenterX), 2, null) {
+            @Override
+            protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+                if (l == null) {
+                    return;
+                }
+                MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).setDoubleTapReaction("animated_" + l);
+                SetDefaultReactionCell setDefaultReactionCell3 = setDefaultReactionCell;
+                if (setDefaultReactionCell3 != null) {
+                    setDefaultReactionCell3.update(true);
+                }
+                if (selectAnimatedEmojiDialogWindowArr[0] != null) {
+                    ReactionsDoubleTapManageActivity.this.selectAnimatedEmojiDialog = null;
+                    selectAnimatedEmojiDialogWindowArr[0].dismiss();
+                }
+            }
+
+            @Override
+            protected void onReactionClick(SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji, ReactionsLayoutInBubble.VisibleReaction visibleReaction2) {
+                MediaDataController.getInstance(((BaseFragment) ReactionsDoubleTapManageActivity.this).currentAccount).setDoubleTapReaction(visibleReaction2.emojicon);
+                SetDefaultReactionCell setDefaultReactionCell3 = setDefaultReactionCell;
+                if (setDefaultReactionCell3 != null) {
+                    setDefaultReactionCell3.update(true);
+                }
+                if (selectAnimatedEmojiDialogWindowArr[0] != null) {
+                    ReactionsDoubleTapManageActivity.this.selectAnimatedEmojiDialog = null;
+                    selectAnimatedEmojiDialogWindowArr[0].dismiss();
+                }
+            }
+        };
+        doubleTapReaction = getMediaDataController().getDoubleTapReaction();
+        if (doubleTapReaction != null) {
+            selectAnimatedEmojiDialog.setSelected(Long.valueOf(Long.parseLong(doubleTapReaction.substring(9))));
+        }
+        availableReactions = getAvailableReactions();
+        arrayList = new ArrayList(20);
+        while (i2 < availableReactions.size()) {
+            ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = new ReactionsLayoutInBubble.VisibleReaction();
+            visibleReaction2.emojicon = ((TLRPC.TL_availableReaction) availableReactions.get(i2)).reaction;
+            arrayList.add(visibleReaction2);
+        }
+        selectAnimatedEmojiDialog.setRecentReactions(arrayList);
+        selectAnimatedEmojiDialog.setSaveState(3);
+        selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, setDefaultReactionCell2);
+        int i6 = -2;
+        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow2 = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, i6, i6) {
+            @Override
+            public void dismiss() {
+                super.dismiss();
+                ReactionsDoubleTapManageActivity.this.selectAnimatedEmojiDialog = null;
+            }
+        };
+        this.selectAnimatedEmojiDialog = selectAnimatedEmojiDialogWindow2;
+        selectAnimatedEmojiDialogWindowArr[0] = selectAnimatedEmojiDialogWindow2;
+        selectAnimatedEmojiDialogWindow2.showAsDropDown(setDefaultReactionCell, 0, i5, 53);
+        selectAnimatedEmojiDialogWindowArr[0].dimBehind();
     }
 
     private void updateRows() {

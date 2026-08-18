@@ -48,6 +48,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.utils.GradientProtectionDrawable;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -61,10 +62,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.AnimationProperties;
-import org.telegram.ui.Components.PollVotesAlert;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 
@@ -400,8 +397,89 @@ public class PollVotesAlert extends BottomSheet {
             super.onDetachedFromWindow();
         }
 
-        public void update(int r12) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PollVotesAlert.UserCell.update(int):void");
+        public void update(int i) {
+            TLRPC.FileLocation fileLocation;
+            TLRPC.ChatPhoto chatPhoto;
+            boolean z;
+            TLRPC.FileLocation fileLocation2;
+            TLRPC.UserProfilePhoto userProfilePhoto;
+            TLRPC.User user = this.currentUser;
+            String userName = null;
+            if (user != null && (userProfilePhoto = user.photo) != null) {
+                fileLocation = userProfilePhoto.photo_small;
+            } else {
+                TLRPC.Chat chat = this.currentChat;
+                fileLocation = (chat == null || (chatPhoto = chat.photo) == null) ? null : chatPhoto.photo_small;
+            }
+            if (i != 0) {
+                boolean z2 = (MessagesController.UPDATE_MASK_AVATAR & i) != 0 && (((fileLocation2 = this.lastAvatar) != null && fileLocation == null) || ((fileLocation2 == null && fileLocation != null) || !(fileLocation2 == null || fileLocation == null || (fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.local_id == fileLocation.local_id))));
+                if (user != null && !z2 && (MessagesController.UPDATE_MASK_STATUS & i) != 0) {
+                    TLRPC.UserStatus userStatus = user.status;
+                    if ((userStatus != null ? userStatus.expires : 0) != this.lastStatus) {
+                        z2 = true;
+                    }
+                }
+                if (!z2 && this.lastName != null && (i & MessagesController.UPDATE_MASK_NAME) != 0) {
+                    if (user != null) {
+                        userName = UserObject.getUserName(user);
+                    } else {
+                        TLRPC.Chat chat2 = this.currentChat;
+                        if (chat2 != null) {
+                            userName = chat2.title;
+                        }
+                    }
+                    z = TextUtils.equals(userName, this.lastName) ? z2 : true;
+                }
+                if (!z) {
+                    return;
+                }
+            }
+            TLRPC.User user2 = this.currentUser;
+            if (user2 != null) {
+                this.avatarDrawable.setInfo(this.currentAccount, user2);
+                TLRPC.UserStatus userStatus2 = this.currentUser.status;
+                if (userStatus2 != null) {
+                    this.lastStatus = userStatus2.expires;
+                } else {
+                    this.lastStatus = 0;
+                }
+            } else {
+                TLRPC.Chat chat3 = this.currentChat;
+                if (chat3 != null) {
+                    this.avatarDrawable.setInfo(this.currentAccount, chat3);
+                }
+            }
+            TLRPC.User user3 = this.currentUser;
+            if (user3 != null) {
+                if (userName == null) {
+                    userName = UserObject.getUserName(user3);
+                }
+                this.lastName = userName;
+                this.lastName = Emoji.replaceEmoji(userName, this.nameTextView.getPaint().getFontMetricsInt(), false);
+            } else {
+                TLRPC.Chat chat4 = this.currentChat;
+                if (chat4 != null) {
+                    String str = chat4.title;
+                    this.lastName = str;
+                    this.lastName = Emoji.replaceEmoji(str, this.nameTextView.getPaint().getFontMetricsInt(), false);
+                } else {
+                    this.lastName = "";
+                }
+            }
+            this.nameTextView.setText(this.lastName);
+            this.nameTextView.setRightDrawable(this.statusBadgeComponent.updateDrawable(this.currentUser, this.currentChat, Theme.getColor(Theme.key_chats_verifiedBackground, ((BottomSheet) PollVotesAlert.this).resourcesProvider), false));
+            this.lastAvatar = fileLocation;
+            TLRPC.Chat chat5 = this.currentChat;
+            if (chat5 != null) {
+                this.avatarImageView.setForUserOrChat(chat5, this.avatarDrawable);
+                return;
+            }
+            TLRPC.User user4 = this.currentUser;
+            if (user4 != null) {
+                this.avatarImageView.setForUserOrChat(user4, this.avatarDrawable);
+            } else {
+                this.avatarImageView.setImageDrawable(this.avatarDrawable);
+            }
         }
 
         @Override
@@ -412,7 +490,9 @@ public class PollVotesAlert extends BottomSheet {
             int iDp4;
             if (this.drawPlaceholder || this.placeholderAlpha != 0.0f) {
                 PollVotesAlert.this.placeholderPaint.setAlpha((int) (this.placeholderAlpha * 255.0f));
-                canvas.drawCircle(this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2), this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2), this.avatarImageView.getMeasuredWidth() / 2, PollVotesAlert.this.placeholderPaint);
+                int left = this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2);
+                int top = this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2);
+                canvas.drawCircle(left, top, this.avatarImageView.getMeasuredWidth() / 2, PollVotesAlert.this.placeholderPaint);
                 if (this.placeholderNum % 2 == 0) {
                     iDp = AndroidUtilities.dp(65.0f);
                     iDp2 = AndroidUtilities.dp(48.0f);
@@ -423,7 +503,7 @@ public class PollVotesAlert extends BottomSheet {
                 if (LocaleController.isRTL) {
                     iDp = (getMeasuredWidth() - iDp) - iDp2;
                 }
-                PollVotesAlert.this.rect.set(iDp, r2 - AndroidUtilities.dp(4.0f), iDp + iDp2, AndroidUtilities.dp(4.0f) + r2);
+                PollVotesAlert.this.rect.set(iDp, top - AndroidUtilities.dp(4.0f), iDp + iDp2, AndroidUtilities.dp(4.0f) + top);
                 canvas.drawRoundRect(PollVotesAlert.this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), PollVotesAlert.this.placeholderPaint);
                 if (this.placeholderNum % 2 == 0) {
                     iDp3 = AndroidUtilities.dp(119.0f);
@@ -435,7 +515,7 @@ public class PollVotesAlert extends BottomSheet {
                 if (LocaleController.isRTL) {
                     iDp3 = (getMeasuredWidth() - iDp3) - iDp4;
                 }
-                PollVotesAlert.this.rect.set(iDp3, r2 - AndroidUtilities.dp(4.0f), iDp3 + iDp4, r2 + AndroidUtilities.dp(4.0f));
+                PollVotesAlert.this.rect.set(iDp3, top - AndroidUtilities.dp(4.0f), iDp3 + iDp4, top + AndroidUtilities.dp(4.0f));
                 canvas.drawRoundRect(PollVotesAlert.this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), PollVotesAlert.this.placeholderPaint);
             }
             if (this.needDivider) {
@@ -648,17 +728,18 @@ public class PollVotesAlert extends BottomSheet {
                     f = 1.0f;
                 }
                 int i8 = AndroidUtilities.statusBarHeight;
-                int i9 = iDp2 + i8;
-                PollVotesAlert.this.shadowDrawable.setBounds(0, translationY + i8, getMeasuredWidth(), measuredHeight);
+                int i9 = translationY + i8;
+                int i10 = iDp2 + i8;
+                PollVotesAlert.this.shadowDrawable.setBounds(0, i9, getMeasuredWidth(), measuredHeight);
                 PollVotesAlert.this.shadowDrawable.draw(canvas);
                 if (f != 1.0f) {
                     Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_dialogBackground));
-                    this.rect.set(((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + r1, getMeasuredWidth() - ((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + r1 + AndroidUtilities.dp(24.0f));
+                    this.rect.set(((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + i9, getMeasuredWidth() - ((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + i9 + AndroidUtilities.dp(24.0f));
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(12.0f) * f, AndroidUtilities.dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
                 }
                 if (f != 0.0f) {
                     int iDp3 = AndroidUtilities.dp(36.0f);
-                    this.rect.set((getMeasuredWidth() - iDp3) / 2, i9, (getMeasuredWidth() + iDp3) / 2, i9 + AndroidUtilities.dp(4.0f));
+                    this.rect.set((getMeasuredWidth() - iDp3) / 2, i10, (getMeasuredWidth() + iDp3) / 2, i10 + AndroidUtilities.dp(4.0f));
                     int color = Theme.getColor(Theme.key_sheet_scrollUp);
                     int iAlpha = Color.alpha(color);
                     Theme.dialogs_onlineCirclePaint.setColor(color);
@@ -851,21 +932,17 @@ public class PollVotesAlert extends BottomSheet {
                 for (int i2 = 0; i2 < size; i2++) {
                     VotesList votesList = (VotesList) arrayList.get(i2);
                     int size2 = this.voters.size();
-                    int i3 = 0;
-                    while (true) {
-                        if (i3 < size2) {
-                            VotesList votesList2 = (VotesList) this.voters.get(i3);
-                            if (Arrays.equals(votesList.option, votesList2.option)) {
-                                votesList2.next_offset = votesList.next_offset;
-                                if (votesList2.count != votesList.count || votesList2.votes.size() != votesList.votes.size()) {
-                                    z = true;
-                                }
-                                votesList2.count = votesList.count;
-                                votesList2.users = votesList.users;
-                                votesList2.votes = votesList.votes;
-                            } else {
-                                i3++;
+                    for (int i3 = 0; i3 < size2; i3++) {
+                        VotesList votesList2 = (VotesList) this.voters.get(i3);
+                        if (Arrays.equals(votesList.option, votesList2.option)) {
+                            votesList2.next_offset = votesList.next_offset;
+                            if (votesList2.count != votesList.count || votesList2.votes.size() != votesList.votes.size()) {
+                                z = true;
                             }
+                            votesList2.count = votesList.count;
+                            votesList2.users = votesList.users;
+                            votesList2.votes = votesList.votes;
+                            break;
                         }
                     }
                 }
@@ -1026,25 +1103,21 @@ public class PollVotesAlert extends BottomSheet {
             this.votesPercents.put(votesList, button);
             if (!tL_messageMediaPoll.results.results.isEmpty()) {
                 int size2 = tL_messageMediaPoll.results.results.size();
-                int i4 = 0;
-                while (true) {
-                    if (i4 < size2) {
-                        TLRPC.PollAnswerVoters pollAnswerVoters = tL_messageMediaPoll.results.results.get(i4);
-                        if (Arrays.equals(votesList.option, pollAnswerVoters.option)) {
-                            button.votesCount = pollAnswerVoters.voters;
-                            button.decimal = (pollAnswerVoters.voters / tL_messageMediaPoll.results.total_voters) * 100.0f;
-                            button.percent = (int) button.decimal;
-                            Button.access$4024(button, button.percent);
-                            if (i2 == 0) {
-                                i2 = button.percent;
-                            } else if (button.percent != 0 && i2 != button.percent) {
-                                z = true;
-                            }
-                            i -= button.percent;
-                            iMax = Math.max(button.percent, iMax);
-                        } else {
-                            i4++;
+                for (int i4 = 0; i4 < size2; i4++) {
+                    TLRPC.PollAnswerVoters pollAnswerVoters = tL_messageMediaPoll.results.results.get(i4);
+                    if (Arrays.equals(votesList.option, pollAnswerVoters.option)) {
+                        button.votesCount = pollAnswerVoters.voters;
+                        button.decimal = (pollAnswerVoters.voters / tL_messageMediaPoll.results.total_voters) * 100.0f;
+                        button.percent = (int) button.decimal;
+                        Button.access$4024(button, button.percent);
+                        if (i2 == 0) {
+                            i2 = button.percent;
+                        } else if (button.percent != 0 && i2 != button.percent) {
+                            z = true;
                         }
+                        i -= button.percent;
+                        iMax = Math.max(button.percent, iMax);
+                        break;
                     }
                 }
             }
@@ -1242,32 +1315,22 @@ public class PollVotesAlert extends BottomSheet {
                 view.setAlpha(1.0f);
                 VotesList votesList = (VotesList) PollVotesAlert.this.voters.get(i - 1);
                 int size = PollVotesAlert.this.poll.answers.size();
-                int i2 = 0;
-                int i3 = 0;
-                while (true) {
-                    if (i3 >= size) {
-                        break;
-                    }
-                    TLRPC.PollAnswer pollAnswer = PollVotesAlert.this.poll.answers.get(i3);
-                    if (!Arrays.equals(pollAnswer.option, votesList.option) || ((Button) PollVotesAlert.this.votesPercents.get(votesList)) == null) {
-                        i3++;
-                    } else {
+                for (int i2 = 0; i2 < size; i2++) {
+                    TLRPC.PollAnswer pollAnswer = PollVotesAlert.this.poll.answers.get(i2);
+                    if (Arrays.equals(pollAnswer.option, votesList.option) && ((Button) PollVotesAlert.this.votesPercents.get(votesList)) != null) {
                         TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
                         if (PollVotesAlert.this.messageObject != null && PollVotesAlert.this.messageObject.translated && PollVotesAlert.this.messageObject.messageOwner != null && PollVotesAlert.this.messageObject.messageOwner.translatedPoll != null) {
-                            while (true) {
-                                if (i2 >= PollVotesAlert.this.messageObject.messageOwner.translatedPoll.answers.size()) {
-                                    break;
-                                }
-                                TLRPC.PollAnswer pollAnswer2 = PollVotesAlert.this.messageObject.messageOwner.translatedPoll.answers.get(i2);
+                            for (int i3 = 0; i3 < PollVotesAlert.this.messageObject.messageOwner.translatedPoll.answers.size(); i3++) {
+                                TLRPC.PollAnswer pollAnswer2 = PollVotesAlert.this.messageObject.messageOwner.translatedPoll.answers.get(i3);
                                 if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
                                     tL_textWithEntities = pollAnswer2.text;
                                     break;
                                 }
-                                i2++;
                             }
                         }
                         sectionCell.setText(tL_textWithEntities == null ? "" : tL_textWithEntities.text, tL_textWithEntities == null ? null : tL_textWithEntities.entities, PollVotesAlert.this.calcPercent(votesList.option), votesList.count, votesList.getCollapsed(), false);
                         sectionCell.setTag(R.id.object_tag, votesList);
+                        break;
                     }
                 }
             }
@@ -1285,9 +1348,9 @@ public class PollVotesAlert extends BottomSheet {
                 }
                 userCell = PollVotesAlert.this.titleTextView;
             } else if (i == 2) {
-                View viewCreateSectionCell = createSectionCell();
-                viewCreateSectionCell.setTag(-33024);
-                userCell = viewCreateSectionCell;
+                SectionCell sectionCellCreateSectionCell = createSectionCell();
+                sectionCellCreateSectionCell.setTag(-33024);
+                userCell = sectionCellCreateSectionCell;
             } else {
                 TextCell textCell = new TextCell(this.mContext, 23, true);
                 textCell.setOffsetFromImage(65);
@@ -1301,7 +1364,6 @@ public class PollVotesAlert extends BottomSheet {
         @Override
         public void onBindViewHolder(int i, int i2, RecyclerView.ViewHolder viewHolder) {
             int itemViewType = viewHolder.getItemViewType();
-            int i3 = 0;
             if (itemViewType != 2) {
                 if (itemViewType != 3) {
                     return;
@@ -1314,21 +1376,17 @@ public class PollVotesAlert extends BottomSheet {
             SectionCell sectionCell = (SectionCell) viewHolder.itemView;
             VotesList votesList2 = (VotesList) PollVotesAlert.this.voters.get(i - 1);
             int size = PollVotesAlert.this.poll.answers.size();
-            for (int i4 = 0; i4 < size; i4++) {
-                TLRPC.PollAnswer pollAnswer = PollVotesAlert.this.poll.answers.get(i4);
+            for (int i3 = 0; i3 < size; i3++) {
+                TLRPC.PollAnswer pollAnswer = PollVotesAlert.this.poll.answers.get(i3);
                 if (Arrays.equals(pollAnswer.option, votesList2.option) && ((Button) PollVotesAlert.this.votesPercents.get(votesList2)) != null) {
                     TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
                     if (PollVotesAlert.this.messageObject != null && PollVotesAlert.this.messageObject.translated && PollVotesAlert.this.messageObject.messageOwner != null && PollVotesAlert.this.messageObject.messageOwner.translatedPoll != null) {
-                        while (true) {
-                            if (i3 >= PollVotesAlert.this.messageObject.messageOwner.translatedPoll.answers.size()) {
-                                break;
-                            }
-                            TLRPC.PollAnswer pollAnswer2 = PollVotesAlert.this.messageObject.messageOwner.translatedPoll.answers.get(i3);
+                        for (int i4 = 0; i4 < PollVotesAlert.this.messageObject.messageOwner.translatedPoll.answers.size(); i4++) {
+                            TLRPC.PollAnswer pollAnswer2 = PollVotesAlert.this.messageObject.messageOwner.translatedPoll.answers.get(i4);
                             if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
                                 tL_textWithEntities = pollAnswer2.text;
                                 break;
                             }
-                            i3++;
                         }
                     }
                     sectionCell.setText(tL_textWithEntities == null ? "" : tL_textWithEntities.text, tL_textWithEntities == null ? null : tL_textWithEntities.entities, PollVotesAlert.this.calcPercent(votesList2.option), votesList2.count, votesList2.getCollapsed(), false);
@@ -1416,32 +1474,23 @@ public class PollVotesAlert extends BottomSheet {
                     SectionCell sectionCell = (SectionCell) pinnedHeader;
                     VotesList votesList = (VotesList) pinnedHeader.getTag(i2);
                     int size = this.poll.answers.size();
-                    int i3 = 0;
-                    int i4 = 0;
-                    while (true) {
-                        if (i4 < size) {
-                            TLRPC.PollAnswer pollAnswer = this.poll.answers.get(i4);
-                            if (!Arrays.equals(pollAnswer.option, votesList.option) || ((Button) this.votesPercents.get(votesList)) == null) {
-                                i4++;
-                            } else {
-                                TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
-                                MessageObject messageObject = this.messageObject;
-                                if (messageObject != null && messageObject.translated && (message = messageObject.messageOwner) != null && message.translatedPoll != null) {
-                                    while (true) {
-                                        if (i3 >= this.messageObject.messageOwner.translatedPoll.answers.size()) {
-                                            break;
-                                        }
-                                        TLRPC.PollAnswer pollAnswer2 = this.messageObject.messageOwner.translatedPoll.answers.get(i3);
-                                        if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
-                                            tL_textWithEntities = pollAnswer2.text;
-                                            break;
-                                        }
-                                        i3++;
+                    for (int i3 = 0; i3 < size; i3++) {
+                        TLRPC.PollAnswer pollAnswer = this.poll.answers.get(i3);
+                        if (Arrays.equals(pollAnswer.option, votesList.option) && ((Button) this.votesPercents.get(votesList)) != null) {
+                            TLRPC.TL_textWithEntities tL_textWithEntities = pollAnswer.text;
+                            MessageObject messageObject = this.messageObject;
+                            if (messageObject != null && messageObject.translated && (message = messageObject.messageOwner) != null && message.translatedPoll != null) {
+                                for (int i4 = 0; i4 < this.messageObject.messageOwner.translatedPoll.answers.size(); i4++) {
+                                    TLRPC.PollAnswer pollAnswer2 = this.messageObject.messageOwner.translatedPoll.answers.get(i4);
+                                    if (Arrays.equals(pollAnswer2.option, pollAnswer.option)) {
+                                        tL_textWithEntities = pollAnswer2.text;
+                                        break;
                                     }
                                 }
-                                sectionCell.setText(tL_textWithEntities == null ? "" : tL_textWithEntities.text, tL_textWithEntities == null ? null : tL_textWithEntities.entities, calcPercent(votesList.option), votesList.count, votesList.getCollapsed(), true);
-                                sectionCell.setTag(R.id.object_tag, votesList);
                             }
+                            sectionCell.setText(tL_textWithEntities == null ? "" : tL_textWithEntities.text, tL_textWithEntities == null ? null : tL_textWithEntities.entities, calcPercent(votesList.option), votesList.count, votesList.getCollapsed(), true);
+                            sectionCell.setTag(R.id.object_tag, votesList);
+                            break;
                         }
                     }
                 }

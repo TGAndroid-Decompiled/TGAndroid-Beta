@@ -5,9 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 import org.telegram.messenger.ApplicationLoader;
@@ -19,7 +17,7 @@ public class Slice {
     private File file;
     private final int texture;
 
-    public Slice(ByteBuffer byteBuffer, int i, RectF rectF, DispatchQueue dispatchQueue) throws IOException {
+    public Slice(ByteBuffer byteBuffer, int i, RectF rectF, DispatchQueue dispatchQueue) {
         this.bounds = rectF;
         this.texture = i;
         try {
@@ -41,7 +39,7 @@ public class Slice {
         }
     }
 
-    private void storeData(ByteBuffer byteBuffer) throws IOException {
+    private void storeData(ByteBuffer byteBuffer) {
         try {
             byte[] bArrArray = byteBuffer.array();
             FileOutputStream fileOutputStream = new FileOutputStream(this.file);
@@ -59,7 +57,7 @@ public class Slice {
         }
     }
 
-    public ByteBuffer getData() throws DataFormatException, IOException {
+    public ByteBuffer getData() {
         try {
             byte[] bArr = new byte[1024];
             byte[] bArr2 = new byte[1024];

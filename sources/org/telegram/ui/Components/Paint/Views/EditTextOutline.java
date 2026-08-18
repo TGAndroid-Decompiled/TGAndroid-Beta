@@ -124,7 +124,7 @@ public class EditTextOutline extends EditTextBoldCursor {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) throws IllegalAccessException, IllegalArgumentException {
+    protected void onDraw(Canvas canvas) {
         boolean z;
         int i = 0;
         if (this.mCache != null && this.mStrokeColor != 0) {

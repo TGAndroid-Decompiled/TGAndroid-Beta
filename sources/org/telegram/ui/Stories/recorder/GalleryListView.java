@@ -13,6 +13,7 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
@@ -47,7 +48,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.DispatchQueue;
@@ -385,9 +385,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         });
         arrayList.clear();
         if (!z) {
-            Iterator it = MessagesController.getInstance(i).getStoriesController().getDraftsController().drafts.iterator();
-            while (it.hasNext()) {
-                StoryEntry storyEntry = (StoryEntry) it.next();
+            for (StoryEntry storyEntry : MessagesController.getInstance(i).getStoriesController().getDraftsController().drafts) {
                 if (!storyEntry.isEdit && !storyEntry.isError) {
                     this.drafts.add(storyEntry);
                 }
@@ -485,6 +483,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         }
         Cell cell = (Cell) view;
         int size = i - 2;
+        Bitmap bitmapPrepareBlurredThumb = null;
         if (this.containsDraftFolder) {
             if (size == 0) {
                 selectAlbum(draftsAlbum, true);
@@ -785,9 +784,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             return;
         }
         ArrayList arrayList = new ArrayList();
-        Iterator it = this.selectedPhotos.iterator();
-        while (it.hasNext()) {
-            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) it.next();
+        for (MediaController.PhotoEntry photoEntry : this.selectedPhotos) {
             arrayList.add((!photoEntry.isVideo || photoEntry.isLivePhoto()) ? null : prepareBlurredThumb(findCell(photoEntry)));
         }
         this.onSelectMultipleListener.run(Boolean.valueOf(z), new ArrayList(this.selectedPhotos), arrayList);
@@ -833,8 +830,47 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
     }
 
     @Override
-    protected void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.GalleryListView.onMeasure(int, int):void");
+    protected void onMeasure(int i, int i2) {
+        int iDp;
+        float f;
+        this.listView.setPinnedSectionOffsetY(AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight());
+        RecyclerListView recyclerListView = this.listView;
+        int iDp2 = AndroidUtilities.dp(6.0f);
+        int currentActionBarHeight = AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight();
+        int iDp3 = AndroidUtilities.dp(1.0f);
+        if (this.buttonsLayout == null) {
+            iDp = 0;
+        } else {
+            iDp = AndroidUtilities.dp((AndroidUtilities.navigationBarHeight > 0 ? 0 : 10) + 114);
+        }
+        recyclerListView.setPadding(iDp2, currentActionBarHeight, iDp3, iDp + AndroidUtilities.navigationBarHeight);
+        ImageView imageView = this.selectButton;
+        if (imageView != null) {
+            imageView.setTranslationY(-AndroidUtilities.navigationBarHeight);
+        }
+        LinearLayout linearLayout = this.buttonsLayout;
+        if (linearLayout != null) {
+            linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(AndroidUtilities.navigationBarHeight > 0 ? 0.0f : 10.0f) + AndroidUtilities.navigationBarHeight);
+        }
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.searchContainer.getLayoutParams();
+        layoutParams.leftMargin = 0;
+        layoutParams.topMargin = AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight();
+        layoutParams.rightMargin = 0;
+        layoutParams.bottomMargin = AndroidUtilities.navigationBarHeight;
+        this.dropDown.setPadding(0, AndroidUtilities.statusBarHeight, AndroidUtilities.dp(10.0f), 0);
+        TextView textView = this.dropDown;
+        if (AndroidUtilities.isTablet()) {
+            f = 20.0f;
+        } else {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                f = 18.0f;
+            } else {
+                f = 20.0f;
+            }
+        }
+        textView.setTextSize(f);
+        super.onMeasure(i, i2);
     }
 
     public void updateSelectButtonVisible() {
@@ -1267,7 +1303,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             bitmapsCache.evictAll();
         }
 
-        public static void cleanupQueues() throws InterruptedException {
+        public static void cleanupQueues() {
             releaseAllBitmaps();
             for (int i = 0; i < allQueues.size(); i++) {
                 ((DispatchQueue) allQueues.get(i)).cleanupQueue();
@@ -1830,7 +1866,10 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         public int getTotalItemsCount() {
             ArrayList arrayList = GalleryListView.this.photos;
             int size = arrayList == null ? 0 : arrayList.size();
-            return GalleryListView.this.containsDraftFolder ? size + 1 : GalleryListView.this.containsDrafts ? size + GalleryListView.this.drafts.size() : size;
+            if (GalleryListView.this.containsDraftFolder) {
+                return size + 1;
+            }
+            return GalleryListView.this.containsDrafts ? size + GalleryListView.this.drafts.size() : size;
         }
 
         @Override
@@ -1838,7 +1877,8 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             int totalItemsCount = getTotalItemsCount();
             int width = (int) (((int) (((recyclerListView.getWidth() - recyclerListView.getPaddingLeft()) - recyclerListView.getPaddingRight()) / GalleryListView.this.layoutManager.getSpanCount())) * GalleryListView.this.ASPECT_RATIO);
             int iCeil = (int) Math.ceil(totalItemsCount / GalleryListView.this.layoutManager.getSpanCount());
-            float fLerp = (AndroidUtilities.lerp(0, Math.max(0, r2 - ((AndroidUtilities.displaySize.y - recyclerListView.getPaddingTop()) - recyclerListView.getPaddingBottom())), f) / (iCeil * width)) * iCeil;
+            int i = iCeil * width;
+            float fLerp = (AndroidUtilities.lerp(0, Math.max(0, i - ((AndroidUtilities.displaySize.y - recyclerListView.getPaddingTop()) - recyclerListView.getPaddingBottom())), f) / i) * iCeil;
             int iRound = Math.round(fLerp);
             iArr[0] = Math.max(0, GalleryListView.this.layoutManager.getSpanCount() * iRound) + 2;
             iArr[1] = recyclerListView.getPaddingTop() + ((int) ((fLerp - iRound) * width));
@@ -1846,8 +1886,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
 
         @Override
         public float getScrollProgress(RecyclerListView recyclerListView) {
-            int totalItemsCount = getTotalItemsCount();
-            return (Math.max(0, recyclerListView.computeVerticalScrollOffset() - GalleryListView.this.getPadding()) - recyclerListView.getPaddingTop()) / ((((int) Math.ceil(totalItemsCount / GalleryListView.this.layoutManager.getSpanCount())) * ((int) (((int) (((recyclerListView.getWidth() - recyclerListView.getPaddingLeft()) - recyclerListView.getPaddingRight()) / GalleryListView.this.layoutManager.getSpanCount())) * GalleryListView.this.ASPECT_RATIO))) - (AndroidUtilities.displaySize.y - recyclerListView.getPaddingTop()));
+            return (Math.max(0, recyclerListView.computeVerticalScrollOffset() - GalleryListView.this.getPadding()) - recyclerListView.getPaddingTop()) / ((((int) Math.ceil(getTotalItemsCount() / GalleryListView.this.layoutManager.getSpanCount())) * ((int) (((int) (((recyclerListView.getWidth() - recyclerListView.getPaddingLeft()) - recyclerListView.getPaddingRight()) / GalleryListView.this.layoutManager.getSpanCount())) * GalleryListView.this.ASPECT_RATIO))) - (AndroidUtilities.displaySize.y - recyclerListView.getPaddingTop()));
         }
     }
 
@@ -1884,7 +1923,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
     }
 
     @Override
-    protected void onDetachedFromWindow() throws InterruptedException {
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.albumsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesDraftsUpdated);
@@ -1895,12 +1934,15 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.albumsDidLoad) {
             updateAlbumsDropDown();
-            int i3 = 0;
-            if (this.selectedAlbum != null) {
-                while (true) {
-                    if (i3 >= MediaController.allMediaAlbums.size()) {
-                        break;
-                    }
+            if (this.selectedAlbum == null) {
+                ArrayList arrayList = this.dropDownAlbums;
+                if (arrayList == null || arrayList.isEmpty()) {
+                    this.selectedAlbum = MediaController.allMediaAlbumEntry;
+                } else {
+                    this.selectedAlbum = (MediaController.AlbumEntry) this.dropDownAlbums.get(0);
+                }
+            } else {
+                for (int i3 = 0; i3 < MediaController.allMediaAlbums.size(); i3++) {
                     MediaController.AlbumEntry albumEntry = MediaController.allMediaAlbums.get(i3);
                     int i4 = albumEntry.bucketId;
                     MediaController.AlbumEntry albumEntry2 = this.selectedAlbum;
@@ -1908,14 +1950,6 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                         this.selectedAlbum = albumEntry;
                         break;
                     }
-                    i3++;
-                }
-            } else {
-                ArrayList arrayList = this.dropDownAlbums;
-                if (arrayList == null || arrayList.isEmpty()) {
-                    this.selectedAlbum = MediaController.allMediaAlbumEntry;
-                } else {
-                    this.selectedAlbum = (MediaController.AlbumEntry) this.dropDownAlbums.get(0);
                 }
             }
             this.photos = getPhotoEntries(this.selectedAlbum);
@@ -1936,9 +1970,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
     public void updateDrafts() {
         this.drafts.clear();
         if (!this.onlyPhotos) {
-            Iterator it = MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().drafts.iterator();
-            while (it.hasNext()) {
-                StoryEntry storyEntry = (StoryEntry) it.next();
+            for (StoryEntry storyEntry : MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().drafts) {
                 if (!storyEntry.isEdit && !storyEntry.isError) {
                     this.drafts.add(storyEntry);
                 }

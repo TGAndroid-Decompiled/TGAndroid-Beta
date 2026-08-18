@@ -11,16 +11,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
@@ -29,7 +32,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FireworksOverlay;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
-import org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.adapters.BoostAdapter;
 import org.telegram.ui.Components.Premium.boosts.cells.ActionBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.AddChannelCell;
@@ -326,7 +328,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
     }
 
     public void lambda$new$1(boolean z, int i, int i2) {
-        this.selectedEndDate = i * 1000;
+        this.selectedEndDate = ((long) i) * 1000;
         updateRows(false, true);
     }
 
@@ -772,8 +774,224 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         return this.prepaidGiveaway != null;
     }
 
-    private void updateRows(boolean r28, boolean r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.BoostViaGiftsBottomSheet.updateRows(boolean, boolean):void");
+    private void updateRows(boolean z, boolean z2) {
+        ArrayList arrayList;
+        boolean z3;
+        boolean z4;
+        boolean z5;
+        ArrayList arrayList2 = new ArrayList(this.items);
+        this.items.clear();
+        int i = 1;
+        this.items.add(BoostAdapter.Item.asHeader(this.selectedBoostType == BoostTypeCell.TYPE_STARS));
+        if (isPreparedGiveaway()) {
+            this.items.add(BoostAdapter.Item.asSingleBoost(this.prepaidGiveaway));
+        } else {
+            this.items.add(BoostAdapter.Item.asBoost(BoostTypeCell.TYPE_PREMIUM, this.selectedUsers.size(), null, this.selectedBoostType));
+            this.items.add(BoostAdapter.Item.asBoost(BoostTypeCell.TYPE_STARS, this.selectedUsers.size(), null, this.selectedBoostType));
+        }
+        this.items.add(BoostAdapter.Item.asDivider());
+        boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.currentChat);
+        if (this.selectedBoostType == BoostTypeCell.TYPE_STARS) {
+            if (!isPreparedGiveaway()) {
+                BoostAdapter.Item itemAsSubTitleWithCounter = BoostAdapter.Item.asSubTitleWithCounter(LocaleController.getString(R.string.BoostingStarsOptions), getSelectedSliderValueWithBoosts());
+                this.items.add(itemAsSubTitleWithCounter);
+                List starsOptions = getStarsOptions();
+                int i2 = 0;
+                int i3 = 0;
+                while (i2 < starsOptions.size()) {
+                    TL_stars.TL_starsGiveawayOption selectedStarsOption = getSelectedStarsOption(((Long) starsOptions.get(i2)).longValue());
+                    if (!selectedStarsOption.missingStorePrice) {
+                        if (this.selectedStars == 0 && selectedStarsOption.isDefault) {
+                            this.selectedStars = selectedStarsOption.stars;
+                        }
+                        if (!selectedStarsOption.extended || this.starOptionsExpanded) {
+                            i3 += i;
+                            this.items.add(BoostAdapter.Item.asOption(selectedStarsOption, this.starOptionsExpanded ? i2 : i2 + 2, getSelectedPerUserStars(selectedStarsOption.stars), this.selectedStars == selectedStarsOption.stars, true));
+                        }
+                    }
+                    i2++;
+                    arrayList2 = arrayList2;
+                    i = 1;
+                }
+                arrayList = arrayList2;
+                if (!this.starOptionsExpanded && i3 < starsOptions.size()) {
+                    this.items.add(BoostAdapter.Item.asExpandOptions());
+                }
+                if (i3 <= 0) {
+                    this.items.add(BoostAdapter.Item.asOption(null, 0, 1L, false, true));
+                    this.items.add(BoostAdapter.Item.asOption(null, 1, 1L, false, true));
+                    this.items.add(BoostAdapter.Item.asOption(null, 2, 1L, false, false));
+                }
+                itemAsSubTitleWithCounter.intValue = getSelectedSliderValueWithBoosts();
+                this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(R.string.BoostingStarsOptionsInfo), false));
+                List sliderValues = getSliderValues();
+                int i4 = this.selectedStarsSliderIndex;
+                if (i4 < 0 || i4 >= sliderValues.size()) {
+                    this.selectedStarsSliderIndex = 0;
+                }
+                if (sliderValues.size() > 1) {
+                    this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString(R.string.BoostingStarsQuantityPrizes)));
+                    this.items.add(BoostAdapter.Item.asSlider(getSliderValues(), this.selectedStarsSliderIndex));
+                    this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(R.string.BoostingStarsQuantityPrizesInfo), false));
+                }
+            } else {
+                arrayList = arrayList2;
+                TL_stories.PrepaidGiveaway prepaidGiveaway = this.prepaidGiveaway;
+                if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
+                    this.selectedStars = ((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars;
+                }
+            }
+            this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString(R.string.BoostingChannelsGroupsIncludedGiveaway)));
+            if (isPreparedGiveaway()) {
+                TL_stories.PrepaidGiveaway prepaidGiveaway2 = this.prepaidGiveaway;
+                if (prepaidGiveaway2 instanceof TL_stories.TL_prepaidStarsGiveaway) {
+                    this.items.add(BoostAdapter.Item.asChat(this.currentChat, false, prepaidGiveaway2.quantity));
+                } else {
+                    this.items.add(BoostAdapter.Item.asChat(this.currentChat, false, prepaidGiveaway2.quantity * BoostRepository.giveawayBoostsPerPremium()));
+                }
+            } else {
+                this.items.add(BoostAdapter.Item.asChat(this.currentChat, false, getSelectedSliderValueWithBoosts()));
+            }
+            for (TLObject tLObject : this.selectedChats) {
+                if (tLObject instanceof TLRPC.Chat) {
+                    z5 = true;
+                    this.items.add(BoostAdapter.Item.asChat((TLRPC.Chat) tLObject, true, getSelectedSliderValueWithBoosts()));
+                } else {
+                    z5 = true;
+                }
+                if (tLObject instanceof TLRPC.InputPeer) {
+                    this.items.add(BoostAdapter.Item.asPeer((TLRPC.InputPeer) tLObject, z5, getSelectedSliderValueWithBoosts()));
+                }
+            }
+            if (this.selectedChats.size() < BoostRepository.giveawayAddPeersMax()) {
+                this.items.add(BoostAdapter.Item.asAddChannel());
+            }
+            this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(R.string.BoostingChooseChannelsGroupsNeedToJoin), false));
+            this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString(R.string.BoostingEligibleUsers)));
+            this.items.add(BoostAdapter.Item.asParticipants(ParticipantsTypeCell.TYPE_ALL, this.selectedParticipantsType, true, this.selectedCountries));
+            this.items.add(BoostAdapter.Item.asParticipants(ParticipantsTypeCell.TYPE_NEW, this.selectedParticipantsType, false, this.selectedCountries));
+            this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.BoostingChooseLimitGiveaway : R.string.BoostingChooseLimitGiveawayGroups), false));
+        } else {
+            arrayList = arrayList2;
+            if (this.selectedBoostSubType == BoostTypeCell.TYPE_GIVEAWAY) {
+                if (!isPreparedGiveaway()) {
+                    this.items.add(BoostAdapter.Item.asSubTitleWithCounter(LocaleController.getString(R.string.BoostingQuantityPrizes), getSelectedSliderValueWithBoosts()));
+                    this.items.add(BoostAdapter.Item.asSlider(this.sliderValues, this.selectedSliderIndex));
+                    this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(R.string.BoostingChooseHowMany), false));
+                }
+                this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString(R.string.BoostingChannelsGroupsIncludedGiveaway)));
+                if (isPreparedGiveaway()) {
+                    TL_stories.PrepaidGiveaway prepaidGiveaway3 = this.prepaidGiveaway;
+                    if (prepaidGiveaway3 instanceof TL_stories.TL_prepaidStarsGiveaway) {
+                        this.items.add(BoostAdapter.Item.asChat(this.currentChat, false, prepaidGiveaway3.quantity));
+                    } else {
+                        this.items.add(BoostAdapter.Item.asChat(this.currentChat, false, prepaidGiveaway3.quantity * BoostRepository.giveawayBoostsPerPremium()));
+                    }
+                } else {
+                    this.items.add(BoostAdapter.Item.asChat(this.currentChat, false, getSelectedSliderValueWithBoosts()));
+                }
+                for (TLObject tLObject2 : this.selectedChats) {
+                    if (tLObject2 instanceof TLRPC.Chat) {
+                        z3 = true;
+                        this.items.add(BoostAdapter.Item.asChat((TLRPC.Chat) tLObject2, true, getSelectedSliderValueWithBoosts()));
+                    } else {
+                        z3 = true;
+                    }
+                    if (tLObject2 instanceof TLRPC.InputPeer) {
+                        this.items.add(BoostAdapter.Item.asPeer((TLRPC.InputPeer) tLObject2, z3, getSelectedSliderValueWithBoosts()));
+                    }
+                }
+                if (this.selectedChats.size() < BoostRepository.giveawayAddPeersMax()) {
+                    this.items.add(BoostAdapter.Item.asAddChannel());
+                }
+                this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(R.string.BoostingChooseChannelsGroupsNeedToJoin), false));
+                this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString(R.string.BoostingEligibleUsers)));
+                this.items.add(BoostAdapter.Item.asParticipants(ParticipantsTypeCell.TYPE_ALL, this.selectedParticipantsType, true, this.selectedCountries));
+                this.items.add(BoostAdapter.Item.asParticipants(ParticipantsTypeCell.TYPE_NEW, this.selectedParticipantsType, false, this.selectedCountries));
+                this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.BoostingChooseLimitGiveaway : R.string.BoostingChooseLimitGiveawayGroups), false));
+            }
+            if (!isPreparedGiveaway()) {
+                this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString(R.string.BoostingDurationOfPremium)));
+                List listFilterGiftOptions = BoostRepository.filterGiftOptions(this.giftCodeOptions, isGiveaway() ? getSelectedSliderValue() : this.selectedUsers.size());
+                int i5 = 0;
+                while (i5 < listFilterGiftOptions.size()) {
+                    TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) listFilterGiftOptions.get(i5);
+                    this.items.add(BoostAdapter.Item.asDuration(tL_premiumGiftCodeOption, tL_premiumGiftCodeOption.months, isGiveaway() ? getSelectedSliderValue() : this.selectedUsers.size(), tL_premiumGiftCodeOption.amount, this.selectedMonths, tL_premiumGiftCodeOption.currency, i5 != listFilterGiftOptions.size() - 1));
+                    i5++;
+                }
+            }
+            if (!isPreparedGiveaway()) {
+                this.items.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BoostingStoriesFeaturesAndTerms), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$updateRows$24();
+                    }
+                }, this.resourcesProvider), true));
+            }
+        }
+        if (this.selectedBoostType == BoostTypeCell.TYPE_STARS || this.selectedBoostSubType == BoostTypeCell.TYPE_GIVEAWAY) {
+            ArrayList arrayList3 = this.items;
+            String string = LocaleController.getString(R.string.BoostingGiveawayAdditionalPrizes);
+            boolean z6 = this.isAdditionalPrizeSelected;
+            arrayList3.add(BoostAdapter.Item.asSwitcher(string, z6, z6, SwitcherCell.TYPE_ADDITION_PRIZE));
+            if (this.isAdditionalPrizeSelected) {
+                int selectedSliderValue = isPreparedGiveaway() ? this.prepaidGiveaway.quantity : getSelectedSliderValue();
+                this.items.add(BoostAdapter.Item.asEnterPrize(selectedSliderValue));
+                String pluralString = LocaleController.formatPluralString("BoldMonths", this.selectedMonths, new Object[0]);
+                if (this.selectedBoostType == BoostTypeCell.TYPE_STARS) {
+                    if (this.additionalPrize.isEmpty()) {
+                        this.items.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingStarsGiveawayAdditionPrizeCountHint", (int) this.selectedStars, new Object[0])), false));
+                    } else {
+                        this.items.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingStarsGiveawayAdditionPrizeCountNameHint", (int) this.selectedStars, Integer.valueOf(selectedSliderValue), this.additionalPrize)), false));
+                    }
+                } else if (this.additionalPrize.isEmpty()) {
+                    this.items.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayAdditionPrizeCountHint", selectedSliderValue, pluralString)), false));
+                } else {
+                    this.items.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayAdditionPrizeCountNameHint", selectedSliderValue, this.additionalPrize, pluralString)), false));
+                }
+            } else {
+                this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(this.selectedBoostType == BoostTypeCell.TYPE_STARS ? R.string.BoostingStarsGiveawayAdditionPrizeHint : R.string.BoostingGiveawayAdditionPrizeHint), false));
+            }
+            this.items.add(BoostAdapter.Item.asSubTitle(LocaleController.getString(R.string.BoostingDateWhenGiveawayEnds)));
+            this.items.add(BoostAdapter.Item.asDateEnd(this.selectedEndDate));
+            if (this.selectedBoostType == BoostTypeCell.TYPE_STARS) {
+                if (!isPreparedGiveaway()) {
+                    this.items.add(BoostAdapter.Item.asDivider(LocaleController.formatPluralString(zIsChannelAndNotMegaGroup ? "BoostingStarsChooseRandom" : "BoostingStarsChooseRandomGroup", getSelectedSliderValue(), LocaleController.formatPluralString("BoostingStarsChooseRandomStars", (int) this.selectedStars, new Object[0])), false));
+                } else {
+                    this.items.add(BoostAdapter.Item.asDivider(LocaleController.formatPluralString(zIsChannelAndNotMegaGroup ? "BoostingStarsChooseRandom" : "BoostingStarsChooseRandomGroup", this.prepaidGiveaway.quantity, LocaleController.formatPluralString("BoostingStarsChooseRandomStars", (int) this.selectedStars, new Object[0])), false));
+                }
+                z4 = false;
+            } else if (!isPreparedGiveaway()) {
+                z4 = false;
+                this.items.add(BoostAdapter.Item.asDivider(LocaleController.formatPluralString(zIsChannelAndNotMegaGroup ? "BoostingChooseRandom" : "BoostingChooseRandomGroup", getSelectedSliderValue(), new Object[0]), false));
+            } else {
+                z4 = false;
+                this.items.add(BoostAdapter.Item.asDivider(LocaleController.formatPluralString(zIsChannelAndNotMegaGroup ? "BoostingChooseRandom" : "BoostingChooseRandomGroup", this.prepaidGiveaway.quantity, new Object[0]), false));
+            }
+            this.items.add(BoostAdapter.Item.asSwitcher(LocaleController.getString(R.string.BoostingGiveawayShowWinners), this.isShowWinnersSelected, z4, SwitcherCell.TYPE_WINNERS));
+            if (!isPreparedGiveaway()) {
+                this.items.add(BoostAdapter.Item.asDivider(LocaleController.getString(R.string.BoostingGiveawayShowWinnersHint), z4));
+            } else {
+                ArrayList arrayList4 = this.items;
+                StringBuilder sb = new StringBuilder();
+                sb.append(LocaleController.getString(R.string.BoostingGiveawayShowWinnersHint));
+                sb.append(this.selectedBoostType != BoostTypeCell.TYPE_STARS ? "\n\n" + LocaleController.getString(R.string.BoostingStoriesFeaturesAndTerms) : "");
+                arrayList4.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceSingleTag(sb.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$updateRows$27();
+                    }
+                }, this.resourcesProvider), true));
+            }
+        }
+        BoostAdapter boostAdapter = this.adapter;
+        if (boostAdapter != null && z2) {
+            if (z) {
+                boostAdapter.setItems(arrayList, this.items);
+            } else {
+                boostAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
     public void lambda$updateRows$24() {

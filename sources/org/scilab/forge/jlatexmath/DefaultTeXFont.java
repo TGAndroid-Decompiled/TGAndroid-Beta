@@ -3,7 +3,6 @@ package org.scilab.forge.jlatexmath;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.lang.Character;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -395,7 +394,7 @@ public class DefaultTeXFont implements TeXFont {
     @Override
     public float getSkew(CharFont charFont, int i) {
         char skewChar = fontInfo[charFont.fontId].getSkewChar();
-        if (skewChar == 65535) {
+        if (skewChar == -1) {
             return 0.0f;
         }
         return getKern(charFont, new CharFont(skewChar, charFont.fontId), i);

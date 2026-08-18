@@ -31,7 +31,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -54,7 +53,6 @@ import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -217,9 +215,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             arrayList.add(UItem.asButton(1, R.drawable.msg_viewintopic, LocaleController.getString(R.string.BusinessRepliesAdd)).accent());
         }
         this.repliesOrderId = universalAdapter.reorderSectionStart();
-        Iterator it = QuickRepliesController.getInstance(this.currentAccount).replies.iterator();
-        while (it.hasNext()) {
-            QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) it.next();
+        for (QuickRepliesController.QuickReply quickReply : QuickRepliesController.getInstance(this.currentAccount).replies) {
             arrayList.add(UItem.asQuickReply(quickReply).setChecked(this.selected.contains(Integer.valueOf(quickReply.id))));
         }
         universalAdapter.reorderSectionEnd();

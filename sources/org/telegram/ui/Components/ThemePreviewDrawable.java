@@ -11,7 +11,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.SparseIntArray;
 import java.io.File;
-import java.io.IOException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Bitmaps;
@@ -29,7 +28,7 @@ public class ThemePreviewDrawable extends BitmapDrawable {
         this.themeDocument = themeDocument;
     }
 
-    private static Bitmap createPreview(File file, DocumentObject.ThemeDocument themeDocument) throws IOException {
+    private static Bitmap createPreview(File file, DocumentObject.ThemeDocument themeDocument) {
         BitmapDrawable bitmapDrawableCreateDitheredGradientBitmapDrawable;
         MotionBackgroundDrawable motionBackgroundDrawable;
         boolean z;
@@ -149,8 +148,9 @@ public class ThemePreviewDrawable extends BitmapDrawable {
                     paint2.setAlpha(255);
                     float fMax = Math.max(560 / bitmapDecodeFile.getWidth(), 678 / bitmapDecodeFile.getHeight());
                     int width = (int) (bitmapDecodeFile.getWidth() * fMax);
+                    int height = (678 - ((int) (bitmapDecodeFile.getHeight() * fMax))) / 2;
                     canvas.save();
-                    canvas.translate((560 - width) / 2, (678 - ((int) (bitmapDecodeFile.getHeight() * fMax))) / 2);
+                    canvas.translate((560 - width) / 2, height);
                     canvas.scale(fMax, fMax);
                     canvas.drawBitmap(bitmapDecodeFile, 0.0f, 0.0f, paint2);
                     canvas.restore();
@@ -189,14 +189,14 @@ public class ThemePreviewDrawable extends BitmapDrawable {
         paint.setColor(previewColor3);
         canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint);
         if (drawableMutate3 != null) {
-            int height = (bitmapCreateBitmap.getHeight() - 120) + ((120 - drawableMutate3.getIntrinsicHeight()) / 2);
-            drawableMutate3.setBounds(22, height, drawableMutate3.getIntrinsicWidth() + 22, drawableMutate3.getIntrinsicHeight() + height);
+            int height2 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - drawableMutate3.getIntrinsicHeight()) / 2);
+            drawableMutate3.setBounds(22, height2, drawableMutate3.getIntrinsicWidth() + 22, drawableMutate3.getIntrinsicHeight() + height2);
             drawableMutate3.draw(canvas);
         }
         if (drawable4 != null) {
             int width3 = (bitmapCreateBitmap.getWidth() - drawable4.getIntrinsicWidth()) - 22;
-            int height2 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - drawable4.getIntrinsicHeight()) / 2);
-            drawable4.setBounds(width3, height2, drawable4.getIntrinsicWidth() + width3, drawable4.getIntrinsicHeight() + height2);
+            int height3 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - drawable4.getIntrinsicHeight()) / 2);
+            drawable4.setBounds(width3, height3, drawable4.getIntrinsicWidth() + width3, drawable4.getIntrinsicHeight() + height3);
             drawable4.draw(canvas);
         }
         return bitmapCreateBitmap;

@@ -19,7 +19,6 @@ import com.microsoft.appcenter.distribute.Distribute$$ExternalSyntheticApiModelO
 import j$.util.function.Consumer$CC;
 import j$.util.stream.Stream;
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
@@ -88,17 +87,12 @@ public class FilesMigrationService extends Service {
         File externalStorageDirectory = Environment.getExternalStorageDirectory();
         if (!TextUtils.isEmpty(SharedConfig.storageCacheDir) && (rootDirs = AndroidUtilities.getRootDirs()) != null) {
             int size = rootDirs.size();
-            int i = 0;
-            while (true) {
-                if (i >= size) {
-                    break;
-                }
+            for (int i = 0; i < size; i++) {
                 File file = rootDirs.get(i);
                 if (file.getAbsolutePath().startsWith(SharedConfig.storageCacheDir)) {
                     externalStorageDirectory = file;
                     break;
                 }
-                i++;
             }
         }
         File file2 = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "Telegram");
@@ -132,7 +126,7 @@ public class FilesMigrationService extends Service {
                     try {
                         streamConvert.forEach(new Consumer() {
                             @Override
-                            public final void p(Object obj) throws IOException {
+                            public final void p(Object obj) {
                                 this.f$0.lambda$moveDirectory$0(file2, (Path) obj);
                             }
 
@@ -141,7 +135,15 @@ public class FilesMigrationService extends Service {
                             }
                         });
                         streamConvert.close();
-                    } finally {
+                    } catch (Throwable th) {
+                        if (streamConvert != null) {
+                            try {
+                                streamConvert.close();
+                            } catch (Throwable th2) {
+                                th.addSuppressed(th2);
+                            }
+                        }
+                        throw th;
                     }
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -155,7 +157,7 @@ public class FilesMigrationService extends Service {
         }
     }
 
-    public void lambda$moveDirectory$0(File file, Path path) throws IOException {
+    public void lambda$moveDirectory$0(File file, Path path) {
         File file2 = new File(file, path.getFileName().toString());
         if (Files.isDirectory(path, new LinkOption[0])) {
             moveDirectory(path.toFile(), file2);
@@ -202,17 +204,12 @@ public class FilesMigrationService extends Service {
             File externalStorageDirectory = Environment.getExternalStorageDirectory();
             if (!TextUtils.isEmpty(SharedConfig.storageCacheDir) && (rootDirs = AndroidUtilities.getRootDirs()) != null) {
                 int size = rootDirs.size();
-                int i = 0;
-                while (true) {
-                    if (i >= size) {
-                        break;
-                    }
+                for (int i = 0; i < size; i++) {
                     File file = rootDirs.get(i);
                     if (file.getAbsolutePath().startsWith(SharedConfig.storageCacheDir)) {
                         externalStorageDirectory = file;
                         break;
                     }
-                    i++;
                 }
             }
             hasOldFolder = new File(externalStorageDirectory, "Telegram").exists();

@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -23,7 +22,7 @@ public class HttpGetBitmapTask extends AsyncTask {
     }
 
     @Override
-    public Bitmap doInBackground(String... strArr) throws IOException {
+    public Bitmap doInBackground(String... strArr) {
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(strArr[0]).openConnection();
             for (Map.Entry entry : this.headers.entrySet()) {

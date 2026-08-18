@@ -221,7 +221,8 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
             this.exitCanvas = new Canvas(this.exitBitmap);
         }
         this.exitBitmap.eraseColor(0);
-        StaticLayout staticLayout = new StaticLayout(getTransformationMethod().getTransformation(getText(), this), getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(r4, 0, r4.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
+        CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
+        StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
         this.exitCanvas.save();
         this.exitCanvas.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
         staticLayout.draw(this.exitCanvas);
@@ -282,7 +283,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) throws NumberFormatException {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         ClipDescription primaryClipDescription;
         int i;
         if (motionEvent.getAction() == 0) {
@@ -323,7 +324,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
                             }
 
                             @Override
-                            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) throws NumberFormatException {
+                            public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
                                 if (menuItem.getItemId() != 16908322) {
                                     return true;
                                 }
@@ -346,7 +347,7 @@ public abstract class CodeNumberField extends EditTextBoldCursor {
         return this.pressed;
     }
 
-    public void pasteFromClipboard() throws NumberFormatException {
+    public void pasteFromClipboard() {
         ClipboardManager clipboardManager;
         ClipData primaryClip;
         int i;

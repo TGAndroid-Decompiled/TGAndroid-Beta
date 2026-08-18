@@ -207,8 +207,92 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         }
 
         @Override
-        public void onClick(android.view.View r14) throws java.io.IOException {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DefaultThemesPreviewCell.AnonymousClass2.onClick(android.view.View):void");
+        public void onClick(View view) {
+            boolean zIsCurrentThemeDark;
+            Theme.ThemeInfo theme;
+            RLottieDrawable rLottieDrawable;
+            int framesCount;
+            if (DialogsActivity.switchingTheme) {
+                return;
+            }
+            final int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4);
+            final int color2 = Theme.getColor(Theme.key_windowBackgroundGray);
+            DialogsActivity.switchingTheme = true;
+            SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
+            String str = "Blue";
+            String string = sharedPreferences.getString("lastDayTheme", "Blue");
+            if (Theme.getTheme(string) == null || Theme.getTheme(string).isDark()) {
+                string = "Blue";
+            }
+            String str2 = "Dark Blue";
+            String string2 = sharedPreferences.getString("lastDarkTheme", "Dark Blue");
+            if (Theme.getTheme(string2) == null || !Theme.getTheme(string2).isDark()) {
+                string2 = "Dark Blue";
+            }
+            Theme.ThemeInfo activeTheme = Theme.getActiveTheme();
+            if (string.equals(string2)) {
+                if (activeTheme.isDark() || string.equals("Dark Blue") || string.equals("Night")) {
+                    str2 = string2;
+                }
+                zIsCurrentThemeDark = Theme.isCurrentThemeDark();
+                final boolean z = !zIsCurrentThemeDark;
+                if (!zIsCurrentThemeDark) {
+                    theme = Theme.getTheme(str2);
+                } else {
+                    theme = Theme.getTheme(str);
+                }
+                Theme.ThemeInfo themeInfo = theme;
+                rLottieDrawable = DefaultThemesPreviewCell.this.darkThemeDrawable;
+                if (zIsCurrentThemeDark) {
+                    framesCount = 0;
+                } else {
+                    framesCount = rLottieDrawable.getFramesCount() - 1;
+                }
+                rLottieDrawable.setCustomEndFrame(framesCount);
+                DefaultThemesPreviewCell.this.dayNightCell.getImageView().playAnimation();
+                int[] iArr = new int[2];
+                DefaultThemesPreviewCell.this.dayNightCell.getImageView().getLocationInWindow(iArr);
+                iArr[0] = iArr[0] + (DefaultThemesPreviewCell.this.dayNightCell.getImageView().getMeasuredWidth() / 2);
+                iArr[1] = iArr[1] + (DefaultThemesPreviewCell.this.dayNightCell.getImageView().getMeasuredHeight() / 2) + AndroidUtilities.dp(3.0f);
+                final Context context = this.val$context;
+                final BaseFragment baseFragment = this.val$parentFragment;
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.FALSE, iArr, -1, Boolean.valueOf(z), DefaultThemesPreviewCell.this.dayNightCell.getImageView(), DefaultThemesPreviewCell.this.dayNightCell, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onClick$0(color, context, color2, z, baseFragment);
+                    }
+                });
+            }
+            str2 = string2;
+            str = string;
+            zIsCurrentThemeDark = Theme.isCurrentThemeDark();
+            final boolean z2 = !zIsCurrentThemeDark;
+            if (!zIsCurrentThemeDark) {
+                theme = Theme.getTheme(str2);
+            } else {
+                theme = Theme.getTheme(str);
+            }
+            Theme.ThemeInfo themeInfo2 = theme;
+            rLottieDrawable = DefaultThemesPreviewCell.this.darkThemeDrawable;
+            if (zIsCurrentThemeDark) {
+                framesCount = rLottieDrawable.getFramesCount() - 1;
+            } else {
+                framesCount = 0;
+            }
+            rLottieDrawable.setCustomEndFrame(framesCount);
+            DefaultThemesPreviewCell.this.dayNightCell.getImageView().playAnimation();
+            int[] iArr2 = new int[2];
+            DefaultThemesPreviewCell.this.dayNightCell.getImageView().getLocationInWindow(iArr2);
+            iArr2[0] = iArr2[0] + (DefaultThemesPreviewCell.this.dayNightCell.getImageView().getMeasuredWidth() / 2);
+            iArr2[1] = iArr2[1] + (DefaultThemesPreviewCell.this.dayNightCell.getImageView().getMeasuredHeight() / 2) + AndroidUtilities.dp(3.0f);
+            final Context context2 = this.val$context;
+            final BaseFragment baseFragment2 = this.val$parentFragment;
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo2, Boolean.FALSE, iArr2, -1, Boolean.valueOf(z2), DefaultThemesPreviewCell.this.dayNightCell.getImageView(), DefaultThemesPreviewCell.this.dayNightCell, new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$onClick$0(color, context2, color2, z2, baseFragment2);
+                }
+            });
         }
 
         public void lambda$onClick$0(final int i, Context context, int i2, boolean z, BaseFragment baseFragment) {
@@ -354,17 +438,11 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             return;
         }
         this.selectedPosition = -1;
-        int i = 0;
-        while (true) {
-            if (i >= this.adapter.items.size()) {
-                break;
-            }
+        for (int i = 0; i < this.adapter.items.size(); i++) {
             TLRPC.TL_theme tlTheme = ((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getTlTheme(this.themeIndex);
             Theme.ThemeInfo themeInfo = ((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getThemeInfo(this.themeIndex);
             if (tlTheme != null) {
-                if (!Theme.getActiveTheme().name.equals(Theme.getBaseThemeKey(tlTheme.settings.get(((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getSettingsIndex(this.themeIndex))))) {
-                    continue;
-                } else {
+                if (Theme.getActiveTheme().name.equals(Theme.getBaseThemeKey(tlTheme.settings.get(((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getSettingsIndex(this.themeIndex))))) {
                     if (Theme.getActiveTheme().accentsByThemeId == null) {
                         this.selectedPosition = i;
                         break;
@@ -374,8 +452,9 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                         this.selectedPosition = i;
                         break;
                     }
+                } else {
+                    continue;
                 }
-                i++;
             } else {
                 if (themeInfo != null) {
                     if (Theme.getActiveTheme().name.equals(themeInfo.getKey()) && ((ChatThemeBottomSheet.ChatThemeItem) this.adapter.items.get(i)).chatTheme.getAccentId(this.themeIndex) == Theme.getActiveTheme().currentAccentId) {
@@ -385,7 +464,6 @@ public class DefaultThemesPreviewCell extends LinearLayout {
                 } else {
                     continue;
                 }
-                i++;
             }
         }
         if (this.selectedPosition == -1 && this.currentType != 3) {

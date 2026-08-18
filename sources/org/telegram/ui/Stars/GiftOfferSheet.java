@@ -31,6 +31,7 @@ import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$AmountLimits;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
@@ -54,7 +55,6 @@ import org.telegram.ui.Components.TableView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TON.TONIntroActivity;
 
@@ -550,7 +550,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         if (this.inputAmount.currency == AmountUtils$Currency.TON) {
             d = MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get();
         } else {
-            d = MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000 * 1.0E-5d;
+            d = ((double) MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000) * 1.0E-5d;
         }
         sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * d * 100.0d), "USD", 2));
         this.dollarsEqView.setText(sb, z);
@@ -717,8 +717,93 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public static void openOfferAcceptAlert(final org.telegram.ui.ActionBar.BaseFragment r29, android.content.Context r30, org.telegram.ui.ActionBar.Theme.ResourcesProvider r31, final int r32, long r33, final int r35, org.telegram.tgnet.TLRPC.TL_messageActionStarGiftPurchaseOffer r36) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.GiftOfferSheet.openOfferAcceptAlert(org.telegram.ui.ActionBar.BaseFragment, android.content.Context, org.telegram.ui.ActionBar.Theme$ResourcesProvider, int, long, int, org.telegram.tgnet.TLRPC$TL_messageActionStarGiftPurchaseOffer):void");
+    public static void openOfferAcceptAlert(final BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider, final int i, long j, final int i2, TLRPC.TL_messageActionStarGiftPurchaseOffer tL_messageActionStarGiftPurchaseOffer) {
+        TLObject chat;
+        String string;
+        int i3;
+        SpannableStringBuilder spannableStringBuilderReplaceTags;
+        boolean z;
+        int i4;
+        AmountUtils$Amount amountUtils$AmountOfSafe = AmountUtils$Amount.ofSafe(tL_messageActionStarGiftPurchaseOffer.price);
+        AmountUtils$Amount amountMinusFee = getAmountMinusFee(i, amountUtils$AmountOfSafe);
+        TL_stars.StarGift starGift = tL_messageActionStarGiftPurchaseOffer.gift;
+        String str = starGift.title + " #" + LocaleController.formatNumber(starGift.num, ',');
+        if (j >= 0) {
+            chat = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+        } else {
+            chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+        }
+        String strAsFormatString = amountUtils$AmountOfSafe.asFormatString();
+        String strAsFormatString2 = amountMinusFee.asFormatString();
+        boolean z2 = amountUtils$AmountOfSafe.currency == AmountUtils$Currency.TON;
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.addView(new StarGiftSheet.GiftTransferTopView(context, starGift, chat), LayoutHelper.createLinear(-1, -2, 48, 0, -4, 0, 0));
+        TextView textView = new TextView(context);
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
+        textView.setTextSize(1, 16.0f);
+        if (amountUtils$AmountOfSafe.currency == AmountUtils$Currency.STARS) {
+            string = LocaleController.formatString(R.string.GiftOfferTransferInfoTextSellStars, strAsFormatString, DialogObject.getShortName(j), str, strAsFormatString2);
+        } else {
+            string = LocaleController.formatString(R.string.GiftOfferTransferInfoTextSellTON, strAsFormatString, DialogObject.getShortName(j), str, strAsFormatString2);
+        }
+        textView.setText(AndroidUtilities.replaceTags(string));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 48, 24, 4, 24, 4));
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setClipChildren(false);
+        frameLayout.setClipToPadding(false);
+        TableView tableView = new TableView(context, resourcesProvider);
+        frameLayout.addView(tableView, LayoutHelper.createFrame(-1, -1, 119));
+        StarGiftSheet.addAttributeRow(tableView, StarsController.findAttribute(starGift.attributes, TL_stars.starGiftAttributeModel.class));
+        StarGiftSheet.addAttributeRow(tableView, StarsController.findAttribute(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class));
+        StarGiftSheet.addAttributeRow(tableView, StarsController.findAttribute(starGift.attributes, TL_stars.starGiftAttributePattern.class));
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 48, 23, 16, 23, 4));
+        AmountUtils$Amount amountUtils$AmountFromUsd = AmountUtils$Amount.fromUsd(starGift.value_usd_amount / Math.pow(10.0d, BillingController.getInstance().getCurrencyExp("USD")), amountUtils$AmountOfSafe.currency);
+        if (amountUtils$AmountFromUsd.asDouble() > 0.0d && starGift.value_usd_amount > 0) {
+            if (amountUtils$AmountFromUsd.asNano() >= amountMinusFee.asNano()) {
+                int iRound = (int) Math.round((1.0d - (amountMinusFee.asDouble() / amountUtils$AmountFromUsd.asDouble())) * 100.0d);
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferAmountLowerHint2, iRound + "%", starGift.title));
+                if (iRound > 10) {
+                    i3 = 1;
+                    z = true;
+                } else {
+                    i3 = 1;
+                }
+                TextView textView2 = new TextView(context);
+                textView2.setTextSize(i3, 13.0f);
+                textView2.setGravity(17);
+                textView2.setText(spannableStringBuilderReplaceTags);
+                if (z) {
+                    i4 = Theme.key_text_RedRegular;
+                } else {
+                    i4 = Theme.key_windowBackgroundWhiteGrayText;
+                }
+                textView2.setTextColor(Theme.getColor(i4, resourcesProvider));
+                linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 49, 40, 12, 40, 9));
+            } else {
+                int iRound2 = (int) Math.round(((amountMinusFee.asDouble() / amountUtils$AmountFromUsd.asDouble()) - 1.0d) * 100.0d);
+                i3 = 1;
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftOfferAmountHigherHint2, iRound2 + "%", starGift.title));
+            }
+            z = false;
+            TextView textView3 = new TextView(context);
+            textView3.setTextSize(i3, 13.0f);
+            textView3.setGravity(17);
+            textView3.setText(spannableStringBuilderReplaceTags);
+            if (z) {
+                i4 = Theme.key_text_RedRegular;
+            } else {
+                i4 = Theme.key_windowBackgroundWhiteGrayText;
+            }
+            textView3.setTextColor(Theme.getColor(i4, resourcesProvider));
+            linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 49, 40, 12, 40, 9));
+        }
+        new AlertDialog.Builder(context, resourcesProvider).setView(linearLayout).setPositiveButton(StarsIntroActivity.replaceStars(z2, LocaleController.formatString(R.string.GiftOfferSellFor, strAsFormatString2)), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i5) {
+                GiftOfferSheet.lambda$openOfferAcceptAlert$12(i2, i, baseFragment, alertDialog, i5);
+            }
+        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create().show();
     }
 
     public static void lambda$openOfferAcceptAlert$12(int i, final int i2, final BaseFragment baseFragment, final AlertDialog alertDialog, int i3) {
@@ -765,6 +850,6 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         } else {
             i2 = MessagesController.getInstance(i).config.tonStarGiftResaleCommissionPermille.get();
         }
-        return AmountUtils$Amount.fromNano((amountUtils$Amount.asNano() * i2) / 1000, amountUtils$Currency);
+        return AmountUtils$Amount.fromNano((amountUtils$Amount.asNano() * ((long) i2)) / 1000, amountUtils$Currency);
     }
 }

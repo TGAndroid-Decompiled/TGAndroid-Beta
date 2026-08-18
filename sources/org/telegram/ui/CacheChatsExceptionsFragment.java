@@ -29,8 +29,6 @@ import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.DialogsActivity;
-import org.telegram.ui.KeepMediaPopupView;
 
 public class CacheChatsExceptionsFragment extends BaseFragment {
     private final int VIEW_TYPE_ADD_EXCEPTION;
@@ -195,15 +193,9 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(this.currentType, this.exceptionsDialogs);
         updateRows();
         if (keepMediaException != null) {
-            int i7 = 0;
-            while (true) {
-                if (i7 < this.items.size()) {
-                    if (((Item) this.items.get(i7)).exception != null && ((Item) this.items.get(i7)).exception.dialogId == keepMediaException.dialogId) {
-                        i3 = i7;
-                        break;
-                    }
-                    i7++;
-                } else {
+            for (int i7 = 0; i7 < this.items.size(); i7++) {
+                if (((Item) this.items.get(i7)).exception != null && ((Item) this.items.get(i7)).exception.dialogId == keepMediaException.dialogId) {
+                    i3 = i7;
                     break;
                 }
             }
@@ -242,15 +234,9 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
 
     public void lambda$showPopupFor$5(final CacheByChatsController.KeepMediaException keepMediaException) {
         int i = 0;
-        int i2 = 0;
-        while (true) {
-            if (i2 < this.items.size()) {
-                if (((Item) this.items.get(i2)).exception != null && ((Item) this.items.get(i2)).exception.dialogId == keepMediaException.dialogId) {
-                    i = i2;
-                    break;
-                }
-                i2++;
-            } else {
+        for (int i2 = 0; i2 < this.items.size(); i2++) {
+            if (((Item) this.items.get(i2)).exception != null && ((Item) this.items.get(i2)).exception.dialogId == keepMediaException.dialogId) {
+                i = i2;
                 break;
             }
         }
@@ -258,7 +244,8 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         if (viewHolderFindViewHolderForAdapterPosition != null) {
             KeepMediaPopupView keepMediaPopupView = new KeepMediaPopupView(this, getContext());
             keepMediaPopupView.updateForDialog(true);
-            keepMediaPopupView.setParentWindow(AlertsCreator.createSimplePopup(this, keepMediaPopupView, viewHolderFindViewHolderForAdapterPosition.itemView, r2.getMeasuredWidth() / 2.0f, viewHolderFindViewHolderForAdapterPosition.itemView.getMeasuredHeight() / 2.0f));
+            View view = viewHolderFindViewHolderForAdapterPosition.itemView;
+            keepMediaPopupView.setParentWindow(AlertsCreator.createSimplePopup(this, keepMediaPopupView, view, view.getMeasuredWidth() / 2.0f, viewHolderFindViewHolderForAdapterPosition.itemView.getMeasuredHeight() / 2.0f));
             keepMediaPopupView.setCallback(new KeepMediaPopupView.Callback() {
                 @Override
                 public final void onKeepMediaChange(int i3, int i4) {
@@ -343,19 +330,21 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 shadowSectionCell = textCell;
             } else if (i == 2) {
-                View userCell = new UserCell(viewGroup.getContext(), 4, 0, false, false);
+                UserCell userCell = new UserCell(viewGroup.getContext(), 4, 0, false, false);
                 userCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 shadowSectionCell = userCell;
             } else if (i == 3) {
                 shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
-            } else if (i == 4) {
-                TextCell textCell2 = new TextCell(viewGroup.getContext());
-                textCell2.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
-                textCell2.setColors(-1, Theme.key_text_RedRegular);
-                textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                shadowSectionCell = textCell2;
             } else {
-                view = null;
+                if (i != 4) {
+                    view = null;
+                } else {
+                    TextCell textCell2 = new TextCell(viewGroup.getContext());
+                    textCell2.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
+                    textCell2.setColors(-1, Theme.key_text_RedRegular);
+                    textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    shadowSectionCell = textCell2;
+                }
                 view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                 return new RecyclerListView.Holder(view);
             }

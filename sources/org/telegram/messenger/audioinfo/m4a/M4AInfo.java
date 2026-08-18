@@ -48,13 +48,12 @@ public class M4AInfo extends AudioInfo {
     }
 
     void moov(MP4Atom mP4Atom) {
-        MP4Atom mP4AtomNextChild;
         Logger logger = LOGGER;
         if (logger.isLoggable(this.debugLevel)) {
             logger.log(this.debugLevel, mP4Atom.toString());
         }
         while (mP4Atom.hasMoreChildren()) {
-            mP4AtomNextChild = mP4Atom.nextChild();
+            MP4Atom mP4AtomNextChild = mP4Atom.nextChild();
             String type = mP4AtomNextChild.getType();
             type.hashCode();
             switch (type) {
@@ -82,9 +81,9 @@ public class M4AInfo extends AudioInfo {
         int i = mP4Atom.readInt();
         long j = b == 1 ? mP4Atom.readLong() : mP4Atom.readInt();
         if (this.duration == 0) {
-            this.duration = (j * 1000) / i;
+            this.duration = (j * 1000) / ((long) i);
         } else if (logger.isLoggable(this.debugLevel)) {
-            long j2 = (j * 1000) / i;
+            long j2 = (j * 1000) / ((long) i);
             if (Math.abs(this.duration - j2) > 2) {
                 logger.log(this.debugLevel, "mvhd: duration " + this.duration + " -> " + j2);
             }
@@ -120,11 +119,11 @@ public class M4AInfo extends AudioInfo {
         int i = mP4Atom.readInt();
         long j = b == 1 ? mP4Atom.readLong() : mP4Atom.readInt();
         if (this.duration == 0) {
-            this.duration = (j * 1000) / i;
+            this.duration = (j * 1000) / ((long) i);
             return;
         }
         if (logger.isLoggable(this.debugLevel)) {
-            long j2 = (j * 1000) / i;
+            long j2 = (j * 1000) / ((long) i);
             if (Math.abs(this.duration - j2) > 2) {
                 logger.log(this.debugLevel, "mdhd: duration " + this.duration + " -> " + j2);
             }
@@ -213,15 +212,16 @@ public class M4AInfo extends AudioInfo {
                     if (bitmapDecodeByteArray != null) {
                         float fMax = Math.max(bitmapDecodeByteArray.getWidth(), this.cover.getHeight()) / 120.0f;
                         if (fMax > 0.0f) {
-                            this.smallCover = Bitmap.createScaledBitmap(this.cover, (int) (r0.getWidth() / fMax), (int) (this.cover.getHeight() / fMax), true);
+                            Bitmap bitmap = this.cover;
+                            this.smallCover = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() / fMax), (int) (this.cover.getHeight() / fMax), true);
                         } else {
                             this.smallCover = this.cover;
                         }
                         if (this.smallCover == null) {
                             this.smallCover = this.cover;
-                            break;
                         }
                     }
+                    break;
                 } catch (Exception e) {
                     e.printStackTrace();
                     return;
@@ -250,12 +250,11 @@ public class M4AInfo extends AudioInfo {
                         ID3v1Genre genre = ID3v1Genre.getGenre(mP4Atom.readShort() - 1);
                         if (genre != null) {
                             this.genre = genre.getDescription();
-                            break;
                         }
                     } else {
                         this.genre = mP4Atom.readString("UTF-8");
-                        break;
                     }
+                    break;
                 }
                 break;
             case "rtng":
@@ -291,10 +290,10 @@ public class M4AInfo extends AudioInfo {
                 if (strTrim.length() >= 4) {
                     try {
                         this.year = Short.valueOf(strTrim.substring(0, 4)).shortValue();
-                        break;
                     } catch (NumberFormatException unused) {
                         return;
                     }
+                    break;
                 }
                 break;
             case "©gen":

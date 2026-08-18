@@ -73,8 +73,9 @@ public class CircularProgressDrawable extends Drawable {
         for (int i = 0; i < 4; i++) {
             float f3 = fArr[1];
             FastOutSlowInInterpolator fastOutSlowInInterpolator = interpolator;
-            fArr[1] = f3 + (fastOutSlowInInterpolator.getInterpolation((f - (i * 1350)) / 667.0f) * 250.0f);
-            fArr[0] = fArr[0] + (fastOutSlowInInterpolator.getInterpolation((f - (r5 + 667)) / 667.0f) * 250.0f);
+            int i2 = i * 1350;
+            fArr[1] = f3 + (fastOutSlowInInterpolator.getInterpolation((f - i2) / 667.0f) * 250.0f);
+            fArr[0] = fArr[0] + (fastOutSlowInInterpolator.getInterpolation((f - (i2 + 667)) / 667.0f) * 250.0f);
         }
     }
 

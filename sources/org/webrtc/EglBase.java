@@ -4,8 +4,6 @@ import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLContext;
-import org.webrtc.EglBase10;
-import org.webrtc.EglBase14;
 
 public interface EglBase {
     public static final int EGL_OPENGL_ES2_BIT = 4;

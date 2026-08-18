@@ -326,9 +326,10 @@ public class VideoPlayerSeekBar {
             }
             for (URLSpanNoUnderline uRLSpanNoUnderline : uRLSpanNoUnderlineArr) {
                 if (uRLSpanNoUnderline != null && uRLSpanNoUnderline.getURL() != null && uRLSpanNoUnderline.label != null && uRLSpanNoUnderline.getURL().startsWith("video?") && (num = Utilities.parseInt((CharSequence) uRLSpanNoUnderline.getURL().substring(6))) != null && num.intValue() >= 0) {
+                    float fIntValue = (((long) num.intValue()) * 1000) / j;
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(uRLSpanNoUnderline.label);
                     Emoji.replaceEmoji(spannableStringBuilder, this.timestampLabelPaint.getFontMetricsInt(), false);
-                    this.timestamps.add(new Pair(Float.valueOf((num.intValue() * 1000) / j), spannableStringBuilder));
+                    this.timestamps.add(new Pair(Float.valueOf(fIntValue), spannableStringBuilder));
                 }
             }
             Collections.sort(this.timestamps, new Comparator() {
@@ -406,22 +407,31 @@ public class VideoPlayerSeekBar {
         if (this.animateResetBuffering) {
             float f8 = this.animateFromBufferedProgress;
             if (f8 > 0.0f) {
-                this.rect.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (f8 * (this.width - r10)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
+                RectF rectF3 = this.rect;
+                float f9 = this.horizontalPadding;
+                int i3 = thumbWidth;
+                rectF3.right = f9 + AndroidUtilities.lerp((i3 / 2.0f) + (f8 * (this.width - i3)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
                 setPaintColor(this.selected ? this.backgroundSelectedColor : this.cacheColor, (1.0f - this.transitionProgress) * (1.0f - this.bufferedAnimationValue));
                 drawProgressBar(canvas, this.rect, paint);
             }
-            float f9 = this.bufferedProgress;
-            if (f9 > 0.0f) {
-                this.rect.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (f9 * (this.width - r10)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
+            float f10 = this.bufferedProgress;
+            if (f10 > 0.0f) {
+                RectF rectF4 = this.rect;
+                float f11 = this.horizontalPadding;
+                int i4 = thumbWidth;
+                rectF4.right = f11 + AndroidUtilities.lerp((i4 / 2.0f) + (f10 * (this.width - i4)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
                 setPaintColor(this.selected ? this.backgroundSelectedColor : this.cacheColor, 1.0f - this.transitionProgress);
                 drawProgressBar(canvas, this.rect, paint);
             }
         } else {
-            float f10 = this.animateFromBufferedProgress;
-            float f11 = this.bufferedAnimationValue;
-            float f12 = (f10 * (1.0f - f11)) + (this.bufferedProgress * f11);
-            if (f12 > 0.0f) {
-                this.rect.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (f12 * (this.width - r10)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
+            float f12 = this.animateFromBufferedProgress;
+            float f13 = this.bufferedAnimationValue;
+            float f14 = (f12 * (1.0f - f13)) + (this.bufferedProgress * f13);
+            if (f14 > 0.0f) {
+                RectF rectF5 = this.rect;
+                float f15 = this.horizontalPadding;
+                int i5 = thumbWidth;
+                rectF5.right = f15 + AndroidUtilities.lerp((i5 / 2.0f) + (f14 * (this.width - i5)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
                 setPaintColor(this.selected ? this.backgroundSelectedColor : this.cacheColor, 1.0f - this.transitionProgress);
                 drawProgressBar(canvas, this.rect, paint);
             }
@@ -434,15 +444,15 @@ public class VideoPlayerSeekBar {
             if (j > 18) {
                 j = 16;
             }
-            float f13 = this.currentRadius;
-            if (f13 < fDp) {
-                float fDp2 = f13 + (AndroidUtilities.dp(1.0f) * (j / 60.0f));
+            float f16 = this.currentRadius;
+            if (f16 < fDp) {
+                float fDp2 = f16 + (AndroidUtilities.dp(1.0f) * (j / 60.0f));
                 this.currentRadius = fDp2;
                 if (fDp2 > fDp) {
                     this.currentRadius = fDp;
                 }
             } else {
-                float fDp3 = f13 - (AndroidUtilities.dp(1.0f) * (j / 60.0f));
+                float fDp3 = f16 - (AndroidUtilities.dp(1.0f) * (j / 60.0f));
                 this.currentRadius = fDp3;
                 if (fDp3 < fDp) {
                     this.currentRadius = fDp;
@@ -455,28 +465,30 @@ public class VideoPlayerSeekBar {
         }
         float fLerp2 = AndroidUtilities.lerp(this.currentRadius, 0.0f, this.transitionProgress);
         if (f5 > 0.0f) {
-            RectF rectF3 = this.rect;
-            float f14 = rectF3.left;
-            rectF3.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (this.width - r14), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
-            RectF rectF4 = this.rect;
-            rectF4.left = AndroidUtilities.lerp(f14, rectF4.right, 1.0f - f5);
+            RectF rectF6 = this.rect;
+            float f17 = rectF6.left;
+            float f18 = this.horizontalPadding;
+            int i6 = thumbWidth;
+            rectF6.right = f18 + AndroidUtilities.lerp((i6 / 2.0f) + (this.width - i6), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
+            RectF rectF7 = this.rect;
+            rectF7.left = AndroidUtilities.lerp(f17, rectF7.right, 1.0f - f5);
             if (this.transitionProgress > 0.0f && this.rect.width() > 0.0f) {
                 strokePaint.setAlpha((int) (this.transitionProgress * 255.0f * 0.2f));
                 drawProgressBar(canvas, this.rect, strokePaint);
             }
             setPaintColor(ColorUtils.blendARGB(this.progressColor, this.smallLineColor, this.transitionProgress), 1.0f);
             drawProgressBar(canvas, this.rect, paint);
-            this.rect.left = f14;
+            this.rect.left = f17;
             setPaintColor(ColorUtils.blendARGB(this.circleColor, getProgress() == 0.0f ? 0 : this.smallLineColor, this.transitionProgress), 1.0f - this.transitionProgress);
             canvas.drawCircle(this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + this.loopBackWasThumbX, (this.parentView.getWidth() - (this.horizontalPadding * 2.0f)) * (this.loopBackWasThumbX / (this.width - thumbWidth)), this.transitionProgress), this.rect.centerY(), fLerp2 * f5, paint);
         }
-        RectF rectF5 = this.rect;
-        float f15 = this.horizontalPadding;
-        float f16 = thumbWidth / 2.0f;
+        RectF rectF8 = this.rect;
+        float f19 = this.horizontalPadding;
+        float f20 = thumbWidth / 2.0f;
         if (this.pressed) {
             f2 = this.draggingThumbX;
         }
-        rectF5.right = f15 + AndroidUtilities.lerp(f16 + f2, (this.parentView.getWidth() - (this.horizontalPadding * 2.0f)) * getProgress(), this.transitionProgress);
+        rectF8.right = f19 + AndroidUtilities.lerp(f20 + f2, (this.parentView.getWidth() - (this.horizontalPadding * 2.0f)) * getProgress(), this.transitionProgress);
         if (this.transitionProgress > 0.0f && this.rect.width() > 0.0f) {
             strokePaint.setAlpha((int) (this.transitionProgress * 255.0f * 0.2f));
             drawProgressBar(canvas, this.rect, strokePaint);
@@ -484,8 +496,8 @@ public class VideoPlayerSeekBar {
         setPaintColor(ColorUtils.blendARGB(this.progressColor, this.smallLineColor, this.transitionProgress), 1.0f);
         drawProgressBar(canvas, this.rect, paint);
         setPaintColor(ColorUtils.blendARGB(this.circleColor, getProgress() == 0.0f ? 0 : this.smallLineColor, this.transitionProgress), 1.0f - this.transitionProgress);
-        RectF rectF6 = this.rect;
-        canvas.drawCircle(rectF6.right, rectF6.centerY(), fLerp2 * (1.0f - f5), paint);
+        RectF rectF9 = this.rect;
+        canvas.drawCircle(rectF9.right, rectF9.centerY(), fLerp2 * (1.0f - f5), paint);
         drawTimestampLabel(canvas);
     }
 
@@ -524,16 +536,11 @@ public class VideoPlayerSeekBar {
         if (i2 < 0) {
             i2 = 0;
         }
-        int size2 = videoPlayerSeekBar.timestamps.size() - 1;
-        while (true) {
-            if (size2 < 0) {
-                break;
-            }
+        for (int size2 = videoPlayerSeekBar.timestamps.size() - 1; size2 >= 0; size2--) {
             if (1.0f - ((Float) ((Pair) videoPlayerSeekBar.timestamps.get(size2)).first).floatValue() >= fDp3) {
                 size = size2 + 1;
                 break;
             }
-            size2--;
         }
         if (size < 0) {
             size = videoPlayerSeekBar.timestamps.size();

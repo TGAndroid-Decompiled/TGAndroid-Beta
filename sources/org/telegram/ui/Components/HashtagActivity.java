@@ -30,7 +30,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.MessagesSearchAdapter;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChatActivityContainer;
-import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Stories.StoriesController;
 
 public class HashtagActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {

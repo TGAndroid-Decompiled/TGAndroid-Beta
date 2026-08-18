@@ -85,7 +85,10 @@ public class AmountUtils$Amount {
             return "";
         }
         int iOrdinal2 = this.currency.ordinal();
-        return iOrdinal2 != 0 ? iOrdinal2 != 1 ? "" : LocaleController.formatString(R.string.TonCountX, asDecimalString()) : LocaleController.formatString(R.string.StarsCountX, asDecimalString());
+        if (iOrdinal2 != 0) {
+            return iOrdinal2 != 1 ? "" : LocaleController.formatString(R.string.TonCountX, asDecimalString());
+        }
+        return LocaleController.formatString(R.string.StarsCountX, asDecimalString());
     }
 
     public boolean equals(Object obj) {
@@ -99,7 +102,7 @@ public class AmountUtils$Amount {
     }
 
     public AmountUtils$Amount applyPerMille(int i) {
-        return fromNano((this.nanos * i) / 1000, this.currency);
+        return fromNano((this.nanos * ((long) i)) / 1000, this.currency);
     }
 
     public AmountUtils$Amount round(int i) {
@@ -122,7 +125,7 @@ public class AmountUtils$Amount {
         }
         AmountUtils$Currency amountUtils$Currency3 = AmountUtils$Currency.STARS;
         if (amountUtils$Currency == amountUtils$Currency3) {
-            return fromDecimal((d * 100000.0d) / MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000, amountUtils$Currency3).round(0);
+            return fromDecimal((d * 100000.0d) / ((double) MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000), amountUtils$Currency3).round(0);
         }
         return fromDecimal(0L, amountUtils$Currency);
     }
@@ -130,7 +133,7 @@ public class AmountUtils$Amount {
     public double convertToUsd() {
         AmountUtils$Currency amountUtils$Currency = this.currency;
         if (amountUtils$Currency == AmountUtils$Currency.STARS) {
-            return ((asDouble() / 1000.0d) * MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000) / 100.0d;
+            return ((asDouble() / 1000.0d) * ((double) MessagesController.getInstance(UserConfig.selectedAccount).starsUsdSellRate1000)) / 100.0d;
         }
         if (amountUtils$Currency == AmountUtils$Currency.TON) {
             return asDouble() * MessagesController.getInstance(UserConfig.selectedAccount).config.tonUsdRate.get();
@@ -197,7 +200,7 @@ public class AmountUtils$Amount {
         if (starsAmount instanceof TL_stars.TL_starsAmount) {
             long j = starsAmount.amount;
             AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.STARS;
-            return fromNano((j * getDecimals(amountUtils$Currency)) + starsAmount.nanos, amountUtils$Currency);
+            return fromNano((j * getDecimals(amountUtils$Currency)) + ((long) starsAmount.nanos), amountUtils$Currency);
         }
         if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
             return fromNano(starsAmount.amount, AmountUtils$Currency.TON);

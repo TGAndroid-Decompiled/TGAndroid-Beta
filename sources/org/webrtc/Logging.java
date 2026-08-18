@@ -32,7 +32,7 @@ public class Logging {
 
     private static native void nativeLog(int i, String str, String str2);
 
-    private static Logger createFallbackLogger() throws SecurityException {
+    private static Logger createFallbackLogger() {
         Logger logger = Logger.getLogger("org.webrtc.Logging");
         logger.setLevel(Level.ALL);
         return logger;

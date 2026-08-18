@@ -9,13 +9,13 @@ import kotlin.jvm.functions.Function2;
 import kotlinx.coroutines.intrinsics.CancellableKt;
 import kotlinx.coroutines.intrinsics.UndispatchedKt;
 
-public final class CoroutineStart {
-    private static final EnumEntries $ENTRIES;
-    private static final CoroutineStart[] $VALUES;
-    public static final CoroutineStart DEFAULT = new CoroutineStart("DEFAULT", 0);
-    public static final CoroutineStart LAZY = new CoroutineStart("LAZY", 1);
-    public static final CoroutineStart ATOMIC = new CoroutineStart("ATOMIC", 2);
-    public static final CoroutineStart UNDISPATCHED = new CoroutineStart("UNDISPATCHED", 3);
+public enum CoroutineStart {
+    DEFAULT,
+    LAZY,
+    ATOMIC,
+    UNDISPATCHED;
+
+    private static final EnumEntries $ENTRIES = EnumEntriesKt.enumEntries(values());
 
     public class WhenMappings {
         public static final int[] $EnumSwitchMapping$0;
@@ -40,27 +40,6 @@ public final class CoroutineStart {
             }
             $EnumSwitchMapping$0 = iArr;
         }
-    }
-
-    private static final CoroutineStart[] $values() {
-        return new CoroutineStart[]{DEFAULT, LAZY, ATOMIC, UNDISPATCHED};
-    }
-
-    public static CoroutineStart valueOf(String str) {
-        return (CoroutineStart) Enum.valueOf(CoroutineStart.class, str);
-    }
-
-    public static CoroutineStart[] values() {
-        return (CoroutineStart[]) $VALUES.clone();
-    }
-
-    private CoroutineStart(String str, int i) {
-    }
-
-    static {
-        CoroutineStart[] coroutineStartArr$values = $values();
-        $VALUES = coroutineStartArr$values;
-        $ENTRIES = EnumEntriesKt.enumEntries(coroutineStartArr$values);
     }
 
     public final void invoke(Function2 function2, Object obj, Continuation continuation) throws Throwable {

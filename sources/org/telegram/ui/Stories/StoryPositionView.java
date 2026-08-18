@@ -9,7 +9,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Stories.PeerStoriesView;
 
 public class StoryPositionView {
     int lastHash;
@@ -41,8 +40,9 @@ public class StoryPositionView {
         }
         canvas.save();
         float y = ((peerHeaderView.getY() + peerHeaderView.titleView.getTop()) + (this.textDrawable.getHeight() / 2.0f)) - 1.0f;
-        peerHeaderView.titleView.setRightPadding((int) this.textDrawable.getCurrentWidth());
-        canvas.translate(((((AndroidUtilities.dp(4.0f) + peerHeaderView.getLeft()) + peerHeaderView.titleView.getLeft()) + peerHeaderView.titleView.getTextWidth()) + peerHeaderView.titleView.getRightDrawableWidth()) - Utilities.clamp(((peerHeaderView.titleView.getTextWidth() + peerHeaderView.titleView.getRightDrawableWidth()) + r8) - peerHeaderView.titleView.getWidth(), r8, 0), y);
+        int currentWidth = (int) this.textDrawable.getCurrentWidth();
+        peerHeaderView.titleView.setRightPadding(currentWidth);
+        canvas.translate(((((AndroidUtilities.dp(4.0f) + peerHeaderView.getLeft()) + peerHeaderView.titleView.getLeft()) + peerHeaderView.titleView.getTextWidth()) + peerHeaderView.titleView.getRightDrawableWidth()) - Utilities.clamp(((peerHeaderView.titleView.getTextWidth() + peerHeaderView.titleView.getRightDrawableWidth()) + currentWidth) - peerHeaderView.titleView.getWidth(), currentWidth, 0), y);
         float fDp = AndroidUtilities.dp(8.0f);
         float fDp2 = AndroidUtilities.dp(2.0f);
         AndroidUtilities.rectTmp.set(-fDp, -fDp2, this.textDrawable.getCurrentWidth() + fDp, this.textDrawable.getHeight() + fDp2);

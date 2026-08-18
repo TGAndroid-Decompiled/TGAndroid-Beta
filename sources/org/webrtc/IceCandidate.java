@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.util.Arrays;
-import org.webrtc.PeerConnection;
 
 public class IceCandidate {
     public final PeerConnection.AdapterType adapterType;

@@ -55,15 +55,17 @@ public class SuggestUserPhotoView extends View {
         this.path.addCircle(iDp2, measuredHeight, AndroidUtilities.dp(30.0f), Path.Direction.CW);
         this.currentPhoto.draw(canvas);
         if (this.containterView != null) {
+            float top = 0.0f - this.photoCropView.getTop();
+            float left = 0.0f - this.photoCropView.getLeft();
             float fDp = AndroidUtilities.dp(60.0f);
             CropAreaView cropAreaView = this.photoCropView.cropView.areaView;
             float f = fDp / cropAreaView.size;
-            float top = (0.0f - this.photoCropView.getTop()) - cropAreaView.top;
-            float left = (0.0f - this.photoCropView.getLeft()) - cropAreaView.left;
+            float f2 = top - cropAreaView.top;
+            float f3 = left - cropAreaView.left;
             canvas.save();
             canvas.clipPath(this.path);
             canvas.scale(f, f, 0.0f, 0.0f);
-            canvas.translate(left, top);
+            canvas.translate(f3, f2);
             canvas.translate((iDp2 - AndroidUtilities.dp(30.0f)) / f, (measuredHeight - AndroidUtilities.dp(30.0f)) / f);
             PhotoViewer.getInstance().skipLastFrameDraw = true;
             this.containterView.draw(canvas);

@@ -31,7 +31,7 @@ public abstract class TextStreamsKt {
         long j = 0;
         while (i2 >= 0) {
             out.write(cArr, 0, i2);
-            j += i2;
+            j += (long) i2;
             i2 = reader.read(cArr);
         }
         return j;

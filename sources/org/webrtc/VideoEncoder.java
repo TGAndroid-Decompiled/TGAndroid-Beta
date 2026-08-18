@@ -1,7 +1,5 @@
 package org.webrtc;
 
-import org.webrtc.EncodedImage;
-
 public interface VideoEncoder {
 
     public interface Callback {

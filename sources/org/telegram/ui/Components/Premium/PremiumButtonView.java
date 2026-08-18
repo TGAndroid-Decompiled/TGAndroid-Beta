@@ -254,8 +254,9 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        if (this.counterView != null) {
-            this.counterOffset.set(((r0.counterDrawable.getWidth() * 0.85f) + AndroidUtilities.dp(3.0f)) / 2.0f);
+        CounterView counterView = this.counterView;
+        if (counterView != null) {
+            this.counterOffset.set(((counterView.counterDrawable.getWidth() * 0.85f) + AndroidUtilities.dp(3.0f)) / 2.0f);
             this.counterOffset2.set((getMeasuredWidth() / 2.0f) + (this.overlayTextView.getDrawable().getWidth() / 2.0f) + AndroidUtilities.dp(3.0f));
             this.overlayTextView.setTranslationX(-this.counterOffset.get());
             this.counterView.setTranslationX(this.counterOffset2.get() - this.counterOffset.get());

@@ -337,7 +337,7 @@ public class StoryContainsEmojiButton extends View {
 
     private void set(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         TLRPC.Document document;
-        CharSequence charSequenceSubSequence;
+        SpannableString spannableStringSubSequence;
         String string;
         if (tL_messages_stickerSet == null) {
             return;
@@ -364,9 +364,9 @@ public class StoryContainsEmojiButton extends View {
         }
         if (document != null) {
             spannableString.setSpan(new AnimatedEmojiSpan(document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
-            charSequenceSubSequence = spannableString;
+            spannableStringSubSequence = spannableString;
         } else {
-            charSequenceSubSequence = spannableString.subSequence(2, spannableString.length());
+            spannableStringSubSequence = spannableString.subSequence(2, spannableString.length());
         }
         boolean z = this.emoji;
         if (z && this.stickers) {
@@ -376,11 +376,11 @@ public class StoryContainsEmojiButton extends View {
         } else {
             string = LocaleController.getString(R.string.StoryContainsStickersFrom);
         }
-        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequenceSubSequence));
+        setText(AndroidUtilities.replaceCharSequence("%s", string, spannableStringSubSequence));
     }
 
     private void set(TLRPC.StickerSetCovered stickerSetCovered) {
-        CharSequence charSequenceSubSequence;
+        SpannableString spannableStringSubSequence;
         String string;
         SpannableString spannableString = new SpannableString("x " + stickerSetCovered.set.title);
         spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider)), 0, spannableString.length(), 33);
@@ -399,9 +399,9 @@ public class StoryContainsEmojiButton extends View {
         }
         if (document != null) {
             spannableString.setSpan(new AnimatedEmojiSpan(document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
-            charSequenceSubSequence = spannableString;
+            spannableStringSubSequence = spannableString;
         } else {
-            charSequenceSubSequence = spannableString.subSequence(2, spannableString.length());
+            spannableStringSubSequence = spannableString.subSequence(2, spannableString.length());
         }
         boolean z = this.emoji;
         if (z && this.stickers) {
@@ -411,7 +411,7 @@ public class StoryContainsEmojiButton extends View {
         } else {
             string = LocaleController.getString(R.string.StoryContainsStickersFrom);
         }
-        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequenceSubSequence));
+        setText(AndroidUtilities.replaceCharSequence("%s", string, spannableStringSubSequence));
     }
 
     private void set(int i) {

@@ -6,7 +6,6 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.aspectj.lang.reflect.SourceLocation;
-import org.aspectj.runtime.reflect.JoinPointImpl;
 
 public final class Factory {
     private static Object[] NO_ARGS;
@@ -84,7 +83,7 @@ public final class Factory {
         return new JoinPointImpl(staticPart, obj, obj2, new Object[]{obj3});
     }
 
-    public MethodSignature makeMethodSig(String str, String str2, String str3, String str4, String str5, String str6, String str7) throws NumberFormatException {
+    public MethodSignature makeMethodSig(String str, String str2, String str3, String str4, String str5, String str6, String str7) {
         int i = Integer.parseInt(str, 16);
         Class clsMakeClass = makeClass(str3, this.lookupClassLoader);
         StringTokenizer stringTokenizer = new StringTokenizer(str4, ":");

@@ -1,7 +1,6 @@
 package org.telegram.ui.iv;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Outline;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -28,7 +27,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.iv.RichEditor;
 
 public class RichEditorToolbar extends FrameLayout {
     private final ImageView addButton;
@@ -602,9 +600,7 @@ public class RichEditorToolbar extends FrameLayout {
     }
 
     public void setSelectedBlockType(int i, int i2) {
-        Iterator it = this.blockButtons.iterator();
-        while (it.hasNext()) {
-            RichEditor.Button button = (RichEditor.Button) it.next();
+        for (RichEditor.Button button : this.blockButtons) {
             boolean z = i == ((Integer) button.getTag()).intValue();
             button.setSelected(z);
             if (z && i2 != 0) {
@@ -616,9 +612,7 @@ public class RichEditorToolbar extends FrameLayout {
     }
 
     public void setFormattingState(int i, boolean z, boolean z2, boolean z3, boolean z4, boolean z5) {
-        Iterator it = this.formattingButtons.iterator();
-        while (it.hasNext()) {
-            RichEditor.Button button = (RichEditor.Button) it.next();
+        for (RichEditor.Button button : this.formattingButtons) {
             int iIntValue = ((Integer) button.getTag()).intValue();
             button.setSelected((i & iIntValue) != 0);
             if (iIntValue == 1 || iIntValue == 2) {
@@ -770,7 +764,7 @@ public class RichEditorToolbar extends FrameLayout {
         }
     }
 
-    public void setSendEditing(boolean z) throws Resources.NotFoundException {
+    public void setSendEditing(boolean z) {
         this.sendButton.setResourceId(z ? R.drawable.input_done : R.drawable.send_plane_24);
     }
 

@@ -1,7 +1,6 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
@@ -13,7 +12,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_stars;
 
 public class TL_stars {
 
@@ -76,11 +74,9 @@ public class TL_stars {
             if (arrayList == null || arrayList.isEmpty()) {
                 return AmountUtils$Amount.fromNano(0L, amountUtils$Currency);
             }
-            Iterator<StarsAmount> it = this.resell_amount.iterator();
-            while (it.hasNext()) {
-                StarsAmount next = it.next();
-                if (next.getCurrency() == amountUtils$Currency) {
-                    return AmountUtils$Amount.of(next);
+            for (StarsAmount starsAmount : this.resell_amount) {
+                if (starsAmount.getCurrency() == amountUtils$Currency) {
+                    return AmountUtils$Amount.of(starsAmount);
                 }
             }
             return AmountUtils$Amount.fromNano(0L, amountUtils$Currency);
@@ -155,11 +151,9 @@ public class TL_stars {
             if (document != null) {
                 return document;
             }
-            Iterator<StarGiftAttribute> it = this.attributes.iterator();
-            while (it.hasNext()) {
-                StarGiftAttribute next = it.next();
-                if (next instanceof starGiftAttributeModel) {
-                    return ((starGiftAttributeModel) next).document;
+            for (StarGiftAttribute starGiftAttribute : this.attributes) {
+                if (starGiftAttribute instanceof starGiftAttributeModel) {
+                    return ((starGiftAttributeModel) starGiftAttribute).document;
                 }
             }
             return null;
@@ -2740,7 +2734,7 @@ public class TL_stars {
         }
 
         public double toDouble() {
-            return this.amount + (this.nanos / 1.0E9d);
+            return this.amount + (((double) this.nanos) / 1.0E9d);
         }
 
         public boolean positive() {

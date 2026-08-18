@@ -16,7 +16,7 @@ class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
     public void setTargets(int i, double d) {
         int i2 = this.targetBitrateBps;
         if (i2 > 0 && i < i2) {
-            this.deviationBytes = (this.deviationBytes * i) / i2;
+            this.deviationBytes = (this.deviationBytes * ((double) i)) / ((double) i2);
         }
         super.setTargets(i, d);
     }
@@ -27,8 +27,8 @@ class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
         if (d == 0.0d) {
             return;
         }
-        double d2 = this.targetBitrateBps / 8.0d;
-        double d3 = this.deviationBytes + (i - (d2 / d));
+        double d2 = ((double) this.targetBitrateBps) / 8.0d;
+        double d3 = this.deviationBytes + (((double) i) - (d2 / d));
         this.deviationBytes = d3;
         this.timeSinceLastAdjustmentMs += 1000.0d / d;
         double d4 = 3.0d * d2;
@@ -57,11 +57,11 @@ class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
     }
 
     private double getBitrateAdjustmentScale() {
-        return Math.pow(4.0d, this.bitrateAdjustmentScaleExp / 20.0d);
+        return Math.pow(4.0d, ((double) this.bitrateAdjustmentScaleExp) / 20.0d);
     }
 
     @Override
     public int getAdjustedBitrateBps() {
-        return (int) (this.targetBitrateBps * getBitrateAdjustmentScale());
+        return (int) (((double) this.targetBitrateBps) * getBitrateAdjustmentScale());
     }
 }

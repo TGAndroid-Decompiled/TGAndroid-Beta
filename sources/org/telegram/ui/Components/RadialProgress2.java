@@ -435,7 +435,8 @@ public class RadialProgress2 {
                     int iRed = Color.red(themedColor);
                     int iGreen = Color.green(themedColor);
                     int iBlue = Color.blue(themedColor);
-                    iArgb = Color.argb(Color.alpha(themedColor) + ((int) ((255 - r6) * currentAlpha)), iRed + ((int) ((255 - iRed) * currentAlpha)), iGreen + ((int) ((255 - iGreen) * currentAlpha)), iBlue + ((int) ((255 - iBlue) * currentAlpha)));
+                    int iAlpha = Color.alpha(themedColor);
+                    iArgb = Color.argb(iAlpha + ((int) ((255 - iAlpha) * currentAlpha)), iRed + ((int) ((255 - iRed) * currentAlpha)), iGreen + ((int) ((255 - iGreen) * currentAlpha)), iBlue + ((int) ((255 - iBlue) * currentAlpha)));
                     z = true;
                 }
                 this.mediaActionDrawable.setColor(iArgb);

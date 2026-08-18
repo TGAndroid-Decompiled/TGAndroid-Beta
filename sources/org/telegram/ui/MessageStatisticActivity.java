@@ -21,13 +21,12 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.Emoji;
@@ -56,6 +55,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Cells.HeaderCell;
+import org.telegram.ui.Cells.LoadingCell;
 import org.telegram.ui.Cells.ManageChatUserCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Charts.BaseChartView;
@@ -69,7 +69,6 @@ import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 
 public class MessageStatisticActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -677,19 +676,17 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             this.endReached = this.nextOffset == null;
             getMessagesController().putChats(tL_publicForwards.chats, false);
             getMessagesController().putUsers(tL_publicForwards.users, false);
-            Iterator<TL_stats.PublicForward> it = tL_publicForwards.forwards.iterator();
-            while (it.hasNext()) {
-                TL_stats.PublicForward next = it.next();
-                if (next instanceof TL_stories.TL_publicForwardStory) {
-                    TL_stories.TL_publicForwardStory tL_publicForwardStory = (TL_stories.TL_publicForwardStory) next;
+            for (TL_stats.PublicForward publicForward : tL_publicForwards.forwards) {
+                if (publicForward instanceof TL_stories.TL_publicForwardStory) {
+                    TL_stories.TL_publicForwardStory tL_publicForwardStory = (TL_stories.TL_publicForwardStory) publicForward;
                     tL_publicForwardStory.story.dialogId = DialogObject.getPeerDialogId(tL_publicForwardStory.peer);
                     TL_stories.StoryItem storyItem = tL_publicForwardStory.story;
                     storyItem.messageId = storyItem.id;
                     MessageObject messageObject = new MessageObject(this.currentAccount, tL_publicForwardStory.story);
                     messageObject.generateThumbs(false);
                     this.messages.add(messageObject);
-                } else if (next instanceof TL_stats.TL_publicForwardMessage) {
-                    this.messages.add(new MessageObject(this.currentAccount, ((TL_stats.TL_publicForwardMessage) next).message, false, true));
+                } else if (publicForward instanceof TL_stats.TL_publicForwardMessage) {
+                    this.messages.add(new MessageObject(this.currentAccount, ((TL_stats.TL_publicForwardMessage) publicForward).message, false, true));
                 }
             }
             EmptyTextProgressView emptyTextProgressView = this.emptyView;
@@ -728,19 +725,17 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             this.endReached = this.nextOffset == null;
             getMessagesController().putChats(tL_publicForwards.chats, false);
             getMessagesController().putUsers(tL_publicForwards.users, false);
-            Iterator<TL_stats.PublicForward> it = tL_publicForwards.forwards.iterator();
-            while (it.hasNext()) {
-                TL_stats.PublicForward next = it.next();
-                if (next instanceof TL_stories.TL_publicForwardStory) {
-                    TL_stories.TL_publicForwardStory tL_publicForwardStory = (TL_stories.TL_publicForwardStory) next;
+            for (TL_stats.PublicForward publicForward : tL_publicForwards.forwards) {
+                if (publicForward instanceof TL_stories.TL_publicForwardStory) {
+                    TL_stories.TL_publicForwardStory tL_publicForwardStory = (TL_stories.TL_publicForwardStory) publicForward;
                     tL_publicForwardStory.story.dialogId = DialogObject.getPeerDialogId(tL_publicForwardStory.peer);
                     TL_stories.StoryItem storyItem = tL_publicForwardStory.story;
                     storyItem.messageId = storyItem.id;
                     MessageObject messageObject = new MessageObject(this.currentAccount, tL_publicForwardStory.story);
                     messageObject.generateThumbs(false);
                     this.messages.add(messageObject);
-                } else if (next instanceof TL_stats.TL_publicForwardMessage) {
-                    this.messages.add(new MessageObject(this.currentAccount, ((TL_stats.TL_publicForwardMessage) next).message, false, true));
+                } else if (publicForward instanceof TL_stats.TL_publicForwardMessage) {
+                    this.messages.add(new MessageObject(this.currentAccount, ((TL_stats.TL_publicForwardMessage) publicForward).message, false, true));
                 }
             }
             EmptyTextProgressView emptyTextProgressView = this.emptyView;
@@ -754,30 +749,30 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     }
 
     private void loadStat() {
-        TL_stats.TL_getMessageStats tL_getMessageStats;
+        TLObject tLObject;
         if (this.messageObject.isStory()) {
             TL_stories.TL_stats_getStoryStats tL_stats_getStoryStats = new TL_stories.TL_stats_getStoryStats();
             tL_stats_getStoryStats.id = this.messageObject.storyItem.id;
             tL_stats_getStoryStats.peer = getMessagesController().getInputPeer(-this.chatId);
-            tL_getMessageStats = tL_stats_getStoryStats;
+            tLObject = tL_stats_getStoryStats;
         } else {
-            TL_stats.TL_getMessageStats tL_getMessageStats2 = new TL_stats.TL_getMessageStats();
+            TL_stats.TL_getMessageStats tL_getMessageStats = new TL_stats.TL_getMessageStats();
             MessageObject messageObject = this.messageObject;
             TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
             if (messageFwdHeader != null) {
-                tL_getMessageStats2.msg_id = messageFwdHeader.saved_from_msg_id;
-                tL_getMessageStats2.channel = getMessagesController().getInputChannel(-this.messageObject.getFromChatId());
-                tL_getMessageStats = tL_getMessageStats2;
+                tL_getMessageStats.msg_id = messageFwdHeader.saved_from_msg_id;
+                tL_getMessageStats.channel = getMessagesController().getInputChannel(-this.messageObject.getFromChatId());
+                tLObject = tL_getMessageStats;
             } else {
-                tL_getMessageStats2.msg_id = messageObject.getId();
-                tL_getMessageStats2.channel = getMessagesController().getInputChannel(-this.messageObject.getDialogId());
-                tL_getMessageStats = tL_getMessageStats2;
+                tL_getMessageStats.msg_id = messageObject.getId();
+                tL_getMessageStats.channel = getMessagesController().getInputChannel(-this.messageObject.getDialogId());
+                tLObject = tL_getMessageStats;
             }
         }
-        getConnectionsManager().sendRequest(tL_getMessageStats, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$loadStat$12(tLObject, tL_error);
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$loadStat$12(tLObject2, tL_error);
             }
         }, null, null, 0, this.chat.stats_dc, 1, true);
     }
@@ -838,6 +833,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 chartDataCreateChartData = StatisticActivity.createChartData(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), 1, false);
             } catch (JSONException e) {
                 e.printStackTrace();
+                chartDataCreateChartData = null;
             }
             final ChartData chartData = chartDataCreateChartData;
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -976,6 +972,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                         chartDataCreateChartData = StatisticActivity.createChartData(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), this.data.graphType, false);
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        chartDataCreateChartData = null;
                     }
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
@@ -1028,13 +1025,135 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         }
 
         @Override
-        public androidx.recyclerview.widget.RecyclerView.ViewHolder onCreateViewHolder(android.view.ViewGroup r17, int r18) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageStatisticActivity.ListAdapter.onCreateViewHolder(android.view.ViewGroup, int):androidx.recyclerview.widget.RecyclerView$ViewHolder");
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View shadowSectionCell;
+            int i2;
+            if (i == 0) {
+                ManageChatUserCell manageChatUserCell = new ManageChatUserCell(this.mContext, 6, 2, false, MessageStatisticActivity.this.getResourceProvider());
+                manageChatUserCell.setDividerColor(Theme.key_divider);
+                shadowSectionCell = manageChatUserCell;
+            } else if (i == 1) {
+                shadowSectionCell = new ShadowSectionCell(this.mContext, MessageStatisticActivity.this.getResourceProvider());
+            } else if (i == 2) {
+                HeaderCell headerCell = new HeaderCell(this.mContext, Theme.key_windowBackgroundWhiteBlackText, 16, 11, false, MessageStatisticActivity.this.getResourceProvider());
+                headerCell.setHeight(43);
+                shadowSectionCell = headerCell;
+            } else if (i == 4) {
+                Context context = this.mContext;
+                if (i == 4) {
+                    i2 = 1;
+                } else {
+                    i2 = 2;
+                }
+                MessageStatisticActivity messageStatisticActivity = MessageStatisticActivity.this;
+                shadowSectionCell = new AnonymousClass1(context, i2, messageStatisticActivity.sharedUi = new BaseChartView.SharedUiComponents(messageStatisticActivity.getResourceProvider()), MessageStatisticActivity.this.getResourceProvider());
+            } else if (i == 5) {
+                OverviewCell overviewCell = MessageStatisticActivity.this.new OverviewCell(this.mContext);
+                overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                shadowSectionCell = overviewCell;
+            } else if (i == 6) {
+                EmptyCell emptyCell = new EmptyCell(this.mContext, 16);
+                emptyCell.setLayoutParams(new RecyclerView.LayoutParams(-1, 16));
+                shadowSectionCell = emptyCell;
+            } else if (i == 7) {
+                Context context2 = this.mContext;
+                if (i == 4) {
+                    i2 = 1;
+                } else {
+                    i2 = 2;
+                }
+                MessageStatisticActivity messageStatisticActivity2 = MessageStatisticActivity.this;
+                shadowSectionCell = new AnonymousClass1(context2, i2, messageStatisticActivity2.sharedUi = new BaseChartView.SharedUiComponents(messageStatisticActivity2.getResourceProvider()), MessageStatisticActivity.this.getResourceProvider());
+            } else {
+                shadowSectionCell = new LoadingCell(this.mContext, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(120.0f));
+            }
+            return new RecyclerListView.Holder(shadowSectionCell);
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageStatisticActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            Object user;
+            String pluralString;
+            String str;
+            int i2;
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType != 0) {
+                if (itemViewType == 1) {
+                    viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    return;
+                }
+                if (itemViewType == 2) {
+                    HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+                    if (i == MessageStatisticActivity.this.overviewHeaderRow) {
+                        headerCell.setTopMargin(9);
+                        headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
+                        headerCell.setText(LocaleController.formatString("StatisticOverview", R.string.StatisticOverview, new Object[0]));
+                        return;
+                    } else {
+                        headerCell.setTopMargin(11);
+                        headerCell.setPadding(0, 0, 0, 0);
+                        headerCell.setText(LocaleController.formatString("PublicShares", R.string.PublicShares, new Object[0]));
+                        return;
+                    }
+                }
+                if (itemViewType == 4) {
+                    StatisticActivity.BaseChartCell baseChartCell = (StatisticActivity.BaseChartCell) viewHolder.itemView;
+                    baseChartCell.updateData(MessageStatisticActivity.this.interactionsViewData, false);
+                    baseChartCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return;
+                } else if (itemViewType == 5) {
+                    ((OverviewCell) viewHolder.itemView).setData();
+                    return;
+                } else {
+                    if (itemViewType != 7) {
+                        return;
+                    }
+                    StatisticActivity.BaseChartCell baseChartCell2 = (StatisticActivity.BaseChartCell) viewHolder.itemView;
+                    baseChartCell2.updateData(MessageStatisticActivity.this.reactionsByEmotionData, false);
+                    baseChartCell2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    return;
+                }
+            }
+            ManageChatUserCell manageChatUserCell = (ManageChatUserCell) viewHolder.itemView;
+            final MessageObject item = getItem(i);
+            long dialogId = MessageObject.getDialogId(item.messageOwner);
+            if (item.isStory()) {
+                Object user2 = DialogObject.isUserDialog(dialogId) ? MessageStatisticActivity.this.getMessagesController().getUser(Long.valueOf(dialogId)) : MessageStatisticActivity.this.getMessagesController().getChat(Long.valueOf(-dialogId));
+                TL_stories.StoryViews storyViews = item.storyItem.views;
+                manageChatUserCell.setData(user2, null, (storyViews == null || (i2 = storyViews.views_count) == 0) ? LocaleController.getString(R.string.NoViews) : LocaleController.formatPluralString("Views", i2, new Object[0]), i != MessageStatisticActivity.this.endRow - 1);
+                manageChatUserCell.setStoryItem(item.storyItem, new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$onBindViewHolder$0(item, view);
+                    }
+                });
+                return;
+            }
+            manageChatUserCell.setStoryItem(null, null);
+            if (DialogObject.isUserDialog(dialogId)) {
+                user = MessageStatisticActivity.this.getMessagesController().getUser(Long.valueOf(dialogId));
+            } else {
+                TLRPC.Chat chat = MessageStatisticActivity.this.getMessagesController().getChat(Long.valueOf(-dialogId));
+                if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                    pluralString = LocaleController.formatPluralString("Views", item.messageOwner.views, new Object[0]);
+                } else {
+                    int i3 = chat.participants_count;
+                    if (i3 != 0) {
+                        pluralString = String.format("%1$s, %2$s", LocaleController.formatPluralString("Members", i3, new Object[0]), LocaleController.formatPluralString("Views", item.messageOwner.views, new Object[0]));
+                    } else {
+                        user = chat;
+                    }
+                }
+                str = pluralString;
+                user = chat;
+                if (user != null) {
+                    manageChatUserCell.setData(user, null, str, i != MessageStatisticActivity.this.endRow - 1);
+                }
+            }
+            str = null;
+            if (user != null) {
+                manageChatUserCell.setData(user, null, str, i != MessageStatisticActivity.this.endRow - 1);
+            }
         }
 
         public void lambda$onBindViewHolder$0(MessageObject messageObject, View view) {
@@ -1164,7 +1283,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     }
 
     @Override
-    public ArrayList getThemeDescriptions() throws IOException {
+    public ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override

@@ -1,7 +1,6 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
@@ -9,8 +8,6 @@ import org.telegram.tgnet.TLParseException;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_messages_preparedInlineMessage$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
 
 public class TL_keyboard {
 
@@ -725,16 +722,14 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            ArrayList arrayListDeserialize = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+            ArrayList<TLObject> arrayListDeserialize = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                 @Override
                 public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
                     return TL_keyboard.access$400(inputSerializedData2, i, z2);
                 }
             }, z);
             this.buttons = new ArrayList<>(arrayListDeserialize.size());
-            Iterator it = arrayListDeserialize.iterator();
-            while (it.hasNext()) {
-                TLObject tLObject = (TLObject) it.next();
+            for (TLObject tLObject : arrayListDeserialize) {
                 if (tLObject instanceof KeyboardInlineButton) {
                     this.buttons.add((KeyboardInlineButton) tLObject);
                 }

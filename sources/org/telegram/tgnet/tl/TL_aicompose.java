@@ -9,7 +9,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_aicompose;
 
 public class TL_aicompose {
 
@@ -44,17 +43,20 @@ public class TL_aicompose {
                 if (inputAiComposeTone instanceof inputAiComposeToneDefault) {
                     return (inputAiComposeTone2 instanceof inputAiComposeToneDefault) && TextUtils.equals(((inputAiComposeToneDefault) inputAiComposeTone).tone, ((inputAiComposeToneDefault) inputAiComposeTone2).tone);
                 }
-                if (!(inputAiComposeTone instanceof inputAiComposeToneID)) {
-                    return inputAiComposeTone instanceof inputAiComposeToneSlug ? (inputAiComposeTone2 instanceof inputAiComposeToneSlug) && TextUtils.equals(((inputAiComposeToneSlug) inputAiComposeTone).slug, ((inputAiComposeToneSlug) inputAiComposeTone2).slug) : (inputAiComposeTone instanceof inputAiComposeToneSingleUse) && (inputAiComposeTone2 instanceof inputAiComposeToneSingleUse) && TextUtils.equals(((inputAiComposeToneSingleUse) inputAiComposeTone).custom_prompt, ((inputAiComposeToneSingleUse) inputAiComposeTone2).custom_prompt);
-                }
-                if (inputAiComposeTone2 instanceof inputAiComposeToneID) {
-                    inputAiComposeToneID inputaicomposetoneid = (inputAiComposeToneID) inputAiComposeTone;
-                    inputAiComposeToneID inputaicomposetoneid2 = (inputAiComposeToneID) inputAiComposeTone2;
-                    if (inputaicomposetoneid.id == inputaicomposetoneid2.id && inputaicomposetoneid.access_hash == inputaicomposetoneid2.access_hash) {
-                        return true;
+                if (inputAiComposeTone instanceof inputAiComposeToneID) {
+                    if (inputAiComposeTone2 instanceof inputAiComposeToneID) {
+                        inputAiComposeToneID inputaicomposetoneid = (inputAiComposeToneID) inputAiComposeTone;
+                        inputAiComposeToneID inputaicomposetoneid2 = (inputAiComposeToneID) inputAiComposeTone2;
+                        if (inputaicomposetoneid.id == inputaicomposetoneid2.id && inputaicomposetoneid.access_hash == inputaicomposetoneid2.access_hash) {
+                            return true;
+                        }
                     }
+                    return false;
                 }
-                return false;
+                if (inputAiComposeTone instanceof inputAiComposeToneSlug) {
+                    return (inputAiComposeTone2 instanceof inputAiComposeToneSlug) && TextUtils.equals(((inputAiComposeToneSlug) inputAiComposeTone).slug, ((inputAiComposeToneSlug) inputAiComposeTone2).slug);
+                }
+                return (inputAiComposeTone instanceof inputAiComposeToneSingleUse) && (inputAiComposeTone2 instanceof inputAiComposeToneSingleUse) && TextUtils.equals(((inputAiComposeToneSingleUse) inputAiComposeTone).custom_prompt, ((inputAiComposeToneSingleUse) inputAiComposeTone2).custom_prompt);
             }
             return false;
         }

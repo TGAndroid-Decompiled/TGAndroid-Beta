@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
-import org.telegram.ui.Charts.data.ChartData;
 
 public class StackLinearChartData extends ChartData {
     public int simplifiedSize;

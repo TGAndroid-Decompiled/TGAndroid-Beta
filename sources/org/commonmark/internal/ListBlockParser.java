@@ -107,8 +107,63 @@ public class ListBlockParser extends AbstractBlockParser {
         return parseOrderedList(charSequence, i);
     }
 
-    private static org.commonmark.internal.ListBlockParser.ListMarkerData parseOrderedList(java.lang.CharSequence r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.commonmark.internal.ListBlockParser.parseOrderedList(java.lang.CharSequence, int):org.commonmark.internal.ListBlockParser$ListMarkerData");
+    private static ListMarkerData parseOrderedList(CharSequence charSequence, int i) {
+        int i2;
+        int length = charSequence.length();
+        int i3 = 0;
+        for (int i4 = i; i4 < length; i4++) {
+            char cCharAt = charSequence.charAt(i4);
+            if (cCharAt != ')' || cCharAt == '.') {
+                if (i3 >= 1) {
+                    i2 = i4 + 1;
+                    if (isSpaceTabOrEnd(charSequence, i2)) {
+                        String string = charSequence.subSequence(i, i4).toString();
+                        OrderedList orderedList = new OrderedList();
+                        orderedList.setStartNumber(Integer.parseInt(string));
+                        orderedList.setDelimiter(cCharAt);
+                        return new ListMarkerData(orderedList, i2);
+                    }
+                }
+                return null;
+            }
+            switch (cCharAt) {
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    i3++;
+                    if (i3 > 9) {
+                        return null;
+                    }
+                    break;
+                    break;
+                default:
+                    return null;
+            }
+            while (i4 < length) {
+                char cCharAt2 = charSequence.charAt(i4);
+                if (cCharAt2 != ')') {
+                }
+                if (i3 >= 1) {
+                    i2 = i4 + 1;
+                    if (isSpaceTabOrEnd(charSequence, i2)) {
+                        String string2 = charSequence.subSequence(i, i4).toString();
+                        OrderedList orderedList2 = new OrderedList();
+                        orderedList2.setStartNumber(Integer.parseInt(string2));
+                        orderedList2.setDelimiter(cCharAt2);
+                        return new ListMarkerData(orderedList2, i2);
+                    }
+                }
+                return null;
+            }
+        }
+        return null;
     }
 
     private static boolean isSpaceTabOrEnd(CharSequence charSequence, int i) {

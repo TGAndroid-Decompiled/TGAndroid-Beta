@@ -6,7 +6,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ViewPagerFixed;
 
 public abstract class ChatSearchTabs extends FrameLayout {
     private ValueAnimator actionBarTagsAnimator;

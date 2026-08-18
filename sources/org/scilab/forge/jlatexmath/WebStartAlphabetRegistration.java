@@ -1,6 +1,5 @@
 package org.scilab.forge.jlatexmath;
 
-import java.lang.Character;
 import org.scilab.forge.jlatexmath.cyrillic.CyrillicRegistration;
 import org.scilab.forge.jlatexmath.greek.GreekRegistration;
 

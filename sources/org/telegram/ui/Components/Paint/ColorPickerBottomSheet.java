@@ -6,12 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -43,7 +41,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Paint.ColorPickerBottomSheet;
 import org.telegram.ui.Components.Paint.Views.PaintColorsListView;
 import org.telegram.ui.Components.Paint.Views.PipettePickerView;
 import org.telegram.ui.Components.ViewPagerFixed;
@@ -336,14 +333,14 @@ public class ColorPickerBottomSheet extends BottomSheet {
             for (int i = 0; i < 12; i++) {
                 for (int i2 = 0; i2 < 10; i2++) {
                     if (i2 == 0) {
-                        this.colorMap.put(Long.valueOf((i << 16) + i2), Integer.valueOf(ColorUtils.blendARGB(-1, -16777216, i / 11.0f)));
+                        this.colorMap.put(Long.valueOf(((long) (i << 16)) + ((long) i2)), Integer.valueOf(ColorUtils.blendARGB(-1, -16777216, i / 11.0f)));
                     } else {
                         if (i2 < 6) {
                             iBlendARGB = ColorUtils.blendARGB(this.colors[i], -16777216, ((5 - i2) / 4.0f) * 0.5f);
                         } else {
                             iBlendARGB = ColorUtils.blendARGB(this.colors[i], -1, 0.5f - (((9 - i2) / 5.0f) * 0.5f));
                         }
-                        this.colorMap.put(Long.valueOf((i << 16) + i2), Integer.valueOf(iBlendARGB));
+                        this.colorMap.put(Long.valueOf(((long) (i << 16)) + ((long) i2)), Integer.valueOf(iBlendARGB));
                     }
                 }
             }
@@ -371,7 +368,8 @@ public class ColorPickerBottomSheet extends BottomSheet {
             for (Map.Entry entry : this.colorMap.entrySet()) {
                 if (((Integer) entry.getValue()).intValue() == i) {
                     long jLongValue = ((Long) entry.getKey()).longValue();
-                    setCurrentColor((int) (jLongValue >> 16), (int) (jLongValue - (r5 << 16)));
+                    int i2 = (int) (jLongValue >> 16);
+                    setCurrentColor(i2, (int) (jLongValue - ((long) (i2 << 16))));
                     return;
                 }
             }
@@ -380,7 +378,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
         }
 
         public void setCurrentColor(int i, int i2) {
-            long j = (i << 16) + i2;
+            long j = (((long) i) << 16) + ((long) i2);
             this.selected = j;
             if (this.selectors.get(j) == null) {
                 this.selectors.put(this.selected, Float.valueOf(0.0f));
@@ -393,7 +391,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             int height = ((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10;
             int x = (int) ((motionEvent.getX() - getPaddingLeft()) / width);
             int y = (int) (motionEvent.getY() / height);
-            Integer num = (Integer) this.colorMap.get(Long.valueOf((x << 16) + y));
+            Integer num = (Integer) this.colorMap.get(Long.valueOf((((long) x) << 16) + ((long) y)));
             if (num != null) {
                 ColorPickerBottomSheet.this.onSetColor(num.intValue(), 3);
                 setCurrentColor(x, y);
@@ -408,13 +406,13 @@ public class ColorPickerBottomSheet extends BottomSheet {
             rectF.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
             canvas.save();
             ColorPickerBottomSheet.this.path.rewind();
-            ColorPickerBottomSheet.this.path.addRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Path.Direction.CW);
+            ColorPickerBottomSheet.this.path.addRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), android.graphics.Path.Direction.CW);
             canvas.clipPath(ColorPickerBottomSheet.this.path);
             float width = ((getWidth() - getPaddingLeft()) - getPaddingRight()) / 12.0f;
             float height = ((getHeight() - getPaddingTop()) - getPaddingBottom()) / 10.0f;
             for (int i = 0; i < 12; i++) {
                 for (int i2 = 0; i2 < 10; i2++) {
-                    Integer num = (Integer) this.colorMap.get(Long.valueOf((i << 16) + i2));
+                    Integer num = (Integer) this.colorMap.get(Long.valueOf(((long) (i << 16)) + ((long) i2)));
                     if (num != null) {
                         this.paint.setColor(num.intValue());
                         RectF rectF2 = AndroidUtilities.rectTmp;
@@ -434,7 +432,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
                     fMax = Math.max(0.0f, fFloatValue - 0.10666667f);
                 }
                 int i4 = (int) (jKeyAt >> 16);
-                int i5 = (int) (jKeyAt - (i4 << 16));
+                int i5 = (int) (jKeyAt - ((long) (i4 << 16)));
                 Integer num2 = (Integer) this.colorMap.get(Long.valueOf(jKeyAt));
                 if (num2 != null) {
                     this.selectorPaint.setColor(AndroidUtilities.computePerceivedBrightness(num2.intValue()) > 0.721f ? -15658735 : -1);
@@ -459,7 +457,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
                 float fDp4 = (i4 == 0 && i5 == 9) ? AndroidUtilities.dp(10.0f) : 0.0f;
                 fArr4[7] = fDp4;
                 fArr4[6] = fDp4;
-                this.selectorPath.addRoundRect(rectF3, this.radii, Path.Direction.CW);
+                this.selectorPath.addRoundRect(rectF3, this.radii, android.graphics.Path.Direction.CW);
                 canvas.drawPath(this.selectorPath, this.selectorPaint);
                 if (fMax <= 0.0f && this.selected != jKeyAt) {
                     this.selectors.removeAt(i3);
@@ -501,8 +499,8 @@ public class ColorPickerBottomSheet extends BottomSheet {
         @Override
         protected void onSizeChanged(int i, int i2, int i3, int i4) {
             super.onSizeChanged(i, i2, i3, i4);
-            this.gradientPaint.setShader(new LinearGradient(0.0f, getPaddingTop(), 0.0f, i2 - getPaddingBottom(), new int[]{-65536, -256, -16711936, -16711681, -16776961, -65281, -65536}, (float[]) null, Shader.TileMode.CLAMP));
-            this.whiteBlackPaint.setShader(new LinearGradient(getPaddingLeft(), 0.0f, i - getPaddingRight(), 0.0f, new int[]{-1, 0, 0, -16777216}, new float[]{0.06f, 0.22f, 0.78f, 0.94f}, Shader.TileMode.MIRROR));
+            this.gradientPaint.setShader(new LinearGradient(0.0f, getPaddingTop(), 0.0f, i2 - getPaddingBottom(), new int[]{-65536, -256, -16711936, -16711681, -16776961, -65281, -65536}, (float[]) null, android.graphics.Shader.TileMode.CLAMP));
+            this.whiteBlackPaint.setShader(new LinearGradient(getPaddingLeft(), 0.0f, i - getPaddingRight(), 0.0f, new int[]{-1, 0, 0, -16777216}, new float[]{0.06f, 0.22f, 0.78f, 0.94f}, android.graphics.Shader.TileMode.MIRROR));
         }
 
         @Override
@@ -645,8 +643,40 @@ public class ColorPickerBottomSheet extends BottomSheet {
                 }
 
                 @Override
-                public void afterTextChanged(android.text.Editable r6) throws java.lang.NumberFormatException {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.ColorPickerBottomSheet.SlidersPickerView.AnonymousClass1.afterTextChanged(android.text.Editable):void");
+                public void afterTextChanged(Editable editable) {
+                    long j;
+                    int i;
+                    if (SlidersPickerView.this.isInvalidatingColor || this.previous == null || editable == null || TextUtils.isEmpty(editable) || Objects.equals(this.previous.toString(), editable.toString())) {
+                        return;
+                    }
+                    String string = editable.toString();
+                    if (string.length() > 8) {
+                        SlidersPickerView.this.hexEdit.setText(string.substring(2, 8).toUpperCase());
+                        SlidersPickerView.this.hexEdit.setSelection(8);
+                        return;
+                    }
+                    if (this.pattern.matcher(editable).find()) {
+                        int length = string.length();
+                        if (length != 3) {
+                            if (length == 6) {
+                                i = ((int) Long.parseLong(string, 16)) - 16777216;
+                            } else if (length != 8) {
+                                i = ColorPickerBottomSheet.this.mColor;
+                            } else {
+                                j = Long.parseLong(string, 16);
+                            }
+                            if (i == ColorPickerBottomSheet.this.mColor) {
+                                return;
+                            }
+                            ColorPickerBottomSheet.this.onSetColor(i, 5);
+                        }
+                        j = Long.parseLong("FF" + string.charAt(0) + string.charAt(0) + string.charAt(1) + string.charAt(1) + string.charAt(2) + string.charAt(2), 16);
+                        i = (int) j;
+                        if (i == ColorPickerBottomSheet.this.mColor) {
+                            return;
+                        }
+                        ColorPickerBottomSheet.this.onSetColor(i, 5);
+                    }
                 }
             });
             this.hexEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -743,12 +773,18 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
                 @Override
                 public void afterTextChanged(Editable editable) {
+                    int iArgb;
                     if (SliderCell.this.isInvalidatingColor || this.previous == null || editable == null || TextUtils.isEmpty(editable) || Objects.equals(this.previous.toString(), editable.toString())) {
                         return;
                     }
                     int iClamp = MathUtils.clamp(Integer.parseInt(editable.toString()), 0, 255);
                     int i = SliderCell.this.mode;
-                    ColorPickerBottomSheet.this.onSetColor(i != 1 ? i != 2 ? Color.argb(Color.alpha(ColorPickerBottomSheet.this.mColor), iClamp, Color.green(ColorPickerBottomSheet.this.mColor), Color.blue(ColorPickerBottomSheet.this.mColor)) : Color.argb(Color.alpha(ColorPickerBottomSheet.this.mColor), Color.red(ColorPickerBottomSheet.this.mColor), Color.green(ColorPickerBottomSheet.this.mColor), iClamp) : Color.argb(Color.alpha(ColorPickerBottomSheet.this.mColor), Color.red(ColorPickerBottomSheet.this.mColor), iClamp, Color.blue(ColorPickerBottomSheet.this.mColor)), 5);
+                    if (i != 1) {
+                        iArgb = i != 2 ? Color.argb(Color.alpha(ColorPickerBottomSheet.this.mColor), iClamp, Color.green(ColorPickerBottomSheet.this.mColor), Color.blue(ColorPickerBottomSheet.this.mColor)) : Color.argb(Color.alpha(ColorPickerBottomSheet.this.mColor), Color.red(ColorPickerBottomSheet.this.mColor), Color.green(ColorPickerBottomSheet.this.mColor), iClamp);
+                    } else {
+                        iArgb = Color.argb(Color.alpha(ColorPickerBottomSheet.this.mColor), Color.red(ColorPickerBottomSheet.this.mColor), iClamp, Color.blue(ColorPickerBottomSheet.this.mColor));
+                    }
+                    ColorPickerBottomSheet.this.onSetColor(iArgb, 5);
                 }
             });
             this.valueView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -846,7 +882,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
         }
 
         private void invalidateShader() {
-            this.colorPaint.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, ColorPickerBottomSheet.this.mColor}, (float[]) null, Shader.TileMode.CLAMP));
+            this.colorPaint.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, ColorPickerBottomSheet.this.mColor}, (float[]) null, android.graphics.Shader.TileMode.CLAMP));
         }
 
         @Override
@@ -887,7 +923,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             rectF.set(fDp, f, getWidth() - fDp, f2);
             canvas.save();
             ColorPickerBottomSheet.this.path.rewind();
-            ColorPickerBottomSheet.this.path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+            ColorPickerBottomSheet.this.path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), android.graphics.Path.Direction.CW);
             canvas.clipPath(ColorPickerBottomSheet.this.path);
             PaintColorsListView.drawCheckerboard(canvas, rectF, AndroidUtilities.dp(6.0f));
             canvas.restore();
@@ -947,7 +983,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
                 iArgb = Color.argb(255, Color.red(ColorPickerBottomSheet.this.mColor), Color.green(ColorPickerBottomSheet.this.mColor), 0);
                 iArgb2 = Color.argb(255, Color.red(ColorPickerBottomSheet.this.mColor), Color.green(ColorPickerBottomSheet.this.mColor), 255);
             }
-            this.colorPaint.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{iArgb, iArgb2}, (float[]) null, Shader.TileMode.CLAMP));
+            this.colorPaint.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{iArgb, iArgb2}, (float[]) null, android.graphics.Shader.TileMode.CLAMP));
         }
 
         @Override
@@ -970,10 +1006,15 @@ public class ColorPickerBottomSheet extends BottomSheet {
         }
 
         private void updatePosition(float f) {
+            int iArgb;
             float fDp = AndroidUtilities.dp(6.0f);
             float fClamp = MathUtils.clamp(((f - fDp) + (AndroidUtilities.dp(13.0f) - (this.outlinePaint.getStrokeWidth() / 2.0f))) / (getWidth() - (fDp * 2.0f)), 0.0f, 1.0f);
             int i = this.mode;
-            int iArgb = i != 1 ? i != 2 ? Color.argb(255, (int) (fClamp * 255.0f), Color.green(ColorPickerBottomSheet.this.mColor), Color.blue(ColorPickerBottomSheet.this.mColor)) : Color.argb(255, Color.red(ColorPickerBottomSheet.this.mColor), Color.green(ColorPickerBottomSheet.this.mColor), (int) (fClamp * 255.0f)) : Color.argb(255, Color.red(ColorPickerBottomSheet.this.mColor), (int) (fClamp * 255.0f), Color.blue(ColorPickerBottomSheet.this.mColor));
+            if (i != 1) {
+                iArgb = i != 2 ? Color.argb(255, (int) (fClamp * 255.0f), Color.green(ColorPickerBottomSheet.this.mColor), Color.blue(ColorPickerBottomSheet.this.mColor)) : Color.argb(255, Color.red(ColorPickerBottomSheet.this.mColor), Color.green(ColorPickerBottomSheet.this.mColor), (int) (fClamp * 255.0f));
+            } else {
+                iArgb = Color.argb(255, Color.red(ColorPickerBottomSheet.this.mColor), (int) (fClamp * 255.0f), Color.blue(ColorPickerBottomSheet.this.mColor));
+            }
             ColorPickerBottomSheet colorPickerBottomSheet = ColorPickerBottomSheet.this;
             colorPickerBottomSheet.onSetColor(ColorUtils.setAlphaComponent(iArgb, Color.alpha(colorPickerBottomSheet.mColor)), 4);
             invalidate();
@@ -981,6 +1022,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
 
         @Override
         protected void onDraw(Canvas canvas) {
+            int iGreen;
             super.onDraw(canvas);
             float height = getHeight() / 2.0f;
             float fDp = AndroidUtilities.dp(6.0f);
@@ -988,10 +1030,15 @@ public class ColorPickerBottomSheet extends BottomSheet {
             rectF.set(fDp, height - fDp, getWidth() - fDp, height + fDp);
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.colorPaint);
             int i = this.mode;
-            float fRed = (i != 1 ? i != 2 ? Color.red(ColorPickerBottomSheet.this.mColor) : Color.blue(ColorPickerBottomSheet.this.mColor) : Color.green(ColorPickerBottomSheet.this.mColor)) / 255.0f;
+            if (i != 1) {
+                iGreen = i != 2 ? Color.red(ColorPickerBottomSheet.this.mColor) : Color.blue(ColorPickerBottomSheet.this.mColor);
+            } else {
+                iGreen = Color.green(ColorPickerBottomSheet.this.mColor);
+            }
+            float f = iGreen / 255.0f;
             float fDp2 = AndroidUtilities.dp(13.0f);
             float strokeWidth = fDp2 - (this.outlinePaint.getStrokeWidth() / 2.0f);
-            float fMax = Math.max(fDp + strokeWidth, (fDp + ((getWidth() - (2.0f * fDp)) * fRed)) - strokeWidth);
+            float fMax = Math.max(fDp + strokeWidth, (fDp + ((getWidth() - (2.0f * fDp)) * f)) - strokeWidth);
             canvas.drawCircle(fMax, height, fDp2, this.outlinePaint);
             PaintColorsListView.drawColorCircle(canvas, fMax, height, strokeWidth, this.filledColor);
         }

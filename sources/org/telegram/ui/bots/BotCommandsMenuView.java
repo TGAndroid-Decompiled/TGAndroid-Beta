@@ -1,6 +1,7 @@
 package org.telegram.ui.bots;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -28,6 +29,7 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.MenuDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColoredImageSpan;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
@@ -116,8 +118,9 @@ public class BotCommandsMenuView extends View {
             this.backDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.textPaint.setTextSize(AndroidUtilities.dp(15.0f));
             this.lastSize = size;
+            CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(this.menuText, this.textPaint.getFontMetricsInt(), false);
             int i3 = (int) (AndroidUtilities.displaySize.x * 0.6f);
-            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji(this.menuText, this.textPaint.getFontMetricsInt(), false), this.textPaint, i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i3, 1);
+            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(charSequenceReplaceEmoji, this.textPaint, i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i3, 1);
             this.menuTextLayout = staticLayoutCreateStaticLayout;
             this.menuTextWidth = staticLayoutCreateStaticLayout.getLineCount() > 0 ? this.menuTextLayout.getLineWidth(0) : 0.0f;
         }
@@ -130,8 +133,93 @@ public class BotCommandsMenuView extends View {
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotCommandsMenuView.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        boolean z;
+        float f;
+        float f2;
+        if (this.menuTextLayout != null) {
+            boolean z2 = this.expanded;
+            if (z2) {
+                float f3 = this.expandProgress;
+                if (f3 != 1.0f) {
+                    float f4 = f3 + 0.10666667f;
+                    this.expandProgress = f4;
+                    if (f4 > 1.0f) {
+                        this.expandProgress = 1.0f;
+                    } else {
+                        invalidate();
+                    }
+                } else {
+                    if (!z2) {
+                        f = this.expandProgress;
+                        if (f != 0.0f) {
+                            f2 = f - 0.10666667f;
+                            this.expandProgress = f2;
+                            if (f2 < 0.0f) {
+                                this.expandProgress = 0.0f;
+                            } else {
+                                invalidate();
+                            }
+                        }
+                    }
+                    z = false;
+                }
+                z = true;
+            } else {
+                if (!z2) {
+                    f = this.expandProgress;
+                    if (f != 0.0f) {
+                        f2 = f - 0.10666667f;
+                        this.expandProgress = f2;
+                        if (f2 < 0.0f) {
+                            this.expandProgress = 0.0f;
+                        } else {
+                            invalidate();
+                        }
+                        z = true;
+                    }
+                }
+                z = false;
+            }
+            float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(this.expandProgress);
+            if (z && interpolation > 0.0f) {
+                this.textPaint.setAlpha((int) (255.0f * interpolation));
+            }
+            if (this.drawBackgroundDrawable) {
+                this.rectTmp.set(0.0f, 0.0f, AndroidUtilities.dp(40.0f) + ((this.menuTextWidth + AndroidUtilities.dp(4.0f)) * interpolation), getMeasuredHeight());
+                canvas.drawRoundRect(this.rectTmp, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.paint);
+                Drawable drawable = this.backgroundDrawable;
+                RectF rectF = this.rectTmp;
+                drawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                this.backgroundDrawable.draw(canvas);
+            }
+            if (this.isWebView) {
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(9.5f), AndroidUtilities.dp(6.0f));
+                RLottieDrawable rLottieDrawable = this.webViewAnimation;
+                rLottieDrawable.setBounds(0, 0, rLottieDrawable.getMinimumWidth(), rLottieDrawable.getMinimumHeight());
+                rLottieDrawable.draw(canvas);
+                canvas.restore();
+                if (rLottieDrawable.isRunning()) {
+                    invalidate();
+                }
+            } else {
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f));
+                this.backDrawable.draw(canvas);
+                canvas.restore();
+            }
+            if (interpolation > 0.0f) {
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(34.0f), (getMeasuredHeight() - this.menuTextLayout.getHeight()) / 2.0f);
+                this.menuTextLayout.draw(canvas);
+                canvas.restore();
+            }
+            if (z) {
+                onTranslationChanged((this.menuTextWidth + AndroidUtilities.dp(4.0f)) * interpolation);
+            }
+        }
+        super.dispatchDraw(canvas);
     }
 
     public boolean setMenuText(String str) {

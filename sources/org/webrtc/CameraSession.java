@@ -3,7 +3,6 @@ package org.webrtc;
 import android.content.Context;
 import android.graphics.Matrix;
 import android.view.WindowManager;
-import org.webrtc.VideoFrame;
 
 interface CameraSession {
 

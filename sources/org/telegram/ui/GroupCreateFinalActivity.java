@@ -8,7 +8,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -16,6 +15,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.InputFilter;
+import android.text.TextUtils;
 import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,7 +24,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
@@ -64,8 +63,6 @@ import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.VerticalPositionAutoAnimator;
-import org.telegram.ui.LocationActivity;
-import org.telegram.ui.PhotoViewer;
 
 public class GroupCreateFinalActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate {
     private GroupCreateAdapter adapter;
@@ -153,7 +150,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
     }
 
     @Override
-    public boolean onFragmentCreate() throws InterruptedException {
+    public boolean onFragmentCreate() {
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatDidCreated);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatDidFailCreate);
@@ -280,7 +277,40 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
     }
 
     private void setDefaultGroupName() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCreateFinalActivity.setDefaultGroupName():void");
+        String string;
+        TLRPC.User currentUser = getUserConfig().getCurrentUser();
+        int size = this.selectedContacts.size() + 1;
+        if (size < 2 || size > 5 || !TextUtils.isEmpty(this.editText.getText())) {
+            return;
+        }
+        try {
+            if (size == 2) {
+                string = LocaleController.formatString("GroupCreateMembersTwo", R.string.GroupCreateMembersTwo, currentUser.first_name, getFirstNameByPos(0));
+            } else if (size == 3) {
+                string = LocaleController.formatString("GroupCreateMembersThree", R.string.GroupCreateMembersThree, currentUser.first_name, getFirstNameByPos(0), getFirstNameByPos(1));
+            } else {
+                if (size != 4) {
+                    if (size == 5) {
+                        string = LocaleController.formatString("GroupCreateMembersFive", R.string.GroupCreateMembersFive, currentUser.first_name, getFirstNameByPos(0), getFirstNameByPos(1), getFirstNameByPos(2), getFirstNameByPos(3));
+                    } else {
+                        string = "";
+                    }
+                    if (TextUtils.isEmpty(string)) {
+                    }
+                    this.editText.setText(string);
+                    EditTextEmoji editTextEmoji = this.editText;
+                    editTextEmoji.setSelection(0, editTextEmoji.getText().length());
+                }
+                string = LocaleController.formatString("GroupCreateMembersFour", R.string.GroupCreateMembersFour, currentUser.first_name, getFirstNameByPos(0), getFirstNameByPos(1), getFirstNameByPos(2));
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        if (TextUtils.isEmpty(string)) {
+            this.editText.setText(string);
+            EditTextEmoji editTextEmoji2 = this.editText;
+            editTextEmoji2.setSelection(0, editTextEmoji2.getText().length());
+        }
     }
 
     private String getFirstNameByPos(int i) {
@@ -345,8 +375,118 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
 
             @Override
-            protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCreateFinalActivity.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                int i6;
+                int i7;
+                int i8;
+                int i9;
+                int i10;
+                int paddingTop;
+                int measuredHeight;
+                int measuredHeight2;
+                int childCount = getChildCount();
+                int iMeasureKeyboardHeight = measureKeyboardHeight();
+                int emojiPadding = (iMeasureKeyboardHeight > AndroidUtilities.dp(20.0f) || AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) ? 0 : GroupCreateFinalActivity.this.editText.getEmojiPadding();
+                setBottomClip(emojiPadding);
+                for (int i11 = 0; i11 < childCount; i11++) {
+                    View childAt = getChildAt(i11);
+                    if (childAt.getVisibility() != 8) {
+                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                        int measuredWidth = childAt.getMeasuredWidth();
+                        int measuredHeight3 = childAt.getMeasuredHeight();
+                        int i12 = layoutParams.gravity;
+                        if (i12 == -1) {
+                            i12 = 51;
+                        }
+                        int i13 = i12 & 112;
+                        int i14 = i12 & 7;
+                        if (i14 != 1) {
+                            if (i14 == 5) {
+                                i6 = i4 - measuredWidth;
+                                i7 = layoutParams.rightMargin;
+                            } else {
+                                i8 = layoutParams.leftMargin;
+                            }
+                            if (i13 != 16) {
+                                if (i13 != 48) {
+                                    paddingTop = layoutParams.topMargin + getPaddingTop();
+                                } else if (i13 != 80) {
+                                    i9 = ((i5 - emojiPadding) - i3) - measuredHeight3;
+                                    i10 = layoutParams.bottomMargin;
+                                } else {
+                                    paddingTop = layoutParams.topMargin;
+                                }
+                                if (GroupCreateFinalActivity.this.editText != null && GroupCreateFinalActivity.this.editText.isPopupView(childAt)) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    } else {
+                                        measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    }
+                                    paddingTop = measuredHeight - measuredHeight2;
+                                }
+                                childAt.layout(i8, paddingTop, measuredWidth + i8, measuredHeight3 + paddingTop);
+                            } else {
+                                i9 = ((((i5 - emojiPadding) - i3) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                i10 = layoutParams.bottomMargin;
+                            }
+                            paddingTop = i9 - i10;
+                            if (GroupCreateFinalActivity.this.editText != null) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(i8, paddingTop, measuredWidth + i8, measuredHeight3 + paddingTop);
+                        } else {
+                            i6 = (((i4 - i2) - measuredWidth) / 2) + layoutParams.leftMargin;
+                            i7 = layoutParams.rightMargin;
+                        }
+                        i8 = i6 - i7;
+                        if (i13 != 16) {
+                            if (i13 != 48) {
+                                paddingTop = layoutParams.topMargin + getPaddingTop();
+                            } else if (i13 != 80) {
+                                i9 = ((i5 - emojiPadding) - i3) - measuredHeight3;
+                                i10 = layoutParams.bottomMargin;
+                            } else {
+                                paddingTop = layoutParams.topMargin;
+                            }
+                            if (GroupCreateFinalActivity.this.editText != null) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(i8, paddingTop, measuredWidth + i8, measuredHeight3 + paddingTop);
+                        } else {
+                            i9 = ((((i5 - emojiPadding) - i3) - measuredHeight3) / 2) + layoutParams.topMargin;
+                            i10 = layoutParams.bottomMargin;
+                        }
+                        paddingTop = i9 - i10;
+                        if (GroupCreateFinalActivity.this.editText != null) {
+                            if (AndroidUtilities.isTablet()) {
+                                measuredHeight = getMeasuredHeight();
+                                measuredHeight2 = childAt.getMeasuredHeight();
+                            } else {
+                                measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                measuredHeight2 = childAt.getMeasuredHeight();
+                            }
+                            paddingTop = measuredHeight - measuredHeight2;
+                        }
+                        childAt.layout(i8, paddingTop, measuredWidth + i8, measuredHeight3 + paddingTop);
+                    }
+                }
+                notifyHeightChanged();
             }
 
             @Override
@@ -428,7 +568,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         frameLayout3.addView(view, LayoutHelper.createFrame(64, 64.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 16.0f, 16.0f, z2 ? 16.0f : 0.0f, 16.0f));
         this.avatarOverlay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws IOException {
+            public final void onClick(View view2) {
                 this.f$0.lambda$createView$4(view2);
             }
         });
@@ -541,7 +681,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         return this.fragmentView;
     }
 
-    public void lambda$createView$4(View view) throws IOException {
+    public void lambda$createView$4(View view) {
         this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
             @Override
             public final void run() {
@@ -787,7 +927,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 
@@ -973,11 +1113,10 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     if (GroupCreateFinalActivity.this.currentGroupCreateAddress == null || i != 1) {
                         headerCell.setText(LocaleController.formatPluralString("Members", GroupCreateFinalActivity.this.selectedContacts.size(), new Object[0]));
-                        break;
                     } else {
                         headerCell.setText(LocaleController.getString(R.string.AttachLocation));
-                        break;
                     }
+                    break;
                 case 2:
                     GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
                     groupCreateUserCell.setObject(GroupCreateFinalActivity.this.getMessagesController().getUser((Long) GroupCreateFinalActivity.this.selectedContacts.get(i - this.usersStartRow)), null, null);

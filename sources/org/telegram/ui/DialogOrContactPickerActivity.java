@@ -40,8 +40,6 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.ContactsActivity;
-import org.telegram.ui.DialogsActivity;
 
 public class DialogOrContactPickerActivity extends BaseFragment {
     private static final Interpolator interpolator = new Interpolator() {
@@ -317,7 +315,29 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             }
 
             public boolean checkTabsAnimationInProgress() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogOrContactPickerActivity.AnonymousClass4.checkTabsAnimationInProgress():boolean");
+                if (!DialogOrContactPickerActivity.this.tabsAnimationInProgress) {
+                    return false;
+                }
+                if (DialogOrContactPickerActivity.this.backAnimation) {
+                    if (Math.abs(DialogOrContactPickerActivity.this.viewPages[0].getTranslationX()) < 1.0f) {
+                        DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(0.0f);
+                        DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() * (DialogOrContactPickerActivity.this.animatingForward ? 1 : -1));
+                        if (DialogOrContactPickerActivity.this.tabsAnimation != null) {
+                            DialogOrContactPickerActivity.this.tabsAnimation.cancel();
+                            DialogOrContactPickerActivity.this.tabsAnimation = null;
+                        }
+                        DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
+                    }
+                } else if (Math.abs(DialogOrContactPickerActivity.this.viewPages[1].getTranslationX()) < 1.0f) {
+                    DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() * (DialogOrContactPickerActivity.this.animatingForward ? -1 : 1));
+                    DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(0.0f);
+                    if (DialogOrContactPickerActivity.this.tabsAnimation != null) {
+                        DialogOrContactPickerActivity.this.tabsAnimation.cancel();
+                        DialogOrContactPickerActivity.this.tabsAnimation = null;
+                    }
+                    DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
+                }
+                return DialogOrContactPickerActivity.this.tabsAnimationInProgress;
             }
 
             @Override

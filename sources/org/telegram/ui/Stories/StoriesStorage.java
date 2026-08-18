@@ -3,9 +3,12 @@ package org.telegram.ui.Stories;
 import android.text.TextUtils;
 import androidx.collection.LongSparseArray;
 import com.google.android.exoplayer2.util.Consumer;
+import j$.util.Comparator$CC;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.ToIntFunction;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
@@ -45,12 +48,194 @@ public class StoriesStorage {
         });
     }
 
-    public void lambda$getAllStories$3(final com.google.android.exoplayer2.util.Consumer r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$getAllStories$3(com.google.android.exoplayer2.util.Consumer):void");
+    public void lambda$getAllStories$3(final Consumer consumer) {
+        final Consumer consumer2;
+        ?? r8;
+        ?? r9;
+        int i;
+        int i2;
+        TLRPC.Peer peer;
+        Consumer consumer3 = consumer;
+        int i3 = 0;
+        int i4 = 1;
+        SQLiteDatabase database = this.storage.getDatabase();
+        ArrayList<TL_stories.PeerStories> arrayList = new ArrayList<>();
+        ArrayList<Long> arrayList2 = new ArrayList<>();
+        ArrayList<Long> arrayList3 = new ArrayList<>();
+        ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+        try {
+            SQLiteCursor sQLiteCursorQueryFinalized = database.queryFinalized("SELECT dialog_id, max_read FROM stories_counter", new Object[0]);
+            try {
+                LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
+                while (sQLiteCursorQueryFinalized.next()) {
+                    long jLongValue = sQLiteCursorQueryFinalized.longValue(0);
+                    longSparseIntArray.put(jLongValue, sQLiteCursorQueryFinalized.intValue(1));
+                    if (jLongValue > 0) {
+                        arrayList2.add(Long.valueOf(jLongValue));
+                    } else {
+                        arrayList3.add(Long.valueOf(jLongValue));
+                    }
+                }
+                sQLiteCursorQueryFinalized.dispose();
+                int i5 = 0;
+                while (i5 < longSparseIntArray.size()) {
+                    try {
+                        long jKeyAt = longSparseIntArray.keyAt(i5);
+                        int iValueAt = longSparseIntArray.valueAt(i5);
+                        Locale locale = Locale.US;
+                        Object[] objArr = new Object[i4];
+                        objArr[i3] = Long.valueOf(jKeyAt);
+                        ?? QueryFinalized = database.queryFinalized(String.format(locale, "SELECT data, custom_params FROM stories WHERE dialog_id = %d", objArr), new Object[i3]);
+                        try {
+                            ArrayList<TL_stories.StoryItem> arrayList4 = new ArrayList<>();
+                            ?? r3 = i4;
+                            while (QueryFinalized.next()) {
+                                ?? ByteBufferValue = QueryFinalized.byteBufferValue(i3);
+                                NativeByteBuffer nativeByteBufferByteBufferValue = QueryFinalized.byteBufferValue(r3);
+                                if (ByteBufferValue != 0) {
+                                    TL_stories.StoryItem storyItemTLdeserialize = TL_stories.StoryItem.TLdeserialize(ByteBufferValue, ByteBufferValue.readInt32(r3), r3);
+                                    storyItemTLdeserialize.dialogId = jKeyAt;
+                                    TL_stories.StoryFwdHeader storyFwdHeader = storyItemTLdeserialize.fwd_from;
+                                    if (storyFwdHeader != null && (peer = storyFwdHeader.from) != null) {
+                                        MessagesStorage.addLoadPeerInfo(peer, arrayList2, arrayList3);
+                                    }
+                                    int i6 = 0;
+                                    while (i6 < storyItemTLdeserialize.media_areas.size()) {
+                                        if (storyItemTLdeserialize.media_areas.get(i6) instanceof TL_stories.TL_mediaAreaChannelPost) {
+                                            i2 = i5;
+                                            long j = ((TL_stories.TL_mediaAreaChannelPost) storyItemTLdeserialize.media_areas.get(i6)).channel_id;
+                                            if (!arrayList3.contains(Long.valueOf(j))) {
+                                                arrayList3.add(Long.valueOf(j));
+                                            }
+                                        } else {
+                                            i2 = i5;
+                                        }
+                                        i6++;
+                                        i5 = i2;
+                                    }
+                                    i = i5;
+                                    TLRPC.Peer peer2 = storyItemTLdeserialize.from_id;
+                                    if (peer2 != null) {
+                                        MessagesStorage.addLoadPeerInfo(peer2, arrayList2, arrayList3);
+                                    }
+                                    StoryCustomParamsHelper.readLocalParams(storyItemTLdeserialize, nativeByteBufferByteBufferValue);
+                                    arrayList4.add(storyItemTLdeserialize);
+                                    ByteBufferValue.reuse();
+                                } else {
+                                    i = i5;
+                                }
+                                if (nativeByteBufferByteBufferValue != null) {
+                                    nativeByteBufferByteBufferValue.reuse();
+                                }
+                                database = database;
+                                longSparseIntArray = longSparseIntArray;
+                                i5 = i;
+                                i3 = 0;
+                                r3 = 1;
+                            }
+                            SQLiteDatabase sQLiteDatabase = database;
+                            int i7 = i5;
+                            LongSparseIntArray longSparseIntArray2 = longSparseIntArray;
+                            QueryFinalized.dispose();
+                            try {
+                                TL_stories.TL_peerStories tL_peerStories = new TL_stories.TL_peerStories();
+                                tL_peerStories.stories = arrayList4;
+                                tL_peerStories.max_read_id = iValueAt;
+                                tL_peerStories.peer = MessagesController.getInstance(this.currentAccount).getPeer(jKeyAt);
+                                arrayList.add(tL_peerStories);
+                                i5 = i7 + 1;
+                                consumer3 = consumer;
+                                database = sQLiteDatabase;
+                                longSparseIntArray = longSparseIntArray2;
+                                i3 = 0;
+                                i4 = 1;
+                            } catch (Throwable th) {
+                                th = th;
+                                r9 = 0;
+                                consumer2 = consumer;
+                                r8 = r9;
+                                try {
+                                    FileLog.e(th);
+                                    if (r8 != 0) {
+                                        r8.dispose();
+                                    }
+                                    AndroidUtilities.runOnUIThread(new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            consumer2.accept(null);
+                                        }
+                                    });
+                                    return;
+                                } catch (Throwable th2) {
+                                    if (r8 != 0) {
+                                        r8.dispose();
+                                        throw th2;
+                                    }
+                                    throw th2;
+                                }
+                            }
+                        } catch (Throwable th3) {
+                            th = th3;
+                            r9 = QueryFinalized;
+                        }
+                    } catch (Throwable th4) {
+                        th = th4;
+                        consumer2 = consumer;
+                        r8 = 0;
+                        FileLog.e(th);
+                        if (r8 != 0) {
+                            r8.dispose();
+                        }
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                consumer2.accept(null);
+                            }
+                        });
+                        return;
+                    }
+                }
+                final TL_stories.TL_stories_allStories tL_stories_allStories = new TL_stories.TL_stories_allStories();
+                tL_stories_allStories.peer_stories = arrayList;
+                tL_stories_allStories.users = this.storage.getUsers(arrayList2);
+                tL_stories_allStories.chats = this.storage.getChats(arrayList3);
+                int i8 = 0;
+                while (i8 < tL_stories_allStories.peer_stories.size()) {
+                    TL_stories.PeerStories peerStories = tL_stories_allStories.peer_stories.get(i8);
+                    checkExpiredStories(DialogObject.getPeerDialogId(peerStories.peer), peerStories.stories);
+                    if (peerStories.stories.isEmpty()) {
+                        tL_stories_allStories.peer_stories.remove(i8);
+                        i8--;
+                    }
+                    Collections.sort(peerStories.stories, StoriesController.storiesComparator);
+                    i8++;
+                }
+                Collections.sort(tL_stories_allStories.peer_stories, Comparator$CC.comparingInt(new ToIntFunction() {
+                    @Override
+                    public final int applyAsInt(Object obj) {
+                        return StoriesStorage.lambda$getAllStories$1((TL_stories.PeerStories) obj);
+                    }
+                }));
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        consumer.accept(tL_stories_allStories);
+                    }
+                });
+            } catch (Throwable th5) {
+                th = th5;
+                consumer2 = consumer3;
+                r8 = sQLiteCursorQueryFinalized;
+            }
+        } catch (Throwable th6) {
+            th = th6;
+            consumer2 = consumer3;
+        }
     }
 
     public static int lambda$getAllStories$1(TL_stories.PeerStories peerStories) {
-        return -peerStories.stories.get(r1.size() - 1).date;
+        ArrayList<TL_stories.StoryItem> arrayList = peerStories.stories;
+        return -arrayList.get(arrayList.size() - 1).date;
     }
 
     private void checkExpiredStories(long j, ArrayList arrayList) {
@@ -215,6 +400,8 @@ public class StoriesStorage {
                         TL_stories.StoryItem storyInternal = getStoryInternal(j, arrayList.get(i).id);
                         if (storyInternal instanceof TL_stories.TL_storyItem) {
                             arrayList.set(i, storyInternal);
+                        } else {
+                            continue;
                         }
                     }
                 }
@@ -337,8 +524,58 @@ public class StoriesStorage {
         });
     }
 
-    public void lambda$processUpdate$9(org.telegram.tgnet.tl.TL_stories.TL_updateStory r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$processUpdate$9(org.telegram.tgnet.tl.TL_stories$TL_updateStory):void");
+    public void lambda$processUpdate$9(TL_stories.TL_updateStory tL_updateStory) {
+        int i;
+        boolean z;
+        SQLiteDatabase database = this.storage.getDatabase();
+        try {
+            long peerDialogId = DialogObject.getPeerDialogId(tL_updateStory.peer);
+            TL_stories.StoryItem storyItem = tL_updateStory.story;
+            int i2 = storyItem.id;
+            if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                Locale locale = Locale.US;
+                SQLiteCursor sQLiteCursorQueryFinalized = database.queryFinalized(String.format(locale, "SELECT data, custom_params FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(peerDialogId), Integer.valueOf(i2)), new Object[0]);
+                if (sQLiteCursorQueryFinalized.next()) {
+                    NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0);
+                    NativeByteBuffer nativeByteBufferByteBufferValue2 = sQLiteCursorQueryFinalized.byteBufferValue(1);
+                    if (nativeByteBufferByteBufferValue != null) {
+                        StoryCustomParamsHelper.readLocalParams(TL_stories.StoryItem.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(true), true), nativeByteBufferByteBufferValue2);
+                        nativeByteBufferByteBufferValue.reuse();
+                    }
+                    if (nativeByteBufferByteBufferValue2 != null) {
+                        nativeByteBufferByteBufferValue2.reuse();
+                    }
+                    z = true;
+                } else {
+                    z = false;
+                }
+                sQLiteCursorQueryFinalized.dispose();
+                database.executeFast(String.format(locale, "DELETE FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(peerDialogId), Integer.valueOf(i2))).stepThis().dispose();
+                if (z) {
+                    i = -1;
+                } else {
+                    i = 0;
+                }
+            } else if (storyItem instanceof TL_stories.TL_storyItem) {
+                lambda$updateStoryItem$7(peerDialogId, storyItem);
+                SQLiteCursor sQLiteCursorQueryFinalized2 = database.queryFinalized(String.format(Locale.US, "SELECT story_id FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(peerDialogId), Integer.valueOf(i2)), new Object[0]);
+                boolean next = sQLiteCursorQueryFinalized2.next();
+                sQLiteCursorQueryFinalized2.dispose();
+                if (next) {
+                    i = 0;
+                } else {
+                    i = 1;
+                }
+            } else {
+                i = 0;
+            }
+            SQLiteCursor sQLiteCursorQueryFinalized3 = database.queryFinalized("SELECT count, max_read FROM stories_counter WHERE dialog_id = " + peerDialogId, new Object[0]);
+            int iIntValue = sQLiteCursorQueryFinalized3.next() ? sQLiteCursorQueryFinalized3.intValue(1) : 0;
+            sQLiteCursorQueryFinalized3.dispose();
+            database.executeFast(String.format(Locale.US, "UPDATE stories_counter SET count = %d WHERE dialog_id = %d", Integer.valueOf(iIntValue + i), Long.valueOf(peerDialogId))).stepThis().dispose();
+        } catch (Throwable th) {
+            this.storage.checkSQLException(th);
+        }
     }
 
     public void updateStories(final TL_stories.PeerStories peerStories) {

@@ -16,6 +16,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextPaint;
@@ -30,11 +31,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -44,6 +47,7 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -63,6 +67,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.ThemeColors;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.AppIconsSelectorCell;
 import org.telegram.ui.Cells.BrightnessControlCell;
@@ -92,7 +97,7 @@ import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.SwipeGestureSettingsView;
 import org.telegram.ui.Components.TextHelper;
-import org.telegram.ui.PeerColorActivity;
+import org.telegram.ui.Components.ThemeEditorView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.WebViewRequestProps;
@@ -271,7 +276,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
                 @Override
                 public void onSeekBarDrag(boolean z, float f) {
-                    ThemeActivity.this.setFontSize(Math.round(r4.startFontSize + ((TextSizeCell.this.endFontSize - TextSizeCell.this.startFontSize) * f)));
+                    TextSizeCell textSizeCell = TextSizeCell.this;
+                    ThemeActivity.this.setFontSize(Math.round(textSizeCell.startFontSize + ((TextSizeCell.this.endFontSize - TextSizeCell.this.startFontSize) * f)));
                 }
 
                 @Override
@@ -360,7 +366,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
                 @Override
                 public void onSeekBarDrag(boolean z, float f) {
-                    ThemeActivity.this.setBubbleRadius(Math.round(r4.startRadius + ((BubbleRadiusCell.this.endRadius - BubbleRadiusCell.this.startRadius) * f)), false);
+                    BubbleRadiusCell bubbleRadiusCell = BubbleRadiusCell.this;
+                    ThemeActivity.this.setBubbleRadius(Math.round(bubbleRadiusCell.startRadius + ((BubbleRadiusCell.this.endRadius - BubbleRadiusCell.this.startRadius) * f)), false);
                 }
 
                 @Override
@@ -1120,11 +1127,105 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
 
         @Override
-        public void onItemClick(int r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemeActivity.AnonymousClass1.onItemClick(int):void");
+        public void onItemClick(int i) {
+            boolean zEquals;
+            Theme.ThemeInfo theme;
+            if (i == -1) {
+                ThemeActivity.this.finishFragment();
+                return;
+            }
+            if (i == 1) {
+                ThemeActivity.this.createNewTheme();
+                return;
+            }
+            if (i == 2) {
+                Theme.ThemeAccent accent = Theme.getCurrentTheme().getAccent(false);
+                if (accent.info == null) {
+                    ThemeActivity.this.getMessagesController().saveThemeToServer(accent.parentTheme, accent);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, accent.parentTheme, accent);
+                    return;
+                }
+                String str = "https://" + ThemeActivity.this.getMessagesController().linkPrefix + "/addtheme/" + accent.info.slug;
+                ThemeActivity.this.showDialog(new ShareAlert(ThemeActivity.this.getParentActivity(), null, str, false, str, false));
+                return;
+            }
+            if (i == 3) {
+                ThemeActivity.this.editTheme();
+                return;
+            }
+            if (i == 4) {
+                if (ThemeActivity.this.getParentActivity() == null) {
+                    return;
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(ThemeActivity.this.getParentActivity());
+                builder.setTitle(LocaleController.getString("ThemeResetToDefaultsTitle", R.string.ThemeResetToDefaultsTitle));
+                builder.setMessage(LocaleController.getString("ThemeResetToDefaultsText", R.string.ThemeResetToDefaultsText));
+                builder.setPositiveButton(LocaleController.getString("Reset", R.string.Reset), new AlertDialog.OnButtonClickListener() {
+                    @Override
+                    public final void onClick(AlertDialog alertDialog, int i2) {
+                        this.f$0.lambda$onItemClick$0(alertDialog, i2);
+                    }
+                });
+                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                AlertDialog alertDialogCreate = builder.create();
+                ThemeActivity.this.showDialog(alertDialogCreate);
+                TextView textView = (TextView) alertDialogCreate.getButton(-1);
+                if (textView != null) {
+                    textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+                    return;
+                }
+                return;
+            }
+            if (i == 5) {
+                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
+                String str2 = "Blue";
+                String string = sharedPreferences.getString("lastDayTheme", "Blue");
+                if (Theme.getTheme(string) == null || Theme.getTheme(string).isDark()) {
+                    string = "Blue";
+                }
+                String str3 = "Dark Blue";
+                String string2 = sharedPreferences.getString("lastDarkTheme", "Dark Blue");
+                if (Theme.getTheme(string2) == null || !Theme.getTheme(string2).isDark()) {
+                    string2 = "Dark Blue";
+                }
+                Theme.ThemeInfo activeTheme = Theme.getActiveTheme();
+                if (string.equals(string2)) {
+                    if (activeTheme.isDark() || string.equals("Dark Blue") || string.equals("Night")) {
+                        str3 = string2;
+                    }
+                    zEquals = str2.equals(activeTheme.getKey());
+                    if (zEquals) {
+                        theme = Theme.getTheme(str3);
+                    } else {
+                        theme = Theme.getTheme(str2);
+                    }
+                    int[] iArr = new int[2];
+                    ThemeActivity.this.menuItem.getIconView().getLocationInWindow(iArr);
+                    iArr[0] = iArr[0] + (ThemeActivity.this.menuItem.getIconView().getMeasuredWidth() / 2);
+                    iArr[1] = iArr[1] + (ThemeActivity.this.menuItem.getIconView().getMeasuredHeight() / 2);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr, -1, Boolean.valueOf(zEquals), ThemeActivity.this.menuItem.getIconView());
+                    ThemeActivity.this.updateRows(true);
+                    Theme.turnOffAutoNight(ThemeActivity.this);
+                }
+                str3 = string2;
+                str2 = string;
+                zEquals = str2.equals(activeTheme.getKey());
+                if (zEquals) {
+                    theme = Theme.getTheme(str3);
+                } else {
+                    theme = Theme.getTheme(str2);
+                }
+                int[] iArr2 = new int[2];
+                ThemeActivity.this.menuItem.getIconView().getLocationInWindow(iArr2);
+                iArr2[0] = iArr2[0] + (ThemeActivity.this.menuItem.getIconView().getMeasuredWidth() / 2);
+                iArr2[1] = iArr2[1] + (ThemeActivity.this.menuItem.getIconView().getMeasuredHeight() / 2);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr2, -1, Boolean.valueOf(zEquals), ThemeActivity.this.menuItem.getIconView());
+                ThemeActivity.this.updateRows(true);
+                Theme.turnOffAutoNight(ThemeActivity.this);
+            }
         }
 
-        public void lambda$onItemClick$0(AlertDialog alertDialog, int i) throws IOException {
+        public void lambda$onItemClick$0(AlertDialog alertDialog, int i) {
             boolean fontSize = ThemeActivity.this.setFontSize(AndroidUtilities.isTablet() ? 18 : 16);
             if (ThemeActivity.this.setBubbleRadius(17, true)) {
                 fontSize = true;
@@ -1813,7 +1914,12 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
     }
 
     public static void lambda$verifyAge$17(int i, BotWebViewSheet botWebViewSheet, Utilities.Callback callback, Boolean bool, Double d, String str, Double d2) {
-        boolean zBooleanValue = d != null ? d.doubleValue() >= ((double) i) : bool.booleanValue();
+        boolean zBooleanValue;
+        if (d != null) {
+            zBooleanValue = d.doubleValue() >= ((double) i);
+        } else {
+            zBooleanValue = bool.booleanValue();
+        }
         botWebViewSheet.lambda$openOptions$42();
         callback.run(Boolean.valueOf(zBooleanValue));
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
@@ -1905,7 +2011,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         Theme.autoNightLastSunCheckDay = calendar.get(5);
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$updateSunTime$23();
             }
         });
@@ -1931,13 +2037,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$updateSunTime$23() throws IOException {
-        List<Address> fromLocation;
+    public void lambda$updateSunTime$23() {
+        final String locality;
         try {
-            fromLocation = new Geocoder(ApplicationLoader.applicationContext, Locale.getDefault()).getFromLocation(Theme.autoNightLocationLatitude, Theme.autoNightLocationLongitude, 1);
+            List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, Locale.getDefault()).getFromLocation(Theme.autoNightLocationLatitude, Theme.autoNightLocationLongitude, 1);
+            locality = fromLocation.size() > 0 ? fromLocation.get(0).getLocality() : null;
         } catch (Exception unused) {
         }
-        final String locality = fromLocation.size() > 0 ? fromLocation.get(0).getLocality() : null;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -2258,8 +2364,153 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$showOptionsForTheme$1(final org.telegram.ui.ActionBar.Theme.ThemeInfo r8, android.content.DialogInterface r9, int r10) throws java.lang.Throwable {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemeActivity.ListAdapter.lambda$showOptionsForTheme$1(org.telegram.ui.ActionBar.Theme$ThemeInfo, android.content.DialogInterface, int):void");
+        public void lambda$showOptionsForTheme$1(final Theme.ThemeInfo themeInfo, DialogInterface dialogInterface, int i) throws Throwable {
+            File assetFile;
+            String str;
+            File file;
+            Intent intent;
+            FileOutputStream fileOutputStream;
+            if (ThemeActivity.this.getParentActivity() == null) {
+                return;
+            }
+            FileOutputStream fileOutputStream2 = null;
+            if (i == 0) {
+                if (themeInfo.info == null) {
+                    ThemeActivity.this.getMessagesController().saveThemeToServer(themeInfo, null);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, themeInfo, null);
+                    return;
+                }
+                String str2 = "https://" + ThemeActivity.this.getMessagesController().linkPrefix + "/addtheme/" + themeInfo.info.slug;
+                ThemeActivity.this.showDialog(new ShareAlert(ThemeActivity.this.getParentActivity(), null, str2, false, str2, false));
+                return;
+            }
+            if (i != 1) {
+                if (i == 2) {
+                    if (((BaseFragment) ThemeActivity.this).parentLayout != null) {
+                        Theme.applyTheme(themeInfo);
+                        ((BaseFragment) ThemeActivity.this).parentLayout.rebuildAllFragmentViews(true, true);
+                        new ThemeEditorView().show(ThemeActivity.this.getParentActivity(), themeInfo);
+                        return;
+                    }
+                    return;
+                }
+                if (i == 3) {
+                    ThemeActivity.this.presentFragment(new ThemeSetUrlActivity(themeInfo, null, false));
+                    return;
+                }
+                if (ThemeActivity.this.getParentActivity() == null) {
+                    return;
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(ThemeActivity.this.getParentActivity());
+                builder.setTitle(LocaleController.getString("DeleteThemeTitle", R.string.DeleteThemeTitle));
+                builder.setMessage(LocaleController.getString("DeleteThemeAlert", R.string.DeleteThemeAlert));
+                builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new AlertDialog.OnButtonClickListener() {
+                    @Override
+                    public final void onClick(AlertDialog alertDialog, int i2) {
+                        this.f$0.lambda$showOptionsForTheme$0(themeInfo, alertDialog, i2);
+                    }
+                });
+                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                AlertDialog alertDialogCreate = builder.create();
+                ThemeActivity.this.showDialog(alertDialogCreate);
+                TextView textView = (TextView) alertDialogCreate.getButton(-1);
+                if (textView != null) {
+                    textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+                    return;
+                }
+                return;
+            }
+            if (themeInfo.pathToFile == null && themeInfo.assetName == null) {
+                StringBuilder sb = new StringBuilder();
+                int[] defaultColors = Theme.getDefaultColors();
+                for (int i2 = 0; i2 < defaultColors.length; i2++) {
+                    sb.append(ThemeColors.getStringName(i2));
+                    sb.append("=");
+                    sb.append(defaultColors[i2]);
+                    sb.append("\n");
+                }
+                assetFile = new File(ApplicationLoader.getFilesDirFixed(), "default_theme.attheme");
+                try {
+                    try {
+                        try {
+                            fileOutputStream = new FileOutputStream(assetFile);
+                            try {
+                                fileOutputStream.write(AndroidUtilities.getStringBytes(sb.toString()));
+                                fileOutputStream.close();
+                            } catch (Exception e) {
+                                e = e;
+                                fileOutputStream2 = fileOutputStream;
+                                FileLog.e(e);
+                                if (fileOutputStream2 != null) {
+                                    fileOutputStream2.close();
+                                }
+                                str = themeInfo.name;
+                                if (!str.endsWith(".attheme")) {
+                                    str = str + ".attheme";
+                                }
+                                file = new File(FileLoader.getDirectory(4), FileLoader.fixFileName(str));
+                                if (AndroidUtilities.copyFile(assetFile, file)) {
+                                    intent = new Intent("android.intent.action.SEND");
+                                    intent.setType("text/xml");
+                                    if (Build.VERSION.SDK_INT >= 24) {
+                                        try {
+                                            intent.putExtra("android.intent.extra.STREAM", FileProvider.getUriForFile(ThemeActivity.this.getParentActivity(), ApplicationLoader.getApplicationId() + ".provider", file));
+                                            intent.setFlags(1);
+                                        } catch (Exception unused) {
+                                            intent.putExtra("android.intent.extra.STREAM", Uri.fromFile(file));
+                                        }
+                                    } else {
+                                        intent.putExtra("android.intent.extra.STREAM", Uri.fromFile(file));
+                                    }
+                                    ThemeActivity.this.startActivityForResult(Intent.createChooser(intent, LocaleController.getString("ShareFile", R.string.ShareFile)), 500);
+                                }
+                                return;
+                            } catch (Throwable th) {
+                                th = th;
+                                if (fileOutputStream != null) {
+                                    try {
+                                        fileOutputStream.close();
+                                    } catch (Exception e2) {
+                                        FileLog.e(e2);
+                                    }
+                                }
+                                throw th;
+                            }
+                        } catch (Exception e3) {
+                            e = e3;
+                        }
+                    } catch (Throwable th2) {
+                        th = th2;
+                        fileOutputStream = fileOutputStream2;
+                    }
+                } catch (Exception e4) {
+                    FileLog.e(e4);
+                }
+            } else {
+                String str3 = themeInfo.assetName;
+                assetFile = str3 != null ? Theme.getAssetFile(str3) : new File(themeInfo.pathToFile);
+            }
+            str = themeInfo.name;
+            if (!str.endsWith(".attheme")) {
+                str = str + ".attheme";
+            }
+            file = new File(FileLoader.getDirectory(4), FileLoader.fixFileName(str));
+            try {
+                if (AndroidUtilities.copyFile(assetFile, file)) {
+                    return;
+                }
+                intent = new Intent("android.intent.action.SEND");
+                intent.setType("text/xml");
+                if (Build.VERSION.SDK_INT >= 24) {
+                    intent.putExtra("android.intent.extra.STREAM", FileProvider.getUriForFile(ThemeActivity.this.getParentActivity(), ApplicationLoader.getApplicationId() + ".provider", file));
+                    intent.setFlags(1);
+                } else {
+                    intent.putExtra("android.intent.extra.STREAM", Uri.fromFile(file));
+                }
+                ThemeActivity.this.startActivityForResult(Intent.createChooser(intent, LocaleController.getString("ShareFile", R.string.ShareFile)), 500);
+            } catch (Exception e5) {
+                FileLog.e(e5);
+            }
         }
 
         public void lambda$showOptionsForTheme$0(Theme.ThemeInfo themeInfo, AlertDialog alertDialog, int i) {
@@ -2270,7 +2521,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeListUpdated, new Object[0]);
         }
 
-        public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) throws IOException {
+        public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) {
             Theme.ThemeInfo currentNightTheme = ThemeActivity.this.currentType == 1 ? Theme.getCurrentNightTheme() : Theme.getCurrentTheme();
             if (i != themeAccentsListAdapter.getItemCount() - 1) {
                 Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) themeAccentsListAdapter.themeAccents.get(i);
@@ -2365,7 +2616,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             builder.setMessage(LocaleController.getString("DeleteThemeAlert", R.string.DeleteThemeAlert));
             builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i2) throws IOException {
+                public final void onClick(AlertDialog alertDialog, int i2) {
                     this.f$0.lambda$onCreateViewHolder$3(themeAccentsListAdapter, themeAccent, alertDialog, i2);
                 }
             });
@@ -2378,7 +2629,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$onCreateViewHolder$3(ThemeAccentsListAdapter themeAccentsListAdapter, Theme.ThemeAccent themeAccent, AlertDialog alertDialog, int i) throws IOException {
+        public void lambda$onCreateViewHolder$3(ThemeAccentsListAdapter themeAccentsListAdapter, Theme.ThemeAccent themeAccent, AlertDialog alertDialog, int i) {
             if (Theme.deleteThemeAccent(themeAccentsListAdapter.currentTheme, themeAccent, true)) {
                 Theme.refreshThemeColors();
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, Theme.getActiveTheme(), Boolean.valueOf(ThemeActivity.this.currentType == 1), null, -1);
@@ -2457,9 +2708,9 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     };
                     ThemeActivity.this.themesHorizontalListCell.setDrawDivider(ThemeActivity.this.hasThemeAccents);
                     ThemeActivity.this.themesHorizontalListCell.setFocusable(false);
-                    View view = ThemeActivity.this.themesHorizontalListCell;
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(148.0f)));
-                    notificationsCheckCell = view;
+                    ThemesHorizontalListCell themesHorizontalListCell = ThemeActivity.this.themesHorizontalListCell;
+                    themesHorizontalListCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(148.0f)));
+                    notificationsCheckCell = themesHorizontalListCell;
                     break;
                 case 12:
                     final TintRecyclerListView tintRecyclerListView = new TintRecyclerListView(this.mContext) {
@@ -2483,14 +2734,14 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     tintRecyclerListView.setAdapter(themeAccentsListAdapter);
                     tintRecyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
-                        public final void onItemClick(View view2, int i3) throws IOException {
-                            this.f$0.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView, view2, i3);
+                        public final void onItemClick(View view, int i3) {
+                            this.f$0.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView, view, i3);
                         }
                     });
                     tintRecyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
                         @Override
-                        public final boolean onItemClick(View view2, int i3) {
-                            return this.f$0.lambda$onCreateViewHolder$5(themeAccentsListAdapter, view2, i3);
+                        public final boolean onItemClick(View view, int i3) {
+                            return this.f$0.lambda$onCreateViewHolder$5(themeAccentsListAdapter, view, i3);
                         }
                     });
                     tintRecyclerListView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(62.0f)));
@@ -2508,7 +2759,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     notificationsCheckCell = new SwipeGestureSettingsView(this.mContext, ((BaseFragment) ThemeActivity.this).currentAccount);
                     break;
                 case 16:
-                    View view2 = new ThemePreviewMessagesCell(this.mContext, ((BaseFragment) ThemeActivity.this).parentLayout, i2) {
+                    ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(this.mContext, ((BaseFragment) ThemeActivity.this).parentLayout, i2) {
                         @Override
                         public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                             if (getParent() != null && getParent().getParent() != null) {
@@ -2517,13 +2768,13 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             return super.onInterceptTouchEvent(motionEvent);
                         }
                     };
-                    view2.setImportantForAccessibility(4);
-                    notificationsCheckCell = view2;
+                    themePreviewMessagesCell.setImportantForAccessibility(4);
+                    notificationsCheckCell = themePreviewMessagesCell;
                     break;
                 case 17:
                     Context context2 = this.mContext;
                     ThemeActivity themeActivity3 = ThemeActivity.this;
-                    View defaultThemesPreviewCell = new DefaultThemesPreviewCell(context2, themeActivity3, themeActivity3.currentType);
+                    DefaultThemesPreviewCell defaultThemesPreviewCell = new DefaultThemesPreviewCell(context2, themeActivity3, themeActivity3.currentType);
                     defaultThemesPreviewCell.setFocusable(false);
                     defaultThemesPreviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     notificationsCheckCell = defaultThemesPreviewCell;
@@ -2840,7 +3091,6 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         if (i != ThemeActivity.this.nightThemeRow) {
                             if (i == ThemeActivity.this.browserRow) {
                                 notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString(R.string.InappBrowser), LocaleController.getString(R.string.InappBrowserInfo), R.drawable.msg2_language, ThemeActivity.this.getMessagesController().isWebBrowserInAppEnabled(), 0, false, true);
-                                break;
                             }
                         } else {
                             boolean z = Theme.selectedAutoNightType != 0;
@@ -2857,14 +3107,12 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                                 currentNightThemeName = string3 + " " + currentNightThemeName;
                             }
                             notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), currentNightThemeName, R.drawable.menu_night_mode_24, z, 0, false, true);
-                            break;
                         }
                         break;
                     case 11:
                         if (this.first) {
                             ThemeActivity.this.themesHorizontalListCell.scrollToCurrentTheme(ThemeActivity.this.listView.getMeasuredWidth(), false);
                             this.first = false;
-                            break;
                         }
                         break;
                     case 12:
@@ -2877,7 +3125,6 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         }
                         if (iFindCurrentAccent != -1) {
                             ((LinearLayoutManager) recyclerListView.getLayoutManager()).scrollToPositionWithOffset(iFindCurrentAccent, (ThemeActivity.this.listView.getMeasuredWidth() / 2) - AndroidUtilities.dp(42.0f));
-                            break;
                         }
                         break;
                 }
@@ -3104,7 +3351,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         boolean z = !zIsCurrentThemeDay;
         if (this.lastIsDarkTheme != z) {
             this.lastIsDarkTheme = z;
-            this.sunDrawable.setCustomEndFrame(!zIsCurrentThemeDay ? r1.getFramesCount() - 1 : 0);
+            RLottieDrawable rLottieDrawable = this.sunDrawable;
+            rLottieDrawable.setCustomEndFrame(!zIsCurrentThemeDay ? rLottieDrawable.getFramesCount() - 1 : 0);
             this.menuItem.getIconView().playAnimation();
         }
         if (this.themeListRow2 >= 0) {

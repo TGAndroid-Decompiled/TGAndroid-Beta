@@ -311,7 +311,7 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         if (this.inputAmount.currency == AmountUtils$Currency.TON) {
             d = MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get();
         } else {
-            d = MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000 * 1.0E-5d;
+            d = ((double) MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000) * 1.0E-5d;
         }
         sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * d * 100.0d), "USD", 2));
         this.dollarsEqView.setText(sb, z);

@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -10,17 +11,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
 
 public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
@@ -284,8 +287,125 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 }
 
                 @Override
-                protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomSheetWithRecyclerListView.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
+                protected void onLayout(boolean z6, int i, int i2, int i3, int i4) {
+                    int paddingRight;
+                    int i5;
+                    int paddingLeft;
+                    int i6;
+                    int i7;
+                    int paddingTop;
+                    int measuredHeight;
+                    int measuredHeight2;
+                    if (BottomSheetWithRecyclerListView.this.editTextEmoji == null) {
+                        super.onLayout(z6, i, i2, i3, i4);
+                        return;
+                    }
+                    int childCount = getChildCount();
+                    int iMeasureKeyboardHeight = measureKeyboardHeight();
+                    int paddingBottom = getPaddingBottom();
+                    if (!((BottomSheet) BottomSheetWithRecyclerListView.this).keyboardVisible && BottomSheetWithRecyclerListView.this.editTextEmoji != null && iMeasureKeyboardHeight <= AndroidUtilities.dp(20.0f) && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                        paddingBottom += BottomSheetWithRecyclerListView.this.editTextEmoji.getEmojiPadding();
+                    }
+                    setBottomClip(paddingBottom);
+                    for (int i8 = 0; i8 < childCount; i8++) {
+                        View childAt = getChildAt(i8);
+                        if (childAt.getVisibility() != 8) {
+                            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                            int measuredWidth = childAt.getMeasuredWidth();
+                            int measuredHeight3 = childAt.getMeasuredHeight();
+                            int i9 = layoutParams.gravity;
+                            if (i9 == -1) {
+                                i9 = 51;
+                            }
+                            int i10 = i9 & 112;
+                            int i11 = i9 & 7;
+                            if (i11 == 1) {
+                                paddingRight = (((i3 - i) - measuredWidth) / 2) + layoutParams.leftMargin;
+                                i5 = layoutParams.rightMargin;
+                            } else {
+                                if (i11 == 5) {
+                                    paddingRight = (((i3 - i) - measuredWidth) - layoutParams.rightMargin) - getPaddingRight();
+                                    i5 = ((BottomSheet) BottomSheetWithRecyclerListView.this).backgroundPaddingLeft;
+                                } else {
+                                    paddingLeft = layoutParams.leftMargin + getPaddingLeft();
+                                }
+                                if (i10 != 16) {
+                                    i6 = ((((i4 - paddingBottom) - i2) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                    i7 = layoutParams.bottomMargin;
+                                } else {
+                                    if (i10 != 48) {
+                                        paddingTop = layoutParams.topMargin + getPaddingTop();
+                                    } else if (i10 != 80) {
+                                        i6 = ((i4 - paddingBottom) - i2) - measuredHeight3;
+                                        i7 = layoutParams.bottomMargin;
+                                    } else {
+                                        paddingTop = layoutParams.topMargin;
+                                    }
+                                    if (childAt instanceof EmojiView) {
+                                        if (AndroidUtilities.isTablet()) {
+                                            measuredHeight = getMeasuredHeight();
+                                            measuredHeight2 = childAt.getMeasuredHeight();
+                                        } else {
+                                            measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                            measuredHeight2 = childAt.getMeasuredHeight();
+                                        }
+                                        paddingTop = measuredHeight - measuredHeight2;
+                                    }
+                                    childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                                }
+                                paddingTop = i6 - i7;
+                                if (childAt instanceof EmojiView) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    } else {
+                                        measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    }
+                                    paddingTop = measuredHeight - measuredHeight2;
+                                }
+                                childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                            }
+                            paddingLeft = paddingRight - i5;
+                            if (i10 != 16) {
+                                i6 = ((((i4 - paddingBottom) - i2) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                i7 = layoutParams.bottomMargin;
+                            } else {
+                                if (i10 != 48) {
+                                    paddingTop = layoutParams.topMargin + getPaddingTop();
+                                } else if (i10 != 80) {
+                                    i6 = ((i4 - paddingBottom) - i2) - measuredHeight3;
+                                    i7 = layoutParams.bottomMargin;
+                                } else {
+                                    paddingTop = layoutParams.topMargin;
+                                }
+                                if (childAt instanceof EmojiView) {
+                                    if (AndroidUtilities.isTablet()) {
+                                        measuredHeight = getMeasuredHeight();
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    } else {
+                                        measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                        measuredHeight2 = childAt.getMeasuredHeight();
+                                    }
+                                    paddingTop = measuredHeight - measuredHeight2;
+                                }
+                                childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                            }
+                            paddingTop = i6 - i7;
+                            if (childAt instanceof EmojiView) {
+                                if (AndroidUtilities.isTablet()) {
+                                    measuredHeight = getMeasuredHeight();
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                } else {
+                                    measuredHeight = getMeasuredHeight() + iMeasureKeyboardHeight;
+                                    measuredHeight2 = childAt.getMeasuredHeight();
+                                }
+                                paddingTop = measuredHeight - measuredHeight2;
+                            }
+                            childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
+                        }
+                    }
+                    notifyHeightChanged();
                 }
             };
         }
@@ -523,16 +643,158 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         });
     }
 
-    public void postDrawInternal(android.graphics.Canvas r8, android.view.View r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomSheetWithRecyclerListView.postDrawInternal(android.graphics.Canvas, android.view.View):void");
+    public void postDrawInternal(Canvas canvas, View view) {
+        float f;
+        ActionBarType actionBarType = this.actionBarType;
+        if (actionBarType == ActionBarType.FADING) {
+            boolean z = this.showShadow;
+            if (z) {
+                float f2 = this.shadowAlpha;
+                if (f2 != 1.0f) {
+                    this.shadowAlpha = f2 + 0.10666667f;
+                    view.invalidate();
+                } else if (!z) {
+                    f = this.shadowAlpha;
+                    if (f != 0.0f) {
+                        this.shadowAlpha = f - 0.10666667f;
+                        view.invalidate();
+                    }
+                }
+            } else if (!z) {
+                f = this.shadowAlpha;
+                if (f != 0.0f) {
+                    this.shadowAlpha = f - 0.10666667f;
+                    view.invalidate();
+                }
+            }
+            this.shadowAlpha = Utilities.clamp(this.shadowAlpha, 1.0f, 0.0f);
+            ActionBar actionBar = this.actionBar;
+            if (actionBar != null && actionBar.getVisibility() == 0 && this.actionBar.getAlpha() != 0.0f && this.shadowAlpha != 0.0f) {
+                this.headerShadowDrawable.setBounds(this.backgroundPaddingLeft, this.actionBar.getBottom(), view.getMeasuredWidth() - this.backgroundPaddingLeft, this.actionBar.getBottom() + this.headerShadowDrawable.getIntrinsicHeight());
+                this.headerShadowDrawable.setAlpha((int) (this.actionBar.getAlpha() * 255.0f * this.shadowAlpha));
+                this.headerShadowDrawable.draw(canvas);
+                if (this.headerShadowDrawable.getAlpha() < 255) {
+                    view.invalidate();
+                }
+            }
+            this.wasDrawn = true;
+        } else if (actionBarType == ActionBarType.SLIDING && ((int) (this.shadowAlpha * 255.0f)) != 0 && this.showShadow) {
+            this.headerShadowDrawable.setBounds(this.backgroundPaddingLeft, this.actionBar.getBottom() + ((int) this.actionBar.getTranslationY()), view.getMeasuredWidth() - this.backgroundPaddingLeft, this.actionBar.getBottom() + ((int) this.actionBar.getTranslationY()) + this.headerShadowDrawable.getIntrinsicHeight());
+            this.headerShadowDrawable.setAlpha((int) (this.shadowAlpha * 255.0f));
+            this.headerShadowDrawable.draw(canvas);
+        }
+        if (this.restore) {
+            canvas.restore();
+            this.restore = false;
+        }
     }
 
     protected int getActionBarProgressHeight() {
         return AndroidUtilities.dp(56.0f);
     }
 
-    public void preDrawInternal(android.graphics.Canvas r13, android.view.View r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomSheetWithRecyclerListView.preDrawInternal(android.graphics.Canvas, android.view.View):void");
+    public void preDrawInternal(Canvas canvas, View view) {
+        int translationY;
+        float fDp;
+        this.restore = false;
+        if (this.hasFixedSize) {
+            return;
+        }
+        if (this.reverseLayout) {
+            int height = this.recyclerListView.getHeight();
+            for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+                View childAt = this.recyclerListView.getChildAt(i);
+                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
+                if (childAdapterPosition != -1 && childAdapterPosition != this.recyclerListView.getAdapter().getItemCount() - 1) {
+                    height = Math.min(height, childAt.getTop() + (this.takeTranslationIntoAccount ? (int) childAt.getTranslationY() : 0));
+                }
+            }
+            translationY = height - AndroidUtilities.dp(16.0f);
+        } else {
+            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(0);
+            int bottom = -AndroidUtilities.dp(16.0f);
+            if (viewHolderFindViewHolderForAdapterPosition != null) {
+                bottom = viewHolderFindViewHolderForAdapterPosition.itemView.getBottom() - AndroidUtilities.dp(16.0f);
+                if (this.takeTranslationIntoAccount) {
+                    translationY = ((int) viewHolderFindViewHolderForAdapterPosition.itemView.getTranslationY()) + bottom;
+                } else {
+                    translationY = bottom;
+                }
+            } else {
+                translationY = bottom;
+            }
+        }
+        int iLerp = (translationY - ((this.headerHeight + this.headerPaddingTop) + this.headerPaddingBottom)) + this.headerMoveTop;
+        if (this.showHandle && this.handleOffset) {
+            iLerp -= AndroidUtilities.dp(this.actionBarType == ActionBarType.SLIDING ? 8.0f : 16.0f);
+        }
+        float f = iLerp;
+        this.lastTop = f;
+        onSheetTop(f);
+        ActionBarType actionBarType = this.actionBarType;
+        float fLerp = 1.0f;
+        if (actionBarType == ActionBarType.FADING) {
+            fDp = 1.0f - ((AndroidUtilities.dp(16.0f) + iLerp) / getActionBarProgressHeight());
+            if (fDp < 0.0f) {
+                fDp = 0.0f;
+            }
+            AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, fDp != 0.0f, 1.0f, this.wasDrawn);
+        } else if (actionBarType == ActionBarType.SLIDING) {
+            float fMax = Math.max((((iLerp - this.headerMoveTop) + AndroidUtilities.dp(8.0f)) + this.headerPaddingTop) - AndroidUtilities.statusBarHeight, 0.0f);
+            float f2 = this.actionBarSlideProgress.set(fMax == 0.0f ? 1.0f : 0.0f);
+            if (f2 != 0.0f && f2 != 1.0f) {
+                canvas.save();
+                canvas.clipRect(0.0f, fMax, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+                this.restore = true;
+            }
+            this.shadowAlpha = f2;
+            fLerp = AndroidUtilities.lerp(1.0f, 0.5f, f2);
+            this.actionBar.backButtonImageView.setAlpha(f2);
+            onActionBarAlpha(f2);
+            this.actionBar.backButtonImageView.setScaleX(f2);
+            ImageView imageView = this.actionBar.backButtonImageView;
+            imageView.setPivotY(imageView.getMeasuredHeight() / 2.0f);
+            this.actionBar.backButtonImageView.setScaleY(f2);
+            SimpleTextView titleTextView = this.actionBar.getTitleTextView();
+            titleTextView.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - titleTextView.getLeft(), 0.0f, f2) + this.additionalTitleX);
+            if (this.centerTitle) {
+                titleTextView.setTranslationX(((this.actionBar.getMeasuredWidth() - titleTextView.getTextWidth()) / 2.0f) - titleTextView.getLeft());
+            }
+            this.actionBar.setTranslationY(fMax);
+            iLerp -= AndroidUtilities.lerp(0, (((this.headerTotalHeight - this.headerHeight) - this.headerPaddingTop) - this.headerPaddingBottom) + AndroidUtilities.dp(13.0f), f2);
+            this.actionBar.getBackground().setBounds(0, AndroidUtilities.lerp(this.actionBar.getHeight(), 0, f2), this.actionBar.getWidth(), this.actionBar.getHeight());
+            if (f2 > 0.5f) {
+                if (this.actionBarIgnoreTouchEvents) {
+                    this.actionBarIgnoreTouchEvents = false;
+                    this.actionBar.setTag(1);
+                }
+            } else if (!this.actionBarIgnoreTouchEvents) {
+                this.actionBarIgnoreTouchEvents = true;
+                this.actionBar.setTag(null);
+            }
+            fDp = f2;
+        } else {
+            fDp = 0.0f;
+        }
+        if (shouldDrawBackground()) {
+            if (needPaddingShadow()) {
+                this.shadowDrawable.setBounds(0, iLerp, view.getMeasuredWidth(), view.getMeasuredHeight());
+            } else {
+                this.shadowDrawable.setBounds(-AndroidUtilities.dp(6.0f), iLerp, view.getMeasuredWidth() + AndroidUtilities.dp(6.0f), view.getMeasuredHeight());
+            }
+            checkBackDrawableInsets();
+            this.shadowDrawable.draw(canvas);
+            if (this.showHandle && fLerp > 0.0f) {
+                int iDp = AndroidUtilities.dp(36.0f);
+                int iDp2 = AndroidUtilities.dp(20.0f) + iLerp;
+                this.handleRect.set((view.getMeasuredWidth() - iDp) / 2.0f, iDp2, (view.getMeasuredWidth() + iDp) / 2.0f, iDp2 + AndroidUtilities.dp(4.0f));
+                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_sheet_scrollUp));
+                Paint paint = Theme.dialogs_onlineCirclePaint;
+                paint.setAlpha((int) (paint.getAlpha() * fLerp));
+                canvas.drawRoundRect(this.handleRect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
+            }
+        }
+        onPreDraw(canvas, iLerp, fDp);
     }
 
     private void checkBackDrawableInsets() {

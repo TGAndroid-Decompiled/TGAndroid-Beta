@@ -600,16 +600,60 @@ public abstract class EntityView extends FrameLayout {
         }
     }
 
-    public void pan(float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.EntityView.pan(float, float):void");
+    public void pan(float f, float f2) {
+        int i;
+        PointF pointF = this.position;
+        pointF.x += f;
+        pointF.y += f2;
+        View view = (View) getParent();
+        if (view != null) {
+            int i2 = 3;
+            if (this.lastIsMultitouch) {
+                i = 0;
+            } else if (Math.abs(this.position.x - (view.getMeasuredWidth() / 2.0f)) <= AndroidUtilities.dp(12.0f) && this.position.y < view.getMeasuredHeight() - AndroidUtilities.dp(112.0f)) {
+                i = 2;
+            } else if (Math.abs((this.position.x - (((width() / 2.0f) + getStickyPaddingLeft()) * getScaleX())) - AndroidUtilities.dp(8.0f)) <= AndroidUtilities.dp(12.0f)) {
+                i = 1;
+            } else if (Math.abs((this.position.x + (((width() / 2.0f) - getStickyPaddingRight()) * getScaleX())) - (view.getMeasuredWidth() - AndroidUtilities.dp(8.0f))) <= AndroidUtilities.dp(12.0f)) {
+                i = 3;
+            } else {
+                i = 0;
+            }
+            if (this.stickyXRunnableValue != i) {
+                this.stickyXRunnableValue = i;
+                if (i == 0) {
+                    updateStickyX();
+                } else {
+                    AndroidUtilities.runOnUIThread(this.setStickyXRunnable, 250L);
+                }
+            }
+            if (this.lastIsMultitouch) {
+                i2 = 0;
+            } else if (Math.abs(this.position.y - (view.getMeasuredHeight() / 2.0f)) <= AndroidUtilities.dp(12.0f)) {
+                i2 = 2;
+            } else if (Math.abs((this.position.y - (((height() / 2.0f) + getStickyPaddingTop()) * getScaleY())) - AndroidUtilities.dp(64.0f)) <= AndroidUtilities.dp(12.0f)) {
+                i2 = 1;
+            } else if (Math.abs((this.position.y + (((height() / 2.0f) - getStickyPaddingBottom()) * getScaleY())) - (view.getMeasuredHeight() - AndroidUtilities.dp(64.0f))) > AndroidUtilities.dp(12.0f)) {
+                i2 = 0;
+            }
+            if (this.stickyYRunnableValue != i2) {
+                this.stickyYRunnableValue = i2;
+                if (i2 == 0) {
+                    updateStickyY();
+                } else {
+                    AndroidUtilities.runOnUIThread(this.setStickyYRunnable, 250L);
+                }
+            }
+        }
+        updatePosition();
     }
 
     private float width() {
-        return (float) ((Math.abs(Math.cos((getRotation() / 180.0f) * 3.141592653589793d)) * getMeasuredWidth()) + (Math.abs(Math.sin((getRotation() / 180.0f) * 3.141592653589793d)) * getMeasuredHeight()));
+        return (float) ((Math.abs(Math.cos(((double) (getRotation() / 180.0f)) * 3.141592653589793d)) * ((double) getMeasuredWidth())) + (Math.abs(Math.sin(((double) (getRotation() / 180.0f)) * 3.141592653589793d)) * ((double) getMeasuredHeight())));
     }
 
     private float height() {
-        return (float) ((Math.abs(Math.cos((getRotation() / 180.0f) * 3.141592653589793d)) * getMeasuredHeight()) + (Math.abs(Math.sin((getRotation() / 180.0f) * 3.141592653589793d)) * getMeasuredWidth()));
+        return (float) ((Math.abs(Math.cos(((double) (getRotation() / 180.0f)) * 3.141592653589793d)) * ((double) getMeasuredHeight())) + (Math.abs(Math.sin(((double) (getRotation() / 180.0f)) * 3.141592653589793d)) * ((double) getMeasuredWidth())));
     }
 
     protected float getPositionX() {
@@ -657,8 +701,10 @@ public abstract class EntityView extends FrameLayout {
     }
 
     protected void updatePosition() {
-        setX(getPositionX() - (getMeasuredWidth() / 2.0f));
-        setY(getPositionY() - (getMeasuredHeight() / 2.0f));
+        float measuredWidth = getMeasuredWidth() / 2.0f;
+        float measuredHeight = getMeasuredHeight() / 2.0f;
+        setX(getPositionX() - measuredWidth);
+        setY(getPositionY() - measuredHeight);
         updateSelectionView();
     }
 
@@ -692,27 +738,26 @@ public abstract class EntityView extends FrameLayout {
         boolean z = this.hasStickyAngle;
         if (!z && !this.lastIsMultitouch) {
             Iterator it = STICKY_ANGLES.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
+            while (it.hasNext()) {
                 final int iIntValue = ((Integer) it.next()).intValue();
                 if (Math.abs(iIntValue - f) < 4.0f) {
-                    if (this.stickyAngleRunnableValue != iIntValue) {
-                        this.stickyAngleRunnableValue = iIntValue;
-                        Runnable runnable = this.setStickyAngleRunnable;
-                        if (runnable != null) {
-                            AndroidUtilities.cancelRunOnUIThread(runnable);
-                        }
-                        Runnable runnable2 = new Runnable() {
-                            @Override
-                            public final void run() {
-                                this.f$0.lambda$rotate$4(iIntValue);
-                            }
-                        };
-                        this.setStickyAngleRunnable = runnable2;
-                        AndroidUtilities.runOnUIThread(runnable2, 250L);
+                    if (this.stickyAngleRunnableValue == iIntValue) {
+                        break;
                     }
+                    this.stickyAngleRunnableValue = iIntValue;
+                    Runnable runnable = this.setStickyAngleRunnable;
+                    if (runnable != null) {
+                        AndroidUtilities.cancelRunOnUIThread(runnable);
+                    }
+                    Runnable runnable2 = new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$rotate$4(iIntValue);
+                        }
+                    };
+                    this.setStickyAngleRunnable = runnable2;
+                    AndroidUtilities.runOnUIThread(runnable2, 250L);
+                    break;
                 }
             }
         } else if (z) {
@@ -954,8 +999,134 @@ public abstract class EntityView extends FrameLayout {
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r18) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.EntityView.SelectionView.onTouchEvent(android.view.MotionEvent):boolean");
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            boolean zOnTouchMove;
+            boolean z;
+            double dAtan2;
+            int actionMasked = motionEvent.getActionMasked();
+            EntityView.this.delegate.getTransformedTouch(motionEvent.getRawX(), motionEvent.getRawY(), EntityView.this.xy);
+            boolean z2 = motionEvent.getPointerCount() > 1 && this.currentHandle == 3;
+            if (z2) {
+                if (Build.VERSION.SDK_INT >= 29) {
+                    EntityView.this.delegate.getTransformedTouch(motionEvent.getRawX(1), motionEvent.getRawY(1), EntityView.this.xy2);
+                } else {
+                    z2 = false;
+                }
+            }
+            if (z2) {
+                EntityView.this.cxy[0] = (EntityView.this.xy[0] + EntityView.this.xy2[0]) / 2.0f;
+                EntityView.this.cxy[1] = (EntityView.this.xy[1] + EntityView.this.xy2[1]) / 2.0f;
+            } else {
+                EntityView.this.cxy[0] = EntityView.this.xy[0];
+                EntityView.this.cxy[1] = EntityView.this.xy[1];
+            }
+            if (EntityView.this.lastIsMultitouch != z2) {
+                EntityView entityView = EntityView.this;
+                entityView.previousLocationX = entityView.xy[0];
+                EntityView entityView2 = EntityView.this;
+                entityView2.previousLocationY = entityView2.xy[1];
+                EntityView entityView3 = EntityView.this;
+                entityView3.previousLocationX2 = entityView3.xy2[0];
+                EntityView entityView4 = EntityView.this;
+                entityView4.previousLocationY2 = entityView4.xy2[1];
+                EntityView entityView5 = EntityView.this;
+                entityView5.previousLocationCX = entityView5.cxy[0];
+                EntityView entityView6 = EntityView.this;
+                entityView6.previousLocationCY = entityView6.cxy[1];
+                hide(z2);
+            }
+            EntityView.this.lastIsMultitouch = z2;
+            float f = EntityView.this.cxy[0];
+            float f2 = EntityView.this.cxy[1];
+            if (actionMasked == 0) {
+                EntityView.this.hadMultitouch = false;
+                int iPointInsideHandle = pointInsideHandle(motionEvent.getX(), motionEvent.getY());
+                if (iPointInsideHandle != 0) {
+                    this.currentHandle = iPointInsideHandle;
+                    EntityView entityView7 = EntityView.this;
+                    entityView7.previousLocationX = entityView7.xy[0];
+                    EntityView entityView8 = EntityView.this;
+                    entityView8.previousLocationY = entityView8.xy[1];
+                    EntityView.this.previousLocationCX = f;
+                    EntityView.this.previousLocationCY = f2;
+                    EntityView.this.hasReleased = false;
+                    if (getParent() instanceof EntitiesContainerView) {
+                        ((EntitiesContainerView) getParent()).invalidate();
+                    }
+                    if (iPointInsideHandle == 3 && EntityView.this.allowLongPressOnSelected()) {
+                        AndroidUtilities.runOnUIThread(EntityView.this.longPressRunnable, ViewConfiguration.getLongPressTimeout());
+                    }
+                    zOnTouchMove = true;
+                } else {
+                    zOnTouchMove = false;
+                }
+            } else if (actionMasked == 1) {
+                EntityView entityView9 = EntityView.this;
+                if (actionMasked == 3) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                entityView9.onTouchUp(z);
+                this.currentHandle = 0;
+                hide(false);
+                zOnTouchMove = true;
+            } else {
+                if (actionMasked == 2) {
+                    int i = this.currentHandle;
+                    if (i == 3) {
+                        EntityView entityView10 = EntityView.this;
+                        zOnTouchMove = entityView10.onTouchMove(entityView10.xy[0], EntityView.this.xy[1], z2, EntityView.this.xy2[0], EntityView.this.xy2[1]);
+                    } else if (i != 0) {
+                        float f3 = f - EntityView.this.previousLocationX;
+                        float f4 = f2 - EntityView.this.previousLocationY;
+                        if (EntityView.this.hasTransformed || Math.abs(f3) > AndroidUtilities.dp(2.0f) || Math.abs(f4) > AndroidUtilities.dp(2.0f)) {
+                            if (!EntityView.this.hasTransformed && EntityView.this.delegate != null) {
+                                EntityView.this.delegate.onEntityHandleTouched();
+                            }
+                            EntityView.this.hasTransformed = true;
+                            AndroidUtilities.cancelRunOnUIThread(EntityView.this.longPressRunnable);
+                            int[] centerLocation = EntityView.this.delegate.getCenterLocation(EntityView.this);
+                            float fDistance = MathUtils.distance(centerLocation[0], centerLocation[1], EntityView.this.previousLocationX, EntityView.this.previousLocationY);
+                            float fDistance2 = MathUtils.distance(centerLocation[0], centerLocation[1], f, f2);
+                            float f5 = 0.0f;
+                            if (fDistance > 0.0f) {
+                                EntityView.this.scale(fDistance2 / fDistance);
+                            }
+                            int i2 = this.currentHandle;
+                            if (i2 == 1) {
+                                dAtan2 = Math.atan2(centerLocation[1] - f2, centerLocation[0] - f);
+                            } else {
+                                if (i2 == 2) {
+                                    dAtan2 = Math.atan2(f2 - centerLocation[1], f - centerLocation[0]);
+                                }
+                                EntityView.this.rotate((float) Math.toDegrees(f5));
+                                EntityView.this.previousLocationX = f;
+                                EntityView.this.previousLocationY = f2;
+                            }
+                            f5 = (float) dAtan2;
+                            EntityView.this.rotate((float) Math.toDegrees(f5));
+                            EntityView.this.previousLocationX = f;
+                            EntityView.this.previousLocationY = f2;
+                        }
+                        zOnTouchMove = true;
+                    }
+                } else if (actionMasked == 3) {
+                    EntityView entityView11 = EntityView.this;
+                    if (actionMasked == 3) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    entityView11.onTouchUp(z);
+                    this.currentHandle = 0;
+                    hide(false);
+                    zOnTouchMove = true;
+                }
+                zOnTouchMove = false;
+            }
+            EntityView.this.hadMultitouch = z2;
+            return super.onTouchEvent(motionEvent) || zOnTouchMove;
         }
 
         public void hide(boolean z) {

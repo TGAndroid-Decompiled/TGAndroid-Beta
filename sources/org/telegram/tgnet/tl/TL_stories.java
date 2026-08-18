@@ -13,8 +13,6 @@ import org.telegram.tgnet.TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLa
 import org.telegram.tgnet.TLRPC$TL_messageReactions$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.Vector$$ExternalSyntheticLambda3;
-import org.telegram.tgnet.tl.TL_stats;
-import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public class TL_stories {

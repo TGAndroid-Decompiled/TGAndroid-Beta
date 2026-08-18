@@ -9,7 +9,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.AppIconsSelectorCell;
-import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.LauncherIconController;
 
 public class AppIconBulletinLayout extends Bulletin.ButtonLayout {

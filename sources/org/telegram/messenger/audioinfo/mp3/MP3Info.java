@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.telegram.messenger.audioinfo.AudioInfo;
-import org.telegram.messenger.audioinfo.mp3.MP3Frame;
 
 public class MP3Info extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(MP3Info.class.getName());
@@ -151,10 +150,11 @@ public class MP3Info extends AudioInfo {
     long calculateDuration(MP3Input mP3Input, long j, StopReadCondition stopReadCondition) throws MP3Exception, IOException {
         MP3Frame firstFrame = readFirstFrame(mP3Input, stopReadCondition);
         if (firstFrame != null) {
-            if (firstFrame.getNumberOfFrames() > 0) {
-                return firstFrame.getHeader().getTotalDuration(r4 * firstFrame.getSize());
+            int numberOfFrames = firstFrame.getNumberOfFrames();
+            if (numberOfFrames > 0) {
+                return firstFrame.getHeader().getTotalDuration(numberOfFrames * firstFrame.getSize());
             }
-            long position = mP3Input.getPosition() - firstFrame.getSize();
+            long position = mP3Input.getPosition() - ((long) firstFrame.getSize());
             long size = firstFrame.getSize();
             int bitrate = firstFrame.getHeader().getBitrate();
             long j2 = bitrate;
@@ -172,12 +172,12 @@ public class MP3Info extends AudioInfo {
                     if (bitrate2 != bitrate) {
                         z = true;
                     }
-                    j2 += bitrate2;
-                    size += firstFrame.getSize();
+                    j2 += (long) bitrate2;
+                    size += (long) firstFrame.getSize();
                     i++;
                     duration = i2;
                 } else {
-                    return (((size * 1000) * i) * 8) / j2;
+                    return (((size * 1000) * ((long) i)) * 8) / j2;
                 }
             }
         } else {

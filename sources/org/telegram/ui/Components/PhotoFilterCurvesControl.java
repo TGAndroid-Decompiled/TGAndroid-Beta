@@ -9,7 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.PhotoFilterView;
 
 public class PhotoFilterCurvesControl extends View {
     private int activeSegment;
@@ -70,8 +69,87 @@ public class PhotoFilterCurvesControl extends View {
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoFilterCurvesControl.onTouchEvent(android.view.MotionEvent):boolean");
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        float x;
+        float y;
+        RectOld rectOld;
+        float f;
+        float f2;
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            if (motionEvent.getPointerCount() == 1) {
+                if (this.checkForMoving && !this.isMoving) {
+                    x = motionEvent.getX();
+                    y = motionEvent.getY();
+                    this.lastX = x;
+                    this.lastY = y;
+                    rectOld = this.actualArea;
+                    f = rectOld.x;
+                    if (x >= f && x <= f + rectOld.width) {
+                        f2 = rectOld.y;
+                        if (y >= f2 && y <= f2 + rectOld.height) {
+                            this.isMoving = true;
+                        }
+                    }
+                    this.checkForMoving = false;
+                    if (this.isMoving) {
+                        handlePan(1, motionEvent);
+                    }
+                }
+            } else if (this.isMoving) {
+                handlePan(3, motionEvent);
+                this.checkForMoving = true;
+                this.isMoving = false;
+            }
+        } else if (actionMasked == 1) {
+            if (this.isMoving) {
+                handlePan(3, motionEvent);
+                this.isMoving = false;
+            }
+            this.checkForMoving = true;
+        } else if (actionMasked != 2) {
+            if (actionMasked == 3) {
+                if (this.isMoving) {
+                    handlePan(3, motionEvent);
+                    this.isMoving = false;
+                }
+                this.checkForMoving = true;
+            } else if (actionMasked != 5) {
+                if (actionMasked == 6) {
+                    if (this.isMoving) {
+                        handlePan(3, motionEvent);
+                        this.isMoving = false;
+                    }
+                    this.checkForMoving = true;
+                }
+            } else if (motionEvent.getPointerCount() == 1) {
+                if (this.checkForMoving) {
+                    x = motionEvent.getX();
+                    y = motionEvent.getY();
+                    this.lastX = x;
+                    this.lastY = y;
+                    rectOld = this.actualArea;
+                    f = rectOld.x;
+                    if (x >= f) {
+                        f2 = rectOld.y;
+                        if (y >= f2) {
+                            this.isMoving = true;
+                        }
+                    }
+                    this.checkForMoving = false;
+                    if (this.isMoving) {
+                        handlePan(1, motionEvent);
+                    }
+                }
+            } else if (this.isMoving) {
+                handlePan(3, motionEvent);
+                this.checkForMoving = true;
+                this.isMoving = false;
+            }
+        } else if (this.isMoving) {
+            handlePan(2, motionEvent);
+        }
+        return true;
     }
 
     private void handlePan(int i, MotionEvent motionEvent) {

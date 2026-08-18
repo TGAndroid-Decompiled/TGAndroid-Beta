@@ -143,12 +143,14 @@ public class Scroller {
                 float[] fArr = SPLINE;
                 float f4 = fArr[i3];
                 float f5 = f4 + (((f2 - f3) / ((i4 / 100.0f) - f3)) * (fArr[i4] - f4));
-                int iRound = this.mStartX + Math.round((this.mFinalX - r0) * f5);
+                int i5 = this.mStartX;
+                int iRound = i5 + Math.round((this.mFinalX - i5) * f5);
                 this.mCurrX = iRound;
                 int iMin = Math.min(iRound, this.mMaxX);
                 this.mCurrX = iMin;
                 this.mCurrX = Math.max(iMin, this.mMinX);
-                int iRound2 = this.mStartY + Math.round(f5 * (this.mFinalY - r0));
+                int i6 = this.mStartY;
+                int iRound2 = i6 + Math.round(f5 * (this.mFinalY - i6));
                 this.mCurrY = iRound2;
                 int iMin2 = Math.min(iRound2, this.mMaxY);
                 this.mCurrY = iMin2;
@@ -180,8 +182,96 @@ public class Scroller {
         this.mDurationReciprocal = 1.0f / this.mDuration;
     }
 
-    public void fling(int r17, int r18, int r19, int r20, int r21, int r22, int r23, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Scroller.fling(int, int, int, int, int, int, int, int):void");
+    public void fling(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+        int i9;
+        int i10;
+        float fSqrt;
+        float f;
+        if (this.mFlywheel && !this.mFinished) {
+            float currVelocity = getCurrVelocity();
+            float f2 = this.mFinalX - this.mStartX;
+            float f3 = this.mFinalY - this.mStartY;
+            float fSqrt2 = (float) Math.sqrt((f2 * f2) + (f3 * f3));
+            float f4 = (f2 / fSqrt2) * currVelocity;
+            float f5 = (f3 / fSqrt2) * currVelocity;
+            i9 = i3;
+            float f6 = i9;
+            if (Math.signum(f6) == Math.signum(f4)) {
+                i10 = i4;
+                float f7 = i10;
+                if (Math.signum(f7) == Math.signum(f5)) {
+                    i9 = (int) (f6 + f4);
+                    i10 = (int) (f7 + f5);
+                }
+            }
+            this.mMode = 1;
+            this.mFinished = false;
+            fSqrt = (float) Math.sqrt((i9 * i9) + (i10 * i10));
+            this.mVelocity = fSqrt;
+            double dLog = Math.log((START_TENSION * fSqrt) / 800.0f);
+            this.mDuration = (int) (Math.exp(dLog / (((double) DECELERATION_RATE) - 1.0d)) * 1000.0d);
+            this.mStartTime = AnimationUtils.currentAnimationTimeMillis();
+            this.mStartX = i;
+            this.mStartY = i2;
+            if (fSqrt == 0.0f) {
+                f = 1.0f;
+            } else {
+                f = i9 / fSqrt;
+            }
+            float f8 = fSqrt != 0.0f ? i10 / fSqrt : 1.0f;
+            double d = DECELERATION_RATE;
+            int iExp = (int) (((double) 800.0f) * Math.exp((d / (d - 1.0d)) * dLog));
+            this.mMinX = i5;
+            this.mMaxX = i6;
+            this.mMinY = i7;
+            this.mMaxY = i8;
+            float f9 = iExp;
+            int iRound = i + Math.round(f * f9);
+            this.mFinalX = iRound;
+            int iMin = Math.min(iRound, this.mMaxX);
+            this.mFinalX = iMin;
+            this.mFinalX = Math.max(iMin, this.mMinX);
+            int iRound2 = Math.round(f9 * f8) + i2;
+            this.mFinalY = iRound2;
+            int iMin2 = Math.min(iRound2, this.mMaxY);
+            this.mFinalY = iMin2;
+            this.mFinalY = Math.max(iMin2, this.mMinY);
+        }
+        i9 = i3;
+        i10 = i4;
+        this.mMode = 1;
+        this.mFinished = false;
+        fSqrt = (float) Math.sqrt((i9 * i9) + (i10 * i10));
+        this.mVelocity = fSqrt;
+        double dLog2 = Math.log((START_TENSION * fSqrt) / 800.0f);
+        this.mDuration = (int) (Math.exp(dLog2 / (((double) DECELERATION_RATE) - 1.0d)) * 1000.0d);
+        this.mStartTime = AnimationUtils.currentAnimationTimeMillis();
+        this.mStartX = i;
+        this.mStartY = i2;
+        if (fSqrt == 0.0f) {
+            f = 1.0f;
+        } else {
+            f = i9 / fSqrt;
+        }
+        if (fSqrt != 0.0f) {
+        }
+        double d2 = DECELERATION_RATE;
+        int iExp2 = (int) (((double) 800.0f) * Math.exp((d2 / (d2 - 1.0d)) * dLog2));
+        this.mMinX = i5;
+        this.mMaxX = i6;
+        this.mMinY = i7;
+        this.mMaxY = i8;
+        float f10 = iExp2;
+        int iRound3 = i + Math.round(f * f10);
+        this.mFinalX = iRound3;
+        int iMin3 = Math.min(iRound3, this.mMaxX);
+        this.mFinalX = iMin3;
+        this.mFinalX = Math.max(iMin3, this.mMinX);
+        int iRound4 = Math.round(f10 * f8) + i2;
+        this.mFinalY = iRound4;
+        int iMin4 = Math.min(iRound4, this.mMaxY);
+        this.mFinalY = iMin4;
+        this.mFinalY = Math.max(iMin4, this.mMinY);
     }
 
     static float viscousFluid(float f) {

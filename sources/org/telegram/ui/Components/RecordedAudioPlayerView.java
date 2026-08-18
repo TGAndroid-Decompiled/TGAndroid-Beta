@@ -15,8 +15,6 @@ import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.VideoPlayer;
 
 public class RecordedAudioPlayerView extends View {
     public boolean allowDraw;
@@ -178,11 +176,13 @@ public class RecordedAudioPlayerView extends View {
         if (this.destroyed) {
             z = false;
         }
-        if (this.player != null) {
-            float currentPosition = r0.getCurrentPosition() / this.player.getDuration();
+        VideoPlayer videoPlayer = this.player;
+        if (videoPlayer != null) {
+            float currentPosition = videoPlayer.getCurrentPosition() / this.player.getDuration();
             float f = this.left;
             if (currentPosition < f || currentPosition > this.right) {
-                this.player.seekTo((long) (f * r0.getDuration()));
+                VideoPlayer videoPlayer2 = this.player;
+                videoPlayer2.seekTo((long) (f * videoPlayer2.getDuration()));
             }
             this.player.setPlayWhenReady(z);
         }
@@ -200,7 +200,8 @@ public class RecordedAudioPlayerView extends View {
             float currentPosition = this.player.getCurrentPosition() / this.player.getDuration();
             float f = this.left;
             if (currentPosition < f) {
-                this.player.seekTo((long) (f * r1.getDuration()));
+                VideoPlayer videoPlayer2 = this.player;
+                videoPlayer2.seekTo((long) (f * videoPlayer2.getDuration()));
             } else if (currentPosition > this.right) {
                 zIsPlaying = false;
                 setPlaying(false);
@@ -269,7 +270,7 @@ public class RecordedAudioPlayerView extends View {
     }
 
     public double getNewDuration() {
-        return ((this.right - this.left) * getDuration()) / 1000.0d;
+        return ((double) ((this.right - this.left) * getDuration())) / 1000.0d;
     }
 
     @Override
@@ -318,7 +319,8 @@ public class RecordedAudioPlayerView extends View {
         if (this.progressPressed) {
             fClamp = this.holdProgress;
         } else {
-            fClamp = Utilities.clamp(this.player != null ? r1.getCurrentPosition() / this.player.getDuration() : 1.0f, this.right, this.left);
+            VideoPlayer videoPlayer = this.player;
+            fClamp = Utilities.clamp(videoPlayer != null ? videoPlayer.getCurrentPosition() / this.player.getDuration() : 1.0f, this.right, this.left);
         }
         float fClamp2 = Utilities.clamp(AndroidUtilities.lerp(rectF.left + AndroidUtilities.dp(13.0f), rectF.right - AndroidUtilities.dp(14.0f), fClamp), f3, f2);
         if (fClamp2 < f3) {
@@ -429,7 +431,8 @@ public class RecordedAudioPlayerView extends View {
             this.progressPressed = z3;
             if (z3) {
                 this.progressPressedWasPlaying = isPlaying();
-                this.holdProgress = this.player != null ? r0.getCurrentPosition() / this.player.getDuration() : 1.0f;
+                VideoPlayer videoPlayer = this.player;
+                this.holdProgress = videoPlayer != null ? videoPlayer.getCurrentPosition() / this.player.getDuration() : 1.0f;
                 setPlaying(false);
             }
             if (getParent() != null && (this.playPressed || this.leftPressed || this.rightPressed || this.progressPressed)) {
@@ -443,11 +446,11 @@ public class RecordedAudioPlayerView extends View {
                 this.right = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), this.backgroundRect.left + AndroidUtilities.dp(11.33f), this.backgroundRect.right - AndroidUtilities.dp(11.33f)), 1.0f, Utilities.clamp01(this.left + Math.max(1.0f / this.duration, AndroidUtilities.dp(30.0f) / (this.backgroundRect.width() - AndroidUtilities.dp(22.66f)))));
                 invalidate();
             } else if (this.progressPressed) {
-                VideoPlayer videoPlayer = this.player;
-                if (videoPlayer != null) {
+                VideoPlayer videoPlayer2 = this.player;
+                if (videoPlayer2 != null) {
                     float fClamp = Utilities.clamp(AndroidUtilities.ilerp(motionEvent.getX(), this.backgroundRect.left + AndroidUtilities.dp(11.33f), this.backgroundRect.right - AndroidUtilities.dp(11.33f)), this.right, this.left);
                     this.holdProgress = fClamp;
-                    videoPlayer.seekTo((long) (fClamp * this.player.getDuration()));
+                    videoPlayer2.seekTo((long) (fClamp * this.player.getDuration()));
                 }
                 invalidate();
             }
@@ -456,15 +459,15 @@ public class RecordedAudioPlayerView extends View {
             if (motionEvent.getAction() == 1 && this.playPressed) {
                 setPlaying(!isPlaying());
             } else if (this.leftPressed && this.wasPlaying) {
-                VideoPlayer videoPlayer2 = this.player;
-                if (videoPlayer2 != null) {
-                    videoPlayer2.seekTo((long) (this.left * videoPlayer2.getDuration()));
+                VideoPlayer videoPlayer3 = this.player;
+                if (videoPlayer3 != null) {
+                    videoPlayer3.seekTo((long) (this.left * videoPlayer3.getDuration()));
                 }
                 setPlaying(true);
             } else if (this.rightPressed && this.wasPlaying) {
-                VideoPlayer videoPlayer3 = this.player;
-                if (videoPlayer3 != null) {
-                    videoPlayer3.seekTo(Math.max((long) (this.left * videoPlayer3.getDuration()), ((long) (this.right * this.player.getDuration())) - 1500));
+                VideoPlayer videoPlayer4 = this.player;
+                if (videoPlayer4 != null) {
+                    videoPlayer4.seekTo(Math.max((long) (this.left * videoPlayer4.getDuration()), ((long) (this.right * this.player.getDuration())) - 1500));
                 }
                 setPlaying(true);
             } else if (this.progressPressed && !isPlaying()) {

@@ -1,7 +1,6 @@
 package org.telegram.ui.Stories;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.view.MotionEvent;
@@ -15,9 +14,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Stories.PeerStoriesView;
-import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.Stories.StoryViewer;
 
 public abstract class StoriesViewPager extends ViewPager {
     int currentAccount;
@@ -45,7 +41,7 @@ public abstract class StoriesViewPager extends ViewPager {
 
     public abstract void onStateChanged();
 
-    public StoriesViewPager(int i, final Context context, final StoryViewer storyViewer, final Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
+    public StoriesViewPager(int i, final Context context, final StoryViewer storyViewer, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.dialogs = new ArrayList();
         this.touchEnabled = true;
@@ -78,7 +74,7 @@ public abstract class StoriesViewPager extends ViewPager {
             }
 
             @Override
-            public Object instantiateItem(ViewGroup viewGroup, int i2) throws Resources.NotFoundException {
+            public Object instantiateItem(ViewGroup viewGroup, int i2) {
                 PeerStoriesView peerStoriesView;
                 PageLayout pageLayout = StoriesViewPager.this.new PageLayout(context);
                 if (!this.cachedViews.isEmpty()) {
@@ -135,7 +131,7 @@ public abstract class StoriesViewPager extends ViewPager {
         setAdapter(pagerAdapter);
         setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
-            public final void transformPage(View view, float f) throws Resources.NotFoundException {
+            public final void transformPage(View view, float f) {
                 this.f$0.lambda$new$1(view, f);
             }
         });
@@ -180,13 +176,13 @@ public abstract class StoriesViewPager extends ViewPager {
         setOverScrollMode(2);
     }
 
-    public void lambda$new$1(View view, float f) throws Resources.NotFoundException {
+    public void lambda$new$1(View view, float f) {
         final PageLayout pageLayout = (PageLayout) view;
         if (Math.abs(f) >= 1.0f) {
             pageLayout.setVisible(false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() {
                     StoriesViewPager.lambda$new$0(pageLayout);
                 }
             }, 16L);
@@ -207,7 +203,7 @@ public abstract class StoriesViewPager extends ViewPager {
         view.setRotationY(f * 90.0f);
     }
 
-    public static void lambda$new$0(PageLayout pageLayout) throws Resources.NotFoundException {
+    public static void lambda$new$0(PageLayout pageLayout) {
         ArrayList arrayList = pageLayout.day;
         if (arrayList != null) {
             pageLayout.peerStoryView.day = arrayList;
@@ -224,19 +220,13 @@ public abstract class StoriesViewPager extends ViewPager {
 
     public void checkAllowScreenshots() {
         boolean z = false;
-        int i = 0;
-        while (true) {
-            if (i >= getChildCount()) {
-                z = true;
-                break;
-            }
+        for (int i = 0; i < getChildCount(); i++) {
             PageLayout pageLayout = (PageLayout) getChildAt(i);
             if (pageLayout.isVisible && !pageLayout.peerStoryView.currentStory.allowScreenshots()) {
-                break;
-            } else {
-                i++;
+                this.storyViewer.allowScreenshots(z);
             }
         }
+        z = true;
         this.storyViewer.allowScreenshots(z);
     }
 
@@ -336,7 +326,7 @@ public abstract class StoriesViewPager extends ViewPager {
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws Resources.NotFoundException {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         if (this.updateDelegate) {
             this.updateDelegate = false;
@@ -499,7 +489,7 @@ public abstract class StoriesViewPager extends ViewPager {
             }
         }
 
-        public void setVisible(boolean z) throws Resources.NotFoundException {
+        public void setVisible(boolean z) {
             if (this.isVisible != z) {
                 this.isVisible = z;
                 invalidate();
@@ -509,7 +499,7 @@ public abstract class StoriesViewPager extends ViewPager {
         }
     }
 
-    public void setCurrentDate(long j, int i) throws Resources.NotFoundException {
+    public void setCurrentDate(long j, int i) {
         for (int i2 = 0; i2 < this.days.size(); i2++) {
             if (j == StoriesController.StoriesList.day(this.storyViewer.storiesList.findMessageObject(((Integer) ((ArrayList) this.days.get(i2)).get(0)).intValue()))) {
                 int size = this.storyViewer.reversed ? (this.days.size() - 1) - i2 : i2;

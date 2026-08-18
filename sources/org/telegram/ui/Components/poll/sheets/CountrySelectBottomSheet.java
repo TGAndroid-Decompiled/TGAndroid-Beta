@@ -15,7 +15,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Map;
 import j$.util.function.BiConsumer$CC;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -380,7 +379,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
     public void lambda$loadCountries$6(Pair pair) {
         this.countriesMap.putAll((Map) pair.first);
         this.countriesLetters.addAll((Collection) pair.second);
-        Map.EL.forEach(this.countriesMap, new BiConsumer() {
+        j$.util.Map.EL.forEach(this.countriesMap, new BiConsumer() {
             @Override
             public final void accept(Object obj, Object obj2) {
                 this.f$0.lambda$loadCountries$5((String) obj, (List) obj2);

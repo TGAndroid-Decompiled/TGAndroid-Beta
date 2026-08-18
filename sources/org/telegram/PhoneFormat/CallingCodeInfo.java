@@ -11,9 +11,7 @@ public class CallingCodeInfo {
     public ArrayList ruleSets = new ArrayList();
 
     String matchingAccessCode(String str) {
-        Iterator it = this.intlPrefixes.iterator();
-        while (it.hasNext()) {
-            String str2 = (String) it.next();
+        for (String str2 : this.intlPrefixes) {
             if (str.startsWith(str2)) {
                 return str2;
             }
@@ -22,9 +20,7 @@ public class CallingCodeInfo {
     }
 
     String matchingTrunkCode(String str) {
-        Iterator it = this.trunkPrefixes.iterator();
-        while (it.hasNext()) {
-            String str2 = (String) it.next();
+        for (String str2 : this.trunkPrefixes) {
             if (str.startsWith(str2)) {
                 return str2;
             }

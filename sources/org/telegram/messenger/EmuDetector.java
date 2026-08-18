@@ -3,13 +3,13 @@ package org.telegram.messenger;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import androidx.core.content.ContextCompat;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -133,7 +133,39 @@ public class EmuDetector {
     }
 
     private boolean checkBasic() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.EmuDetector.checkBasic():boolean");
+        boolean z;
+        boolean z2 = false;
+        if (Build.BOARD.toLowerCase().contains("nox") || Build.BOOTLOADER.toLowerCase().contains("nox") || Build.FINGERPRINT.startsWith("generic")) {
+            z = true;
+        } else {
+            String str = Build.MODEL;
+            if (str.toLowerCase().contains("google_sdk") || str.toLowerCase().contains("droid4x") || str.toLowerCase().contains("emulator") || str.contains("Android SDK built for x86") || Build.MANUFACTURER.toLowerCase().contains("genymotion")) {
+                z = true;
+            } else {
+                String str2 = Build.HARDWARE;
+                if (str2.toLowerCase().contains("goldfish") || str2.toLowerCase().contains("vbox86") || str2.toLowerCase().contains("android_x86") || str2.toLowerCase().contains("nox") || str2.toLowerCase().contains("ranchu")) {
+                    z = true;
+                } else {
+                    String str3 = Build.PRODUCT;
+                    if (str3.equals("sdk") || str3.equals("google_sdk") || str3.equals("sdk_x86") || str3.equals("vbox86p") || str3.toLowerCase().contains("nox") || Build.SERIAL.toLowerCase().contains("nox")) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                }
+            }
+        }
+        if (z) {
+            return true;
+        }
+        if (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic")) {
+            z2 = true;
+        }
+        boolean z3 = z | z2;
+        if (z3) {
+            return true;
+        }
+        return z3 | "google_sdk".equals(Build.PRODUCT);
     }
 
     private boolean checkAdvanced() {
@@ -192,7 +224,7 @@ public class EmuDetector {
         return ((TelephonyManager) this.mContext.getSystemService("phone")).getNetworkOperatorName().equalsIgnoreCase("android");
     }
 
-    private boolean checkQEmuDrivers() throws IOException {
+    private boolean checkQEmuDrivers() {
         File[] fileArr = {new File("/proc/tty/drivers"), new File("/proc/cpuinfo")};
         for (int i = 0; i < 2; i++) {
             File file = fileArr[i];
@@ -235,7 +267,7 @@ public class EmuDetector {
         return false;
     }
 
-    private boolean checkQEmuProps() throws ClassNotFoundException {
+    private boolean checkQEmuProps() {
         int i = 0;
         for (Property property : PROPERTIES) {
             String prop = getProp(this.mContext, property.name);
@@ -250,7 +282,7 @@ public class EmuDetector {
         return i >= 5;
     }
 
-    private boolean checkIp() throws IOException {
+    private boolean checkIp() {
         if (ContextCompat.checkSelfPermission(this.mContext, "android.permission.INTERNET") != 0) {
             return false;
         }
@@ -280,7 +312,7 @@ public class EmuDetector {
         return false;
     }
 
-    private String getProp(Context context, String str) throws ClassNotFoundException {
+    private String getProp(Context context, String str) {
         try {
             Class<?> clsLoadClass = context.getClassLoader().loadClass("android.os.SystemProperties");
             return (String) clsLoadClass.getMethod("get", String.class).invoke(clsLoadClass, str);

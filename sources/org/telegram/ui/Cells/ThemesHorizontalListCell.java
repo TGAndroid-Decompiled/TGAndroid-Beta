@@ -31,7 +31,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -94,7 +93,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IOException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             ArrayList arrayList;
             int size;
             InnerThemeView innerThemeView = (InnerThemeView) viewHolder.itemView;
@@ -202,11 +201,12 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         }
 
         public boolean parseTheme() {
+            Theme.ThemeInfo themeInfo;
             int iStringKeyToInt;
             int iIntValue;
             String[] strArrSplit;
-            Theme.ThemeInfo themeInfo = this.themeInfo;
-            if (themeInfo == null || themeInfo.pathToFile == null) {
+            Theme.ThemeInfo themeInfo2 = this.themeInfo;
+            if (themeInfo2 == null || themeInfo2.pathToFile == null) {
                 return false;
             }
             try {
@@ -221,16 +221,12 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                         }
                         int i3 = i;
                         int i4 = 0;
-                        int i5 = 0;
-                        while (true) {
-                            if (i4 >= i2) {
-                                break;
-                            }
+                        for (int i5 = 0; i5 < i2; i5++) {
                             byte[] bArr = ThemesHorizontalListCell.bytes;
-                            if (bArr[i4] == 10) {
-                                int i6 = i4 - i5;
+                            if (bArr[i5] == 10) {
+                                int i6 = i5 - i4;
                                 int i7 = i6 + 1;
-                                String str = new String(bArr, i5, i6, "UTF-8");
+                                String str = new String(bArr, i4, i6, "UTF-8");
                                 if (str.startsWith("WLS=")) {
                                     String strSubstring = str.substring(4);
                                     Uri uri = Uri.parse(strSubstring);
@@ -238,16 +234,11 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                                     this.themeInfo.pathToWallpaper = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strSubstring) + ".wp").getAbsolutePath();
                                     String queryParameter = uri.getQueryParameter("mode");
                                     if (queryParameter != null && (strArrSplit = queryParameter.toLowerCase().split(" ")) != null && strArrSplit.length > 0) {
-                                        int i8 = 0;
-                                        while (true) {
-                                            if (i8 >= strArrSplit.length) {
-                                                break;
-                                            }
-                                            if ("blur".equals(strArrSplit[i8])) {
+                                        for (String str2 : strArrSplit) {
+                                            if ("blur".equals(str2)) {
                                                 this.themeInfo.isBlured = true;
                                                 break;
                                             }
-                                            i8++;
                                         }
                                     }
                                     if (!TextUtils.isEmpty(uri.getQueryParameter("pattern"))) {
@@ -278,9 +269,9 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                                         if (!TextUtils.isEmpty(queryParameter4)) {
                                             this.themeInfo.patternIntensity = Utilities.parseInt((CharSequence) queryParameter4).intValue();
                                         }
-                                        Theme.ThemeInfo themeInfo2 = this.themeInfo;
-                                        if (themeInfo2.patternIntensity == 0) {
-                                            themeInfo2.patternIntensity = 50;
+                                        Theme.ThemeInfo themeInfo3 = this.themeInfo;
+                                        if (themeInfo3.patternIntensity == 0) {
+                                            themeInfo3.patternIntensity = 50;
                                         }
                                     }
                                 } else {
@@ -315,44 +306,57 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                                             this.themeInfo.previewBackgroundGradientColor3 = iIntValue;
                                         }
                                     }
+                                    FileLog.e(th);
+                                    themeInfo = this.themeInfo;
+                                    if (themeInfo.pathToWallpaper == null && !themeInfo.badWallpaper && !new File(this.themeInfo.pathToWallpaper).exists()) {
+                                        if (ThemesHorizontalListCell.this.loadingWallpapers.containsKey(this.themeInfo)) {
+                                            return false;
+                                        }
+                                        HashMap map = ThemesHorizontalListCell.this.loadingWallpapers;
+                                        Theme.ThemeInfo themeInfo4 = this.themeInfo;
+                                        map.put(themeInfo4, themeInfo4.slug);
+                                        TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
+                                        TLRPC.TL_inputWallPaperSlug tL_inputWallPaperSlug = new TLRPC.TL_inputWallPaperSlug();
+                                        Theme.ThemeInfo themeInfo5 = this.themeInfo;
+                                        tL_inputWallPaperSlug.slug = themeInfo5.slug;
+                                        getwallpaper.wallpaper = tL_inputWallPaperSlug;
+                                        ConnectionsManager.getInstance(themeInfo5.account).sendRequest(getwallpaper, new RequestDelegate() {
+                                            @Override
+                                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                                this.f$0.lambda$parseTheme$1(tLObject, tL_error);
+                                            }
+                                        });
+                                        return false;
+                                    }
+                                    this.themeInfo.previewParsed = true;
+                                    return true;
                                 }
-                                i5 += i7;
+                                i4 += i7;
                                 i3 += i7;
                             }
-                            i4++;
                         }
                         if (z || i == i3) {
+                            break;
                             break;
                         }
                         fileInputStream.getChannel().position(i3);
                         i = i3;
-                    } finally {
+                    } catch (Throwable th) {
+                        try {
+                            fileInputStream.close();
+                            throw th;
+                        } catch (Throwable th2) {
+                            th.addSuppressed(th2);
+                            throw th;
+                        }
                     }
                 }
                 fileInputStream.close();
-            } catch (Throwable th) {
-                FileLog.e(th);
+            } catch (Throwable th3) {
+                FileLog.e(th3);
             }
-            Theme.ThemeInfo themeInfo3 = this.themeInfo;
-            if (themeInfo3.pathToWallpaper != null && !themeInfo3.badWallpaper && !new File(this.themeInfo.pathToWallpaper).exists()) {
-                if (ThemesHorizontalListCell.this.loadingWallpapers.containsKey(this.themeInfo)) {
-                    return false;
-                }
-                HashMap map = ThemesHorizontalListCell.this.loadingWallpapers;
-                Theme.ThemeInfo themeInfo4 = this.themeInfo;
-                map.put(themeInfo4, themeInfo4.slug);
-                TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
-                TLRPC.TL_inputWallPaperSlug tL_inputWallPaperSlug = new TLRPC.TL_inputWallPaperSlug();
-                Theme.ThemeInfo themeInfo5 = this.themeInfo;
-                tL_inputWallPaperSlug.slug = themeInfo5.slug;
-                getwallpaper.wallpaper = tL_inputWallPaperSlug;
-                ConnectionsManager.getInstance(themeInfo5.account).sendRequest(getwallpaper, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$parseTheme$1(tLObject, tL_error);
-                    }
-                });
-                return false;
+            themeInfo = this.themeInfo;
+            if (themeInfo.pathToWallpaper == null) {
             }
             this.themeInfo.previewParsed = true;
             return true;
@@ -381,7 +385,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
             this.themeInfo.badWallpaper = true;
         }
 
-        public void applyTheme() throws IOException {
+        public void applyTheme() {
             Drawable drawable = this.inDrawable;
             int previewInColor = this.themeInfo.getPreviewInColor();
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
@@ -445,7 +449,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
             invalidate();
         }
 
-        public void setTheme(Theme.ThemeInfo themeInfo, boolean z, boolean z2) throws IOException {
+        public void setTheme(Theme.ThemeInfo themeInfo, boolean z, boolean z2) {
             Theme.ThemeInfo themeInfo2;
             TLRPC.TL_theme tL_theme;
             this.themeInfo = themeInfo;
@@ -492,7 +496,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         }
 
         @Override
-        protected void onAttachedToWindow() throws IOException {
+        protected void onAttachedToWindow() {
             TLRPC.TL_theme tL_theme;
             super.onAttachedToWindow();
             this.button.setChecked(this.themeInfo == (ThemesHorizontalListCell.this.currentType == 1 ? Theme.getCurrentNightTheme() : Theme.getCurrentTheme()), false);
@@ -570,9 +574,10 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                 updateColors(true);
             }
             int iDp = this.isFirst ? AndroidUtilities.dp(22.0f) : 0;
+            int iDp2 = AndroidUtilities.dp(11.0f);
             float f = iDp;
-            float fDp = AndroidUtilities.dp(11.0f);
-            this.rect.set(f, fDp, AndroidUtilities.dp(76.0f) + iDp, r3 + AndroidUtilities.dp(97.0f));
+            float f2 = iDp2;
+            this.rect.set(f, f2, AndroidUtilities.dp(76.0f) + iDp, iDp2 + AndroidUtilities.dp(97.0f));
             String string = TextUtils.ellipsize(getThemeName(), this.textPaint, (getMeasuredWidth() - AndroidUtilities.dp(this.isFirst ? 10.0f : 15.0f)) - (this.isLast ? AndroidUtilities.dp(7.0f) : 0), TextUtils.TruncateAt.END).toString();
             int iCeil = (int) Math.ceil(this.textPaint.measureText(string));
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
@@ -599,11 +604,11 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                         float fHeight = height / this.rect.height();
                         this.shaderMatrix.reset();
                         float fMin = 1.0f / Math.min(fWidth, fHeight);
-                        float f2 = width / fHeight;
-                        if (f2 > this.rect.width()) {
-                            this.shaderMatrix.setTranslate(f - ((f2 - this.rect.width()) / 2.0f), fDp);
+                        float f3 = width / fHeight;
+                        if (f3 > this.rect.width()) {
+                            this.shaderMatrix.setTranslate(f - ((f3 - this.rect.width()) / 2.0f), f2);
                         } else {
-                            this.shaderMatrix.setTranslate(f, fDp - (((height / fWidth) - this.rect.height()) / 2.0f));
+                            this.shaderMatrix.setTranslate(f, f2 - (((height / fWidth) - this.rect.height()) / 2.0f));
                         }
                         this.shaderMatrix.preScale(fMin, fMin);
                         this.bitmapShader.setLocalMatrix(this.shaderMatrix);
@@ -634,10 +639,10 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                 this.outDrawable.setBounds(AndroidUtilities.dp(27.0f) + iDp, AndroidUtilities.dp(41.0f), iDp + AndroidUtilities.dp(70.0f), AndroidUtilities.dp(55.0f));
                 this.outDrawable.draw(canvas);
                 if (this.optionsDrawable != null && ThemesHorizontalListCell.this.currentType == 0) {
-                    int iDp2 = ((int) this.rect.right) - AndroidUtilities.dp(16.0f);
-                    int iDp3 = ((int) this.rect.top) + AndroidUtilities.dp(6.0f);
+                    int iDp3 = ((int) this.rect.right) - AndroidUtilities.dp(16.0f);
+                    int iDp4 = ((int) this.rect.top) + AndroidUtilities.dp(6.0f);
                     Drawable drawable3 = this.optionsDrawable;
-                    drawable3.setBounds(iDp2, iDp3, drawable3.getIntrinsicWidth() + iDp2, this.optionsDrawable.getIntrinsicHeight() + iDp3);
+                    drawable3.setBounds(iDp3, iDp4, drawable3.getIntrinsicWidth() + iDp3, this.optionsDrawable.getIntrinsicHeight() + iDp4);
                     this.optionsDrawable.draw(canvas);
                 }
             }
@@ -692,9 +697,9 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                 long jElapsedRealtime = SystemClock.elapsedRealtime();
                 long jMin = Math.min(17L, jElapsedRealtime - this.lastDrawTime);
                 this.lastDrawTime = jElapsedRealtime;
-                float f3 = this.placeholderAlpha - (jMin / 180.0f);
-                this.placeholderAlpha = f3;
-                if (f3 < 0.0f) {
+                float f4 = this.placeholderAlpha - (jMin / 180.0f);
+                this.placeholderAlpha = f4;
+                if (f4 < 0.0f) {
                     this.placeholderAlpha = 0.0f;
                 }
                 invalidate();
@@ -883,7 +888,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws IOException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.fileLoaded) {
             String str = (String) objArr[0];
             final File file = (File) objArr[1];
@@ -914,13 +919,13 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         themeInfo.badWallpaper = !themeInfo.createBackground(file, themeInfo.pathToWallpaper);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$didReceivedNotification$2(themeInfo);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$2(Theme.ThemeInfo themeInfo) throws IOException {
+    public void lambda$didReceivedNotification$2(Theme.ThemeInfo themeInfo) {
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);

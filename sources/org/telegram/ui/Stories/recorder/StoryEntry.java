@@ -3,8 +3,12 @@ package org.telegram.ui.Stories.recorder;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaExtractor;
@@ -13,6 +17,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.util.Pair;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.lang.reflect.Array;
@@ -48,7 +53,6 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.RLottieNative;
-import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public class StoryEntry {
     public HashSet albums;
@@ -239,8 +243,445 @@ public class StoryEntry {
         drawable.setCallback(callback);
     }
 
-    public android.graphics.Bitmap buildBitmap(float r27, android.graphics.Bitmap r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryEntry.buildBitmap(float, android.graphics.Bitmap):android.graphics.Bitmap");
+    public Bitmap buildBitmap(float f, Bitmap bitmap) {
+        Matrix matrix;
+        boolean z;
+        Matrix matrix2;
+        final File file;
+        Matrix matrix3;
+        Paint paint;
+        boolean z2;
+        int i;
+        StoryEntry storyEntry;
+        final File file2;
+        Paint paint2;
+        Matrix matrix4;
+        Bitmap scaledBitmap;
+        int width;
+        int height;
+        Pair<Integer, Integer> imageOrientation;
+        Matrix matrix5 = new Matrix();
+        Paint paint3 = new Paint(7);
+        int i2 = (int) (this.resultWidth * f);
+        int i3 = (int) (this.resultHeight * f);
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i2, i3, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmapCreateBitmap);
+        if (this.backgroundFile != null) {
+            try {
+                Bitmap scaledBitmap2 = getScaledBitmap(new DecodeBitmap() {
+                    @Override
+                    public final Bitmap decode(BitmapFactory.Options options) {
+                        return this.f$0.lambda$buildBitmap$0(options);
+                    }
+                }, i2, i3, false, true);
+                canvas.save();
+                float width2 = this.resultWidth / scaledBitmap2.getWidth();
+                canvas.scale(width2, width2);
+                matrix5.postScale(f, f);
+                canvas.drawBitmap(scaledBitmap2, 0.0f, 0.0f, paint3);
+                canvas.restore();
+                scaledBitmap2.recycle();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        } else {
+            String str = this.backgroundWallpaperEmoticon;
+            if (str != null) {
+                Drawable backgroundDrawableFromTheme = this.backgroundDrawable;
+                if (backgroundDrawableFromTheme == null) {
+                    backgroundDrawableFromTheme = PreviewView.getBackgroundDrawableFromTheme(this.currentAccount, str, this.isDark);
+                }
+                drawBackgroundDrawable(canvas, backgroundDrawableFromTheme, canvas.getWidth(), canvas.getHeight());
+            } else {
+                matrix = matrix5;
+                long j = this.backgroundWallpaperPeerId;
+                if (j != Long.MIN_VALUE) {
+                    Drawable backgroundDrawable = this.backgroundDrawable;
+                    if (backgroundDrawable == null) {
+                        backgroundDrawable = PreviewView.getBackgroundDrawable((Drawable) null, this.currentAccount, j, this.isDark);
+                    }
+                    drawBackgroundDrawable(canvas, backgroundDrawable, canvas.getWidth(), canvas.getHeight());
+                    z = true;
+                } else {
+                    Paint paint4 = new Paint(1);
+                    paint4.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, canvas.getHeight(), new int[]{this.gradientTopColor, this.gradientBottomColor}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+                    z = true;
+                    canvas.drawRect(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), paint4);
+                }
+            }
+            matrix2 = matrix;
+            matrix2.set(this.matrix);
+            if (bitmap != null) {
+                float width3 = this.width / bitmap.getWidth();
+                matrix2.preScale(width3, width3);
+                matrix2.postScale(f, f);
+                canvas.drawBitmap(bitmap, matrix2, paint3);
+            } else {
+                if (isCollage()) {
+                    i = 0;
+                    while (i < this.collageContent.size()) {
+                        storyEntry = (StoryEntry) this.collageContent.get(i);
+                        file2 = storyEntry.filterFile;
+                        if (file2 == null) {
+                            file2 = storyEntry.file;
+                        }
+                        if (file2 != null) {
+                            try {
+                                scaledBitmap = getScaledBitmap(new DecodeBitmap() {
+                                    @Override
+                                    public final Bitmap decode(BitmapFactory.Options options) {
+                                        return StoryEntry.lambda$buildBitmap$1(file2, options);
+                                    }
+                                }, i2, i3, z, z);
+                                canvas.save();
+                                RectF rectF = new RectF();
+                                width = scaledBitmap.getWidth();
+                                height = scaledBitmap.getHeight();
+                                imageOrientation = AndroidUtilities.getImageOrientation(file2);
+                                try {
+                                    if ((((Integer) imageOrientation.first).intValue() / 90) % 2 == z) {
+                                        width = scaledBitmap.getHeight();
+                                        height = scaledBitmap.getWidth();
+                                    }
+                                    ((CollageLayout.Part) this.collage.parts.get(i)).bounds(rectF, i2, i3);
+                                    canvas.translate(rectF.centerX(), rectF.centerY());
+                                    matrix4 = matrix2;
+                                    try {
+                                        paint2 = paint3;
+                                        try {
+                                            canvas.clipRect((-rectF.width()) / 2.0f, (-rectF.height()) / 2.0f, rectF.width() / 2.0f, rectF.height() / 2.0f);
+                                            float fMax = Math.max(rectF.width() / width, rectF.height() / height);
+                                            canvas.scale(fMax, fMax);
+                                            canvas.rotate(((Integer) imageOrientation.first).intValue());
+                                            canvas.translate((-scaledBitmap.getWidth()) / 2.0f, (-scaledBitmap.getHeight()) / 2.0f);
+                                            try {
+                                                canvas.drawBitmap(scaledBitmap, 0.0f, 0.0f, (Paint) null);
+                                                canvas.restore();
+                                            } catch (Exception e2) {
+                                                e = e2;
+                                                FileLog.e(e);
+                                            }
+                                        } catch (Exception e3) {
+                                            e = e3;
+                                            FileLog.e(e);
+                                            z = true;
+                                            i += z ? 1 : 0;
+                                            matrix2 = matrix4;
+                                            paint3 = paint2;
+                                        }
+                                    } catch (Exception e4) {
+                                        e = e4;
+                                        paint2 = paint3;
+                                    }
+                                } catch (Exception e5) {
+                                    e = e5;
+                                    paint2 = paint3;
+                                    matrix4 = matrix2;
+                                }
+                            } catch (Exception e6) {
+                                e = e6;
+                                paint2 = paint3;
+                                matrix4 = matrix2;
+                            }
+                            z = true;
+                        } else {
+                            paint2 = paint3;
+                            matrix4 = matrix2;
+                        }
+                        i += z ? 1 : 0;
+                        matrix2 = matrix4;
+                        paint3 = paint2;
+                    }
+                    paint = paint3;
+                    matrix3 = matrix2;
+                } else {
+                    file = this.filterFile;
+                    if (file == null) {
+                        file = this.file;
+                    }
+                    if (file != null) {
+                        try {
+                            matrix3 = matrix2;
+                            try {
+                                Bitmap scaledBitmap3 = getScaledBitmap(new DecodeBitmap() {
+                                    @Override
+                                    public final Bitmap decode(BitmapFactory.Options options) {
+                                        return StoryEntry.lambda$buildBitmap$2(file, options);
+                                    }
+                                }, i2, i3, this.orientation, true, true);
+                                float width4 = this.width / scaledBitmap3.getWidth();
+                                matrix3.preScale(width4, width4);
+                                matrix3.postScale(f, f);
+                                paint = paint3;
+                                try {
+                                    canvas.drawBitmap(scaledBitmap3, matrix3, paint);
+                                    scaledBitmap3.recycle();
+                                } catch (Exception e7) {
+                                    e = e7;
+                                    FileLog.e(e);
+                                }
+                            } catch (Exception e8) {
+                                e = e8;
+                                paint = paint3;
+                                FileLog.e(e);
+                                if (this.paintFile != null) {
+                                    try {
+                                        z2 = false;
+                                        try {
+                                            Bitmap scaledBitmap4 = getScaledBitmap(new DecodeBitmap() {
+                                                @Override
+                                                public final Bitmap decode(BitmapFactory.Options options) {
+                                                    return this.f$0.lambda$buildBitmap$3(options);
+                                                }
+                                            }, i2, i3, false, true);
+                                            canvas.save();
+                                            float width5 = this.resultWidth / scaledBitmap4.getWidth();
+                                            canvas.scale(width5, width5);
+                                            matrix3.postScale(f, f);
+                                            canvas.drawBitmap(scaledBitmap4, 0.0f, 0.0f, paint);
+                                            canvas.restore();
+                                            scaledBitmap4.recycle();
+                                        } catch (Exception e9) {
+                                            e = e9;
+                                            FileLog.e(e);
+                                        }
+                                    } catch (Exception e10) {
+                                        e = e10;
+                                        z2 = false;
+                                    }
+                                } else {
+                                    z2 = false;
+                                }
+                                if (this.messageFile != null) {
+                                    try {
+                                        Bitmap scaledBitmap5 = getScaledBitmap(new DecodeBitmap() {
+                                            @Override
+                                            public final Bitmap decode(BitmapFactory.Options options) {
+                                                return this.f$0.lambda$buildBitmap$4(options);
+                                            }
+                                        }, i2, i3, z2, true);
+                                        canvas.save();
+                                        float width6 = this.resultWidth / scaledBitmap5.getWidth();
+                                        canvas.scale(width6, width6);
+                                        matrix3.postScale(f, f);
+                                        canvas.drawBitmap(scaledBitmap5, 0.0f, 0.0f, paint);
+                                        canvas.restore();
+                                        scaledBitmap5.recycle();
+                                    } catch (Exception e11) {
+                                        FileLog.e(e11);
+                                    }
+                                }
+                                if (this.paintEntitiesFile != null) {
+                                    try {
+                                        Bitmap scaledBitmap6 = getScaledBitmap(new DecodeBitmap() {
+                                            @Override
+                                            public final Bitmap decode(BitmapFactory.Options options) {
+                                                return this.f$0.lambda$buildBitmap$5(options);
+                                            }
+                                        }, i2, i3, z2, true);
+                                        canvas.save();
+                                        float width7 = this.resultWidth / scaledBitmap6.getWidth();
+                                        canvas.scale(width7, width7);
+                                        matrix3.postScale(f, f);
+                                        canvas.drawBitmap(scaledBitmap6, 0.0f, 0.0f, paint);
+                                        canvas.restore();
+                                        scaledBitmap6.recycle();
+                                    } catch (Exception e12) {
+                                        FileLog.e(e12);
+                                    }
+                                }
+                                return bitmapCreateBitmap;
+                            }
+                        } catch (Exception e13) {
+                            e = e13;
+                            matrix3 = matrix2;
+                        }
+                    } else {
+                        matrix3 = matrix2;
+                        paint = paint3;
+                    }
+                }
+                if (this.paintFile != null) {
+                    z2 = false;
+                    Bitmap scaledBitmap7 = getScaledBitmap(new DecodeBitmap() {
+                        @Override
+                        public final Bitmap decode(BitmapFactory.Options options) {
+                            return this.f$0.lambda$buildBitmap$3(options);
+                        }
+                    }, i2, i3, false, true);
+                    canvas.save();
+                    float width8 = this.resultWidth / scaledBitmap7.getWidth();
+                    canvas.scale(width8, width8);
+                    matrix3.postScale(f, f);
+                    canvas.drawBitmap(scaledBitmap7, 0.0f, 0.0f, paint);
+                    canvas.restore();
+                    scaledBitmap7.recycle();
+                } else {
+                    z2 = false;
+                }
+                if (this.messageFile != null) {
+                    Bitmap scaledBitmap8 = getScaledBitmap(new DecodeBitmap() {
+                        @Override
+                        public final Bitmap decode(BitmapFactory.Options options) {
+                            return this.f$0.lambda$buildBitmap$4(options);
+                        }
+                    }, i2, i3, z2, true);
+                    canvas.save();
+                    float width9 = this.resultWidth / scaledBitmap8.getWidth();
+                    canvas.scale(width9, width9);
+                    matrix3.postScale(f, f);
+                    canvas.drawBitmap(scaledBitmap8, 0.0f, 0.0f, paint);
+                    canvas.restore();
+                    scaledBitmap8.recycle();
+                }
+                if (this.paintEntitiesFile != null) {
+                    Bitmap scaledBitmap9 = getScaledBitmap(new DecodeBitmap() {
+                        @Override
+                        public final Bitmap decode(BitmapFactory.Options options) {
+                            return this.f$0.lambda$buildBitmap$5(options);
+                        }
+                    }, i2, i3, z2, true);
+                    canvas.save();
+                    float width10 = this.resultWidth / scaledBitmap9.getWidth();
+                    canvas.scale(width10, width10);
+                    matrix3.postScale(f, f);
+                    canvas.drawBitmap(scaledBitmap9, 0.0f, 0.0f, paint);
+                    canvas.restore();
+                    scaledBitmap9.recycle();
+                }
+            }
+            return bitmapCreateBitmap;
+        }
+        matrix = matrix5;
+        z = true;
+        matrix2 = matrix;
+        matrix2.set(this.matrix);
+        if (bitmap != null) {
+            float width11 = this.width / bitmap.getWidth();
+            matrix2.preScale(width11, width11);
+            matrix2.postScale(f, f);
+            canvas.drawBitmap(bitmap, matrix2, paint3);
+        } else {
+            if (isCollage()) {
+                i = 0;
+                while (i < this.collageContent.size()) {
+                    storyEntry = (StoryEntry) this.collageContent.get(i);
+                    file2 = storyEntry.filterFile;
+                    if (file2 == null) {
+                        file2 = storyEntry.file;
+                    }
+                    if (file2 != null) {
+                        scaledBitmap = getScaledBitmap(new DecodeBitmap() {
+                            @Override
+                            public final Bitmap decode(BitmapFactory.Options options) {
+                                return StoryEntry.lambda$buildBitmap$1(file2, options);
+                            }
+                        }, i2, i3, z, z);
+                        canvas.save();
+                        RectF rectF2 = new RectF();
+                        width = scaledBitmap.getWidth();
+                        height = scaledBitmap.getHeight();
+                        imageOrientation = AndroidUtilities.getImageOrientation(file2);
+                        if ((((Integer) imageOrientation.first).intValue() / 90) % 2 == z) {
+                            width = scaledBitmap.getHeight();
+                            height = scaledBitmap.getWidth();
+                        }
+                        ((CollageLayout.Part) this.collage.parts.get(i)).bounds(rectF2, i2, i3);
+                        canvas.translate(rectF2.centerX(), rectF2.centerY());
+                        matrix4 = matrix2;
+                        paint2 = paint3;
+                        canvas.clipRect((-rectF2.width()) / 2.0f, (-rectF2.height()) / 2.0f, rectF2.width() / 2.0f, rectF2.height() / 2.0f);
+                        float fMax2 = Math.max(rectF2.width() / width, rectF2.height() / height);
+                        canvas.scale(fMax2, fMax2);
+                        canvas.rotate(((Integer) imageOrientation.first).intValue());
+                        canvas.translate((-scaledBitmap.getWidth()) / 2.0f, (-scaledBitmap.getHeight()) / 2.0f);
+                        canvas.drawBitmap(scaledBitmap, 0.0f, 0.0f, (Paint) null);
+                        canvas.restore();
+                        z = true;
+                    } else {
+                        paint2 = paint3;
+                        matrix4 = matrix2;
+                    }
+                    i += z ? 1 : 0;
+                    matrix2 = matrix4;
+                    paint3 = paint2;
+                }
+                paint = paint3;
+                matrix3 = matrix2;
+            } else {
+                file = this.filterFile;
+                if (file == null) {
+                    file = this.file;
+                }
+                if (file != null) {
+                    matrix3 = matrix2;
+                    Bitmap scaledBitmap10 = getScaledBitmap(new DecodeBitmap() {
+                        @Override
+                        public final Bitmap decode(BitmapFactory.Options options) {
+                            return StoryEntry.lambda$buildBitmap$2(file, options);
+                        }
+                    }, i2, i3, this.orientation, true, true);
+                    float width12 = this.width / scaledBitmap10.getWidth();
+                    matrix3.preScale(width12, width12);
+                    matrix3.postScale(f, f);
+                    paint = paint3;
+                    canvas.drawBitmap(scaledBitmap10, matrix3, paint);
+                    scaledBitmap10.recycle();
+                } else {
+                    matrix3 = matrix2;
+                    paint = paint3;
+                }
+            }
+            if (this.paintFile != null) {
+                z2 = false;
+                Bitmap scaledBitmap11 = getScaledBitmap(new DecodeBitmap() {
+                    @Override
+                    public final Bitmap decode(BitmapFactory.Options options) {
+                        return this.f$0.lambda$buildBitmap$3(options);
+                    }
+                }, i2, i3, false, true);
+                canvas.save();
+                float width13 = this.resultWidth / scaledBitmap11.getWidth();
+                canvas.scale(width13, width13);
+                matrix3.postScale(f, f);
+                canvas.drawBitmap(scaledBitmap11, 0.0f, 0.0f, paint);
+                canvas.restore();
+                scaledBitmap11.recycle();
+            } else {
+                z2 = false;
+            }
+            if (this.messageFile != null) {
+                Bitmap scaledBitmap12 = getScaledBitmap(new DecodeBitmap() {
+                    @Override
+                    public final Bitmap decode(BitmapFactory.Options options) {
+                        return this.f$0.lambda$buildBitmap$4(options);
+                    }
+                }, i2, i3, z2, true);
+                canvas.save();
+                float width14 = this.resultWidth / scaledBitmap12.getWidth();
+                canvas.scale(width14, width14);
+                matrix3.postScale(f, f);
+                canvas.drawBitmap(scaledBitmap12, 0.0f, 0.0f, paint);
+                canvas.restore();
+                scaledBitmap12.recycle();
+            }
+            if (this.paintEntitiesFile != null) {
+                Bitmap scaledBitmap13 = getScaledBitmap(new DecodeBitmap() {
+                    @Override
+                    public final Bitmap decode(BitmapFactory.Options options) {
+                        return this.f$0.lambda$buildBitmap$5(options);
+                    }
+                }, i2, i3, z2, true);
+                canvas.save();
+                float width15 = this.resultWidth / scaledBitmap13.getWidth();
+                canvas.scale(width15, width15);
+                matrix3.postScale(f, f);
+                canvas.drawBitmap(scaledBitmap13, 0.0f, 0.0f, paint);
+                canvas.restore();
+                scaledBitmap13.recycle();
+            }
+        }
+        return bitmapCreateBitmap;
     }
 
     public Bitmap lambda$buildBitmap$0(BitmapFactory.Options options) {
@@ -488,11 +929,9 @@ public class StoryEntry {
                 }
                 this.thumbPath = null;
             }
-            ArrayList arrayList = this.mediaEntities;
+            ArrayList<VideoEditedInfo.MediaEntity> arrayList = this.mediaEntities;
             if (arrayList != null) {
-                Iterator it = arrayList.iterator();
-                while (it.hasNext()) {
-                    VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) it.next();
+                for (VideoEditedInfo.MediaEntity mediaEntity : arrayList) {
                     if (mediaEntity.type == 2 && !TextUtils.isEmpty(mediaEntity.segmentedPath)) {
                         try {
                             new File(mediaEntity.segmentedPath).delete();
@@ -546,11 +985,7 @@ public class StoryEntry {
             storyEntry.isVideo = true;
             TLRPC.Document document = messageMedia.document;
             if (document != null && document.attributes != null) {
-                int i = 0;
-                while (true) {
-                    if (i >= storyItem.media.document.attributes.size()) {
-                        break;
-                    }
+                for (int i = 0; i < storyItem.media.document.attributes.size(); i++) {
                     TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i);
                     if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
                         storyEntry.width = documentAttribute.w;
@@ -558,7 +993,6 @@ public class StoryEntry {
                         storyEntry.fileDuration = documentAttribute.duration;
                         break;
                     }
-                    i++;
                 }
             }
             TLRPC.Document document2 = storyItem.media.document;
@@ -699,7 +1133,6 @@ public class StoryEntry {
         storyEntry.isEdit = true;
         storyEntry.editStoryId = storyItem.id;
         storyEntry.file = file;
-        int i = 0;
         storyEntry.fileDeletable = false;
         storyEntry.width = 720;
         storyEntry.height = 1280;
@@ -713,19 +1146,14 @@ public class StoryEntry {
             storyEntry.isVideo = true;
             TLRPC.Document document = messageMedia.document;
             if (document != null && document.attributes != null) {
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= storyItem.media.document.attributes.size()) {
-                        break;
-                    }
-                    TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i2);
+                for (int i = 0; i < storyItem.media.document.attributes.size(); i++) {
+                    TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i);
                     if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
                         storyEntry.width = documentAttribute.w;
                         storyEntry.height = documentAttribute.h;
                         storyEntry.fileDuration = documentAttribute.duration;
                         break;
                     }
-                    i2++;
                 }
             }
             TLRPC.Document document2 = storyItem.media.document;
@@ -734,11 +1162,8 @@ public class StoryEntry {
                 if (str != null) {
                     storyEntry.thumbPath = str;
                 } else if (document2.thumbs != null) {
-                    while (true) {
-                        if (i >= storyItem.media.document.thumbs.size()) {
-                            break;
-                        }
-                        TLRPC.PhotoSize photoSize = storyItem.media.document.thumbs.get(i);
+                    for (int i2 = 0; i2 < storyItem.media.document.thumbs.size(); i2++) {
+                        TLRPC.PhotoSize photoSize = storyItem.media.document.thumbs.get(i2);
                         if (photoSize instanceof TLRPC.TL_photoStrippedSize) {
                             storyEntry.thumbPathBitmap = ImageLoader.getStrippedPhotoBitmap(photoSize.bytes, null);
                             break;
@@ -748,7 +1173,6 @@ public class StoryEntry {
                             storyEntry.thumbPath = pathToAttach.getAbsolutePath();
                             break;
                         }
-                        i++;
                     }
                 }
             }
@@ -777,7 +1201,7 @@ public class StoryEntry {
         storyEntry.invert = photoEntry.invert;
         storyEntry.isVideo = !photoEntry.isLivePhoto() && photoEntry.isVideo;
         storyEntry.thumbPath = photoEntry.thumbPath;
-        long j = photoEntry.duration * 1000;
+        long j = ((long) photoEntry.duration) * 1000;
         storyEntry.duration = j;
         storyEntry.left = 0.0f;
         storyEntry.right = Math.min(1.0f, 59000.0f / j);
@@ -1015,7 +1439,9 @@ public class StoryEntry {
     }
 
     public static int calculateInSampleSize(BitmapFactory.Options options, int i, int i2) {
-        double dMin = (options.outHeight > i2 || options.outWidth > i) ? Math.min((int) Math.ceil(r0 / i2), (int) Math.ceil(r6 / i)) : 1;
+        int i3 = options.outHeight;
+        int i4 = options.outWidth;
+        double dMin = (i3 > i2 || i4 > i) ? Math.min((int) Math.ceil(i3 / i2), (int) Math.ceil(i4 / i)) : 1;
         return Math.max(1, (int) Math.pow(dMin, Math.floor(Math.log(dMin) / Math.log(2.0d))));
     }
 
@@ -1024,7 +1450,7 @@ public class StoryEntry {
         long jMaxMemory = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory());
         int i3 = options.outWidth;
         int i4 = options.outHeight;
-        if (i3 * i4 * 8 > jMaxMemory || Math.max(i3, i4) > 4200 || SharedConfig.getDevicePerformanceClass() <= 0) {
+        if (((long) (i3 * i4)) * 8 > jMaxMemory || Math.max(i3, i4) > 4200 || SharedConfig.getDevicePerformanceClass() <= 0) {
             options.inScaled = true;
             options.inDensity = options.outWidth;
             options.inTargetDensity = i;
@@ -1035,10 +1461,11 @@ public class StoryEntry {
         if (this.isVideo && !isCollage() && !this.isEdit) {
             long j = this.duration;
             if (j > 0 && !this.isRepost) {
-                if (((long) ((this.right - this.left) * j)) < 68999) {
+                long j2 = (long) ((this.right - this.left) * j);
+                if (j2 < 68999) {
                     return 1;
                 }
-                return (int) Math.ceil(r2 / 59000.0f);
+                return (int) Math.ceil(j2 / 59000.0f);
             }
         }
         return 1;
@@ -1057,14 +1484,15 @@ public class StoryEntry {
                 arrayList.add(this);
                 long j3 = 59000;
                 while (j3 < j2) {
-                    if (Math.min(59000L, j2 - j3) < 1000) {
+                    long jMin = Math.min(59000L, j2 - j3);
+                    if (jMin < 1000) {
                         break;
                     }
                     StoryEntry storyEntryCopy = copy(true);
                     float f = this.left;
                     float f2 = this.duration;
                     storyEntryCopy.left = f + (j3 / f2);
-                    storyEntryCopy.right = this.left + ((r8 + j3) / f2);
+                    storyEntryCopy.right = this.left + ((jMin + j3) / f2);
                     storyEntryCopy.caption = "";
                     j3 += 59000;
                     arrayList.add(storyEntryCopy);
@@ -1166,7 +1594,8 @@ public class StoryEntry {
                 }
             }
             FileLog.d("story bitrate, original = " + videoEditedInfo.originalBitrate + " => " + videoEditedInfo.bitrate);
-            int i2 = iArr[0][4];
+            int[] iArr2 = iArr[0];
+            int i2 = iArr2[4];
             long j4 = (long) i2;
             this.duration = j4;
             videoEditedInfo.originalDuration = j4 * 1000;
@@ -1178,7 +1607,7 @@ public class StoryEntry {
             videoEditedInfo.estimatedDuration = j6 - j5;
             videoEditedInfo.volume = this.videoVolume;
             videoEditedInfo.muted = this.muted;
-            videoEditedInfo.estimatedSize = (long) (r1[5] + (((i2 / 1000.0f) * iExtractRealEncoderBitrate) / 8.0f));
+            videoEditedInfo.estimatedSize = (long) (iArr2[5] + (((i2 / 1000.0f) * iExtractRealEncoderBitrate) / 8.0f));
             videoEditedInfo.estimatedSize = Math.max(this.file.length(), videoEditedInfo.estimatedSize);
             videoEditedInfo.filterState = this.filterState;
             File file5 = this.paintBlurFile;
@@ -1212,15 +1641,13 @@ public class StoryEntry {
                     videoEditedInfo.originalDuration = j7;
                     videoEditedInfo.estimatedDuration = j7;
                 } else {
-                    Iterator<VideoEditedInfo.Part> it = parts.iterator();
                     VideoEditedInfo.Part part = null;
                     long j8 = 0;
-                    while (it.hasNext()) {
-                        VideoEditedInfo.Part next = it.next();
-                        if (next.isVideo) {
-                            long j9 = next.duration;
+                    for (VideoEditedInfo.Part part2 : parts) {
+                        if (part2.isVideo) {
+                            long j9 = part2.duration;
                             if (j9 > j8) {
-                                part = next;
+                                part = part2;
                                 j8 = j9;
                             }
                         }
@@ -1235,11 +1662,9 @@ public class StoryEntry {
                         videoEditedInfo.estimatedDuration = j10;
                         j = -(part.offset + ((long) (f4 * f2)));
                         part.offset = j;
-                        Iterator<VideoEditedInfo.Part> it2 = videoEditedInfo.collageParts.iterator();
-                        while (it2.hasNext()) {
-                            VideoEditedInfo.Part next2 = it2.next();
-                            if (next2.isVideo && next2 != part) {
-                                next2.offset += j;
+                        for (VideoEditedInfo.Part part3 : videoEditedInfo.collageParts) {
+                            if (part3.isVideo && part3 != part) {
+                                part3.offset += j;
                             }
                         }
                     }
@@ -1299,17 +1724,15 @@ public class StoryEntry {
         videoEditedInfo.hdrInfo = this.hdrInfo;
         videoEditedInfo.mixedSoundInfos.clear();
         if (isCollage() && !this.muted) {
-            Iterator<VideoEditedInfo.Part> it3 = videoEditedInfo.collageParts.iterator();
-            while (it3.hasNext()) {
-                VideoEditedInfo.Part next3 = it3.next();
-                if (next3.isVideo && next3.volume > 0.0f && !next3.muted) {
-                    MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(next3.path);
-                    mixedSoundInfo.volume = next3.volume;
-                    float f5 = next3.left;
-                    float f6 = next3.duration;
+            for (VideoEditedInfo.Part part4 : videoEditedInfo.collageParts) {
+                if (part4.isVideo && part4.volume > 0.0f && !part4.muted) {
+                    MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(part4.path);
+                    mixedSoundInfo.volume = part4.volume;
+                    float f5 = part4.left;
+                    float f6 = part4.duration;
                     mixedSoundInfo.audioOffset = ((long) (f5 * f6)) * 1000;
-                    mixedSoundInfo.startTime = next3.offset * 1000;
-                    mixedSoundInfo.duration = ((long) ((next3.right - f5) * f6)) * 1000;
+                    mixedSoundInfo.startTime = part4.offset * 1000;
+                    mixedSoundInfo.duration = ((long) ((part4.right - f5) * f6)) * 1000;
                     videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo);
                 }
             }
@@ -1385,22 +1808,22 @@ public class StoryEntry {
     }
 
     public static File makeCacheFile(int i, String str) {
-        TLRPC.TL_videoSize_layer127 tL_videoSize_layer127;
+        TLObject tLObject;
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = new TLRPC.TL_fileLocationToBeDeprecated();
         tL_fileLocationToBeDeprecated.volume_id = -2147483648L;
         tL_fileLocationToBeDeprecated.dc_id = Integer.MIN_VALUE;
         tL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         tL_fileLocationToBeDeprecated.file_reference = new byte[0];
         if ("mp4".equals(str) || "webm".equals(str)) {
-            TLRPC.TL_videoSize_layer127 tL_videoSize_layer1272 = new TLRPC.TL_videoSize_layer127();
-            tL_videoSize_layer1272.location = tL_fileLocationToBeDeprecated;
-            tL_videoSize_layer127 = tL_videoSize_layer1272;
+            TLRPC.TL_videoSize_layer127 tL_videoSize_layer127 = new TLRPC.TL_videoSize_layer127();
+            tL_videoSize_layer127.location = tL_fileLocationToBeDeprecated;
+            tLObject = tL_videoSize_layer127;
         } else {
-            ?? tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
+            TLRPC.TL_photoSize_layer127 tL_photoSize_layer127 = new TLRPC.TL_photoSize_layer127();
             tL_photoSize_layer127.location = tL_fileLocationToBeDeprecated;
-            tL_videoSize_layer127 = tL_photoSize_layer127;
+            tLObject = tL_photoSize_layer127;
         }
-        return FileLoader.getInstance(i).getPathToAttach(tL_videoSize_layer127, str, true);
+        return FileLoader.getInstance(i).getPathToAttach(tLObject, str, true);
     }
 
     public static class HDRInfo {
@@ -1773,18 +2196,16 @@ public class StoryEntry {
         if (storyItem == null || (messageMedia = storyItem.media) == null || (document = messageMedia.document) == null) {
             return 0L;
         }
-        int i = 0;
-        while (true) {
-            if (i >= document.attributes.size()) {
-                tL_documentAttributeVideo = null;
-                break;
-            }
+        for (int i = 0; i < document.attributes.size(); i++) {
             if (document.attributes.get(i) instanceof TLRPC.TL_documentAttributeVideo) {
                 tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) document.attributes.get(i);
-                break;
+                if (tL_documentAttributeVideo == null) {
+                    return 0L;
+                }
+                return (long) (tL_documentAttributeVideo.video_start_ts * 1000.0d);
             }
-            i++;
         }
+        tL_documentAttributeVideo = null;
         if (tL_documentAttributeVideo == null) {
             return 0L;
         }

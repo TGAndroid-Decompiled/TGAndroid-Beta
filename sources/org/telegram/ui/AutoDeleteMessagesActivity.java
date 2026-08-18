@@ -30,7 +30,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SectionsScrollView;
 import org.telegram.ui.Components.StickerImageView;
-import org.telegram.ui.UsersSelectActivity;
 
 public class AutoDeleteMessagesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     RadioCellInternal afterOneDay;
@@ -282,16 +281,11 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             i3++;
         }
         int size = this.arrayList.size();
-        int i4 = 0;
-        while (true) {
-            if (i4 >= this.arrayList.size()) {
-                break;
-            }
+        for (int i4 = 0; i4 < this.arrayList.size(); i4++) {
             if (i < ((RadioCellInternal) this.arrayList.get(i4)).time) {
                 size = i4 + 1;
                 break;
             }
-            i4++;
         }
         RadioCellInternal radioCellInternal = new RadioCellInternal(getContext());
         radioCellInternal.custom = true;

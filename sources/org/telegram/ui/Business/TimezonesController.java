@@ -43,7 +43,8 @@ public class TimezonesController {
                         timezonesControllerArr[i] = timezonesController2;
                         timezonesController = timezonesController2;
                     }
-                } finally {
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }

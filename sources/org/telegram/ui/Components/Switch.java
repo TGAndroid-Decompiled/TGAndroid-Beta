@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -338,8 +339,191 @@ public class Switch extends View {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Switch.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float f;
+        int i;
+        float f2;
+        int i2;
+        RippleDrawable rippleDrawable;
+        Drawable drawable;
+        if (getVisibility() != 0) {
+            return;
+        }
+        int iDp = AndroidUtilities.dp(31.0f);
+        AndroidUtilities.dp(20.0f);
+        int i3 = 2;
+        int measuredWidth = (getMeasuredWidth() - iDp) / 2;
+        float measuredHeight = (getMeasuredHeight() - AndroidUtilities.dpf2(14.0f)) / 2.0f;
+        int iDp2 = AndroidUtilities.dp(7.0f) + measuredWidth + ((int) (AndroidUtilities.dp(17.0f) * this.progress));
+        int measuredHeight2 = getMeasuredHeight() / 2;
+        int i4 = 0;
+        int i5 = 0;
+        while (i5 < i3) {
+            if (i5 == 1 && this.overrideColorProgress == 0) {
+                i2 = i5;
+            } else {
+                Canvas canvas3 = i5 == 0 ? canvas : this.overlayCanvas[i4];
+                if (i5 == 1) {
+                    this.overlayBitmap[i4].eraseColor(i4);
+                    this.paint.setColor(-16777216);
+                    this.overlayMaskCanvas.drawRect(0.0f, 0.0f, this.overlayMaskBitmap.getWidth(), this.overlayMaskBitmap.getHeight(), this.paint);
+                    this.overlayMaskCanvas.drawCircle(this.overlayCx - getX(), this.overlayCy - getY(), this.overlayRad, this.overlayEraserPaint);
+                }
+                int i6 = this.overrideColorProgress;
+                if (i6 == 1) {
+                    if (i5 == 0) {
+                        f2 = 0.0f;
+                    } else {
+                        f2 = 1.0f;
+                    }
+                } else if (i6 != i3) {
+                    f2 = this.progress;
+                } else if (i5 == 0) {
+                    f2 = 1.0f;
+                } else {
+                    f2 = 0.0f;
+                }
+                int iProcessColor = processColor(Theme.getColor(this.trackColorKey, this.resourcesProvider));
+                int iProcessColor2 = processColor(Theme.getColor(this.trackCheckedColorKey, this.resourcesProvider));
+                if (i5 == 0 && (drawable = this.iconDrawable) != null) {
+                    if (this.lastIconColor != (this.isChecked ? iProcessColor2 : iProcessColor)) {
+                        int i7 = this.isChecked ? iProcessColor2 : iProcessColor;
+                        this.lastIconColor = i7;
+                        drawable.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
+                    }
+                }
+                int iRed = Color.red(iProcessColor);
+                int iRed2 = Color.red(iProcessColor2);
+                int iGreen = Color.green(iProcessColor);
+                int iGreen2 = Color.green(iProcessColor2);
+                int iBlue = Color.blue(iProcessColor);
+                int iBlue2 = Color.blue(iProcessColor2);
+                int iAlpha = Color.alpha(iProcessColor);
+                int i8 = i5;
+                int iAlpha2 = (((int) (iBlue + ((iBlue2 - iBlue) * f2))) & 255) | ((((int) (iRed + ((iRed2 - iRed) * f2))) & 255) << 16) | ((((int) (iAlpha + ((Color.alpha(iProcessColor2) - iAlpha) * f2))) & 255) << 24) | ((((int) (iGreen + ((iGreen2 - iGreen) * f2))) & 255) << 8);
+                this.paint.setColor(iAlpha2);
+                this.paint2.setColor(iAlpha2);
+                this.rectF.set(measuredWidth, measuredHeight, measuredWidth + iDp, AndroidUtilities.dpf2(14.0f) + measuredHeight);
+                canvas3.drawRoundRect(this.rectF, AndroidUtilities.dpf2(7.0f), AndroidUtilities.dpf2(7.0f), this.paint);
+                canvas3.drawCircle(iDp2, measuredHeight2, AndroidUtilities.dpf2(10.0f), this.paint);
+                if (i8 != 0 || (rippleDrawable = this.rippleDrawable) == null) {
+                    i2 = i8;
+                    if (i2 == 1) {
+                        canvas3.drawBitmap(this.overlayMaskBitmap, 0.0f, 0.0f, this.overlayMaskPaint);
+                    }
+                } else {
+                    rippleDrawable.setBounds(iDp2 - AndroidUtilities.dp(18.0f), measuredHeight2 - AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f) + iDp2, AndroidUtilities.dp(18.0f) + measuredHeight2);
+                    this.rippleDrawable.draw(canvas3);
+                    i2 = i8;
+                }
+            }
+            i5 = i2 + 1;
+            i3 = 2;
+            i4 = 0;
+        }
+        if (this.overrideColorProgress != 0) {
+            canvas2 = canvas;
+            canvas2.drawBitmap(this.overlayBitmap[0], 0.0f, 0.0f, (Paint) null);
+        } else {
+            canvas2 = canvas;
+        }
+        int i9 = 0;
+        while (i9 < 2) {
+            if (i9 != 1 || this.overrideColorProgress != 0) {
+                Canvas canvas4 = i9 == 0 ? canvas2 : this.overlayCanvas[1];
+                if (i9 == 1) {
+                    this.overlayBitmap[1].eraseColor(0);
+                }
+                int i10 = this.overrideColorProgress;
+                if (i10 == 1) {
+                    if (i9 == 0) {
+                        f = 0.0f;
+                    } else {
+                        f = 1.0f;
+                    }
+                } else if (i10 != 2) {
+                    f = this.progress;
+                } else if (i9 == 0) {
+                    f = 1.0f;
+                } else {
+                    f = 0.0f;
+                }
+                int color = Theme.getColor(this.thumbColorKey, this.resourcesProvider);
+                int iProcessColor3 = processColor(Theme.getColor(this.thumbCheckedColorKey, this.resourcesProvider));
+                int iRed3 = Color.red(color);
+                int iRed4 = Color.red(iProcessColor3);
+                int iGreen3 = Color.green(color);
+                int iGreen4 = Color.green(iProcessColor3);
+                int iBlue3 = Color.blue(color);
+                int iBlue4 = Color.blue(iProcessColor3);
+                int iAlpha3 = Color.alpha(color);
+                this.paint.setColor(((((int) (iAlpha3 + ((Color.alpha(iProcessColor3) - iAlpha3) * f))) & 255) << 24) | ((((int) (iRed3 + ((iRed4 - iRed3) * f))) & 255) << 16) | ((((int) (iGreen3 + ((iGreen4 - iGreen3) * f))) & 255) << 8) | (((int) (iBlue3 + ((iBlue4 - iBlue3) * f))) & 255));
+                float f3 = iDp2;
+                float f4 = measuredHeight2;
+                canvas4.drawCircle(f3, f4, AndroidUtilities.dp(8.0f), this.paint);
+                if (i9 != 0) {
+                    i = 1;
+                } else if (this.iconDrawable != null) {
+                    float floatValue = this.animatorIconVisibility.getFloatValue();
+                    if (floatValue > 0.0f) {
+                        boolean z = floatValue < 1.0f;
+                        if (z) {
+                            canvas.save();
+                            canvas2.scale(floatValue, floatValue, f3, f4);
+                        }
+                        Drawable drawable2 = this.iconDrawable;
+                        drawable2.setBounds(iDp2 - (drawable2.getIntrinsicWidth() / 2), measuredHeight2 - (this.iconDrawable.getIntrinsicHeight() / 2), (this.iconDrawable.getIntrinsicWidth() / 2) + iDp2, (this.iconDrawable.getIntrinsicHeight() / 2) + measuredHeight2);
+                        this.iconDrawable.draw(canvas4);
+                        if (z) {
+                            canvas.restore();
+                        }
+                    }
+                    i = 1;
+                } else {
+                    int i11 = this.drawIconType;
+                    if (i11 == 1) {
+                        iDp2 = (int) (f3 - (AndroidUtilities.dp(10.8f) - (AndroidUtilities.dp(1.3f) * this.progress)));
+                        measuredHeight2 = (int) (f4 - (AndroidUtilities.dp(8.5f) - (AndroidUtilities.dp(0.5f) * this.progress)));
+                        int iDpf2 = ((int) AndroidUtilities.dpf2(4.6f)) + iDp2;
+                        int iDpf3 = (int) (AndroidUtilities.dpf2(9.5f) + measuredHeight2);
+                        int iDp3 = AndroidUtilities.dp(2.0f) + iDpf2;
+                        int iDp4 = AndroidUtilities.dp(2.0f) + iDpf3;
+                        int iDpf4 = ((int) AndroidUtilities.dpf2(7.5f)) + iDp2;
+                        int iDpf5 = ((int) AndroidUtilities.dpf2(5.4f)) + measuredHeight2;
+                        int iDp5 = iDpf4 + AndroidUtilities.dp(7.0f);
+                        int iDp6 = iDpf5 + AndroidUtilities.dp(7.0f);
+                        float f5 = iDpf4;
+                        float f6 = iDpf2 - iDpf4;
+                        float f7 = this.progress;
+                        Canvas canvas5 = canvas4;
+                        canvas5.drawLine((int) (f5 + (f6 * f7)), (int) (iDpf5 + ((iDpf3 - iDpf5) * f7)), (int) (iDp5 + ((iDp3 - iDp5) * f7)), (int) (iDp6 + ((iDp4 - iDp6) * f7)), this.paint2);
+                        int iDpf6 = ((int) AndroidUtilities.dpf2(7.5f)) + iDp2;
+                        int iDpf7 = ((int) AndroidUtilities.dpf2(12.5f)) + measuredHeight2;
+                        canvas5.drawLine(iDpf6, iDpf7, AndroidUtilities.dp(7.0f) + iDpf6, iDpf7 - AndroidUtilities.dp(7.0f), this.paint2);
+                        i = 1;
+                    } else {
+                        if (i11 == 2 || this.iconAnimator != null) {
+                            this.paint2.setAlpha((int) ((1.0f - this.iconProgress) * 255.0f));
+                            Canvas canvas6 = canvas4;
+                            canvas6.drawLine(f3, f4, f3, measuredHeight2 - AndroidUtilities.dp(5.0f), this.paint2);
+                            canvas4.save();
+                            canvas4.rotate(this.iconProgress * (-90.0f), f3, f4);
+                            canvas6.drawLine(f3, f4, AndroidUtilities.dp(4.0f) + iDp2, f4, this.paint2);
+                            canvas4.restore();
+                        }
+                        i = 1;
+                    }
+                }
+                if (i9 == i) {
+                    canvas4.drawBitmap(this.overlayMaskBitmap, 0.0f, 0.0f, this.overlayMaskPaint);
+                }
+            }
+            i9++;
+        }
+        if (this.overrideColorProgress != 0) {
+            canvas2.drawBitmap(this.overlayBitmap[1], 0.0f, 0.0f, (Paint) null);
+        }
     }
 
     @Override

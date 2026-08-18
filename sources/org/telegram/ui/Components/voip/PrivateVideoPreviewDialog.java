@@ -4,12 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.media.projection.MediaProjectionManager;
 import android.os.Build;
 import android.os.Parcelable;
@@ -95,7 +96,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         VoIPService.StateListener.CC.$default$onVideoAvailableChange(this, z);
     }
 
-    public PrivateVideoPreviewDialog(Context context, boolean z, boolean z2) throws NoSuchFieldException, Resources.NotFoundException, SecurityException {
+    public PrivateVideoPreviewDialog(Context context, boolean z, boolean z2) {
         super(context);
         this.currentTexturePage = 1;
         this.visibleCameraPage = 1;
@@ -186,8 +187,40 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             }
 
             @Override
-            protected void onSizeChanged(int r24, int r25, int r26, int r27) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.PrivateVideoPreviewDialog.AnonymousClass3.onSizeChanged(int, int, int, int):void");
+            protected void onSizeChanged(int i, int i2, int i3, int i4) {
+                int i5;
+                int i6;
+                int i7;
+                LinearGradient linearGradient;
+                super.onSizeChanged(i, i2, i3, i4);
+                for (int i8 = 0; i8 < this.gradientPaint.length; i8++) {
+                    if (i8 == 0 && PrivateVideoPreviewDialog.this.needScreencast) {
+                        i5 = -8919716;
+                        i6 = -11089922;
+                    } else {
+                        i5 = -9015575;
+                        if (i8 == 0 || (i8 == 1 && PrivateVideoPreviewDialog.this.needScreencast)) {
+                            i5 = -11033346;
+                            i6 = -9015575;
+                        } else {
+                            i6 = -1026983;
+                            i7 = -1792170;
+                        }
+                        if (i7 != 0) {
+                            linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i5, i6, i7}, (float[]) null, Shader.TileMode.CLAMP);
+                        } else {
+                            linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i5, i6}, (float[]) null, Shader.TileMode.CLAMP);
+                        }
+                        this.gradientPaint[i8].setShader(linearGradient);
+                    }
+                    i7 = 0;
+                    if (i7 != 0) {
+                        linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i5, i6, i7}, (float[]) null, Shader.TileMode.CLAMP);
+                    } else {
+                        linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i5, i6}, (float[]) null, Shader.TileMode.CLAMP);
+                    }
+                    this.gradientPaint[i8].setShader(linearGradient);
+                }
             }
 
             @Override
@@ -550,15 +583,15 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         @Override
         public Object instantiateItem(ViewGroup viewGroup, int i) {
             Bitmap bitmapDecodeFile;
-            ImageView imageView;
+            View view;
             int i2 = 1;
             if (PrivateVideoPreviewDialog.this.needScreencast && i == 0) {
-                ?? frameLayout = new FrameLayout(PrivateVideoPreviewDialog.this.getContext());
+                FrameLayout frameLayout = new FrameLayout(PrivateVideoPreviewDialog.this.getContext());
                 frameLayout.setBackground(new MotionBackgroundDrawable(-14602694, -13935795, -14395293, -14203560, true));
-                ImageView imageView2 = new ImageView(PrivateVideoPreviewDialog.this.getContext());
-                imageView2.setScaleType(ImageView.ScaleType.CENTER);
-                imageView2.setImageResource(R.drawable.screencast_big);
-                frameLayout.addView(imageView2, LayoutHelper.createFrame(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
+                ImageView imageView = new ImageView(PrivateVideoPreviewDialog.this.getContext());
+                imageView.setScaleType(ImageView.ScaleType.CENTER);
+                imageView.setImageResource(R.drawable.screencast_big);
+                frameLayout.addView(imageView, LayoutHelper.createFrame(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
                 TextView textView = new TextView(PrivateVideoPreviewDialog.this.getContext());
                 textView.setText(LocaleController.getString(R.string.VoipVideoPrivateScreenSharing));
                 textView.setGravity(17);
@@ -567,10 +600,10 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                 textView.setTextSize(1, 15.0f);
                 textView.setTypeface(AndroidUtilities.bold());
                 frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
-                imageView = frameLayout;
+                view = frameLayout;
             } else {
-                ImageView imageView3 = new ImageView(PrivateVideoPreviewDialog.this.getContext());
-                imageView3.setTag(Integer.valueOf(i));
+                ImageView imageView2 = new ImageView(PrivateVideoPreviewDialog.this.getContext());
+                imageView2.setTag(Integer.valueOf(i));
                 try {
                     File filesDirFixed = ApplicationLoader.getFilesDirFixed();
                     StringBuilder sb = new StringBuilder();
@@ -585,18 +618,18 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                     bitmapDecodeFile = null;
                 }
                 if (bitmapDecodeFile != null) {
-                    imageView3.setImageBitmap(bitmapDecodeFile);
+                    imageView2.setImageBitmap(bitmapDecodeFile);
                 } else {
-                    imageView3.setImageResource(R.drawable.icplaceholder);
+                    imageView2.setImageResource(R.drawable.icplaceholder);
                 }
-                imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
-                imageView = imageView3;
+                imageView2.setScaleType(ImageView.ScaleType.FIT_XY);
+                view = imageView2;
             }
-            if (imageView.getParent() != null) {
-                ((ViewGroup) imageView.getParent()).removeView(imageView);
+            if (view.getParent() != null) {
+                ((ViewGroup) view.getParent()).removeView(view);
             }
-            viewGroup.addView(imageView, 0);
-            return imageView;
+            viewGroup.addView(view, 0);
+            return view;
         }
 
         @Override

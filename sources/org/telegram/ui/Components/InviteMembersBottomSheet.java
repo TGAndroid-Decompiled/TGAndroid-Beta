@@ -9,11 +9,12 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,6 +37,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -50,8 +52,6 @@ import org.telegram.ui.Cells.GroupCreateSectionCell;
 import org.telegram.ui.Cells.GroupCreateUserCell;
 import org.telegram.ui.Cells.ManageChatTextCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.UsersAlertBase;
 import org.telegram.ui.GroupCreateActivity;
 import org.telegram.ui.LaunchActivity;
 
@@ -191,8 +191,82 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         ((ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams()).rightMargin = AndroidUtilities.dp(4.0f);
     }
 
-    public void lambda$new$0(long r4, org.telegram.ui.ActionBar.BaseFragment r6, androidx.collection.LongSparseArray r7, android.content.Context r8, android.view.View r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.InviteMembersBottomSheet.lambda$new$0(long, org.telegram.ui.ActionBar.BaseFragment, androidx.collection.LongSparseArray, android.content.Context, android.view.View, int):void");
+    public void lambda$new$0(long j, BaseFragment baseFragment, LongSparseArray longSparseArray, Context context, View view, int i) {
+        String str;
+        TLRPC.TL_chatInviteExported tL_chatInviteExported;
+        long j2;
+        RecyclerView.Adapter adapter = this.listView.getAdapter();
+        SearchAdapter searchAdapter = this.searchAdapter;
+        TLObject object = null;
+        if (adapter != searchAdapter) {
+            if (i == this.copyLinkRow) {
+                TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
+                TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(j);
+                if (chat != null) {
+                    String publicUsername = ChatObject.getPublicUsername(chat);
+                    if (!TextUtils.isEmpty(publicUsername)) {
+                        str = "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + publicUsername;
+                    } else if (chatFull == null && (tL_chatInviteExported = chatFull.exported_invite) != null) {
+                        str = tL_chatInviteExported.link;
+                    } else {
+                        generateLink();
+                        str = null;
+                    }
+                } else if (chatFull == null) {
+                    generateLink();
+                    str = null;
+                } else {
+                    generateLink();
+                    str = null;
+                }
+                if (str == null) {
+                    return;
+                }
+                ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", str));
+                lambda$new$0();
+                BulletinFactory.createCopyLinkBulletin(baseFragment).show();
+            } else if (i >= this.contactsStartRow && i < this.contactsEndRow) {
+                object = ((ListAdapter) this.listViewAdapter).getObject(i);
+            }
+        } else {
+            int size = searchAdapter.searchResult.size();
+            int size2 = this.searchAdapter.searchAdapterHelper.getGlobalSearch().size();
+            int size3 = this.searchAdapter.searchAdapterHelper.getLocalServerSearch().size();
+            int i2 = i - 1;
+            if (i2 >= 0 && i2 < size) {
+                object = (TLObject) this.searchAdapter.searchResult.get(i2);
+            } else if (i2 >= size && i2 < size3 + size) {
+                object = (TLObject) this.searchAdapter.searchAdapterHelper.getLocalServerSearch().get(i2 - size);
+            } else if (i2 > size + size3 && i2 <= size2 + size + size3) {
+                object = (TLObject) this.searchAdapter.searchAdapterHelper.getGlobalSearch().get(((i2 - size) - size3) - 1);
+            }
+            if (this.dialogsDelegate != null) {
+                this.searchView.closeSearch();
+            }
+        }
+        if (object != null) {
+            if (object instanceof TLRPC.User) {
+                j2 = ((TLRPC.User) object).id;
+            } else {
+                j2 = object instanceof TLRPC.Chat ? -((TLRPC.Chat) object).id : 0L;
+            }
+            if (longSparseArray == null || longSparseArray.indexOfKey(j2) < 0) {
+                if (j2 != 0) {
+                    if (this.selectedContacts.indexOfKey(j2) >= 0) {
+                        GroupCreateSpan groupCreateSpan = (GroupCreateSpan) this.selectedContacts.get(j2);
+                        this.selectedContacts.remove(j2);
+                        this.spansContainer.removeSpan(groupCreateSpan);
+                    } else {
+                        GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(context, object);
+                        groupCreateSpan2.setOnClickListener(this.spanClickListener);
+                        this.selectedContacts.put(j2, groupCreateSpan2);
+                        this.spansContainer.addSpan(groupCreateSpan2, true);
+                    }
+                }
+                spansCountChanged(true);
+                AndroidUtilities.updateVisibleRows(this.listView);
+            }
+        }
     }
 
     public void lambda$new$2(Context context, long j, View view) {
@@ -268,8 +342,112 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogsNeedReload);
     }
 
-    public void setSelectedContacts(java.util.ArrayList r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.InviteMembersBottomSheet.setSelectedContacts(java.util.ArrayList):void");
+    public void setSelectedContacts(ArrayList arrayList) {
+        float fMax;
+        int i;
+        int iDp;
+        int iDp2;
+        int i2;
+        int measuredWidth;
+        int iDp3;
+        int iMax;
+        View childAt;
+        Object user;
+        int size = arrayList.size();
+        for (int i3 = 0; i3 < size; i3++) {
+            Long l = (Long) arrayList.get(i3);
+            long jLongValue = l.longValue();
+            if (DialogObject.isChatDialog(jLongValue)) {
+                user = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-jLongValue));
+            } else {
+                user = MessagesController.getInstance(this.currentAccount).getUser(l);
+            }
+            GroupCreateSpan groupCreateSpan = new GroupCreateSpan(this.spansContainer.getContext(), user);
+            this.spansContainer.addSpan(groupCreateSpan, false);
+            groupCreateSpan.setOnClickListener(this.spanClickListener);
+        }
+        spansCountChanged(false);
+        int childCount = this.spansContainer.getChildCount();
+        Point point = AndroidUtilities.displaySize;
+        boolean z = point.x < point.y;
+        if (AndroidUtilities.isTablet() || z) {
+            this.maxSize = AndroidUtilities.dp(144.0f);
+        } else {
+            this.maxSize = AndroidUtilities.dp(56.0f);
+        }
+        if (AndroidUtilities.isTablet()) {
+            Point point2 = AndroidUtilities.displaySize;
+            fMax = Math.min(point2.x, point2.y) * 0.8f;
+        } else {
+            if (z) {
+                i = AndroidUtilities.displaySize.x;
+            } else {
+                fMax = Math.max(AndroidUtilities.displaySize.x * 0.8f, Math.min(AndroidUtilities.dp(480.0f), AndroidUtilities.displaySize.x));
+            }
+            iDp = i - AndroidUtilities.dp(26.0f);
+            iDp2 = AndroidUtilities.dp(10.0f);
+            measuredWidth = 0;
+            for (i2 = 0; i2 < childCount; i2++) {
+                childAt = this.spansContainer.getChildAt(i2);
+                if (!(childAt instanceof GroupCreateSpan)) {
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(i, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+                    if (childAt.getMeasuredWidth() + measuredWidth > iDp) {
+                        iDp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                        measuredWidth = 0;
+                    }
+                    measuredWidth += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+                }
+            }
+            iDp3 = iDp2 + AndroidUtilities.dp(42.0f);
+            if (this.dialogsDelegate != null) {
+                if (this.spanEnter) {
+                    iMax = Math.min(this.maxSize, iDp3);
+                } else {
+                    iMax = 0;
+                }
+            } else {
+                iMax = Math.max(0, Math.min(this.maxSize, iDp3) - AndroidUtilities.dp(52.0f));
+            }
+            int i4 = this.searchAdditionalHeight;
+            int iDp4 = this.selectedContacts.size() > 0 ? AndroidUtilities.dp(56.0f) : 0;
+            this.searchAdditionalHeight = iDp4;
+            if (iMax == this.additionalHeight || i4 != iDp4) {
+                this.additionalHeight = iMax;
+            }
+            return;
+        }
+        i = (int) fMax;
+        iDp = i - AndroidUtilities.dp(26.0f);
+        iDp2 = AndroidUtilities.dp(10.0f);
+        measuredWidth = 0;
+        while (i2 < childCount) {
+            childAt = this.spansContainer.getChildAt(i2);
+            if (!(childAt instanceof GroupCreateSpan)) {
+                childAt.measure(View.MeasureSpec.makeMeasureSpec(i, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+                if (childAt.getMeasuredWidth() + measuredWidth > iDp) {
+                    iDp2 += childAt.getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                    measuredWidth = 0;
+                }
+                measuredWidth += childAt.getMeasuredWidth() + AndroidUtilities.dp(9.0f);
+            }
+        }
+        iDp3 = iDp2 + AndroidUtilities.dp(42.0f);
+        if (this.dialogsDelegate != null) {
+            if (this.spanEnter) {
+                iMax = Math.min(this.maxSize, iDp3);
+            } else {
+                iMax = 0;
+            }
+        } else {
+            iMax = Math.max(0, Math.min(this.maxSize, iDp3) - AndroidUtilities.dp(52.0f));
+        }
+        int i5 = this.searchAdditionalHeight;
+        if (this.selectedContacts.size() > 0) {
+        }
+        this.searchAdditionalHeight = iDp4;
+        if (iMax == this.additionalHeight) {
+        }
+        this.additionalHeight = iMax;
     }
 
     public void spansCountChanged(boolean z) {
@@ -582,8 +760,104 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r12, int r13) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.InviteMembersBottomSheet.SearchAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            TLObject tLObject;
+            CharSequence charSequence;
+            long j;
+            long j2;
+            String publicUsername;
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 0) {
+                ((GroupCreateSectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.GlobalSearch));
+                return;
+            }
+            if (itemViewType != 1) {
+                if (itemViewType != 2) {
+                    return;
+                }
+                viewHolder.itemView.requestLayout();
+                return;
+            }
+            GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
+            int size = this.searchResult.size();
+            int size2 = this.searchAdapterHelper.getGlobalSearch().size();
+            int size3 = this.searchAdapterHelper.getLocalServerSearch().size();
+            int i2 = i - 1;
+            CharSequence charSequence2 = null;
+            if (i2 >= 0 && i2 < size) {
+                tLObject = (TLObject) this.searchResult.get(i2);
+            } else if (i2 >= size && i2 < size3 + size) {
+                tLObject = (TLObject) this.searchAdapterHelper.getLocalServerSearch().get(i2 - size);
+            } else {
+                tLObject = (i2 <= size + size3 || i2 > (size2 + size) + size3) ? null : (TLObject) this.searchAdapterHelper.getGlobalSearch().get(((i2 - size) - size3) - 1);
+            }
+            if (tLObject == null) {
+                charSequence = null;
+            } else {
+                if (tLObject instanceof TLRPC.User) {
+                    publicUsername = ((TLRPC.User) tLObject).username;
+                } else {
+                    publicUsername = ChatObject.getPublicUsername((TLRPC.Chat) tLObject);
+                }
+                if (i2 < size) {
+                    charSequence = (CharSequence) this.searchResultNames.get(i2);
+                    if (charSequence == null || TextUtils.isEmpty(publicUsername)) {
+                        charSequence2 = charSequence;
+                        charSequence = null;
+                    } else {
+                        if (!charSequence.toString().startsWith("@" + publicUsername)) {
+                            charSequence2 = charSequence;
+                            charSequence = null;
+                        }
+                    }
+                } else if (i2 <= size || TextUtils.isEmpty(publicUsername)) {
+                    charSequence = null;
+                } else {
+                    String lastFoundUsername = this.searchAdapterHelper.getLastFoundUsername();
+                    if (lastFoundUsername.startsWith("@")) {
+                        lastFoundUsername = lastFoundUsername.substring(1);
+                    }
+                    try {
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                        spannableStringBuilder.append((CharSequence) "@");
+                        spannableStringBuilder.append((CharSequence) publicUsername);
+                        int iIndexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(publicUsername, lastFoundUsername);
+                        if (iIndexOfIgnoreCase != -1) {
+                            int length = lastFoundUsername.length();
+                            if (iIndexOfIgnoreCase == 0) {
+                                length++;
+                            } else {
+                                iIndexOfIgnoreCase++;
+                            }
+                            spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4)), iIndexOfIgnoreCase, length + iIndexOfIgnoreCase, 33);
+                        }
+                        charSequence = spannableStringBuilder;
+                    } catch (Exception unused) {
+                        charSequence = publicUsername;
+                    }
+                }
+            }
+            Object object = groupCreateUserCell.getObject();
+            if (object instanceof TLRPC.User) {
+                j = ((TLRPC.User) object).id;
+            } else {
+                j = object instanceof TLRPC.Chat ? -((TLRPC.Chat) object).id : 0L;
+            }
+            groupCreateUserCell.setObject(tLObject, charSequence2, charSequence);
+            if (tLObject instanceof TLRPC.User) {
+                j2 = ((TLRPC.User) tLObject).id;
+            } else {
+                j2 = tLObject instanceof TLRPC.Chat ? -((TLRPC.Chat) tLObject).id : 0L;
+            }
+            if (j2 != 0) {
+                if (InviteMembersBottomSheet.this.ignoreUsers == null || InviteMembersBottomSheet.this.ignoreUsers.indexOfKey(j2) < 0) {
+                    groupCreateUserCell.setChecked(InviteMembersBottomSheet.this.selectedContacts.indexOfKey(j2) >= 0, j == j2);
+                    groupCreateUserCell.setCheckBoxEnabled(true);
+                } else {
+                    groupCreateUserCell.setChecked(true, j == j2);
+                    groupCreateUserCell.setCheckBoxEnabled(false);
+                }
+            }
         }
 
         @Override
@@ -692,13 +966,88 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             dispatchQueue.postRunnable(runnable);
         }
 
-        public void lambda$searchDialogs$2(java.lang.String r18) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.InviteMembersBottomSheet.SearchAdapter.lambda$searchDialogs$2(java.lang.String):void");
+        public void lambda$searchDialogs$2(String str) {
+            String lowerCase;
+            String publicUsername;
+            Object obj;
+            String lowerCase2 = str.trim().toLowerCase();
+            if (lowerCase2.length() == 0) {
+                updateSearchResults(new ArrayList(), new ArrayList());
+                return;
+            }
+            String translitString = LocaleController.getInstance().getTranslitString(lowerCase2);
+            if (lowerCase2.equals(translitString) || translitString.length() == 0) {
+                translitString = null;
+            }
+            int i = (translitString != null ? 1 : 0) + 1;
+            String[] strArr = new String[i];
+            strArr[0] = lowerCase2;
+            if (translitString != null) {
+                strArr[1] = translitString;
+            }
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            for (int i2 = 0; i2 < InviteMembersBottomSheet.this.contacts.size(); i2++) {
+                TLObject tLObject = (TLObject) InviteMembersBottomSheet.this.contacts.get(i2);
+                boolean z = tLObject instanceof TLRPC.User;
+                if (z) {
+                    TLRPC.User user = (TLRPC.User) tLObject;
+                    lowerCase = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
+                    publicUsername = UserObject.getPublicUsername(user);
+                } else {
+                    TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+                    lowerCase = chat.title;
+                    publicUsername = ChatObject.getPublicUsername(chat);
+                }
+                String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase);
+                if (lowerCase.equals(translitString2)) {
+                    translitString2 = null;
+                }
+                char c = 0;
+                for (int i3 = 0; i3 < i; i3++) {
+                    String str2 = strArr[i3];
+                    if (lowerCase.startsWith(str2)) {
+                        c = 1;
+                    } else {
+                        if (lowerCase.contains(" " + str2)) {
+                            c = 1;
+                        } else {
+                            if (translitString2 != null) {
+                                if (!translitString2.startsWith(str2)) {
+                                    if (translitString2.contains(" " + str2)) {
+                                    }
+                                }
+                                c = 1;
+                            }
+                            if (publicUsername != null && publicUsername.startsWith(str2)) {
+                                c = 2;
+                            }
+                        }
+                    }
+                    if (c != 0) {
+                        if (c == 1) {
+                            if (z) {
+                                TLRPC.User user2 = (TLRPC.User) tLObject;
+                                arrayList2.add(AndroidUtilities.generateSearchName(user2.first_name, user2.last_name, str2));
+                            } else {
+                                arrayList2.add(AndroidUtilities.generateSearchName(((TLRPC.Chat) tLObject).title, null, str2));
+                            }
+                            obj = null;
+                        } else {
+                            obj = null;
+                            arrayList2.add(AndroidUtilities.generateSearchName("@" + publicUsername, null, "@" + str2));
+                        }
+                        arrayList.add(tLObject);
+                        break;
+                    }
+                }
+            }
+            updateSearchResults(arrayList, arrayList2);
         }
     }
 
     @Override
-    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) throws Resources.NotFoundException {
+    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) {
         BaseFragment baseFragment;
         if (motionEvent.getAction() == 0) {
             this.y = this.scrollOffsetY;
@@ -1006,7 +1355,8 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                         invalidate();
                     }
                 }
-                InviteMembersBottomSheet.this.emptyView.setTranslationY(r0.scrollOffsetY + this.emptyViewOffset);
+                InviteMembersBottomSheet inviteMembersBottomSheet2 = InviteMembersBottomSheet.this;
+                inviteMembersBottomSheet2.emptyView.setTranslationY(inviteMembersBottomSheet2.scrollOffsetY + this.emptyViewOffset);
                 super.dispatchDraw(canvas);
             }
 

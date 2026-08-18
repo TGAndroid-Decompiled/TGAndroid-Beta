@@ -6,7 +6,6 @@ import android.os.Process;
 import android.service.media.MediaBrowserService;
 import android.widget.Toast;
 import java.util.List;
-import org.telegram.messenger.TelegramMediaSession;
 
 public class MusicBrowserService extends MediaBrowserService {
     private static final String MEDIA_ID_ROOT = "__ROOT__";

@@ -306,30 +306,23 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
             TLRPC.GroupCall groupCall = this.call;
             boolean z = groupCall != null && groupCall.rtmp_stream;
-            Iterator it2 = MessagesController.findUpdates(updates, TL_update.TL_updateGroupCallParticipants.class).iterator();
-            while (it2.hasNext()) {
-                TL_update.TL_updateGroupCallParticipants tL_updateGroupCallParticipants = (TL_update.TL_updateGroupCallParticipants) it2.next();
+            for (TL_update.TL_updateGroupCallParticipants tL_updateGroupCallParticipants : MessagesController.findUpdates(updates, TL_update.TL_updateGroupCallParticipants.class)) {
                 if (tL_updateGroupCallParticipants.call.id == getCallId() && !z) {
-                    int i = 0;
-                    while (true) {
-                        if (i >= tL_updateGroupCallParticipants.participants.size()) {
-                            break;
-                        }
+                    for (int i = 0; i < tL_updateGroupCallParticipants.participants.size(); i++) {
                         if (DialogObject.getPeerDialogId(tL_updateGroupCallParticipants.participants.get(i).peer) == this.dialogId) {
                             this.participant = tL_updateGroupCallParticipants.participants.get(i);
                             break;
                         }
-                        i++;
                     }
                     if (this.participant != null) {
                         break;
                     }
                 }
             }
-            Iterator it3 = MessagesController.findUpdates(updates, TL_update.TL_updateGroupCallConnection.class).iterator();
+            Iterator it2 = MessagesController.findUpdates(updates, TL_update.TL_updateGroupCallConnection.class).iterator();
             TLRPC.TL_dataJSON tL_dataJSON = null;
-            while (it3.hasNext()) {
-                tL_dataJSON = ((TL_update.TL_updateGroupCallConnection) it3.next()).params;
+            while (it2.hasNext()) {
+                tL_dataJSON = ((TL_update.TL_updateGroupCallConnection) it2.next()).params;
             }
             FileLog.d("[LivePlayer] joined call " + this.inputCall.id);
             this.joined = true;
@@ -460,21 +453,16 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo;
         if (tLObject instanceof TL_phone.groupCall) {
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            int i = 0;
             MessagesController.getInstance(this.currentAccount).putUsers(groupcall.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(groupcall.chats, false);
             if (this.instance == null || this.destroyed) {
                 return;
             }
-            while (true) {
-                if (i >= groupcall.participants.size()) {
-                    break;
-                }
+            for (int i = 0; i < groupcall.participants.size(); i++) {
                 if (DialogObject.getPeerDialogId(groupcall.participants.get(i).peer) == this.dialogId) {
                     this.participant = groupcall.participants.get(i);
                     break;
                 }
-                i++;
             }
             TLRPC.GroupCallParticipant groupCallParticipant = this.participant;
             if (groupCallParticipant != null && (tL_groupCallParticipantVideo = groupCallParticipant.video) != null) {
@@ -532,14 +520,10 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             UserConfig.getInstance(this.currentAccount).getClientUserId();
             ArrayList arrayList = new ArrayList();
             for (int i : iArr) {
-                Iterator<TLRPC.GroupCallParticipant> it = groupparticipants.participants.iterator();
-                while (true) {
-                    if (it.hasNext()) {
-                        TLRPC.GroupCallParticipant next = it.next();
-                        if (next.source == i) {
-                            arrayList.add(new VoIPService.RequestedParticipant(next, i));
-                            break;
-                        }
+                for (TLRPC.GroupCallParticipant groupCallParticipant : groupparticipants.participants) {
+                    if (groupCallParticipant.source == i) {
+                        arrayList.add(new VoIPService.RequestedParticipant(groupCallParticipant, i));
+                        break;
                     }
                 }
             }
@@ -757,12 +741,13 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
     }
 
     public void lambda$init$22(long j, TLObject tLObject, TLRPC.TL_error tL_error, long j2) {
+        long j3 = 0;
         if (tL_error == null) {
             if (this.instance == null || this.destroyed) {
                 return;
             }
             TL_phone.groupCallStreamChannels groupcallstreamchannels = (TL_phone.groupCallStreamChannels) tLObject;
-            j = groupcallstreamchannels.channels.isEmpty() ? 0L : groupcallstreamchannels.channels.get(0).last_timestamp_ms;
+            j3 = groupcallstreamchannels.channels.isEmpty() ? 0L : groupcallstreamchannels.channels.get(0).last_timestamp_ms;
             if (groupcallstreamchannels.channels.isEmpty()) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -792,7 +777,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
         NativeInstance nativeInstance = this.instance;
         if (nativeInstance != null) {
-            nativeInstance.onRequestTimeComplete(j, j);
+            nativeInstance.onRequestTimeComplete(j, j3);
         }
     }
 
@@ -1244,10 +1229,11 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
     }
 
     public boolean sendAsDisabled() {
-        if (this.call == null) {
+        TLRPC.GroupCall groupCall = this.call;
+        if (groupCall == null) {
             return false;
         }
-        return !r0.messages_enabled;
+        return !groupCall.messages_enabled;
     }
 
     public boolean isCreator() {

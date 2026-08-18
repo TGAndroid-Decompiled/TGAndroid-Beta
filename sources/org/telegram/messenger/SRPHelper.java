@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import java.math.BigInteger;
-import java.security.NoSuchAlgorithmException;
 import org.telegram.tgnet.TLRPC;
 
 public class SRPHelper {
@@ -23,7 +22,7 @@ public class SRPHelper {
         return bArr2;
     }
 
-    public static byte[] getX(byte[] bArr, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) throws NoSuchAlgorithmException {
+    public static byte[] getX(byte[] bArr, TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
         byte[] bArr2 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt1;
         byte[] bArrComputeSHA256 = Utilities.computeSHA256(bArr2, bArr, bArr2);
         byte[] bArr3 = tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt2;
@@ -76,13 +75,13 @@ public class SRPHelper {
             return null;
         }
         byte[] bArrComputeSHA256 = Utilities.computeSHA256(getBigIntegerBytes(bigIntegerSubtract.modPow(bigInteger4.add(bigInteger7.multiply(bigInteger3)), bigInteger)));
-        byte[] bArrComputeSHA2562 = Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p);
-        byte[] bArrComputeSHA2563 = Utilities.computeSHA256(bigIntegerBytes);
-        for (int i = 0; i < bArrComputeSHA2562.length; i++) {
-            bArrComputeSHA2562[i] = (byte) (bArrComputeSHA2563[i] ^ bArrComputeSHA2562[i]);
+        byte[] bArrComputeSHA257 = Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.p);
+        byte[] bArrComputeSHA258 = Utilities.computeSHA256(bigIntegerBytes);
+        for (int i = 0; i < bArrComputeSHA257.length; i++) {
+            bArrComputeSHA257[i] = (byte) (bArrComputeSHA258[i] ^ bArrComputeSHA257[i]);
         }
         TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP = new TLRPC.TL_inputCheckPasswordSRP();
-        tL_inputCheckPasswordSRP.M1 = Utilities.computeSHA256(bArrComputeSHA2562, Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt1), Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt2), bigIntegerBytes2, bigIntegerBytes3, bArrComputeSHA256);
+        tL_inputCheckPasswordSRP.M1 = Utilities.computeSHA256(bArrComputeSHA257, Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt1), Utilities.computeSHA256(tL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow.salt2), bigIntegerBytes2, bigIntegerBytes3, bArrComputeSHA256);
         tL_inputCheckPasswordSRP.A = bigIntegerBytes2;
         tL_inputCheckPasswordSRP.srp_id = j;
         return tL_inputCheckPasswordSRP;

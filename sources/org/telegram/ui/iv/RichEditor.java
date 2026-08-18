@@ -8,7 +8,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Outline;
@@ -40,7 +39,6 @@ import android.widget.TextView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -97,8 +95,6 @@ import org.telegram.ui.GradientClip;
 import org.telegram.ui.MessageSendPreview;
 import org.telegram.ui.StickersActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.iv.RichCommandSuggestions;
-import org.telegram.ui.iv.RichEditorListView;
 
 public class RichEditor extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private ImageView addButton;
@@ -308,11 +304,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
         this.animateEnterViewTo[0] = this.listView.getPaddingLeft();
         this.animateEnterViewTo[1] = this.listView.getPaddingTop();
-        this.animateEnterViewTo[0] = (int) (r0[0] - (this.animateEnterView.messageEditText.getX() - AndroidUtilities.dp(16.0f)));
+        int[] iArr2 = this.animateEnterViewTo;
+        iArr2[0] = (int) (iArr2[0] - (this.animateEnterView.messageEditText.getX() - AndroidUtilities.dp(16.0f)));
     }
 
     @Override
-    public AnimatorSet onCustomTransitionAnimation(boolean z, final Runnable runnable) throws Resources.NotFoundException {
+    public AnimatorSet onCustomTransitionAnimation(boolean z, final Runnable runnable) {
         if (!z && !this.persistedDraftOnEnd) {
             persistDraft();
             this.persistedDraftOnEnd = true;
@@ -420,6 +417,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
 
     @Override
     public View createView(final Context context) {
+        int i;
         this.actionBar.setCastShadows(false);
         this.actionBar.setAddToContainer(false);
         this.premiumButtons.clear();
@@ -513,8 +511,8 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.keyboardHeightLand = MessagesController.getGlobalEmojiSettings().getInt("kbd_height_land3", AndroidUtilities.dp(200.0f));
         SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = new SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate() {
             @Override
-            public final void onSizeChanged(int i, boolean z) {
-                this.f$0.onKeyboardSizeChanged(i, z);
+            public final void onSizeChanged(int i2, boolean z) {
+                this.f$0.onKeyboardSizeChanged(i2, z);
             }
         };
         this.sizeDelegate = sizeNotifierFrameLayoutDelegate;
@@ -542,12 +540,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         View view = new View(context);
         this.topGradient = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i = Theme.key_windowBackgroundWhite;
-        view.setBackground(new GradientDrawable(orientation, new int[]{getThemedColor(i), Theme.multAlpha(getThemedColor(i), 0.0f)}));
+        int i2 = Theme.key_windowBackgroundWhite;
+        view.setBackground(new GradientDrawable(orientation, new int[]{getThemedColor(i2), Theme.multAlpha(getThemedColor(i2), 0.0f)}));
         this.container.addView(this.topGradient, LayoutHelper.createFrame(-1, 68, 55));
         View view2 = new View(context);
         this.bottomGradient = view2;
-        view2.setBackground(new GradientDrawable(orientation, new int[]{Theme.multAlpha(getThemedColor(i), 0.0f), getThemedColor(i)}));
+        view2.setBackground(new GradientDrawable(orientation, new int[]{Theme.multAlpha(getThemedColor(i2), 0.0f), getThemedColor(i2)}));
         this.container.addView(this.bottomGradient, LayoutHelper.createFrame(-1, 68, 87));
         FrameLayout frameLayout = new FrameLayout(context);
         this.topPanel = frameLayout;
@@ -561,13 +559,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView2.setScaleType(scaleType);
         ImageView imageView3 = this.backButton;
-        int themedColor = getThemedColor(i);
-        int themedColor2 = getThemedColor(i);
-        int i2 = Theme.key_listSelector;
-        imageView3.setBackground(withShadow(Theme.createRadSelectorDrawable(themedColor, Theme.blendOver(themedColor2, getThemedColor(i2)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
+        int themedColor = getThemedColor(i2);
+        int themedColor2 = getThemedColor(i2);
+        int i3 = Theme.key_listSelector;
+        imageView3.setBackground(withShadow(Theme.createRadSelectorDrawable(themedColor, Theme.blendOver(themedColor2, getThemedColor(i3)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
         ImageView imageView4 = this.backButton;
-        int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        int themedColor3 = getThemedColor(i3);
+        int i4 = Theme.key_windowBackgroundWhiteBlackText;
+        int themedColor3 = getThemedColor(i4);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView4.setColorFilter(new PorterDuffColorFilter(themedColor3, mode));
         ScaleStateListAnimator.apply(this.backButton);
@@ -582,14 +580,14 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         LinearLayout linearLayout = new LinearLayout(context);
         this.historyButtons = linearLayout;
         linearLayout.setOrientation(0);
-        this.historyButtons.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        this.historyButtons.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i2))));
         this.topPanel.addView(this.historyButtons, LayoutHelper.createFrame(82, 44.0f, 53, 8.0f, 8.0f, 8.0f, 8.0f));
         ImageView imageView5 = new ImageView(context);
         this.undoButton = imageView5;
         imageView5.setImageResource(R.drawable.iv_undo);
         this.undoButton.setScaleType(scaleType);
-        this.undoButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i2)));
-        this.undoButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode));
+        this.undoButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i3)));
+        this.undoButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
         ScaleStateListAnimator.apply(this.undoButton);
         this.undoButton.setContentDescription(LocaleController.getString(R.string.Undo));
         this.undoButton.setOnClickListener(new View.OnClickListener() {
@@ -603,8 +601,8 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.redoButton = imageView6;
         imageView6.setImageResource(R.drawable.iv_redo);
         this.redoButton.setScaleType(scaleType);
-        this.redoButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i2)));
-        this.redoButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode));
+        this.redoButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i3)));
+        this.redoButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
         ScaleStateListAnimator.apply(this.redoButton);
         this.redoButton.setContentDescription(LocaleController.getString(R.string.Redo));
         this.redoButton.setOnClickListener(new View.OnClickListener() {
@@ -637,13 +635,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.aiButton = imageView7;
         imageView7.setImageDrawable(new AiButtonDrawable(context));
         this.aiButton.setScaleType(scaleType);
-        this.aiButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode));
-        this.aiButton.setBackground(withShadow(Theme.createRadSelectorDrawable(getThemedColor(i), Theme.blendOver(getThemedColor(i), getThemedColor(i2)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
+        this.aiButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
+        this.aiButton.setBackground(withShadow(Theme.createRadSelectorDrawable(getThemedColor(i2), Theme.blendOver(getThemedColor(i2), getThemedColor(i3)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
         this.bottomPanel.addView(this.aiButton, LayoutHelper.createLinear(44, 44, 0.0f, 19, 0, 0, 8, 0));
         ScaleStateListAnimator.apply(this.aiButton);
         ImageView imageView8 = this.aiButton;
-        int i4 = R.string.AIEditor;
-        imageView8.setContentDescription(LocaleController.getString(i4));
+        int i5 = R.string.AIEditor;
+        imageView8.setContentDescription(LocaleController.getString(i5));
         this.aiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -654,18 +652,18 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         frameLayout5.setClipToPadding(false);
         frameLayout5.setClipChildren(false);
         FrameLayout frameLayout6 = new FrameLayout(context);
-        frameLayout6.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        frameLayout6.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i2))));
         frameLayout5.addView(frameLayout6, LayoutHelper.createFrame(-2, 44, 81));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context) {
             @Override
-            protected void onMeasure(int i5, int i6) {
-                int mode2 = View.MeasureSpec.getMode(i5);
-                int size = View.MeasureSpec.getSize(i5);
+            protected void onMeasure(int i6, int i7) {
+                int mode2 = View.MeasureSpec.getMode(i6);
+                int size = View.MeasureSpec.getSize(i6);
                 if (mode2 == 1073741824) {
-                    super.onMeasure(i5, i6);
+                    super.onMeasure(i6, i7);
                     return;
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 0), i6);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 0), i7);
                 int measuredWidth = getMeasuredWidth();
                 if (mode2 == Integer.MIN_VALUE) {
                     measuredWidth = Math.min(measuredWidth, size);
@@ -690,8 +688,8 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = new ChatActivityEnterViewAnimatedIconView(context, 24);
         this.emojiButton = chatActivityEnterViewAnimatedIconView;
         chatActivityEnterViewAnimatedIconView.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-        this.emojiButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode));
-        this.emojiButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor(i), getThemedColor(i2), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
+        this.emojiButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
+        this.emojiButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor(i2), getThemedColor(i3), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
         this.emojiButton.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
         this.blocksLayout.addView(this.emojiButton, LayoutHelper.createLinear(38, 38, 16));
         ScaleStateListAnimator.apply(this.emojiButton);
@@ -720,8 +718,8 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                 this.f$0.lambda$createView$28(view3);
             }
         });
-        int i5 = R.drawable.iv_math;
-        addBlockButton(i5, 7, true).setOnClickListener(new View.OnClickListener() {
+        int i6 = R.drawable.iv_math;
+        addBlockButton(i6, 7, true).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 this.f$0.lambda$createView$30(view3);
@@ -731,22 +729,22 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.addButton = imageView9;
         imageView9.setImageResource(R.drawable.outline_poll_attach_24);
         this.addButton.setScaleType(scaleType);
-        this.addButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode));
-        this.addButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor(i), getThemedColor(i2), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
+        this.addButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
+        this.addButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor(i2), getThemedColor(i3), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
         this.blocksLayout.addView(this.addButton, LayoutHelper.createLinear(38, 38, 16, 2, 0, 0, 0));
         ScaleStateListAnimator.apply(this.addButton);
         this.addButton.setContentDescription(LocaleController.getString(R.string.AccDescrAttachButton));
         this.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) throws IOException {
+            public final void onClick(View view3) {
                 this.f$0.lambda$createView$31(view3);
             }
         });
         this.bottomPanel.addView(frameLayout5, LayoutHelper.createLinear(0, 44, 1.0f));
         LinearLayout linearLayout4 = new LinearLayout(context) {
             @Override
-            protected void onMeasure(int i6, int i7) {
-                int size = View.MeasureSpec.getSize(i6);
+            protected void onMeasure(int i7, int i8) {
+                int size = View.MeasureSpec.getSize(i7);
                 int paddingLeft = getPaddingLeft() + getPaddingRight();
                 if (RichEditor.this.formattingLayout1 != null) {
                     RichEditor.this.formattingLayout1.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
@@ -764,7 +762,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                     paddingLeft += RichEditor.this.formattingLayout3.getMeasuredWidth() + marginLayoutParams3.leftMargin + marginLayoutParams3.rightMargin;
                 }
                 RichEditor.this.formattingScrollMaxWidth = Math.max(0, size - paddingLeft);
-                super.onMeasure(i6, i7);
+                super.onMeasure(i7, i8);
             }
         };
         this.formattingPanel = linearLayout4;
@@ -789,11 +787,11 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             animatedDrawable.setCustomEndFrame(0);
         }
         this.trashPanelIcon.setScaleType(scaleType);
-        this.trashPanelIcon.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode));
-        this.trashPanelIcon.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        this.trashPanelIcon.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
+        this.trashPanelIcon.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i2))));
         this.trashPanel.addView(this.trashPanelIcon, LayoutHelper.createFrame(-1, -1, 119));
         FrameLayout frameLayout8 = new FrameLayout(context);
-        frameLayout8.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        frameLayout8.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i2))));
         this.formattingPanel.addView(frameLayout8, LayoutHelper.createFrame(-2, 44.0f));
         HorizontalScrollView horizontalScrollView2 = new HorizontalScrollView(context) {
             private final GradientClip clip = new GradientClip();
@@ -807,17 +805,17 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             }
 
             @Override
-            protected void onMeasure(int i6, int i7) {
-                int mode2 = View.MeasureSpec.getMode(i6);
+            protected void onMeasure(int i7, int i8) {
+                int mode2 = View.MeasureSpec.getMode(i7);
                 if (mode2 == 1073741824) {
-                    super.onMeasure(i6, i7);
+                    super.onMeasure(i7, i8);
                     return;
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i6), 0), i7);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 0), i8);
                 int measuredWidth = getMeasuredWidth();
                 int iMin = RichEditor.this.formattingScrollMaxWidth;
                 if (mode2 == Integer.MIN_VALUE) {
-                    iMin = Math.min(iMin, View.MeasureSpec.getSize(i6));
+                    iMin = Math.min(iMin, View.MeasureSpec.getSize(i7));
                 }
                 setMeasuredDimension(Math.min(measuredWidth, iMin), getMeasuredHeight());
             }
@@ -896,7 +894,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.formattingLayout2 = linearLayout8;
         linearLayout8.setOrientation(0);
         this.formattingLayout2.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        this.formattingLayout2.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        this.formattingLayout2.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i2))));
         this.formattingPanel.addView(this.formattingLayout2, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
         Button button3 = new Button(context, R.drawable.media_link_24, getResourceProvider());
         this.linkButton = button3;
@@ -922,9 +920,9 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.formattingLayout3 = linearLayout9;
         linearLayout9.setOrientation(0);
         this.formattingLayout3.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        this.formattingLayout3.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        this.formattingLayout3.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i2))));
         this.formattingPanel.addView(this.formattingLayout3, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
-        Button button5 = new Button(context, i5, getResourceProvider());
+        Button button5 = new Button(context, i6, getResourceProvider());
         this.mathButton = button5;
         button5.setPremium();
         this.premiumButtons.add(this.mathButton);
@@ -940,12 +938,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.formattingLayout1 = linearLayout10;
         linearLayout10.setOrientation(0);
         this.formattingLayout1.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        this.formattingLayout1.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        this.formattingLayout1.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i2))));
         this.formattingPanel.addView(this.formattingLayout1, 0, LayoutHelper.createFrame(-2, 44.0f, 80, 0.0f, 0.0f, 8.0f, 0.0f));
         Button button6 = new Button(context, 0, getResourceProvider());
         this.aiStyleButton = button6;
         button6.setImageDrawable(new AiButtonDrawable(context));
-        this.aiStyleButton.setContentDescription(LocaleController.getString(i4));
+        this.aiStyleButton.setContentDescription(LocaleController.getString(i5));
         this.aiStyleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -953,7 +951,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             }
         });
         this.formattingLayout1.addView(this.aiStyleButton, LayoutHelper.createLinear(38, 38, 16));
-        ChatActivityEnterView.SendButton sendButton = new ChatActivityEnterView.SendButton(context, this.editingMessageObject != null ? R.drawable.input_done : isInScheduleMode() ? R.drawable.input_schedule : R.drawable.send_plane_24, getResourceProvider(), true) {
+        if (this.editingMessageObject != null) {
+            i = R.drawable.input_done;
+        } else {
+            i = isInScheduleMode() ? R.drawable.input_schedule : R.drawable.send_plane_24;
+        }
+        ChatActivityEnterView.SendButton sendButton = new ChatActivityEnterView.SendButton(context, i, getResourceProvider(), true) {
             @Override
             public boolean isOpen() {
                 return RichEditor.this.sendButtonLoading || super.isOpen();
@@ -971,7 +974,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.sendButton.setContentDescription(LocaleController.getString(R.string.Send));
         this.sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) throws Resources.NotFoundException {
+            public final void onClick(View view3) {
                 this.f$0.lambda$createView$38(view3);
             }
         });
@@ -1045,12 +1048,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
 
         @Override
-        public void onOpenAttachRequest(int i, int i2) throws IOException {
+        public void onOpenAttachRequest(int i, int i2) {
             RichEditor.this.openAttach(i, i2);
         }
 
         @Override
-        public void onOpenLocationRequest(BlockRow blockRow) throws IOException {
+        public void onOpenLocationRequest(BlockRow blockRow) {
             RichEditor.this.openLocationPicker(blockRow);
         }
 
@@ -1447,7 +1450,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$createView$31(View view) throws IOException {
+    public void lambda$createView$31(View view) {
         this.listView.pendingMediaRow = null;
         openAttach();
     }
@@ -1477,7 +1480,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         onAiStyleSelection();
     }
 
-    public void lambda$createView$38(View view) throws Resources.NotFoundException {
+    public void lambda$createView$38(View view) {
         sendMessage();
     }
 
@@ -1693,7 +1696,93 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     public void updateBlockButtons() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditor.updateBlockButtons():void");
+        BlockRow blockRowFindFocusedRow;
+        int i;
+        TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper = this.listView.getTextSelectionHelper();
+        if (textSelectionHelper != null && textSelectionHelper.isInSelectionMode()) {
+            int startCell = textSelectionHelper.getStartCell();
+            blockRowFindFocusedRow = startCell == textSelectionHelper.getEndCell() ? this.listView.rowForCell(startCell) : null;
+        } else {
+            blockRowFindFocusedRow = this.listView.findFocusedRow();
+        }
+        if (this.listView.findFocusedTableCell() != null) {
+            i = 4;
+        } else if (blockRowFindFocusedRow == null) {
+            i = 0;
+        } else if (blockRowFindFocusedRow.isChecklist() || blockRowFindFocusedRow.isInList() || blockRowFindFocusedRow.isOrdered()) {
+            i = 2;
+        } else {
+            TL_iv.PageBlock pageBlock = blockRowFindFocusedRow.block;
+            if (pageBlock instanceof TL_iv.pageBlockDetails) {
+                i = 2;
+            } else if (pageBlock instanceof TL_iv.pageBlockTable) {
+                i = 4;
+            } else if (pageBlock instanceof TL_iv.pageBlockDivider) {
+                i = 8;
+            } else if ((pageBlock instanceof TL_iv.pageBlockHeading1) || (pageBlock instanceof TL_iv.pageBlockHeading2) || (pageBlock instanceof TL_iv.pageBlockHeading3) || (pageBlock instanceof TL_iv.pageBlockHeading4) || (pageBlock instanceof TL_iv.pageBlockHeading5) || (pageBlock instanceof TL_iv.pageBlockHeading6) || (pageBlock instanceof TL_iv.pageBlockParagraph) || (pageBlock instanceof TL_iv.pageBlockPreformatted) || (pageBlock instanceof TL_iv.pageBlockBlockquote) || (pageBlock instanceof TL_iv.pageBlockPullquote) || (pageBlock instanceof TL_iv.pageBlockFooter)) {
+                i = 1;
+            } else if ((pageBlock instanceof TL_iv.pageBlockPhoto) || (pageBlock instanceof TL_iv.pageBlockVideo) || (pageBlock instanceof TL_iv.pageBlockCollage) || (pageBlock instanceof TL_iv.pageBlockSlideshow)) {
+                i = 3;
+            } else if ((pageBlock instanceof TL_iv.pageBlockAudio) || (pageBlock instanceof TL_iv.pageBlockDocument)) {
+                i = 5;
+            } else if (pageBlock instanceof TL_iv.pageBlockMap) {
+                i = 6;
+            } else if (pageBlock instanceof TL_iv.pageBlockMath) {
+                i = 7;
+            } else {
+                i = 0;
+            }
+        }
+        for (Button button : this.blockButtons) {
+            int iIntValue = ((Integer) button.getTag()).intValue();
+            button.setSelected(i == iIntValue);
+            if (i == iIntValue) {
+                button.setEnabled(true);
+                if (blockRowFindFocusedRow == null) {
+                    button.resetIcon();
+                } else if (i == 1) {
+                    TL_iv.PageBlock pageBlock2 = blockRowFindFocusedRow.block;
+                    if (pageBlock2 instanceof TL_iv.pageBlockHeading1) {
+                        button.updateIcon(R.drawable.iv_h1);
+                    } else if (pageBlock2 instanceof TL_iv.pageBlockHeading2) {
+                        button.updateIcon(R.drawable.iv_h2);
+                    } else if (pageBlock2 instanceof TL_iv.pageBlockHeading3) {
+                        button.updateIcon(R.drawable.iv_h3);
+                    } else if (pageBlock2 instanceof TL_iv.pageBlockHeading4) {
+                        button.updateIcon(R.drawable.iv_h4);
+                    } else if (pageBlock2 instanceof TL_iv.pageBlockHeading5) {
+                        button.updateIcon(R.drawable.iv_h5);
+                    } else if (pageBlock2 instanceof TL_iv.pageBlockHeading6) {
+                        button.updateIcon(R.drawable.iv_h6);
+                    } else if (pageBlock2 instanceof TL_iv.pageBlockPreformatted) {
+                        button.updateIcon(R.drawable.iv_code);
+                    } else if (pageBlock2 instanceof TL_iv.pageBlockBlockquote) {
+                        button.updateIcon(R.drawable.iv_quote);
+                    } else if (pageBlock2 instanceof TL_iv.pageBlockPullquote) {
+                        button.updateIcon(R.drawable.iv_pullquote);
+                    } else if (pageBlock2 instanceof TL_iv.pageBlockFooter) {
+                        button.updateIcon(R.drawable.iv_footer);
+                    } else {
+                        button.resetIcon();
+                    }
+                } else if (i == 2) {
+                    if (blockRowFindFocusedRow.isChecklist()) {
+                        button.updateIcon(R.drawable.iv_todo);
+                    } else if (blockRowFindFocusedRow.isOrdered()) {
+                        button.updateIcon(R.drawable.iv_ordered_list);
+                    } else {
+                        button.resetIcon();
+                    }
+                } else if (i == 8) {
+                    button.updateIcon(R.drawable.iv_details);
+                } else {
+                    button.resetIcon();
+                }
+            } else {
+                button.setEnabled(i != 4);
+                button.resetIcon();
+            }
+        }
     }
 
     private void addFormattingButton(Context context, int i, int i2) {
@@ -1777,9 +1866,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         int endOffset = textSelectionHelper.getEndOffset();
         boolean z = false;
         boolean z2 = startCell >= 0 && endCell >= 0 && endCell >= startCell && endCell < this.listView.itemRows.size();
-        Iterator it = this.formattingButtons.iterator();
-        while (it.hasNext()) {
-            Button button2 = (Button) it.next();
+        for (Button button2 : this.formattingButtons) {
             button2.setSelected(z2 && this.listView.isStyleFullyApplied(((Integer) button2.getTag()).intValue(), startCell, startOffset, endCell, endOffset));
         }
         setBoldEnabled(!this.listView.isSelectionAllHeadings());
@@ -1798,9 +1885,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     private void setBoldEnabled(boolean z) {
-        Iterator it = this.formattingButtons.iterator();
-        while (it.hasNext()) {
-            Button button = (Button) it.next();
+        for (Button button : this.formattingButtons) {
             if (((Integer) button.getTag()).intValue() == 1) {
                 button.setEnabled(z);
             }
@@ -1842,9 +1927,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         int endChildPosition = textSelectionHelper.getEndChildPosition();
         int startOffset = textSelectionHelper.getStartOffset();
         int endOffset = textSelectionHelper.getEndOffset();
-        Iterator it = this.formattingButtons.iterator();
-        while (it.hasNext()) {
-            Button button = (Button) it.next();
+        for (Button button : this.formattingButtons) {
             button.setSelected(this.listView.isStyleFullyAppliedTable(((Integer) button.getTag()).intValue(), startCell, startChildPosition, startOffset, endChildPosition, endOffset));
         }
         boolean z = false;
@@ -2208,6 +2291,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                     this.inner.getOutline(this.outline);
                     radius = this.outline.getRadius();
                 } catch (Throwable unused) {
+                    radius = -1.0f;
                 }
             } else {
                 radius = -1.0f;
@@ -2255,11 +2339,11 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    private void openAttach() throws IOException {
+    private void openAttach() {
         openAttach(90, 0);
     }
 
-    public void openAttach(int i, int i2) throws IOException {
+    public void openAttach(int i, int i2) {
         RichEditorListView richEditorListView = this.listView;
         richEditorListView.pendingInsertRow = richEditorListView.findFocusedRow();
         final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this, false, false, true, getResourceProvider());
@@ -2304,18 +2388,16 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                     ArrayList<Object> selectedPhotosOrder = chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
                     BlockRow blockRow = RichEditor.this.listView.pendingMediaRow;
                     RichEditor.this.listView.pendingMediaRow = null;
-                    int i6 = 0;
-                    while (true) {
-                        if (i6 >= selectedPhotosOrder.size()) {
-                            break;
-                        }
+                    for (int i6 = 0; i6 < selectedPhotosOrder.size(); i6++) {
                         Object obj = selectedPhotos.get(selectedPhotosOrder.get(i6));
-                        if (!(obj instanceof MediaController.PhotoEntry)) {
-                            i6++;
-                        } else if (blockRow != null) {
-                            RichEditor.this.listView.addMediaToRow(blockRow, (MediaController.PhotoEntry) obj);
-                        } else {
-                            RichEditor.this.listView.attachMedia((MediaController.PhotoEntry) obj);
+                        if (obj instanceof MediaController.PhotoEntry) {
+                            if (blockRow != null) {
+                                RichEditor.this.listView.addMediaToRow(blockRow, (MediaController.PhotoEntry) obj);
+                                break;
+                            } else {
+                                RichEditor.this.listView.attachMedia((MediaController.PhotoEntry) obj);
+                                break;
+                            }
                         }
                     }
                 }
@@ -2479,7 +2561,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         showDialog(new PremiumFeatureBottomSheet(this, 43, true));
     }
 
-    public void openLocationPicker(final BlockRow blockRow) throws IOException {
+    public void openLocationPicker(final BlockRow blockRow) {
         if (blockRow != null && (blockRow.block instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(this)) {
             final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this, false, false, false, getResourceProvider());
             chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
@@ -2581,13 +2663,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         return this.editingMessageObject == null && (chatActivity = this.chatActivity) != null && chatActivity.isInScheduleMode();
     }
 
-    private void sendMessage() throws Resources.NotFoundException {
+    private void sendMessage() {
         if (isSendLocked()) {
             showConversionSheet();
         } else if (isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public void didSelectDate(boolean z, int i, int i2) throws Resources.NotFoundException {
+                public void didSelectDate(boolean z, int i, int i2) {
                     RichEditor.this.sendMessage(z, i, i2);
                 }
             }, getResourceProvider());
@@ -2596,7 +2678,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void sendMessage(final boolean z, final int i, final int i2) throws Resources.NotFoundException {
+    public void sendMessage(final boolean z, final int i, final int i2) {
         if (isSendLocked()) {
             showConversionSheet();
             return;
@@ -2638,7 +2720,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         final MessageObject messageObject = this.editingMessageObject;
         Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() throws IllegalAccessException, SecurityException, IllegalArgumentException {
+            public final void run() {
                 this.f$0.lambda$sendMessage$49(messageObject, arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, arrayListCollect, dialogId, replyMessage, threadMessage, z, i, i2, messageChatSendParams, sendMonoForumPeerId);
             }
         };
@@ -2655,7 +2737,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$sendMessage$49(MessageObject messageObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, long j, MessageObject messageObject2, MessageObject messageObject3, boolean z, int i, int i2, SendMessageChatArguments sendMessageChatArguments, long j2) throws IllegalAccessException, SecurityException, IllegalArgumentException {
+    public void lambda$sendMessage$49(MessageObject messageObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, long j, MessageObject messageObject2, MessageObject messageObject3, boolean z, int i, int i2, SendMessageChatArguments sendMessageChatArguments, long j2) {
         if (messageObject != null) {
             SendMessagesHelper.prepareEditingArticle(AccountInstance.getInstance(this.currentAccount), messageObject, arrayList, arrayList2, arrayList3, arrayList4, false, this.chatActivity);
         } else {
@@ -2723,7 +2805,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.sendButton.setScaleY(1.0f);
         ChatActivityEnterView.SendButton sendButton = this.messageSendPreview.setSendButton(this.sendButton, true, new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws Resources.NotFoundException {
+            public final void onClick(View view2) {
                 this.f$0.lambda$onSendLongClick$51(view2);
             }
         });
@@ -2743,7 +2825,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             if (!zIsUserSelf && dialogId > 0) {
                 itemOptionsMakeOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException {
+                    public final void run() {
                         this.f$0.lambda$onSendLongClick$53();
                     }
                 });
@@ -2752,7 +2834,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         if (!zIsUserSelf) {
             itemOptionsMakeOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() {
                     this.f$0.lambda$onSendLongClick$54();
                 }
             });
@@ -2771,7 +2853,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.messageSendPreview = null;
     }
 
-    public void lambda$onSendLongClick$51(View view) throws Resources.NotFoundException {
+    public void lambda$onSendLongClick$51(View view) {
         sendMessage();
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -2783,7 +2865,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     public void lambda$onSendLongClick$52(long j) {
         AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), j, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
-            public void didSelectDate(boolean z, int i, int i2) throws Resources.NotFoundException {
+            public void didSelectDate(boolean z, int i, int i2) {
                 RichEditor.this.sendMessage(z, i, i2);
                 if (RichEditor.this.messageSendPreview != null) {
                     RichEditor.this.messageSendPreview.dismissInstant();
@@ -2793,7 +2875,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }, getResourceProvider());
     }
 
-    public void lambda$onSendLongClick$53() throws Resources.NotFoundException {
+    public void lambda$onSendLongClick$53() {
         sendMessage(true, 2147483646, 0);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -2802,7 +2884,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$onSendLongClick$54() throws Resources.NotFoundException {
+    public void lambda$onSendLongClick$54() {
         sendMessage(false, 0, 0);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -2817,7 +2899,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    private boolean persistDraft() throws Resources.NotFoundException {
+    private boolean persistDraft() {
         Runnable runnable;
         if (this.chatActivity == null || this.editingMessageObject != null || !this.listView.canUndo()) {
             return false;
@@ -2969,7 +3051,8 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         if (emojiView == null || (layoutParams = (FrameLayout.LayoutParams) emojiView.getLayoutParams()) == null) {
             return;
         }
-        int iRound = Math.round(getEmojiPanelHeight() + ((getExpandedEmojiHeight() - r1) * this.emojiSearchProgress));
+        int emojiPanelHeight = getEmojiPanelHeight();
+        int iRound = Math.round(emojiPanelHeight + ((getExpandedEmojiHeight() - emojiPanelHeight) * this.emojiSearchProgress));
         if (layoutParams.height != iRound) {
             layoutParams.height = iRound;
             this.emojiView.setLayoutParams(layoutParams);
@@ -3049,8 +3132,9 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         int iMax = Math.max(Math.max(this.emojiPadding, this.bottomInset), this.imeInset);
         this.listView.setPadding(0, AndroidUtilities.dp(60.0f), 0, AndroidUtilities.dp(110.0f) + iMax);
         this.listView.setInsets(this.bottomInset, this.imeInset, this.emojiPadding);
-        this.bottomContainer.setTranslationY(-iMax);
-        this.bottomGradient.setTranslationY(r0 + this.bottomInset);
+        int i3 = -iMax;
+        this.bottomContainer.setTranslationY(i3);
+        this.bottomGradient.setTranslationY(i3 + this.bottomInset);
     }
 
     private void createEmojiView() {
@@ -3297,7 +3381,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     @Override
-    public void onFragmentDestroy() throws Resources.NotFoundException {
+    public void onFragmentDestroy() {
         SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate;
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         if (!this.persistedDraftOnEnd) {

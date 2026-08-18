@@ -25,8 +25,6 @@ import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BlurredRecyclerView;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Stories.DialogStoriesCell;
-import org.telegram.ui.Stories.StoryViewer;
 
 public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
     public int addBottomClip;
@@ -128,9 +126,9 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
         if (dialogStoriesCell != null && !dialogStoriesCell.isExpanded()) {
             viewGroup = dialogStoriesCell.listViewMini;
         }
-        ViewGroup viewGroup2 = this.profileChannelCell;
-        if (viewGroup2 != null) {
-            viewGroup = viewGroup2;
+        ProfileChannelCell profileChannelCell = this.profileChannelCell;
+        if (profileChannelCell != null) {
+            viewGroup = profileChannelCell;
         }
         if (viewGroup == null) {
             return false;

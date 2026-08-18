@@ -13,10 +13,10 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Paint.Views.EntityView;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Components.Size;
@@ -49,7 +49,6 @@ public class StickerView extends EntityView {
     public StickerView(Context context, PointF pointF, float f, float f2, Size size, TLRPC.Document document, Object obj) {
         super(context, pointF);
         this.anchor = -1;
-        int i = 0;
         this.mirrored = false;
         this.centerImage = new ImageReceiver();
         setRotation(f);
@@ -57,18 +56,15 @@ public class StickerView extends EntityView {
         this.sticker = document;
         this.baseSize = size;
         this.parentObject = obj;
-        while (true) {
-            if (i >= document.attributes.size()) {
-                break;
-            }
+        for (int i = 0; i < document.attributes.size(); i++) {
             TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
             if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                 TLRPC.TL_maskCoords tL_maskCoords = documentAttribute.mask_coords;
-                if (tL_maskCoords != null) {
-                    this.anchor = tL_maskCoords.n;
+                if (tL_maskCoords == null) {
+                    break;
                 }
-            } else {
-                i++;
+                this.anchor = tL_maskCoords.n;
+                break;
             }
         }
         FrameLayoutDrawer frameLayoutDrawer = new FrameLayoutDrawer(context);
@@ -176,8 +172,9 @@ public class StickerView extends EntityView {
         if (lottieAnimation != null) {
             return lottieAnimation.getDuration();
         }
-        if (this.centerImage.getAnimation() != null) {
-            return r0.getDurationMs();
+        AnimatedFileDrawable animation = this.centerImage.getAnimation();
+        if (animation != null) {
+            return animation.getDurationMs();
         }
         return 0L;
     }

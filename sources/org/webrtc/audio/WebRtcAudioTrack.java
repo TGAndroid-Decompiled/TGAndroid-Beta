@@ -12,7 +12,6 @@ import java.nio.ByteBuffer;
 import org.telegram.messenger.FileLog;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
-import org.webrtc.audio.JavaAudioDeviceModule;
 
 class WebRtcAudioTrack {
     private static final int AUDIO_TRACK_START = 0;
@@ -69,7 +68,7 @@ class WebRtcAudioTrack {
         }
 
         @Override
-        public void run() throws InterruptedException, SecurityException, IllegalArgumentException {
+        public void run() {
             Process.setThreadPriority(-19);
             Logging.d("WebRtcAudioTrackExternal", "AudioTrackThread" + WebRtcAudioUtils.getThreadInfo());
             WebRtcAudioTrack.assertTrue(WebRtcAudioTrack.this.audioTrack.getPlayState() == 3);
@@ -98,8 +97,8 @@ class WebRtcAudioTrack {
                     this.bufferManager.maybeAdjustBufferSize(WebRtcAudioTrack.this.audioTrack);
                 }
                 WebRtcAudioTrack.this.byteBuffer.rewind();
-                this.writtenFrames += iWriteBytes / channelCount;
-                long playbackHeadPosition = ((this.writtenFrames - WebRtcAudioTrack.this.audioTrack.getPlaybackHeadPosition()) * 1000) / sampleRate;
+                this.writtenFrames += (long) (iWriteBytes / channelCount);
+                long playbackHeadPosition = ((this.writtenFrames - ((long) WebRtcAudioTrack.this.audioTrack.getPlaybackHeadPosition())) * 1000) / ((long) sampleRate);
                 WebRtcAudioTrack.this.byteBuffer.rewind();
                 this.targetTimeNs += 10000000;
                 long jNanoTime = this.targetTimeNs - System.nanoTime();
@@ -158,7 +157,7 @@ class WebRtcAudioTrack {
         this.emptyBytes = new byte[this.byteBuffer.capacity()];
         nativeCacheDirectBufferAddress(this.nativeAudioTrack, this.byteBuffer);
         int iChannelCountToConfiguration = channelCountToConfiguration(i2);
-        int minBufferSize = (int) (AudioTrack.getMinBufferSize(i, iChannelCountToConfiguration, 2) * d);
+        int minBufferSize = (int) (((double) AudioTrack.getMinBufferSize(i, iChannelCountToConfiguration, 2)) * d);
         Logging.d("WebRtcAudioTrackExternal", "minBufferSizeInBytes: " + minBufferSize);
         if (minBufferSize < this.byteBuffer.capacity()) {
             reportWebRtcAudioTrackInitError("AudioTrack.getMinBufferSize returns an invalid value.");
@@ -198,7 +197,7 @@ class WebRtcAudioTrack {
         }
     }
 
-    private boolean startPlayout() throws IllegalStateException {
+    private boolean startPlayout() {
         this.threadChecker.checkIsOnValidThread();
         VolumeLogger volumeLogger = this.volumeLogger;
         if (volumeLogger != null) {
@@ -225,7 +224,7 @@ class WebRtcAudioTrack {
         }
     }
 
-    private boolean stopPlayout() throws IllegalStateException {
+    private boolean stopPlayout() {
         this.threadChecker.checkIsOnValidThread();
         VolumeLogger volumeLogger = this.volumeLogger;
         if (volumeLogger != null) {

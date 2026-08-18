@@ -16,7 +16,7 @@ public class AudioBufferConverter {
 
     public int calculateRequiredOutputSize(int i, int i2, int i3, int i4, int i5) {
         checkChannels(i3, i5);
-        return (int) Math.ceil((this.mRemixer.getRemixedSize(i, i3, i5) * i4) / i2);
+        return (int) Math.ceil((((double) this.mRemixer.getRemixedSize(i, i3, i5)) * ((double) i4)) / ((double) i2));
     }
 
     public ShortBuffer convert(ShortBuffer shortBuffer, int i, int i2, int i3, int i4) {
@@ -25,7 +25,7 @@ public class AudioBufferConverter {
         ShortBuffer shortBufferCreateBuffer = createBuffer(remixedSize);
         this.mRemixer.remix(shortBuffer, i2, shortBufferCreateBuffer, i4);
         shortBufferCreateBuffer.rewind();
-        ShortBuffer shortBufferCreateBuffer2 = createBuffer(((int) Math.ceil((remixedSize * i3) / i)) + 10);
+        ShortBuffer shortBufferCreateBuffer2 = createBuffer(((int) Math.ceil((((double) remixedSize) * ((double) i3)) / ((double) i))) + 10);
         this.mResampler.resample(shortBufferCreateBuffer, i, shortBufferCreateBuffer2, i3, i4);
         shortBufferCreateBuffer2.limit(shortBufferCreateBuffer2.position());
         shortBufferCreateBuffer2.rewind();

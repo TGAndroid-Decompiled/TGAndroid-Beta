@@ -19,6 +19,7 @@ public class OldVideoPlayerRewinder {
     private final Runnable backSeek = new Runnable() {
         @Override
         public void run() {
+            long j;
             if (OldVideoPlayerRewinder.this.videoPlayer == null && OldVideoPlayerRewinder.this.webView == null) {
                 return;
             }
@@ -28,15 +29,20 @@ public class OldVideoPlayerRewinder {
                 return;
             }
             long jCurrentTimeMillis = System.currentTimeMillis();
-            long j = jCurrentTimeMillis - OldVideoPlayerRewinder.this.rewindLastTime;
+            long j2 = jCurrentTimeMillis - OldVideoPlayerRewinder.this.rewindLastTime;
             OldVideoPlayerRewinder.this.rewindLastTime = jCurrentTimeMillis;
             OldVideoPlayerRewinder oldVideoPlayerRewinder = OldVideoPlayerRewinder.this;
             int i = oldVideoPlayerRewinder.rewindCount;
-            long j2 = j * (i == 1 ? 3L : i == 2 ? 6L : 12L);
-            if (oldVideoPlayerRewinder.rewindForward) {
-                OldVideoPlayerRewinder.access$514(OldVideoPlayerRewinder.this, j2);
+            if (i == 1) {
+                j = 3;
             } else {
-                OldVideoPlayerRewinder.access$522(OldVideoPlayerRewinder.this, j2);
+                j = i == 2 ? 6L : 12L;
+            }
+            long j3 = j2 * j;
+            if (oldVideoPlayerRewinder.rewindForward) {
+                OldVideoPlayerRewinder.access$514(OldVideoPlayerRewinder.this, j3);
+            } else {
+                OldVideoPlayerRewinder.access$522(OldVideoPlayerRewinder.this, j3);
             }
             if (OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition < 0) {
                 OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition = 0L;
@@ -50,8 +56,10 @@ public class OldVideoPlayerRewinder {
                 OldVideoPlayerRewinder oldVideoPlayerRewinder4 = OldVideoPlayerRewinder.this;
                 oldVideoPlayerRewinder4.seekTo(oldVideoPlayerRewinder4.rewindBackSeekPlayerPosition);
             }
+            long j4 = OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition - OldVideoPlayerRewinder.this.startRewindFrom;
+            float duration2 = OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition / OldVideoPlayerRewinder.this.getDuration();
             OldVideoPlayerRewinder oldVideoPlayerRewinder5 = OldVideoPlayerRewinder.this;
-            oldVideoPlayerRewinder5.updateRewindProgressUi(OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition - OldVideoPlayerRewinder.this.startRewindFrom, OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition / OldVideoPlayerRewinder.this.getDuration(), oldVideoPlayerRewinder5.rewindByBackSeek);
+            oldVideoPlayerRewinder5.updateRewindProgressUi(j4, duration2, oldVideoPlayerRewinder5.rewindByBackSeek);
             if (OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition == 0 || OldVideoPlayerRewinder.this.rewindBackSeekPlayerPosition >= duration) {
                 OldVideoPlayerRewinder oldVideoPlayerRewinder6 = OldVideoPlayerRewinder.this;
                 if (oldVideoPlayerRewinder6.rewindByBackSeek) {
@@ -214,8 +222,9 @@ public class OldVideoPlayerRewinder {
     }
 
     private long getCurrentPosition() {
-        if (this.webView != null) {
-            return r0.getCurrentPosition();
+        PhotoViewerWebView photoViewerWebView = this.webView;
+        if (photoViewerWebView != null) {
+            return photoViewerWebView.getCurrentPosition();
         }
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null) {
@@ -225,8 +234,9 @@ public class OldVideoPlayerRewinder {
     }
 
     public long getDuration() {
-        if (this.webView != null) {
-            return r0.getVideoDuration();
+        PhotoViewerWebView photoViewerWebView = this.webView;
+        if (photoViewerWebView != null) {
+            return photoViewerWebView.getVideoDuration();
         }
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null) {

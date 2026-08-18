@@ -1,9 +1,11 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
@@ -16,8 +18,6 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.WallpaperCell;
-import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.WallpapersListActivity;
 
@@ -175,8 +175,42 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
     }
 
     @Override
-    public void onPreMeasure(int r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertColorsLayout.onPreMeasure(int, int):void");
+    public void onPreMeasure(int i, int i2) {
+        int i3;
+        if (AndroidUtilities.isTablet()) {
+            this.itemsPerRow = 4;
+        } else {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                this.itemsPerRow = 4;
+            } else {
+                this.itemsPerRow = 3;
+            }
+        }
+        ((FrameLayout.LayoutParams) getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight();
+        int iDp = ((i - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(10.0f)) / this.itemsPerRow;
+        if (this.itemSize != iDp) {
+            this.itemSize = iDp;
+            this.adapter.notifyDataSetChanged();
+        }
+        this.layoutManager.setSpanCount(Math.max(1, (this.itemsPerRow * iDp) + (AndroidUtilities.dp(5.0f) * (this.itemsPerRow - 1))));
+        int iCeil = (int) Math.ceil((this.adapter.getItemCount() - 1) / this.itemsPerRow);
+        Math.max(0, ((i2 - ((iDp * iCeil) + ((iCeil - 1) * AndroidUtilities.dp(5.0f)))) - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.dp(60.0f));
+        if (AndroidUtilities.isTablet()) {
+            i3 = (i2 / 5) * 2;
+        } else {
+            Point point2 = AndroidUtilities.displaySize;
+            if (point2.x > point2.y) {
+                i3 = (int) (i2 / 3.5f);
+            } else {
+                i3 = (i2 / 5) * 2;
+            }
+        }
+        int iDp2 = i3 - AndroidUtilities.dp(52.0f);
+        int i4 = iDp2 >= 0 ? iDp2 : 0;
+        if (this.gridView.getPaddingTop() != i4) {
+            this.gridView.setPadding(AndroidUtilities.dp(6.0f), i4, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(48.0f));
+        }
     }
 
     public void setDelegate(Consumer consumer) {

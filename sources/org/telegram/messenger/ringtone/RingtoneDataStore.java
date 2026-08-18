@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
@@ -104,7 +104,6 @@ public class RingtoneDataStore {
     }
 
     private void loadFromPrefs(boolean z) {
-        boolean z2;
         SharedPreferences sharedPreferences = getSharedPreferences();
         int i = sharedPreferences.getInt("count", 0);
         this.userRingtones.clear();
@@ -121,9 +120,11 @@ public class RingtoneDataStore {
                 this.localIds = i3 + 1;
                 cachedTone.localId = i3;
                 this.userRingtones.add(cachedTone);
-            } finally {
-                if (!z2) {
+            } catch (Throwable th) {
+                if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                    throw th;
                 }
+                FileLog.e(th);
             }
         }
         if (z) {
@@ -147,9 +148,7 @@ public class RingtoneDataStore {
             this.loaded = true;
         }
         HashMap map = new HashMap();
-        Iterator it = this.userRingtones.iterator();
-        while (it.hasNext()) {
-            CachedTone cachedTone = (CachedTone) it.next();
+        for (CachedTone cachedTone : this.userRingtones) {
             if (cachedTone.localUri != null && (document = cachedTone.document) != null) {
                 map.put(Long.valueOf(document.id), cachedTone.localUri);
             }

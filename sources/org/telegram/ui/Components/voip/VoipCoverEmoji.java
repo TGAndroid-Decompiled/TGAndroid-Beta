@@ -81,8 +81,10 @@ public class VoipCoverEmoji {
     }
 
     public void lambda$new$0(View view, ValueAnimator valueAnimator) {
-        this.randomX = (int) (this.fromRandomX + ((this.toRandomX - r0) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-        this.randomY = (int) (this.fromRandomY + ((this.toRandomY - r0) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+        int i = this.fromRandomX;
+        this.randomX = (int) (i + ((this.toRandomX - i) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+        int i2 = this.fromRandomY;
+        this.randomY = (int) (i2 + ((this.toRandomY - i2) * ((Float) valueAnimator.getAnimatedValue()).floatValue()));
         view.invalidate();
     }
 
@@ -140,7 +142,7 @@ public class VoipCoverEmoji {
                 this.f$0.lambda$show$1(valueAnimator2);
             }
         });
-        this.diffXAnimator.setDuration(i2 - valueAnimator.getCurrentPlayTime());
+        this.diffXAnimator.setDuration(((long) i2) - valueAnimator.getCurrentPlayTime());
         this.diffXAnimator.start();
     }
 

@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.os.Handler;
 import android.os.Looper;
-import org.telegram.messenger.NotificationCenter;
 
 public final class ContactsLoadingObserver {
     private final Callback callback;

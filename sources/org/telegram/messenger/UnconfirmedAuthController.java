@@ -7,7 +7,6 @@ import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
@@ -82,6 +81,12 @@ public class UnconfirmedAuthController {
                 FileLog.e(e2);
                 if (sQLiteCursorQueryFinalized != null) {
                 }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$readCache$0(arrayList, hashSet, arrayList3);
+                    }
+                });
             }
             sQLiteCursorQueryFinalized.dispose();
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -220,22 +225,21 @@ public class UnconfirmedAuthController {
             try {
                 database.executeFast("DELETE FROM unconfirmed_auth WHERE 1").stepThis().dispose();
                 sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO unconfirmed_auth VALUES(?)");
-                Iterator<UnconfirmedAuth> it = this.auths.iterator();
-                while (it.hasNext()) {
-                    UnconfirmedAuth next = it.next();
+                for (UnconfirmedAuth unconfirmedAuth : this.auths) {
                     sQLitePreparedStatementExecuteFast.requery();
-                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(next.getObjectSize());
-                    next.serializeToStream(nativeByteBuffer);
+                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(unconfirmedAuth.getObjectSize());
+                    unconfirmedAuth.serializeToStream(nativeByteBuffer);
                     sQLitePreparedStatementExecuteFast.bindByteBuffer(1, nativeByteBuffer);
                     sQLitePreparedStatementExecuteFast.step();
+                }
+                if (sQLitePreparedStatementExecuteFast != null) {
+                    sQLitePreparedStatementExecuteFast.dispose();
                 }
             } catch (Exception e) {
                 FileLog.e(e);
                 if (sQLitePreparedStatementExecuteFast != null) {
+                    sQLitePreparedStatementExecuteFast.dispose();
                 }
-            }
-            if (sQLitePreparedStatementExecuteFast != null) {
-                sQLitePreparedStatementExecuteFast.dispose();
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

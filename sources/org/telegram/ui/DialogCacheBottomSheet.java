@@ -14,8 +14,6 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CacheControlActivity;
-import org.telegram.ui.CachedMediaLayout;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
@@ -245,7 +243,8 @@ public class DialogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             } else {
                 CheckBoxCell checkBoxCell = (CheckBoxCell) view;
                 int iIntValue = ((Integer) checkBoxCell.getTag()).intValue();
-                this.clearViewData[iIntValue].setClear(!r1.clear);
+                StorageDiagramView.ClearViewData clearViewData2 = this.clearViewData[iIntValue];
+                clearViewData2.setClear(!clearViewData2.clear);
                 checkBoxCell.setChecked(this.clearViewData[iIntValue].clear, true);
                 cacheModel.allFilesSelcetedByType(iIntValue, this.clearViewData[iIntValue].clear);
                 this.cachedMediaLayout.update();
@@ -302,8 +301,9 @@ public class DialogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 super.onScrolled(recyclerView, i, i2);
                 DialogCacheBottomSheet dialogCacheBottomSheet = DialogCacheBottomSheet.this;
-                if (dialogCacheBottomSheet.nestedSizeNotifierLayout != null) {
-                    dialogCacheBottomSheet.setShowShadow(!r2.isPinnedToTop());
+                NestedSizeNotifierLayout nestedSizeNotifierLayout = dialogCacheBottomSheet.nestedSizeNotifierLayout;
+                if (nestedSizeNotifierLayout != null) {
+                    dialogCacheBottomSheet.setShowShadow(!nestedSizeNotifierLayout.isPinnedToTop());
                 }
             }
         });

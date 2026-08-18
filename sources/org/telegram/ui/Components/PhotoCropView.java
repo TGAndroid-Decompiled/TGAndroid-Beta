@@ -20,7 +20,6 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.Crop.CropRotationWheel;
 import org.telegram.ui.Components.Crop.CropTransform;
 import org.telegram.ui.Components.Crop.CropView;
@@ -207,7 +206,8 @@ public class PhotoCropView extends FrameLayout {
         if (this.thumbImageVisible && view == (cropView = this.cropView)) {
             RectF actualRect = cropView.getActualRect();
             int iDp = AndroidUtilities.dp(32.0f);
-            int videoThumbX = (this.delegate.getVideoThumbX() - (iDp / 2)) + AndroidUtilities.dp(2.0f);
+            int i = iDp / 2;
+            int videoThumbX = (this.delegate.getVideoThumbX() - i) + AndroidUtilities.dp(2.0f);
             int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(156.0f);
             float f = actualRect.left;
             float f2 = this.thumbAnimationProgress;
@@ -226,7 +226,7 @@ public class PhotoCropView extends FrameLayout {
             }
             this.circlePaint.setColor(getThemedColor(Theme.key_chat_editMediaButton));
             this.circlePaint.setAlpha(Math.min(255, (int) (this.thumbAnimationProgress * 255.0f * this.thumbImageVisibleProgress)));
-            canvas.drawCircle(videoThumbX + r1, measuredHeight + iDp + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(3.0f), this.circlePaint);
+            canvas.drawCircle(videoThumbX + i, measuredHeight + iDp + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(3.0f), this.circlePaint);
         }
         return zDrawChild;
     }

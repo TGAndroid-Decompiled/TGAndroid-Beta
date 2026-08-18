@@ -188,7 +188,27 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
         this.scrollRunnable = new Runnable() {
             @Override
             public void run() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ScrollSlidingTabStrip.AnonymousClass6.run():void");
+                int iMax;
+                long jCurrentTimeMillis = System.currentTimeMillis() - ScrollSlidingTabStrip.this.scrollStartTime;
+                int i = 1;
+                if (jCurrentTimeMillis < 3000) {
+                    iMax = Math.max(1, AndroidUtilities.dp(1.0f));
+                    if (!ScrollSlidingTabStrip.this.scrollRight) {
+                        i = -1;
+                    }
+                } else if (jCurrentTimeMillis < 5000) {
+                    iMax = Math.max(1, AndroidUtilities.dp(2.0f));
+                    if (!ScrollSlidingTabStrip.this.scrollRight) {
+                        i = -1;
+                    }
+                } else {
+                    iMax = Math.max(1, AndroidUtilities.dp(4.0f));
+                    if (!ScrollSlidingTabStrip.this.scrollRight) {
+                        i = -1;
+                    }
+                }
+                ScrollSlidingTabStrip.this.scrollBy(iMax * i, 0);
+                AndroidUtilities.runOnUIThread(ScrollSlidingTabStrip.this.scrollRunnable);
             }
         };
         this.resourcesProvider = resourcesProvider;
@@ -544,7 +564,8 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
                     if (f3 - f2 < 0.0f) {
                         f3 = f2;
                     }
-                    ScrollSlidingTabStrip.this.expandOffset = (r1.getScrollX() + f2) - f3;
+                    ScrollSlidingTabStrip scrollSlidingTabStrip2 = ScrollSlidingTabStrip.this;
+                    scrollSlidingTabStrip2.expandOffset = (scrollSlidingTabStrip2.getScrollX() + f2) - f3;
                     ScrollSlidingTabStrip.this.scrollByOnNextMeasure = (int) (f3 - f2);
                     if (ScrollSlidingTabStrip.this.scrollByOnNextMeasure < 0) {
                         ScrollSlidingTabStrip.this.scrollByOnNextMeasure = 0;
@@ -556,9 +577,9 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
                         }
                         childAt.getLayoutParams().width = AndroidUtilities.dp(33.0f);
                     }
-                    ScrollSlidingTabStrip scrollSlidingTabStrip2 = ScrollSlidingTabStrip.this;
-                    scrollSlidingTabStrip2.animateToExpanded = false;
-                    scrollSlidingTabStrip2.getLayoutParams().height = AndroidUtilities.dp(36.0f);
+                    ScrollSlidingTabStrip scrollSlidingTabStrip3 = ScrollSlidingTabStrip.this;
+                    scrollSlidingTabStrip3.animateToExpanded = false;
+                    scrollSlidingTabStrip3.getLayoutParams().height = AndroidUtilities.dp(36.0f);
                     ScrollSlidingTabStrip.this.tabsContainer.requestLayout();
                 }
             });
@@ -664,8 +685,9 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
         float fDp = AndroidUtilities.dp(33.0f);
         float fDp2 = AndroidUtilities.dp(EXPANDED_WIDTH - 33.0f);
         float f = this.expandProgress;
-        int scrollX = (int) (((getScrollX() - (this.animateToExpanded ? this.expandOffset * (1.0f - f) : 0.0f)) - this.tabsContainer.getPaddingLeft()) / (fDp + (fDp2 * f)));
-        int iMin = Math.min(this.tabsContainer.getChildCount(), ((int) Math.ceil(getMeasuredWidth() / r2)) + scrollX + 1);
+        float f2 = fDp + (fDp2 * f);
+        int scrollX = (int) (((getScrollX() - (this.animateToExpanded ? this.expandOffset * (1.0f - f) : 0.0f)) - this.tabsContainer.getPaddingLeft()) / f2);
+        int iMin = Math.min(this.tabsContainer.getChildCount(), ((int) Math.ceil(getMeasuredWidth() / f2)) + scrollX + 1);
         if (this.animateToExpanded) {
             scrollX -= 2;
             iMin += 2;
@@ -840,15 +862,17 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
             float fAbs = (1.25f - ((Math.abs(0.5f - this.currentPositionAnimated.getTransitionProgressInterpolated()) * 0.25f) * 2.0f)) * fDp;
             float fAbs2 = fDp * ((Math.abs(0.5f - this.currentPositionAnimated.getTransitionProgressInterpolated()) * 0.1f * 2.0f) + 0.9f);
             float interpolation = CubicBezierInterpolator.EASE_IN.getInterpolation(this.expandProgress);
-            float fLerp2 = f6 + AndroidUtilities.lerp(0, AndroidUtilities.dp(26.0f), interpolation);
-            float fLerp3 = AndroidUtilities.lerp(fAbs, textWidth + AndroidUtilities.dp(10.0f), interpolation) / 2.0f;
+            float fLerp2 = AndroidUtilities.lerp(fAbs, textWidth + AndroidUtilities.dp(10.0f), interpolation);
+            float fLerp3 = f6 + AndroidUtilities.lerp(0, AndroidUtilities.dp(26.0f), interpolation);
+            float f8 = fLerp2 / 2.0f;
             float fLerp4 = (fAbs2 * AndroidUtilities.lerp(1.0f, 0.55f, interpolation)) / 2.0f;
-            this.tabBounds.set(left - fLerp3, fLerp2 - fLerp4, left + fLerp3, fLerp2 + fLerp4);
+            this.tabBounds.set(left - f8, fLerp3 - fLerp4, left + f8, fLerp3 + fLerp4);
             if (this.isGlassDesign) {
                 this.selectorPaint.setColor(getGlassIconColor(0.05f));
             } else {
                 this.selectorPaint.setColor(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_emojiPanelIcon), 46));
-                this.selectorPaint.setAlpha((int) (r2.getAlpha() * f4));
+                Paint paint = this.selectorPaint;
+                paint.setAlpha((int) (paint.getAlpha() * f4));
             }
             RectF rectF = this.tabBounds;
             canvas.drawRoundRect(rectF, rectF.height() / 2.0f, this.tabBounds.height() / 2.0f, this.selectorPaint);
@@ -893,8 +917,9 @@ public abstract class ScrollSlidingTabStrip extends HorizontalScrollView {
         if (i3 == i) {
             return;
         }
-        if (this.tabsContainer.getChildAt(i3) != null) {
-            this.startAnimationPosition = r0.getLeft();
+        View childAt = this.tabsContainer.getChildAt(i3);
+        if (childAt != null) {
+            this.startAnimationPosition = childAt.getLeft();
             this.positionAnimationProgress = 0.0f;
             this.animateFromPosition = true;
             this.lastAnimationTime = SystemClock.elapsedRealtime();

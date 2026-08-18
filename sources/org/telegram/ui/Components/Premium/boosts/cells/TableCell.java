@@ -197,7 +197,7 @@ public class TableCell extends FrameLayout {
 
     public void setData(final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, final Utilities.Callback callback) {
         this.giftCode = tL_payments_checkedGiftCode;
-        Date date = new Date(tL_payments_checkedGiftCode.date * 1000);
+        Date date = new Date(((long) tL_payments_checkedGiftCode.date) * 1000);
         this.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
         this.reasonTextView.setTextColor(Theme.getColor(tL_payments_checkedGiftCode.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
         final TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode.from_id)));

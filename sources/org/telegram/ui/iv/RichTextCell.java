@@ -46,8 +46,6 @@ import org.telegram.ui.Components.ReplyMessageLine;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.iv.RichEditText;
-import org.telegram.ui.iv.RichEditor;
 
 public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
     private boolean applyingCollapsedDecoration;
@@ -1059,9 +1057,7 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
             if (delegate != null) {
                 iMax = delegate.getOrderedListMarkerWidth(blockRow, this.bullet.getPaint());
             } else {
-                int iDp = AndroidUtilities.dp(28.0f);
-                TextPaint paint = this.bullet.getPaint();
-                iMax = Math.max(iDp, ((int) Math.ceil(paint.measureText(blockRow.num + "."))) + AndroidUtilities.dp(10.0f));
+                iMax = Math.max(AndroidUtilities.dp(28.0f), ((int) Math.ceil(this.bullet.getPaint().measureText(blockRow.num + "."))) + AndroidUtilities.dp(10.0f));
             }
         }
         if (layoutParams2.width != iMax) {
@@ -1353,8 +1349,64 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         return null;
     }
 
-    public static org.telegram.ui.iv.RichTextCell.Transform matchEnterTrigger(java.lang.String r7, org.telegram.ui.iv.BlockRow r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTextCell.matchEnterTrigger(java.lang.String, org.telegram.ui.iv.BlockRow):org.telegram.ui.iv.RichTextCell$Transform");
+    public static Transform matchEnterTrigger(String str, BlockRow blockRow) {
+        int iMax;
+        int iMax2;
+        char cCharAt;
+        char cCharAt2;
+        if (str == null || blockRow == null) {
+            return null;
+        }
+        String strTrim = str.trim();
+        int i = 2;
+        if (strTrim.length() == 3 && (((cCharAt2 = strTrim.charAt(0)) == '-' || cCharAt2 == '*' || cCharAt2 == '_') && strTrim.charAt(1) == cCharAt2 && strTrim.charAt(2) == cCharAt2)) {
+            return new Transform(new TL_iv.pageBlockDivider(), 0, 0);
+        }
+        String lowerCase = strTrim.toLowerCase();
+        if (lowerCase.length() == 3 && lowerCase.charAt(0) == '/' && lowerCase.charAt(1) == 'h' && (cCharAt = lowerCase.charAt(2)) >= '1' && cCharAt <= '6') {
+            return new Transform(newHeading(cCharAt - '0'), blockRow.level, blockRow.num);
+        }
+        if (lowerCase.equals("/code") || lowerCase.equals("/pre") || lowerCase.equals("/preformatted")) {
+            return new Transform(new TL_iv.pageBlockPreformatted(), 0, 0);
+        }
+        if (lowerCase.equals("/footer")) {
+            return new Transform(new TL_iv.pageBlockFooter(), 0, 0);
+        }
+        if (lowerCase.equals("/quote") || lowerCase.equals("/blockquote")) {
+            return new Transform(newBlockquote(), 0, 0);
+        }
+        if (lowerCase.equals("/pullquote")) {
+            return new Transform(newPullquote(), 0, 0);
+        }
+        if (!lowerCase.equals("/table") && !lowerCase.startsWith("/table ")) {
+            return null;
+        }
+        if (lowerCase.length() <= 7) {
+            iMax = 2;
+        } else {
+            String strTrim2 = lowerCase.substring(7).trim();
+            int iIndexOf = strTrim2.indexOf(120);
+            if (iIndexOf < 0) {
+                iIndexOf = strTrim2.indexOf(88);
+            }
+            if (iIndexOf > 0) {
+                try {
+                    iMax2 = Math.max(1, Math.min(20, Integer.parseInt(strTrim2.substring(0, iIndexOf).trim())));
+                    try {
+                        iMax = Math.max(1, Math.min(20, Integer.parseInt(strTrim2.substring(iIndexOf + 1).trim())));
+                        i = iMax2;
+                    } catch (NumberFormatException unused) {
+                        i = iMax2;
+                        iMax = 2;
+                    }
+                } catch (NumberFormatException unused2) {
+                    iMax2 = 2;
+                }
+            } else {
+                iMax = 2;
+            }
+        }
+        return new Transform(newEmptyTable(i, iMax), 0, 0);
     }
 
     public static String slashQuery(String str) {
@@ -1671,13 +1723,14 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
             float paddingTop3 = paddingTop + this.authorEditText.getPaddingTop() + layout.getLineBottom(lineCount);
             int iDp = AndroidUtilities.dp(3.333f);
             float fDp = ((i - AndroidUtilities.dp(16.0f)) - iDp) - this.collapseButton.width();
+            int iHeight = this.collapseButton.height();
             int i3 = i2 - iDp;
-            float fHeight = i3 - this.collapseButton.height();
-            float f = i3;
+            float f = i3 - iHeight;
+            float f2 = i3;
             boolean z = paddingLeft > fDp;
-            boolean z2 = paddingTop3 > fHeight && paddingTop2 < f;
+            boolean z2 = paddingTop3 > f && paddingTop2 < f2;
             if (z && z2) {
-                return (int) Math.ceil(Math.max(0.0f, (((paddingTop3 + AndroidUtilities.dp(4.0f)) + r4) + iDp) - i2));
+                return (int) Math.ceil(Math.max(0.0f, (((paddingTop3 + AndroidUtilities.dp(4.0f)) + iHeight) + iDp) - i2));
             }
         }
         return 0;
@@ -1831,9 +1884,12 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
                 fMax3 = 0.0f;
             }
             if (width4 < fMax2 && height2 < fMax3) {
-                float fDp4 = width4 - AndroidUtilities.dp(4.0f);
+                float fDp4 = height2 - AndroidUtilities.dp(2.0f);
+                float fDp5 = width4 - AndroidUtilities.dp(4.0f);
+                float fDp6 = fMax2 + AndroidUtilities.dp(4.0f);
+                float fDp7 = fMax3 + AndroidUtilities.dp(2.0f);
                 this.bgPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), 0.05f));
-                canvas.drawRoundRect(fDp4, height2 - AndroidUtilities.dp(2.0f), fMax2 + AndroidUtilities.dp(4.0f), fMax3 + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.bgPaint);
+                canvas.drawRoundRect(fDp5, fDp4, fDp6, fDp7, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.bgPaint);
             }
         }
         Delegate delegate = this.delegate;
@@ -1888,7 +1944,8 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
 
     private void toggleCollapsed() {
         if (isBlockquote()) {
-            ((TL_iv.pageBlockBlockquote) this.currentRow.block).collapsed = !r0.collapsed;
+            TL_iv.pageBlockBlockquote pageblockblockquote = (TL_iv.pageBlockBlockquote) this.currentRow.block;
+            pageblockblockquote.collapsed = !pageblockblockquote.collapsed;
             updateCollapsedDecoration();
             invalidate();
             Delegate delegate = this.delegate;
@@ -1933,7 +1990,46 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
     }
 
     public void updateCollapsedDecoration() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTextCell.updateCollapsedDecoration():void");
+        int length;
+        Layout layout;
+        int lineStart;
+        if (this.editText.getText() instanceof Editable) {
+            Editable text = this.editText.getText();
+            int i = -1;
+            if (isBlockquote() && ((TL_iv.pageBlockBlockquote) this.currentRow.block).collapsed && (layout = this.editText.getLayout()) != null) {
+                int lineCount = layout.getLineCount();
+                int i2 = QuoteSpan.COLLAPSE_LINES;
+                if (lineCount <= i2 || (lineStart = layout.getLineStart(i2)) >= (length = text.length())) {
+                    length = -1;
+                } else {
+                    i = lineStart;
+                }
+            } else {
+                length = -1;
+            }
+            if (i == this.collapsedPartStart && length == this.collapsedPartEnd) {
+                return;
+            }
+            this.applyingCollapsedDecoration = true;
+            try {
+                CharacterStyle characterStyle = this.collapsedPart;
+                if (characterStyle != null) {
+                    text.removeSpan(characterStyle);
+                }
+                if (i >= 0) {
+                    if (this.collapsedPart == null) {
+                        this.collapsedPart = new CollapsedTextPart();
+                    }
+                    text.setSpan(this.collapsedPart, i, length, 33);
+                }
+                this.applyingCollapsedDecoration = false;
+                this.collapsedPartStart = i;
+                this.collapsedPartEnd = length;
+            } catch (Throwable th) {
+                this.applyingCollapsedDecoration = false;
+                throw th;
+            }
+        }
     }
 
     private class CollapsedTextPart extends CharacterStyle {

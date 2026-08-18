@@ -28,7 +28,7 @@ public class VoIPEllipsizeSpan extends ReplacementSpan {
         canvas.translate(f + AndroidUtilities.dp(4.0f), i4 / 2.0f);
         long jUptimeMillis = (SystemClock.uptimeMillis() % 250) + 500;
         for (int i6 = 0; i6 < 3; i6++) {
-            float fMin = Math.min(1.0f, (((i6 * 250) + jUptimeMillis) % 750) / 667.0f);
+            float fMin = Math.min(1.0f, (((((long) i6) * 250) + jUptimeMillis) % 750) / 667.0f);
             if (fMin <= 0.425f) {
                 interpolation = this.interpolator.getInterpolation(fMin / 0.425f);
             } else {

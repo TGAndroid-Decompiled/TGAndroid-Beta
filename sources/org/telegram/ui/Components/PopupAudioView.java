@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
@@ -18,7 +19,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
-import org.telegram.ui.Components.SeekBar;
 
 public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate, DownloadController.FileDownloadProgressListener {
     private int TAG;
@@ -188,8 +188,52 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PopupAudioView.onTouchEvent(android.view.MotionEvent):boolean");
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        float x = motionEvent.getX();
+        float y = motionEvent.getY();
+        boolean zOnTouch = this.seekBar.onTouch(motionEvent.getAction(), motionEvent.getX() - this.seekBarX, motionEvent.getY() - this.seekBarY);
+        if (zOnTouch) {
+            if (motionEvent.getAction() == 0) {
+                getParent().requestDisallowInterceptTouchEvent(true);
+            }
+            invalidate();
+            return zOnTouch;
+        }
+        int iDp = AndroidUtilities.dp(36.0f);
+        if (motionEvent.getAction() == 0) {
+            int i = this.buttonX;
+            if (x >= i && x <= i + iDp) {
+                int i2 = this.buttonY;
+                if (y >= i2 && y <= i2 + iDp) {
+                    this.buttonPressed = 1;
+                    invalidate();
+                    zOnTouch = true;
+                }
+            }
+        } else if (this.buttonPressed == 1) {
+            if (motionEvent.getAction() == 1) {
+                this.buttonPressed = 0;
+                playSoundEffect(0);
+                didPressedButton();
+                invalidate();
+            } else if (motionEvent.getAction() == 3) {
+                this.buttonPressed = 0;
+                invalidate();
+            } else if (motionEvent.getAction() == 2) {
+                int i3 = this.buttonX;
+                if (x < i3 || x > i3 + iDp) {
+                    this.buttonPressed = 0;
+                    invalidate();
+                } else {
+                    int i4 = this.buttonY;
+                    if (y < i4 || y > i4 + iDp) {
+                        this.buttonPressed = 0;
+                        invalidate();
+                    }
+                }
+            }
+        }
+        return !zOnTouch ? super.onTouchEvent(motionEvent) : zOnTouch;
     }
 
     private void didPressedButton() {
@@ -236,17 +280,12 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
         }
         if (!MediaController.getInstance().isPlayingMessage(this.currentMessageObject)) {
             i = 0;
-            int i2 = 0;
-            while (true) {
-                if (i2 >= this.currentMessageObject.getDocument().attributes.size()) {
-                    break;
-                }
+            for (int i2 = 0; i2 < this.currentMessageObject.getDocument().attributes.size(); i2++) {
                 TLRPC.DocumentAttribute documentAttribute = this.currentMessageObject.getDocument().attributes.get(i2);
                 if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
                     i = (int) documentAttribute.duration;
                     break;
                 }
-                i2++;
             }
         } else {
             i = this.currentMessageObject.audioProgressSec;

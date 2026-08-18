@@ -24,7 +24,6 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.StaticLayoutEx;
-import org.telegram.ui.Stories.SelfStoryViewsView;
 
 public abstract class SelfStoriesPreviewView extends View {
     boolean checkScroll;
@@ -167,8 +166,96 @@ public abstract class SelfStoriesPreviewView extends View {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.SelfStoriesPreviewView.onDraw(android.graphics.Canvas):void");
+    protected void onDraw(Canvas canvas) {
+        float fAbs;
+        float f;
+        float f2;
+        int i;
+        super.onDraw(canvas);
+        if (this.scroller.computeScrollOffset()) {
+            this.scrollX = this.scroller.getCurrX();
+            invalidate();
+            this.checkScroll = true;
+        } else if (this.checkScroll) {
+            scrollToClosest();
+        }
+        float f3 = 2.0f;
+        float measuredWidth = getMeasuredWidth() / 2.0f;
+        this.imageReceiversTmp.clear();
+        this.imageReceiversTmp.addAll(this.lastDrawnImageReceivers);
+        this.lastDrawnImageReceivers.clear();
+        int i2 = -1;
+        float f4 = 2.1474836E9f;
+        int i3 = 0;
+        int i4 = -1;
+        while (i3 < this.storyItems.size()) {
+            float f5 = -this.scrollX;
+            int i5 = this.viewW;
+            float f6 = f5 + ((this.childPadding + i5) * i3);
+            float f7 = ((i5 / f3) + f6) - measuredWidth;
+            float fAbs2 = Math.abs(f7);
+            if (fAbs2 < this.viewW) {
+                fAbs = 1.0f - (Math.abs(f7) / this.viewW);
+                f = (0.2f * fAbs) + 1.0f;
+            } else {
+                fAbs = 0.0f;
+                f = 1.0f;
+            }
+            if (i4 == i2 || fAbs2 < f4) {
+                i4 = i3;
+                f4 = fAbs2;
+            }
+            if (f7 < 0.0f) {
+                f2 = f6 - ((this.viewW * 0.1f) * (1.0f - fAbs));
+            } else {
+                f2 = f6 + (this.viewW * 0.1f * (1.0f - fAbs));
+            }
+            if (f2 > getMeasuredWidth() || this.viewW + f2 < 0.0f) {
+                measuredWidth = measuredWidth;
+                f4 = f4;
+            } else {
+                ImageHolder imageHolderFindOrCreateImageReceiver = findOrCreateImageReceiver(i3, this.imageReceiversTmp);
+                float f8 = this.viewW;
+                float f9 = f8 * f;
+                float f10 = this.viewH;
+                float f11 = f * f10;
+                float f12 = f2 - ((f9 - f8) / f3);
+                float f13 = this.topPadding - ((f11 - f10) / f3);
+                if (this.progressToOpen == 0.0f || i3 == (i = this.lastClosestPosition)) {
+                    imageHolderFindOrCreateImageReceiver.receiver.setImageCoords(f12, f13, f9, f11);
+                } else {
+                    imageHolderFindOrCreateImageReceiver.receiver.setImageCoords(AndroidUtilities.lerp((i3 - i) * getMeasuredWidth(), f12, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromY, f13, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromW, f9, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromH, f11, this.progressToOpen));
+                }
+                if (this.progressToOpen == 1.0f || i3 != this.lastClosestPosition) {
+                    imageHolderFindOrCreateImageReceiver.receiver.draw(canvas);
+                    if (imageHolderFindOrCreateImageReceiver.layout != null) {
+                        int i6 = (int) (((fAbs * 0.3f) + 0.7f) * 255.0f);
+                        this.gradientDrawable.setAlpha(i6);
+                        this.gradientDrawable.setBounds((int) imageHolderFindOrCreateImageReceiver.receiver.getImageX(), (int) (imageHolderFindOrCreateImageReceiver.receiver.getImageY2() - AndroidUtilities.dp(24.0f)), (int) imageHolderFindOrCreateImageReceiver.receiver.getImageX2(), ((int) imageHolderFindOrCreateImageReceiver.receiver.getImageY2()) + 2);
+                        this.gradientDrawable.draw(canvas);
+                        canvas.save();
+                        canvas.translate(imageHolderFindOrCreateImageReceiver.receiver.getCenterX() - (this.textWidth / 2.0f), (imageHolderFindOrCreateImageReceiver.receiver.getImageY2() - AndroidUtilities.dp(8.0f)) - imageHolderFindOrCreateImageReceiver.layout.getHeight());
+                        imageHolderFindOrCreateImageReceiver.paint.setAlpha(i6);
+                        imageHolderFindOrCreateImageReceiver.layout.draw(canvas);
+                        canvas.restore();
+                    }
+                }
+                this.lastDrawnImageReceivers.add(imageHolderFindOrCreateImageReceiver);
+            }
+            i3++;
+            measuredWidth = measuredWidth;
+            f4 = f4;
+            f3 = 2.0f;
+            i2 = -1;
+        }
+        if (this.scrollAnimator == null && this.lastClosestPosition != i4) {
+            this.lastClosestPosition = i4;
+            onClosestPositionChanged(i4);
+        }
+        for (int i7 = 0; i7 < this.imageReceiversTmp.size(); i7++) {
+            ((ImageHolder) this.imageReceiversTmp.get(i7)).onDetach();
+        }
+        this.imageReceiversTmp.clear();
     }
 
     private void scrollToClosest() {
@@ -205,16 +292,20 @@ public abstract class SelfStoriesPreviewView extends View {
                 this.scrollAnimator = null;
             }
             if (!z) {
-                this.scrollX = ((-getMeasuredWidth()) / 2.0f) + (this.viewW / 2.0f) + ((r0 + this.childPadding) * i);
+                float f = (-getMeasuredWidth()) / 2.0f;
+                int i2 = this.viewW;
+                this.scrollX = f + (i2 / 2.0f) + ((i2 + this.childPadding) * i);
                 invalidate();
                 return;
             }
-            float f = ((-getMeasuredWidth()) / 2.0f) + (this.viewW / 2.0f) + ((r1 + this.childPadding) * i);
-            float f2 = this.scrollX;
-            if (f == f2) {
+            float f2 = (-getMeasuredWidth()) / 2.0f;
+            int i3 = this.viewW;
+            float f3 = f2 + (i3 / 2.0f) + ((i3 + this.childPadding) * i);
+            float f4 = this.scrollX;
+            if (f3 == f4) {
                 return;
             }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f2, f);
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f4, f3);
             this.scrollAnimator = valueAnimatorOfFloat;
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -304,17 +395,23 @@ public abstract class SelfStoriesPreviewView extends View {
             valueAnimator.cancel();
             this.scrollAnimator = null;
         }
-        float f3 = ((-getMeasuredWidth()) / 2.0f) + (this.viewW / 2.0f) + ((r2 + this.childPadding) * i);
+        float f3 = (-getMeasuredWidth()) / 2.0f;
+        int i2 = this.viewW;
+        float f4 = f3 + (i2 / 2.0f) + ((i2 + this.childPadding) * i);
         if (f > 0.0f) {
-            f2 = ((-getMeasuredWidth()) / 2.0f) + (this.viewW / 2.0f) + ((r4 + this.childPadding) * (i + 1));
+            float f5 = (-getMeasuredWidth()) / 2.0f;
+            int i3 = this.viewW;
+            f2 = f5 + (i3 / 2.0f) + ((i3 + this.childPadding) * (i + 1));
         } else {
-            f2 = ((-getMeasuredWidth()) / 2.0f) + (this.viewW / 2.0f) + ((r4 + this.childPadding) * (i - 1));
+            float f6 = (-getMeasuredWidth()) / 2.0f;
+            int i4 = this.viewW;
+            f2 = f6 + (i4 / 2.0f) + ((i4 + this.childPadding) * (i - 1));
             f = -f;
         }
         if (f == 0.0f) {
-            this.scrollX = f3;
+            this.scrollX = f4;
         } else {
-            this.scrollX = AndroidUtilities.lerp(f3, f2, f);
+            this.scrollX = AndroidUtilities.lerp(f4, f2, f);
         }
         this.checkScroll = false;
         invalidate();

@@ -25,7 +25,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.FloatingDebug.FloatingDebugView$$ExternalSyntheticLambda10;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Stories.recorder.HintView2;
@@ -149,9 +148,10 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
                     if (jElapsedRealtime > 17) {
                         jElapsedRealtime = 17;
                     }
-                    ScrollSlidingTextTabStrip.access$216(ScrollSlidingTextTabStrip.this, jElapsedRealtime / r2.animationDuration);
                     ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = ScrollSlidingTextTabStrip.this;
-                    scrollSlidingTextTabStrip.setAnimationIdicatorProgress(scrollSlidingTextTabStrip.interpolator.getInterpolation(ScrollSlidingTextTabStrip.this.animationTime));
+                    ScrollSlidingTextTabStrip.access$216(scrollSlidingTextTabStrip, jElapsedRealtime / scrollSlidingTextTabStrip.animationDuration);
+                    ScrollSlidingTextTabStrip scrollSlidingTextTabStrip2 = ScrollSlidingTextTabStrip.this;
+                    scrollSlidingTextTabStrip2.setAnimationIdicatorProgress(scrollSlidingTextTabStrip2.interpolator.getInterpolation(ScrollSlidingTextTabStrip.this.animationTime));
                     if (ScrollSlidingTextTabStrip.this.animationTime > 1.0f) {
                         ScrollSlidingTextTabStrip.this.animationTime = 1.0f;
                     }
@@ -380,8 +380,10 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
         int iAlpha2 = Color.alpha(iProcessColor2);
         textView2.setTextColor(Color.argb((int) (iAlpha + ((iAlpha2 - iAlpha) * f)), (int) (iRed + ((iRed2 - iRed) * f)), (int) (iGreen + ((iGreen2 - iGreen) * f)), (int) (iBlue + ((iBlue2 - iBlue) * f))));
         textView.setTextColor(Color.argb((int) (iAlpha2 + ((iAlpha - iAlpha2) * f)), (int) (iRed2 + ((iRed - iRed2) * f)), (int) (iGreen2 + ((iGreen - iGreen2) * f)), (int) (iBlue2 + ((iBlue - iBlue2) * f))));
-        this.indicatorX = (int) (this.animateIndicatorStartX + ((this.animateIndicatorToX - r1) * f));
-        this.indicatorWidth = (int) (this.animateIndicatorStartWidth + ((this.animateIndicatorToWidth - r1) * f));
+        int i = this.animateIndicatorStartX;
+        this.indicatorX = (int) (i + ((this.animateIndicatorToX - i) * f));
+        int i2 = this.animateIndicatorStartWidth;
+        this.indicatorWidth = (int) (i2 + ((this.animateIndicatorToWidth - i2) * f));
         invalidate();
     }
 
@@ -569,8 +571,9 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements T
             });
             NotificationCenter.listenEmojiLoading(textView);
         }
-        textView.setText(Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), false));
-        int iCeil = ((int) Math.ceil(HintView2.measureCorrectly(r6, textView.getPaint()))) + AndroidUtilities.dp(32.0f);
+        CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(charSequence, textView.getPaint().getFontMetricsInt(), false);
+        textView.setText(charSequenceReplaceEmoji);
+        int iCeil = ((int) Math.ceil(HintView2.measureCorrectly(charSequenceReplaceEmoji, textView.getPaint()))) + AndroidUtilities.dp(32.0f);
         this.tabsContainer.addView(textView, LayoutHelper.createLinear(0, -1));
         this.allTextWidth += iCeil;
         this.positionToWidth.put(i2, iCeil);

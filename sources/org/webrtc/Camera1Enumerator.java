@@ -4,8 +4,6 @@ import android.hardware.Camera;
 import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.List;
-import org.webrtc.CameraEnumerationAndroid;
-import org.webrtc.CameraVideoCapturer;
 
 public class Camera1Enumerator implements CameraEnumerator {
     private static final String TAG = "Camera1Enumerator";

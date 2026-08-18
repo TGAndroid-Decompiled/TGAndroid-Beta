@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.recyclerview.ChatListItemAnimator;
 
 public abstract class AdjustPanLayoutHelper {
@@ -117,8 +118,55 @@ public abstract class AdjustPanLayoutHelper {
         updateTransition(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public void startTransition(int r8, int r9, boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.AdjustPanLayoutHelper.startTransition(int, int, boolean):void");
+    public void startTransition(int i, int i2, boolean z) {
+        int height;
+        ValueAnimator valueAnimator = this.animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        int iStartOffset = startOffset();
+        getViewsToSetHeight(this.parent);
+        if (this.checkHierarchyHeight) {
+            Object parent = this.parent.getParent();
+            if (parent instanceof View) {
+                height = ((View) parent).getHeight() - i2;
+            } else {
+                height = 0;
+            }
+        } else {
+            height = 0;
+        }
+        LaunchActivity launchActivity = LaunchActivity.instance;
+        int expandedHeight = (launchActivity == null || launchActivity.getBottomSheetTabs() == null) ? 0 : LaunchActivity.instance.getBottomSheetTabs().getExpandedHeight();
+        if (applyTranslation()) {
+            setViewHeight(Math.max(i, height + i2 + expandedHeight));
+        }
+        this.resizableView.requestLayout();
+        onTransitionStart(z, i, i2);
+        float f = i2 - i;
+        this.keyboardSize = Math.abs(f);
+        this.animationInProgress = true;
+        this.showingKeyboard = i2 <= i;
+        if (i2 > i) {
+            float f2 = f - iStartOffset;
+            if (applyTranslation()) {
+                this.parent.setTranslationY(-f2);
+            }
+            onPanTranslationUpdate(f2, 1.0f, z);
+            this.from = -f2;
+            this.to = -expandedHeight;
+            this.inverse = true;
+        } else {
+            if (applyTranslation()) {
+                this.parent.setTranslationY(this.previousStartOffset);
+            }
+            onPanTranslationUpdate(-this.previousStartOffset, 0.0f, z);
+            this.to = -this.previousStartOffset;
+            this.from = f;
+            this.inverse = false;
+        }
+        this.animator = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.usingInsetAnimator = false;
     }
 
     public void updateTransition(float f) {
@@ -349,16 +397,13 @@ public abstract class AdjustPanLayoutHelper {
                 WindowInsetsAnimation windowInsetsAnimationM;
                 if (AdjustPanLayoutHelper.this.animationInProgress && AndroidUtilities.screenRefreshRate >= 90.0f) {
                     Iterator it = list.iterator();
-                    while (true) {
+                    do {
                         if (!it.hasNext()) {
                             windowInsetsAnimationM = null;
                             break;
                         }
                         windowInsetsAnimationM = WindowInsetsAnimationCompat$Impl30$ProxyCallback$$ExternalSyntheticApiModelOutline0.m(it.next());
-                        if ((windowInsetsAnimationM.getTypeMask() & WindowInsetsCompat.Type.ime()) != 0) {
-                            break;
-                        }
-                    }
+                    } while ((windowInsetsAnimationM.getTypeMask() & WindowInsetsCompat.Type.ime()) == 0);
                     if (windowInsetsAnimationM != null) {
                         long jElapsedRealtime = SystemClock.elapsedRealtime();
                         AdjustPanLayoutHelper adjustPanLayoutHelper = AdjustPanLayoutHelper.this;

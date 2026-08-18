@@ -3,6 +3,8 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -15,12 +17,15 @@ import org.telegram.messenger.LocationController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.ShareLocationDrawable;
 
 public class SendLocationCell extends FrameLayout {
     private SimpleTextView accurateTextView;
@@ -46,7 +51,8 @@ public class SendLocationCell extends FrameLayout {
             @Override
             public void run() {
                 SendLocationCell.this.checkText();
-                SendLocationCell.this.invalidate(((int) r0.rect.left) - 5, ((int) SendLocationCell.this.rect.top) - 5, ((int) SendLocationCell.this.rect.right) + 5, ((int) SendLocationCell.this.rect.bottom) + 5);
+                SendLocationCell sendLocationCell = SendLocationCell.this;
+                sendLocationCell.invalidate(((int) sendLocationCell.rect.left) - 5, ((int) SendLocationCell.this.rect.top) - 5, ((int) SendLocationCell.this.rect.right) + 5, ((int) SendLocationCell.this.rect.bottom) + 5);
                 AndroidUtilities.runOnUIThread(SendLocationCell.this.invalidateRunnable, 1000L);
             }
         };
@@ -89,7 +95,129 @@ public class SendLocationCell extends FrameLayout {
     }
 
     private void updateImage() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SendLocationCell.updateImage():void");
+        int i;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        Drawable drawableCreateSimpleSelectorCircleDrawable;
+        int i8;
+        SimpleTextView simpleTextView = this.titleTextView;
+        if (this.live) {
+            i = this.liveDisable ? Theme.key_text_RedBold : Theme.key_location_sendLiveLocationText;
+        } else {
+            i = Theme.key_location_sendLocationText;
+        }
+        simpleTextView.setTag(Integer.valueOf(i));
+        SimpleTextView simpleTextView2 = this.titleTextView;
+        if (this.live) {
+            i2 = this.liveDisable ? Theme.key_text_RedBold : Theme.key_location_sendLiveLocationText;
+        } else {
+            i2 = Theme.key_location_sendLocationText;
+        }
+        simpleTextView2.setTextColor(getThemedColor(i2));
+        ImageView imageView = this.imageView;
+        if (this.live) {
+            if (this.liveDisable) {
+                i5 = Theme.key_color_red;
+            } else {
+                i3 = Theme.key_location_sendLiveLocationBackground;
+                i4 = Theme.key_location_sendLiveLocationIcon;
+            }
+            imageView.setTag(Integer.valueOf(i5));
+            int iDp = AndroidUtilities.dp(46.0f);
+            if (this.live) {
+                i6 = Theme.key_location_sendLocationBackground;
+            } else if (this.liveDisable) {
+                i6 = Theme.key_color_red;
+            } else {
+                i6 = Theme.key_location_sendLiveLocationBackground;
+            }
+            int themedColor = getThemedColor(i6);
+            if (this.live) {
+                i7 = Theme.key_location_sendLocationBackground;
+            } else if (this.liveDisable) {
+                i7 = Theme.key_color_red;
+            } else {
+                i7 = Theme.key_location_sendLiveLocationBackground;
+            }
+            drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(iDp, themedColor, getThemedColor(i7));
+            if (this.live) {
+                this.rect = new RectF();
+                Context context = getContext();
+                if (this.liveDisable) {
+                    i8 = 5;
+                } else {
+                    i8 = 4;
+                }
+                ShareLocationDrawable shareLocationDrawable = new ShareLocationDrawable(context, i8);
+                shareLocationDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_location_sendLiveLocationIcon), PorterDuff.Mode.MULTIPLY));
+                CombinedDrawable combinedDrawable = new CombinedDrawable(drawableCreateSimpleSelectorCircleDrawable, shareLocationDrawable);
+                combinedDrawable.setCustomSize(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(46.0f));
+                this.imageView.setBackgroundDrawable(combinedDrawable);
+                if (this.liveDisable) {
+                    return;
+                }
+                AndroidUtilities.cancelRunOnUIThread(this.invalidateRunnable);
+                AndroidUtilities.runOnUIThread(this.invalidateRunnable, 1000L);
+                return;
+            }
+            Drawable drawableMutate = getResources().getDrawable(R.drawable.pin).mutate();
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_location_sendLocationIcon), PorterDuff.Mode.MULTIPLY));
+            CombinedDrawable combinedDrawable2 = new CombinedDrawable(drawableCreateSimpleSelectorCircleDrawable, drawableMutate);
+            combinedDrawable2.setCustomSize(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(46.0f));
+            combinedDrawable2.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+            this.imageView.setBackgroundDrawable(combinedDrawable2);
+        }
+        i3 = Theme.key_location_sendLocationBackground;
+        i4 = Theme.key_location_sendLocationIcon;
+        i5 = i3 + i4;
+        imageView.setTag(Integer.valueOf(i5));
+        int iDp2 = AndroidUtilities.dp(46.0f);
+        if (this.live) {
+            i6 = Theme.key_location_sendLocationBackground;
+        } else if (this.liveDisable) {
+            i6 = Theme.key_color_red;
+        } else {
+            i6 = Theme.key_location_sendLiveLocationBackground;
+        }
+        int themedColor2 = getThemedColor(i6);
+        if (this.live) {
+            i7 = Theme.key_location_sendLocationBackground;
+        } else if (this.liveDisable) {
+            i7 = Theme.key_color_red;
+        } else {
+            i7 = Theme.key_location_sendLiveLocationBackground;
+        }
+        drawableCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(iDp2, themedColor2, getThemedColor(i7));
+        if (this.live) {
+            this.rect = new RectF();
+            Context context2 = getContext();
+            if (this.liveDisable) {
+                i8 = 5;
+            } else {
+                i8 = 4;
+            }
+            ShareLocationDrawable shareLocationDrawable2 = new ShareLocationDrawable(context2, i8);
+            shareLocationDrawable2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_location_sendLiveLocationIcon), PorterDuff.Mode.MULTIPLY));
+            CombinedDrawable combinedDrawable3 = new CombinedDrawable(drawableCreateSimpleSelectorCircleDrawable, shareLocationDrawable2);
+            combinedDrawable3.setCustomSize(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(46.0f));
+            this.imageView.setBackgroundDrawable(combinedDrawable3);
+            if (this.liveDisable) {
+                AndroidUtilities.cancelRunOnUIThread(this.invalidateRunnable);
+                AndroidUtilities.runOnUIThread(this.invalidateRunnable, 1000L);
+                return;
+            }
+            return;
+        }
+        Drawable drawableMutate2 = getResources().getDrawable(R.drawable.pin).mutate();
+        drawableMutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_location_sendLocationIcon), PorterDuff.Mode.MULTIPLY));
+        CombinedDrawable combinedDrawable4 = new CombinedDrawable(drawableCreateSimpleSelectorCircleDrawable, drawableMutate2);
+        combinedDrawable4.setCustomSize(AndroidUtilities.dp(46.0f), AndroidUtilities.dp(46.0f));
+        combinedDrawable4.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+        this.imageView.setBackgroundDrawable(combinedDrawable4);
     }
 
     private ImageView getImageView() {
@@ -144,8 +272,9 @@ public class SendLocationCell extends FrameLayout {
         if (sharingLocationInfo != null) {
             if (this.liveDisable) {
                 String string = LocaleController.getString(R.string.StopLiveLocation);
-                int i = sharingLocationInfo.messageObject.messageOwner.edit_date;
-                setText(string, LocaleController.formatLocationUpdateDate(i != 0 ? i : r0.date));
+                TLRPC.Message message = sharingLocationInfo.messageObject.messageOwner;
+                int i = message.edit_date;
+                setText(string, LocaleController.formatLocationUpdateDate(i != 0 ? i : message.date));
                 return;
             }
             setText(LocaleController.getString(R.string.SharingLiveLocation), LocaleController.getString(R.string.SharingLiveLocationAdd));

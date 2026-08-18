@@ -26,7 +26,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.GradientClip;
-import org.telegram.ui.Stories.recorder.CollageLayout;
 
 public class CollageLayoutButton extends ToggleButton2 {
     public CollageLayoutButton(Context context) {
@@ -247,43 +246,45 @@ public class CollageLayoutButton extends ToggleButton2 {
             this.cross = z;
             paint.setColor(-1);
             float fDpf2 = AndroidUtilities.dpf2(13.333333f);
-            float fDpf22 = AndroidUtilities.dpf2(18.666666f);
-            float fDpf23 = AndroidUtilities.dpf2(3.0f);
-            float fDpf24 = AndroidUtilities.dpf2(10.0f);
-            float fDpf25 = AndroidUtilities.dpf2(15.333333f);
-            float fDpf26 = AndroidUtilities.dpf2(1.0f);
-            float fDpf27 = AndroidUtilities.dpf2(1.33f);
+            float fDpf3 = AndroidUtilities.dpf2(18.666666f);
+            float fDpf4 = AndroidUtilities.dpf2(3.0f);
+            float fDpf5 = AndroidUtilities.dpf2(10.0f);
+            float fDpf6 = AndroidUtilities.dpf2(15.333333f);
+            float fDpf7 = AndroidUtilities.dpf2(1.0f);
+            float fDpf8 = AndroidUtilities.dpf2(1.33f);
             path.setFillType(Path.FillType.EVEN_ODD);
             RectF rectF = AndroidUtilities.rectTmp;
             float f2 = 2.0f;
-            rectF.set((-fDpf2) / 2.0f, (-fDpf22) / 2.0f, fDpf2 / 2.0f, fDpf22 / 2.0f);
-            path.addRoundRect(rectF, fDpf23, fDpf23, Path.Direction.CW);
+            rectF.set((-fDpf2) / 2.0f, (-fDpf3) / 2.0f, fDpf2 / 2.0f, fDpf3 / 2.0f);
+            path.addRoundRect(rectF, fDpf4, fDpf4, Path.Direction.CW);
             Iterator it = collageLayout.parts.iterator();
             while (it.hasNext()) {
                 CollageLayout.Part part = (CollageLayout.Part) it.next();
                 int i2 = collageLayout.columns[part.y];
                 int i3 = i2 - 1;
-                float fMax = (fDpf24 - (Math.max(0, i3) * fDpf27)) / i2;
-                float fMax2 = (fDpf25 - (Math.max(0, collageLayout.h - i) * fDpf27)) / collageLayout.h;
+                float fMax = (fDpf5 - (Math.max(0, i3) * fDpf8)) / i2;
+                float fMax2 = (fDpf6 - (Math.max(0, collageLayout.h - i) * fDpf8)) / collageLayout.h;
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                float f3 = (-fDpf24) / f2;
-                float f4 = part.x;
+                float f3 = (-fDpf5) / f2;
+                int i4 = part.x;
+                float f4 = i4;
                 float f5 = f3 + (fMax * f4);
-                float f6 = f4 * fDpf27;
+                float f6 = f4 * fDpf8;
                 Iterator it2 = it;
                 float f7 = f5 + f6;
-                float f8 = fDpf24;
-                float f9 = (-fDpf25) / f2;
-                float f10 = fDpf25;
-                float f11 = part.y;
+                float f8 = fDpf5;
+                float f9 = (-fDpf6) / f2;
+                int i5 = part.y;
+                float f10 = fDpf6;
+                float f11 = i5;
                 float f12 = f9 + (fMax2 * f11);
-                float f13 = f11 * fDpf27;
-                float f14 = fDpf26;
-                rectF2.set(f7, f12 + f13, f3 + (fMax * (r7 + 1)) + f6, f9 + (fMax2 * (r15 + 1)) + f13);
+                float f13 = f11 * fDpf8;
+                float f14 = fDpf7;
+                rectF2.set(f7, f12 + f13, f3 + (fMax * (i4 + 1)) + f6, f9 + (fMax2 * (i5 + 1)) + f13);
                 float[] fArr = this.radii;
-                int i4 = part.x;
+                int i6 = part.x;
                 float f15 = 0.0f;
-                if (i4 == 0 && part.y == 0) {
+                if (i6 == 0 && part.y == 0) {
                     f = f14;
                     c = 1;
                 } else {
@@ -292,22 +293,22 @@ public class CollageLayoutButton extends ToggleButton2 {
                 }
                 fArr[c] = f;
                 fArr[0] = f;
-                float f16 = (i4 == i3 && part.y == 0) ? f14 : 0.0f;
+                float f16 = (i6 == i3 && part.y == 0) ? f14 : 0.0f;
                 fArr[3] = f16;
                 fArr[2] = f16;
-                float f17 = (i4 == i3 && part.y == collageLayout.h - 1) ? f14 : 0.0f;
+                float f17 = (i6 == i3 && part.y == collageLayout.h - 1) ? f14 : 0.0f;
                 fArr[5] = f17;
                 fArr[4] = f17;
-                if (i4 == 0 && part.y == collageLayout.h - 1) {
+                if (i6 == 0 && part.y == collageLayout.h - 1) {
                     f15 = f14;
                 }
                 fArr[7] = f15;
                 fArr[6] = f15;
                 this.path.addRoundRect(rectF2, fArr, Path.Direction.CW);
-                fDpf24 = f8;
+                fDpf5 = f8;
                 it = it2;
-                fDpf25 = f10;
-                fDpf26 = f14;
+                fDpf6 = f10;
+                fDpf7 = f14;
                 i = 1;
                 f2 = 2.0f;
             }

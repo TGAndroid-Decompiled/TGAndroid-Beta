@@ -18,9 +18,11 @@ import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -30,6 +32,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -54,7 +57,6 @@ import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
-import org.telegram.ui.StatisticActivity;
 
 public class ChannelBoostLayout extends FrameLayout {
     AdapterWithDiffUtils adapter;
@@ -110,7 +112,7 @@ public class ChannelBoostLayout extends FrameLayout {
                         overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                         return new RecyclerListView.Holder(overviewCell);
                     case 1:
-                        View chartHeaderView = new ChartHeaderView(ChannelBoostLayout.this.getContext());
+                        ChartHeaderView chartHeaderView = new ChartHeaderView(ChannelBoostLayout.this.getContext());
                         chartHeaderView.setPadding(chartHeaderView.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView.getRight(), AndroidUtilities.dp(16.0f));
                         overviewCell = chartHeaderView;
                         overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
@@ -190,7 +192,7 @@ public class ChannelBoostLayout extends FrameLayout {
                         overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                         return new RecyclerListView.Holder(overviewCell);
                     case 12:
-                        View chartHeaderView2 = new ChartHeaderView(ChannelBoostLayout.this.getContext());
+                        ChartHeaderView chartHeaderView2 = new ChartHeaderView(ChannelBoostLayout.this.getContext());
                         chartHeaderView2.setPadding(chartHeaderView2.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView2.getRight(), AndroidUtilities.dp(8.0f));
                         overviewCell = chartHeaderView2;
                         overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
@@ -243,8 +245,113 @@ public class ChannelBoostLayout extends FrameLayout {
             }
 
             @Override
-            public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r13, int r14) throws android.content.res.Resources.NotFoundException {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelBoostLayout.AnonymousClass1.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                String string;
+                int i2;
+                if (viewHolder.getItemViewType() == 4) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 1 || viewHolder.getItemViewType() == 12) {
+                    ChartHeaderView chartHeaderView = (ChartHeaderView) viewHolder.itemView;
+                    chartHeaderView.setTitle(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
+                    chartHeaderView.showDate(false);
+                    if (viewHolder.getItemViewType() == 12) {
+                        chartHeaderView.setPadding(AndroidUtilities.dp(3.0f), chartHeaderView.getPaddingTop(), chartHeaderView.getPaddingRight(), chartHeaderView.getPaddingBottom());
+                        return;
+                    }
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 0) {
+                    StatisticActivity.OverviewCell overviewCell = (StatisticActivity.OverviewCell) viewHolder.itemView;
+                    overviewCell.setData(0, Integer.toString(ChannelBoostLayout.this.boostsStatus.level), null, LocaleController.getString(R.string.BoostsLevel2));
+                    ChannelBoostLayout channelBoostLayout = ChannelBoostLayout.this;
+                    TL_stats.TL_statsPercentValue tL_statsPercentValue = channelBoostLayout.boostsStatus.premium_audience;
+                    if (tL_statsPercentValue != null) {
+                        double d = tL_statsPercentValue.total;
+                        if (d == 0.0d) {
+                            if (channelBoostLayout.isChannel()) {
+                                i2 = R.string.PremiumSubscribers;
+                            } else {
+                                i2 = R.string.PremiumMembers;
+                            }
+                            overviewCell.setData(1, "≈0", "0%", LocaleController.getString(i2));
+                        } else {
+                            float f = (((float) tL_statsPercentValue.part) / ((float) d)) * 100.0f;
+                            overviewCell.setData(1, "≈" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf(f)) + "%", LocaleController.getString(ChannelBoostLayout.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
+                        }
+                    } else {
+                        if (channelBoostLayout.isChannel()) {
+                            i2 = R.string.PremiumSubscribers;
+                        } else {
+                            i2 = R.string.PremiumMembers;
+                        }
+                        overviewCell.setData(1, "≈0", "0%", LocaleController.getString(i2));
+                    }
+                    overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString(R.string.BoostsExisting));
+                    TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = ChannelBoostLayout.this.boostsStatus;
+                    overviewCell.setData(3, String.valueOf(Math.max(0, tL_premium_boostsStatus.next_level_boosts - tL_premium_boostsStatus.boosts)), null, LocaleController.getString(R.string.BoostsToLevel));
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 5) {
+                    TL_stories.Boost boost = ((ItemInternal) ChannelBoostLayout.this.items.get(i)).booster;
+                    TLRPC.User user = MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).getUser(Long.valueOf(boost.user_id));
+                    GiftedUserCell giftedUserCell = (GiftedUserCell) viewHolder.itemView;
+                    if (boost.multiplier > 1) {
+                        string = LocaleController.formatString("BoostsExpireOn", R.string.BoostsExpireOn, LocaleController.formatDate(boost.expires));
+                    } else {
+                        string = LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.formatDate(boost.expires));
+                    }
+                    giftedUserCell.setData(user, ContactsController.formatName(user), string, 0, !((ItemInternal) ChannelBoostLayout.this.items.get(i)).isLast);
+                    giftedUserCell.setStatus(boost);
+                    giftedUserCell.setAvatarPadding(5);
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 6) {
+                    ((TextInfoPrivacyCell) viewHolder.itemView).setText(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 9) {
+                    ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
+                    if (ChannelBoostLayout.this.selectedTab == 0) {
+                        manageChatTextCell.setText(LocaleController.formatPluralString("BoostingShowMoreBoosts", ChannelBoostLayout.this.nextBoostRemaining, new Object[0]), null, R.drawable.arrow_more, false);
+                        return;
+                    } else {
+                        manageChatTextCell.setText(LocaleController.formatPluralString("BoostingShowMoreGifts", ChannelBoostLayout.this.nextGiftsRemaining, new Object[0]), null, R.drawable.arrow_more, false);
+                        return;
+                    }
+                }
+                if (viewHolder.getItemViewType() == 3) {
+                    ((LinkActionView) viewHolder.itemView).setLink(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 11) {
+                    ItemInternal itemInternal = (ItemInternal) ChannelBoostLayout.this.items.get(i);
+                    TL_stories.PrepaidGiveaway prepaidGiveaway = itemInternal.prepaidGiveaway;
+                    GiveawayCell giveawayCell = (GiveawayCell) viewHolder.itemView;
+                    if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
+                        giveawayCell.setData(prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months, new Object[0])), 0, !itemInternal.isLast);
+                    } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
+                        TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
+                        giveawayCell.setData(prepaidGiveaway, LocaleController.formatPluralStringComma("BoostingStarsCountPlural", (int) tL_prepaidStarsGiveaway.stars), LocaleController.formatPluralString("AmongWinners", tL_prepaidStarsGiveaway.quantity, new Object[0]), 0, !itemInternal.isLast);
+                    }
+                    giveawayCell.setImage(prepaidGiveaway);
+                    giveawayCell.setAvatarPadding(5);
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 13) {
+                    if (this.remTotalBoosts == ChannelBoostLayout.this.totalBoosts && this.remTotalGifts == ChannelBoostLayout.this.totalGifts) {
+                        return;
+                    }
+                    this.remTotalBoosts = ChannelBoostLayout.this.totalBoosts;
+                    this.remTotalGifts = ChannelBoostLayout.this.totalGifts;
+                    ChannelBoostLayout.this.boostsTabs.removeTabs();
+                    ChannelBoostLayout.this.boostsTabs.addTextTab(0, LocaleController.formatPluralString("BoostingBoostsCount", ChannelBoostLayout.this.totalBoosts, new Object[0]));
+                    if (MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).giveawayGiftsPurchaseAvailable && ChannelBoostLayout.this.totalGifts > 0 && ChannelBoostLayout.this.totalGifts != ChannelBoostLayout.this.totalBoosts) {
+                        ChannelBoostLayout.this.boostsTabs.addTextTab(1, LocaleController.formatPluralString("BoostingGiftsCount", ChannelBoostLayout.this.totalGifts, new Object[0]));
+                    }
+                    ChannelBoostLayout.this.boostsTabs.setInitialTabId(ChannelBoostLayout.this.selectedTab);
+                    ChannelBoostLayout.this.boostsTabs.finishAddingTabs();
+                }
             }
 
             @Override
@@ -463,7 +570,7 @@ public class ChannelBoostLayout extends FrameLayout {
         if (bool == null) {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$loadUsers$4();
                 }
             });
@@ -484,7 +591,7 @@ public class ChannelBoostLayout extends FrameLayout {
         }
     }
 
-    public void lambda$loadUsers$4() throws InterruptedException {
+    public void lambda$loadUsers$4() {
         CountDownLatch countDownLatch = new CountDownLatch(2);
         loadOnlyBoosts(countDownLatch, null);
         loadOnlyGifts(countDownLatch, null);

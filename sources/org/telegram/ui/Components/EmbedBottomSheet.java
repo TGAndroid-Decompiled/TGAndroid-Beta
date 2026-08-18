@@ -15,6 +15,7 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -40,6 +41,7 @@ import android.widget.TextView;
 import androidx.arch.core.util.Function;
 import j$.util.Objects;
 import java.util.HashMap;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BringAppForegroundService;
@@ -48,13 +50,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.WebPlayerView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 
@@ -495,7 +497,8 @@ public class EmbedBottomSheet extends BottomSheet {
                     EmbedBottomSheet.this.videoView.getAspectRatioView().getLocationInWindow(EmbedBottomSheet.this.position);
                     int[] iArr = EmbedBottomSheet.this.position;
                     iArr[0] = iArr[0] - EmbedBottomSheet.this.getLeftInset();
-                    EmbedBottomSheet.this.position[1] = (int) (r5[1] - ((BottomSheet) EmbedBottomSheet.this).containerView.getTranslationY());
+                    int[] iArr2 = EmbedBottomSheet.this.position;
+                    iArr2[1] = (int) (iArr2[1] - ((BottomSheet) EmbedBottomSheet.this).containerView.getTranslationY());
                     TextureView textureView2 = EmbedBottomSheet.this.videoView.getTextureView();
                     ImageView textureImageView = EmbedBottomSheet.this.videoView.getTextureImageView();
                     AnimatorSet animatorSet = new AnimatorSet();
@@ -688,7 +691,65 @@ public class EmbedBottomSheet extends BottomSheet {
         setDelegate(new BottomSheet.BottomSheetDelegate() {
             @Override
             public void onOpenAnimationEnd() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmbedBottomSheet.AnonymousClass8.onOpenAnimationEnd():void");
+                int iIntValue;
+                if (!z || !EmbedBottomSheet.this.videoView.loadVideo(EmbedBottomSheet.this.embedUrl, null, null, EmbedBottomSheet.this.openUrl, true)) {
+                    EmbedBottomSheet.this.progressBar.setVisibility(0);
+                    EmbedBottomSheet.this.webView.setVisibility(0);
+                    EmbedBottomSheet.this.imageButtonsContainer.setVisibility(0);
+                    EmbedBottomSheet.this.copyTextButton.setVisibility(4);
+                    EmbedBottomSheet.this.webView.setKeepScreenOn(true);
+                    EmbedBottomSheet.this.videoView.setVisibility(4);
+                    EmbedBottomSheet.this.videoView.getControlsView().setVisibility(4);
+                    EmbedBottomSheet.this.videoView.getTextureView().setVisibility(4);
+                    if (EmbedBottomSheet.this.videoView.getTextureImageView() != null) {
+                        EmbedBottomSheet.this.videoView.getTextureImageView().setVisibility(4);
+                    }
+                    EmbedBottomSheet.this.videoView.loadVideo(null, null, null, null, false);
+                    HashMap map = new HashMap();
+                    map.put("Referer", "messenger.telegram.org");
+                    try {
+                        String youtubeId = EmbedBottomSheet.this.videoView.getYoutubeId();
+                        if (youtubeId != null) {
+                            EmbedBottomSheet.this.progressBarBlackBackground.setVisibility(0);
+                            EmbedBottomSheet.this.isYouTube = true;
+                            String queryParameter = null;
+                            EmbedBottomSheet.this.webView.addJavascriptInterface(new YoutubeProxy(), "YoutubeProxy");
+                            if (EmbedBottomSheet.this.openUrl != null) {
+                                try {
+                                    Uri uri = Uri.parse(EmbedBottomSheet.this.openUrl);
+                                    if (EmbedBottomSheet.this.seekTimeOverride > 0) {
+                                        queryParameter = "" + EmbedBottomSheet.this.seekTimeOverride;
+                                    }
+                                    if (queryParameter == null && (queryParameter = uri.getQueryParameter("t")) == null) {
+                                        queryParameter = uri.getQueryParameter("time_continue");
+                                    }
+                                    if (queryParameter == null) {
+                                        iIntValue = 0;
+                                    } else if (queryParameter.contains("m")) {
+                                        String[] strArrSplit = queryParameter.split("m");
+                                        iIntValue = (Utilities.parseInt((CharSequence) strArrSplit[0]).intValue() * 60) + Utilities.parseInt((CharSequence) strArrSplit[1]).intValue();
+                                    } else {
+                                        iIntValue = Utilities.parseInt((CharSequence) queryParameter).intValue();
+                                    }
+                                } catch (Exception e) {
+                                    FileLog.e(e);
+                                }
+                            } else {
+                                iIntValue = 0;
+                            }
+                            EmbedBottomSheet.this.webView.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, "<!DOCTYPE html><html><head><style>body { margin: 0; width:100%%; height:100%%;  background-color:#000; }html { width:100%%; height:100%%; background-color:#000; }.embed-container iframe,.embed-container object,   .embed-container embed {       position: absolute;       top: 0;       left: 0;       width: 100%% !important;       height: 100%% !important;   }   </style></head><body>   <div class=\"embed-container\">       <div id=\"player\"></div>   </div>   <script src=\"https://www.youtube.com/iframe_api\"></script>   <script>   var player;   var observer;   var videoEl;   var playing;   var posted = false;   YT.ready(function() {       player = new YT.Player(\"player\", {                              \"width\" : \"100%%\",                              \"events\" : {                              \"onReady\" : \"onReady\",                              \"onError\" : \"onError\",                              \"onStateChange\" : \"onStateChange\",                              },                              \"videoId\" : \"%1$s\",                              \"height\" : \"100%%\",                              \"playerVars\" : {                              \"start\" : %2$d,                              \"rel\" : 1,                              \"showinfo\" : 0,                              \"modestbranding\" : 0,                              \"iv_load_policy\" : 3,                              \"autohide\" : 1,                              \"autoplay\" : 1,                              \"cc_load_policy\" : 1,                              \"playsinline\" : 1,                              \"controls\" : 1                              }                            });        player.setSize(window.innerWidth, window.innerHeight);    });    function hideControls() {        playing = !videoEl.paused;       videoEl.controls = 0;       observer.observe(videoEl, {attributes: true});    }    function showControls() {        playing = !videoEl.paused;       observer.disconnect();       videoEl.controls = 1;    }    function onError(event) {       if (!posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onStateChange(event) {       if (event.data == YT.PlayerState.PLAYING && !posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onReady(event) {       player.playVideo();    }    window.onresize = function() {       player.setSize(window.innerWidth, window.innerHeight);       player.playVideo();    }    </script></body></html>", youtubeId, Integer.valueOf(iIntValue)), "text/html", "UTF-8", "https://youtube.com");
+                            return;
+                        }
+                        EmbedBottomSheet.this.webView.loadUrl(EmbedBottomSheet.this.embedUrl, map);
+                        return;
+                    } catch (Exception e2) {
+                        FileLog.e(e2);
+                        return;
+                    }
+                }
+                EmbedBottomSheet.this.progressBar.setVisibility(4);
+                EmbedBottomSheet.this.webView.setVisibility(4);
+                EmbedBottomSheet.this.videoView.setVisibility(0);
             }
 
             @Override

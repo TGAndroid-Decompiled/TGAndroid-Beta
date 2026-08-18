@@ -43,8 +43,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.INavigationLayout;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -1477,8 +1475,148 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     }
 
     @Override
-    protected void onMeasure(int r19, int r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBar.onMeasure(int, int):void");
+    protected void onMeasure(int i, int i2) {
+        int iDp;
+        SimpleTextView simpleTextView;
+        SimpleTextView simpleTextView2;
+        int iMakeMeasureSpec;
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        int currentActionBarHeight = getCurrentActionBarHeight();
+        int iMakeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(currentActionBarHeight, 1073741824);
+        this.ignoreLayoutRequest = true;
+        View view = this.actionModeTop;
+        if (view != null) {
+            ((FrameLayout.LayoutParams) view.getLayoutParams()).height = AndroidUtilities.statusBarHeight;
+        }
+        ActionBarMenu actionBarMenu = this.actionMode;
+        if (actionBarMenu != null) {
+            actionBarMenu.setPadding(0, this.occupyStatusBar ? AndroidUtilities.statusBarHeight : 0, 0, 0);
+        }
+        this.ignoreLayoutRequest = false;
+        setMeasuredDimension(size, currentActionBarHeight + (this.occupyStatusBar ? AndroidUtilities.statusBarHeight : 0) + this.extraHeight);
+        ImageView imageView = this.backButtonImageView;
+        if (imageView != null && imageView.getVisibility() != 8) {
+            this.backButtonImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(54.0f), 1073741824), iMakeMeasureSpec2);
+            iDp = AndroidUtilities.dp(AndroidUtilities.isTablet() ? 80.0f : 72.0f);
+        } else {
+            iDp = AndroidUtilities.dp(AndroidUtilities.isTablet() ? 26.0f : 18.0f);
+        }
+        ActionBarMenu actionBarMenu2 = this.menu;
+        if (actionBarMenu2 != null && actionBarMenu2.getVisibility() != 8) {
+            float f = 66.0f;
+            if (this.menu.searchFieldVisible() && !this.isSearchFieldVisible) {
+                this.menu.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), iMakeMeasureSpec2);
+                int itemsMeasuredWidth = this.menu.getItemsMeasuredWidth(true);
+                if (this.menuOccupyBack) {
+                    f = 0.0f;
+                } else if (AndroidUtilities.isTablet()) {
+                    f = 74.0f;
+                }
+                iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(f)) + this.menu.getItemsMeasuredWidth(true), 1073741824);
+                if (!this.isMenuOffsetSuppressed) {
+                    this.menu.translateXItems(-itemsMeasuredWidth);
+                }
+            } else if (this.isSearchFieldVisible) {
+                if (this.menuOccupyBack) {
+                    f = 0.0f;
+                } else if (AndroidUtilities.isTablet()) {
+                    f = 74.0f;
+                }
+                iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(f), 1073741824);
+                if (!this.isMenuOffsetSuppressed) {
+                    this.menu.translateXItems(0.0f);
+                }
+            } else {
+                iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE);
+                if (!this.isMenuOffsetSuppressed) {
+                    this.menu.translateXItems(0.0f);
+                }
+            }
+            this.menu.measure(iMakeMeasureSpec, iMakeMeasureSpec2);
+        }
+        for (int i3 = 0; i3 < 2; i3++) {
+            SimpleTextView simpleTextView3 = this.titleTextView[0];
+            if ((simpleTextView3 != null && simpleTextView3.getVisibility() != 8) || ((simpleTextView = this.subtitleTextView) != null && simpleTextView.getVisibility() != 8)) {
+                ActionBarMenu actionBarMenu3 = this.menu;
+                int measuredWidth = (((size - (actionBarMenu3 != null ? actionBarMenu3.getMeasuredWidth() : 0)) - AndroidUtilities.dp(16.0f)) - iDp) - this.titleRightMargin;
+                boolean z = this.fromBottom;
+                int i4 = 18;
+                if (((z && i3 == 0) || (!z && i3 == 1)) && this.overlayTitleAnimation && this.titleAnimationRunning) {
+                    this.titleTextView[i3].setTextSize(this.glassMode ? 17 : (AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 20 : 18);
+                } else {
+                    SimpleTextView simpleTextView4 = this.titleTextView[0];
+                    if (simpleTextView4 != null && simpleTextView4.getVisibility() != 8 && (simpleTextView2 = this.subtitleTextView) != null && simpleTextView2.getVisibility() != 8) {
+                        SimpleTextView simpleTextView5 = this.titleTextView[i3];
+                        if (simpleTextView5 != null) {
+                            if (this.glassMode) {
+                                i4 = 17;
+                            } else if (AndroidUtilities.isTablet()) {
+                                i4 = 20;
+                            }
+                            simpleTextView5.setTextSize(i4);
+                        }
+                        this.subtitleTextView.setTextSize(AndroidUtilities.isTablet() ? 16 : 14);
+                        SimpleTextView simpleTextView6 = this.additionalSubtitleTextView;
+                        if (simpleTextView6 != null) {
+                            simpleTextView6.setTextSize(AndroidUtilities.isTablet() ? 16 : 14);
+                        }
+                    } else {
+                        SimpleTextView simpleTextView7 = this.titleTextView[i3];
+                        if (simpleTextView7 != null && simpleTextView7.getVisibility() != 8) {
+                            this.titleTextView[i3].setTextSize(this.glassMode ? 17 : (AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 20 : 18);
+                        }
+                        SimpleTextView simpleTextView8 = this.subtitleTextView;
+                        if (simpleTextView8 != null && simpleTextView8.getVisibility() != 8) {
+                            this.subtitleTextView.setTextSize((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 16 : 14);
+                        }
+                        SimpleTextView simpleTextView9 = this.additionalSubtitleTextView;
+                        if (simpleTextView9 != null) {
+                            simpleTextView9.setTextSize((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 16 : 14);
+                        }
+                    }
+                }
+                SimpleTextView simpleTextView10 = this.titleTextView[i3];
+                if (simpleTextView10 != null && simpleTextView10.getVisibility() != 8) {
+                    this.titleTextView[i3].measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f) + this.titleTextView[i3].getPaddingTop() + this.titleTextView[i3].getPaddingBottom(), Integer.MIN_VALUE));
+                    if (this.centerScale) {
+                        CharSequence text = this.titleTextView[i3].getText();
+                        SimpleTextView simpleTextView11 = this.titleTextView[i3];
+                        simpleTextView11.setPivotX(simpleTextView11.getTextPaint().measureText(text, 0, text.length()) / 2.0f);
+                        this.titleTextView[i3].setPivotY(AndroidUtilities.dp(24.0f) >> 1);
+                    } else {
+                        this.titleTextView[i3].setPivotX(0.0f);
+                        this.titleTextView[i3].setPivotY(0.0f);
+                    }
+                }
+                SimpleTextView simpleTextView12 = this.subtitleTextView;
+                if (simpleTextView12 != null && simpleTextView12.getVisibility() != 8) {
+                    this.subtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
+                }
+                ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = this.additionalSubTitleOverlayContainer;
+                if (actionBarAnimatedSubtitleOverlayContainer != null) {
+                    actionBarAnimatedSubtitleOverlayContainer.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                }
+                SimpleTextView simpleTextView13 = this.additionalSubtitleTextView;
+                if (simpleTextView13 != null && simpleTextView13.getVisibility() != 8) {
+                    this.additionalSubtitleTextView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
+                }
+            }
+        }
+        BackupImageView backupImageView = this.avatarSearchImageView;
+        if (backupImageView != null) {
+            backupImageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+        }
+        int childCount = getChildCount();
+        for (int i5 = 0; i5 < childCount; i5++) {
+            View childAt = getChildAt(i5);
+            if (childAt.getVisibility() != 8) {
+                SimpleTextView[] simpleTextViewArr = this.titleTextView;
+                if (childAt != simpleTextViewArr[0] && childAt != simpleTextViewArr[1] && childAt != this.additionalSubTitleOverlayContainer && childAt != this.subtitleTextView && childAt != this.menu && childAt != this.backButtonImageView && childAt != this.additionalSubtitleTextView && childAt != this.avatarSearchImageView) {
+                    measureChildWithMargins(childAt, i, 0, View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824), 0);
+                }
+            }
+        }
     }
 
     public void setMenuOffsetSuppressed(boolean z) {
@@ -1486,8 +1624,146 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     }
 
     @Override
-    protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBar.onLayout(boolean, int, int, int, int):void");
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int iDp;
+        int measuredWidth;
+        int i5;
+        int i6;
+        int i7;
+        int i8;
+        int i9;
+        SimpleTextView simpleTextView;
+        int currentActionBarHeight;
+        int measuredWidth2;
+        int i10 = this.occupyStatusBar ? AndroidUtilities.statusBarHeight : 0;
+        if (this.prevWidth != getMeasuredWidth()) {
+            this.prevWidth = getMeasuredWidth();
+            checkAvatarContainerWidth(this.animatorAvatarContainerWidth.isAnimating());
+        }
+        ImageView imageView = this.backButtonImageView;
+        if (imageView != null && imageView.getVisibility() != 8) {
+            ImageView imageView2 = this.backButtonImageView;
+            imageView2.layout(0, i10, imageView2.getMeasuredWidth(), this.backButtonImageView.getMeasuredHeight() + i10);
+            iDp = AndroidUtilities.dp(this.glassMode ? 76.0f : AndroidUtilities.isTablet() ? 80.0f : 72.0f);
+        } else {
+            iDp = AndroidUtilities.dp(this.glassMode ? 24.0f : AndroidUtilities.isTablet() ? 26.0f : 18.0f);
+        }
+        int i11 = iDp + this.additionalTextLeft;
+        ActionBarMenu actionBarMenu = this.menu;
+        if (actionBarMenu != null && actionBarMenu.getVisibility() != 8) {
+            if (this.menu.searchFieldVisible()) {
+                measuredWidth2 = AndroidUtilities.dp(this.menuOccupyBack ? 0.0f : AndroidUtilities.isTablet() ? 74.0f : 66.0f);
+            } else {
+                measuredWidth2 = getMeasuredWidth() - this.menu.getMeasuredWidth();
+            }
+            ActionBarMenu actionBarMenu2 = this.menu;
+            actionBarMenu2.layout(measuredWidth2, i10, actionBarMenu2.getMeasuredWidth() + measuredWidth2, this.menu.getMeasuredHeight() + i10);
+        }
+        int i12 = 0;
+        while (true) {
+            if (i12 >= 2) {
+                break;
+            }
+            SimpleTextView simpleTextView2 = this.titleTextView[i12];
+            if (simpleTextView2 != null && simpleTextView2.getVisibility() != 8) {
+                boolean z2 = this.fromBottom;
+                if ((((!z2 || i12 != 0) && (z2 || i12 != 1)) || !this.overlayTitleAnimation || !this.titleAnimationRunning) && (simpleTextView = this.subtitleTextView) != null && simpleTextView.getVisibility() != 8) {
+                    currentActionBarHeight = AndroidUtilities.dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 3.0f : 2.0f) + (((getCurrentActionBarHeight() / 2) - this.titleTextView[i12].getTextHeight()) / 2) + AndroidUtilities.dp(2.0f);
+                } else {
+                    currentActionBarHeight = (getCurrentActionBarHeight() - this.titleTextView[i12].getTextHeight()) / 2;
+                }
+                SimpleTextView simpleTextView3 = this.titleTextView[i12];
+                int i13 = currentActionBarHeight + i10;
+                simpleTextView3.layout(i11, i13 - simpleTextView3.getPaddingTop(), this.titleTextView[i12].getMeasuredWidth() + i11, ((i13 + this.titleTextView[i12].getTextHeight()) - this.titleTextView[i12].getPaddingTop()) + this.titleTextView[i12].getPaddingBottom());
+            }
+            i12++;
+        }
+        if (this.additionalSubTitleOverlayContainer != null) {
+            int currentActionBarHeight2 = ((getCurrentActionBarHeight() / 2) + (((getCurrentActionBarHeight() / 2) - this.additionalSubTitleOverlayContainer.getMeasuredHeight()) / 2)) - AndroidUtilities.dp(2.0f);
+            ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = this.additionalSubTitleOverlayContainer;
+            int i14 = currentActionBarHeight2 + i10;
+            actionBarAnimatedSubtitleOverlayContainer.layout(i11, i14, actionBarAnimatedSubtitleOverlayContainer.getMeasuredWidth() + i11, this.additionalSubTitleOverlayContainer.getMeasuredHeight() + i14);
+        }
+        SimpleTextView simpleTextView4 = this.subtitleTextView;
+        if (simpleTextView4 != null && simpleTextView4.getVisibility() != 8) {
+            int currentActionBarHeight3 = ((getCurrentActionBarHeight() / 2) + (((getCurrentActionBarHeight() / 2) - this.subtitleTextView.getTextHeight()) / 2)) - AndroidUtilities.dp(2.0f);
+            SimpleTextView simpleTextView5 = this.subtitleTextView;
+            int i15 = currentActionBarHeight3 + i10;
+            simpleTextView5.layout(i11, i15, simpleTextView5.getMeasuredWidth() + i11, this.subtitleTextView.getTextHeight() + i15);
+        }
+        SimpleTextView simpleTextView6 = this.additionalSubtitleTextView;
+        if (simpleTextView6 != null && simpleTextView6.getVisibility() != 8) {
+            int currentActionBarHeight4 = (getCurrentActionBarHeight() / 2) + (((getCurrentActionBarHeight() / 2) - this.additionalSubtitleTextView.getTextHeight()) / 2);
+            if (!AndroidUtilities.isTablet()) {
+                int i16 = getResources().getConfiguration().orientation;
+            }
+            int iDp2 = currentActionBarHeight4 - AndroidUtilities.dp(1.0f);
+            SimpleTextView simpleTextView7 = this.additionalSubtitleTextView;
+            int i17 = iDp2 + i10;
+            simpleTextView7.layout(i11, i17, simpleTextView7.getMeasuredWidth() + i11, this.additionalSubtitleTextView.getTextHeight() + i17);
+        }
+        BackupImageView backupImageView = this.avatarSearchImageView;
+        if (backupImageView != null) {
+            backupImageView.layout(AndroidUtilities.dp(64.0f), ((getCurrentActionBarHeight() - this.avatarSearchImageView.getMeasuredHeight()) / 2) + i10, AndroidUtilities.dp(64.0f) + this.avatarSearchImageView.getMeasuredWidth(), i10 + ((getCurrentActionBarHeight() + this.avatarSearchImageView.getMeasuredHeight()) / 2));
+        }
+        int childCount = getChildCount();
+        for (int i18 = 0; i18 < childCount; i18++) {
+            View childAt = getChildAt(i18);
+            if (childAt.getVisibility() != 8) {
+                SimpleTextView[] simpleTextViewArr = this.titleTextView;
+                if (childAt != simpleTextViewArr[0] && childAt != simpleTextViewArr[1] && childAt != this.additionalSubTitleOverlayContainer && childAt != this.subtitleTextView && childAt != this.menu && childAt != this.backButtonImageView && childAt != this.additionalSubtitleTextView && childAt != this.avatarSearchImageView) {
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                    int measuredWidth3 = childAt.getMeasuredWidth();
+                    int measuredHeight = childAt.getMeasuredHeight();
+                    int i19 = layoutParams.gravity;
+                    if (i19 == -1) {
+                        i19 = 51;
+                    }
+                    int i20 = i19 & 112;
+                    int i21 = i19 & 7;
+                    if (i21 == 1) {
+                        measuredWidth = ((getMeasuredWidth() - measuredWidth3) / 2) + layoutParams.leftMargin;
+                        i5 = layoutParams.rightMargin;
+                    } else {
+                        if (i21 == 5) {
+                            measuredWidth = getMeasuredWidth() - measuredWidth3;
+                            i5 = layoutParams.rightMargin;
+                        } else {
+                            i6 = layoutParams.leftMargin;
+                        }
+                        if (i20 != 16) {
+                            i7 = (((i4 - i2) - measuredHeight) / 2) + layoutParams.topMargin;
+                            i8 = layoutParams.bottomMargin;
+                        } else {
+                            if (i20 != 80) {
+                                i7 = (i4 - i2) - measuredHeight;
+                                i8 = layoutParams.bottomMargin;
+                            } else {
+                                i9 = layoutParams.topMargin;
+                            }
+                            childAt.layout(i6, i9, measuredWidth3 + i6, measuredHeight + i9);
+                        }
+                        i9 = i7 - i8;
+                        childAt.layout(i6, i9, measuredWidth3 + i6, measuredHeight + i9);
+                    }
+                    i6 = measuredWidth - i5;
+                    if (i20 != 16) {
+                        i7 = (((i4 - i2) - measuredHeight) / 2) + layoutParams.topMargin;
+                        i8 = layoutParams.bottomMargin;
+                    } else {
+                        if (i20 != 80) {
+                            i7 = (i4 - i2) - measuredHeight;
+                            i8 = layoutParams.bottomMargin;
+                        } else {
+                            i9 = layoutParams.topMargin;
+                        }
+                        childAt.layout(i6, i9, measuredWidth3 + i6, measuredHeight + i9);
+                    }
+                    i9 = i7 - i8;
+                    childAt.layout(i6, i9, measuredWidth3 + i6, measuredHeight + i9);
+                }
+            }
+        }
     }
 
     public void onMenuButtonPressed() {
@@ -1522,10 +1798,15 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     }
 
     public void setTitleOverlayText(String str, int i, Runnable runnable) {
-        boolean z;
         CharSequence charSequence;
+        CharSequence charSequence2;
+        boolean z;
+        CharSequence charSequence3;
+        boolean z2;
         SimpleTextView simpleTextView;
         int iIndexOf;
+        SpannableString spannableStringValueOf;
+        String string;
         if (!this.allowOverlayTitle || this.parentFragment.parentLayout == null) {
             return;
         }
@@ -1536,34 +1817,49 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         if (this.overlayTitleAnimationInProgress) {
             return;
         }
-        CharSequence charSequence2 = this.lastOverlayTitle;
-        if (charSequence2 == null && str == null) {
+        CharSequence charSequence4 = this.lastOverlayTitle;
+        if (charSequence4 == null && str == null) {
             return;
         }
-        if (charSequence2 == null || !charSequence2.equals(str)) {
+        if (charSequence4 == null || !charSequence4.equals(str)) {
             this.lastOverlayTitle = str;
+            Drawable drawable = null;
             if (this.additionalSubTitleOverlayContainer != null) {
                 this.additionalSubTitleOverlayContainer.setText(i == R.string.ConnectingToProxyWithDots ? AndroidUtilities.replaceArrows(LocaleController.getString(R.string.TitleSetupProxy), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(2.0f)) : null, true);
             }
-            CharSequence string = str != null ? LocaleController.getString(str, i) : this.lastTitle;
-            Drawable drawable = str == null ? this.lastRightDrawable : null;
-            if (str == null || (iIndexOf = TextUtils.indexOf(string, "...")) < 0) {
-                z = false;
-                charSequence = string;
+            if (str != null) {
+                string = LocaleController.getString(str, i);
             } else {
-                SpannableString spannableStringValueOf = SpannableString.valueOf(string);
+                charSequence = this.lastTitle;
+            }
+            if (str == null) {
+                charSequence2 = charSequence;
+                charSequence2 = string;
+                drawable = this.lastRightDrawable;
+            }
+            if (str == null || (iIndexOf = TextUtils.indexOf(charSequence2, "...")) < 0) {
+                z = false;
+                charSequence3 = charSequence2;
+            } else {
+                spannableStringValueOf = SpannableString.valueOf(charSequence2);
                 this.ellipsizeSpanAnimator.wrap(spannableStringValueOf, iIndexOf);
                 z = true;
-                charSequence = spannableStringValueOf;
             }
-            this.titleOverlayShown = str != null;
-            if ((charSequence != null && this.titleTextView[0] == null) || getMeasuredWidth() == 0 || ((simpleTextView = this.titleTextView[0]) != null && simpleTextView.getVisibility() != 0)) {
+            if (str != null) {
+                charSequence3 = spannableStringValueOf;
+                z2 = true;
+            } else {
+                charSequence3 = spannableStringValueOf;
+                z2 = false;
+            }
+            this.titleOverlayShown = z2;
+            if ((charSequence3 != null && this.titleTextView[0] == null) || getMeasuredWidth() == 0 || ((simpleTextView = this.titleTextView[0]) != null && simpleTextView.getVisibility() != 0)) {
                 createTitleTextView(0);
                 if (this.supportsHolidayImage) {
                     this.titleTextView[0].invalidate();
                     invalidate();
                 }
-                this.titleTextView[0].setText(charSequence);
+                this.titleTextView[0].setText(charSequence3);
                 this.titleTextView[0].setDrawablePadding(AndroidUtilities.dp(4.0f));
                 this.titleTextView[0].setRightDrawable(drawable);
                 this.titleTextView[0].setRightDrawableOnClick(this.rightDrawableOnClickListener);
@@ -1586,7 +1882,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                     if (this.titleTextView[1] == null) {
                         createTitleTextView(1);
                     }
-                    this.titleTextView[1].setText(charSequence);
+                    this.titleTextView[1].setText(charSequence3);
                     this.titleTextView[1].setDrawablePadding(AndroidUtilities.dp(4.0f));
                     this.titleTextView[1].setRightDrawable(drawable);
                     this.titleTextView[1].setRightDrawableOnClick(this.rightDrawableOnClickListener);
@@ -2040,6 +2336,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        int floatValue;
         int iDp = AndroidUtilities.dp(6.0f);
         int iDp2 = AndroidUtilities.dp(46.0f);
         float actionModeFactor = getActionModeFactor();
@@ -2050,17 +2347,23 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         int i = iDp * 2;
         int i2 = height + iDp2 + i;
         if (this.glassDrawable != null && !this.glassOnlyBack) {
-            int floatValue = (this.hasForcedMenuWidth ? factor > 0 ? iDp : 0 : (int) (iDp * this.animatorHasMenuItems.getFloatValue())) + factor;
-            int i3 = iDp + iDp2;
-            int iLerp = AndroidUtilities.lerp(floatValue, Math.max(floatValue, i3), this.chatAvatarContainer == null ? 0.0f : 1.0f - this.animatorAvatarContainerHasAvatar.getFloatValue());
-            int iLerp2 = AndroidUtilities.lerp(z ? i3 : 0, i3, this.chatAvatarContainer == null ? 0.0f : 1.0f - this.animatorAvatarContainerHasAvatar.getFloatValue());
+            if (this.hasForcedMenuWidth) {
+                floatValue = factor > 0 ? iDp : 0;
+            } else {
+                floatValue = (int) (iDp * this.animatorHasMenuItems.getFloatValue());
+            }
+            int i3 = floatValue + factor;
+            int i4 = iDp + iDp2;
+            int iLerp = AndroidUtilities.lerp(i3, Math.max(i3, i4), this.chatAvatarContainer == null ? 0.0f : 1.0f - this.animatorAvatarContainerHasAvatar.getFloatValue());
+            int iLerp2 = AndroidUtilities.lerp(z ? i4 : 0, i4, this.chatAvatarContainer == null ? 0.0f : 1.0f - this.animatorAvatarContainerHasAvatar.getFloatValue());
             int width = getWidth() - iLerp;
-            int i4 = width - iLerp2;
+            int i5 = width - iLerp2;
             if (this.chatAvatarContainer != null) {
-                int iLerp3 = AndroidUtilities.lerp(Math.min(i4, ((int) this.animatorAvatarContainerWidth.getFactor()) + i), i4, Math.max(this.searchFactor, actionModeFactor));
+                int iLerp3 = AndroidUtilities.lerp(Math.min(i5, ((int) this.animatorAvatarContainerWidth.getFactor()) + i), i5, Math.max(this.searchFactor, actionModeFactor));
                 iLerp2 = ((width + iLerp2) - iLerp3) / 2;
                 width = iLerp2 + iLerp3;
-                this.chatAvatarContainer.setTranslationX(((iLerp2 - ((ViewGroup.MarginLayoutParams) r3.getLayoutParams()).leftMargin) - this.chatAvatarContainer.getLeftPadding()) + iDp + AndroidUtilities.dp(3.0f));
+                ChatAvatarContainer chatAvatarContainer = this.chatAvatarContainer;
+                chatAvatarContainer.setTranslationX(((iLerp2 - ((ViewGroup.MarginLayoutParams) chatAvatarContainer.getLayoutParams()).leftMargin) - this.chatAvatarContainer.getLeftPadding()) + iDp + AndroidUtilities.dp(3.0f));
             }
             this.glassDrawable.setBounds(iLerp2, height, width, i2);
             this.glassDrawable.draw(canvas);

@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.CacheControlActivity;
-import org.telegram.ui.Storage.CacheModel;
 
 public class CacheModel {
     public boolean allDocumentsSelected;
@@ -183,9 +182,7 @@ public class CacheModel {
         int i = 0;
         if (!this.selectedDialogs.contains(Long.valueOf(dialogFileEntities.dialogId))) {
             while (i < dialogFileEntities.entitiesByType.size()) {
-                Iterator it = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files.iterator();
-                while (it.hasNext()) {
-                    FileInfo fileInfo = (FileInfo) it.next();
+                for (FileInfo fileInfo : ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files) {
                     if (this.selectedFiles.add(fileInfo)) {
                         this.selectedSize += fileInfo.size;
                     }
@@ -194,9 +191,7 @@ public class CacheModel {
             }
         } else {
             while (i < dialogFileEntities.entitiesByType.size()) {
-                Iterator it2 = ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files.iterator();
-                while (it2.hasNext()) {
-                    FileInfo fileInfo2 = (FileInfo) it2.next();
+                for (FileInfo fileInfo2 : ((CacheControlActivity.FileEntities) dialogFileEntities.entitiesByType.valueAt(i)).files) {
                     if (this.selectedFiles.remove(fileInfo2)) {
                         this.selectedSize -= fileInfo2.size;
                     }
@@ -273,9 +268,7 @@ public class CacheModel {
 
     public CacheControlActivity.DialogFileEntities removeSelectedFiles() {
         CacheControlActivity.DialogFileEntities dialogFileEntities = new CacheControlActivity.DialogFileEntities(0L);
-        Iterator it = this.selectedFiles.iterator();
-        while (it.hasNext()) {
-            FileInfo fileInfo = (FileInfo) it.next();
+        for (FileInfo fileInfo : this.selectedFiles) {
             dialogFileEntities.addFile(fileInfo, fileInfo.type);
             CacheControlActivity.DialogFileEntities dialogFileEntities2 = (CacheControlActivity.DialogFileEntities) this.entitiesByDialogId.get(fileInfo.dialogId);
             if (dialogFileEntities2 != null) {

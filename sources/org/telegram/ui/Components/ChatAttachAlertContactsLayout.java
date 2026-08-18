@@ -3,8 +3,10 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,6 +19,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.PhoneFormat.PhoneFormat;
@@ -25,19 +28,19 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.utils.TextWatcherImpl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.ChatAttachAlertContactsLayout;
-import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 
@@ -141,9 +144,9 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             this.checkBox.setDrawUnchecked(false);
             this.checkBox.setDrawBackgroundAsArc(3);
-            CheckBox2 checkBox22 = this.checkBox;
+            CheckBox2 checkBox3 = this.checkBox;
             boolean z4 = LocaleController.isRTL;
-            addView(checkBox22, LayoutHelper.createFrame(24, 24.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : 44.0f, 37.0f, z4 ? 44.0f : 0.0f, 0.0f));
+            addView(checkBox3, LayoutHelper.createFrame(24, 24.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : 44.0f, 37.0f, z4 ? 44.0f : 0.0f, 0.0f));
         }
 
         public void setCurrentId(int i) {
@@ -241,8 +244,79 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
         }
 
-        public void update(int r12) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertContactsLayout.UserCell.update(int):void");
+        public void update(int i) {
+            String userName;
+            TLRPC.FileLocation fileLocation;
+            TLRPC.UserProfilePhoto userProfilePhoto;
+            TLRPC.User user = this.currentUser;
+            TLRPC.FileLocation fileLocation2 = (user == null || (userProfilePhoto = user.photo) == null) ? null : userProfilePhoto.photo_small;
+            if (i != 0) {
+                boolean z = true;
+                boolean z2 = (MessagesController.UPDATE_MASK_AVATAR & i) != 0 && (((fileLocation = this.lastAvatar) != null && fileLocation2 == null) || ((fileLocation == null && fileLocation2 != null) || !(fileLocation == null || fileLocation2 == null || (fileLocation.volume_id == fileLocation2.volume_id && fileLocation.local_id == fileLocation2.local_id))));
+                if (user != null && !z2 && (MessagesController.UPDATE_MASK_STATUS & i) != 0) {
+                    TLRPC.UserStatus userStatus = user.status;
+                    if ((userStatus != null ? userStatus.expires : 0) != this.lastStatus) {
+                        z2 = true;
+                    }
+                }
+                if (z2 || this.currentName != null || this.lastName == null || (i & MessagesController.UPDATE_MASK_NAME) == 0) {
+                    userName = null;
+                } else {
+                    userName = user != null ? UserObject.getUserName(user) : null;
+                    if (userName.equals(this.lastName)) {
+                    }
+                    if (!z) {
+                        return;
+                    }
+                }
+                z = z2;
+                if (!z) {
+                    return;
+                }
+            } else {
+                userName = null;
+            }
+            TLRPC.User user2 = this.currentUser;
+            if (user2 != null) {
+                this.avatarDrawable.setInfo(this.currentAccount, user2);
+                TLRPC.UserStatus userStatus2 = this.currentUser.status;
+                if (userStatus2 != null) {
+                    this.lastStatus = userStatus2.expires;
+                } else {
+                    this.lastStatus = 0;
+                }
+            } else {
+                CharSequence charSequence = this.currentName;
+                if (charSequence != null) {
+                    this.avatarDrawable.setInfo(this.currentId, charSequence.toString(), null);
+                } else {
+                    this.avatarDrawable.setInfo(this.currentId, "#", null);
+                }
+            }
+            CharSequence charSequence2 = this.currentName;
+            if (charSequence2 != null) {
+                this.lastName = null;
+                this.nameTextView.setText(charSequence2);
+            } else {
+                TLRPC.User user3 = this.currentUser;
+                if (user3 != null) {
+                    if (userName == null) {
+                        userName = UserObject.getUserName(user3);
+                    }
+                    this.lastName = userName;
+                } else {
+                    this.lastName = "";
+                }
+                this.nameTextView.setText(this.lastName);
+            }
+            lambda$setData$0(this.currentStatus);
+            this.lastAvatar = fileLocation2;
+            TLRPC.User user4 = this.currentUser;
+            if (user4 != null) {
+                this.avatarImageView.setForUserOrChat(user4, this.avatarDrawable);
+            } else {
+                this.avatarImageView.setImageDrawable(this.avatarDrawable);
+            }
         }
 
         @Override
@@ -551,8 +625,138 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
     }
 
-    private org.telegram.tgnet.TLRPC.User prepareContact(java.lang.Object r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertContactsLayout.prepareContact(java.lang.Object):org.telegram.tgnet.TLRPC$User");
+    private TLRPC.User prepareContact(Object obj) {
+        String str;
+        ContactsController.Contact contact;
+        String str2;
+        ArrayList<TLRPC.User> arrayListLoadVCardFromStream;
+        ArrayList<TLRPC.RestrictionReason> arrayList;
+        StringBuilder sb;
+        if (obj instanceof ContactsController.Contact) {
+            contact = (ContactsController.Contact) obj;
+            TLRPC.User user = contact.user;
+            if (user != null) {
+                str = user.first_name;
+                str2 = user.last_name;
+            } else {
+                str = contact.first_name;
+                str2 = contact.last_name;
+            }
+        } else {
+            TLRPC.User user2 = (TLRPC.User) obj;
+            ContactsController.Contact contact2 = new ContactsController.Contact();
+            str = user2.first_name;
+            contact2.first_name = str;
+            String str3 = user2.last_name;
+            contact2.last_name = str3;
+            contact2.phones.add(user2.phone);
+            contact2.user = user2;
+            contact = contact2;
+            str2 = str3;
+        }
+        String name = ContactsController.formatName(str, str2);
+        ArrayList arrayList2 = new ArrayList();
+        ArrayList arrayList3 = new ArrayList();
+        ArrayList arrayList4 = new ArrayList();
+        String str4 = contact.key;
+        if (str4 != null) {
+            arrayListLoadVCardFromStream = AndroidUtilities.loadVCardFromStream(Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_VCARD_URI, str4), this.parentAlert.currentAccount, true, arrayList2, name);
+        } else {
+            AndroidUtilities.VcardItem vcardItem = new AndroidUtilities.VcardItem();
+            vcardItem.type = 0;
+            ArrayList<String> arrayList5 = vcardItem.vcardData;
+            String str5 = "TEL;MOBILE:+" + contact.user.phone;
+            vcardItem.fullData = str5;
+            arrayList5.add(str5);
+            arrayList3.add(vcardItem);
+            arrayListLoadVCardFromStream = null;
+        }
+        TLRPC.User user3 = contact.user;
+        if (arrayListLoadVCardFromStream != null) {
+            for (int i = 0; i < arrayList2.size(); i++) {
+                AndroidUtilities.VcardItem vcardItem2 = (AndroidUtilities.VcardItem) arrayList2.get(i);
+                if (vcardItem2.type == 0) {
+                    int i2 = 0;
+                    while (true) {
+                        if (i2 < arrayList3.size()) {
+                            if (((AndroidUtilities.VcardItem) arrayList3.get(i2)).getValue(false).equals(vcardItem2.getValue(false))) {
+                                vcardItem2.checked = false;
+                                break;
+                            }
+                            i2++;
+                        } else {
+                            arrayList3.add(vcardItem2);
+                            break;
+                        }
+                    }
+                } else {
+                    arrayList4.add(vcardItem2);
+                }
+            }
+            if (arrayListLoadVCardFromStream.isEmpty()) {
+                arrayList = null;
+            } else {
+                TLRPC.User user4 = arrayListLoadVCardFromStream.get(0);
+                arrayList = user4.restriction_reason;
+                if (TextUtils.isEmpty(str)) {
+                    str = user4.first_name;
+                    str2 = user4.last_name;
+                }
+            }
+        } else {
+            arrayList = null;
+        }
+        TLRPC.TL_userContact_old2 tL_userContact_old2 = new TLRPC.TL_userContact_old2();
+        if (user3 != null) {
+            tL_userContact_old2.id = user3.id;
+            tL_userContact_old2.access_hash = user3.access_hash;
+            tL_userContact_old2.photo = user3.photo;
+            tL_userContact_old2.status = user3.status;
+            tL_userContact_old2.first_name = user3.first_name;
+            tL_userContact_old2.last_name = user3.last_name;
+            tL_userContact_old2.phone = user3.phone;
+            if (arrayList != null) {
+                tL_userContact_old2.restriction_reason = arrayList;
+            }
+        } else {
+            tL_userContact_old2.first_name = str;
+            tL_userContact_old2.last_name = str2;
+        }
+        if (!tL_userContact_old2.restriction_reason.isEmpty()) {
+            sb = new StringBuilder(tL_userContact_old2.restriction_reason.get(0).text);
+        } else {
+            sb = new StringBuilder(String.format(Locale.US, "BEGIN:VCARD\nVERSION:3.0\nFN:%1$s\nEND:VCARD", ContactsController.formatName(tL_userContact_old2.first_name, tL_userContact_old2.last_name)));
+        }
+        int iLastIndexOf = sb.lastIndexOf("END:VCARD");
+        if (iLastIndexOf >= 0) {
+            tL_userContact_old2.phone = null;
+            for (int size = arrayList3.size() - 1; size >= 0; size--) {
+                AndroidUtilities.VcardItem vcardItem3 = (AndroidUtilities.VcardItem) arrayList3.get(size);
+                if (vcardItem3.checked) {
+                    if (tL_userContact_old2.phone == null) {
+                        tL_userContact_old2.phone = vcardItem3.getValue(false);
+                    }
+                    for (int i3 = 0; i3 < vcardItem3.vcardData.size(); i3++) {
+                        sb.insert(iLastIndexOf, vcardItem3.vcardData.get(i3) + "\n");
+                    }
+                }
+            }
+            for (int size2 = arrayList4.size() - 1; size2 >= 0; size2--) {
+                AndroidUtilities.VcardItem vcardItem4 = (AndroidUtilities.VcardItem) arrayList4.get(size2);
+                if (vcardItem4.checked) {
+                    for (int size3 = vcardItem4.vcardData.size() - 1; size3 >= 0; size3 += -1) {
+                        sb.insert(iLastIndexOf, vcardItem4.vcardData.get(size3) + "\n");
+                    }
+                }
+            }
+            tL_userContact_old2.restriction_reason.clear();
+            TLRPC.RestrictionReason restrictionReason = new TLRPC.RestrictionReason();
+            restrictionReason.text = sb.toString();
+            restrictionReason.reason = "";
+            restrictionReason.platform = "";
+            tL_userContact_old2.restriction_reason.add(restrictionReason);
+        }
+        return tL_userContact_old2;
     }
 
     @Override
@@ -630,8 +834,25 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void onPreMeasure(int r3, int r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertContactsLayout.onPreMeasure(int, int):void");
+    public void onPreMeasure(int i, int i2) {
+        int iDp;
+        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
+            iDp = AndroidUtilities.dp(8.0f);
+            this.parentAlert.setAllowNestedScroll(false);
+        } else {
+            if (AndroidUtilities.isTablet()) {
+                iDp = (i2 / 5) * 2;
+            } else {
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    iDp = (int) (i2 / 3.5f);
+                } else {
+                    iDp = (i2 / 5) * 2;
+                }
+            }
+            this.parentAlert.setAllowNestedScroll(true);
+        }
+        this.listView.setPaddingWithoutRequestLayout(0, iDp + AndroidUtilities.statusBarHeight, 0, this.listPaddingBottom);
     }
 
     public int getCurrentTop() {
@@ -683,7 +904,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     public void updateEmptyViewPosition() {
         View childAt;
         if (this.emptyView.getVisibility() == 0 && (childAt = this.listView.getChildAt(0)) != null) {
-            this.emptyView.setTranslationY(((r1.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
+            EmptyTextProgressView emptyTextProgressView = this.emptyView;
+            emptyTextProgressView.setTranslationY(((emptyTextProgressView.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
         }
     }
 
@@ -893,8 +1115,197 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             });
         }
 
-        public void lambda$processSearch$1(java.lang.String r19, java.util.ArrayList r20, java.util.ArrayList r21, int r22, int r23) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertContactsLayout.ShareSearchAdapter.lambda$processSearch$1(java.lang.String, java.util.ArrayList, java.util.ArrayList, int, int):void");
+        public void lambda$processSearch$1(String str, ArrayList arrayList, ArrayList arrayList2, int i, int i2) {
+            String lowerCase;
+            String translitString;
+            TLRPC.User user;
+            char c;
+            String publicUsername;
+            String lowerCase2 = str.trim().toLowerCase();
+            if (lowerCase2.length() == 0) {
+                this.lastSearchId = -1;
+                updateSearchResults(str, new ArrayList(), new ArrayList(), this.lastSearchId);
+                return;
+            }
+            String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
+            if (lowerCase2.equals(translitString2) || translitString2.length() == 0) {
+                translitString2 = null;
+            }
+            int i3 = (translitString2 != null ? 1 : 0) + 1;
+            String[] strArr = new String[i3];
+            strArr[0] = lowerCase2;
+            if (translitString2 != null) {
+                strArr[1] = translitString2;
+            }
+            ArrayList arrayList3 = new ArrayList();
+            ArrayList arrayList4 = new ArrayList();
+            LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
+            for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                ContactsController.Contact contact = (ContactsController.Contact) arrayList.get(i4);
+                String lowerCase3 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
+                String translitString3 = LocaleController.getInstance().getTranslitString(lowerCase3);
+                TLRPC.User user2 = contact.user;
+                if (user2 != null) {
+                    lowerCase = ContactsController.formatName(user2.first_name, user2.last_name).toLowerCase();
+                    translitString = LocaleController.getInstance().getTranslitString(lowerCase3);
+                } else {
+                    lowerCase = null;
+                    translitString = null;
+                }
+                if (lowerCase3.equals(translitString3)) {
+                    translitString3 = null;
+                }
+                int i5 = 0;
+                char c2 = 0;
+                while (i5 < i3) {
+                    String str2 = strArr[i5];
+                    if (lowerCase != null) {
+                        if (!lowerCase.startsWith(str2)) {
+                            if (!lowerCase.contains(" " + str2)) {
+                                if (translitString != null) {
+                                    if (!translitString.startsWith(str2)) {
+                                        if (translitString.contains(" " + str2)) {
+                                        }
+                                    }
+                                }
+                                user = contact.user;
+                                if (user == null) {
+                                    if (lowerCase3.startsWith(str2)) {
+                                        c = 3;
+                                    } else {
+                                        if (lowerCase3.contains(" " + str2)) {
+                                            c = 3;
+                                        } else {
+                                            if (translitString3 != null) {
+                                                if (!translitString3.startsWith(str2)) {
+                                                    if (translitString3.contains(" " + str2)) {
+                                                    }
+                                                }
+                                                c = 3;
+                                            }
+                                            c = c2;
+                                        }
+                                    }
+                                } else if (lowerCase3.startsWith(str2)) {
+                                    if (lowerCase3.contains(" " + str2)) {
+                                        c = 3;
+                                    } else {
+                                        if (translitString3 != null) {
+                                            if (!translitString3.startsWith(str2)) {
+                                                if (translitString3.contains(" " + str2)) {
+                                                }
+                                            }
+                                            c = 3;
+                                        }
+                                        c = c2;
+                                    }
+                                } else {
+                                    c = 3;
+                                }
+                            }
+                        }
+                        c = 1;
+                    } else {
+                        if (translitString != null) {
+                            if (!translitString.startsWith(str2)) {
+                                if (translitString.contains(" " + str2)) {
+                                }
+                            }
+                            c = 1;
+                        }
+                        user = contact.user;
+                        if (user == null && (publicUsername = UserObject.getPublicUsername(user)) != null && publicUsername.startsWith(str2)) {
+                            c = 2;
+                        } else if (lowerCase3.startsWith(str2)) {
+                            if (lowerCase3.contains(" " + str2)) {
+                                c = 3;
+                            } else {
+                                if (translitString3 != null) {
+                                    if (!translitString3.startsWith(str2)) {
+                                        if (translitString3.contains(" " + str2)) {
+                                        }
+                                    }
+                                    c = 3;
+                                }
+                                c = c2;
+                            }
+                        } else {
+                            c = 3;
+                        }
+                    }
+                    String str3 = lowerCase3;
+                    if (c != 0 && (!contact.phones.isEmpty() || !contact.shortPhones.isEmpty())) {
+                        if (c == 3) {
+                            arrayList4.add(AndroidUtilities.generateSearchName(contact.first_name, contact.last_name, str2));
+                        } else if (c == 1) {
+                            TLRPC.User user3 = contact.user;
+                            arrayList4.add(AndroidUtilities.generateSearchName(user3.first_name, user3.last_name, str2));
+                        } else {
+                            arrayList4.add(AndroidUtilities.generateSearchName("@" + UserObject.getPublicUsername(contact.user), null, "@" + str2));
+                        }
+                        TLRPC.User user4 = contact.user;
+                        if (user4 != null) {
+                            longSparseIntArray.put(user4.id, 1);
+                        }
+                        arrayList3.add(contact);
+                        break;
+                    }
+                    i5++;
+                    lowerCase3 = str3;
+                    c2 = c;
+                }
+            }
+            for (int i6 = 0; i6 < arrayList2.size(); i6++) {
+                TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) arrayList2.get(i6);
+                if (longSparseIntArray.indexOfKey(tL_contact.user_id) >= 0) {
+                    break;
+                }
+                TLRPC.User user5 = MessagesController.getInstance(i).getUser(Long.valueOf(tL_contact.user_id));
+                String lowerCase4 = ContactsController.formatName(user5.first_name, user5.last_name).toLowerCase();
+                String translitString4 = LocaleController.getInstance().getTranslitString(lowerCase4);
+                if (lowerCase4.equals(translitString4)) {
+                    translitString4 = null;
+                }
+                char c3 = 0;
+                int i7 = 0;
+                while (true) {
+                    if (i7 >= i3) {
+                        break;
+                        break;
+                    }
+                    String str4 = strArr[i7];
+                    if (lowerCase4.startsWith(str4)) {
+                        c3 = 1;
+                    } else {
+                        if (lowerCase4.contains(" " + str4)) {
+                            c3 = 1;
+                        } else {
+                            if (translitString4 != null) {
+                                if (!translitString4.startsWith(str4)) {
+                                    if (translitString4.contains(" " + str4)) {
+                                    }
+                                }
+                                c3 = 1;
+                            }
+                            String publicUsername2 = UserObject.getPublicUsername(user5);
+                            if (publicUsername2 != null && publicUsername2.startsWith(str4)) {
+                                c3 = 2;
+                            }
+                        }
+                    }
+                    if (c3 != 0 && user5.phone != null) {
+                        if (c3 == 1) {
+                            arrayList4.add(AndroidUtilities.generateSearchName(user5.first_name, user5.last_name, str4));
+                        } else {
+                            arrayList4.add(AndroidUtilities.generateSearchName("@" + UserObject.getPublicUsername(user5), null, "@" + str4));
+                        }
+                        arrayList3.add(user5);
+                        break;
+                    }
+                    i7++;
+                }
+            }
+            updateSearchResults(str, arrayList3, arrayList4, i2);
         }
 
         private void updateSearchResults(String str, final ArrayList arrayList, final ArrayList arrayList2, final int i) {

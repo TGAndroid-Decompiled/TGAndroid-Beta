@@ -631,7 +631,8 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             int i3 = (int) (floatingViewLocation[0] * f);
             int i4 = (int) (floatingViewLocation[1] * f);
             int i5 = floatingViewLocation[2];
-            float f2 = (i5 + ((r7 - i5) * (1.0f - f))) / AndroidUtilities.displaySize.x;
+            int i6 = AndroidUtilities.displaySize.x;
+            float f2 = (i5 + ((i6 - i5) * (1.0f - f))) / i6;
             this.clipPath.reset();
             this.clipPath.addRoundRect(0.0f, 0.0f, getWidth() * f2, getHeight() * f2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
             canvas.translate(i3, i4);

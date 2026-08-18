@@ -15,7 +15,6 @@ import android.view.Choreographer;
 import android.view.TextureView;
 import android.view.View;
 import com.google.zxing.common.detector.MathUtils;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -28,13 +27,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.EmuDetector;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.Cells.BaseCell;
+import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.ThanosEffect;
 
 public class ThanosEffect extends TextureView {
     private static Boolean nothanos;
@@ -202,9 +204,7 @@ public class ThanosEffect extends TextureView {
             return;
         }
         this.destroyed = true;
-        Iterator it = this.toSet.iterator();
-        while (it.hasNext()) {
-            ToSet toSet = (ToSet) it.next();
+        for (ToSet toSet : this.toSet) {
             Runnable runnable = toSet.doneCallback;
             if (runnable != null) {
                 ensureRunOnUIThread(runnable);
@@ -491,13 +491,13 @@ public class ThanosEffect extends TextureView {
             this.egl = egl10;
             EGLDisplay eGLDisplayEglGetDisplay = egl10.eglGetDisplay(0);
             this.eglDisplay = eGLDisplayEglGetDisplay;
-            EGL10 egl102 = this.egl;
+            EGL10 egl11 = this.egl;
             if (eGLDisplayEglGetDisplay == EGL10.EGL_NO_DISPLAY) {
                 FileLog.e("ThanosEffect: eglDisplay == egl.EGL_NO_DISPLAY");
                 killInternal();
                 return;
             }
-            if (!egl102.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
+            if (!egl11.eglInitialize(eGLDisplayEglGetDisplay, new int[2])) {
                 FileLog.e("ThanosEffect: failed eglInitialize");
                 killInternal();
                 return;
@@ -877,8 +877,387 @@ public class ThanosEffect extends TextureView {
                 this.bitmap = bitmap;
             }
 
-            public Animation(org.telegram.ui.Components.ThanosEffect.DrawingThread r37, final java.util.ArrayList r38, java.lang.Runnable r39) throws java.io.IOException {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThanosEffect.DrawingThread.Animation.<init>(org.telegram.ui.Components.ThanosEffect$DrawingThread, java.util.ArrayList, java.lang.Runnable):void");
+            public Animation(DrawingThread drawingThread, final ArrayList arrayList, Runnable runnable) {
+                ChatActivity chatActivity;
+                Canvas canvas;
+                int i;
+                ArrayList arrayList2;
+                ArrayList arrayList3;
+                float f;
+                float f2;
+                int i2;
+                ArrayList arrayList4;
+                ArrayList arrayList5;
+                ChatActivity chatActivity2;
+                ArrayList arrayList6;
+                float f3;
+                float f4;
+                int i3;
+                Animation animation = this;
+                DrawingThread.this = drawingThread;
+                animation.views = new ArrayList();
+                animation.lastDrawTime = -1L;
+                animation.time = 0.0f;
+                animation.firstDraw = true;
+                animation.offsetLeft = 0.0f;
+                animation.offsetTop = 0.0f;
+                animation.left = 0.0f;
+                animation.top = 0.0f;
+                animation.density = AndroidUtilities.density;
+                animation.longevity = 1.5f;
+                animation.timeScale = 1.15f;
+                animation.invalidateMatrix = true;
+                animation.customMatrix = false;
+                animation.glMatrixValues = new float[9];
+                animation.matrixValues = new float[9];
+                animation.matrix = new Matrix();
+                animation.seed = (float) (Math.random() * 2.0d);
+                animation.texture = new int[1];
+                int i4 = 2;
+                animation.buffer = new int[2];
+                animation.views.addAll(arrayList);
+                int iMin = Integer.MAX_VALUE;
+                int iMin2 = Integer.MAX_VALUE;
+                int iMax = Integer.MIN_VALUE;
+                int iMax2 = Integer.MIN_VALUE;
+                for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                    View view = (View) arrayList.get(i5);
+                    iMin = Math.min(iMin, (int) view.getX());
+                    iMax2 = Math.max(iMax2, ((int) view.getX()) + view.getWidth());
+                    iMin2 = Math.min(iMin2, (int) view.getY());
+                    iMax = Math.max(iMax, ((int) view.getY()) + view.getHeight());
+                }
+                float f5 = iMin2;
+                animation.top = f5;
+                float f6 = iMin;
+                animation.left = f6;
+                animation.viewWidth = iMax2 - iMin;
+                animation.viewHeight = iMax - iMin2;
+                animation.doneCallback = runnable;
+                animation.startCallback = new Runnable() {
+                    @Override
+                    public final void run() {
+                        ThanosEffect.DrawingThread.Animation.lambda$new$0(arrayList);
+                    }
+                };
+                for (int i6 = 0; i6 < arrayList.size(); i6++) {
+                    if (arrayList.get(i6) instanceof ChatMessageCell) {
+                        ((ChatMessageCell) arrayList.get(i6)).drawingToBitmap = true;
+                    }
+                }
+                animation.bitmap = Bitmap.createBitmap(animation.viewWidth, animation.viewHeight, Bitmap.Config.ARGB_8888);
+                Canvas canvas2 = new Canvas(animation.bitmap);
+                if (arrayList.size() > 0 && (((View) arrayList.get(0)).getParent() instanceof RecyclerListView)) {
+                    RecyclerListView recyclerListView = (RecyclerListView) ((View) arrayList.get(0)).getParent();
+                    if (recyclerListView.getParent() instanceof ChatActivity.ChatActivityFragmentView) {
+                        ChatActivity.ChatActivityFragmentView chatActivityFragmentView = (ChatActivity.ChatActivityFragmentView) recyclerListView.getParent();
+                        ChatActivity chatActivity3 = chatActivityFragmentView.getChatActivity();
+                        ArrayList arrayList7 = new ArrayList(10);
+                        ArrayList arrayList8 = new ArrayList();
+                        ArrayList arrayList9 = new ArrayList();
+                        ArrayList arrayList10 = new ArrayList();
+                        ArrayList arrayList11 = new ArrayList();
+                        int iSave = canvas2.save();
+                        int i7 = 0;
+                        while (i7 < 3) {
+                            arrayList7.clear();
+                            if (i7 != i4 || recyclerListView.isFastScrollAnimationRunning()) {
+                                int i8 = 0;
+                                while (true) {
+                                    i = iSave;
+                                    if (i8 >= arrayList.size()) {
+                                        break;
+                                    }
+                                    View view2 = (View) arrayList.get(i8);
+                                    if (view2 instanceof ChatMessageCell) {
+                                        ChatMessageCell chatMessageCell = (ChatMessageCell) view2;
+                                        f3 = f5;
+                                        if (view2.getY() <= recyclerListView.getHeight() && view2.getY() + view2.getHeight() >= 0.0f && chatMessageCell.getVisibility() != 4 && chatMessageCell.getVisibility() != 8) {
+                                            MessageObject.GroupedMessages currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
+                                            MessageObject.GroupedMessagePosition position = (currentMessagesGroup == null || currentMessagesGroup.positions == null) ? null : currentMessagesGroup.getPosition(chatMessageCell.getMessageObject());
+                                            f4 = f6;
+                                            if (i7 == 0 && (position != null || chatMessageCell.getTransitionParams().animateBackgroundBoundsInner)) {
+                                                if (position == null || position.last || (position.minX == 0 && position.minY == 0)) {
+                                                    if (position == null || position.last) {
+                                                        arrayList8.add(chatMessageCell);
+                                                    }
+                                                    if ((position == null || (position.minX == 0 && position.minY == 0)) && chatMessageCell.hasNameLayout()) {
+                                                        arrayList9.add(chatMessageCell);
+                                                    }
+                                                }
+                                                if (position != null || chatMessageCell.getTransitionParams().transformGroupToSingleMessage || chatMessageCell.getTransitionParams().animateBackgroundBoundsInner) {
+                                                    if (position == null || (position.flags & chatMessageCell.captionFlag()) != 0) {
+                                                        arrayList10.add(chatMessageCell);
+                                                    }
+                                                    if (position != null) {
+                                                        int i9 = position.flags;
+                                                        if ((i9 & 8) != 0 && (i9 & 1) != 0) {
+                                                            arrayList11.add(chatMessageCell);
+                                                        }
+                                                    } else {
+                                                        arrayList11.add(chatMessageCell);
+                                                    }
+                                                }
+                                            }
+                                            if (currentMessagesGroup != null) {
+                                                if (i7 == 0) {
+                                                    i3 = 1;
+                                                    if (currentMessagesGroup.messages.size() != 1) {
+                                                    }
+                                                } else {
+                                                    i3 = 1;
+                                                }
+                                                if ((i7 != i3 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i7 != 0 || !chatMessageCell.getMessageObject().deleted) && ((i7 != 1 || chatMessageCell.getMessageObject().deleted) && ((i7 != 2 || chatMessageCell.willRemovedAfterAnimation()) && (i7 == 2 || !chatMessageCell.willRemovedAfterAnimation()))))) {
+                                                    if (!arrayList7.contains(currentMessagesGroup)) {
+                                                        MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
+                                                        transitionParams.left = 0;
+                                                        transitionParams.top = 0;
+                                                        transitionParams.right = 0;
+                                                        transitionParams.bottom = 0;
+                                                        transitionParams.pinnedBotton = false;
+                                                        transitionParams.pinnedTop = false;
+                                                        transitionParams.cell = chatMessageCell;
+                                                        arrayList7.add(currentMessagesGroup);
+                                                    }
+                                                    currentMessagesGroup.transitionParams.pinnedTop = chatMessageCell.isPinnedTop();
+                                                    currentMessagesGroup.transitionParams.pinnedBotton = chatMessageCell.isPinnedBottom();
+                                                    int left = chatMessageCell.getLeft() + chatMessageCell.getBackgroundDrawableLeft();
+                                                    int left2 = chatMessageCell.getLeft() + chatMessageCell.getBackgroundDrawableRight();
+                                                    int top = chatMessageCell.getTop() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableTop();
+                                                    int top2 = chatMessageCell.getTop() + chatMessageCell.getPaddingTop() + chatMessageCell.getBackgroundDrawableBottom();
+                                                    arrayList10 = arrayList10;
+                                                    arrayList9 = arrayList9;
+                                                    int iDp = (chatMessageCell.getCurrentPosition().flags & 4) == 0 ? top - AndroidUtilities.dp(10.0f) : top;
+                                                    int iDp2 = (chatMessageCell.getCurrentPosition().flags & 8) == 0 ? top2 + AndroidUtilities.dp(10.0f) : top2;
+                                                    if (chatMessageCell.willRemovedAfterAnimation()) {
+                                                        currentMessagesGroup.transitionParams.cell = chatMessageCell;
+                                                    }
+                                                    MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
+                                                    int i10 = transitionParams2.top;
+                                                    if (i10 == 0 || iDp < i10) {
+                                                        transitionParams2.top = iDp;
+                                                    }
+                                                    int i11 = transitionParams2.bottom;
+                                                    if (i11 == 0 || iDp2 > i11) {
+                                                        transitionParams2.bottom = iDp2;
+                                                    }
+                                                    int i12 = transitionParams2.left;
+                                                    if (i12 == 0 || left < i12) {
+                                                        transitionParams2.left = left;
+                                                    }
+                                                    int i13 = transitionParams2.right;
+                                                    if (i13 == 0 || left2 > i13) {
+                                                        transitionParams2.right = left2;
+                                                    }
+                                                }
+                                            }
+                                            arrayList10 = arrayList10;
+                                            arrayList9 = arrayList9;
+                                            arrayList11 = arrayList11;
+                                        }
+                                        i8++;
+                                        iSave = i;
+                                        arrayList11 = arrayList11;
+                                        f5 = f3;
+                                        f6 = f4;
+                                        arrayList10 = arrayList10;
+                                        arrayList9 = arrayList9;
+                                    } else {
+                                        f3 = f5;
+                                    }
+                                    f4 = f6;
+                                    arrayList11 = arrayList11;
+                                    i8++;
+                                    iSave = i;
+                                    arrayList11 = arrayList11;
+                                    f5 = f3;
+                                    f6 = f4;
+                                    arrayList10 = arrayList10;
+                                    arrayList9 = arrayList9;
+                                }
+                                arrayList2 = arrayList10;
+                                arrayList3 = arrayList9;
+                                f = f5;
+                                f2 = f6;
+                                ArrayList arrayList12 = arrayList11;
+                                int i14 = 0;
+                                while (i14 < arrayList7.size()) {
+                                    MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) arrayList7.get(i14);
+                                    float nonAnimationTranslationX = groupedMessages.transitionParams.cell.getNonAnimationTranslationX(true);
+                                    MessageObject.GroupedMessages.TransitionParams transitionParams3 = groupedMessages.transitionParams;
+                                    float f7 = transitionParams3.left + nonAnimationTranslationX + transitionParams3.offsetLeft;
+                                    float fDp = transitionParams3.top + transitionParams3.offsetTop;
+                                    float f8 = transitionParams3.right + nonAnimationTranslationX + transitionParams3.offsetRight;
+                                    float measuredHeight = transitionParams3.bottom + transitionParams3.offsetBottom;
+                                    if (!transitionParams3.backgroundChangeBounds) {
+                                        fDp += transitionParams3.cell.getTranslationY();
+                                        measuredHeight += groupedMessages.transitionParams.cell.getTranslationY();
+                                    }
+                                    ArrayList arrayList13 = arrayList7;
+                                    fDp = fDp < (chatActivity3.chatListViewPaddingTop - ((float) chatActivity3.chatListViewPaddingVisibleOffset)) - ((float) AndroidUtilities.dp(20.0f)) ? (chatActivity3.chatListViewPaddingTop - chatActivity3.chatListViewPaddingVisibleOffset) - AndroidUtilities.dp(20.0f) : fDp;
+                                    measuredHeight = measuredHeight > ((float) (recyclerListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f))) ? recyclerListView.getMeasuredHeight() + AndroidUtilities.dp(20.0f) : measuredHeight;
+                                    float f9 = animation.top;
+                                    float f10 = fDp - f9;
+                                    float f11 = measuredHeight - f9;
+                                    float f12 = animation.left;
+                                    float f13 = f7 - f12;
+                                    float f14 = f8 - f12;
+                                    boolean z = (groupedMessages.transitionParams.cell.getScaleX() == 1.0f && groupedMessages.transitionParams.cell.getScaleY() == 1.0f) ? false : true;
+                                    if (z) {
+                                        canvas2.save();
+                                        canvas2.scale(groupedMessages.transitionParams.cell.getScaleX(), groupedMessages.transitionParams.cell.getScaleY(), f13 + ((f14 - f13) / 2.0f), f10 + ((f11 - f10) / 2.0f));
+                                    }
+                                    MessageObject.GroupedMessages.TransitionParams transitionParams4 = groupedMessages.transitionParams;
+                                    ChatActivity chatActivity4 = chatActivity3;
+                                    int i15 = i7;
+                                    int i16 = i14;
+                                    ArrayList arrayList14 = arrayList12;
+                                    transitionParams4.cell.drawBackground(canvas2, (int) f13, (int) f10, (int) f14, (int) f11, transitionParams4.pinnedTop, transitionParams4.pinnedBotton, false, chatActivityFragmentView.getKeyboardHeight());
+                                    MessageObject.GroupedMessages.TransitionParams transitionParams5 = groupedMessages.transitionParams;
+                                    transitionParams5.cell = null;
+                                    transitionParams5.drawCaptionLayout = groupedMessages.hasCaption;
+                                    if (z) {
+                                        canvas2.restore();
+                                        for (int i17 = 0; i17 < arrayList.size(); i17++) {
+                                            View view3 = (View) arrayList.get(i17);
+                                            if (view3 instanceof ChatMessageCell) {
+                                                ChatMessageCell chatMessageCell2 = (ChatMessageCell) view3;
+                                                if (chatMessageCell2.getCurrentMessagesGroup() == groupedMessages) {
+                                                    int left3 = chatMessageCell2.getLeft();
+                                                    int top3 = chatMessageCell2.getTop();
+                                                    view3.setPivotX((f13 - left3) + ((f14 - f13) / 2.0f));
+                                                    view3.setPivotY((f10 - top3) + ((f11 - f10) / 2.0f));
+                                                }
+                                            }
+                                        }
+                                    }
+                                    animation = this;
+                                    i14 = i16 + 1;
+                                    arrayList7 = arrayList13;
+                                    arrayList8 = arrayList8;
+                                    chatActivity3 = chatActivity4;
+                                    i7 = i15;
+                                    arrayList12 = arrayList14;
+                                }
+                                i2 = i7;
+                                arrayList4 = arrayList7;
+                                arrayList5 = arrayList8;
+                                chatActivity2 = chatActivity3;
+                                arrayList6 = arrayList12;
+                            } else {
+                                i2 = i7;
+                                arrayList4 = arrayList7;
+                                arrayList2 = arrayList10;
+                                arrayList3 = arrayList9;
+                                arrayList5 = arrayList8;
+                                chatActivity2 = chatActivity3;
+                                i = iSave;
+                                f = f5;
+                                f2 = f6;
+                                arrayList6 = arrayList11;
+                            }
+                            i7 = i2 + 1;
+                            animation = this;
+                            iSave = i;
+                            f5 = f;
+                            f6 = f2;
+                            arrayList10 = arrayList2;
+                            arrayList9 = arrayList3;
+                            arrayList7 = arrayList4;
+                            arrayList8 = arrayList5;
+                            chatActivity3 = chatActivity2;
+                            arrayList11 = arrayList6;
+                            i4 = 2;
+                        }
+                        ArrayList arrayList15 = arrayList10;
+                        ArrayList arrayList16 = arrayList9;
+                        ArrayList arrayList17 = arrayList8;
+                        ChatActivity chatActivity5 = chatActivity3;
+                        int i18 = iSave;
+                        float f15 = f5;
+                        float f16 = f6;
+                        ArrayList arrayList18 = arrayList11;
+                        for (int i19 = 0; i19 < arrayList.size(); i19++) {
+                            View view4 = (View) arrayList.get(i19);
+                            canvas2.save();
+                            canvas2.translate(view4.getX() - f16, view4.getY() - f15);
+                            view4.draw(canvas2);
+                            if (view4 instanceof ChatMessageCell) {
+                                ((ChatMessageCell) view4).drawOutboundsContent(canvas2);
+                            } else if (view4 instanceof ChatActionCell) {
+                                ((ChatActionCell) view4).drawOutboundsContent(canvas2);
+                            }
+                            canvas2.restore();
+                        }
+                        ChatActivity chatActivity6 = chatActivity5;
+                        float y = ((recyclerListView.getY() + chatActivity6.chatListViewPaddingTop) - chatActivity6.chatListViewPaddingVisibleOffset) - AndroidUtilities.dp(4.0f);
+                        int size = arrayList17.size();
+                        if (size > 0) {
+                            int i20 = 0;
+                            while (i20 < size) {
+                                ArrayList arrayList19 = arrayList17;
+                                ChatMessageCell chatMessageCell3 = (ChatMessageCell) arrayList19.get(i20);
+                                drawChildElement(recyclerListView, chatActivity6, canvas2, y, chatMessageCell3, 0, chatMessageCell3.getX() - f16, chatMessageCell3.getY() - f15);
+                                i20++;
+                                canvas2 = canvas2;
+                                chatActivity6 = chatActivity6;
+                                arrayList17 = arrayList19;
+                            }
+                            chatActivity = chatActivity6;
+                            canvas = canvas2;
+                            arrayList17.clear();
+                        } else {
+                            chatActivity = chatActivity6;
+                            canvas = canvas2;
+                        }
+                        int size2 = arrayList16.size();
+                        if (size2 > 0) {
+                            for (int i21 = 0; i21 < size2; i21++) {
+                                ChatMessageCell chatMessageCell4 = (ChatMessageCell) arrayList16.get(i21);
+                                drawChildElement(recyclerListView, chatActivity, canvas, y, chatMessageCell4, 1, chatMessageCell4.getX() - f16, chatMessageCell4.getY() - f15);
+                            }
+                            arrayList16.clear();
+                        }
+                        int size3 = arrayList15.size();
+                        if (size3 > 0) {
+                            int i22 = 0;
+                            while (i22 < size3) {
+                                ArrayList arrayList20 = arrayList15;
+                                ChatMessageCell chatMessageCell5 = (ChatMessageCell) arrayList20.get(i22);
+                                if (chatMessageCell5.getCurrentPosition() != null || chatMessageCell5.getTransitionParams().animateBackgroundBoundsInner) {
+                                    drawChildElement(recyclerListView, chatActivity, canvas, y, chatMessageCell5, 2, chatMessageCell5.getX() - f16, chatMessageCell5.getY() - f15);
+                                }
+                                i22++;
+                                arrayList15 = arrayList20;
+                            }
+                            arrayList15.clear();
+                        }
+                        int size4 = arrayList18.size();
+                        if (size4 > 0) {
+                            int i23 = 0;
+                            while (i23 < size4) {
+                                ArrayList arrayList21 = arrayList18;
+                                ChatMessageCell chatMessageCell6 = (ChatMessageCell) arrayList21.get(i23);
+                                if (chatMessageCell6.getCurrentPosition() != null || chatMessageCell6.getTransitionParams().animateBackgroundBoundsInner) {
+                                    drawChildElement(recyclerListView, chatActivity, canvas, y, chatMessageCell6, 3, chatMessageCell6.getX() - f16, chatMessageCell6.getY() - f15);
+                                }
+                                i23++;
+                                arrayList18 = arrayList21;
+                            }
+                            arrayList18.clear();
+                        }
+                        try {
+                            canvas.restoreToCount(i18);
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                        for (int i24 = 0; i24 < arrayList.size(); i24++) {
+                            if (arrayList.get(i24) instanceof ChatMessageCell) {
+                                ((ChatMessageCell) arrayList.get(i24)).drawingToBitmap = false;
+                            }
+                        }
+                    }
+                }
             }
 
             public static void lambda$new$0(ArrayList arrayList) {
@@ -891,7 +1270,7 @@ public class ThanosEffect extends TextureView {
                 }
             }
 
-            private void drawChildElement(View view, ChatActivity chatActivity, Canvas canvas, float f, ChatMessageCell chatMessageCell, int i, float f2, float f3) throws IOException {
+            private void drawChildElement(View view, ChatActivity chatActivity, Canvas canvas, float f, ChatMessageCell chatMessageCell, int i, float f2, float f3) {
                 canvas.save();
                 float alpha = chatMessageCell.shouldDrawAlphaLayer() ? chatMessageCell.getAlpha() : 1.0f;
                 canvas.translate(f2, f3);
@@ -920,9 +1299,10 @@ public class ThanosEffect extends TextureView {
                     i4 /= 2;
                 }
                 float fMax = Math.max(AndroidUtilities.dpf2(0.4f), 1.0f);
-                this.particlesCount = Utilities.clamp((int) ((this.viewWidth * this.viewHeight) / (fMax * fMax)), (int) (i4 * f), 10);
+                int iClamp = Utilities.clamp((int) ((this.viewWidth * this.viewHeight) / (fMax * fMax)), (int) (i4 * f), 10);
+                this.particlesCount = iClamp;
                 float f2 = this.viewWidth / this.viewHeight;
-                int iRound = (int) Math.round(Math.sqrt(r6 / f2));
+                int iRound = (int) Math.round(Math.sqrt(iClamp / f2));
                 this.gridHeight = iRound;
                 this.gridWidth = Math.round(this.particlesCount / iRound);
                 while (true) {
@@ -946,8 +1326,107 @@ public class ThanosEffect extends TextureView {
                 }
             }
 
-            public Animation(android.view.View r9, float r10, java.lang.Runnable r11) throws java.io.IOException {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThanosEffect.DrawingThread.Animation.<init>(org.telegram.ui.Components.ThanosEffect$DrawingThread, android.view.View, float, java.lang.Runnable):void");
+            public Animation(View view, float f, Runnable runnable) {
+                ChatMessageCell chatMessageCell;
+                this.views = new ArrayList();
+                this.lastDrawTime = -1L;
+                this.time = 0.0f;
+                this.firstDraw = true;
+                this.offsetLeft = 0.0f;
+                this.offsetTop = 0.0f;
+                this.left = 0.0f;
+                this.top = 0.0f;
+                this.density = AndroidUtilities.density;
+                this.longevity = 1.5f;
+                this.timeScale = 1.15f;
+                this.invalidateMatrix = true;
+                this.customMatrix = false;
+                this.glMatrixValues = new float[9];
+                this.matrixValues = new float[9];
+                this.matrix = new Matrix();
+                this.seed = (float) (Math.random() * 2.0d);
+                this.texture = new int[1];
+                this.buffer = new int[2];
+                this.views.add(view);
+                this.viewWidth = view.getWidth();
+                this.viewHeight = view.getHeight();
+                this.top = view.getY();
+                this.left = 0.0f;
+                if (view instanceof BaseCell) {
+                    BaseCell baseCell = (BaseCell) view;
+                    this.viewWidth = Math.max(1, baseCell.getBoundsRight() - baseCell.getBoundsLeft());
+                    this.left += baseCell.getBoundsLeft();
+                }
+                this.doneCallback = runnable;
+                this.startCallback = new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$new$1();
+                    }
+                };
+                this.longevity *= f;
+                this.timeScale /= ((f - 1.0f) / 3.0f) + 1.0f;
+                this.bitmap = Bitmap.createBitmap(this.viewWidth, this.viewHeight, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(this.bitmap);
+                int iSave = canvas.save();
+                canvas.translate(-this.left, 0.0f);
+                boolean z = view instanceof ChatMessageCell;
+                if (z) {
+                    ((ChatMessageCell) view).drawingToBitmap = true;
+                }
+                boolean z2 = view instanceof ChatActionCell;
+                if (z2) {
+                    ChatActionCell chatActionCell = (ChatActionCell) view;
+                    if (chatActionCell.hasGradientService()) {
+                        canvas.save();
+                        canvas.translate(chatActionCell.sideMenuWidth / 2.0f, view.getPaddingTop());
+                        chatActionCell.drawBackground(canvas, true);
+                        chatActionCell.drawReactions(canvas, true, null);
+                        canvas.restore();
+                    } else if (z) {
+                        chatMessageCell = (ChatMessageCell) view;
+                        if (chatMessageCell.drawBackgroundInParent()) {
+                            canvas.save();
+                            canvas.translate(0.0f, view.getPaddingTop());
+                            chatMessageCell.drawBackgroundInternal(canvas, true);
+                            canvas.restore();
+                        }
+                    }
+                } else if (z) {
+                    chatMessageCell = (ChatMessageCell) view;
+                    if (chatMessageCell.drawBackgroundInParent()) {
+                        canvas.save();
+                        canvas.translate(0.0f, view.getPaddingTop());
+                        chatMessageCell.drawBackgroundInternal(canvas, true);
+                        canvas.restore();
+                    }
+                }
+                view.draw(canvas);
+                if (z) {
+                    ChatMessageCell chatMessageCell2 = (ChatMessageCell) view;
+                    ImageReceiver avatarImage = chatMessageCell2.getAvatarImage();
+                    if (avatarImage != null && avatarImage.getVisible()) {
+                        canvas.save();
+                        canvas.translate(0.0f, -view.getY());
+                        avatarImage.draw(canvas);
+                        canvas.restore();
+                    }
+                    chatMessageCell2.drawingToBitmap = false;
+                }
+                if (z) {
+                    canvas.save();
+                    canvas.translate(0.0f, view.getPaddingTop());
+                    ((ChatMessageCell) view).drawOutboundsContent(canvas);
+                    canvas.restore();
+                } else if (z2) {
+                    ((ChatActionCell) view).drawOutboundsContent(canvas);
+                }
+                try {
+                    canvas.restoreToCount(iSave);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                this.left += view.getX();
             }
 
             public void lambda$new$1() {
@@ -978,7 +1457,8 @@ public class ThanosEffect extends TextureView {
 
             public void draw() {
                 long jNanoTime = System.nanoTime();
-                double d = this.lastDrawTime < 0 ? 0.0d : (jNanoTime - r3) / 1.0E9d;
+                long j = this.lastDrawTime;
+                double d = j < 0 ? 0.0d : (jNanoTime - j) / 1.0E9d;
                 this.lastDrawTime = jNanoTime;
                 if (this.invalidateMatrix && !this.customMatrix) {
                     this.matrix.reset();
@@ -986,7 +1466,7 @@ public class ThanosEffect extends TextureView {
                     this.matrix.postTranslate(this.left, this.top);
                     retrieveMatrixValues();
                 }
-                this.time = (float) (this.time + (this.timeScale * d));
+                this.time = (float) (((double) this.time) + (((double) this.timeScale) * d));
                 GLES20.glUniformMatrix3fv(DrawingThread.this.matrixHandle, 1, false, this.glMatrixValues, 0);
                 GLES20.glUniform1f(DrawingThread.this.resetHandle, this.firstDraw ? 1.0f : 0.0f);
                 GLES20.glUniform1f(DrawingThread.this.timeHandle, this.time);

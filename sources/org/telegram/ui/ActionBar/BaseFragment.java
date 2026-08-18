@@ -46,11 +46,6 @@ import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
-import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ActionBar.INavigationLayout;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
@@ -1399,12 +1394,67 @@ public abstract class BaseFragment {
         }
     }
 
-    public org.telegram.ui.Stories.StoryViewer getOrCreateStoryViewer() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BaseFragment.getOrCreateStoryViewer():org.telegram.ui.Stories.StoryViewer");
+    public StoryViewer getOrCreateStoryViewer() {
+        StoryViewer storyViewer;
+        if (this.sheetsStack == null) {
+            this.sheetsStack = new ArrayList<>();
+        }
+        if (this.sheetsStack.isEmpty()) {
+            storyViewer = null;
+        } else {
+            ArrayList<AttachedSheet> arrayList = this.sheetsStack;
+            if (arrayList.get(arrayList.size() - 1) instanceof StoryViewer) {
+                ArrayList<AttachedSheet> arrayList2 = this.sheetsStack;
+                storyViewer = (StoryViewer) arrayList2.get(arrayList2.size() - 1);
+            } else {
+                storyViewer = null;
+            }
+        }
+        if (storyViewer == null) {
+            storyViewer = new StoryViewer(this);
+            INavigationLayout iNavigationLayout = this.parentLayout;
+            if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
+                storyViewer.fromBottomSheet = true;
+            }
+            this.sheetsStack.add(storyViewer);
+            updateSheetsVisibility();
+        }
+        return storyViewer;
     }
 
-    public org.telegram.ui.Stories.StoryViewer getOrCreateStoryViewer(int r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BaseFragment.getOrCreateStoryViewer(int):org.telegram.ui.Stories.StoryViewer");
+    public StoryViewer getOrCreateStoryViewer(int i) {
+        StoryViewer storyViewer;
+        if (this.sheetsStack == null) {
+            this.sheetsStack = new ArrayList<>();
+        }
+        StoryViewer storyViewer2 = null;
+        if (this.sheetsStack.isEmpty()) {
+            storyViewer = null;
+        } else {
+            ArrayList<AttachedSheet> arrayList = this.sheetsStack;
+            if (arrayList.get(arrayList.size() - 1) instanceof StoryViewer) {
+                ArrayList<AttachedSheet> arrayList2 = this.sheetsStack;
+                storyViewer = (StoryViewer) arrayList2.get(arrayList2.size() - 1);
+            } else {
+                storyViewer = null;
+            }
+        }
+        if (storyViewer == null || storyViewer.currentAccount == i) {
+            storyViewer2 = storyViewer;
+        } else {
+            storyViewer.close(true);
+            removeSheet(storyViewer);
+        }
+        if (storyViewer2 == null) {
+            storyViewer2 = new StoryViewer(this);
+            INavigationLayout iNavigationLayout = this.parentLayout;
+            if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
+                storyViewer2.fromBottomSheet = true;
+            }
+            this.sheetsStack.add(storyViewer2);
+            updateSheetsVisibility();
+        }
+        return storyViewer2;
     }
 
     public void setTitleOverlayTextIfActionBarAttached(String str, int i, Runnable runnable) {

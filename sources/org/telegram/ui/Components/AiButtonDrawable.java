@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
@@ -29,15 +30,16 @@ public class AiButtonDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        this.base.setBounds(getBounds());
+        Rect bounds = getBounds();
+        this.base.setBounds(bounds);
         this.base.draw(canvas);
         float f = this.animation.set(1.0f);
-        float fWidth = r2.left + (r2.width() * 0.352f);
-        float fHeight = r2.top + (r2.height() * 0.248f);
-        float fWidth2 = r2.width() * 0.105f * ((float) (1.0d - Math.sin(AndroidUtilities.cascade(f, 0.0f, 2.0f, 1.5f) * 3.141592653589793d)));
-        float fWidth3 = r2.left + (r2.width() * 0.215f);
-        float fHeight2 = r2.top + (r2.height() * 0.43f);
-        float fWidth4 = r2.width() * 0.09f * ((float) (1.0d - Math.sin(AndroidUtilities.cascade(f, 1.0f, 2.0f, 1.5f) * 3.141592653589793d)));
+        float fWidth = bounds.left + (bounds.width() * 0.352f);
+        float fHeight = bounds.top + (bounds.height() * 0.248f);
+        float fWidth2 = bounds.width() * 0.105f * ((float) (1.0d - Math.sin(((double) AndroidUtilities.cascade(f, 0.0f, 2.0f, 1.5f)) * 3.141592653589793d)));
+        float fWidth3 = bounds.left + (bounds.width() * 0.215f);
+        float fHeight2 = bounds.top + (bounds.height() * 0.43f);
+        float fWidth4 = bounds.width() * 0.09f * ((float) (1.0d - Math.sin(((double) AndroidUtilities.cascade(f, 1.0f, 2.0f, 1.5f)) * 3.141592653589793d)));
         this.star.setBounds((int) (fWidth - fWidth2), (int) (fHeight - fWidth2), (int) (fWidth + fWidth2), (int) (fHeight + fWidth2));
         this.star.draw(canvas);
         this.star.setBounds((int) (fWidth3 - fWidth4), (int) (fHeight2 - fWidth4), (int) (fWidth3 + fWidth4), (int) (fHeight2 + fWidth4));
